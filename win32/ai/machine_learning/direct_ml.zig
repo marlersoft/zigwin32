@@ -1558,13 +1558,13 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const PWSTR = @import("../../system/system_services.zig").PWSTR;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 const ID3D12CommandList = @import("../../graphics/direct3d12.zig").ID3D12CommandList;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const HRESULT = @import("../../system/com.zig").HRESULT;
+const HRESULT = @import("../../foundation.zig").HRESULT;
 const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
 const D3D12_GPU_DESCRIPTOR_HANDLE = @import("../../graphics/direct3d12.zig").D3D12_GPU_DESCRIPTOR_HANDLE;
-const BOOL = @import("../../system/system_services.zig").BOOL;
+const BOOL = @import("../../foundation.zig").BOOL;
 const D3D12_CPU_DESCRIPTOR_HANDLE = @import("../../graphics/direct3d12.zig").D3D12_CPU_DESCRIPTOR_HANDLE;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;
 

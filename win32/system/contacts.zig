@@ -410,11 +410,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

@@ -559,9 +559,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

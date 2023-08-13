@@ -111,6 +111,29 @@ pub const NCB = extern struct {
 
 }, else => struct { } };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const NCB = extern struct {
+    ncb_command: u8,
+    ncb_retcode: u8,
+    ncb_lsn: u8,
+    ncb_num: u8,
+    ncb_buffer: *u8,
+    ncb_length: u16,
+    ncb_callname: [16]u8,
+    ncb_name: [16]u8,
+    ncb_rto: u8,
+    ncb_sto: u8,
+    ncb_post: isize,
+    ncb_lana_num: u8,
+    ncb_cmd_cplt: u8,
+    ncb_reserve: [10]u8,
+    ncb_event: HANDLE,
+};
+
+}, else => struct { } };
+
 pub const ADAPTER_STATUS = extern struct {
     adapter_address: [6]u8,
     rev_major: u8,
@@ -189,29 +212,6 @@ pub const ACTION_HEADER = extern struct {
     reserved: u16,
 };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const NCB = extern struct {
-    ncb_command: u8,
-    ncb_retcode: u8,
-    ncb_lsn: u8,
-    ncb_num: u8,
-    ncb_buffer: *u8,
-    ncb_length: u16,
-    ncb_callname: [16]u8,
-    ncb_name: [16]u8,
-    ncb_rto: u8,
-    ncb_sto: u8,
-    ncb_post: isize,
-    ncb_lana_num: u8,
-    ncb_cmd_cplt: u8,
-    ncb_reserve: [10]u8,
-    ncb_event: HANDLE,
-};
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -237,7 +237,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     @setEvalBranchQuota(

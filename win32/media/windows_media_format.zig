@@ -7341,16 +7341,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (14)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
+const LPARAM = @import("../foundation.zig").LPARAM;
 const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IPin = @import("../graphics/direct_show.zig").IPin;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const RECT = @import("../ui/display_devices.zig").RECT;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const RECT = @import("../foundation.zig").RECT;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 const AM_MEDIA_TYPE = @import("../graphics/direct_show.zig").AM_MEDIA_TYPE;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IAMVideoAccelerator = @import("../graphics/direct_show.zig").IAMVideoAccelerator;

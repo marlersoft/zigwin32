@@ -6,19 +6,8 @@ pub const NLM_MAX_ADDRESS_LIST_SIZE = @as(u32, 10);
 pub const NLM_UNKNOWN_DATAPLAN_STATUS = @as(u32, 4294967295);
 
 //--------------------------------------------------------------------------------
-// Section: Types (28)
+// Section: Types (26)
 //--------------------------------------------------------------------------------
-pub const NET_INTERFACE_CONTEXT = extern struct {
-    InterfaceIndex: u32,
-    ConfigurationName: PWSTR,
-};
-
-pub const NET_INTERFACE_CONTEXT_TABLE = extern struct {
-    InterfaceContextHandle: HANDLE,
-    NumberOfEntries: u32,
-    InterfaceContextArray: *NET_INTERFACE_CONTEXT,
-};
-
 const CLSID_NetworkListManager_Value = @import("../zig.zig").Guid.initString("dcb00c01-570f-4a9b-8d69-199fdba5723b");
 pub const CLSID_NetworkListManager = &CLSID_NetworkListManager_Value;
 
@@ -787,24 +776,8 @@ pub const INetworkConnectionCostEvents = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (2)
+// Section: Functions (0)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "OnDemandConnRouteHelper" fn GetInterfaceContextTableForHostName(
-    HostName: ?[*:0]const u16,
-    ProxyName: ?[*:0]const u16,
-    Flags: u32,
-    // TODO: what to do with BytesParamIndex 4?
-    ConnectionProfileFilterRawData: ?*u8,
-    ConnectionProfileFilterRawDataSize: u32,
-    InterfaceContextTable: **NET_INTERFACE_CONTEXT_TABLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "OnDemandConnRouteHelper" fn FreeInterfaceContextTable(
-    InterfaceContextTable: *NET_INTERFACE_CONTEXT_TABLE,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -819,17 +792,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const BSTR = @import("../foundation.zig").BSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

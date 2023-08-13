@@ -11,7 +11,6 @@ pub const win_http = @import("networking/win_http.zig");
 pub const win_inet = @import("networking/win_inet.zig");
 pub const win_sock = @import("networking/win_sock.zig");
 pub const windows_web_services = @import("networking/windows_web_services.zig");
-pub const xml_http_extended_request = @import("networking/xml_http_extended_request.zig");
 test {
     @import("std").testing.refAllDecls(@This());
 }

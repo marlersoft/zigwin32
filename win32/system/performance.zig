@@ -98,16 +98,16 @@ pub const PerfProviderHandle = isize;
 pub const PerfQueryHandle = isize;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+.X86 => struct {
 
 pub const PERF_OBJECT_TYPE = extern struct {
     TotalByteLength: u32,
     DefinitionLength: u32,
     HeaderLength: u32,
     ObjectNameTitleIndex: u32,
-    ObjectNameTitle: u32,
+    ObjectNameTitle: PWSTR,
     ObjectHelpTitleIndex: u32,
-    ObjectHelpTitle: u32,
+    ObjectHelpTitle: PWSTR,
     DetailLevel: u32,
     NumCounters: u32,
     DefaultCounter: i32,
@@ -120,14 +120,14 @@ pub const PERF_OBJECT_TYPE = extern struct {
 }, else => struct { } };
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
+.X86 => struct {
 
 pub const PERF_COUNTER_DEFINITION = extern struct {
     ByteLength: u32,
     CounterNameTitleIndex: u32,
-    CounterNameTitle: u32,
+    CounterNameTitle: PWSTR,
     CounterHelpTitleIndex: u32,
-    CounterHelpTitle: u32,
+    CounterHelpTitle: PWSTR,
     DefaultScale: i32,
     DetailLevel: u32,
     CounterType: u32,
@@ -327,6 +327,46 @@ pub const PERF_DATA_BLOCK = extern struct {
     SystemNameLength: u32,
     SystemNameOffset: u32,
 };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const PERF_OBJECT_TYPE = extern struct {
+    TotalByteLength: u32,
+    DefinitionLength: u32,
+    HeaderLength: u32,
+    ObjectNameTitleIndex: u32,
+    ObjectNameTitle: u32,
+    ObjectHelpTitleIndex: u32,
+    ObjectHelpTitle: u32,
+    DetailLevel: u32,
+    NumCounters: u32,
+    DefaultCounter: i32,
+    NumInstances: i32,
+    CodePage: u32,
+    PerfTime: LARGE_INTEGER,
+    PerfFreq: LARGE_INTEGER,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const PERF_COUNTER_DEFINITION = extern struct {
+    ByteLength: u32,
+    CounterNameTitleIndex: u32,
+    CounterNameTitle: u32,
+    CounterHelpTitleIndex: u32,
+    CounterHelpTitle: u32,
+    DefaultScale: i32,
+    DetailLevel: u32,
+    CounterType: u32,
+    CounterSize: u32,
+    CounterOffset: u32,
+};
+
+}, else => struct { } };
 
 pub const PERF_INSTANCE_DEFINITION = extern struct {
     ByteLength: u32,
@@ -3941,50 +3981,32 @@ pub const PERF_AGGREGATE_TOTAL = PERF_COUNTER_AGGREGATE_FUNC.TOTAL;
 pub const PERF_AGGREGATE_AVG = PERF_COUNTER_AGGREGATE_FUNC.AVG;
 pub const PERF_AGGREGATE_MIN = PERF_COUNTER_AGGREGATE_FUNC.MIN;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PERF_OBJECT_TYPE = extern struct {
-    TotalByteLength: u32,
-    DefinitionLength: u32,
-    HeaderLength: u32,
-    ObjectNameTitleIndex: u32,
-    ObjectNameTitle: PWSTR,
-    ObjectHelpTitleIndex: u32,
-    ObjectHelpTitle: PWSTR,
-    DetailLevel: u32,
-    NumCounters: u32,
-    DefaultCounter: i32,
-    NumInstances: i32,
-    CodePage: u32,
-    PerfTime: LARGE_INTEGER,
-    PerfFreq: LARGE_INTEGER,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const PERF_COUNTER_DEFINITION = extern struct {
-    ByteLength: u32,
-    CounterNameTitleIndex: u32,
-    CounterNameTitle: PWSTR,
-    CounterHelpTitleIndex: u32,
-    CounterHelpTitle: PWSTR,
-    DefaultScale: i32,
-    DetailLevel: u32,
-    CounterType: u32,
-    CounterSize: u32,
-    CounterOffset: u32,
-};
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
-// Section: Functions (131)
+// Section: Functions (135)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn QueryPerformanceCounter(
+    lpPerformanceCount: *LARGE_INTEGER,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "KERNEL32" fn QueryPerformanceFrequency(
+    lpFrequency: *LARGE_INTEGER,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "loadperf" fn InstallPerfDllW(
+    szComputerName: ?[*:0]const u16,
+    lpIniFile: [*:0]const u16,
+    dwFlags: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "loadperf" fn InstallPerfDllA(
+    szComputerName: ?[*:0]const u8,
+    lpIniFile: [*:0]const u8,
+    dwFlags: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "loadperf" fn LoadPerfCounterTextStringsA(
     lpCommandLine: PSTR,
@@ -4957,7 +4979,7 @@ pub extern "pdh" fn PdhSetLogSetRunID(
 
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (49)
+// Section: Unicode Aliases (50)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
@@ -4969,6 +4991,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PDH_LOG_SERVICE_QUERY_INFO_ = PDH_LOG_SERVICE_QUERY_INFO_A;
         pub const PDH_BROWSE_DLG_CONFIG_H = PDH_BROWSE_DLG_CONFIG_HA;
         pub const PDH_BROWSE_DLG_CONFIG_ = PDH_BROWSE_DLG_CONFIG_A;
+        pub const InstallPerfDll = InstallPerfDllA;
         pub const LoadPerfCounterTextStrings = LoadPerfCounterTextStringsA;
         pub const UnloadPerfCounterTextStrings = UnloadPerfCounterTextStringsA;
         pub const UpdatePerfNameFiles = UpdatePerfNameFilesA;
@@ -5020,6 +5043,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PDH_LOG_SERVICE_QUERY_INFO_ = PDH_LOG_SERVICE_QUERY_INFO_W;
         pub const PDH_BROWSE_DLG_CONFIG_H = PDH_BROWSE_DLG_CONFIG_HW;
         pub const PDH_BROWSE_DLG_CONFIG_ = PDH_BROWSE_DLG_CONFIG_W;
+        pub const InstallPerfDll = InstallPerfDllW;
         pub const LoadPerfCounterTextStrings = LoadPerfCounterTextStringsW;
         pub const UnloadPerfCounterTextStrings = UnloadPerfCounterTextStringsW;
         pub const UpdatePerfNameFiles = UpdatePerfNameFilesW;
@@ -5071,6 +5095,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PDH_LOG_SERVICE_QUERY_INFO_ = *opaque{};
         pub const PDH_BROWSE_DLG_CONFIG_H = *opaque{};
         pub const PDH_BROWSE_DLG_CONFIG_ = *opaque{};
+        pub const InstallPerfDll = *opaque{};
         pub const LoadPerfCounterTextStrings = *opaque{};
         pub const UnloadPerfCounterTextStrings = *opaque{};
         pub const UpdatePerfNameFiles = *opaque{};
@@ -5121,6 +5146,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
         pub const PDH_LOG_SERVICE_QUERY_INFO_ = @compileError("'PDH_LOG_SERVICE_QUERY_INFO_' requires that UNICODE be set to true or false in the root module");
         pub const PDH_BROWSE_DLG_CONFIG_H = @compileError("'PDH_BROWSE_DLG_CONFIG_H' requires that UNICODE be set to true or false in the root module");
         pub const PDH_BROWSE_DLG_CONFIG_ = @compileError("'PDH_BROWSE_DLG_CONFIG_' requires that UNICODE be set to true or false in the root module");
+        pub const InstallPerfDll = @compileError("'InstallPerfDll' requires that UNICODE be set to true or false in the root module");
         pub const LoadPerfCounterTextStrings = @compileError("'LoadPerfCounterTextStrings' requires that UNICODE be set to true or false in the root module");
         pub const UnloadPerfCounterTextStrings = @compileError("'UnloadPerfCounterTextStrings' requires that UNICODE be set to true or false in the root module");
         pub const UpdatePerfNameFiles = @compileError("'UpdatePerfNameFiles' requires that UNICODE be set to true or false in the root module");
@@ -5170,18 +5196,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

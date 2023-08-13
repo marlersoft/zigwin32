@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (345)
 //--------------------------------------------------------------------------------
+pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 pub const WNODE_FLAG_ALL_DATA = @as(u32, 1);
 pub const WNODE_FLAG_SINGLE_INSTANCE = @as(u32, 2);
 pub const WNODE_FLAG_SINGLE_ITEM = @as(u32, 4);
@@ -346,7 +347,6 @@ pub const EVENT_ENABLE_PROPERTY_SOURCE_CONTAINER_TRACKING = @as(u32, 2048);
 pub const PROCESS_TRACE_MODE_REAL_TIME = @as(u32, 256);
 pub const PROCESS_TRACE_MODE_RAW_TIMESTAMP = @as(u32, 4096);
 pub const PROCESS_TRACE_MODE_EVENT_RECORD = @as(u32, 268435456);
-pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71f17d4");
 
 //--------------------------------------------------------------------------------
 // Section: Types (102)
@@ -1419,11 +1419,6 @@ pub const EVENT_PROPERTY_INFO = extern struct {
     Flags: PROPERTY_FLAGS,
     NameOffset: u32,
     Anonymous1: extern union {
-        pub const _structType = extern struct {
-            StructStartIndex: u16,
-            NumOfStructMembers: u16,
-            padding: u32,
-        };
         pub const _customSchemaType = extern struct {
             InType: u16,
             OutType: u16,
@@ -1433,6 +1428,11 @@ pub const EVENT_PROPERTY_INFO = extern struct {
             InType: u16,
             OutType: u16,
             MapNameOffset: u32,
+        };
+        pub const _structType = extern struct {
+            StructStartIndex: u16,
+            NumOfStructMembers: u16,
+            padding: u32,
         };
         nonStructType: _nonStructType,
         structType: _structType,
@@ -2717,17 +2717,17 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const TIME_ZONE_INFORMATION = @import("../../system/windows_programming.zig").TIME_ZONE_INFORMATION;
+const TIME_ZONE_INFORMATION = @import("../../system/time.zig").TIME_ZONE_INFORMATION;
 const SECURITY_DESCRIPTOR = @import("../../security.zig").SECURITY_DESCRIPTOR;
 const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
-const PWSTR = @import("../../system/system_services.zig").PWSTR;
-const FILETIME = @import("../../system/windows_programming.zig").FILETIME;
+const PWSTR = @import("../../foundation.zig").PWSTR;
+const FILETIME = @import("../../foundation.zig").FILETIME;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const HRESULT = @import("../../system/com.zig").HRESULT;
-const HANDLE = @import("../../system/system_services.zig").HANDLE;
-const PSTR = @import("../../system/system_services.zig").PSTR;
-const BSTR = @import("../../system/ole_automation.zig").BSTR;
-const PSID = @import("../../security.zig").PSID;
+const HRESULT = @import("../../foundation.zig").HRESULT;
+const HANDLE = @import("../../foundation.zig").HANDLE;
+const PSTR = @import("../../foundation.zig").PSTR;
+const BSTR = @import("../../foundation.zig").BSTR;
+const PSID = @import("../../foundation.zig").PSID;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

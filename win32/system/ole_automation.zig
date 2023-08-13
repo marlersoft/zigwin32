@@ -87,11 +87,118 @@ pub const DISPATCH_CONSTRUCT = @as(u32, 16384);
 pub const DISPID_THIS = @as(i32, -613);
 
 //--------------------------------------------------------------------------------
-// Section: Types (79)
+// Section: Types (78)
 //--------------------------------------------------------------------------------
 pub const LPEXCEPFINO_DEFERRED_FILLIN = fn(
     pExcepInfo: *EXCEPINFO,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub const VARENUM = extern enum(i32) {
+    EMPTY = 0,
+    NULL = 1,
+    I2 = 2,
+    I4 = 3,
+    R4 = 4,
+    R8 = 5,
+    CY = 6,
+    DATE = 7,
+    BSTR = 8,
+    DISPATCH = 9,
+    ERROR = 10,
+    BOOL = 11,
+    VARIANT = 12,
+    UNKNOWN = 13,
+    DECIMAL = 14,
+    I1 = 16,
+    UI1 = 17,
+    UI2 = 18,
+    UI4 = 19,
+    I8 = 20,
+    UI8 = 21,
+    INT = 22,
+    UINT = 23,
+    VOID = 24,
+    HRESULT = 25,
+    PTR = 26,
+    SAFEARRAY = 27,
+    CARRAY = 28,
+    USERDEFINED = 29,
+    LPSTR = 30,
+    LPWSTR = 31,
+    RECORD = 36,
+    INT_PTR = 37,
+    UINT_PTR = 38,
+    FILETIME = 64,
+    BLOB = 65,
+    STREAM = 66,
+    STORAGE = 67,
+    STREAMED_OBJECT = 68,
+    STORED_OBJECT = 69,
+    BLOB_OBJECT = 70,
+    CF = 71,
+    CLSID = 72,
+    VERSIONED_STREAM = 73,
+    BSTR_BLOB = 4095,
+    VECTOR = 4096,
+    ARRAY = 8192,
+    BYREF = 16384,
+    RESERVED = 32768,
+    ILLEGAL = 65535,
+    ILLEGALMASKED = 4095,
+    TYPEMASK = 4095,
+};
+pub const VT_EMPTY = VARENUM.EMPTY;
+pub const VT_NULL = VARENUM.NULL;
+pub const VT_I2 = VARENUM.I2;
+pub const VT_I4 = VARENUM.I4;
+pub const VT_R4 = VARENUM.R4;
+pub const VT_R8 = VARENUM.R8;
+pub const VT_CY = VARENUM.CY;
+pub const VT_DATE = VARENUM.DATE;
+pub const VT_BSTR = VARENUM.BSTR;
+pub const VT_DISPATCH = VARENUM.DISPATCH;
+pub const VT_ERROR = VARENUM.ERROR;
+pub const VT_BOOL = VARENUM.BOOL;
+pub const VT_VARIANT = VARENUM.VARIANT;
+pub const VT_UNKNOWN = VARENUM.UNKNOWN;
+pub const VT_DECIMAL = VARENUM.DECIMAL;
+pub const VT_I1 = VARENUM.I1;
+pub const VT_UI1 = VARENUM.UI1;
+pub const VT_UI2 = VARENUM.UI2;
+pub const VT_UI4 = VARENUM.UI4;
+pub const VT_I8 = VARENUM.I8;
+pub const VT_UI8 = VARENUM.UI8;
+pub const VT_INT = VARENUM.INT;
+pub const VT_UINT = VARENUM.UINT;
+pub const VT_VOID = VARENUM.VOID;
+pub const VT_HRESULT = VARENUM.HRESULT;
+pub const VT_PTR = VARENUM.PTR;
+pub const VT_SAFEARRAY = VARENUM.SAFEARRAY;
+pub const VT_CARRAY = VARENUM.CARRAY;
+pub const VT_USERDEFINED = VARENUM.USERDEFINED;
+pub const VT_LPSTR = VARENUM.LPSTR;
+pub const VT_LPWSTR = VARENUM.LPWSTR;
+pub const VT_RECORD = VARENUM.RECORD;
+pub const VT_INT_PTR = VARENUM.INT_PTR;
+pub const VT_UINT_PTR = VARENUM.UINT_PTR;
+pub const VT_FILETIME = VARENUM.FILETIME;
+pub const VT_BLOB = VARENUM.BLOB;
+pub const VT_STREAM = VARENUM.STREAM;
+pub const VT_STORAGE = VARENUM.STORAGE;
+pub const VT_STREAMED_OBJECT = VARENUM.STREAMED_OBJECT;
+pub const VT_STORED_OBJECT = VARENUM.STORED_OBJECT;
+pub const VT_BLOB_OBJECT = VARENUM.BLOB_OBJECT;
+pub const VT_CF = VARENUM.CF;
+pub const VT_CLSID = VARENUM.CLSID;
+pub const VT_VERSIONED_STREAM = VARENUM.VERSIONED_STREAM;
+pub const VT_BSTR_BLOB = VARENUM.BSTR_BLOB;
+pub const VT_VECTOR = VARENUM.VECTOR;
+pub const VT_ARRAY = VARENUM.ARRAY;
+pub const VT_BYREF = VARENUM.BYREF;
+pub const VT_RESERVED = VARENUM.RESERVED;
+pub const VT_ILLEGAL = VARENUM.ILLEGAL;
+pub const VT_ILLEGALMASKED = VARENUM.ILLEGALMASKED;
+pub const VT_TYPEMASK = VARENUM.TYPEMASK;
 
 pub const SAFEARRAYBOUND = extern struct {
     cElements: u32,
@@ -2657,116 +2764,6 @@ pub const IProvideRuntimeContext = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-// TODO: this type has a FreeFunc 'SysFreeString', what can Zig do with this information?
-pub const BSTR = *u16;
-
-pub const VARENUM = extern enum(i32) {
-    EMPTY = 0,
-    NULL = 1,
-    I2 = 2,
-    I4 = 3,
-    R4 = 4,
-    R8 = 5,
-    CY = 6,
-    DATE = 7,
-    BSTR = 8,
-    DISPATCH = 9,
-    ERROR = 10,
-    BOOL = 11,
-    VARIANT = 12,
-    UNKNOWN = 13,
-    DECIMAL = 14,
-    I1 = 16,
-    UI1 = 17,
-    UI2 = 18,
-    UI4 = 19,
-    I8 = 20,
-    UI8 = 21,
-    INT = 22,
-    UINT = 23,
-    VOID = 24,
-    HRESULT = 25,
-    PTR = 26,
-    SAFEARRAY = 27,
-    CARRAY = 28,
-    USERDEFINED = 29,
-    LPSTR = 30,
-    LPWSTR = 31,
-    RECORD = 36,
-    INT_PTR = 37,
-    UINT_PTR = 38,
-    FILETIME = 64,
-    BLOB = 65,
-    STREAM = 66,
-    STORAGE = 67,
-    STREAMED_OBJECT = 68,
-    STORED_OBJECT = 69,
-    BLOB_OBJECT = 70,
-    CF = 71,
-    CLSID = 72,
-    VERSIONED_STREAM = 73,
-    BSTR_BLOB = 4095,
-    VECTOR = 4096,
-    ARRAY = 8192,
-    BYREF = 16384,
-    RESERVED = 32768,
-    ILLEGAL = 65535,
-    ILLEGALMASKED = 4095,
-    TYPEMASK = 4095,
-};
-pub const VT_EMPTY = VARENUM.EMPTY;
-pub const VT_NULL = VARENUM.NULL;
-pub const VT_I2 = VARENUM.I2;
-pub const VT_I4 = VARENUM.I4;
-pub const VT_R4 = VARENUM.R4;
-pub const VT_R8 = VARENUM.R8;
-pub const VT_CY = VARENUM.CY;
-pub const VT_DATE = VARENUM.DATE;
-pub const VT_BSTR = VARENUM.BSTR;
-pub const VT_DISPATCH = VARENUM.DISPATCH;
-pub const VT_ERROR = VARENUM.ERROR;
-pub const VT_BOOL = VARENUM.BOOL;
-pub const VT_VARIANT = VARENUM.VARIANT;
-pub const VT_UNKNOWN = VARENUM.UNKNOWN;
-pub const VT_DECIMAL = VARENUM.DECIMAL;
-pub const VT_I1 = VARENUM.I1;
-pub const VT_UI1 = VARENUM.UI1;
-pub const VT_UI2 = VARENUM.UI2;
-pub const VT_UI4 = VARENUM.UI4;
-pub const VT_I8 = VARENUM.I8;
-pub const VT_UI8 = VARENUM.UI8;
-pub const VT_INT = VARENUM.INT;
-pub const VT_UINT = VARENUM.UINT;
-pub const VT_VOID = VARENUM.VOID;
-pub const VT_HRESULT = VARENUM.HRESULT;
-pub const VT_PTR = VARENUM.PTR;
-pub const VT_SAFEARRAY = VARENUM.SAFEARRAY;
-pub const VT_CARRAY = VARENUM.CARRAY;
-pub const VT_USERDEFINED = VARENUM.USERDEFINED;
-pub const VT_LPSTR = VARENUM.LPSTR;
-pub const VT_LPWSTR = VARENUM.LPWSTR;
-pub const VT_RECORD = VARENUM.RECORD;
-pub const VT_INT_PTR = VARENUM.INT_PTR;
-pub const VT_UINT_PTR = VARENUM.UINT_PTR;
-pub const VT_FILETIME = VARENUM.FILETIME;
-pub const VT_BLOB = VARENUM.BLOB;
-pub const VT_STREAM = VARENUM.STREAM;
-pub const VT_STORAGE = VARENUM.STORAGE;
-pub const VT_STREAMED_OBJECT = VARENUM.STREAMED_OBJECT;
-pub const VT_STORED_OBJECT = VARENUM.STORED_OBJECT;
-pub const VT_BLOB_OBJECT = VARENUM.BLOB_OBJECT;
-pub const VT_CF = VARENUM.CF;
-pub const VT_CLSID = VARENUM.CLSID;
-pub const VT_VERSIONED_STREAM = VARENUM.VERSIONED_STREAM;
-pub const VT_BSTR_BLOB = VARENUM.BSTR_BLOB;
-pub const VT_VECTOR = VARENUM.VECTOR;
-pub const VT_ARRAY = VARENUM.ARRAY;
-pub const VT_BYREF = VARENUM.BYREF;
-pub const VT_RESERVED = VARENUM.RESERVED;
-pub const VT_ILLEGAL = VARENUM.ILLEGAL;
-pub const VT_ILLEGALMASKED = VARENUM.ILLEGALMASKED;
-pub const VT_TYPEMASK = VARENUM.TYPEMASK;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (412)
@@ -2894,29 +2891,6 @@ pub extern "OLE32" fn HWND_UserFree(
     param1: *HWND,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize(
-    param0: *u32,
-    param1: u32,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal(
-    param0: *u32,
-    param1: *u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal(
-    param0: *u32,
-    param1: [*:0]u8,
-    param2: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) *u8;
-
-pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
-    param0: *u32,
-    param1: **SAFEARRAY,
-) callconv(@import("std").os.windows.WINAPI) void;
-
 pub extern "OLE32" fn HWND_UserSize64(
     param0: *u32,
     param1: u32,
@@ -2938,6 +2912,29 @@ pub extern "OLE32" fn HWND_UserUnmarshal64(
 pub extern "OLE32" fn HWND_UserFree64(
     param0: *u32,
     param1: *HWND,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserSize(
+    param0: *u32,
+    param1: u32,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserMarshal(
+    param0: *u32,
+    param1: *u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserUnmarshal(
+    param0: *u32,
+    param1: [*:0]u8,
+    param2: **SAFEARRAY,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "OLEAUT32" fn LPSAFEARRAY_UserFree(
+    param0: *u32,
+    param1: **SAFEARRAY,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -5084,7 +5081,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (19)
+// Section: Imports (20)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LONG_SIZEDARR = @import("../system/com.zig").LONG_SIZEDARR;
@@ -5093,17 +5090,18 @@ const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const CY = @import("../system/system_services.zig").CY;
 const SHORT_SIZEDARR = @import("../system/com.zig").SHORT_SIZEDARR;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const HYPER_SIZEDARR = @import("../system/com.zig").HYPER_SIZEDARR;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BSTR = @import("../foundation.zig").BSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 const BYTE_SIZEDARR = @import("../system/com.zig").BYTE_SIZEDARR;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
 const DECIMAL = @import("../system/system_services.zig").DECIMAL;
+const HWND = @import("../foundation.zig").HWND;
 const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const IServiceProvider = @import("../system/system_services.zig").IServiceProvider;
 
 test {

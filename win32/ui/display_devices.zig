@@ -4,8 +4,11 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (238)
+// Section: Types (233)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
+pub const HSEMAPHORE = ?*opaque{};
+
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -73,6 +76,416 @@ pub const IFIMETRICS = extern struct {
 };
 
 }, else => struct { } };
+
+pub const FD_XFORM = extern struct {
+    eXX: f32,
+    eXY: f32,
+    eYX: f32,
+    eYY: f32,
+};
+
+pub const FD_DEVICEMETRICS = extern struct {
+    flRealizedType: u32,
+    pteBase: POINTE,
+    pteSide: POINTE,
+    lD: i32,
+    fxMaxAscender: i32,
+    fxMaxDescender: i32,
+    ptlUnderline1: POINTL,
+    ptlStrikeOut: POINTL,
+    ptlULThickness: POINTL,
+    ptlSOThickness: POINTL,
+    cxMax: u32,
+    cyMax: u32,
+    cjGlyphMax: u32,
+    fdxQuantized: FD_XFORM,
+    lNonLinearExtLeading: i32,
+    lNonLinearIntLeading: i32,
+    lNonLinearMaxCharWidth: i32,
+    lNonLinearAvgCharWidth: i32,
+    lMinA: i32,
+    lMinC: i32,
+    lMinD: i32,
+    alReserved: [1]i32,
+};
+
+pub const WCRUN = extern struct {
+    wcLow: u16,
+    cGlyphs: u16,
+    phg: *u32,
+};
+
+pub const FD_GLYPHSET = extern struct {
+    cjThis: u32,
+    flAccel: u32,
+    cGlyphsSupported: u32,
+    cRuns: u32,
+    awcrun: [1]WCRUN,
+};
+
+pub const FD_GLYPHATTR = extern struct {
+    cjThis: u32,
+    cGlyphs: u32,
+    iMode: u32,
+    aGlyphAttr: [1]u8,
+};
+
+pub const FD_KERNINGPAIR = extern struct {
+    wcFirst: u16,
+    wcSecond: u16,
+    fwdKern: i16,
+};
+
+pub const FONTDIFF = extern struct {
+    jReserved1: u8,
+    jReserved2: u8,
+    jReserved3: u8,
+    bWeight: u8,
+    usWinWeight: u16,
+    fsSelection: u16,
+    fwdAveCharWidth: i16,
+    fwdMaxCharInc: i16,
+    ptlCaret: POINTL,
+};
+
+pub const FONTSIM = extern struct {
+    dpBold: i32,
+    dpItalic: i32,
+    dpBoldItalic: i32,
+};
+
+pub const IFIEXTRA = extern struct {
+    ulIdentifier: u32,
+    dpFontSig: i32,
+    cig: u32,
+    dpDesignVector: i32,
+    dpAxesInfoW: i32,
+    aulReserved: [1]u32,
+};
+
+pub const DRVFN = extern struct {
+    iFunc: u32,
+    pfn: PFN,
+};
+
+pub const DRVENABLEDATA = extern struct {
+    iDriverVersion: u32,
+    c: u32,
+    pdrvfn: *DRVFN,
+};
+
+pub const DEVINFO = extern struct {
+    flGraphicsCaps: u32,
+    lfDefaultFont: LOGFONTW,
+    lfAnsiVarFont: LOGFONTW,
+    lfAnsiFixFont: LOGFONTW,
+    cFonts: u32,
+    iDitherFormat: u32,
+    cxDither: u16,
+    cyDither: u16,
+    hpalDefault: HPALETTE,
+    flGraphicsCaps2: u32,
+};
+
+pub const LINEATTRS = extern struct {
+    fl: u32,
+    iJoin: u32,
+    iEndCap: u32,
+    elWidth: FLOAT_LONG,
+    eMiterLimit: f32,
+    cstyle: u32,
+    pstyle: *FLOAT_LONG,
+    elStyleState: FLOAT_LONG,
+};
+
+pub const XFORML = extern struct {
+    eM11: f32,
+    eM12: f32,
+    eM21: f32,
+    eM22: f32,
+    eDx: f32,
+    eDy: f32,
+};
+
+pub const CIECHROMA = extern struct {
+    x: i32,
+    y: i32,
+    Y: i32,
+};
+
+pub const COLORINFO = extern struct {
+    Red: CIECHROMA,
+    Green: CIECHROMA,
+    Blue: CIECHROMA,
+    Cyan: CIECHROMA,
+    Magenta: CIECHROMA,
+    Yellow: CIECHROMA,
+    AlignmentWhite: CIECHROMA,
+    RedGamma: i32,
+    GreenGamma: i32,
+    BlueGamma: i32,
+    MagentaInCyanDye: i32,
+    YellowInCyanDye: i32,
+    CyanInMagentaDye: i32,
+    YellowInMagentaDye: i32,
+    CyanInYellowDye: i32,
+    MagentaInYellowDye: i32,
+};
+
+pub const GDIINFO = extern struct {
+    ulVersion: u32,
+    ulTechnology: u32,
+    ulHorzSize: u32,
+    ulVertSize: u32,
+    ulHorzRes: u32,
+    ulVertRes: u32,
+    cBitsPixel: u32,
+    cPlanes: u32,
+    ulNumColors: u32,
+    flRaster: u32,
+    ulLogPixelsX: u32,
+    ulLogPixelsY: u32,
+    flTextCaps: u32,
+    ulDACRed: u32,
+    ulDACGreen: u32,
+    ulDACBlue: u32,
+    ulAspectX: u32,
+    ulAspectY: u32,
+    ulAspectXY: u32,
+    xStyleStep: i32,
+    yStyleStep: i32,
+    denStyleStep: i32,
+    ptlPhysOffset: POINTL,
+    szlPhysSize: SIZE,
+    ulNumPalReg: u32,
+    ciDevice: COLORINFO,
+    ulDevicePelsDPI: u32,
+    ulPrimaryOrder: u32,
+    ulHTPatternSize: u32,
+    ulHTOutputFormat: u32,
+    flHTFlags: u32,
+    ulVRefresh: u32,
+    ulBltAlignment: u32,
+    ulPanningHorzRes: u32,
+    ulPanningVertRes: u32,
+    xPanningAlignment: u32,
+    yPanningAlignment: u32,
+    cxHTPat: u32,
+    cyHTPat: u32,
+    pHTPatA: *u8,
+    pHTPatB: *u8,
+    pHTPatC: *u8,
+    flShadeBlend: u32,
+    ulPhysicalPixelCharacteristics: u32,
+    ulPhysicalPixelGamma: u32,
+};
+
+pub const BRUSHOBJ = extern struct {
+    iSolidColor: u32,
+    pvRbrush: *c_void,
+    flColorType: u32,
+};
+
+pub const CLIPOBJ = extern struct {
+    iUniq: u32,
+    rclBounds: RECTL,
+    iDComplexity: u8,
+    iFComplexity: u8,
+    iMode: u8,
+    fjOptions: u8,
+};
+
+pub const DRIVEROBJ = extern struct {
+    pvObj: *c_void,
+    pFreeProc: FREEOBJPROC,
+    hdev: HDEV,
+    dhpdev: DHPDEV,
+};
+
+pub const FONTOBJ = extern struct {
+    iUniq: u32,
+    iFace: u32,
+    cxMax: u32,
+    flFontType: u32,
+    iTTUniq: usize,
+    iFile: usize,
+    sizLogResPpi: SIZE,
+    ulStyleSize: u32,
+    pvConsumer: *c_void,
+    pvProducer: *c_void,
+};
+
+pub const BLENDOBJ = extern struct {
+    BlendFunction: BLENDFUNCTION,
+};
+
+pub const PALOBJ = extern struct {
+    ulReserved: u32,
+};
+
+pub const PATHOBJ = extern struct {
+    fl: u32,
+    cCurves: u32,
+};
+
+pub const SURFOBJ = extern struct {
+    dhsurf: DHSURF,
+    hsurf: HSURF,
+    dhpdev: DHPDEV,
+    hdev: HDEV,
+    sizlBitmap: SIZE,
+    cjBits: u32,
+    pvBits: *c_void,
+    pvScan0: *c_void,
+    lDelta: i32,
+    iUniq: u32,
+    iBitmapFormat: u32,
+    iType: u16,
+    fjBitmap: u16,
+};
+
+pub const WNDOBJ = extern struct {
+    coClient: CLIPOBJ,
+    pvConsumer: *c_void,
+    rclClient: RECTL,
+    psoOwner: *SURFOBJ,
+};
+
+pub const XLATEOBJ = extern struct {
+    iUniq: u32,
+    flXlate: u32,
+    iSrcType: u16,
+    iDstType: u16,
+    cEntries: u32,
+    pulXlate: *u32,
+};
+
+pub const ENUMRECTS = extern struct {
+    c: u32,
+    arcl: [1]RECTL,
+};
+
+pub const GLYPHBITS = extern struct {
+    ptlOrigin: POINTL,
+    sizlBitmap: SIZE,
+    aj: [1]u8,
+};
+
+pub const GLYPHDEF = extern union {
+    pgb: *GLYPHBITS,
+    ppo: *PATHOBJ,
+};
+
+pub const GLYPHPOS = extern struct {
+    hg: u32,
+    pgdf: *GLYPHDEF,
+    ptl: POINTL,
+};
+
+pub const GLYPHDATA = extern struct {
+    gdf: GLYPHDEF,
+    hg: u32,
+    fxD: i32,
+    fxA: i32,
+    fxAB: i32,
+    fxInkTop: i32,
+    fxInkBottom: i32,
+    rclInk: RECTL,
+    ptqD: POINTQF,
+};
+
+pub const STROBJ = extern struct {
+    cGlyphs: u32,
+    flAccel: u32,
+    ulCharInc: u32,
+    rclBkGround: RECTL,
+    pgp: *GLYPHPOS,
+    pwszOrg: PWSTR,
+};
+
+pub const FONTINFO = extern struct {
+    cjThis: u32,
+    flCaps: u32,
+    cGlyphsSupported: u32,
+    cjMaxGlyph1: u32,
+    cjMaxGlyph4: u32,
+    cjMaxGlyph8: u32,
+    cjMaxGlyph32: u32,
+};
+
+pub const PATHDATA = extern struct {
+    flags: u32,
+    count: u32,
+    pptfx: *POINTFIX,
+};
+
+pub const RUN = extern struct {
+    iStart: i32,
+    iStop: i32,
+};
+
+pub const CLIPLINE = extern struct {
+    ptfxA: POINTFIX,
+    ptfxB: POINTFIX,
+    lStyleState: i32,
+    c: u32,
+    arun: [1]RUN,
+};
+
+pub const PERBANDINFO = extern struct {
+    bRepeatThisBand: BOOL,
+    szlBand: SIZE,
+    ulHorzRes: u32,
+    ulVertRes: u32,
+};
+
+pub const GAMMARAMP = extern struct {
+    Red: [256]u16,
+    Green: [256]u16,
+    Blue: [256]u16,
+};
+
+pub const DEVHTINFO = extern struct {
+    HTFlags: u32,
+    HTPatternSize: u32,
+    DevPelsDPI: u32,
+    ColorInfo: COLORINFO,
+};
+
+pub const DEVHTADJDATA = extern struct {
+    DeviceFlags: u32,
+    DeviceXDPI: u32,
+    DeviceYDPI: u32,
+    pDefHTInfo: *DEVHTINFO,
+    pAdjHTInfo: *DEVHTINFO,
+};
+
+pub const TYPE1_FONT = extern struct {
+    hPFM: HANDLE,
+    hPFB: HANDLE,
+    ulIdentifier: u32,
+};
+
+pub const ENGSAFESEMAPHORE = extern struct {
+    hsem: *HSEMAPHORE__,
+    lCount: i32,
+};
+
+pub const ENG_TIME_FIELDS = extern struct {
+    usYear: u16,
+    usMonth: u16,
+    usDay: u16,
+    usHour: u16,
+    usMinute: u16,
+    usSecond: u16,
+    usMilliseconds: u16,
+    usWeekday: u16,
+};
+
+pub const PFN_DrvQueryGlyphAttrs = fn(
+    param0: *FONTOBJ,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHATTR;
 
 pub const DEVMODEA = extern struct {
     dmDeviceName: [32]u8,
@@ -484,40 +897,6 @@ pub const DISPLAYCONFIG_SUPPORT_VIRTUAL_RESOLUTION = extern struct {
     },
 };
 
-pub const RECT = extern struct {
-    left: i32,
-    top: i32,
-    right: i32,
-    bottom: i32,
-};
-
-pub const RECTL = extern struct {
-    left: i32,
-    top: i32,
-    right: i32,
-    bottom: i32,
-};
-
-pub const POINT = extern struct {
-    x: i32,
-    y: i32,
-};
-
-pub const POINTL = extern struct {
-    x: i32,
-    y: i32,
-};
-
-pub const SIZE = extern struct {
-    cx: i32,
-    cy: i32,
-};
-
-pub const POINTS = extern struct {
-    x: i16,
-    y: i16,
-};
-
 pub const DDVIDEOPORTCAPS = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -579,6 +958,75 @@ pub const DDVIDEOPORTBANDWIDTH = extern struct {
     dwYInterpAndColorkey: u32,
     dwReserved1: usize,
     dwReserved2: usize,
+};
+
+pub const DDCORECAPS = extern struct {
+    dwSize: u32,
+    dwCaps: u32,
+    dwCaps2: u32,
+    dwCKeyCaps: u32,
+    dwFXCaps: u32,
+    dwFXAlphaCaps: u32,
+    dwPalCaps: u32,
+    dwSVCaps: u32,
+    dwAlphaBltConstBitDepths: u32,
+    dwAlphaBltPixelBitDepths: u32,
+    dwAlphaBltSurfaceBitDepths: u32,
+    dwAlphaOverlayConstBitDepths: u32,
+    dwAlphaOverlayPixelBitDepths: u32,
+    dwAlphaOverlaySurfaceBitDepths: u32,
+    dwZBufferBitDepths: u32,
+    dwVidMemTotal: u32,
+    dwVidMemFree: u32,
+    dwMaxVisibleOverlays: u32,
+    dwCurrVisibleOverlays: u32,
+    dwNumFourCCCodes: u32,
+    dwAlignBoundarySrc: u32,
+    dwAlignSizeSrc: u32,
+    dwAlignBoundaryDest: u32,
+    dwAlignSizeDest: u32,
+    dwAlignStrideAlign: u32,
+    dwRops: [8]u32,
+    ddsCaps: DDSCAPS,
+    dwMinOverlayStretch: u32,
+    dwMaxOverlayStretch: u32,
+    dwMinLiveVideoStretch: u32,
+    dwMaxLiveVideoStretch: u32,
+    dwMinHwCodecStretch: u32,
+    dwMaxHwCodecStretch: u32,
+    dwReserved1: u32,
+    dwReserved2: u32,
+    dwReserved3: u32,
+    dwSVBCaps: u32,
+    dwSVBCKeyCaps: u32,
+    dwSVBFXCaps: u32,
+    dwSVBRops: [8]u32,
+    dwVSBCaps: u32,
+    dwVSBCKeyCaps: u32,
+    dwVSBFXCaps: u32,
+    dwVSBRops: [8]u32,
+    dwSSBCaps: u32,
+    dwSSBCKeyCaps: u32,
+    dwSSBFXCaps: u32,
+    dwSSBRops: [8]u32,
+    dwMaxVideoPorts: u32,
+    dwCurrVideoPorts: u32,
+    dwSVBCaps2: u32,
+};
+
+pub const DDHAL_WAITFORVERTICALBLANKDATA = extern struct {
+    lpDD: *DDRAWI_DIRECTDRAW_GBL,
+    dwFlags: u32,
+    bIsInVB: u32,
+    hEvent: usize,
+    ddRVal: HRESULT,
+    WaitForVerticalBlank: LPDDHAL_WAITFORVERTICALBLANK,
+};
+
+pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
+    dwFlags: u32,
+    pDDLcl: *DDRAWI_DIRECTDRAW_LCL,
+    ddRVal: HRESULT,
 };
 
 pub const VIDEOMEMORY = extern struct {
@@ -1659,442 +2107,6 @@ pub const DD_GETDRIVERSTATEDATA = extern struct {
     ddRVal: HRESULT,
 };
 
-pub const FD_XFORM = extern struct {
-    eXX: f32,
-    eXY: f32,
-    eYX: f32,
-    eYY: f32,
-};
-
-pub const FD_DEVICEMETRICS = extern struct {
-    flRealizedType: u32,
-    pteBase: POINTE,
-    pteSide: POINTE,
-    lD: i32,
-    fxMaxAscender: i32,
-    fxMaxDescender: i32,
-    ptlUnderline1: POINTL,
-    ptlStrikeOut: POINTL,
-    ptlULThickness: POINTL,
-    ptlSOThickness: POINTL,
-    cxMax: u32,
-    cyMax: u32,
-    cjGlyphMax: u32,
-    fdxQuantized: FD_XFORM,
-    lNonLinearExtLeading: i32,
-    lNonLinearIntLeading: i32,
-    lNonLinearMaxCharWidth: i32,
-    lNonLinearAvgCharWidth: i32,
-    lMinA: i32,
-    lMinC: i32,
-    lMinD: i32,
-    alReserved: [1]i32,
-};
-
-pub const WCRUN = extern struct {
-    wcLow: u16,
-    cGlyphs: u16,
-    phg: *u32,
-};
-
-pub const FD_GLYPHSET = extern struct {
-    cjThis: u32,
-    flAccel: u32,
-    cGlyphsSupported: u32,
-    cRuns: u32,
-    awcrun: [1]WCRUN,
-};
-
-pub const FD_GLYPHATTR = extern struct {
-    cjThis: u32,
-    cGlyphs: u32,
-    iMode: u32,
-    aGlyphAttr: [1]u8,
-};
-
-pub const FD_KERNINGPAIR = extern struct {
-    wcFirst: u16,
-    wcSecond: u16,
-    fwdKern: i16,
-};
-
-pub const FONTDIFF = extern struct {
-    jReserved1: u8,
-    jReserved2: u8,
-    jReserved3: u8,
-    bWeight: u8,
-    usWinWeight: u16,
-    fsSelection: u16,
-    fwdAveCharWidth: i16,
-    fwdMaxCharInc: i16,
-    ptlCaret: POINTL,
-};
-
-pub const FONTSIM = extern struct {
-    dpBold: i32,
-    dpItalic: i32,
-    dpBoldItalic: i32,
-};
-
-pub const IFIEXTRA = extern struct {
-    ulIdentifier: u32,
-    dpFontSig: i32,
-    cig: u32,
-    dpDesignVector: i32,
-    dpAxesInfoW: i32,
-    aulReserved: [1]u32,
-};
-
-pub const DRVFN = extern struct {
-    iFunc: u32,
-    pfn: PFN,
-};
-
-pub const DRVENABLEDATA = extern struct {
-    iDriverVersion: u32,
-    c: u32,
-    pdrvfn: *DRVFN,
-};
-
-pub const DEVINFO = extern struct {
-    flGraphicsCaps: u32,
-    lfDefaultFont: LOGFONTW,
-    lfAnsiVarFont: LOGFONTW,
-    lfAnsiFixFont: LOGFONTW,
-    cFonts: u32,
-    iDitherFormat: u32,
-    cxDither: u16,
-    cyDither: u16,
-    hpalDefault: HPALETTE,
-    flGraphicsCaps2: u32,
-};
-
-pub const LINEATTRS = extern struct {
-    fl: u32,
-    iJoin: u32,
-    iEndCap: u32,
-    elWidth: FLOAT_LONG,
-    eMiterLimit: f32,
-    cstyle: u32,
-    pstyle: *FLOAT_LONG,
-    elStyleState: FLOAT_LONG,
-};
-
-pub const XFORML = extern struct {
-    eM11: f32,
-    eM12: f32,
-    eM21: f32,
-    eM22: f32,
-    eDx: f32,
-    eDy: f32,
-};
-
-pub const CIECHROMA = extern struct {
-    x: i32,
-    y: i32,
-    Y: i32,
-};
-
-pub const COLORINFO = extern struct {
-    Red: CIECHROMA,
-    Green: CIECHROMA,
-    Blue: CIECHROMA,
-    Cyan: CIECHROMA,
-    Magenta: CIECHROMA,
-    Yellow: CIECHROMA,
-    AlignmentWhite: CIECHROMA,
-    RedGamma: i32,
-    GreenGamma: i32,
-    BlueGamma: i32,
-    MagentaInCyanDye: i32,
-    YellowInCyanDye: i32,
-    CyanInMagentaDye: i32,
-    YellowInMagentaDye: i32,
-    CyanInYellowDye: i32,
-    MagentaInYellowDye: i32,
-};
-
-pub const GDIINFO = extern struct {
-    ulVersion: u32,
-    ulTechnology: u32,
-    ulHorzSize: u32,
-    ulVertSize: u32,
-    ulHorzRes: u32,
-    ulVertRes: u32,
-    cBitsPixel: u32,
-    cPlanes: u32,
-    ulNumColors: u32,
-    flRaster: u32,
-    ulLogPixelsX: u32,
-    ulLogPixelsY: u32,
-    flTextCaps: u32,
-    ulDACRed: u32,
-    ulDACGreen: u32,
-    ulDACBlue: u32,
-    ulAspectX: u32,
-    ulAspectY: u32,
-    ulAspectXY: u32,
-    xStyleStep: i32,
-    yStyleStep: i32,
-    denStyleStep: i32,
-    ptlPhysOffset: POINTL,
-    szlPhysSize: SIZE,
-    ulNumPalReg: u32,
-    ciDevice: COLORINFO,
-    ulDevicePelsDPI: u32,
-    ulPrimaryOrder: u32,
-    ulHTPatternSize: u32,
-    ulHTOutputFormat: u32,
-    flHTFlags: u32,
-    ulVRefresh: u32,
-    ulBltAlignment: u32,
-    ulPanningHorzRes: u32,
-    ulPanningVertRes: u32,
-    xPanningAlignment: u32,
-    yPanningAlignment: u32,
-    cxHTPat: u32,
-    cyHTPat: u32,
-    pHTPatA: *u8,
-    pHTPatB: *u8,
-    pHTPatC: *u8,
-    flShadeBlend: u32,
-    ulPhysicalPixelCharacteristics: u32,
-    ulPhysicalPixelGamma: u32,
-};
-
-pub const BRUSHOBJ = extern struct {
-    iSolidColor: u32,
-    pvRbrush: *c_void,
-    flColorType: u32,
-};
-
-pub const CLIPOBJ = extern struct {
-    iUniq: u32,
-    rclBounds: RECTL,
-    iDComplexity: u8,
-    iFComplexity: u8,
-    iMode: u8,
-    fjOptions: u8,
-};
-
-pub const DRIVEROBJ = extern struct {
-    pvObj: *c_void,
-    pFreeProc: FREEOBJPROC,
-    hdev: HDEV,
-    dhpdev: DHPDEV,
-};
-
-pub const FONTOBJ = extern struct {
-    iUniq: u32,
-    iFace: u32,
-    cxMax: u32,
-    flFontType: u32,
-    iTTUniq: usize,
-    iFile: usize,
-    sizLogResPpi: SIZE,
-    ulStyleSize: u32,
-    pvConsumer: *c_void,
-    pvProducer: *c_void,
-};
-
-pub const BLENDOBJ = extern struct {
-    BlendFunction: BLENDFUNCTION,
-};
-
-pub const PALOBJ = extern struct {
-    ulReserved: u32,
-};
-
-pub const PATHOBJ = extern struct {
-    fl: u32,
-    cCurves: u32,
-};
-
-pub const SURFOBJ = extern struct {
-    dhsurf: DHSURF,
-    hsurf: HSURF,
-    dhpdev: DHPDEV,
-    hdev: HDEV,
-    sizlBitmap: SIZE,
-    cjBits: u32,
-    pvBits: *c_void,
-    pvScan0: *c_void,
-    lDelta: i32,
-    iUniq: u32,
-    iBitmapFormat: u32,
-    iType: u16,
-    fjBitmap: u16,
-};
-
-pub const WNDOBJ = extern struct {
-    coClient: CLIPOBJ,
-    pvConsumer: *c_void,
-    rclClient: RECTL,
-    psoOwner: *SURFOBJ,
-};
-
-pub const XLATEOBJ = extern struct {
-    iUniq: u32,
-    flXlate: u32,
-    iSrcType: u16,
-    iDstType: u16,
-    cEntries: u32,
-    pulXlate: *u32,
-};
-
-pub const ENUMRECTS = extern struct {
-    c: u32,
-    arcl: [1]RECTL,
-};
-
-pub const GLYPHBITS = extern struct {
-    ptlOrigin: POINTL,
-    sizlBitmap: SIZE,
-    aj: [1]u8,
-};
-
-pub const GLYPHDEF = extern union {
-    pgb: *GLYPHBITS,
-    ppo: *PATHOBJ,
-};
-
-pub const GLYPHPOS = extern struct {
-    hg: u32,
-    pgdf: *GLYPHDEF,
-    ptl: POINTL,
-};
-
-pub const GLYPHDATA = extern struct {
-    gdf: GLYPHDEF,
-    hg: u32,
-    fxD: i32,
-    fxA: i32,
-    fxAB: i32,
-    fxInkTop: i32,
-    fxInkBottom: i32,
-    rclInk: RECTL,
-    ptqD: POINTQF,
-};
-
-pub const STROBJ = extern struct {
-    cGlyphs: u32,
-    flAccel: u32,
-    ulCharInc: u32,
-    rclBkGround: RECTL,
-    pgp: *GLYPHPOS,
-    pwszOrg: PWSTR,
-};
-
-pub const FONTINFO = extern struct {
-    cjThis: u32,
-    flCaps: u32,
-    cGlyphsSupported: u32,
-    cjMaxGlyph1: u32,
-    cjMaxGlyph4: u32,
-    cjMaxGlyph8: u32,
-    cjMaxGlyph32: u32,
-};
-
-pub const PATHDATA = extern struct {
-    flags: u32,
-    count: u32,
-    pptfx: *POINTFIX,
-};
-
-pub const RUN = extern struct {
-    iStart: i32,
-    iStop: i32,
-};
-
-pub const CLIPLINE = extern struct {
-    ptfxA: POINTFIX,
-    ptfxB: POINTFIX,
-    lStyleState: i32,
-    c: u32,
-    arun: [1]RUN,
-};
-
-pub const PERBANDINFO = extern struct {
-    bRepeatThisBand: BOOL,
-    szlBand: SIZE,
-    ulHorzRes: u32,
-    ulVertRes: u32,
-};
-
-pub const GAMMARAMP = extern struct {
-    Red: [256]u16,
-    Green: [256]u16,
-    Blue: [256]u16,
-};
-
-pub const DEVHTINFO = extern struct {
-    HTFlags: u32,
-    HTPatternSize: u32,
-    DevPelsDPI: u32,
-    ColorInfo: COLORINFO,
-};
-
-pub const DEVHTADJDATA = extern struct {
-    DeviceFlags: u32,
-    DeviceXDPI: u32,
-    DeviceYDPI: u32,
-    pDefHTInfo: *DEVHTINFO,
-    pAdjHTInfo: *DEVHTINFO,
-};
-
-pub const TYPE1_FONT = extern struct {
-    hPFM: HANDLE,
-    hPFB: HANDLE,
-    ulIdentifier: u32,
-};
-
-pub const ENGSAFESEMAPHORE = extern struct {
-    hsem: *HSEMAPHORE__,
-    lCount: i32,
-};
-
-pub const ENG_TIME_FIELDS = extern struct {
-    usYear: u16,
-    usMonth: u16,
-    usDay: u16,
-    usHour: u16,
-    usMinute: u16,
-    usSecond: u16,
-    usMilliseconds: u16,
-    usWeekday: u16,
-};
-
-pub const PFN_DrvQueryGlyphAttrs = fn(
-    param0: *FONTOBJ,
-    param1: u32,
-) callconv(@import("std").os.windows.WINAPI) *FD_GLYPHATTR;
-
-pub const VIDEOPARAMETERS = extern struct {
-    Guid: Guid,
-    dwOffset: u32,
-    dwCommand: u32,
-    dwFlags: u32,
-    dwMode: u32,
-    dwTVStandard: u32,
-    dwAvailableModes: u32,
-    dwAvailableTVStandard: u32,
-    dwFlickerFilter: u32,
-    dwOverScanX: u32,
-    dwOverScanY: u32,
-    dwMaxUnscaledX: u32,
-    dwMaxUnscaledY: u32,
-    dwPositionX: u32,
-    dwPositionY: u32,
-    dwBrightness: u32,
-    dwContrast: u32,
-    dwCPType: u32,
-    dwCPCommand: u32,
-    dwCPStandard: u32,
-    dwCPKey: u32,
-    bCP_APSTriggerBits: u32,
-    bOEMCopyProtection: [256]u8,
-};
-
 const IID_IDirectDrawKernel_Value = @import("../zig.zig").Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
 pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
 pub const IDirectDrawKernel = extern struct {
@@ -2165,75 +2177,6 @@ pub const DDKERNELCAPS = extern struct {
     dwIRQCaps: u32,
 };
 
-pub const DDCORECAPS = extern struct {
-    dwSize: u32,
-    dwCaps: u32,
-    dwCaps2: u32,
-    dwCKeyCaps: u32,
-    dwFXCaps: u32,
-    dwFXAlphaCaps: u32,
-    dwPalCaps: u32,
-    dwSVCaps: u32,
-    dwAlphaBltConstBitDepths: u32,
-    dwAlphaBltPixelBitDepths: u32,
-    dwAlphaBltSurfaceBitDepths: u32,
-    dwAlphaOverlayConstBitDepths: u32,
-    dwAlphaOverlayPixelBitDepths: u32,
-    dwAlphaOverlaySurfaceBitDepths: u32,
-    dwZBufferBitDepths: u32,
-    dwVidMemTotal: u32,
-    dwVidMemFree: u32,
-    dwMaxVisibleOverlays: u32,
-    dwCurrVisibleOverlays: u32,
-    dwNumFourCCCodes: u32,
-    dwAlignBoundarySrc: u32,
-    dwAlignSizeSrc: u32,
-    dwAlignBoundaryDest: u32,
-    dwAlignSizeDest: u32,
-    dwAlignStrideAlign: u32,
-    dwRops: [8]u32,
-    ddsCaps: DDSCAPS,
-    dwMinOverlayStretch: u32,
-    dwMaxOverlayStretch: u32,
-    dwMinLiveVideoStretch: u32,
-    dwMaxLiveVideoStretch: u32,
-    dwMinHwCodecStretch: u32,
-    dwMaxHwCodecStretch: u32,
-    dwReserved1: u32,
-    dwReserved2: u32,
-    dwReserved3: u32,
-    dwSVBCaps: u32,
-    dwSVBCKeyCaps: u32,
-    dwSVBFXCaps: u32,
-    dwSVBRops: [8]u32,
-    dwVSBCaps: u32,
-    dwVSBCKeyCaps: u32,
-    dwVSBFXCaps: u32,
-    dwVSBRops: [8]u32,
-    dwSSBCaps: u32,
-    dwSSBCKeyCaps: u32,
-    dwSSBFXCaps: u32,
-    dwSSBRops: [8]u32,
-    dwMaxVideoPorts: u32,
-    dwCurrVideoPorts: u32,
-    dwSVBCaps2: u32,
-};
-
-pub const DDHAL_WAITFORVERTICALBLANKDATA = extern struct {
-    lpDD: *DDRAWI_DIRECTDRAW_GBL,
-    dwFlags: u32,
-    bIsInVB: u32,
-    hEvent: usize,
-    ddRVal: HRESULT,
-    WaitForVerticalBlank: LPDDHAL_WAITFORVERTICALBLANK,
-};
-
-pub const DDHAL_DESTROYDDLOCALDATA = extern struct {
-    dwFlags: u32,
-    pDDLcl: *DDRAWI_DIRECTDRAW_LCL,
-    ddRVal: HRESULT,
-};
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
@@ -2300,6 +2243,32 @@ pub const IFIMETRICS = extern struct {
 };
 
 }, else => struct { } };
+
+pub const VIDEOPARAMETERS = extern struct {
+    Guid: Guid,
+    dwOffset: u32,
+    dwCommand: u32,
+    dwFlags: u32,
+    dwMode: u32,
+    dwTVStandard: u32,
+    dwAvailableModes: u32,
+    dwAvailableTVStandard: u32,
+    dwFlickerFilter: u32,
+    dwOverScanX: u32,
+    dwOverScanY: u32,
+    dwMaxUnscaledX: u32,
+    dwMaxUnscaledY: u32,
+    dwPositionX: u32,
+    dwPositionY: u32,
+    dwBrightness: u32,
+    dwContrast: u32,
+    dwCPType: u32,
+    dwCPCommand: u32,
+    dwCPStandard: u32,
+    dwCPKey: u32,
+    bCP_APSTriggerBits: u32,
+    bOEMCopyProtection: [256]u8,
+};
 
 
 //--------------------------------------------------------------------------------
@@ -2953,62 +2922,67 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (51)
+// Section: Imports (55)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PDD_DESTROYDRIVER = @import("../system/system_services.zig").PDD_DESTROYDRIVER;
+const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
 const DDOVERLAYFX = @import("../graphics/direct_draw.zig").DDOVERLAYFX;
-const PFN = @import("../system/system_services.zig").PFN;
 const POINTE = @import("../system/system_services.zig").POINTE;
-const DDRAWI_DIRECTDRAW_GBL = @import("../system/windows_programming.zig").DDRAWI_DIRECTDRAW_GBL;
-const TRIVERTEX = @import("../graphics/gdi.zig").TRIVERTEX;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const PDD_SETCOLORKEY = @import("../system/system_services.zig").PDD_SETCOLORKEY;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
-const HSEMAPHORE__ = @import("../system/system_services.zig").HSEMAPHORE__;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const LUID = @import("../system/system_services.zig").LUID;
-const DHSURF = @import("../system/system_services.zig").DHSURF;
-const PDD_SETMODE = @import("../system/system_services.zig").PDD_SETMODE;
-const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
-const DD_DESTROYDDLOCALDATA = @import("../system/system_services.zig").DD_DESTROYDDLOCALDATA;
-const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
+const PDD_SETMODE = @import("../graphics/direct_draw.zig").PDD_SETMODE;
 const FREEOBJPROC = @import("../system/system_services.zig").FREEOBJPROC;
 const DDCOLORCONTROL = @import("../graphics/direct_draw.zig").DDCOLORCONTROL;
-const DDARGB = @import("../graphics/direct_draw.zig").DDARGB;
-const POINTQF = @import("../system/system_services.zig").POINTQF;
-const XFORMOBJ = @import("../system/system_services.zig").XFORMOBJ;
 const DDCOLORKEY = @import("../graphics/direct_draw.zig").DDCOLORKEY;
-const RECTFX = @import("../system/system_services.zig").RECTFX;
-const HSURF = @import("../system/system_services.zig").HSURF;
-const DDVIDEOPORTCONNECT = @import("../media/audio/core_audio.zig").DDVIDEOPORTCONNECT;
 const POINTFIX = @import("../system/system_services.zig").POINTFIX;
-const COLORADJUSTMENT = @import("../graphics/gdi.zig").COLORADJUSTMENT;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const DDRAWI_DIRECTDRAW_LCL = @import("../system/windows_programming.zig").DDRAWI_DIRECTDRAW_LCL;
-const IUnknown = @import("../system/com.zig").IUnknown;
-const PDD_SURFCB_SETCLIPLIST = @import("../system/system_services.zig").PDD_SURFCB_SETCLIPLIST;
-const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const DHPDEV = @import("../system/system_services.zig").DHPDEV;
+const DDVIDEOPORTCONNECT = @import("../graphics/direct_draw.zig").DDVIDEOPORTCONNECT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const PDD_SURFCB_SETCLIPLIST = @import("../graphics/direct_draw.zig").PDD_SURFCB_SETCLIPLIST;
+const RECT = @import("../foundation.zig").RECT;
+const PSTR = @import("../foundation.zig").PSTR;
 const DDSCAPS2 = @import("../graphics/direct_draw.zig").DDSCAPS2;
-const DDNTCORECAPS = @import("../system/system_services.zig").DDNTCORECAPS;
-const FLOAT_LONG = @import("../system/system_services.zig").FLOAT_LONG;
 const HDEV = @import("../system/system_services.zig").HDEV;
-const LPDDHAL_WAITFORVERTICALBLANK = @import("../system/windows_programming.zig").LPDDHAL_WAITFORVERTICALBLANK;
 const BLENDFUNCTION = @import("../graphics/gdi.zig").BLENDFUNCTION;
-const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
 const VMEMHEAP = @import("../devices/display.zig").VMEMHEAP;
-const DDBLTFX = @import("../graphics/direct_draw.zig").DDBLTFX;
+const PDD_ALPHABLT = @import("../graphics/direct_draw.zig").PDD_ALPHABLT;
 const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
-const PDD_ALPHABLT = @import("../system/system_services.zig").PDD_ALPHABLT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const DDSCAPS = @import("../graphics/direct_draw.zig").DDSCAPS;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PFN = @import("../system/system_services.zig").PFN;
+const DDRAWI_DIRECTDRAW_GBL = @import("../graphics/direct_draw.zig").DDRAWI_DIRECTDRAW_GBL;
+const TRIVERTEX = @import("../graphics/gdi.zig").TRIVERTEX;
+const POINTL = @import("../foundation.zig").POINTL;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HSEMAPHORE__ = @import("../system/system_services.zig").HSEMAPHORE__;
+const PDD_SETCOLORKEY = @import("../graphics/direct_draw.zig").PDD_SETCOLORKEY;
+const DHSURF = @import("../system/system_services.zig").DHSURF;
+const BOOL = @import("../foundation.zig").BOOL;
+const LUID = @import("../system/system_services.zig").LUID;
+const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
+const DD_DESTROYDDLOCALDATA = @import("../graphics/direct_draw.zig").DD_DESTROYDDLOCALDATA;
+const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
+const POINTQF = @import("../system/system_services.zig").POINTQF;
+const DDARGB = @import("../graphics/direct_draw.zig").DDARGB;
+const XFORMOBJ = @import("../system/system_services.zig").XFORMOBJ;
+const RECTFX = @import("../system/system_services.zig").RECTFX;
+const COLORADJUSTMENT = @import("../graphics/gdi.zig").COLORADJUSTMENT;
+const HSURF = @import("../system/system_services.zig").HSURF;
+const DDRAWI_DIRECTDRAW_LCL = @import("../graphics/direct_draw.zig").DDRAWI_DIRECTDRAW_LCL;
+const IUnknown = @import("../system/com.zig").IUnknown;
+const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
+const DHPDEV = @import("../system/system_services.zig").DHPDEV;
+const DDNTCORECAPS = @import("../graphics/direct_draw.zig").DDNTCORECAPS;
+const FLOAT_LONG = @import("../system/system_services.zig").FLOAT_LONG;
+const LPDDHAL_WAITFORVERTICALBLANK = @import("../graphics/direct_draw.zig").LPDDHAL_WAITFORVERTICALBLANK;
+const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
+const DDBLTFX = @import("../graphics/direct_draw.zig").DDBLTFX;
+const RECTL = @import("../foundation.zig").RECTL;
+const SIZE = @import("../foundation.zig").SIZE;
 const PANOSE = @import("../graphics/gdi.zig").PANOSE;
-const DDSCAPSEX = @import("../graphics/direct_draw.zig").DDSCAPSEX;
+const DDSCAPS = @import("../graphics/direct_draw.zig").DDSCAPS;
+const PDD_DESTROYDRIVER = @import("../graphics/direct_draw.zig").PDD_DESTROYDRIVER;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "PFN_DrvQueryGlyphAttrs")) { _ = PFN_DrvQueryGlyphAttrs; }
     if (@hasDecl(@This(), "PDD_CANCREATESURFACE")) { _ = PDD_CANCREATESURFACE; }
     if (@hasDecl(@This(), "PDD_WAITFORVERTICALBLANK")) { _ = PDD_WAITFORVERTICALBLANK; }
     if (@hasDecl(@This(), "PDD_CREATESURFACE")) { _ = PDD_CREATESURFACE; }
@@ -3065,7 +3039,6 @@ test {
     if (@hasDecl(@This(), "PDD_MOCOMPCB_RENDER")) { _ = PDD_MOCOMPCB_RENDER; }
     if (@hasDecl(@This(), "PDD_MOCOMPCB_QUERYSTATUS")) { _ = PDD_MOCOMPCB_QUERYSTATUS; }
     if (@hasDecl(@This(), "PDD_MOCOMPCB_DESTROY")) { _ = PDD_MOCOMPCB_DESTROY; }
-    if (@hasDecl(@This(), "PFN_DrvQueryGlyphAttrs")) { _ = PFN_DrvQueryGlyphAttrs; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

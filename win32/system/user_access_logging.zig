@@ -57,9 +57,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

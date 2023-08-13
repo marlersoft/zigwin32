@@ -940,6 +940,8 @@ pub const ROLLBACK_BITS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (172)
 //--------------------------------------------------------------------------------
+pub const HCMNOTIFICATION = ?*opaque{};
+
 pub const CONFIGRET = extern enum(u32) {
     CR_SUCCESS = 0,
     CR_DEFAULT = 1,
@@ -1564,7 +1566,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 pub const SP_INSTALLWIZARD_DATA = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Flags: u32,
-    DynamicPages: [20]isize,
+    DynamicPages: [20]HPROPSHEETPAGE,
     NumDynamicPages: u32,
     DynamicPageFlags: u32,
     PrivateFlags: u32,
@@ -1580,7 +1582,7 @@ pub usingnamespace switch (@import("../zig.zig").arch) {
 pub const SP_NEWDEVICEWIZARD_DATA = extern struct {
     ClassInstallHeader: SP_CLASSINSTALL_HEADER,
     Flags: u32,
-    DynamicPages: [20]isize,
+    DynamicPages: [20]HPROPSHEETPAGE,
     NumDynamicPages: u32,
     hwndWizardDlg: HWND,
 };
@@ -1845,779 +1847,158 @@ pub const SP_INF_SIGNER_INFO_V2_W = extern struct {
 
 }, else => struct { } };
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const INFCONTEXT = packed struct {
-    Inf: *c_void,
-    CurrentInf: *c_void,
-    Section: u32,
-    Line: u32,
+pub const SP_COPY_STYLE = extern enum(u32) {
+    DELETESOURCE = 1,
+    REPLACEONLY = 2,
+    NEWER_OR_SAME = 4,
+    NEWER_ONLY = 65536,
+    NOOVERWRITE = 8,
+    NODECOMP = 16,
+    LANGUAGEAWARE = 32,
+    SOURCE_ABSOLUTE = 64,
+    SOURCEPATH_ABSOLUTE = 128,
+    FORCE_IN_USE = 512,
+    IN_USE_NEEDS_REBOOT = 256,
+    NOSKIP = 1024,
+    FORCE_NOOVERWRITE = 4096,
+    FORCE_NEWER = 8192,
+    WARNIFSKIP = 16384,
+    NOBROWSE = 32768,
+    NEWER = 4,
+    RESERVED = 131072,
+    OEMINF_CATALOG_ONLY = 262144,
+    REPLACE_BOOT_FILE = 524288,
+    NOPRUNE = 1048576,
+    OEM_F6_INF = 2097152,
+    ALREADYDECOMP = 4194304,
+    WINDOWS_SIGNED = 16777216,
+    PNPLOCKED = 33554432,
+    IN_USE_TRY_RENAME = 67108864,
+    INBOX_INF = 134217728,
+    HARDLINK = 268435456,
+    _,
+    pub fn initFlags(o: struct {
+        DELETESOURCE: u1 = 0,
+        REPLACEONLY: u1 = 0,
+        NEWER_OR_SAME: u1 = 0,
+        NEWER_ONLY: u1 = 0,
+        NOOVERWRITE: u1 = 0,
+        NODECOMP: u1 = 0,
+        LANGUAGEAWARE: u1 = 0,
+        SOURCE_ABSOLUTE: u1 = 0,
+        SOURCEPATH_ABSOLUTE: u1 = 0,
+        FORCE_IN_USE: u1 = 0,
+        IN_USE_NEEDS_REBOOT: u1 = 0,
+        NOSKIP: u1 = 0,
+        FORCE_NOOVERWRITE: u1 = 0,
+        FORCE_NEWER: u1 = 0,
+        WARNIFSKIP: u1 = 0,
+        NOBROWSE: u1 = 0,
+        NEWER: u1 = 0,
+        RESERVED: u1 = 0,
+        OEMINF_CATALOG_ONLY: u1 = 0,
+        REPLACE_BOOT_FILE: u1 = 0,
+        NOPRUNE: u1 = 0,
+        OEM_F6_INF: u1 = 0,
+        ALREADYDECOMP: u1 = 0,
+        WINDOWS_SIGNED: u1 = 0,
+        PNPLOCKED: u1 = 0,
+        IN_USE_TRY_RENAME: u1 = 0,
+        INBOX_INF: u1 = 0,
+        HARDLINK: u1 = 0,
+    }) SP_COPY_STYLE {
+        return @intToEnum(SP_COPY_STYLE,
+              (if (o.DELETESOURCE == 1) @enumToInt(SP_COPY_STYLE.DELETESOURCE) else 0)
+            | (if (o.REPLACEONLY == 1) @enumToInt(SP_COPY_STYLE.REPLACEONLY) else 0)
+            | (if (o.NEWER_OR_SAME == 1) @enumToInt(SP_COPY_STYLE.NEWER_OR_SAME) else 0)
+            | (if (o.NEWER_ONLY == 1) @enumToInt(SP_COPY_STYLE.NEWER_ONLY) else 0)
+            | (if (o.NOOVERWRITE == 1) @enumToInt(SP_COPY_STYLE.NOOVERWRITE) else 0)
+            | (if (o.NODECOMP == 1) @enumToInt(SP_COPY_STYLE.NODECOMP) else 0)
+            | (if (o.LANGUAGEAWARE == 1) @enumToInt(SP_COPY_STYLE.LANGUAGEAWARE) else 0)
+            | (if (o.SOURCE_ABSOLUTE == 1) @enumToInt(SP_COPY_STYLE.SOURCE_ABSOLUTE) else 0)
+            | (if (o.SOURCEPATH_ABSOLUTE == 1) @enumToInt(SP_COPY_STYLE.SOURCEPATH_ABSOLUTE) else 0)
+            | (if (o.FORCE_IN_USE == 1) @enumToInt(SP_COPY_STYLE.FORCE_IN_USE) else 0)
+            | (if (o.IN_USE_NEEDS_REBOOT == 1) @enumToInt(SP_COPY_STYLE.IN_USE_NEEDS_REBOOT) else 0)
+            | (if (o.NOSKIP == 1) @enumToInt(SP_COPY_STYLE.NOSKIP) else 0)
+            | (if (o.FORCE_NOOVERWRITE == 1) @enumToInt(SP_COPY_STYLE.FORCE_NOOVERWRITE) else 0)
+            | (if (o.FORCE_NEWER == 1) @enumToInt(SP_COPY_STYLE.FORCE_NEWER) else 0)
+            | (if (o.WARNIFSKIP == 1) @enumToInt(SP_COPY_STYLE.WARNIFSKIP) else 0)
+            | (if (o.NOBROWSE == 1) @enumToInt(SP_COPY_STYLE.NOBROWSE) else 0)
+            | (if (o.NEWER == 1) @enumToInt(SP_COPY_STYLE.NEWER) else 0)
+            | (if (o.RESERVED == 1) @enumToInt(SP_COPY_STYLE.RESERVED) else 0)
+            | (if (o.OEMINF_CATALOG_ONLY == 1) @enumToInt(SP_COPY_STYLE.OEMINF_CATALOG_ONLY) else 0)
+            | (if (o.REPLACE_BOOT_FILE == 1) @enumToInt(SP_COPY_STYLE.REPLACE_BOOT_FILE) else 0)
+            | (if (o.NOPRUNE == 1) @enumToInt(SP_COPY_STYLE.NOPRUNE) else 0)
+            | (if (o.OEM_F6_INF == 1) @enumToInt(SP_COPY_STYLE.OEM_F6_INF) else 0)
+            | (if (o.ALREADYDECOMP == 1) @enumToInt(SP_COPY_STYLE.ALREADYDECOMP) else 0)
+            | (if (o.WINDOWS_SIGNED == 1) @enumToInt(SP_COPY_STYLE.WINDOWS_SIGNED) else 0)
+            | (if (o.PNPLOCKED == 1) @enumToInt(SP_COPY_STYLE.PNPLOCKED) else 0)
+            | (if (o.IN_USE_TRY_RENAME == 1) @enumToInt(SP_COPY_STYLE.IN_USE_TRY_RENAME) else 0)
+            | (if (o.INBOX_INF == 1) @enumToInt(SP_COPY_STYLE.INBOX_INF) else 0)
+            | (if (o.HARDLINK == 1) @enumToInt(SP_COPY_STYLE.HARDLINK) else 0)
+        );
+    }
 };
+pub const SP_COPY_DELETESOURCE = SP_COPY_STYLE.DELETESOURCE;
+pub const SP_COPY_REPLACEONLY = SP_COPY_STYLE.REPLACEONLY;
+pub const SP_COPY_NEWER_OR_SAME = SP_COPY_STYLE.NEWER_OR_SAME;
+pub const SP_COPY_NEWER_ONLY = SP_COPY_STYLE.NEWER_ONLY;
+pub const SP_COPY_NOOVERWRITE = SP_COPY_STYLE.NOOVERWRITE;
+pub const SP_COPY_NODECOMP = SP_COPY_STYLE.NODECOMP;
+pub const SP_COPY_LANGUAGEAWARE = SP_COPY_STYLE.LANGUAGEAWARE;
+pub const SP_COPY_SOURCE_ABSOLUTE = SP_COPY_STYLE.SOURCE_ABSOLUTE;
+pub const SP_COPY_SOURCEPATH_ABSOLUTE = SP_COPY_STYLE.SOURCEPATH_ABSOLUTE;
+pub const SP_COPY_FORCE_IN_USE = SP_COPY_STYLE.FORCE_IN_USE;
+pub const SP_COPY_IN_USE_NEEDS_REBOOT = SP_COPY_STYLE.IN_USE_NEEDS_REBOOT;
+pub const SP_COPY_NOSKIP = SP_COPY_STYLE.NOSKIP;
+pub const SP_COPY_FORCE_NOOVERWRITE = SP_COPY_STYLE.FORCE_NOOVERWRITE;
+pub const SP_COPY_FORCE_NEWER = SP_COPY_STYLE.FORCE_NEWER;
+pub const SP_COPY_WARNIFSKIP = SP_COPY_STYLE.WARNIFSKIP;
+pub const SP_COPY_NOBROWSE = SP_COPY_STYLE.NOBROWSE;
+pub const SP_COPY_NEWER = SP_COPY_STYLE.NEWER;
+pub const SP_COPY_RESERVED = SP_COPY_STYLE.RESERVED;
+pub const SP_COPY_OEMINF_CATALOG_ONLY = SP_COPY_STYLE.OEMINF_CATALOG_ONLY;
+pub const SP_COPY_REPLACE_BOOT_FILE = SP_COPY_STYLE.REPLACE_BOOT_FILE;
+pub const SP_COPY_NOPRUNE = SP_COPY_STYLE.NOPRUNE;
+pub const SP_COPY_OEM_F6_INF = SP_COPY_STYLE.OEM_F6_INF;
+pub const SP_COPY_ALREADYDECOMP = SP_COPY_STYLE.ALREADYDECOMP;
+pub const SP_COPY_WINDOWS_SIGNED = SP_COPY_STYLE.WINDOWS_SIGNED;
+pub const SP_COPY_PNPLOCKED = SP_COPY_STYLE.PNPLOCKED;
+pub const SP_COPY_IN_USE_TRY_RENAME = SP_COPY_STYLE.IN_USE_TRY_RENAME;
+pub const SP_COPY_INBOX_INF = SP_COPY_STYLE.INBOX_INF;
+pub const SP_COPY_HARDLINK = SP_COPY_STYLE.HARDLINK;
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INF_INFORMATION = packed struct {
-    InfStyle: u32,
-    InfCount: u32,
-    VersionData: [1]u8,
+pub const SETUP_FILE_OPERATION = extern enum(u32) {
+    DELETE = 2,
+    COPY = 0,
 };
+pub const FILEOP_DELETE = SETUP_FILE_OPERATION.DELETE;
+pub const FILEOP_COPY = SETUP_FILE_OPERATION.COPY;
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ALTPLATFORM_INFO_V3 = packed struct {
-    cbSize: u32,
-    Platform: u32,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Anonymous: packed union {
-        Reserved: u16,
-        Flags: u16,
-    },
-    FirstValidatedMajorVersion: u32,
-    FirstValidatedMinorVersion: u32,
-    ProductType: u8,
-    SuiteMask: u16,
-    BuildNumber: u32,
+pub const OEM_SOURCE_MEDIA_TYPE = extern enum(u32) {
+    NONE = 0,
+    PATH = 1,
+    URL = 2,
 };
+pub const SPOST_NONE = OEM_SOURCE_MEDIA_TYPE.NONE;
+pub const SPOST_PATH = OEM_SOURCE_MEDIA_TYPE.PATH;
+pub const SPOST_URL = OEM_SOURCE_MEDIA_TYPE.URL;
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ALTPLATFORM_INFO_V2 = packed struct {
-    cbSize: u32,
-    Platform: u32,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Anonymous: packed union {
-        Reserved: u16,
-        Flags: u16,
-    },
-    FirstValidatedMajorVersion: u32,
-    FirstValidatedMinorVersion: u32,
+pub const SETUP_DI_BUILD_DRIVER_DRIVER_TYPE = extern enum(u32) {
+    LASSDRIVER = 1,
+    OMPATDRIVER = 2,
 };
+pub const SPDIT_CLASSDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.LASSDRIVER;
+pub const SPDIT_COMPATDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.OMPATDRIVER;
 
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ALTPLATFORM_INFO_V1 = packed struct {
-    cbSize: u32,
-    Platform: u32,
-    MajorVersion: u32,
-    MinorVersion: u32,
-    ProcessorArchitecture: u16,
-    Reserved: u16,
+pub const SP_INF_STYLE = extern enum(u32) {
+    NONE = 0,
+    OLDNT = 1,
+    WIN4 = 2,
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ORIGINAL_FILE_INFO_A = packed struct {
-    cbSize: u32,
-    OriginalInfName: [260]CHAR,
-    OriginalCatalogName: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ORIGINAL_FILE_INFO_W = packed struct {
-    cbSize: u32,
-    OriginalInfName: [260]u16,
-    OriginalCatalogName: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILEPATHS_A = packed struct {
-    Target: [*:0]const u8,
-    Source: [*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILEPATHS_W = packed struct {
-    Target: [*:0]const u16,
-    Source: [*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILEPATHS_SIGNERINFO_A = packed struct {
-    Target: [*:0]const u8,
-    Source: [*:0]const u8,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: [*:0]const u8,
-    Version: [*:0]const u8,
-    CatalogFile: [*:0]const u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILEPATHS_SIGNERINFO_W = packed struct {
-    Target: [*:0]const u16,
-    Source: [*:0]const u16,
-    Win32Error: u32,
-    Flags: u32,
-    DigitalSigner: [*:0]const u16,
-    Version: [*:0]const u16,
-    CatalogFile: [*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SOURCE_MEDIA_A = packed struct {
-    Reserved: [*:0]const u8,
-    Tagfile: [*:0]const u8,
-    Description: [*:0]const u8,
-    SourcePath: [*:0]const u8,
-    SourceFile: [*:0]const u8,
-    Flags: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SOURCE_MEDIA_W = packed struct {
-    Reserved: [*:0]const u16,
-    Tagfile: [*:0]const u16,
-    Description: [*:0]const u16,
-    SourcePath: [*:0]const u16,
-    SourceFile: [*:0]const u16,
-    Flags: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CABINET_INFO_A = packed struct {
-    CabinetPath: [*:0]const u8,
-    CabinetFile: [*:0]const u8,
-    DiskName: [*:0]const u8,
-    SetId: u16,
-    CabinetNumber: u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const CABINET_INFO_W = packed struct {
-    CabinetPath: [*:0]const u16,
-    CabinetFile: [*:0]const u16,
-    DiskName: [*:0]const u16,
-    SetId: u16,
-    CabinetNumber: u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILE_IN_CABINET_INFO_A = packed struct {
-    NameInCabinet: [*:0]const u8,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const FILE_IN_CABINET_INFO_W = packed struct {
-    NameInCabinet: [*:0]const u16,
-    FileSize: u32,
-    Win32Error: u32,
-    DosDate: u16,
-    DosTime: u16,
-    DosAttribs: u16,
-    FullTargetName: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_REGISTER_CONTROL_STATUSA = packed struct {
-    cbSize: u32,
-    FileName: [*:0]const u8,
-    Win32Error: u32,
-    FailureCode: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_REGISTER_CONTROL_STATUSW = packed struct {
-    cbSize: u32,
-    FileName: [*:0]const u16,
-    Win32Error: u32,
-    FailureCode: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_FILE_COPY_PARAMS_A = packed struct {
-    cbSize: u32,
-    QueueHandle: *c_void,
-    SourceRootPath: [*:0]const u8,
-    SourcePath: [*:0]const u8,
-    SourceFilename: [*:0]const u8,
-    SourceDescription: [*:0]const u8,
-    SourceTagfile: [*:0]const u8,
-    TargetDirectory: [*:0]const u8,
-    TargetFilename: [*:0]const u8,
-    CopyStyle: u32,
-    LayoutInf: *c_void,
-    SecurityDescriptor: [*:0]const u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_FILE_COPY_PARAMS_W = packed struct {
-    cbSize: u32,
-    QueueHandle: *c_void,
-    SourceRootPath: [*:0]const u16,
-    SourcePath: [*:0]const u16,
-    SourceFilename: [*:0]const u16,
-    SourceDescription: [*:0]const u16,
-    SourceTagfile: [*:0]const u16,
-    TargetDirectory: [*:0]const u16,
-    TargetFilename: [*:0]const u16,
-    CopyStyle: u32,
-    LayoutInf: *c_void,
-    SecurityDescriptor: [*:0]const u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINFO_DATA = packed struct {
-    cbSize: u32,
-    ClassGuid: Guid,
-    DevInst: u32,
-    Reserved: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVICE_INTERFACE_DATA = packed struct {
-    cbSize: u32,
-    InterfaceClassGuid: Guid,
-    Flags: u32,
-    Reserved: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = packed struct {
-    cbSize: u32,
-    DevicePath: [1]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = packed struct {
-    cbSize: u32,
-    DevicePath: [1]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINFO_LIST_DETAIL_DATA_A = packed struct {
-    cbSize: u32,
-    ClassGuid: Guid,
-    RemoteMachineHandle: HANDLE,
-    RemoteMachineName: [263]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINFO_LIST_DETAIL_DATA_W = packed struct {
-    cbSize: u32,
-    ClassGuid: Guid,
-    RemoteMachineHandle: HANDLE,
-    RemoteMachineName: [263]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINSTALL_PARAMS_A = packed struct {
-    cbSize: u32,
-    Flags: u32,
-    FlagsEx: u32,
-    hwndParent: HWND,
-    InstallMsgHandler: PSP_FILE_CALLBACK_A,
-    InstallMsgHandlerContext: *c_void,
-    FileQueue: *c_void,
-    ClassInstallReserved: usize,
-    Reserved: u32,
-    DriverPath: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DEVINSTALL_PARAMS_W = packed struct {
-    cbSize: u32,
-    Flags: u32,
-    FlagsEx: u32,
-    hwndParent: HWND,
-    InstallMsgHandler: PSP_FILE_CALLBACK_A,
-    InstallMsgHandlerContext: *c_void,
-    FileQueue: *c_void,
-    ClassInstallReserved: usize,
-    Reserved: u32,
-    DriverPath: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_CLASSINSTALL_HEADER = packed struct {
-    cbSize: u32,
-    InstallFunction: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_ENABLECLASS_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ClassGuid: Guid,
-    EnableMessage: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_PROPCHANGE_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    StateChange: u32,
-    Scope: u32,
-    HwProfile: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_REMOVEDEVICE_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Scope: u32,
-    HwProfile: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_UNREMOVEDEVICE_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Scope: u32,
-    HwProfile: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_SELECTDEVICE_PARAMS_W = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Title: [60]u16,
-    Instructions: [256]u16,
-    ListLabel: [30]u16,
-    SubTitle: [256]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DETECTDEVICE_PARAMS = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    DetectProgressNotify: PDETECT_PROGRESS_NOTIFY,
-    ProgressNotifyParam: *c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INSTALLWIZARD_DATA = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Flags: u32,
-    DynamicPages: [20]isize,
-    NumDynamicPages: u32,
-    DynamicPageFlags: u32,
-    PrivateFlags: u32,
-    PrivateData: LPARAM,
-    hwndWizardDlg: HWND,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_NEWDEVICEWIZARD_DATA = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    Flags: u32,
-    DynamicPages: [20]isize,
-    NumDynamicPages: u32,
-    hwndWizardDlg: HWND,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_TROUBLESHOOTER_PARAMS_W = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    ChmFile: [260]u16,
-    HtmlTroubleShooter: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_POWERMESSAGEWAKE_PARAMS_W = packed struct {
-    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
-    PowerMessageWake: [512]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DATA_V2_A = packed struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]CHAR,
-    MfgName: [256]CHAR,
-    ProviderName: [256]CHAR,
-    DriverDate: FILETIME,
-    DriverVersion: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DATA_V2_W = packed struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]u16,
-    MfgName: [256]u16,
-    ProviderName: [256]u16,
-    DriverDate: FILETIME,
-    DriverVersion: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DATA_V1_A = packed struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]CHAR,
-    MfgName: [256]CHAR,
-    ProviderName: [256]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DATA_V1_W = packed struct {
-    cbSize: u32,
-    DriverType: u32,
-    Reserved: usize,
-    Description: [256]u16,
-    MfgName: [256]u16,
-    ProviderName: [256]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DETAIL_DATA_A = packed struct {
-    cbSize: u32,
-    InfDate: FILETIME,
-    CompatIDsOffset: u32,
-    CompatIDsLength: u32,
-    Reserved: usize,
-    SectionName: [256]CHAR,
-    InfFileName: [260]CHAR,
-    DrvDescription: [256]CHAR,
-    HardwareID: [1]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINFO_DETAIL_DATA_W = packed struct {
-    cbSize: u32,
-    InfDate: FILETIME,
-    CompatIDsOffset: u32,
-    CompatIDsLength: u32,
-    Reserved: usize,
-    SectionName: [256]u16,
-    InfFileName: [260]u16,
-    DrvDescription: [256]u16,
-    HardwareID: [1]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_DRVINSTALL_PARAMS = packed struct {
-    cbSize: u32,
-    Rank: u32,
-    Flags: u32,
-    PrivateData: usize,
-    Reserved: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const COINSTALLER_CONTEXT_DATA = packed struct {
-    PostProcessing: BOOL,
-    InstallResult: u32,
-    PrivateData: *c_void,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_CLASSIMAGELIST_DATA = packed struct {
-    cbSize: u32,
-    ImageList: HIMAGELIST,
-    Reserved: usize,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_PROPSHEETPAGE_REQUEST = packed struct {
-    cbSize: u32,
-    PageRequested: u32,
-    DeviceInfoSet: *c_void,
-    DeviceInfoData: *SP_DEVINFO_DATA,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V2_A = packed struct {
-    cbSize: u32,
-    FullInfPath: [260]CHAR,
-    FilenameOffset: i32,
-    ReinstallInstance: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V2_W = packed struct {
-    cbSize: u32,
-    FullInfPath: [260]u16,
-    FilenameOffset: i32,
-    ReinstallInstance: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V1_A = packed struct {
-    cbSize: u32,
-    FullInfPath: [260]CHAR,
-    FilenameOffset: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_BACKUP_QUEUE_PARAMS_V1_W = packed struct {
-    cbSize: u32,
-    FullInfPath: [260]u16,
-    FilenameOffset: i32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INF_SIGNER_INFO_V1_A = packed struct {
-    cbSize: u32,
-    CatalogFile: [260]CHAR,
-    DigitalSigner: [260]CHAR,
-    DigitalSignerVersion: [260]CHAR,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INF_SIGNER_INFO_V1_W = packed struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INF_SIGNER_INFO_V2_A = packed struct {
-    cbSize: u32,
-    CatalogFile: [260]CHAR,
-    DigitalSigner: [260]CHAR,
-    DigitalSignerVersion: [260]CHAR,
-    SignerScore: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const SP_INF_SIGNER_INFO_V2_W = packed struct {
-    cbSize: u32,
-    CatalogFile: [260]u16,
-    DigitalSigner: [260]u16,
-    DigitalSignerVersion: [260]u16,
-    SignerScore: u32,
-};
-
-}, else => struct { } };
-
-pub const HCMNOTIFICATION = ?*opaque{};
+pub const INF_STYLE_NONE = SP_INF_STYLE.NONE;
+pub const INF_STYLE_OLDNT = SP_INF_STYLE.OLDNT;
+pub const INF_STYLE_WIN4 = SP_INF_STYLE.WIN4;
 
 pub const PSP_FILE_CALLBACK_A = fn(
     Context: *c_void,
@@ -3040,158 +2421,777 @@ pub const PCM_NOTIFY_CALLBACK = fn(
     EventDataSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const SP_COPY_STYLE = extern enum(u32) {
-    DELETESOURCE = 1,
-    REPLACEONLY = 2,
-    NEWER_OR_SAME = 4,
-    NEWER_ONLY = 65536,
-    NOOVERWRITE = 8,
-    NODECOMP = 16,
-    LANGUAGEAWARE = 32,
-    SOURCE_ABSOLUTE = 64,
-    SOURCEPATH_ABSOLUTE = 128,
-    FORCE_IN_USE = 512,
-    IN_USE_NEEDS_REBOOT = 256,
-    NOSKIP = 1024,
-    FORCE_NOOVERWRITE = 4096,
-    FORCE_NEWER = 8192,
-    WARNIFSKIP = 16384,
-    NOBROWSE = 32768,
-    NEWER = 4,
-    RESERVED = 131072,
-    OEMINF_CATALOG_ONLY = 262144,
-    REPLACE_BOOT_FILE = 524288,
-    NOPRUNE = 1048576,
-    OEM_F6_INF = 2097152,
-    ALREADYDECOMP = 4194304,
-    WINDOWS_SIGNED = 16777216,
-    PNPLOCKED = 33554432,
-    IN_USE_TRY_RENAME = 67108864,
-    INBOX_INF = 134217728,
-    HARDLINK = 268435456,
-    _,
-    pub fn initFlags(o: struct {
-        DELETESOURCE: u1 = 0,
-        REPLACEONLY: u1 = 0,
-        NEWER_OR_SAME: u1 = 0,
-        NEWER_ONLY: u1 = 0,
-        NOOVERWRITE: u1 = 0,
-        NODECOMP: u1 = 0,
-        LANGUAGEAWARE: u1 = 0,
-        SOURCE_ABSOLUTE: u1 = 0,
-        SOURCEPATH_ABSOLUTE: u1 = 0,
-        FORCE_IN_USE: u1 = 0,
-        IN_USE_NEEDS_REBOOT: u1 = 0,
-        NOSKIP: u1 = 0,
-        FORCE_NOOVERWRITE: u1 = 0,
-        FORCE_NEWER: u1 = 0,
-        WARNIFSKIP: u1 = 0,
-        NOBROWSE: u1 = 0,
-        NEWER: u1 = 0,
-        RESERVED: u1 = 0,
-        OEMINF_CATALOG_ONLY: u1 = 0,
-        REPLACE_BOOT_FILE: u1 = 0,
-        NOPRUNE: u1 = 0,
-        OEM_F6_INF: u1 = 0,
-        ALREADYDECOMP: u1 = 0,
-        WINDOWS_SIGNED: u1 = 0,
-        PNPLOCKED: u1 = 0,
-        IN_USE_TRY_RENAME: u1 = 0,
-        INBOX_INF: u1 = 0,
-        HARDLINK: u1 = 0,
-    }) SP_COPY_STYLE {
-        return @intToEnum(SP_COPY_STYLE,
-              (if (o.DELETESOURCE == 1) @enumToInt(SP_COPY_STYLE.DELETESOURCE) else 0)
-            | (if (o.REPLACEONLY == 1) @enumToInt(SP_COPY_STYLE.REPLACEONLY) else 0)
-            | (if (o.NEWER_OR_SAME == 1) @enumToInt(SP_COPY_STYLE.NEWER_OR_SAME) else 0)
-            | (if (o.NEWER_ONLY == 1) @enumToInt(SP_COPY_STYLE.NEWER_ONLY) else 0)
-            | (if (o.NOOVERWRITE == 1) @enumToInt(SP_COPY_STYLE.NOOVERWRITE) else 0)
-            | (if (o.NODECOMP == 1) @enumToInt(SP_COPY_STYLE.NODECOMP) else 0)
-            | (if (o.LANGUAGEAWARE == 1) @enumToInt(SP_COPY_STYLE.LANGUAGEAWARE) else 0)
-            | (if (o.SOURCE_ABSOLUTE == 1) @enumToInt(SP_COPY_STYLE.SOURCE_ABSOLUTE) else 0)
-            | (if (o.SOURCEPATH_ABSOLUTE == 1) @enumToInt(SP_COPY_STYLE.SOURCEPATH_ABSOLUTE) else 0)
-            | (if (o.FORCE_IN_USE == 1) @enumToInt(SP_COPY_STYLE.FORCE_IN_USE) else 0)
-            | (if (o.IN_USE_NEEDS_REBOOT == 1) @enumToInt(SP_COPY_STYLE.IN_USE_NEEDS_REBOOT) else 0)
-            | (if (o.NOSKIP == 1) @enumToInt(SP_COPY_STYLE.NOSKIP) else 0)
-            | (if (o.FORCE_NOOVERWRITE == 1) @enumToInt(SP_COPY_STYLE.FORCE_NOOVERWRITE) else 0)
-            | (if (o.FORCE_NEWER == 1) @enumToInt(SP_COPY_STYLE.FORCE_NEWER) else 0)
-            | (if (o.WARNIFSKIP == 1) @enumToInt(SP_COPY_STYLE.WARNIFSKIP) else 0)
-            | (if (o.NOBROWSE == 1) @enumToInt(SP_COPY_STYLE.NOBROWSE) else 0)
-            | (if (o.NEWER == 1) @enumToInt(SP_COPY_STYLE.NEWER) else 0)
-            | (if (o.RESERVED == 1) @enumToInt(SP_COPY_STYLE.RESERVED) else 0)
-            | (if (o.OEMINF_CATALOG_ONLY == 1) @enumToInt(SP_COPY_STYLE.OEMINF_CATALOG_ONLY) else 0)
-            | (if (o.REPLACE_BOOT_FILE == 1) @enumToInt(SP_COPY_STYLE.REPLACE_BOOT_FILE) else 0)
-            | (if (o.NOPRUNE == 1) @enumToInt(SP_COPY_STYLE.NOPRUNE) else 0)
-            | (if (o.OEM_F6_INF == 1) @enumToInt(SP_COPY_STYLE.OEM_F6_INF) else 0)
-            | (if (o.ALREADYDECOMP == 1) @enumToInt(SP_COPY_STYLE.ALREADYDECOMP) else 0)
-            | (if (o.WINDOWS_SIGNED == 1) @enumToInt(SP_COPY_STYLE.WINDOWS_SIGNED) else 0)
-            | (if (o.PNPLOCKED == 1) @enumToInt(SP_COPY_STYLE.PNPLOCKED) else 0)
-            | (if (o.IN_USE_TRY_RENAME == 1) @enumToInt(SP_COPY_STYLE.IN_USE_TRY_RENAME) else 0)
-            | (if (o.INBOX_INF == 1) @enumToInt(SP_COPY_STYLE.INBOX_INF) else 0)
-            | (if (o.HARDLINK == 1) @enumToInt(SP_COPY_STYLE.HARDLINK) else 0)
-        );
-    }
-};
-pub const SP_COPY_DELETESOURCE = SP_COPY_STYLE.DELETESOURCE;
-pub const SP_COPY_REPLACEONLY = SP_COPY_STYLE.REPLACEONLY;
-pub const SP_COPY_NEWER_OR_SAME = SP_COPY_STYLE.NEWER_OR_SAME;
-pub const SP_COPY_NEWER_ONLY = SP_COPY_STYLE.NEWER_ONLY;
-pub const SP_COPY_NOOVERWRITE = SP_COPY_STYLE.NOOVERWRITE;
-pub const SP_COPY_NODECOMP = SP_COPY_STYLE.NODECOMP;
-pub const SP_COPY_LANGUAGEAWARE = SP_COPY_STYLE.LANGUAGEAWARE;
-pub const SP_COPY_SOURCE_ABSOLUTE = SP_COPY_STYLE.SOURCE_ABSOLUTE;
-pub const SP_COPY_SOURCEPATH_ABSOLUTE = SP_COPY_STYLE.SOURCEPATH_ABSOLUTE;
-pub const SP_COPY_FORCE_IN_USE = SP_COPY_STYLE.FORCE_IN_USE;
-pub const SP_COPY_IN_USE_NEEDS_REBOOT = SP_COPY_STYLE.IN_USE_NEEDS_REBOOT;
-pub const SP_COPY_NOSKIP = SP_COPY_STYLE.NOSKIP;
-pub const SP_COPY_FORCE_NOOVERWRITE = SP_COPY_STYLE.FORCE_NOOVERWRITE;
-pub const SP_COPY_FORCE_NEWER = SP_COPY_STYLE.FORCE_NEWER;
-pub const SP_COPY_WARNIFSKIP = SP_COPY_STYLE.WARNIFSKIP;
-pub const SP_COPY_NOBROWSE = SP_COPY_STYLE.NOBROWSE;
-pub const SP_COPY_NEWER = SP_COPY_STYLE.NEWER;
-pub const SP_COPY_RESERVED = SP_COPY_STYLE.RESERVED;
-pub const SP_COPY_OEMINF_CATALOG_ONLY = SP_COPY_STYLE.OEMINF_CATALOG_ONLY;
-pub const SP_COPY_REPLACE_BOOT_FILE = SP_COPY_STYLE.REPLACE_BOOT_FILE;
-pub const SP_COPY_NOPRUNE = SP_COPY_STYLE.NOPRUNE;
-pub const SP_COPY_OEM_F6_INF = SP_COPY_STYLE.OEM_F6_INF;
-pub const SP_COPY_ALREADYDECOMP = SP_COPY_STYLE.ALREADYDECOMP;
-pub const SP_COPY_WINDOWS_SIGNED = SP_COPY_STYLE.WINDOWS_SIGNED;
-pub const SP_COPY_PNPLOCKED = SP_COPY_STYLE.PNPLOCKED;
-pub const SP_COPY_IN_USE_TRY_RENAME = SP_COPY_STYLE.IN_USE_TRY_RENAME;
-pub const SP_COPY_INBOX_INF = SP_COPY_STYLE.INBOX_INF;
-pub const SP_COPY_HARDLINK = SP_COPY_STYLE.HARDLINK;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-pub const SETUP_FILE_OPERATION = extern enum(u32) {
-    DELETE = 2,
-    COPY = 0,
+pub const INFCONTEXT = packed struct {
+    Inf: *c_void,
+    CurrentInf: *c_void,
+    Section: u32,
+    Line: u32,
 };
-pub const FILEOP_DELETE = SETUP_FILE_OPERATION.DELETE;
-pub const FILEOP_COPY = SETUP_FILE_OPERATION.COPY;
 
-pub const OEM_SOURCE_MEDIA_TYPE = extern enum(u32) {
-    NONE = 0,
-    PATH = 1,
-    URL = 2,
-};
-pub const SPOST_NONE = OEM_SOURCE_MEDIA_TYPE.NONE;
-pub const SPOST_PATH = OEM_SOURCE_MEDIA_TYPE.PATH;
-pub const SPOST_URL = OEM_SOURCE_MEDIA_TYPE.URL;
+}, else => struct { } };
 
-pub const SETUP_DI_BUILD_DRIVER_DRIVER_TYPE = extern enum(u32) {
-    LASSDRIVER = 1,
-    OMPATDRIVER = 2,
-};
-pub const SPDIT_CLASSDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.LASSDRIVER;
-pub const SPDIT_COMPATDRIVER = SETUP_DI_BUILD_DRIVER_DRIVER_TYPE.OMPATDRIVER;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-pub const SP_INF_STYLE = extern enum(u32) {
-    NONE = 0,
-    OLDNT = 1,
-    WIN4 = 2,
+pub const SP_INF_INFORMATION = packed struct {
+    InfStyle: SP_INF_STYLE,
+    InfCount: u32,
+    VersionData: [1]u8,
 };
-pub const INF_STYLE_NONE = SP_INF_STYLE.NONE;
-pub const INF_STYLE_OLDNT = SP_INF_STYLE.OLDNT;
-pub const INF_STYLE_WIN4 = SP_INF_STYLE.WIN4;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ALTPLATFORM_INFO_V3 = packed struct {
+    cbSize: u32,
+    Platform: u32,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Anonymous: packed union {
+        Reserved: u16,
+        Flags: u16,
+    },
+    FirstValidatedMajorVersion: u32,
+    FirstValidatedMinorVersion: u32,
+    ProductType: u8,
+    SuiteMask: u16,
+    BuildNumber: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ALTPLATFORM_INFO_V2 = packed struct {
+    cbSize: u32,
+    Platform: VER_PLATFORM,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Anonymous: packed union {
+        Reserved: u16,
+        Flags: u16,
+    },
+    FirstValidatedMajorVersion: u32,
+    FirstValidatedMinorVersion: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ALTPLATFORM_INFO_V1 = packed struct {
+    cbSize: u32,
+    Platform: VER_PLATFORM,
+    MajorVersion: u32,
+    MinorVersion: u32,
+    ProcessorArchitecture: u16,
+    Reserved: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ORIGINAL_FILE_INFO_A = packed struct {
+    cbSize: u32,
+    OriginalInfName: [260]CHAR,
+    OriginalCatalogName: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ORIGINAL_FILE_INFO_W = packed struct {
+    cbSize: u32,
+    OriginalInfName: [260]u16,
+    OriginalCatalogName: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILEPATHS_A = packed struct {
+    Target: [*:0]const u8,
+    Source: [*:0]const u8,
+    Win32Error: u32,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILEPATHS_W = packed struct {
+    Target: [*:0]const u16,
+    Source: [*:0]const u16,
+    Win32Error: u32,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILEPATHS_SIGNERINFO_A = packed struct {
+    Target: [*:0]const u8,
+    Source: [*:0]const u8,
+    Win32Error: u32,
+    Flags: u32,
+    DigitalSigner: [*:0]const u8,
+    Version: [*:0]const u8,
+    CatalogFile: [*:0]const u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILEPATHS_SIGNERINFO_W = packed struct {
+    Target: [*:0]const u16,
+    Source: [*:0]const u16,
+    Win32Error: u32,
+    Flags: u32,
+    DigitalSigner: [*:0]const u16,
+    Version: [*:0]const u16,
+    CatalogFile: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SOURCE_MEDIA_A = packed struct {
+    Reserved: [*:0]const u8,
+    Tagfile: [*:0]const u8,
+    Description: [*:0]const u8,
+    SourcePath: [*:0]const u8,
+    SourceFile: [*:0]const u8,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SOURCE_MEDIA_W = packed struct {
+    Reserved: [*:0]const u16,
+    Tagfile: [*:0]const u16,
+    Description: [*:0]const u16,
+    SourcePath: [*:0]const u16,
+    SourceFile: [*:0]const u16,
+    Flags: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const CABINET_INFO_A = packed struct {
+    CabinetPath: [*:0]const u8,
+    CabinetFile: [*:0]const u8,
+    DiskName: [*:0]const u8,
+    SetId: u16,
+    CabinetNumber: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const CABINET_INFO_W = packed struct {
+    CabinetPath: [*:0]const u16,
+    CabinetFile: [*:0]const u16,
+    DiskName: [*:0]const u16,
+    SetId: u16,
+    CabinetNumber: u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILE_IN_CABINET_INFO_A = packed struct {
+    NameInCabinet: [*:0]const u8,
+    FileSize: u32,
+    Win32Error: u32,
+    DosDate: u16,
+    DosTime: u16,
+    DosAttribs: u16,
+    FullTargetName: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const FILE_IN_CABINET_INFO_W = packed struct {
+    NameInCabinet: [*:0]const u16,
+    FileSize: u32,
+    Win32Error: u32,
+    DosDate: u16,
+    DosTime: u16,
+    DosAttribs: u16,
+    FullTargetName: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_REGISTER_CONTROL_STATUSA = packed struct {
+    cbSize: u32,
+    FileName: [*:0]const u8,
+    Win32Error: u32,
+    FailureCode: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_REGISTER_CONTROL_STATUSW = packed struct {
+    cbSize: u32,
+    FileName: [*:0]const u16,
+    Win32Error: u32,
+    FailureCode: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_FILE_COPY_PARAMS_A = packed struct {
+    cbSize: u32,
+    QueueHandle: *c_void,
+    SourceRootPath: [*:0]const u8,
+    SourcePath: [*:0]const u8,
+    SourceFilename: [*:0]const u8,
+    SourceDescription: [*:0]const u8,
+    SourceTagfile: [*:0]const u8,
+    TargetDirectory: [*:0]const u8,
+    TargetFilename: [*:0]const u8,
+    CopyStyle: u32,
+    LayoutInf: *c_void,
+    SecurityDescriptor: [*:0]const u8,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_FILE_COPY_PARAMS_W = packed struct {
+    cbSize: u32,
+    QueueHandle: *c_void,
+    SourceRootPath: [*:0]const u16,
+    SourcePath: [*:0]const u16,
+    SourceFilename: [*:0]const u16,
+    SourceDescription: [*:0]const u16,
+    SourceTagfile: [*:0]const u16,
+    TargetDirectory: [*:0]const u16,
+    TargetFilename: [*:0]const u16,
+    CopyStyle: u32,
+    LayoutInf: *c_void,
+    SecurityDescriptor: [*:0]const u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINFO_DATA = packed struct {
+    cbSize: u32,
+    ClassGuid: Guid,
+    DevInst: u32,
+    Reserved: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVICE_INTERFACE_DATA = packed struct {
+    cbSize: u32,
+    InterfaceClassGuid: Guid,
+    Flags: u32,
+    Reserved: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVICE_INTERFACE_DETAIL_DATA_A = packed struct {
+    cbSize: u32,
+    DevicePath: [1]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVICE_INTERFACE_DETAIL_DATA_W = packed struct {
+    cbSize: u32,
+    DevicePath: [1]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINFO_LIST_DETAIL_DATA_A = packed struct {
+    cbSize: u32,
+    ClassGuid: Guid,
+    RemoteMachineHandle: HANDLE,
+    RemoteMachineName: [263]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINFO_LIST_DETAIL_DATA_W = packed struct {
+    cbSize: u32,
+    ClassGuid: Guid,
+    RemoteMachineHandle: HANDLE,
+    RemoteMachineName: [263]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINSTALL_PARAMS_A = packed struct {
+    cbSize: u32,
+    Flags: u32,
+    FlagsEx: u32,
+    hwndParent: HWND,
+    InstallMsgHandler: PSP_FILE_CALLBACK_A,
+    InstallMsgHandlerContext: *c_void,
+    FileQueue: *c_void,
+    ClassInstallReserved: usize,
+    Reserved: u32,
+    DriverPath: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DEVINSTALL_PARAMS_W = packed struct {
+    cbSize: u32,
+    Flags: u32,
+    FlagsEx: u32,
+    hwndParent: HWND,
+    InstallMsgHandler: PSP_FILE_CALLBACK_A,
+    InstallMsgHandlerContext: *c_void,
+    FileQueue: *c_void,
+    ClassInstallReserved: usize,
+    Reserved: u32,
+    DriverPath: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_CLASSINSTALL_HEADER = packed struct {
+    cbSize: u32,
+    InstallFunction: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_ENABLECLASS_PARAMS = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    ClassGuid: Guid,
+    EnableMessage: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_PROPCHANGE_PARAMS = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    StateChange: u32,
+    Scope: u32,
+    HwProfile: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_REMOVEDEVICE_PARAMS = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Scope: u32,
+    HwProfile: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_UNREMOVEDEVICE_PARAMS = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Scope: u32,
+    HwProfile: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_SELECTDEVICE_PARAMS_W = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Title: [60]u16,
+    Instructions: [256]u16,
+    ListLabel: [30]u16,
+    SubTitle: [256]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DETECTDEVICE_PARAMS = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    DetectProgressNotify: PDETECT_PROGRESS_NOTIFY,
+    ProgressNotifyParam: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INSTALLWIZARD_DATA = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Flags: u32,
+    DynamicPages: [20]HPROPSHEETPAGE,
+    NumDynamicPages: u32,
+    DynamicPageFlags: u32,
+    PrivateFlags: u32,
+    PrivateData: LPARAM,
+    hwndWizardDlg: HWND,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_NEWDEVICEWIZARD_DATA = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    Flags: u32,
+    DynamicPages: [20]HPROPSHEETPAGE,
+    NumDynamicPages: u32,
+    hwndWizardDlg: HWND,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_TROUBLESHOOTER_PARAMS_W = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    ChmFile: [260]u16,
+    HtmlTroubleShooter: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_POWERMESSAGEWAKE_PARAMS_W = packed struct {
+    ClassInstallHeader: SP_CLASSINSTALL_HEADER,
+    PowerMessageWake: [512]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DATA_V2_A = packed struct {
+    cbSize: u32,
+    DriverType: u32,
+    Reserved: usize,
+    Description: [256]CHAR,
+    MfgName: [256]CHAR,
+    ProviderName: [256]CHAR,
+    DriverDate: FILETIME,
+    DriverVersion: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DATA_V2_W = packed struct {
+    cbSize: u32,
+    DriverType: u32,
+    Reserved: usize,
+    Description: [256]u16,
+    MfgName: [256]u16,
+    ProviderName: [256]u16,
+    DriverDate: FILETIME,
+    DriverVersion: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DATA_V1_A = packed struct {
+    cbSize: u32,
+    DriverType: u32,
+    Reserved: usize,
+    Description: [256]CHAR,
+    MfgName: [256]CHAR,
+    ProviderName: [256]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DATA_V1_W = packed struct {
+    cbSize: u32,
+    DriverType: u32,
+    Reserved: usize,
+    Description: [256]u16,
+    MfgName: [256]u16,
+    ProviderName: [256]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DETAIL_DATA_A = packed struct {
+    cbSize: u32,
+    InfDate: FILETIME,
+    CompatIDsOffset: u32,
+    CompatIDsLength: u32,
+    Reserved: usize,
+    SectionName: [256]CHAR,
+    InfFileName: [260]CHAR,
+    DrvDescription: [256]CHAR,
+    HardwareID: [1]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINFO_DETAIL_DATA_W = packed struct {
+    cbSize: u32,
+    InfDate: FILETIME,
+    CompatIDsOffset: u32,
+    CompatIDsLength: u32,
+    Reserved: usize,
+    SectionName: [256]u16,
+    InfFileName: [260]u16,
+    DrvDescription: [256]u16,
+    HardwareID: [1]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_DRVINSTALL_PARAMS = packed struct {
+    cbSize: u32,
+    Rank: u32,
+    Flags: u32,
+    PrivateData: usize,
+    Reserved: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const COINSTALLER_CONTEXT_DATA = packed struct {
+    PostProcessing: BOOL,
+    InstallResult: u32,
+    PrivateData: *c_void,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_CLASSIMAGELIST_DATA = packed struct {
+    cbSize: u32,
+    ImageList: HIMAGELIST,
+    Reserved: usize,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_PROPSHEETPAGE_REQUEST = packed struct {
+    cbSize: u32,
+    PageRequested: u32,
+    DeviceInfoSet: *c_void,
+    DeviceInfoData: *SP_DEVINFO_DATA,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_BACKUP_QUEUE_PARAMS_V2_A = packed struct {
+    cbSize: u32,
+    FullInfPath: [260]CHAR,
+    FilenameOffset: i32,
+    ReinstallInstance: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_BACKUP_QUEUE_PARAMS_V2_W = packed struct {
+    cbSize: u32,
+    FullInfPath: [260]u16,
+    FilenameOffset: i32,
+    ReinstallInstance: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_BACKUP_QUEUE_PARAMS_V1_A = packed struct {
+    cbSize: u32,
+    FullInfPath: [260]CHAR,
+    FilenameOffset: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_BACKUP_QUEUE_PARAMS_V1_W = packed struct {
+    cbSize: u32,
+    FullInfPath: [260]u16,
+    FilenameOffset: i32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INF_SIGNER_INFO_V1_A = packed struct {
+    cbSize: u32,
+    CatalogFile: [260]CHAR,
+    DigitalSigner: [260]CHAR,
+    DigitalSignerVersion: [260]CHAR,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INF_SIGNER_INFO_V1_W = packed struct {
+    cbSize: u32,
+    CatalogFile: [260]u16,
+    DigitalSigner: [260]u16,
+    DigitalSignerVersion: [260]u16,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INF_SIGNER_INFO_V2_A = packed struct {
+    cbSize: u32,
+    CatalogFile: [260]CHAR,
+    DigitalSigner: [260]CHAR,
+    DigitalSignerVersion: [260]CHAR,
+    SignerScore: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const SP_INF_SIGNER_INFO_V2_W = packed struct {
+    cbSize: u32,
+    CatalogFile: [260]u16,
+    DigitalSigner: [260]u16,
+    DigitalSignerVersion: [260]u16,
+    SignerScore: u32,
+};
+
+}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------
@@ -8816,26 +8816,26 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (22)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
+const LPARAM = @import("../foundation.zig").LPARAM;
 const HKEY = @import("../system/registry.zig").HKEY;
 const VER_PLATFORM = @import("../system/diagnostics/debug.zig").VER_PLATFORM;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const DEVPROPKEY = @import("../system/system_services.zig").DEVPROPKEY;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const PROPSHEETHEADERW_V2 = @import("../ui/controls.zig").PROPSHEETHEADERW_V2;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const RECT = @import("../ui/display_devices.zig").RECT;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const PSTR = @import("../foundation.zig").PSTR;
+const RECT = @import("../foundation.zig").RECT;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const PRIORITY = @import("../data/html_help.zig").PRIORITY;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const PROPSHEETHEADERA_V2 = @import("../ui/controls.zig").PROPSHEETHEADERA_V2;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
-const HICON = @import("../ui/menus_and_resources.zig").HICON;
+const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const HIMAGELIST = @import("../ui/controls.zig").HIMAGELIST;
 
 test {

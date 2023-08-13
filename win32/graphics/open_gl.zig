@@ -6,6 +6,9 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
+pub const HGLRC = ?*opaque{};
+
 pub const PIXELFORMATDESCRIPTOR = extern struct {
     nSize: u16,
     nVersion: u16,
@@ -74,9 +77,6 @@ pub const LAYERPLANEDESCRIPTOR = extern struct {
     bReserved: u8,
     crTransparent: u32,
 };
-
-// TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
-pub const HGLRC = ?*opaque{};
 
 
 //--------------------------------------------------------------------------------
@@ -275,10 +275,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const HDC = @import("../graphics/gdi.zig").HDC;
-const PROC = @import("../system/system_services.zig").PROC;
+const PROC = @import("../foundation.zig").PROC;
 const HENHMETAFILE = @import("../graphics/gdi.zig").HENHMETAFILE;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

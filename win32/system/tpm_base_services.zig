@@ -200,8 +200,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

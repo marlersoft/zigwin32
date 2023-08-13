@@ -4510,9 +4510,9 @@ const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const DECIMAL = @import("../system/system_services.zig").DECIMAL;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

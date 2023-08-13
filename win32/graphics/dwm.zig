@@ -514,17 +514,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
-const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
-const LRESULT = @import("../system/system_services.zig").LRESULT;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const WPARAM = @import("../foundation.zig").WPARAM;
+const LRESULT = @import("../foundation.zig").LRESULT;
 const HRGN = @import("../graphics/gdi.zig").HRGN;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const MARGINS = @import("../ui/controls.zig").MARGINS;
-const POINT = @import("../ui/display_devices.zig").POINT;
-const RECT = @import("../ui/display_devices.zig").RECT;
-const SIZE = @import("../ui/display_devices.zig").SIZE;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const POINT = @import("../foundation.zig").POINT;
+const RECT = @import("../foundation.zig").RECT;
+const SIZE = @import("../foundation.zig").SIZE;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 
 test {

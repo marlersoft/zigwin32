@@ -209,6 +209,12 @@ pub const LPM_HANDLE = isize;
 
 pub const RHANDLE = isize;
 
+pub const QOS = extern struct {
+    SendingFlowspec: FLOWSPEC,
+    ReceivingFlowspec: FLOWSPEC,
+    ProviderSpecific: WSABUF,
+};
+
 pub const FLOWSPEC = extern struct {
     TokenRate: u32,
     TokenBucketSize: u32,
@@ -787,12 +793,6 @@ pub const ENUMERATION_BUFFER = extern struct {
     GenericFilter: [1]TC_GEN_FILTER,
 };
 
-pub const QOS = extern struct {
-    SendingFlowspec: FLOWSPEC,
-    ReceivingFlowspec: FLOWSPEC,
-    ProviderSpecific: WSABUF,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
@@ -1074,15 +1074,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const NETWORK_ADDRESS_LIST = @import("../network_management/ndis.zig").NETWORK_ADDRESS_LIST;
 const WSABUF = @import("../networking/win_sock.zig").WSABUF;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const SOCKET = @import("../networking/win_sock.zig").SOCKET;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 
 test {

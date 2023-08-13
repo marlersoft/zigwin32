@@ -721,32 +721,72 @@ pub const STREAMBUFFER_EC_RATE_CHANGING_FOR_SETPOSITIONS = @as(i32, 815);
 pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE = @as(i32, 816);
 
 //--------------------------------------------------------------------------------
-// Section: Types (1476)
+// Section: Types (1475)
 //--------------------------------------------------------------------------------
-pub const IKsPin = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
+pub const OA_BOOL = extern enum(i32) {
+    TRUE = -1,
+    FALSE = 0,
 };
+pub const OATRUE = OA_BOOL.TRUE;
+pub const OAFALSE = OA_BOOL.FALSE;
 
-pub const IKsAllocator = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
+pub const MPEG2VIDEOINFO_FLAGS = extern enum(u32) {
+    DoPanScan = 1,
+    DVDLine21Field1 = 2,
+    DVDLine21Field2 = 4,
+    SourceIsLetterboxed = 8,
+    FilmCameraMode = 16,
+    LetterboxAnalogOut = 32,
+    DSS_UserData = 64,
+    DVB_UserData = 128,
+    @"27MhzTimebase" = 256,
+    WidescreenAnalogOut = 512,
+    _,
+    pub fn initFlags(o: struct {
+        DoPanScan: u1 = 0,
+        DVDLine21Field1: u1 = 0,
+        DVDLine21Field2: u1 = 0,
+        SourceIsLetterboxed: u1 = 0,
+        FilmCameraMode: u1 = 0,
+        LetterboxAnalogOut: u1 = 0,
+        DSS_UserData: u1 = 0,
+        DVB_UserData: u1 = 0,
+        @"27MhzTimebase": u1 = 0,
+        WidescreenAnalogOut: u1 = 0,
+    }) MPEG2VIDEOINFO_FLAGS {
+        return @intToEnum(MPEG2VIDEOINFO_FLAGS,
+              (if (o.DoPanScan == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DoPanScan) else 0)
+            | (if (o.DVDLine21Field1 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field1) else 0)
+            | (if (o.DVDLine21Field2 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field2) else 0)
+            | (if (o.SourceIsLetterboxed == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed) else 0)
+            | (if (o.FilmCameraMode == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.FilmCameraMode) else 0)
+            | (if (o.LetterboxAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut) else 0)
+            | (if (o.DSS_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DSS_UserData) else 0)
+            | (if (o.DVB_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVB_UserData) else 0)
+            | (if (o.@"27MhzTimebase" == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase") else 0)
+            | (if (o.WidescreenAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut) else 0)
+        );
+    }
 };
+pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS.DoPanScan;
+pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field1;
+pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field2;
+pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed;
+pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS.FilmCameraMode;
+pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut;
+pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS.DSS_UserData;
+pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS.DVB_UserData;
+pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase";
+pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut;
 
-pub const IKsAllocatorEx = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
+pub const MPEGLAYER3WAVEFORMAT_FLAGS = extern enum(u32) {
+    ISO = 0,
+    ON = 1,
+    OFF = 2,
 };
-
-pub const READYSTATE = extern enum(i32) {
-    UNINITIALIZED = 0,
-    LOADING = 1,
-    LOADED = 2,
-    INTERACTIVE = 3,
-    COMPLETE = 4,
-};
-pub const READYSTATE_UNINITIALIZED = READYSTATE.UNINITIALIZED;
-pub const READYSTATE_LOADING = READYSTATE.LOADING;
-pub const READYSTATE_LOADED = READYSTATE.LOADED;
-pub const READYSTATE_INTERACTIVE = READYSTATE.INTERACTIVE;
-pub const READYSTATE_COMPLETE = READYSTATE.COMPLETE;
+pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_FLAGS.ISO;
+pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_FLAGS.ON;
+pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_FLAGS.OFF;
 
 pub const KSTOPOLOGY_CONNECTION = extern struct {
     FromNode: u32,
@@ -20771,6 +20811,18 @@ pub const OPTIMAL_WEIGHT_TOTALS = extern struct {
     TotalDenominator: i64,
 };
 
+pub const IKsPin = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const IKsAllocator = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const IKsAllocatorEx = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 pub const PIPE_STATE = extern enum(i32) {
     DontCare = 0,
     RangeNotFixed = 1,
@@ -23677,106 +23729,6 @@ pub const DMO_ENUM_FLAGS = extern enum(i32) {
     D = 1,
 };
 pub const DMO_ENUMF_INCLUDE_KEYED = DMO_ENUM_FLAGS.D;
-
-pub const OA_BOOL = extern enum(i32) {
-    TRUE = -1,
-    FALSE = 0,
-};
-pub const OATRUE = OA_BOOL.TRUE;
-pub const OAFALSE = OA_BOOL.FALSE;
-
-pub const MPEG2VIDEOINFO_FLAGS = extern enum(u32) {
-    DoPanScan = 1,
-    DVDLine21Field1 = 2,
-    DVDLine21Field2 = 4,
-    SourceIsLetterboxed = 8,
-    FilmCameraMode = 16,
-    LetterboxAnalogOut = 32,
-    DSS_UserData = 64,
-    DVB_UserData = 128,
-    @"27MhzTimebase" = 256,
-    WidescreenAnalogOut = 512,
-    _,
-    pub fn initFlags(o: struct {
-        DoPanScan: u1 = 0,
-        DVDLine21Field1: u1 = 0,
-        DVDLine21Field2: u1 = 0,
-        SourceIsLetterboxed: u1 = 0,
-        FilmCameraMode: u1 = 0,
-        LetterboxAnalogOut: u1 = 0,
-        DSS_UserData: u1 = 0,
-        DVB_UserData: u1 = 0,
-        @"27MhzTimebase": u1 = 0,
-        WidescreenAnalogOut: u1 = 0,
-    }) MPEG2VIDEOINFO_FLAGS {
-        return @intToEnum(MPEG2VIDEOINFO_FLAGS,
-              (if (o.DoPanScan == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DoPanScan) else 0)
-            | (if (o.DVDLine21Field1 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field1) else 0)
-            | (if (o.DVDLine21Field2 == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVDLine21Field2) else 0)
-            | (if (o.SourceIsLetterboxed == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed) else 0)
-            | (if (o.FilmCameraMode == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.FilmCameraMode) else 0)
-            | (if (o.LetterboxAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut) else 0)
-            | (if (o.DSS_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DSS_UserData) else 0)
-            | (if (o.DVB_UserData == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.DVB_UserData) else 0)
-            | (if (o.@"27MhzTimebase" == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase") else 0)
-            | (if (o.WidescreenAnalogOut == 1) @enumToInt(MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut) else 0)
-        );
-    }
-};
-pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS.DoPanScan;
-pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field1;
-pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field2;
-pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed;
-pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS.FilmCameraMode;
-pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut;
-pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS.DSS_UserData;
-pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS.DVB_UserData;
-pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase";
-pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut;
-
-pub const MPEGLAYER3WAVEFORMAT_FLAGS = extern enum(u32) {
-    ISO = 0,
-    ON = 1,
-    OFF = 2,
-};
-pub const MPEGLAYER3_FLAG_PADDING_ISO = MPEGLAYER3WAVEFORMAT_FLAGS.ISO;
-pub const MPEGLAYER3_FLAG_PADDING_ON = MPEGLAYER3WAVEFORMAT_FLAGS.ON;
-pub const MPEGLAYER3_FLAG_PADDING_OFF = MPEGLAYER3WAVEFORMAT_FLAGS.OFF;
-
-pub const MPEG1WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    fwHeadLayer: u16,
-    dwHeadBitrate: u32,
-    fwHeadMode: u16,
-    fwHeadModeExt: u16,
-    wHeadEmphasis: u16,
-    fwHeadFlags: u16,
-    dwPTSLow: u32,
-    dwPTSHigh: u32,
-};
-
-pub const MPEGLAYER3WAVEFORMAT = packed struct {
-    wfx: WAVEFORMATEX,
-    wID: u16,
-    fdwFlags: MPEGLAYER3WAVEFORMAT_FLAGS,
-    nBlockSize: u16,
-    nFramesPerBlock: u16,
-    nCodecDelay: u16,
-};
-
-pub const HEAACWAVEINFO = packed struct {
-    wfx: WAVEFORMATEX,
-    wPayloadType: u16,
-    wAudioProfileLevelIndication: u16,
-    wStructType: u16,
-    wReserved1: u16,
-    dwReserved2: u32,
-};
-
-pub const HEAACWAVEFORMAT = extern struct {
-    wfInfo: HEAACWAVEINFO,
-    pbAudioSpecificConfig: [1]u8,
-};
 
 pub const DMO_MEDIA_TYPE = extern struct {
     majortype: Guid,
@@ -46792,6 +46744,41 @@ pub const MPEG_HEADER_VERSION_BITS = extern struct {
     _bitfield: u8,
 };
 
+pub const MPEG1WAVEFORMAT = packed struct {
+    wfx: WAVEFORMATEX,
+    fwHeadLayer: u16,
+    dwHeadBitrate: u32,
+    fwHeadMode: u16,
+    fwHeadModeExt: u16,
+    wHeadEmphasis: u16,
+    fwHeadFlags: u16,
+    dwPTSLow: u32,
+    dwPTSHigh: u32,
+};
+
+pub const MPEGLAYER3WAVEFORMAT = packed struct {
+    wfx: WAVEFORMATEX,
+    wID: u16,
+    fdwFlags: MPEGLAYER3WAVEFORMAT_FLAGS,
+    nBlockSize: u16,
+    nFramesPerBlock: u16,
+    nCodecDelay: u16,
+};
+
+pub const HEAACWAVEINFO = packed struct {
+    wfx: WAVEFORMATEX,
+    wPayloadType: u16,
+    wAudioProfileLevelIndication: u16,
+    wStructType: u16,
+    wReserved1: u16,
+    dwReserved2: u32,
+};
+
+pub const HEAACWAVEFORMAT = extern struct {
+    wfInfo: HEAACWAVEINFO,
+    pbAudioSpecificConfig: [1]u8,
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
@@ -46908,21 +46895,21 @@ const KS_COMPRESSION = @import("../media/audio/core_audio.zig").KS_COMPRESSION;
 const D3DPOOL = @import("../graphics/direct3d9.zig").D3DPOOL;
 const IDirectDraw7 = @import("../graphics/direct_draw.zig").IDirectDraw7;
 const PAPCFUNC = @import("../system/system_services.zig").PAPCFUNC;
-const HACCEL = @import("../ui/menus_and_resources.zig").HACCEL;
+const HACCEL = @import("../ui/windows_and_messaging.zig").HACCEL;
 const DDCOLORCONTROL = @import("../graphics/direct_draw.zig").DDCOLORCONTROL;
 const DDCOLORKEY = @import("../graphics/direct_draw.zig").DDCOLORKEY;
 const IDirectDrawSurface = @import("../graphics/direct_draw.zig").IDirectDrawSurface;
-const DDVIDEOPORTCONNECT = @import("../media/audio/core_audio.zig").DDVIDEOPORTCONNECT;
+const DDVIDEOPORTCONNECT = @import("../graphics/direct_draw.zig").DDVIDEOPORTCONNECT;
 const IDirect3DSurface9 = @import("../graphics/direct3d9.zig").IDirect3DSurface9;
-const HSEMAPHORE = @import("../system/system_services.zig").HSEMAPHORE;
+const HSEMAPHORE = @import("../ui/display_devices.zig").HSEMAPHORE;
 const HMONITOR = @import("../graphics/gdi.zig").HMONITOR;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IBindCtx = @import("../system/com.zig").IBindCtx;
-const IXMLElement = @import("../system/windows_programming.zig").IXMLElement;
+const IXMLElement = @import("../data/xml/ms_xml.zig").IXMLElement;
 const KSEVENTDATA = @import("../media/audio/core_audio.zig").KSEVENTDATA;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const RECT = @import("../ui/display_devices.zig").RECT;
-const PSTR = @import("../system/system_services.zig").PSTR;
+const BSTR = @import("../foundation.zig").BSTR;
+const RECT = @import("../foundation.zig").RECT;
+const PSTR = @import("../foundation.zig").PSTR;
 const DDSCAPS2 = @import("../graphics/direct_draw.zig").DDSCAPS2;
 const IPropertyBag = @import("../system/ole_automation.zig").IPropertyBag;
 const IErrorLog = @import("../system/ole_automation.zig").IErrorLog;
@@ -46931,7 +46918,7 @@ const KS_FRAMING_RANGE = @import("../media/audio/core_audio.zig").KS_FRAMING_RAN
 const IEnumMoniker = @import("../system/com.zig").IEnumMoniker;
 const PALETTEENTRY = @import("../graphics/gdi.zig").PALETTEENTRY;
 const RGNDATA = @import("../graphics/gdi.zig").RGNDATA;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const RGBQUAD = @import("../graphics/gdi.zig").RGBQUAD;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const HKEY = @import("../system/registry.zig").HKEY;
@@ -46940,15 +46927,15 @@ const IDirect3DDevice9 = @import("../graphics/direct3d9.zig").IDirect3DDevice9;
 const IDirectDrawPalette = @import("../graphics/direct_draw.zig").IDirectDrawPalette;
 const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
 const KSM_NODE = @import("../media/audio/core_audio.zig").KSM_NODE;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IDirectDrawSurface7 = @import("../graphics/direct_draw.zig").IDirectDrawSurface7;
 const IEnumGUID = @import("../system/com.zig").IEnumGUID;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 const IDirectSoundBuffer = @import("../media/audio/direct_music.zig").IDirectSoundBuffer;
 const IPersist = @import("../system/com.zig").IPersist;
-const PSID = @import("../security.zig").PSID;
+const PSID = @import("../foundation.zig").PSID;
 const DDSURFACEDESC = @import("../graphics/direct_draw.zig").DDSURFACEDESC;
 const KS_FRAMING_RANGE_WEIGHTED = @import("../media/audio/core_audio.zig").KS_FRAMING_RANGE_WEIGHTED;
 const KSIDENTIFIER = @import("../media/audio/core_audio.zig").KSIDENTIFIER;
@@ -46958,13 +46945,13 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const IWMProfile = @import("../media/windows_media_format.zig").IWMProfile;
 const KSP_NODE = @import("../media/audio/core_audio.zig").KSP_NODE;
 const IDirectSound = @import("../media/audio/direct_music.zig").IDirectSound;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const DDPIXELFORMAT = @import("../graphics/direct_draw.zig").DDPIXELFORMAT;
 const IMoniker = @import("../system/com.zig").IMoniker;
-const POINT = @import("../ui/display_devices.zig").POINT;
-const SIZE = @import("../ui/display_devices.zig").SIZE;
+const POINT = @import("../foundation.zig").POINT;
+const SIZE = @import("../foundation.zig").SIZE;
 const WAVEFORMATEX = @import("../media/multimedia.zig").WAVEFORMATEX;
 const D3DFORMAT = @import("../graphics/direct3d9.zig").D3DFORMAT;
 const IPictureDisp = @import("../system/com.zig").IPictureDisp;

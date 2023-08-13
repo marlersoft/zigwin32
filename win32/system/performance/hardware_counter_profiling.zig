@@ -77,7 +77,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
-const HANDLE = @import("../../system/system_services.zig").HANDLE;
+const HANDLE = @import("../../foundation.zig").HANDLE;
 
 test {
     @setEvalBranchQuota(

@@ -1268,9 +1268,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 
 test {

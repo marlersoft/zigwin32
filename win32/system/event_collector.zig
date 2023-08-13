@@ -319,8 +319,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

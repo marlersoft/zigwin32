@@ -1001,13 +1001,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const IPropertyStore = @import("../media/audio/direct_music.zig").IPropertyStore;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const BOOL = @import("../foundation.zig").BOOL;
 const IServiceProvider = @import("../system/system_services.zig").IServiceProvider;
 
 test {

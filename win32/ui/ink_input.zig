@@ -231,8 +231,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

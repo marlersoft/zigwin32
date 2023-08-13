@@ -15,6 +15,7 @@ pub const gdi = @import("graphics/gdi.zig");
 pub const hlsl = @import("graphics/hlsl.zig");
 pub const imaging = @import("graphics/imaging.zig");
 pub const open_gl = @import("graphics/open_gl.zig");
+pub const printing = @import("graphics/printing.zig");
 test {
     @import("std").testing.refAllDecls(@This());
 }

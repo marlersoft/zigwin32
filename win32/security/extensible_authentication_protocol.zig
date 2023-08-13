@@ -1507,22 +1507,8 @@ pub const EAP_AUTHENTICATOR_METHOD_ROUTINES = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (33)
+// Section: Functions (32)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
-    pConnectionIdThatLastSavedCreds: *Guid,
-    phCredentialImpersonationToken: *isize,
-    sessionHandle: u32,
-    ppEapError: **EAP_ERROR,
-    fSaveToCredMan: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-}, else => struct { } };
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappcfg" fn EapHostPeerGetMethods(
     pEapMethodInfoArray: *EAP_METHOD_INFO_ARRAY,
@@ -1770,6 +1756,15 @@ pub extern "eappprxy" fn EapHostPeerEndSession(
     ppEapError: **EAP_ERROR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows10.0.10240'
+pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
+    pConnectionIdThatLastSavedCreds: *Guid,
+    phCredentialImpersonationToken: *isize,
+    sessionHandle: u32,
+    ppEapError: **EAP_ERROR,
+    fSaveToCredMan: *BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "eappprxy" fn EapHostPeerClearConnection(
     pConnectionId: *Guid,
@@ -1811,20 +1806,6 @@ pub extern "eappprxy" fn EapHostPeerFreeRuntimeMemory(
     pData: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-// TODO: this type is limited to platform 'windows10.0.10240'
-pub extern "eappprxy" fn EapHostPeerGetDataToUnplumbCredentials(
-    pConnectionIdThatLastSavedCreds: *Guid,
-    phCredentialImpersonationToken: *i32,
-    sessionHandle: u32,
-    ppEapError: **EAP_ERROR,
-    fSaveToCredMan: *BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -1842,14 +1823,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const IXMLDOMDocument2 = @import("../networking/xml_http_extended_request.zig").IXMLDOMDocument2;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const IXMLDOMDocument2 = @import("../data/xml/ms_xml.zig").IXMLDOMDocument2;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const IXMLDOMNode = @import("../system/windows_programming.zig").IXMLDOMNode;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const IXMLDOMNode = @import("../data/xml/ms_xml.zig").IXMLDOMNode;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

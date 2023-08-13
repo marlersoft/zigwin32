@@ -10,6 +10,9 @@ pub const COMPRESS_RAW = @as(u32, 536870912);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
+pub const COMPRESSOR_HANDLE = isize;
+
 pub const PFN_COMPRESS_ALLOCATE = fn(
     UserContext: *c_void,
     Size: usize,
@@ -34,9 +37,6 @@ pub const COMPRESS_INFORMATION_CLASS = extern enum(i32) {
 pub const COMPRESS_INFORMATION_CLASS_INVALID = COMPRESS_INFORMATION_CLASS.INVALID;
 pub const COMPRESS_INFORMATION_CLASS_BLOCK_SIZE = COMPRESS_INFORMATION_CLASS.BLOCK_SIZE;
 pub const COMPRESS_INFORMATION_CLASS_LEVEL = COMPRESS_INFORMATION_CLASS.LEVEL;
-
-// TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
-pub const COMPRESSOR_HANDLE = isize;
 
 pub const COMPRESS_ALGORITHM = extern enum(u32) {
     MSZIP = 2,
@@ -163,7 +163,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

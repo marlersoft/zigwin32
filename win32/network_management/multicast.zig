@@ -2,9 +2,9 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (3)
 //--------------------------------------------------------------------------------
-pub const MCAST_CLIENT_ID_LEN = @as(u32, 17);
 pub const MCAST_API_VERSION_0 = @as(i32, 0);
 pub const MCAST_API_VERSION_1 = @as(i32, 1);
+pub const MCAST_CLIENT_ID_LEN = @as(u32, 17);
 
 //--------------------------------------------------------------------------------
 // Section: Types (6)
@@ -119,7 +119,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
 const UNICODE_STRING = @import("../system/kernel.zig").UNICODE_STRING;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

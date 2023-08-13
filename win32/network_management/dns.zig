@@ -312,6 +312,14 @@ pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (94)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
+pub const DnsContextHandle = isize;
+
+pub const IP4_ARRAY = extern struct {
+    AddrCount: u32,
+    AddrArray: [1]u32,
+};
+
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
@@ -323,11 +331,6 @@ pub const IP6_ADDRESS = extern union {
 };
 
 }, else => struct { } };
-
-pub const IP4_ARRAY = extern struct {
-    AddrCount: u32,
-    AddrArray: [1]u32,
-};
 
 pub const DNS_ADDR = extern struct {
     MaxSa: [32]CHAR,
@@ -474,12 +477,12 @@ pub const DNS_MX_DATAA = extern struct {
 
 pub const DNS_TXT_DATAW = extern struct {
     dwStringCount: u32,
-    pStringArray: [1]*u16,
+    pStringArray: [1]PWSTR,
 };
 
 pub const DNS_TXT_DATAA = extern struct {
     dwStringCount: u32,
-    pStringArray: [1]*i8,
+    pStringArray: [1]PSTR,
 };
 
 pub const DNS_NULL_DATA = extern struct {
@@ -1287,9 +1290,6 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     ulResendCount: u32,
 };
 
-// TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
-pub const DnsContextHandle = isize;
-
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X86 => struct {
 
@@ -1788,11 +1788,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const PSTR = @import("../foundation.zig").PSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

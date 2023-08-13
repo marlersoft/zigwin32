@@ -9178,25 +9178,25 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IStream = @import("../storage/structured_storage.zig").IStream;
 const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const HDC = @import("../graphics/gdi.zig").HDC;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const IMFActivate = @import("../media/media_foundation.zig").IMFActivate;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const RECT = @import("../ui/display_devices.zig").RECT;
+const BSTR = @import("../foundation.zig").BSTR;
+const RECT = @import("../foundation.zig").RECT;
 const BLOB = @import("../system/com.zig").BLOB;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
-const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
-const LRESULT = @import("../system/system_services.zig").LRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
+const WPARAM = @import("../foundation.zig").WPARAM;
+const LRESULT = @import("../foundation.zig").LRESULT;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const SIZE = @import("../ui/display_devices.zig").SIZE;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const SIZE = @import("../foundation.zig").SIZE;
 
 test {
     @setEvalBranchQuota(

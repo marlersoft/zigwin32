@@ -291,16 +291,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const DEVMODEW = @import("../ui/display_devices.zig").DEVMODEW;
 const DESKTOPENUMPROCA = @import("../ui/windows_and_messaging.zig").DESKTOPENUMPROCA;
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
-const PSTR = @import("../system/system_services.zig").PSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const PSTR = @import("../foundation.zig").PSTR;
 const DESKTOPENUMPROCW = @import("../ui/windows_and_messaging.zig").DESKTOPENUMPROCW;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 const DEVMODEA = @import("../ui/display_devices.zig").DEVMODEA;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const WINSTAENUMPROCW = @import("../ui/windows_and_messaging.zig").WINSTAENUMPROCW;
 const WNDENUMPROC = @import("../ui/windows_and_messaging.zig").WNDENUMPROC;
 const WINSTAENUMPROCA = @import("../ui/windows_and_messaging.zig").WINSTAENUMPROCA;

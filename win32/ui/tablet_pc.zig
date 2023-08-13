@@ -128,12 +128,6 @@ pub const GUID_DYNAMIC_RENDERER_CACHED_DATA = Guid.initString("bf531b92-25bf-4a9
 //--------------------------------------------------------------------------------
 // Section: Types (240)
 //--------------------------------------------------------------------------------
-pub const PfnRecoCallback = fn(
-    param0: u32,
-    param1: *u8,
-    param2: HRECOCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 pub const HRECOALT = ?*opaque{};
 
 pub const HRECOCONTEXT = ?*opaque{};
@@ -143,6 +137,12 @@ pub const HRECOGNIZER = ?*opaque{};
 pub const HRECOLATTICE = ?*opaque{};
 
 pub const HRECOWORDLIST = ?*opaque{};
+
+pub const PfnRecoCallback = fn(
+    param0: u32,
+    param1: *u8,
+    param2: HRECOCONTEXT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 const CLSID_InkDisp_Value = @import("../zig.zig").Guid.initString("937c1a34-151d-4610-9ca6-a8cc9bdb5d83");
 pub const CLSID_InkDisp = &CLSID_InkDisp_Value;
@@ -9831,20 +9831,20 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const HANDLE_PTR = @import("../system/system_services.zig").HANDLE_PTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const RECT = @import("../ui/display_devices.zig").RECT;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const RECT = @import("../foundation.zig").RECT;
 const NMHDR = @import("../ui/controls.zig").NMHDR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const XFORM = @import("../graphics/gdi.zig").XFORM;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IDataObject = @import("../system/com.zig").IDataObject;
 const IFontDisp = @import("../system/com.zig").IFontDisp;
-const POINT = @import("../ui/display_devices.zig").POINT;
+const POINT = @import("../foundation.zig").POINT;
 const IPictureDisp = @import("../system/com.zig").IPictureDisp;
 
 test {

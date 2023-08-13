@@ -1184,11 +1184,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const MSG = @import("../ui/windows_and_messaging.zig").MSG;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const RECT = @import("../ui/display_devices.zig").RECT;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const RECT = @import("../foundation.zig").RECT;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

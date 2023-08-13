@@ -137,7 +137,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
 const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
 const DL_EUI48 = @import("../network_management/windows_filtering_platform.zig").DL_EUI48;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 const NL_DAD_STATE = @import("../networking/win_sock.zig").NL_DAD_STATE;
 

@@ -25,6 +25,9 @@ pub const REG_SECURE_CONNECTION = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
+pub const HKEY = ?*opaque{};
+
 pub const REG_VALUE_TYPE = extern enum(u32) {
     NONE = 0,
     SZ = 1,
@@ -154,9 +157,6 @@ pub const REG_CREATE_KEY_DISPOSITION = extern enum(u32) {
 };
 pub const REG_CREATED_NEW_KEY = REG_CREATE_KEY_DISPOSITION.CREATED_NEW_KEY;
 pub const REG_OPENED_EXISTING_KEY = REG_CREATE_KEY_DISPOSITION.OPENED_EXISTING_KEY;
-
-// TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
-pub const HKEY = ?*opaque{};
 
 pub const val_context = extern struct {
     valuelen: i32,
@@ -306,7 +306,7 @@ pub const RRF_RT_REG_SZ = RRF_RT.REG_SZ;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (82)
+// Section: Functions (83)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "ADVAPI32" fn RegCloseKey(
@@ -1019,6 +1019,19 @@ pub extern "ADVAPI32" fn RegSaveKeyExW(
     Flags: REG_SAVE_FORMAT,
 ) callconv(@import("std").os.windows.WINAPI) LSTATUS;
 
+pub extern "api-ms-win-core-state-helpers-l1-1-0" fn GetRegistryValueWithFallbackW(
+    hkeyPrimary: HKEY,
+    pwszPrimarySubKey: ?[*:0]const u16,
+    hkeyFallback: HKEY,
+    pwszFallbackSubKey: ?[*:0]const u16,
+    pwszValue: [*:0]const u16,
+    dwFlags: u32,
+    pdwType: ?*u32,
+    pvData: ?*c_void,
+    cbDataIn: u32,
+    pcbDataOut: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) LSTATUS;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (36)
@@ -1180,13 +1193,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const LSTATUS = @import("../system/system_services.zig").LSTATUS;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const LSTATUS = @import("../foundation.zig").LSTATUS;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -12429,23 +12429,23 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const CY = @import("../system/system_services.zig").CY;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const ALLOCATOR_PROPERTIES = @import("../graphics/direct_show.zig").ALLOCATOR_PROPERTIES;
 const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
-const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
+const BSTR = @import("../foundation.zig").BSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
+const WPARAM = @import("../foundation.zig").WPARAM;
 const AM_MEDIA_TYPE = @import("../graphics/direct_show.zig").AM_MEDIA_TYPE;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

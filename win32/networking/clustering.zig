@@ -12293,24 +12293,24 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const HKEY = @import("../system/registry.zig").HKEY;
 const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const SC_HANDLE = @import("../security.zig").SC_HANDLE;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const BSTR = @import("../foundation.zig").BSTR;
 const HFONT = @import("../graphics/gdi.zig").HFONT;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const SECURITY_DESCRIPTOR_RELATIVE = @import("../system/system_services.zig").SECURITY_DESCRIPTOR_RELATIVE;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const HICON = @import("../ui/menus_and_resources.zig").HICON;
-const NTSTATUS = @import("../system/system_services.zig").NTSTATUS;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HICON = @import("../ui/windows_and_messaging.zig").HICON;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

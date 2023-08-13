@@ -1084,13 +1084,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

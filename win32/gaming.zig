@@ -628,11 +628,11 @@ pub usingnamespace switch (@import("zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const IInspectable = @import("system/win_rt.zig").IInspectable;
-const PWSTR = @import("system/system_services.zig").PWSTR;
+const PWSTR = @import("foundation.zig").PWSTR;
 const HSTRING = @import("system/win_rt.zig").HSTRING;
 const IUnknown = @import("system/com.zig").IUnknown;
-const BOOL = @import("system/system_services.zig").BOOL;
-const HRESULT = @import("system/com.zig").HRESULT;
+const BOOL = @import("foundation.zig").BOOL;
+const HRESULT = @import("foundation.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

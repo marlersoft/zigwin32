@@ -11,6 +11,8 @@ pub const CF_MAX_PROVIDER_VERSION_LENGTH = @as(u32, 255);
 //--------------------------------------------------------------------------------
 // Section: Types (75)
 //--------------------------------------------------------------------------------
+pub const CF_CONNECTION_KEY = isize;
+
 pub const CF_FS_METADATA = extern struct {
     BasicInfo: FILE_BASIC_INFO,
     FileSize: LARGE_INTEGER,
@@ -1289,8 +1291,6 @@ pub const CF_PLACEHOLDER_RANGE_INFO_ONDISK = CF_PLACEHOLDER_RANGE_INFO_CLASS.OND
 pub const CF_PLACEHOLDER_RANGE_INFO_VALIDATED = CF_PLACEHOLDER_RANGE_INFO_CLASS.VALIDATED;
 pub const CF_PLACEHOLDER_RANGE_INFO_MODIFIED = CF_PLACEHOLDER_RANGE_INFO_CLASS.MODIFIED;
 
-pub const CF_CONNECTION_KEY = isize;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (35)
@@ -1570,13 +1570,13 @@ const Guid = @import("../zig.zig").Guid;
 const FILE_INFO_BY_HANDLE_CLASS = @import("../storage/file_system.zig").FILE_INFO_BY_HANDLE_CLASS;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const FILE_BASIC_INFO = @import("../storage/file_system.zig").FILE_BASIC_INFO;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 const CORRELATION_VECTOR = @import("../system/system_services.zig").CORRELATION_VECTOR;
-const NTSTATUS = @import("../system/system_services.zig").NTSTATUS;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

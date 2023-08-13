@@ -969,13 +969,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

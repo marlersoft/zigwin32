@@ -870,12 +870,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const FARPROC = @import("../system/system_services.zig").FARPROC;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const FARPROC = @import("../foundation.zig").FARPROC;
+const HWND = @import("../foundation.zig").HWND;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -542,11 +542,11 @@ pub const VDS_ASYNC_OUTPUT = extern struct {
         pub const _sv = extern struct {
             ullReclaimedBytes: u64,
         };
-        pub const _ct = extern struct {
-            pTargetUnk: *IUnknown,
-        };
         pub const _cv = extern struct {
             pVolumeUnk: *IUnknown,
+        };
+        pub const _ct = extern struct {
+            pTargetUnk: *IUnknown,
         };
         cp: _cp,
         cv: _cv,
@@ -3287,10 +3287,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

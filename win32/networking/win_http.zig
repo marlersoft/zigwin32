@@ -412,39 +412,6 @@ pub const WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 15000);
 //--------------------------------------------------------------------------------
 // Section: Types (35)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const WINHTTP_CONNECTION_INFO = extern struct {
-    cbSize: u32,
-    LocalAddress: SOCKADDR_STORAGE,
-    RemoteAddress: SOCKADDR_STORAGE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const WINHTTP_REQUEST_TIMES = extern struct {
-    cTimes: u32,
-    rgullTimes: [64]u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const WINHTTP_REQUEST_STATS = extern struct {
-    ullFlags: u64,
-    ulIndex: u32,
-    cStats: u32,
-    rgullStats: [32]u64,
-};
-
-}, else => struct { } };
-
 pub const WINHTTP_ASYNC_RESULT = extern struct {
     dwResult: usize,
     dwError: u32,
@@ -542,6 +509,17 @@ pub const WINHTTP_CERTIFICATE_INFO = extern struct {
     dwKeySize: u32,
 };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WINHTTP_CONNECTION_INFO = extern struct {
+    cbSize: u32,
+    LocalAddress: SOCKADDR_STORAGE,
+    RemoteAddress: SOCKADDR_STORAGE,
+};
+
+}, else => struct { } };
+
 pub const WINHTTP_REQUEST_TIME_ENTRY = extern enum(i32) {
     ProxyDetectionStart = 0,
     ProxyDetectionEnd = 1,
@@ -621,6 +599,16 @@ pub const WinHttpProxyTlsHandshakeClientLeg3End = WINHTTP_REQUEST_TIME_ENTRY.Pro
 pub const WinHttpRequestTimeLast = WINHTTP_REQUEST_TIME_ENTRY.RequestTimeLast;
 pub const WinHttpRequestTimeMax = WINHTTP_REQUEST_TIME_ENTRY.RequestTimeMax;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WINHTTP_REQUEST_TIMES = extern struct {
+    cTimes: u32,
+    rgullTimes: [64]u64,
+};
+
+}, else => struct { } };
+
 pub const WINHTTP_REQUEST_STAT_ENTRY = extern enum(i32) {
     ConnectFailureCount = 0,
     ProxyFailureCount = 1,
@@ -659,6 +647,18 @@ pub const WinHttpProxyTlsHandshakeClientLeg2Size = WINHTTP_REQUEST_STAT_ENTRY.Pr
 pub const WinHttpProxyTlsHandshakeServerLeg2Size = WINHTTP_REQUEST_STAT_ENTRY.ProxyTlsHandshakeServerLeg2Size;
 pub const WinHttpRequestStatLast = WINHTTP_REQUEST_STAT_ENTRY.RequestStatLast;
 pub const WinHttpRequestStatMax = WINHTTP_REQUEST_STAT_ENTRY.RequestStatMax;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const WINHTTP_REQUEST_STATS = extern struct {
+    ullFlags: u64,
+    ulIndex: u32,
+    cStats: u32,
+    rgullStats: [32]u64,
+};
+
+}, else => struct { } };
 
 pub const WINHTTP_EXTENDED_HEADER = extern struct {
     Anonymous1: extern union {
@@ -769,6 +769,42 @@ pub const WINHTTP_WEB_SOCKET_STATUS = extern struct {
     eBufferType: WINHTTP_WEB_SOCKET_BUFFER_TYPE,
 };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const WINHTTP_CONNECTION_INFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    cbSize: u32,
+    LocalAddress: SOCKADDR_STORAGE,
+    RemoteAddress: SOCKADDR_STORAGE,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const WINHTTP_REQUEST_TIMES = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    cTimes: u32,
+    rgullTimes: [64]u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const WINHTTP_REQUEST_STATS = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    ullFlags: u64,
+    ulIndex: u32,
+    cStats: u32,
+    rgullStats: [32]u64,
+};
+
+}, else => struct { } };
+
 pub const INTERNET_DEFAULT_PORT = extern enum(u32) {
     HTTP_PORT = 80,
     HTTPS_PORT = 443,
@@ -841,42 +877,6 @@ pub const WINHTTP_CREDS_AUTHSCHEME = extern enum(u32) {
 pub const WINHTTP_AUTH_SCHEME_BASIC = WINHTTP_CREDS_AUTHSCHEME.BASIC;
 pub const WINHTTP_AUTH_SCHEME_NTLM = WINHTTP_CREDS_AUTHSCHEME.NTLM;
 pub const WINHTTP_AUTH_SCHEME_NEGOTIATE = WINHTTP_CREDS_AUTHSCHEME.NEGOTIATE;
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const WINHTTP_CONNECTION_INFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbSize: u32,
-    LocalAddress: SOCKADDR_STORAGE,
-    RemoteAddress: SOCKADDR_STORAGE,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const WINHTTP_REQUEST_TIMES = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cTimes: u32,
-    rgullTimes: [64]u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const WINHTTP_REQUEST_STATS = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    ullFlags: u64,
-    ulIndex: u32,
-    cStats: u32,
-    rgullStats: [32]u64,
-};
-
-}, else => struct { } };
 
 
 //--------------------------------------------------------------------------------
@@ -1245,14 +1245,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const INTERNET_SCHEME = @import("../networking/win_inet.zig").INTERNET_SCHEME;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -345,11 +345,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -33,8 +33,53 @@ pub const WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING = WSL_DISTRIBUTION_FLAGS.
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (0)
+// Section: Functions (7)
 //--------------------------------------------------------------------------------
+pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslIsDistributionRegistered(
+    distributionName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslRegisterDistribution(
+    distributionName: [*:0]const u16,
+    tarGzFilename: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslUnregisterDistribution(
+    distributionName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslConfigureDistribution(
+    distributionName: [*:0]const u16,
+    defaultUID: u32,
+    wslDistributionFlags: WSL_DISTRIBUTION_FLAGS,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslGetDistributionConfiguration(
+    distributionName: [*:0]const u16,
+    distributionVersion: *u32,
+    defaultUID: *u32,
+    wslDistributionFlags: *WSL_DISTRIBUTION_FLAGS,
+    defaultEnvironmentVariables: **PSTR,
+    defaultEnvironmentVariableCount: *u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslLaunchInteractive(
+    distributionName: [*:0]const u16,
+    command: ?[*:0]const u16,
+    useCurrentWorkingDirectory: BOOL,
+    exitCode: *u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub extern "Api-ms-win-wsl-api-l1-1-0" fn WslLaunch(
+    distributionName: [*:0]const u16,
+    command: ?[*:0]const u16,
+    useCurrentWorkingDirectory: BOOL,
+    stdIn: HANDLE,
+    stdOut: HANDLE,
+    stdErr: HANDLE,
+    process: *HANDLE,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
@@ -49,8 +94,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (0)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
+const PWSTR = @import("../foundation.zig").PWSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

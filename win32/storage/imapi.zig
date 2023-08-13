@@ -5424,8 +5424,8 @@ const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
 const IStream = @import("../storage/structured_storage.zig").IStream;
 const IPropertyStorage = @import("../storage/structured_storage.zig").IPropertyStorage;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
 const IStorage = @import("../storage/structured_storage.zig").IStorage;
 
 test {

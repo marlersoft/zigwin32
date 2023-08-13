@@ -9,10 +9,16 @@ pub const FILE_CACHE_MIN_HARD_DISABLE = @as(u32, 8);
 pub const MEHC_PATROL_SCRUBBER_PRESENT = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (14)
+// Section: Types (17)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
 pub const HeapHandle = isize;
+
+pub const PSECURE_MEMORY_CACHE_CALLBACK = fn(
+    // TODO: what to do with BytesParamIndex 1?
+    Addr: *c_void,
+    Range: usize,
+) callconv(@import("std").os.windows.WINAPI) u8;
 
 pub const HEAP_SUMMARY = extern struct {
     cb: u32,
@@ -65,6 +71,47 @@ pub const WIN32_MEMORY_REGION_INFORMATION = extern struct {
     RegionSize: usize,
     CommitSize: usize,
 };
+
+pub const FILE_MAP = extern enum(u32) {
+    WRITE = 2,
+    READ = 4,
+    ALL_ACCESS = 983071,
+    EXECUTE = 32,
+    COPY = 1,
+    RESERVE = 2147483648,
+    TARGETS_INVALID = 1073741824,
+    LARGE_PAGES = 536870912,
+    _,
+    pub fn initFlags(o: struct {
+        WRITE: u1 = 0,
+        READ: u1 = 0,
+        ALL_ACCESS: u1 = 0,
+        EXECUTE: u1 = 0,
+        COPY: u1 = 0,
+        RESERVE: u1 = 0,
+        TARGETS_INVALID: u1 = 0,
+        LARGE_PAGES: u1 = 0,
+    }) FILE_MAP {
+        return @intToEnum(FILE_MAP,
+              (if (o.WRITE == 1) @enumToInt(FILE_MAP.WRITE) else 0)
+            | (if (o.READ == 1) @enumToInt(FILE_MAP.READ) else 0)
+            | (if (o.ALL_ACCESS == 1) @enumToInt(FILE_MAP.ALL_ACCESS) else 0)
+            | (if (o.EXECUTE == 1) @enumToInt(FILE_MAP.EXECUTE) else 0)
+            | (if (o.COPY == 1) @enumToInt(FILE_MAP.COPY) else 0)
+            | (if (o.RESERVE == 1) @enumToInt(FILE_MAP.RESERVE) else 0)
+            | (if (o.TARGETS_INVALID == 1) @enumToInt(FILE_MAP.TARGETS_INVALID) else 0)
+            | (if (o.LARGE_PAGES == 1) @enumToInt(FILE_MAP.LARGE_PAGES) else 0)
+        );
+    }
+};
+pub const FILE_MAP_WRITE = FILE_MAP.WRITE;
+pub const FILE_MAP_READ = FILE_MAP.READ;
+pub const FILE_MAP_ALL_ACCESS = FILE_MAP.ALL_ACCESS;
+pub const FILE_MAP_EXECUTE = FILE_MAP.EXECUTE;
+pub const FILE_MAP_COPY = FILE_MAP.COPY;
+pub const FILE_MAP_RESERVE = FILE_MAP.RESERVE;
+pub const FILE_MAP_TARGETS_INVALID = FILE_MAP.TARGETS_INVALID;
+pub const FILE_MAP_LARGE_PAGES = FILE_MAP.LARGE_PAGES;
 
 pub const HEAP_FLAGS = extern enum(u32) {
     NONE = 0,
@@ -143,6 +190,171 @@ pub const HEAP_TAG_SHIFT = HEAP_FLAGS.TAG_SHIFT;
 pub const HEAP_CREATE_SEGMENT_HEAP = HEAP_FLAGS.CREATE_SEGMENT_HEAP;
 pub const HEAP_CREATE_HARDENED = HEAP_FLAGS.CREATE_HARDENED;
 
+pub const PAGE_TYPE = extern enum(u32) {
+    PAGE_NOACCESS = 1,
+    PAGE_READONLY = 2,
+    PAGE_READWRITE = 4,
+    PAGE_WRITECOPY = 8,
+    PAGE_EXECUTE = 16,
+    PAGE_EXECUTE_READ = 32,
+    PAGE_EXECUTE_READWRITE = 64,
+    PAGE_EXECUTE_WRITECOPY = 128,
+    PAGE_GUARD = 256,
+    PAGE_NOCACHE = 512,
+    PAGE_WRITECOMBINE = 1024,
+    PAGE_GRAPHICS_NOACCESS = 2048,
+    PAGE_GRAPHICS_READONLY = 4096,
+    PAGE_GRAPHICS_READWRITE = 8192,
+    PAGE_GRAPHICS_EXECUTE = 16384,
+    PAGE_GRAPHICS_EXECUTE_READ = 32768,
+    PAGE_GRAPHICS_EXECUTE_READWRITE = 65536,
+    PAGE_GRAPHICS_COHERENT = 131072,
+    PAGE_GRAPHICS_NOCACHE = 262144,
+    PAGE_ENCLAVE_THREAD_CONTROL = 2147483648,
+    PAGE_REVERT_TO_FILE_MAP = 2147483648,
+    PAGE_TARGETS_NO_UPDATE = 1073741824,
+    PAGE_TARGETS_INVALID = 1073741824,
+    PAGE_ENCLAVE_UNVALIDATED = 536870912,
+    PAGE_ENCLAVE_MASK = 268435456,
+    PAGE_ENCLAVE_DECOMMIT = 268435456,
+    PAGE_ENCLAVE_SS_FIRST = 268435457,
+    PAGE_ENCLAVE_SS_REST = 268435458,
+    SEC_PARTITION_OWNER_HANDLE = 262144,
+    SEC_64K_PAGES = 524288,
+    SEC_FILE = 8388608,
+    SEC_IMAGE = 16777216,
+    SEC_PROTECTED_IMAGE = 33554432,
+    SEC_RESERVE = 67108864,
+    SEC_COMMIT = 134217728,
+    SEC_NOCACHE = 268435456,
+    SEC_WRITECOMBINE = 1073741824,
+    SEC_LARGE_PAGES = 2147483648,
+    SEC_IMAGE_NO_EXECUTE = 285212672,
+    _,
+    pub fn initFlags(o: struct {
+        PAGE_NOACCESS: u1 = 0,
+        PAGE_READONLY: u1 = 0,
+        PAGE_READWRITE: u1 = 0,
+        PAGE_WRITECOPY: u1 = 0,
+        PAGE_EXECUTE: u1 = 0,
+        PAGE_EXECUTE_READ: u1 = 0,
+        PAGE_EXECUTE_READWRITE: u1 = 0,
+        PAGE_EXECUTE_WRITECOPY: u1 = 0,
+        PAGE_GUARD: u1 = 0,
+        PAGE_NOCACHE: u1 = 0,
+        PAGE_WRITECOMBINE: u1 = 0,
+        PAGE_GRAPHICS_NOACCESS: u1 = 0,
+        PAGE_GRAPHICS_READONLY: u1 = 0,
+        PAGE_GRAPHICS_READWRITE: u1 = 0,
+        PAGE_GRAPHICS_EXECUTE: u1 = 0,
+        PAGE_GRAPHICS_EXECUTE_READ: u1 = 0,
+        PAGE_GRAPHICS_EXECUTE_READWRITE: u1 = 0,
+        PAGE_GRAPHICS_COHERENT: u1 = 0,
+        PAGE_GRAPHICS_NOCACHE: u1 = 0,
+        PAGE_ENCLAVE_THREAD_CONTROL: u1 = 0,
+        PAGE_REVERT_TO_FILE_MAP: u1 = 0,
+        PAGE_TARGETS_NO_UPDATE: u1 = 0,
+        PAGE_TARGETS_INVALID: u1 = 0,
+        PAGE_ENCLAVE_UNVALIDATED: u1 = 0,
+        PAGE_ENCLAVE_MASK: u1 = 0,
+        PAGE_ENCLAVE_DECOMMIT: u1 = 0,
+        PAGE_ENCLAVE_SS_FIRST: u1 = 0,
+        PAGE_ENCLAVE_SS_REST: u1 = 0,
+        SEC_PARTITION_OWNER_HANDLE: u1 = 0,
+        SEC_64K_PAGES: u1 = 0,
+        SEC_FILE: u1 = 0,
+        SEC_IMAGE: u1 = 0,
+        SEC_PROTECTED_IMAGE: u1 = 0,
+        SEC_RESERVE: u1 = 0,
+        SEC_COMMIT: u1 = 0,
+        SEC_NOCACHE: u1 = 0,
+        SEC_WRITECOMBINE: u1 = 0,
+        SEC_LARGE_PAGES: u1 = 0,
+        SEC_IMAGE_NO_EXECUTE: u1 = 0,
+    }) PAGE_TYPE {
+        return @intToEnum(PAGE_TYPE,
+              (if (o.PAGE_NOACCESS == 1) @enumToInt(PAGE_TYPE.PAGE_NOACCESS) else 0)
+            | (if (o.PAGE_READONLY == 1) @enumToInt(PAGE_TYPE.PAGE_READONLY) else 0)
+            | (if (o.PAGE_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_READWRITE) else 0)
+            | (if (o.PAGE_WRITECOPY == 1) @enumToInt(PAGE_TYPE.PAGE_WRITECOPY) else 0)
+            | (if (o.PAGE_EXECUTE == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE) else 0)
+            | (if (o.PAGE_EXECUTE_READ == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE_READ) else 0)
+            | (if (o.PAGE_EXECUTE_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE_READWRITE) else 0)
+            | (if (o.PAGE_EXECUTE_WRITECOPY == 1) @enumToInt(PAGE_TYPE.PAGE_EXECUTE_WRITECOPY) else 0)
+            | (if (o.PAGE_GUARD == 1) @enumToInt(PAGE_TYPE.PAGE_GUARD) else 0)
+            | (if (o.PAGE_NOCACHE == 1) @enumToInt(PAGE_TYPE.PAGE_NOCACHE) else 0)
+            | (if (o.PAGE_WRITECOMBINE == 1) @enumToInt(PAGE_TYPE.PAGE_WRITECOMBINE) else 0)
+            | (if (o.PAGE_GRAPHICS_NOACCESS == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_NOACCESS) else 0)
+            | (if (o.PAGE_GRAPHICS_READONLY == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_READONLY) else 0)
+            | (if (o.PAGE_GRAPHICS_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_READWRITE) else 0)
+            | (if (o.PAGE_GRAPHICS_EXECUTE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_EXECUTE) else 0)
+            | (if (o.PAGE_GRAPHICS_EXECUTE_READ == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READ) else 0)
+            | (if (o.PAGE_GRAPHICS_EXECUTE_READWRITE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READWRITE) else 0)
+            | (if (o.PAGE_GRAPHICS_COHERENT == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_COHERENT) else 0)
+            | (if (o.PAGE_GRAPHICS_NOCACHE == 1) @enumToInt(PAGE_TYPE.PAGE_GRAPHICS_NOCACHE) else 0)
+            | (if (o.PAGE_ENCLAVE_THREAD_CONTROL == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL) else 0)
+            | (if (o.PAGE_REVERT_TO_FILE_MAP == 1) @enumToInt(PAGE_TYPE.PAGE_REVERT_TO_FILE_MAP) else 0)
+            | (if (o.PAGE_TARGETS_NO_UPDATE == 1) @enumToInt(PAGE_TYPE.PAGE_TARGETS_NO_UPDATE) else 0)
+            | (if (o.PAGE_TARGETS_INVALID == 1) @enumToInt(PAGE_TYPE.PAGE_TARGETS_INVALID) else 0)
+            | (if (o.PAGE_ENCLAVE_UNVALIDATED == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_UNVALIDATED) else 0)
+            | (if (o.PAGE_ENCLAVE_MASK == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_MASK) else 0)
+            | (if (o.PAGE_ENCLAVE_DECOMMIT == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_DECOMMIT) else 0)
+            | (if (o.PAGE_ENCLAVE_SS_FIRST == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_SS_FIRST) else 0)
+            | (if (o.PAGE_ENCLAVE_SS_REST == 1) @enumToInt(PAGE_TYPE.PAGE_ENCLAVE_SS_REST) else 0)
+            | (if (o.SEC_PARTITION_OWNER_HANDLE == 1) @enumToInt(PAGE_TYPE.SEC_PARTITION_OWNER_HANDLE) else 0)
+            | (if (o.SEC_64K_PAGES == 1) @enumToInt(PAGE_TYPE.SEC_64K_PAGES) else 0)
+            | (if (o.SEC_FILE == 1) @enumToInt(PAGE_TYPE.SEC_FILE) else 0)
+            | (if (o.SEC_IMAGE == 1) @enumToInt(PAGE_TYPE.SEC_IMAGE) else 0)
+            | (if (o.SEC_PROTECTED_IMAGE == 1) @enumToInt(PAGE_TYPE.SEC_PROTECTED_IMAGE) else 0)
+            | (if (o.SEC_RESERVE == 1) @enumToInt(PAGE_TYPE.SEC_RESERVE) else 0)
+            | (if (o.SEC_COMMIT == 1) @enumToInt(PAGE_TYPE.SEC_COMMIT) else 0)
+            | (if (o.SEC_NOCACHE == 1) @enumToInt(PAGE_TYPE.SEC_NOCACHE) else 0)
+            | (if (o.SEC_WRITECOMBINE == 1) @enumToInt(PAGE_TYPE.SEC_WRITECOMBINE) else 0)
+            | (if (o.SEC_LARGE_PAGES == 1) @enumToInt(PAGE_TYPE.SEC_LARGE_PAGES) else 0)
+            | (if (o.SEC_IMAGE_NO_EXECUTE == 1) @enumToInt(PAGE_TYPE.SEC_IMAGE_NO_EXECUTE) else 0)
+        );
+    }
+};
+pub const PAGE_NOACCESS = PAGE_TYPE.PAGE_NOACCESS;
+pub const PAGE_READONLY = PAGE_TYPE.PAGE_READONLY;
+pub const PAGE_READWRITE = PAGE_TYPE.PAGE_READWRITE;
+pub const PAGE_WRITECOPY = PAGE_TYPE.PAGE_WRITECOPY;
+pub const PAGE_EXECUTE = PAGE_TYPE.PAGE_EXECUTE;
+pub const PAGE_EXECUTE_READ = PAGE_TYPE.PAGE_EXECUTE_READ;
+pub const PAGE_EXECUTE_READWRITE = PAGE_TYPE.PAGE_EXECUTE_READWRITE;
+pub const PAGE_EXECUTE_WRITECOPY = PAGE_TYPE.PAGE_EXECUTE_WRITECOPY;
+pub const PAGE_GUARD = PAGE_TYPE.PAGE_GUARD;
+pub const PAGE_NOCACHE = PAGE_TYPE.PAGE_NOCACHE;
+pub const PAGE_WRITECOMBINE = PAGE_TYPE.PAGE_WRITECOMBINE;
+pub const PAGE_GRAPHICS_NOACCESS = PAGE_TYPE.PAGE_GRAPHICS_NOACCESS;
+pub const PAGE_GRAPHICS_READONLY = PAGE_TYPE.PAGE_GRAPHICS_READONLY;
+pub const PAGE_GRAPHICS_READWRITE = PAGE_TYPE.PAGE_GRAPHICS_READWRITE;
+pub const PAGE_GRAPHICS_EXECUTE = PAGE_TYPE.PAGE_GRAPHICS_EXECUTE;
+pub const PAGE_GRAPHICS_EXECUTE_READ = PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READ;
+pub const PAGE_GRAPHICS_EXECUTE_READWRITE = PAGE_TYPE.PAGE_GRAPHICS_EXECUTE_READWRITE;
+pub const PAGE_GRAPHICS_COHERENT = PAGE_TYPE.PAGE_GRAPHICS_COHERENT;
+pub const PAGE_GRAPHICS_NOCACHE = PAGE_TYPE.PAGE_GRAPHICS_NOCACHE;
+pub const PAGE_ENCLAVE_THREAD_CONTROL = PAGE_TYPE.PAGE_ENCLAVE_THREAD_CONTROL;
+pub const PAGE_REVERT_TO_FILE_MAP = PAGE_TYPE.PAGE_REVERT_TO_FILE_MAP;
+pub const PAGE_TARGETS_NO_UPDATE = PAGE_TYPE.PAGE_TARGETS_NO_UPDATE;
+pub const PAGE_TARGETS_INVALID = PAGE_TYPE.PAGE_TARGETS_INVALID;
+pub const PAGE_ENCLAVE_UNVALIDATED = PAGE_TYPE.PAGE_ENCLAVE_UNVALIDATED;
+pub const PAGE_ENCLAVE_MASK = PAGE_TYPE.PAGE_ENCLAVE_MASK;
+pub const PAGE_ENCLAVE_DECOMMIT = PAGE_TYPE.PAGE_ENCLAVE_DECOMMIT;
+pub const PAGE_ENCLAVE_SS_FIRST = PAGE_TYPE.PAGE_ENCLAVE_SS_FIRST;
+pub const PAGE_ENCLAVE_SS_REST = PAGE_TYPE.PAGE_ENCLAVE_SS_REST;
+pub const SEC_PARTITION_OWNER_HANDLE = PAGE_TYPE.SEC_PARTITION_OWNER_HANDLE;
+pub const SEC_64K_PAGES = PAGE_TYPE.SEC_64K_PAGES;
+pub const SEC_FILE = PAGE_TYPE.SEC_FILE;
+pub const SEC_IMAGE = PAGE_TYPE.SEC_IMAGE;
+pub const SEC_PROTECTED_IMAGE = PAGE_TYPE.SEC_PROTECTED_IMAGE;
+pub const SEC_RESERVE = PAGE_TYPE.SEC_RESERVE;
+pub const SEC_COMMIT = PAGE_TYPE.SEC_COMMIT;
+pub const SEC_NOCACHE = PAGE_TYPE.SEC_NOCACHE;
+pub const SEC_WRITECOMBINE = PAGE_TYPE.SEC_WRITECOMBINE;
+pub const SEC_LARGE_PAGES = PAGE_TYPE.SEC_LARGE_PAGES;
+pub const SEC_IMAGE_NO_EXECUTE = PAGE_TYPE.SEC_IMAGE_NO_EXECUTE;
+
 pub const UNMAP_VIEW_OF_FILE_FLAGS = extern enum(u32) {
     UNMAP_NONE = 0,
     UNMAP_WITH_TRANSIENT_BOOST = 1,
@@ -168,6 +380,28 @@ pub const VIRTUAL_ALLOCATION_TYPE = extern enum(u32) {
     LARGE_PAGES = 536870912,
     RESERVE_PLACEHOLDER = 262144,
     FREE = 65536,
+    _,
+    pub fn initFlags(o: struct {
+        COMMIT: u1 = 0,
+        RESERVE: u1 = 0,
+        RESET: u1 = 0,
+        RESET_UNDO: u1 = 0,
+        REPLACE_PLACEHOLDER: u1 = 0,
+        LARGE_PAGES: u1 = 0,
+        RESERVE_PLACEHOLDER: u1 = 0,
+        FREE: u1 = 0,
+    }) VIRTUAL_ALLOCATION_TYPE {
+        return @intToEnum(VIRTUAL_ALLOCATION_TYPE,
+              (if (o.COMMIT == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.COMMIT) else 0)
+            | (if (o.RESERVE == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.RESERVE) else 0)
+            | (if (o.RESET == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.RESET) else 0)
+            | (if (o.RESET_UNDO == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.RESET_UNDO) else 0)
+            | (if (o.REPLACE_PLACEHOLDER == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.REPLACE_PLACEHOLDER) else 0)
+            | (if (o.LARGE_PAGES == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.LARGE_PAGES) else 0)
+            | (if (o.RESERVE_PLACEHOLDER == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.RESERVE_PLACEHOLDER) else 0)
+            | (if (o.FREE == 1) @enumToInt(VIRTUAL_ALLOCATION_TYPE.FREE) else 0)
+        );
+    }
 };
 pub const MEM_COMMIT = VIRTUAL_ALLOCATION_TYPE.COMMIT;
 pub const MEM_RESERVE = VIRTUAL_ALLOCATION_TYPE.RESERVE;
@@ -246,8 +480,179 @@ pub const GPTR = GLOBAL_ALLOC_FLAGS.PTR;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (87)
+// Section: Functions (99)
 //--------------------------------------------------------------------------------
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalAlloc(
+    uFlags: GLOBAL_ALLOC_FLAGS,
+    dwBytes: usize,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalReAlloc(
+    hMem: isize,
+    dwBytes: usize,
+    uFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalSize(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalUnlock(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalLock(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalFlags(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalHandle(
+    pMem: *const c_void,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn GlobalFree(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalAlloc(
+    uFlags: LOCAL_ALLOC_FLAGS,
+    uBytes: usize,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalReAlloc(
+    hMem: isize,
+    uBytes: usize,
+    uFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalLock(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalHandle(
+    pMem: *const c_void,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalUnlock(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalSize(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalFlags(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn LocalFree(
+    hMem: isize,
+) callconv(@import("std").os.windows.WINAPI) isize;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateFileMappingA(
+    hFile: HANDLE,
+    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
+    flProtect: PAGE_TYPE,
+    dwMaximumSizeHigh: u32,
+    dwMaximumSizeLow: u32,
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn CreateFileMappingNumaA(
+    hFile: HANDLE,
+    lpFileMappingAttributes: ?*SECURITY_ATTRIBUTES,
+    flProtect: PAGE_TYPE,
+    dwMaximumSizeHigh: u32,
+    dwMaximumSizeLow: u32,
+    lpName: ?[*:0]const u8,
+    nndPreferred: u32,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn OpenFileMappingA(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn MapViewOfFileExNuma(
+    hFileMappingObject: HANDLE,
+    dwDesiredAccess: FILE_MAP,
+    dwFileOffsetHigh: u32,
+    dwFileOffsetLow: u32,
+    dwNumberOfBytesToMap: usize,
+    lpBaseAddress: ?*c_void,
+    nndPreferred: u32,
+) callconv(@import("std").os.windows.WINAPI) *c_void;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadReadPtr(
+    lp: ?*const c_void,
+    ucb: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadWritePtr(
+    lp: ?*c_void,
+    ucb: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadCodePtr(
+    lpfn: ?FARPROC,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadStringPtrA(
+    lpsz: ?[*:0]const u8,
+    ucchMax: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn IsBadStringPtrW(
+    lpsz: ?[*:0]const u16,
+    ucchMax: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn MapUserPhysicalPagesScatter(
+    VirtualAddresses: [*]*c_void,
+    NumberOfPages: usize,
+    PageArray: ?[*]usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn AddSecureMemoryCacheCallback(
+    pfnCallBack: PSECURE_MEMORY_CACHE_CALLBACK,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn RemoveSecureMemoryCacheCallback(
+    pfnCallBack: PSECURE_MEMORY_CACHE_CALLBACK,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn HeapCreate(
     flOptions: HEAP_FLAGS,
@@ -792,122 +1197,53 @@ pub extern "api-ms-win-core-memory-l1-1-7" fn CreateFileMapping2(
     ParameterCount: u32,
 ) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalAlloc(
-    uFlags: GLOBAL_ALLOC_FLAGS,
-    dwBytes: usize,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalReAlloc(
-    hMem: isize,
-    dwBytes: usize,
-    uFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalSize(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalUnlock(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalLock(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalFlags(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalHandle(
-    pMem: *const c_void,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn GlobalFree(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalAlloc(
-    uFlags: LOCAL_ALLOC_FLAGS,
-    uBytes: usize,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalReAlloc(
-    hMem: isize,
-    uBytes: usize,
-    uFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalLock(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) *c_void;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalHandle(
-    pMem: *const c_void,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalUnlock(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalSize(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) usize;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalFlags(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn LocalFree(
-    hMem: isize,
-) callconv(@import("std").os.windows.WINAPI) isize;
-
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (0)
+// Section: Unicode Aliases (4)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const CreateFileMapping = CreateFileMappingA;
+        pub const CreateFileMappingNuma = CreateFileMappingNumaA;
+        pub const OpenFileMapping = OpenFileMappingA;
+        pub const IsBadStringPtr = IsBadStringPtrA;
     },
     .wide => struct {
+        pub const CreateFileMapping = CreateFileMappingW;
+        pub const CreateFileMappingNuma = CreateFileMappingNumaW;
+        pub const OpenFileMapping = OpenFileMappingW;
+        pub const IsBadStringPtr = IsBadStringPtrW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const CreateFileMapping = *opaque{};
+        pub const CreateFileMappingNuma = *opaque{};
+        pub const OpenFileMapping = *opaque{};
+        pub const IsBadStringPtr = *opaque{};
     } else struct {
+        pub const CreateFileMapping = @compileError("'CreateFileMapping' requires that UNICODE be set to true or false in the root module");
+        pub const CreateFileMappingNuma = @compileError("'CreateFileMappingNuma' requires that UNICODE be set to true or false in the root module");
+        pub const OpenFileMapping = @compileError("'OpenFileMapping' requires that UNICODE be set to true or false in the root module");
+        pub const IsBadStringPtr = @compileError("'IsBadStringPtr' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const MEM_EXTENDED_PARAMETER = @import("../system/system_services.zig").MEM_EXTENDED_PARAMETER;
 const HEAP_INFORMATION_CLASS = @import("../system/system_services.zig").HEAP_INFORMATION_CLASS;
 const PROCESS_HEAP_ENTRY = @import("../system/system_services.zig").PROCESS_HEAP_ENTRY;
-const FILE_MAP = @import("../system/system_services.zig").FILE_MAP;
+const FARPROC = @import("../foundation.zig").FARPROC;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
 const MEMORY_BASIC_INFORMATION = @import("../system/system_services.zig").MEMORY_BASIC_INFORMATION;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
+const BOOL = @import("../foundation.zig").BOOL;
 const CFG_CALL_TARGET_INFO = @import("../system/system_services.zig").CFG_CALL_TARGET_INFO;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const PAGE_TYPE = @import("../system/system_services.zig").PAGE_TYPE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
+    if (@hasDecl(@This(), "PSECURE_MEMORY_CACHE_CALLBACK")) { _ = PSECURE_MEMORY_CACHE_CALLBACK; }
     if (@hasDecl(@This(), "PBAD_MEMORY_CALLBACK_ROUTINE")) { _ = PBAD_MEMORY_CALLBACK_ROUTINE; }
 
     @setEvalBranchQuota(

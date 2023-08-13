@@ -69,8 +69,11 @@ pub const MENU_EVENT = @as(u32, 8);
 pub const FOCUS_EVENT = @as(u32, 16);
 
 //--------------------------------------------------------------------------------
-// Section: Types (19)
+// Section: Types (21)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'ClosePseudoConsole', what can Zig do with this information?
+pub const HPCON = ?*opaque{};
+
 pub const CONSOLE_MODE = extern enum(u32) {
     ENABLE_ECHO_INPUT = 4,
     ENABLE_INSERT_MODE = 32,
@@ -131,6 +134,15 @@ pub const ENABLE_WRAP_AT_EOL_OUTPUT = CONSOLE_MODE.ENABLE_WRAP_AT_EOL_OUTPUT;
 pub const ENABLE_VIRTUAL_TERMINAL_PROCESSING = CONSOLE_MODE.ENABLE_VIRTUAL_TERMINAL_PROCESSING;
 pub const DISABLE_NEWLINE_AUTO_RETURN = CONSOLE_MODE.DISABLE_NEWLINE_AUTO_RETURN;
 pub const ENABLE_LVB_GRID_WORLDWIDE = CONSOLE_MODE.ENABLE_LVB_GRID_WORLDWIDE;
+
+pub const STD_HANDLE = extern enum(u32) {
+    INPUT_HANDLE = 4294967286,
+    OUTPUT_HANDLE = 4294967285,
+    ERROR_HANDLE = 4294967284,
+};
+pub const STD_INPUT_HANDLE = STD_HANDLE.INPUT_HANDLE;
+pub const STD_OUTPUT_HANDLE = STD_HANDLE.OUTPUT_HANDLE;
+pub const STD_ERROR_HANDLE = STD_HANDLE.ERROR_HANDLE;
 
 pub const COORD = extern struct {
     X: i16,
@@ -259,8 +271,23 @@ pub const CONSOLE_HISTORY_INFO = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (91)
+// Section: Functions (94)
 //--------------------------------------------------------------------------------
+pub extern "KERNEL32" fn GetStdHandle(
+    nStdHandle: STD_HANDLE,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+pub extern "KERNEL32" fn SetStdHandle(
+    nStdHandle: STD_HANDLE,
+    hHandle: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub extern "KERNEL32" fn SetStdHandleEx(
+    nStdHandle: STD_HANDLE,
+    hHandle: HANDLE,
+    phPrevValue: ?*HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 pub extern "KERNEL32" fn AllocConsole(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -884,17 +911,16 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HPCON = @import("../system/system_services.zig").HPCON;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

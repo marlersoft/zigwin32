@@ -1577,12 +1577,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR_STORAGE = @import("../networking/win_sock.zig").SOCKADDR_STORAGE;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const PSTR = @import("../system/system_services.zig").PSTR;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 
 test {

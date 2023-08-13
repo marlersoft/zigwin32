@@ -1395,9 +1395,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

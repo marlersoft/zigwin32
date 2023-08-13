@@ -614,7 +614,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const POINTER_INFO = @import("../ui/pointer_input.zig").POINTER_INFO;
 const POINTER_INPUT_TYPE = @import("../ui/windows_and_messaging.zig").POINTER_INPUT_TYPE;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

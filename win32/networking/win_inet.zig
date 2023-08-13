@@ -4673,27 +4673,27 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (23)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const CERT_CONTEXT = @import("../security.zig").CERT_CONTEXT;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const CERT_CHAIN_CONTEXT = @import("../security.zig").CERT_CHAIN_CONTEXT;
-const SecPkgContext_Bindings = @import("../security.zig").SecPkgContext_Bindings;
+const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const CERT_CHAIN_CONTEXT = @import("../security/cryptography/core.zig").CERT_CHAIN_CONTEXT;
+const SecPkgContext_Bindings = @import("../security/authentication/identity/core.zig").SecPkgContext_Bindings;
 const WIN_HTTP_CREATE_URL_FLAGS = @import("../networking/win_http.zig").WIN_HTTP_CREATE_URL_FLAGS;
-const PSTR = @import("../system/system_services.zig").PSTR;
+const PSTR = @import("../foundation.zig").PSTR;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
-const SecPkgContext_CipherInfo = @import("../security.zig").SecPkgContext_CipherInfo;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
+const SecPkgContext_CipherInfo = @import("../security/authentication/identity/core.zig").SecPkgContext_CipherInfo;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
 const WIN32_FIND_DATAW = @import("../storage/file_system.zig").WIN32_FIND_DATAW;
-const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const SecPkgContext_ConnectionInfo = @import("../security.zig").SecPkgContext_ConnectionInfo;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const BSTR = @import("../foundation.zig").BSTR;
+const SecPkgContext_ConnectionInfo = @import("../security/authentication/identity/core.zig").SecPkgContext_ConnectionInfo;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 
 test {

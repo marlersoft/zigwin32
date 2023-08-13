@@ -530,10 +530,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IStream = @import("../storage/structured_storage.zig").IStream;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const BSTR = @import("../foundation.zig").BSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

@@ -71,7 +71,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

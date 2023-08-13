@@ -255,10 +255,10 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
-const HANDLE = @import("../../system/system_services.zig").HANDLE;
-const HINSTANCE = @import("../../system/system_services.zig").HINSTANCE;
+const HANDLE = @import("../../foundation.zig").HANDLE;
+const HINSTANCE = @import("../../foundation.zig").HINSTANCE;
 const CHAR = @import("../../system/system_services.zig").CHAR;
-const BOOL = @import("../../system/system_services.zig").BOOL;
+const BOOL = @import("../../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

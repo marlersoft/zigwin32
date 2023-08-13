@@ -520,13 +520,13 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const FILETIME = @import("../../system/windows_programming.zig").FILETIME;
-const PWSTR = @import("../../system/system_services.zig").PWSTR;
+const FILETIME = @import("../../foundation.zig").FILETIME;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 const LARGE_INTEGER = @import("../../system/system_services.zig").LARGE_INTEGER;
 const MEMORY_BASIC_INFORMATION = @import("../../system/system_services.zig").MEMORY_BASIC_INFORMATION;
-const HANDLE = @import("../../system/system_services.zig").HANDLE;
+const HANDLE = @import("../../foundation.zig").HANDLE;
 const CONTEXT = @import("../../system/diagnostics/debug.zig").CONTEXT;
-const BOOL = @import("../../system/system_services.zig").BOOL;
+const BOOL = @import("../../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

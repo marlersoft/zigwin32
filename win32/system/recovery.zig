@@ -100,11 +100,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const APPLICATION_RECOVERY_CALLBACK = @import("../system/windows_programming.zig").APPLICATION_RECOVERY_CALLBACK;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

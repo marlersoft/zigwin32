@@ -139,10 +139,6 @@ pub const LDAP_OPT_REF_DEREF_CONN_PER_MSG = @as(u32, 148);
 //--------------------------------------------------------------------------------
 // Section: Types (26)
 //--------------------------------------------------------------------------------
-pub const ldapsearch = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
 pub const LDAP_RETCODE = extern enum(i32) {
     SUCCESS = 0,
     OPERATIONS_ERROR = 1,
@@ -395,6 +391,10 @@ pub const LDAPAPIFeatureInfoW = extern struct {
 pub const DBGPRINT = fn(
     Format: [*]const u8,
 ) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const ldapsearch = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
 
 pub const ldapsortkeyW = extern struct {
     sk_attrtype: [*]u16,
@@ -2431,12 +2431,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const CERT_CONTEXT = @import("../security.zig").CERT_CONTEXT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const SecPkgContext_IssuerListInfoEx = @import("../security.zig").SecPkgContext_IssuerListInfoEx;
+const SecPkgContext_IssuerListInfoEx = @import("../security/authentication/identity/core.zig").SecPkgContext_IssuerListInfoEx;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

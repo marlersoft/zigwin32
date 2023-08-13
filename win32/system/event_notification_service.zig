@@ -10,13 +10,6 @@ pub const NETWORK_ALIVE_INTERNET = @as(u32, 8);
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
-pub const SENS_CONNECTION_TYPE = extern enum(u32) {
-    LAN = 0,
-    WAN = 1,
-};
-pub const CONNECTION_LAN = SENS_CONNECTION_TYPE.LAN;
-pub const CONNECTION_WAN = SENS_CONNECTION_TYPE.WAN;
-
 pub const QOCINFO = extern struct {
     dwSize: u32,
     dwFlags: u32,
@@ -263,6 +256,13 @@ pub const ISensLogon2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const SENS_CONNECTION_TYPE = extern enum(u32) {
+    LAN = 0,
+    WAN = 1,
+};
+pub const CONNECTION_LAN = SENS_CONNECTION_TYPE.LAN;
+pub const CONNECTION_WAN = SENS_CONNECTION_TYPE.WAN;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (3)
@@ -305,11 +305,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

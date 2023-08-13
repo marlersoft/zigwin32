@@ -10,7 +10,6 @@ pub const interaction_context = @import("ui/interaction_context.zig");
 pub const keyboard_and_mouse_input = @import("ui/keyboard_and_mouse_input.zig");
 pub const legacy_windows_environment_features = @import("ui/legacy_windows_environment_features.zig");
 pub const magnification = @import("ui/magnification.zig");
-pub const menus_and_resources = @import("ui/menus_and_resources.zig");
 pub const notifications = @import("ui/notifications.zig");
 pub const pointer_input = @import("ui/pointer_input.zig");
 pub const radial_input = @import("ui/radial_input.zig");

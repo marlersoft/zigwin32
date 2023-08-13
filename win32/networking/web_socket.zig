@@ -242,8 +242,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
-const PSTR = @import("../system/system_services.zig").PSTR;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const PSTR = @import("../foundation.zig").PSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

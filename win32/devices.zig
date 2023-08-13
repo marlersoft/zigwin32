@@ -2,8 +2,10 @@
 pub const all_joyn = @import("devices/all_joyn.zig");
 pub const biometric_framework = @import("devices/biometric_framework.zig");
 pub const bluetooth = @import("devices/bluetooth.zig");
+pub const communication = @import("devices/communication.zig");
 pub const device_access = @import("devices/device_access.zig");
 pub const device_and_driver_installation = @import("devices/device_and_driver_installation.zig");
+pub const device_query = @import("devices/device_query.zig");
 pub const display = @import("devices/display.zig");
 pub const enumeration = @import("devices/enumeration.zig");
 pub const fax = @import("devices/fax.zig");

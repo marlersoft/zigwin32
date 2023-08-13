@@ -2004,7 +2004,7 @@ pub const RPC_BHO_DONTLINGER = RPC_BINDING_HANDLE_OPTIONS_FLAGS.DONTLINGER;
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (491)
+// Section: Functions (503)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn IUnknown_QueryInterface_Proxy(
@@ -3959,6 +3959,13 @@ pub extern "RPCRT4" fn NdrPointerMarshall(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrSimpleStructMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
 pub extern "RPCRT4" fn NdrConformantStructMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -3971,7 +3978,20 @@ pub extern "RPCRT4" fn NdrConformantVaryingStructMarshall(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexStructMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
 pub extern "RPCRT4" fn NdrFixedArrayMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+pub extern "RPCRT4" fn NdrConformantArrayMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
     pFormat: *u8,
@@ -3984,6 +4004,13 @@ pub extern "RPCRT4" fn NdrConformantVaryingArrayMarshall(
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
 pub extern "RPCRT4" fn NdrVaryingArrayMarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexArrayMarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
     pFormat: *u8,
@@ -4096,6 +4123,14 @@ pub extern "RPCRT4" fn NdrPointerUnmarshall(
     fMustAlloc: u8,
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrSimpleStructUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
 pub extern "RPCRT4" fn NdrConformantStructUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     ppMemory: **u8,
@@ -4104,6 +4139,14 @@ pub extern "RPCRT4" fn NdrConformantStructUnmarshall(
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
 pub extern "RPCRT4" fn NdrConformantVaryingStructUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexStructUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     ppMemory: **u8,
     pFormat: *u8,
@@ -4133,6 +4176,14 @@ pub extern "RPCRT4" fn NdrConformantVaryingArrayUnmarshall(
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
 pub extern "RPCRT4" fn NdrVaryingArrayUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexArrayUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     ppMemory: **u8,
     pFormat: *u8,
@@ -4183,6 +4234,14 @@ pub extern "RPCRT4" fn NdrXmitOrRepAsUnmarshall(
 ) callconv(@import("std").os.windows.WINAPI) *u8;
 
 // TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrUserMarshalUnmarshall(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    ppMemory: **u8,
+    pFormat: *u8,
+    fMustAlloc: u8,
+) callconv(@import("std").os.windows.WINAPI) *u8;
+
+// TODO: this type is limited to platform 'windows5.0'
 pub extern "RPCRT4" fn NdrInterfacePointerUnmarshall(
     pStubMsg: *MIDL_STUB_MESSAGE,
     ppMemory: **u8,
@@ -4218,6 +4277,13 @@ pub extern "RPCRT4" fn NdrPointerBufferSize(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrSimpleStructBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "RPCRT4" fn NdrConformantStructBufferSize(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
@@ -4230,7 +4296,20 @@ pub extern "RPCRT4" fn NdrConformantVaryingStructBufferSize(
     pFormat: *u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexStructBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 pub extern "RPCRT4" fn NdrFixedArrayBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub extern "RPCRT4" fn NdrConformantArrayBufferSize(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
     pFormat: *u8,
@@ -4243,6 +4322,13 @@ pub extern "RPCRT4" fn NdrConformantVaryingArrayBufferSize(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "RPCRT4" fn NdrVaryingArrayBufferSize(
+    pStubMsg: *MIDL_STUB_MESSAGE,
+    pMemory: *u8,
+    pFormat: *u8,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "RPCRT4" fn NdrComplexArrayBufferSize(
     pStubMsg: *MIDL_STUB_MESSAGE,
     pMemory: *u8,
     pFormat: *u8,
@@ -5431,22 +5517,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const CERT_CONTEXT = @import("../security.zig").CERT_CONTEXT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const CERT_CONTEXT = @import("../security/cryptography/core.zig").CERT_CONTEXT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const RPC_C_IMP_LEVEL = @import("../system/com.zig").RPC_C_IMP_LEVEL;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const LUID = @import("../system/system_services.zig").LUID;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 const IRpcChannelBuffer = @import("../system/com.zig").IRpcChannelBuffer;
 const IRpcStubBuffer = @import("../system/com.zig").IRpcStubBuffer;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

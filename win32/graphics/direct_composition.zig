@@ -3191,10 +3191,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (28)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const D2D_MATRIX_4X4_F = @import("../graphics/direct2d.zig").D2D_MATRIX_4X4_F;
 const D2D_VECTOR_4F = @import("../graphics/direct2d.zig").D2D_VECTOR_4F;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 const DXGI_ALPHA_MODE = @import("../graphics/dxgi.zig").DXGI_ALPHA_MODE;
 const D2D1_COLOR_F = @import("../graphics/direct2d.zig").D2D1_COLOR_F;
 const D2D1_BORDER_MODE = @import("../graphics/direct2d.zig").D2D1_BORDER_MODE;
@@ -3207,17 +3207,17 @@ const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE = @import("../graphics/direct2d.
 const D2D_MATRIX_5X4_F = @import("../graphics/direct2d.zig").D2D_MATRIX_5X4_F;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const D2D_MATRIX_3X2_F = @import("../graphics/direct2d.zig").D2D_MATRIX_3X2_F;
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 const D2D1_TURBULENCE_NOISE = @import("../graphics/direct2d.zig").D2D1_TURBULENCE_NOISE;
-const RECT = @import("../ui/display_devices.zig").RECT;
+const RECT = @import("../foundation.zig").RECT;
 const D2D_VECTOR_2F = @import("../graphics/direct2d.zig").D2D_VECTOR_2F;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HWND = @import("../foundation.zig").HWND;
 const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
 const D2D1_BLEND_MODE = @import("../graphics/direct2d.zig").D2D1_BLEND_MODE;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const D3DMATRIX = @import("../graphics/direct3d9.zig").D3DMATRIX;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const POINT = @import("../ui/display_devices.zig").POINT;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const POINT = @import("../foundation.zig").POINT;
 
 test {
     @setEvalBranchQuota(

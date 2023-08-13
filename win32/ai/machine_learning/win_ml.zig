@@ -1103,12 +1103,12 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
-const PWSTR = @import("../../system/system_services.zig").PWSTR;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const HRESULT = @import("../../system/com.zig").HRESULT;
+const HRESULT = @import("../../foundation.zig").HRESULT;
 const ID3D12Device = @import("../../graphics/direct3d12.zig").ID3D12Device;
-const PSTR = @import("../../system/system_services.zig").PSTR;
-const BOOL = @import("../../system/system_services.zig").BOOL;
+const PSTR = @import("../../foundation.zig").PSTR;
+const BOOL = @import("../../foundation.zig").BOOL;
 const ID3D12Resource = @import("../../graphics/direct3d12.zig").ID3D12Resource;
 
 test {

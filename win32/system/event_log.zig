@@ -10,8 +10,14 @@ pub const EVT_CLEAR_ACCESS = @as(u32, 4);
 pub const EVT_ALL_ACCESS = @as(u32, 7);
 
 //--------------------------------------------------------------------------------
-// Section: Types (27)
+// Section: Types (32)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'CloseEventLog', what can Zig do with this information?
+pub const EventLogHandle = isize;
+
+// TODO: this type has a FreeFunc 'DeregisterEventSource', what can Zig do with this information?
+pub const EventSourceHandle = isize;
+
 pub const EVT_VARIANT_TYPE = extern enum(i32) {
     Null = 0,
     String = 1,
@@ -497,9 +503,35 @@ pub const EvtEventQueryIDs = EVT_EVENT_PROPERTY_ID.QueryIDs;
 pub const EvtEventPath = EVT_EVENT_PROPERTY_ID.Path;
 pub const EvtEventPropertyIdEND = EVT_EVENT_PROPERTY_ID.PropertyIdEND;
 
+pub const EVENTLOG_FULL_INFORMATION = extern struct {
+    dwFull: u32,
+};
+
+pub const REPORT_EVENT_TYPE = extern enum(u32) {
+    SUCCESS = 0,
+    AUDIT_FAILURE = 16,
+    AUDIT_SUCCESS = 8,
+    ERROR_TYPE = 1,
+    INFORMATION_TYPE = 4,
+    WARNING_TYPE = 2,
+};
+pub const EVENTLOG_SUCCESS = REPORT_EVENT_TYPE.SUCCESS;
+pub const EVENTLOG_AUDIT_FAILURE = REPORT_EVENT_TYPE.AUDIT_FAILURE;
+pub const EVENTLOG_AUDIT_SUCCESS = REPORT_EVENT_TYPE.AUDIT_SUCCESS;
+pub const EVENTLOG_ERROR_TYPE = REPORT_EVENT_TYPE.ERROR_TYPE;
+pub const EVENTLOG_INFORMATION_TYPE = REPORT_EVENT_TYPE.INFORMATION_TYPE;
+pub const EVENTLOG_WARNING_TYPE = REPORT_EVENT_TYPE.WARNING_TYPE;
+
+pub const READ_EVENT_LOG_READ_FLAGS = extern enum(u32) {
+    EK_READ = 2,
+    QUENTIAL_READ = 1,
+};
+pub const EVENTLOG_SEEK_READ = READ_EVENT_LOG_READ_FLAGS.EK_READ;
+pub const EVENTLOG_SEQUENTIAL_READ = READ_EVENT_LOG_READ_FLAGS.QUENTIAL_READ;
+
 
 //--------------------------------------------------------------------------------
-// Section: Functions (35)
+// Section: Functions (55)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wevtapi" fn EvtOpenSession(
@@ -791,30 +823,208 @@ pub extern "wevtapi" fn EvtGetEventInfo(
     PropertyValueBufferUsed: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ClearEventLogA(
+    hEventLog: HANDLE,
+    lpBackupFileName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ClearEventLogW(
+    hEventLog: HANDLE,
+    lpBackupFileName: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn BackupEventLogA(
+    hEventLog: HANDLE,
+    lpBackupFileName: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn BackupEventLogW(
+    hEventLog: HANDLE,
+    lpBackupFileName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn CloseEventLog(
+    hEventLog: EventLogHandle,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn DeregisterEventSource(
+    hEventLog: EventSourceHandle,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn NotifyChangeEventLog(
+    hEventLog: HANDLE,
+    hEvent: HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn GetNumberOfEventLogRecords(
+    hEventLog: HANDLE,
+    NumberOfRecords: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn GetOldestEventLogRecord(
+    hEventLog: HANDLE,
+    OldestRecord: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn OpenEventLogA(
+    lpUNCServerName: ?[*:0]const u8,
+    lpSourceName: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn OpenEventLogW(
+    lpUNCServerName: ?[*:0]const u16,
+    lpSourceName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn RegisterEventSourceA(
+    lpUNCServerName: ?[*:0]const u8,
+    lpSourceName: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) EventSourceHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn RegisterEventSourceW(
+    lpUNCServerName: ?[*:0]const u16,
+    lpSourceName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn OpenBackupEventLogA(
+    lpUNCServerName: ?[*:0]const u8,
+    lpFileName: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn OpenBackupEventLogW(
+    lpUNCServerName: ?[*:0]const u16,
+    lpFileName: [*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) EventLogHandle;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ReadEventLogA(
+    hEventLog: HANDLE,
+    dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
+    dwRecordOffset: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpBuffer: *c_void,
+    nNumberOfBytesToRead: u32,
+    pnBytesRead: *u32,
+    pnMinNumberOfBytesNeeded: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ReadEventLogW(
+    hEventLog: HANDLE,
+    dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
+    dwRecordOffset: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpBuffer: *c_void,
+    nNumberOfBytesToRead: u32,
+    pnBytesRead: *u32,
+    pnMinNumberOfBytesNeeded: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ReportEventA(
+    hEventLog: HANDLE,
+    wType: REPORT_EVENT_TYPE,
+    wCategory: u16,
+    dwEventID: u32,
+    lpUserSid: PSID,
+    wNumStrings: u16,
+    dwDataSize: u32,
+    lpStrings: ?[*]?PSTR,
+    // TODO: what to do with BytesParamIndex 6?
+    lpRawData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn ReportEventW(
+    hEventLog: HANDLE,
+    wType: REPORT_EVENT_TYPE,
+    wCategory: u16,
+    dwEventID: u32,
+    lpUserSid: PSID,
+    wNumStrings: u16,
+    dwDataSize: u32,
+    lpStrings: ?[*]?PWSTR,
+    // TODO: what to do with BytesParamIndex 6?
+    lpRawData: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "ADVAPI32" fn GetEventLogInformation(
+    hEventLog: HANDLE,
+    dwInfoLevel: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpBuffer: *c_void,
+    cbBufSize: u32,
+    pcbBytesNeeded: *u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (0)
+// Section: Unicode Aliases (7)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const ClearEventLog = ClearEventLogA;
+        pub const BackupEventLog = BackupEventLogA;
+        pub const OpenEventLog = OpenEventLogA;
+        pub const RegisterEventSource = RegisterEventSourceA;
+        pub const OpenBackupEventLog = OpenBackupEventLogA;
+        pub const ReadEventLog = ReadEventLogA;
+        pub const ReportEvent = ReportEventA;
     },
     .wide => struct {
+        pub const ClearEventLog = ClearEventLogW;
+        pub const BackupEventLog = BackupEventLogW;
+        pub const OpenEventLog = OpenEventLogW;
+        pub const RegisterEventSource = RegisterEventSourceW;
+        pub const OpenBackupEventLog = OpenBackupEventLogW;
+        pub const ReadEventLog = ReadEventLogW;
+        pub const ReportEvent = ReportEventW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const ClearEventLog = *opaque{};
+        pub const BackupEventLog = *opaque{};
+        pub const OpenEventLog = *opaque{};
+        pub const RegisterEventSource = *opaque{};
+        pub const OpenBackupEventLog = *opaque{};
+        pub const ReadEventLog = *opaque{};
+        pub const ReportEvent = *opaque{};
     } else struct {
+        pub const ClearEventLog = @compileError("'ClearEventLog' requires that UNICODE be set to true or false in the root module");
+        pub const BackupEventLog = @compileError("'BackupEventLog' requires that UNICODE be set to true or false in the root module");
+        pub const OpenEventLog = @compileError("'OpenEventLog' requires that UNICODE be set to true or false in the root module");
+        pub const RegisterEventSource = @compileError("'RegisterEventSource' requires that UNICODE be set to true or false in the root module");
+        pub const OpenBackupEventLog = @compileError("'OpenBackupEventLog' requires that UNICODE be set to true or false in the root module");
+        pub const ReadEventLog = @compileError("'ReadEventLog' requires that UNICODE be set to true or false in the root module");
+        pub const ReportEvent = @compileError("'ReportEvent' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const PSID = @import("../security.zig").PSID;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
+const PSID = @import("../foundation.zig").PSID;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

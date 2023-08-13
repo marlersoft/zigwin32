@@ -2768,14 +2768,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const VDS_LUN_INFORMATION = @import("../storage/virtual_disk_service.zig").VDS_LUN_INFORMATION;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const IXMLDOMDocument = @import("../system/windows_programming.zig").IXMLDOMDocument;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const IXMLDOMDocument = @import("../data/xml/ms_xml.zig").IXMLDOMDocument;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

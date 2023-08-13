@@ -2742,18 +2742,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
-const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const WPARAM = @import("../foundation.zig").WPARAM;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const HKEY = @import("../system/registry.zig").HKEY;
 const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BSTR = @import("../foundation.zig").BSTR;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

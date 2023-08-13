@@ -810,15 +810,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const CONTEXT = @import("../system/diagnostics/debug.zig").CONTEXT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const EXCEPTION_POINTERS = @import("../system/diagnostics/debug.zig").EXCEPTION_POINTERS;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const EXCEPTION_RECORD = @import("../system/diagnostics/debug.zig").EXCEPTION_RECORD;
 
 test {

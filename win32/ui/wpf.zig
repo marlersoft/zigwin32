@@ -918,9 +918,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const MilMatrix3x2D = @import("../graphics/dwm.zig").MilMatrix3x2D;
 const IWICBitmapSource = @import("../graphics/imaging.zig").IWICBitmapSource;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const BSTR = @import("../foundation.zig").BSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

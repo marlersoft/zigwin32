@@ -89,6 +89,9 @@ pub const COLORADAPTER_PROFILE_NAME_MAX_LENGTH = @as(u32, 80);
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
+pub const HCOLORSPACE = ?*opaque{};
+
 pub const CIEXYZ = extern struct {
     ciexyzX: i32,
     ciexyzY: i32,
@@ -137,8 +140,31 @@ pub const ICMENUMPROCW = fn(
     param1: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
-pub const HCOLORSPACE = ?*opaque{};
+pub const ICM_COMMAND = extern enum(u32) {
+    ADDPROFILE = 1,
+    DELETEPROFILE = 2,
+    QUERYPROFILE = 3,
+    SETDEFAULTPROFILE = 4,
+    REGISTERICMATCHER = 5,
+    UNREGISTERICMATCHER = 6,
+    QUERYMATCH = 7,
+};
+pub const ICM_ADDPROFILE = ICM_COMMAND.ADDPROFILE;
+pub const ICM_DELETEPROFILE = ICM_COMMAND.DELETEPROFILE;
+pub const ICM_QUERYPROFILE = ICM_COMMAND.QUERYPROFILE;
+pub const ICM_SETDEFAULTPROFILE = ICM_COMMAND.SETDEFAULTPROFILE;
+pub const ICM_REGISTERICMATCHER = ICM_COMMAND.REGISTERICMATCHER;
+pub const ICM_UNREGISTERICMATCHER = ICM_COMMAND.UNREGISTERICMATCHER;
+pub const ICM_QUERYMATCH = ICM_COMMAND.QUERYMATCH;
+
+pub const COLOR_MATCH_TO_TARGET_ACTION = extern enum(i32) {
+    ENABLE = 1,
+    DISABLE = 2,
+    DELETE_TRANSFORM = 3,
+};
+pub const CS_ENABLE = COLOR_MATCH_TO_TARGET_ACTION.ENABLE;
+pub const CS_DISABLE = COLOR_MATCH_TO_TARGET_ACTION.DISABLE;
+pub const CS_DELETE_TRANSFORM = COLOR_MATCH_TO_TARGET_ACTION.DELETE_TRANSFORM;
 
 pub const XYZColorF = extern struct {
     X: f32,
@@ -765,32 +791,6 @@ pub const DisplayTransformLut = extern struct {
     green: [256]u16,
     blue: [256]u16,
 };
-
-pub const ICM_COMMAND = extern enum(u32) {
-    ADDPROFILE = 1,
-    DELETEPROFILE = 2,
-    QUERYPROFILE = 3,
-    SETDEFAULTPROFILE = 4,
-    REGISTERICMATCHER = 5,
-    UNREGISTERICMATCHER = 6,
-    QUERYMATCH = 7,
-};
-pub const ICM_ADDPROFILE = ICM_COMMAND.ADDPROFILE;
-pub const ICM_DELETEPROFILE = ICM_COMMAND.DELETEPROFILE;
-pub const ICM_QUERYPROFILE = ICM_COMMAND.QUERYPROFILE;
-pub const ICM_SETDEFAULTPROFILE = ICM_COMMAND.SETDEFAULTPROFILE;
-pub const ICM_REGISTERICMATCHER = ICM_COMMAND.REGISTERICMATCHER;
-pub const ICM_UNREGISTERICMATCHER = ICM_COMMAND.UNREGISTERICMATCHER;
-pub const ICM_QUERYMATCH = ICM_COMMAND.QUERYMATCH;
-
-pub const COLOR_MATCH_TO_TARGET_ACTION = extern enum(i32) {
-    ENABLE = 1,
-    DISABLE = 2,
-    DELETE_TRANSFORM = 3,
-};
-pub const CS_ENABLE = COLOR_MATCH_TO_TARGET_ACTION.ENABLE;
-pub const CS_DISABLE = COLOR_MATCH_TO_TARGET_ACTION.DISABLE;
-pub const CS_DELETE_TRANSFORM = COLOR_MATCH_TO_TARGET_ACTION.DELETE_TRANSFORM;
 
 
 //--------------------------------------------------------------------------------
@@ -1823,21 +1823,21 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (16)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
+const LPARAM = @import("../foundation.zig").LPARAM;
 const HDC = @import("../graphics/gdi.zig").HDC;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const RGBTRIPLE = @import("../graphics/gdi.zig").RGBTRIPLE;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const LUID = @import("../system/system_services.zig").LUID;
 const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
 const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

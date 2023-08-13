@@ -277,31 +277,6 @@ pub const CLSID_ITEngStemmer = Guid.initString("8fa0d5a8-dedf-11d0-9a61-00c04fb6
 //--------------------------------------------------------------------------------
 // Section: Types (27)
 //--------------------------------------------------------------------------------
-pub const IITGroup = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IITQuery = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const IITStopWordList = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
-};
-
-pub const WORD_WHEEL_OPEN_FLAGS = extern enum(u32) {
-    T = 0,
-    _,
-    pub fn initFlags(o: struct {
-        T: u1 = 0,
-    }) WORD_WHEEL_OPEN_FLAGS {
-        return @intToEnum(WORD_WHEEL_OPEN_FLAGS,
-              (if (o.T == 1) @enumToInt(WORD_WHEEL_OPEN_FLAGS.T) else 0)
-        );
-    }
-};
-pub const ITWW_OPEN_CONNECT = WORD_WHEEL_OPEN_FLAGS.T;
-
 pub const HHN_NOTIFY = extern struct {
     hdr: NMHDR,
     pszUrl: [*:0]const u8,
@@ -672,6 +647,14 @@ pub const IITDatabase = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const IITGroup = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
+pub const IITQuery = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
+};
+
 const IID_IITWordWheel_Value = @import("../zig.zig").Guid.initString("8fa0d5a4-dedf-11d0-9a61-00c04fb68bf7");
 pub const IID_IITWordWheel = &IID_IITWordWheel_Value;
 pub const IITWordWheel = extern struct {
@@ -886,6 +869,10 @@ pub const IStemmerConfig = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
+};
+
+pub const IITStopWordList = extern struct {
+    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IWordBreakerConfig_Value = @import("../zig.zig").Guid.initString("8fa0d5a6-dedf-11d0-9a61-00c04fb68bf7");
@@ -1287,6 +1274,19 @@ pub const IITResultSet = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const WORD_WHEEL_OPEN_FLAGS = extern enum(u32) {
+    T = 0,
+    _,
+    pub fn initFlags(o: struct {
+        T: u1 = 0,
+    }) WORD_WHEEL_OPEN_FLAGS {
+        return @intToEnum(WORD_WHEEL_OPEN_FLAGS,
+              (if (o.T == 1) @enumToInt(WORD_WHEEL_OPEN_FLAGS.T) else 0)
+        );
+    }
+};
+pub const ITWW_OPEN_CONNECT = WORD_WHEEL_OPEN_FLAGS.T;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -1310,18 +1310,18 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const IStream = @import("../storage/structured_storage.zig").IStream;
 const IStemmer = @import("../system/search.zig").IStemmer;
-const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const NMHDR = @import("../ui/controls.zig").NMHDR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const RECT = @import("../ui/display_devices.zig").RECT;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const PSTR = @import("../foundation.zig").PSTR;
+const RECT = @import("../foundation.zig").RECT;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IPersistStreamInit = @import("../system/com.zig").IPersistStreamInit;
-const POINT = @import("../ui/display_devices.zig").POINT;
+const POINT = @import("../foundation.zig").POINT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

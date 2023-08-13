@@ -92,7 +92,7 @@ pub const MMC_ITEM_OVERLAY_STATE_SHIFT = @as(u32, 8);
 pub const MMC_ITEM_STATE_MASK = @as(u32, 255);
 
 //--------------------------------------------------------------------------------
-// Section: Types (126)
+// Section: Types (127)
 //--------------------------------------------------------------------------------
 const CLSID_Application_Value = @import("../zig.zig").Guid.initString("49b2791a-b1ae-4c90-9b8e-e860ba07f889");
 pub const CLSID_Application = &CLSID_Application_Value;
@@ -1150,6 +1150,13 @@ pub const Columns = extern struct {
     };}
     pub usingnamespace MethodMixin(@This());
 };
+
+pub const _ColumnSortOrder = extern enum(i32) {
+    Ascending = 0,
+    Descending = 1,
+};
+pub const SortOrder_Ascending = _ColumnSortOrder.Ascending;
+pub const SortOrder_Descending = _ColumnSortOrder.Descending;
 
 const IID_Column_Value = @import("../zig.zig").Guid.initString("fd1c5f63-2b16-4d06-9ab3-f45350b940ab");
 pub const IID_Column = &IID_Column_Value;
@@ -4431,26 +4438,25 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (18)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const LPARAM = @import("../foundation.zig").LPARAM;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const _ColumnSortOrder = @import("../ui/legacy_windows_environment_features.zig")._ColumnSortOrder;
-const HRESULT = @import("../system/com.zig").HRESULT;
 const IEnumString = @import("../system/com.zig").IEnumString;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
-const LRESULT = @import("../system/system_services.zig").LRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
+const LRESULT = @import("../foundation.zig").LRESULT;
 const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IDataObject = @import("../system/com.zig").IDataObject;
 const HPROPSHEETPAGE = @import("../ui/controls.zig").HPROPSHEETPAGE;
-const HICON = @import("../ui/menus_and_resources.zig").HICON;
+const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 
 test {
     @setEvalBranchQuota(

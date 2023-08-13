@@ -1024,8 +1024,53 @@ pub const JET_bitDumpCacheIncludeCorruptedPages = @as(u32, 64);
 pub const JET_bitDumpCacheNoDecommit = @as(u32, 128);
 
 //--------------------------------------------------------------------------------
-// Section: Types (152)
+// Section: Types (150)
 //--------------------------------------------------------------------------------
+pub const JET_HANDLE = usize;
+
+pub const JET_INSTANCE = usize;
+
+pub const JET_SESID = usize;
+
+pub const JET_TABLEID = usize;
+
+pub const JET_API_PTR = usize;
+
+pub const JET_OSSNAPID = usize;
+
+pub const JET_LS = usize;
+
+pub const STGC = extern enum(i32) {
+    DEFAULT = 0,
+    OVERWRITE = 1,
+    ONLYIFCURRENT = 2,
+    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
+    CONSOLIDATE = 8,
+};
+pub const STGC_DEFAULT = STGC.DEFAULT;
+pub const STGC_OVERWRITE = STGC.OVERWRITE;
+pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
+pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
+pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
+
+pub const STGMOVE = extern enum(i32) {
+    MOVE = 0,
+    COPY = 1,
+    SHALLOWCOPY = 2,
+};
+pub const STGMOVE_MOVE = STGMOVE.MOVE;
+pub const STGMOVE_COPY = STGMOVE.COPY;
+pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
+
+pub const STATFLAG = extern enum(i32) {
+    DEFAULT = 0,
+    NONAME = 1,
+    NOOPEN = 2,
+};
+pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
+pub const STATFLAG_NONAME = STATFLAG.NONAME;
+pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
+
 // TODO: this type is limited to platform 'windows5.0'
 const IID_ISequentialStream_Value = @import("../zig.zig").Guid.initString("0c733a30-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISequentialStream = &IID_ISequentialStream_Value;
@@ -1672,20 +1717,6 @@ pub const IDirectWriterLock = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const JET_HANDLE = usize;
-
-pub const JET_INSTANCE = usize;
-
-pub const JET_SESID = usize;
-
-pub const JET_TABLEID = usize;
-
-pub const JET_API_PTR = usize;
-
-pub const JET_OSSNAPID = usize;
-
-pub const JET_LS = usize;
-
 pub const PMemoryAllocator = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
@@ -1697,44 +1728,6 @@ pub const JET_INDEXID = extern struct {
     cbStruct: u32,
     rgbIndexId: [16]u8,
 };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const JET_PFNSTATUS = fn(
-    sesid: JET_SESID,
-    snp: u32,
-    snt: u32,
-    pv: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const JET_CALLBACK = fn(
-    sesid: JET_SESID,
-    dbid: u32,
-    tableid: JET_TABLEID,
-    cbtyp: u32,
-    pvArg1: ?*c_void,
-    pvArg2: ?*c_void,
-    pvContext: ?*c_void,
-    ulUnused: JET_API_PTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
 
 }, else => struct { } };
 
@@ -1786,22 +1779,6 @@ pub const JET_COMMIT_ID = extern struct {
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const JET_PFNDURABLECOMMITCALLBACK = fn(
-    instance: JET_INSTANCE,
-    pCommitIdSeen: *JET_COMMIT_ID,
-    grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
 pub const JET_RECSIZE = extern struct {
     cbData: u64,
     cbLongValueData: u64,
@@ -1834,36 +1811,100 @@ pub const JET_RECSIZE2 = extern struct {
 
 }, else => struct { } };
 
-pub const STGC = extern enum(i32) {
-    DEFAULT = 0,
-    OVERWRITE = 1,
-    ONLYIFCURRENT = 2,
-    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
-    CONSOLIDATE = 8,
-};
-pub const STGC_DEFAULT = STGC.DEFAULT;
-pub const STGC_OVERWRITE = STGC.OVERWRITE;
-pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
-pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
-pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
 
-pub const STGMOVE = extern enum(i32) {
-    MOVE = 0,
-    COPY = 1,
-    SHALLOWCOPY = 2,
+pub const JET_INDEXID = extern struct {
+    cbStruct: u32,
+    rgbIndexId: [12]u8,
 };
-pub const STGMOVE_MOVE = STGMOVE.MOVE;
-pub const STGMOVE_COPY = STGMOVE.COPY;
-pub const STGMOVE_SHALLOWCOPY = STGMOVE.SHALLOWCOPY;
 
-pub const STATFLAG = extern enum(i32) {
-    DEFAULT = 0,
-    NONAME = 1,
-    NOOPEN = 2,
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const JET_OBJECTINFO = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    cbStruct: u32,
+    objtyp: u32,
+    dtCreate: f64,
+    dtUpdate: f64,
+    grbit: u32,
+    flags: u32,
+    cRecord: u32,
+    cPage: u32,
 };
-pub const STATFLAG_DEFAULT = STATFLAG.DEFAULT;
-pub const STATFLAG_NONAME = STATFLAG.NONAME;
-pub const STATFLAG_NOOPEN = STATFLAG.NOOPEN;
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const JET_THREADSTATS2 = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    cbStruct: u32,
+    cPageReferenced: u32,
+    cPageRead: u32,
+    cPagePreread: u32,
+    cPageDirtied: u32,
+    cPageRedirtied: u32,
+    cLogRecord: u32,
+    cbLogRecord: u32,
+    cusecPageCacheMiss: u64,
+    cPageCacheMiss: u32,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const JET_COMMIT_ID = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    signLog: JET_SIGNATURE,
+    reserved: i32,
+    commitId: i64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const JET_RECSIZE = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    cbData: u64,
+    cbLongValueData: u64,
+    cbOverhead: u64,
+    cbLongValueOverhead: u64,
+    cNonTaggedColumns: u64,
+    cTaggedColumns: u64,
+    cLongValues: u64,
+    cMultiValues: u64,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const JET_RECSIZE2 = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    cbData: u64,
+    cbLongValueData: u64,
+    cbOverhead: u64,
+    cbLongValueOverhead: u64,
+    cNonTaggedColumns: u64,
+    cTaggedColumns: u64,
+    cLongValues: u64,
+    cMultiValues: u64,
+    cCompressedColumns: u64,
+    cbDataCompressed: u64,
+    cbLongValueDataCompressed: u64,
+};
+
+}, else => struct { } };
 
 pub const VERSIONEDSTREAM = extern struct {
     guidVersion: Guid,
@@ -2389,6 +2430,18 @@ pub const PIDMSI_STATUS_PROOF = PIDMSI_STATUS_VALUE.PROOF;
 pub const PIDMSI_STATUS_FINAL = PIDMSI_STATUS_VALUE.FINAL;
 pub const PIDMSI_STATUS_OTHER = PIDMSI_STATUS_VALUE.OTHER;
 
+pub const SERIALIZEDPROPERTYVALUE = extern struct {
+    dwType: u32,
+    rgb: [1]u8,
+};
+
+pub const JET_PFNSTATUS = fn(
+    sesid: JET_SESID,
+    snp: u32,
+    snt: u32,
+    pv: ?*c_void,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
 pub const JET_RSTMAP_A = extern struct {
     szDatabaseName: PSTR,
     szNewDatabaseName: PSTR,
@@ -2418,6 +2471,17 @@ pub const CONVERT_W = extern struct {
         },
     },
 };
+
+pub const JET_CALLBACK = fn(
+    sesid: JET_SESID,
+    dbid: u32,
+    tableid: JET_TABLEID,
+    cbtyp: u32,
+    pvArg1: ?*c_void,
+    pvArg2: ?*c_void,
+    pvContext: ?*c_void,
+    ulUnused: JET_API_PTR,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const JET_SNPROG = extern struct {
     cbStruct: u32,
@@ -3265,6 +3329,12 @@ pub const JET_ERRINFOBASIC_W = extern struct {
     rgszSourceFile: [64]u16,
 };
 
+pub const JET_PFNDURABLECOMMITCALLBACK = fn(
+    instance: JET_INSTANCE,
+    pCommitIdSeen: *JET_COMMIT_ID,
+    grbit: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
 pub const JET_INDEXCHECKING = extern enum(i32) {
     Off = 0,
     On = 1,
@@ -3393,155 +3463,6 @@ pub const PROPSPEC_KIND = extern enum(u32) {
 pub const PRSPEC_LPWSTR = PROPSPEC_KIND.LPWSTR;
 pub const PRSPEC_PROPID = PROPSPEC_KIND.PROPID;
 
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_INDEXID = extern struct {
-    cbStruct: u32,
-    rgbIndexId: [12]u8,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_PFNSTATUS = fn(
-    sesid: JET_SESID,
-    snp: u32,
-    snt: u32,
-    pv: ?*c_void,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_CALLBACK = fn(
-    sesid: JET_SESID,
-    dbid: u32,
-    tableid: JET_TABLEID,
-    cbtyp: u32,
-    pvArg1: ?*c_void,
-    pvArg2: ?*c_void,
-    pvContext: ?*c_void,
-    ulUnused: JET_API_PTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_OBJECTINFO = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbStruct: u32,
-    objtyp: u32,
-    dtCreate: f64,
-    dtUpdate: f64,
-    grbit: u32,
-    flags: u32,
-    cRecord: u32,
-    cPage: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_THREADSTATS2 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbStruct: u32,
-    cPageReferenced: u32,
-    cPageRead: u32,
-    cPagePreread: u32,
-    cPageDirtied: u32,
-    cPageRedirtied: u32,
-    cLogRecord: u32,
-    cbLogRecord: u32,
-    cusecPageCacheMiss: u64,
-    cPageCacheMiss: u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_COMMIT_ID = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    signLog: JET_SIGNATURE,
-    reserved: i32,
-    commitId: i64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_PFNDURABLECOMMITCALLBACK = fn(
-    instance: JET_INSTANCE,
-    pCommitIdSeen: *JET_COMMIT_ID,
-    grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
-
-}, else => struct { } };
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_RECSIZE = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbData: u64,
-    cbLongValueData: u64,
-    cbOverhead: u64,
-    cbLongValueOverhead: u64,
-    cNonTaggedColumns: u64,
-    cTaggedColumns: u64,
-    cLongValues: u64,
-    cMultiValues: u64,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
-
-pub const JET_RECSIZE2 = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    cbData: u64,
-    cbLongValueData: u64,
-    cbOverhead: u64,
-    cbLongValueOverhead: u64,
-    cNonTaggedColumns: u64,
-    cTaggedColumns: u64,
-    cLongValues: u64,
-    cMultiValues: u64,
-    cCompressedColumns: u64,
-    cbDataCompressed: u64,
-    cbLongValueDataCompressed: u64,
-};
-
-}, else => struct { } };
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (274)
@@ -3629,6 +3550,20 @@ pub extern "OLE32" fn PropVariantClear(
 pub extern "OLE32" fn FreePropVariantArray(
     cVariants: u32,
     rgvars: [*]PROPVARIANT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "PROPSYS" fn StgSerializePropVariant(
+    ppropvar: *const PROPVARIANT,
+    ppProp: **SERIALIZEDPROPERTYVALUE,
+    pcb: *u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+// TODO: this type is limited to platform 'windows5.0'
+pub extern "PROPSYS" fn StgDeserializePropVariant(
+    pprop: *const SERIALIZEDPROPERTYVALUE,
+    cbMax: u32,
+    ppropvar: *PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -5545,20 +5480,6 @@ pub extern "ESENT" fn JetGetSessionParameter(
     pcbParamActual: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "PROPSYS" fn StgSerializePropVariant(
-    ppropvar: *const PROPVARIANT,
-    ppProp: **SERIALIZEDPROPERTYVALUE,
-    pcb: *u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-// TODO: this type is limited to platform 'windows5.0'
-pub extern "PROPSYS" fn StgDeserializePropVariant(
-    pprop: *const SERIALIZEDPROPERTYVALUE,
-    cbMax: u32,
-    ppropvar: *PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (85)
@@ -5913,29 +5834,28 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (25)
+// Section: Imports (24)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BLOB = @import("../system/com.zig").BLOB;
 const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const CY = @import("../system/system_services.zig").CY;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const BSTRBLOB = @import("../system/system_services.zig").BSTRBLOB;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
+const BSTR = @import("../foundation.zig").BSTR;
+const PSTR = @import("../foundation.zig").PSTR;
 const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const SERIALIZEDPROPERTYVALUE = @import("../ui/shell.zig").SERIALIZEDPROPERTYVALUE;
+const HWND = @import("../foundation.zig").HWND;
 const DECIMAL = @import("../system/system_services.zig").DECIMAL;
 const STGMEDIUM = @import("../system/com.zig").STGMEDIUM;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
 const OLESTREAM = @import("../system/com.zig").OLESTREAM;
 const IBindStatusCallback = @import("../system/com.zig").IBindStatusCallback;
 const DVTARGETDEVICE = @import("../system/com.zig").DVTARGETDEVICE;
@@ -5947,9 +5867,6 @@ test {
     if (@hasDecl(@This(), "JET_CALLBACK")) { _ = JET_CALLBACK; }
     if (@hasDecl(@This(), "JET_PFNDURABLECOMMITCALLBACK")) { _ = JET_PFNDURABLECOMMITCALLBACK; }
     if (@hasDecl(@This(), "JET_PFNREALLOC")) { _ = JET_PFNREALLOC; }
-    if (@hasDecl(@This(), "JET_PFNSTATUS")) { _ = JET_PFNSTATUS; }
-    if (@hasDecl(@This(), "JET_CALLBACK")) { _ = JET_CALLBACK; }
-    if (@hasDecl(@This(), "JET_PFNDURABLECOMMITCALLBACK")) { _ = JET_PFNDURABLECOMMITCALLBACK; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

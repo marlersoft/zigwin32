@@ -342,11 +342,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const DeviceStreamState = @import("../media/media_foundation.zig").DeviceStreamState;
 const IMFMediaEvent = @import("../media/media_foundation.zig").IMFMediaEvent;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const IMFMediaType = @import("../media/media_foundation.zig").IMFMediaType;
 const MFT_OUTPUT_DATA_BUFFER = @import("../media/media_foundation.zig").MFT_OUTPUT_DATA_BUFFER;
 const MFT_MESSAGE_TYPE = @import("../media/media_foundation.zig").MFT_MESSAGE_TYPE;
-const RECT = @import("../ui/display_devices.zig").RECT;
+const RECT = @import("../foundation.zig").RECT;
 const IMFSample = @import("../media/media_foundation.zig").IMFSample;
 const IMFAttributes = @import("../media/media_foundation.zig").IMFAttributes;
 

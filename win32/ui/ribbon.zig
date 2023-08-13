@@ -684,14 +684,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IStream = @import("../storage/structured_storage.zig").IStream;
-const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

@@ -96,160 +96,6 @@ pub const MAXVENDORINFO = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (32)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const AsnOctetString = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    stream: *u8,
-    length: u32,
-    dynamic: BOOL,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const AsnObjectIdentifier = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    idLength: u32,
-    ids: *u32,
-};
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const SnmpVarBindList = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
-    list: *SnmpVarBind,
-    len: u32,
-};
-
-}, else => struct { } };
-
-pub const AsnAny = extern struct {
-    asnType: u8,
-    asnValue: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
-        number: i32,
-        unsigned32: u32,
-        counter64: ULARGE_INTEGER,
-        string: AsnOctetString,
-        bits: AsnOctetString,
-        object: AsnObjectIdentifier,
-        sequence: AsnOctetString,
-        address: AsnOctetString,
-        counter: u32,
-        gauge: u32,
-        ticks: u32,
-        arbitrary: AsnOctetString,
-    },
-};
-
-pub const SnmpVarBind = extern struct {
-    name: AsnObjectIdentifier,
-    value: AsnAny,
-};
-
-pub const PFNSNMPEXTENSIONINIT = fn(
-    dwUpTimeReference: u32,
-    phSubagentTrapEvent: *HANDLE,
-    pFirstSupportedRegion: *AsnObjectIdentifier,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONINITEX = fn(
-    pNextSupportedRegion: *AsnObjectIdentifier,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONMONITOR = fn(
-    pAgentMgmtData: *c_void,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONQUERY = fn(
-    bPduType: u8,
-    pVarBindList: *SnmpVarBindList,
-    pErrorStatus: *i32,
-    pErrorIndex: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONQUERYEX = fn(
-    nRequestType: u32,
-    nTransactionId: u32,
-    pVarBindList: *SnmpVarBindList,
-    pContextInfo: *AsnOctetString,
-    pErrorStatus: *i32,
-    pErrorIndex: *i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONTRAP = fn(
-    pEnterpriseOid: *AsnObjectIdentifier,
-    pGenericTrapId: *i32,
-    pSpecificTrapId: *i32,
-    pTimeStamp: *u32,
-    pVarBindList: *SnmpVarBindList,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
-
-pub const PFNSNMPEXTENSIONCLOSE = fn(
-) callconv(@import("std").os.windows.WINAPI) void;
-
-pub const smiOCTETS = extern struct {
-    len: u32,
-    ptr: *u8,
-};
-
-pub const smiOID = extern struct {
-    len: u32,
-    ptr: *u32,
-};
-
-pub const smiCNTR64 = extern struct {
-    hipart: u32,
-    lopart: u32,
-};
-
-pub const smiVALUE = extern struct {
-    syntax: u32,
-    value: extern union {
-        sNumber: i32,
-        uNumber: u32,
-        hNumber: smiCNTR64,
-        string: smiOCTETS,
-        oid: smiOID,
-        empty: u8,
-    },
-};
-
-pub const smiVENDORINFO = extern struct {
-    vendorName: [64]CHAR,
-    vendorContact: [64]CHAR,
-    vendorVersionId: [32]CHAR,
-    vendorVersionDate: [32]CHAR,
-    vendorEnterprise: u32,
-};
-
-pub const SNMPAPI_CALLBACK = fn(
-    hSession: isize,
-    hWnd: HWND,
-    wMsg: u32,
-    wParam: WPARAM,
-    lParam: LPARAM,
-    lpClientData: *c_void,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PFNSNMPSTARTUPEX = fn(
-    param0: *u32,
-    param1: *u32,
-    param2: *u32,
-    param3: *u32,
-    param4: *u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
-
-pub const PFNSNMPCLEANUPEX = fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 pub const SNMP_PDU_TYPE = extern enum(u32) {
     GET = 160,
     GETNEXT = 161,
@@ -449,6 +295,160 @@ pub const SnmpVarBindList = extern struct {
 };
 
 }, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const AsnOctetString = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    stream: *u8,
+    length: u32,
+    dynamic: BOOL,
+};
+
+}, else => struct { } };
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const AsnObjectIdentifier = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    idLength: u32,
+    ids: *u32,
+};
+
+}, else => struct { } };
+
+pub const AsnAny = extern struct {
+    asnType: u8,
+    asnValue: extern union {
+        // WARNING: unable to add field alignment because it's not implemented for unions
+        number: i32,
+        unsigned32: u32,
+        counter64: ULARGE_INTEGER,
+        string: AsnOctetString,
+        bits: AsnOctetString,
+        object: AsnObjectIdentifier,
+        sequence: AsnOctetString,
+        address: AsnOctetString,
+        counter: u32,
+        gauge: u32,
+        ticks: u32,
+        arbitrary: AsnOctetString,
+    },
+};
+
+pub const SnmpVarBind = extern struct {
+    name: AsnObjectIdentifier,
+    value: AsnAny,
+};
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub const SnmpVarBindList = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    list: *SnmpVarBind,
+    len: u32,
+};
+
+}, else => struct { } };
+
+pub const PFNSNMPEXTENSIONINIT = fn(
+    dwUpTimeReference: u32,
+    phSubagentTrapEvent: *HANDLE,
+    pFirstSupportedRegion: *AsnObjectIdentifier,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONINITEX = fn(
+    pNextSupportedRegion: *AsnObjectIdentifier,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONMONITOR = fn(
+    pAgentMgmtData: *c_void,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONQUERY = fn(
+    bPduType: u8,
+    pVarBindList: *SnmpVarBindList,
+    pErrorStatus: *i32,
+    pErrorIndex: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONQUERYEX = fn(
+    nRequestType: u32,
+    nTransactionId: u32,
+    pVarBindList: *SnmpVarBindList,
+    pContextInfo: *AsnOctetString,
+    pErrorStatus: *i32,
+    pErrorIndex: *i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONTRAP = fn(
+    pEnterpriseOid: *AsnObjectIdentifier,
+    pGenericTrapId: *i32,
+    pSpecificTrapId: *i32,
+    pTimeStamp: *u32,
+    pVarBindList: *SnmpVarBindList,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFNSNMPEXTENSIONCLOSE = fn(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const smiOCTETS = extern struct {
+    len: u32,
+    ptr: *u8,
+};
+
+pub const smiOID = extern struct {
+    len: u32,
+    ptr: *u32,
+};
+
+pub const smiCNTR64 = extern struct {
+    hipart: u32,
+    lopart: u32,
+};
+
+pub const smiVALUE = extern struct {
+    syntax: u32,
+    value: extern union {
+        sNumber: i32,
+        uNumber: u32,
+        hNumber: smiCNTR64,
+        string: smiOCTETS,
+        oid: smiOID,
+        empty: u8,
+    },
+};
+
+pub const smiVENDORINFO = extern struct {
+    vendorName: [64]CHAR,
+    vendorContact: [64]CHAR,
+    vendorVersionId: [32]CHAR,
+    vendorVersionDate: [32]CHAR,
+    vendorEnterprise: u32,
+};
+
+pub const SNMPAPI_CALLBACK = fn(
+    hSession: isize,
+    hWnd: HWND,
+    wMsg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    lpClientData: *c_void,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFNSNMPSTARTUPEX = fn(
+    param0: *u32,
+    param1: *u32,
+    param2: *u32,
+    param3: *u32,
+    param4: *u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFNSNMPCLEANUPEX = fn(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 
 //--------------------------------------------------------------------------------
@@ -1013,14 +1013,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
+const LPARAM = @import("../foundation.zig").LPARAM;
 const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
+const WPARAM = @import("../foundation.zig").WPARAM;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

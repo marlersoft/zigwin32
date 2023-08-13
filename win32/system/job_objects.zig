@@ -208,7 +208,7 @@ pub const JOBOBJECT_IO_RATE_CONTROL_INFORMATION = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (10)
+// Section: Functions (13)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "KERNEL32" fn IsProcessInJob(
@@ -280,28 +280,57 @@ pub extern "KERNEL32" fn QueryIoRateControlInformationJobObject(
     InfoBlockCount: *u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn CreateJobObjectA(
+    lpJobAttributes: ?*SECURITY_ATTRIBUTES,
+    lpName: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "KERNEL32" fn OpenJobObjectA(
+    dwDesiredAccess: u32,
+    bInheritHandle: BOOL,
+    lpName: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
+
+// TODO: this type is limited to platform 'windows5.1.2600'
+pub extern "USER32" fn UserHandleGrantAccess(
+    hUserHandle: HANDLE,
+    hJob: HANDLE,
+    bGrant: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
-// Section: Unicode Aliases (0)
+// Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
 pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     .ansi => struct {
+        pub const CreateJobObject = CreateJobObjectA;
+        pub const OpenJobObject = OpenJobObjectA;
     },
     .wide => struct {
+        pub const CreateJobObject = CreateJobObjectW;
+        pub const OpenJobObject = OpenJobObjectW;
     },
     .unspecified => if (@import("builtin").is_test) struct {
+        pub const CreateJobObject = *opaque{};
+        pub const OpenJobObject = *opaque{};
     } else struct {
+        pub const CreateJobObject = @compileError("'CreateJobObject' requires that UNICODE be set to true or false in the root module");
+        pub const OpenJobObject = @compileError("'OpenJobObject' requires that UNICODE be set to true or false in the root module");
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (6)
+// Section: Imports (7)
 //--------------------------------------------------------------------------------
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const JOB_OBJECT_IO_RATE_CONTROL_FLAGS = @import("../system/system_services.zig").JOB_OBJECT_IO_RATE_CONTROL_FLAGS;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSTR = @import("../foundation.zig").PSTR;
 const JOBOBJECTINFOCLASS = @import("../system/system_services.zig").JOBOBJECTINFOCLASS;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

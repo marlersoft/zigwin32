@@ -118,9 +118,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     @setEvalBranchQuota(

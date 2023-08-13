@@ -1827,10 +1827,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const BSTR = @import("../foundation.zig").BSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

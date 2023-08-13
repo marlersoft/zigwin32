@@ -2212,15 +2212,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const BYTE_BLOB = @import("../system/com.zig").BYTE_BLOB;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

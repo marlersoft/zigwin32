@@ -162,9 +162,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const BSTR = @import("../foundation.zig").BSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

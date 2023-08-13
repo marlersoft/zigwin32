@@ -129,23 +129,6 @@ pub const PROXIMITY_UNIT_CHAPTER = @as(u32, 3);
 //--------------------------------------------------------------------------------
 // Section: Types (14)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub const DBID = extern struct {
-    uGuid: extern union {
-        guid: Guid,
-        pguid: *Guid,
-    },
-    eKind: u32,
-    uName: extern union {
-        pwszName: PWSTR,
-        ulPropid: u32,
-    },
-};
-
-}, else => struct { } };
-
 pub const CI_STATE = extern struct {
     cbStruct: u32,
     cWordList: u32,
@@ -302,6 +285,26 @@ pub const IFilter = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X86 => struct {
+
+pub const DBID = extern struct {
+    // WARNING: unable to add field alignment because it's causing a compiler bug
+    uGuid: extern union {
+        // WARNING: unable to add field alignment because it's not implemented for unions
+        guid: Guid,
+        pguid: *Guid,
+    },
+    eKind: u32,
+    uName: extern union {
+        // WARNING: unable to add field alignment because it's not implemented for unions
+        pwszName: PWSTR,
+        ulPropid: u32,
+    },
+};
+
+}, else => struct { } };
+
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IPhraseSink_Value = @import("../zig.zig").Guid.initString("cc906ff0-c058-101a-b554-08002b33b0e6");
 pub const IID_IPhraseSink = &IID_IPhraseSink_Value;
@@ -366,18 +369,15 @@ pub const DBKIND_PROPID = DBKINDENUM.PROPID;
 pub const DBKIND_GUID = DBKINDENUM.GUID;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
-.X86 => struct {
+.X64, .Arm64 => struct {
 
 pub const DBID = extern struct {
-    // WARNING: unable to add field alignment because it's causing a compiler bug
     uGuid: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
         guid: Guid,
         pguid: *Guid,
     },
     eKind: u32,
     uName: extern union {
-        // WARNING: unable to add field alignment because it's not implemented for unions
         pwszName: PWSTR,
         ulPropid: u32,
     },
@@ -435,10 +435,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
 const PROPSPEC = @import("../storage/structured_storage.zig").PROPSPEC;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
 const IStorage = @import("../storage/structured_storage.zig").IStorage;
 

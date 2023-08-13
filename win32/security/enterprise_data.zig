@@ -338,15 +338,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const NTSTATUS = @import("../system/system_services.zig").NTSTATUS;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const HSTRING = @import("../system/win_rt.zig").HSTRING;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const PACKAGE_ID = @import("../storage/packaging/appx.zig").PACKAGE_ID;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
 
 test {

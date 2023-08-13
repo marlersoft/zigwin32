@@ -4903,15 +4903,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const EAP_METHOD_TYPE = @import("../security/extensible_authentication_protocol.zig").EAP_METHOD_TYPE;
 const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const NDIS_OBJECT_HEADER = @import("../network_management/ndis.zig").NDIS_OBJECT_HEADER;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

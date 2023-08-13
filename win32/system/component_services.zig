@@ -11193,22 +11193,22 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const BLOB = @import("../system/com.zig").BLOB;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const PSID = @import("../security.zig").PSID;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const PSID = @import("../foundation.zig").PSID;
+const BOOL = @import("../foundation.zig").BOOL;
 const EOC_ChangeType = @import("../system/com.zig").EOC_ChangeType;
 const APTTYPE = @import("../system/com.zig").APTTYPE;
 const IClassFactory = @import("../system/com.zig").IClassFactory;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IMoniker = @import("../system/com.zig").IMoniker;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     @setEvalBranchQuota(

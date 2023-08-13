@@ -70862,20 +70862,20 @@ const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const HDC = @import("../graphics/gdi.zig").HDC;
 const IDispatchEx = @import("../system/ole_automation.zig").IDispatchEx;
 const HRGN = @import("../graphics/gdi.zig").HRGN;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const RECT = @import("../ui/display_devices.zig").RECT;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const RECT = @import("../foundation.zig").RECT;
 const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 const LOGFONTW = @import("../graphics/gdi.zig").LOGFONTW;
 const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const POINT = @import("../ui/display_devices.zig").POINT;
+const POINT = @import("../foundation.zig").POINT;
 const IActiveIMMApp = @import("../globalization.zig").IActiveIMMApp;
-const SIZE = @import("../ui/display_devices.zig").SIZE;
+const SIZE = @import("../foundation.zig").SIZE;
 
 test {
     @setEvalBranchQuota(

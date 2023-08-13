@@ -395,15 +395,15 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const IXMLDOMNodeList = @import("../system/windows_programming.zig").IXMLDOMNodeList;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const IXMLDOMNodeList = @import("../data/xml/ms_xml.zig").IXMLDOMNodeList;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IAccessible = @import("../ui/accessibility.zig").IAccessible;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

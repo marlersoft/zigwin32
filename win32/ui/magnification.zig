@@ -174,10 +174,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const RECT = @import("../ui/display_devices.zig").RECT;
+const RECT = @import("../foundation.zig").RECT;
 const HRGN = @import("../graphics/gdi.zig").HRGN;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

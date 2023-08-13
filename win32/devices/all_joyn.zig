@@ -2,6 +2,23 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (37)
 //--------------------------------------------------------------------------------
+pub const QCC_TRUE = @as(u32, 1);
+pub const QCC_FALSE = @as(u32, 0);
+pub const ALLJOYN_MESSAGE_FLAG_NO_REPLY_EXPECTED = @as(u32, 1);
+pub const ALLJOYN_MESSAGE_FLAG_AUTO_START = @as(u32, 2);
+pub const ALLJOYN_MESSAGE_FLAG_ALLOW_REMOTE_MSG = @as(u32, 4);
+pub const ALLJOYN_MESSAGE_FLAG_SESSIONLESS = @as(u32, 16);
+pub const ALLJOYN_MESSAGE_FLAG_GLOBAL_BROADCAST = @as(u32, 32);
+pub const ALLJOYN_MESSAGE_FLAG_ENCRYPTED = @as(u32, 128);
+pub const ALLJOYN_TRAFFIC_TYPE_MESSAGES = @as(u32, 1);
+pub const ALLJOYN_TRAFFIC_TYPE_RAW_UNRELIABLE = @as(u32, 2);
+pub const ALLJOYN_TRAFFIC_TYPE_RAW_RELIABLE = @as(u32, 4);
+pub const ALLJOYN_PROXIMITY_ANY = @as(u32, 255);
+pub const ALLJOYN_PROXIMITY_PHYSICAL = @as(u32, 1);
+pub const ALLJOYN_PROXIMITY_NETWORK = @as(u32, 2);
+pub const ALLJOYN_READ_READY = @as(u32, 1);
+pub const ALLJOYN_WRITE_READY = @as(u32, 2);
+pub const ALLJOYN_DISCONNECTED = @as(u32, 4);
 pub const ALLJOYN_LITTLE_ENDIAN = @as(u8, 108);
 pub const ALLJOYN_BIG_ENDIAN = @as(u8, 66);
 pub const ALLJOYN_MESSAGE_DEFAULT_TIMEOUT = @as(u32, 25000);
@@ -22,27 +39,68 @@ pub const ALLJOYN_MEMBER_ANNOTATE_SESSIONCAST = @as(u8, 4);
 pub const ALLJOYN_MEMBER_ANNOTATE_SESSIONLESS = @as(u8, 8);
 pub const ALLJOYN_MEMBER_ANNOTATE_UNICAST = @as(u8, 16);
 pub const ALLJOYN_MEMBER_ANNOTATE_GLOBAL_BROADCAST = @as(u8, 32);
-pub const QCC_TRUE = @as(u32, 1);
-pub const QCC_FALSE = @as(u32, 0);
-pub const ALLJOYN_MESSAGE_FLAG_NO_REPLY_EXPECTED = @as(u32, 1);
-pub const ALLJOYN_MESSAGE_FLAG_AUTO_START = @as(u32, 2);
-pub const ALLJOYN_MESSAGE_FLAG_ALLOW_REMOTE_MSG = @as(u32, 4);
-pub const ALLJOYN_MESSAGE_FLAG_SESSIONLESS = @as(u32, 16);
-pub const ALLJOYN_MESSAGE_FLAG_GLOBAL_BROADCAST = @as(u32, 32);
-pub const ALLJOYN_MESSAGE_FLAG_ENCRYPTED = @as(u32, 128);
-pub const ALLJOYN_TRAFFIC_TYPE_MESSAGES = @as(u32, 1);
-pub const ALLJOYN_TRAFFIC_TYPE_RAW_UNRELIABLE = @as(u32, 2);
-pub const ALLJOYN_TRAFFIC_TYPE_RAW_RELIABLE = @as(u32, 4);
-pub const ALLJOYN_PROXIMITY_ANY = @as(u32, 255);
-pub const ALLJOYN_PROXIMITY_PHYSICAL = @as(u32, 1);
-pub const ALLJOYN_PROXIMITY_NETWORK = @as(u32, 2);
-pub const ALLJOYN_READ_READY = @as(u32, 1);
-pub const ALLJOYN_WRITE_READY = @as(u32, 2);
-pub const ALLJOYN_DISCONNECTED = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
 // Section: Types (110)
 //--------------------------------------------------------------------------------
+pub const alljoyn_aboutdata = isize;
+
+pub const alljoyn_aboutdatalistener = isize;
+
+pub const alljoyn_aboutlistener = isize;
+
+pub const alljoyn_aboutobj = isize;
+
+pub const alljoyn_aboutobjectdescription = isize;
+
+pub const alljoyn_aboutproxy = isize;
+
+pub const alljoyn_applicationstatelistener = isize;
+
+pub const alljoyn_authlistener = isize;
+
+pub const alljoyn_autopinger = isize;
+
+pub const alljoyn_busattachment = isize;
+
+pub const alljoyn_buslistener = isize;
+
+pub const alljoyn_busobject = isize;
+
+pub const alljoyn_credentials = isize;
+
+pub const alljoyn_interfacedescription = isize;
+
+pub const alljoyn_keystore = isize;
+
+pub const alljoyn_keystorelistener = isize;
+
+pub const alljoyn_message = isize;
+
+pub const alljoyn_msgarg = isize;
+
+pub const alljoyn_observer = isize;
+
+pub const alljoyn_observerlistener = isize;
+
+pub const alljoyn_permissionconfigurationlistener = isize;
+
+pub const alljoyn_permissionconfigurator = isize;
+
+pub const alljoyn_pinglistener = isize;
+
+pub const alljoyn_proxybusobject = isize;
+
+pub const alljoyn_proxybusobject_ref = isize;
+
+pub const alljoyn_securityapplicationproxy = isize;
+
+pub const alljoyn_sessionlistener = isize;
+
+pub const alljoyn_sessionopts = isize;
+
+pub const alljoyn_sessionportlistener = isize;
+
 pub const _alljoyn_abouticon_handle = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
@@ -1411,64 +1469,6 @@ pub const alljoyn_observerlistener_callback = extern struct {
     object_discovered: alljoyn_observer_object_discovered_ptr,
     object_lost: alljoyn_observer_object_lost_ptr,
 };
-
-pub const alljoyn_aboutdata = isize;
-
-pub const alljoyn_aboutdatalistener = isize;
-
-pub const alljoyn_aboutlistener = isize;
-
-pub const alljoyn_aboutobj = isize;
-
-pub const alljoyn_aboutobjectdescription = isize;
-
-pub const alljoyn_aboutproxy = isize;
-
-pub const alljoyn_applicationstatelistener = isize;
-
-pub const alljoyn_authlistener = isize;
-
-pub const alljoyn_autopinger = isize;
-
-pub const alljoyn_busattachment = isize;
-
-pub const alljoyn_buslistener = isize;
-
-pub const alljoyn_busobject = isize;
-
-pub const alljoyn_credentials = isize;
-
-pub const alljoyn_interfacedescription = isize;
-
-pub const alljoyn_keystore = isize;
-
-pub const alljoyn_keystorelistener = isize;
-
-pub const alljoyn_message = isize;
-
-pub const alljoyn_msgarg = isize;
-
-pub const alljoyn_observer = isize;
-
-pub const alljoyn_observerlistener = isize;
-
-pub const alljoyn_permissionconfigurationlistener = isize;
-
-pub const alljoyn_permissionconfigurator = isize;
-
-pub const alljoyn_pinglistener = isize;
-
-pub const alljoyn_proxybusobject = isize;
-
-pub const alljoyn_proxybusobject_ref = isize;
-
-pub const alljoyn_securityapplicationproxy = isize;
-
-pub const alljoyn_sessionlistener = isize;
-
-pub const alljoyn_sessionopts = isize;
-
-pub const alljoyn_sessionportlistener = isize;
 
 
 //--------------------------------------------------------------------------------
@@ -4420,11 +4420,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

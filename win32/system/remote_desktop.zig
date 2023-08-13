@@ -2,6 +2,16 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (220)
 //--------------------------------------------------------------------------------
+pub const RDCLIENT_BITMAP_RENDER_SERVICE = Guid.initString("e4cc08cb-942e-4b19-8504-bd5a89a747f5");
+pub const WTS_QUERY_ALLOWED_INITIAL_APP = Guid.initString("c77d1b30-5be1-4c6b-a0e1-bd6d2e5c9fcc");
+pub const WTS_QUERY_LOGON_SCREEN_SIZE = Guid.initString("8b8e0fe7-0804-4a0e-b279-8660b1df0049");
+pub const WTS_QUERY_AUDIOENUM_DLL = Guid.initString("9bf4fa97-c883-4c2a-80ab-5a39c9af00db");
+pub const WTS_QUERY_MF_FORMAT_SUPPORT = Guid.initString("41869ad0-6332-4dc8-95d5-db749e2f1d94");
+pub const WRDS_SERVICE_ID_GRAPHICS_GUID = Guid.initString("d2993f4d-02cf-4280-8c48-1624b44f8706");
+pub const PROPERTY_DYNAMIC_TIME_ZONE_INFORMATION = Guid.initString("0cdfd28e-d0b9-4c1f-a5eb-6d1f6c6535b9");
+pub const PROPERTY_TYPE_GET_FAST_RECONNECT = Guid.initString("6212d757-0043-4862-99c3-9f3059ac2a3b");
+pub const CONNECTION_PROPERTY_IDLE_TIME_WARNING = Guid.initString("693f7ff5-0c4e-4d17-b8e0-1f70325e5d58");
+pub const CONNECTION_PROPERTY_CURSOR_BLINK_DISABLED = Guid.initString("4b150580-fea4-4d3c-9de4-7433a66618f7");
 pub const WTS_DOMAIN_LENGTH = @as(u32, 255);
 pub const WTS_USERNAME_LENGTH = @as(u32, 255);
 pub const WTS_PASSWORD_LENGTH = @as(u32, 255);
@@ -212,325 +222,12 @@ pub const DISPID_AX_ADMINMESSAGERECEIVED = @as(u32, 760);
 pub const DISPID_AX_KEYCOMBINATIONPRESSED = @as(u32, 761);
 pub const DISPID_AX_REMOTEDESKTOPSIZECHANGED = @as(u32, 762);
 pub const DISPID_AX_TOUCHPOINTERCURSORMOVED = @as(u32, 800);
-pub const RDCLIENT_BITMAP_RENDER_SERVICE = Guid.initString("e4cc08cb-942e-4b19-8504-bd5a89a747f5");
-pub const WTS_QUERY_ALLOWED_INITIAL_APP = Guid.initString("c77d1b30-5be1-4c6b-a0e1-bd6d2e5c9fcc");
-pub const WTS_QUERY_LOGON_SCREEN_SIZE = Guid.initString("8b8e0fe7-0804-4a0e-b279-8660b1df0049");
-pub const WTS_QUERY_AUDIOENUM_DLL = Guid.initString("9bf4fa97-c883-4c2a-80ab-5a39c9af00db");
-pub const WTS_QUERY_MF_FORMAT_SUPPORT = Guid.initString("41869ad0-6332-4dc8-95d5-db749e2f1d94");
-pub const WRDS_SERVICE_ID_GRAPHICS_GUID = Guid.initString("d2993f4d-02cf-4280-8c48-1624b44f8706");
-pub const PROPERTY_DYNAMIC_TIME_ZONE_INFORMATION = Guid.initString("0cdfd28e-d0b9-4c1f-a5eb-6d1f6c6535b9");
-pub const PROPERTY_TYPE_GET_FAST_RECONNECT = Guid.initString("6212d757-0043-4862-99c3-9f3059ac2a3b");
-pub const CONNECTION_PROPERTY_IDLE_TIME_WARNING = Guid.initString("693f7ff5-0c4e-4d17-b8e0-1f70325e5d58");
-pub const CONNECTION_PROPERTY_CURSOR_BLINK_DISABLED = Guid.initString("4b150580-fea4-4d3c-9de4-7433a66618f7");
 
 //--------------------------------------------------------------------------------
 // Section: Types (255)
 //--------------------------------------------------------------------------------
-pub const APO_BUFFER_FLAGS = extern enum(i32) {
-    INVALID = 0,
-    VALID = 1,
-    SILENT = 2,
-};
-pub const BUFFER_INVALID = APO_BUFFER_FLAGS.INVALID;
-pub const BUFFER_VALID = APO_BUFFER_FLAGS.VALID;
-pub const BUFFER_SILENT = APO_BUFFER_FLAGS.SILENT;
-
-pub const APO_CONNECTION_PROPERTY = extern struct {
-    pBuffer: usize,
-    u32ValidFrameCount: u32,
-    u32BufferFlags: APO_BUFFER_FLAGS,
-    u32Signature: u32,
-};
-
-pub const AE_POSITION_FLAGS = extern enum(i32) {
-    INVALID = 0,
-    DISCONTINUOUS = 1,
-    CONTINUOUS = 2,
-    QPC_ERROR = 4,
-};
-pub const POSITION_INVALID = AE_POSITION_FLAGS.INVALID;
-pub const POSITION_DISCONTINUOUS = AE_POSITION_FLAGS.DISCONTINUOUS;
-pub const POSITION_CONTINUOUS = AE_POSITION_FLAGS.CONTINUOUS;
-pub const POSITION_QPC_ERROR = AE_POSITION_FLAGS.QPC_ERROR;
-
-pub const AE_CURRENT_POSITION = extern struct {
-    u64DevicePosition: u64,
-    u64StreamPosition: u64,
-    u64PaddingFrames: u64,
-    hnsQPCPosition: i64,
-    f32FramesPerSecond: f32,
-    Flag: AE_POSITION_FLAGS,
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioEndpoint_Value = @import("../zig.zig").Guid.initString("30a99515-1527-4451-af9f-00c5f0234daf");
-pub const IID_IAudioEndpoint = &IID_IAudioEndpoint_Value;
-pub const IAudioEndpoint = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetFrameFormat: fn(
-            self: *const IAudioEndpoint,
-            ppFormat: **WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetFramesPerPacket: fn(
-            self: *const IAudioEndpoint,
-            pFramesPerPacket: *u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetLatency: fn(
-            self: *const IAudioEndpoint,
-            pLatency: *i64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetStreamFlags: fn(
-            self: *const IAudioEndpoint,
-            streamFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetEventHandle: fn(
-            self: *const IAudioEndpoint,
-            eventHandle: HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_GetFrameFormat(self: *const T, ppFormat: **WAVEFORMATEX) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetFrameFormat(@ptrCast(*const IAudioEndpoint, self), ppFormat);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_GetFramesPerPacket(self: *const T, pFramesPerPacket: *u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetFramesPerPacket(@ptrCast(*const IAudioEndpoint, self), pFramesPerPacket);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_GetLatency(self: *const T, pLatency: *i64) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetLatency(@ptrCast(*const IAudioEndpoint, self), pLatency);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_SetStreamFlags(self: *const T, streamFlags: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).SetStreamFlags(@ptrCast(*const IAudioEndpoint, self), streamFlags);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpoint_SetEventHandle(self: *const T, eventHandle: HANDLE) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).SetEventHandle(@ptrCast(*const IAudioEndpoint, self), eventHandle);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioEndpointRT_Value = @import("../zig.zig").Guid.initString("dfd2005f-a6e5-4d39-a265-939ada9fbb4d");
-pub const IID_IAudioEndpointRT = &IID_IAudioEndpointRT_Value;
-pub const IAudioEndpointRT = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetCurrentPadding: fn(
-            self: *const IAudioEndpointRT,
-            pPadding: *i64,
-            pAeCurrentPosition: *AE_CURRENT_POSITION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        ProcessingComplete: fn(
-            self: *const IAudioEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        SetPinInactive: fn(
-            self: *const IAudioEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        SetPinActive: fn(
-            self: *const IAudioEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointRT_GetCurrentPadding(self: *const T, pPadding: *i64, pAeCurrentPosition: *AE_CURRENT_POSITION) callconv(.Inline) void {
-            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).GetCurrentPadding(@ptrCast(*const IAudioEndpointRT, self), pPadding, pAeCurrentPosition);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointRT_ProcessingComplete(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).ProcessingComplete(@ptrCast(*const IAudioEndpointRT, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointRT_SetPinInactive(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).SetPinInactive(@ptrCast(*const IAudioEndpointRT, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointRT_SetPinActive(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).SetPinActive(@ptrCast(*const IAudioEndpointRT, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioInputEndpointRT_Value = @import("../zig.zig").Guid.initString("8026ab61-92b2-43c1-a1df-5c37ebd08d82");
-pub const IID_IAudioInputEndpointRT = &IID_IAudioInputEndpointRT_Value;
-pub const IAudioInputEndpointRT = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetInputDataPointer: fn(
-            self: *const IAudioInputEndpointRT,
-            pConnectionProperty: *APO_CONNECTION_PROPERTY,
-            pAeTimeStamp: *AE_CURRENT_POSITION,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        ReleaseInputDataPointer: fn(
-            self: *const IAudioInputEndpointRT,
-            u32FrameCount: u32,
-            pDataPointer: usize,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        PulseEndpoint: fn(
-            self: *const IAudioInputEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioInputEndpointRT_GetInputDataPointer(self: *const T, pConnectionProperty: *APO_CONNECTION_PROPERTY, pAeTimeStamp: *AE_CURRENT_POSITION) callconv(.Inline) void {
-            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).GetInputDataPointer(@ptrCast(*const IAudioInputEndpointRT, self), pConnectionProperty, pAeTimeStamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioInputEndpointRT_ReleaseInputDataPointer(self: *const T, u32FrameCount: u32, pDataPointer: usize) callconv(.Inline) void {
-            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).ReleaseInputDataPointer(@ptrCast(*const IAudioInputEndpointRT, self), u32FrameCount, pDataPointer);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioInputEndpointRT_PulseEndpoint(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).PulseEndpoint(@ptrCast(*const IAudioInputEndpointRT, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioOutputEndpointRT_Value = @import("../zig.zig").Guid.initString("8fa906e4-c31c-4e31-932e-19a66385e9aa");
-pub const IID_IAudioOutputEndpointRT = &IID_IAudioOutputEndpointRT_Value;
-pub const IAudioOutputEndpointRT = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        GetOutputDataPointer: fn(
-            self: *const IAudioOutputEndpointRT,
-            u32FrameCount: u32,
-            pAeTimeStamp: *AE_CURRENT_POSITION,
-        ) callconv(@import("std").os.windows.WINAPI) usize,
-        ReleaseOutputDataPointer: fn(
-            self: *const IAudioOutputEndpointRT,
-            pConnectionProperty: *const APO_CONNECTION_PROPERTY,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-        PulseEndpoint: fn(
-            self: *const IAudioOutputEndpointRT,
-        ) callconv(@import("std").os.windows.WINAPI) void,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioOutputEndpointRT_GetOutputDataPointer(self: *const T, u32FrameCount: u32, pAeTimeStamp: *AE_CURRENT_POSITION) callconv(.Inline) usize {
-            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).GetOutputDataPointer(@ptrCast(*const IAudioOutputEndpointRT, self), u32FrameCount, pAeTimeStamp);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioOutputEndpointRT_ReleaseOutputDataPointer(self: *const T, pConnectionProperty: *const APO_CONNECTION_PROPERTY) callconv(.Inline) void {
-            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).ReleaseOutputDataPointer(@ptrCast(*const IAudioOutputEndpointRT, self), pConnectionProperty);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioOutputEndpointRT_PulseEndpoint(self: *const T) callconv(.Inline) void {
-            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).PulseEndpoint(@ptrCast(*const IAudioOutputEndpointRT, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioDeviceEndpoint_Value = @import("../zig.zig").Guid.initString("d4952f5a-a0b2-4cc4-8b82-9358488dd8ac");
-pub const IID_IAudioDeviceEndpoint = &IID_IAudioDeviceEndpoint_Value;
-pub const IAudioDeviceEndpoint = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetBuffer: fn(
-            self: *const IAudioDeviceEndpoint,
-            MaxPeriod: i64,
-            u32LatencyCoefficient: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetRTCaps: fn(
-            self: *const IAudioDeviceEndpoint,
-            pbIsRTCapable: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        GetEventDrivenCapable: fn(
-            self: *const IAudioDeviceEndpoint,
-            pbisEventCapable: *BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        WriteExclusiveModeParametersToSharedMemory: fn(
-            self: *const IAudioDeviceEndpoint,
-            hTargetProcess: usize,
-            hnsPeriod: i64,
-            hnsBufferDuration: i64,
-            u32LatencyCoefficient: u32,
-            pu32SharedMemorySize: *u32,
-            phSharedMemory: *usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioDeviceEndpoint_SetBuffer(self: *const T, MaxPeriod: i64, u32LatencyCoefficient: u32) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).SetBuffer(@ptrCast(*const IAudioDeviceEndpoint, self), MaxPeriod, u32LatencyCoefficient);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioDeviceEndpoint_GetRTCaps(self: *const T, pbIsRTCapable: *BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).GetRTCaps(@ptrCast(*const IAudioDeviceEndpoint, self), pbIsRTCapable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioDeviceEndpoint_GetEventDrivenCapable(self: *const T, pbisEventCapable: *BOOL) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).GetEventDrivenCapable(@ptrCast(*const IAudioDeviceEndpoint, self), pbisEventCapable);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioDeviceEndpoint_WriteExclusiveModeParametersToSharedMemory(self: *const T, hTargetProcess: usize, hnsPeriod: i64, hnsBufferDuration: i64, u32LatencyCoefficient: u32, pu32SharedMemorySize: *u32, phSharedMemory: *usize) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).WriteExclusiveModeParametersToSharedMemory(@ptrCast(*const IAudioDeviceEndpoint, self), hTargetProcess, hnsPeriod, hnsBufferDuration, u32LatencyCoefficient, pu32SharedMemorySize, phSharedMemory);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-// TODO: this type is limited to platform 'windows6.1'
-const IID_IAudioEndpointControl_Value = @import("../zig.zig").Guid.initString("c684b72a-6df4-4774-bdf9-76b77509b653");
-pub const IID_IAudioEndpointControl = &IID_IAudioEndpointControl_Value;
-pub const IAudioEndpointControl = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Start: fn(
-            self: *const IAudioEndpointControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Reset: fn(
-            self: *const IAudioEndpointControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        Stop: fn(
-            self: *const IAudioEndpointControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointControl_Start(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Start(@ptrCast(*const IAudioEndpointControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointControl_Reset(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Reset(@ptrCast(*const IAudioEndpointControl, self));
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAudioEndpointControl_Stop(self: *const T) callconv(.Inline) HRESULT {
-            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Stop(@ptrCast(*const IAudioEndpointControl, self));
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 // TODO: this type has a FreeFunc 'WTSVirtualChannelClose', what can Zig do with this information?
 pub const HwtsVirtualChannelHandle = isize;
-
-pub const WTSSESSION_NOTIFICATION = extern struct {
-    cbSize: u32,
-    dwSessionId: u32,
-};
 
 const CLSID_TSUserExInterfaces_Value = @import("../zig.zig").Guid.initString("0910dd01-df8c-11d1-ae27-00c04fa35813");
 pub const CLSID_TSUserExInterfaces = &CLSID_TSUserExInterfaces_Value;
@@ -7313,14 +7010,313 @@ pub const IRemoteDesktopClient = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+pub const WTSSESSION_NOTIFICATION = extern struct {
+    cbSize: u32,
+    dwSessionId: u32,
+};
+
+pub const APO_BUFFER_FLAGS = extern enum(i32) {
+    INVALID = 0,
+    VALID = 1,
+    SILENT = 2,
+};
+pub const BUFFER_INVALID = APO_BUFFER_FLAGS.INVALID;
+pub const BUFFER_VALID = APO_BUFFER_FLAGS.VALID;
+pub const BUFFER_SILENT = APO_BUFFER_FLAGS.SILENT;
+
+pub const APO_CONNECTION_PROPERTY = extern struct {
+    pBuffer: usize,
+    u32ValidFrameCount: u32,
+    u32BufferFlags: APO_BUFFER_FLAGS,
+    u32Signature: u32,
+};
+
+pub const AE_POSITION_FLAGS = extern enum(i32) {
+    INVALID = 0,
+    DISCONTINUOUS = 1,
+    CONTINUOUS = 2,
+    QPC_ERROR = 4,
+};
+pub const POSITION_INVALID = AE_POSITION_FLAGS.INVALID;
+pub const POSITION_DISCONTINUOUS = AE_POSITION_FLAGS.DISCONTINUOUS;
+pub const POSITION_CONTINUOUS = AE_POSITION_FLAGS.CONTINUOUS;
+pub const POSITION_QPC_ERROR = AE_POSITION_FLAGS.QPC_ERROR;
+
+pub const AE_CURRENT_POSITION = extern struct {
+    u64DevicePosition: u64,
+    u64StreamPosition: u64,
+    u64PaddingFrames: u64,
+    hnsQPCPosition: i64,
+    f32FramesPerSecond: f32,
+    Flag: AE_POSITION_FLAGS,
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioEndpoint_Value = @import("../zig.zig").Guid.initString("30a99515-1527-4451-af9f-00c5f0234daf");
+pub const IID_IAudioEndpoint = &IID_IAudioEndpoint_Value;
+pub const IAudioEndpoint = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetFrameFormat: fn(
+            self: *const IAudioEndpoint,
+            ppFormat: **WAVEFORMATEX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFramesPerPacket: fn(
+            self: *const IAudioEndpoint,
+            pFramesPerPacket: *u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLatency: fn(
+            self: *const IAudioEndpoint,
+            pLatency: *i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStreamFlags: fn(
+            self: *const IAudioEndpoint,
+            streamFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventHandle: fn(
+            self: *const IAudioEndpoint,
+            eventHandle: HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_GetFrameFormat(self: *const T, ppFormat: **WAVEFORMATEX) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetFrameFormat(@ptrCast(*const IAudioEndpoint, self), ppFormat);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_GetFramesPerPacket(self: *const T, pFramesPerPacket: *u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetFramesPerPacket(@ptrCast(*const IAudioEndpoint, self), pFramesPerPacket);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_GetLatency(self: *const T, pLatency: *i64) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).GetLatency(@ptrCast(*const IAudioEndpoint, self), pLatency);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_SetStreamFlags(self: *const T, streamFlags: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).SetStreamFlags(@ptrCast(*const IAudioEndpoint, self), streamFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpoint_SetEventHandle(self: *const T, eventHandle: HANDLE) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpoint.VTable, self.vtable).SetEventHandle(@ptrCast(*const IAudioEndpoint, self), eventHandle);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioEndpointRT_Value = @import("../zig.zig").Guid.initString("dfd2005f-a6e5-4d39-a265-939ada9fbb4d");
+pub const IID_IAudioEndpointRT = &IID_IAudioEndpointRT_Value;
+pub const IAudioEndpointRT = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetCurrentPadding: fn(
+            self: *const IAudioEndpointRT,
+            pPadding: *i64,
+            pAeCurrentPosition: *AE_CURRENT_POSITION,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ProcessingComplete: fn(
+            self: *const IAudioEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetPinInactive: fn(
+            self: *const IAudioEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPinActive: fn(
+            self: *const IAudioEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointRT_GetCurrentPadding(self: *const T, pPadding: *i64, pAeCurrentPosition: *AE_CURRENT_POSITION) callconv(.Inline) void {
+            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).GetCurrentPadding(@ptrCast(*const IAudioEndpointRT, self), pPadding, pAeCurrentPosition);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointRT_ProcessingComplete(self: *const T) callconv(.Inline) void {
+            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).ProcessingComplete(@ptrCast(*const IAudioEndpointRT, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointRT_SetPinInactive(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).SetPinInactive(@ptrCast(*const IAudioEndpointRT, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointRT_SetPinActive(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointRT.VTable, self.vtable).SetPinActive(@ptrCast(*const IAudioEndpointRT, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioInputEndpointRT_Value = @import("../zig.zig").Guid.initString("8026ab61-92b2-43c1-a1df-5c37ebd08d82");
+pub const IID_IAudioInputEndpointRT = &IID_IAudioInputEndpointRT_Value;
+pub const IAudioInputEndpointRT = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetInputDataPointer: fn(
+            self: *const IAudioInputEndpointRT,
+            pConnectionProperty: *APO_CONNECTION_PROPERTY,
+            pAeTimeStamp: *AE_CURRENT_POSITION,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ReleaseInputDataPointer: fn(
+            self: *const IAudioInputEndpointRT,
+            u32FrameCount: u32,
+            pDataPointer: usize,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        PulseEndpoint: fn(
+            self: *const IAudioInputEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioInputEndpointRT_GetInputDataPointer(self: *const T, pConnectionProperty: *APO_CONNECTION_PROPERTY, pAeTimeStamp: *AE_CURRENT_POSITION) callconv(.Inline) void {
+            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).GetInputDataPointer(@ptrCast(*const IAudioInputEndpointRT, self), pConnectionProperty, pAeTimeStamp);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioInputEndpointRT_ReleaseInputDataPointer(self: *const T, u32FrameCount: u32, pDataPointer: usize) callconv(.Inline) void {
+            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).ReleaseInputDataPointer(@ptrCast(*const IAudioInputEndpointRT, self), u32FrameCount, pDataPointer);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioInputEndpointRT_PulseEndpoint(self: *const T) callconv(.Inline) void {
+            return @ptrCast(*const IAudioInputEndpointRT.VTable, self.vtable).PulseEndpoint(@ptrCast(*const IAudioInputEndpointRT, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioOutputEndpointRT_Value = @import("../zig.zig").Guid.initString("8fa906e4-c31c-4e31-932e-19a66385e9aa");
+pub const IID_IAudioOutputEndpointRT = &IID_IAudioOutputEndpointRT_Value;
+pub const IAudioOutputEndpointRT = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        GetOutputDataPointer: fn(
+            self: *const IAudioOutputEndpointRT,
+            u32FrameCount: u32,
+            pAeTimeStamp: *AE_CURRENT_POSITION,
+        ) callconv(@import("std").os.windows.WINAPI) usize,
+        ReleaseOutputDataPointer: fn(
+            self: *const IAudioOutputEndpointRT,
+            pConnectionProperty: *const APO_CONNECTION_PROPERTY,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        PulseEndpoint: fn(
+            self: *const IAudioOutputEndpointRT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioOutputEndpointRT_GetOutputDataPointer(self: *const T, u32FrameCount: u32, pAeTimeStamp: *AE_CURRENT_POSITION) callconv(.Inline) usize {
+            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).GetOutputDataPointer(@ptrCast(*const IAudioOutputEndpointRT, self), u32FrameCount, pAeTimeStamp);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioOutputEndpointRT_ReleaseOutputDataPointer(self: *const T, pConnectionProperty: *const APO_CONNECTION_PROPERTY) callconv(.Inline) void {
+            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).ReleaseOutputDataPointer(@ptrCast(*const IAudioOutputEndpointRT, self), pConnectionProperty);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioOutputEndpointRT_PulseEndpoint(self: *const T) callconv(.Inline) void {
+            return @ptrCast(*const IAudioOutputEndpointRT.VTable, self.vtable).PulseEndpoint(@ptrCast(*const IAudioOutputEndpointRT, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioDeviceEndpoint_Value = @import("../zig.zig").Guid.initString("d4952f5a-a0b2-4cc4-8b82-9358488dd8ac");
+pub const IID_IAudioDeviceEndpoint = &IID_IAudioDeviceEndpoint_Value;
+pub const IAudioDeviceEndpoint = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetBuffer: fn(
+            self: *const IAudioDeviceEndpoint,
+            MaxPeriod: i64,
+            u32LatencyCoefficient: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRTCaps: fn(
+            self: *const IAudioDeviceEndpoint,
+            pbIsRTCapable: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEventDrivenCapable: fn(
+            self: *const IAudioDeviceEndpoint,
+            pbisEventCapable: *BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteExclusiveModeParametersToSharedMemory: fn(
+            self: *const IAudioDeviceEndpoint,
+            hTargetProcess: usize,
+            hnsPeriod: i64,
+            hnsBufferDuration: i64,
+            u32LatencyCoefficient: u32,
+            pu32SharedMemorySize: *u32,
+            phSharedMemory: *usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioDeviceEndpoint_SetBuffer(self: *const T, MaxPeriod: i64, u32LatencyCoefficient: u32) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).SetBuffer(@ptrCast(*const IAudioDeviceEndpoint, self), MaxPeriod, u32LatencyCoefficient);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioDeviceEndpoint_GetRTCaps(self: *const T, pbIsRTCapable: *BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).GetRTCaps(@ptrCast(*const IAudioDeviceEndpoint, self), pbIsRTCapable);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioDeviceEndpoint_GetEventDrivenCapable(self: *const T, pbisEventCapable: *BOOL) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).GetEventDrivenCapable(@ptrCast(*const IAudioDeviceEndpoint, self), pbisEventCapable);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioDeviceEndpoint_WriteExclusiveModeParametersToSharedMemory(self: *const T, hTargetProcess: usize, hnsPeriod: i64, hnsBufferDuration: i64, u32LatencyCoefficient: u32, pu32SharedMemorySize: *u32, phSharedMemory: *usize) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioDeviceEndpoint.VTable, self.vtable).WriteExclusiveModeParametersToSharedMemory(@ptrCast(*const IAudioDeviceEndpoint, self), hTargetProcess, hnsPeriod, hnsBufferDuration, u32LatencyCoefficient, pu32SharedMemorySize, phSharedMemory);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows6.1'
+const IID_IAudioEndpointControl_Value = @import("../zig.zig").Guid.initString("c684b72a-6df4-4774-bdf9-76b77509b653");
+pub const IID_IAudioEndpointControl = &IID_IAudioEndpointControl_Value;
+pub const IAudioEndpointControl = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Start: fn(
+            self: *const IAudioEndpointControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: fn(
+            self: *const IAudioEndpointControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Stop: fn(
+            self: *const IAudioEndpointControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointControl_Start(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Start(@ptrCast(*const IAudioEndpointControl, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointControl_Reset(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Reset(@ptrCast(*const IAudioEndpointControl, self));
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAudioEndpointControl_Stop(self: *const T) callconv(.Inline) HRESULT {
+            return @ptrCast(*const IAudioEndpointControl.VTable, self.vtable).Stop(@ptrCast(*const IAudioEndpointControl, self));
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (65)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "KERNEL32" fn WTSGetActiveConsoleSessionId(
-) callconv(@import("std").os.windows.WINAPI) u32;
-
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "WTSAPI32" fn WTSStopRemoteControlSession(
     LogonId: u32,
@@ -7831,6 +7827,10 @@ pub extern "KERNEL32" fn ProcessIdToSessionId(
     pSessionId: *u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+// TODO: this type is limited to platform 'windows6.0.6000'
+pub extern "KERNEL32" fn WTSGetActiveConsoleSessionId(
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (34)
@@ -7986,25 +7986,25 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const SAFEARRAY = @import("../system/ole_automation.zig").SAFEARRAY;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const HANDLE_PTR = @import("../system/system_services.zig").HANDLE_PTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 const MESSAGEBOX_STYLE = @import("../ui/windows_and_messaging.zig").MESSAGEBOX_STYLE;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const PSID = @import("../security.zig").PSID;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const RECT = @import("../ui/display_devices.zig").RECT;
+const BSTR = @import("../foundation.zig").BSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const PSID = @import("../foundation.zig").PSID;
+const BOOL = @import("../foundation.zig").BOOL;
+const RECT = @import("../foundation.zig").RECT;
 const IPropertyBag = @import("../system/ole_automation.zig").IPropertyBag;
 const MESSAGEBOX_RESULT = @import("../ui/windows_and_messaging.zig").MESSAGEBOX_RESULT;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HWND = @import("../foundation.zig").HWND;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const WAVEFORMATEX = @import("../media/multimedia.zig").WAVEFORMATEX;
 
 test {

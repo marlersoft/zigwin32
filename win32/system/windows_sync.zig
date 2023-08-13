@@ -3907,13 +3907,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const IPropertyStore = @import("../media/audio/direct_music.zig").IPropertyStore;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const IPropertyStore = @import("../system/properties_system.zig").IPropertyStore;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     @setEvalBranchQuota(

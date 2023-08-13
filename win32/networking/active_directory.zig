@@ -2,7 +2,6 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (450)
 //--------------------------------------------------------------------------------
-pub const CLSID_DsObjectPicker = Guid.initString("17d6ccd8-3b7b-11d2-b9e0-00c04fd8dbf7");
 pub const WM_ADSPROP_NOTIFY_PAGEINIT = @as(u32, 2125);
 pub const WM_ADSPROP_NOTIFY_PAGEHWND = @as(u32, 2126);
 pub const WM_ADSPROP_NOTIFY_CHANGE = @as(u32, 2127);
@@ -452,10 +451,14 @@ pub const DSOP_FLAG_SKIP_TARGET_COMPUTER_DC_CHECK = @as(u32, 2);
 pub const SCHEDULE_INTERVAL = @as(u32, 0);
 pub const SCHEDULE_BANDWIDTH = @as(u32, 1);
 pub const SCHEDULE_PRIORITY = @as(u32, 2);
+pub const CLSID_DsObjectPicker = Guid.initString("17d6ccd8-3b7b-11d2-b9e0-00c04fd8dbf7");
 
 //--------------------------------------------------------------------------------
 // Section: Types (264)
 //--------------------------------------------------------------------------------
+// TODO: this type has a FreeFunc 'DsGetDcCloseW', what can Zig do with this information?
+pub const GetDcContextHandle = isize;
+
 pub const CQFORM = extern struct {
     cbStruct: u32,
     dwFlags: u32,
@@ -824,7 +827,7 @@ pub const ADS_PATH = extern struct {
 };
 
 pub const ADS_POSTALADDRESS = extern struct {
-    PostalAddress: [6]*u16,
+    PostalAddress: [6]PWSTR,
 };
 
 pub const ADS_TIMESTAMP = extern struct {
@@ -9311,9 +9314,6 @@ pub const DS_DOMAIN_TRUSTSA = extern struct {
     DomainGuid: Guid,
 };
 
-// TODO: this type has a FreeFunc 'DsGetDcCloseW', what can Zig do with this information?
-pub const GetDcContextHandle = isize;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (158)
@@ -10872,39 +10872,39 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (34)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const LPARAM = @import("../ui/windows_and_messaging.zig").LPARAM;
+const LPARAM = @import("../foundation.zig").LPARAM;
 const HKEY = @import("../system/registry.zig").HKEY;
-const HINSTANCE = @import("../system/system_services.zig").HINSTANCE;
+const HINSTANCE = @import("../foundation.zig").HINSTANCE;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
+const FILETIME = @import("../foundation.zig").FILETIME;
 const IEnumVARIANT = @import("../system/ole_automation.zig").IEnumVARIANT;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const PSID = @import("../security.zig").PSID;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const PSID = @import("../foundation.zig").PSID;
+const BOOL = @import("../foundation.zig").BOOL;
 const IPersist = @import("../system/com.zig").IPersist;
 const DISPPARAMS = @import("../system/ole_automation.zig").DISPPARAMS;
-const WPARAM = @import("../ui/windows_and_messaging.zig").WPARAM;
+const WPARAM = @import("../foundation.zig").WPARAM;
 const DLGPROC = @import("../ui/windows_and_messaging.zig").DLGPROC;
 const BFFCALLBACK = @import("../ui/shell.zig").BFFCALLBACK;
 const LPFNSVADDPROPSHEETPAGE = @import("../ui/controls.zig").LPFNSVADDPROPSHEETPAGE;
 const ITypeInfo = @import("../system/ole_automation.zig").ITypeInfo;
-const HICON = @import("../ui/menus_and_resources.zig").HICON;
+const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const EXCEPINFO = @import("../system/ole_automation.zig").EXCEPINFO;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const PSTR = @import("../system/system_services.zig").PSTR;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const BSTR = @import("../foundation.zig").BSTR;
+const PSTR = @import("../foundation.zig").PSTR;
+const HWND = @import("../foundation.zig").HWND;
 const IPropertyBag = @import("../system/ole_automation.zig").IPropertyBag;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const IDataObject = @import("../system/com.zig").IDataObject;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const SOCKET_ADDRESS = @import("../networking/win_sock.zig").SOCKET_ADDRESS;
-const LSA_FOREST_TRUST_INFORMATION = @import("../security.zig").LSA_FOREST_TRUST_INFORMATION;
+const LSA_FOREST_TRUST_INFORMATION = @import("../security/authentication/identity/core.zig").LSA_FOREST_TRUST_INFORMATION;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

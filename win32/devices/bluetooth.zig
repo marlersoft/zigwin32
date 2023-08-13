@@ -1387,12 +1387,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const CHAR = @import("../system/system_services.zig").CHAR;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const BOOL = @import("../foundation.zig").BOOL;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

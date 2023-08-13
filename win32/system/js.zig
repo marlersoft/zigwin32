@@ -155,26 +155,6 @@ pub const JsNativeFunction = fn(
 //--------------------------------------------------------------------------------
 // Section: Functions (87)
 //--------------------------------------------------------------------------------
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "chakra" fn JsCreateContext(
-    runtime: *c_void,
-    debugApplication: *IDebugApplication64,
-    newContext: **c_void,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-}, else => struct { } };
-
-pub usingnamespace switch (@import("../zig.zig").arch) {
-.X64, .Arm64 => struct {
-
-pub extern "chakra" fn JsStartDebugging(
-    debugApplication: *IDebugApplication64,
-) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
-
-}, else => struct { } };
-
 pub extern "chakra" fn JsCreateRuntime(
     attributes: JsRuntimeAttributes,
     runtimeVersion: JsRuntimeVersion,
@@ -227,6 +207,17 @@ pub extern "chakra" fn JsRelease(
     count: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
 
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "chakra" fn JsCreateContext(
+    runtime: *c_void,
+    debugApplication: *IDebugApplication64,
+    newContext: **c_void,
+) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+
+}, else => struct { } };
+
 pub extern "chakra" fn JsGetCurrentContext(
     currentContext: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
@@ -239,6 +230,15 @@ pub extern "chakra" fn JsGetRuntime(
     context: *c_void,
     runtime: **c_void,
 ) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+
+pub usingnamespace switch (@import("../zig.zig").arch) {
+.X64, .Arm64 => struct {
+
+pub extern "chakra" fn JsStartDebugging(
+    debugApplication: *IDebugApplication64,
+) callconv(@import("std").os.windows.WINAPI) JsErrorCode;
+
+}, else => struct { } };
 
 pub extern "chakra" fn JsIdle(
     nextIdleTick: ?*u32,
@@ -645,9 +645,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
 const IDebugApplication64 = @import("../system/diagnostics/debug.zig").IDebugApplication64;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const IActiveScriptProfilerCallback = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerCallback;
 const IActiveScriptProfilerHeapEnum = @import("../system/diagnostics/debug.zig").IActiveScriptProfilerHeapEnum;
 const PROFILER_EVENT_MASK = @import("../system/diagnostics/debug.zig").PROFILER_EVENT_MASK;

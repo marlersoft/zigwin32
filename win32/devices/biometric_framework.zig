@@ -2022,14 +2022,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const POINT = @import("../ui/display_devices.zig").POINT;
-const RECT = @import("../ui/display_devices.zig").RECT;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const POINT = @import("../foundation.zig").POINT;
+const RECT = @import("../foundation.zig").RECT;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

@@ -253,16 +253,8 @@ pub const FILTER_REPLY_HEADER = extern struct {
 
 
 //--------------------------------------------------------------------------------
-// Section: Functions (29)
+// Section: Functions (28)
 //--------------------------------------------------------------------------------
-// TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "KERNEL32" fn RtlCaptureStackBackTrace(
-    FramesToSkip: u32,
-    FramesToCapture: u32,
-    BackTrace: [*]*c_void,
-    BackTraceHash: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u16;
-
 pub extern "FLTLIB" fn FilterLoad(
     lpFilterName: [*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -483,12 +475,12 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const HRESULT = @import("../system/com.zig").HRESULT;
-const SECURITY_ATTRIBUTES = @import("../system/system_services.zig").SECURITY_ATTRIBUTES;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
+const PWSTR = @import("../foundation.zig").PWSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
-const NTSTATUS = @import("../system/system_services.zig").NTSTATUS;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 
 test {
     @setEvalBranchQuota(

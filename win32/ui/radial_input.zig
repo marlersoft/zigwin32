@@ -98,8 +98,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const HWND = @import("../foundation.zig").HWND;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
 
 test {

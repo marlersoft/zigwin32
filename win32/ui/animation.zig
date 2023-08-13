@@ -10,6 +10,8 @@ pub const UI_ANIMATION_SECONDS_INFINITE = @as(i32, -1);
 //--------------------------------------------------------------------------------
 // Section: Types (51)
 //--------------------------------------------------------------------------------
+pub const UI_ANIMATION_KEYFRAME = isize;
+
 const CLSID_UIAnimationManager_Value = @import("../zig.zig").Guid.initString("4c1fc63a-695c-47e8-a339-1a194be3d0b8");
 pub const CLSID_UIAnimationManager = &CLSID_UIAnimationManager_Value;
 
@@ -2426,8 +2428,6 @@ pub const IUIAnimationStoryboard2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_KEYFRAME = isize;
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -2450,8 +2450,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const IDCompositionAnimation = @import("../graphics/direct_composition.zig").IDCompositionAnimation;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const BOOL = @import("../foundation.zig").BOOL;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

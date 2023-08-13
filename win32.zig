@@ -3,6 +3,7 @@ pub const ai = @import("win32/ai.zig");
 pub const data = @import("win32/data.zig");
 pub const devices = @import("win32/devices.zig");
 pub const everything = @import("win32/everything.zig");
+pub const foundation = @import("win32/foundation.zig");
 pub const gaming = @import("win32/gaming.zig");
 pub const globalization = @import("win32/globalization.zig");
 pub const graphics = @import("win32/graphics.zig");

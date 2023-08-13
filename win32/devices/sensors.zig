@@ -607,14 +607,14 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const SYSTEMTIME = @import("../system/windows_programming.zig").SYSTEMTIME;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const PROPERTYKEY = @import("../system/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
+const BSTR = @import("../foundation.zig").BSTR;
 const IPortableDeviceKeyCollection = @import("../devices/portable_devices.zig").IPortableDeviceKeyCollection;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 const IPortableDeviceValues = @import("../devices/portable_devices.zig").IPortableDeviceValues;
 
 test {

@@ -2,6 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (423)
 //--------------------------------------------------------------------------------
+pub const WinUSB_TestGuid = Guid.initString("da812bff-12c3-46a2-8e2b-dbd3b7834c43");
 pub const SHORT_PACKET_TERMINATE = @as(u32, 1);
 pub const AUTO_CLEAR_STALL = @as(u32, 2);
 pub const PIPE_TRANSFER_TIMEOUT = @as(u32, 3);
@@ -424,7 +425,6 @@ pub const MS_GENRE_DESCRIPTOR_INDEX = @as(u32, 1);
 pub const MS_POWER_DESCRIPTOR_INDEX = @as(u32, 2);
 pub const MS_OS_FLAGS_CONTAINERID = @as(u32, 2);
 pub const URB_OPEN_STATIC_STREAMS_VERSION_100 = @as(u32, 256);
-pub const WinUSB_TestGuid = Guid.initString("da812bff-12c3-46a2-8e2b-dbd3b7834c43");
 
 //--------------------------------------------------------------------------------
 // Section: Types (124)
@@ -1921,8 +1921,8 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const LARGE_INTEGER = @import("../system/system_services.zig").LARGE_INTEGER;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const BOOL = @import("../foundation.zig").BOOL;
 const OVERLAPPED = @import("../system/system_services.zig").OVERLAPPED;
 
 test {

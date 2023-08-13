@@ -1245,11 +1245,11 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const AUDIO_STREAM_CATEGORY = @import("../../media/audio/core_audio.zig").AUDIO_STREAM_CATEGORY;
-const PWSTR = @import("../../system/system_services.zig").PWSTR;
+const PWSTR = @import("../../foundation.zig").PWSTR;
 const WAVEFORMATEX = @import("../../media/multimedia.zig").WAVEFORMATEX;
 const IUnknown = @import("../../system/com.zig").IUnknown;
-const BOOL = @import("../../system/system_services.zig").BOOL;
-const HRESULT = @import("../../system/com.zig").HRESULT;
+const BOOL = @import("../../foundation.zig").BOOL;
+const HRESULT = @import("../../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

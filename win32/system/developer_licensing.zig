@@ -39,9 +39,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
-const FILETIME = @import("../system/windows_programming.zig").FILETIME;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const FILETIME = @import("../foundation.zig").FILETIME;
+const HWND = @import("../foundation.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
     @setEvalBranchQuota(

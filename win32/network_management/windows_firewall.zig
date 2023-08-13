@@ -3865,17 +3865,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IDispatch = @import("../system/ole_automation.zig").IDispatch;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/ole_automation.zig").VARIANT;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const SID = @import("../security.zig").SID;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const BSTR = @import("../system/ole_automation.zig").BSTR;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const PSID = @import("../security.zig").PSID;
-const BOOL = @import("../system/system_services.zig").BOOL;
-const HWND = @import("../ui/windows_and_messaging.zig").HWND;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const BSTR = @import("../foundation.zig").BSTR;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const PSID = @import("../foundation.zig").PSID;
+const BOOL = @import("../foundation.zig").BOOL;
+const HWND = @import("../foundation.zig").HWND;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

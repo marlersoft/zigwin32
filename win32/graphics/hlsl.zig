@@ -68,8 +68,98 @@ pub const CLSID_DxcOptimizer = Guid.initString("ae2cd79f-cc22-453f-9b6b-b124e7a5
 pub const CLSID_DxcContainerBuilder = Guid.initString("94134294-411f-4574-b4d0-8741e25240d2");
 
 //--------------------------------------------------------------------------------
-// Section: Types (25)
+// Section: Types (26)
 //--------------------------------------------------------------------------------
+pub const pD3DCompile = fn(
+    pSrcData: *const c_void,
+    SrcDataSize: usize,
+    pFileName: [*:0]const u8,
+    pDefines: *const D3D_SHADER_MACRO,
+    pInclude: *ID3DInclude,
+    pEntrypoint: [*:0]const u8,
+    pTarget: [*:0]const u8,
+    Flags1: u32,
+    Flags2: u32,
+    ppCode: **ID3DBlob,
+    ppErrorMsgs: **ID3DBlob,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub const pD3DPreprocess = fn(
+    pSrcData: *const c_void,
+    SrcDataSize: usize,
+    pFileName: [*:0]const u8,
+    pDefines: *const D3D_SHADER_MACRO,
+    pInclude: *ID3DInclude,
+    ppCodeText: **ID3DBlob,
+    ppErrorMsgs: **ID3DBlob,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub const pD3DDisassemble = fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pSrcData: *const c_void,
+    SrcDataSize: usize,
+    Flags: u32,
+    szComments: ?[*:0]const u8,
+    ppDisassembly: **ID3DBlob,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
+pub const D3DCOMPILER_STRIP_FLAGS = extern enum(i32) {
+    REFLECTION_DATA = 1,
+    DEBUG_INFO = 2,
+    TEST_BLOBS = 4,
+    PRIVATE_DATA = 8,
+    ROOT_SIGNATURE = 16,
+    FORCE_DWORD = 2147483647,
+};
+pub const D3DCOMPILER_STRIP_REFLECTION_DATA = D3DCOMPILER_STRIP_FLAGS.REFLECTION_DATA;
+pub const D3DCOMPILER_STRIP_DEBUG_INFO = D3DCOMPILER_STRIP_FLAGS.DEBUG_INFO;
+pub const D3DCOMPILER_STRIP_TEST_BLOBS = D3DCOMPILER_STRIP_FLAGS.TEST_BLOBS;
+pub const D3DCOMPILER_STRIP_PRIVATE_DATA = D3DCOMPILER_STRIP_FLAGS.PRIVATE_DATA;
+pub const D3DCOMPILER_STRIP_ROOT_SIGNATURE = D3DCOMPILER_STRIP_FLAGS.ROOT_SIGNATURE;
+pub const D3DCOMPILER_STRIP_FORCE_DWORD = D3DCOMPILER_STRIP_FLAGS.FORCE_DWORD;
+
+pub const D3D_BLOB_PART = extern enum(i32) {
+    INPUT_SIGNATURE_BLOB = 0,
+    OUTPUT_SIGNATURE_BLOB = 1,
+    INPUT_AND_OUTPUT_SIGNATURE_BLOB = 2,
+    PATCH_CONSTANT_SIGNATURE_BLOB = 3,
+    ALL_SIGNATURE_BLOB = 4,
+    DEBUG_INFO = 5,
+    LEGACY_SHADER = 6,
+    XNA_PREPASS_SHADER = 7,
+    XNA_SHADER = 8,
+    PDB = 9,
+    PRIVATE_DATA = 10,
+    ROOT_SIGNATURE = 11,
+    DEBUG_NAME = 12,
+    TEST_ALTERNATE_SHADER = 32768,
+    TEST_COMPILE_DETAILS = 32769,
+    TEST_COMPILE_PERF = 32770,
+    TEST_COMPILE_REPORT = 32771,
+};
+pub const D3D_BLOB_INPUT_SIGNATURE_BLOB = D3D_BLOB_PART.INPUT_SIGNATURE_BLOB;
+pub const D3D_BLOB_OUTPUT_SIGNATURE_BLOB = D3D_BLOB_PART.OUTPUT_SIGNATURE_BLOB;
+pub const D3D_BLOB_INPUT_AND_OUTPUT_SIGNATURE_BLOB = D3D_BLOB_PART.INPUT_AND_OUTPUT_SIGNATURE_BLOB;
+pub const D3D_BLOB_PATCH_CONSTANT_SIGNATURE_BLOB = D3D_BLOB_PART.PATCH_CONSTANT_SIGNATURE_BLOB;
+pub const D3D_BLOB_ALL_SIGNATURE_BLOB = D3D_BLOB_PART.ALL_SIGNATURE_BLOB;
+pub const D3D_BLOB_DEBUG_INFO = D3D_BLOB_PART.DEBUG_INFO;
+pub const D3D_BLOB_LEGACY_SHADER = D3D_BLOB_PART.LEGACY_SHADER;
+pub const D3D_BLOB_XNA_PREPASS_SHADER = D3D_BLOB_PART.XNA_PREPASS_SHADER;
+pub const D3D_BLOB_XNA_SHADER = D3D_BLOB_PART.XNA_SHADER;
+pub const D3D_BLOB_PDB = D3D_BLOB_PART.PDB;
+pub const D3D_BLOB_PRIVATE_DATA = D3D_BLOB_PART.PRIVATE_DATA;
+pub const D3D_BLOB_ROOT_SIGNATURE = D3D_BLOB_PART.ROOT_SIGNATURE;
+pub const D3D_BLOB_DEBUG_NAME = D3D_BLOB_PART.DEBUG_NAME;
+pub const D3D_BLOB_TEST_ALTERNATE_SHADER = D3D_BLOB_PART.TEST_ALTERNATE_SHADER;
+pub const D3D_BLOB_TEST_COMPILE_DETAILS = D3D_BLOB_PART.TEST_COMPILE_DETAILS;
+pub const D3D_BLOB_TEST_COMPILE_PERF = D3D_BLOB_PART.TEST_COMPILE_PERF;
+pub const D3D_BLOB_TEST_COMPILE_REPORT = D3D_BLOB_PART.TEST_COMPILE_REPORT;
+
+pub const D3D_SHADER_DATA = extern struct {
+    pBytecode: *const c_void,
+    BytecodeLength: usize,
+};
+
 pub const DxcCreateInstanceProc = fn(
     rclsid: *const Guid,
     riid: *const Guid,
@@ -118,14 +208,14 @@ pub const IDxcBlobEncoding = extern struct {
         GetEncoding: fn(
             self: *const IDxcBlobEncoding,
             pKnown: *BOOL,
-            pCodePage: *u32,
+            pCodePage: *DXC_CP,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDxcBlob.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcBlobEncoding_GetEncoding(self: *const T, pKnown: *BOOL, pCodePage: *u32) callconv(.Inline) HRESULT {
+        pub fn IDxcBlobEncoding_GetEncoding(self: *const T, pKnown: *BOOL, pCodePage: *DXC_CP) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcBlobEncoding.VTable, self.vtable).GetEncoding(@ptrCast(*const IDxcBlobEncoding, self), pKnown, pCodePage);
         }
     };}
@@ -151,7 +241,7 @@ pub const IDxcLibrary = extern struct {
         CreateBlobFromFile: fn(
             self: *const IDxcLibrary,
             pFileName: [*:0]const u16,
-            codePage: ?*u32,
+            codePage: ?*DXC_CP,
             pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlobWithEncodingFromPinned: fn(
@@ -159,7 +249,7 @@ pub const IDxcLibrary = extern struct {
             // TODO: what to do with BytesParamIndex 1?
             pText: *const c_void,
             size: u32,
-            codePage: u32,
+            codePage: DXC_CP,
             pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlobWithEncodingOnHeapCopy: fn(
@@ -167,7 +257,7 @@ pub const IDxcLibrary = extern struct {
             // TODO: what to do with BytesParamIndex 1?
             pText: *const c_void,
             size: u32,
-            codePage: u32,
+            codePage: DXC_CP,
             pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateBlobWithEncodingOnMalloc: fn(
@@ -176,7 +266,7 @@ pub const IDxcLibrary = extern struct {
             pText: *const c_void,
             pIMalloc: *IMalloc,
             size: u32,
-            codePage: u32,
+            codePage: DXC_CP,
             pBlobEncoding: **IDxcBlobEncoding,
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         CreateIncludeHandler: fn(
@@ -211,19 +301,19 @@ pub const IDxcLibrary = extern struct {
             return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobFromBlob(@ptrCast(*const IDxcLibrary, self), pBlob, offset, length, ppResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobFromFile(self: *const T, pFileName: [*:0]const u16, codePage: ?*u32, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcLibrary_CreateBlobFromFile(self: *const T, pFileName: [*:0]const u16, codePage: ?*DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobFromFile(@ptrCast(*const IDxcLibrary, self), pFileName, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobWithEncodingFromPinned(self: *const T, pText: *const c_void, size: u32, codePage: u32, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcLibrary_CreateBlobWithEncodingFromPinned(self: *const T, pText: *const c_void, size: u32, codePage: DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingFromPinned(@ptrCast(*const IDxcLibrary, self), pText, size, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobWithEncodingOnHeapCopy(self: *const T, pText: *const c_void, size: u32, codePage: u32, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcLibrary_CreateBlobWithEncodingOnHeapCopy(self: *const T, pText: *const c_void, size: u32, codePage: DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingOnHeapCopy(@ptrCast(*const IDxcLibrary, self), pText, size, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDxcLibrary_CreateBlobWithEncodingOnMalloc(self: *const T, pText: *const c_void, pIMalloc: *IMalloc, size: u32, codePage: u32, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
+        pub fn IDxcLibrary_CreateBlobWithEncodingOnMalloc(self: *const T, pText: *const c_void, pIMalloc: *IMalloc, size: u32, codePage: DXC_CP, pBlobEncoding: **IDxcBlobEncoding) callconv(.Inline) HRESULT {
             return @ptrCast(*const IDxcLibrary.VTable, self.vtable).CreateBlobWithEncodingOnMalloc(@ptrCast(*const IDxcLibrary, self), pText, pIMalloc, size, codePage, pBlobEncoding);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -738,95 +828,14 @@ pub const IDxcVersionInfo2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const pD3DCompile = fn(
-    pSrcData: *const c_void,
-    SrcDataSize: usize,
-    pFileName: [*:0]const u8,
-    pDefines: *const D3D_SHADER_MACRO,
-    pInclude: *ID3DInclude,
-    pEntrypoint: [*:0]const u8,
-    pTarget: [*:0]const u8,
-    Flags1: u32,
-    Flags2: u32,
-    ppCode: **ID3DBlob,
-    ppErrorMsgs: **ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const pD3DPreprocess = fn(
-    pSrcData: *const c_void,
-    SrcDataSize: usize,
-    pFileName: [*:0]const u8,
-    pDefines: *const D3D_SHADER_MACRO,
-    pInclude: *ID3DInclude,
-    ppCodeText: **ID3DBlob,
-    ppErrorMsgs: **ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const pD3DDisassemble = fn(
-    // TODO: what to do with BytesParamIndex 1?
-    pSrcData: *const c_void,
-    SrcDataSize: usize,
-    Flags: u32,
-    szComments: ?[*:0]const u8,
-    ppDisassembly: **ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
-
-pub const D3DCOMPILER_STRIP_FLAGS = extern enum(i32) {
-    REFLECTION_DATA = 1,
-    DEBUG_INFO = 2,
-    TEST_BLOBS = 4,
-    PRIVATE_DATA = 8,
-    ROOT_SIGNATURE = 16,
-    FORCE_DWORD = 2147483647,
+pub const DXC_CP = extern enum(u32) {
+    ACP = 0,
+    UTF16 = 1200,
+    UTF8 = 65001,
 };
-pub const D3DCOMPILER_STRIP_REFLECTION_DATA = D3DCOMPILER_STRIP_FLAGS.REFLECTION_DATA;
-pub const D3DCOMPILER_STRIP_DEBUG_INFO = D3DCOMPILER_STRIP_FLAGS.DEBUG_INFO;
-pub const D3DCOMPILER_STRIP_TEST_BLOBS = D3DCOMPILER_STRIP_FLAGS.TEST_BLOBS;
-pub const D3DCOMPILER_STRIP_PRIVATE_DATA = D3DCOMPILER_STRIP_FLAGS.PRIVATE_DATA;
-pub const D3DCOMPILER_STRIP_ROOT_SIGNATURE = D3DCOMPILER_STRIP_FLAGS.ROOT_SIGNATURE;
-pub const D3DCOMPILER_STRIP_FORCE_DWORD = D3DCOMPILER_STRIP_FLAGS.FORCE_DWORD;
-
-pub const D3D_BLOB_PART = extern enum(i32) {
-    INPUT_SIGNATURE_BLOB = 0,
-    OUTPUT_SIGNATURE_BLOB = 1,
-    INPUT_AND_OUTPUT_SIGNATURE_BLOB = 2,
-    PATCH_CONSTANT_SIGNATURE_BLOB = 3,
-    ALL_SIGNATURE_BLOB = 4,
-    DEBUG_INFO = 5,
-    LEGACY_SHADER = 6,
-    XNA_PREPASS_SHADER = 7,
-    XNA_SHADER = 8,
-    PDB = 9,
-    PRIVATE_DATA = 10,
-    ROOT_SIGNATURE = 11,
-    DEBUG_NAME = 12,
-    TEST_ALTERNATE_SHADER = 32768,
-    TEST_COMPILE_DETAILS = 32769,
-    TEST_COMPILE_PERF = 32770,
-    TEST_COMPILE_REPORT = 32771,
-};
-pub const D3D_BLOB_INPUT_SIGNATURE_BLOB = D3D_BLOB_PART.INPUT_SIGNATURE_BLOB;
-pub const D3D_BLOB_OUTPUT_SIGNATURE_BLOB = D3D_BLOB_PART.OUTPUT_SIGNATURE_BLOB;
-pub const D3D_BLOB_INPUT_AND_OUTPUT_SIGNATURE_BLOB = D3D_BLOB_PART.INPUT_AND_OUTPUT_SIGNATURE_BLOB;
-pub const D3D_BLOB_PATCH_CONSTANT_SIGNATURE_BLOB = D3D_BLOB_PART.PATCH_CONSTANT_SIGNATURE_BLOB;
-pub const D3D_BLOB_ALL_SIGNATURE_BLOB = D3D_BLOB_PART.ALL_SIGNATURE_BLOB;
-pub const D3D_BLOB_DEBUG_INFO = D3D_BLOB_PART.DEBUG_INFO;
-pub const D3D_BLOB_LEGACY_SHADER = D3D_BLOB_PART.LEGACY_SHADER;
-pub const D3D_BLOB_XNA_PREPASS_SHADER = D3D_BLOB_PART.XNA_PREPASS_SHADER;
-pub const D3D_BLOB_XNA_SHADER = D3D_BLOB_PART.XNA_SHADER;
-pub const D3D_BLOB_PDB = D3D_BLOB_PART.PDB;
-pub const D3D_BLOB_PRIVATE_DATA = D3D_BLOB_PART.PRIVATE_DATA;
-pub const D3D_BLOB_ROOT_SIGNATURE = D3D_BLOB_PART.ROOT_SIGNATURE;
-pub const D3D_BLOB_DEBUG_NAME = D3D_BLOB_PART.DEBUG_NAME;
-pub const D3D_BLOB_TEST_ALTERNATE_SHADER = D3D_BLOB_PART.TEST_ALTERNATE_SHADER;
-pub const D3D_BLOB_TEST_COMPILE_DETAILS = D3D_BLOB_PART.TEST_COMPILE_DETAILS;
-pub const D3D_BLOB_TEST_COMPILE_PERF = D3D_BLOB_PART.TEST_COMPILE_PERF;
-pub const D3D_BLOB_TEST_COMPILE_REPORT = D3D_BLOB_PART.TEST_COMPILE_REPORT;
-
-pub const D3D_SHADER_DATA = extern struct {
-    pBytecode: *const c_void,
-    BytecodeLength: usize,
-};
+pub const DXC_CP_ACP = DXC_CP.ACP;
+pub const DXC_CP_UTF16 = DXC_CP.UTF16;
+pub const DXC_CP_UTF8 = DXC_CP.UTF8;
 
 
 //--------------------------------------------------------------------------------
@@ -1068,27 +1077,27 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const IStream = @import("../storage/structured_storage.zig").IStream;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const IUnknown = @import("../system/com.zig").IUnknown;
-const HRESULT = @import("../system/com.zig").HRESULT;
-const PSTR = @import("../system/system_services.zig").PSTR;
+const HRESULT = @import("../foundation.zig").HRESULT;
+const PSTR = @import("../foundation.zig").PSTR;
 const ID3DInclude = @import("../graphics/direct3d11.zig").ID3DInclude;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 const ID3D10Effect = @import("../graphics/direct3d10.zig").ID3D10Effect;
 const ID3D11Linker = @import("../graphics/direct3d11.zig").ID3D11Linker;
 const ID3D11FunctionLinkingGraph = @import("../graphics/direct3d11.zig").ID3D11FunctionLinkingGraph;
 const IMalloc = @import("../system/com.zig").IMalloc;
-const ID3DBlob = @import("../graphics/direct3d11.zig").ID3DBlob;
 const D3D_SHADER_MACRO = @import("../graphics/direct3d11.zig").D3D_SHADER_MACRO;
+const ID3DBlob = @import("../graphics/direct3d11.zig").ID3DBlob;
 const ID3D11Module = @import("../graphics/direct3d11.zig").ID3D11Module;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DxcCreateInstanceProc")) { _ = DxcCreateInstanceProc; }
-    if (@hasDecl(@This(), "DxcCreateInstance2Proc")) { _ = DxcCreateInstance2Proc; }
     if (@hasDecl(@This(), "pD3DCompile")) { _ = pD3DCompile; }
     if (@hasDecl(@This(), "pD3DPreprocess")) { _ = pD3DPreprocess; }
     if (@hasDecl(@This(), "pD3DDisassemble")) { _ = pD3DDisassemble; }
+    if (@hasDecl(@This(), "DxcCreateInstanceProc")) { _ = DxcCreateInstanceProc; }
+    if (@hasDecl(@This(), "DxcCreateInstance2Proc")) { _ = DxcCreateInstance2Proc; }
 
     @setEvalBranchQuota(
         @import("std").meta.declarations(@This()).len * 3

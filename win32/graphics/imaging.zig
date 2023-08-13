@@ -4375,17 +4375,17 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const IStream = @import("../storage/structured_storage.zig").IStream;
 const ULARGE_INTEGER = @import("../system/system_services.zig").ULARGE_INTEGER;
-const PWSTR = @import("../system/system_services.zig").PWSTR;
+const PWSTR = @import("../foundation.zig").PWSTR;
 const ID2D1Image = @import("../graphics/direct2d.zig").ID2D1Image;
 const IPersistStream = @import("../system/com.zig").IPersistStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const IEnumString = @import("../system/com.zig").IEnumString;
-const HRESULT = @import("../system/com.zig").HRESULT;
+const HRESULT = @import("../foundation.zig").HRESULT;
 const PROPVARIANT = @import("../storage/structured_storage.zig").PROPVARIANT;
 const IEnumUnknown = @import("../system/com.zig").IEnumUnknown;
 const HBITMAP = @import("../graphics/gdi.zig").HBITMAP;
 const PROPBAG2 = @import("../system/com.zig").PROPBAG2;
-const BOOL = @import("../system/system_services.zig").BOOL;
+const BOOL = @import("../foundation.zig").BOOL;
 const ID2D1Device = @import("../graphics/direct2d.zig").ID2D1Device;
 const DXGI_FORMAT = @import("../graphics/dxgi.zig").DXGI_FORMAT;
 const HPALETTE = @import("../graphics/gdi.zig").HPALETTE;
@@ -4393,8 +4393,8 @@ const DXGI_JPEG_DC_HUFFMAN_TABLE = @import("../graphics/dxgi.zig").DXGI_JPEG_DC_
 const D2D1_PIXEL_FORMAT = @import("../graphics/direct2d.zig").D2D1_PIXEL_FORMAT;
 const IPropertyBag2 = @import("../system/com.zig").IPropertyBag2;
 const DXGI_JPEG_AC_HUFFMAN_TABLE = @import("../graphics/dxgi.zig").DXGI_JPEG_AC_HUFFMAN_TABLE;
-const HANDLE = @import("../system/system_services.zig").HANDLE;
-const HICON = @import("../ui/menus_and_resources.zig").HICON;
+const HANDLE = @import("../foundation.zig").HANDLE;
+const HICON = @import("../ui/windows_and_messaging.zig").HICON;
 const DXGI_JPEG_QUANTIZATION_TABLE = @import("../graphics/dxgi.zig").DXGI_JPEG_QUANTIZATION_TABLE;
 
 test {
