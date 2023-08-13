@@ -817,7 +817,7 @@ pub const LM_HB2_FileServer = @as(i32, 2);
 pub const HWSAEVENT = ?*opaque{};
 
 // TODO: this type has a FreeFunc 'closesocket', what can Zig do with this information?
-pub const SOCKET = usize;
+pub const SOCKET = @import("std").os.socket_t;
 
 pub usingnamespace switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => struct {
