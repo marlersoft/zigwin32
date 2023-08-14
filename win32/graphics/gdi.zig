@@ -2701,64 +2701,78 @@ pub const MM_TEXT = HDC_MAP_MODE.TEXT;
 pub const MM_TWIPS = HDC_MAP_MODE.TWIPS;
 
 // TODO: this type has a FreeFunc 'ReleaseDC', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDC = *opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteDC', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 //TODO: type 'CreatedHDC' is "AlsoUsableFor" 'HDC' which means this type is implicitly
 //      convertible to 'HDC' but not the other way around.  I don't know how to do this
 //      in Zig so for now I'm just defining it as an alias
 pub const CreatedHDC = HDC;
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 //TODO: type 'HBITMAP' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
 //      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
 //      in Zig so for now I'm just defining it as an alias
 pub const HBITMAP = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 //TODO: type 'HRGN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
 //      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
 //      in Zig so for now I'm just defining it as an alias
 pub const HRGN = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 //TODO: type 'HPEN' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
 //      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
 //      in Zig so for now I'm just defining it as an alias
 pub const HPEN = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 //TODO: type 'HBRUSH' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
 //      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
 //      in Zig so for now I'm just defining it as an alias
 pub const HBRUSH = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 //TODO: type 'HFONT' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
 //      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
 //      in Zig so for now I'm just defining it as an alias
 pub const HFONT = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HMETAFILE = *opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HENHMETAFILE = *opaque{};
 
 // TODO: this type has a FreeFunc 'DeleteObject', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 //TODO: type 'HPALETTE' is "AlsoUsableFor" 'HGDIOBJ' which means this type is implicitly
 //      convertible to 'HGDIOBJ' but not the other way around.  I don't know how to do this
 //      in Zig so for now I'm just defining it as an alias
 pub const HPALETTE = HGDIOBJ;
 
 // TODO: this type has a FreeFunc 'DeleteMetaFile', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HdcMetdataFileHandle = isize;
 
 // TODO: this type has a FreeFunc 'DeleteEnhMetaFile', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HdcMetdataEnhFileHandle = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HGDIOBJ = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HMONITOR = *opaque{};
 
 pub const XFORM = extern struct {

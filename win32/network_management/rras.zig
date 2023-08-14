@@ -851,6 +851,7 @@ pub const SECURITYMSG_SUCCESS = SECURITY_MESSAGE_MSG_ID.SUCCESS;
 pub const SECURITYMSG_FAILURE = SECURITY_MESSAGE_MSG_ID.FAILURE;
 pub const SECURITYMSG_ERROR = SECURITY_MESSAGE_MSG_ID.ERROR;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HRASCONN = *opaque{};
 
 pub const RASAPIVERSION = enum(i32) {

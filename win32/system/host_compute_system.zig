@@ -7,12 +7,15 @@
 // Section: Types (15)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'HcsCloseOperation', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCS_OPERATION = isize;
 
 // TODO: this type has a FreeFunc 'HcsCloseComputeSystem', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCS_SYSTEM = isize;
 
 // TODO: this type has a FreeFunc 'HcsCloseProcess', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCS_PROCESS = isize;
 
 pub const HCS_OPERATION_TYPE = enum(i32) {

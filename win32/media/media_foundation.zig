@@ -2636,6 +2636,7 @@ pub const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC = extern struct {
     EnableStereo: BOOL,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDecoderHeap_Value = Guid.initString("0946b7c9-ebf6-4047-bb73-8683e27dbb1f");
 pub const IID_ID3D12VideoDecoderHeap = &IID_ID3D12VideoDecoderHeap_Value;
 pub const ID3D12VideoDecoderHeap = extern struct {
@@ -2661,6 +2662,7 @@ pub const ID3D12VideoDecoderHeap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDevice_Value = Guid.initString("1f052807-0b46-4acc-8a89-364f793718a4");
 pub const IID_ID3D12VideoDevice = &IID_ID3D12VideoDevice_Value;
 pub const ID3D12VideoDevice = extern struct {
@@ -2754,6 +2756,7 @@ pub const ID3D12VideoDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDecoder_Value = Guid.initString("c59b6bdc-7720-4074-a136-17a156037470");
 pub const IID_ID3D12VideoDecoder = &IID_ID3D12VideoDecoder_Value;
 pub const ID3D12VideoDecoder = extern struct {
@@ -3081,6 +3084,7 @@ pub const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS = extern struct {
     ConversionArguments: D3D12_VIDEO_DECODE_CONVERSION_ARGUMENTS,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoProcessor_Value = Guid.initString("304fdb32-bede-410a-8545-943ac6a46138");
 pub const IID_ID3D12VideoProcessor = &IID_ID3D12VideoProcessor_Value;
 pub const ID3D12VideoProcessor = extern struct {
@@ -3380,6 +3384,7 @@ pub const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_ARGUMENTS = extern struct {
     TargetRectangle: RECT,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDecodeCommandList_Value = Guid.initString("3b60536e-ad29-4e64-a269-f853837e5e53");
 pub const IID_ID3D12VideoDecodeCommandList = &IID_ID3D12VideoDecodeCommandList_Value;
 pub const ID3D12VideoDecodeCommandList = extern struct {
@@ -3629,6 +3634,7 @@ pub const ID3D12VideoDecodeCommandList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoProcessCommandList_Value = Guid.initString("aeb2543a-167f-4682-acc8-d159ed4a6209");
 pub const IID_ID3D12VideoProcessCommandList = &IID_ID3D12VideoProcessCommandList_Value;
 pub const ID3D12VideoProcessCommandList = extern struct {
@@ -3902,6 +3908,7 @@ pub const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS1 = extern struct {
     Histograms: [4]D3D12_VIDEO_DECODE_OUTPUT_HISTOGRAM,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDecodeCommandList1_Value = Guid.initString("d52f011b-b56e-453c-a05a-a7f311c8f472");
 pub const IID_ID3D12VideoDecodeCommandList1 = &IID_ID3D12VideoDecodeCommandList1_Value;
 pub const ID3D12VideoDecodeCommandList1 = extern struct {
@@ -3943,6 +3950,7 @@ pub const D3D12_VIDEO_PROCESS_INPUT_STREAM_ARGUMENTS1 = extern struct {
     FieldType: D3D12_VIDEO_FIELD_TYPE,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoProcessCommandList1_Value = Guid.initString("542c5c4d-7596-434f-8c93-4efa6766f267");
 pub const IID_ID3D12VideoProcessCommandList1 = &IID_ID3D12VideoProcessCommandList1_Value;
 pub const ID3D12VideoProcessCommandList1 = extern struct {
@@ -4063,6 +4071,7 @@ pub const D3D12_VIDEO_MOTION_ESTIMATOR_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoMotionEstimator_Value = Guid.initString("33fdae0e-098b-428f-87bb-34b695de08f8");
 pub const IID_ID3D12VideoMotionEstimator = &IID_ID3D12VideoMotionEstimator_Value;
 pub const ID3D12VideoMotionEstimator = extern struct {
@@ -4113,6 +4122,7 @@ pub const D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoMotionVectorHeap_Value = Guid.initString("5be17987-743a-4061-834b-23d22daea505");
 pub const IID_ID3D12VideoMotionVectorHeap = &IID_ID3D12VideoMotionVectorHeap_Value;
 pub const ID3D12VideoMotionVectorHeap = extern struct {
@@ -4154,6 +4164,7 @@ pub const ID3D12VideoMotionVectorHeap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDevice1_Value = Guid.initString("981611ad-a144-4c83-9890-f30e26d658ab");
 pub const IID_ID3D12VideoDevice1 = &IID_ID3D12VideoDevice1_Value;
 pub const ID3D12VideoDevice1 = extern struct {
@@ -4238,6 +4249,7 @@ pub const D3D12_RESOLVE_VIDEO_MOTION_VECTOR_HEAP_INPUT = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoEncodeCommandList_Value = Guid.initString("8455293a-0cbd-4831-9b39-fbdbab724723");
 pub const IID_ID3D12VideoEncodeCommandList = &IID_ID3D12VideoEncodeCommandList_Value;
 pub const ID3D12VideoEncodeCommandList = extern struct {
@@ -4691,6 +4703,7 @@ pub const D3D12_VIDEO_EXTENSION_COMMAND_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDecoder1_Value = Guid.initString("79a2e5fb-ccd2-469a-9fde-195d10951f7e");
 pub const IID_ID3D12VideoDecoder1 = &IID_ID3D12VideoDecoder1_Value;
 pub const ID3D12VideoDecoder1 = extern struct {
@@ -4720,6 +4733,7 @@ pub const ID3D12VideoDecoder1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDecoderHeap1_Value = Guid.initString("da1d98c5-539f-41b2-bf6b-1198a03b6d26");
 pub const IID_ID3D12VideoDecoderHeap1 = &IID_ID3D12VideoDecoderHeap1_Value;
 pub const ID3D12VideoDecoderHeap1 = extern struct {
@@ -4749,6 +4763,7 @@ pub const ID3D12VideoDecoderHeap1 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoProcessor1_Value = Guid.initString("f3cfe615-553f-425c-86d8-ee8c1b1fb01c");
 pub const IID_ID3D12VideoProcessor1 = &IID_ID3D12VideoProcessor1_Value;
 pub const ID3D12VideoProcessor1 = extern struct {
@@ -4779,6 +4794,7 @@ pub const ID3D12VideoProcessor1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.19041'
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoExtensionCommand_Value = Guid.initString("554e41e8-ae8e-4a8c-b7d2-5b4f274a30e4");
 pub const IID_ID3D12VideoExtensionCommand = &IID_ID3D12VideoExtensionCommand_Value;
 pub const ID3D12VideoExtensionCommand = extern struct {
@@ -4820,6 +4836,7 @@ pub const ID3D12VideoExtensionCommand = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDevice2_Value = Guid.initString("f019ac49-f838-4a95-9b17-579437c8f513");
 pub const IID_ID3D12VideoDevice2 = &IID_ID3D12VideoDevice2_Value;
 pub const ID3D12VideoDevice2 = extern struct {
@@ -4951,6 +4968,7 @@ pub const ID3D12VideoDevice2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDecodeCommandList2_Value = Guid.initString("6e120880-c114-4153-8036-d247051e1729");
 pub const IID_ID3D12VideoDecodeCommandList2 = &IID_ID3D12VideoDecodeCommandList2_Value;
 pub const ID3D12VideoDecodeCommandList2 = extern struct {
@@ -5018,6 +5036,7 @@ pub const ID3D12VideoDecodeCommandList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoProcessCommandList2_Value = Guid.initString("db525ae4-6ad6-473c-baa7-59b2e37082e4");
 pub const IID_ID3D12VideoProcessCommandList2 = &IID_ID3D12VideoProcessCommandList2_Value;
 pub const ID3D12VideoProcessCommandList2 = extern struct {
@@ -5085,6 +5104,7 @@ pub const ID3D12VideoProcessCommandList2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoEncodeCommandList1_Value = Guid.initString("94971eca-2bdb-4769-88cf-3675ea757ebc");
 pub const IID_ID3D12VideoEncodeCommandList1 = &IID_ID3D12VideoEncodeCommandList1_Value;
 pub const ID3D12VideoEncodeCommandList1 = extern struct {
@@ -6040,6 +6060,7 @@ pub const D3D12_VIDEO_ENCODER_DESC = extern struct {
     MaxMotionEstimationPrecision: D3D12_VIDEO_ENCODER_MOTION_ESTIMATION_PRECISION_MODE,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoEncoder_Value = Guid.initString("2e0d212d-8df9-44a6-a770-bb289b182737");
 pub const IID_ID3D12VideoEncoder = &IID_ID3D12VideoEncoder_Value;
 pub const ID3D12VideoEncoder = extern struct {
@@ -6141,6 +6162,7 @@ pub const ID3D12VideoEncoder = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoEncoderHeap_Value = Guid.initString("22b35d96-876a-44c0-b25e-fb8c9c7f1c4a");
 pub const IID_ID3D12VideoEncoderHeap = &IID_ID3D12VideoEncoderHeap_Value;
 pub const ID3D12VideoEncoderHeap = extern struct {
@@ -6246,6 +6268,7 @@ pub const ID3D12VideoEncoderHeap = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoDevice3_Value = Guid.initString("4243adb4-3a32-4666-973c-0ccc5625dc44");
 pub const IID_ID3D12VideoDevice3 = &IID_ID3D12VideoDevice3_Value;
 pub const ID3D12VideoDevice3 = extern struct {
@@ -6621,6 +6644,7 @@ pub const D3D12_VIDEO_ENCODER_ENCODEFRAME_OUTPUT_ARGUMENTS = extern struct {
     EncoderOutputMetadata: D3D12_VIDEO_ENCODER_ENCODE_OPERATION_METADATA_BUFFER,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VideoEncodeCommandList2_Value = Guid.initString("895491e2-e701-46a9-9a1f-8d3480ed867a");
 pub const IID_ID3D12VideoEncodeCommandList2 = &IID_ID3D12VideoEncodeCommandList2_Value;
 pub const ID3D12VideoEncodeCommandList2 = extern struct {

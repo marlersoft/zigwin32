@@ -1177,14 +1177,19 @@ pub const SSWF_TITLE = SOUNDSENTRY_WINDOWS_EFFECT.TITLE;
 pub const SSWF_WINDOW = SOUNDSENTRY_WINDOWS_EFFECT.WINDOW;
 
 // TODO: this type has a FreeFunc 'UnhookWinEvent', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HWINEVENTHOOK = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HUIANODE = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HUIAPATTERNOBJECT = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HUIATEXTRANGE = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HUIAEVENT = *opaque{};
 
 // TODO: this type is limited to platform 'windows8.0'

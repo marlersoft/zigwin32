@@ -1140,6 +1140,7 @@ pub const RRF_RT_REG_QWORD = RRF_RT.REG_QWORD;
 pub const RRF_RT_REG_SZ = RRF_RT.REG_SZ;
 
 // TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HKEY = *opaque{};
 
 pub const val_context = extern struct {

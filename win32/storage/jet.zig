@@ -955,8 +955,10 @@ pub const JET_bitDumpCacheNoDecommit = @as(u32, 128);
 //--------------------------------------------------------------------------------
 // Section: Types (95)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_OSSNAPID = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_LS = usize;
 
 

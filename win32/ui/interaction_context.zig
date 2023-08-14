@@ -6,6 +6,7 @@
 //--------------------------------------------------------------------------------
 // Section: Types (25)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HINTERACTIONCONTEXT = *opaque{};
 
 pub const INTERACTION_ID = enum(i32) {

@@ -1799,6 +1799,7 @@ pub const CR_INVALID_INDEX = CONFIGRET.CR_INVALID_INDEX;
 pub const CR_INVALID_STRUCTURE_SIZE = CONFIGRET.CR_INVALID_STRUCTURE_SIZE;
 pub const NUM_CR_RESULTS = CONFIGRET.NUM_CR_RESULTS;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCMNOTIFICATION = *opaque{};
 
 

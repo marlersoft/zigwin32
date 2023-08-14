@@ -846,6 +846,7 @@ pub const D3D11_BOX = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11DeviceChild_Value = Guid.initString("1841e5c8-16b0-489b-bcc8-44cfb0d5deae");
 pub const IID_ID3D11DeviceChild = &IID_ID3D11DeviceChild_Value;
 pub const ID3D11DeviceChild = extern struct {
@@ -993,6 +994,7 @@ pub const D3D11_DEPTH_STENCIL_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11DepthStencilState_Value = Guid.initString("03823efb-8d8f-4e1c-9aa2-f64bb2cbfdf1");
 pub const IID_ID3D11DepthStencilState = &IID_ID3D11DepthStencilState_Value;
 pub const ID3D11DepthStencilState = extern struct {
@@ -1101,6 +1103,7 @@ pub const D3D11_BLEND_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11BlendState_Value = Guid.initString("75b68faa-347d-4159-8f45-a0640f01cd9a");
 pub const IID_ID3D11BlendState = &IID_ID3D11BlendState_Value;
 pub const ID3D11BlendState = extern struct {
@@ -1142,6 +1145,7 @@ pub const D3D11_RASTERIZER_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11RasterizerState_Value = Guid.initString("9bb4ab81-ab1a-4d8f-b506-fc04200b6ee7");
 pub const IID_ID3D11RasterizerState = &IID_ID3D11RasterizerState_Value;
 pub const ID3D11RasterizerState = extern struct {
@@ -1182,6 +1186,7 @@ pub const D3D11_MAPPED_SUBRESOURCE = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Resource_Value = Guid.initString("dc8e63f3-d12b-4952-b47b-5e45026a862d");
 pub const IID_ID3D11Resource = &IID_ID3D11Resource_Value;
 pub const ID3D11Resource = extern struct {
@@ -1245,6 +1250,7 @@ pub const D3D11_BUFFER_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Buffer_Value = Guid.initString("48570b85-d1ee-4fcd-a250-eb350722b037");
 pub const IID_ID3D11Buffer = &IID_ID3D11Buffer_Value;
 pub const ID3D11Buffer = extern struct {
@@ -1284,6 +1290,7 @@ pub const D3D11_TEXTURE1D_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Texture1D_Value = Guid.initString("f8fb5c27-c6b3-4f75-a4c8-439af2ef564c");
 pub const IID_ID3D11Texture1D = &IID_ID3D11Texture1D_Value;
 pub const ID3D11Texture1D = extern struct {
@@ -1325,6 +1332,7 @@ pub const D3D11_TEXTURE2D_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Texture2D_Value = Guid.initString("6f15aaf2-d208-4e89-9ab4-489535d34f9c");
 pub const IID_ID3D11Texture2D = &IID_ID3D11Texture2D_Value;
 pub const ID3D11Texture2D = extern struct {
@@ -1365,6 +1373,7 @@ pub const D3D11_TEXTURE3D_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Texture3D_Value = Guid.initString("037e866e-f56d-4357-a8af-9dabbe6e250e");
 pub const IID_ID3D11Texture3D = &IID_ID3D11Texture3D_Value;
 pub const ID3D11Texture3D = extern struct {
@@ -1408,6 +1417,7 @@ pub const D3D11_TEXTURECUBE_FACE_POSITIVE_Z = D3D11_TEXTURECUBE_FACE.POSITIVE_Z;
 pub const D3D11_TEXTURECUBE_FACE_NEGATIVE_Z = D3D11_TEXTURECUBE_FACE.NEGATIVE_Z;
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11View_Value = Guid.initString("839d1216-bb2e-412b-b7f4-a9dbebe08ed1");
 pub const IID_ID3D11View = &IID_ID3D11View_Value;
 pub const ID3D11View = extern struct {
@@ -1526,6 +1536,7 @@ pub const D3D11_SHADER_RESOURCE_VIEW_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ShaderResourceView_Value = Guid.initString("b0e06fe0-8192-4e1a-b1ca-36d7414710b2");
 pub const IID_ID3D11ShaderResourceView = &IID_ID3D11ShaderResourceView_Value;
 pub const ID3D11ShaderResourceView = extern struct {
@@ -1615,6 +1626,7 @@ pub const D3D11_RENDER_TARGET_VIEW_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11RenderTargetView_Value = Guid.initString("dfdba067-0b8d-4865-875b-d7b4516cc164");
 pub const IID_ID3D11RenderTargetView = &IID_ID3D11RenderTargetView_Value;
 pub const ID3D11RenderTargetView = extern struct {
@@ -1693,6 +1705,7 @@ pub const D3D11_DEPTH_STENCIL_VIEW_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11DepthStencilView_Value = Guid.initString("9fdac92a-1876-48c3-afad-25b94f84a9b6");
 pub const IID_ID3D11DepthStencilView = &IID_ID3D11DepthStencilView_Value;
 pub const ID3D11DepthStencilView = extern struct {
@@ -1775,6 +1788,7 @@ pub const D3D11_UNORDERED_ACCESS_VIEW_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11UnorderedAccessView_Value = Guid.initString("28acf509-7f5c-48f6-8611-f316010a6380");
 pub const IID_ID3D11UnorderedAccessView = &IID_ID3D11UnorderedAccessView_Value;
 pub const ID3D11UnorderedAccessView = extern struct {
@@ -1803,6 +1817,7 @@ pub const ID3D11UnorderedAccessView = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VertexShader_Value = Guid.initString("3b301d64-d678-4289-8897-22f8928b72f3");
 pub const IID_ID3D11VertexShader = &IID_ID3D11VertexShader_Value;
 pub const ID3D11VertexShader = extern struct {
@@ -1817,6 +1832,7 @@ pub const ID3D11VertexShader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11HullShader_Value = Guid.initString("8e5c6061-628a-4c8e-8264-bbe45cb3d5dd");
 pub const IID_ID3D11HullShader = &IID_ID3D11HullShader_Value;
 pub const ID3D11HullShader = extern struct {
@@ -1831,6 +1847,7 @@ pub const ID3D11HullShader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11DomainShader_Value = Guid.initString("f582c508-0f36-490c-9977-31eece268cfa");
 pub const IID_ID3D11DomainShader = &IID_ID3D11DomainShader_Value;
 pub const ID3D11DomainShader = extern struct {
@@ -1845,6 +1862,7 @@ pub const ID3D11DomainShader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11GeometryShader_Value = Guid.initString("38325b96-effb-4022-ba02-2e795b70275c");
 pub const IID_ID3D11GeometryShader = &IID_ID3D11GeometryShader_Value;
 pub const ID3D11GeometryShader = extern struct {
@@ -1859,6 +1877,7 @@ pub const ID3D11GeometryShader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11PixelShader_Value = Guid.initString("ea82e40d-51dc-4f33-93d4-db7c9125ae8c");
 pub const IID_ID3D11PixelShader = &IID_ID3D11PixelShader_Value;
 pub const ID3D11PixelShader = extern struct {
@@ -1873,6 +1892,7 @@ pub const ID3D11PixelShader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ComputeShader_Value = Guid.initString("4f5b196e-c2bd-495e-bd01-1fded38e4969");
 pub const IID_ID3D11ComputeShader = &IID_ID3D11ComputeShader_Value;
 pub const ID3D11ComputeShader = extern struct {
@@ -1887,6 +1907,7 @@ pub const ID3D11ComputeShader = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11InputLayout_Value = Guid.initString("e4819ddc-4cf0-4025-bd26-5de82a3e07b7");
 pub const IID_ID3D11InputLayout = &IID_ID3D11InputLayout_Value;
 pub const ID3D11InputLayout = extern struct {
@@ -2020,6 +2041,7 @@ pub const D3D11_SAMPLER_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11SamplerState_Value = Guid.initString("da6fea51-564c-4487-9810-f0d0f9b4e3a5");
 pub const IID_ID3D11SamplerState = &IID_ID3D11SamplerState_Value;
 pub const ID3D11SamplerState = extern struct {
@@ -2140,6 +2162,7 @@ pub const D3D11_FORMAT_SUPPORT2_SHAREABLE = D3D11_FORMAT_SUPPORT2.SHAREABLE;
 pub const D3D11_FORMAT_SUPPORT2_MULTIPLANE_OVERLAY = D3D11_FORMAT_SUPPORT2.MULTIPLANE_OVERLAY;
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Asynchronous_Value = Guid.initString("4b35d0cd-1e15-4258-9c98-1b1333f6dd3b");
 pub const IID_ID3D11Asynchronous = &IID_ID3D11Asynchronous_Value;
 pub const ID3D11Asynchronous = extern struct {
@@ -2216,6 +2239,7 @@ pub const D3D11_QUERY_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Query_Value = Guid.initString("d6c00747-87b7-425e-b84d-44d108560afd");
 pub const IID_ID3D11Query = &IID_ID3D11Query_Value;
 pub const ID3D11Query = extern struct {
@@ -2244,6 +2268,7 @@ pub const ID3D11Query = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Predicate_Value = Guid.initString("9eb576dd-9f77-4d86-81aa-8bab5fe490e2");
 pub const IID_ID3D11Predicate = &IID_ID3D11Predicate_Value;
 pub const ID3D11Predicate = extern struct {
@@ -2309,6 +2334,7 @@ pub const D3D11_COUNTER_INFO = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Counter_Value = Guid.initString("6e8c49fb-a371-4770-b440-29086022b741");
 pub const IID_ID3D11Counter = &IID_ID3D11Counter_Value;
 pub const ID3D11Counter = extern struct {
@@ -2362,6 +2388,7 @@ pub const D3D11_CLASS_INSTANCE_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ClassInstance_Value = Guid.initString("a6cd7faa-b0b7-4a2f-9436-8662a65797cb");
 pub const IID_ID3D11ClassInstance = &IID_ID3D11ClassInstance_Value;
 pub const ID3D11ClassInstance = extern struct {
@@ -2436,6 +2463,7 @@ pub const ID3D11ClassInstance = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ClassLinkage_Value = Guid.initString("ddf57cba-9543-46e4-a12b-f207a0fe7fed");
 pub const IID_ID3D11ClassLinkage = &IID_ID3D11ClassLinkage_Value;
 pub const ID3D11ClassLinkage = extern struct {
@@ -2492,6 +2520,7 @@ pub const ID3D11ClassLinkage = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11CommandList_Value = Guid.initString("a24bc4d1-769e-43f7-8013-98ff566c18e2");
 pub const IID_ID3D11CommandList = &IID_ID3D11CommandList_Value;
 pub const ID3D11CommandList = extern struct {
@@ -2724,6 +2753,7 @@ pub const D3D11_FEATURE_DATA_D3D11_OPTIONS5 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11DeviceContext_Value = Guid.initString("c0bfa96c-e089-44fb-8eaf-26f8796190da");
 pub const IID_ID3D11DeviceContext = &IID_ID3D11DeviceContext_Value;
 pub const ID3D11DeviceContext = extern struct {
@@ -4720,6 +4750,7 @@ pub const D3D11_VIDEO_DECODER_EXTENSION = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoDecoder_Value = Guid.initString("3c9c5b51-995d-48d1-9b8d-fa5caeded65c");
 pub const IID_ID3D11VideoDecoder = &IID_ID3D11VideoDecoder_Value;
 pub const ID3D11VideoDecoder = extern struct {
@@ -5035,6 +5066,7 @@ pub const D3D11_VIDEO_PROCESSOR_CONTENT_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoProcessorEnumerator_Value = Guid.initString("31627037-53ab-4200-9061-05faa9ab45f9");
 pub const IID_ID3D11VideoProcessorEnumerator = &IID_ID3D11VideoProcessorEnumerator_Value;
 pub const ID3D11VideoProcessorEnumerator = extern struct {
@@ -5250,6 +5282,7 @@ pub const D3D11_VIDEO_PROCESSOR_STREAM = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoProcessor_Value = Guid.initString("1d7b0652-185f-41c6-85ce-0c5be3d4ae6c");
 pub const IID_ID3D11VideoProcessor = &IID_ID3D11VideoProcessor_Value;
 pub const ID3D11VideoProcessor = extern struct {
@@ -5305,6 +5338,7 @@ pub const D3D11_AUTHENTICATED_CHANNEL_DRIVER_SOFTWARE = D3D11_AUTHENTICATED_CHAN
 pub const D3D11_AUTHENTICATED_CHANNEL_DRIVER_HARDWARE = D3D11_AUTHENTICATED_CHANNEL_TYPE.RIVER_HARDWARE;
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11AuthenticatedChannel_Value = Guid.initString("3015a308-dcbd-47aa-a747-192486d14d4a");
 pub const IID_ID3D11AuthenticatedChannel = &IID_ID3D11AuthenticatedChannel_Value;
 pub const ID3D11AuthenticatedChannel = extern struct {
@@ -5570,6 +5604,7 @@ pub const D3D11_AUTHENTICATED_CONFIGURE_ACCESSIBLE_ENCRYPTION_INPUT = extern str
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11CryptoSession_Value = Guid.initString("9b32f9ad-bdcc-40a6-a39d-d5c865845720");
 pub const IID_ID3D11CryptoSession = &IID_ID3D11CryptoSession_Value;
 pub const ID3D11CryptoSession = extern struct {
@@ -5677,6 +5712,7 @@ pub const D3D11_VIDEO_DECODER_OUTPUT_VIEW_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoDecoderOutputView_Value = Guid.initString("c2931aea-2a85-4f20-860f-fba1fd256e18");
 pub const IID_ID3D11VideoDecoderOutputView = &IID_ID3D11VideoDecoderOutputView_Value;
 pub const ID3D11VideoDecoderOutputView = extern struct {
@@ -5725,6 +5761,7 @@ pub const D3D11_VIDEO_PROCESSOR_INPUT_VIEW_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoProcessorInputView_Value = Guid.initString("11ec5a5f-51dc-4945-ab34-6e8c21300ea5");
 pub const IID_ID3D11VideoProcessorInputView = &IID_ID3D11VideoProcessorInputView_Value;
 pub const ID3D11VideoProcessorInputView = extern struct {
@@ -5780,6 +5817,7 @@ pub const D3D11_VIDEO_PROCESSOR_OUTPUT_VIEW_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoProcessorOutputView_Value = Guid.initString("a048285e-25a9-4527-bd93-d68b68c44254");
 pub const IID_ID3D11VideoProcessorOutputView = &IID_ID3D11VideoProcessorOutputView_Value;
 pub const ID3D11VideoProcessorOutputView = extern struct {
@@ -5808,6 +5846,7 @@ pub const ID3D11VideoProcessorOutputView = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoContext_Value = Guid.initString("61f21c45-3c0e-4a74-9cea-67100d9ad5e4");
 pub const IID_ID3D11VideoContext = &IID_ID3D11VideoContext_Value;
 pub const ID3D11VideoContext = extern struct {
@@ -6984,6 +7023,7 @@ pub const ID3D11VideoContext = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoDevice_Value = Guid.initString("10ec4d5b-975a-4689-b9e4-d0aac30fe333");
 pub const IID_ID3D11VideoDevice = &IID_ID3D11VideoDevice_Value;
 pub const ID3D11VideoDevice = extern struct {
@@ -7298,6 +7338,7 @@ pub const ID3D11VideoDevice = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Device_Value = Guid.initString("db6f6ddb-ac77-4e88-8253-819df9bbf140");
 pub const IID_ID3D11Device = &IID_ID3D11Device_Value;
 pub const ID3D11Device = extern struct {
@@ -8072,6 +8113,7 @@ pub const D3D11_RLDO_DETAIL = D3D11_RLDO_FLAGS.DETAIL;
 pub const D3D11_RLDO_IGNORE_INTERNAL = D3D11_RLDO_FLAGS.IGNORE_INTERNAL;
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Debug_Value = Guid.initString("79cf2233-7536-4948-9d36-1e4692dc5760");
 pub const IID_ID3D11Debug = &IID_ID3D11Debug_Value;
 pub const ID3D11Debug = extern struct {
@@ -8208,6 +8250,7 @@ pub const ID3D11Debug = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11SwitchToRef_Value = Guid.initString("1ef337e3-58e7-4f83-a692-db221f5ed47e");
 pub const IID_ID3D11SwitchToRef = &IID_ID3D11SwitchToRef_Value;
 pub const ID3D11SwitchToRef = extern struct {
@@ -8300,6 +8343,7 @@ pub const D3D11_SHADER_TRACKING_OPTION_ALL_HAZARDS_ALLOWING_SAME = D3D11_SHADER_
 pub const D3D11_SHADER_TRACKING_OPTION_ALL_OPTIONS = D3D11_SHADER_TRACKING_OPTIONS.ALL_OPTIONS;
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11TracingDevice_Value = Guid.initString("1911c771-1587-413e-a7e0-fb26c3de0268");
 pub const IID_ID3D11TracingDevice = &IID_ID3D11TracingDevice_Value;
 pub const ID3D11TracingDevice = extern struct {
@@ -8346,6 +8390,7 @@ pub const ID3D11TracingDevice = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11RefTrackingOptions_Value = Guid.initString("193dacdf-0db2-4c05-a55c-ef06cac56fd9");
 pub const IID_ID3D11RefTrackingOptions = &IID_ID3D11RefTrackingOptions_Value;
 pub const ID3D11RefTrackingOptions = extern struct {
@@ -8374,6 +8419,7 @@ pub const ID3D11RefTrackingOptions = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11RefDefaultTrackingOptions_Value = Guid.initString("03916615-c644-418c-9bf4-75db5be63ca0");
 pub const IID_ID3D11RefDefaultTrackingOptions = &IID_ID3D11RefDefaultTrackingOptions_Value;
 pub const ID3D11RefDefaultTrackingOptions = extern struct {
@@ -11139,6 +11185,7 @@ pub const D3D11_INFO_QUEUE_FILTER = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11InfoQueue_Value = Guid.initString("6543dbb6-1b48-42f5-ab82-e97ec74326f6");
 pub const IID_ID3D11InfoQueue = &IID_ID3D11InfoQueue_Value;
 pub const ID3D11InfoQueue = extern struct {
@@ -11754,6 +11801,7 @@ pub const D3D11_BLEND_DESC1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11BlendState1_Value = Guid.initString("cc86fabe-da55-401d-85e7-e3c9de2877e9");
 pub const IID_ID3D11BlendState1 = &IID_ID3D11BlendState1_Value;
 pub const ID3D11BlendState1 = extern struct {
@@ -11796,6 +11844,7 @@ pub const D3D11_RASTERIZER_DESC1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11RasterizerState1_Value = Guid.initString("1217d7a6-5039-418c-b042-9cbe256afd6e");
 pub const IID_ID3D11RasterizerState1 = &IID_ID3D11RasterizerState1_Value;
 pub const ID3D11RasterizerState1 = extern struct {
@@ -11829,6 +11878,7 @@ pub const D3D11_1_CREATE_DEVICE_CONTEXT_STATE_FLAG = enum(i32) {
 pub const D3D11_1_CREATE_DEVICE_CONTEXT_STATE_SINGLETHREADED = D3D11_1_CREATE_DEVICE_CONTEXT_STATE_FLAG.D;
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3DDeviceContextState_Value = Guid.initString("5c1e0d8a-7c23-48f9-8c59-a92958ceff11");
 pub const IID_ID3DDeviceContextState = &IID_ID3DDeviceContextState_Value;
 pub const ID3DDeviceContextState = extern struct {
@@ -11843,6 +11893,7 @@ pub const ID3DDeviceContextState = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11DeviceContext1_Value = Guid.initString("bb2c6faa-b5fb-4082-8e6b-388b8cfa90e1");
 pub const IID_ID3D11DeviceContext1 = &IID_ID3D11DeviceContext1_Value;
 pub const ID3D11DeviceContext1 = extern struct {
@@ -12352,6 +12403,7 @@ pub const D3D11_VIDEO_SAMPLE_DESC = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoContext1_Value = Guid.initString("a7f026da-a5f8-4487-a564-15e34357651e");
 pub const IID_ID3D11VideoContext1 = &IID_ID3D11VideoContext1_Value;
 pub const ID3D11VideoContext1 = extern struct {
@@ -12626,6 +12678,7 @@ pub const ID3D11VideoContext1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoDevice1_Value = Guid.initString("29da1d51-1321-4454-804b-f5fc9f861f0f");
 pub const IID_ID3D11VideoDevice1 = &IID_ID3D11VideoDevice1_Value;
 pub const ID3D11VideoDevice1 = extern struct {
@@ -12736,6 +12789,7 @@ pub const ID3D11VideoDevice1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoProcessorEnumerator1_Value = Guid.initString("465217f2-5568-43cf-b5b9-f61d54531ca1");
 pub const IID_ID3D11VideoProcessorEnumerator1 = &IID_ID3D11VideoProcessorEnumerator1_Value;
 pub const ID3D11VideoProcessorEnumerator1 = extern struct {
@@ -12772,6 +12826,7 @@ pub const ID3D11VideoProcessorEnumerator1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Device1_Value = Guid.initString("a04bfb29-08ef-43d6-a49c-a9bdbdcbe686");
 pub const IID_ID3D11Device1 = &IID_ID3D11Device1_Value;
 pub const ID3D11Device1 = extern struct {
@@ -12912,6 +12967,7 @@ pub const ID3D11Device1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3DUserDefinedAnnotation_Value = Guid.initString("b2daad8b-03d4-4dbf-95eb-32ab4b63d0ab");
 pub const IID_ID3DUserDefinedAnnotation = &IID_ID3DUserDefinedAnnotation_Value;
 pub const ID3DUserDefinedAnnotation = extern struct {
@@ -13041,6 +13097,7 @@ pub const D3D11_TILE_COPY_LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE = D3D11_TILE_
 pub const D3D11_TILE_COPY_SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER = D3D11_TILE_COPY_FLAG.SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER;
 
 // TODO: this type is limited to platform 'windows8.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11DeviceContext2_Value = Guid.initString("420d5b32-b90c-4da4-bef0-359f6a24a83a");
 pub const IID_ID3D11DeviceContext2 = &IID_ID3D11DeviceContext2_Value;
 pub const ID3D11DeviceContext2 = extern struct {
@@ -13245,6 +13302,7 @@ pub const ID3D11DeviceContext2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Device2_Value = Guid.initString("9d06dffa-d1e5-4d07-83a8-1bb123f2f841");
 pub const IID_ID3D11Device2 = &IID_ID3D11Device2_Value;
 pub const ID3D11Device2 = extern struct {
@@ -13371,6 +13429,7 @@ pub const D3D11_TEXTURE2D_DESC1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Texture2D1_Value = Guid.initString("51218251-1e33-4617-9ccb-4d3a4367e7bb");
 pub const IID_ID3D11Texture2D1 = &IID_ID3D11Texture2D1_Value;
 pub const ID3D11Texture2D1 = extern struct {
@@ -13412,6 +13471,7 @@ pub const D3D11_TEXTURE3D_DESC1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Texture3D1_Value = Guid.initString("0c711683-2853-4846-9bb0-f3e60639e46a");
 pub const IID_ID3D11Texture3D1 = &IID_ID3D11Texture3D1_Value;
 pub const ID3D11Texture3D1 = extern struct {
@@ -13462,6 +13522,7 @@ pub const D3D11_RASTERIZER_DESC2 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11RasterizerState2_Value = Guid.initString("6fbd02fb-209f-46c4-b059-2ed15586a6ac");
 pub const IID_ID3D11RasterizerState2 = &IID_ID3D11RasterizerState2_Value;
 pub const ID3D11RasterizerState2 = extern struct {
@@ -13522,6 +13583,7 @@ pub const D3D11_SHADER_RESOURCE_VIEW_DESC1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ShaderResourceView1_Value = Guid.initString("91308b87-9040-411d-8c67-c39253ce3802");
 pub const IID_ID3D11ShaderResourceView1 = &IID_ID3D11ShaderResourceView1_Value;
 pub const ID3D11ShaderResourceView1 = extern struct {
@@ -13577,6 +13639,7 @@ pub const D3D11_RENDER_TARGET_VIEW_DESC1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11RenderTargetView1_Value = Guid.initString("ffbe2e23-f011-418a-ac56-5ceed7c5b94b");
 pub const IID_ID3D11RenderTargetView1 = &IID_ID3D11RenderTargetView1_Value;
 pub const ID3D11RenderTargetView1 = extern struct {
@@ -13630,6 +13693,7 @@ pub const D3D11_UNORDERED_ACCESS_VIEW_DESC1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11UnorderedAccessView1_Value = Guid.initString("7b3b6153-a886-4544-ab37-6537c8500403");
 pub const IID_ID3D11UnorderedAccessView1 = &IID_ID3D11UnorderedAccessView1_Value;
 pub const ID3D11UnorderedAccessView1 = extern struct {
@@ -13664,6 +13728,7 @@ pub const D3D11_QUERY_DESC1 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Query1_Value = Guid.initString("631b4766-36dc-461d-8db6-c47e13e60916");
 pub const IID_ID3D11Query1 = &IID_ID3D11Query1_Value;
 pub const ID3D11Query1 = extern struct {
@@ -13716,6 +13781,7 @@ pub const D3D11_FENCE_FLAG_SHARED = D3D11_FENCE_FLAG.SHARED;
 pub const D3D11_FENCE_FLAG_SHARED_CROSS_ADAPTER = D3D11_FENCE_FLAG.SHARED_CROSS_ADAPTER;
 pub const D3D11_FENCE_FLAG_NON_MONITORED = D3D11_FENCE_FLAG.NON_MONITORED;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11DeviceContext3_Value = Guid.initString("b4e3c01d-e79e-4637-91b2-510e9f4c9b8f");
 pub const IID_ID3D11DeviceContext3 = &IID_ID3D11DeviceContext3_Value;
 pub const ID3D11DeviceContext3 = extern struct {
@@ -13773,6 +13839,7 @@ pub const ID3D11DeviceContext3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Fence_Value = Guid.initString("affde9d1-1df7-4bb7-8a34-0f46251dab80");
 pub const IID_ID3D11Fence = &IID_ID3D11Fence_Value;
 pub const ID3D11Fence = extern struct {
@@ -13834,6 +13901,7 @@ pub const ID3D11Fence = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11DeviceContext4_Value = Guid.initString("917600da-f58c-4c33-98d8-3e15b390fa24");
 pub const IID_ID3D11DeviceContext4 = &IID_ID3D11DeviceContext4_Value;
 pub const ID3D11DeviceContext4 = extern struct {
@@ -13880,6 +13948,7 @@ pub const ID3D11DeviceContext4 = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Device3_Value = Guid.initString("a05c8c37-d2c6-4732-b3a0-9ce0b0dc9ae6");
 pub const IID_ID3D11Device3 = &IID_ID3D11Device3_Value;
 pub const ID3D11Device3 = extern struct {
@@ -14093,6 +14162,7 @@ pub const ID3D11Device3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Device4_Value = Guid.initString("8992ab71-02e6-4b8d-ba48-b056dcda42c4");
 pub const IID_ID3D11Device4 = &IID_ID3D11Device4_Value;
 pub const ID3D11Device4 = extern struct {
@@ -14136,6 +14206,7 @@ pub const ID3D11Device4 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Device5_Value = Guid.initString("8ffde202-a0e7-45df-9e01-e837801b5ea0");
 pub const IID_ID3D11Device5 = &IID_ID3D11Device5_Value;
 pub const ID3D11Device5 = extern struct {
@@ -14187,6 +14258,7 @@ pub const ID3D11Device5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Multithread_Value = Guid.initString("9b7e4e00-342c-4106-a19f-4f2704f689f0");
 pub const IID_ID3D11Multithread = &IID_ID3D11Multithread_Value;
 pub const ID3D11Multithread = extern struct {
@@ -14251,6 +14323,7 @@ pub const ID3D11Multithread = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoContext2_Value = Guid.initString("c4e7374c-6243-4d1b-ae87-52b4f740e261");
 pub const IID_ID3D11VideoContext2 = &IID_ID3D11VideoContext2_Value;
 pub const ID3D11VideoContext2 = extern struct {
@@ -14433,6 +14506,7 @@ pub const D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS = enum(u32) {
 };
 pub const D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAG_NONE = D3D11_CRYPTO_SESSION_KEY_EXCHANGE_FLAGS.E;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoDevice2_Value = Guid.initString("59c0cb01-35f0-4a70-8f67-87905c906a53");
 pub const IID_ID3D11VideoDevice2 = &IID_ID3D11VideoDevice2_Value;
 pub const ID3D11VideoDevice2 = extern struct {
@@ -14500,6 +14574,7 @@ pub const D3D11_VIDEO_DECODER_BUFFER_DESC2 = extern struct {
     cBlocksStripeClear: u32,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11VideoContext3_Value = Guid.initString("a9e2faa0-cb39-418f-a0b7-d8aad4de672e");
 pub const IID_ID3D11VideoContext3 = &IID_ID3D11VideoContext3_Value;
 pub const ID3D11VideoContext3 = extern struct {
@@ -14732,6 +14807,7 @@ pub const D3D11_PARAMETER_DESC = extern struct {
     FirstOutComponent: u32,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ShaderReflectionType_Value = Guid.initString("6e6ffa6a-9bae-4613-a51e-91652d508c21");
 pub const IID_ID3D11ShaderReflectionType = &IID_ID3D11ShaderReflectionType_Value;
 pub const ID3D11ShaderReflectionType = extern struct {
@@ -14891,6 +14967,7 @@ pub const ID3D11ShaderReflectionType = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ShaderReflectionVariable_Value = Guid.initString("51f23923-f3e5-4bd1-91cb-606177d8db4c");
 pub const IID_ID3D11ShaderReflectionVariable = &IID_ID3D11ShaderReflectionVariable_Value;
 pub const ID3D11ShaderReflectionVariable = extern struct {
@@ -14954,6 +15031,7 @@ pub const ID3D11ShaderReflectionVariable = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ShaderReflectionConstantBuffer_Value = Guid.initString("eb62d63d-93dd-4318-8ae8-c6f83ad371b8");
 pub const IID_ID3D11ShaderReflectionConstantBuffer = &IID_ID3D11ShaderReflectionConstantBuffer_Value;
 pub const ID3D11ShaderReflectionConstantBuffer = extern struct {
@@ -15008,6 +15086,7 @@ pub const ID3D11ShaderReflectionConstantBuffer = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ShaderReflection_Value = Guid.initString("8d536ca1-0cca-4956-a837-786963755584");
 pub const IID_ID3D11ShaderReflection = &IID_ID3D11ShaderReflection_Value;
 pub const ID3D11ShaderReflection = extern struct {
@@ -15285,6 +15364,7 @@ pub const ID3D11ShaderReflection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11LibraryReflection_Value = Guid.initString("54384f1b-5b3e-4bb7-ae01-60ba3097cbb6");
 pub const IID_ID3D11LibraryReflection = &IID_ID3D11LibraryReflection_Value;
 pub const ID3D11LibraryReflection = extern struct {
@@ -15326,6 +15406,7 @@ pub const ID3D11LibraryReflection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11FunctionReflection_Value = Guid.initString("207bcecb-d683-4a06-a8a3-9b149b9f73a4");
 pub const IID_ID3D11FunctionReflection = &IID_ID3D11FunctionReflection_Value;
 pub const ID3D11FunctionReflection = extern struct {
@@ -15439,6 +15520,7 @@ pub const ID3D11FunctionReflection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11FunctionParameterReflection_Value = Guid.initString("42757488-334f-47fe-982e-1a65d08cc462");
 pub const IID_ID3D11FunctionParameterReflection = &IID_ID3D11FunctionParameterReflection_Value;
 pub const ID3D11FunctionParameterReflection = extern struct {
@@ -15464,6 +15546,7 @@ pub const ID3D11FunctionParameterReflection = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ModuleInstance_Value = Guid.initString("469e07f7-045a-48d5-aa12-68a478cdf75d");
 pub const IID_ID3D11ModuleInstance = &IID_ID3D11ModuleInstance_Value;
 pub const ID3D11ModuleInstance = extern struct {
@@ -15657,6 +15740,7 @@ pub const ID3D11ModuleInstance = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Module_Value = Guid.initString("cac701ee-80fc-4122-8242-10b39c8cec34");
 pub const IID_ID3D11Module = &IID_ID3D11Module_Value;
 pub const ID3D11Module = extern struct {
@@ -15686,6 +15770,7 @@ pub const ID3D11Module = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11Linker_Value = Guid.initString("59a6cd0e-e10d-4c1f-88c0-63aba1daf30e");
 pub const IID_ID3D11Linker = &IID_ID3D11Linker_Value;
 pub const ID3D11Linker = extern struct {
@@ -15753,6 +15838,7 @@ pub const ID3D11Linker = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11LinkingNode_Value = Guid.initString("d80dd70c-8d2f-4751-94a1-03c79b3556db");
 pub const IID_ID3D11LinkingNode = &IID_ID3D11LinkingNode_Value;
 pub const ID3D11LinkingNode = extern struct {
@@ -15766,6 +15852,7 @@ pub const ID3D11LinkingNode = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D11FunctionLinkingGraph_Value = Guid.initString("54133220-1ce8-43d3-8236-9855c5ceecff");
 pub const IID_ID3D11FunctionLinkingGraph = &IID_ID3D11FunctionLinkingGraph_Value;
 pub const ID3D11FunctionLinkingGraph = extern struct {
@@ -16124,6 +16211,7 @@ pub const D3D11_TRACE_STEP = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ShaderTrace_Value = Guid.initString("36b013e6-2811-4845-baa7-d623fe0df104");
 pub const IID_ID3D11ShaderTrace = &IID_ID3D11ShaderTrace_Value;
 pub const ID3D11ShaderTrace = extern struct {
@@ -16264,6 +16352,7 @@ pub const ID3D11ShaderTrace = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_ID3D11ShaderTraceFactory_Value = Guid.initString("1fbad429-66ab-41cc-9617-667ac10e4459");
 pub const IID_ID3D11ShaderTraceFactory = &IID_ID3D11ShaderTraceFactory_Value;
 pub const ID3D11ShaderTraceFactory = extern struct {
@@ -16328,6 +16417,7 @@ pub const D3DX11_SCAN_DIRECTION = enum(i32) {
 pub const D3DX11_SCAN_DIRECTION_FORWARD = D3DX11_SCAN_DIRECTION.FORWARD;
 pub const D3DX11_SCAN_DIRECTION_BACKWARD = D3DX11_SCAN_DIRECTION.BACKWARD;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3DX11Scan_Value = Guid.initString("5089b68f-e71d-4d38-be8e-f363b95a9405");
 pub const IID_ID3DX11Scan = &IID_ID3DX11Scan_Value;
 pub const ID3DX11Scan = extern struct {
@@ -16403,6 +16493,7 @@ pub const ID3DX11Scan = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3DX11SegmentedScan_Value = Guid.initString("a915128c-d954-4c79-bfe1-64db923194d6");
 pub const IID_ID3DX11SegmentedScan = &IID_ID3DX11SegmentedScan_Value;
 pub const ID3DX11SegmentedScan = extern struct {
@@ -16454,6 +16545,7 @@ pub const ID3DX11SegmentedScan = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3DX11FFT_Value = Guid.initString("b3f7a938-4c93-4310-a675-b30d6de50553");
 pub const IID_ID3DX11FFT = &IID_ID3DX11FFT_Value;
 pub const ID3DX11FFT = extern struct {

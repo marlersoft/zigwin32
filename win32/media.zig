@@ -128,6 +128,7 @@ pub const ED_DEVCAP_TIMECODE_READ = TIMECODE_SAMPLE_FLAGS.TIMECODE_READ;
 pub const ED_DEVCAP_ATN_READ = TIMECODE_SAMPLE_FLAGS.ATN_READ;
 pub const ED_DEVCAP_RTC_READ = TIMECODE_SAMPLE_FLAGS.RTC_READ;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HTASK = *opaque{};
 
 pub const MMTIME = extern struct {

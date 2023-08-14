@@ -7864,16 +7864,22 @@ pub const FN_PROGRESS = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const AUTHZ_ACCESS_CHECK_RESULTS_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const AUTHZ_CLIENT_CONTEXT_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const AUTHZ_RESOURCE_MANAGER_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const AUTHZ_AUDIT_EVENT_HANDLE = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const AUTHZ_AUDIT_EVENT_TYPE_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const AUTHZ_SECURITY_EVENT_PROVIDER_HANDLE = isize;
 
 

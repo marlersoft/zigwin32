@@ -651,6 +651,7 @@ pub const QUERYASMINFO_FLAGS = enum(u32) {
 pub const QUERYASMINFO_FLAG_VALIDATE = QUERYASMINFO_FLAGS.E;
 
 // TODO: this type has a FreeFunc 'MsiCloseHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const MSIHANDLE = u32;
 
 pub const RESULTTYPES = enum(i32) {

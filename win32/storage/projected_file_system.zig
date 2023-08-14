@@ -6,8 +6,10 @@
 //--------------------------------------------------------------------------------
 // Section: Types (31)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const PRJ_NAMESPACE_VIRTUALIZATION_CONTEXT = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const PRJ_DIR_ENTRY_BUFFER_HANDLE = isize;
 
 pub const PRJ_NOTIFY_TYPES = enum(u32) {

@@ -14675,6 +14675,7 @@ pub const DS_DOMAIN_TRUSTSA = extern struct {
 };
 
 // TODO: this type has a FreeFunc 'DsGetDcCloseW', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const GetDcContextHandle = isize;
 
 

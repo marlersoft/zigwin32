@@ -7,6 +7,7 @@ pub const WEB_SOCKET_MAX_CLOSE_REASON_LENGTH = @as(u32, 123);
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const WEB_SOCKET_HANDLE = isize;
 
 pub const WEB_SOCKET_CLOSE_STATUS = enum(i32) {

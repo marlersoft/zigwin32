@@ -140,6 +140,7 @@ pub const STD_OUTPUT_HANDLE = STD_HANDLE.OUTPUT_HANDLE;
 pub const STD_ERROR_HANDLE = STD_HANDLE.ERROR_HANDLE;
 
 // TODO: this type has a FreeFunc 'ClosePseudoConsole', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HPCON = *opaque{};
 
 pub const COORD = extern struct {

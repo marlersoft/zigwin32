@@ -163,9 +163,11 @@ pub const WER_FAULT_REPORTING_FLAG_QUEUE_UPLOAD = WER_FAULT_REPORTING.FLAG_QUEUE
 pub const WER_FAULT_REPORTING_ALWAYS_SHOW_UI = WER_FAULT_REPORTING.ALWAYS_SHOW_UI;
 
 // TODO: this type has a FreeFunc 'WerReportCloseHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HREPORT = isize;
 
 // TODO: this type has a FreeFunc 'WerStoreClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HREPORTSTORE = isize;
 
 pub const WER_REPORT_UI = enum(i32) {

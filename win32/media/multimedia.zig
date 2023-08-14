@@ -4654,12 +4654,16 @@ pub const MCI_OVLY_WHERE_VIDEO = @as(i32, 1048576);
 //--------------------------------------------------------------------------------
 // Section: Types (190)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HMMIO = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDRVR = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HIC = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HVIDEO = *opaque{};
 
 const CLSID_KSDATAFORMAT_SUBTYPE_IEEE_FLOAT_Value = Guid.initString("00000003-0000-0010-8000-00aa00389b71");

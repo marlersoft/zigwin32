@@ -78,6 +78,7 @@ pub const RIDEV_APPKEYS = RAWINPUTDEVICE_FLAGS.APPKEYS;
 pub const RIDEV_EXINPUTSINK = RAWINPUTDEVICE_FLAGS.EXINPUTSINK;
 pub const RIDEV_DEVNOTIFY = RAWINPUTDEVICE_FLAGS.DEVNOTIFY;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HRAWINPUT = *opaque{};
 
 pub const RAWINPUTHEADER = extern struct {

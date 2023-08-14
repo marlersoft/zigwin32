@@ -332,6 +332,7 @@ pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
 // Section: Types (97)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const DnsContextHandle = isize;
 
 pub const IP4_ARRAY = extern struct {

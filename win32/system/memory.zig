@@ -417,6 +417,7 @@ pub const MEM_MAPPED = PAGE_TYPE.MAPPED;
 pub const MEM_IMAGE = PAGE_TYPE.IMAGE;
 
 // TODO: this type has a FreeFunc 'HeapDestroy', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HeapHandle = *opaque{};
 
 pub const PROCESS_HEAP_ENTRY = extern struct {

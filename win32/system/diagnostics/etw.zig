@@ -643,6 +643,7 @@ pub const EVENT_TRACE_FLAG_VAMAP = EVENT_TRACE_FLAG.VAMAP;
 pub const EVENT_TRACE_FLAG_VIRTUAL_ALLOC = EVENT_TRACE_FLAG.VIRTUAL_ALLOC;
 
 // TODO: this type has a FreeFunc 'TdhCloseDecodingHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const TDH_HANDLE = isize;
 
 pub const WNODE_HEADER = extern struct {

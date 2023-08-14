@@ -318,12 +318,16 @@ pub const ST_ISLOCAL = CONVINFO_STATUS.ISLOCAL;
 pub const ST_ISSELF = CONVINFO_STATUS.ISSELF;
 pub const ST_TERMINATED = CONVINFO_STATUS.TERMINATED;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSZ = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCONV = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCONVLIST = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDDEDATA = *opaque{};
 
 pub const DDEACK = extern struct {

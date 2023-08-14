@@ -565,6 +565,7 @@ pub const TF_ES_READ = TF_CONTEXT_EDIT_CONTEXT_FLAGS.READ;
 pub const TF_ES_READWRITE = TF_CONTEXT_EDIT_CONTEXT_FLAGS.READWRITE;
 pub const TF_ES_ASYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS.ASYNC;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HKL = *opaque{};
 
 pub const TS_STATUS = extern struct {

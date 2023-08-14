@@ -1419,22 +1419,27 @@ pub const SYMBOLIC_LINK_FLAG_DIRECTORY = SYMBOLIC_LINK_FLAGS.DIRECTORY;
 pub const SYMBOLIC_LINK_FLAG_ALLOW_UNPRIVILEGED_CREATE = SYMBOLIC_LINK_FLAGS.ALLOW_UNPRIVILEGED_CREATE;
 
 // TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FindFileHandle = isize;
 
 // TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FindFileNameHandle = isize;
 
 // TODO: this type has a FreeFunc 'FindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FindStreamHandle = isize;
 
 // TODO: this type has a FreeFunc 'FindCloseChangeNotification', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FindChangeNotificationHandle = isize;
 
 // TODO: this type has a FreeFunc 'FindVolumeClose', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '-1', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FindVolumeHandle = isize;
 
 // TODO: this type has a FreeFunc 'FindVolumeMountPointClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FindVolumeMointPointHandle = isize;
 
 pub const WIN32_FIND_DATAA = extern struct {

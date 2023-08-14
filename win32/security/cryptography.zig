@@ -4267,35 +4267,48 @@ pub const NCRYPT_SECRET_AGREEMENT_INTERFACE = NCRYPT_ALGORITHM_NAME_CLASS.SECRET
 pub const NCRYPT_SIGNATURE_INTERFACE = NCRYPT_ALGORITHM_NAME_CLASS.SIGNATURE_INTERFACE;
 
 // TODO: this type has a FreeFunc 'CryptCloseAsyncHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCRYPTASYNC = *opaque{};
 
 // TODO: this type has a FreeFunc 'CertFreeCertificateChainEngine', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCERTCHAINENGINE = *opaque{};
 
 // TODO: this type has a FreeFunc 'BCryptCloseAlgorithmProvider', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const BCRYPT_ALG_HANDLE = isize;
 
 // TODO: this type has a FreeFunc 'BCryptDestroyKey', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const BCRYPT_KEY_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NCRYPT_HANDLE = usize;
 
 // TODO: this type has a FreeFunc 'NCryptFreeObject', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NCRYPT_PROV_HANDLE = usize;
 
 // TODO: this type has a FreeFunc 'NCryptFreeObject', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NCRYPT_KEY_HANDLE = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NCRYPT_HASH_HANDLE = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NCRYPT_SECRET_HANDLE = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCRYPTPROV_LEGACY = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCRYPTPROV_OR_NCRYPT_KEY_HANDLE = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCERTSTORE = *anyopaque;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCERTSTOREPROV = *anyopaque;
 
 pub const CMS_KEY_INFO = extern struct {

@@ -22,6 +22,7 @@ pub const COMPRESS_ALGORITHM_XPRESS_HUFF = COMPRESS_ALGORITHM.XPRESS_HUFF;
 pub const COMPRESS_ALGORITHM_LZMS = COMPRESS_ALGORITHM.LZMS;
 
 // TODO: this type has a FreeFunc 'CloseDecompressor', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const COMPRESSOR_HANDLE = isize;
 
 pub const PFN_COMPRESS_ALLOCATE = switch (@import("builtin").zig_backend) {

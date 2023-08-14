@@ -11,6 +11,7 @@ pub const CF_MAX_PROVIDER_VERSION_LENGTH = @as(u32, 255);
 //--------------------------------------------------------------------------------
 // Section: Types (75)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const CF_CONNECTION_KEY = isize;
 
 pub const CF_FS_METADATA = extern struct {

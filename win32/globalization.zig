@@ -1154,10 +1154,13 @@ pub const IS_TEXT_UNICODE_REVERSE_MASK = IS_TEXT_UNICODE_RESULT.REVERSE_MASK;
 pub const IS_TEXT_UNICODE_NOT_UNICODE_MASK = IS_TEXT_UNICODE_RESULT.NOT_UNICODE_MASK;
 pub const IS_TEXT_UNICODE_NOT_ASCII_MASK = IS_TEXT_UNICODE_RESULT.NOT_ASCII_MASK;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HIMC = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HIMCC = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSAVEDUILANGUAGES = *opaque{};
 
 pub const FONTSIGNATURE = extern struct {

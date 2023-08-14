@@ -160,8 +160,10 @@ pub const RPC_C_IMP_LEVEL_IDENTIFY = RPC_C_IMP_LEVEL.IDENTIFY;
 pub const RPC_C_IMP_LEVEL_IMPERSONATE = RPC_C_IMP_LEVEL.IMPERSONATE;
 pub const RPC_C_IMP_LEVEL_DELEGATE = RPC_C_IMP_LEVEL.DELEGATE;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const CO_MTA_USAGE_COOKIE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const CO_DEVICE_CATALOG_COOKIE = isize;
 
 pub const DVASPECT = enum(i32) {

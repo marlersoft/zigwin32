@@ -785,6 +785,7 @@ pub const RFCOMM_CMD_RPN_RESPONSE = @as(u32, 5);
 //--------------------------------------------------------------------------------
 // Section: Types (61)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HANDLE_SDP_TYPE = u64;
 
 pub const SDP_LARGE_INTEGER_16 = extern struct {

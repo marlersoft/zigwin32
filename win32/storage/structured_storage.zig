@@ -6,14 +6,19 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_HANDLE = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_INSTANCE = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_SESID = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_TABLEID = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_API_PTR = usize;
 
 

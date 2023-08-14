@@ -4478,21 +4478,26 @@ pub const DI_DEFAULTSIZE = DI_FLAGS.DEFAULTSIZE;
 pub const DI_NOMIRROR = DI_FLAGS.NOMIRROR;
 
 // TODO: this type has a FreeFunc 'UnhookWindowsHookEx', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HHOOK = *opaque{};
 
 // TODO: this type has a FreeFunc 'DestroyIcon', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HICON = *opaque{};
 
 // TODO: this type has a FreeFunc 'DestroyMenu', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HMENU = *opaque{};
 
 // TODO: this type has a FreeFunc 'DestroyCursor', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 //TODO: type 'HCURSOR' is "AlsoUsableFor" 'HICON' which means this type is implicitly
 //      convertible to 'HICON' but not the other way around.  I don't know how to do this
 //      in Zig so for now I'm just defining it as an alias
 pub const HCURSOR = HICON;
 
 // TODO: this type has a FreeFunc 'DestroyAcceleratorTable', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HACCEL = *opaque{};
 
 pub const MESSAGE_RESOURCE_ENTRY = extern struct {

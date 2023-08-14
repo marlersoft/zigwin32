@@ -1979,6 +1979,7 @@ pub const TRUST_ATTRIBUTE_TREAT_AS_EXTERNAL = TRUSTED_DOMAIN_TRUST_ATTRIBUTES.TR
 pub const TRUST_ATTRIBUTE_WITHIN_FOREST = TRUSTED_DOMAIN_TRUST_ATTRIBUTES.WITHIN_FOREST;
 
 // TODO: this type has a FreeFunc 'LsaDeregisterLogonProcess', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const LsaHandle = isize;
 
 pub const LSA_TRUST_INFORMATION = extern struct {

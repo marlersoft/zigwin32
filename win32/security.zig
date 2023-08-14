@@ -459,26 +459,37 @@ pub const TOKEN_ADJUST_DEFAULT = TOKEN_ACCESS_MASK.ADJUST_DEFAULT;
 pub const TOKEN_ADJUST_SESSIONID = TOKEN_ACCESS_MASK.ADJUST_SESSIONID;
 pub const TOKEN_ALL_ACCESS = TOKEN_ACCESS_MASK.ALL_ACCESS;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDIAGNOSTIC_DATA_QUERY_SESSION = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDIAGNOSTIC_REPORT = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDIAGNOSTIC_EVENT_TAG_DESCRIPTION = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDIAGNOSTIC_RECORD = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NCRYPT_DESCRIPTOR_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NCRYPT_STREAM_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const SAFER_LEVEL_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const SC_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const PSECURITY_DESCRIPTOR = *anyopaque;
 
 pub const SECURITY_ATTRIBUTES = extern struct {

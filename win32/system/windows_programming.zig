@@ -613,10 +613,13 @@ pub const _D3DHAL_GLOBALDRIVERDATA = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HWINWATCH = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FEATURE_STATE_CHANGE_SUBSCRIPTION = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FH_SERVICE_PIPE_HANDLE = isize;
 
 pub const IMAGE_THUNK_DATA64 = extern struct {

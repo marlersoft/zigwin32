@@ -3777,17 +3777,22 @@ pub const ILC_ORIGINALSIZE = IMAGELIST_CREATION_FLAGS.ORIGINALSIZE;
 pub const ILC_HIGHQUALITYSCALE = IMAGELIST_CREATION_FLAGS.HIGHQUALITYSCALE;
 
 // TODO: this type has a FreeFunc 'DestroyPropertySheetPage', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HPROPSHEETPAGE = *opaque{};
 
 // TODO: this type has a FreeFunc 'ImageList_Destroy', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HIMAGELIST = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSYNTHETICPOINTERDEVICE = *opaque{};
 
 pub const HTREEITEM = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDSA = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDPA = *opaque{};
 
 pub const LPFNPSPCALLBACKA = switch (@import("builtin").zig_backend) {

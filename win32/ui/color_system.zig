@@ -127,6 +127,7 @@ pub const CS_DISABLE = COLOR_MATCH_TO_TARGET_ACTION.DISABLE;
 pub const CS_DELETE_TRANSFORM = COLOR_MATCH_TO_TARGET_ACTION.DELETE_TRANSFORM;
 
 // TODO: this type has a FreeFunc 'DeleteColorSpace', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCOLORSPACE = *opaque{};
 
 pub const LOGCOLORSPACEA = extern struct {

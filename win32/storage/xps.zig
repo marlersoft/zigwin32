@@ -292,6 +292,7 @@ pub const PSINJECT_ENDPAGECOMMENTS = PSINJECT_POINT.ENDPAGECOMMENTS;
 pub const PSINJECT_VMSAVE = PSINJECT_POINT.VMSAVE;
 pub const PSINJECT_VMRESTORE = PSINJECT_POINT.VMRESTORE;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HPTPROVIDER = *opaque{};
 
 pub const DRAWPATRECT = extern struct {

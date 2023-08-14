@@ -556,6 +556,7 @@ pub const D3D_SHADER_MACRO = extern struct {
     Definition: ?[*:0]const u8,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3DBlob_Value = Guid.initString("8ba5fb08-5195-40e2-ac58-0d989c3a0102");
 pub const IID_ID3DBlob = &IID_ID3DBlob_Value;
 pub const ID3DBlob = extern struct {
@@ -603,6 +604,7 @@ pub const PFN_DESTRUCTION_CALLBACK = switch (@import("builtin").zig_backend) {
 } ;
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3DDestructionNotifier_Value = Guid.initString("a06eb39a-50da-425b-8c31-4eecd6c270f3");
 pub const IID_ID3DDestructionNotifier = &IID_ID3DDestructionNotifier_Value;
 pub const ID3DDestructionNotifier = extern struct {
@@ -661,6 +663,7 @@ pub const D3D10_INCLUDE_LOCAL = D3D_INCLUDE_TYPE._INCLUDE_LOCAL;
 pub const D3D10_INCLUDE_SYSTEM = D3D_INCLUDE_TYPE._INCLUDE_SYSTEM;
 pub const D3D_INCLUDE_FORCE_DWORD = D3D_INCLUDE_TYPE._INCLUDE_FORCE_DWORD;
 
+// This COM type is Agile, not sure what that means
 pub const ID3DInclude = extern struct {
     pub const VTable = extern struct {
         Open: switch (@import("builtin").zig_backend) {

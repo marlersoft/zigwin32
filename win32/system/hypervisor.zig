@@ -32,6 +32,7 @@ pub const GUID_DEVINTERFACE_VM_GENCOUNTER = Guid.initString("3ff2c92b-6598-4e60-
 // Section: Types (162)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'WHvDeletePartition', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const WHV_PARTITION_HANDLE = isize;
 
 pub const WHV_CAPABILITY_CODE = enum(i32) {

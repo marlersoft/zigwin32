@@ -114,8 +114,10 @@ pub const REGISTER_TOUCH_WINDOW_FLAGS = enum(u32) {
 pub const TWF_FINETOUCH = REGISTER_TOUCH_WINDOW_FLAGS.FINETOUCH;
 pub const TWF_WANTPALM = REGISTER_TOUCH_WINDOW_FLAGS.WANTPALM;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HGESTUREINFO = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HTOUCHINPUT = *opaque{};
 
 const CLSID_InertiaProcessor_Value = Guid.initString("abb27087-4ce0-4e58-a0cb-e24df96814be");

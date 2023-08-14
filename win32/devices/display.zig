@@ -747,20 +747,28 @@ pub const SETCONFIGURATION_STATUS_OVERRIDDEN = @as(u32, 2);
 // Section: Types (316)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'EngDeleteSemaphore', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSEMAPHORE = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSURF = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HFASTMUTEX = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDRVOBJ = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDEV = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HBM = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const DHSURF = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const DHPDEV = isize;
 
 pub const DISPLAYCONFIG_RATIONAL = extern struct {

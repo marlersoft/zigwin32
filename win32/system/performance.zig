@@ -277,9 +277,11 @@ pub const PERF_AGGREGATE_AVG = PERF_COUNTER_AGGREGATE_FUNC.AVG;
 pub const PERF_AGGREGATE_MIN = PERF_COUNTER_AGGREGATE_FUNC.MIN;
 
 // TODO: this type has a FreeFunc 'PerfStopProvider', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const PerfProviderHandle = isize;
 
 // TODO: this type has a FreeFunc 'PerfCloseQueryHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const PerfQueryHandle = isize;
 
 const CLSID_DataCollectorSet_Value = Guid.initString("03837521-098b-11d8-9414-505054503030");

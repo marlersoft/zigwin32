@@ -2725,10 +2725,13 @@ pub const _APPCONSTRAIN_REGISTRATION = extern struct {
 };
 
 // TODO: this type has a FreeFunc 'SHChangeNotification_Unlock', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const ShFindChangeNotificationHandle = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDROP = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HPSXA = *opaque{};
 
 // TODO: this type is limited to platform 'windows5.1.2600'

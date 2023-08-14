@@ -15,12 +15,16 @@ pub const EventRegistrationToken = extern struct {
 };
 
 // TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSTRING = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSTRING_BUFFER = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const ROPARAMIIDHANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const APARTMENT_SHUTDOWN_REGISTRATION_COOKIE = isize;
 
 pub const ACTIVATIONTYPE = enum(i32) {

@@ -35,9 +35,11 @@ pub const EVENTLOG_SEEK_READ = READ_EVENT_LOG_READ_FLAGS.EK_READ;
 pub const EVENTLOG_SEQUENTIAL_READ = READ_EVENT_LOG_READ_FLAGS.QUENTIAL_READ;
 
 // TODO: this type has a FreeFunc 'CloseEventLog', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const EventLogHandle = isize;
 
 // TODO: this type has a FreeFunc 'DeregisterEventSource', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const EventSourceHandle = isize;
 
 pub const EVT_VARIANT_TYPE = enum(i32) {

@@ -708,15 +708,18 @@ pub const TP_IO = extern struct {
 };
 
 // TODO: this type has a FreeFunc 'DeleteTimerQueueEx', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const TimerQueueHandle = isize;
 
 // TODO: this type has a FreeFunc 'CloseThreadpool', what can Zig do with this information?
 pub const PTP_POOL = isize;
 
 // TODO: this type has a FreeFunc 'ClosePrivateNamespace', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NamespaceHandle = isize;
 
 // TODO: this type has a FreeFunc 'DeleteBoundaryDescriptor', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const BoundaryDescriptorHandle = isize;
 
 pub const LPPROC_THREAD_ATTRIBUTE_LIST = *anyopaque;

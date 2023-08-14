@@ -1162,6 +1162,7 @@ pub const INTERNET_STATE_DISCONNECTED_BY_USER = INTERNET_STATE.DISCONNECTED_BY_U
 pub const INTERNET_STATE_IDLE = INTERNET_STATE.IDLE;
 pub const INTERNET_STATE_BUSY = INTERNET_STATE.BUSY;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HTTP_PUSH_WAIT_HANDLE = isize;
 
 pub const INTERNET_SCHEME = enum(i32) {

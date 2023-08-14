@@ -356,6 +356,7 @@ pub const SERVICE_START_PENDING = SERVICE_STATUS_CURRENT_STATE.START_PENDING;
 pub const SERVICE_STOP_PENDING = SERVICE_STATUS_CURRENT_STATE.STOP_PENDING;
 pub const SERVICE_STOPPED = SERVICE_STATUS_CURRENT_STATE.STOPPED;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const SERVICE_STATUS_HANDLE = isize;
 
 pub const SERVICE_TRIGGER_CUSTOM_STATE_ID = extern struct {

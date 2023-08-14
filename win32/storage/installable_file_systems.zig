@@ -93,21 +93,27 @@ pub const WNNC_NET_LANMAN = @as(u32, 131072);
 // Section: Types (21)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'FilterClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HFILTER = *opaque{};
 
 // TODO: this type has a FreeFunc 'FilterInstanceClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HFILTER_INSTANCE = isize;
 
 // TODO: this type has a FreeFunc 'FilterFindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FilterFindHandle = isize;
 
 // TODO: this type has a FreeFunc 'FilterVolumeFindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FilterVolumeFindHandle = isize;
 
 // TODO: this type has a FreeFunc 'FilterInstanceFindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FilterInstanceFindHandle = isize;
 
 // TODO: this type has a FreeFunc 'FilterVolumeInstanceFindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FilterVolumeInstanceFindHandle = isize;
 
 pub const FLT_FILESYSTEM_TYPE = enum(i32) {

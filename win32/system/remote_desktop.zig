@@ -683,6 +683,7 @@ pub const IAudioEndpointControl = extern struct {
 };
 
 // TODO: this type has a FreeFunc 'WTSVirtualChannelClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HwtsVirtualChannelHandle = isize;
 
 const CLSID_TSUserExInterfaces_Value = Guid.initString("0910dd01-df8c-11d1-ae27-00c04fa35813");

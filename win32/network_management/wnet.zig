@@ -308,6 +308,7 @@ pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE;
 pub const DISC_NO_FORCE = DISCDLGSTRUCT_FLAGS.NO_FORCE;
 
 // TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NetEnumHandle = isize;
 
 pub const NETRESOURCEA = extern struct {

@@ -529,8 +529,10 @@ pub const GUAR_ADSPARM_Dsum = @as(i32, 136);
 //--------------------------------------------------------------------------------
 // Section: Types (112)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const LPM_HANDLE = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const RHANDLE = isize;
 
 pub const FLOWSPEC = extern struct {

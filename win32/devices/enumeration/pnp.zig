@@ -53,6 +53,7 @@ pub const ADDRESS_FAMILY_VALUE_NAME = "AddressFamily";
 //--------------------------------------------------------------------------------
 // Section: Types (41)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSWDEVICE = *opaque{};
 
 pub const SW_DEVICE_CAPABILITIES = enum(i32) {

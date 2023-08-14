@@ -218,6 +218,7 @@ pub const POWER_USER_NOTIFY_BUTTON = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_
 pub const POWER_USER_NOTIFY_SHUTDOWN = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN;
 
 // TODO: this type has a FreeFunc 'UnregisterPowerSettingNotification', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HPOWERNOTIFY = *opaque{};
 
 pub const EFFECTIVE_POWER_MODE = enum(i32) {

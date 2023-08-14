@@ -11,6 +11,7 @@ pub const DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED = @import("../zig.zig").typedC
 //--------------------------------------------------------------------------------
 // Section: Types (7)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const DPI_AWARENESS_CONTEXT = isize;
 
 pub const DPI_AWARENESS = enum(i32) {

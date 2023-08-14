@@ -7,8 +7,10 @@ pub const PSS_PERF_RESOLUTION = @as(u32, 1000000);
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HPSS = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HPSSWALK = *opaque{};
 
 pub const PSS_HANDLE_FLAGS = enum(u32) {

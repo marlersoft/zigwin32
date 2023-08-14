@@ -140,9 +140,11 @@ pub const DESKTOPENUMPROCW = switch (@import("builtin").zig_backend) {
 } ;
 
 // TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HWINSTA = *opaque{};
 
 // TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDESK = *opaque{};
 
 pub const USEROBJECTFLAGS = extern struct {

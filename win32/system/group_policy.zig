@@ -110,6 +110,7 @@ pub const GPO_BROWSE_SENDAPPLYONEDIT = @as(u32, 64);
 // Section: Types (109)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'LeaveCriticalPolicySection', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const CriticalPolicySectionHandle = isize;
 
 const CLSID_GPM_Value = Guid.initString("f5694708-88fe-4b35-babf-e56162d5fbc8");

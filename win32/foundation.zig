@@ -13082,6 +13082,7 @@ pub const BOOLEAN = u8;
 pub const BSTR = *u16;
 
 // TODO: this type has a FreeFunc 'CloseHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HANDLE = @import("std").os.windows.HANDLE;
 
 // TODO: this type has a FreeFunc 'FreeLibrary', what can Zig do with this information?
@@ -13105,6 +13106,7 @@ pub const PWSTR = [*:0]u16;
 
 pub const WPARAM = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HRSRC = *opaque{};
 
 pub const CHAR = u8;

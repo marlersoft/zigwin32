@@ -528,8 +528,10 @@ pub const GAA_FLAG_INCLUDE_ALL_COMPARTMENTS = GET_ADAPTERS_ADDRESSES_FLAGS.INCLU
 pub const GAA_FLAG_INCLUDE_TUNNEL_BINDINGORDER = GET_ADAPTERS_ADDRESSES_FLAGS.INCLUDE_TUNNEL_BINDINGORDER;
 
 // TODO: this type has a FreeFunc 'IcmpCloseHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const IcmpHandle = isize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HIFTIMESTAMPCHANGE = *opaque{};
 
 pub const ip_option_information = extern struct {

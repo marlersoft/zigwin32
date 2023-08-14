@@ -811,6 +811,7 @@ pub const PFD_DOUBLEBUFFER_DONTCARE = PFD_FLAGS.DOUBLEBUFFER_DONTCARE;
 pub const PFD_STEREO_DONTCARE = PFD_FLAGS.STEREO_DONTCARE;
 
 // TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HGLRC = *opaque{};
 
 pub const PIXELFORMATDESCRIPTOR = extern struct {
