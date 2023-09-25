@@ -5273,7 +5273,7 @@ pub extern "kernel32" fn CreateFileA(
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
     hTemplateFile: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateFileW(
@@ -5284,7 +5284,7 @@ pub extern "kernel32" fn CreateFileW(
     dwCreationDisposition: FILE_CREATION_DISPOSITION,
     dwFlagsAndAttributes: FILE_FLAGS_AND_ATTRIBUTES,
     hTemplateFile: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn DefineDosDeviceW(
