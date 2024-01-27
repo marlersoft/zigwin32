@@ -5,9 +5,6 @@ const testing = std.testing;
 
 const root = @import("root");
 pub const UnicodeMode = enum { ansi, wide, unspecified };
-// WORKAROUND: https://github.com/ziglang/zig/issues/7979
-// using root.UNICODE causes an erroneous dependency loop, so I'm hardcoding to .wide for now
-// pub const unicode_mode = UnicodeMode.wide;
 pub const unicode_mode: UnicodeMode = if (@hasDecl(root, "UNICODE")) (if (root.UNICODE) .wide else .ansi) else .unspecified;
 
 pub const L = std.unicode.utf8ToUtf16LeStringLiteral;
