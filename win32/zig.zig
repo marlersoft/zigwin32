@@ -10,6 +10,8 @@ pub const UnicodeMode = enum { ansi, wide, unspecified };
 pub const unicode_mode = UnicodeMode.wide;
 //pub const unicode_mode : UnicodeMode = if (@hasDecl(root, "UNICODE")) (if (root.UNICODE) .wide else .ansi) else .unspecified;
 
+const is_zig_0_11 = std.mem.eql(u8, builtin.zig_version_string, "0.11.0");
+
 pub const L = std.unicode.utf8ToUtf16LeStringLiteral;
 
 pub usingnamespace switch (unicode_mode) {
@@ -49,9 +51,13 @@ pub const Guid = extern union {
 
     const big_endian_hex_offsets = [16]u6{ 0, 2, 4, 6, 9, 11, 14, 16, 19, 21, 24, 26, 28, 30, 32, 34 };
     const little_endian_hex_offsets = [16]u6{ 6, 4, 2, 0, 11, 9, 16, 14, 19, 21, 24, 26, 28, 30, 32, 34 };
-    const hex_offsets = switch (builtin.target.cpu.arch.endian()) {
+
+    const hex_offsets = if (is_zig_0_11) switch (builtin.target.cpu.arch.endian()) {
         .Big => big_endian_hex_offsets,
         .Little => little_endian_hex_offsets,
+    } else switch (builtin.target.cpu.arch.endian()) {
+        .big => big_endian_hex_offsets,
+        .little => little_endian_hex_offsets,
     };
 
     pub fn initString(s: []const u8) Guid {
@@ -80,10 +86,17 @@ fn decodeHexByte(hex: [2]u8) u8 {
 }
 
 test "Guid" {
-    try testing.expect(std.mem.eql(u8, switch (builtin.target.cpu.arch.endian()) {
-        .Big => "\x01\x23\x45\x67\x89\xAB\xEF\x10\x32\x54\x76\x98\xba\xdc\xfe\x91",
-        .Little => "\x67\x45\x23\x01\xAB\x89\x10\xEF\x32\x54\x76\x98\xba\xdc\xfe\x91",
-    }, &Guid.initString("01234567-89AB-EF10-3254-7698badcfe91").Bytes));
+    if (is_zig_0_11) {
+        try testing.expect(std.mem.eql(u8, switch (builtin.target.cpu.arch.endian()) {
+            .Big => "\x01\x23\x45\x67\x89\xAB\xEF\x10\x32\x54\x76\x98\xba\xdc\xfe\x91",
+            .Little => "\x67\x45\x23\x01\xAB\x89\x10\xEF\x32\x54\x76\x98\xba\xdc\xfe\x91",
+        }, &Guid.initString("01234567-89AB-EF10-3254-7698badcfe91").Bytes));
+    } else {
+        try testing.expect(std.mem.eql(u8, switch (builtin.target.cpu.arch.endian()) {
+            .big => "\x01\x23\x45\x67\x89\xAB\xEF\x10\x32\x54\x76\x98\xba\xdc\xfe\x91",
+            .little => "\x67\x45\x23\x01\xAB\x89\x10\xEF\x32\x54\x76\x98\xba\xdc\xfe\x91",
+        }, &Guid.initString("01234567-89AB-EF10-3254-7698badcfe91").Bytes));
+    }
 }
 
 pub const PropertyKey = extern struct {
