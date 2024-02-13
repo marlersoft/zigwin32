@@ -6,31 +6,77 @@
 //--------------------------------------------------------------------------------
 // Section: Types (4)
 //--------------------------------------------------------------------------------
-pub const OPERATION_START_FLAGS = enum(u32) {
-    D = 1,
-    _,
-    pub fn initFlags(o: struct {
-        D: u1 = 0,
-    }) OPERATION_START_FLAGS {
-        return @as(OPERATION_START_FLAGS, @enumFromInt(
-              (if (o.D == 1) @intFromEnum(OPERATION_START_FLAGS.D) else 0)
-        ));
-    }
+pub const OPERATION_START_FLAGS = packed struct(u32) {
+    D: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const OPERATION_START_TRACE_CURRENT_THREAD = OPERATION_START_FLAGS.D;
+pub const OPERATION_START_TRACE_CURRENT_THREAD = OPERATION_START_FLAGS{ .D = 1 };
 
-pub const OPERATION_END_PARAMETERS_FLAGS = enum(u32) {
-    D = 1,
-    _,
-    pub fn initFlags(o: struct {
-        D: u1 = 0,
-    }) OPERATION_END_PARAMETERS_FLAGS {
-        return @as(OPERATION_END_PARAMETERS_FLAGS, @enumFromInt(
-              (if (o.D == 1) @intFromEnum(OPERATION_END_PARAMETERS_FLAGS.D) else 0)
-        ));
-    }
+pub const OPERATION_END_PARAMETERS_FLAGS = packed struct(u32) {
+    D: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const OPERATION_END_DISCARD = OPERATION_END_PARAMETERS_FLAGS.D;
+pub const OPERATION_END_DISCARD = OPERATION_END_PARAMETERS_FLAGS{ .D = 1 };
 
 pub const OPERATION_START_PARAMETERS = extern struct {
     Version: u32,

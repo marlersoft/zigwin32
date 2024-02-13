@@ -525,68 +525,68 @@ pub const LPMIDICALLBACK = switch (@import("builtin").zig_backend) {
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 
-pub const MIDI_WAVE_OPEN_TYPE = enum(u32) {
-    CALLBACK_TYPEMASK = 458752,
-    CALLBACK_NULL = 0,
-    CALLBACK_WINDOW = 65536,
-    CALLBACK_TASK = 131072,
-    CALLBACK_FUNCTION = 196608,
-    // CALLBACK_THREAD = 131072, this enum value conflicts with CALLBACK_TASK
-    CALLBACK_EVENT = 327680,
-    WAVE_FORMAT_QUERY = 1,
-    WAVE_ALLOWSYNC = 2,
-    WAVE_MAPPED = 4,
-    WAVE_FORMAT_DIRECT = 8,
-    WAVE_FORMAT_DIRECT_QUERY = 9,
-    WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = 16,
-    MIDI_IO_STATUS = 32,
-    _,
-    pub fn initFlags(o: struct {
-        CALLBACK_TYPEMASK: u1 = 0,
-        CALLBACK_NULL: u1 = 0,
-        CALLBACK_WINDOW: u1 = 0,
-        CALLBACK_TASK: u1 = 0,
-        CALLBACK_FUNCTION: u1 = 0,
-        CALLBACK_EVENT: u1 = 0,
-        WAVE_FORMAT_QUERY: u1 = 0,
-        WAVE_ALLOWSYNC: u1 = 0,
-        WAVE_MAPPED: u1 = 0,
-        WAVE_FORMAT_DIRECT: u1 = 0,
-        WAVE_FORMAT_DIRECT_QUERY: u1 = 0,
-        WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE: u1 = 0,
-        MIDI_IO_STATUS: u1 = 0,
-    }) MIDI_WAVE_OPEN_TYPE {
-        return @as(MIDI_WAVE_OPEN_TYPE, @enumFromInt(
-              (if (o.CALLBACK_TYPEMASK == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_TYPEMASK) else 0)
-            | (if (o.CALLBACK_NULL == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_NULL) else 0)
-            | (if (o.CALLBACK_WINDOW == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_WINDOW) else 0)
-            | (if (o.CALLBACK_TASK == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_TASK) else 0)
-            | (if (o.CALLBACK_FUNCTION == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_FUNCTION) else 0)
-            | (if (o.CALLBACK_EVENT == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.CALLBACK_EVENT) else 0)
-            | (if (o.WAVE_FORMAT_QUERY == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_QUERY) else 0)
-            | (if (o.WAVE_ALLOWSYNC == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_ALLOWSYNC) else 0)
-            | (if (o.WAVE_MAPPED == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED) else 0)
-            | (if (o.WAVE_FORMAT_DIRECT == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT) else 0)
-            | (if (o.WAVE_FORMAT_DIRECT_QUERY == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT_QUERY) else 0)
-            | (if (o.WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE) else 0)
-            | (if (o.MIDI_IO_STATUS == 1) @intFromEnum(MIDI_WAVE_OPEN_TYPE.MIDI_IO_STATUS) else 0)
-        ));
-    }
+pub const MIDI_WAVE_OPEN_TYPE = packed struct(u32) {
+    WAVE_FORMAT_QUERY: u1 = 0,
+    WAVE_ALLOWSYNC: u1 = 0,
+    WAVE_MAPPED: u1 = 0,
+    WAVE_FORMAT_DIRECT: u1 = 0,
+    WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE: u1 = 0,
+    MIDI_IO_STATUS: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    CALLBACK_WINDOW: u1 = 0,
+    CALLBACK_TASK: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // CALLBACK_THREAD (131072) conflicts with CALLBACK_TASK
 };
-pub const CALLBACK_TYPEMASK = MIDI_WAVE_OPEN_TYPE.CALLBACK_TYPEMASK;
-pub const CALLBACK_NULL = MIDI_WAVE_OPEN_TYPE.CALLBACK_NULL;
-pub const CALLBACK_WINDOW = MIDI_WAVE_OPEN_TYPE.CALLBACK_WINDOW;
-pub const CALLBACK_TASK = MIDI_WAVE_OPEN_TYPE.CALLBACK_TASK;
-pub const CALLBACK_FUNCTION = MIDI_WAVE_OPEN_TYPE.CALLBACK_FUNCTION;
-pub const CALLBACK_THREAD = MIDI_WAVE_OPEN_TYPE.CALLBACK_TASK;
-pub const CALLBACK_EVENT = MIDI_WAVE_OPEN_TYPE.CALLBACK_EVENT;
-pub const WAVE_FORMAT_QUERY = MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_QUERY;
-pub const WAVE_ALLOWSYNC = MIDI_WAVE_OPEN_TYPE.WAVE_ALLOWSYNC;
-pub const WAVE_MAPPED = MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED;
-pub const WAVE_FORMAT_DIRECT = MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT;
-pub const WAVE_FORMAT_DIRECT_QUERY = MIDI_WAVE_OPEN_TYPE.WAVE_FORMAT_DIRECT_QUERY;
-pub const WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = MIDI_WAVE_OPEN_TYPE.WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE;
-pub const MIDI_IO_STATUS = MIDI_WAVE_OPEN_TYPE.MIDI_IO_STATUS;
+pub const CALLBACK_TYPEMASK = MIDI_WAVE_OPEN_TYPE{
+    .CALLBACK_WINDOW = 1,
+    .CALLBACK_TASK = 1,
+    ._18 = 1,
+};
+pub const CALLBACK_NULL = MIDI_WAVE_OPEN_TYPE{ };
+pub const CALLBACK_WINDOW = MIDI_WAVE_OPEN_TYPE{ .CALLBACK_WINDOW = 1 };
+pub const CALLBACK_TASK = MIDI_WAVE_OPEN_TYPE{ .CALLBACK_TASK = 1 };
+pub const CALLBACK_FUNCTION = MIDI_WAVE_OPEN_TYPE{
+    .CALLBACK_WINDOW = 1,
+    .CALLBACK_TASK = 1,
+};
+pub const CALLBACK_THREAD = MIDI_WAVE_OPEN_TYPE{ .CALLBACK_TASK = 1 };
+pub const CALLBACK_EVENT = MIDI_WAVE_OPEN_TYPE{
+    .CALLBACK_WINDOW = 1,
+    ._18 = 1,
+};
+pub const WAVE_FORMAT_QUERY = MIDI_WAVE_OPEN_TYPE{ .WAVE_FORMAT_QUERY = 1 };
+pub const WAVE_ALLOWSYNC = MIDI_WAVE_OPEN_TYPE{ .WAVE_ALLOWSYNC = 1 };
+pub const WAVE_MAPPED = MIDI_WAVE_OPEN_TYPE{ .WAVE_MAPPED = 1 };
+pub const WAVE_FORMAT_DIRECT = MIDI_WAVE_OPEN_TYPE{ .WAVE_FORMAT_DIRECT = 1 };
+pub const WAVE_FORMAT_DIRECT_QUERY = MIDI_WAVE_OPEN_TYPE{
+    .WAVE_FORMAT_QUERY = 1,
+    .WAVE_FORMAT_DIRECT = 1,
+};
+pub const WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = MIDI_WAVE_OPEN_TYPE{ .WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = 1 };
+pub const MIDI_IO_STATUS = MIDI_WAVE_OPEN_TYPE{ .MIDI_IO_STATUS = 1 };
 
 pub const MIXERLINE_COMPONENTTYPE = enum(u32) {
     DST_DIGITAL = 1,
@@ -1336,30 +1336,44 @@ pub const AUDCLNT_BUFFERFLAGS_DATA_DISCONTINUITY = _AUDCLNT_BUFFERFLAGS.DATA_DIS
 pub const AUDCLNT_BUFFERFLAGS_SILENT = _AUDCLNT_BUFFERFLAGS.SILENT;
 pub const AUDCLNT_BUFFERFLAGS_TIMESTAMP_ERROR = _AUDCLNT_BUFFERFLAGS.TIMESTAMP_ERROR;
 
-pub const AUDCLNT_STREAMOPTIONS = enum(u32) {
-    NONE = 0,
-    RAW = 1,
-    MATCH_FORMAT = 2,
-    AMBISONICS = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        RAW: u1 = 0,
-        MATCH_FORMAT: u1 = 0,
-        AMBISONICS: u1 = 0,
-    }) AUDCLNT_STREAMOPTIONS {
-        return @as(AUDCLNT_STREAMOPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(AUDCLNT_STREAMOPTIONS.NONE) else 0)
-            | (if (o.RAW == 1) @intFromEnum(AUDCLNT_STREAMOPTIONS.RAW) else 0)
-            | (if (o.MATCH_FORMAT == 1) @intFromEnum(AUDCLNT_STREAMOPTIONS.MATCH_FORMAT) else 0)
-            | (if (o.AMBISONICS == 1) @intFromEnum(AUDCLNT_STREAMOPTIONS.AMBISONICS) else 0)
-        ));
-    }
+pub const AUDCLNT_STREAMOPTIONS = packed struct(u32) {
+    RAW: u1 = 0,
+    MATCH_FORMAT: u1 = 0,
+    AMBISONICS: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AUDCLNT_STREAMOPTIONS_NONE = AUDCLNT_STREAMOPTIONS.NONE;
-pub const AUDCLNT_STREAMOPTIONS_RAW = AUDCLNT_STREAMOPTIONS.RAW;
-pub const AUDCLNT_STREAMOPTIONS_MATCH_FORMAT = AUDCLNT_STREAMOPTIONS.MATCH_FORMAT;
-pub const AUDCLNT_STREAMOPTIONS_AMBISONICS = AUDCLNT_STREAMOPTIONS.AMBISONICS;
+pub const AUDCLNT_STREAMOPTIONS_NONE = AUDCLNT_STREAMOPTIONS{ };
+pub const AUDCLNT_STREAMOPTIONS_RAW = AUDCLNT_STREAMOPTIONS{ .RAW = 1 };
+pub const AUDCLNT_STREAMOPTIONS_MATCH_FORMAT = AUDCLNT_STREAMOPTIONS{ .MATCH_FORMAT = 1 };
+pub const AUDCLNT_STREAMOPTIONS_AMBISONICS = AUDCLNT_STREAMOPTIONS{ .AMBISONICS = 1 };
 
 pub const AudioClientProperties = extern struct {
     cbSize: u32,
@@ -2002,22 +2016,42 @@ pub const ISimpleAudioVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AUDIO_DUCKING_OPTIONS = enum(u32) {
-    EFAULT = 0,
-    O_NOT_DUCK_OTHER_STREAMS = 1,
-    _,
-    pub fn initFlags(o: struct {
-        EFAULT: u1 = 0,
-        O_NOT_DUCK_OTHER_STREAMS: u1 = 0,
-    }) AUDIO_DUCKING_OPTIONS {
-        return @as(AUDIO_DUCKING_OPTIONS, @enumFromInt(
-              (if (o.EFAULT == 1) @intFromEnum(AUDIO_DUCKING_OPTIONS.EFAULT) else 0)
-            | (if (o.O_NOT_DUCK_OTHER_STREAMS == 1) @intFromEnum(AUDIO_DUCKING_OPTIONS.O_NOT_DUCK_OTHER_STREAMS) else 0)
-        ));
-    }
+pub const AUDIO_DUCKING_OPTIONS = packed struct(u32) {
+    O_NOT_DUCK_OTHER_STREAMS: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AUDIO_DUCKING_OPTIONS_DEFAULT = AUDIO_DUCKING_OPTIONS.EFAULT;
-pub const AUDIO_DUCKING_OPTIONS_DO_NOT_DUCK_OTHER_STREAMS = AUDIO_DUCKING_OPTIONS.O_NOT_DUCK_OTHER_STREAMS;
+pub const AUDIO_DUCKING_OPTIONS_DEFAULT = AUDIO_DUCKING_OPTIONS{ };
+pub const AUDIO_DUCKING_OPTIONS_DO_NOT_DUCK_OTHER_STREAMS = AUDIO_DUCKING_OPTIONS{ .O_NOT_DUCK_OTHER_STREAMS = 1 };
 
 const IID_IAudioClientDuckingControl_Value = Guid.initString("c789d381-a28c-4168-b28f-d3a837924dc3");
 pub const IID_IAudioClientDuckingControl = &IID_IAudioClientDuckingControl_Value;
@@ -2450,107 +2484,96 @@ pub const IChannelAudioVolume = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AudioObjectType = enum(u32) {
-    None = 0,
-    Dynamic = 1,
-    FrontLeft = 2,
-    FrontRight = 4,
-    FrontCenter = 8,
-    LowFrequency = 16,
-    SideLeft = 32,
-    SideRight = 64,
-    BackLeft = 128,
-    BackRight = 256,
-    TopFrontLeft = 512,
-    TopFrontRight = 1024,
-    TopBackLeft = 2048,
-    TopBackRight = 4096,
-    BottomFrontLeft = 8192,
-    BottomFrontRight = 16384,
-    BottomBackLeft = 32768,
-    BottomBackRight = 65536,
-    BackCenter = 131072,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        Dynamic: u1 = 0,
-        FrontLeft: u1 = 0,
-        FrontRight: u1 = 0,
-        FrontCenter: u1 = 0,
-        LowFrequency: u1 = 0,
-        SideLeft: u1 = 0,
-        SideRight: u1 = 0,
-        BackLeft: u1 = 0,
-        BackRight: u1 = 0,
-        TopFrontLeft: u1 = 0,
-        TopFrontRight: u1 = 0,
-        TopBackLeft: u1 = 0,
-        TopBackRight: u1 = 0,
-        BottomFrontLeft: u1 = 0,
-        BottomFrontRight: u1 = 0,
-        BottomBackLeft: u1 = 0,
-        BottomBackRight: u1 = 0,
-        BackCenter: u1 = 0,
-    }) AudioObjectType {
-        return @as(AudioObjectType, @enumFromInt(
-              (if (o.None == 1) @intFromEnum(AudioObjectType.None) else 0)
-            | (if (o.Dynamic == 1) @intFromEnum(AudioObjectType.Dynamic) else 0)
-            | (if (o.FrontLeft == 1) @intFromEnum(AudioObjectType.FrontLeft) else 0)
-            | (if (o.FrontRight == 1) @intFromEnum(AudioObjectType.FrontRight) else 0)
-            | (if (o.FrontCenter == 1) @intFromEnum(AudioObjectType.FrontCenter) else 0)
-            | (if (o.LowFrequency == 1) @intFromEnum(AudioObjectType.LowFrequency) else 0)
-            | (if (o.SideLeft == 1) @intFromEnum(AudioObjectType.SideLeft) else 0)
-            | (if (o.SideRight == 1) @intFromEnum(AudioObjectType.SideRight) else 0)
-            | (if (o.BackLeft == 1) @intFromEnum(AudioObjectType.BackLeft) else 0)
-            | (if (o.BackRight == 1) @intFromEnum(AudioObjectType.BackRight) else 0)
-            | (if (o.TopFrontLeft == 1) @intFromEnum(AudioObjectType.TopFrontLeft) else 0)
-            | (if (o.TopFrontRight == 1) @intFromEnum(AudioObjectType.TopFrontRight) else 0)
-            | (if (o.TopBackLeft == 1) @intFromEnum(AudioObjectType.TopBackLeft) else 0)
-            | (if (o.TopBackRight == 1) @intFromEnum(AudioObjectType.TopBackRight) else 0)
-            | (if (o.BottomFrontLeft == 1) @intFromEnum(AudioObjectType.BottomFrontLeft) else 0)
-            | (if (o.BottomFrontRight == 1) @intFromEnum(AudioObjectType.BottomFrontRight) else 0)
-            | (if (o.BottomBackLeft == 1) @intFromEnum(AudioObjectType.BottomBackLeft) else 0)
-            | (if (o.BottomBackRight == 1) @intFromEnum(AudioObjectType.BottomBackRight) else 0)
-            | (if (o.BackCenter == 1) @intFromEnum(AudioObjectType.BackCenter) else 0)
-        ));
-    }
+pub const AudioObjectType = packed struct(u32) {
+    Dynamic: u1 = 0,
+    FrontLeft: u1 = 0,
+    FrontRight: u1 = 0,
+    FrontCenter: u1 = 0,
+    LowFrequency: u1 = 0,
+    SideLeft: u1 = 0,
+    SideRight: u1 = 0,
+    BackLeft: u1 = 0,
+    BackRight: u1 = 0,
+    TopFrontLeft: u1 = 0,
+    TopFrontRight: u1 = 0,
+    TopBackLeft: u1 = 0,
+    TopBackRight: u1 = 0,
+    BottomFrontLeft: u1 = 0,
+    BottomFrontRight: u1 = 0,
+    BottomBackLeft: u1 = 0,
+    BottomBackRight: u1 = 0,
+    BackCenter: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AudioObjectType_None = AudioObjectType.None;
-pub const AudioObjectType_Dynamic = AudioObjectType.Dynamic;
-pub const AudioObjectType_FrontLeft = AudioObjectType.FrontLeft;
-pub const AudioObjectType_FrontRight = AudioObjectType.FrontRight;
-pub const AudioObjectType_FrontCenter = AudioObjectType.FrontCenter;
-pub const AudioObjectType_LowFrequency = AudioObjectType.LowFrequency;
-pub const AudioObjectType_SideLeft = AudioObjectType.SideLeft;
-pub const AudioObjectType_SideRight = AudioObjectType.SideRight;
-pub const AudioObjectType_BackLeft = AudioObjectType.BackLeft;
-pub const AudioObjectType_BackRight = AudioObjectType.BackRight;
-pub const AudioObjectType_TopFrontLeft = AudioObjectType.TopFrontLeft;
-pub const AudioObjectType_TopFrontRight = AudioObjectType.TopFrontRight;
-pub const AudioObjectType_TopBackLeft = AudioObjectType.TopBackLeft;
-pub const AudioObjectType_TopBackRight = AudioObjectType.TopBackRight;
-pub const AudioObjectType_BottomFrontLeft = AudioObjectType.BottomFrontLeft;
-pub const AudioObjectType_BottomFrontRight = AudioObjectType.BottomFrontRight;
-pub const AudioObjectType_BottomBackLeft = AudioObjectType.BottomBackLeft;
-pub const AudioObjectType_BottomBackRight = AudioObjectType.BottomBackRight;
-pub const AudioObjectType_BackCenter = AudioObjectType.BackCenter;
+pub const AudioObjectType_None = AudioObjectType{ };
+pub const AudioObjectType_Dynamic = AudioObjectType{ .Dynamic = 1 };
+pub const AudioObjectType_FrontLeft = AudioObjectType{ .FrontLeft = 1 };
+pub const AudioObjectType_FrontRight = AudioObjectType{ .FrontRight = 1 };
+pub const AudioObjectType_FrontCenter = AudioObjectType{ .FrontCenter = 1 };
+pub const AudioObjectType_LowFrequency = AudioObjectType{ .LowFrequency = 1 };
+pub const AudioObjectType_SideLeft = AudioObjectType{ .SideLeft = 1 };
+pub const AudioObjectType_SideRight = AudioObjectType{ .SideRight = 1 };
+pub const AudioObjectType_BackLeft = AudioObjectType{ .BackLeft = 1 };
+pub const AudioObjectType_BackRight = AudioObjectType{ .BackRight = 1 };
+pub const AudioObjectType_TopFrontLeft = AudioObjectType{ .TopFrontLeft = 1 };
+pub const AudioObjectType_TopFrontRight = AudioObjectType{ .TopFrontRight = 1 };
+pub const AudioObjectType_TopBackLeft = AudioObjectType{ .TopBackLeft = 1 };
+pub const AudioObjectType_TopBackRight = AudioObjectType{ .TopBackRight = 1 };
+pub const AudioObjectType_BottomFrontLeft = AudioObjectType{ .BottomFrontLeft = 1 };
+pub const AudioObjectType_BottomFrontRight = AudioObjectType{ .BottomFrontRight = 1 };
+pub const AudioObjectType_BottomBackLeft = AudioObjectType{ .BottomBackLeft = 1 };
+pub const AudioObjectType_BottomBackRight = AudioObjectType{ .BottomBackRight = 1 };
+pub const AudioObjectType_BackCenter = AudioObjectType{ .BackCenter = 1 };
 
-pub const SPATIAL_AUDIO_STREAM_OPTIONS = enum(u32) {
-    NONE = 0,
-    OFFLOAD = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        OFFLOAD: u1 = 0,
-    }) SPATIAL_AUDIO_STREAM_OPTIONS {
-        return @as(SPATIAL_AUDIO_STREAM_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(SPATIAL_AUDIO_STREAM_OPTIONS.NONE) else 0)
-            | (if (o.OFFLOAD == 1) @intFromEnum(SPATIAL_AUDIO_STREAM_OPTIONS.OFFLOAD) else 0)
-        ));
-    }
+pub const SPATIAL_AUDIO_STREAM_OPTIONS = packed struct(u32) {
+    OFFLOAD: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const SPATIAL_AUDIO_STREAM_OPTIONS_NONE = SPATIAL_AUDIO_STREAM_OPTIONS.NONE;
-pub const SPATIAL_AUDIO_STREAM_OPTIONS_OFFLOAD = SPATIAL_AUDIO_STREAM_OPTIONS.OFFLOAD;
+pub const SPATIAL_AUDIO_STREAM_OPTIONS_NONE = SPATIAL_AUDIO_STREAM_OPTIONS{ };
+pub const SPATIAL_AUDIO_STREAM_OPTIONS_OFFLOAD = SPATIAL_AUDIO_STREAM_OPTIONS{ .OFFLOAD = 1 };
 
 pub const SpatialAudioObjectRenderStreamActivationParams = extern struct {
     ObjectFormat: ?*const WAVEFORMATEX align(1),

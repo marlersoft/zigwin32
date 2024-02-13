@@ -46,22 +46,42 @@ pub const DML_TENSOR_TYPE = enum(i32) {
 pub const DML_TENSOR_TYPE_INVALID = DML_TENSOR_TYPE.INVALID;
 pub const DML_TENSOR_TYPE_BUFFER = DML_TENSOR_TYPE.BUFFER;
 
-pub const DML_TENSOR_FLAGS = enum(u32) {
-    NONE = 0,
-    OWNED_BY_DML = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        OWNED_BY_DML: u1 = 0,
-    }) DML_TENSOR_FLAGS {
-        return @as(DML_TENSOR_FLAGS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DML_TENSOR_FLAGS.NONE) else 0)
-            | (if (o.OWNED_BY_DML == 1) @intFromEnum(DML_TENSOR_FLAGS.OWNED_BY_DML) else 0)
-        ));
-    }
+pub const DML_TENSOR_FLAGS = packed struct(u32) {
+    OWNED_BY_DML: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DML_TENSOR_FLAG_NONE = DML_TENSOR_FLAGS.NONE;
-pub const DML_TENSOR_FLAG_OWNED_BY_DML = DML_TENSOR_FLAGS.OWNED_BY_DML;
+pub const DML_TENSOR_FLAG_NONE = DML_TENSOR_FLAGS{ };
+pub const DML_TENSOR_FLAG_OWNED_BY_DML = DML_TENSOR_FLAGS{ .OWNED_BY_DML = 1 };
 
 pub const DML_BUFFER_TENSOR_DESC = extern struct {
     DataType: DML_TENSOR_DATA_TYPE,
@@ -1714,47 +1734,81 @@ pub const DML_BINDING_TABLE_DESC = extern struct {
     SizeInDescriptors: u32,
 };
 
-pub const DML_EXECUTION_FLAGS = enum(u32) {
-    NONE = 0,
-    ALLOW_HALF_PRECISION_COMPUTATION = 1,
-    DISABLE_META_COMMANDS = 2,
-    DESCRIPTORS_VOLATILE = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ALLOW_HALF_PRECISION_COMPUTATION: u1 = 0,
-        DISABLE_META_COMMANDS: u1 = 0,
-        DESCRIPTORS_VOLATILE: u1 = 0,
-    }) DML_EXECUTION_FLAGS {
-        return @as(DML_EXECUTION_FLAGS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DML_EXECUTION_FLAGS.NONE) else 0)
-            | (if (o.ALLOW_HALF_PRECISION_COMPUTATION == 1) @intFromEnum(DML_EXECUTION_FLAGS.ALLOW_HALF_PRECISION_COMPUTATION) else 0)
-            | (if (o.DISABLE_META_COMMANDS == 1) @intFromEnum(DML_EXECUTION_FLAGS.DISABLE_META_COMMANDS) else 0)
-            | (if (o.DESCRIPTORS_VOLATILE == 1) @intFromEnum(DML_EXECUTION_FLAGS.DESCRIPTORS_VOLATILE) else 0)
-        ));
-    }
+pub const DML_EXECUTION_FLAGS = packed struct(u32) {
+    ALLOW_HALF_PRECISION_COMPUTATION: u1 = 0,
+    DISABLE_META_COMMANDS: u1 = 0,
+    DESCRIPTORS_VOLATILE: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DML_EXECUTION_FLAG_NONE = DML_EXECUTION_FLAGS.NONE;
-pub const DML_EXECUTION_FLAG_ALLOW_HALF_PRECISION_COMPUTATION = DML_EXECUTION_FLAGS.ALLOW_HALF_PRECISION_COMPUTATION;
-pub const DML_EXECUTION_FLAG_DISABLE_META_COMMANDS = DML_EXECUTION_FLAGS.DISABLE_META_COMMANDS;
-pub const DML_EXECUTION_FLAG_DESCRIPTORS_VOLATILE = DML_EXECUTION_FLAGS.DESCRIPTORS_VOLATILE;
+pub const DML_EXECUTION_FLAG_NONE = DML_EXECUTION_FLAGS{ };
+pub const DML_EXECUTION_FLAG_ALLOW_HALF_PRECISION_COMPUTATION = DML_EXECUTION_FLAGS{ .ALLOW_HALF_PRECISION_COMPUTATION = 1 };
+pub const DML_EXECUTION_FLAG_DISABLE_META_COMMANDS = DML_EXECUTION_FLAGS{ .DISABLE_META_COMMANDS = 1 };
+pub const DML_EXECUTION_FLAG_DESCRIPTORS_VOLATILE = DML_EXECUTION_FLAGS{ .DESCRIPTORS_VOLATILE = 1 };
 
-pub const DML_CREATE_DEVICE_FLAGS = enum(u32) {
-    NONE = 0,
-    DEBUG = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DEBUG: u1 = 0,
-    }) DML_CREATE_DEVICE_FLAGS {
-        return @as(DML_CREATE_DEVICE_FLAGS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DML_CREATE_DEVICE_FLAGS.NONE) else 0)
-            | (if (o.DEBUG == 1) @intFromEnum(DML_CREATE_DEVICE_FLAGS.DEBUG) else 0)
-        ));
-    }
+pub const DML_CREATE_DEVICE_FLAGS = packed struct(u32) {
+    DEBUG: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DML_CREATE_DEVICE_FLAG_NONE = DML_CREATE_DEVICE_FLAGS.NONE;
-pub const DML_CREATE_DEVICE_FLAG_DEBUG = DML_CREATE_DEVICE_FLAGS.DEBUG;
+pub const DML_CREATE_DEVICE_FLAG_NONE = DML_CREATE_DEVICE_FLAGS{ };
+pub const DML_CREATE_DEVICE_FLAG_DEBUG = DML_CREATE_DEVICE_FLAGS{ .DEBUG = 1 };
 
 const IID_IDMLObject_Value = Guid.initString("c8263aac-9e0c-4a2d-9b8e-007521a3317c");
 pub const IID_IDMLObject = &IID_IDMLObject_Value;

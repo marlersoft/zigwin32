@@ -928,160 +928,142 @@ pub const UIA_SayAsInterpretAsMetadataId = @as(i32, 100000);
 //--------------------------------------------------------------------------------
 // Section: Types (243)
 //--------------------------------------------------------------------------------
-pub const STICKYKEYS_FLAGS = enum(u32) {
-    STICKYKEYSON = 1,
-    AVAILABLE = 2,
-    HOTKEYACTIVE = 4,
-    CONFIRMHOTKEY = 8,
-    HOTKEYSOUND = 16,
-    INDICATOR = 32,
-    AUDIBLEFEEDBACK = 64,
-    TRISTATE = 128,
-    TWOKEYSOFF = 256,
-    LALTLATCHED = 268435456,
-    LCTLLATCHED = 67108864,
-    LSHIFTLATCHED = 16777216,
-    RALTLATCHED = 536870912,
-    RCTLLATCHED = 134217728,
-    RSHIFTLATCHED = 33554432,
-    LWINLATCHED = 1073741824,
-    RWINLATCHED = 2147483648,
-    LALTLOCKED = 1048576,
-    LCTLLOCKED = 262144,
-    LSHIFTLOCKED = 65536,
-    RALTLOCKED = 2097152,
-    RCTLLOCKED = 524288,
-    RSHIFTLOCKED = 131072,
-    LWINLOCKED = 4194304,
-    RWINLOCKED = 8388608,
-    _,
-    pub fn initFlags(o: struct {
-        STICKYKEYSON: u1 = 0,
-        AVAILABLE: u1 = 0,
-        HOTKEYACTIVE: u1 = 0,
-        CONFIRMHOTKEY: u1 = 0,
-        HOTKEYSOUND: u1 = 0,
-        INDICATOR: u1 = 0,
-        AUDIBLEFEEDBACK: u1 = 0,
-        TRISTATE: u1 = 0,
-        TWOKEYSOFF: u1 = 0,
-        LALTLATCHED: u1 = 0,
-        LCTLLATCHED: u1 = 0,
-        LSHIFTLATCHED: u1 = 0,
-        RALTLATCHED: u1 = 0,
-        RCTLLATCHED: u1 = 0,
-        RSHIFTLATCHED: u1 = 0,
-        LWINLATCHED: u1 = 0,
-        RWINLATCHED: u1 = 0,
-        LALTLOCKED: u1 = 0,
-        LCTLLOCKED: u1 = 0,
-        LSHIFTLOCKED: u1 = 0,
-        RALTLOCKED: u1 = 0,
-        RCTLLOCKED: u1 = 0,
-        RSHIFTLOCKED: u1 = 0,
-        LWINLOCKED: u1 = 0,
-        RWINLOCKED: u1 = 0,
-    }) STICKYKEYS_FLAGS {
-        return @as(STICKYKEYS_FLAGS, @enumFromInt(
-              (if (o.STICKYKEYSON == 1) @intFromEnum(STICKYKEYS_FLAGS.STICKYKEYSON) else 0)
-            | (if (o.AVAILABLE == 1) @intFromEnum(STICKYKEYS_FLAGS.AVAILABLE) else 0)
-            | (if (o.HOTKEYACTIVE == 1) @intFromEnum(STICKYKEYS_FLAGS.HOTKEYACTIVE) else 0)
-            | (if (o.CONFIRMHOTKEY == 1) @intFromEnum(STICKYKEYS_FLAGS.CONFIRMHOTKEY) else 0)
-            | (if (o.HOTKEYSOUND == 1) @intFromEnum(STICKYKEYS_FLAGS.HOTKEYSOUND) else 0)
-            | (if (o.INDICATOR == 1) @intFromEnum(STICKYKEYS_FLAGS.INDICATOR) else 0)
-            | (if (o.AUDIBLEFEEDBACK == 1) @intFromEnum(STICKYKEYS_FLAGS.AUDIBLEFEEDBACK) else 0)
-            | (if (o.TRISTATE == 1) @intFromEnum(STICKYKEYS_FLAGS.TRISTATE) else 0)
-            | (if (o.TWOKEYSOFF == 1) @intFromEnum(STICKYKEYS_FLAGS.TWOKEYSOFF) else 0)
-            | (if (o.LALTLATCHED == 1) @intFromEnum(STICKYKEYS_FLAGS.LALTLATCHED) else 0)
-            | (if (o.LCTLLATCHED == 1) @intFromEnum(STICKYKEYS_FLAGS.LCTLLATCHED) else 0)
-            | (if (o.LSHIFTLATCHED == 1) @intFromEnum(STICKYKEYS_FLAGS.LSHIFTLATCHED) else 0)
-            | (if (o.RALTLATCHED == 1) @intFromEnum(STICKYKEYS_FLAGS.RALTLATCHED) else 0)
-            | (if (o.RCTLLATCHED == 1) @intFromEnum(STICKYKEYS_FLAGS.RCTLLATCHED) else 0)
-            | (if (o.RSHIFTLATCHED == 1) @intFromEnum(STICKYKEYS_FLAGS.RSHIFTLATCHED) else 0)
-            | (if (o.LWINLATCHED == 1) @intFromEnum(STICKYKEYS_FLAGS.LWINLATCHED) else 0)
-            | (if (o.RWINLATCHED == 1) @intFromEnum(STICKYKEYS_FLAGS.RWINLATCHED) else 0)
-            | (if (o.LALTLOCKED == 1) @intFromEnum(STICKYKEYS_FLAGS.LALTLOCKED) else 0)
-            | (if (o.LCTLLOCKED == 1) @intFromEnum(STICKYKEYS_FLAGS.LCTLLOCKED) else 0)
-            | (if (o.LSHIFTLOCKED == 1) @intFromEnum(STICKYKEYS_FLAGS.LSHIFTLOCKED) else 0)
-            | (if (o.RALTLOCKED == 1) @intFromEnum(STICKYKEYS_FLAGS.RALTLOCKED) else 0)
-            | (if (o.RCTLLOCKED == 1) @intFromEnum(STICKYKEYS_FLAGS.RCTLLOCKED) else 0)
-            | (if (o.RSHIFTLOCKED == 1) @intFromEnum(STICKYKEYS_FLAGS.RSHIFTLOCKED) else 0)
-            | (if (o.LWINLOCKED == 1) @intFromEnum(STICKYKEYS_FLAGS.LWINLOCKED) else 0)
-            | (if (o.RWINLOCKED == 1) @intFromEnum(STICKYKEYS_FLAGS.RWINLOCKED) else 0)
-        ));
-    }
+pub const STICKYKEYS_FLAGS = packed struct(u32) {
+    STICKYKEYSON: u1 = 0,
+    AVAILABLE: u1 = 0,
+    HOTKEYACTIVE: u1 = 0,
+    CONFIRMHOTKEY: u1 = 0,
+    HOTKEYSOUND: u1 = 0,
+    INDICATOR: u1 = 0,
+    AUDIBLEFEEDBACK: u1 = 0,
+    TRISTATE: u1 = 0,
+    TWOKEYSOFF: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    LSHIFTLOCKED: u1 = 0,
+    RSHIFTLOCKED: u1 = 0,
+    LCTLLOCKED: u1 = 0,
+    RCTLLOCKED: u1 = 0,
+    LALTLOCKED: u1 = 0,
+    RALTLOCKED: u1 = 0,
+    LWINLOCKED: u1 = 0,
+    RWINLOCKED: u1 = 0,
+    LSHIFTLATCHED: u1 = 0,
+    RSHIFTLATCHED: u1 = 0,
+    LCTLLATCHED: u1 = 0,
+    RCTLLATCHED: u1 = 0,
+    LALTLATCHED: u1 = 0,
+    RALTLATCHED: u1 = 0,
+    LWINLATCHED: u1 = 0,
+    RWINLATCHED: u1 = 0,
 };
-pub const SKF_STICKYKEYSON = STICKYKEYS_FLAGS.STICKYKEYSON;
-pub const SKF_AVAILABLE = STICKYKEYS_FLAGS.AVAILABLE;
-pub const SKF_HOTKEYACTIVE = STICKYKEYS_FLAGS.HOTKEYACTIVE;
-pub const SKF_CONFIRMHOTKEY = STICKYKEYS_FLAGS.CONFIRMHOTKEY;
-pub const SKF_HOTKEYSOUND = STICKYKEYS_FLAGS.HOTKEYSOUND;
-pub const SKF_INDICATOR = STICKYKEYS_FLAGS.INDICATOR;
-pub const SKF_AUDIBLEFEEDBACK = STICKYKEYS_FLAGS.AUDIBLEFEEDBACK;
-pub const SKF_TRISTATE = STICKYKEYS_FLAGS.TRISTATE;
-pub const SKF_TWOKEYSOFF = STICKYKEYS_FLAGS.TWOKEYSOFF;
-pub const SKF_LALTLATCHED = STICKYKEYS_FLAGS.LALTLATCHED;
-pub const SKF_LCTLLATCHED = STICKYKEYS_FLAGS.LCTLLATCHED;
-pub const SKF_LSHIFTLATCHED = STICKYKEYS_FLAGS.LSHIFTLATCHED;
-pub const SKF_RALTLATCHED = STICKYKEYS_FLAGS.RALTLATCHED;
-pub const SKF_RCTLLATCHED = STICKYKEYS_FLAGS.RCTLLATCHED;
-pub const SKF_RSHIFTLATCHED = STICKYKEYS_FLAGS.RSHIFTLATCHED;
-pub const SKF_LWINLATCHED = STICKYKEYS_FLAGS.LWINLATCHED;
-pub const SKF_RWINLATCHED = STICKYKEYS_FLAGS.RWINLATCHED;
-pub const SKF_LALTLOCKED = STICKYKEYS_FLAGS.LALTLOCKED;
-pub const SKF_LCTLLOCKED = STICKYKEYS_FLAGS.LCTLLOCKED;
-pub const SKF_LSHIFTLOCKED = STICKYKEYS_FLAGS.LSHIFTLOCKED;
-pub const SKF_RALTLOCKED = STICKYKEYS_FLAGS.RALTLOCKED;
-pub const SKF_RCTLLOCKED = STICKYKEYS_FLAGS.RCTLLOCKED;
-pub const SKF_RSHIFTLOCKED = STICKYKEYS_FLAGS.RSHIFTLOCKED;
-pub const SKF_LWINLOCKED = STICKYKEYS_FLAGS.LWINLOCKED;
-pub const SKF_RWINLOCKED = STICKYKEYS_FLAGS.RWINLOCKED;
+pub const SKF_STICKYKEYSON = STICKYKEYS_FLAGS{ .STICKYKEYSON = 1 };
+pub const SKF_AVAILABLE = STICKYKEYS_FLAGS{ .AVAILABLE = 1 };
+pub const SKF_HOTKEYACTIVE = STICKYKEYS_FLAGS{ .HOTKEYACTIVE = 1 };
+pub const SKF_CONFIRMHOTKEY = STICKYKEYS_FLAGS{ .CONFIRMHOTKEY = 1 };
+pub const SKF_HOTKEYSOUND = STICKYKEYS_FLAGS{ .HOTKEYSOUND = 1 };
+pub const SKF_INDICATOR = STICKYKEYS_FLAGS{ .INDICATOR = 1 };
+pub const SKF_AUDIBLEFEEDBACK = STICKYKEYS_FLAGS{ .AUDIBLEFEEDBACK = 1 };
+pub const SKF_TRISTATE = STICKYKEYS_FLAGS{ .TRISTATE = 1 };
+pub const SKF_TWOKEYSOFF = STICKYKEYS_FLAGS{ .TWOKEYSOFF = 1 };
+pub const SKF_LALTLATCHED = STICKYKEYS_FLAGS{ .LALTLATCHED = 1 };
+pub const SKF_LCTLLATCHED = STICKYKEYS_FLAGS{ .LCTLLATCHED = 1 };
+pub const SKF_LSHIFTLATCHED = STICKYKEYS_FLAGS{ .LSHIFTLATCHED = 1 };
+pub const SKF_RALTLATCHED = STICKYKEYS_FLAGS{ .RALTLATCHED = 1 };
+pub const SKF_RCTLLATCHED = STICKYKEYS_FLAGS{ .RCTLLATCHED = 1 };
+pub const SKF_RSHIFTLATCHED = STICKYKEYS_FLAGS{ .RSHIFTLATCHED = 1 };
+pub const SKF_LWINLATCHED = STICKYKEYS_FLAGS{ .LWINLATCHED = 1 };
+pub const SKF_RWINLATCHED = STICKYKEYS_FLAGS{ .RWINLATCHED = 1 };
+pub const SKF_LALTLOCKED = STICKYKEYS_FLAGS{ .LALTLOCKED = 1 };
+pub const SKF_LCTLLOCKED = STICKYKEYS_FLAGS{ .LCTLLOCKED = 1 };
+pub const SKF_LSHIFTLOCKED = STICKYKEYS_FLAGS{ .LSHIFTLOCKED = 1 };
+pub const SKF_RALTLOCKED = STICKYKEYS_FLAGS{ .RALTLOCKED = 1 };
+pub const SKF_RCTLLOCKED = STICKYKEYS_FLAGS{ .RCTLLOCKED = 1 };
+pub const SKF_RSHIFTLOCKED = STICKYKEYS_FLAGS{ .RSHIFTLOCKED = 1 };
+pub const SKF_LWINLOCKED = STICKYKEYS_FLAGS{ .LWINLOCKED = 1 };
+pub const SKF_RWINLOCKED = STICKYKEYS_FLAGS{ .RWINLOCKED = 1 };
 
-pub const SOUNDSENTRY_FLAGS = enum(u32) {
-    SOUNDSENTRYON = 1,
-    AVAILABLE = 2,
-    INDICATOR = 4,
-    _,
-    pub fn initFlags(o: struct {
-        SOUNDSENTRYON: u1 = 0,
-        AVAILABLE: u1 = 0,
-        INDICATOR: u1 = 0,
-    }) SOUNDSENTRY_FLAGS {
-        return @as(SOUNDSENTRY_FLAGS, @enumFromInt(
-              (if (o.SOUNDSENTRYON == 1) @intFromEnum(SOUNDSENTRY_FLAGS.SOUNDSENTRYON) else 0)
-            | (if (o.AVAILABLE == 1) @intFromEnum(SOUNDSENTRY_FLAGS.AVAILABLE) else 0)
-            | (if (o.INDICATOR == 1) @intFromEnum(SOUNDSENTRY_FLAGS.INDICATOR) else 0)
-        ));
-    }
+pub const SOUNDSENTRY_FLAGS = packed struct(u32) {
+    SOUNDSENTRYON: u1 = 0,
+    AVAILABLE: u1 = 0,
+    INDICATOR: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const SSF_SOUNDSENTRYON = SOUNDSENTRY_FLAGS.SOUNDSENTRYON;
-pub const SSF_AVAILABLE = SOUNDSENTRY_FLAGS.AVAILABLE;
-pub const SSF_INDICATOR = SOUNDSENTRY_FLAGS.INDICATOR;
+pub const SSF_SOUNDSENTRYON = SOUNDSENTRY_FLAGS{ .SOUNDSENTRYON = 1 };
+pub const SSF_AVAILABLE = SOUNDSENTRY_FLAGS{ .AVAILABLE = 1 };
+pub const SSF_INDICATOR = SOUNDSENTRY_FLAGS{ .INDICATOR = 1 };
 
-pub const ACC_UTILITY_STATE_FLAGS = enum(u32) {
-    ON_SCREEN_KEYBOARD_ACTIVE = 1,
-    TOUCH_MODIFICATION_ACTIVE = 2,
-    PRIORITY_AUDIO_ACTIVE = 4,
-    PRIORITY_AUDIO_ACTIVE_NODUCK = 8,
-    _,
-    pub fn initFlags(o: struct {
-        ON_SCREEN_KEYBOARD_ACTIVE: u1 = 0,
-        TOUCH_MODIFICATION_ACTIVE: u1 = 0,
-        PRIORITY_AUDIO_ACTIVE: u1 = 0,
-        PRIORITY_AUDIO_ACTIVE_NODUCK: u1 = 0,
-    }) ACC_UTILITY_STATE_FLAGS {
-        return @as(ACC_UTILITY_STATE_FLAGS, @enumFromInt(
-              (if (o.ON_SCREEN_KEYBOARD_ACTIVE == 1) @intFromEnum(ACC_UTILITY_STATE_FLAGS.ON_SCREEN_KEYBOARD_ACTIVE) else 0)
-            | (if (o.TOUCH_MODIFICATION_ACTIVE == 1) @intFromEnum(ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFICATION_ACTIVE) else 0)
-            | (if (o.PRIORITY_AUDIO_ACTIVE == 1) @intFromEnum(ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE) else 0)
-            | (if (o.PRIORITY_AUDIO_ACTIVE_NODUCK == 1) @intFromEnum(ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE_NODUCK) else 0)
-        ));
-    }
+pub const ACC_UTILITY_STATE_FLAGS = packed struct(u32) {
+    ON_SCREEN_KEYBOARD_ACTIVE: u1 = 0,
+    TOUCH_MODIFICATION_ACTIVE: u1 = 0,
+    PRIORITY_AUDIO_ACTIVE: u1 = 0,
+    PRIORITY_AUDIO_ACTIVE_NODUCK: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const ANRUS_ON_SCREEN_KEYBOARD_ACTIVE = ACC_UTILITY_STATE_FLAGS.ON_SCREEN_KEYBOARD_ACTIVE;
-pub const ANRUS_TOUCH_MODIFICATION_ACTIVE = ACC_UTILITY_STATE_FLAGS.TOUCH_MODIFICATION_ACTIVE;
-pub const ANRUS_PRIORITY_AUDIO_ACTIVE = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE;
-pub const ANRUS_PRIORITY_AUDIO_ACTIVE_NODUCK = ACC_UTILITY_STATE_FLAGS.PRIORITY_AUDIO_ACTIVE_NODUCK;
+pub const ANRUS_ON_SCREEN_KEYBOARD_ACTIVE = ACC_UTILITY_STATE_FLAGS{ .ON_SCREEN_KEYBOARD_ACTIVE = 1 };
+pub const ANRUS_TOUCH_MODIFICATION_ACTIVE = ACC_UTILITY_STATE_FLAGS{ .TOUCH_MODIFICATION_ACTIVE = 1 };
+pub const ANRUS_PRIORITY_AUDIO_ACTIVE = ACC_UTILITY_STATE_FLAGS{ .PRIORITY_AUDIO_ACTIVE = 1 };
+pub const ANRUS_PRIORITY_AUDIO_ACTIVE_NODUCK = ACC_UTILITY_STATE_FLAGS{ .PRIORITY_AUDIO_ACTIVE_NODUCK = 1 };
 
 pub const SOUND_SENTRY_GRAPHICS_EFFECT = enum(u32) {
     DISPLAY = 3,
@@ -1090,67 +1072,86 @@ pub const SOUND_SENTRY_GRAPHICS_EFFECT = enum(u32) {
 pub const SSGF_DISPLAY = SOUND_SENTRY_GRAPHICS_EFFECT.DISPLAY;
 pub const SSGF_NONE = SOUND_SENTRY_GRAPHICS_EFFECT.NONE;
 
-pub const SERIALKEYS_FLAGS = enum(u32) {
-    AVAILABLE = 2,
-    INDICATOR = 4,
-    SERIALKEYSON = 1,
-    _,
-    pub fn initFlags(o: struct {
-        AVAILABLE: u1 = 0,
-        INDICATOR: u1 = 0,
-        SERIALKEYSON: u1 = 0,
-    }) SERIALKEYS_FLAGS {
-        return @as(SERIALKEYS_FLAGS, @enumFromInt(
-              (if (o.AVAILABLE == 1) @intFromEnum(SERIALKEYS_FLAGS.AVAILABLE) else 0)
-            | (if (o.INDICATOR == 1) @intFromEnum(SERIALKEYS_FLAGS.INDICATOR) else 0)
-            | (if (o.SERIALKEYSON == 1) @intFromEnum(SERIALKEYS_FLAGS.SERIALKEYSON) else 0)
-        ));
-    }
+pub const SERIALKEYS_FLAGS = packed struct(u32) {
+    SERIALKEYSON: u1 = 0,
+    AVAILABLE: u1 = 0,
+    INDICATOR: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const SERKF_AVAILABLE = SERIALKEYS_FLAGS.AVAILABLE;
-pub const SERKF_INDICATOR = SERIALKEYS_FLAGS.INDICATOR;
-pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS.SERIALKEYSON;
+pub const SERKF_AVAILABLE = SERIALKEYS_FLAGS{ .AVAILABLE = 1 };
+pub const SERKF_INDICATOR = SERIALKEYS_FLAGS{ .INDICATOR = 1 };
+pub const SERKF_SERIALKEYSON = SERIALKEYS_FLAGS{ .SERIALKEYSON = 1 };
 
-pub const HIGHCONTRASTW_FLAGS = enum(u32) {
-    HIGHCONTRASTON = 1,
-    AVAILABLE = 2,
-    HOTKEYACTIVE = 4,
-    CONFIRMHOTKEY = 8,
-    HOTKEYSOUND = 16,
-    INDICATOR = 32,
-    HOTKEYAVAILABLE = 64,
-    OPTION_NOTHEMECHANGE = 4096,
-    _,
-    pub fn initFlags(o: struct {
-        HIGHCONTRASTON: u1 = 0,
-        AVAILABLE: u1 = 0,
-        HOTKEYACTIVE: u1 = 0,
-        CONFIRMHOTKEY: u1 = 0,
-        HOTKEYSOUND: u1 = 0,
-        INDICATOR: u1 = 0,
-        HOTKEYAVAILABLE: u1 = 0,
-        OPTION_NOTHEMECHANGE: u1 = 0,
-    }) HIGHCONTRASTW_FLAGS {
-        return @as(HIGHCONTRASTW_FLAGS, @enumFromInt(
-              (if (o.HIGHCONTRASTON == 1) @intFromEnum(HIGHCONTRASTW_FLAGS.HIGHCONTRASTON) else 0)
-            | (if (o.AVAILABLE == 1) @intFromEnum(HIGHCONTRASTW_FLAGS.AVAILABLE) else 0)
-            | (if (o.HOTKEYACTIVE == 1) @intFromEnum(HIGHCONTRASTW_FLAGS.HOTKEYACTIVE) else 0)
-            | (if (o.CONFIRMHOTKEY == 1) @intFromEnum(HIGHCONTRASTW_FLAGS.CONFIRMHOTKEY) else 0)
-            | (if (o.HOTKEYSOUND == 1) @intFromEnum(HIGHCONTRASTW_FLAGS.HOTKEYSOUND) else 0)
-            | (if (o.INDICATOR == 1) @intFromEnum(HIGHCONTRASTW_FLAGS.INDICATOR) else 0)
-            | (if (o.HOTKEYAVAILABLE == 1) @intFromEnum(HIGHCONTRASTW_FLAGS.HOTKEYAVAILABLE) else 0)
-            | (if (o.OPTION_NOTHEMECHANGE == 1) @intFromEnum(HIGHCONTRASTW_FLAGS.OPTION_NOTHEMECHANGE) else 0)
-        ));
-    }
+pub const HIGHCONTRASTW_FLAGS = packed struct(u32) {
+    HIGHCONTRASTON: u1 = 0,
+    AVAILABLE: u1 = 0,
+    HOTKEYACTIVE: u1 = 0,
+    CONFIRMHOTKEY: u1 = 0,
+    HOTKEYSOUND: u1 = 0,
+    INDICATOR: u1 = 0,
+    HOTKEYAVAILABLE: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    OPTION_NOTHEMECHANGE: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const HCF_HIGHCONTRASTON = HIGHCONTRASTW_FLAGS.HIGHCONTRASTON;
-pub const HCF_AVAILABLE = HIGHCONTRASTW_FLAGS.AVAILABLE;
-pub const HCF_HOTKEYACTIVE = HIGHCONTRASTW_FLAGS.HOTKEYACTIVE;
-pub const HCF_CONFIRMHOTKEY = HIGHCONTRASTW_FLAGS.CONFIRMHOTKEY;
-pub const HCF_HOTKEYSOUND = HIGHCONTRASTW_FLAGS.HOTKEYSOUND;
-pub const HCF_INDICATOR = HIGHCONTRASTW_FLAGS.INDICATOR;
-pub const HCF_HOTKEYAVAILABLE = HIGHCONTRASTW_FLAGS.HOTKEYAVAILABLE;
-pub const HCF_OPTION_NOTHEMECHANGE = HIGHCONTRASTW_FLAGS.OPTION_NOTHEMECHANGE;
+pub const HCF_HIGHCONTRASTON = HIGHCONTRASTW_FLAGS{ .HIGHCONTRASTON = 1 };
+pub const HCF_AVAILABLE = HIGHCONTRASTW_FLAGS{ .AVAILABLE = 1 };
+pub const HCF_HOTKEYACTIVE = HIGHCONTRASTW_FLAGS{ .HOTKEYACTIVE = 1 };
+pub const HCF_CONFIRMHOTKEY = HIGHCONTRASTW_FLAGS{ .CONFIRMHOTKEY = 1 };
+pub const HCF_HOTKEYSOUND = HIGHCONTRASTW_FLAGS{ .HOTKEYSOUND = 1 };
+pub const HCF_INDICATOR = HIGHCONTRASTW_FLAGS{ .INDICATOR = 1 };
+pub const HCF_HOTKEYAVAILABLE = HIGHCONTRASTW_FLAGS{ .HOTKEYAVAILABLE = 1 };
+pub const HCF_OPTION_NOTHEMECHANGE = HIGHCONTRASTW_FLAGS{ .OPTION_NOTHEMECHANGE = 1 };
 
 pub const SOUNDSENTRY_TEXT_EFFECT = enum(u32) {
     BORDER = 2,

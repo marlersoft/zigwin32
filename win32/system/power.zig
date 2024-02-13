@@ -155,67 +155,86 @@ pub const DEVICE_NOTIFY_SERVICE_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLA
 pub const DEVICE_NOTIFY_CALLBACK = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.CALLBACK;
 pub const DEVICE_NOTIFY_WINDOW_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.WINDOW_HANDLE;
 
-pub const EXECUTION_STATE = enum(u32) {
-    AWAYMODE_REQUIRED = 64,
-    CONTINUOUS = 2147483648,
-    DISPLAY_REQUIRED = 2,
-    SYSTEM_REQUIRED = 1,
-    USER_PRESENT = 4,
-    _,
-    pub fn initFlags(o: struct {
-        AWAYMODE_REQUIRED: u1 = 0,
-        CONTINUOUS: u1 = 0,
-        DISPLAY_REQUIRED: u1 = 0,
-        SYSTEM_REQUIRED: u1 = 0,
-        USER_PRESENT: u1 = 0,
-    }) EXECUTION_STATE {
-        return @as(EXECUTION_STATE, @enumFromInt(
-              (if (o.AWAYMODE_REQUIRED == 1) @intFromEnum(EXECUTION_STATE.AWAYMODE_REQUIRED) else 0)
-            | (if (o.CONTINUOUS == 1) @intFromEnum(EXECUTION_STATE.CONTINUOUS) else 0)
-            | (if (o.DISPLAY_REQUIRED == 1) @intFromEnum(EXECUTION_STATE.DISPLAY_REQUIRED) else 0)
-            | (if (o.SYSTEM_REQUIRED == 1) @intFromEnum(EXECUTION_STATE.SYSTEM_REQUIRED) else 0)
-            | (if (o.USER_PRESENT == 1) @intFromEnum(EXECUTION_STATE.USER_PRESENT) else 0)
-        ));
-    }
+pub const EXECUTION_STATE = packed struct(u32) {
+    SYSTEM_REQUIRED: u1 = 0,
+    DISPLAY_REQUIRED: u1 = 0,
+    USER_PRESENT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    AWAYMODE_REQUIRED: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    CONTINUOUS: u1 = 0,
 };
-pub const ES_AWAYMODE_REQUIRED = EXECUTION_STATE.AWAYMODE_REQUIRED;
-pub const ES_CONTINUOUS = EXECUTION_STATE.CONTINUOUS;
-pub const ES_DISPLAY_REQUIRED = EXECUTION_STATE.DISPLAY_REQUIRED;
-pub const ES_SYSTEM_REQUIRED = EXECUTION_STATE.SYSTEM_REQUIRED;
-pub const ES_USER_PRESENT = EXECUTION_STATE.USER_PRESENT;
+pub const ES_AWAYMODE_REQUIRED = EXECUTION_STATE{ .AWAYMODE_REQUIRED = 1 };
+pub const ES_CONTINUOUS = EXECUTION_STATE{ .CONTINUOUS = 1 };
+pub const ES_DISPLAY_REQUIRED = EXECUTION_STATE{ .DISPLAY_REQUIRED = 1 };
+pub const ES_SYSTEM_REQUIRED = EXECUTION_STATE{ .SYSTEM_REQUIRED = 1 };
+pub const ES_USER_PRESENT = EXECUTION_STATE{ .USER_PRESENT = 1 };
 
-pub const POWER_ACTION_POLICY_EVENT_CODE = enum(u32) {
-    FORCE_TRIGGER_RESET = 2147483648,
-    LEVEL_USER_NOTIFY_EXEC = 4,
-    LEVEL_USER_NOTIFY_SOUND = 2,
-    LEVEL_USER_NOTIFY_TEXT = 1,
-    USER_NOTIFY_BUTTON = 8,
-    USER_NOTIFY_SHUTDOWN = 16,
-    _,
-    pub fn initFlags(o: struct {
-        FORCE_TRIGGER_RESET: u1 = 0,
-        LEVEL_USER_NOTIFY_EXEC: u1 = 0,
-        LEVEL_USER_NOTIFY_SOUND: u1 = 0,
-        LEVEL_USER_NOTIFY_TEXT: u1 = 0,
-        USER_NOTIFY_BUTTON: u1 = 0,
-        USER_NOTIFY_SHUTDOWN: u1 = 0,
-    }) POWER_ACTION_POLICY_EVENT_CODE {
-        return @as(POWER_ACTION_POLICY_EVENT_CODE, @enumFromInt(
-              (if (o.FORCE_TRIGGER_RESET == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET) else 0)
-            | (if (o.LEVEL_USER_NOTIFY_EXEC == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC) else 0)
-            | (if (o.LEVEL_USER_NOTIFY_SOUND == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_SOUND) else 0)
-            | (if (o.LEVEL_USER_NOTIFY_TEXT == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_TEXT) else 0)
-            | (if (o.USER_NOTIFY_BUTTON == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_BUTTON) else 0)
-            | (if (o.USER_NOTIFY_SHUTDOWN == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN) else 0)
-        ));
-    }
+pub const POWER_ACTION_POLICY_EVENT_CODE = packed struct(u32) {
+    LEVEL_USER_NOTIFY_TEXT: u1 = 0,
+    LEVEL_USER_NOTIFY_SOUND: u1 = 0,
+    LEVEL_USER_NOTIFY_EXEC: u1 = 0,
+    USER_NOTIFY_BUTTON: u1 = 0,
+    USER_NOTIFY_SHUTDOWN: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    FORCE_TRIGGER_RESET: u1 = 0,
 };
-pub const POWER_FORCE_TRIGGER_RESET = POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET;
-pub const POWER_LEVEL_USER_NOTIFY_EXEC = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC;
-pub const POWER_LEVEL_USER_NOTIFY_SOUND = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_SOUND;
-pub const POWER_LEVEL_USER_NOTIFY_TEXT = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_TEXT;
-pub const POWER_USER_NOTIFY_BUTTON = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_BUTTON;
-pub const POWER_USER_NOTIFY_SHUTDOWN = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN;
+pub const POWER_FORCE_TRIGGER_RESET = POWER_ACTION_POLICY_EVENT_CODE{ .FORCE_TRIGGER_RESET = 1 };
+pub const POWER_LEVEL_USER_NOTIFY_EXEC = POWER_ACTION_POLICY_EVENT_CODE{ .LEVEL_USER_NOTIFY_EXEC = 1 };
+pub const POWER_LEVEL_USER_NOTIFY_SOUND = POWER_ACTION_POLICY_EVENT_CODE{ .LEVEL_USER_NOTIFY_SOUND = 1 };
+pub const POWER_LEVEL_USER_NOTIFY_TEXT = POWER_ACTION_POLICY_EVENT_CODE{ .LEVEL_USER_NOTIFY_TEXT = 1 };
+pub const POWER_USER_NOTIFY_BUTTON = POWER_ACTION_POLICY_EVENT_CODE{ .USER_NOTIFY_BUTTON = 1 };
+pub const POWER_USER_NOTIFY_SHUTDOWN = POWER_ACTION_POLICY_EVENT_CODE{ .USER_NOTIFY_SHUTDOWN = 1 };
 
 // TODO: this type has a FreeFunc 'UnregisterPowerSettingNotification', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?

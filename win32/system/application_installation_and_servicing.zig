@@ -637,18 +637,41 @@ pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_STILL_IN_USE = IASSEMBLYCACHE_UNI
 pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_ALREADY_UNINSTALLED = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.ALREADY_UNINSTALLED;
 pub const IASSEMBLYCACHE_UNINSTALL_DISPOSITION_DELETE_PENDING = IASSEMBLYCACHE_UNINSTALL_DISPOSITION.DELETE_PENDING;
 
-pub const QUERYASMINFO_FLAGS = enum(u32) {
-    E = 1,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) QUERYASMINFO_FLAGS {
-        return @as(QUERYASMINFO_FLAGS, @enumFromInt(
-              (if (o.E == 1) @intFromEnum(QUERYASMINFO_FLAGS.E) else 0)
-        ));
-    }
+pub const QUERYASMINFO_FLAGS = packed struct(u32) {
+    E: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const QUERYASMINFO_FLAG_VALIDATE = QUERYASMINFO_FLAGS.E;
+pub const QUERYASMINFO_FLAG_VALIDATE = QUERYASMINFO_FLAGS{ .E = 1 };
 
 // TODO: this type has a FreeFunc 'MsiCloseHandle', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
@@ -2396,38 +2419,46 @@ pub const ASM_NAME_NULL_CUSTOM = ASM_NAME.NULL_CUSTOM;
 pub const ASM_NAME_MVID = ASM_NAME.MVID;
 pub const ASM_NAME_MAX_PARAMS = ASM_NAME.MAX_PARAMS;
 
-pub const ASM_BIND_FLAGS = enum(u32) {
-    FORCE_CACHE_INSTALL = 1,
-    RFS_INTEGRITY_CHECK = 2,
-    RFS_MODULE_CHECK = 4,
-    BINPATH_PROBE_ONLY = 8,
-    SHARED_BINPATH_HINT = 16,
-    PARENT_ASM_HINT = 32,
-    _,
-    pub fn initFlags(o: struct {
-        FORCE_CACHE_INSTALL: u1 = 0,
-        RFS_INTEGRITY_CHECK: u1 = 0,
-        RFS_MODULE_CHECK: u1 = 0,
-        BINPATH_PROBE_ONLY: u1 = 0,
-        SHARED_BINPATH_HINT: u1 = 0,
-        PARENT_ASM_HINT: u1 = 0,
-    }) ASM_BIND_FLAGS {
-        return @as(ASM_BIND_FLAGS, @enumFromInt(
-              (if (o.FORCE_CACHE_INSTALL == 1) @intFromEnum(ASM_BIND_FLAGS.FORCE_CACHE_INSTALL) else 0)
-            | (if (o.RFS_INTEGRITY_CHECK == 1) @intFromEnum(ASM_BIND_FLAGS.RFS_INTEGRITY_CHECK) else 0)
-            | (if (o.RFS_MODULE_CHECK == 1) @intFromEnum(ASM_BIND_FLAGS.RFS_MODULE_CHECK) else 0)
-            | (if (o.BINPATH_PROBE_ONLY == 1) @intFromEnum(ASM_BIND_FLAGS.BINPATH_PROBE_ONLY) else 0)
-            | (if (o.SHARED_BINPATH_HINT == 1) @intFromEnum(ASM_BIND_FLAGS.SHARED_BINPATH_HINT) else 0)
-            | (if (o.PARENT_ASM_HINT == 1) @intFromEnum(ASM_BIND_FLAGS.PARENT_ASM_HINT) else 0)
-        ));
-    }
+pub const ASM_BIND_FLAGS = packed struct(u32) {
+    FORCE_CACHE_INSTALL: u1 = 0,
+    RFS_INTEGRITY_CHECK: u1 = 0,
+    RFS_MODULE_CHECK: u1 = 0,
+    BINPATH_PROBE_ONLY: u1 = 0,
+    SHARED_BINPATH_HINT: u1 = 0,
+    PARENT_ASM_HINT: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const ASM_BINDF_FORCE_CACHE_INSTALL = ASM_BIND_FLAGS.FORCE_CACHE_INSTALL;
-pub const ASM_BINDF_RFS_INTEGRITY_CHECK = ASM_BIND_FLAGS.RFS_INTEGRITY_CHECK;
-pub const ASM_BINDF_RFS_MODULE_CHECK = ASM_BIND_FLAGS.RFS_MODULE_CHECK;
-pub const ASM_BINDF_BINPATH_PROBE_ONLY = ASM_BIND_FLAGS.BINPATH_PROBE_ONLY;
-pub const ASM_BINDF_SHARED_BINPATH_HINT = ASM_BIND_FLAGS.SHARED_BINPATH_HINT;
-pub const ASM_BINDF_PARENT_ASM_HINT = ASM_BIND_FLAGS.PARENT_ASM_HINT;
+pub const ASM_BINDF_FORCE_CACHE_INSTALL = ASM_BIND_FLAGS{ .FORCE_CACHE_INSTALL = 1 };
+pub const ASM_BINDF_RFS_INTEGRITY_CHECK = ASM_BIND_FLAGS{ .RFS_INTEGRITY_CHECK = 1 };
+pub const ASM_BINDF_RFS_MODULE_CHECK = ASM_BIND_FLAGS{ .RFS_MODULE_CHECK = 1 };
+pub const ASM_BINDF_BINPATH_PROBE_ONLY = ASM_BIND_FLAGS{ .BINPATH_PROBE_ONLY = 1 };
+pub const ASM_BINDF_SHARED_BINPATH_HINT = ASM_BIND_FLAGS{ .SHARED_BINPATH_HINT = 1 };
+pub const ASM_BINDF_PARENT_ASM_HINT = ASM_BIND_FLAGS{ .PARENT_ASM_HINT = 1 };
 
 pub const ASM_DISPLAY_FLAGS = enum(i32) {
     VERSION = 1,

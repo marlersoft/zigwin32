@@ -1381,34 +1381,45 @@ pub const IUIAnimationTransitionLibrary = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const UI_ANIMATION_DEPENDENCIES = enum(u32) {
-    NONE = 0,
-    INTERMEDIATE_VALUES = 1,
-    FINAL_VALUE = 2,
-    FINAL_VELOCITY = 4,
-    DURATION = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        INTERMEDIATE_VALUES: u1 = 0,
-        FINAL_VALUE: u1 = 0,
-        FINAL_VELOCITY: u1 = 0,
-        DURATION: u1 = 0,
-    }) UI_ANIMATION_DEPENDENCIES {
-        return @as(UI_ANIMATION_DEPENDENCIES, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.NONE) else 0)
-            | (if (o.INTERMEDIATE_VALUES == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.INTERMEDIATE_VALUES) else 0)
-            | (if (o.FINAL_VALUE == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.FINAL_VALUE) else 0)
-            | (if (o.FINAL_VELOCITY == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.FINAL_VELOCITY) else 0)
-            | (if (o.DURATION == 1) @intFromEnum(UI_ANIMATION_DEPENDENCIES.DURATION) else 0)
-        ));
-    }
+pub const UI_ANIMATION_DEPENDENCIES = packed struct(u32) {
+    INTERMEDIATE_VALUES: u1 = 0,
+    FINAL_VALUE: u1 = 0,
+    FINAL_VELOCITY: u1 = 0,
+    DURATION: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const UI_ANIMATION_DEPENDENCY_NONE = UI_ANIMATION_DEPENDENCIES.NONE;
-pub const UI_ANIMATION_DEPENDENCY_INTERMEDIATE_VALUES = UI_ANIMATION_DEPENDENCIES.INTERMEDIATE_VALUES;
-pub const UI_ANIMATION_DEPENDENCY_FINAL_VALUE = UI_ANIMATION_DEPENDENCIES.FINAL_VALUE;
-pub const UI_ANIMATION_DEPENDENCY_FINAL_VELOCITY = UI_ANIMATION_DEPENDENCIES.FINAL_VELOCITY;
-pub const UI_ANIMATION_DEPENDENCY_DURATION = UI_ANIMATION_DEPENDENCIES.DURATION;
+pub const UI_ANIMATION_DEPENDENCY_NONE = UI_ANIMATION_DEPENDENCIES{ };
+pub const UI_ANIMATION_DEPENDENCY_INTERMEDIATE_VALUES = UI_ANIMATION_DEPENDENCIES{ .INTERMEDIATE_VALUES = 1 };
+pub const UI_ANIMATION_DEPENDENCY_FINAL_VALUE = UI_ANIMATION_DEPENDENCIES{ .FINAL_VALUE = 1 };
+pub const UI_ANIMATION_DEPENDENCY_FINAL_VELOCITY = UI_ANIMATION_DEPENDENCIES{ .FINAL_VELOCITY = 1 };
+pub const UI_ANIMATION_DEPENDENCY_DURATION = UI_ANIMATION_DEPENDENCIES{ .DURATION = 1 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationInterpolator_Value = Guid.initString("7815cbba-ddf7-478c-a46c-7b6c738b7978");

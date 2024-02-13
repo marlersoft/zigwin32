@@ -1030,54 +1030,50 @@ pub const OA_BOOL = enum(i32) {
 pub const OATRUE = OA_BOOL.TRUE;
 pub const OAFALSE = OA_BOOL.FALSE;
 
-pub const MPEG2VIDEOINFO_FLAGS = enum(u32) {
-    DoPanScan = 1,
-    DVDLine21Field1 = 2,
-    DVDLine21Field2 = 4,
-    SourceIsLetterboxed = 8,
-    FilmCameraMode = 16,
-    LetterboxAnalogOut = 32,
-    DSS_UserData = 64,
-    DVB_UserData = 128,
-    @"27MhzTimebase" = 256,
-    WidescreenAnalogOut = 512,
-    _,
-    pub fn initFlags(o: struct {
-        DoPanScan: u1 = 0,
-        DVDLine21Field1: u1 = 0,
-        DVDLine21Field2: u1 = 0,
-        SourceIsLetterboxed: u1 = 0,
-        FilmCameraMode: u1 = 0,
-        LetterboxAnalogOut: u1 = 0,
-        DSS_UserData: u1 = 0,
-        DVB_UserData: u1 = 0,
-        @"27MhzTimebase": u1 = 0,
-        WidescreenAnalogOut: u1 = 0,
-    }) MPEG2VIDEOINFO_FLAGS {
-        return @as(MPEG2VIDEOINFO_FLAGS, @enumFromInt(
-              (if (o.DoPanScan == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.DoPanScan) else 0)
-            | (if (o.DVDLine21Field1 == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.DVDLine21Field1) else 0)
-            | (if (o.DVDLine21Field2 == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.DVDLine21Field2) else 0)
-            | (if (o.SourceIsLetterboxed == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed) else 0)
-            | (if (o.FilmCameraMode == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.FilmCameraMode) else 0)
-            | (if (o.LetterboxAnalogOut == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut) else 0)
-            | (if (o.DSS_UserData == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.DSS_UserData) else 0)
-            | (if (o.DVB_UserData == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.DVB_UserData) else 0)
-            | (if (o.@"27MhzTimebase" == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase") else 0)
-            | (if (o.WidescreenAnalogOut == 1) @intFromEnum(MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut) else 0)
-        ));
-    }
+pub const MPEG2VIDEOINFO_FLAGS = packed struct(u32) {
+    DoPanScan: u1 = 0,
+    DVDLine21Field1: u1 = 0,
+    DVDLine21Field2: u1 = 0,
+    SourceIsLetterboxed: u1 = 0,
+    FilmCameraMode: u1 = 0,
+    LetterboxAnalogOut: u1 = 0,
+    DSS_UserData: u1 = 0,
+    DVB_UserData: u1 = 0,
+    @"27MhzTimebase": u1 = 0,
+    WidescreenAnalogOut: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS.DoPanScan;
-pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field1;
-pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS.DVDLine21Field2;
-pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS.SourceIsLetterboxed;
-pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS.FilmCameraMode;
-pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS.LetterboxAnalogOut;
-pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS.DSS_UserData;
-pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS.DVB_UserData;
-pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS.@"27MhzTimebase";
-pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS.WidescreenAnalogOut;
+pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS{ .DoPanScan = 1 };
+pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS{ .DVDLine21Field1 = 1 };
+pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS{ .DVDLine21Field2 = 1 };
+pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS{ .SourceIsLetterboxed = 1 };
+pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS{ .FilmCameraMode = 1 };
+pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS{ .LetterboxAnalogOut = 1 };
+pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS{ .DSS_UserData = 1 };
+pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS{ .DVB_UserData = 1 };
+pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS{ .@"27MhzTimebase" = 1 };
+pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS{ .WidescreenAnalogOut = 1 };
 
 pub const MPEGLAYER3WAVEFORMAT_FLAGS = enum(u32) {
     ISO = 0,
@@ -3236,30 +3232,44 @@ pub const REGPINMEDIUM = extern struct {
     dw2: u32,
 };
 
-pub const REG_PINFLAG = enum(u32) {
-    ZERO = 1,
-    RENDERER = 2,
-    MANY = 4,
-    OUTPUT = 8,
-    _,
-    pub fn initFlags(o: struct {
-        ZERO: u1 = 0,
-        RENDERER: u1 = 0,
-        MANY: u1 = 0,
-        OUTPUT: u1 = 0,
-    }) REG_PINFLAG {
-        return @as(REG_PINFLAG, @enumFromInt(
-              (if (o.ZERO == 1) @intFromEnum(REG_PINFLAG.ZERO) else 0)
-            | (if (o.RENDERER == 1) @intFromEnum(REG_PINFLAG.RENDERER) else 0)
-            | (if (o.MANY == 1) @intFromEnum(REG_PINFLAG.MANY) else 0)
-            | (if (o.OUTPUT == 1) @intFromEnum(REG_PINFLAG.OUTPUT) else 0)
-        ));
-    }
+pub const REG_PINFLAG = packed struct(u32) {
+    ZERO: u1 = 0,
+    RENDERER: u1 = 0,
+    MANY: u1 = 0,
+    OUTPUT: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const REG_PINFLAG_B_ZERO = REG_PINFLAG.ZERO;
-pub const REG_PINFLAG_B_RENDERER = REG_PINFLAG.RENDERER;
-pub const REG_PINFLAG_B_MANY = REG_PINFLAG.MANY;
-pub const REG_PINFLAG_B_OUTPUT = REG_PINFLAG.OUTPUT;
+pub const REG_PINFLAG_B_ZERO = REG_PINFLAG{ .ZERO = 1 };
+pub const REG_PINFLAG_B_RENDERER = REG_PINFLAG{ .RENDERER = 1 };
+pub const REG_PINFLAG_B_MANY = REG_PINFLAG{ .MANY = 1 };
+pub const REG_PINFLAG_B_OUTPUT = REG_PINFLAG{ .OUTPUT = 1 };
 
 pub const REGFILTERPINS2 = extern struct {
     dwFlags: u32,
@@ -3504,38 +3514,46 @@ pub const COLORKEY = extern struct {
     HighColorValue: u32,
 };
 
-pub const ADVISE_TYPE = enum(u32) {
-    NONE = 0,
-    CLIPPING = 1,
-    PALETTE = 2,
-    COLORKEY = 4,
-    POSITION = 8,
-    DISPLAY_CHANGE = 16,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        CLIPPING: u1 = 0,
-        PALETTE: u1 = 0,
-        COLORKEY: u1 = 0,
-        POSITION: u1 = 0,
-        DISPLAY_CHANGE: u1 = 0,
-    }) ADVISE_TYPE {
-        return @as(ADVISE_TYPE, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(ADVISE_TYPE.NONE) else 0)
-            | (if (o.CLIPPING == 1) @intFromEnum(ADVISE_TYPE.CLIPPING) else 0)
-            | (if (o.PALETTE == 1) @intFromEnum(ADVISE_TYPE.PALETTE) else 0)
-            | (if (o.COLORKEY == 1) @intFromEnum(ADVISE_TYPE.COLORKEY) else 0)
-            | (if (o.POSITION == 1) @intFromEnum(ADVISE_TYPE.POSITION) else 0)
-            | (if (o.DISPLAY_CHANGE == 1) @intFromEnum(ADVISE_TYPE.DISPLAY_CHANGE) else 0)
-        ));
-    }
+pub const ADVISE_TYPE = packed struct(u32) {
+    CLIPPING: u1 = 0,
+    PALETTE: u1 = 0,
+    COLORKEY: u1 = 0,
+    POSITION: u1 = 0,
+    DISPLAY_CHANGE: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const ADVISE_NONE = ADVISE_TYPE.NONE;
-pub const ADVISE_CLIPPING = ADVISE_TYPE.CLIPPING;
-pub const ADVISE_PALETTE = ADVISE_TYPE.PALETTE;
-pub const ADVISE_COLORKEY = ADVISE_TYPE.COLORKEY;
-pub const ADVISE_POSITION = ADVISE_TYPE.POSITION;
-pub const ADVISE_DISPLAY_CHANGE = ADVISE_TYPE.DISPLAY_CHANGE;
+pub const ADVISE_NONE = ADVISE_TYPE{ };
+pub const ADVISE_CLIPPING = ADVISE_TYPE{ .CLIPPING = 1 };
+pub const ADVISE_PALETTE = ADVISE_TYPE{ .PALETTE = 1 };
+pub const ADVISE_COLORKEY = ADVISE_TYPE{ .COLORKEY = 1 };
+pub const ADVISE_POSITION = ADVISE_TYPE{ .POSITION = 1 };
+pub const ADVISE_DISPLAY_CHANGE = ADVISE_TYPE{ .DISPLAY_CHANGE = 1 };
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IOverlayNotify_Value = Guid.initString("56a868a0-0ad4-11ce-b03a-0020af0ba770");
@@ -19307,26 +19325,43 @@ pub const IBDA_DigitalDemodulator3 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const KSPROPERTY_IPSINK = enum(u32) {
-    MULTICASTLIST = 0,
-    ADAPTER_DESCRIPTION = 1,
-    ADAPTER_ADDRESS = 2,
-    _,
-    pub fn initFlags(o: struct {
-        MULTICASTLIST: u1 = 0,
-        ADAPTER_DESCRIPTION: u1 = 0,
-        ADAPTER_ADDRESS: u1 = 0,
-    }) KSPROPERTY_IPSINK {
-        return @as(KSPROPERTY_IPSINK, @enumFromInt(
-              (if (o.MULTICASTLIST == 1) @intFromEnum(KSPROPERTY_IPSINK.MULTICASTLIST) else 0)
-            | (if (o.ADAPTER_DESCRIPTION == 1) @intFromEnum(KSPROPERTY_IPSINK.ADAPTER_DESCRIPTION) else 0)
-            | (if (o.ADAPTER_ADDRESS == 1) @intFromEnum(KSPROPERTY_IPSINK.ADAPTER_ADDRESS) else 0)
-        ));
-    }
+pub const KSPROPERTY_IPSINK = packed struct(u32) {
+    ADAPTER_DESCRIPTION: u1 = 0,
+    ADAPTER_ADDRESS: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const KSPROPERTY_IPSINK_MULTICASTLIST = KSPROPERTY_IPSINK.MULTICASTLIST;
-pub const KSPROPERTY_IPSINK_ADAPTER_DESCRIPTION = KSPROPERTY_IPSINK.ADAPTER_DESCRIPTION;
-pub const KSPROPERTY_IPSINK_ADAPTER_ADDRESS = KSPROPERTY_IPSINK.ADAPTER_ADDRESS;
+pub const KSPROPERTY_IPSINK_MULTICASTLIST = KSPROPERTY_IPSINK{ };
+pub const KSPROPERTY_IPSINK_ADAPTER_DESCRIPTION = KSPROPERTY_IPSINK{ .ADAPTER_DESCRIPTION = 1 };
+pub const KSPROPERTY_IPSINK_ADAPTER_ADDRESS = KSPROPERTY_IPSINK{ .ADAPTER_ADDRESS = 1 };
 
 const IID_ICCSubStreamFiltering_Value = Guid.initString("4b2bd7ea-8347-467b-8dbf-62f784929cc3");
 pub const IID_ICCSubStreamFiltering = &IID_ICCSubStreamFiltering_Value;
@@ -29053,26 +29088,43 @@ pub const COMPSTAT_NOUPDATEOK = COMPLETION_STATUS_FLAGS.NOUPDATEOK;
 pub const COMPSTAT_WAIT = COMPLETION_STATUS_FLAGS.WAIT;
 pub const COMPSTAT_ABORT = COMPLETION_STATUS_FLAGS.ABORT;
 
-pub const MMSSF_GET_INFORMATION_FLAGS = enum(u32) {
-    HASCLOCK = 1,
-    SUPPORTSEEK = 2,
-    ASYNCHRONOUS = 4,
-    _,
-    pub fn initFlags(o: struct {
-        HASCLOCK: u1 = 0,
-        SUPPORTSEEK: u1 = 0,
-        ASYNCHRONOUS: u1 = 0,
-    }) MMSSF_GET_INFORMATION_FLAGS {
-        return @as(MMSSF_GET_INFORMATION_FLAGS, @enumFromInt(
-              (if (o.HASCLOCK == 1) @intFromEnum(MMSSF_GET_INFORMATION_FLAGS.HASCLOCK) else 0)
-            | (if (o.SUPPORTSEEK == 1) @intFromEnum(MMSSF_GET_INFORMATION_FLAGS.SUPPORTSEEK) else 0)
-            | (if (o.ASYNCHRONOUS == 1) @intFromEnum(MMSSF_GET_INFORMATION_FLAGS.ASYNCHRONOUS) else 0)
-        ));
-    }
+pub const MMSSF_GET_INFORMATION_FLAGS = packed struct(u32) {
+    HASCLOCK: u1 = 0,
+    SUPPORTSEEK: u1 = 0,
+    ASYNCHRONOUS: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const MMSSF_HASCLOCK = MMSSF_GET_INFORMATION_FLAGS.HASCLOCK;
-pub const MMSSF_SUPPORTSEEK = MMSSF_GET_INFORMATION_FLAGS.SUPPORTSEEK;
-pub const MMSSF_ASYNCHRONOUS = MMSSF_GET_INFORMATION_FLAGS.ASYNCHRONOUS;
+pub const MMSSF_HASCLOCK = MMSSF_GET_INFORMATION_FLAGS{ .HASCLOCK = 1 };
+pub const MMSSF_SUPPORTSEEK = MMSSF_GET_INFORMATION_FLAGS{ .SUPPORTSEEK = 1 };
+pub const MMSSF_ASYNCHRONOUS = MMSSF_GET_INFORMATION_FLAGS{ .ASYNCHRONOUS = 1 };
 
 pub const SSUPDATE_TYPE = enum(i32) {
     ASYNC = 1,
@@ -29430,18 +29482,41 @@ pub const IStreamSample = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DDSFF_FLAGS = enum(u32) {
-    R = 1,
-    _,
-    pub fn initFlags(o: struct {
-        R: u1 = 0,
-    }) DDSFF_FLAGS {
-        return @as(DDSFF_FLAGS, @enumFromInt(
-              (if (o.R == 1) @intFromEnum(DDSFF_FLAGS.R) else 0)
-        ));
-    }
+pub const DDSFF_FLAGS = packed struct(u32) {
+    R: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DDSFF_PROGRESSIVERENDER = DDSFF_FLAGS.R;
+pub const DDSFF_PROGRESSIVERENDER = DDSFF_FLAGS{ .R = 1 };
 
 const IID_IDirectDrawMediaStream_Value = Guid.initString("f4104fce-9a70-11d0-8fde-00c04fd9189d");
 pub const IID_IDirectDrawMediaStream = &IID_IDirectDrawMediaStream_Value;
@@ -29787,97 +29862,162 @@ pub const IAudioData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const AMMSF_MMS_INIT_FLAGS = enum(u32) {
-    D = 1,
-    _,
-    pub fn initFlags(o: struct {
-        D: u1 = 0,
-    }) AMMSF_MMS_INIT_FLAGS {
-        return @as(AMMSF_MMS_INIT_FLAGS, @enumFromInt(
-              (if (o.D == 1) @intFromEnum(AMMSF_MMS_INIT_FLAGS.D) else 0)
-        ));
-    }
+pub const AMMSF_MMS_INIT_FLAGS = packed struct(u32) {
+    D: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AMMSF_NOGRAPHTHREAD = AMMSF_MMS_INIT_FLAGS.D;
+pub const AMMSF_NOGRAPHTHREAD = AMMSF_MMS_INIT_FLAGS{ .D = 1 };
 
-pub const AMMSF_MS_FLAGS = enum(u32) {
-    ADDDEFAULTRENDERER = 1,
-    CREATEPEER = 2,
-    STOPIFNOSAMPLES = 4,
-    NOSTALL = 8,
-    _,
-    pub fn initFlags(o: struct {
-        ADDDEFAULTRENDERER: u1 = 0,
-        CREATEPEER: u1 = 0,
-        STOPIFNOSAMPLES: u1 = 0,
-        NOSTALL: u1 = 0,
-    }) AMMSF_MS_FLAGS {
-        return @as(AMMSF_MS_FLAGS, @enumFromInt(
-              (if (o.ADDDEFAULTRENDERER == 1) @intFromEnum(AMMSF_MS_FLAGS.ADDDEFAULTRENDERER) else 0)
-            | (if (o.CREATEPEER == 1) @intFromEnum(AMMSF_MS_FLAGS.CREATEPEER) else 0)
-            | (if (o.STOPIFNOSAMPLES == 1) @intFromEnum(AMMSF_MS_FLAGS.STOPIFNOSAMPLES) else 0)
-            | (if (o.NOSTALL == 1) @intFromEnum(AMMSF_MS_FLAGS.NOSTALL) else 0)
-        ));
-    }
+pub const AMMSF_MS_FLAGS = packed struct(u32) {
+    ADDDEFAULTRENDERER: u1 = 0,
+    CREATEPEER: u1 = 0,
+    STOPIFNOSAMPLES: u1 = 0,
+    NOSTALL: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AMMSF_ADDDEFAULTRENDERER = AMMSF_MS_FLAGS.ADDDEFAULTRENDERER;
-pub const AMMSF_CREATEPEER = AMMSF_MS_FLAGS.CREATEPEER;
-pub const AMMSF_STOPIFNOSAMPLES = AMMSF_MS_FLAGS.STOPIFNOSAMPLES;
-pub const AMMSF_NOSTALL = AMMSF_MS_FLAGS.NOSTALL;
+pub const AMMSF_ADDDEFAULTRENDERER = AMMSF_MS_FLAGS{ .ADDDEFAULTRENDERER = 1 };
+pub const AMMSF_CREATEPEER = AMMSF_MS_FLAGS{ .CREATEPEER = 1 };
+pub const AMMSF_STOPIFNOSAMPLES = AMMSF_MS_FLAGS{ .STOPIFNOSAMPLES = 1 };
+pub const AMMSF_NOSTALL = AMMSF_MS_FLAGS{ .NOSTALL = 1 };
 
-pub const AMMSF_RENDER_FLAGS = enum(u32) {
-    RENDERTYPEMASK = 3,
-    RENDERTOEXISTING = 0,
-    RENDERALLSTREAMS = 1,
-    NORENDER = 2,
-    NOCLOCK = 4,
-    RUN = 8,
-    _,
-    pub fn initFlags(o: struct {
-        RENDERTYPEMASK: u1 = 0,
-        RENDERTOEXISTING: u1 = 0,
-        RENDERALLSTREAMS: u1 = 0,
-        NORENDER: u1 = 0,
-        NOCLOCK: u1 = 0,
-        RUN: u1 = 0,
-    }) AMMSF_RENDER_FLAGS {
-        return @as(AMMSF_RENDER_FLAGS, @enumFromInt(
-              (if (o.RENDERTYPEMASK == 1) @intFromEnum(AMMSF_RENDER_FLAGS.RENDERTYPEMASK) else 0)
-            | (if (o.RENDERTOEXISTING == 1) @intFromEnum(AMMSF_RENDER_FLAGS.RENDERTOEXISTING) else 0)
-            | (if (o.RENDERALLSTREAMS == 1) @intFromEnum(AMMSF_RENDER_FLAGS.RENDERALLSTREAMS) else 0)
-            | (if (o.NORENDER == 1) @intFromEnum(AMMSF_RENDER_FLAGS.NORENDER) else 0)
-            | (if (o.NOCLOCK == 1) @intFromEnum(AMMSF_RENDER_FLAGS.NOCLOCK) else 0)
-            | (if (o.RUN == 1) @intFromEnum(AMMSF_RENDER_FLAGS.RUN) else 0)
-        ));
-    }
+pub const AMMSF_RENDER_FLAGS = packed struct(u32) {
+    RENDERALLSTREAMS: u1 = 0,
+    NORENDER: u1 = 0,
+    NOCLOCK: u1 = 0,
+    RUN: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AMMSF_RENDERTYPEMASK = AMMSF_RENDER_FLAGS.RENDERTYPEMASK;
-pub const AMMSF_RENDERTOEXISTING = AMMSF_RENDER_FLAGS.RENDERTOEXISTING;
-pub const AMMSF_RENDERALLSTREAMS = AMMSF_RENDER_FLAGS.RENDERALLSTREAMS;
-pub const AMMSF_NORENDER = AMMSF_RENDER_FLAGS.NORENDER;
-pub const AMMSF_NOCLOCK = AMMSF_RENDER_FLAGS.NOCLOCK;
-pub const AMMSF_RUN = AMMSF_RENDER_FLAGS.RUN;
+pub const AMMSF_RENDERTYPEMASK = AMMSF_RENDER_FLAGS{
+    .RENDERALLSTREAMS = 1,
+    .NORENDER = 1,
+};
+pub const AMMSF_RENDERTOEXISTING = AMMSF_RENDER_FLAGS{ };
+pub const AMMSF_RENDERALLSTREAMS = AMMSF_RENDER_FLAGS{ .RENDERALLSTREAMS = 1 };
+pub const AMMSF_NORENDER = AMMSF_RENDER_FLAGS{ .NORENDER = 1 };
+pub const AMMSF_NOCLOCK = AMMSF_RENDER_FLAGS{ .NOCLOCK = 1 };
+pub const AMMSF_RUN = AMMSF_RENDER_FLAGS{ .RUN = 1 };
 
-pub const OUTPUT_STATE = enum(u32) {
-    Disabled = 0,
-    ReadData = 1,
-    RenderData = 2,
-    _,
-    pub fn initFlags(o: struct {
-        Disabled: u1 = 0,
-        ReadData: u1 = 0,
-        RenderData: u1 = 0,
-    }) OUTPUT_STATE {
-        return @as(OUTPUT_STATE, @enumFromInt(
-              (if (o.Disabled == 1) @intFromEnum(OUTPUT_STATE.Disabled) else 0)
-            | (if (o.ReadData == 1) @intFromEnum(OUTPUT_STATE.ReadData) else 0)
-            | (if (o.RenderData == 1) @intFromEnum(OUTPUT_STATE.RenderData) else 0)
-        ));
-    }
+pub const OUTPUT_STATE = packed struct(u32) {
+    ReadData: u1 = 0,
+    RenderData: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const Disabled = OUTPUT_STATE.Disabled;
-pub const ReadData = OUTPUT_STATE.ReadData;
-pub const RenderData = OUTPUT_STATE.RenderData;
+pub const Disabled = OUTPUT_STATE{ };
+pub const ReadData = OUTPUT_STATE{ .ReadData = 1 };
+pub const RenderData = OUTPUT_STATE{ .RenderData = 1 };
 
 const IID_IAMMultiMediaStream_Value = Guid.initString("bebe595c-9a6f-11d0-8fde-00c04fd9189d");
 pub const IID_IAMMultiMediaStream = &IID_IAMMultiMediaStream_Value;

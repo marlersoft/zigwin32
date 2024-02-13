@@ -41,50 +41,66 @@ pub const CRYPTCAT_VERSION = enum(u32) {
 pub const CRYPTCAT_VERSION_1 = CRYPTCAT_VERSION.@"1";
 pub const CRYPTCAT_VERSION_2 = CRYPTCAT_VERSION.@"2";
 
-pub const CRYPTCAT_OPEN_FLAGS = enum(u32) {
-    ALWAYS = 2,
-    CREATENEW = 1,
-    EXISTING = 4,
-    EXCLUDE_PAGE_HASHES = 65536,
-    INCLUDE_PAGE_HASHES = 131072,
-    VERIFYSIGHASH = 268435456,
-    NO_CONTENT_HCRYPTMSG = 536870912,
-    SORTED = 1073741824,
-    FLAGS_MASK = 4294901760,
-    _,
-    pub fn initFlags(o: struct {
-        ALWAYS: u1 = 0,
-        CREATENEW: u1 = 0,
-        EXISTING: u1 = 0,
-        EXCLUDE_PAGE_HASHES: u1 = 0,
-        INCLUDE_PAGE_HASHES: u1 = 0,
-        VERIFYSIGHASH: u1 = 0,
-        NO_CONTENT_HCRYPTMSG: u1 = 0,
-        SORTED: u1 = 0,
-        FLAGS_MASK: u1 = 0,
-    }) CRYPTCAT_OPEN_FLAGS {
-        return @as(CRYPTCAT_OPEN_FLAGS, @enumFromInt(
-              (if (o.ALWAYS == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.ALWAYS) else 0)
-            | (if (o.CREATENEW == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.CREATENEW) else 0)
-            | (if (o.EXISTING == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.EXISTING) else 0)
-            | (if (o.EXCLUDE_PAGE_HASHES == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.EXCLUDE_PAGE_HASHES) else 0)
-            | (if (o.INCLUDE_PAGE_HASHES == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.INCLUDE_PAGE_HASHES) else 0)
-            | (if (o.VERIFYSIGHASH == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.VERIFYSIGHASH) else 0)
-            | (if (o.NO_CONTENT_HCRYPTMSG == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.NO_CONTENT_HCRYPTMSG) else 0)
-            | (if (o.SORTED == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.SORTED) else 0)
-            | (if (o.FLAGS_MASK == 1) @intFromEnum(CRYPTCAT_OPEN_FLAGS.FLAGS_MASK) else 0)
-        ));
-    }
+pub const CRYPTCAT_OPEN_FLAGS = packed struct(u32) {
+    CREATENEW: u1 = 0,
+    ALWAYS: u1 = 0,
+    EXISTING: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    EXCLUDE_PAGE_HASHES: u1 = 0,
+    INCLUDE_PAGE_HASHES: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    VERIFYSIGHASH: u1 = 0,
+    NO_CONTENT_HCRYPTMSG: u1 = 0,
+    SORTED: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CRYPTCAT_OPEN_ALWAYS = CRYPTCAT_OPEN_FLAGS.ALWAYS;
-pub const CRYPTCAT_OPEN_CREATENEW = CRYPTCAT_OPEN_FLAGS.CREATENEW;
-pub const CRYPTCAT_OPEN_EXISTING = CRYPTCAT_OPEN_FLAGS.EXISTING;
-pub const CRYPTCAT_OPEN_EXCLUDE_PAGE_HASHES = CRYPTCAT_OPEN_FLAGS.EXCLUDE_PAGE_HASHES;
-pub const CRYPTCAT_OPEN_INCLUDE_PAGE_HASHES = CRYPTCAT_OPEN_FLAGS.INCLUDE_PAGE_HASHES;
-pub const CRYPTCAT_OPEN_VERIFYSIGHASH = CRYPTCAT_OPEN_FLAGS.VERIFYSIGHASH;
-pub const CRYPTCAT_OPEN_NO_CONTENT_HCRYPTMSG = CRYPTCAT_OPEN_FLAGS.NO_CONTENT_HCRYPTMSG;
-pub const CRYPTCAT_OPEN_SORTED = CRYPTCAT_OPEN_FLAGS.SORTED;
-pub const CRYPTCAT_OPEN_FLAGS_MASK = CRYPTCAT_OPEN_FLAGS.FLAGS_MASK;
+pub const CRYPTCAT_OPEN_ALWAYS = CRYPTCAT_OPEN_FLAGS{ .ALWAYS = 1 };
+pub const CRYPTCAT_OPEN_CREATENEW = CRYPTCAT_OPEN_FLAGS{ .CREATENEW = 1 };
+pub const CRYPTCAT_OPEN_EXISTING = CRYPTCAT_OPEN_FLAGS{ .EXISTING = 1 };
+pub const CRYPTCAT_OPEN_EXCLUDE_PAGE_HASHES = CRYPTCAT_OPEN_FLAGS{ .EXCLUDE_PAGE_HASHES = 1 };
+pub const CRYPTCAT_OPEN_INCLUDE_PAGE_HASHES = CRYPTCAT_OPEN_FLAGS{ .INCLUDE_PAGE_HASHES = 1 };
+pub const CRYPTCAT_OPEN_VERIFYSIGHASH = CRYPTCAT_OPEN_FLAGS{ .VERIFYSIGHASH = 1 };
+pub const CRYPTCAT_OPEN_NO_CONTENT_HCRYPTMSG = CRYPTCAT_OPEN_FLAGS{ .NO_CONTENT_HCRYPTMSG = 1 };
+pub const CRYPTCAT_OPEN_SORTED = CRYPTCAT_OPEN_FLAGS{ .SORTED = 1 };
+pub const CRYPTCAT_OPEN_FLAGS_MASK = CRYPTCAT_OPEN_FLAGS{
+    .EXCLUDE_PAGE_HASHES = 1,
+    .INCLUDE_PAGE_HASHES = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    .VERIFYSIGHASH = 1,
+    .NO_CONTENT_HCRYPTMSG = 1,
+    .SORTED = 1,
+    ._31 = 1,
+};
 
 pub const CRYPTCATSTORE = extern struct {
     cbStruct: u32,

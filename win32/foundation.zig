@@ -13040,39 +13040,79 @@ pub const FACILITY_PLATFORM_MANIFEST = NTSTATUS_FACILITY_CODE.PLATFORM_MANIFEST;
 pub const FACILITY_APP_EXEC = NTSTATUS_FACILITY_CODE.APP_EXEC;
 pub const FACILITY_MAXIMUM_VALUE = NTSTATUS_FACILITY_CODE.MAXIMUM_VALUE;
 
-pub const DUPLICATE_HANDLE_OPTIONS = enum(u32) {
-    CLOSE_SOURCE = 1,
-    SAME_ACCESS = 2,
-    _,
-    pub fn initFlags(o: struct {
-        CLOSE_SOURCE: u1 = 0,
-        SAME_ACCESS: u1 = 0,
-    }) DUPLICATE_HANDLE_OPTIONS {
-        return @as(DUPLICATE_HANDLE_OPTIONS, @enumFromInt(
-              (if (o.CLOSE_SOURCE == 1) @intFromEnum(DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE) else 0)
-            | (if (o.SAME_ACCESS == 1) @intFromEnum(DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS) else 0)
-        ));
-    }
+pub const DUPLICATE_HANDLE_OPTIONS = packed struct(u32) {
+    CLOSE_SOURCE: u1 = 0,
+    SAME_ACCESS: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DUPLICATE_CLOSE_SOURCE = DUPLICATE_HANDLE_OPTIONS.CLOSE_SOURCE;
-pub const DUPLICATE_SAME_ACCESS = DUPLICATE_HANDLE_OPTIONS.SAME_ACCESS;
+pub const DUPLICATE_CLOSE_SOURCE = DUPLICATE_HANDLE_OPTIONS{ .CLOSE_SOURCE = 1 };
+pub const DUPLICATE_SAME_ACCESS = DUPLICATE_HANDLE_OPTIONS{ .SAME_ACCESS = 1 };
 
-pub const HANDLE_FLAGS = enum(u32) {
-    INHERIT = 1,
-    PROTECT_FROM_CLOSE = 2,
-    _,
-    pub fn initFlags(o: struct {
-        INHERIT: u1 = 0,
-        PROTECT_FROM_CLOSE: u1 = 0,
-    }) HANDLE_FLAGS {
-        return @as(HANDLE_FLAGS, @enumFromInt(
-              (if (o.INHERIT == 1) @intFromEnum(HANDLE_FLAGS.INHERIT) else 0)
-            | (if (o.PROTECT_FROM_CLOSE == 1) @intFromEnum(HANDLE_FLAGS.PROTECT_FROM_CLOSE) else 0)
-        ));
-    }
+pub const HANDLE_FLAGS = packed struct(u32) {
+    INHERIT: u1 = 0,
+    PROTECT_FROM_CLOSE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const HANDLE_FLAG_INHERIT = HANDLE_FLAGS.INHERIT;
-pub const HANDLE_FLAG_PROTECT_FROM_CLOSE = HANDLE_FLAGS.PROTECT_FROM_CLOSE;
+pub const HANDLE_FLAG_INHERIT = HANDLE_FLAGS{ .INHERIT = 1 };
+pub const HANDLE_FLAG_PROTECT_FROM_CLOSE = HANDLE_FLAGS{ .PROTECT_FROM_CLOSE = 1 };
 
 pub const BOOL = i32;
 

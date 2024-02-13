@@ -1116,38 +1116,46 @@ pub const XEPR_CANAME = PENDING_REQUEST_DESIRED_PROPERTY.CANAME;
 pub const XEPR_HASH = PENDING_REQUEST_DESIRED_PROPERTY.HASH;
 pub const XEPR_REQUESTID = PENDING_REQUEST_DESIRED_PROPERTY.REQUESTID;
 
-pub const CERTADMIN_GET_ROLES_FLAGS = enum(u32) {
-    ADMIN = 1,
-    AUDITOR = 4,
-    ENROLL = 512,
-    OFFICER = 2,
-    OPERATOR = 8,
-    READ = 256,
-    _,
-    pub fn initFlags(o: struct {
-        ADMIN: u1 = 0,
-        AUDITOR: u1 = 0,
-        ENROLL: u1 = 0,
-        OFFICER: u1 = 0,
-        OPERATOR: u1 = 0,
-        READ: u1 = 0,
-    }) CERTADMIN_GET_ROLES_FLAGS {
-        return @as(CERTADMIN_GET_ROLES_FLAGS, @enumFromInt(
-              (if (o.ADMIN == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.ADMIN) else 0)
-            | (if (o.AUDITOR == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.AUDITOR) else 0)
-            | (if (o.ENROLL == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.ENROLL) else 0)
-            | (if (o.OFFICER == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.OFFICER) else 0)
-            | (if (o.OPERATOR == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.OPERATOR) else 0)
-            | (if (o.READ == 1) @intFromEnum(CERTADMIN_GET_ROLES_FLAGS.READ) else 0)
-        ));
-    }
+pub const CERTADMIN_GET_ROLES_FLAGS = packed struct(u32) {
+    ADMIN: u1 = 0,
+    OFFICER: u1 = 0,
+    AUDITOR: u1 = 0,
+    OPERATOR: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    READ: u1 = 0,
+    ENROLL: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CA_ACCESS_ADMIN = CERTADMIN_GET_ROLES_FLAGS.ADMIN;
-pub const CA_ACCESS_AUDITOR = CERTADMIN_GET_ROLES_FLAGS.AUDITOR;
-pub const CA_ACCESS_ENROLL = CERTADMIN_GET_ROLES_FLAGS.ENROLL;
-pub const CA_ACCESS_OFFICER = CERTADMIN_GET_ROLES_FLAGS.OFFICER;
-pub const CA_ACCESS_OPERATOR = CERTADMIN_GET_ROLES_FLAGS.OPERATOR;
-pub const CA_ACCESS_READ = CERTADMIN_GET_ROLES_FLAGS.READ;
+pub const CA_ACCESS_ADMIN = CERTADMIN_GET_ROLES_FLAGS{ .ADMIN = 1 };
+pub const CA_ACCESS_AUDITOR = CERTADMIN_GET_ROLES_FLAGS{ .AUDITOR = 1 };
+pub const CA_ACCESS_ENROLL = CERTADMIN_GET_ROLES_FLAGS{ .ENROLL = 1 };
+pub const CA_ACCESS_OFFICER = CERTADMIN_GET_ROLES_FLAGS{ .OFFICER = 1 };
+pub const CA_ACCESS_OPERATOR = CERTADMIN_GET_ROLES_FLAGS{ .OPERATOR = 1 };
+pub const CA_ACCESS_READ = CERTADMIN_GET_ROLES_FLAGS{ .READ = 1 };
 
 pub const CR_DISP = enum(u32) {
     DENIED = 2,
@@ -1184,42 +1192,47 @@ pub const XECR_PKCS10_V1_5 = CERT_CREATE_REQUEST_FLAGS.PKCS10_V1_5;
 pub const XECR_PKCS10_V2_0 = CERT_CREATE_REQUEST_FLAGS.PKCS10_V2_0;
 pub const XECR_PKCS7 = CERT_CREATE_REQUEST_FLAGS.PKCS7;
 
-pub const CERT_EXIT_EVENT_MASK = enum(u32) {
-    CERTDENIED = 4,
-    CERTISSUED = 1,
-    CERTPENDING = 2,
-    CERTRETRIEVEPENDING = 16,
-    CERTREVOKED = 8,
-    CRLISSUED = 32,
-    SHUTDOWN = 64,
-    _,
-    pub fn initFlags(o: struct {
-        CERTDENIED: u1 = 0,
-        CERTISSUED: u1 = 0,
-        CERTPENDING: u1 = 0,
-        CERTRETRIEVEPENDING: u1 = 0,
-        CERTREVOKED: u1 = 0,
-        CRLISSUED: u1 = 0,
-        SHUTDOWN: u1 = 0,
-    }) CERT_EXIT_EVENT_MASK {
-        return @as(CERT_EXIT_EVENT_MASK, @enumFromInt(
-              (if (o.CERTDENIED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTDENIED) else 0)
-            | (if (o.CERTISSUED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTISSUED) else 0)
-            | (if (o.CERTPENDING == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTPENDING) else 0)
-            | (if (o.CERTRETRIEVEPENDING == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTRETRIEVEPENDING) else 0)
-            | (if (o.CERTREVOKED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CERTREVOKED) else 0)
-            | (if (o.CRLISSUED == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.CRLISSUED) else 0)
-            | (if (o.SHUTDOWN == 1) @intFromEnum(CERT_EXIT_EVENT_MASK.SHUTDOWN) else 0)
-        ));
-    }
+pub const CERT_EXIT_EVENT_MASK = packed struct(u32) {
+    CERTISSUED: u1 = 0,
+    CERTPENDING: u1 = 0,
+    CERTDENIED: u1 = 0,
+    CERTREVOKED: u1 = 0,
+    CERTRETRIEVEPENDING: u1 = 0,
+    CRLISSUED: u1 = 0,
+    SHUTDOWN: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const EXITEVENT_CERTDENIED = CERT_EXIT_EVENT_MASK.CERTDENIED;
-pub const EXITEVENT_CERTISSUED = CERT_EXIT_EVENT_MASK.CERTISSUED;
-pub const EXITEVENT_CERTPENDING = CERT_EXIT_EVENT_MASK.CERTPENDING;
-pub const EXITEVENT_CERTRETRIEVEPENDING = CERT_EXIT_EVENT_MASK.CERTRETRIEVEPENDING;
-pub const EXITEVENT_CERTREVOKED = CERT_EXIT_EVENT_MASK.CERTREVOKED;
-pub const EXITEVENT_CRLISSUED = CERT_EXIT_EVENT_MASK.CRLISSUED;
-pub const EXITEVENT_SHUTDOWN = CERT_EXIT_EVENT_MASK.SHUTDOWN;
+pub const EXITEVENT_CERTDENIED = CERT_EXIT_EVENT_MASK{ .CERTDENIED = 1 };
+pub const EXITEVENT_CERTISSUED = CERT_EXIT_EVENT_MASK{ .CERTISSUED = 1 };
+pub const EXITEVENT_CERTPENDING = CERT_EXIT_EVENT_MASK{ .CERTPENDING = 1 };
+pub const EXITEVENT_CERTRETRIEVEPENDING = CERT_EXIT_EVENT_MASK{ .CERTRETRIEVEPENDING = 1 };
+pub const EXITEVENT_CERTREVOKED = CERT_EXIT_EVENT_MASK{ .CERTREVOKED = 1 };
+pub const EXITEVENT_CRLISSUED = CERT_EXIT_EVENT_MASK{ .CRLISSUED = 1 };
+pub const EXITEVENT_SHUTDOWN = CERT_EXIT_EVENT_MASK{ .SHUTDOWN = 1 };
 
 pub const ADDED_CERT_TYPE = enum(u32) {
     @"1" = 1,

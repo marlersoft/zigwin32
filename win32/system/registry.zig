@@ -950,91 +950,117 @@ pub const REG_RESOURCE_REQUIREMENTS_LIST = REG_VALUE_TYPE.RESOURCE_REQUIREMENTS_
 pub const REG_QWORD = REG_VALUE_TYPE.QWORD;
 pub const REG_QWORD_LITTLE_ENDIAN = REG_VALUE_TYPE.QWORD;
 
-pub const REG_SAM_FLAGS = enum(u32) {
-    QUERY_VALUE = 1,
-    SET_VALUE = 2,
-    CREATE_SUB_KEY = 4,
-    ENUMERATE_SUB_KEYS = 8,
-    NOTIFY = 16,
-    CREATE_LINK = 32,
-    WOW64_32KEY = 512,
-    WOW64_64KEY = 256,
-    WOW64_RES = 768,
-    READ = 131097,
-    WRITE = 131078,
-    // EXECUTE = 131097, this enum value conflicts with READ
-    ALL_ACCESS = 983103,
-    _,
-    pub fn initFlags(o: struct {
-        QUERY_VALUE: u1 = 0,
-        SET_VALUE: u1 = 0,
-        CREATE_SUB_KEY: u1 = 0,
-        ENUMERATE_SUB_KEYS: u1 = 0,
-        NOTIFY: u1 = 0,
-        CREATE_LINK: u1 = 0,
-        WOW64_32KEY: u1 = 0,
-        WOW64_64KEY: u1 = 0,
-        WOW64_RES: u1 = 0,
-        READ: u1 = 0,
-        WRITE: u1 = 0,
-        ALL_ACCESS: u1 = 0,
-    }) REG_SAM_FLAGS {
-        return @as(REG_SAM_FLAGS, @enumFromInt(
-              (if (o.QUERY_VALUE == 1) @intFromEnum(REG_SAM_FLAGS.QUERY_VALUE) else 0)
-            | (if (o.SET_VALUE == 1) @intFromEnum(REG_SAM_FLAGS.SET_VALUE) else 0)
-            | (if (o.CREATE_SUB_KEY == 1) @intFromEnum(REG_SAM_FLAGS.CREATE_SUB_KEY) else 0)
-            | (if (o.ENUMERATE_SUB_KEYS == 1) @intFromEnum(REG_SAM_FLAGS.ENUMERATE_SUB_KEYS) else 0)
-            | (if (o.NOTIFY == 1) @intFromEnum(REG_SAM_FLAGS.NOTIFY) else 0)
-            | (if (o.CREATE_LINK == 1) @intFromEnum(REG_SAM_FLAGS.CREATE_LINK) else 0)
-            | (if (o.WOW64_32KEY == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_32KEY) else 0)
-            | (if (o.WOW64_64KEY == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_64KEY) else 0)
-            | (if (o.WOW64_RES == 1) @intFromEnum(REG_SAM_FLAGS.WOW64_RES) else 0)
-            | (if (o.READ == 1) @intFromEnum(REG_SAM_FLAGS.READ) else 0)
-            | (if (o.WRITE == 1) @intFromEnum(REG_SAM_FLAGS.WRITE) else 0)
-            | (if (o.ALL_ACCESS == 1) @intFromEnum(REG_SAM_FLAGS.ALL_ACCESS) else 0)
-        ));
-    }
+pub const REG_SAM_FLAGS = packed struct(u32) {
+    QUERY_VALUE: u1 = 0,
+    SET_VALUE: u1 = 0,
+    CREATE_SUB_KEY: u1 = 0,
+    ENUMERATE_SUB_KEYS: u1 = 0,
+    NOTIFY: u1 = 0,
+    CREATE_LINK: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    WOW64_64KEY: u1 = 0,
+    WOW64_32KEY: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // EXECUTE (131097) conflicts with READ
 };
-pub const KEY_QUERY_VALUE = REG_SAM_FLAGS.QUERY_VALUE;
-pub const KEY_SET_VALUE = REG_SAM_FLAGS.SET_VALUE;
-pub const KEY_CREATE_SUB_KEY = REG_SAM_FLAGS.CREATE_SUB_KEY;
-pub const KEY_ENUMERATE_SUB_KEYS = REG_SAM_FLAGS.ENUMERATE_SUB_KEYS;
-pub const KEY_NOTIFY = REG_SAM_FLAGS.NOTIFY;
-pub const KEY_CREATE_LINK = REG_SAM_FLAGS.CREATE_LINK;
-pub const KEY_WOW64_32KEY = REG_SAM_FLAGS.WOW64_32KEY;
-pub const KEY_WOW64_64KEY = REG_SAM_FLAGS.WOW64_64KEY;
-pub const KEY_WOW64_RES = REG_SAM_FLAGS.WOW64_RES;
-pub const KEY_READ = REG_SAM_FLAGS.READ;
-pub const KEY_WRITE = REG_SAM_FLAGS.WRITE;
-pub const KEY_EXECUTE = REG_SAM_FLAGS.READ;
-pub const KEY_ALL_ACCESS = REG_SAM_FLAGS.ALL_ACCESS;
+pub const KEY_QUERY_VALUE = REG_SAM_FLAGS{ .QUERY_VALUE = 1 };
+pub const KEY_SET_VALUE = REG_SAM_FLAGS{ .SET_VALUE = 1 };
+pub const KEY_CREATE_SUB_KEY = REG_SAM_FLAGS{ .CREATE_SUB_KEY = 1 };
+pub const KEY_ENUMERATE_SUB_KEYS = REG_SAM_FLAGS{ .ENUMERATE_SUB_KEYS = 1 };
+pub const KEY_NOTIFY = REG_SAM_FLAGS{ .NOTIFY = 1 };
+pub const KEY_CREATE_LINK = REG_SAM_FLAGS{ .CREATE_LINK = 1 };
+pub const KEY_WOW64_32KEY = REG_SAM_FLAGS{ .WOW64_32KEY = 1 };
+pub const KEY_WOW64_64KEY = REG_SAM_FLAGS{ .WOW64_64KEY = 1 };
+pub const KEY_WOW64_RES = REG_SAM_FLAGS{
+    .WOW64_64KEY = 1,
+    .WOW64_32KEY = 1,
+};
+pub const KEY_READ = REG_SAM_FLAGS{
+    .QUERY_VALUE = 1,
+    .ENUMERATE_SUB_KEYS = 1,
+    .NOTIFY = 1,
+    ._17 = 1,
+};
+pub const KEY_WRITE = REG_SAM_FLAGS{
+    .SET_VALUE = 1,
+    .CREATE_SUB_KEY = 1,
+    ._17 = 1,
+};
+pub const KEY_EXECUTE = REG_SAM_FLAGS{
+    .QUERY_VALUE = 1,
+    .ENUMERATE_SUB_KEYS = 1,
+    .NOTIFY = 1,
+    ._17 = 1,
+};
+pub const KEY_ALL_ACCESS = REG_SAM_FLAGS{
+    .QUERY_VALUE = 1,
+    .SET_VALUE = 1,
+    .CREATE_SUB_KEY = 1,
+    .ENUMERATE_SUB_KEYS = 1,
+    .NOTIFY = 1,
+    .CREATE_LINK = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+};
 
-pub const REG_OPEN_CREATE_OPTIONS = enum(u32) {
-    RESERVED = 0,
-    // NON_VOLATILE = 0, this enum value conflicts with RESERVED
-    VOLATILE = 1,
-    CREATE_LINK = 2,
-    BACKUP_RESTORE = 4,
-    OPEN_LINK = 8,
-    DONT_VIRTUALIZE = 16,
-    _,
-    pub fn initFlags(o: struct {
-        RESERVED: u1 = 0,
-        VOLATILE: u1 = 0,
-        CREATE_LINK: u1 = 0,
-        BACKUP_RESTORE: u1 = 0,
-        OPEN_LINK: u1 = 0,
-        DONT_VIRTUALIZE: u1 = 0,
-    }) REG_OPEN_CREATE_OPTIONS {
-        return @as(REG_OPEN_CREATE_OPTIONS, @enumFromInt(
-              (if (o.RESERVED == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.RESERVED) else 0)
-            | (if (o.VOLATILE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.VOLATILE) else 0)
-            | (if (o.CREATE_LINK == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.CREATE_LINK) else 0)
-            | (if (o.BACKUP_RESTORE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.BACKUP_RESTORE) else 0)
-            | (if (o.OPEN_LINK == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.OPEN_LINK) else 0)
-            | (if (o.DONT_VIRTUALIZE == 1) @intFromEnum(REG_OPEN_CREATE_OPTIONS.DONT_VIRTUALIZE) else 0)
-        ));
-    }
+pub const REG_OPEN_CREATE_OPTIONS = packed struct(u32) {
+    VOLATILE: u1 = 0,
+    CREATE_LINK: u1 = 0,
+    BACKUP_RESTORE: u1 = 0,
+    OPEN_LINK: u1 = 0,
+    DONT_VIRTUALIZE: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // NON_VOLATILE (0) conflicts with RESERVED
 };
 // TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
 
@@ -1061,83 +1087,113 @@ pub const REG_RESTORE_KEY_FLAGS = enum(i32) {
 pub const REG_FORCE_RESTORE = REG_RESTORE_KEY_FLAGS.FORCE_RESTORE;
 pub const REG_WHOLE_HIVE_VOLATILE = REG_RESTORE_KEY_FLAGS.WHOLE_HIVE_VOLATILE;
 
-pub const REG_NOTIFY_FILTER = enum(u32) {
-    CHANGE_NAME = 1,
-    CHANGE_ATTRIBUTES = 2,
-    CHANGE_LAST_SET = 4,
-    CHANGE_SECURITY = 8,
-    THREAD_AGNOSTIC = 268435456,
-    _,
-    pub fn initFlags(o: struct {
-        CHANGE_NAME: u1 = 0,
-        CHANGE_ATTRIBUTES: u1 = 0,
-        CHANGE_LAST_SET: u1 = 0,
-        CHANGE_SECURITY: u1 = 0,
-        THREAD_AGNOSTIC: u1 = 0,
-    }) REG_NOTIFY_FILTER {
-        return @as(REG_NOTIFY_FILTER, @enumFromInt(
-              (if (o.CHANGE_NAME == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_NAME) else 0)
-            | (if (o.CHANGE_ATTRIBUTES == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_ATTRIBUTES) else 0)
-            | (if (o.CHANGE_LAST_SET == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_LAST_SET) else 0)
-            | (if (o.CHANGE_SECURITY == 1) @intFromEnum(REG_NOTIFY_FILTER.CHANGE_SECURITY) else 0)
-            | (if (o.THREAD_AGNOSTIC == 1) @intFromEnum(REG_NOTIFY_FILTER.THREAD_AGNOSTIC) else 0)
-        ));
-    }
+pub const REG_NOTIFY_FILTER = packed struct(u32) {
+    CHANGE_NAME: u1 = 0,
+    CHANGE_ATTRIBUTES: u1 = 0,
+    CHANGE_LAST_SET: u1 = 0,
+    CHANGE_SECURITY: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    THREAD_AGNOSTIC: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const REG_NOTIFY_CHANGE_NAME = REG_NOTIFY_FILTER.CHANGE_NAME;
-pub const REG_NOTIFY_CHANGE_ATTRIBUTES = REG_NOTIFY_FILTER.CHANGE_ATTRIBUTES;
-pub const REG_NOTIFY_CHANGE_LAST_SET = REG_NOTIFY_FILTER.CHANGE_LAST_SET;
-pub const REG_NOTIFY_CHANGE_SECURITY = REG_NOTIFY_FILTER.CHANGE_SECURITY;
-pub const REG_NOTIFY_THREAD_AGNOSTIC = REG_NOTIFY_FILTER.THREAD_AGNOSTIC;
+pub const REG_NOTIFY_CHANGE_NAME = REG_NOTIFY_FILTER{ .CHANGE_NAME = 1 };
+pub const REG_NOTIFY_CHANGE_ATTRIBUTES = REG_NOTIFY_FILTER{ .CHANGE_ATTRIBUTES = 1 };
+pub const REG_NOTIFY_CHANGE_LAST_SET = REG_NOTIFY_FILTER{ .CHANGE_LAST_SET = 1 };
+pub const REG_NOTIFY_CHANGE_SECURITY = REG_NOTIFY_FILTER{ .CHANGE_SECURITY = 1 };
+pub const REG_NOTIFY_THREAD_AGNOSTIC = REG_NOTIFY_FILTER{ .THREAD_AGNOSTIC = 1 };
 
-pub const RRF_RT = enum(u32) {
-    ANY = 65535,
-    DWORD = 24,
-    QWORD = 72,
-    REG_BINARY = 8,
-    REG_DWORD = 16,
-    REG_EXPAND_SZ = 4,
-    REG_MULTI_SZ = 32,
-    REG_NONE = 1,
-    REG_QWORD = 64,
-    REG_SZ = 2,
-    _,
-    pub fn initFlags(o: struct {
-        ANY: u1 = 0,
-        DWORD: u1 = 0,
-        QWORD: u1 = 0,
-        REG_BINARY: u1 = 0,
-        REG_DWORD: u1 = 0,
-        REG_EXPAND_SZ: u1 = 0,
-        REG_MULTI_SZ: u1 = 0,
-        REG_NONE: u1 = 0,
-        REG_QWORD: u1 = 0,
-        REG_SZ: u1 = 0,
-    }) RRF_RT {
-        return @as(RRF_RT, @enumFromInt(
-              (if (o.ANY == 1) @intFromEnum(RRF_RT.ANY) else 0)
-            | (if (o.DWORD == 1) @intFromEnum(RRF_RT.DWORD) else 0)
-            | (if (o.QWORD == 1) @intFromEnum(RRF_RT.QWORD) else 0)
-            | (if (o.REG_BINARY == 1) @intFromEnum(RRF_RT.REG_BINARY) else 0)
-            | (if (o.REG_DWORD == 1) @intFromEnum(RRF_RT.REG_DWORD) else 0)
-            | (if (o.REG_EXPAND_SZ == 1) @intFromEnum(RRF_RT.REG_EXPAND_SZ) else 0)
-            | (if (o.REG_MULTI_SZ == 1) @intFromEnum(RRF_RT.REG_MULTI_SZ) else 0)
-            | (if (o.REG_NONE == 1) @intFromEnum(RRF_RT.REG_NONE) else 0)
-            | (if (o.REG_QWORD == 1) @intFromEnum(RRF_RT.REG_QWORD) else 0)
-            | (if (o.REG_SZ == 1) @intFromEnum(RRF_RT.REG_SZ) else 0)
-        ));
-    }
+pub const RRF_RT = packed struct(u32) {
+    REG_NONE: u1 = 0,
+    REG_SZ: u1 = 0,
+    REG_EXPAND_SZ: u1 = 0,
+    REG_BINARY: u1 = 0,
+    REG_DWORD: u1 = 0,
+    REG_MULTI_SZ: u1 = 0,
+    REG_QWORD: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RRF_RT_ANY = RRF_RT.ANY;
-pub const RRF_RT_DWORD = RRF_RT.DWORD;
-pub const RRF_RT_QWORD = RRF_RT.QWORD;
-pub const RRF_RT_REG_BINARY = RRF_RT.REG_BINARY;
-pub const RRF_RT_REG_DWORD = RRF_RT.REG_DWORD;
-pub const RRF_RT_REG_EXPAND_SZ = RRF_RT.REG_EXPAND_SZ;
-pub const RRF_RT_REG_MULTI_SZ = RRF_RT.REG_MULTI_SZ;
-pub const RRF_RT_REG_NONE = RRF_RT.REG_NONE;
-pub const RRF_RT_REG_QWORD = RRF_RT.REG_QWORD;
-pub const RRF_RT_REG_SZ = RRF_RT.REG_SZ;
+pub const RRF_RT_ANY = RRF_RT{
+    .REG_NONE = 1,
+    .REG_SZ = 1,
+    .REG_EXPAND_SZ = 1,
+    .REG_BINARY = 1,
+    .REG_DWORD = 1,
+    .REG_MULTI_SZ = 1,
+    .REG_QWORD = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+};
+pub const RRF_RT_DWORD = RRF_RT{
+    .REG_BINARY = 1,
+    .REG_DWORD = 1,
+};
+pub const RRF_RT_QWORD = RRF_RT{
+    .REG_BINARY = 1,
+    .REG_QWORD = 1,
+};
+pub const RRF_RT_REG_BINARY = RRF_RT{ .REG_BINARY = 1 };
+pub const RRF_RT_REG_DWORD = RRF_RT{ .REG_DWORD = 1 };
+pub const RRF_RT_REG_EXPAND_SZ = RRF_RT{ .REG_EXPAND_SZ = 1 };
+pub const RRF_RT_REG_MULTI_SZ = RRF_RT{ .REG_MULTI_SZ = 1 };
+pub const RRF_RT_REG_NONE = RRF_RT{ .REG_NONE = 1 };
+pub const RRF_RT_REG_QWORD = RRF_RT{ .REG_QWORD = 1 };
+pub const RRF_RT_REG_SZ = RRF_RT{ .REG_SZ = 1 };
 
 // TODO: this type has a FreeFunc 'RegCloseKey', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?

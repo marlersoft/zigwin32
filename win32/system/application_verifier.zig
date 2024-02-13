@@ -7,22 +7,42 @@ pub const AVRF_MAX_TRACES = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
-pub const VERIFIER_ENUM_RESOURCE_FLAGS = enum(u32) {
-    DONT_RESOLVE_TRACES = 2,
-    SUSPEND = 1,
-    _,
-    pub fn initFlags(o: struct {
-        DONT_RESOLVE_TRACES: u1 = 0,
-        SUSPEND: u1 = 0,
-    }) VERIFIER_ENUM_RESOURCE_FLAGS {
-        return @as(VERIFIER_ENUM_RESOURCE_FLAGS, @enumFromInt(
-              (if (o.DONT_RESOLVE_TRACES == 1) @intFromEnum(VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES) else 0)
-            | (if (o.SUSPEND == 1) @intFromEnum(VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND) else 0)
-        ));
-    }
+pub const VERIFIER_ENUM_RESOURCE_FLAGS = packed struct(u32) {
+    SUSPEND: u1 = 0,
+    DONT_RESOLVE_TRACES: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES;
-pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND;
+pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS{ .DONT_RESOLVE_TRACES = 1 };
+pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS{ .SUSPEND = 1 };
 
 pub const AVRF_BACKTRACE_INFORMATION = extern struct {
     Depth: u32,

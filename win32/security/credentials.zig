@@ -171,54 +171,74 @@ pub const CREDSSP_FLAG_REDIRECT = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (50)
 //--------------------------------------------------------------------------------
-pub const CRED_FLAGS = enum(u32) {
-    PASSWORD_FOR_CERT = 1,
-    PROMPT_NOW = 2,
-    USERNAME_TARGET = 4,
-    OWF_CRED_BLOB = 8,
-    REQUIRE_CONFIRMATION = 16,
-    WILDCARD_MATCH = 32,
-    VSM_PROTECTED = 64,
-    NGC_CERT = 128,
-    VALID_FLAGS = 61695,
-    VALID_INPUT_FLAGS = 61599,
-    _,
-    pub fn initFlags(o: struct {
-        PASSWORD_FOR_CERT: u1 = 0,
-        PROMPT_NOW: u1 = 0,
-        USERNAME_TARGET: u1 = 0,
-        OWF_CRED_BLOB: u1 = 0,
-        REQUIRE_CONFIRMATION: u1 = 0,
-        WILDCARD_MATCH: u1 = 0,
-        VSM_PROTECTED: u1 = 0,
-        NGC_CERT: u1 = 0,
-        VALID_FLAGS: u1 = 0,
-        VALID_INPUT_FLAGS: u1 = 0,
-    }) CRED_FLAGS {
-        return @as(CRED_FLAGS, @enumFromInt(
-              (if (o.PASSWORD_FOR_CERT == 1) @intFromEnum(CRED_FLAGS.PASSWORD_FOR_CERT) else 0)
-            | (if (o.PROMPT_NOW == 1) @intFromEnum(CRED_FLAGS.PROMPT_NOW) else 0)
-            | (if (o.USERNAME_TARGET == 1) @intFromEnum(CRED_FLAGS.USERNAME_TARGET) else 0)
-            | (if (o.OWF_CRED_BLOB == 1) @intFromEnum(CRED_FLAGS.OWF_CRED_BLOB) else 0)
-            | (if (o.REQUIRE_CONFIRMATION == 1) @intFromEnum(CRED_FLAGS.REQUIRE_CONFIRMATION) else 0)
-            | (if (o.WILDCARD_MATCH == 1) @intFromEnum(CRED_FLAGS.WILDCARD_MATCH) else 0)
-            | (if (o.VSM_PROTECTED == 1) @intFromEnum(CRED_FLAGS.VSM_PROTECTED) else 0)
-            | (if (o.NGC_CERT == 1) @intFromEnum(CRED_FLAGS.NGC_CERT) else 0)
-            | (if (o.VALID_FLAGS == 1) @intFromEnum(CRED_FLAGS.VALID_FLAGS) else 0)
-            | (if (o.VALID_INPUT_FLAGS == 1) @intFromEnum(CRED_FLAGS.VALID_INPUT_FLAGS) else 0)
-        ));
-    }
+pub const CRED_FLAGS = packed struct(u32) {
+    PASSWORD_FOR_CERT: u1 = 0,
+    PROMPT_NOW: u1 = 0,
+    USERNAME_TARGET: u1 = 0,
+    OWF_CRED_BLOB: u1 = 0,
+    REQUIRE_CONFIRMATION: u1 = 0,
+    WILDCARD_MATCH: u1 = 0,
+    VSM_PROTECTED: u1 = 0,
+    NGC_CERT: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CRED_FLAGS_PASSWORD_FOR_CERT = CRED_FLAGS.PASSWORD_FOR_CERT;
-pub const CRED_FLAGS_PROMPT_NOW = CRED_FLAGS.PROMPT_NOW;
-pub const CRED_FLAGS_USERNAME_TARGET = CRED_FLAGS.USERNAME_TARGET;
-pub const CRED_FLAGS_OWF_CRED_BLOB = CRED_FLAGS.OWF_CRED_BLOB;
-pub const CRED_FLAGS_REQUIRE_CONFIRMATION = CRED_FLAGS.REQUIRE_CONFIRMATION;
-pub const CRED_FLAGS_WILDCARD_MATCH = CRED_FLAGS.WILDCARD_MATCH;
-pub const CRED_FLAGS_VSM_PROTECTED = CRED_FLAGS.VSM_PROTECTED;
-pub const CRED_FLAGS_NGC_CERT = CRED_FLAGS.NGC_CERT;
-pub const CRED_FLAGS_VALID_FLAGS = CRED_FLAGS.VALID_FLAGS;
-pub const CRED_FLAGS_VALID_INPUT_FLAGS = CRED_FLAGS.VALID_INPUT_FLAGS;
+pub const CRED_FLAGS_PASSWORD_FOR_CERT = CRED_FLAGS{ .PASSWORD_FOR_CERT = 1 };
+pub const CRED_FLAGS_PROMPT_NOW = CRED_FLAGS{ .PROMPT_NOW = 1 };
+pub const CRED_FLAGS_USERNAME_TARGET = CRED_FLAGS{ .USERNAME_TARGET = 1 };
+pub const CRED_FLAGS_OWF_CRED_BLOB = CRED_FLAGS{ .OWF_CRED_BLOB = 1 };
+pub const CRED_FLAGS_REQUIRE_CONFIRMATION = CRED_FLAGS{ .REQUIRE_CONFIRMATION = 1 };
+pub const CRED_FLAGS_WILDCARD_MATCH = CRED_FLAGS{ .WILDCARD_MATCH = 1 };
+pub const CRED_FLAGS_VSM_PROTECTED = CRED_FLAGS{ .VSM_PROTECTED = 1 };
+pub const CRED_FLAGS_NGC_CERT = CRED_FLAGS{ .NGC_CERT = 1 };
+pub const CRED_FLAGS_VALID_FLAGS = CRED_FLAGS{
+    .PASSWORD_FOR_CERT = 1,
+    .PROMPT_NOW = 1,
+    .USERNAME_TARGET = 1,
+    .OWF_CRED_BLOB = 1,
+    .REQUIRE_CONFIRMATION = 1,
+    .WILDCARD_MATCH = 1,
+    .VSM_PROTECTED = 1,
+    .NGC_CERT = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+};
+pub const CRED_FLAGS_VALID_INPUT_FLAGS = CRED_FLAGS{
+    .PASSWORD_FOR_CERT = 1,
+    .PROMPT_NOW = 1,
+    .USERNAME_TARGET = 1,
+    .OWF_CRED_BLOB = 1,
+    .REQUIRE_CONFIRMATION = 1,
+    .NGC_CERT = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+};
 
 pub const CRED_TYPE = enum(u32) {
     GENERIC = 1,
@@ -250,82 +270,57 @@ pub const CRED_PERSIST_SESSION = CRED_PERSIST.SESSION;
 pub const CRED_PERSIST_LOCAL_MACHINE = CRED_PERSIST.LOCAL_MACHINE;
 pub const CRED_PERSIST_ENTERPRISE = CRED_PERSIST.ENTERPRISE;
 
-pub const CREDUI_FLAGS = enum(u32) {
-    ALWAYS_SHOW_UI = 128,
-    COMPLETE_USERNAME = 2048,
-    DO_NOT_PERSIST = 2,
-    EXCLUDE_CERTIFICATES = 8,
-    EXPECT_CONFIRMATION = 131072,
-    GENERIC_CREDENTIALS = 262144,
-    INCORRECT_PASSWORD = 1,
-    KEEP_USERNAME = 1048576,
-    PASSWORD_ONLY_OK = 512,
-    PERSIST = 4096,
-    REQUEST_ADMINISTRATOR = 4,
-    REQUIRE_CERTIFICATE = 16,
-    REQUIRE_SMARTCARD = 256,
-    SERVER_CREDENTIAL = 16384,
-    SHOW_SAVE_CHECK_BOX = 64,
-    USERNAME_TARGET_CREDENTIALS = 524288,
-    VALIDATE_USERNAME = 1024,
-    _,
-    pub fn initFlags(o: struct {
-        ALWAYS_SHOW_UI: u1 = 0,
-        COMPLETE_USERNAME: u1 = 0,
-        DO_NOT_PERSIST: u1 = 0,
-        EXCLUDE_CERTIFICATES: u1 = 0,
-        EXPECT_CONFIRMATION: u1 = 0,
-        GENERIC_CREDENTIALS: u1 = 0,
-        INCORRECT_PASSWORD: u1 = 0,
-        KEEP_USERNAME: u1 = 0,
-        PASSWORD_ONLY_OK: u1 = 0,
-        PERSIST: u1 = 0,
-        REQUEST_ADMINISTRATOR: u1 = 0,
-        REQUIRE_CERTIFICATE: u1 = 0,
-        REQUIRE_SMARTCARD: u1 = 0,
-        SERVER_CREDENTIAL: u1 = 0,
-        SHOW_SAVE_CHECK_BOX: u1 = 0,
-        USERNAME_TARGET_CREDENTIALS: u1 = 0,
-        VALIDATE_USERNAME: u1 = 0,
-    }) CREDUI_FLAGS {
-        return @as(CREDUI_FLAGS, @enumFromInt(
-              (if (o.ALWAYS_SHOW_UI == 1) @intFromEnum(CREDUI_FLAGS.ALWAYS_SHOW_UI) else 0)
-            | (if (o.COMPLETE_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.COMPLETE_USERNAME) else 0)
-            | (if (o.DO_NOT_PERSIST == 1) @intFromEnum(CREDUI_FLAGS.DO_NOT_PERSIST) else 0)
-            | (if (o.EXCLUDE_CERTIFICATES == 1) @intFromEnum(CREDUI_FLAGS.EXCLUDE_CERTIFICATES) else 0)
-            | (if (o.EXPECT_CONFIRMATION == 1) @intFromEnum(CREDUI_FLAGS.EXPECT_CONFIRMATION) else 0)
-            | (if (o.GENERIC_CREDENTIALS == 1) @intFromEnum(CREDUI_FLAGS.GENERIC_CREDENTIALS) else 0)
-            | (if (o.INCORRECT_PASSWORD == 1) @intFromEnum(CREDUI_FLAGS.INCORRECT_PASSWORD) else 0)
-            | (if (o.KEEP_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.KEEP_USERNAME) else 0)
-            | (if (o.PASSWORD_ONLY_OK == 1) @intFromEnum(CREDUI_FLAGS.PASSWORD_ONLY_OK) else 0)
-            | (if (o.PERSIST == 1) @intFromEnum(CREDUI_FLAGS.PERSIST) else 0)
-            | (if (o.REQUEST_ADMINISTRATOR == 1) @intFromEnum(CREDUI_FLAGS.REQUEST_ADMINISTRATOR) else 0)
-            | (if (o.REQUIRE_CERTIFICATE == 1) @intFromEnum(CREDUI_FLAGS.REQUIRE_CERTIFICATE) else 0)
-            | (if (o.REQUIRE_SMARTCARD == 1) @intFromEnum(CREDUI_FLAGS.REQUIRE_SMARTCARD) else 0)
-            | (if (o.SERVER_CREDENTIAL == 1) @intFromEnum(CREDUI_FLAGS.SERVER_CREDENTIAL) else 0)
-            | (if (o.SHOW_SAVE_CHECK_BOX == 1) @intFromEnum(CREDUI_FLAGS.SHOW_SAVE_CHECK_BOX) else 0)
-            | (if (o.USERNAME_TARGET_CREDENTIALS == 1) @intFromEnum(CREDUI_FLAGS.USERNAME_TARGET_CREDENTIALS) else 0)
-            | (if (o.VALIDATE_USERNAME == 1) @intFromEnum(CREDUI_FLAGS.VALIDATE_USERNAME) else 0)
-        ));
-    }
+pub const CREDUI_FLAGS = packed struct(u32) {
+    INCORRECT_PASSWORD: u1 = 0,
+    DO_NOT_PERSIST: u1 = 0,
+    REQUEST_ADMINISTRATOR: u1 = 0,
+    EXCLUDE_CERTIFICATES: u1 = 0,
+    REQUIRE_CERTIFICATE: u1 = 0,
+    _5: u1 = 0,
+    SHOW_SAVE_CHECK_BOX: u1 = 0,
+    ALWAYS_SHOW_UI: u1 = 0,
+    REQUIRE_SMARTCARD: u1 = 0,
+    PASSWORD_ONLY_OK: u1 = 0,
+    VALIDATE_USERNAME: u1 = 0,
+    COMPLETE_USERNAME: u1 = 0,
+    PERSIST: u1 = 0,
+    _13: u1 = 0,
+    SERVER_CREDENTIAL: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    EXPECT_CONFIRMATION: u1 = 0,
+    GENERIC_CREDENTIALS: u1 = 0,
+    USERNAME_TARGET_CREDENTIALS: u1 = 0,
+    KEEP_USERNAME: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CREDUI_FLAGS_ALWAYS_SHOW_UI = CREDUI_FLAGS.ALWAYS_SHOW_UI;
-pub const CREDUI_FLAGS_COMPLETE_USERNAME = CREDUI_FLAGS.COMPLETE_USERNAME;
-pub const CREDUI_FLAGS_DO_NOT_PERSIST = CREDUI_FLAGS.DO_NOT_PERSIST;
-pub const CREDUI_FLAGS_EXCLUDE_CERTIFICATES = CREDUI_FLAGS.EXCLUDE_CERTIFICATES;
-pub const CREDUI_FLAGS_EXPECT_CONFIRMATION = CREDUI_FLAGS.EXPECT_CONFIRMATION;
-pub const CREDUI_FLAGS_GENERIC_CREDENTIALS = CREDUI_FLAGS.GENERIC_CREDENTIALS;
-pub const CREDUI_FLAGS_INCORRECT_PASSWORD = CREDUI_FLAGS.INCORRECT_PASSWORD;
-pub const CREDUI_FLAGS_KEEP_USERNAME = CREDUI_FLAGS.KEEP_USERNAME;
-pub const CREDUI_FLAGS_PASSWORD_ONLY_OK = CREDUI_FLAGS.PASSWORD_ONLY_OK;
-pub const CREDUI_FLAGS_PERSIST = CREDUI_FLAGS.PERSIST;
-pub const CREDUI_FLAGS_REQUEST_ADMINISTRATOR = CREDUI_FLAGS.REQUEST_ADMINISTRATOR;
-pub const CREDUI_FLAGS_REQUIRE_CERTIFICATE = CREDUI_FLAGS.REQUIRE_CERTIFICATE;
-pub const CREDUI_FLAGS_REQUIRE_SMARTCARD = CREDUI_FLAGS.REQUIRE_SMARTCARD;
-pub const CREDUI_FLAGS_SERVER_CREDENTIAL = CREDUI_FLAGS.SERVER_CREDENTIAL;
-pub const CREDUI_FLAGS_SHOW_SAVE_CHECK_BOX = CREDUI_FLAGS.SHOW_SAVE_CHECK_BOX;
-pub const CREDUI_FLAGS_USERNAME_TARGET_CREDENTIALS = CREDUI_FLAGS.USERNAME_TARGET_CREDENTIALS;
-pub const CREDUI_FLAGS_VALIDATE_USERNAME = CREDUI_FLAGS.VALIDATE_USERNAME;
+pub const CREDUI_FLAGS_ALWAYS_SHOW_UI = CREDUI_FLAGS{ .ALWAYS_SHOW_UI = 1 };
+pub const CREDUI_FLAGS_COMPLETE_USERNAME = CREDUI_FLAGS{ .COMPLETE_USERNAME = 1 };
+pub const CREDUI_FLAGS_DO_NOT_PERSIST = CREDUI_FLAGS{ .DO_NOT_PERSIST = 1 };
+pub const CREDUI_FLAGS_EXCLUDE_CERTIFICATES = CREDUI_FLAGS{ .EXCLUDE_CERTIFICATES = 1 };
+pub const CREDUI_FLAGS_EXPECT_CONFIRMATION = CREDUI_FLAGS{ .EXPECT_CONFIRMATION = 1 };
+pub const CREDUI_FLAGS_GENERIC_CREDENTIALS = CREDUI_FLAGS{ .GENERIC_CREDENTIALS = 1 };
+pub const CREDUI_FLAGS_INCORRECT_PASSWORD = CREDUI_FLAGS{ .INCORRECT_PASSWORD = 1 };
+pub const CREDUI_FLAGS_KEEP_USERNAME = CREDUI_FLAGS{ .KEEP_USERNAME = 1 };
+pub const CREDUI_FLAGS_PASSWORD_ONLY_OK = CREDUI_FLAGS{ .PASSWORD_ONLY_OK = 1 };
+pub const CREDUI_FLAGS_PERSIST = CREDUI_FLAGS{ .PERSIST = 1 };
+pub const CREDUI_FLAGS_REQUEST_ADMINISTRATOR = CREDUI_FLAGS{ .REQUEST_ADMINISTRATOR = 1 };
+pub const CREDUI_FLAGS_REQUIRE_CERTIFICATE = CREDUI_FLAGS{ .REQUIRE_CERTIFICATE = 1 };
+pub const CREDUI_FLAGS_REQUIRE_SMARTCARD = CREDUI_FLAGS{ .REQUIRE_SMARTCARD = 1 };
+pub const CREDUI_FLAGS_SERVER_CREDENTIAL = CREDUI_FLAGS{ .SERVER_CREDENTIAL = 1 };
+pub const CREDUI_FLAGS_SHOW_SAVE_CHECK_BOX = CREDUI_FLAGS{ .SHOW_SAVE_CHECK_BOX = 1 };
+pub const CREDUI_FLAGS_USERNAME_TARGET_CREDENTIALS = CREDUI_FLAGS{ .USERNAME_TARGET_CREDENTIALS = 1 };
+pub const CREDUI_FLAGS_VALIDATE_USERNAME = CREDUI_FLAGS{ .VALIDATE_USERNAME = 1 };
 
 pub const SCARD_SCOPE = enum(u32) {
     USER = 0,
@@ -334,63 +329,85 @@ pub const SCARD_SCOPE = enum(u32) {
 pub const SCARD_SCOPE_USER = SCARD_SCOPE.USER;
 pub const SCARD_SCOPE_SYSTEM = SCARD_SCOPE.SYSTEM;
 
-pub const CRED_ENUMERATE_FLAGS = enum(u32) {
-    S = 1,
-    _,
-    pub fn initFlags(o: struct {
-        S: u1 = 0,
-    }) CRED_ENUMERATE_FLAGS {
-        return @as(CRED_ENUMERATE_FLAGS, @enumFromInt(
-              (if (o.S == 1) @intFromEnum(CRED_ENUMERATE_FLAGS.S) else 0)
-        ));
-    }
+pub const CRED_ENUMERATE_FLAGS = packed struct(u32) {
+    S: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CRED_ENUMERATE_ALL_CREDENTIALS = CRED_ENUMERATE_FLAGS.S;
+pub const CRED_ENUMERATE_ALL_CREDENTIALS = CRED_ENUMERATE_FLAGS{ .S = 1 };
 
-pub const CREDUIWIN_FLAGS = enum(u32) {
-    GENERIC = 1,
-    CHECKBOX = 2,
-    AUTHPACKAGE_ONLY = 16,
-    IN_CRED_ONLY = 32,
-    ENUMERATE_ADMINS = 256,
-    ENUMERATE_CURRENT_USER = 512,
-    SECURE_PROMPT = 4096,
-    PREPROMPTING = 8192,
-    PACK_32_WOW = 268435456,
-    _,
-    pub fn initFlags(o: struct {
-        GENERIC: u1 = 0,
-        CHECKBOX: u1 = 0,
-        AUTHPACKAGE_ONLY: u1 = 0,
-        IN_CRED_ONLY: u1 = 0,
-        ENUMERATE_ADMINS: u1 = 0,
-        ENUMERATE_CURRENT_USER: u1 = 0,
-        SECURE_PROMPT: u1 = 0,
-        PREPROMPTING: u1 = 0,
-        PACK_32_WOW: u1 = 0,
-    }) CREDUIWIN_FLAGS {
-        return @as(CREDUIWIN_FLAGS, @enumFromInt(
-              (if (o.GENERIC == 1) @intFromEnum(CREDUIWIN_FLAGS.GENERIC) else 0)
-            | (if (o.CHECKBOX == 1) @intFromEnum(CREDUIWIN_FLAGS.CHECKBOX) else 0)
-            | (if (o.AUTHPACKAGE_ONLY == 1) @intFromEnum(CREDUIWIN_FLAGS.AUTHPACKAGE_ONLY) else 0)
-            | (if (o.IN_CRED_ONLY == 1) @intFromEnum(CREDUIWIN_FLAGS.IN_CRED_ONLY) else 0)
-            | (if (o.ENUMERATE_ADMINS == 1) @intFromEnum(CREDUIWIN_FLAGS.ENUMERATE_ADMINS) else 0)
-            | (if (o.ENUMERATE_CURRENT_USER == 1) @intFromEnum(CREDUIWIN_FLAGS.ENUMERATE_CURRENT_USER) else 0)
-            | (if (o.SECURE_PROMPT == 1) @intFromEnum(CREDUIWIN_FLAGS.SECURE_PROMPT) else 0)
-            | (if (o.PREPROMPTING == 1) @intFromEnum(CREDUIWIN_FLAGS.PREPROMPTING) else 0)
-            | (if (o.PACK_32_WOW == 1) @intFromEnum(CREDUIWIN_FLAGS.PACK_32_WOW) else 0)
-        ));
-    }
+pub const CREDUIWIN_FLAGS = packed struct(u32) {
+    GENERIC: u1 = 0,
+    CHECKBOX: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    AUTHPACKAGE_ONLY: u1 = 0,
+    IN_CRED_ONLY: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    ENUMERATE_ADMINS: u1 = 0,
+    ENUMERATE_CURRENT_USER: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    SECURE_PROMPT: u1 = 0,
+    PREPROMPTING: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    PACK_32_WOW: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CREDUIWIN_GENERIC = CREDUIWIN_FLAGS.GENERIC;
-pub const CREDUIWIN_CHECKBOX = CREDUIWIN_FLAGS.CHECKBOX;
-pub const CREDUIWIN_AUTHPACKAGE_ONLY = CREDUIWIN_FLAGS.AUTHPACKAGE_ONLY;
-pub const CREDUIWIN_IN_CRED_ONLY = CREDUIWIN_FLAGS.IN_CRED_ONLY;
-pub const CREDUIWIN_ENUMERATE_ADMINS = CREDUIWIN_FLAGS.ENUMERATE_ADMINS;
-pub const CREDUIWIN_ENUMERATE_CURRENT_USER = CREDUIWIN_FLAGS.ENUMERATE_CURRENT_USER;
-pub const CREDUIWIN_SECURE_PROMPT = CREDUIWIN_FLAGS.SECURE_PROMPT;
-pub const CREDUIWIN_PREPROMPTING = CREDUIWIN_FLAGS.PREPROMPTING;
-pub const CREDUIWIN_PACK_32_WOW = CREDUIWIN_FLAGS.PACK_32_WOW;
+pub const CREDUIWIN_GENERIC = CREDUIWIN_FLAGS{ .GENERIC = 1 };
+pub const CREDUIWIN_CHECKBOX = CREDUIWIN_FLAGS{ .CHECKBOX = 1 };
+pub const CREDUIWIN_AUTHPACKAGE_ONLY = CREDUIWIN_FLAGS{ .AUTHPACKAGE_ONLY = 1 };
+pub const CREDUIWIN_IN_CRED_ONLY = CREDUIWIN_FLAGS{ .IN_CRED_ONLY = 1 };
+pub const CREDUIWIN_ENUMERATE_ADMINS = CREDUIWIN_FLAGS{ .ENUMERATE_ADMINS = 1 };
+pub const CREDUIWIN_ENUMERATE_CURRENT_USER = CREDUIWIN_FLAGS{ .ENUMERATE_CURRENT_USER = 1 };
+pub const CREDUIWIN_SECURE_PROMPT = CREDUIWIN_FLAGS{ .SECURE_PROMPT = 1 };
+pub const CREDUIWIN_PREPROMPTING = CREDUIWIN_FLAGS{ .PREPROMPTING = 1 };
+pub const CREDUIWIN_PACK_32_WOW = CREDUIWIN_FLAGS{ .PACK_32_WOW = 1 };
 
 pub const SCARD_STATE = enum(u32) {
     UNAWARE = 0,
@@ -417,71 +434,87 @@ pub const SCARD_STATE_MUTE = SCARD_STATE.MUTE;
 pub const SCARD_STATE_CHANGED = SCARD_STATE.CHANGED;
 pub const SCARD_STATE_UNKNOWN = SCARD_STATE.UNKNOWN;
 
-pub const CRED_PACK_FLAGS = enum(u32) {
-    PROTECTED_CREDENTIALS = 1,
-    WOW_BUFFER = 2,
-    GENERIC_CREDENTIALS = 4,
-    ID_PROVIDER_CREDENTIALS = 8,
-    _,
-    pub fn initFlags(o: struct {
-        PROTECTED_CREDENTIALS: u1 = 0,
-        WOW_BUFFER: u1 = 0,
-        GENERIC_CREDENTIALS: u1 = 0,
-        ID_PROVIDER_CREDENTIALS: u1 = 0,
-    }) CRED_PACK_FLAGS {
-        return @as(CRED_PACK_FLAGS, @enumFromInt(
-              (if (o.PROTECTED_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.PROTECTED_CREDENTIALS) else 0)
-            | (if (o.WOW_BUFFER == 1) @intFromEnum(CRED_PACK_FLAGS.WOW_BUFFER) else 0)
-            | (if (o.GENERIC_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.GENERIC_CREDENTIALS) else 0)
-            | (if (o.ID_PROVIDER_CREDENTIALS == 1) @intFromEnum(CRED_PACK_FLAGS.ID_PROVIDER_CREDENTIALS) else 0)
-        ));
-    }
+pub const CRED_PACK_FLAGS = packed struct(u32) {
+    PROTECTED_CREDENTIALS: u1 = 0,
+    WOW_BUFFER: u1 = 0,
+    GENERIC_CREDENTIALS: u1 = 0,
+    ID_PROVIDER_CREDENTIALS: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CRED_PACK_PROTECTED_CREDENTIALS = CRED_PACK_FLAGS.PROTECTED_CREDENTIALS;
-pub const CRED_PACK_WOW_BUFFER = CRED_PACK_FLAGS.WOW_BUFFER;
-pub const CRED_PACK_GENERIC_CREDENTIALS = CRED_PACK_FLAGS.GENERIC_CREDENTIALS;
-pub const CRED_PACK_ID_PROVIDER_CREDENTIALS = CRED_PACK_FLAGS.ID_PROVIDER_CREDENTIALS;
+pub const CRED_PACK_PROTECTED_CREDENTIALS = CRED_PACK_FLAGS{ .PROTECTED_CREDENTIALS = 1 };
+pub const CRED_PACK_WOW_BUFFER = CRED_PACK_FLAGS{ .WOW_BUFFER = 1 };
+pub const CRED_PACK_GENERIC_CREDENTIALS = CRED_PACK_FLAGS{ .GENERIC_CREDENTIALS = 1 };
+pub const CRED_PACK_ID_PROVIDER_CREDENTIALS = CRED_PACK_FLAGS{ .ID_PROVIDER_CREDENTIALS = 1 };
 
-pub const KeyCredentialManagerOperationErrorStates = enum(u32) {
-    None = 0,
-    DeviceJoinFailure = 1,
-    TokenFailure = 2,
-    CertificateFailure = 4,
-    RemoteSessionFailure = 8,
-    PolicyFailure = 16,
-    HardwareFailure = 32,
-    PinExistsFailure = 64,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        DeviceJoinFailure: u1 = 0,
-        TokenFailure: u1 = 0,
-        CertificateFailure: u1 = 0,
-        RemoteSessionFailure: u1 = 0,
-        PolicyFailure: u1 = 0,
-        HardwareFailure: u1 = 0,
-        PinExistsFailure: u1 = 0,
-    }) KeyCredentialManagerOperationErrorStates {
-        return @as(KeyCredentialManagerOperationErrorStates, @enumFromInt(
-              (if (o.None == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.None) else 0)
-            | (if (o.DeviceJoinFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.DeviceJoinFailure) else 0)
-            | (if (o.TokenFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.TokenFailure) else 0)
-            | (if (o.CertificateFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.CertificateFailure) else 0)
-            | (if (o.RemoteSessionFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.RemoteSessionFailure) else 0)
-            | (if (o.PolicyFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.PolicyFailure) else 0)
-            | (if (o.HardwareFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.HardwareFailure) else 0)
-            | (if (o.PinExistsFailure == 1) @intFromEnum(KeyCredentialManagerOperationErrorStates.PinExistsFailure) else 0)
-        ));
-    }
+pub const KeyCredentialManagerOperationErrorStates = packed struct(u32) {
+    DeviceJoinFailure: u1 = 0,
+    TokenFailure: u1 = 0,
+    CertificateFailure: u1 = 0,
+    RemoteSessionFailure: u1 = 0,
+    PolicyFailure: u1 = 0,
+    HardwareFailure: u1 = 0,
+    PinExistsFailure: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const KeyCredentialManagerOperationErrorStateNone = KeyCredentialManagerOperationErrorStates.None;
-pub const KeyCredentialManagerOperationErrorStateDeviceJoinFailure = KeyCredentialManagerOperationErrorStates.DeviceJoinFailure;
-pub const KeyCredentialManagerOperationErrorStateTokenFailure = KeyCredentialManagerOperationErrorStates.TokenFailure;
-pub const KeyCredentialManagerOperationErrorStateCertificateFailure = KeyCredentialManagerOperationErrorStates.CertificateFailure;
-pub const KeyCredentialManagerOperationErrorStateRemoteSessionFailure = KeyCredentialManagerOperationErrorStates.RemoteSessionFailure;
-pub const KeyCredentialManagerOperationErrorStatePolicyFailure = KeyCredentialManagerOperationErrorStates.PolicyFailure;
-pub const KeyCredentialManagerOperationErrorStateHardwareFailure = KeyCredentialManagerOperationErrorStates.HardwareFailure;
-pub const KeyCredentialManagerOperationErrorStatePinExistsFailure = KeyCredentialManagerOperationErrorStates.PinExistsFailure;
+pub const KeyCredentialManagerOperationErrorStateNone = KeyCredentialManagerOperationErrorStates{ };
+pub const KeyCredentialManagerOperationErrorStateDeviceJoinFailure = KeyCredentialManagerOperationErrorStates{ .DeviceJoinFailure = 1 };
+pub const KeyCredentialManagerOperationErrorStateTokenFailure = KeyCredentialManagerOperationErrorStates{ .TokenFailure = 1 };
+pub const KeyCredentialManagerOperationErrorStateCertificateFailure = KeyCredentialManagerOperationErrorStates{ .CertificateFailure = 1 };
+pub const KeyCredentialManagerOperationErrorStateRemoteSessionFailure = KeyCredentialManagerOperationErrorStates{ .RemoteSessionFailure = 1 };
+pub const KeyCredentialManagerOperationErrorStatePolicyFailure = KeyCredentialManagerOperationErrorStates{ .PolicyFailure = 1 };
+pub const KeyCredentialManagerOperationErrorStateHardwareFailure = KeyCredentialManagerOperationErrorStates{ .HardwareFailure = 1 };
+pub const KeyCredentialManagerOperationErrorStatePinExistsFailure = KeyCredentialManagerOperationErrorStates{ .PinExistsFailure = 1 };
 
 pub const KeyCredentialManagerOperationType = enum(i32) {
     rovisioning = 0,

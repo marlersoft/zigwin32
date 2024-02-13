@@ -994,22 +994,39 @@ pub const IMLOperatorKernel = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const MLOperatorParameterOptions = enum(u32) {
-    Single = 0,
-    Optional = 1,
-    Variadic = 2,
-    _,
-    pub fn initFlags(o: struct {
-        Single: u1 = 0,
-        Optional: u1 = 0,
-        Variadic: u1 = 0,
-    }) MLOperatorParameterOptions {
-        return @as(MLOperatorParameterOptions, @enumFromInt(
-              (if (o.Single == 1) @intFromEnum(MLOperatorParameterOptions.Single) else 0)
-            | (if (o.Optional == 1) @intFromEnum(MLOperatorParameterOptions.Optional) else 0)
-            | (if (o.Variadic == 1) @intFromEnum(MLOperatorParameterOptions.Variadic) else 0)
-        ));
-    }
+pub const MLOperatorParameterOptions = packed struct(u32) {
+    Optional: u1 = 0,
+    Variadic: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
@@ -1357,19 +1374,39 @@ pub const MLOperatorSetId = extern struct {
     version: i32,
 };
 
-pub const MLOperatorKernelOptions = enum(u32) {
-    None = 0,
-    s = 1,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        s: u1 = 0,
-    }) MLOperatorKernelOptions {
-        return @as(MLOperatorKernelOptions, @enumFromInt(
-              (if (o.None == 1) @intFromEnum(MLOperatorKernelOptions.None) else 0)
-            | (if (o.s == 1) @intFromEnum(MLOperatorKernelOptions.s) else 0)
-        ));
-    }
+pub const MLOperatorKernelOptions = packed struct(u32) {
+    s: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 

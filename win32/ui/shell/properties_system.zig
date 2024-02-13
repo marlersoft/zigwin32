@@ -244,74 +244,69 @@ pub const INamedPropertyStore = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const GETPROPERTYSTOREFLAGS = enum(u32) {
-    DEFAULT = 0,
-    HANDLERPROPERTIESONLY = 1,
-    READWRITE = 2,
-    TEMPORARY = 4,
-    FASTPROPERTIESONLY = 8,
-    OPENSLOWITEM = 16,
-    DELAYCREATION = 32,
-    BESTEFFORT = 64,
-    NO_OPLOCK = 128,
-    PREFERQUERYPROPERTIES = 256,
-    EXTRINSICPROPERTIES = 512,
-    EXTRINSICPROPERTIESONLY = 1024,
-    VOLATILEPROPERTIES = 2048,
-    VOLATILEPROPERTIESONLY = 4096,
-    MASK_VALID = 8191,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        HANDLERPROPERTIESONLY: u1 = 0,
-        READWRITE: u1 = 0,
-        TEMPORARY: u1 = 0,
-        FASTPROPERTIESONLY: u1 = 0,
-        OPENSLOWITEM: u1 = 0,
-        DELAYCREATION: u1 = 0,
-        BESTEFFORT: u1 = 0,
-        NO_OPLOCK: u1 = 0,
-        PREFERQUERYPROPERTIES: u1 = 0,
-        EXTRINSICPROPERTIES: u1 = 0,
-        EXTRINSICPROPERTIESONLY: u1 = 0,
-        VOLATILEPROPERTIES: u1 = 0,
-        VOLATILEPROPERTIESONLY: u1 = 0,
-        MASK_VALID: u1 = 0,
-    }) GETPROPERTYSTOREFLAGS {
-        return @as(GETPROPERTYSTOREFLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.DEFAULT) else 0)
-            | (if (o.HANDLERPROPERTIESONLY == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.HANDLERPROPERTIESONLY) else 0)
-            | (if (o.READWRITE == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.READWRITE) else 0)
-            | (if (o.TEMPORARY == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.TEMPORARY) else 0)
-            | (if (o.FASTPROPERTIESONLY == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.FASTPROPERTIESONLY) else 0)
-            | (if (o.OPENSLOWITEM == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.OPENSLOWITEM) else 0)
-            | (if (o.DELAYCREATION == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.DELAYCREATION) else 0)
-            | (if (o.BESTEFFORT == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.BESTEFFORT) else 0)
-            | (if (o.NO_OPLOCK == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.NO_OPLOCK) else 0)
-            | (if (o.PREFERQUERYPROPERTIES == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.PREFERQUERYPROPERTIES) else 0)
-            | (if (o.EXTRINSICPROPERTIES == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.EXTRINSICPROPERTIES) else 0)
-            | (if (o.EXTRINSICPROPERTIESONLY == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.EXTRINSICPROPERTIESONLY) else 0)
-            | (if (o.VOLATILEPROPERTIES == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.VOLATILEPROPERTIES) else 0)
-            | (if (o.VOLATILEPROPERTIESONLY == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.VOLATILEPROPERTIESONLY) else 0)
-            | (if (o.MASK_VALID == 1) @intFromEnum(GETPROPERTYSTOREFLAGS.MASK_VALID) else 0)
-        ));
-    }
+pub const GETPROPERTYSTOREFLAGS = packed struct(u32) {
+    HANDLERPROPERTIESONLY: u1 = 0,
+    READWRITE: u1 = 0,
+    TEMPORARY: u1 = 0,
+    FASTPROPERTIESONLY: u1 = 0,
+    OPENSLOWITEM: u1 = 0,
+    DELAYCREATION: u1 = 0,
+    BESTEFFORT: u1 = 0,
+    NO_OPLOCK: u1 = 0,
+    PREFERQUERYPROPERTIES: u1 = 0,
+    EXTRINSICPROPERTIES: u1 = 0,
+    EXTRINSICPROPERTIESONLY: u1 = 0,
+    VOLATILEPROPERTIES: u1 = 0,
+    VOLATILEPROPERTIESONLY: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const GPS_DEFAULT = GETPROPERTYSTOREFLAGS.DEFAULT;
-pub const GPS_HANDLERPROPERTIESONLY = GETPROPERTYSTOREFLAGS.HANDLERPROPERTIESONLY;
-pub const GPS_READWRITE = GETPROPERTYSTOREFLAGS.READWRITE;
-pub const GPS_TEMPORARY = GETPROPERTYSTOREFLAGS.TEMPORARY;
-pub const GPS_FASTPROPERTIESONLY = GETPROPERTYSTOREFLAGS.FASTPROPERTIESONLY;
-pub const GPS_OPENSLOWITEM = GETPROPERTYSTOREFLAGS.OPENSLOWITEM;
-pub const GPS_DELAYCREATION = GETPROPERTYSTOREFLAGS.DELAYCREATION;
-pub const GPS_BESTEFFORT = GETPROPERTYSTOREFLAGS.BESTEFFORT;
-pub const GPS_NO_OPLOCK = GETPROPERTYSTOREFLAGS.NO_OPLOCK;
-pub const GPS_PREFERQUERYPROPERTIES = GETPROPERTYSTOREFLAGS.PREFERQUERYPROPERTIES;
-pub const GPS_EXTRINSICPROPERTIES = GETPROPERTYSTOREFLAGS.EXTRINSICPROPERTIES;
-pub const GPS_EXTRINSICPROPERTIESONLY = GETPROPERTYSTOREFLAGS.EXTRINSICPROPERTIESONLY;
-pub const GPS_VOLATILEPROPERTIES = GETPROPERTYSTOREFLAGS.VOLATILEPROPERTIES;
-pub const GPS_VOLATILEPROPERTIESONLY = GETPROPERTYSTOREFLAGS.VOLATILEPROPERTIESONLY;
-pub const GPS_MASK_VALID = GETPROPERTYSTOREFLAGS.MASK_VALID;
+pub const GPS_DEFAULT = GETPROPERTYSTOREFLAGS{ };
+pub const GPS_HANDLERPROPERTIESONLY = GETPROPERTYSTOREFLAGS{ .HANDLERPROPERTIESONLY = 1 };
+pub const GPS_READWRITE = GETPROPERTYSTOREFLAGS{ .READWRITE = 1 };
+pub const GPS_TEMPORARY = GETPROPERTYSTOREFLAGS{ .TEMPORARY = 1 };
+pub const GPS_FASTPROPERTIESONLY = GETPROPERTYSTOREFLAGS{ .FASTPROPERTIESONLY = 1 };
+pub const GPS_OPENSLOWITEM = GETPROPERTYSTOREFLAGS{ .OPENSLOWITEM = 1 };
+pub const GPS_DELAYCREATION = GETPROPERTYSTOREFLAGS{ .DELAYCREATION = 1 };
+pub const GPS_BESTEFFORT = GETPROPERTYSTOREFLAGS{ .BESTEFFORT = 1 };
+pub const GPS_NO_OPLOCK = GETPROPERTYSTOREFLAGS{ .NO_OPLOCK = 1 };
+pub const GPS_PREFERQUERYPROPERTIES = GETPROPERTYSTOREFLAGS{ .PREFERQUERYPROPERTIES = 1 };
+pub const GPS_EXTRINSICPROPERTIES = GETPROPERTYSTOREFLAGS{ .EXTRINSICPROPERTIES = 1 };
+pub const GPS_EXTRINSICPROPERTIESONLY = GETPROPERTYSTOREFLAGS{ .EXTRINSICPROPERTIESONLY = 1 };
+pub const GPS_VOLATILEPROPERTIES = GETPROPERTYSTOREFLAGS{ .VOLATILEPROPERTIES = 1 };
+pub const GPS_VOLATILEPROPERTIESONLY = GETPROPERTYSTOREFLAGS{ .VOLATILEPROPERTIESONLY = 1 };
+pub const GPS_MASK_VALID = GETPROPERTYSTOREFLAGS{
+    .HANDLERPROPERTIESONLY = 1,
+    .READWRITE = 1,
+    .TEMPORARY = 1,
+    .FASTPROPERTIESONLY = 1,
+    .OPENSLOWITEM = 1,
+    .DELAYCREATION = 1,
+    .BESTEFFORT = 1,
+    .NO_OPLOCK = 1,
+    .PREFERQUERYPROPERTIES = 1,
+    .EXTRINSICPROPERTIES = 1,
+    .EXTRINSICPROPERTIESONLY = 1,
+    .VOLATILEPROPERTIES = 1,
+    .VOLATILEPROPERTIESONLY = 1,
+};
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IObjectWithPropertyKey_Value = Guid.initString("fc0ca0a7-c316-4fd2-9031-3e628e6d4f23");
@@ -355,26 +350,43 @@ pub const IObjectWithPropertyKey = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PKA_FLAGS = enum(u32) {
-    SET = 0,
-    APPEND = 1,
-    DELETE = 2,
-    _,
-    pub fn initFlags(o: struct {
-        SET: u1 = 0,
-        APPEND: u1 = 0,
-        DELETE: u1 = 0,
-    }) PKA_FLAGS {
-        return @as(PKA_FLAGS, @enumFromInt(
-              (if (o.SET == 1) @intFromEnum(PKA_FLAGS.SET) else 0)
-            | (if (o.APPEND == 1) @intFromEnum(PKA_FLAGS.APPEND) else 0)
-            | (if (o.DELETE == 1) @intFromEnum(PKA_FLAGS.DELETE) else 0)
-        ));
-    }
+pub const PKA_FLAGS = packed struct(u32) {
+    APPEND: u1 = 0,
+    DELETE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PKA_SET = PKA_FLAGS.SET;
-pub const PKA_APPEND = PKA_FLAGS.APPEND;
-pub const PKA_DELETE = PKA_FLAGS.DELETE;
+pub const PKA_SET = PKA_FLAGS{ };
+pub const PKA_APPEND = PKA_FLAGS{ .APPEND = 1 };
+pub const PKA_DELETE = PKA_FLAGS{ .DELETE = 1 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IPropertyChange_Value = Guid.initString("f917bc8a-1bba-4478-a245-1bde03eb9431");
@@ -848,143 +860,133 @@ pub const IPropertyEnumTypeList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROPDESC_TYPE_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    MULTIPLEVALUES = 1,
-    ISINNATE = 2,
-    ISGROUP = 4,
-    CANGROUPBY = 8,
-    CANSTACKBY = 16,
-    ISTREEPROPERTY = 32,
-    INCLUDEINFULLTEXTQUERY = 64,
-    ISVIEWABLE = 128,
-    ISQUERYABLE = 256,
-    CANBEPURGED = 512,
-    SEARCHRAWVALUE = 1024,
-    DONTCOERCEEMPTYSTRINGS = 2048,
-    ALWAYSINSUPPLEMENTALSTORE = 4096,
-    ISSYSTEMPROPERTY = 2147483648,
-    MASK_ALL = 2147491839,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        MULTIPLEVALUES: u1 = 0,
-        ISINNATE: u1 = 0,
-        ISGROUP: u1 = 0,
-        CANGROUPBY: u1 = 0,
-        CANSTACKBY: u1 = 0,
-        ISTREEPROPERTY: u1 = 0,
-        INCLUDEINFULLTEXTQUERY: u1 = 0,
-        ISVIEWABLE: u1 = 0,
-        ISQUERYABLE: u1 = 0,
-        CANBEPURGED: u1 = 0,
-        SEARCHRAWVALUE: u1 = 0,
-        DONTCOERCEEMPTYSTRINGS: u1 = 0,
-        ALWAYSINSUPPLEMENTALSTORE: u1 = 0,
-        ISSYSTEMPROPERTY: u1 = 0,
-        MASK_ALL: u1 = 0,
-    }) PROPDESC_TYPE_FLAGS {
-        return @as(PROPDESC_TYPE_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.DEFAULT) else 0)
-            | (if (o.MULTIPLEVALUES == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.MULTIPLEVALUES) else 0)
-            | (if (o.ISINNATE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISINNATE) else 0)
-            | (if (o.ISGROUP == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISGROUP) else 0)
-            | (if (o.CANGROUPBY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.CANGROUPBY) else 0)
-            | (if (o.CANSTACKBY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.CANSTACKBY) else 0)
-            | (if (o.ISTREEPROPERTY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISTREEPROPERTY) else 0)
-            | (if (o.INCLUDEINFULLTEXTQUERY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.INCLUDEINFULLTEXTQUERY) else 0)
-            | (if (o.ISVIEWABLE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISVIEWABLE) else 0)
-            | (if (o.ISQUERYABLE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISQUERYABLE) else 0)
-            | (if (o.CANBEPURGED == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.CANBEPURGED) else 0)
-            | (if (o.SEARCHRAWVALUE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.SEARCHRAWVALUE) else 0)
-            | (if (o.DONTCOERCEEMPTYSTRINGS == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.DONTCOERCEEMPTYSTRINGS) else 0)
-            | (if (o.ALWAYSINSUPPLEMENTALSTORE == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ALWAYSINSUPPLEMENTALSTORE) else 0)
-            | (if (o.ISSYSTEMPROPERTY == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.ISSYSTEMPROPERTY) else 0)
-            | (if (o.MASK_ALL == 1) @intFromEnum(PROPDESC_TYPE_FLAGS.MASK_ALL) else 0)
-        ));
-    }
+pub const PROPDESC_TYPE_FLAGS = packed struct(u32) {
+    MULTIPLEVALUES: u1 = 0,
+    ISINNATE: u1 = 0,
+    ISGROUP: u1 = 0,
+    CANGROUPBY: u1 = 0,
+    CANSTACKBY: u1 = 0,
+    ISTREEPROPERTY: u1 = 0,
+    INCLUDEINFULLTEXTQUERY: u1 = 0,
+    ISVIEWABLE: u1 = 0,
+    ISQUERYABLE: u1 = 0,
+    CANBEPURGED: u1 = 0,
+    SEARCHRAWVALUE: u1 = 0,
+    DONTCOERCEEMPTYSTRINGS: u1 = 0,
+    ALWAYSINSUPPLEMENTALSTORE: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    ISSYSTEMPROPERTY: u1 = 0,
 };
-pub const PDTF_DEFAULT = PROPDESC_TYPE_FLAGS.DEFAULT;
-pub const PDTF_MULTIPLEVALUES = PROPDESC_TYPE_FLAGS.MULTIPLEVALUES;
-pub const PDTF_ISINNATE = PROPDESC_TYPE_FLAGS.ISINNATE;
-pub const PDTF_ISGROUP = PROPDESC_TYPE_FLAGS.ISGROUP;
-pub const PDTF_CANGROUPBY = PROPDESC_TYPE_FLAGS.CANGROUPBY;
-pub const PDTF_CANSTACKBY = PROPDESC_TYPE_FLAGS.CANSTACKBY;
-pub const PDTF_ISTREEPROPERTY = PROPDESC_TYPE_FLAGS.ISTREEPROPERTY;
-pub const PDTF_INCLUDEINFULLTEXTQUERY = PROPDESC_TYPE_FLAGS.INCLUDEINFULLTEXTQUERY;
-pub const PDTF_ISVIEWABLE = PROPDESC_TYPE_FLAGS.ISVIEWABLE;
-pub const PDTF_ISQUERYABLE = PROPDESC_TYPE_FLAGS.ISQUERYABLE;
-pub const PDTF_CANBEPURGED = PROPDESC_TYPE_FLAGS.CANBEPURGED;
-pub const PDTF_SEARCHRAWVALUE = PROPDESC_TYPE_FLAGS.SEARCHRAWVALUE;
-pub const PDTF_DONTCOERCEEMPTYSTRINGS = PROPDESC_TYPE_FLAGS.DONTCOERCEEMPTYSTRINGS;
-pub const PDTF_ALWAYSINSUPPLEMENTALSTORE = PROPDESC_TYPE_FLAGS.ALWAYSINSUPPLEMENTALSTORE;
-pub const PDTF_ISSYSTEMPROPERTY = PROPDESC_TYPE_FLAGS.ISSYSTEMPROPERTY;
-pub const PDTF_MASK_ALL = PROPDESC_TYPE_FLAGS.MASK_ALL;
+pub const PDTF_DEFAULT = PROPDESC_TYPE_FLAGS{ };
+pub const PDTF_MULTIPLEVALUES = PROPDESC_TYPE_FLAGS{ .MULTIPLEVALUES = 1 };
+pub const PDTF_ISINNATE = PROPDESC_TYPE_FLAGS{ .ISINNATE = 1 };
+pub const PDTF_ISGROUP = PROPDESC_TYPE_FLAGS{ .ISGROUP = 1 };
+pub const PDTF_CANGROUPBY = PROPDESC_TYPE_FLAGS{ .CANGROUPBY = 1 };
+pub const PDTF_CANSTACKBY = PROPDESC_TYPE_FLAGS{ .CANSTACKBY = 1 };
+pub const PDTF_ISTREEPROPERTY = PROPDESC_TYPE_FLAGS{ .ISTREEPROPERTY = 1 };
+pub const PDTF_INCLUDEINFULLTEXTQUERY = PROPDESC_TYPE_FLAGS{ .INCLUDEINFULLTEXTQUERY = 1 };
+pub const PDTF_ISVIEWABLE = PROPDESC_TYPE_FLAGS{ .ISVIEWABLE = 1 };
+pub const PDTF_ISQUERYABLE = PROPDESC_TYPE_FLAGS{ .ISQUERYABLE = 1 };
+pub const PDTF_CANBEPURGED = PROPDESC_TYPE_FLAGS{ .CANBEPURGED = 1 };
+pub const PDTF_SEARCHRAWVALUE = PROPDESC_TYPE_FLAGS{ .SEARCHRAWVALUE = 1 };
+pub const PDTF_DONTCOERCEEMPTYSTRINGS = PROPDESC_TYPE_FLAGS{ .DONTCOERCEEMPTYSTRINGS = 1 };
+pub const PDTF_ALWAYSINSUPPLEMENTALSTORE = PROPDESC_TYPE_FLAGS{ .ALWAYSINSUPPLEMENTALSTORE = 1 };
+pub const PDTF_ISSYSTEMPROPERTY = PROPDESC_TYPE_FLAGS{ .ISSYSTEMPROPERTY = 1 };
+pub const PDTF_MASK_ALL = PROPDESC_TYPE_FLAGS{
+    .MULTIPLEVALUES = 1,
+    .ISINNATE = 1,
+    .ISGROUP = 1,
+    .CANGROUPBY = 1,
+    .CANSTACKBY = 1,
+    .ISTREEPROPERTY = 1,
+    .INCLUDEINFULLTEXTQUERY = 1,
+    .ISVIEWABLE = 1,
+    .ISQUERYABLE = 1,
+    .CANBEPURGED = 1,
+    .SEARCHRAWVALUE = 1,
+    .DONTCOERCEEMPTYSTRINGS = 1,
+    .ALWAYSINSUPPLEMENTALSTORE = 1,
+    .ISSYSTEMPROPERTY = 1,
+};
 
-pub const PROPDESC_VIEW_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    CENTERALIGN = 1,
-    RIGHTALIGN = 2,
-    BEGINNEWGROUP = 4,
-    FILLAREA = 8,
-    SORTDESCENDING = 16,
-    SHOWONLYIFPRESENT = 32,
-    SHOWBYDEFAULT = 64,
-    SHOWINPRIMARYLIST = 128,
-    SHOWINSECONDARYLIST = 256,
-    HIDELABEL = 512,
-    HIDDEN = 2048,
-    CANWRAP = 4096,
-    MASK_ALL = 7167,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        CENTERALIGN: u1 = 0,
-        RIGHTALIGN: u1 = 0,
-        BEGINNEWGROUP: u1 = 0,
-        FILLAREA: u1 = 0,
-        SORTDESCENDING: u1 = 0,
-        SHOWONLYIFPRESENT: u1 = 0,
-        SHOWBYDEFAULT: u1 = 0,
-        SHOWINPRIMARYLIST: u1 = 0,
-        SHOWINSECONDARYLIST: u1 = 0,
-        HIDELABEL: u1 = 0,
-        HIDDEN: u1 = 0,
-        CANWRAP: u1 = 0,
-        MASK_ALL: u1 = 0,
-    }) PROPDESC_VIEW_FLAGS {
-        return @as(PROPDESC_VIEW_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.DEFAULT) else 0)
-            | (if (o.CENTERALIGN == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.CENTERALIGN) else 0)
-            | (if (o.RIGHTALIGN == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.RIGHTALIGN) else 0)
-            | (if (o.BEGINNEWGROUP == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.BEGINNEWGROUP) else 0)
-            | (if (o.FILLAREA == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.FILLAREA) else 0)
-            | (if (o.SORTDESCENDING == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.SORTDESCENDING) else 0)
-            | (if (o.SHOWONLYIFPRESENT == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.SHOWONLYIFPRESENT) else 0)
-            | (if (o.SHOWBYDEFAULT == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.SHOWBYDEFAULT) else 0)
-            | (if (o.SHOWINPRIMARYLIST == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.SHOWINPRIMARYLIST) else 0)
-            | (if (o.SHOWINSECONDARYLIST == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.SHOWINSECONDARYLIST) else 0)
-            | (if (o.HIDELABEL == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.HIDELABEL) else 0)
-            | (if (o.HIDDEN == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.HIDDEN) else 0)
-            | (if (o.CANWRAP == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.CANWRAP) else 0)
-            | (if (o.MASK_ALL == 1) @intFromEnum(PROPDESC_VIEW_FLAGS.MASK_ALL) else 0)
-        ));
-    }
+pub const PROPDESC_VIEW_FLAGS = packed struct(u32) {
+    CENTERALIGN: u1 = 0,
+    RIGHTALIGN: u1 = 0,
+    BEGINNEWGROUP: u1 = 0,
+    FILLAREA: u1 = 0,
+    SORTDESCENDING: u1 = 0,
+    SHOWONLYIFPRESENT: u1 = 0,
+    SHOWBYDEFAULT: u1 = 0,
+    SHOWINPRIMARYLIST: u1 = 0,
+    SHOWINSECONDARYLIST: u1 = 0,
+    HIDELABEL: u1 = 0,
+    _10: u1 = 0,
+    HIDDEN: u1 = 0,
+    CANWRAP: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PDVF_DEFAULT = PROPDESC_VIEW_FLAGS.DEFAULT;
-pub const PDVF_CENTERALIGN = PROPDESC_VIEW_FLAGS.CENTERALIGN;
-pub const PDVF_RIGHTALIGN = PROPDESC_VIEW_FLAGS.RIGHTALIGN;
-pub const PDVF_BEGINNEWGROUP = PROPDESC_VIEW_FLAGS.BEGINNEWGROUP;
-pub const PDVF_FILLAREA = PROPDESC_VIEW_FLAGS.FILLAREA;
-pub const PDVF_SORTDESCENDING = PROPDESC_VIEW_FLAGS.SORTDESCENDING;
-pub const PDVF_SHOWONLYIFPRESENT = PROPDESC_VIEW_FLAGS.SHOWONLYIFPRESENT;
-pub const PDVF_SHOWBYDEFAULT = PROPDESC_VIEW_FLAGS.SHOWBYDEFAULT;
-pub const PDVF_SHOWINPRIMARYLIST = PROPDESC_VIEW_FLAGS.SHOWINPRIMARYLIST;
-pub const PDVF_SHOWINSECONDARYLIST = PROPDESC_VIEW_FLAGS.SHOWINSECONDARYLIST;
-pub const PDVF_HIDELABEL = PROPDESC_VIEW_FLAGS.HIDELABEL;
-pub const PDVF_HIDDEN = PROPDESC_VIEW_FLAGS.HIDDEN;
-pub const PDVF_CANWRAP = PROPDESC_VIEW_FLAGS.CANWRAP;
-pub const PDVF_MASK_ALL = PROPDESC_VIEW_FLAGS.MASK_ALL;
+pub const PDVF_DEFAULT = PROPDESC_VIEW_FLAGS{ };
+pub const PDVF_CENTERALIGN = PROPDESC_VIEW_FLAGS{ .CENTERALIGN = 1 };
+pub const PDVF_RIGHTALIGN = PROPDESC_VIEW_FLAGS{ .RIGHTALIGN = 1 };
+pub const PDVF_BEGINNEWGROUP = PROPDESC_VIEW_FLAGS{ .BEGINNEWGROUP = 1 };
+pub const PDVF_FILLAREA = PROPDESC_VIEW_FLAGS{ .FILLAREA = 1 };
+pub const PDVF_SORTDESCENDING = PROPDESC_VIEW_FLAGS{ .SORTDESCENDING = 1 };
+pub const PDVF_SHOWONLYIFPRESENT = PROPDESC_VIEW_FLAGS{ .SHOWONLYIFPRESENT = 1 };
+pub const PDVF_SHOWBYDEFAULT = PROPDESC_VIEW_FLAGS{ .SHOWBYDEFAULT = 1 };
+pub const PDVF_SHOWINPRIMARYLIST = PROPDESC_VIEW_FLAGS{ .SHOWINPRIMARYLIST = 1 };
+pub const PDVF_SHOWINSECONDARYLIST = PROPDESC_VIEW_FLAGS{ .SHOWINSECONDARYLIST = 1 };
+pub const PDVF_HIDELABEL = PROPDESC_VIEW_FLAGS{ .HIDELABEL = 1 };
+pub const PDVF_HIDDEN = PROPDESC_VIEW_FLAGS{ .HIDDEN = 1 };
+pub const PDVF_CANWRAP = PROPDESC_VIEW_FLAGS{ .CANWRAP = 1 };
+pub const PDVF_MASK_ALL = PROPDESC_VIEW_FLAGS{
+    .CENTERALIGN = 1,
+    .RIGHTALIGN = 1,
+    .BEGINNEWGROUP = 1,
+    .FILLAREA = 1,
+    .SORTDESCENDING = 1,
+    .SHOWONLYIFPRESENT = 1,
+    .SHOWBYDEFAULT = 1,
+    .SHOWINPRIMARYLIST = 1,
+    .SHOWINSECONDARYLIST = 1,
+    .HIDELABEL = 1,
+    .HIDDEN = 1,
+    .CANWRAP = 1,
+};
 
 pub const PROPDESC_DISPLAYTYPE = enum(i32) {
     STRING = 0,
@@ -1016,74 +1018,55 @@ pub const PDGR_DATE = PROPDESC_GROUPING_RANGE.DATE;
 pub const PDGR_PERCENT = PROPDESC_GROUPING_RANGE.PERCENT;
 pub const PDGR_ENUMERATED = PROPDESC_GROUPING_RANGE.ENUMERATED;
 
-pub const PROPDESC_FORMAT_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    PREFIXNAME = 1,
-    FILENAME = 2,
-    ALWAYSKB = 4,
-    RESERVED_RIGHTTOLEFT = 8,
-    SHORTTIME = 16,
-    LONGTIME = 32,
-    HIDETIME = 64,
-    SHORTDATE = 128,
-    LONGDATE = 256,
-    HIDEDATE = 512,
-    RELATIVEDATE = 1024,
-    USEEDITINVITATION = 2048,
-    READONLY = 4096,
-    NOAUTOREADINGORDER = 8192,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        PREFIXNAME: u1 = 0,
-        FILENAME: u1 = 0,
-        ALWAYSKB: u1 = 0,
-        RESERVED_RIGHTTOLEFT: u1 = 0,
-        SHORTTIME: u1 = 0,
-        LONGTIME: u1 = 0,
-        HIDETIME: u1 = 0,
-        SHORTDATE: u1 = 0,
-        LONGDATE: u1 = 0,
-        HIDEDATE: u1 = 0,
-        RELATIVEDATE: u1 = 0,
-        USEEDITINVITATION: u1 = 0,
-        READONLY: u1 = 0,
-        NOAUTOREADINGORDER: u1 = 0,
-    }) PROPDESC_FORMAT_FLAGS {
-        return @as(PROPDESC_FORMAT_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.DEFAULT) else 0)
-            | (if (o.PREFIXNAME == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.PREFIXNAME) else 0)
-            | (if (o.FILENAME == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.FILENAME) else 0)
-            | (if (o.ALWAYSKB == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.ALWAYSKB) else 0)
-            | (if (o.RESERVED_RIGHTTOLEFT == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.RESERVED_RIGHTTOLEFT) else 0)
-            | (if (o.SHORTTIME == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.SHORTTIME) else 0)
-            | (if (o.LONGTIME == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.LONGTIME) else 0)
-            | (if (o.HIDETIME == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.HIDETIME) else 0)
-            | (if (o.SHORTDATE == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.SHORTDATE) else 0)
-            | (if (o.LONGDATE == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.LONGDATE) else 0)
-            | (if (o.HIDEDATE == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.HIDEDATE) else 0)
-            | (if (o.RELATIVEDATE == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.RELATIVEDATE) else 0)
-            | (if (o.USEEDITINVITATION == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.USEEDITINVITATION) else 0)
-            | (if (o.READONLY == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.READONLY) else 0)
-            | (if (o.NOAUTOREADINGORDER == 1) @intFromEnum(PROPDESC_FORMAT_FLAGS.NOAUTOREADINGORDER) else 0)
-        ));
-    }
+pub const PROPDESC_FORMAT_FLAGS = packed struct(u32) {
+    PREFIXNAME: u1 = 0,
+    FILENAME: u1 = 0,
+    ALWAYSKB: u1 = 0,
+    RESERVED_RIGHTTOLEFT: u1 = 0,
+    SHORTTIME: u1 = 0,
+    LONGTIME: u1 = 0,
+    HIDETIME: u1 = 0,
+    SHORTDATE: u1 = 0,
+    LONGDATE: u1 = 0,
+    HIDEDATE: u1 = 0,
+    RELATIVEDATE: u1 = 0,
+    USEEDITINVITATION: u1 = 0,
+    READONLY: u1 = 0,
+    NOAUTOREADINGORDER: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PDFF_DEFAULT = PROPDESC_FORMAT_FLAGS.DEFAULT;
-pub const PDFF_PREFIXNAME = PROPDESC_FORMAT_FLAGS.PREFIXNAME;
-pub const PDFF_FILENAME = PROPDESC_FORMAT_FLAGS.FILENAME;
-pub const PDFF_ALWAYSKB = PROPDESC_FORMAT_FLAGS.ALWAYSKB;
-pub const PDFF_RESERVED_RIGHTTOLEFT = PROPDESC_FORMAT_FLAGS.RESERVED_RIGHTTOLEFT;
-pub const PDFF_SHORTTIME = PROPDESC_FORMAT_FLAGS.SHORTTIME;
-pub const PDFF_LONGTIME = PROPDESC_FORMAT_FLAGS.LONGTIME;
-pub const PDFF_HIDETIME = PROPDESC_FORMAT_FLAGS.HIDETIME;
-pub const PDFF_SHORTDATE = PROPDESC_FORMAT_FLAGS.SHORTDATE;
-pub const PDFF_LONGDATE = PROPDESC_FORMAT_FLAGS.LONGDATE;
-pub const PDFF_HIDEDATE = PROPDESC_FORMAT_FLAGS.HIDEDATE;
-pub const PDFF_RELATIVEDATE = PROPDESC_FORMAT_FLAGS.RELATIVEDATE;
-pub const PDFF_USEEDITINVITATION = PROPDESC_FORMAT_FLAGS.USEEDITINVITATION;
-pub const PDFF_READONLY = PROPDESC_FORMAT_FLAGS.READONLY;
-pub const PDFF_NOAUTOREADINGORDER = PROPDESC_FORMAT_FLAGS.NOAUTOREADINGORDER;
+pub const PDFF_DEFAULT = PROPDESC_FORMAT_FLAGS{ };
+pub const PDFF_PREFIXNAME = PROPDESC_FORMAT_FLAGS{ .PREFIXNAME = 1 };
+pub const PDFF_FILENAME = PROPDESC_FORMAT_FLAGS{ .FILENAME = 1 };
+pub const PDFF_ALWAYSKB = PROPDESC_FORMAT_FLAGS{ .ALWAYSKB = 1 };
+pub const PDFF_RESERVED_RIGHTTOLEFT = PROPDESC_FORMAT_FLAGS{ .RESERVED_RIGHTTOLEFT = 1 };
+pub const PDFF_SHORTTIME = PROPDESC_FORMAT_FLAGS{ .SHORTTIME = 1 };
+pub const PDFF_LONGTIME = PROPDESC_FORMAT_FLAGS{ .LONGTIME = 1 };
+pub const PDFF_HIDETIME = PROPDESC_FORMAT_FLAGS{ .HIDETIME = 1 };
+pub const PDFF_SHORTDATE = PROPDESC_FORMAT_FLAGS{ .SHORTDATE = 1 };
+pub const PDFF_LONGDATE = PROPDESC_FORMAT_FLAGS{ .LONGDATE = 1 };
+pub const PDFF_HIDEDATE = PROPDESC_FORMAT_FLAGS{ .HIDEDATE = 1 };
+pub const PDFF_RELATIVEDATE = PROPDESC_FORMAT_FLAGS{ .RELATIVEDATE = 1 };
+pub const PDFF_USEEDITINVITATION = PROPDESC_FORMAT_FLAGS{ .USEEDITINVITATION = 1 };
+pub const PDFF_READONLY = PROPDESC_FORMAT_FLAGS{ .READONLY = 1 };
+pub const PDFF_NOAUTOREADINGORDER = PROPDESC_FORMAT_FLAGS{ .NOAUTOREADINGORDER = 1 };
 
 pub const PROPDESC_SORTDESCRIPTION = enum(i32) {
     GENERAL = 0,
@@ -1559,38 +1542,46 @@ pub const IPropertyDescriptionAliasInfo = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PROPDESC_SEARCHINFO_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    ININVERTEDINDEX = 1,
-    ISCOLUMN = 2,
-    ISCOLUMNSPARSE = 4,
-    ALWAYSINCLUDE = 8,
-    USEFORTYPEAHEAD = 16,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        ININVERTEDINDEX: u1 = 0,
-        ISCOLUMN: u1 = 0,
-        ISCOLUMNSPARSE: u1 = 0,
-        ALWAYSINCLUDE: u1 = 0,
-        USEFORTYPEAHEAD: u1 = 0,
-    }) PROPDESC_SEARCHINFO_FLAGS {
-        return @as(PROPDESC_SEARCHINFO_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(PROPDESC_SEARCHINFO_FLAGS.DEFAULT) else 0)
-            | (if (o.ININVERTEDINDEX == 1) @intFromEnum(PROPDESC_SEARCHINFO_FLAGS.ININVERTEDINDEX) else 0)
-            | (if (o.ISCOLUMN == 1) @intFromEnum(PROPDESC_SEARCHINFO_FLAGS.ISCOLUMN) else 0)
-            | (if (o.ISCOLUMNSPARSE == 1) @intFromEnum(PROPDESC_SEARCHINFO_FLAGS.ISCOLUMNSPARSE) else 0)
-            | (if (o.ALWAYSINCLUDE == 1) @intFromEnum(PROPDESC_SEARCHINFO_FLAGS.ALWAYSINCLUDE) else 0)
-            | (if (o.USEFORTYPEAHEAD == 1) @intFromEnum(PROPDESC_SEARCHINFO_FLAGS.USEFORTYPEAHEAD) else 0)
-        ));
-    }
+pub const PROPDESC_SEARCHINFO_FLAGS = packed struct(u32) {
+    ININVERTEDINDEX: u1 = 0,
+    ISCOLUMN: u1 = 0,
+    ISCOLUMNSPARSE: u1 = 0,
+    ALWAYSINCLUDE: u1 = 0,
+    USEFORTYPEAHEAD: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PDSIF_DEFAULT = PROPDESC_SEARCHINFO_FLAGS.DEFAULT;
-pub const PDSIF_ININVERTEDINDEX = PROPDESC_SEARCHINFO_FLAGS.ININVERTEDINDEX;
-pub const PDSIF_ISCOLUMN = PROPDESC_SEARCHINFO_FLAGS.ISCOLUMN;
-pub const PDSIF_ISCOLUMNSPARSE = PROPDESC_SEARCHINFO_FLAGS.ISCOLUMNSPARSE;
-pub const PDSIF_ALWAYSINCLUDE = PROPDESC_SEARCHINFO_FLAGS.ALWAYSINCLUDE;
-pub const PDSIF_USEFORTYPEAHEAD = PROPDESC_SEARCHINFO_FLAGS.USEFORTYPEAHEAD;
+pub const PDSIF_DEFAULT = PROPDESC_SEARCHINFO_FLAGS{ };
+pub const PDSIF_ININVERTEDINDEX = PROPDESC_SEARCHINFO_FLAGS{ .ININVERTEDINDEX = 1 };
+pub const PDSIF_ISCOLUMN = PROPDESC_SEARCHINFO_FLAGS{ .ISCOLUMN = 1 };
+pub const PDSIF_ISCOLUMNSPARSE = PROPDESC_SEARCHINFO_FLAGS{ .ISCOLUMNSPARSE = 1 };
+pub const PDSIF_ALWAYSINCLUDE = PROPDESC_SEARCHINFO_FLAGS{ .ALWAYSINCLUDE = 1 };
+pub const PDSIF_USEFORTYPEAHEAD = PROPDESC_SEARCHINFO_FLAGS{ .USEFORTYPEAHEAD = 1 };
 
 pub const PROPDESC_COLUMNINDEX_TYPE = enum(i32) {
     NONE = 0,
@@ -2212,22 +2203,42 @@ pub const ICreateObject = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PSTIME_FLAGS = enum(u32) {
-    UTC = 0,
-    LOCAL = 1,
-    _,
-    pub fn initFlags(o: struct {
-        UTC: u1 = 0,
-        LOCAL: u1 = 0,
-    }) PSTIME_FLAGS {
-        return @as(PSTIME_FLAGS, @enumFromInt(
-              (if (o.UTC == 1) @intFromEnum(PSTIME_FLAGS.UTC) else 0)
-            | (if (o.LOCAL == 1) @intFromEnum(PSTIME_FLAGS.LOCAL) else 0)
-        ));
-    }
+pub const PSTIME_FLAGS = packed struct(u32) {
+    LOCAL: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PSTF_UTC = PSTIME_FLAGS.UTC;
-pub const PSTF_LOCAL = PSTIME_FLAGS.LOCAL;
+pub const PSTF_UTC = PSTIME_FLAGS{ };
+pub const PSTF_LOCAL = PSTIME_FLAGS{ .LOCAL = 1 };
 
 pub const PROPVAR_COMPARE_UNIT = enum(i32) {
     DEFAULT = 0,
@@ -2246,269 +2257,342 @@ pub const PVCU_DAY = PROPVAR_COMPARE_UNIT.DAY;
 pub const PVCU_MONTH = PROPVAR_COMPARE_UNIT.MONTH;
 pub const PVCU_YEAR = PROPVAR_COMPARE_UNIT.YEAR;
 
-pub const PROPVAR_COMPARE_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    TREATEMPTYASGREATERTHAN = 1,
-    USESTRCMP = 2,
-    USESTRCMPC = 4,
-    USESTRCMPI = 8,
-    USESTRCMPIC = 16,
-    DIGITSASNUMBERS_CASESENSITIVE = 32,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        TREATEMPTYASGREATERTHAN: u1 = 0,
-        USESTRCMP: u1 = 0,
-        USESTRCMPC: u1 = 0,
-        USESTRCMPI: u1 = 0,
-        USESTRCMPIC: u1 = 0,
-        DIGITSASNUMBERS_CASESENSITIVE: u1 = 0,
-    }) PROPVAR_COMPARE_FLAGS {
-        return @as(PROPVAR_COMPARE_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(PROPVAR_COMPARE_FLAGS.DEFAULT) else 0)
-            | (if (o.TREATEMPTYASGREATERTHAN == 1) @intFromEnum(PROPVAR_COMPARE_FLAGS.TREATEMPTYASGREATERTHAN) else 0)
-            | (if (o.USESTRCMP == 1) @intFromEnum(PROPVAR_COMPARE_FLAGS.USESTRCMP) else 0)
-            | (if (o.USESTRCMPC == 1) @intFromEnum(PROPVAR_COMPARE_FLAGS.USESTRCMPC) else 0)
-            | (if (o.USESTRCMPI == 1) @intFromEnum(PROPVAR_COMPARE_FLAGS.USESTRCMPI) else 0)
-            | (if (o.USESTRCMPIC == 1) @intFromEnum(PROPVAR_COMPARE_FLAGS.USESTRCMPIC) else 0)
-            | (if (o.DIGITSASNUMBERS_CASESENSITIVE == 1) @intFromEnum(PROPVAR_COMPARE_FLAGS.DIGITSASNUMBERS_CASESENSITIVE) else 0)
-        ));
-    }
+pub const PROPVAR_COMPARE_FLAGS = packed struct(u32) {
+    TREATEMPTYASGREATERTHAN: u1 = 0,
+    USESTRCMP: u1 = 0,
+    USESTRCMPC: u1 = 0,
+    USESTRCMPI: u1 = 0,
+    USESTRCMPIC: u1 = 0,
+    DIGITSASNUMBERS_CASESENSITIVE: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PVCF_DEFAULT = PROPVAR_COMPARE_FLAGS.DEFAULT;
-pub const PVCF_TREATEMPTYASGREATERTHAN = PROPVAR_COMPARE_FLAGS.TREATEMPTYASGREATERTHAN;
-pub const PVCF_USESTRCMP = PROPVAR_COMPARE_FLAGS.USESTRCMP;
-pub const PVCF_USESTRCMPC = PROPVAR_COMPARE_FLAGS.USESTRCMPC;
-pub const PVCF_USESTRCMPI = PROPVAR_COMPARE_FLAGS.USESTRCMPI;
-pub const PVCF_USESTRCMPIC = PROPVAR_COMPARE_FLAGS.USESTRCMPIC;
-pub const PVCF_DIGITSASNUMBERS_CASESENSITIVE = PROPVAR_COMPARE_FLAGS.DIGITSASNUMBERS_CASESENSITIVE;
+pub const PVCF_DEFAULT = PROPVAR_COMPARE_FLAGS{ };
+pub const PVCF_TREATEMPTYASGREATERTHAN = PROPVAR_COMPARE_FLAGS{ .TREATEMPTYASGREATERTHAN = 1 };
+pub const PVCF_USESTRCMP = PROPVAR_COMPARE_FLAGS{ .USESTRCMP = 1 };
+pub const PVCF_USESTRCMPC = PROPVAR_COMPARE_FLAGS{ .USESTRCMPC = 1 };
+pub const PVCF_USESTRCMPI = PROPVAR_COMPARE_FLAGS{ .USESTRCMPI = 1 };
+pub const PVCF_USESTRCMPIC = PROPVAR_COMPARE_FLAGS{ .USESTRCMPIC = 1 };
+pub const PVCF_DIGITSASNUMBERS_CASESENSITIVE = PROPVAR_COMPARE_FLAGS{ .DIGITSASNUMBERS_CASESENSITIVE = 1 };
 
-pub const PROPVAR_CHANGE_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    NOVALUEPROP = 1,
-    ALPHABOOL = 2,
-    NOUSEROVERRIDE = 4,
-    LOCALBOOL = 8,
-    NOHEXSTRING = 16,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        NOVALUEPROP: u1 = 0,
-        ALPHABOOL: u1 = 0,
-        NOUSEROVERRIDE: u1 = 0,
-        LOCALBOOL: u1 = 0,
-        NOHEXSTRING: u1 = 0,
-    }) PROPVAR_CHANGE_FLAGS {
-        return @as(PROPVAR_CHANGE_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(PROPVAR_CHANGE_FLAGS.DEFAULT) else 0)
-            | (if (o.NOVALUEPROP == 1) @intFromEnum(PROPVAR_CHANGE_FLAGS.NOVALUEPROP) else 0)
-            | (if (o.ALPHABOOL == 1) @intFromEnum(PROPVAR_CHANGE_FLAGS.ALPHABOOL) else 0)
-            | (if (o.NOUSEROVERRIDE == 1) @intFromEnum(PROPVAR_CHANGE_FLAGS.NOUSEROVERRIDE) else 0)
-            | (if (o.LOCALBOOL == 1) @intFromEnum(PROPVAR_CHANGE_FLAGS.LOCALBOOL) else 0)
-            | (if (o.NOHEXSTRING == 1) @intFromEnum(PROPVAR_CHANGE_FLAGS.NOHEXSTRING) else 0)
-        ));
-    }
+pub const PROPVAR_CHANGE_FLAGS = packed struct(u32) {
+    NOVALUEPROP: u1 = 0,
+    ALPHABOOL: u1 = 0,
+    NOUSEROVERRIDE: u1 = 0,
+    LOCALBOOL: u1 = 0,
+    NOHEXSTRING: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PVCHF_DEFAULT = PROPVAR_CHANGE_FLAGS.DEFAULT;
-pub const PVCHF_NOVALUEPROP = PROPVAR_CHANGE_FLAGS.NOVALUEPROP;
-pub const PVCHF_ALPHABOOL = PROPVAR_CHANGE_FLAGS.ALPHABOOL;
-pub const PVCHF_NOUSEROVERRIDE = PROPVAR_CHANGE_FLAGS.NOUSEROVERRIDE;
-pub const PVCHF_LOCALBOOL = PROPVAR_CHANGE_FLAGS.LOCALBOOL;
-pub const PVCHF_NOHEXSTRING = PROPVAR_CHANGE_FLAGS.NOHEXSTRING;
+pub const PVCHF_DEFAULT = PROPVAR_CHANGE_FLAGS{ };
+pub const PVCHF_NOVALUEPROP = PROPVAR_CHANGE_FLAGS{ .NOVALUEPROP = 1 };
+pub const PVCHF_ALPHABOOL = PROPVAR_CHANGE_FLAGS{ .ALPHABOOL = 1 };
+pub const PVCHF_NOUSEROVERRIDE = PROPVAR_CHANGE_FLAGS{ .NOUSEROVERRIDE = 1 };
+pub const PVCHF_LOCALBOOL = PROPVAR_CHANGE_FLAGS{ .LOCALBOOL = 1 };
+pub const PVCHF_NOHEXSTRING = PROPVAR_CHANGE_FLAGS{ .NOHEXSTRING = 1 };
 
-pub const DRAWPROGRESSFLAGS = enum(u32) {
-    NONE = 0,
-    MARQUEE = 1,
-    MARQUEE_COMPLETE = 2,
-    ERROR = 4,
-    WARNING = 8,
-    STOPPED = 16,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        MARQUEE: u1 = 0,
-        MARQUEE_COMPLETE: u1 = 0,
-        ERROR: u1 = 0,
-        WARNING: u1 = 0,
-        STOPPED: u1 = 0,
-    }) DRAWPROGRESSFLAGS {
-        return @as(DRAWPROGRESSFLAGS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DRAWPROGRESSFLAGS.NONE) else 0)
-            | (if (o.MARQUEE == 1) @intFromEnum(DRAWPROGRESSFLAGS.MARQUEE) else 0)
-            | (if (o.MARQUEE_COMPLETE == 1) @intFromEnum(DRAWPROGRESSFLAGS.MARQUEE_COMPLETE) else 0)
-            | (if (o.ERROR == 1) @intFromEnum(DRAWPROGRESSFLAGS.ERROR) else 0)
-            | (if (o.WARNING == 1) @intFromEnum(DRAWPROGRESSFLAGS.WARNING) else 0)
-            | (if (o.STOPPED == 1) @intFromEnum(DRAWPROGRESSFLAGS.STOPPED) else 0)
-        ));
-    }
+pub const DRAWPROGRESSFLAGS = packed struct(u32) {
+    MARQUEE: u1 = 0,
+    MARQUEE_COMPLETE: u1 = 0,
+    ERROR: u1 = 0,
+    WARNING: u1 = 0,
+    STOPPED: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DPF_NONE = DRAWPROGRESSFLAGS.NONE;
-pub const DPF_MARQUEE = DRAWPROGRESSFLAGS.MARQUEE;
-pub const DPF_MARQUEE_COMPLETE = DRAWPROGRESSFLAGS.MARQUEE_COMPLETE;
-pub const DPF_ERROR = DRAWPROGRESSFLAGS.ERROR;
-pub const DPF_WARNING = DRAWPROGRESSFLAGS.WARNING;
-pub const DPF_STOPPED = DRAWPROGRESSFLAGS.STOPPED;
+pub const DPF_NONE = DRAWPROGRESSFLAGS{ };
+pub const DPF_MARQUEE = DRAWPROGRESSFLAGS{ .MARQUEE = 1 };
+pub const DPF_MARQUEE_COMPLETE = DRAWPROGRESSFLAGS{ .MARQUEE_COMPLETE = 1 };
+pub const DPF_ERROR = DRAWPROGRESSFLAGS{ .ERROR = 1 };
+pub const DPF_WARNING = DRAWPROGRESSFLAGS{ .WARNING = 1 };
+pub const DPF_STOPPED = DRAWPROGRESSFLAGS{ .STOPPED = 1 };
 
-pub const SYNC_TRANSFER_STATUS = enum(u32) {
-    NONE = 0,
-    NEEDSUPLOAD = 1,
-    NEEDSDOWNLOAD = 2,
-    TRANSFERRING = 4,
-    PAUSED = 8,
-    HASERROR = 16,
-    FETCHING_METADATA = 32,
-    USER_REQUESTED_REFRESH = 64,
-    HASWARNING = 128,
-    EXCLUDED = 256,
-    INCOMPLETE = 512,
-    PLACEHOLDER_IFEMPTY = 1024,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        NEEDSUPLOAD: u1 = 0,
-        NEEDSDOWNLOAD: u1 = 0,
-        TRANSFERRING: u1 = 0,
-        PAUSED: u1 = 0,
-        HASERROR: u1 = 0,
-        FETCHING_METADATA: u1 = 0,
-        USER_REQUESTED_REFRESH: u1 = 0,
-        HASWARNING: u1 = 0,
-        EXCLUDED: u1 = 0,
-        INCOMPLETE: u1 = 0,
-        PLACEHOLDER_IFEMPTY: u1 = 0,
-    }) SYNC_TRANSFER_STATUS {
-        return @as(SYNC_TRANSFER_STATUS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(SYNC_TRANSFER_STATUS.NONE) else 0)
-            | (if (o.NEEDSUPLOAD == 1) @intFromEnum(SYNC_TRANSFER_STATUS.NEEDSUPLOAD) else 0)
-            | (if (o.NEEDSDOWNLOAD == 1) @intFromEnum(SYNC_TRANSFER_STATUS.NEEDSDOWNLOAD) else 0)
-            | (if (o.TRANSFERRING == 1) @intFromEnum(SYNC_TRANSFER_STATUS.TRANSFERRING) else 0)
-            | (if (o.PAUSED == 1) @intFromEnum(SYNC_TRANSFER_STATUS.PAUSED) else 0)
-            | (if (o.HASERROR == 1) @intFromEnum(SYNC_TRANSFER_STATUS.HASERROR) else 0)
-            | (if (o.FETCHING_METADATA == 1) @intFromEnum(SYNC_TRANSFER_STATUS.FETCHING_METADATA) else 0)
-            | (if (o.USER_REQUESTED_REFRESH == 1) @intFromEnum(SYNC_TRANSFER_STATUS.USER_REQUESTED_REFRESH) else 0)
-            | (if (o.HASWARNING == 1) @intFromEnum(SYNC_TRANSFER_STATUS.HASWARNING) else 0)
-            | (if (o.EXCLUDED == 1) @intFromEnum(SYNC_TRANSFER_STATUS.EXCLUDED) else 0)
-            | (if (o.INCOMPLETE == 1) @intFromEnum(SYNC_TRANSFER_STATUS.INCOMPLETE) else 0)
-            | (if (o.PLACEHOLDER_IFEMPTY == 1) @intFromEnum(SYNC_TRANSFER_STATUS.PLACEHOLDER_IFEMPTY) else 0)
-        ));
-    }
+pub const SYNC_TRANSFER_STATUS = packed struct(u32) {
+    NEEDSUPLOAD: u1 = 0,
+    NEEDSDOWNLOAD: u1 = 0,
+    TRANSFERRING: u1 = 0,
+    PAUSED: u1 = 0,
+    HASERROR: u1 = 0,
+    FETCHING_METADATA: u1 = 0,
+    USER_REQUESTED_REFRESH: u1 = 0,
+    HASWARNING: u1 = 0,
+    EXCLUDED: u1 = 0,
+    INCOMPLETE: u1 = 0,
+    PLACEHOLDER_IFEMPTY: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const STS_NONE = SYNC_TRANSFER_STATUS.NONE;
-pub const STS_NEEDSUPLOAD = SYNC_TRANSFER_STATUS.NEEDSUPLOAD;
-pub const STS_NEEDSDOWNLOAD = SYNC_TRANSFER_STATUS.NEEDSDOWNLOAD;
-pub const STS_TRANSFERRING = SYNC_TRANSFER_STATUS.TRANSFERRING;
-pub const STS_PAUSED = SYNC_TRANSFER_STATUS.PAUSED;
-pub const STS_HASERROR = SYNC_TRANSFER_STATUS.HASERROR;
-pub const STS_FETCHING_METADATA = SYNC_TRANSFER_STATUS.FETCHING_METADATA;
-pub const STS_USER_REQUESTED_REFRESH = SYNC_TRANSFER_STATUS.USER_REQUESTED_REFRESH;
-pub const STS_HASWARNING = SYNC_TRANSFER_STATUS.HASWARNING;
-pub const STS_EXCLUDED = SYNC_TRANSFER_STATUS.EXCLUDED;
-pub const STS_INCOMPLETE = SYNC_TRANSFER_STATUS.INCOMPLETE;
-pub const STS_PLACEHOLDER_IFEMPTY = SYNC_TRANSFER_STATUS.PLACEHOLDER_IFEMPTY;
+pub const STS_NONE = SYNC_TRANSFER_STATUS{ };
+pub const STS_NEEDSUPLOAD = SYNC_TRANSFER_STATUS{ .NEEDSUPLOAD = 1 };
+pub const STS_NEEDSDOWNLOAD = SYNC_TRANSFER_STATUS{ .NEEDSDOWNLOAD = 1 };
+pub const STS_TRANSFERRING = SYNC_TRANSFER_STATUS{ .TRANSFERRING = 1 };
+pub const STS_PAUSED = SYNC_TRANSFER_STATUS{ .PAUSED = 1 };
+pub const STS_HASERROR = SYNC_TRANSFER_STATUS{ .HASERROR = 1 };
+pub const STS_FETCHING_METADATA = SYNC_TRANSFER_STATUS{ .FETCHING_METADATA = 1 };
+pub const STS_USER_REQUESTED_REFRESH = SYNC_TRANSFER_STATUS{ .USER_REQUESTED_REFRESH = 1 };
+pub const STS_HASWARNING = SYNC_TRANSFER_STATUS{ .HASWARNING = 1 };
+pub const STS_EXCLUDED = SYNC_TRANSFER_STATUS{ .EXCLUDED = 1 };
+pub const STS_INCOMPLETE = SYNC_TRANSFER_STATUS{ .INCOMPLETE = 1 };
+pub const STS_PLACEHOLDER_IFEMPTY = SYNC_TRANSFER_STATUS{ .PLACEHOLDER_IFEMPTY = 1 };
 
-pub const PLACEHOLDER_STATES = enum(u32) {
-    NONE = 0,
-    MARKED_FOR_OFFLINE_AVAILABILITY = 1,
-    FULL_PRIMARY_STREAM_AVAILABLE = 2,
-    CREATE_FILE_ACCESSIBLE = 4,
-    CLOUDFILE_PLACEHOLDER = 8,
-    DEFAULT = 7,
-    ALL = 15,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        MARKED_FOR_OFFLINE_AVAILABILITY: u1 = 0,
-        FULL_PRIMARY_STREAM_AVAILABLE: u1 = 0,
-        CREATE_FILE_ACCESSIBLE: u1 = 0,
-        CLOUDFILE_PLACEHOLDER: u1 = 0,
-        DEFAULT: u1 = 0,
-        ALL: u1 = 0,
-    }) PLACEHOLDER_STATES {
-        return @as(PLACEHOLDER_STATES, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(PLACEHOLDER_STATES.NONE) else 0)
-            | (if (o.MARKED_FOR_OFFLINE_AVAILABILITY == 1) @intFromEnum(PLACEHOLDER_STATES.MARKED_FOR_OFFLINE_AVAILABILITY) else 0)
-            | (if (o.FULL_PRIMARY_STREAM_AVAILABLE == 1) @intFromEnum(PLACEHOLDER_STATES.FULL_PRIMARY_STREAM_AVAILABLE) else 0)
-            | (if (o.CREATE_FILE_ACCESSIBLE == 1) @intFromEnum(PLACEHOLDER_STATES.CREATE_FILE_ACCESSIBLE) else 0)
-            | (if (o.CLOUDFILE_PLACEHOLDER == 1) @intFromEnum(PLACEHOLDER_STATES.CLOUDFILE_PLACEHOLDER) else 0)
-            | (if (o.DEFAULT == 1) @intFromEnum(PLACEHOLDER_STATES.DEFAULT) else 0)
-            | (if (o.ALL == 1) @intFromEnum(PLACEHOLDER_STATES.ALL) else 0)
-        ));
-    }
+pub const PLACEHOLDER_STATES = packed struct(u32) {
+    MARKED_FOR_OFFLINE_AVAILABILITY: u1 = 0,
+    FULL_PRIMARY_STREAM_AVAILABLE: u1 = 0,
+    CREATE_FILE_ACCESSIBLE: u1 = 0,
+    CLOUDFILE_PLACEHOLDER: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PS_NONE = PLACEHOLDER_STATES.NONE;
-pub const PS_MARKED_FOR_OFFLINE_AVAILABILITY = PLACEHOLDER_STATES.MARKED_FOR_OFFLINE_AVAILABILITY;
-pub const PS_FULL_PRIMARY_STREAM_AVAILABLE = PLACEHOLDER_STATES.FULL_PRIMARY_STREAM_AVAILABLE;
-pub const PS_CREATE_FILE_ACCESSIBLE = PLACEHOLDER_STATES.CREATE_FILE_ACCESSIBLE;
-pub const PS_CLOUDFILE_PLACEHOLDER = PLACEHOLDER_STATES.CLOUDFILE_PLACEHOLDER;
-pub const PS_DEFAULT = PLACEHOLDER_STATES.DEFAULT;
-pub const PS_ALL = PLACEHOLDER_STATES.ALL;
+pub const PS_NONE = PLACEHOLDER_STATES{ };
+pub const PS_MARKED_FOR_OFFLINE_AVAILABILITY = PLACEHOLDER_STATES{ .MARKED_FOR_OFFLINE_AVAILABILITY = 1 };
+pub const PS_FULL_PRIMARY_STREAM_AVAILABLE = PLACEHOLDER_STATES{ .FULL_PRIMARY_STREAM_AVAILABLE = 1 };
+pub const PS_CREATE_FILE_ACCESSIBLE = PLACEHOLDER_STATES{ .CREATE_FILE_ACCESSIBLE = 1 };
+pub const PS_CLOUDFILE_PLACEHOLDER = PLACEHOLDER_STATES{ .CLOUDFILE_PLACEHOLDER = 1 };
+pub const PS_DEFAULT = PLACEHOLDER_STATES{
+    .MARKED_FOR_OFFLINE_AVAILABILITY = 1,
+    .FULL_PRIMARY_STREAM_AVAILABLE = 1,
+    .CREATE_FILE_ACCESSIBLE = 1,
+};
+pub const PS_ALL = PLACEHOLDER_STATES{
+    .MARKED_FOR_OFFLINE_AVAILABILITY = 1,
+    .FULL_PRIMARY_STREAM_AVAILABLE = 1,
+    .CREATE_FILE_ACCESSIBLE = 1,
+    .CLOUDFILE_PLACEHOLDER = 1,
+};
 
-pub const PROPERTYUI_NAME_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    MNEMONIC = 1,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        MNEMONIC: u1 = 0,
-    }) PROPERTYUI_NAME_FLAGS {
-        return @as(PROPERTYUI_NAME_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(PROPERTYUI_NAME_FLAGS.DEFAULT) else 0)
-            | (if (o.MNEMONIC == 1) @intFromEnum(PROPERTYUI_NAME_FLAGS.MNEMONIC) else 0)
-        ));
-    }
+pub const PROPERTYUI_NAME_FLAGS = packed struct(u32) {
+    MNEMONIC: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PUIFNF_DEFAULT = PROPERTYUI_NAME_FLAGS.DEFAULT;
-pub const PUIFNF_MNEMONIC = PROPERTYUI_NAME_FLAGS.MNEMONIC;
+pub const PUIFNF_DEFAULT = PROPERTYUI_NAME_FLAGS{ };
+pub const PUIFNF_MNEMONIC = PROPERTYUI_NAME_FLAGS{ .MNEMONIC = 1 };
 
-pub const PROPERTYUI_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    RIGHTALIGN = 1,
-    NOLABELININFOTIP = 2,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        RIGHTALIGN: u1 = 0,
-        NOLABELININFOTIP: u1 = 0,
-    }) PROPERTYUI_FLAGS {
-        return @as(PROPERTYUI_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(PROPERTYUI_FLAGS.DEFAULT) else 0)
-            | (if (o.RIGHTALIGN == 1) @intFromEnum(PROPERTYUI_FLAGS.RIGHTALIGN) else 0)
-            | (if (o.NOLABELININFOTIP == 1) @intFromEnum(PROPERTYUI_FLAGS.NOLABELININFOTIP) else 0)
-        ));
-    }
+pub const PROPERTYUI_FLAGS = packed struct(u32) {
+    RIGHTALIGN: u1 = 0,
+    NOLABELININFOTIP: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PUIF_DEFAULT = PROPERTYUI_FLAGS.DEFAULT;
-pub const PUIF_RIGHTALIGN = PROPERTYUI_FLAGS.RIGHTALIGN;
-pub const PUIF_NOLABELININFOTIP = PROPERTYUI_FLAGS.NOLABELININFOTIP;
+pub const PUIF_DEFAULT = PROPERTYUI_FLAGS{ };
+pub const PUIF_RIGHTALIGN = PROPERTYUI_FLAGS{ .RIGHTALIGN = 1 };
+pub const PUIF_NOLABELININFOTIP = PROPERTYUI_FLAGS{ .NOLABELININFOTIP = 1 };
 
-pub const PROPERTYUI_FORMAT_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    RIGHTTOLEFT = 1,
-    SHORTFORMAT = 2,
-    NOTIME = 4,
-    FRIENDLYDATE = 8,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        RIGHTTOLEFT: u1 = 0,
-        SHORTFORMAT: u1 = 0,
-        NOTIME: u1 = 0,
-        FRIENDLYDATE: u1 = 0,
-    }) PROPERTYUI_FORMAT_FLAGS {
-        return @as(PROPERTYUI_FORMAT_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(PROPERTYUI_FORMAT_FLAGS.DEFAULT) else 0)
-            | (if (o.RIGHTTOLEFT == 1) @intFromEnum(PROPERTYUI_FORMAT_FLAGS.RIGHTTOLEFT) else 0)
-            | (if (o.SHORTFORMAT == 1) @intFromEnum(PROPERTYUI_FORMAT_FLAGS.SHORTFORMAT) else 0)
-            | (if (o.NOTIME == 1) @intFromEnum(PROPERTYUI_FORMAT_FLAGS.NOTIME) else 0)
-            | (if (o.FRIENDLYDATE == 1) @intFromEnum(PROPERTYUI_FORMAT_FLAGS.FRIENDLYDATE) else 0)
-        ));
-    }
+pub const PROPERTYUI_FORMAT_FLAGS = packed struct(u32) {
+    RIGHTTOLEFT: u1 = 0,
+    SHORTFORMAT: u1 = 0,
+    NOTIME: u1 = 0,
+    FRIENDLYDATE: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PUIFFDF_DEFAULT = PROPERTYUI_FORMAT_FLAGS.DEFAULT;
-pub const PUIFFDF_RIGHTTOLEFT = PROPERTYUI_FORMAT_FLAGS.RIGHTTOLEFT;
-pub const PUIFFDF_SHORTFORMAT = PROPERTYUI_FORMAT_FLAGS.SHORTFORMAT;
-pub const PUIFFDF_NOTIME = PROPERTYUI_FORMAT_FLAGS.NOTIME;
-pub const PUIFFDF_FRIENDLYDATE = PROPERTYUI_FORMAT_FLAGS.FRIENDLYDATE;
+pub const PUIFFDF_DEFAULT = PROPERTYUI_FORMAT_FLAGS{ };
+pub const PUIFFDF_RIGHTTOLEFT = PROPERTYUI_FORMAT_FLAGS{ .RIGHTTOLEFT = 1 };
+pub const PUIFFDF_SHORTFORMAT = PROPERTYUI_FORMAT_FLAGS{ .SHORTFORMAT = 1 };
+pub const PUIFFDF_NOTIME = PROPERTYUI_FORMAT_FLAGS{ .NOTIME = 1 };
+pub const PUIFFDF_FRIENDLYDATE = PROPERTYUI_FORMAT_FLAGS{ .FRIENDLYDATE = 1 };
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IPropertyUI_Value = Guid.initString("757a7d9f-919a-4118-99d7-dbb208c8cc66");
@@ -2701,58 +2785,61 @@ pub const PDOPS_CANCELLED = PDOPSTATUS.CANCELLED;
 pub const PDOPS_STOPPED = PDOPSTATUS.STOPPED;
 pub const PDOPS_ERRORS = PDOPSTATUS.ERRORS;
 
-pub const SYNC_ENGINE_STATE_FLAGS = enum(u32) {
-    NONE = 0,
-    SERVICE_QUOTA_NEARING_LIMIT = 1,
-    SERVICE_QUOTA_EXCEEDED_LIMIT = 2,
-    AUTHENTICATION_ERROR = 4,
-    PAUSED_DUE_TO_METERED_NETWORK = 8,
-    PAUSED_DUE_TO_DISK_SPACE_FULL = 16,
-    PAUSED_DUE_TO_CLIENT_POLICY = 32,
-    PAUSED_DUE_TO_SERVICE_POLICY = 64,
-    SERVICE_UNAVAILABLE = 128,
-    PAUSED_DUE_TO_USER_REQUEST = 256,
-    ALL_FLAGS = 511,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        SERVICE_QUOTA_NEARING_LIMIT: u1 = 0,
-        SERVICE_QUOTA_EXCEEDED_LIMIT: u1 = 0,
-        AUTHENTICATION_ERROR: u1 = 0,
-        PAUSED_DUE_TO_METERED_NETWORK: u1 = 0,
-        PAUSED_DUE_TO_DISK_SPACE_FULL: u1 = 0,
-        PAUSED_DUE_TO_CLIENT_POLICY: u1 = 0,
-        PAUSED_DUE_TO_SERVICE_POLICY: u1 = 0,
-        SERVICE_UNAVAILABLE: u1 = 0,
-        PAUSED_DUE_TO_USER_REQUEST: u1 = 0,
-        ALL_FLAGS: u1 = 0,
-    }) SYNC_ENGINE_STATE_FLAGS {
-        return @as(SYNC_ENGINE_STATE_FLAGS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.NONE) else 0)
-            | (if (o.SERVICE_QUOTA_NEARING_LIMIT == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.SERVICE_QUOTA_NEARING_LIMIT) else 0)
-            | (if (o.SERVICE_QUOTA_EXCEEDED_LIMIT == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.SERVICE_QUOTA_EXCEEDED_LIMIT) else 0)
-            | (if (o.AUTHENTICATION_ERROR == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.AUTHENTICATION_ERROR) else 0)
-            | (if (o.PAUSED_DUE_TO_METERED_NETWORK == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_METERED_NETWORK) else 0)
-            | (if (o.PAUSED_DUE_TO_DISK_SPACE_FULL == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_DISK_SPACE_FULL) else 0)
-            | (if (o.PAUSED_DUE_TO_CLIENT_POLICY == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_CLIENT_POLICY) else 0)
-            | (if (o.PAUSED_DUE_TO_SERVICE_POLICY == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_SERVICE_POLICY) else 0)
-            | (if (o.SERVICE_UNAVAILABLE == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.SERVICE_UNAVAILABLE) else 0)
-            | (if (o.PAUSED_DUE_TO_USER_REQUEST == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_USER_REQUEST) else 0)
-            | (if (o.ALL_FLAGS == 1) @intFromEnum(SYNC_ENGINE_STATE_FLAGS.ALL_FLAGS) else 0)
-        ));
-    }
+pub const SYNC_ENGINE_STATE_FLAGS = packed struct(u32) {
+    SERVICE_QUOTA_NEARING_LIMIT: u1 = 0,
+    SERVICE_QUOTA_EXCEEDED_LIMIT: u1 = 0,
+    AUTHENTICATION_ERROR: u1 = 0,
+    PAUSED_DUE_TO_METERED_NETWORK: u1 = 0,
+    PAUSED_DUE_TO_DISK_SPACE_FULL: u1 = 0,
+    PAUSED_DUE_TO_CLIENT_POLICY: u1 = 0,
+    PAUSED_DUE_TO_SERVICE_POLICY: u1 = 0,
+    SERVICE_UNAVAILABLE: u1 = 0,
+    PAUSED_DUE_TO_USER_REQUEST: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const SESF_NONE = SYNC_ENGINE_STATE_FLAGS.NONE;
-pub const SESF_SERVICE_QUOTA_NEARING_LIMIT = SYNC_ENGINE_STATE_FLAGS.SERVICE_QUOTA_NEARING_LIMIT;
-pub const SESF_SERVICE_QUOTA_EXCEEDED_LIMIT = SYNC_ENGINE_STATE_FLAGS.SERVICE_QUOTA_EXCEEDED_LIMIT;
-pub const SESF_AUTHENTICATION_ERROR = SYNC_ENGINE_STATE_FLAGS.AUTHENTICATION_ERROR;
-pub const SESF_PAUSED_DUE_TO_METERED_NETWORK = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_METERED_NETWORK;
-pub const SESF_PAUSED_DUE_TO_DISK_SPACE_FULL = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_DISK_SPACE_FULL;
-pub const SESF_PAUSED_DUE_TO_CLIENT_POLICY = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_CLIENT_POLICY;
-pub const SESF_PAUSED_DUE_TO_SERVICE_POLICY = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_SERVICE_POLICY;
-pub const SESF_SERVICE_UNAVAILABLE = SYNC_ENGINE_STATE_FLAGS.SERVICE_UNAVAILABLE;
-pub const SESF_PAUSED_DUE_TO_USER_REQUEST = SYNC_ENGINE_STATE_FLAGS.PAUSED_DUE_TO_USER_REQUEST;
-pub const SESF_ALL_FLAGS = SYNC_ENGINE_STATE_FLAGS.ALL_FLAGS;
+pub const SESF_NONE = SYNC_ENGINE_STATE_FLAGS{ };
+pub const SESF_SERVICE_QUOTA_NEARING_LIMIT = SYNC_ENGINE_STATE_FLAGS{ .SERVICE_QUOTA_NEARING_LIMIT = 1 };
+pub const SESF_SERVICE_QUOTA_EXCEEDED_LIMIT = SYNC_ENGINE_STATE_FLAGS{ .SERVICE_QUOTA_EXCEEDED_LIMIT = 1 };
+pub const SESF_AUTHENTICATION_ERROR = SYNC_ENGINE_STATE_FLAGS{ .AUTHENTICATION_ERROR = 1 };
+pub const SESF_PAUSED_DUE_TO_METERED_NETWORK = SYNC_ENGINE_STATE_FLAGS{ .PAUSED_DUE_TO_METERED_NETWORK = 1 };
+pub const SESF_PAUSED_DUE_TO_DISK_SPACE_FULL = SYNC_ENGINE_STATE_FLAGS{ .PAUSED_DUE_TO_DISK_SPACE_FULL = 1 };
+pub const SESF_PAUSED_DUE_TO_CLIENT_POLICY = SYNC_ENGINE_STATE_FLAGS{ .PAUSED_DUE_TO_CLIENT_POLICY = 1 };
+pub const SESF_PAUSED_DUE_TO_SERVICE_POLICY = SYNC_ENGINE_STATE_FLAGS{ .PAUSED_DUE_TO_SERVICE_POLICY = 1 };
+pub const SESF_SERVICE_UNAVAILABLE = SYNC_ENGINE_STATE_FLAGS{ .SERVICE_UNAVAILABLE = 1 };
+pub const SESF_PAUSED_DUE_TO_USER_REQUEST = SYNC_ENGINE_STATE_FLAGS{ .PAUSED_DUE_TO_USER_REQUEST = 1 };
+pub const SESF_ALL_FLAGS = SYNC_ENGINE_STATE_FLAGS{
+    .SERVICE_QUOTA_NEARING_LIMIT = 1,
+    .SERVICE_QUOTA_EXCEEDED_LIMIT = 1,
+    .AUTHENTICATION_ERROR = 1,
+    .PAUSED_DUE_TO_METERED_NETWORK = 1,
+    .PAUSED_DUE_TO_DISK_SPACE_FULL = 1,
+    .PAUSED_DUE_TO_CLIENT_POLICY = 1,
+    .PAUSED_DUE_TO_SERVICE_POLICY = 1,
+    .SERVICE_UNAVAILABLE = 1,
+    .PAUSED_DUE_TO_USER_REQUEST = 1,
+};
 
 pub const PROPPRG = extern struct {
     flPrg: u16 align(1),

@@ -256,43 +256,80 @@ pub const OPC_STREAM_IO_MODE = enum(i32) {
 pub const OPC_STREAM_IO_READ = OPC_STREAM_IO_MODE.READ;
 pub const OPC_STREAM_IO_WRITE = OPC_STREAM_IO_MODE.WRITE;
 
-pub const OPC_READ_FLAGS = enum(u32) {
-    READ_DEFAULT = 0,
-    VALIDATE_ON_LOAD = 1,
-    CACHE_ON_ACCESS = 2,
-    _,
-    pub fn initFlags(o: struct {
-        READ_DEFAULT: u1 = 0,
-        VALIDATE_ON_LOAD: u1 = 0,
-        CACHE_ON_ACCESS: u1 = 0,
-    }) OPC_READ_FLAGS {
-        return @as(OPC_READ_FLAGS, @enumFromInt(
-              (if (o.READ_DEFAULT == 1) @intFromEnum(OPC_READ_FLAGS.READ_DEFAULT) else 0)
-            | (if (o.VALIDATE_ON_LOAD == 1) @intFromEnum(OPC_READ_FLAGS.VALIDATE_ON_LOAD) else 0)
-            | (if (o.CACHE_ON_ACCESS == 1) @intFromEnum(OPC_READ_FLAGS.CACHE_ON_ACCESS) else 0)
-        ));
-    }
+pub const OPC_READ_FLAGS = packed struct(u32) {
+    VALIDATE_ON_LOAD: u1 = 0,
+    CACHE_ON_ACCESS: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const OPC_READ_DEFAULT = OPC_READ_FLAGS.READ_DEFAULT;
-pub const OPC_VALIDATE_ON_LOAD = OPC_READ_FLAGS.VALIDATE_ON_LOAD;
-pub const OPC_CACHE_ON_ACCESS = OPC_READ_FLAGS.CACHE_ON_ACCESS;
+pub const OPC_READ_DEFAULT = OPC_READ_FLAGS{ };
+pub const OPC_VALIDATE_ON_LOAD = OPC_READ_FLAGS{ .VALIDATE_ON_LOAD = 1 };
+pub const OPC_CACHE_ON_ACCESS = OPC_READ_FLAGS{ .CACHE_ON_ACCESS = 1 };
 
-pub const OPC_WRITE_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    FORCE_ZIP32 = 1,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        FORCE_ZIP32: u1 = 0,
-    }) OPC_WRITE_FLAGS {
-        return @as(OPC_WRITE_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(OPC_WRITE_FLAGS.DEFAULT) else 0)
-            | (if (o.FORCE_ZIP32 == 1) @intFromEnum(OPC_WRITE_FLAGS.FORCE_ZIP32) else 0)
-        ));
-    }
+pub const OPC_WRITE_FLAGS = packed struct(u32) {
+    FORCE_ZIP32: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const OPC_WRITE_DEFAULT = OPC_WRITE_FLAGS.DEFAULT;
-pub const OPC_WRITE_FORCE_ZIP32 = OPC_WRITE_FLAGS.FORCE_ZIP32;
+pub const OPC_WRITE_DEFAULT = OPC_WRITE_FLAGS{ };
+pub const OPC_WRITE_FORCE_ZIP32 = OPC_WRITE_FLAGS{ .FORCE_ZIP32 = 1 };
 
 pub const OPC_SIGNATURE_VALIDATION_RESULT = enum(i32) {
     VALID = 0,

@@ -102,100 +102,140 @@ pub const IUnbufferedFileHandleProvider = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const HANDLE_OPTIONS = enum(u32) {
-    NONE = 0,
-    OPEN_REQUIRING_OPLOCK = 262144,
-    DELETE_ON_CLOSE = 67108864,
-    SEQUENTIAL_SCAN = 134217728,
-    RANDOM_ACCESS = 268435456,
-    NO_BUFFERING = 536870912,
-    OVERLAPPED = 1073741824,
-    WRITE_THROUGH = 2147483648,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        OPEN_REQUIRING_OPLOCK: u1 = 0,
-        DELETE_ON_CLOSE: u1 = 0,
-        SEQUENTIAL_SCAN: u1 = 0,
-        RANDOM_ACCESS: u1 = 0,
-        NO_BUFFERING: u1 = 0,
-        OVERLAPPED: u1 = 0,
-        WRITE_THROUGH: u1 = 0,
-    }) HANDLE_OPTIONS {
-        return @as(HANDLE_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(HANDLE_OPTIONS.NONE) else 0)
-            | (if (o.OPEN_REQUIRING_OPLOCK == 1) @intFromEnum(HANDLE_OPTIONS.OPEN_REQUIRING_OPLOCK) else 0)
-            | (if (o.DELETE_ON_CLOSE == 1) @intFromEnum(HANDLE_OPTIONS.DELETE_ON_CLOSE) else 0)
-            | (if (o.SEQUENTIAL_SCAN == 1) @intFromEnum(HANDLE_OPTIONS.SEQUENTIAL_SCAN) else 0)
-            | (if (o.RANDOM_ACCESS == 1) @intFromEnum(HANDLE_OPTIONS.RANDOM_ACCESS) else 0)
-            | (if (o.NO_BUFFERING == 1) @intFromEnum(HANDLE_OPTIONS.NO_BUFFERING) else 0)
-            | (if (o.OVERLAPPED == 1) @intFromEnum(HANDLE_OPTIONS.OVERLAPPED) else 0)
-            | (if (o.WRITE_THROUGH == 1) @intFromEnum(HANDLE_OPTIONS.WRITE_THROUGH) else 0)
-        ));
-    }
+pub const HANDLE_OPTIONS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    OPEN_REQUIRING_OPLOCK: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    DELETE_ON_CLOSE: u1 = 0,
+    SEQUENTIAL_SCAN: u1 = 0,
+    RANDOM_ACCESS: u1 = 0,
+    NO_BUFFERING: u1 = 0,
+    OVERLAPPED: u1 = 0,
+    WRITE_THROUGH: u1 = 0,
 };
-pub const HO_NONE = HANDLE_OPTIONS.NONE;
-pub const HO_OPEN_REQUIRING_OPLOCK = HANDLE_OPTIONS.OPEN_REQUIRING_OPLOCK;
-pub const HO_DELETE_ON_CLOSE = HANDLE_OPTIONS.DELETE_ON_CLOSE;
-pub const HO_SEQUENTIAL_SCAN = HANDLE_OPTIONS.SEQUENTIAL_SCAN;
-pub const HO_RANDOM_ACCESS = HANDLE_OPTIONS.RANDOM_ACCESS;
-pub const HO_NO_BUFFERING = HANDLE_OPTIONS.NO_BUFFERING;
-pub const HO_OVERLAPPED = HANDLE_OPTIONS.OVERLAPPED;
-pub const HO_WRITE_THROUGH = HANDLE_OPTIONS.WRITE_THROUGH;
+pub const HO_NONE = HANDLE_OPTIONS{ };
+pub const HO_OPEN_REQUIRING_OPLOCK = HANDLE_OPTIONS{ .OPEN_REQUIRING_OPLOCK = 1 };
+pub const HO_DELETE_ON_CLOSE = HANDLE_OPTIONS{ .DELETE_ON_CLOSE = 1 };
+pub const HO_SEQUENTIAL_SCAN = HANDLE_OPTIONS{ .SEQUENTIAL_SCAN = 1 };
+pub const HO_RANDOM_ACCESS = HANDLE_OPTIONS{ .RANDOM_ACCESS = 1 };
+pub const HO_NO_BUFFERING = HANDLE_OPTIONS{ .NO_BUFFERING = 1 };
+pub const HO_OVERLAPPED = HANDLE_OPTIONS{ .OVERLAPPED = 1 };
+pub const HO_WRITE_THROUGH = HANDLE_OPTIONS{ .WRITE_THROUGH = 1 };
 
-pub const HANDLE_ACCESS_OPTIONS = enum(u32) {
-    NONE = 0,
-    READ_ATTRIBUTES = 128,
-    READ = 1179785,
-    WRITE = 1179926,
-    DELETE = 65536,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        READ_ATTRIBUTES: u1 = 0,
-        READ: u1 = 0,
-        WRITE: u1 = 0,
-        DELETE: u1 = 0,
-    }) HANDLE_ACCESS_OPTIONS {
-        return @as(HANDLE_ACCESS_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.NONE) else 0)
-            | (if (o.READ_ATTRIBUTES == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.READ_ATTRIBUTES) else 0)
-            | (if (o.READ == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.READ) else 0)
-            | (if (o.WRITE == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.WRITE) else 0)
-            | (if (o.DELETE == 1) @intFromEnum(HANDLE_ACCESS_OPTIONS.DELETE) else 0)
-        ));
-    }
+pub const HANDLE_ACCESS_OPTIONS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    READ_ATTRIBUTES: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    DELETE: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const HAO_NONE = HANDLE_ACCESS_OPTIONS.NONE;
-pub const HAO_READ_ATTRIBUTES = HANDLE_ACCESS_OPTIONS.READ_ATTRIBUTES;
-pub const HAO_READ = HANDLE_ACCESS_OPTIONS.READ;
-pub const HAO_WRITE = HANDLE_ACCESS_OPTIONS.WRITE;
-pub const HAO_DELETE = HANDLE_ACCESS_OPTIONS.DELETE;
+pub const HAO_NONE = HANDLE_ACCESS_OPTIONS{ };
+pub const HAO_READ_ATTRIBUTES = HANDLE_ACCESS_OPTIONS{ .READ_ATTRIBUTES = 1 };
+pub const HAO_READ = HANDLE_ACCESS_OPTIONS{
+    ._0 = 1,
+    ._3 = 1,
+    .READ_ATTRIBUTES = 1,
+    ._17 = 1,
+    ._20 = 1,
+};
+pub const HAO_WRITE = HANDLE_ACCESS_OPTIONS{
+    ._1 = 1,
+    ._2 = 1,
+    ._4 = 1,
+    ._8 = 1,
+    ._17 = 1,
+    ._20 = 1,
+};
+pub const HAO_DELETE = HANDLE_ACCESS_OPTIONS{ .DELETE = 1 };
 
-pub const HANDLE_SHARING_OPTIONS = enum(u32) {
-    NONE = 0,
-    READ = 1,
-    WRITE = 2,
-    DELETE = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        READ: u1 = 0,
-        WRITE: u1 = 0,
-        DELETE: u1 = 0,
-    }) HANDLE_SHARING_OPTIONS {
-        return @as(HANDLE_SHARING_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.NONE) else 0)
-            | (if (o.READ == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.READ) else 0)
-            | (if (o.WRITE == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.WRITE) else 0)
-            | (if (o.DELETE == 1) @intFromEnum(HANDLE_SHARING_OPTIONS.DELETE) else 0)
-        ));
-    }
+pub const HANDLE_SHARING_OPTIONS = packed struct(u32) {
+    READ: u1 = 0,
+    WRITE: u1 = 0,
+    DELETE: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const HSO_SHARE_NONE = HANDLE_SHARING_OPTIONS.NONE;
-pub const HSO_SHARE_READ = HANDLE_SHARING_OPTIONS.READ;
-pub const HSO_SHARE_WRITE = HANDLE_SHARING_OPTIONS.WRITE;
-pub const HSO_SHARE_DELETE = HANDLE_SHARING_OPTIONS.DELETE;
+pub const HSO_SHARE_NONE = HANDLE_SHARING_OPTIONS{ };
+pub const HSO_SHARE_READ = HANDLE_SHARING_OPTIONS{ .READ = 1 };
+pub const HSO_SHARE_WRITE = HANDLE_SHARING_OPTIONS{ .WRITE = 1 };
+pub const HSO_SHARE_DELETE = HANDLE_SHARING_OPTIONS{ .DELETE = 1 };
 
 pub const HANDLE_CREATION_OPTIONS = enum(i32) {
     CREATE_NEW = 1,

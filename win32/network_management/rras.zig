@@ -808,26 +808,43 @@ pub const PPP_LCP_CHAP_MD5 = PPP_LCP_INFO_AUTH_DATA.D5;
 pub const PPP_LCP_CHAP_MS = PPP_LCP_INFO_AUTH_DATA.S;
 pub const PPP_LCP_CHAP_MSV2 = PPP_LCP_INFO_AUTH_DATA.SV2;
 
-pub const RASIKEV_PROJECTION_INFO_FLAGS = enum(u32) {
-    MOBIKESUPPORTED = 1,
-    BEHIND_NAT = 2,
-    SERVERBEHIND_NAT = 4,
-    _,
-    pub fn initFlags(o: struct {
-        MOBIKESUPPORTED: u1 = 0,
-        BEHIND_NAT: u1 = 0,
-        SERVERBEHIND_NAT: u1 = 0,
-    }) RASIKEV_PROJECTION_INFO_FLAGS {
-        return @as(RASIKEV_PROJECTION_INFO_FLAGS, @enumFromInt(
-              (if (o.MOBIKESUPPORTED == 1) @intFromEnum(RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED) else 0)
-            | (if (o.BEHIND_NAT == 1) @intFromEnum(RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT) else 0)
-            | (if (o.SERVERBEHIND_NAT == 1) @intFromEnum(RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT) else 0)
-        ));
-    }
+pub const RASIKEV_PROJECTION_INFO_FLAGS = packed struct(u32) {
+    MOBIKESUPPORTED: u1 = 0,
+    BEHIND_NAT: u1 = 0,
+    SERVERBEHIND_NAT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV_PROJECTION_INFO_FLAGS.MOBIKESUPPORTED;
-pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.BEHIND_NAT;
-pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS.SERVERBEHIND_NAT;
+pub const RASIKEv2_FLAGS_MOBIKESUPPORTED = RASIKEV_PROJECTION_INFO_FLAGS{ .MOBIKESUPPORTED = 1 };
+pub const RASIKEv2_FLAGS_BEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS{ .BEHIND_NAT = 1 };
+pub const RASIKEv2_FLAGS_SERVERBEHIND_NAT = RASIKEV_PROJECTION_INFO_FLAGS{ .SERVERBEHIND_NAT = 1 };
 
 pub const MPR_VS = enum(u32) {
     Default = 0,

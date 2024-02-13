@@ -79,82 +79,63 @@ pub const PROPSPEC_KIND = enum(u32) {
 pub const PRSPEC_LPWSTR = PROPSPEC_KIND.LPWSTR;
 pub const PRSPEC_PROPID = PROPSPEC_KIND.PROPID;
 
-pub const STGM = enum(u32) {
-    DIRECT = 0,
-    TRANSACTED = 65536,
-    SIMPLE = 134217728,
-    // READ = 0, this enum value conflicts with DIRECT
-    WRITE = 1,
-    READWRITE = 2,
-    SHARE_DENY_NONE = 64,
-    SHARE_DENY_READ = 48,
-    SHARE_DENY_WRITE = 32,
-    SHARE_EXCLUSIVE = 16,
-    PRIORITY = 262144,
-    DELETEONRELEASE = 67108864,
-    NOSCRATCH = 1048576,
-    CREATE = 4096,
-    CONVERT = 131072,
-    // FAILIFTHERE = 0, this enum value conflicts with DIRECT
-    NOSNAPSHOT = 2097152,
-    DIRECT_SWMR = 4194304,
-    _,
-    pub fn initFlags(o: struct {
-        DIRECT: u1 = 0,
-        TRANSACTED: u1 = 0,
-        SIMPLE: u1 = 0,
-        WRITE: u1 = 0,
-        READWRITE: u1 = 0,
-        SHARE_DENY_NONE: u1 = 0,
-        SHARE_DENY_READ: u1 = 0,
-        SHARE_DENY_WRITE: u1 = 0,
-        SHARE_EXCLUSIVE: u1 = 0,
-        PRIORITY: u1 = 0,
-        DELETEONRELEASE: u1 = 0,
-        NOSCRATCH: u1 = 0,
-        CREATE: u1 = 0,
-        CONVERT: u1 = 0,
-        NOSNAPSHOT: u1 = 0,
-        DIRECT_SWMR: u1 = 0,
-    }) STGM {
-        return @as(STGM, @enumFromInt(
-              (if (o.DIRECT == 1) @intFromEnum(STGM.DIRECT) else 0)
-            | (if (o.TRANSACTED == 1) @intFromEnum(STGM.TRANSACTED) else 0)
-            | (if (o.SIMPLE == 1) @intFromEnum(STGM.SIMPLE) else 0)
-            | (if (o.WRITE == 1) @intFromEnum(STGM.WRITE) else 0)
-            | (if (o.READWRITE == 1) @intFromEnum(STGM.READWRITE) else 0)
-            | (if (o.SHARE_DENY_NONE == 1) @intFromEnum(STGM.SHARE_DENY_NONE) else 0)
-            | (if (o.SHARE_DENY_READ == 1) @intFromEnum(STGM.SHARE_DENY_READ) else 0)
-            | (if (o.SHARE_DENY_WRITE == 1) @intFromEnum(STGM.SHARE_DENY_WRITE) else 0)
-            | (if (o.SHARE_EXCLUSIVE == 1) @intFromEnum(STGM.SHARE_EXCLUSIVE) else 0)
-            | (if (o.PRIORITY == 1) @intFromEnum(STGM.PRIORITY) else 0)
-            | (if (o.DELETEONRELEASE == 1) @intFromEnum(STGM.DELETEONRELEASE) else 0)
-            | (if (o.NOSCRATCH == 1) @intFromEnum(STGM.NOSCRATCH) else 0)
-            | (if (o.CREATE == 1) @intFromEnum(STGM.CREATE) else 0)
-            | (if (o.CONVERT == 1) @intFromEnum(STGM.CONVERT) else 0)
-            | (if (o.NOSNAPSHOT == 1) @intFromEnum(STGM.NOSNAPSHOT) else 0)
-            | (if (o.DIRECT_SWMR == 1) @intFromEnum(STGM.DIRECT_SWMR) else 0)
-        ));
-    }
+pub const STGM = packed struct(u32) {
+    WRITE: u1 = 0,
+    READWRITE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    SHARE_EXCLUSIVE: u1 = 0,
+    SHARE_DENY_WRITE: u1 = 0,
+    SHARE_DENY_NONE: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    CREATE: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    TRANSACTED: u1 = 0,
+    CONVERT: u1 = 0,
+    PRIORITY: u1 = 0,
+    _19: u1 = 0,
+    NOSCRATCH: u1 = 0,
+    NOSNAPSHOT: u1 = 0,
+    DIRECT_SWMR: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    DELETEONRELEASE: u1 = 0,
+    SIMPLE: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // READ (0) conflicts with DIRECT
+    // FAILIFTHERE (0) conflicts with DIRECT
 };
-pub const STGM_DIRECT = STGM.DIRECT;
-pub const STGM_TRANSACTED = STGM.TRANSACTED;
-pub const STGM_SIMPLE = STGM.SIMPLE;
-pub const STGM_READ = STGM.DIRECT;
-pub const STGM_WRITE = STGM.WRITE;
-pub const STGM_READWRITE = STGM.READWRITE;
-pub const STGM_SHARE_DENY_NONE = STGM.SHARE_DENY_NONE;
-pub const STGM_SHARE_DENY_READ = STGM.SHARE_DENY_READ;
-pub const STGM_SHARE_DENY_WRITE = STGM.SHARE_DENY_WRITE;
-pub const STGM_SHARE_EXCLUSIVE = STGM.SHARE_EXCLUSIVE;
-pub const STGM_PRIORITY = STGM.PRIORITY;
-pub const STGM_DELETEONRELEASE = STGM.DELETEONRELEASE;
-pub const STGM_NOSCRATCH = STGM.NOSCRATCH;
-pub const STGM_CREATE = STGM.CREATE;
-pub const STGM_CONVERT = STGM.CONVERT;
-pub const STGM_FAILIFTHERE = STGM.DIRECT;
-pub const STGM_NOSNAPSHOT = STGM.NOSNAPSHOT;
-pub const STGM_DIRECT_SWMR = STGM.DIRECT_SWMR;
+pub const STGM_DIRECT = STGM{ };
+pub const STGM_TRANSACTED = STGM{ .TRANSACTED = 1 };
+pub const STGM_SIMPLE = STGM{ .SIMPLE = 1 };
+pub const STGM_READ = STGM{ };
+pub const STGM_WRITE = STGM{ .WRITE = 1 };
+pub const STGM_READWRITE = STGM{ .READWRITE = 1 };
+pub const STGM_SHARE_DENY_NONE = STGM{ .SHARE_DENY_NONE = 1 };
+pub const STGM_SHARE_DENY_READ = STGM{
+    .SHARE_EXCLUSIVE = 1,
+    .SHARE_DENY_WRITE = 1,
+};
+pub const STGM_SHARE_DENY_WRITE = STGM{ .SHARE_DENY_WRITE = 1 };
+pub const STGM_SHARE_EXCLUSIVE = STGM{ .SHARE_EXCLUSIVE = 1 };
+pub const STGM_PRIORITY = STGM{ .PRIORITY = 1 };
+pub const STGM_DELETEONRELEASE = STGM{ .DELETEONRELEASE = 1 };
+pub const STGM_NOSCRATCH = STGM{ .NOSCRATCH = 1 };
+pub const STGM_CREATE = STGM{ .CREATE = 1 };
+pub const STGM_CONVERT = STGM{ .CONVERT = 1 };
+pub const STGM_FAILIFTHERE = STGM{ };
+pub const STGM_NOSNAPSHOT = STGM{ .NOSNAPSHOT = 1 };
+pub const STGM_DIRECT_SWMR = STGM{ .DIRECT_SWMR = 1 };
 
 pub const STGFMT = enum(u32) {
     STORAGE = 0,
@@ -171,34 +152,45 @@ pub const STGFMT_ANY = STGFMT.ANY;
 pub const STGFMT_DOCFILE = STGFMT.DOCFILE;
 pub const STGFMT_DOCUMENT = STGFMT.STORAGE;
 
-pub const STGC = enum(u32) {
-    DEFAULT = 0,
-    OVERWRITE = 1,
-    ONLYIFCURRENT = 2,
-    DANGEROUSLYCOMMITMERELYTODISKCACHE = 4,
-    CONSOLIDATE = 8,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        OVERWRITE: u1 = 0,
-        ONLYIFCURRENT: u1 = 0,
-        DANGEROUSLYCOMMITMERELYTODISKCACHE: u1 = 0,
-        CONSOLIDATE: u1 = 0,
-    }) STGC {
-        return @as(STGC, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(STGC.DEFAULT) else 0)
-            | (if (o.OVERWRITE == 1) @intFromEnum(STGC.OVERWRITE) else 0)
-            | (if (o.ONLYIFCURRENT == 1) @intFromEnum(STGC.ONLYIFCURRENT) else 0)
-            | (if (o.DANGEROUSLYCOMMITMERELYTODISKCACHE == 1) @intFromEnum(STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE) else 0)
-            | (if (o.CONSOLIDATE == 1) @intFromEnum(STGC.CONSOLIDATE) else 0)
-        ));
-    }
+pub const STGC = packed struct(u32) {
+    OVERWRITE: u1 = 0,
+    ONLYIFCURRENT: u1 = 0,
+    DANGEROUSLYCOMMITMERELYTODISKCACHE: u1 = 0,
+    CONSOLIDATE: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const STGC_DEFAULT = STGC.DEFAULT;
-pub const STGC_OVERWRITE = STGC.OVERWRITE;
-pub const STGC_ONLYIFCURRENT = STGC.ONLYIFCURRENT;
-pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC.DANGEROUSLYCOMMITMERELYTODISKCACHE;
-pub const STGC_CONSOLIDATE = STGC.CONSOLIDATE;
+pub const STGC_DEFAULT = STGC{ };
+pub const STGC_OVERWRITE = STGC{ .OVERWRITE = 1 };
+pub const STGC_ONLYIFCURRENT = STGC{ .ONLYIFCURRENT = 1 };
+pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC{ .DANGEROUSLYCOMMITMERELYTODISKCACHE = 1 };
+pub const STGC_CONSOLIDATE = STGC{ .CONSOLIDATE = 1 };
 
 pub const STGMOVE = enum(i32) {
     MOVE = 0,

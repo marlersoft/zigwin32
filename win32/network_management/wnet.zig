@@ -105,79 +105,93 @@ pub const WNPERM_DLG_PERM = WNPERM_DLG.PERM;
 pub const WNPERM_DLG_AUDIT = WNPERM_DLG.AUDIT;
 pub const WNPERM_DLG_OWNER = WNPERM_DLG.OWNER;
 
-pub const WNET_OPEN_ENUM_USAGE = enum(u32) {
-    NONE = 0,
-    CONNECTABLE = 1,
-    CONTAINER = 2,
-    ATTACHED = 16,
-    ALL = 19,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        CONNECTABLE: u1 = 0,
-        CONTAINER: u1 = 0,
-        ATTACHED: u1 = 0,
-        ALL: u1 = 0,
-    }) WNET_OPEN_ENUM_USAGE {
-        return @as(WNET_OPEN_ENUM_USAGE, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.NONE) else 0)
-            | (if (o.CONNECTABLE == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.CONNECTABLE) else 0)
-            | (if (o.CONTAINER == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.CONTAINER) else 0)
-            | (if (o.ATTACHED == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.ATTACHED) else 0)
-            | (if (o.ALL == 1) @intFromEnum(WNET_OPEN_ENUM_USAGE.ALL) else 0)
-        ));
-    }
+pub const WNET_OPEN_ENUM_USAGE = packed struct(u32) {
+    CONNECTABLE: u1 = 0,
+    CONTAINER: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    ATTACHED: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RESOURCEUSAGE_NONE = WNET_OPEN_ENUM_USAGE.NONE;
-pub const RESOURCEUSAGE_CONNECTABLE = WNET_OPEN_ENUM_USAGE.CONNECTABLE;
-pub const RESOURCEUSAGE_CONTAINER = WNET_OPEN_ENUM_USAGE.CONTAINER;
-pub const RESOURCEUSAGE_ATTACHED = WNET_OPEN_ENUM_USAGE.ATTACHED;
-pub const RESOURCEUSAGE_ALL = WNET_OPEN_ENUM_USAGE.ALL;
+pub const RESOURCEUSAGE_NONE = WNET_OPEN_ENUM_USAGE{ };
+pub const RESOURCEUSAGE_CONNECTABLE = WNET_OPEN_ENUM_USAGE{ .CONNECTABLE = 1 };
+pub const RESOURCEUSAGE_CONTAINER = WNET_OPEN_ENUM_USAGE{ .CONTAINER = 1 };
+pub const RESOURCEUSAGE_ATTACHED = WNET_OPEN_ENUM_USAGE{ .ATTACHED = 1 };
+pub const RESOURCEUSAGE_ALL = WNET_OPEN_ENUM_USAGE{
+    .CONNECTABLE = 1,
+    .CONTAINER = 1,
+    .ATTACHED = 1,
+};
 
-pub const NET_USE_CONNECT_FLAGS = enum(u32) {
-    INTERACTIVE = 8,
-    PROMPT = 16,
-    REDIRECT = 128,
-    UPDATE_PROFILE = 1,
-    COMMANDLINE = 2048,
-    CMD_SAVECRED = 4096,
-    TEMPORARY = 4,
-    DEFERRED = 1024,
-    UPDATE_RECENT = 2,
-    _,
-    pub fn initFlags(o: struct {
-        INTERACTIVE: u1 = 0,
-        PROMPT: u1 = 0,
-        REDIRECT: u1 = 0,
-        UPDATE_PROFILE: u1 = 0,
-        COMMANDLINE: u1 = 0,
-        CMD_SAVECRED: u1 = 0,
-        TEMPORARY: u1 = 0,
-        DEFERRED: u1 = 0,
-        UPDATE_RECENT: u1 = 0,
-    }) NET_USE_CONNECT_FLAGS {
-        return @as(NET_USE_CONNECT_FLAGS, @enumFromInt(
-              (if (o.INTERACTIVE == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.INTERACTIVE) else 0)
-            | (if (o.PROMPT == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.PROMPT) else 0)
-            | (if (o.REDIRECT == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.REDIRECT) else 0)
-            | (if (o.UPDATE_PROFILE == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.UPDATE_PROFILE) else 0)
-            | (if (o.COMMANDLINE == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.COMMANDLINE) else 0)
-            | (if (o.CMD_SAVECRED == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.CMD_SAVECRED) else 0)
-            | (if (o.TEMPORARY == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.TEMPORARY) else 0)
-            | (if (o.DEFERRED == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.DEFERRED) else 0)
-            | (if (o.UPDATE_RECENT == 1) @intFromEnum(NET_USE_CONNECT_FLAGS.UPDATE_RECENT) else 0)
-        ));
-    }
+pub const NET_USE_CONNECT_FLAGS = packed struct(u32) {
+    UPDATE_PROFILE: u1 = 0,
+    UPDATE_RECENT: u1 = 0,
+    TEMPORARY: u1 = 0,
+    INTERACTIVE: u1 = 0,
+    PROMPT: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    REDIRECT: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    DEFERRED: u1 = 0,
+    COMMANDLINE: u1 = 0,
+    CMD_SAVECRED: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CONNECT_INTERACTIVE = NET_USE_CONNECT_FLAGS.INTERACTIVE;
-pub const CONNECT_PROMPT = NET_USE_CONNECT_FLAGS.PROMPT;
-pub const CONNECT_REDIRECT = NET_USE_CONNECT_FLAGS.REDIRECT;
-pub const CONNECT_UPDATE_PROFILE = NET_USE_CONNECT_FLAGS.UPDATE_PROFILE;
-pub const CONNECT_COMMANDLINE = NET_USE_CONNECT_FLAGS.COMMANDLINE;
-pub const CONNECT_CMD_SAVECRED = NET_USE_CONNECT_FLAGS.CMD_SAVECRED;
-pub const CONNECT_TEMPORARY = NET_USE_CONNECT_FLAGS.TEMPORARY;
-pub const CONNECT_DEFERRED = NET_USE_CONNECT_FLAGS.DEFERRED;
-pub const CONNECT_UPDATE_RECENT = NET_USE_CONNECT_FLAGS.UPDATE_RECENT;
+pub const CONNECT_INTERACTIVE = NET_USE_CONNECT_FLAGS{ .INTERACTIVE = 1 };
+pub const CONNECT_PROMPT = NET_USE_CONNECT_FLAGS{ .PROMPT = 1 };
+pub const CONNECT_REDIRECT = NET_USE_CONNECT_FLAGS{ .REDIRECT = 1 };
+pub const CONNECT_UPDATE_PROFILE = NET_USE_CONNECT_FLAGS{ .UPDATE_PROFILE = 1 };
+pub const CONNECT_COMMANDLINE = NET_USE_CONNECT_FLAGS{ .COMMANDLINE = 1 };
+pub const CONNECT_CMD_SAVECRED = NET_USE_CONNECT_FLAGS{ .CMD_SAVECRED = 1 };
+pub const CONNECT_TEMPORARY = NET_USE_CONNECT_FLAGS{ .TEMPORARY = 1 };
+pub const CONNECT_DEFERRED = NET_USE_CONNECT_FLAGS{ .DEFERRED = 1 };
+pub const CONNECT_UPDATE_RECENT = NET_USE_CONNECT_FLAGS{ .UPDATE_RECENT = 1 };
 
 pub const NP_PROPERTY_DIALOG_SELECTION = enum(u32) {
     FILE = 0,
@@ -197,26 +211,43 @@ pub const WNDN_MKDIR = NPDIRECTORY_NOTIFY_OPERATION.MKDIR;
 pub const WNDN_RMDIR = NPDIRECTORY_NOTIFY_OPERATION.RMDIR;
 pub const WNDN_MVDIR = NPDIRECTORY_NOTIFY_OPERATION.MVDIR;
 
-pub const NET_RESOURCE_TYPE = enum(u32) {
-    ANY = 0,
-    DISK = 1,
-    PRINT = 2,
-    _,
-    pub fn initFlags(o: struct {
-        ANY: u1 = 0,
-        DISK: u1 = 0,
-        PRINT: u1 = 0,
-    }) NET_RESOURCE_TYPE {
-        return @as(NET_RESOURCE_TYPE, @enumFromInt(
-              (if (o.ANY == 1) @intFromEnum(NET_RESOURCE_TYPE.ANY) else 0)
-            | (if (o.DISK == 1) @intFromEnum(NET_RESOURCE_TYPE.DISK) else 0)
-            | (if (o.PRINT == 1) @intFromEnum(NET_RESOURCE_TYPE.PRINT) else 0)
-        ));
-    }
+pub const NET_RESOURCE_TYPE = packed struct(u32) {
+    DISK: u1 = 0,
+    PRINT: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RESOURCETYPE_ANY = NET_RESOURCE_TYPE.ANY;
-pub const RESOURCETYPE_DISK = NET_RESOURCE_TYPE.DISK;
-pub const RESOURCETYPE_PRINT = NET_RESOURCE_TYPE.PRINT;
+pub const RESOURCETYPE_ANY = NET_RESOURCE_TYPE{ };
+pub const RESOURCETYPE_DISK = NET_RESOURCE_TYPE{ .DISK = 1 };
+pub const RESOURCETYPE_PRINT = NET_RESOURCE_TYPE{ .PRINT = 1 };
 
 pub const NETWORK_NAME_FORMAT_FLAGS = enum(u32) {
     MULTILINE = 1,
@@ -236,76 +267,121 @@ pub const RESOURCE_CONTEXT = NET_RESOURCE_SCOPE.CONTEXT;
 pub const RESOURCE_GLOBALNET = NET_RESOURCE_SCOPE.GLOBALNET;
 pub const RESOURCE_REMEMBERED = NET_RESOURCE_SCOPE.REMEMBERED;
 
-pub const NETINFOSTRUCT_CHARACTERISTICS = enum(u32) {
-    DLL16 = 1,
-    DISKRED = 4,
-    PRINTERRED = 8,
-    _,
-    pub fn initFlags(o: struct {
-        DLL16: u1 = 0,
-        DISKRED: u1 = 0,
-        PRINTERRED: u1 = 0,
-    }) NETINFOSTRUCT_CHARACTERISTICS {
-        return @as(NETINFOSTRUCT_CHARACTERISTICS, @enumFromInt(
-              (if (o.DLL16 == 1) @intFromEnum(NETINFOSTRUCT_CHARACTERISTICS.DLL16) else 0)
-            | (if (o.DISKRED == 1) @intFromEnum(NETINFOSTRUCT_CHARACTERISTICS.DISKRED) else 0)
-            | (if (o.PRINTERRED == 1) @intFromEnum(NETINFOSTRUCT_CHARACTERISTICS.PRINTERRED) else 0)
-        ));
-    }
+pub const NETINFOSTRUCT_CHARACTERISTICS = packed struct(u32) {
+    DLL16: u1 = 0,
+    _1: u1 = 0,
+    DISKRED: u1 = 0,
+    PRINTERRED: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const NETINFO_DLL16 = NETINFOSTRUCT_CHARACTERISTICS.DLL16;
-pub const NETINFO_DISKRED = NETINFOSTRUCT_CHARACTERISTICS.DISKRED;
-pub const NETINFO_PRINTERRED = NETINFOSTRUCT_CHARACTERISTICS.PRINTERRED;
+pub const NETINFO_DLL16 = NETINFOSTRUCT_CHARACTERISTICS{ .DLL16 = 1 };
+pub const NETINFO_DISKRED = NETINFOSTRUCT_CHARACTERISTICS{ .DISKRED = 1 };
+pub const NETINFO_PRINTERRED = NETINFOSTRUCT_CHARACTERISTICS{ .PRINTERRED = 1 };
 
-pub const CONNECTDLGSTRUCT_FLAGS = enum(u32) {
-    RO_PATH = 1,
-    CONN_POINT = 2,
-    USE_MRU = 4,
-    HIDE_BOX = 8,
-    PERSIST = 16,
-    NOT_PERSIST = 32,
-    _,
-    pub fn initFlags(o: struct {
-        RO_PATH: u1 = 0,
-        CONN_POINT: u1 = 0,
-        USE_MRU: u1 = 0,
-        HIDE_BOX: u1 = 0,
-        PERSIST: u1 = 0,
-        NOT_PERSIST: u1 = 0,
-    }) CONNECTDLGSTRUCT_FLAGS {
-        return @as(CONNECTDLGSTRUCT_FLAGS, @enumFromInt(
-              (if (o.RO_PATH == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.RO_PATH) else 0)
-            | (if (o.CONN_POINT == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.CONN_POINT) else 0)
-            | (if (o.USE_MRU == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.USE_MRU) else 0)
-            | (if (o.HIDE_BOX == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.HIDE_BOX) else 0)
-            | (if (o.PERSIST == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.PERSIST) else 0)
-            | (if (o.NOT_PERSIST == 1) @intFromEnum(CONNECTDLGSTRUCT_FLAGS.NOT_PERSIST) else 0)
-        ));
-    }
+pub const CONNECTDLGSTRUCT_FLAGS = packed struct(u32) {
+    RO_PATH: u1 = 0,
+    CONN_POINT: u1 = 0,
+    USE_MRU: u1 = 0,
+    HIDE_BOX: u1 = 0,
+    PERSIST: u1 = 0,
+    NOT_PERSIST: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CONNDLG_RO_PATH = CONNECTDLGSTRUCT_FLAGS.RO_PATH;
-pub const CONNDLG_CONN_POINT = CONNECTDLGSTRUCT_FLAGS.CONN_POINT;
-pub const CONNDLG_USE_MRU = CONNECTDLGSTRUCT_FLAGS.USE_MRU;
-pub const CONNDLG_HIDE_BOX = CONNECTDLGSTRUCT_FLAGS.HIDE_BOX;
-pub const CONNDLG_PERSIST = CONNECTDLGSTRUCT_FLAGS.PERSIST;
-pub const CONNDLG_NOT_PERSIST = CONNECTDLGSTRUCT_FLAGS.NOT_PERSIST;
+pub const CONNDLG_RO_PATH = CONNECTDLGSTRUCT_FLAGS{ .RO_PATH = 1 };
+pub const CONNDLG_CONN_POINT = CONNECTDLGSTRUCT_FLAGS{ .CONN_POINT = 1 };
+pub const CONNDLG_USE_MRU = CONNECTDLGSTRUCT_FLAGS{ .USE_MRU = 1 };
+pub const CONNDLG_HIDE_BOX = CONNECTDLGSTRUCT_FLAGS{ .HIDE_BOX = 1 };
+pub const CONNDLG_PERSIST = CONNECTDLGSTRUCT_FLAGS{ .PERSIST = 1 };
+pub const CONNDLG_NOT_PERSIST = CONNECTDLGSTRUCT_FLAGS{ .NOT_PERSIST = 1 };
 
-pub const DISCDLGSTRUCT_FLAGS = enum(u32) {
-    UPDATE_PROFILE = 1,
-    NO_FORCE = 64,
-    _,
-    pub fn initFlags(o: struct {
-        UPDATE_PROFILE: u1 = 0,
-        NO_FORCE: u1 = 0,
-    }) DISCDLGSTRUCT_FLAGS {
-        return @as(DISCDLGSTRUCT_FLAGS, @enumFromInt(
-              (if (o.UPDATE_PROFILE == 1) @intFromEnum(DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE) else 0)
-            | (if (o.NO_FORCE == 1) @intFromEnum(DISCDLGSTRUCT_FLAGS.NO_FORCE) else 0)
-        ));
-    }
+pub const DISCDLGSTRUCT_FLAGS = packed struct(u32) {
+    UPDATE_PROFILE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    NO_FORCE: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCT_FLAGS.UPDATE_PROFILE;
-pub const DISC_NO_FORCE = DISCDLGSTRUCT_FLAGS.NO_FORCE;
+pub const DISC_UPDATE_PROFILE = DISCDLGSTRUCT_FLAGS{ .UPDATE_PROFILE = 1 };
+pub const DISC_NO_FORCE = DISCDLGSTRUCT_FLAGS{ .NO_FORCE = 1 };
 
 // TODO: this type has a FreeFunc 'WNetCloseEnum', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
