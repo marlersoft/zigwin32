@@ -1265,34 +1265,45 @@ pub const IBufferByteAccess = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const RO_ERROR_REPORTING_FLAGS = enum(u32) {
-    NONE = 0,
-    SUPPRESSEXCEPTIONS = 1,
-    FORCEEXCEPTIONS = 2,
-    USESETERRORINFO = 4,
-    SUPPRESSSETERRORINFO = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        SUPPRESSEXCEPTIONS: u1 = 0,
-        FORCEEXCEPTIONS: u1 = 0,
-        USESETERRORINFO: u1 = 0,
-        SUPPRESSSETERRORINFO: u1 = 0,
-    }) RO_ERROR_REPORTING_FLAGS {
-        return @as(RO_ERROR_REPORTING_FLAGS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(RO_ERROR_REPORTING_FLAGS.NONE) else 0)
-            | (if (o.SUPPRESSEXCEPTIONS == 1) @intFromEnum(RO_ERROR_REPORTING_FLAGS.SUPPRESSEXCEPTIONS) else 0)
-            | (if (o.FORCEEXCEPTIONS == 1) @intFromEnum(RO_ERROR_REPORTING_FLAGS.FORCEEXCEPTIONS) else 0)
-            | (if (o.USESETERRORINFO == 1) @intFromEnum(RO_ERROR_REPORTING_FLAGS.USESETERRORINFO) else 0)
-            | (if (o.SUPPRESSSETERRORINFO == 1) @intFromEnum(RO_ERROR_REPORTING_FLAGS.SUPPRESSSETERRORINFO) else 0)
-        ));
-    }
+pub const RO_ERROR_REPORTING_FLAGS = packed struct(u32) {
+    SUPPRESSEXCEPTIONS: u1 = 0,
+    FORCEEXCEPTIONS: u1 = 0,
+    USESETERRORINFO: u1 = 0,
+    SUPPRESSSETERRORINFO: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RO_ERROR_REPORTING_NONE = RO_ERROR_REPORTING_FLAGS.NONE;
-pub const RO_ERROR_REPORTING_SUPPRESSEXCEPTIONS = RO_ERROR_REPORTING_FLAGS.SUPPRESSEXCEPTIONS;
-pub const RO_ERROR_REPORTING_FORCEEXCEPTIONS = RO_ERROR_REPORTING_FLAGS.FORCEEXCEPTIONS;
-pub const RO_ERROR_REPORTING_USESETERRORINFO = RO_ERROR_REPORTING_FLAGS.USESETERRORINFO;
-pub const RO_ERROR_REPORTING_SUPPRESSSETERRORINFO = RO_ERROR_REPORTING_FLAGS.SUPPRESSSETERRORINFO;
+pub const RO_ERROR_REPORTING_NONE = RO_ERROR_REPORTING_FLAGS{ };
+pub const RO_ERROR_REPORTING_SUPPRESSEXCEPTIONS = RO_ERROR_REPORTING_FLAGS{ .SUPPRESSEXCEPTIONS = 1 };
+pub const RO_ERROR_REPORTING_FORCEEXCEPTIONS = RO_ERROR_REPORTING_FLAGS{ .FORCEEXCEPTIONS = 1 };
+pub const RO_ERROR_REPORTING_USESETERRORINFO = RO_ERROR_REPORTING_FLAGS{ .USESETERRORINFO = 1 };
+pub const RO_ERROR_REPORTING_SUPPRESSSETERRORINFO = RO_ERROR_REPORTING_FLAGS{ .SUPPRESSSETERRORINFO = 1 };
 
 pub const PINSPECT_MEMORY_CALLBACK = switch (@import("builtin").zig_backend) {
     .stage1 => fn(

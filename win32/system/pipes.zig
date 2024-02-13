@@ -10,44 +10,55 @@ pub const NMPWAIT_USE_DEFAULT_WAIT = @as(u32, 0);
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-pub const NAMED_PIPE_MODE = enum(u32) {
-    WAIT = 0,
-    NOWAIT = 1,
-    // READMODE_BYTE = 0, this enum value conflicts with WAIT
-    READMODE_MESSAGE = 2,
-    // CLIENT_END = 0, this enum value conflicts with WAIT
-    // SERVER_END = 1, this enum value conflicts with NOWAIT
-    // TYPE_BYTE = 0, this enum value conflicts with WAIT
-    TYPE_MESSAGE = 4,
-    // ACCEPT_REMOTE_CLIENTS = 0, this enum value conflicts with WAIT
-    REJECT_REMOTE_CLIENTS = 8,
-    _,
-    pub fn initFlags(o: struct {
-        WAIT: u1 = 0,
-        NOWAIT: u1 = 0,
-        READMODE_MESSAGE: u1 = 0,
-        TYPE_MESSAGE: u1 = 0,
-        REJECT_REMOTE_CLIENTS: u1 = 0,
-    }) NAMED_PIPE_MODE {
-        return @as(NAMED_PIPE_MODE, @enumFromInt(
-              (if (o.WAIT == 1) @intFromEnum(NAMED_PIPE_MODE.WAIT) else 0)
-            | (if (o.NOWAIT == 1) @intFromEnum(NAMED_PIPE_MODE.NOWAIT) else 0)
-            | (if (o.READMODE_MESSAGE == 1) @intFromEnum(NAMED_PIPE_MODE.READMODE_MESSAGE) else 0)
-            | (if (o.TYPE_MESSAGE == 1) @intFromEnum(NAMED_PIPE_MODE.TYPE_MESSAGE) else 0)
-            | (if (o.REJECT_REMOTE_CLIENTS == 1) @intFromEnum(NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS) else 0)
-        ));
-    }
+pub const NAMED_PIPE_MODE = packed struct(u32) {
+    NOWAIT: u1 = 0,
+    READMODE_MESSAGE: u1 = 0,
+    TYPE_MESSAGE: u1 = 0,
+    REJECT_REMOTE_CLIENTS: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // READMODE_BYTE (0) conflicts with WAIT
+    // CLIENT_END (0) conflicts with WAIT
+    // SERVER_END (1) conflicts with NOWAIT
+    // TYPE_BYTE (0) conflicts with WAIT
+    // ACCEPT_REMOTE_CLIENTS (0) conflicts with WAIT
 };
-pub const PIPE_WAIT = NAMED_PIPE_MODE.WAIT;
-pub const PIPE_NOWAIT = NAMED_PIPE_MODE.NOWAIT;
-pub const PIPE_READMODE_BYTE = NAMED_PIPE_MODE.WAIT;
-pub const PIPE_READMODE_MESSAGE = NAMED_PIPE_MODE.READMODE_MESSAGE;
-pub const PIPE_CLIENT_END = NAMED_PIPE_MODE.WAIT;
-pub const PIPE_SERVER_END = NAMED_PIPE_MODE.NOWAIT;
-pub const PIPE_TYPE_BYTE = NAMED_PIPE_MODE.WAIT;
-pub const PIPE_TYPE_MESSAGE = NAMED_PIPE_MODE.TYPE_MESSAGE;
-pub const PIPE_ACCEPT_REMOTE_CLIENTS = NAMED_PIPE_MODE.WAIT;
-pub const PIPE_REJECT_REMOTE_CLIENTS = NAMED_PIPE_MODE.REJECT_REMOTE_CLIENTS;
+pub const PIPE_WAIT = NAMED_PIPE_MODE{ };
+pub const PIPE_NOWAIT = NAMED_PIPE_MODE{ .NOWAIT = 1 };
+pub const PIPE_READMODE_BYTE = NAMED_PIPE_MODE{ };
+pub const PIPE_READMODE_MESSAGE = NAMED_PIPE_MODE{ .READMODE_MESSAGE = 1 };
+pub const PIPE_CLIENT_END = NAMED_PIPE_MODE{ };
+pub const PIPE_SERVER_END = NAMED_PIPE_MODE{ .NOWAIT = 1 };
+pub const PIPE_TYPE_BYTE = NAMED_PIPE_MODE{ };
+pub const PIPE_TYPE_MESSAGE = NAMED_PIPE_MODE{ .TYPE_MESSAGE = 1 };
+pub const PIPE_ACCEPT_REMOTE_CLIENTS = NAMED_PIPE_MODE{ };
+pub const PIPE_REJECT_REMOTE_CLIENTS = NAMED_PIPE_MODE{ .REJECT_REMOTE_CLIENTS = 1 };
 
 
 //--------------------------------------------------------------------------------

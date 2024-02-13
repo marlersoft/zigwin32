@@ -6,79 +6,89 @@
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = enum(u32) {
-    ALLOWSFW = 128,
-    FLUSHDISK = 4,
-    FORCEIFHUNG = 32,
-    IGNORECURRENTTASK = 2,
-    NOHANG = 8,
-    NOTIMEOUTIFNOTHUNG = 64,
-    POSTMESSAGE = 16,
-    QUERY = 1,
-    SENDNOTIFYMESSAGE = 256,
-    LUID = 1024,
-    RETURNHDESK = 512,
-    _,
-    pub fn initFlags(o: struct {
-        ALLOWSFW: u1 = 0,
-        FLUSHDISK: u1 = 0,
-        FORCEIFHUNG: u1 = 0,
-        IGNORECURRENTTASK: u1 = 0,
-        NOHANG: u1 = 0,
-        NOTIMEOUTIFNOTHUNG: u1 = 0,
-        POSTMESSAGE: u1 = 0,
-        QUERY: u1 = 0,
-        SENDNOTIFYMESSAGE: u1 = 0,
-        LUID: u1 = 0,
-        RETURNHDESK: u1 = 0,
-    }) BROADCAST_SYSTEM_MESSAGE_FLAGS {
-        return @as(BROADCAST_SYSTEM_MESSAGE_FLAGS, @enumFromInt(
-              (if (o.ALLOWSFW == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW) else 0)
-            | (if (o.FLUSHDISK == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK) else 0)
-            | (if (o.FORCEIFHUNG == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.FORCEIFHUNG) else 0)
-            | (if (o.IGNORECURRENTTASK == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.IGNORECURRENTTASK) else 0)
-            | (if (o.NOHANG == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOHANG) else 0)
-            | (if (o.NOTIMEOUTIFNOTHUNG == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOTIMEOUTIFNOTHUNG) else 0)
-            | (if (o.POSTMESSAGE == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.POSTMESSAGE) else 0)
-            | (if (o.QUERY == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.QUERY) else 0)
-            | (if (o.SENDNOTIFYMESSAGE == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSAGE) else 0)
-            | (if (o.LUID == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID) else 0)
-            | (if (o.RETURNHDESK == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK) else 0)
-        ));
-    }
+pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = packed struct(u32) {
+    QUERY: u1 = 0,
+    IGNORECURRENTTASK: u1 = 0,
+    FLUSHDISK: u1 = 0,
+    NOHANG: u1 = 0,
+    POSTMESSAGE: u1 = 0,
+    FORCEIFHUNG: u1 = 0,
+    NOTIMEOUTIFNOTHUNG: u1 = 0,
+    ALLOWSFW: u1 = 0,
+    SENDNOTIFYMESSAGE: u1 = 0,
+    RETURNHDESK: u1 = 0,
+    LUID: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const BSF_ALLOWSFW = BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW;
-pub const BSF_FLUSHDISK = BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK;
-pub const BSF_FORCEIFHUNG = BROADCAST_SYSTEM_MESSAGE_FLAGS.FORCEIFHUNG;
-pub const BSF_IGNORECURRENTTASK = BROADCAST_SYSTEM_MESSAGE_FLAGS.IGNORECURRENTTASK;
-pub const BSF_NOHANG = BROADCAST_SYSTEM_MESSAGE_FLAGS.NOHANG;
-pub const BSF_NOTIMEOUTIFNOTHUNG = BROADCAST_SYSTEM_MESSAGE_FLAGS.NOTIMEOUTIFNOTHUNG;
-pub const BSF_POSTMESSAGE = BROADCAST_SYSTEM_MESSAGE_FLAGS.POSTMESSAGE;
-pub const BSF_QUERY = BROADCAST_SYSTEM_MESSAGE_FLAGS.QUERY;
-pub const BSF_SENDNOTIFYMESSAGE = BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSAGE;
-pub const BSF_LUID = BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID;
-pub const BSF_RETURNHDESK = BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK;
+pub const BSF_ALLOWSFW = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .ALLOWSFW = 1 };
+pub const BSF_FLUSHDISK = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .FLUSHDISK = 1 };
+pub const BSF_FORCEIFHUNG = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .FORCEIFHUNG = 1 };
+pub const BSF_IGNORECURRENTTASK = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .IGNORECURRENTTASK = 1 };
+pub const BSF_NOHANG = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .NOHANG = 1 };
+pub const BSF_NOTIMEOUTIFNOTHUNG = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .NOTIMEOUTIFNOTHUNG = 1 };
+pub const BSF_POSTMESSAGE = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .POSTMESSAGE = 1 };
+pub const BSF_QUERY = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .QUERY = 1 };
+pub const BSF_SENDNOTIFYMESSAGE = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .SENDNOTIFYMESSAGE = 1 };
+pub const BSF_LUID = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .LUID = 1 };
+pub const BSF_RETURNHDESK = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .RETURNHDESK = 1 };
 
-pub const BROADCAST_SYSTEM_MESSAGE_INFO = enum(u32) {
-    LLCOMPONENTS = 0,
-    LLDESKTOPS = 16,
-    PPLICATIONS = 8,
-    _,
-    pub fn initFlags(o: struct {
-        LLCOMPONENTS: u1 = 0,
-        LLDESKTOPS: u1 = 0,
-        PPLICATIONS: u1 = 0,
-    }) BROADCAST_SYSTEM_MESSAGE_INFO {
-        return @as(BROADCAST_SYSTEM_MESSAGE_INFO, @enumFromInt(
-              (if (o.LLCOMPONENTS == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS) else 0)
-            | (if (o.LLDESKTOPS == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS) else 0)
-            | (if (o.PPLICATIONS == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS) else 0)
-        ));
-    }
+pub const BROADCAST_SYSTEM_MESSAGE_INFO = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    PPLICATIONS: u1 = 0,
+    LLDESKTOPS: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const BSM_ALLCOMPONENTS = BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS;
-pub const BSM_ALLDESKTOPS = BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS;
-pub const BSM_APPLICATIONS = BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS;
+pub const BSM_ALLCOMPONENTS = BROADCAST_SYSTEM_MESSAGE_INFO{ };
+pub const BSM_ALLDESKTOPS = BROADCAST_SYSTEM_MESSAGE_INFO{ .LLDESKTOPS = 1 };
+pub const BSM_APPLICATIONS = BROADCAST_SYSTEM_MESSAGE_INFO{ .PPLICATIONS = 1 };
 
 pub const USER_OBJECT_INFORMATION_INDEX = enum(u32) {
     FLAGS = 1,

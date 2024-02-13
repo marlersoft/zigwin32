@@ -468,397 +468,368 @@ pub const RECO_DRAG = @as(i32, 4);
 //--------------------------------------------------------------------------------
 // Section: Types (101)
 //--------------------------------------------------------------------------------
-pub const CFM_MASK = enum(u32) {
-    SUBSCRIPT = 196608,
-    // SUPERSCRIPT = 196608, this enum value conflicts with SUBSCRIPT
-    EFFECTS = 1073741887,
-    ALL = 4160749631,
-    BOLD = 1,
-    CHARSET = 134217728,
-    COLOR = 1073741824,
-    FACE = 536870912,
-    ITALIC = 2,
-    OFFSET = 268435456,
-    PROTECTED = 16,
-    SIZE = 2147483648,
-    STRIKEOUT = 8,
-    UNDERLINE = 4,
-    LINK = 32,
-    SMALLCAPS = 64,
-    ALLCAPS = 128,
-    HIDDEN = 256,
-    OUTLINE = 512,
-    SHADOW = 1024,
-    EMBOSS = 2048,
-    IMPRINT = 4096,
-    DISABLED = 8192,
-    REVISED = 16384,
-    REVAUTHOR = 32768,
-    ANIMATION = 262144,
-    STYLE = 524288,
-    KERNING = 1048576,
-    SPACING = 2097152,
-    WEIGHT = 4194304,
-    UNDERLINETYPE = 8388608,
-    COOKIE = 16777216,
-    LCID = 33554432,
-    BACKCOLOR = 67108864,
-    EFFECTS2 = 1141080063,
-    ALL2 = 4294967295,
-    // FONTBOUND = 1048576, this enum value conflicts with KERNING
-    // LINKPROTECTED = 8388608, this enum value conflicts with UNDERLINETYPE
-    // EXTENDED = 33554432, this enum value conflicts with LCID
-    // MATHNOBUILDUP = 134217728, this enum value conflicts with CHARSET
-    // MATH = 268435456, this enum value conflicts with OFFSET
-    // MATHORDINARY = 536870912, this enum value conflicts with FACE
-    ALLEFFECTS = 2115207167,
-    _,
-    pub fn initFlags(o: struct {
-        SUBSCRIPT: u1 = 0,
-        EFFECTS: u1 = 0,
-        ALL: u1 = 0,
-        BOLD: u1 = 0,
-        CHARSET: u1 = 0,
-        COLOR: u1 = 0,
-        FACE: u1 = 0,
-        ITALIC: u1 = 0,
-        OFFSET: u1 = 0,
-        PROTECTED: u1 = 0,
-        SIZE: u1 = 0,
-        STRIKEOUT: u1 = 0,
-        UNDERLINE: u1 = 0,
-        LINK: u1 = 0,
-        SMALLCAPS: u1 = 0,
-        ALLCAPS: u1 = 0,
-        HIDDEN: u1 = 0,
-        OUTLINE: u1 = 0,
-        SHADOW: u1 = 0,
-        EMBOSS: u1 = 0,
-        IMPRINT: u1 = 0,
-        DISABLED: u1 = 0,
-        REVISED: u1 = 0,
-        REVAUTHOR: u1 = 0,
-        ANIMATION: u1 = 0,
-        STYLE: u1 = 0,
-        KERNING: u1 = 0,
-        SPACING: u1 = 0,
-        WEIGHT: u1 = 0,
-        UNDERLINETYPE: u1 = 0,
-        COOKIE: u1 = 0,
-        LCID: u1 = 0,
-        BACKCOLOR: u1 = 0,
-        EFFECTS2: u1 = 0,
-        ALL2: u1 = 0,
-        ALLEFFECTS: u1 = 0,
-    }) CFM_MASK {
-        return @as(CFM_MASK, @enumFromInt(
-              (if (o.SUBSCRIPT == 1) @intFromEnum(CFM_MASK.SUBSCRIPT) else 0)
-            | (if (o.EFFECTS == 1) @intFromEnum(CFM_MASK.EFFECTS) else 0)
-            | (if (o.ALL == 1) @intFromEnum(CFM_MASK.ALL) else 0)
-            | (if (o.BOLD == 1) @intFromEnum(CFM_MASK.BOLD) else 0)
-            | (if (o.CHARSET == 1) @intFromEnum(CFM_MASK.CHARSET) else 0)
-            | (if (o.COLOR == 1) @intFromEnum(CFM_MASK.COLOR) else 0)
-            | (if (o.FACE == 1) @intFromEnum(CFM_MASK.FACE) else 0)
-            | (if (o.ITALIC == 1) @intFromEnum(CFM_MASK.ITALIC) else 0)
-            | (if (o.OFFSET == 1) @intFromEnum(CFM_MASK.OFFSET) else 0)
-            | (if (o.PROTECTED == 1) @intFromEnum(CFM_MASK.PROTECTED) else 0)
-            | (if (o.SIZE == 1) @intFromEnum(CFM_MASK.SIZE) else 0)
-            | (if (o.STRIKEOUT == 1) @intFromEnum(CFM_MASK.STRIKEOUT) else 0)
-            | (if (o.UNDERLINE == 1) @intFromEnum(CFM_MASK.UNDERLINE) else 0)
-            | (if (o.LINK == 1) @intFromEnum(CFM_MASK.LINK) else 0)
-            | (if (o.SMALLCAPS == 1) @intFromEnum(CFM_MASK.SMALLCAPS) else 0)
-            | (if (o.ALLCAPS == 1) @intFromEnum(CFM_MASK.ALLCAPS) else 0)
-            | (if (o.HIDDEN == 1) @intFromEnum(CFM_MASK.HIDDEN) else 0)
-            | (if (o.OUTLINE == 1) @intFromEnum(CFM_MASK.OUTLINE) else 0)
-            | (if (o.SHADOW == 1) @intFromEnum(CFM_MASK.SHADOW) else 0)
-            | (if (o.EMBOSS == 1) @intFromEnum(CFM_MASK.EMBOSS) else 0)
-            | (if (o.IMPRINT == 1) @intFromEnum(CFM_MASK.IMPRINT) else 0)
-            | (if (o.DISABLED == 1) @intFromEnum(CFM_MASK.DISABLED) else 0)
-            | (if (o.REVISED == 1) @intFromEnum(CFM_MASK.REVISED) else 0)
-            | (if (o.REVAUTHOR == 1) @intFromEnum(CFM_MASK.REVAUTHOR) else 0)
-            | (if (o.ANIMATION == 1) @intFromEnum(CFM_MASK.ANIMATION) else 0)
-            | (if (o.STYLE == 1) @intFromEnum(CFM_MASK.STYLE) else 0)
-            | (if (o.KERNING == 1) @intFromEnum(CFM_MASK.KERNING) else 0)
-            | (if (o.SPACING == 1) @intFromEnum(CFM_MASK.SPACING) else 0)
-            | (if (o.WEIGHT == 1) @intFromEnum(CFM_MASK.WEIGHT) else 0)
-            | (if (o.UNDERLINETYPE == 1) @intFromEnum(CFM_MASK.UNDERLINETYPE) else 0)
-            | (if (o.COOKIE == 1) @intFromEnum(CFM_MASK.COOKIE) else 0)
-            | (if (o.LCID == 1) @intFromEnum(CFM_MASK.LCID) else 0)
-            | (if (o.BACKCOLOR == 1) @intFromEnum(CFM_MASK.BACKCOLOR) else 0)
-            | (if (o.EFFECTS2 == 1) @intFromEnum(CFM_MASK.EFFECTS2) else 0)
-            | (if (o.ALL2 == 1) @intFromEnum(CFM_MASK.ALL2) else 0)
-            | (if (o.ALLEFFECTS == 1) @intFromEnum(CFM_MASK.ALLEFFECTS) else 0)
-        ));
-    }
+pub const CFM_MASK = packed struct(u32) {
+    BOLD: u1 = 0,
+    ITALIC: u1 = 0,
+    UNDERLINE: u1 = 0,
+    STRIKEOUT: u1 = 0,
+    PROTECTED: u1 = 0,
+    LINK: u1 = 0,
+    SMALLCAPS: u1 = 0,
+    ALLCAPS: u1 = 0,
+    HIDDEN: u1 = 0,
+    OUTLINE: u1 = 0,
+    SHADOW: u1 = 0,
+    EMBOSS: u1 = 0,
+    IMPRINT: u1 = 0,
+    DISABLED: u1 = 0,
+    REVISED: u1 = 0,
+    REVAUTHOR: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    ANIMATION: u1 = 0,
+    STYLE: u1 = 0,
+    KERNING: u1 = 0,
+    SPACING: u1 = 0,
+    WEIGHT: u1 = 0,
+    UNDERLINETYPE: u1 = 0,
+    COOKIE: u1 = 0,
+    LCID: u1 = 0,
+    BACKCOLOR: u1 = 0,
+    CHARSET: u1 = 0,
+    OFFSET: u1 = 0,
+    FACE: u1 = 0,
+    COLOR: u1 = 0,
+    SIZE: u1 = 0,
+    // SUPERSCRIPT (196608) conflicts with SUBSCRIPT
+    // FONTBOUND (1048576) conflicts with KERNING
+    // LINKPROTECTED (8388608) conflicts with UNDERLINETYPE
+    // EXTENDED (33554432) conflicts with LCID
+    // MATHNOBUILDUP (134217728) conflicts with CHARSET
+    // MATH (268435456) conflicts with OFFSET
+    // MATHORDINARY (536870912) conflicts with FACE
 };
-pub const CFM_SUBSCRIPT = CFM_MASK.SUBSCRIPT;
-pub const CFM_SUPERSCRIPT = CFM_MASK.SUBSCRIPT;
-pub const CFM_EFFECTS = CFM_MASK.EFFECTS;
-pub const CFM_ALL = CFM_MASK.ALL;
-pub const CFM_BOLD = CFM_MASK.BOLD;
-pub const CFM_CHARSET = CFM_MASK.CHARSET;
-pub const CFM_COLOR = CFM_MASK.COLOR;
-pub const CFM_FACE = CFM_MASK.FACE;
-pub const CFM_ITALIC = CFM_MASK.ITALIC;
-pub const CFM_OFFSET = CFM_MASK.OFFSET;
-pub const CFM_PROTECTED = CFM_MASK.PROTECTED;
-pub const CFM_SIZE = CFM_MASK.SIZE;
-pub const CFM_STRIKEOUT = CFM_MASK.STRIKEOUT;
-pub const CFM_UNDERLINE = CFM_MASK.UNDERLINE;
-pub const CFM_LINK = CFM_MASK.LINK;
-pub const CFM_SMALLCAPS = CFM_MASK.SMALLCAPS;
-pub const CFM_ALLCAPS = CFM_MASK.ALLCAPS;
-pub const CFM_HIDDEN = CFM_MASK.HIDDEN;
-pub const CFM_OUTLINE = CFM_MASK.OUTLINE;
-pub const CFM_SHADOW = CFM_MASK.SHADOW;
-pub const CFM_EMBOSS = CFM_MASK.EMBOSS;
-pub const CFM_IMPRINT = CFM_MASK.IMPRINT;
-pub const CFM_DISABLED = CFM_MASK.DISABLED;
-pub const CFM_REVISED = CFM_MASK.REVISED;
-pub const CFM_REVAUTHOR = CFM_MASK.REVAUTHOR;
-pub const CFM_ANIMATION = CFM_MASK.ANIMATION;
-pub const CFM_STYLE = CFM_MASK.STYLE;
-pub const CFM_KERNING = CFM_MASK.KERNING;
-pub const CFM_SPACING = CFM_MASK.SPACING;
-pub const CFM_WEIGHT = CFM_MASK.WEIGHT;
-pub const CFM_UNDERLINETYPE = CFM_MASK.UNDERLINETYPE;
-pub const CFM_COOKIE = CFM_MASK.COOKIE;
-pub const CFM_LCID = CFM_MASK.LCID;
-pub const CFM_BACKCOLOR = CFM_MASK.BACKCOLOR;
-pub const CFM_EFFECTS2 = CFM_MASK.EFFECTS2;
-pub const CFM_ALL2 = CFM_MASK.ALL2;
-pub const CFM_FONTBOUND = CFM_MASK.KERNING;
-pub const CFM_LINKPROTECTED = CFM_MASK.UNDERLINETYPE;
-pub const CFM_EXTENDED = CFM_MASK.LCID;
-pub const CFM_MATHNOBUILDUP = CFM_MASK.CHARSET;
-pub const CFM_MATH = CFM_MASK.OFFSET;
-pub const CFM_MATHORDINARY = CFM_MASK.FACE;
-pub const CFM_ALLEFFECTS = CFM_MASK.ALLEFFECTS;
+pub const CFM_SUBSCRIPT = CFM_MASK{
+    ._16 = 1,
+    ._17 = 1,
+};
+pub const CFM_SUPERSCRIPT = CFM_MASK{
+    ._16 = 1,
+    ._17 = 1,
+};
+pub const CFM_EFFECTS = CFM_MASK{
+    .BOLD = 1,
+    .ITALIC = 1,
+    .UNDERLINE = 1,
+    .STRIKEOUT = 1,
+    .PROTECTED = 1,
+    .LINK = 1,
+    .COLOR = 1,
+};
+pub const CFM_ALL = CFM_MASK{
+    .BOLD = 1,
+    .ITALIC = 1,
+    .UNDERLINE = 1,
+    .STRIKEOUT = 1,
+    .PROTECTED = 1,
+    .LINK = 1,
+    .CHARSET = 1,
+    .OFFSET = 1,
+    .FACE = 1,
+    .COLOR = 1,
+    .SIZE = 1,
+};
+pub const CFM_BOLD = CFM_MASK{ .BOLD = 1 };
+pub const CFM_CHARSET = CFM_MASK{ .CHARSET = 1 };
+pub const CFM_COLOR = CFM_MASK{ .COLOR = 1 };
+pub const CFM_FACE = CFM_MASK{ .FACE = 1 };
+pub const CFM_ITALIC = CFM_MASK{ .ITALIC = 1 };
+pub const CFM_OFFSET = CFM_MASK{ .OFFSET = 1 };
+pub const CFM_PROTECTED = CFM_MASK{ .PROTECTED = 1 };
+pub const CFM_SIZE = CFM_MASK{ .SIZE = 1 };
+pub const CFM_STRIKEOUT = CFM_MASK{ .STRIKEOUT = 1 };
+pub const CFM_UNDERLINE = CFM_MASK{ .UNDERLINE = 1 };
+pub const CFM_LINK = CFM_MASK{ .LINK = 1 };
+pub const CFM_SMALLCAPS = CFM_MASK{ .SMALLCAPS = 1 };
+pub const CFM_ALLCAPS = CFM_MASK{ .ALLCAPS = 1 };
+pub const CFM_HIDDEN = CFM_MASK{ .HIDDEN = 1 };
+pub const CFM_OUTLINE = CFM_MASK{ .OUTLINE = 1 };
+pub const CFM_SHADOW = CFM_MASK{ .SHADOW = 1 };
+pub const CFM_EMBOSS = CFM_MASK{ .EMBOSS = 1 };
+pub const CFM_IMPRINT = CFM_MASK{ .IMPRINT = 1 };
+pub const CFM_DISABLED = CFM_MASK{ .DISABLED = 1 };
+pub const CFM_REVISED = CFM_MASK{ .REVISED = 1 };
+pub const CFM_REVAUTHOR = CFM_MASK{ .REVAUTHOR = 1 };
+pub const CFM_ANIMATION = CFM_MASK{ .ANIMATION = 1 };
+pub const CFM_STYLE = CFM_MASK{ .STYLE = 1 };
+pub const CFM_KERNING = CFM_MASK{ .KERNING = 1 };
+pub const CFM_SPACING = CFM_MASK{ .SPACING = 1 };
+pub const CFM_WEIGHT = CFM_MASK{ .WEIGHT = 1 };
+pub const CFM_UNDERLINETYPE = CFM_MASK{ .UNDERLINETYPE = 1 };
+pub const CFM_COOKIE = CFM_MASK{ .COOKIE = 1 };
+pub const CFM_LCID = CFM_MASK{ .LCID = 1 };
+pub const CFM_BACKCOLOR = CFM_MASK{ .BACKCOLOR = 1 };
+pub const CFM_EFFECTS2 = CFM_MASK{
+    .BOLD = 1,
+    .ITALIC = 1,
+    .UNDERLINE = 1,
+    .STRIKEOUT = 1,
+    .PROTECTED = 1,
+    .LINK = 1,
+    .SMALLCAPS = 1,
+    .ALLCAPS = 1,
+    .HIDDEN = 1,
+    .OUTLINE = 1,
+    .SHADOW = 1,
+    .EMBOSS = 1,
+    .IMPRINT = 1,
+    .DISABLED = 1,
+    .REVISED = 1,
+    ._16 = 1,
+    ._17 = 1,
+    .BACKCOLOR = 1,
+    .COLOR = 1,
+};
+pub const CFM_ALL2 = CFM_MASK{
+    .BOLD = 1,
+    .ITALIC = 1,
+    .UNDERLINE = 1,
+    .STRIKEOUT = 1,
+    .PROTECTED = 1,
+    .LINK = 1,
+    .SMALLCAPS = 1,
+    .ALLCAPS = 1,
+    .HIDDEN = 1,
+    .OUTLINE = 1,
+    .SHADOW = 1,
+    .EMBOSS = 1,
+    .IMPRINT = 1,
+    .DISABLED = 1,
+    .REVISED = 1,
+    .REVAUTHOR = 1,
+    ._16 = 1,
+    ._17 = 1,
+    .ANIMATION = 1,
+    .STYLE = 1,
+    .KERNING = 1,
+    .SPACING = 1,
+    .WEIGHT = 1,
+    .UNDERLINETYPE = 1,
+    .COOKIE = 1,
+    .LCID = 1,
+    .BACKCOLOR = 1,
+    .CHARSET = 1,
+    .OFFSET = 1,
+    .FACE = 1,
+    .COLOR = 1,
+    .SIZE = 1,
+};
+pub const CFM_FONTBOUND = CFM_MASK{ .KERNING = 1 };
+pub const CFM_LINKPROTECTED = CFM_MASK{ .UNDERLINETYPE = 1 };
+pub const CFM_EXTENDED = CFM_MASK{ .LCID = 1 };
+pub const CFM_MATHNOBUILDUP = CFM_MASK{ .CHARSET = 1 };
+pub const CFM_MATH = CFM_MASK{ .OFFSET = 1 };
+pub const CFM_MATHORDINARY = CFM_MASK{ .FACE = 1 };
+pub const CFM_ALLEFFECTS = CFM_MASK{
+    .BOLD = 1,
+    .ITALIC = 1,
+    .UNDERLINE = 1,
+    .STRIKEOUT = 1,
+    .PROTECTED = 1,
+    .LINK = 1,
+    .SMALLCAPS = 1,
+    .ALLCAPS = 1,
+    .HIDDEN = 1,
+    .OUTLINE = 1,
+    .SHADOW = 1,
+    .EMBOSS = 1,
+    .IMPRINT = 1,
+    .DISABLED = 1,
+    .REVISED = 1,
+    ._16 = 1,
+    ._17 = 1,
+    .KERNING = 1,
+    .LCID = 1,
+    .BACKCOLOR = 1,
+    .CHARSET = 1,
+    .OFFSET = 1,
+    .FACE = 1,
+    .COLOR = 1,
+};
 
-pub const CFE_EFFECTS = enum(u32) {
-    ALLCAPS = 128,
-    AUTOBACKCOLOR = 67108864,
-    DISABLED = 8192,
-    EMBOSS = 2048,
-    HIDDEN = 256,
-    IMPRINT = 4096,
-    OUTLINE = 512,
-    REVISED = 16384,
-    SHADOW = 1024,
-    SMALLCAPS = 64,
-    AUTOCOLOR = 1073741824,
-    BOLD = 1,
-    ITALIC = 2,
-    STRIKEOUT = 8,
-    UNDERLINE = 4,
-    PROTECTED = 16,
-    LINK = 32,
-    SUBSCRIPT = 65536,
-    SUPERSCRIPT = 131072,
-    FONTBOUND = 1048576,
-    LINKPROTECTED = 8388608,
-    EXTENDED = 33554432,
-    MATHNOBUILDUP = 134217728,
-    MATH = 268435456,
-    MATHORDINARY = 536870912,
-    _,
-    pub fn initFlags(o: struct {
-        ALLCAPS: u1 = 0,
-        AUTOBACKCOLOR: u1 = 0,
-        DISABLED: u1 = 0,
-        EMBOSS: u1 = 0,
-        HIDDEN: u1 = 0,
-        IMPRINT: u1 = 0,
-        OUTLINE: u1 = 0,
-        REVISED: u1 = 0,
-        SHADOW: u1 = 0,
-        SMALLCAPS: u1 = 0,
-        AUTOCOLOR: u1 = 0,
-        BOLD: u1 = 0,
-        ITALIC: u1 = 0,
-        STRIKEOUT: u1 = 0,
-        UNDERLINE: u1 = 0,
-        PROTECTED: u1 = 0,
-        LINK: u1 = 0,
-        SUBSCRIPT: u1 = 0,
-        SUPERSCRIPT: u1 = 0,
-        FONTBOUND: u1 = 0,
-        LINKPROTECTED: u1 = 0,
-        EXTENDED: u1 = 0,
-        MATHNOBUILDUP: u1 = 0,
-        MATH: u1 = 0,
-        MATHORDINARY: u1 = 0,
-    }) CFE_EFFECTS {
-        return @as(CFE_EFFECTS, @enumFromInt(
-              (if (o.ALLCAPS == 1) @intFromEnum(CFE_EFFECTS.ALLCAPS) else 0)
-            | (if (o.AUTOBACKCOLOR == 1) @intFromEnum(CFE_EFFECTS.AUTOBACKCOLOR) else 0)
-            | (if (o.DISABLED == 1) @intFromEnum(CFE_EFFECTS.DISABLED) else 0)
-            | (if (o.EMBOSS == 1) @intFromEnum(CFE_EFFECTS.EMBOSS) else 0)
-            | (if (o.HIDDEN == 1) @intFromEnum(CFE_EFFECTS.HIDDEN) else 0)
-            | (if (o.IMPRINT == 1) @intFromEnum(CFE_EFFECTS.IMPRINT) else 0)
-            | (if (o.OUTLINE == 1) @intFromEnum(CFE_EFFECTS.OUTLINE) else 0)
-            | (if (o.REVISED == 1) @intFromEnum(CFE_EFFECTS.REVISED) else 0)
-            | (if (o.SHADOW == 1) @intFromEnum(CFE_EFFECTS.SHADOW) else 0)
-            | (if (o.SMALLCAPS == 1) @intFromEnum(CFE_EFFECTS.SMALLCAPS) else 0)
-            | (if (o.AUTOCOLOR == 1) @intFromEnum(CFE_EFFECTS.AUTOCOLOR) else 0)
-            | (if (o.BOLD == 1) @intFromEnum(CFE_EFFECTS.BOLD) else 0)
-            | (if (o.ITALIC == 1) @intFromEnum(CFE_EFFECTS.ITALIC) else 0)
-            | (if (o.STRIKEOUT == 1) @intFromEnum(CFE_EFFECTS.STRIKEOUT) else 0)
-            | (if (o.UNDERLINE == 1) @intFromEnum(CFE_EFFECTS.UNDERLINE) else 0)
-            | (if (o.PROTECTED == 1) @intFromEnum(CFE_EFFECTS.PROTECTED) else 0)
-            | (if (o.LINK == 1) @intFromEnum(CFE_EFFECTS.LINK) else 0)
-            | (if (o.SUBSCRIPT == 1) @intFromEnum(CFE_EFFECTS.SUBSCRIPT) else 0)
-            | (if (o.SUPERSCRIPT == 1) @intFromEnum(CFE_EFFECTS.SUPERSCRIPT) else 0)
-            | (if (o.FONTBOUND == 1) @intFromEnum(CFE_EFFECTS.FONTBOUND) else 0)
-            | (if (o.LINKPROTECTED == 1) @intFromEnum(CFE_EFFECTS.LINKPROTECTED) else 0)
-            | (if (o.EXTENDED == 1) @intFromEnum(CFE_EFFECTS.EXTENDED) else 0)
-            | (if (o.MATHNOBUILDUP == 1) @intFromEnum(CFE_EFFECTS.MATHNOBUILDUP) else 0)
-            | (if (o.MATH == 1) @intFromEnum(CFE_EFFECTS.MATH) else 0)
-            | (if (o.MATHORDINARY == 1) @intFromEnum(CFE_EFFECTS.MATHORDINARY) else 0)
-        ));
-    }
+pub const CFE_EFFECTS = packed struct(u32) {
+    BOLD: u1 = 0,
+    ITALIC: u1 = 0,
+    UNDERLINE: u1 = 0,
+    STRIKEOUT: u1 = 0,
+    PROTECTED: u1 = 0,
+    LINK: u1 = 0,
+    SMALLCAPS: u1 = 0,
+    ALLCAPS: u1 = 0,
+    HIDDEN: u1 = 0,
+    OUTLINE: u1 = 0,
+    SHADOW: u1 = 0,
+    EMBOSS: u1 = 0,
+    IMPRINT: u1 = 0,
+    DISABLED: u1 = 0,
+    REVISED: u1 = 0,
+    _15: u1 = 0,
+    SUBSCRIPT: u1 = 0,
+    SUPERSCRIPT: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    FONTBOUND: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    LINKPROTECTED: u1 = 0,
+    _24: u1 = 0,
+    EXTENDED: u1 = 0,
+    AUTOBACKCOLOR: u1 = 0,
+    MATHNOBUILDUP: u1 = 0,
+    MATH: u1 = 0,
+    MATHORDINARY: u1 = 0,
+    AUTOCOLOR: u1 = 0,
+    _31: u1 = 0,
 };
 // TODO: enum 'CFE_EFFECTS' has known issues with its value aliases
 
-pub const PARAFORMAT_MASK = enum(u32) {
-    ALIGNMENT = 8,
-    NUMBERING = 32,
-    OFFSET = 4,
-    OFFSETINDENT = 2147483648,
-    RIGHTINDENT = 2,
-    RTLPARA = 65536,
-    STARTINDENT = 1,
-    TABSTOPS = 16,
-    _,
-    pub fn initFlags(o: struct {
-        ALIGNMENT: u1 = 0,
-        NUMBERING: u1 = 0,
-        OFFSET: u1 = 0,
-        OFFSETINDENT: u1 = 0,
-        RIGHTINDENT: u1 = 0,
-        RTLPARA: u1 = 0,
-        STARTINDENT: u1 = 0,
-        TABSTOPS: u1 = 0,
-    }) PARAFORMAT_MASK {
-        return @as(PARAFORMAT_MASK, @enumFromInt(
-              (if (o.ALIGNMENT == 1) @intFromEnum(PARAFORMAT_MASK.ALIGNMENT) else 0)
-            | (if (o.NUMBERING == 1) @intFromEnum(PARAFORMAT_MASK.NUMBERING) else 0)
-            | (if (o.OFFSET == 1) @intFromEnum(PARAFORMAT_MASK.OFFSET) else 0)
-            | (if (o.OFFSETINDENT == 1) @intFromEnum(PARAFORMAT_MASK.OFFSETINDENT) else 0)
-            | (if (o.RIGHTINDENT == 1) @intFromEnum(PARAFORMAT_MASK.RIGHTINDENT) else 0)
-            | (if (o.RTLPARA == 1) @intFromEnum(PARAFORMAT_MASK.RTLPARA) else 0)
-            | (if (o.STARTINDENT == 1) @intFromEnum(PARAFORMAT_MASK.STARTINDENT) else 0)
-            | (if (o.TABSTOPS == 1) @intFromEnum(PARAFORMAT_MASK.TABSTOPS) else 0)
-        ));
-    }
+pub const PARAFORMAT_MASK = packed struct(u32) {
+    STARTINDENT: u1 = 0,
+    RIGHTINDENT: u1 = 0,
+    OFFSET: u1 = 0,
+    ALIGNMENT: u1 = 0,
+    TABSTOPS: u1 = 0,
+    NUMBERING: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    RTLPARA: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    OFFSETINDENT: u1 = 0,
 };
-pub const PFM_ALIGNMENT = PARAFORMAT_MASK.ALIGNMENT;
-pub const PFM_NUMBERING = PARAFORMAT_MASK.NUMBERING;
-pub const PFM_OFFSET = PARAFORMAT_MASK.OFFSET;
-pub const PFM_OFFSETINDENT = PARAFORMAT_MASK.OFFSETINDENT;
-pub const PFM_RIGHTINDENT = PARAFORMAT_MASK.RIGHTINDENT;
-pub const PFM_RTLPARA = PARAFORMAT_MASK.RTLPARA;
-pub const PFM_STARTINDENT = PARAFORMAT_MASK.STARTINDENT;
-pub const PFM_TABSTOPS = PARAFORMAT_MASK.TABSTOPS;
+pub const PFM_ALIGNMENT = PARAFORMAT_MASK{ .ALIGNMENT = 1 };
+pub const PFM_NUMBERING = PARAFORMAT_MASK{ .NUMBERING = 1 };
+pub const PFM_OFFSET = PARAFORMAT_MASK{ .OFFSET = 1 };
+pub const PFM_OFFSETINDENT = PARAFORMAT_MASK{ .OFFSETINDENT = 1 };
+pub const PFM_RIGHTINDENT = PARAFORMAT_MASK{ .RIGHTINDENT = 1 };
+pub const PFM_RTLPARA = PARAFORMAT_MASK{ .RTLPARA = 1 };
+pub const PFM_STARTINDENT = PARAFORMAT_MASK{ .STARTINDENT = 1 };
+pub const PFM_TABSTOPS = PARAFORMAT_MASK{ .TABSTOPS = 1 };
 
-pub const RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = enum(u16) {
-    SEL_EMPTY = 0,
-    SEL_TEXT = 1,
-    SEL_OBJECT = 2,
-    SEL_MULTICHAR = 4,
-    SEL_MULTIOBJECT = 8,
-    GCM_RIGHTMOUSEDROP = 32768,
-    _,
-    pub fn initFlags(o: struct {
-        SEL_EMPTY: u1 = 0,
-        SEL_TEXT: u1 = 0,
-        SEL_OBJECT: u1 = 0,
-        SEL_MULTICHAR: u1 = 0,
-        SEL_MULTIOBJECT: u1 = 0,
-        GCM_RIGHTMOUSEDROP: u1 = 0,
-    }) RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE {
-        return @as(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE, @enumFromInt(
-              (if (o.SEL_EMPTY == 1) @intFromEnum(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_EMPTY) else 0)
-            | (if (o.SEL_TEXT == 1) @intFromEnum(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_TEXT) else 0)
-            | (if (o.SEL_OBJECT == 1) @intFromEnum(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_OBJECT) else 0)
-            | (if (o.SEL_MULTICHAR == 1) @intFromEnum(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTICHAR) else 0)
-            | (if (o.SEL_MULTIOBJECT == 1) @intFromEnum(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTIOBJECT) else 0)
-            | (if (o.GCM_RIGHTMOUSEDROP == 1) @intFromEnum(RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.GCM_RIGHTMOUSEDROP) else 0)
-        ));
-    }
+pub const RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE = packed struct(u16) {
+    SEL_TEXT: u1 = 0,
+    SEL_OBJECT: u1 = 0,
+    SEL_MULTICHAR: u1 = 0,
+    SEL_MULTIOBJECT: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    GCM_RIGHTMOUSEDROP: u1 = 0,
 };
-pub const SEL_EMPTY = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_EMPTY;
-pub const SEL_TEXT = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_TEXT;
-pub const SEL_OBJECT = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_OBJECT;
-pub const SEL_MULTICHAR = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTICHAR;
-pub const SEL_MULTIOBJECT = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.SEL_MULTIOBJECT;
-pub const GCM_RIGHTMOUSEDROP = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE.GCM_RIGHTMOUSEDROP;
+pub const SEL_EMPTY = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE{ };
+pub const SEL_TEXT = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE{ .SEL_TEXT = 1 };
+pub const SEL_OBJECT = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE{ .SEL_OBJECT = 1 };
+pub const SEL_MULTICHAR = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE{ .SEL_MULTICHAR = 1 };
+pub const SEL_MULTIOBJECT = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE{ .SEL_MULTIOBJECT = 1 };
+pub const GCM_RIGHTMOUSEDROP = RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE{ .GCM_RIGHTMOUSEDROP = 1 };
 
-pub const RICH_EDIT_GET_OBJECT_FLAGS = enum(u32) {
-    POLEOBJ = 1,
-    PSTG = 2,
-    POLESITE = 4,
-    NO_INTERFACES = 0,
-    ALL_INTERFACES = 7,
-    _,
-    pub fn initFlags(o: struct {
-        POLEOBJ: u1 = 0,
-        PSTG: u1 = 0,
-        POLESITE: u1 = 0,
-        NO_INTERFACES: u1 = 0,
-        ALL_INTERFACES: u1 = 0,
-    }) RICH_EDIT_GET_OBJECT_FLAGS {
-        return @as(RICH_EDIT_GET_OBJECT_FLAGS, @enumFromInt(
-              (if (o.POLEOBJ == 1) @intFromEnum(RICH_EDIT_GET_OBJECT_FLAGS.POLEOBJ) else 0)
-            | (if (o.PSTG == 1) @intFromEnum(RICH_EDIT_GET_OBJECT_FLAGS.PSTG) else 0)
-            | (if (o.POLESITE == 1) @intFromEnum(RICH_EDIT_GET_OBJECT_FLAGS.POLESITE) else 0)
-            | (if (o.NO_INTERFACES == 1) @intFromEnum(RICH_EDIT_GET_OBJECT_FLAGS.NO_INTERFACES) else 0)
-            | (if (o.ALL_INTERFACES == 1) @intFromEnum(RICH_EDIT_GET_OBJECT_FLAGS.ALL_INTERFACES) else 0)
-        ));
-    }
+pub const RICH_EDIT_GET_OBJECT_FLAGS = packed struct(u32) {
+    POLEOBJ: u1 = 0,
+    PSTG: u1 = 0,
+    POLESITE: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const REO_GETOBJ_POLEOBJ = RICH_EDIT_GET_OBJECT_FLAGS.POLEOBJ;
-pub const REO_GETOBJ_PSTG = RICH_EDIT_GET_OBJECT_FLAGS.PSTG;
-pub const REO_GETOBJ_POLESITE = RICH_EDIT_GET_OBJECT_FLAGS.POLESITE;
-pub const REO_GETOBJ_NO_INTERFACES = RICH_EDIT_GET_OBJECT_FLAGS.NO_INTERFACES;
-pub const REO_GETOBJ_ALL_INTERFACES = RICH_EDIT_GET_OBJECT_FLAGS.ALL_INTERFACES;
+pub const REO_GETOBJ_POLEOBJ = RICH_EDIT_GET_OBJECT_FLAGS{ .POLEOBJ = 1 };
+pub const REO_GETOBJ_PSTG = RICH_EDIT_GET_OBJECT_FLAGS{ .PSTG = 1 };
+pub const REO_GETOBJ_POLESITE = RICH_EDIT_GET_OBJECT_FLAGS{ .POLESITE = 1 };
+pub const REO_GETOBJ_NO_INTERFACES = RICH_EDIT_GET_OBJECT_FLAGS{ };
+pub const REO_GETOBJ_ALL_INTERFACES = RICH_EDIT_GET_OBJECT_FLAGS{
+    .POLEOBJ = 1,
+    .PSTG = 1,
+    .POLESITE = 1,
+};
 
-pub const PARAFORMAT_BORDERS = enum(u16) {
-    LEFT = 1,
-    RIGHT = 2,
-    TOP = 4,
-    BOTTOM = 8,
-    INSIDE = 16,
-    OUTSIDE = 32,
-    AUTOCOLOR = 64,
-    _,
-    pub fn initFlags(o: struct {
-        LEFT: u1 = 0,
-        RIGHT: u1 = 0,
-        TOP: u1 = 0,
-        BOTTOM: u1 = 0,
-        INSIDE: u1 = 0,
-        OUTSIDE: u1 = 0,
-        AUTOCOLOR: u1 = 0,
-    }) PARAFORMAT_BORDERS {
-        return @as(PARAFORMAT_BORDERS, @enumFromInt(
-              (if (o.LEFT == 1) @intFromEnum(PARAFORMAT_BORDERS.LEFT) else 0)
-            | (if (o.RIGHT == 1) @intFromEnum(PARAFORMAT_BORDERS.RIGHT) else 0)
-            | (if (o.TOP == 1) @intFromEnum(PARAFORMAT_BORDERS.TOP) else 0)
-            | (if (o.BOTTOM == 1) @intFromEnum(PARAFORMAT_BORDERS.BOTTOM) else 0)
-            | (if (o.INSIDE == 1) @intFromEnum(PARAFORMAT_BORDERS.INSIDE) else 0)
-            | (if (o.OUTSIDE == 1) @intFromEnum(PARAFORMAT_BORDERS.OUTSIDE) else 0)
-            | (if (o.AUTOCOLOR == 1) @intFromEnum(PARAFORMAT_BORDERS.AUTOCOLOR) else 0)
-        ));
-    }
+pub const PARAFORMAT_BORDERS = packed struct(u16) {
+    LEFT: u1 = 0,
+    RIGHT: u1 = 0,
+    TOP: u1 = 0,
+    BOTTOM: u1 = 0,
+    INSIDE: u1 = 0,
+    OUTSIDE: u1 = 0,
+    AUTOCOLOR: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
 };
-pub const PARAFORMAT_BORDERS_LEFT = PARAFORMAT_BORDERS.LEFT;
-pub const PARAFORMAT_BORDERS_RIGHT = PARAFORMAT_BORDERS.RIGHT;
-pub const PARAFORMAT_BORDERS_TOP = PARAFORMAT_BORDERS.TOP;
-pub const PARAFORMAT_BORDERS_BOTTOM = PARAFORMAT_BORDERS.BOTTOM;
-pub const PARAFORMAT_BORDERS_INSIDE = PARAFORMAT_BORDERS.INSIDE;
-pub const PARAFORMAT_BORDERS_OUTSIDE = PARAFORMAT_BORDERS.OUTSIDE;
-pub const PARAFORMAT_BORDERS_AUTOCOLOR = PARAFORMAT_BORDERS.AUTOCOLOR;
+pub const PARAFORMAT_BORDERS_LEFT = PARAFORMAT_BORDERS{ .LEFT = 1 };
+pub const PARAFORMAT_BORDERS_RIGHT = PARAFORMAT_BORDERS{ .RIGHT = 1 };
+pub const PARAFORMAT_BORDERS_TOP = PARAFORMAT_BORDERS{ .TOP = 1 };
+pub const PARAFORMAT_BORDERS_BOTTOM = PARAFORMAT_BORDERS{ .BOTTOM = 1 };
+pub const PARAFORMAT_BORDERS_INSIDE = PARAFORMAT_BORDERS{ .INSIDE = 1 };
+pub const PARAFORMAT_BORDERS_OUTSIDE = PARAFORMAT_BORDERS{ .OUTSIDE = 1 };
+pub const PARAFORMAT_BORDERS_AUTOCOLOR = PARAFORMAT_BORDERS{ .AUTOCOLOR = 1 };
 
 pub const PARAFORMAT_SHADING_STYLE = enum(u16) {
     NONE = 0,
@@ -914,123 +885,100 @@ pub const IMECOMPTEXT_FLAGS = enum(u32) {
 };
 pub const ICT_RESULTREADSTR = IMECOMPTEXT_FLAGS.R;
 
-pub const GETTEXTLENGTHEX_FLAGS = enum(u32) {
-    DEFAULT = 0,
-    USECRLF = 1,
-    PRECISE = 2,
-    CLOSE = 4,
-    NUMCHARS = 8,
-    NUMBYTES = 16,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        USECRLF: u1 = 0,
-        PRECISE: u1 = 0,
-        CLOSE: u1 = 0,
-        NUMCHARS: u1 = 0,
-        NUMBYTES: u1 = 0,
-    }) GETTEXTLENGTHEX_FLAGS {
-        return @as(GETTEXTLENGTHEX_FLAGS, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(GETTEXTLENGTHEX_FLAGS.DEFAULT) else 0)
-            | (if (o.USECRLF == 1) @intFromEnum(GETTEXTLENGTHEX_FLAGS.USECRLF) else 0)
-            | (if (o.PRECISE == 1) @intFromEnum(GETTEXTLENGTHEX_FLAGS.PRECISE) else 0)
-            | (if (o.CLOSE == 1) @intFromEnum(GETTEXTLENGTHEX_FLAGS.CLOSE) else 0)
-            | (if (o.NUMCHARS == 1) @intFromEnum(GETTEXTLENGTHEX_FLAGS.NUMCHARS) else 0)
-            | (if (o.NUMBYTES == 1) @intFromEnum(GETTEXTLENGTHEX_FLAGS.NUMBYTES) else 0)
-        ));
-    }
+pub const GETTEXTLENGTHEX_FLAGS = packed struct(u32) {
+    USECRLF: u1 = 0,
+    PRECISE: u1 = 0,
+    CLOSE: u1 = 0,
+    NUMCHARS: u1 = 0,
+    NUMBYTES: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const GTL_DEFAULT = GETTEXTLENGTHEX_FLAGS.DEFAULT;
-pub const GTL_USECRLF = GETTEXTLENGTHEX_FLAGS.USECRLF;
-pub const GTL_PRECISE = GETTEXTLENGTHEX_FLAGS.PRECISE;
-pub const GTL_CLOSE = GETTEXTLENGTHEX_FLAGS.CLOSE;
-pub const GTL_NUMCHARS = GETTEXTLENGTHEX_FLAGS.NUMCHARS;
-pub const GTL_NUMBYTES = GETTEXTLENGTHEX_FLAGS.NUMBYTES;
+pub const GTL_DEFAULT = GETTEXTLENGTHEX_FLAGS{ };
+pub const GTL_USECRLF = GETTEXTLENGTHEX_FLAGS{ .USECRLF = 1 };
+pub const GTL_PRECISE = GETTEXTLENGTHEX_FLAGS{ .PRECISE = 1 };
+pub const GTL_CLOSE = GETTEXTLENGTHEX_FLAGS{ .CLOSE = 1 };
+pub const GTL_NUMCHARS = GETTEXTLENGTHEX_FLAGS{ .NUMCHARS = 1 };
+pub const GTL_NUMBYTES = GETTEXTLENGTHEX_FLAGS{ .NUMBYTES = 1 };
 
-pub const REOBJECT_FLAGS = enum(u32) {
-    ALIGNTORIGHT = 256,
-    BELOWBASELINE = 2,
-    BLANK = 16,
-    CANROTATE = 128,
-    DONTNEEDPALETTE = 32,
-    DYNAMICSIZE = 8,
-    GETMETAFILE = 4194304,
-    HILITED = 16777216,
-    INPLACEACTIVE = 33554432,
-    INVERTEDSELECT = 4,
-    LINK = 2147483648,
-    LINKAVAILABLE = 8388608,
-    OPEN = 67108864,
-    OWNERDRAWSELECT = 64,
-    RESIZABLE = 1,
-    SELECTED = 134217728,
-    STATIC = 1073741824,
-    USEASBACKGROUND = 1024,
-    WRAPTEXTAROUND = 512,
-    _,
-    pub fn initFlags(o: struct {
-        ALIGNTORIGHT: u1 = 0,
-        BELOWBASELINE: u1 = 0,
-        BLANK: u1 = 0,
-        CANROTATE: u1 = 0,
-        DONTNEEDPALETTE: u1 = 0,
-        DYNAMICSIZE: u1 = 0,
-        GETMETAFILE: u1 = 0,
-        HILITED: u1 = 0,
-        INPLACEACTIVE: u1 = 0,
-        INVERTEDSELECT: u1 = 0,
-        LINK: u1 = 0,
-        LINKAVAILABLE: u1 = 0,
-        OPEN: u1 = 0,
-        OWNERDRAWSELECT: u1 = 0,
-        RESIZABLE: u1 = 0,
-        SELECTED: u1 = 0,
-        STATIC: u1 = 0,
-        USEASBACKGROUND: u1 = 0,
-        WRAPTEXTAROUND: u1 = 0,
-    }) REOBJECT_FLAGS {
-        return @as(REOBJECT_FLAGS, @enumFromInt(
-              (if (o.ALIGNTORIGHT == 1) @intFromEnum(REOBJECT_FLAGS.ALIGNTORIGHT) else 0)
-            | (if (o.BELOWBASELINE == 1) @intFromEnum(REOBJECT_FLAGS.BELOWBASELINE) else 0)
-            | (if (o.BLANK == 1) @intFromEnum(REOBJECT_FLAGS.BLANK) else 0)
-            | (if (o.CANROTATE == 1) @intFromEnum(REOBJECT_FLAGS.CANROTATE) else 0)
-            | (if (o.DONTNEEDPALETTE == 1) @intFromEnum(REOBJECT_FLAGS.DONTNEEDPALETTE) else 0)
-            | (if (o.DYNAMICSIZE == 1) @intFromEnum(REOBJECT_FLAGS.DYNAMICSIZE) else 0)
-            | (if (o.GETMETAFILE == 1) @intFromEnum(REOBJECT_FLAGS.GETMETAFILE) else 0)
-            | (if (o.HILITED == 1) @intFromEnum(REOBJECT_FLAGS.HILITED) else 0)
-            | (if (o.INPLACEACTIVE == 1) @intFromEnum(REOBJECT_FLAGS.INPLACEACTIVE) else 0)
-            | (if (o.INVERTEDSELECT == 1) @intFromEnum(REOBJECT_FLAGS.INVERTEDSELECT) else 0)
-            | (if (o.LINK == 1) @intFromEnum(REOBJECT_FLAGS.LINK) else 0)
-            | (if (o.LINKAVAILABLE == 1) @intFromEnum(REOBJECT_FLAGS.LINKAVAILABLE) else 0)
-            | (if (o.OPEN == 1) @intFromEnum(REOBJECT_FLAGS.OPEN) else 0)
-            | (if (o.OWNERDRAWSELECT == 1) @intFromEnum(REOBJECT_FLAGS.OWNERDRAWSELECT) else 0)
-            | (if (o.RESIZABLE == 1) @intFromEnum(REOBJECT_FLAGS.RESIZABLE) else 0)
-            | (if (o.SELECTED == 1) @intFromEnum(REOBJECT_FLAGS.SELECTED) else 0)
-            | (if (o.STATIC == 1) @intFromEnum(REOBJECT_FLAGS.STATIC) else 0)
-            | (if (o.USEASBACKGROUND == 1) @intFromEnum(REOBJECT_FLAGS.USEASBACKGROUND) else 0)
-            | (if (o.WRAPTEXTAROUND == 1) @intFromEnum(REOBJECT_FLAGS.WRAPTEXTAROUND) else 0)
-        ));
-    }
+pub const REOBJECT_FLAGS = packed struct(u32) {
+    RESIZABLE: u1 = 0,
+    BELOWBASELINE: u1 = 0,
+    INVERTEDSELECT: u1 = 0,
+    DYNAMICSIZE: u1 = 0,
+    BLANK: u1 = 0,
+    DONTNEEDPALETTE: u1 = 0,
+    OWNERDRAWSELECT: u1 = 0,
+    CANROTATE: u1 = 0,
+    ALIGNTORIGHT: u1 = 0,
+    WRAPTEXTAROUND: u1 = 0,
+    USEASBACKGROUND: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    GETMETAFILE: u1 = 0,
+    LINKAVAILABLE: u1 = 0,
+    HILITED: u1 = 0,
+    INPLACEACTIVE: u1 = 0,
+    OPEN: u1 = 0,
+    SELECTED: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    STATIC: u1 = 0,
+    LINK: u1 = 0,
 };
-pub const REO_ALIGNTORIGHT = REOBJECT_FLAGS.ALIGNTORIGHT;
-pub const REO_BELOWBASELINE = REOBJECT_FLAGS.BELOWBASELINE;
-pub const REO_BLANK = REOBJECT_FLAGS.BLANK;
-pub const REO_CANROTATE = REOBJECT_FLAGS.CANROTATE;
-pub const REO_DONTNEEDPALETTE = REOBJECT_FLAGS.DONTNEEDPALETTE;
-pub const REO_DYNAMICSIZE = REOBJECT_FLAGS.DYNAMICSIZE;
-pub const REO_GETMETAFILE = REOBJECT_FLAGS.GETMETAFILE;
-pub const REO_HILITED = REOBJECT_FLAGS.HILITED;
-pub const REO_INPLACEACTIVE = REOBJECT_FLAGS.INPLACEACTIVE;
-pub const REO_INVERTEDSELECT = REOBJECT_FLAGS.INVERTEDSELECT;
-pub const REO_LINK = REOBJECT_FLAGS.LINK;
-pub const REO_LINKAVAILABLE = REOBJECT_FLAGS.LINKAVAILABLE;
-pub const REO_OPEN = REOBJECT_FLAGS.OPEN;
-pub const REO_OWNERDRAWSELECT = REOBJECT_FLAGS.OWNERDRAWSELECT;
-pub const REO_RESIZABLE = REOBJECT_FLAGS.RESIZABLE;
-pub const REO_SELECTED = REOBJECT_FLAGS.SELECTED;
-pub const REO_STATIC = REOBJECT_FLAGS.STATIC;
-pub const REO_USEASBACKGROUND = REOBJECT_FLAGS.USEASBACKGROUND;
-pub const REO_WRAPTEXTAROUND = REOBJECT_FLAGS.WRAPTEXTAROUND;
+pub const REO_ALIGNTORIGHT = REOBJECT_FLAGS{ .ALIGNTORIGHT = 1 };
+pub const REO_BELOWBASELINE = REOBJECT_FLAGS{ .BELOWBASELINE = 1 };
+pub const REO_BLANK = REOBJECT_FLAGS{ .BLANK = 1 };
+pub const REO_CANROTATE = REOBJECT_FLAGS{ .CANROTATE = 1 };
+pub const REO_DONTNEEDPALETTE = REOBJECT_FLAGS{ .DONTNEEDPALETTE = 1 };
+pub const REO_DYNAMICSIZE = REOBJECT_FLAGS{ .DYNAMICSIZE = 1 };
+pub const REO_GETMETAFILE = REOBJECT_FLAGS{ .GETMETAFILE = 1 };
+pub const REO_HILITED = REOBJECT_FLAGS{ .HILITED = 1 };
+pub const REO_INPLACEACTIVE = REOBJECT_FLAGS{ .INPLACEACTIVE = 1 };
+pub const REO_INVERTEDSELECT = REOBJECT_FLAGS{ .INVERTEDSELECT = 1 };
+pub const REO_LINK = REOBJECT_FLAGS{ .LINK = 1 };
+pub const REO_LINKAVAILABLE = REOBJECT_FLAGS{ .LINKAVAILABLE = 1 };
+pub const REO_OPEN = REOBJECT_FLAGS{ .OPEN = 1 };
+pub const REO_OWNERDRAWSELECT = REOBJECT_FLAGS{ .OWNERDRAWSELECT = 1 };
+pub const REO_RESIZABLE = REOBJECT_FLAGS{ .RESIZABLE = 1 };
+pub const REO_SELECTED = REOBJECT_FLAGS{ .SELECTED = 1 };
+pub const REO_STATIC = REOBJECT_FLAGS{ .STATIC = 1 };
+pub const REO_USEASBACKGROUND = REOBJECT_FLAGS{ .USEASBACKGROUND = 1 };
+pub const REO_WRAPTEXTAROUND = REOBJECT_FLAGS{ .WRAPTEXTAROUND = 1 };
 
 pub const PARAFORMAT_NUMBERING_STYLE = enum(u16) {
     PAREN = 0,

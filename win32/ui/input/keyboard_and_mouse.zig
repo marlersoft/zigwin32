@@ -156,34 +156,45 @@ pub const VK_DBE_ENTERDLGCONVERSIONMODE = @as(u32, 253);
 //--------------------------------------------------------------------------------
 // Section: Types (44)
 //--------------------------------------------------------------------------------
-pub const HOT_KEY_MODIFIERS = enum(u32) {
-    ALT = 1,
-    CONTROL = 2,
-    NOREPEAT = 16384,
-    SHIFT = 4,
-    WIN = 8,
-    _,
-    pub fn initFlags(o: struct {
-        ALT: u1 = 0,
-        CONTROL: u1 = 0,
-        NOREPEAT: u1 = 0,
-        SHIFT: u1 = 0,
-        WIN: u1 = 0,
-    }) HOT_KEY_MODIFIERS {
-        return @as(HOT_KEY_MODIFIERS, @enumFromInt(
-              (if (o.ALT == 1) @intFromEnum(HOT_KEY_MODIFIERS.ALT) else 0)
-            | (if (o.CONTROL == 1) @intFromEnum(HOT_KEY_MODIFIERS.CONTROL) else 0)
-            | (if (o.NOREPEAT == 1) @intFromEnum(HOT_KEY_MODIFIERS.NOREPEAT) else 0)
-            | (if (o.SHIFT == 1) @intFromEnum(HOT_KEY_MODIFIERS.SHIFT) else 0)
-            | (if (o.WIN == 1) @intFromEnum(HOT_KEY_MODIFIERS.WIN) else 0)
-        ));
-    }
+pub const HOT_KEY_MODIFIERS = packed struct(u32) {
+    ALT: u1 = 0,
+    CONTROL: u1 = 0,
+    SHIFT: u1 = 0,
+    WIN: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    NOREPEAT: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const MOD_ALT = HOT_KEY_MODIFIERS.ALT;
-pub const MOD_CONTROL = HOT_KEY_MODIFIERS.CONTROL;
-pub const MOD_NOREPEAT = HOT_KEY_MODIFIERS.NOREPEAT;
-pub const MOD_SHIFT = HOT_KEY_MODIFIERS.SHIFT;
-pub const MOD_WIN = HOT_KEY_MODIFIERS.WIN;
+pub const MOD_ALT = HOT_KEY_MODIFIERS{ .ALT = 1 };
+pub const MOD_CONTROL = HOT_KEY_MODIFIERS{ .CONTROL = 1 };
+pub const MOD_NOREPEAT = HOT_KEY_MODIFIERS{ .NOREPEAT = 1 };
+pub const MOD_SHIFT = HOT_KEY_MODIFIERS{ .SHIFT = 1 };
+pub const MOD_WIN = HOT_KEY_MODIFIERS{ .WIN = 1 };
 
 pub const ACTIVATE_KEYBOARD_LAYOUT_FLAGS = enum(u32) {
     REORDER = 8,
@@ -211,95 +222,93 @@ pub const GET_MOUSE_MOVE_POINTS_EX_RESOLUTION = enum(u32) {
 pub const GMMP_USE_DISPLAY_POINTS = GET_MOUSE_MOVE_POINTS_EX_RESOLUTION.DISPLAY_POINTS;
 pub const GMMP_USE_HIGH_RESOLUTION_POINTS = GET_MOUSE_MOVE_POINTS_EX_RESOLUTION.HIGH_RESOLUTION_POINTS;
 
-pub const KEYBD_EVENT_FLAGS = enum(u32) {
-    EXTENDEDKEY = 1,
-    KEYUP = 2,
-    SCANCODE = 8,
-    UNICODE = 4,
-    _,
-    pub fn initFlags(o: struct {
-        EXTENDEDKEY: u1 = 0,
-        KEYUP: u1 = 0,
-        SCANCODE: u1 = 0,
-        UNICODE: u1 = 0,
-    }) KEYBD_EVENT_FLAGS {
-        return @as(KEYBD_EVENT_FLAGS, @enumFromInt(
-              (if (o.EXTENDEDKEY == 1) @intFromEnum(KEYBD_EVENT_FLAGS.EXTENDEDKEY) else 0)
-            | (if (o.KEYUP == 1) @intFromEnum(KEYBD_EVENT_FLAGS.KEYUP) else 0)
-            | (if (o.SCANCODE == 1) @intFromEnum(KEYBD_EVENT_FLAGS.SCANCODE) else 0)
-            | (if (o.UNICODE == 1) @intFromEnum(KEYBD_EVENT_FLAGS.UNICODE) else 0)
-        ));
-    }
+pub const KEYBD_EVENT_FLAGS = packed struct(u32) {
+    EXTENDEDKEY: u1 = 0,
+    KEYUP: u1 = 0,
+    UNICODE: u1 = 0,
+    SCANCODE: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const KEYEVENTF_EXTENDEDKEY = KEYBD_EVENT_FLAGS.EXTENDEDKEY;
-pub const KEYEVENTF_KEYUP = KEYBD_EVENT_FLAGS.KEYUP;
-pub const KEYEVENTF_SCANCODE = KEYBD_EVENT_FLAGS.SCANCODE;
-pub const KEYEVENTF_UNICODE = KEYBD_EVENT_FLAGS.UNICODE;
+pub const KEYEVENTF_EXTENDEDKEY = KEYBD_EVENT_FLAGS{ .EXTENDEDKEY = 1 };
+pub const KEYEVENTF_KEYUP = KEYBD_EVENT_FLAGS{ .KEYUP = 1 };
+pub const KEYEVENTF_SCANCODE = KEYBD_EVENT_FLAGS{ .SCANCODE = 1 };
+pub const KEYEVENTF_UNICODE = KEYBD_EVENT_FLAGS{ .UNICODE = 1 };
 
-pub const MOUSE_EVENT_FLAGS = enum(u32) {
-    ABSOLUTE = 32768,
-    LEFTDOWN = 2,
-    LEFTUP = 4,
-    MIDDLEDOWN = 32,
-    MIDDLEUP = 64,
-    MOVE = 1,
-    RIGHTDOWN = 8,
-    RIGHTUP = 16,
-    WHEEL = 2048,
-    XDOWN = 128,
-    XUP = 256,
-    HWHEEL = 4096,
-    MOVE_NOCOALESCE = 8192,
-    VIRTUALDESK = 16384,
-    _,
-    pub fn initFlags(o: struct {
-        ABSOLUTE: u1 = 0,
-        LEFTDOWN: u1 = 0,
-        LEFTUP: u1 = 0,
-        MIDDLEDOWN: u1 = 0,
-        MIDDLEUP: u1 = 0,
-        MOVE: u1 = 0,
-        RIGHTDOWN: u1 = 0,
-        RIGHTUP: u1 = 0,
-        WHEEL: u1 = 0,
-        XDOWN: u1 = 0,
-        XUP: u1 = 0,
-        HWHEEL: u1 = 0,
-        MOVE_NOCOALESCE: u1 = 0,
-        VIRTUALDESK: u1 = 0,
-    }) MOUSE_EVENT_FLAGS {
-        return @as(MOUSE_EVENT_FLAGS, @enumFromInt(
-              (if (o.ABSOLUTE == 1) @intFromEnum(MOUSE_EVENT_FLAGS.ABSOLUTE) else 0)
-            | (if (o.LEFTDOWN == 1) @intFromEnum(MOUSE_EVENT_FLAGS.LEFTDOWN) else 0)
-            | (if (o.LEFTUP == 1) @intFromEnum(MOUSE_EVENT_FLAGS.LEFTUP) else 0)
-            | (if (o.MIDDLEDOWN == 1) @intFromEnum(MOUSE_EVENT_FLAGS.MIDDLEDOWN) else 0)
-            | (if (o.MIDDLEUP == 1) @intFromEnum(MOUSE_EVENT_FLAGS.MIDDLEUP) else 0)
-            | (if (o.MOVE == 1) @intFromEnum(MOUSE_EVENT_FLAGS.MOVE) else 0)
-            | (if (o.RIGHTDOWN == 1) @intFromEnum(MOUSE_EVENT_FLAGS.RIGHTDOWN) else 0)
-            | (if (o.RIGHTUP == 1) @intFromEnum(MOUSE_EVENT_FLAGS.RIGHTUP) else 0)
-            | (if (o.WHEEL == 1) @intFromEnum(MOUSE_EVENT_FLAGS.WHEEL) else 0)
-            | (if (o.XDOWN == 1) @intFromEnum(MOUSE_EVENT_FLAGS.XDOWN) else 0)
-            | (if (o.XUP == 1) @intFromEnum(MOUSE_EVENT_FLAGS.XUP) else 0)
-            | (if (o.HWHEEL == 1) @intFromEnum(MOUSE_EVENT_FLAGS.HWHEEL) else 0)
-            | (if (o.MOVE_NOCOALESCE == 1) @intFromEnum(MOUSE_EVENT_FLAGS.MOVE_NOCOALESCE) else 0)
-            | (if (o.VIRTUALDESK == 1) @intFromEnum(MOUSE_EVENT_FLAGS.VIRTUALDESK) else 0)
-        ));
-    }
+pub const MOUSE_EVENT_FLAGS = packed struct(u32) {
+    MOVE: u1 = 0,
+    LEFTDOWN: u1 = 0,
+    LEFTUP: u1 = 0,
+    RIGHTDOWN: u1 = 0,
+    RIGHTUP: u1 = 0,
+    MIDDLEDOWN: u1 = 0,
+    MIDDLEUP: u1 = 0,
+    XDOWN: u1 = 0,
+    XUP: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    WHEEL: u1 = 0,
+    HWHEEL: u1 = 0,
+    MOVE_NOCOALESCE: u1 = 0,
+    VIRTUALDESK: u1 = 0,
+    ABSOLUTE: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const MOUSEEVENTF_ABSOLUTE = MOUSE_EVENT_FLAGS.ABSOLUTE;
-pub const MOUSEEVENTF_LEFTDOWN = MOUSE_EVENT_FLAGS.LEFTDOWN;
-pub const MOUSEEVENTF_LEFTUP = MOUSE_EVENT_FLAGS.LEFTUP;
-pub const MOUSEEVENTF_MIDDLEDOWN = MOUSE_EVENT_FLAGS.MIDDLEDOWN;
-pub const MOUSEEVENTF_MIDDLEUP = MOUSE_EVENT_FLAGS.MIDDLEUP;
-pub const MOUSEEVENTF_MOVE = MOUSE_EVENT_FLAGS.MOVE;
-pub const MOUSEEVENTF_RIGHTDOWN = MOUSE_EVENT_FLAGS.RIGHTDOWN;
-pub const MOUSEEVENTF_RIGHTUP = MOUSE_EVENT_FLAGS.RIGHTUP;
-pub const MOUSEEVENTF_WHEEL = MOUSE_EVENT_FLAGS.WHEEL;
-pub const MOUSEEVENTF_XDOWN = MOUSE_EVENT_FLAGS.XDOWN;
-pub const MOUSEEVENTF_XUP = MOUSE_EVENT_FLAGS.XUP;
-pub const MOUSEEVENTF_HWHEEL = MOUSE_EVENT_FLAGS.HWHEEL;
-pub const MOUSEEVENTF_MOVE_NOCOALESCE = MOUSE_EVENT_FLAGS.MOVE_NOCOALESCE;
-pub const MOUSEEVENTF_VIRTUALDESK = MOUSE_EVENT_FLAGS.VIRTUALDESK;
+pub const MOUSEEVENTF_ABSOLUTE = MOUSE_EVENT_FLAGS{ .ABSOLUTE = 1 };
+pub const MOUSEEVENTF_LEFTDOWN = MOUSE_EVENT_FLAGS{ .LEFTDOWN = 1 };
+pub const MOUSEEVENTF_LEFTUP = MOUSE_EVENT_FLAGS{ .LEFTUP = 1 };
+pub const MOUSEEVENTF_MIDDLEDOWN = MOUSE_EVENT_FLAGS{ .MIDDLEDOWN = 1 };
+pub const MOUSEEVENTF_MIDDLEUP = MOUSE_EVENT_FLAGS{ .MIDDLEUP = 1 };
+pub const MOUSEEVENTF_MOVE = MOUSE_EVENT_FLAGS{ .MOVE = 1 };
+pub const MOUSEEVENTF_RIGHTDOWN = MOUSE_EVENT_FLAGS{ .RIGHTDOWN = 1 };
+pub const MOUSEEVENTF_RIGHTUP = MOUSE_EVENT_FLAGS{ .RIGHTUP = 1 };
+pub const MOUSEEVENTF_WHEEL = MOUSE_EVENT_FLAGS{ .WHEEL = 1 };
+pub const MOUSEEVENTF_XDOWN = MOUSE_EVENT_FLAGS{ .XDOWN = 1 };
+pub const MOUSEEVENTF_XUP = MOUSE_EVENT_FLAGS{ .XUP = 1 };
+pub const MOUSEEVENTF_HWHEEL = MOUSE_EVENT_FLAGS{ .HWHEEL = 1 };
+pub const MOUSEEVENTF_MOVE_NOCOALESCE = MOUSE_EVENT_FLAGS{ .MOVE_NOCOALESCE = 1 };
+pub const MOUSEEVENTF_VIRTUALDESK = MOUSE_EVENT_FLAGS{ .VIRTUALDESK = 1 };
 
 pub const INPUT_TYPE = enum(u32) {
     MOUSE = 0,
@@ -310,34 +319,45 @@ pub const INPUT_MOUSE = INPUT_TYPE.MOUSE;
 pub const INPUT_KEYBOARD = INPUT_TYPE.KEYBOARD;
 pub const INPUT_HARDWARE = INPUT_TYPE.HARDWARE;
 
-pub const TRACKMOUSEEVENT_FLAGS = enum(u32) {
-    CANCEL = 2147483648,
-    HOVER = 1,
-    LEAVE = 2,
-    NONCLIENT = 16,
-    QUERY = 1073741824,
-    _,
-    pub fn initFlags(o: struct {
-        CANCEL: u1 = 0,
-        HOVER: u1 = 0,
-        LEAVE: u1 = 0,
-        NONCLIENT: u1 = 0,
-        QUERY: u1 = 0,
-    }) TRACKMOUSEEVENT_FLAGS {
-        return @as(TRACKMOUSEEVENT_FLAGS, @enumFromInt(
-              (if (o.CANCEL == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.CANCEL) else 0)
-            | (if (o.HOVER == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.HOVER) else 0)
-            | (if (o.LEAVE == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.LEAVE) else 0)
-            | (if (o.NONCLIENT == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.NONCLIENT) else 0)
-            | (if (o.QUERY == 1) @intFromEnum(TRACKMOUSEEVENT_FLAGS.QUERY) else 0)
-        ));
-    }
+pub const TRACKMOUSEEVENT_FLAGS = packed struct(u32) {
+    HOVER: u1 = 0,
+    LEAVE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    NONCLIENT: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    QUERY: u1 = 0,
+    CANCEL: u1 = 0,
 };
-pub const TME_CANCEL = TRACKMOUSEEVENT_FLAGS.CANCEL;
-pub const TME_HOVER = TRACKMOUSEEVENT_FLAGS.HOVER;
-pub const TME_LEAVE = TRACKMOUSEEVENT_FLAGS.LEAVE;
-pub const TME_NONCLIENT = TRACKMOUSEEVENT_FLAGS.NONCLIENT;
-pub const TME_QUERY = TRACKMOUSEEVENT_FLAGS.QUERY;
+pub const TME_CANCEL = TRACKMOUSEEVENT_FLAGS{ .CANCEL = 1 };
+pub const TME_HOVER = TRACKMOUSEEVENT_FLAGS{ .HOVER = 1 };
+pub const TME_LEAVE = TRACKMOUSEEVENT_FLAGS{ .LEAVE = 1 };
+pub const TME_NONCLIENT = TRACKMOUSEEVENT_FLAGS{ .NONCLIENT = 1 };
+pub const TME_QUERY = TRACKMOUSEEVENT_FLAGS{ .QUERY = 1 };
 
 pub const VIRTUAL_KEY = enum(u16) {
     @"0" = 48,

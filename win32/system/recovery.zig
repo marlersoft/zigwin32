@@ -6,30 +6,44 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-pub const REGISTER_APPLICATION_RESTART_FLAGS = enum(u32) {
-    CRASH = 1,
-    HANG = 2,
-    PATCH = 4,
-    REBOOT = 8,
-    _,
-    pub fn initFlags(o: struct {
-        CRASH: u1 = 0,
-        HANG: u1 = 0,
-        PATCH: u1 = 0,
-        REBOOT: u1 = 0,
-    }) REGISTER_APPLICATION_RESTART_FLAGS {
-        return @as(REGISTER_APPLICATION_RESTART_FLAGS, @enumFromInt(
-              (if (o.CRASH == 1) @intFromEnum(REGISTER_APPLICATION_RESTART_FLAGS.CRASH) else 0)
-            | (if (o.HANG == 1) @intFromEnum(REGISTER_APPLICATION_RESTART_FLAGS.HANG) else 0)
-            | (if (o.PATCH == 1) @intFromEnum(REGISTER_APPLICATION_RESTART_FLAGS.PATCH) else 0)
-            | (if (o.REBOOT == 1) @intFromEnum(REGISTER_APPLICATION_RESTART_FLAGS.REBOOT) else 0)
-        ));
-    }
+pub const REGISTER_APPLICATION_RESTART_FLAGS = packed struct(u32) {
+    CRASH: u1 = 0,
+    HANG: u1 = 0,
+    PATCH: u1 = 0,
+    REBOOT: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RESTART_NO_CRASH = REGISTER_APPLICATION_RESTART_FLAGS.CRASH;
-pub const RESTART_NO_HANG = REGISTER_APPLICATION_RESTART_FLAGS.HANG;
-pub const RESTART_NO_PATCH = REGISTER_APPLICATION_RESTART_FLAGS.PATCH;
-pub const RESTART_NO_REBOOT = REGISTER_APPLICATION_RESTART_FLAGS.REBOOT;
+pub const RESTART_NO_CRASH = REGISTER_APPLICATION_RESTART_FLAGS{ .CRASH = 1 };
+pub const RESTART_NO_HANG = REGISTER_APPLICATION_RESTART_FLAGS{ .HANG = 1 };
+pub const RESTART_NO_PATCH = REGISTER_APPLICATION_RESTART_FLAGS{ .PATCH = 1 };
+pub const RESTART_NO_REBOOT = REGISTER_APPLICATION_RESTART_FLAGS{ .REBOOT = 1 };
 
 
 //--------------------------------------------------------------------------------

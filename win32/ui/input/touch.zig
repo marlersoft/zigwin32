@@ -6,106 +6,147 @@
 //--------------------------------------------------------------------------------
 // Section: Types (16)
 //--------------------------------------------------------------------------------
-pub const GESTURECONFIG_ID = enum(u32) {
-    BEGIN = 1,
-    END = 2,
-    ZOOM = 3,
-    PAN = 4,
-    ROTATE = 5,
-    TWOFINGERTAP = 6,
-    PRESSANDTAP = 7,
-    // ROLLOVER = 7, this enum value conflicts with PRESSANDTAP
-    _,
-    pub fn initFlags(o: struct {
-        BEGIN: u1 = 0,
-        END: u1 = 0,
-        ZOOM: u1 = 0,
-        PAN: u1 = 0,
-        ROTATE: u1 = 0,
-        TWOFINGERTAP: u1 = 0,
-        PRESSANDTAP: u1 = 0,
-    }) GESTURECONFIG_ID {
-        return @as(GESTURECONFIG_ID, @enumFromInt(
-              (if (o.BEGIN == 1) @intFromEnum(GESTURECONFIG_ID.BEGIN) else 0)
-            | (if (o.END == 1) @intFromEnum(GESTURECONFIG_ID.END) else 0)
-            | (if (o.ZOOM == 1) @intFromEnum(GESTURECONFIG_ID.ZOOM) else 0)
-            | (if (o.PAN == 1) @intFromEnum(GESTURECONFIG_ID.PAN) else 0)
-            | (if (o.ROTATE == 1) @intFromEnum(GESTURECONFIG_ID.ROTATE) else 0)
-            | (if (o.TWOFINGERTAP == 1) @intFromEnum(GESTURECONFIG_ID.TWOFINGERTAP) else 0)
-            | (if (o.PRESSANDTAP == 1) @intFromEnum(GESTURECONFIG_ID.PRESSANDTAP) else 0)
-        ));
-    }
+pub const GESTURECONFIG_ID = packed struct(u32) {
+    BEGIN: u1 = 0,
+    END: u1 = 0,
+    PAN: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // ROLLOVER (7) conflicts with PRESSANDTAP
 };
-pub const GID_BEGIN = GESTURECONFIG_ID.BEGIN;
-pub const GID_END = GESTURECONFIG_ID.END;
-pub const GID_ZOOM = GESTURECONFIG_ID.ZOOM;
-pub const GID_PAN = GESTURECONFIG_ID.PAN;
-pub const GID_ROTATE = GESTURECONFIG_ID.ROTATE;
-pub const GID_TWOFINGERTAP = GESTURECONFIG_ID.TWOFINGERTAP;
-pub const GID_PRESSANDTAP = GESTURECONFIG_ID.PRESSANDTAP;
-pub const GID_ROLLOVER = GESTURECONFIG_ID.PRESSANDTAP;
+pub const GID_BEGIN = GESTURECONFIG_ID{ .BEGIN = 1 };
+pub const GID_END = GESTURECONFIG_ID{ .END = 1 };
+pub const GID_ZOOM = GESTURECONFIG_ID{
+    .BEGIN = 1,
+    .END = 1,
+};
+pub const GID_PAN = GESTURECONFIG_ID{ .PAN = 1 };
+pub const GID_ROTATE = GESTURECONFIG_ID{
+    .BEGIN = 1,
+    .PAN = 1,
+};
+pub const GID_TWOFINGERTAP = GESTURECONFIG_ID{
+    .END = 1,
+    .PAN = 1,
+};
+pub const GID_PRESSANDTAP = GESTURECONFIG_ID{
+    .BEGIN = 1,
+    .END = 1,
+    .PAN = 1,
+};
+pub const GID_ROLLOVER = GESTURECONFIG_ID{
+    .BEGIN = 1,
+    .END = 1,
+    .PAN = 1,
+};
 
-pub const TOUCHEVENTF_FLAGS = enum(u32) {
-    MOVE = 1,
-    DOWN = 2,
-    UP = 4,
-    INRANGE = 8,
-    PRIMARY = 16,
-    NOCOALESCE = 32,
-    PEN = 64,
-    PALM = 128,
-    _,
-    pub fn initFlags(o: struct {
-        MOVE: u1 = 0,
-        DOWN: u1 = 0,
-        UP: u1 = 0,
-        INRANGE: u1 = 0,
-        PRIMARY: u1 = 0,
-        NOCOALESCE: u1 = 0,
-        PEN: u1 = 0,
-        PALM: u1 = 0,
-    }) TOUCHEVENTF_FLAGS {
-        return @as(TOUCHEVENTF_FLAGS, @enumFromInt(
-              (if (o.MOVE == 1) @intFromEnum(TOUCHEVENTF_FLAGS.MOVE) else 0)
-            | (if (o.DOWN == 1) @intFromEnum(TOUCHEVENTF_FLAGS.DOWN) else 0)
-            | (if (o.UP == 1) @intFromEnum(TOUCHEVENTF_FLAGS.UP) else 0)
-            | (if (o.INRANGE == 1) @intFromEnum(TOUCHEVENTF_FLAGS.INRANGE) else 0)
-            | (if (o.PRIMARY == 1) @intFromEnum(TOUCHEVENTF_FLAGS.PRIMARY) else 0)
-            | (if (o.NOCOALESCE == 1) @intFromEnum(TOUCHEVENTF_FLAGS.NOCOALESCE) else 0)
-            | (if (o.PEN == 1) @intFromEnum(TOUCHEVENTF_FLAGS.PEN) else 0)
-            | (if (o.PALM == 1) @intFromEnum(TOUCHEVENTF_FLAGS.PALM) else 0)
-        ));
-    }
+pub const TOUCHEVENTF_FLAGS = packed struct(u32) {
+    MOVE: u1 = 0,
+    DOWN: u1 = 0,
+    UP: u1 = 0,
+    INRANGE: u1 = 0,
+    PRIMARY: u1 = 0,
+    NOCOALESCE: u1 = 0,
+    PEN: u1 = 0,
+    PALM: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS.MOVE;
-pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS.DOWN;
-pub const TOUCHEVENTF_UP = TOUCHEVENTF_FLAGS.UP;
-pub const TOUCHEVENTF_INRANGE = TOUCHEVENTF_FLAGS.INRANGE;
-pub const TOUCHEVENTF_PRIMARY = TOUCHEVENTF_FLAGS.PRIMARY;
-pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS.NOCOALESCE;
-pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS.PEN;
-pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS.PALM;
+pub const TOUCHEVENTF_MOVE = TOUCHEVENTF_FLAGS{ .MOVE = 1 };
+pub const TOUCHEVENTF_DOWN = TOUCHEVENTF_FLAGS{ .DOWN = 1 };
+pub const TOUCHEVENTF_UP = TOUCHEVENTF_FLAGS{ .UP = 1 };
+pub const TOUCHEVENTF_INRANGE = TOUCHEVENTF_FLAGS{ .INRANGE = 1 };
+pub const TOUCHEVENTF_PRIMARY = TOUCHEVENTF_FLAGS{ .PRIMARY = 1 };
+pub const TOUCHEVENTF_NOCOALESCE = TOUCHEVENTF_FLAGS{ .NOCOALESCE = 1 };
+pub const TOUCHEVENTF_PEN = TOUCHEVENTF_FLAGS{ .PEN = 1 };
+pub const TOUCHEVENTF_PALM = TOUCHEVENTF_FLAGS{ .PALM = 1 };
 
-pub const TOUCHINPUTMASKF_MASK = enum(u32) {
-    TIMEFROMSYSTEM = 1,
-    EXTRAINFO = 2,
-    CONTACTAREA = 4,
-    _,
-    pub fn initFlags(o: struct {
-        TIMEFROMSYSTEM: u1 = 0,
-        EXTRAINFO: u1 = 0,
-        CONTACTAREA: u1 = 0,
-    }) TOUCHINPUTMASKF_MASK {
-        return @as(TOUCHINPUTMASKF_MASK, @enumFromInt(
-              (if (o.TIMEFROMSYSTEM == 1) @intFromEnum(TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM) else 0)
-            | (if (o.EXTRAINFO == 1) @intFromEnum(TOUCHINPUTMASKF_MASK.EXTRAINFO) else 0)
-            | (if (o.CONTACTAREA == 1) @intFromEnum(TOUCHINPUTMASKF_MASK.CONTACTAREA) else 0)
-        ));
-    }
+pub const TOUCHINPUTMASKF_MASK = packed struct(u32) {
+    TIMEFROMSYSTEM: u1 = 0,
+    EXTRAINFO: u1 = 0,
+    CONTACTAREA: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK.TIMEFROMSYSTEM;
-pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK.EXTRAINFO;
-pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK.CONTACTAREA;
+pub const TOUCHINPUTMASKF_TIMEFROMSYSTEM = TOUCHINPUTMASKF_MASK{ .TIMEFROMSYSTEM = 1 };
+pub const TOUCHINPUTMASKF_EXTRAINFO = TOUCHINPUTMASKF_MASK{ .EXTRAINFO = 1 };
+pub const TOUCHINPUTMASKF_CONTACTAREA = TOUCHINPUTMASKF_MASK{ .CONTACTAREA = 1 };
 
 pub const REGISTER_TOUCH_WINDOW_FLAGS = enum(u32) {
     FINETOUCH = 1,

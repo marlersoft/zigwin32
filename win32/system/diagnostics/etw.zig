@@ -476,34 +476,45 @@ pub const CLSID_TraceRelogger = Guid.initString("7b40792d-05ff-44c4-9058-f440c71
 //--------------------------------------------------------------------------------
 // Section: Types (108)
 //--------------------------------------------------------------------------------
-pub const TRACE_MESSAGE_FLAGS = enum(u32) {
-    COMPONENTID = 4,
-    GUID = 2,
-    SEQUENCE = 1,
-    SYSTEMINFO = 32,
-    TIMESTAMP = 8,
-    _,
-    pub fn initFlags(o: struct {
-        COMPONENTID: u1 = 0,
-        GUID: u1 = 0,
-        SEQUENCE: u1 = 0,
-        SYSTEMINFO: u1 = 0,
-        TIMESTAMP: u1 = 0,
-    }) TRACE_MESSAGE_FLAGS {
-        return @as(TRACE_MESSAGE_FLAGS, @enumFromInt(
-              (if (o.COMPONENTID == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.COMPONENTID) else 0)
-            | (if (o.GUID == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.GUID) else 0)
-            | (if (o.SEQUENCE == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.SEQUENCE) else 0)
-            | (if (o.SYSTEMINFO == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.SYSTEMINFO) else 0)
-            | (if (o.TIMESTAMP == 1) @intFromEnum(TRACE_MESSAGE_FLAGS.TIMESTAMP) else 0)
-        ));
-    }
+pub const TRACE_MESSAGE_FLAGS = packed struct(u32) {
+    SEQUENCE: u1 = 0,
+    GUID: u1 = 0,
+    COMPONENTID: u1 = 0,
+    TIMESTAMP: u1 = 0,
+    _4: u1 = 0,
+    SYSTEMINFO: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TRACE_MESSAGE_COMPONENTID = TRACE_MESSAGE_FLAGS.COMPONENTID;
-pub const TRACE_MESSAGE_GUID = TRACE_MESSAGE_FLAGS.GUID;
-pub const TRACE_MESSAGE_SEQUENCE = TRACE_MESSAGE_FLAGS.SEQUENCE;
-pub const TRACE_MESSAGE_SYSTEMINFO = TRACE_MESSAGE_FLAGS.SYSTEMINFO;
-pub const TRACE_MESSAGE_TIMESTAMP = TRACE_MESSAGE_FLAGS.TIMESTAMP;
+pub const TRACE_MESSAGE_COMPONENTID = TRACE_MESSAGE_FLAGS{ .COMPONENTID = 1 };
+pub const TRACE_MESSAGE_GUID = TRACE_MESSAGE_FLAGS{ .GUID = 1 };
+pub const TRACE_MESSAGE_SEQUENCE = TRACE_MESSAGE_FLAGS{ .SEQUENCE = 1 };
+pub const TRACE_MESSAGE_SYSTEMINFO = TRACE_MESSAGE_FLAGS{ .SYSTEMINFO = 1 };
+pub const TRACE_MESSAGE_TIMESTAMP = TRACE_MESSAGE_FLAGS{ .TIMESTAMP = 1 };
 
 pub const ENABLECALLBACK_ENABLED_STATE = enum(u32) {
     DISABLE_PROVIDER = 0,
@@ -525,122 +536,67 @@ pub const EVENT_TRACE_CONTROL_QUERY = EVENT_TRACE_CONTROL.QUERY;
 pub const EVENT_TRACE_CONTROL_STOP = EVENT_TRACE_CONTROL.STOP;
 pub const EVENT_TRACE_CONTROL_UPDATE = EVENT_TRACE_CONTROL.UPDATE;
 
-pub const EVENT_TRACE_FLAG = enum(u32) {
-    ALPC = 1048576,
-    CSWITCH = 16,
-    DBGPRINT = 262144,
-    DISK_FILE_IO = 512,
-    DISK_IO = 256,
-    DISK_IO_INIT = 1024,
-    DISPATCHER = 2048,
-    DPC = 32,
-    DRIVER = 8388608,
-    FILE_IO = 33554432,
-    FILE_IO_INIT = 67108864,
-    IMAGE_LOAD = 4,
-    INTERRUPT = 64,
-    JOB = 524288,
-    MEMORY_HARD_FAULTS = 8192,
-    MEMORY_PAGE_FAULTS = 4096,
-    NETWORK_TCPIP = 65536,
-    NO_SYSCONFIG = 268435456,
-    PROCESS = 1,
-    PROCESS_COUNTERS = 8,
-    PROFILE = 16777216,
-    REGISTRY = 131072,
-    SPLIT_IO = 2097152,
-    SYSTEMCALL = 128,
-    THREAD = 2,
-    VAMAP = 32768,
-    VIRTUAL_ALLOC = 16384,
-    _,
-    pub fn initFlags(o: struct {
-        ALPC: u1 = 0,
-        CSWITCH: u1 = 0,
-        DBGPRINT: u1 = 0,
-        DISK_FILE_IO: u1 = 0,
-        DISK_IO: u1 = 0,
-        DISK_IO_INIT: u1 = 0,
-        DISPATCHER: u1 = 0,
-        DPC: u1 = 0,
-        DRIVER: u1 = 0,
-        FILE_IO: u1 = 0,
-        FILE_IO_INIT: u1 = 0,
-        IMAGE_LOAD: u1 = 0,
-        INTERRUPT: u1 = 0,
-        JOB: u1 = 0,
-        MEMORY_HARD_FAULTS: u1 = 0,
-        MEMORY_PAGE_FAULTS: u1 = 0,
-        NETWORK_TCPIP: u1 = 0,
-        NO_SYSCONFIG: u1 = 0,
-        PROCESS: u1 = 0,
-        PROCESS_COUNTERS: u1 = 0,
-        PROFILE: u1 = 0,
-        REGISTRY: u1 = 0,
-        SPLIT_IO: u1 = 0,
-        SYSTEMCALL: u1 = 0,
-        THREAD: u1 = 0,
-        VAMAP: u1 = 0,
-        VIRTUAL_ALLOC: u1 = 0,
-    }) EVENT_TRACE_FLAG {
-        return @as(EVENT_TRACE_FLAG, @enumFromInt(
-              (if (o.ALPC == 1) @intFromEnum(EVENT_TRACE_FLAG.ALPC) else 0)
-            | (if (o.CSWITCH == 1) @intFromEnum(EVENT_TRACE_FLAG.CSWITCH) else 0)
-            | (if (o.DBGPRINT == 1) @intFromEnum(EVENT_TRACE_FLAG.DBGPRINT) else 0)
-            | (if (o.DISK_FILE_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_FILE_IO) else 0)
-            | (if (o.DISK_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_IO) else 0)
-            | (if (o.DISK_IO_INIT == 1) @intFromEnum(EVENT_TRACE_FLAG.DISK_IO_INIT) else 0)
-            | (if (o.DISPATCHER == 1) @intFromEnum(EVENT_TRACE_FLAG.DISPATCHER) else 0)
-            | (if (o.DPC == 1) @intFromEnum(EVENT_TRACE_FLAG.DPC) else 0)
-            | (if (o.DRIVER == 1) @intFromEnum(EVENT_TRACE_FLAG.DRIVER) else 0)
-            | (if (o.FILE_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.FILE_IO) else 0)
-            | (if (o.FILE_IO_INIT == 1) @intFromEnum(EVENT_TRACE_FLAG.FILE_IO_INIT) else 0)
-            | (if (o.IMAGE_LOAD == 1) @intFromEnum(EVENT_TRACE_FLAG.IMAGE_LOAD) else 0)
-            | (if (o.INTERRUPT == 1) @intFromEnum(EVENT_TRACE_FLAG.INTERRUPT) else 0)
-            | (if (o.JOB == 1) @intFromEnum(EVENT_TRACE_FLAG.JOB) else 0)
-            | (if (o.MEMORY_HARD_FAULTS == 1) @intFromEnum(EVENT_TRACE_FLAG.MEMORY_HARD_FAULTS) else 0)
-            | (if (o.MEMORY_PAGE_FAULTS == 1) @intFromEnum(EVENT_TRACE_FLAG.MEMORY_PAGE_FAULTS) else 0)
-            | (if (o.NETWORK_TCPIP == 1) @intFromEnum(EVENT_TRACE_FLAG.NETWORK_TCPIP) else 0)
-            | (if (o.NO_SYSCONFIG == 1) @intFromEnum(EVENT_TRACE_FLAG.NO_SYSCONFIG) else 0)
-            | (if (o.PROCESS == 1) @intFromEnum(EVENT_TRACE_FLAG.PROCESS) else 0)
-            | (if (o.PROCESS_COUNTERS == 1) @intFromEnum(EVENT_TRACE_FLAG.PROCESS_COUNTERS) else 0)
-            | (if (o.PROFILE == 1) @intFromEnum(EVENT_TRACE_FLAG.PROFILE) else 0)
-            | (if (o.REGISTRY == 1) @intFromEnum(EVENT_TRACE_FLAG.REGISTRY) else 0)
-            | (if (o.SPLIT_IO == 1) @intFromEnum(EVENT_TRACE_FLAG.SPLIT_IO) else 0)
-            | (if (o.SYSTEMCALL == 1) @intFromEnum(EVENT_TRACE_FLAG.SYSTEMCALL) else 0)
-            | (if (o.THREAD == 1) @intFromEnum(EVENT_TRACE_FLAG.THREAD) else 0)
-            | (if (o.VAMAP == 1) @intFromEnum(EVENT_TRACE_FLAG.VAMAP) else 0)
-            | (if (o.VIRTUAL_ALLOC == 1) @intFromEnum(EVENT_TRACE_FLAG.VIRTUAL_ALLOC) else 0)
-        ));
-    }
+pub const EVENT_TRACE_FLAG = packed struct(u32) {
+    PROCESS: u1 = 0,
+    THREAD: u1 = 0,
+    IMAGE_LOAD: u1 = 0,
+    PROCESS_COUNTERS: u1 = 0,
+    CSWITCH: u1 = 0,
+    DPC: u1 = 0,
+    INTERRUPT: u1 = 0,
+    SYSTEMCALL: u1 = 0,
+    DISK_IO: u1 = 0,
+    DISK_FILE_IO: u1 = 0,
+    DISK_IO_INIT: u1 = 0,
+    DISPATCHER: u1 = 0,
+    MEMORY_PAGE_FAULTS: u1 = 0,
+    MEMORY_HARD_FAULTS: u1 = 0,
+    VIRTUAL_ALLOC: u1 = 0,
+    VAMAP: u1 = 0,
+    NETWORK_TCPIP: u1 = 0,
+    REGISTRY: u1 = 0,
+    DBGPRINT: u1 = 0,
+    JOB: u1 = 0,
+    ALPC: u1 = 0,
+    SPLIT_IO: u1 = 0,
+    _22: u1 = 0,
+    DRIVER: u1 = 0,
+    PROFILE: u1 = 0,
+    FILE_IO: u1 = 0,
+    FILE_IO_INIT: u1 = 0,
+    _27: u1 = 0,
+    NO_SYSCONFIG: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const EVENT_TRACE_FLAG_ALPC = EVENT_TRACE_FLAG.ALPC;
-pub const EVENT_TRACE_FLAG_CSWITCH = EVENT_TRACE_FLAG.CSWITCH;
-pub const EVENT_TRACE_FLAG_DBGPRINT = EVENT_TRACE_FLAG.DBGPRINT;
-pub const EVENT_TRACE_FLAG_DISK_FILE_IO = EVENT_TRACE_FLAG.DISK_FILE_IO;
-pub const EVENT_TRACE_FLAG_DISK_IO = EVENT_TRACE_FLAG.DISK_IO;
-pub const EVENT_TRACE_FLAG_DISK_IO_INIT = EVENT_TRACE_FLAG.DISK_IO_INIT;
-pub const EVENT_TRACE_FLAG_DISPATCHER = EVENT_TRACE_FLAG.DISPATCHER;
-pub const EVENT_TRACE_FLAG_DPC = EVENT_TRACE_FLAG.DPC;
-pub const EVENT_TRACE_FLAG_DRIVER = EVENT_TRACE_FLAG.DRIVER;
-pub const EVENT_TRACE_FLAG_FILE_IO = EVENT_TRACE_FLAG.FILE_IO;
-pub const EVENT_TRACE_FLAG_FILE_IO_INIT = EVENT_TRACE_FLAG.FILE_IO_INIT;
-pub const EVENT_TRACE_FLAG_IMAGE_LOAD = EVENT_TRACE_FLAG.IMAGE_LOAD;
-pub const EVENT_TRACE_FLAG_INTERRUPT = EVENT_TRACE_FLAG.INTERRUPT;
-pub const EVENT_TRACE_FLAG_JOB = EVENT_TRACE_FLAG.JOB;
-pub const EVENT_TRACE_FLAG_MEMORY_HARD_FAULTS = EVENT_TRACE_FLAG.MEMORY_HARD_FAULTS;
-pub const EVENT_TRACE_FLAG_MEMORY_PAGE_FAULTS = EVENT_TRACE_FLAG.MEMORY_PAGE_FAULTS;
-pub const EVENT_TRACE_FLAG_NETWORK_TCPIP = EVENT_TRACE_FLAG.NETWORK_TCPIP;
-pub const EVENT_TRACE_FLAG_NO_SYSCONFIG = EVENT_TRACE_FLAG.NO_SYSCONFIG;
-pub const EVENT_TRACE_FLAG_PROCESS = EVENT_TRACE_FLAG.PROCESS;
-pub const EVENT_TRACE_FLAG_PROCESS_COUNTERS = EVENT_TRACE_FLAG.PROCESS_COUNTERS;
-pub const EVENT_TRACE_FLAG_PROFILE = EVENT_TRACE_FLAG.PROFILE;
-pub const EVENT_TRACE_FLAG_REGISTRY = EVENT_TRACE_FLAG.REGISTRY;
-pub const EVENT_TRACE_FLAG_SPLIT_IO = EVENT_TRACE_FLAG.SPLIT_IO;
-pub const EVENT_TRACE_FLAG_SYSTEMCALL = EVENT_TRACE_FLAG.SYSTEMCALL;
-pub const EVENT_TRACE_FLAG_THREAD = EVENT_TRACE_FLAG.THREAD;
-pub const EVENT_TRACE_FLAG_VAMAP = EVENT_TRACE_FLAG.VAMAP;
-pub const EVENT_TRACE_FLAG_VIRTUAL_ALLOC = EVENT_TRACE_FLAG.VIRTUAL_ALLOC;
+pub const EVENT_TRACE_FLAG_ALPC = EVENT_TRACE_FLAG{ .ALPC = 1 };
+pub const EVENT_TRACE_FLAG_CSWITCH = EVENT_TRACE_FLAG{ .CSWITCH = 1 };
+pub const EVENT_TRACE_FLAG_DBGPRINT = EVENT_TRACE_FLAG{ .DBGPRINT = 1 };
+pub const EVENT_TRACE_FLAG_DISK_FILE_IO = EVENT_TRACE_FLAG{ .DISK_FILE_IO = 1 };
+pub const EVENT_TRACE_FLAG_DISK_IO = EVENT_TRACE_FLAG{ .DISK_IO = 1 };
+pub const EVENT_TRACE_FLAG_DISK_IO_INIT = EVENT_TRACE_FLAG{ .DISK_IO_INIT = 1 };
+pub const EVENT_TRACE_FLAG_DISPATCHER = EVENT_TRACE_FLAG{ .DISPATCHER = 1 };
+pub const EVENT_TRACE_FLAG_DPC = EVENT_TRACE_FLAG{ .DPC = 1 };
+pub const EVENT_TRACE_FLAG_DRIVER = EVENT_TRACE_FLAG{ .DRIVER = 1 };
+pub const EVENT_TRACE_FLAG_FILE_IO = EVENT_TRACE_FLAG{ .FILE_IO = 1 };
+pub const EVENT_TRACE_FLAG_FILE_IO_INIT = EVENT_TRACE_FLAG{ .FILE_IO_INIT = 1 };
+pub const EVENT_TRACE_FLAG_IMAGE_LOAD = EVENT_TRACE_FLAG{ .IMAGE_LOAD = 1 };
+pub const EVENT_TRACE_FLAG_INTERRUPT = EVENT_TRACE_FLAG{ .INTERRUPT = 1 };
+pub const EVENT_TRACE_FLAG_JOB = EVENT_TRACE_FLAG{ .JOB = 1 };
+pub const EVENT_TRACE_FLAG_MEMORY_HARD_FAULTS = EVENT_TRACE_FLAG{ .MEMORY_HARD_FAULTS = 1 };
+pub const EVENT_TRACE_FLAG_MEMORY_PAGE_FAULTS = EVENT_TRACE_FLAG{ .MEMORY_PAGE_FAULTS = 1 };
+pub const EVENT_TRACE_FLAG_NETWORK_TCPIP = EVENT_TRACE_FLAG{ .NETWORK_TCPIP = 1 };
+pub const EVENT_TRACE_FLAG_NO_SYSCONFIG = EVENT_TRACE_FLAG{ .NO_SYSCONFIG = 1 };
+pub const EVENT_TRACE_FLAG_PROCESS = EVENT_TRACE_FLAG{ .PROCESS = 1 };
+pub const EVENT_TRACE_FLAG_PROCESS_COUNTERS = EVENT_TRACE_FLAG{ .PROCESS_COUNTERS = 1 };
+pub const EVENT_TRACE_FLAG_PROFILE = EVENT_TRACE_FLAG{ .PROFILE = 1 };
+pub const EVENT_TRACE_FLAG_REGISTRY = EVENT_TRACE_FLAG{ .REGISTRY = 1 };
+pub const EVENT_TRACE_FLAG_SPLIT_IO = EVENT_TRACE_FLAG{ .SPLIT_IO = 1 };
+pub const EVENT_TRACE_FLAG_SYSTEMCALL = EVENT_TRACE_FLAG{ .SYSTEMCALL = 1 };
+pub const EVENT_TRACE_FLAG_THREAD = EVENT_TRACE_FLAG{ .THREAD = 1 };
+pub const EVENT_TRACE_FLAG_VAMAP = EVENT_TRACE_FLAG{ .VAMAP = 1 };
+pub const EVENT_TRACE_FLAG_VIRTUAL_ALLOC = EVENT_TRACE_FLAG{ .VIRTUAL_ALLOC = 1 };
 
 // TODO: this type has a FreeFunc 'TdhCloseDecodingHandle', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?

@@ -1515,124 +1515,69 @@ pub const GUID_QUERY_CRASHDUMP_FUNCTIONS = Guid.initString("9cc6b8ff-32e2-4834-b
 //--------------------------------------------------------------------------------
 // Section: Types (172)
 //--------------------------------------------------------------------------------
-pub const SP_COPY_STYLE = enum(u32) {
-    DELETESOURCE = 1,
-    REPLACEONLY = 2,
-    NEWER_OR_SAME = 4,
-    NEWER_ONLY = 65536,
-    NOOVERWRITE = 8,
-    NODECOMP = 16,
-    LANGUAGEAWARE = 32,
-    SOURCE_ABSOLUTE = 64,
-    SOURCEPATH_ABSOLUTE = 128,
-    FORCE_IN_USE = 512,
-    IN_USE_NEEDS_REBOOT = 256,
-    NOSKIP = 1024,
-    FORCE_NOOVERWRITE = 4096,
-    FORCE_NEWER = 8192,
-    WARNIFSKIP = 16384,
-    NOBROWSE = 32768,
-    // NEWER = 4, this enum value conflicts with NEWER_OR_SAME
-    RESERVED = 131072,
-    OEMINF_CATALOG_ONLY = 262144,
-    REPLACE_BOOT_FILE = 524288,
-    NOPRUNE = 1048576,
-    OEM_F6_INF = 2097152,
-    ALREADYDECOMP = 4194304,
-    WINDOWS_SIGNED = 16777216,
-    PNPLOCKED = 33554432,
-    IN_USE_TRY_RENAME = 67108864,
-    INBOX_INF = 134217728,
-    HARDLINK = 268435456,
-    _,
-    pub fn initFlags(o: struct {
-        DELETESOURCE: u1 = 0,
-        REPLACEONLY: u1 = 0,
-        NEWER_OR_SAME: u1 = 0,
-        NEWER_ONLY: u1 = 0,
-        NOOVERWRITE: u1 = 0,
-        NODECOMP: u1 = 0,
-        LANGUAGEAWARE: u1 = 0,
-        SOURCE_ABSOLUTE: u1 = 0,
-        SOURCEPATH_ABSOLUTE: u1 = 0,
-        FORCE_IN_USE: u1 = 0,
-        IN_USE_NEEDS_REBOOT: u1 = 0,
-        NOSKIP: u1 = 0,
-        FORCE_NOOVERWRITE: u1 = 0,
-        FORCE_NEWER: u1 = 0,
-        WARNIFSKIP: u1 = 0,
-        NOBROWSE: u1 = 0,
-        RESERVED: u1 = 0,
-        OEMINF_CATALOG_ONLY: u1 = 0,
-        REPLACE_BOOT_FILE: u1 = 0,
-        NOPRUNE: u1 = 0,
-        OEM_F6_INF: u1 = 0,
-        ALREADYDECOMP: u1 = 0,
-        WINDOWS_SIGNED: u1 = 0,
-        PNPLOCKED: u1 = 0,
-        IN_USE_TRY_RENAME: u1 = 0,
-        INBOX_INF: u1 = 0,
-        HARDLINK: u1 = 0,
-    }) SP_COPY_STYLE {
-        return @as(SP_COPY_STYLE, @enumFromInt(
-              (if (o.DELETESOURCE == 1) @intFromEnum(SP_COPY_STYLE.DELETESOURCE) else 0)
-            | (if (o.REPLACEONLY == 1) @intFromEnum(SP_COPY_STYLE.REPLACEONLY) else 0)
-            | (if (o.NEWER_OR_SAME == 1) @intFromEnum(SP_COPY_STYLE.NEWER_OR_SAME) else 0)
-            | (if (o.NEWER_ONLY == 1) @intFromEnum(SP_COPY_STYLE.NEWER_ONLY) else 0)
-            | (if (o.NOOVERWRITE == 1) @intFromEnum(SP_COPY_STYLE.NOOVERWRITE) else 0)
-            | (if (o.NODECOMP == 1) @intFromEnum(SP_COPY_STYLE.NODECOMP) else 0)
-            | (if (o.LANGUAGEAWARE == 1) @intFromEnum(SP_COPY_STYLE.LANGUAGEAWARE) else 0)
-            | (if (o.SOURCE_ABSOLUTE == 1) @intFromEnum(SP_COPY_STYLE.SOURCE_ABSOLUTE) else 0)
-            | (if (o.SOURCEPATH_ABSOLUTE == 1) @intFromEnum(SP_COPY_STYLE.SOURCEPATH_ABSOLUTE) else 0)
-            | (if (o.FORCE_IN_USE == 1) @intFromEnum(SP_COPY_STYLE.FORCE_IN_USE) else 0)
-            | (if (o.IN_USE_NEEDS_REBOOT == 1) @intFromEnum(SP_COPY_STYLE.IN_USE_NEEDS_REBOOT) else 0)
-            | (if (o.NOSKIP == 1) @intFromEnum(SP_COPY_STYLE.NOSKIP) else 0)
-            | (if (o.FORCE_NOOVERWRITE == 1) @intFromEnum(SP_COPY_STYLE.FORCE_NOOVERWRITE) else 0)
-            | (if (o.FORCE_NEWER == 1) @intFromEnum(SP_COPY_STYLE.FORCE_NEWER) else 0)
-            | (if (o.WARNIFSKIP == 1) @intFromEnum(SP_COPY_STYLE.WARNIFSKIP) else 0)
-            | (if (o.NOBROWSE == 1) @intFromEnum(SP_COPY_STYLE.NOBROWSE) else 0)
-            | (if (o.RESERVED == 1) @intFromEnum(SP_COPY_STYLE.RESERVED) else 0)
-            | (if (o.OEMINF_CATALOG_ONLY == 1) @intFromEnum(SP_COPY_STYLE.OEMINF_CATALOG_ONLY) else 0)
-            | (if (o.REPLACE_BOOT_FILE == 1) @intFromEnum(SP_COPY_STYLE.REPLACE_BOOT_FILE) else 0)
-            | (if (o.NOPRUNE == 1) @intFromEnum(SP_COPY_STYLE.NOPRUNE) else 0)
-            | (if (o.OEM_F6_INF == 1) @intFromEnum(SP_COPY_STYLE.OEM_F6_INF) else 0)
-            | (if (o.ALREADYDECOMP == 1) @intFromEnum(SP_COPY_STYLE.ALREADYDECOMP) else 0)
-            | (if (o.WINDOWS_SIGNED == 1) @intFromEnum(SP_COPY_STYLE.WINDOWS_SIGNED) else 0)
-            | (if (o.PNPLOCKED == 1) @intFromEnum(SP_COPY_STYLE.PNPLOCKED) else 0)
-            | (if (o.IN_USE_TRY_RENAME == 1) @intFromEnum(SP_COPY_STYLE.IN_USE_TRY_RENAME) else 0)
-            | (if (o.INBOX_INF == 1) @intFromEnum(SP_COPY_STYLE.INBOX_INF) else 0)
-            | (if (o.HARDLINK == 1) @intFromEnum(SP_COPY_STYLE.HARDLINK) else 0)
-        ));
-    }
+pub const SP_COPY_STYLE = packed struct(u32) {
+    DELETESOURCE: u1 = 0,
+    REPLACEONLY: u1 = 0,
+    NEWER_OR_SAME: u1 = 0,
+    NOOVERWRITE: u1 = 0,
+    NODECOMP: u1 = 0,
+    LANGUAGEAWARE: u1 = 0,
+    SOURCE_ABSOLUTE: u1 = 0,
+    SOURCEPATH_ABSOLUTE: u1 = 0,
+    IN_USE_NEEDS_REBOOT: u1 = 0,
+    FORCE_IN_USE: u1 = 0,
+    NOSKIP: u1 = 0,
+    _11: u1 = 0,
+    FORCE_NOOVERWRITE: u1 = 0,
+    FORCE_NEWER: u1 = 0,
+    WARNIFSKIP: u1 = 0,
+    NOBROWSE: u1 = 0,
+    NEWER_ONLY: u1 = 0,
+    RESERVED: u1 = 0,
+    OEMINF_CATALOG_ONLY: u1 = 0,
+    REPLACE_BOOT_FILE: u1 = 0,
+    NOPRUNE: u1 = 0,
+    OEM_F6_INF: u1 = 0,
+    ALREADYDECOMP: u1 = 0,
+    _23: u1 = 0,
+    WINDOWS_SIGNED: u1 = 0,
+    PNPLOCKED: u1 = 0,
+    IN_USE_TRY_RENAME: u1 = 0,
+    INBOX_INF: u1 = 0,
+    HARDLINK: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // NEWER (4) conflicts with NEWER_OR_SAME
 };
-pub const SP_COPY_DELETESOURCE = SP_COPY_STYLE.DELETESOURCE;
-pub const SP_COPY_REPLACEONLY = SP_COPY_STYLE.REPLACEONLY;
-pub const SP_COPY_NEWER_OR_SAME = SP_COPY_STYLE.NEWER_OR_SAME;
-pub const SP_COPY_NEWER_ONLY = SP_COPY_STYLE.NEWER_ONLY;
-pub const SP_COPY_NOOVERWRITE = SP_COPY_STYLE.NOOVERWRITE;
-pub const SP_COPY_NODECOMP = SP_COPY_STYLE.NODECOMP;
-pub const SP_COPY_LANGUAGEAWARE = SP_COPY_STYLE.LANGUAGEAWARE;
-pub const SP_COPY_SOURCE_ABSOLUTE = SP_COPY_STYLE.SOURCE_ABSOLUTE;
-pub const SP_COPY_SOURCEPATH_ABSOLUTE = SP_COPY_STYLE.SOURCEPATH_ABSOLUTE;
-pub const SP_COPY_FORCE_IN_USE = SP_COPY_STYLE.FORCE_IN_USE;
-pub const SP_COPY_IN_USE_NEEDS_REBOOT = SP_COPY_STYLE.IN_USE_NEEDS_REBOOT;
-pub const SP_COPY_NOSKIP = SP_COPY_STYLE.NOSKIP;
-pub const SP_COPY_FORCE_NOOVERWRITE = SP_COPY_STYLE.FORCE_NOOVERWRITE;
-pub const SP_COPY_FORCE_NEWER = SP_COPY_STYLE.FORCE_NEWER;
-pub const SP_COPY_WARNIFSKIP = SP_COPY_STYLE.WARNIFSKIP;
-pub const SP_COPY_NOBROWSE = SP_COPY_STYLE.NOBROWSE;
-pub const SP_COPY_NEWER = SP_COPY_STYLE.NEWER_OR_SAME;
-pub const SP_COPY_RESERVED = SP_COPY_STYLE.RESERVED;
-pub const SP_COPY_OEMINF_CATALOG_ONLY = SP_COPY_STYLE.OEMINF_CATALOG_ONLY;
-pub const SP_COPY_REPLACE_BOOT_FILE = SP_COPY_STYLE.REPLACE_BOOT_FILE;
-pub const SP_COPY_NOPRUNE = SP_COPY_STYLE.NOPRUNE;
-pub const SP_COPY_OEM_F6_INF = SP_COPY_STYLE.OEM_F6_INF;
-pub const SP_COPY_ALREADYDECOMP = SP_COPY_STYLE.ALREADYDECOMP;
-pub const SP_COPY_WINDOWS_SIGNED = SP_COPY_STYLE.WINDOWS_SIGNED;
-pub const SP_COPY_PNPLOCKED = SP_COPY_STYLE.PNPLOCKED;
-pub const SP_COPY_IN_USE_TRY_RENAME = SP_COPY_STYLE.IN_USE_TRY_RENAME;
-pub const SP_COPY_INBOX_INF = SP_COPY_STYLE.INBOX_INF;
-pub const SP_COPY_HARDLINK = SP_COPY_STYLE.HARDLINK;
+pub const SP_COPY_DELETESOURCE = SP_COPY_STYLE{ .DELETESOURCE = 1 };
+pub const SP_COPY_REPLACEONLY = SP_COPY_STYLE{ .REPLACEONLY = 1 };
+pub const SP_COPY_NEWER_OR_SAME = SP_COPY_STYLE{ .NEWER_OR_SAME = 1 };
+pub const SP_COPY_NEWER_ONLY = SP_COPY_STYLE{ .NEWER_ONLY = 1 };
+pub const SP_COPY_NOOVERWRITE = SP_COPY_STYLE{ .NOOVERWRITE = 1 };
+pub const SP_COPY_NODECOMP = SP_COPY_STYLE{ .NODECOMP = 1 };
+pub const SP_COPY_LANGUAGEAWARE = SP_COPY_STYLE{ .LANGUAGEAWARE = 1 };
+pub const SP_COPY_SOURCE_ABSOLUTE = SP_COPY_STYLE{ .SOURCE_ABSOLUTE = 1 };
+pub const SP_COPY_SOURCEPATH_ABSOLUTE = SP_COPY_STYLE{ .SOURCEPATH_ABSOLUTE = 1 };
+pub const SP_COPY_FORCE_IN_USE = SP_COPY_STYLE{ .FORCE_IN_USE = 1 };
+pub const SP_COPY_IN_USE_NEEDS_REBOOT = SP_COPY_STYLE{ .IN_USE_NEEDS_REBOOT = 1 };
+pub const SP_COPY_NOSKIP = SP_COPY_STYLE{ .NOSKIP = 1 };
+pub const SP_COPY_FORCE_NOOVERWRITE = SP_COPY_STYLE{ .FORCE_NOOVERWRITE = 1 };
+pub const SP_COPY_FORCE_NEWER = SP_COPY_STYLE{ .FORCE_NEWER = 1 };
+pub const SP_COPY_WARNIFSKIP = SP_COPY_STYLE{ .WARNIFSKIP = 1 };
+pub const SP_COPY_NOBROWSE = SP_COPY_STYLE{ .NOBROWSE = 1 };
+pub const SP_COPY_NEWER = SP_COPY_STYLE{ .NEWER_OR_SAME = 1 };
+pub const SP_COPY_RESERVED = SP_COPY_STYLE{ .RESERVED = 1 };
+pub const SP_COPY_OEMINF_CATALOG_ONLY = SP_COPY_STYLE{ .OEMINF_CATALOG_ONLY = 1 };
+pub const SP_COPY_REPLACE_BOOT_FILE = SP_COPY_STYLE{ .REPLACE_BOOT_FILE = 1 };
+pub const SP_COPY_NOPRUNE = SP_COPY_STYLE{ .NOPRUNE = 1 };
+pub const SP_COPY_OEM_F6_INF = SP_COPY_STYLE{ .OEM_F6_INF = 1 };
+pub const SP_COPY_ALREADYDECOMP = SP_COPY_STYLE{ .ALREADYDECOMP = 1 };
+pub const SP_COPY_WINDOWS_SIGNED = SP_COPY_STYLE{ .WINDOWS_SIGNED = 1 };
+pub const SP_COPY_PNPLOCKED = SP_COPY_STYLE{ .PNPLOCKED = 1 };
+pub const SP_COPY_IN_USE_TRY_RENAME = SP_COPY_STYLE{ .IN_USE_TRY_RENAME = 1 };
+pub const SP_COPY_INBOX_INF = SP_COPY_STYLE{ .INBOX_INF = 1 };
+pub const SP_COPY_HARDLINK = SP_COPY_STYLE{ .HARDLINK = 1 };
 
 pub const SETUP_FILE_OPERATION = enum(u32) {
     DELETE = 2,

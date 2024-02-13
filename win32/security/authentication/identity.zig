@@ -1562,128 +1562,134 @@ pub const LOGON_SERVER_TRUST_ACCOUNT = MSV_SUB_AUTHENTICATION_FILTER.SERVER_TRUS
 pub const LOGON_PROFILE_PATH_RETURNED = MSV_SUB_AUTHENTICATION_FILTER.PROFILE_PATH_RETURNED;
 pub const LOGON_RESOURCE_GROUPS = MSV_SUB_AUTHENTICATION_FILTER.RESOURCE_GROUPS;
 
-pub const EXPORT_SECURITY_CONTEXT_FLAGS = enum(u32) {
-    RESET_NEW = 1,
-    DELETE_OLD = 2,
-    TO_KERNEL = 4,
-    _,
-    pub fn initFlags(o: struct {
-        RESET_NEW: u1 = 0,
-        DELETE_OLD: u1 = 0,
-        TO_KERNEL: u1 = 0,
-    }) EXPORT_SECURITY_CONTEXT_FLAGS {
-        return @as(EXPORT_SECURITY_CONTEXT_FLAGS, @enumFromInt(
-              (if (o.RESET_NEW == 1) @intFromEnum(EXPORT_SECURITY_CONTEXT_FLAGS.RESET_NEW) else 0)
-            | (if (o.DELETE_OLD == 1) @intFromEnum(EXPORT_SECURITY_CONTEXT_FLAGS.DELETE_OLD) else 0)
-            | (if (o.TO_KERNEL == 1) @intFromEnum(EXPORT_SECURITY_CONTEXT_FLAGS.TO_KERNEL) else 0)
-        ));
-    }
+pub const EXPORT_SECURITY_CONTEXT_FLAGS = packed struct(u32) {
+    RESET_NEW: u1 = 0,
+    DELETE_OLD: u1 = 0,
+    TO_KERNEL: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const SECPKG_CONTEXT_EXPORT_RESET_NEW = EXPORT_SECURITY_CONTEXT_FLAGS.RESET_NEW;
-pub const SECPKG_CONTEXT_EXPORT_DELETE_OLD = EXPORT_SECURITY_CONTEXT_FLAGS.DELETE_OLD;
-pub const SECPKG_CONTEXT_EXPORT_TO_KERNEL = EXPORT_SECURITY_CONTEXT_FLAGS.TO_KERNEL;
+pub const SECPKG_CONTEXT_EXPORT_RESET_NEW = EXPORT_SECURITY_CONTEXT_FLAGS{ .RESET_NEW = 1 };
+pub const SECPKG_CONTEXT_EXPORT_DELETE_OLD = EXPORT_SECURITY_CONTEXT_FLAGS{ .DELETE_OLD = 1 };
+pub const SECPKG_CONTEXT_EXPORT_TO_KERNEL = EXPORT_SECURITY_CONTEXT_FLAGS{ .TO_KERNEL = 1 };
 
-pub const ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ = enum(u32) {
-    ALLOCATE_MEMORY = 256,
-    CONNECTION = 2048,
-    DELEGATE = 1,
-    EXTENDED_ERROR = 32768,
-    REPLAY_DETECT = 4,
-    SEQUENCE_DETECT = 8,
-    STREAM = 65536,
-    _,
-    pub fn initFlags(o: struct {
-        ALLOCATE_MEMORY: u1 = 0,
-        CONNECTION: u1 = 0,
-        DELEGATE: u1 = 0,
-        EXTENDED_ERROR: u1 = 0,
-        REPLAY_DETECT: u1 = 0,
-        SEQUENCE_DETECT: u1 = 0,
-        STREAM: u1 = 0,
-    }) ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ {
-        return @as(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ, @enumFromInt(
-              (if (o.ALLOCATE_MEMORY == 1) @intFromEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.ALLOCATE_MEMORY) else 0)
-            | (if (o.CONNECTION == 1) @intFromEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.CONNECTION) else 0)
-            | (if (o.DELEGATE == 1) @intFromEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.DELEGATE) else 0)
-            | (if (o.EXTENDED_ERROR == 1) @intFromEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.EXTENDED_ERROR) else 0)
-            | (if (o.REPLAY_DETECT == 1) @intFromEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.REPLAY_DETECT) else 0)
-            | (if (o.SEQUENCE_DETECT == 1) @intFromEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.SEQUENCE_DETECT) else 0)
-            | (if (o.STREAM == 1) @intFromEnum(ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.STREAM) else 0)
-        ));
-    }
+pub const ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ = packed struct(u32) {
+    DELEGATE: u1 = 0,
+    _1: u1 = 0,
+    REPLAY_DETECT: u1 = 0,
+    SEQUENCE_DETECT: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    ALLOCATE_MEMORY: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    CONNECTION: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    EXTENDED_ERROR: u1 = 0,
+    STREAM: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const ASC_REQ_ALLOCATE_MEMORY = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.ALLOCATE_MEMORY;
-pub const ASC_REQ_CONNECTION = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.CONNECTION;
-pub const ASC_REQ_DELEGATE = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.DELEGATE;
-pub const ASC_REQ_EXTENDED_ERROR = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.EXTENDED_ERROR;
-pub const ASC_REQ_REPLAY_DETECT = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.REPLAY_DETECT;
-pub const ASC_REQ_SEQUENCE_DETECT = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.SEQUENCE_DETECT;
-pub const ASC_REQ_STREAM = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ.STREAM;
+pub const ASC_REQ_ALLOCATE_MEMORY = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ{ .ALLOCATE_MEMORY = 1 };
+pub const ASC_REQ_CONNECTION = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ{ .CONNECTION = 1 };
+pub const ASC_REQ_DELEGATE = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ{ .DELEGATE = 1 };
+pub const ASC_REQ_EXTENDED_ERROR = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ{ .EXTENDED_ERROR = 1 };
+pub const ASC_REQ_REPLAY_DETECT = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ{ .REPLAY_DETECT = 1 };
+pub const ASC_REQ_SEQUENCE_DETECT = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ{ .SEQUENCE_DETECT = 1 };
+pub const ASC_REQ_STREAM = ACCEPT_SECURITY_CONTEXT_CONTEXT_REQ{ .STREAM = 1 };
 
-pub const KERB_TICKET_FLAGS = enum(u32) {
-    forwardable = 1073741824,
-    forwarded = 536870912,
-    hw_authent = 1048576,
-    initial = 4194304,
-    invalid = 16777216,
-    may_postdate = 67108864,
-    ok_as_delegate = 262144,
-    postdated = 33554432,
-    pre_authent = 2097152,
-    proxiable = 268435456,
-    proxy = 134217728,
-    renewable = 8388608,
-    reserved = 2147483648,
-    reserved1 = 1,
-    _,
-    pub fn initFlags(o: struct {
-        forwardable: u1 = 0,
-        forwarded: u1 = 0,
-        hw_authent: u1 = 0,
-        initial: u1 = 0,
-        invalid: u1 = 0,
-        may_postdate: u1 = 0,
-        ok_as_delegate: u1 = 0,
-        postdated: u1 = 0,
-        pre_authent: u1 = 0,
-        proxiable: u1 = 0,
-        proxy: u1 = 0,
-        renewable: u1 = 0,
-        reserved: u1 = 0,
-        reserved1: u1 = 0,
-    }) KERB_TICKET_FLAGS {
-        return @as(KERB_TICKET_FLAGS, @enumFromInt(
-              (if (o.forwardable == 1) @intFromEnum(KERB_TICKET_FLAGS.forwardable) else 0)
-            | (if (o.forwarded == 1) @intFromEnum(KERB_TICKET_FLAGS.forwarded) else 0)
-            | (if (o.hw_authent == 1) @intFromEnum(KERB_TICKET_FLAGS.hw_authent) else 0)
-            | (if (o.initial == 1) @intFromEnum(KERB_TICKET_FLAGS.initial) else 0)
-            | (if (o.invalid == 1) @intFromEnum(KERB_TICKET_FLAGS.invalid) else 0)
-            | (if (o.may_postdate == 1) @intFromEnum(KERB_TICKET_FLAGS.may_postdate) else 0)
-            | (if (o.ok_as_delegate == 1) @intFromEnum(KERB_TICKET_FLAGS.ok_as_delegate) else 0)
-            | (if (o.postdated == 1) @intFromEnum(KERB_TICKET_FLAGS.postdated) else 0)
-            | (if (o.pre_authent == 1) @intFromEnum(KERB_TICKET_FLAGS.pre_authent) else 0)
-            | (if (o.proxiable == 1) @intFromEnum(KERB_TICKET_FLAGS.proxiable) else 0)
-            | (if (o.proxy == 1) @intFromEnum(KERB_TICKET_FLAGS.proxy) else 0)
-            | (if (o.renewable == 1) @intFromEnum(KERB_TICKET_FLAGS.renewable) else 0)
-            | (if (o.reserved == 1) @intFromEnum(KERB_TICKET_FLAGS.reserved) else 0)
-            | (if (o.reserved1 == 1) @intFromEnum(KERB_TICKET_FLAGS.reserved1) else 0)
-        ));
-    }
+pub const KERB_TICKET_FLAGS = packed struct(u32) {
+    reserved1: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    ok_as_delegate: u1 = 0,
+    _19: u1 = 0,
+    hw_authent: u1 = 0,
+    pre_authent: u1 = 0,
+    initial: u1 = 0,
+    renewable: u1 = 0,
+    invalid: u1 = 0,
+    postdated: u1 = 0,
+    may_postdate: u1 = 0,
+    proxy: u1 = 0,
+    proxiable: u1 = 0,
+    forwarded: u1 = 0,
+    forwardable: u1 = 0,
+    reserved: u1 = 0,
 };
-pub const KERB_TICKET_FLAGS_forwardable = KERB_TICKET_FLAGS.forwardable;
-pub const KERB_TICKET_FLAGS_forwarded = KERB_TICKET_FLAGS.forwarded;
-pub const KERB_TICKET_FLAGS_hw_authent = KERB_TICKET_FLAGS.hw_authent;
-pub const KERB_TICKET_FLAGS_initial = KERB_TICKET_FLAGS.initial;
-pub const KERB_TICKET_FLAGS_invalid = KERB_TICKET_FLAGS.invalid;
-pub const KERB_TICKET_FLAGS_may_postdate = KERB_TICKET_FLAGS.may_postdate;
-pub const KERB_TICKET_FLAGS_ok_as_delegate = KERB_TICKET_FLAGS.ok_as_delegate;
-pub const KERB_TICKET_FLAGS_postdated = KERB_TICKET_FLAGS.postdated;
-pub const KERB_TICKET_FLAGS_pre_authent = KERB_TICKET_FLAGS.pre_authent;
-pub const KERB_TICKET_FLAGS_proxiable = KERB_TICKET_FLAGS.proxiable;
-pub const KERB_TICKET_FLAGS_proxy = KERB_TICKET_FLAGS.proxy;
-pub const KERB_TICKET_FLAGS_renewable = KERB_TICKET_FLAGS.renewable;
-pub const KERB_TICKET_FLAGS_reserved = KERB_TICKET_FLAGS.reserved;
-pub const KERB_TICKET_FLAGS_reserved1 = KERB_TICKET_FLAGS.reserved1;
+pub const KERB_TICKET_FLAGS_forwardable = KERB_TICKET_FLAGS{ .forwardable = 1 };
+pub const KERB_TICKET_FLAGS_forwarded = KERB_TICKET_FLAGS{ .forwarded = 1 };
+pub const KERB_TICKET_FLAGS_hw_authent = KERB_TICKET_FLAGS{ .hw_authent = 1 };
+pub const KERB_TICKET_FLAGS_initial = KERB_TICKET_FLAGS{ .initial = 1 };
+pub const KERB_TICKET_FLAGS_invalid = KERB_TICKET_FLAGS{ .invalid = 1 };
+pub const KERB_TICKET_FLAGS_may_postdate = KERB_TICKET_FLAGS{ .may_postdate = 1 };
+pub const KERB_TICKET_FLAGS_ok_as_delegate = KERB_TICKET_FLAGS{ .ok_as_delegate = 1 };
+pub const KERB_TICKET_FLAGS_postdated = KERB_TICKET_FLAGS{ .postdated = 1 };
+pub const KERB_TICKET_FLAGS_pre_authent = KERB_TICKET_FLAGS{ .pre_authent = 1 };
+pub const KERB_TICKET_FLAGS_proxiable = KERB_TICKET_FLAGS{ .proxiable = 1 };
+pub const KERB_TICKET_FLAGS_proxy = KERB_TICKET_FLAGS{ .proxy = 1 };
+pub const KERB_TICKET_FLAGS_renewable = KERB_TICKET_FLAGS{ .renewable = 1 };
+pub const KERB_TICKET_FLAGS_reserved = KERB_TICKET_FLAGS{ .reserved = 1 };
+pub const KERB_TICKET_FLAGS_reserved1 = KERB_TICKET_FLAGS{ .reserved1 = 1 };
 
 pub const KERB_ADDRESS_TYPE = enum(u32) {
     INET_ADDRESS = 1,
@@ -1692,115 +1698,98 @@ pub const KERB_ADDRESS_TYPE = enum(u32) {
 pub const DS_INET_ADDRESS = KERB_ADDRESS_TYPE.INET_ADDRESS;
 pub const DS_NETBIOS_ADDRESS = KERB_ADDRESS_TYPE.NETBIOS_ADDRESS;
 
-pub const SCHANNEL_CRED_FLAGS = enum(u32) {
-    CRED_AUTO_CRED_VALIDATION = 32,
-    CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE = 131072,
-    DISABLE_RECONNECTS = 128,
-    CRED_IGNORE_NO_REVOCATION_CHECK = 2048,
-    CRED_IGNORE_REVOCATION_OFFLINE = 4096,
-    CRED_MANUAL_CRED_VALIDATION = 8,
-    CRED_NO_DEFAULT_CREDS = 16,
-    CRED_NO_SERVERNAME_CHECK = 4,
-    CRED_NO_SYSTEM_MAPPER = 2,
-    CRED_REVOCATION_CHECK_CHAIN = 512,
-    CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT = 1024,
-    CRED_REVOCATION_CHECK_END_CERT = 256,
-    CRED_USE_DEFAULT_CREDS = 64,
-    SEND_AUX_RECORD = 2097152,
-    SEND_ROOT_CERT = 262144,
-    USE_STRONG_CRYPTO = 4194304,
-    USE_PRESHAREDKEY_ONLY = 8388608,
-    _,
-    pub fn initFlags(o: struct {
-        CRED_AUTO_CRED_VALIDATION: u1 = 0,
-        CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE: u1 = 0,
-        DISABLE_RECONNECTS: u1 = 0,
-        CRED_IGNORE_NO_REVOCATION_CHECK: u1 = 0,
-        CRED_IGNORE_REVOCATION_OFFLINE: u1 = 0,
-        CRED_MANUAL_CRED_VALIDATION: u1 = 0,
-        CRED_NO_DEFAULT_CREDS: u1 = 0,
-        CRED_NO_SERVERNAME_CHECK: u1 = 0,
-        CRED_NO_SYSTEM_MAPPER: u1 = 0,
-        CRED_REVOCATION_CHECK_CHAIN: u1 = 0,
-        CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT: u1 = 0,
-        CRED_REVOCATION_CHECK_END_CERT: u1 = 0,
-        CRED_USE_DEFAULT_CREDS: u1 = 0,
-        SEND_AUX_RECORD: u1 = 0,
-        SEND_ROOT_CERT: u1 = 0,
-        USE_STRONG_CRYPTO: u1 = 0,
-        USE_PRESHAREDKEY_ONLY: u1 = 0,
-    }) SCHANNEL_CRED_FLAGS {
-        return @as(SCHANNEL_CRED_FLAGS, @enumFromInt(
-              (if (o.CRED_AUTO_CRED_VALIDATION == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_AUTO_CRED_VALIDATION) else 0)
-            | (if (o.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE) else 0)
-            | (if (o.DISABLE_RECONNECTS == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.DISABLE_RECONNECTS) else 0)
-            | (if (o.CRED_IGNORE_NO_REVOCATION_CHECK == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_IGNORE_NO_REVOCATION_CHECK) else 0)
-            | (if (o.CRED_IGNORE_REVOCATION_OFFLINE == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_IGNORE_REVOCATION_OFFLINE) else 0)
-            | (if (o.CRED_MANUAL_CRED_VALIDATION == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_MANUAL_CRED_VALIDATION) else 0)
-            | (if (o.CRED_NO_DEFAULT_CREDS == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_NO_DEFAULT_CREDS) else 0)
-            | (if (o.CRED_NO_SERVERNAME_CHECK == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_NO_SERVERNAME_CHECK) else 0)
-            | (if (o.CRED_NO_SYSTEM_MAPPER == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_NO_SYSTEM_MAPPER) else 0)
-            | (if (o.CRED_REVOCATION_CHECK_CHAIN == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN) else 0)
-            | (if (o.CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT) else 0)
-            | (if (o.CRED_REVOCATION_CHECK_END_CERT == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_END_CERT) else 0)
-            | (if (o.CRED_USE_DEFAULT_CREDS == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.CRED_USE_DEFAULT_CREDS) else 0)
-            | (if (o.SEND_AUX_RECORD == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.SEND_AUX_RECORD) else 0)
-            | (if (o.SEND_ROOT_CERT == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.SEND_ROOT_CERT) else 0)
-            | (if (o.USE_STRONG_CRYPTO == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.USE_STRONG_CRYPTO) else 0)
-            | (if (o.USE_PRESHAREDKEY_ONLY == 1) @intFromEnum(SCHANNEL_CRED_FLAGS.USE_PRESHAREDKEY_ONLY) else 0)
-        ));
-    }
+pub const SCHANNEL_CRED_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    CRED_NO_SYSTEM_MAPPER: u1 = 0,
+    CRED_NO_SERVERNAME_CHECK: u1 = 0,
+    CRED_MANUAL_CRED_VALIDATION: u1 = 0,
+    CRED_NO_DEFAULT_CREDS: u1 = 0,
+    CRED_AUTO_CRED_VALIDATION: u1 = 0,
+    CRED_USE_DEFAULT_CREDS: u1 = 0,
+    DISABLE_RECONNECTS: u1 = 0,
+    CRED_REVOCATION_CHECK_END_CERT: u1 = 0,
+    CRED_REVOCATION_CHECK_CHAIN: u1 = 0,
+    CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT: u1 = 0,
+    CRED_IGNORE_NO_REVOCATION_CHECK: u1 = 0,
+    CRED_IGNORE_REVOCATION_OFFLINE: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE: u1 = 0,
+    SEND_ROOT_CERT: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    SEND_AUX_RECORD: u1 = 0,
+    USE_STRONG_CRYPTO: u1 = 0,
+    USE_PRESHAREDKEY_ONLY: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const SCH_CRED_AUTO_CRED_VALIDATION = SCHANNEL_CRED_FLAGS.CRED_AUTO_CRED_VALIDATION;
-pub const SCH_CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE = SCHANNEL_CRED_FLAGS.CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE;
-pub const SCH_DISABLE_RECONNECTS = SCHANNEL_CRED_FLAGS.DISABLE_RECONNECTS;
-pub const SCH_CRED_IGNORE_NO_REVOCATION_CHECK = SCHANNEL_CRED_FLAGS.CRED_IGNORE_NO_REVOCATION_CHECK;
-pub const SCH_CRED_IGNORE_REVOCATION_OFFLINE = SCHANNEL_CRED_FLAGS.CRED_IGNORE_REVOCATION_OFFLINE;
-pub const SCH_CRED_MANUAL_CRED_VALIDATION = SCHANNEL_CRED_FLAGS.CRED_MANUAL_CRED_VALIDATION;
-pub const SCH_CRED_NO_DEFAULT_CREDS = SCHANNEL_CRED_FLAGS.CRED_NO_DEFAULT_CREDS;
-pub const SCH_CRED_NO_SERVERNAME_CHECK = SCHANNEL_CRED_FLAGS.CRED_NO_SERVERNAME_CHECK;
-pub const SCH_CRED_NO_SYSTEM_MAPPER = SCHANNEL_CRED_FLAGS.CRED_NO_SYSTEM_MAPPER;
-pub const SCH_CRED_REVOCATION_CHECK_CHAIN = SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN;
-pub const SCH_CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT = SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT;
-pub const SCH_CRED_REVOCATION_CHECK_END_CERT = SCHANNEL_CRED_FLAGS.CRED_REVOCATION_CHECK_END_CERT;
-pub const SCH_CRED_USE_DEFAULT_CREDS = SCHANNEL_CRED_FLAGS.CRED_USE_DEFAULT_CREDS;
-pub const SCH_SEND_AUX_RECORD = SCHANNEL_CRED_FLAGS.SEND_AUX_RECORD;
-pub const SCH_SEND_ROOT_CERT = SCHANNEL_CRED_FLAGS.SEND_ROOT_CERT;
-pub const SCH_USE_STRONG_CRYPTO = SCHANNEL_CRED_FLAGS.USE_STRONG_CRYPTO;
-pub const SCH_USE_PRESHAREDKEY_ONLY = SCHANNEL_CRED_FLAGS.USE_PRESHAREDKEY_ONLY;
+pub const SCH_CRED_AUTO_CRED_VALIDATION = SCHANNEL_CRED_FLAGS{ .CRED_AUTO_CRED_VALIDATION = 1 };
+pub const SCH_CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE = SCHANNEL_CRED_FLAGS{ .CRED_CACHE_ONLY_URL_RETRIEVAL_ON_CREATE = 1 };
+pub const SCH_DISABLE_RECONNECTS = SCHANNEL_CRED_FLAGS{ .DISABLE_RECONNECTS = 1 };
+pub const SCH_CRED_IGNORE_NO_REVOCATION_CHECK = SCHANNEL_CRED_FLAGS{ .CRED_IGNORE_NO_REVOCATION_CHECK = 1 };
+pub const SCH_CRED_IGNORE_REVOCATION_OFFLINE = SCHANNEL_CRED_FLAGS{ .CRED_IGNORE_REVOCATION_OFFLINE = 1 };
+pub const SCH_CRED_MANUAL_CRED_VALIDATION = SCHANNEL_CRED_FLAGS{ .CRED_MANUAL_CRED_VALIDATION = 1 };
+pub const SCH_CRED_NO_DEFAULT_CREDS = SCHANNEL_CRED_FLAGS{ .CRED_NO_DEFAULT_CREDS = 1 };
+pub const SCH_CRED_NO_SERVERNAME_CHECK = SCHANNEL_CRED_FLAGS{ .CRED_NO_SERVERNAME_CHECK = 1 };
+pub const SCH_CRED_NO_SYSTEM_MAPPER = SCHANNEL_CRED_FLAGS{ .CRED_NO_SYSTEM_MAPPER = 1 };
+pub const SCH_CRED_REVOCATION_CHECK_CHAIN = SCHANNEL_CRED_FLAGS{ .CRED_REVOCATION_CHECK_CHAIN = 1 };
+pub const SCH_CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT = SCHANNEL_CRED_FLAGS{ .CRED_REVOCATION_CHECK_CHAIN_EXCLUDE_ROOT = 1 };
+pub const SCH_CRED_REVOCATION_CHECK_END_CERT = SCHANNEL_CRED_FLAGS{ .CRED_REVOCATION_CHECK_END_CERT = 1 };
+pub const SCH_CRED_USE_DEFAULT_CREDS = SCHANNEL_CRED_FLAGS{ .CRED_USE_DEFAULT_CREDS = 1 };
+pub const SCH_SEND_AUX_RECORD = SCHANNEL_CRED_FLAGS{ .SEND_AUX_RECORD = 1 };
+pub const SCH_SEND_ROOT_CERT = SCHANNEL_CRED_FLAGS{ .SEND_ROOT_CERT = 1 };
+pub const SCH_USE_STRONG_CRYPTO = SCHANNEL_CRED_FLAGS{ .USE_STRONG_CRYPTO = 1 };
+pub const SCH_USE_PRESHAREDKEY_ONLY = SCHANNEL_CRED_FLAGS{ .USE_PRESHAREDKEY_ONLY = 1 };
 
-pub const DOMAIN_PASSWORD_PROPERTIES = enum(u32) {
-    PASSWORD_COMPLEX = 1,
-    PASSWORD_NO_ANON_CHANGE = 2,
-    PASSWORD_NO_CLEAR_CHANGE = 4,
-    LOCKOUT_ADMINS = 8,
-    PASSWORD_STORE_CLEARTEXT = 16,
-    REFUSE_PASSWORD_CHANGE = 32,
-    _,
-    pub fn initFlags(o: struct {
-        PASSWORD_COMPLEX: u1 = 0,
-        PASSWORD_NO_ANON_CHANGE: u1 = 0,
-        PASSWORD_NO_CLEAR_CHANGE: u1 = 0,
-        LOCKOUT_ADMINS: u1 = 0,
-        PASSWORD_STORE_CLEARTEXT: u1 = 0,
-        REFUSE_PASSWORD_CHANGE: u1 = 0,
-    }) DOMAIN_PASSWORD_PROPERTIES {
-        return @as(DOMAIN_PASSWORD_PROPERTIES, @enumFromInt(
-              (if (o.PASSWORD_COMPLEX == 1) @intFromEnum(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_COMPLEX) else 0)
-            | (if (o.PASSWORD_NO_ANON_CHANGE == 1) @intFromEnum(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_ANON_CHANGE) else 0)
-            | (if (o.PASSWORD_NO_CLEAR_CHANGE == 1) @intFromEnum(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_CLEAR_CHANGE) else 0)
-            | (if (o.LOCKOUT_ADMINS == 1) @intFromEnum(DOMAIN_PASSWORD_PROPERTIES.LOCKOUT_ADMINS) else 0)
-            | (if (o.PASSWORD_STORE_CLEARTEXT == 1) @intFromEnum(DOMAIN_PASSWORD_PROPERTIES.PASSWORD_STORE_CLEARTEXT) else 0)
-            | (if (o.REFUSE_PASSWORD_CHANGE == 1) @intFromEnum(DOMAIN_PASSWORD_PROPERTIES.REFUSE_PASSWORD_CHANGE) else 0)
-        ));
-    }
+pub const DOMAIN_PASSWORD_PROPERTIES = packed struct(u32) {
+    PASSWORD_COMPLEX: u1 = 0,
+    PASSWORD_NO_ANON_CHANGE: u1 = 0,
+    PASSWORD_NO_CLEAR_CHANGE: u1 = 0,
+    LOCKOUT_ADMINS: u1 = 0,
+    PASSWORD_STORE_CLEARTEXT: u1 = 0,
+    REFUSE_PASSWORD_CHANGE: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DOMAIN_PASSWORD_COMPLEX = DOMAIN_PASSWORD_PROPERTIES.PASSWORD_COMPLEX;
-pub const DOMAIN_PASSWORD_NO_ANON_CHANGE = DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_ANON_CHANGE;
-pub const DOMAIN_PASSWORD_NO_CLEAR_CHANGE = DOMAIN_PASSWORD_PROPERTIES.PASSWORD_NO_CLEAR_CHANGE;
-pub const DOMAIN_LOCKOUT_ADMINS = DOMAIN_PASSWORD_PROPERTIES.LOCKOUT_ADMINS;
-pub const DOMAIN_PASSWORD_STORE_CLEARTEXT = DOMAIN_PASSWORD_PROPERTIES.PASSWORD_STORE_CLEARTEXT;
-pub const DOMAIN_REFUSE_PASSWORD_CHANGE = DOMAIN_PASSWORD_PROPERTIES.REFUSE_PASSWORD_CHANGE;
+pub const DOMAIN_PASSWORD_COMPLEX = DOMAIN_PASSWORD_PROPERTIES{ .PASSWORD_COMPLEX = 1 };
+pub const DOMAIN_PASSWORD_NO_ANON_CHANGE = DOMAIN_PASSWORD_PROPERTIES{ .PASSWORD_NO_ANON_CHANGE = 1 };
+pub const DOMAIN_PASSWORD_NO_CLEAR_CHANGE = DOMAIN_PASSWORD_PROPERTIES{ .PASSWORD_NO_CLEAR_CHANGE = 1 };
+pub const DOMAIN_LOCKOUT_ADMINS = DOMAIN_PASSWORD_PROPERTIES{ .LOCKOUT_ADMINS = 1 };
+pub const DOMAIN_PASSWORD_STORE_CLEARTEXT = DOMAIN_PASSWORD_PROPERTIES{ .PASSWORD_STORE_CLEARTEXT = 1 };
+pub const DOMAIN_REFUSE_PASSWORD_CHANGE = DOMAIN_PASSWORD_PROPERTIES{ .REFUSE_PASSWORD_CHANGE = 1 };
 
 pub const SCHANNEL_ALERT_TOKEN_ALERT_TYPE = enum(u32) {
     WARNING = 1,
@@ -1820,54 +1809,50 @@ pub const TRUST_TYPE_UPLEVEL = TRUSTED_DOMAIN_TRUST_TYPE.UPLEVEL;
 pub const TRUST_TYPE_MIT = TRUSTED_DOMAIN_TRUST_TYPE.MIT;
 pub const TRUST_TYPE_DCE = TRUSTED_DOMAIN_TRUST_TYPE.DCE;
 
-pub const MSV_SUBAUTH_LOGON_PARAMETER_CONTROL = enum(u32) {
-    CLEARTEXT_PASSWORD_ALLOWED = 2,
-    UPDATE_LOGON_STATISTICS = 4,
-    RETURN_USER_PARAMETERS = 8,
-    DONT_TRY_GUEST_ACCOUNT = 16,
-    ALLOW_SERVER_TRUST_ACCOUNT = 32,
-    RETURN_PASSWORD_EXPIRY = 64,
-    ALLOW_WORKSTATION_TRUST_ACCOUNT = 2048,
-    TRY_GUEST_ACCOUNT_ONLY = 256,
-    RETURN_PROFILE_PATH = 512,
-    TRY_SPECIFIED_DOMAIN_ONLY = 1024,
-    _,
-    pub fn initFlags(o: struct {
-        CLEARTEXT_PASSWORD_ALLOWED: u1 = 0,
-        UPDATE_LOGON_STATISTICS: u1 = 0,
-        RETURN_USER_PARAMETERS: u1 = 0,
-        DONT_TRY_GUEST_ACCOUNT: u1 = 0,
-        ALLOW_SERVER_TRUST_ACCOUNT: u1 = 0,
-        RETURN_PASSWORD_EXPIRY: u1 = 0,
-        ALLOW_WORKSTATION_TRUST_ACCOUNT: u1 = 0,
-        TRY_GUEST_ACCOUNT_ONLY: u1 = 0,
-        RETURN_PROFILE_PATH: u1 = 0,
-        TRY_SPECIFIED_DOMAIN_ONLY: u1 = 0,
-    }) MSV_SUBAUTH_LOGON_PARAMETER_CONTROL {
-        return @as(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL, @enumFromInt(
-              (if (o.CLEARTEXT_PASSWORD_ALLOWED == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.CLEARTEXT_PASSWORD_ALLOWED) else 0)
-            | (if (o.UPDATE_LOGON_STATISTICS == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.UPDATE_LOGON_STATISTICS) else 0)
-            | (if (o.RETURN_USER_PARAMETERS == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_USER_PARAMETERS) else 0)
-            | (if (o.DONT_TRY_GUEST_ACCOUNT == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.DONT_TRY_GUEST_ACCOUNT) else 0)
-            | (if (o.ALLOW_SERVER_TRUST_ACCOUNT == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_SERVER_TRUST_ACCOUNT) else 0)
-            | (if (o.RETURN_PASSWORD_EXPIRY == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PASSWORD_EXPIRY) else 0)
-            | (if (o.ALLOW_WORKSTATION_TRUST_ACCOUNT == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_WORKSTATION_TRUST_ACCOUNT) else 0)
-            | (if (o.TRY_GUEST_ACCOUNT_ONLY == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_GUEST_ACCOUNT_ONLY) else 0)
-            | (if (o.RETURN_PROFILE_PATH == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PROFILE_PATH) else 0)
-            | (if (o.TRY_SPECIFIED_DOMAIN_ONLY == 1) @intFromEnum(MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_SPECIFIED_DOMAIN_ONLY) else 0)
-        ));
-    }
+pub const MSV_SUBAUTH_LOGON_PARAMETER_CONTROL = packed struct(u32) {
+    _0: u1 = 0,
+    CLEARTEXT_PASSWORD_ALLOWED: u1 = 0,
+    UPDATE_LOGON_STATISTICS: u1 = 0,
+    RETURN_USER_PARAMETERS: u1 = 0,
+    DONT_TRY_GUEST_ACCOUNT: u1 = 0,
+    ALLOW_SERVER_TRUST_ACCOUNT: u1 = 0,
+    RETURN_PASSWORD_EXPIRY: u1 = 0,
+    _7: u1 = 0,
+    TRY_GUEST_ACCOUNT_ONLY: u1 = 0,
+    RETURN_PROFILE_PATH: u1 = 0,
+    TRY_SPECIFIED_DOMAIN_ONLY: u1 = 0,
+    ALLOW_WORKSTATION_TRUST_ACCOUNT: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const MSV1_0_CLEARTEXT_PASSWORD_ALLOWED = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.CLEARTEXT_PASSWORD_ALLOWED;
-pub const MSV1_0_UPDATE_LOGON_STATISTICS = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.UPDATE_LOGON_STATISTICS;
-pub const MSV1_0_RETURN_USER_PARAMETERS = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_USER_PARAMETERS;
-pub const MSV1_0_DONT_TRY_GUEST_ACCOUNT = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.DONT_TRY_GUEST_ACCOUNT;
-pub const MSV1_0_ALLOW_SERVER_TRUST_ACCOUNT = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_SERVER_TRUST_ACCOUNT;
-pub const MSV1_0_RETURN_PASSWORD_EXPIRY = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PASSWORD_EXPIRY;
-pub const MSV1_0_ALLOW_WORKSTATION_TRUST_ACCOUNT = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.ALLOW_WORKSTATION_TRUST_ACCOUNT;
-pub const MSV1_0_TRY_GUEST_ACCOUNT_ONLY = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_GUEST_ACCOUNT_ONLY;
-pub const MSV1_0_RETURN_PROFILE_PATH = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.RETURN_PROFILE_PATH;
-pub const MSV1_0_TRY_SPECIFIED_DOMAIN_ONLY = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL.TRY_SPECIFIED_DOMAIN_ONLY;
+pub const MSV1_0_CLEARTEXT_PASSWORD_ALLOWED = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .CLEARTEXT_PASSWORD_ALLOWED = 1 };
+pub const MSV1_0_UPDATE_LOGON_STATISTICS = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .UPDATE_LOGON_STATISTICS = 1 };
+pub const MSV1_0_RETURN_USER_PARAMETERS = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .RETURN_USER_PARAMETERS = 1 };
+pub const MSV1_0_DONT_TRY_GUEST_ACCOUNT = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .DONT_TRY_GUEST_ACCOUNT = 1 };
+pub const MSV1_0_ALLOW_SERVER_TRUST_ACCOUNT = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .ALLOW_SERVER_TRUST_ACCOUNT = 1 };
+pub const MSV1_0_RETURN_PASSWORD_EXPIRY = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .RETURN_PASSWORD_EXPIRY = 1 };
+pub const MSV1_0_ALLOW_WORKSTATION_TRUST_ACCOUNT = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .ALLOW_WORKSTATION_TRUST_ACCOUNT = 1 };
+pub const MSV1_0_TRY_GUEST_ACCOUNT_ONLY = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .TRY_GUEST_ACCOUNT_ONLY = 1 };
+pub const MSV1_0_RETURN_PROFILE_PATH = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .RETURN_PROFILE_PATH = 1 };
+pub const MSV1_0_TRY_SPECIFIED_DOMAIN_ONLY = MSV_SUBAUTH_LOGON_PARAMETER_CONTROL{ .TRY_SPECIFIED_DOMAIN_ONLY = 1 };
 
 pub const KERB_REQUEST_FLAGS = enum(u32) {
     ADD_CREDENTIAL = 1,
@@ -1889,26 +1874,43 @@ pub const TRUST_DIRECTION_INBOUND = TRUSTED_DOMAIN_TRUST_DIRECTION.INBOUND;
 pub const TRUST_DIRECTION_OUTBOUND = TRUSTED_DOMAIN_TRUST_DIRECTION.OUTBOUND;
 pub const TRUST_DIRECTION_BIDIRECTIONAL = TRUSTED_DOMAIN_TRUST_DIRECTION.BIDIRECTIONAL;
 
-pub const MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS = enum(u32) {
-    LM_PRESENT = 1,
-    NT_PRESENT = 2,
-    VERSION = 0,
-    _,
-    pub fn initFlags(o: struct {
-        LM_PRESENT: u1 = 0,
-        NT_PRESENT: u1 = 0,
-        VERSION: u1 = 0,
-    }) MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS {
-        return @as(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS, @enumFromInt(
-              (if (o.LM_PRESENT == 1) @intFromEnum(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.LM_PRESENT) else 0)
-            | (if (o.NT_PRESENT == 1) @intFromEnum(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.NT_PRESENT) else 0)
-            | (if (o.VERSION == 1) @intFromEnum(MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.VERSION) else 0)
-        ));
-    }
+pub const MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS = packed struct(u32) {
+    LM_PRESENT: u1 = 0,
+    NT_PRESENT: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const MSV1_0_CRED_LM_PRESENT = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.LM_PRESENT;
-pub const MSV1_0_CRED_NT_PRESENT = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.NT_PRESENT;
-pub const MSV1_0_CRED_VERSION = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS.VERSION;
+pub const MSV1_0_CRED_LM_PRESENT = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS{ .LM_PRESENT = 1 };
+pub const MSV1_0_CRED_NT_PRESENT = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS{ .NT_PRESENT = 1 };
+pub const MSV1_0_CRED_VERSION = MSV_SUPPLEMENTAL_CREDENTIAL_FLAGS{ };
 
 pub const SECURITY_PACKAGE_OPTIONS_TYPE = enum(u32) {
     UNKNOWN = 0,
@@ -8110,22 +8112,42 @@ pub const SCH_EXTENSION_DATA = extern struct {
     cbExtData: u32,
 };
 
-pub const SchGetExtensionsOptions = enum(u32) {
-    EXTENSIONS_OPTIONS_NONE = 0,
-    NO_RECORD_HEADER = 1,
-    _,
-    pub fn initFlags(o: struct {
-        EXTENSIONS_OPTIONS_NONE: u1 = 0,
-        NO_RECORD_HEADER: u1 = 0,
-    }) SchGetExtensionsOptions {
-        return @as(SchGetExtensionsOptions, @enumFromInt(
-              (if (o.EXTENSIONS_OPTIONS_NONE == 1) @intFromEnum(SchGetExtensionsOptions.EXTENSIONS_OPTIONS_NONE) else 0)
-            | (if (o.NO_RECORD_HEADER == 1) @intFromEnum(SchGetExtensionsOptions.NO_RECORD_HEADER) else 0)
-        ));
-    }
+pub const SchGetExtensionsOptions = packed struct(u32) {
+    NO_RECORD_HEADER: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const SCH_EXTENSIONS_OPTIONS_NONE = SchGetExtensionsOptions.EXTENSIONS_OPTIONS_NONE;
-pub const SCH_NO_RECORD_HEADER = SchGetExtensionsOptions.NO_RECORD_HEADER;
+pub const SCH_EXTENSIONS_OPTIONS_NONE = SchGetExtensionsOptions{ };
+pub const SCH_NO_RECORD_HEADER = SchGetExtensionsOptions{ .NO_RECORD_HEADER = 1 };
 
 pub const SslGetExtensionsFn = switch (@import("builtin").zig_backend) {
     .stage1 => fn(

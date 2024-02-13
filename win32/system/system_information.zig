@@ -119,46 +119,48 @@ pub const SCEX2_ALT_NETBIOS_NAME = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (37)
 //--------------------------------------------------------------------------------
-pub const VER_FLAGS = enum(u32) {
-    MINORVERSION = 1,
-    MAJORVERSION = 2,
-    BUILDNUMBER = 4,
-    PLATFORMID = 8,
-    SERVICEPACKMINOR = 16,
-    SERVICEPACKMAJOR = 32,
-    SUITENAME = 64,
-    PRODUCT_TYPE = 128,
-    _,
-    pub fn initFlags(o: struct {
-        MINORVERSION: u1 = 0,
-        MAJORVERSION: u1 = 0,
-        BUILDNUMBER: u1 = 0,
-        PLATFORMID: u1 = 0,
-        SERVICEPACKMINOR: u1 = 0,
-        SERVICEPACKMAJOR: u1 = 0,
-        SUITENAME: u1 = 0,
-        PRODUCT_TYPE: u1 = 0,
-    }) VER_FLAGS {
-        return @as(VER_FLAGS, @enumFromInt(
-              (if (o.MINORVERSION == 1) @intFromEnum(VER_FLAGS.MINORVERSION) else 0)
-            | (if (o.MAJORVERSION == 1) @intFromEnum(VER_FLAGS.MAJORVERSION) else 0)
-            | (if (o.BUILDNUMBER == 1) @intFromEnum(VER_FLAGS.BUILDNUMBER) else 0)
-            | (if (o.PLATFORMID == 1) @intFromEnum(VER_FLAGS.PLATFORMID) else 0)
-            | (if (o.SERVICEPACKMINOR == 1) @intFromEnum(VER_FLAGS.SERVICEPACKMINOR) else 0)
-            | (if (o.SERVICEPACKMAJOR == 1) @intFromEnum(VER_FLAGS.SERVICEPACKMAJOR) else 0)
-            | (if (o.SUITENAME == 1) @intFromEnum(VER_FLAGS.SUITENAME) else 0)
-            | (if (o.PRODUCT_TYPE == 1) @intFromEnum(VER_FLAGS.PRODUCT_TYPE) else 0)
-        ));
-    }
+pub const VER_FLAGS = packed struct(u32) {
+    MINORVERSION: u1 = 0,
+    MAJORVERSION: u1 = 0,
+    BUILDNUMBER: u1 = 0,
+    PLATFORMID: u1 = 0,
+    SERVICEPACKMINOR: u1 = 0,
+    SERVICEPACKMAJOR: u1 = 0,
+    SUITENAME: u1 = 0,
+    PRODUCT_TYPE: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const VER_MINORVERSION = VER_FLAGS.MINORVERSION;
-pub const VER_MAJORVERSION = VER_FLAGS.MAJORVERSION;
-pub const VER_BUILDNUMBER = VER_FLAGS.BUILDNUMBER;
-pub const VER_PLATFORMID = VER_FLAGS.PLATFORMID;
-pub const VER_SERVICEPACKMINOR = VER_FLAGS.SERVICEPACKMINOR;
-pub const VER_SERVICEPACKMAJOR = VER_FLAGS.SERVICEPACKMAJOR;
-pub const VER_SUITENAME = VER_FLAGS.SUITENAME;
-pub const VER_PRODUCT_TYPE = VER_FLAGS.PRODUCT_TYPE;
+pub const VER_MINORVERSION = VER_FLAGS{ .MINORVERSION = 1 };
+pub const VER_MAJORVERSION = VER_FLAGS{ .MAJORVERSION = 1 };
+pub const VER_BUILDNUMBER = VER_FLAGS{ .BUILDNUMBER = 1 };
+pub const VER_PLATFORMID = VER_FLAGS{ .PLATFORMID = 1 };
+pub const VER_SERVICEPACKMINOR = VER_FLAGS{ .SERVICEPACKMINOR = 1 };
+pub const VER_SERVICEPACKMAJOR = VER_FLAGS{ .SERVICEPACKMAJOR = 1 };
+pub const VER_SUITENAME = VER_FLAGS{ .SUITENAME = 1 };
+pub const VER_PRODUCT_TYPE = VER_FLAGS{ .PRODUCT_TYPE = 1 };
 
 pub const FIRMWARE_TABLE_PROVIDER = enum(u32) {
     ACPI = 1094930505,

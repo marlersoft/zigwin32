@@ -42,50 +42,49 @@ pub const DWRITE_MEASURING_MODE_NATURAL = DWRITE_MEASURING_MODE.NATURAL;
 pub const DWRITE_MEASURING_MODE_GDI_CLASSIC = DWRITE_MEASURING_MODE.GDI_CLASSIC;
 pub const DWRITE_MEASURING_MODE_GDI_NATURAL = DWRITE_MEASURING_MODE.GDI_NATURAL;
 
-pub const DWRITE_GLYPH_IMAGE_FORMATS = enum(u32) {
-    NONE = 0,
-    TRUETYPE = 1,
-    CFF = 2,
-    COLR = 4,
-    SVG = 8,
-    PNG = 16,
-    JPEG = 32,
-    TIFF = 64,
-    PREMULTIPLIED_B8G8R8A8 = 128,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        TRUETYPE: u1 = 0,
-        CFF: u1 = 0,
-        COLR: u1 = 0,
-        SVG: u1 = 0,
-        PNG: u1 = 0,
-        JPEG: u1 = 0,
-        TIFF: u1 = 0,
-        PREMULTIPLIED_B8G8R8A8: u1 = 0,
-    }) DWRITE_GLYPH_IMAGE_FORMATS {
-        return @as(DWRITE_GLYPH_IMAGE_FORMATS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DWRITE_GLYPH_IMAGE_FORMATS.NONE) else 0)
-            | (if (o.TRUETYPE == 1) @intFromEnum(DWRITE_GLYPH_IMAGE_FORMATS.TRUETYPE) else 0)
-            | (if (o.CFF == 1) @intFromEnum(DWRITE_GLYPH_IMAGE_FORMATS.CFF) else 0)
-            | (if (o.COLR == 1) @intFromEnum(DWRITE_GLYPH_IMAGE_FORMATS.COLR) else 0)
-            | (if (o.SVG == 1) @intFromEnum(DWRITE_GLYPH_IMAGE_FORMATS.SVG) else 0)
-            | (if (o.PNG == 1) @intFromEnum(DWRITE_GLYPH_IMAGE_FORMATS.PNG) else 0)
-            | (if (o.JPEG == 1) @intFromEnum(DWRITE_GLYPH_IMAGE_FORMATS.JPEG) else 0)
-            | (if (o.TIFF == 1) @intFromEnum(DWRITE_GLYPH_IMAGE_FORMATS.TIFF) else 0)
-            | (if (o.PREMULTIPLIED_B8G8R8A8 == 1) @intFromEnum(DWRITE_GLYPH_IMAGE_FORMATS.PREMULTIPLIED_B8G8R8A8) else 0)
-        ));
-    }
+pub const DWRITE_GLYPH_IMAGE_FORMATS = packed struct(u32) {
+    TRUETYPE: u1 = 0,
+    CFF: u1 = 0,
+    COLR: u1 = 0,
+    SVG: u1 = 0,
+    PNG: u1 = 0,
+    JPEG: u1 = 0,
+    TIFF: u1 = 0,
+    PREMULTIPLIED_B8G8R8A8: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DWRITE_GLYPH_IMAGE_FORMATS_NONE = DWRITE_GLYPH_IMAGE_FORMATS.NONE;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_TRUETYPE = DWRITE_GLYPH_IMAGE_FORMATS.TRUETYPE;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_CFF = DWRITE_GLYPH_IMAGE_FORMATS.CFF;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_COLR = DWRITE_GLYPH_IMAGE_FORMATS.COLR;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_SVG = DWRITE_GLYPH_IMAGE_FORMATS.SVG;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_PNG = DWRITE_GLYPH_IMAGE_FORMATS.PNG;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_JPEG = DWRITE_GLYPH_IMAGE_FORMATS.JPEG;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_TIFF = DWRITE_GLYPH_IMAGE_FORMATS.TIFF;
-pub const DWRITE_GLYPH_IMAGE_FORMATS_PREMULTIPLIED_B8G8R8A8 = DWRITE_GLYPH_IMAGE_FORMATS.PREMULTIPLIED_B8G8R8A8;
+pub const DWRITE_GLYPH_IMAGE_FORMATS_NONE = DWRITE_GLYPH_IMAGE_FORMATS{ };
+pub const DWRITE_GLYPH_IMAGE_FORMATS_TRUETYPE = DWRITE_GLYPH_IMAGE_FORMATS{ .TRUETYPE = 1 };
+pub const DWRITE_GLYPH_IMAGE_FORMATS_CFF = DWRITE_GLYPH_IMAGE_FORMATS{ .CFF = 1 };
+pub const DWRITE_GLYPH_IMAGE_FORMATS_COLR = DWRITE_GLYPH_IMAGE_FORMATS{ .COLR = 1 };
+pub const DWRITE_GLYPH_IMAGE_FORMATS_SVG = DWRITE_GLYPH_IMAGE_FORMATS{ .SVG = 1 };
+pub const DWRITE_GLYPH_IMAGE_FORMATS_PNG = DWRITE_GLYPH_IMAGE_FORMATS{ .PNG = 1 };
+pub const DWRITE_GLYPH_IMAGE_FORMATS_JPEG = DWRITE_GLYPH_IMAGE_FORMATS{ .JPEG = 1 };
+pub const DWRITE_GLYPH_IMAGE_FORMATS_TIFF = DWRITE_GLYPH_IMAGE_FORMATS{ .TIFF = 1 };
+pub const DWRITE_GLYPH_IMAGE_FORMATS_PREMULTIPLIED_B8G8R8A8 = DWRITE_GLYPH_IMAGE_FORMATS{ .PREMULTIPLIED_B8G8R8A8 = 1 };
 
 pub const DWRITE_FONT_FILE_TYPE = enum(i32) {
     UNKNOWN = 0,
@@ -129,26 +128,43 @@ pub const DWRITE_FONT_FACE_TYPE_UNKNOWN = DWRITE_FONT_FACE_TYPE.UNKNOWN;
 pub const DWRITE_FONT_FACE_TYPE_RAW_CFF = DWRITE_FONT_FACE_TYPE.RAW_CFF;
 pub const DWRITE_FONT_FACE_TYPE_TRUETYPE_COLLECTION = DWRITE_FONT_FACE_TYPE.OPENTYPE_COLLECTION;
 
-pub const DWRITE_FONT_SIMULATIONS = enum(u32) {
-    NONE = 0,
-    BOLD = 1,
-    OBLIQUE = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        BOLD: u1 = 0,
-        OBLIQUE: u1 = 0,
-    }) DWRITE_FONT_SIMULATIONS {
-        return @as(DWRITE_FONT_SIMULATIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DWRITE_FONT_SIMULATIONS.NONE) else 0)
-            | (if (o.BOLD == 1) @intFromEnum(DWRITE_FONT_SIMULATIONS.BOLD) else 0)
-            | (if (o.OBLIQUE == 1) @intFromEnum(DWRITE_FONT_SIMULATIONS.OBLIQUE) else 0)
-        ));
-    }
+pub const DWRITE_FONT_SIMULATIONS = packed struct(u32) {
+    BOLD: u1 = 0,
+    OBLIQUE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DWRITE_FONT_SIMULATIONS_NONE = DWRITE_FONT_SIMULATIONS.NONE;
-pub const DWRITE_FONT_SIMULATIONS_BOLD = DWRITE_FONT_SIMULATIONS.BOLD;
-pub const DWRITE_FONT_SIMULATIONS_OBLIQUE = DWRITE_FONT_SIMULATIONS.OBLIQUE;
+pub const DWRITE_FONT_SIMULATIONS_NONE = DWRITE_FONT_SIMULATIONS{ };
+pub const DWRITE_FONT_SIMULATIONS_BOLD = DWRITE_FONT_SIMULATIONS{ .BOLD = 1 };
+pub const DWRITE_FONT_SIMULATIONS_OBLIQUE = DWRITE_FONT_SIMULATIONS{ .OBLIQUE = 1 };
 
 pub const DWRITE_FONT_WEIGHT = enum(i32) {
     THIN = 100,
@@ -2176,22 +2192,42 @@ pub const IDWriteTypography = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DWRITE_SCRIPT_SHAPES = enum(u32) {
-    DEFAULT = 0,
-    NO_VISUAL = 1,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        NO_VISUAL: u1 = 0,
-    }) DWRITE_SCRIPT_SHAPES {
-        return @as(DWRITE_SCRIPT_SHAPES, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(DWRITE_SCRIPT_SHAPES.DEFAULT) else 0)
-            | (if (o.NO_VISUAL == 1) @intFromEnum(DWRITE_SCRIPT_SHAPES.NO_VISUAL) else 0)
-        ));
-    }
+pub const DWRITE_SCRIPT_SHAPES = packed struct(u32) {
+    NO_VISUAL: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DWRITE_SCRIPT_SHAPES_DEFAULT = DWRITE_SCRIPT_SHAPES.DEFAULT;
-pub const DWRITE_SCRIPT_SHAPES_NO_VISUAL = DWRITE_SCRIPT_SHAPES.NO_VISUAL;
+pub const DWRITE_SCRIPT_SHAPES_DEFAULT = DWRITE_SCRIPT_SHAPES{ };
+pub const DWRITE_SCRIPT_SHAPES_NO_VISUAL = DWRITE_SCRIPT_SHAPES{ .NO_VISUAL = 1 };
 
 pub const DWRITE_SCRIPT_ANALYSIS = extern struct {
     script: u16,
@@ -9281,43 +9317,80 @@ pub const DWRITE_FONT_FAMILY_MODEL = enum(i32) {
 pub const DWRITE_FONT_FAMILY_MODEL_TYPOGRAPHIC = DWRITE_FONT_FAMILY_MODEL.TYPOGRAPHIC;
 pub const DWRITE_FONT_FAMILY_MODEL_WEIGHT_STRETCH_STYLE = DWRITE_FONT_FAMILY_MODEL.WEIGHT_STRETCH_STYLE;
 
-pub const DWRITE_AUTOMATIC_FONT_AXES = enum(u32) {
-    NONE = 0,
-    OPTICAL_SIZE = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        OPTICAL_SIZE: u1 = 0,
-    }) DWRITE_AUTOMATIC_FONT_AXES {
-        return @as(DWRITE_AUTOMATIC_FONT_AXES, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DWRITE_AUTOMATIC_FONT_AXES.NONE) else 0)
-            | (if (o.OPTICAL_SIZE == 1) @intFromEnum(DWRITE_AUTOMATIC_FONT_AXES.OPTICAL_SIZE) else 0)
-        ));
-    }
+pub const DWRITE_AUTOMATIC_FONT_AXES = packed struct(u32) {
+    OPTICAL_SIZE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DWRITE_AUTOMATIC_FONT_AXES_NONE = DWRITE_AUTOMATIC_FONT_AXES.NONE;
-pub const DWRITE_AUTOMATIC_FONT_AXES_OPTICAL_SIZE = DWRITE_AUTOMATIC_FONT_AXES.OPTICAL_SIZE;
+pub const DWRITE_AUTOMATIC_FONT_AXES_NONE = DWRITE_AUTOMATIC_FONT_AXES{ };
+pub const DWRITE_AUTOMATIC_FONT_AXES_OPTICAL_SIZE = DWRITE_AUTOMATIC_FONT_AXES{ .OPTICAL_SIZE = 1 };
 
-pub const DWRITE_FONT_AXIS_ATTRIBUTES = enum(u32) {
-    NONE = 0,
-    VARIABLE = 1,
-    HIDDEN = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        VARIABLE: u1 = 0,
-        HIDDEN: u1 = 0,
-    }) DWRITE_FONT_AXIS_ATTRIBUTES {
-        return @as(DWRITE_FONT_AXIS_ATTRIBUTES, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DWRITE_FONT_AXIS_ATTRIBUTES.NONE) else 0)
-            | (if (o.VARIABLE == 1) @intFromEnum(DWRITE_FONT_AXIS_ATTRIBUTES.VARIABLE) else 0)
-            | (if (o.HIDDEN == 1) @intFromEnum(DWRITE_FONT_AXIS_ATTRIBUTES.HIDDEN) else 0)
-        ));
-    }
+pub const DWRITE_FONT_AXIS_ATTRIBUTES = packed struct(u32) {
+    VARIABLE: u1 = 0,
+    HIDDEN: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DWRITE_FONT_AXIS_ATTRIBUTES_NONE = DWRITE_FONT_AXIS_ATTRIBUTES.NONE;
-pub const DWRITE_FONT_AXIS_ATTRIBUTES_VARIABLE = DWRITE_FONT_AXIS_ATTRIBUTES.VARIABLE;
-pub const DWRITE_FONT_AXIS_ATTRIBUTES_HIDDEN = DWRITE_FONT_AXIS_ATTRIBUTES.HIDDEN;
+pub const DWRITE_FONT_AXIS_ATTRIBUTES_NONE = DWRITE_FONT_AXIS_ATTRIBUTES{ };
+pub const DWRITE_FONT_AXIS_ATTRIBUTES_VARIABLE = DWRITE_FONT_AXIS_ATTRIBUTES{ .VARIABLE = 1 };
+pub const DWRITE_FONT_AXIS_ATTRIBUTES_HIDDEN = DWRITE_FONT_AXIS_ATTRIBUTES{ .HIDDEN = 1 };
 
 const IID_IDWriteFactory6_Value = Guid.initString("f3744d80-21f7-42eb-b35d-995bc72fc223");
 pub const IID_IDWriteFactory6 = &IID_IDWriteFactory6_Value;

@@ -241,42 +241,47 @@ pub const NDR_SCONTEXT_1 = extern struct {
     userContext: ?*anyopaque,
 };
 
-pub const RPC_C_QOS_CAPABILITIES = enum(u32) {
-    DEFAULT = 0,
-    MUTUAL_AUTH = 1,
-    MAKE_FULLSIC = 2,
-    ANY_AUTHORITY = 4,
-    IGNORE_DELEGATE_FAILURE = 8,
-    LOCAL_MA_HINT = 16,
-    SCHANNEL_FULL_AUTH_IDENTITY = 32,
-    _,
-    pub fn initFlags(o: struct {
-        DEFAULT: u1 = 0,
-        MUTUAL_AUTH: u1 = 0,
-        MAKE_FULLSIC: u1 = 0,
-        ANY_AUTHORITY: u1 = 0,
-        IGNORE_DELEGATE_FAILURE: u1 = 0,
-        LOCAL_MA_HINT: u1 = 0,
-        SCHANNEL_FULL_AUTH_IDENTITY: u1 = 0,
-    }) RPC_C_QOS_CAPABILITIES {
-        return @as(RPC_C_QOS_CAPABILITIES, @enumFromInt(
-              (if (o.DEFAULT == 1) @intFromEnum(RPC_C_QOS_CAPABILITIES.DEFAULT) else 0)
-            | (if (o.MUTUAL_AUTH == 1) @intFromEnum(RPC_C_QOS_CAPABILITIES.MUTUAL_AUTH) else 0)
-            | (if (o.MAKE_FULLSIC == 1) @intFromEnum(RPC_C_QOS_CAPABILITIES.MAKE_FULLSIC) else 0)
-            | (if (o.ANY_AUTHORITY == 1) @intFromEnum(RPC_C_QOS_CAPABILITIES.ANY_AUTHORITY) else 0)
-            | (if (o.IGNORE_DELEGATE_FAILURE == 1) @intFromEnum(RPC_C_QOS_CAPABILITIES.IGNORE_DELEGATE_FAILURE) else 0)
-            | (if (o.LOCAL_MA_HINT == 1) @intFromEnum(RPC_C_QOS_CAPABILITIES.LOCAL_MA_HINT) else 0)
-            | (if (o.SCHANNEL_FULL_AUTH_IDENTITY == 1) @intFromEnum(RPC_C_QOS_CAPABILITIES.SCHANNEL_FULL_AUTH_IDENTITY) else 0)
-        ));
-    }
+pub const RPC_C_QOS_CAPABILITIES = packed struct(u32) {
+    MUTUAL_AUTH: u1 = 0,
+    MAKE_FULLSIC: u1 = 0,
+    ANY_AUTHORITY: u1 = 0,
+    IGNORE_DELEGATE_FAILURE: u1 = 0,
+    LOCAL_MA_HINT: u1 = 0,
+    SCHANNEL_FULL_AUTH_IDENTITY: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RPC_C_QOS_CAPABILITIES_DEFAULT = RPC_C_QOS_CAPABILITIES.DEFAULT;
-pub const RPC_C_QOS_CAPABILITIES_MUTUAL_AUTH = RPC_C_QOS_CAPABILITIES.MUTUAL_AUTH;
-pub const RPC_C_QOS_CAPABILITIES_MAKE_FULLSIC = RPC_C_QOS_CAPABILITIES.MAKE_FULLSIC;
-pub const RPC_C_QOS_CAPABILITIES_ANY_AUTHORITY = RPC_C_QOS_CAPABILITIES.ANY_AUTHORITY;
-pub const RPC_C_QOS_CAPABILITIES_IGNORE_DELEGATE_FAILURE = RPC_C_QOS_CAPABILITIES.IGNORE_DELEGATE_FAILURE;
-pub const RPC_C_QOS_CAPABILITIES_LOCAL_MA_HINT = RPC_C_QOS_CAPABILITIES.LOCAL_MA_HINT;
-pub const RPC_C_QOS_CAPABILITIES_SCHANNEL_FULL_AUTH_IDENTITY = RPC_C_QOS_CAPABILITIES.SCHANNEL_FULL_AUTH_IDENTITY;
+pub const RPC_C_QOS_CAPABILITIES_DEFAULT = RPC_C_QOS_CAPABILITIES{ };
+pub const RPC_C_QOS_CAPABILITIES_MUTUAL_AUTH = RPC_C_QOS_CAPABILITIES{ .MUTUAL_AUTH = 1 };
+pub const RPC_C_QOS_CAPABILITIES_MAKE_FULLSIC = RPC_C_QOS_CAPABILITIES{ .MAKE_FULLSIC = 1 };
+pub const RPC_C_QOS_CAPABILITIES_ANY_AUTHORITY = RPC_C_QOS_CAPABILITIES{ .ANY_AUTHORITY = 1 };
+pub const RPC_C_QOS_CAPABILITIES_IGNORE_DELEGATE_FAILURE = RPC_C_QOS_CAPABILITIES{ .IGNORE_DELEGATE_FAILURE = 1 };
+pub const RPC_C_QOS_CAPABILITIES_LOCAL_MA_HINT = RPC_C_QOS_CAPABILITIES{ .LOCAL_MA_HINT = 1 };
+pub const RPC_C_QOS_CAPABILITIES_SCHANNEL_FULL_AUTH_IDENTITY = RPC_C_QOS_CAPABILITIES{ .SCHANNEL_FULL_AUTH_IDENTITY = 1 };
 
 pub const RPC_C_QOS_IDENTITY = enum(u32) {
     STATIC = 0,
@@ -292,47 +297,81 @@ pub const RPC_C_AUTHN_INFO_TYPE = enum(u32) {
 pub const RPC_C_AUTHN_INFO_NONE = RPC_C_AUTHN_INFO_TYPE.NONE;
 pub const RPC_C_AUTHN_INFO_TYPE_HTTP = RPC_C_AUTHN_INFO_TYPE.TYPE_HTTP;
 
-pub const RPC_C_HTTP_FLAGS = enum(u32) {
-    USE_SSL = 1,
-    USE_FIRST_AUTH_SCHEME = 2,
-    IGNORE_CERT_CN_INVALID = 8,
-    ENABLE_CERT_REVOCATION_CHECK = 16,
-    _,
-    pub fn initFlags(o: struct {
-        USE_SSL: u1 = 0,
-        USE_FIRST_AUTH_SCHEME: u1 = 0,
-        IGNORE_CERT_CN_INVALID: u1 = 0,
-        ENABLE_CERT_REVOCATION_CHECK: u1 = 0,
-    }) RPC_C_HTTP_FLAGS {
-        return @as(RPC_C_HTTP_FLAGS, @enumFromInt(
-              (if (o.USE_SSL == 1) @intFromEnum(RPC_C_HTTP_FLAGS.USE_SSL) else 0)
-            | (if (o.USE_FIRST_AUTH_SCHEME == 1) @intFromEnum(RPC_C_HTTP_FLAGS.USE_FIRST_AUTH_SCHEME) else 0)
-            | (if (o.IGNORE_CERT_CN_INVALID == 1) @intFromEnum(RPC_C_HTTP_FLAGS.IGNORE_CERT_CN_INVALID) else 0)
-            | (if (o.ENABLE_CERT_REVOCATION_CHECK == 1) @intFromEnum(RPC_C_HTTP_FLAGS.ENABLE_CERT_REVOCATION_CHECK) else 0)
-        ));
-    }
+pub const RPC_C_HTTP_FLAGS = packed struct(u32) {
+    USE_SSL: u1 = 0,
+    USE_FIRST_AUTH_SCHEME: u1 = 0,
+    _2: u1 = 0,
+    IGNORE_CERT_CN_INVALID: u1 = 0,
+    ENABLE_CERT_REVOCATION_CHECK: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RPC_C_HTTP_FLAG_USE_SSL = RPC_C_HTTP_FLAGS.USE_SSL;
-pub const RPC_C_HTTP_FLAG_USE_FIRST_AUTH_SCHEME = RPC_C_HTTP_FLAGS.USE_FIRST_AUTH_SCHEME;
-pub const RPC_C_HTTP_FLAG_IGNORE_CERT_CN_INVALID = RPC_C_HTTP_FLAGS.IGNORE_CERT_CN_INVALID;
-pub const RPC_C_HTTP_FLAG_ENABLE_CERT_REVOCATION_CHECK = RPC_C_HTTP_FLAGS.ENABLE_CERT_REVOCATION_CHECK;
+pub const RPC_C_HTTP_FLAG_USE_SSL = RPC_C_HTTP_FLAGS{ .USE_SSL = 1 };
+pub const RPC_C_HTTP_FLAG_USE_FIRST_AUTH_SCHEME = RPC_C_HTTP_FLAGS{ .USE_FIRST_AUTH_SCHEME = 1 };
+pub const RPC_C_HTTP_FLAG_IGNORE_CERT_CN_INVALID = RPC_C_HTTP_FLAGS{ .IGNORE_CERT_CN_INVALID = 1 };
+pub const RPC_C_HTTP_FLAG_ENABLE_CERT_REVOCATION_CHECK = RPC_C_HTTP_FLAGS{ .ENABLE_CERT_REVOCATION_CHECK = 1 };
 
-pub const RPC_C_HTTP_AUTHN_TARGET = enum(u32) {
-    SERVER = 1,
-    PROXY = 2,
-    _,
-    pub fn initFlags(o: struct {
-        SERVER: u1 = 0,
-        PROXY: u1 = 0,
-    }) RPC_C_HTTP_AUTHN_TARGET {
-        return @as(RPC_C_HTTP_AUTHN_TARGET, @enumFromInt(
-              (if (o.SERVER == 1) @intFromEnum(RPC_C_HTTP_AUTHN_TARGET.SERVER) else 0)
-            | (if (o.PROXY == 1) @intFromEnum(RPC_C_HTTP_AUTHN_TARGET.PROXY) else 0)
-        ));
-    }
+pub const RPC_C_HTTP_AUTHN_TARGET = packed struct(u32) {
+    SERVER: u1 = 0,
+    PROXY: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RPC_C_HTTP_AUTHN_TARGET_SERVER = RPC_C_HTTP_AUTHN_TARGET.SERVER;
-pub const RPC_C_HTTP_AUTHN_TARGET_PROXY = RPC_C_HTTP_AUTHN_TARGET.PROXY;
+pub const RPC_C_HTTP_AUTHN_TARGET_SERVER = RPC_C_HTTP_AUTHN_TARGET{ .SERVER = 1 };
+pub const RPC_C_HTTP_AUTHN_TARGET_PROXY = RPC_C_HTTP_AUTHN_TARGET{ .PROXY = 1 };
 
 pub const RPC_STATUS = enum(i32) {
     RPC_S_INVALID_STRING_BINDING = 1700,
@@ -551,22 +590,42 @@ pub const SEC_WINNT_AUTH_IDENTITY = enum(u32) {
 pub const SEC_WINNT_AUTH_IDENTITY_ANSI = SEC_WINNT_AUTH_IDENTITY.ANSI;
 pub const SEC_WINNT_AUTH_IDENTITY_UNICODE = SEC_WINNT_AUTH_IDENTITY.UNICODE;
 
-pub const RPC_BINDING_HANDLE_OPTIONS_FLAGS = enum(u32) {
-    NONCAUSAL = 1,
-    DONTLINGER = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONCAUSAL: u1 = 0,
-        DONTLINGER: u1 = 0,
-    }) RPC_BINDING_HANDLE_OPTIONS_FLAGS {
-        return @as(RPC_BINDING_HANDLE_OPTIONS_FLAGS, @enumFromInt(
-              (if (o.NONCAUSAL == 1) @intFromEnum(RPC_BINDING_HANDLE_OPTIONS_FLAGS.NONCAUSAL) else 0)
-            | (if (o.DONTLINGER == 1) @intFromEnum(RPC_BINDING_HANDLE_OPTIONS_FLAGS.DONTLINGER) else 0)
-        ));
-    }
+pub const RPC_BINDING_HANDLE_OPTIONS_FLAGS = packed struct(u32) {
+    NONCAUSAL: u1 = 0,
+    DONTLINGER: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RPC_BHO_NONCAUSAL = RPC_BINDING_HANDLE_OPTIONS_FLAGS.NONCAUSAL;
-pub const RPC_BHO_DONTLINGER = RPC_BINDING_HANDLE_OPTIONS_FLAGS.DONTLINGER;
+pub const RPC_BHO_NONCAUSAL = RPC_BINDING_HANDLE_OPTIONS_FLAGS{ .NONCAUSAL = 1 };
+pub const RPC_BHO_DONTLINGER = RPC_BINDING_HANDLE_OPTIONS_FLAGS{ .DONTLINGER = 1 };
 
 pub const RPC_BINDING_VECTOR = extern struct {
     Count: u32,

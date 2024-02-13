@@ -1132,26 +1132,43 @@ pub const IDXGIDevice = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_ADAPTER_FLAG = enum(u32) {
-    NONE = 0,
-    REMOTE = 1,
-    SOFTWARE = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        REMOTE: u1 = 0,
-        SOFTWARE: u1 = 0,
-    }) DXGI_ADAPTER_FLAG {
-        return @as(DXGI_ADAPTER_FLAG, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.NONE) else 0)
-            | (if (o.REMOTE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.REMOTE) else 0)
-            | (if (o.SOFTWARE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.SOFTWARE) else 0)
-        ));
-    }
+pub const DXGI_ADAPTER_FLAG = packed struct(u32) {
+    REMOTE: u1 = 0,
+    SOFTWARE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DXGI_ADAPTER_FLAG_NONE = DXGI_ADAPTER_FLAG.NONE;
-pub const DXGI_ADAPTER_FLAG_REMOTE = DXGI_ADAPTER_FLAG.REMOTE;
-pub const DXGI_ADAPTER_FLAG_SOFTWARE = DXGI_ADAPTER_FLAG.SOFTWARE;
+pub const DXGI_ADAPTER_FLAG_NONE = DXGI_ADAPTER_FLAG{ };
+pub const DXGI_ADAPTER_FLAG_REMOTE = DXGI_ADAPTER_FLAG{ .REMOTE = 1 };
+pub const DXGI_ADAPTER_FLAG_SOFTWARE = DXGI_ADAPTER_FLAG{ .SOFTWARE = 1 };
 
 pub const DXGI_ADAPTER_DESC1 = extern struct {
     Description: [128]u16,
@@ -3279,46 +3296,81 @@ pub const IDXGIFactory5 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_ADAPTER_FLAG3 = enum(u32) {
-    NONE = 0,
-    REMOTE = 1,
-    SOFTWARE = 2,
-    ACG_COMPATIBLE = 4,
-    SUPPORT_MONITORED_FENCES = 8,
-    SUPPORT_NON_MONITORED_FENCES = 16,
-    KEYED_MUTEX_CONFORMANCE = 32,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        REMOTE: u1 = 0,
-        SOFTWARE: u1 = 0,
-        ACG_COMPATIBLE: u1 = 0,
-        SUPPORT_MONITORED_FENCES: u1 = 0,
-        SUPPORT_NON_MONITORED_FENCES: u1 = 0,
-        KEYED_MUTEX_CONFORMANCE: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) DXGI_ADAPTER_FLAG3 {
-        return @as(DXGI_ADAPTER_FLAG3, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.NONE) else 0)
-            | (if (o.REMOTE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.REMOTE) else 0)
-            | (if (o.SOFTWARE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SOFTWARE) else 0)
-            | (if (o.ACG_COMPATIBLE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.ACG_COMPATIBLE) else 0)
-            | (if (o.SUPPORT_MONITORED_FENCES == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SUPPORT_MONITORED_FENCES) else 0)
-            | (if (o.SUPPORT_NON_MONITORED_FENCES == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SUPPORT_NON_MONITORED_FENCES) else 0)
-            | (if (o.KEYED_MUTEX_CONFORMANCE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.KEYED_MUTEX_CONFORMANCE) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.FORCE_DWORD) else 0)
-        ));
-    }
+pub const DXGI_ADAPTER_FLAG3 = packed struct(u32) {
+    REMOTE: u1 = 0,
+    SOFTWARE: u1 = 0,
+    ACG_COMPATIBLE: u1 = 0,
+    SUPPORT_MONITORED_FENCES: u1 = 0,
+    SUPPORT_NON_MONITORED_FENCES: u1 = 0,
+    KEYED_MUTEX_CONFORMANCE: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DXGI_ADAPTER_FLAG3_NONE = DXGI_ADAPTER_FLAG3.NONE;
-pub const DXGI_ADAPTER_FLAG3_REMOTE = DXGI_ADAPTER_FLAG3.REMOTE;
-pub const DXGI_ADAPTER_FLAG3_SOFTWARE = DXGI_ADAPTER_FLAG3.SOFTWARE;
-pub const DXGI_ADAPTER_FLAG3_ACG_COMPATIBLE = DXGI_ADAPTER_FLAG3.ACG_COMPATIBLE;
-pub const DXGI_ADAPTER_FLAG3_SUPPORT_MONITORED_FENCES = DXGI_ADAPTER_FLAG3.SUPPORT_MONITORED_FENCES;
-pub const DXGI_ADAPTER_FLAG3_SUPPORT_NON_MONITORED_FENCES = DXGI_ADAPTER_FLAG3.SUPPORT_NON_MONITORED_FENCES;
-pub const DXGI_ADAPTER_FLAG3_KEYED_MUTEX_CONFORMANCE = DXGI_ADAPTER_FLAG3.KEYED_MUTEX_CONFORMANCE;
-pub const DXGI_ADAPTER_FLAG3_FORCE_DWORD = DXGI_ADAPTER_FLAG3.FORCE_DWORD;
+pub const DXGI_ADAPTER_FLAG3_NONE = DXGI_ADAPTER_FLAG3{ };
+pub const DXGI_ADAPTER_FLAG3_REMOTE = DXGI_ADAPTER_FLAG3{ .REMOTE = 1 };
+pub const DXGI_ADAPTER_FLAG3_SOFTWARE = DXGI_ADAPTER_FLAG3{ .SOFTWARE = 1 };
+pub const DXGI_ADAPTER_FLAG3_ACG_COMPATIBLE = DXGI_ADAPTER_FLAG3{ .ACG_COMPATIBLE = 1 };
+pub const DXGI_ADAPTER_FLAG3_SUPPORT_MONITORED_FENCES = DXGI_ADAPTER_FLAG3{ .SUPPORT_MONITORED_FENCES = 1 };
+pub const DXGI_ADAPTER_FLAG3_SUPPORT_NON_MONITORED_FENCES = DXGI_ADAPTER_FLAG3{ .SUPPORT_NON_MONITORED_FENCES = 1 };
+pub const DXGI_ADAPTER_FLAG3_KEYED_MUTEX_CONFORMANCE = DXGI_ADAPTER_FLAG3{ .KEYED_MUTEX_CONFORMANCE = 1 };
+pub const DXGI_ADAPTER_FLAG3_FORCE_DWORD = DXGI_ADAPTER_FLAG3{
+    .REMOTE = 1,
+    .SOFTWARE = 1,
+    .ACG_COMPATIBLE = 1,
+    .SUPPORT_MONITORED_FENCES = 1,
+    .SUPPORT_NON_MONITORED_FENCES = 1,
+    .KEYED_MUTEX_CONFORMANCE = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const DXGI_ADAPTER_DESC3 = extern struct {
     Description: [128]u16,
@@ -3379,26 +3431,43 @@ pub const DXGI_OUTPUT_DESC1 = extern struct {
     MaxFullFrameLuminance: f32,
 };
 
-pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS = enum(u32) {
-    FULLSCREEN = 1,
-    WINDOWED = 2,
-    CURSOR_STRETCHED = 4,
-    _,
-    pub fn initFlags(o: struct {
-        FULLSCREEN: u1 = 0,
-        WINDOWED: u1 = 0,
-        CURSOR_STRETCHED: u1 = 0,
-    }) DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS {
-        return @as(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS, @enumFromInt(
-              (if (o.FULLSCREEN == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.FULLSCREEN) else 0)
-            | (if (o.WINDOWED == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.WINDOWED) else 0)
-            | (if (o.CURSOR_STRETCHED == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.CURSOR_STRETCHED) else 0)
-        ));
-    }
+pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS = packed struct(u32) {
+    FULLSCREEN: u1 = 0,
+    WINDOWED: u1 = 0,
+    CURSOR_STRETCHED: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_FULLSCREEN = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.FULLSCREEN;
-pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_WINDOWED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.WINDOWED;
-pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.CURSOR_STRETCHED;
+pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_FULLSCREEN = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS{ .FULLSCREEN = 1 };
+pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_WINDOWED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS{ .WINDOWED = 1 };
+pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS{ .CURSOR_STRETCHED = 1 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput6_Value = Guid.initString("068346e8-aaec-4b84-add7-137f513f77a1");
@@ -3529,30 +3598,48 @@ pub const IDXGIFactory7 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_DEBUG_RLO_FLAGS = enum(u32) {
-    SUMMARY = 1,
-    DETAIL = 2,
-    IGNORE_INTERNAL = 4,
-    ALL = 7,
-    _,
-    pub fn initFlags(o: struct {
-        SUMMARY: u1 = 0,
-        DETAIL: u1 = 0,
-        IGNORE_INTERNAL: u1 = 0,
-        ALL: u1 = 0,
-    }) DXGI_DEBUG_RLO_FLAGS {
-        return @as(DXGI_DEBUG_RLO_FLAGS, @enumFromInt(
-              (if (o.SUMMARY == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.SUMMARY) else 0)
-            | (if (o.DETAIL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.DETAIL) else 0)
-            | (if (o.IGNORE_INTERNAL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.IGNORE_INTERNAL) else 0)
-            | (if (o.ALL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.ALL) else 0)
-        ));
-    }
+pub const DXGI_DEBUG_RLO_FLAGS = packed struct(u32) {
+    SUMMARY: u1 = 0,
+    DETAIL: u1 = 0,
+    IGNORE_INTERNAL: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DXGI_DEBUG_RLO_SUMMARY = DXGI_DEBUG_RLO_FLAGS.SUMMARY;
-pub const DXGI_DEBUG_RLO_DETAIL = DXGI_DEBUG_RLO_FLAGS.DETAIL;
-pub const DXGI_DEBUG_RLO_IGNORE_INTERNAL = DXGI_DEBUG_RLO_FLAGS.IGNORE_INTERNAL;
-pub const DXGI_DEBUG_RLO_ALL = DXGI_DEBUG_RLO_FLAGS.ALL;
+pub const DXGI_DEBUG_RLO_SUMMARY = DXGI_DEBUG_RLO_FLAGS{ .SUMMARY = 1 };
+pub const DXGI_DEBUG_RLO_DETAIL = DXGI_DEBUG_RLO_FLAGS{ .DETAIL = 1 };
+pub const DXGI_DEBUG_RLO_IGNORE_INTERNAL = DXGI_DEBUG_RLO_FLAGS{ .IGNORE_INTERNAL = 1 };
+pub const DXGI_DEBUG_RLO_ALL = DXGI_DEBUG_RLO_FLAGS{
+    .SUMMARY = 1,
+    .DETAIL = 1,
+    .IGNORE_INTERNAL = 1,
+};
 
 pub const DXGI_INFO_QUEUE_MESSAGE_CATEGORY = enum(i32) {
     UNKNOWN = 0,

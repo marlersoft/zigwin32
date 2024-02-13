@@ -156,38 +156,79 @@ pub const D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR = D2D1_BITMAP_INTERPOL
 pub const D2D1_BITMAP_INTERPOLATION_MODE_LINEAR = D2D1_BITMAP_INTERPOLATION_MODE.LINEAR;
 pub const D2D1_BITMAP_INTERPOLATION_MODE_FORCE_DWORD = D2D1_BITMAP_INTERPOLATION_MODE.FORCE_DWORD;
 
-pub const D2D1_DRAW_TEXT_OPTIONS = enum(u32) {
-    NO_SNAP = 1,
-    CLIP = 2,
-    ENABLE_COLOR_FONT = 4,
-    DISABLE_COLOR_BITMAP_SNAPPING = 8,
-    NONE = 0,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NO_SNAP: u1 = 0,
-        CLIP: u1 = 0,
-        ENABLE_COLOR_FONT: u1 = 0,
-        DISABLE_COLOR_BITMAP_SNAPPING: u1 = 0,
-        NONE: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_DRAW_TEXT_OPTIONS {
-        return @as(D2D1_DRAW_TEXT_OPTIONS, @enumFromInt(
-              (if (o.NO_SNAP == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.NO_SNAP) else 0)
-            | (if (o.CLIP == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.CLIP) else 0)
-            | (if (o.ENABLE_COLOR_FONT == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.ENABLE_COLOR_FONT) else 0)
-            | (if (o.DISABLE_COLOR_BITMAP_SNAPPING == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.DISABLE_COLOR_BITMAP_SNAPPING) else 0)
-            | (if (o.NONE == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.NONE) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_DRAW_TEXT_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_DRAW_TEXT_OPTIONS = packed struct(u32) {
+    NO_SNAP: u1 = 0,
+    CLIP: u1 = 0,
+    ENABLE_COLOR_FONT: u1 = 0,
+    DISABLE_COLOR_BITMAP_SNAPPING: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_DRAW_TEXT_OPTIONS_NO_SNAP = D2D1_DRAW_TEXT_OPTIONS.NO_SNAP;
-pub const D2D1_DRAW_TEXT_OPTIONS_CLIP = D2D1_DRAW_TEXT_OPTIONS.CLIP;
-pub const D2D1_DRAW_TEXT_OPTIONS_ENABLE_COLOR_FONT = D2D1_DRAW_TEXT_OPTIONS.ENABLE_COLOR_FONT;
-pub const D2D1_DRAW_TEXT_OPTIONS_DISABLE_COLOR_BITMAP_SNAPPING = D2D1_DRAW_TEXT_OPTIONS.DISABLE_COLOR_BITMAP_SNAPPING;
-pub const D2D1_DRAW_TEXT_OPTIONS_NONE = D2D1_DRAW_TEXT_OPTIONS.NONE;
-pub const D2D1_DRAW_TEXT_OPTIONS_FORCE_DWORD = D2D1_DRAW_TEXT_OPTIONS.FORCE_DWORD;
+pub const D2D1_DRAW_TEXT_OPTIONS_NO_SNAP = D2D1_DRAW_TEXT_OPTIONS{ .NO_SNAP = 1 };
+pub const D2D1_DRAW_TEXT_OPTIONS_CLIP = D2D1_DRAW_TEXT_OPTIONS{ .CLIP = 1 };
+pub const D2D1_DRAW_TEXT_OPTIONS_ENABLE_COLOR_FONT = D2D1_DRAW_TEXT_OPTIONS{ .ENABLE_COLOR_FONT = 1 };
+pub const D2D1_DRAW_TEXT_OPTIONS_DISABLE_COLOR_BITMAP_SNAPPING = D2D1_DRAW_TEXT_OPTIONS{ .DISABLE_COLOR_BITMAP_SNAPPING = 1 };
+pub const D2D1_DRAW_TEXT_OPTIONS_NONE = D2D1_DRAW_TEXT_OPTIONS{ };
+pub const D2D1_DRAW_TEXT_OPTIONS_FORCE_DWORD = D2D1_DRAW_TEXT_OPTIONS{
+    .NO_SNAP = 1,
+    .CLIP = 1,
+    .ENABLE_COLOR_FONT = 1,
+    .DISABLE_COLOR_BITMAP_SNAPPING = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_BITMAP_PROPERTIES = extern struct {
     pixelFormat: D2D1_PIXEL_FORMAT,
@@ -362,26 +403,76 @@ pub const D2D1_STROKE_STYLE_PROPERTIES = extern struct {
     dashOffset: f32,
 };
 
-pub const D2D1_LAYER_OPTIONS = enum(u32) {
-    NONE = 0,
-    INITIALIZE_FOR_CLEARTYPE = 1,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        INITIALIZE_FOR_CLEARTYPE: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_LAYER_OPTIONS {
-        return @as(D2D1_LAYER_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_LAYER_OPTIONS.NONE) else 0)
-            | (if (o.INITIALIZE_FOR_CLEARTYPE == 1) @intFromEnum(D2D1_LAYER_OPTIONS.INITIALIZE_FOR_CLEARTYPE) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_LAYER_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_LAYER_OPTIONS = packed struct(u32) {
+    INITIALIZE_FOR_CLEARTYPE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_LAYER_OPTIONS_NONE = D2D1_LAYER_OPTIONS.NONE;
-pub const D2D1_LAYER_OPTIONS_INITIALIZE_FOR_CLEARTYPE = D2D1_LAYER_OPTIONS.INITIALIZE_FOR_CLEARTYPE;
-pub const D2D1_LAYER_OPTIONS_FORCE_DWORD = D2D1_LAYER_OPTIONS.FORCE_DWORD;
+pub const D2D1_LAYER_OPTIONS_NONE = D2D1_LAYER_OPTIONS{ };
+pub const D2D1_LAYER_OPTIONS_INITIALIZE_FOR_CLEARTYPE = D2D1_LAYER_OPTIONS{ .INITIALIZE_FOR_CLEARTYPE = 1 };
+pub const D2D1_LAYER_OPTIONS_FORCE_DWORD = D2D1_LAYER_OPTIONS{
+    .INITIALIZE_FOR_CLEARTYPE = 1,
+    ._1 = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_LAYER_PARAMETERS = extern struct {
     contentBounds: D2D_RECT_F,
@@ -393,26 +484,76 @@ pub const D2D1_LAYER_PARAMETERS = extern struct {
     layerOptions: D2D1_LAYER_OPTIONS,
 };
 
-pub const D2D1_WINDOW_STATE = enum(u32) {
-    NONE = 0,
-    OCCLUDED = 1,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        OCCLUDED: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_WINDOW_STATE {
-        return @as(D2D1_WINDOW_STATE, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_WINDOW_STATE.NONE) else 0)
-            | (if (o.OCCLUDED == 1) @intFromEnum(D2D1_WINDOW_STATE.OCCLUDED) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_WINDOW_STATE.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_WINDOW_STATE = packed struct(u32) {
+    OCCLUDED: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_WINDOW_STATE_NONE = D2D1_WINDOW_STATE.NONE;
-pub const D2D1_WINDOW_STATE_OCCLUDED = D2D1_WINDOW_STATE.OCCLUDED;
-pub const D2D1_WINDOW_STATE_FORCE_DWORD = D2D1_WINDOW_STATE.FORCE_DWORD;
+pub const D2D1_WINDOW_STATE_NONE = D2D1_WINDOW_STATE{ };
+pub const D2D1_WINDOW_STATE_OCCLUDED = D2D1_WINDOW_STATE{ .OCCLUDED = 1 };
+pub const D2D1_WINDOW_STATE_FORCE_DWORD = D2D1_WINDOW_STATE{
+    .OCCLUDED = 1,
+    ._1 = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_RENDER_TARGET_TYPE = enum(u32) {
     DEFAULT = 0,
@@ -436,55 +577,149 @@ pub const D2D1_FEATURE_LEVEL_9 = D2D1_FEATURE_LEVEL.@"9";
 pub const D2D1_FEATURE_LEVEL_10 = D2D1_FEATURE_LEVEL.@"10";
 pub const D2D1_FEATURE_LEVEL_FORCE_DWORD = D2D1_FEATURE_LEVEL.FORCE_DWORD;
 
-pub const D2D1_RENDER_TARGET_USAGE = enum(u32) {
-    NONE = 0,
-    FORCE_BITMAP_REMOTING = 1,
-    GDI_COMPATIBLE = 2,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        FORCE_BITMAP_REMOTING: u1 = 0,
-        GDI_COMPATIBLE: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_RENDER_TARGET_USAGE {
-        return @as(D2D1_RENDER_TARGET_USAGE, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.NONE) else 0)
-            | (if (o.FORCE_BITMAP_REMOTING == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.FORCE_BITMAP_REMOTING) else 0)
-            | (if (o.GDI_COMPATIBLE == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.GDI_COMPATIBLE) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_RENDER_TARGET_USAGE.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_RENDER_TARGET_USAGE = packed struct(u32) {
+    FORCE_BITMAP_REMOTING: u1 = 0,
+    GDI_COMPATIBLE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_RENDER_TARGET_USAGE_NONE = D2D1_RENDER_TARGET_USAGE.NONE;
-pub const D2D1_RENDER_TARGET_USAGE_FORCE_BITMAP_REMOTING = D2D1_RENDER_TARGET_USAGE.FORCE_BITMAP_REMOTING;
-pub const D2D1_RENDER_TARGET_USAGE_GDI_COMPATIBLE = D2D1_RENDER_TARGET_USAGE.GDI_COMPATIBLE;
-pub const D2D1_RENDER_TARGET_USAGE_FORCE_DWORD = D2D1_RENDER_TARGET_USAGE.FORCE_DWORD;
+pub const D2D1_RENDER_TARGET_USAGE_NONE = D2D1_RENDER_TARGET_USAGE{ };
+pub const D2D1_RENDER_TARGET_USAGE_FORCE_BITMAP_REMOTING = D2D1_RENDER_TARGET_USAGE{ .FORCE_BITMAP_REMOTING = 1 };
+pub const D2D1_RENDER_TARGET_USAGE_GDI_COMPATIBLE = D2D1_RENDER_TARGET_USAGE{ .GDI_COMPATIBLE = 1 };
+pub const D2D1_RENDER_TARGET_USAGE_FORCE_DWORD = D2D1_RENDER_TARGET_USAGE{
+    .FORCE_BITMAP_REMOTING = 1,
+    .GDI_COMPATIBLE = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
-pub const D2D1_PRESENT_OPTIONS = enum(u32) {
-    NONE = 0,
-    RETAIN_CONTENTS = 1,
-    IMMEDIATELY = 2,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        RETAIN_CONTENTS: u1 = 0,
-        IMMEDIATELY: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_PRESENT_OPTIONS {
-        return @as(D2D1_PRESENT_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.NONE) else 0)
-            | (if (o.RETAIN_CONTENTS == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.RETAIN_CONTENTS) else 0)
-            | (if (o.IMMEDIATELY == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.IMMEDIATELY) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_PRESENT_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_PRESENT_OPTIONS = packed struct(u32) {
+    RETAIN_CONTENTS: u1 = 0,
+    IMMEDIATELY: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_PRESENT_OPTIONS_NONE = D2D1_PRESENT_OPTIONS.NONE;
-pub const D2D1_PRESENT_OPTIONS_RETAIN_CONTENTS = D2D1_PRESENT_OPTIONS.RETAIN_CONTENTS;
-pub const D2D1_PRESENT_OPTIONS_IMMEDIATELY = D2D1_PRESENT_OPTIONS.IMMEDIATELY;
-pub const D2D1_PRESENT_OPTIONS_FORCE_DWORD = D2D1_PRESENT_OPTIONS.FORCE_DWORD;
+pub const D2D1_PRESENT_OPTIONS_NONE = D2D1_PRESENT_OPTIONS{ };
+pub const D2D1_PRESENT_OPTIONS_RETAIN_CONTENTS = D2D1_PRESENT_OPTIONS{ .RETAIN_CONTENTS = 1 };
+pub const D2D1_PRESENT_OPTIONS_IMMEDIATELY = D2D1_PRESENT_OPTIONS{ .IMMEDIATELY = 1 };
+pub const D2D1_PRESENT_OPTIONS_FORCE_DWORD = D2D1_PRESENT_OPTIONS{
+    .RETAIN_CONTENTS = 1,
+    .IMMEDIATELY = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_RENDER_TARGET_PROPERTIES = extern struct {
     type: D2D1_RENDER_TARGET_TYPE,
@@ -501,26 +736,76 @@ pub const D2D1_HWND_RENDER_TARGET_PROPERTIES = extern struct {
     presentOptions: D2D1_PRESENT_OPTIONS,
 };
 
-pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS = enum(u32) {
-    NONE = 0,
-    GDI_COMPATIBLE = 1,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        GDI_COMPATIBLE: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS {
-        return @as(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.NONE) else 0)
-            | (if (o.GDI_COMPATIBLE == 1) @intFromEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.GDI_COMPATIBLE) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS = packed struct(u32) {
+    GDI_COMPATIBLE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.NONE;
-pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_GDI_COMPATIBLE = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.GDI_COMPATIBLE;
-pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_FORCE_DWORD = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS.FORCE_DWORD;
+pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS{ };
+pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_GDI_COMPATIBLE = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS{ .GDI_COMPATIBLE = 1 };
+pub const D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_FORCE_DWORD = D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS{
+    .GDI_COMPATIBLE = 1,
+    ._1 = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_DRAWING_STATE_DESCRIPTION = extern struct {
     antialiasMode: D2D1_ANTIALIAS_MODE,
@@ -4422,38 +4707,79 @@ pub const D2D1_SUBPROPERTY_FIELDS = D2D1_SUBPROPERTY.FIELDS;
 pub const D2D1_SUBPROPERTY_INDEX = D2D1_SUBPROPERTY.INDEX;
 pub const D2D1_SUBPROPERTY_FORCE_DWORD = D2D1_SUBPROPERTY.FORCE_DWORD;
 
-pub const D2D1_BITMAP_OPTIONS = enum(u32) {
-    NONE = 0,
-    TARGET = 1,
-    CANNOT_DRAW = 2,
-    CPU_READ = 4,
-    GDI_COMPATIBLE = 8,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        TARGET: u1 = 0,
-        CANNOT_DRAW: u1 = 0,
-        CPU_READ: u1 = 0,
-        GDI_COMPATIBLE: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_BITMAP_OPTIONS {
-        return @as(D2D1_BITMAP_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.NONE) else 0)
-            | (if (o.TARGET == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.TARGET) else 0)
-            | (if (o.CANNOT_DRAW == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.CANNOT_DRAW) else 0)
-            | (if (o.CPU_READ == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.CPU_READ) else 0)
-            | (if (o.GDI_COMPATIBLE == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.GDI_COMPATIBLE) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_BITMAP_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_BITMAP_OPTIONS = packed struct(u32) {
+    TARGET: u1 = 0,
+    CANNOT_DRAW: u1 = 0,
+    CPU_READ: u1 = 0,
+    GDI_COMPATIBLE: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_BITMAP_OPTIONS_NONE = D2D1_BITMAP_OPTIONS.NONE;
-pub const D2D1_BITMAP_OPTIONS_TARGET = D2D1_BITMAP_OPTIONS.TARGET;
-pub const D2D1_BITMAP_OPTIONS_CANNOT_DRAW = D2D1_BITMAP_OPTIONS.CANNOT_DRAW;
-pub const D2D1_BITMAP_OPTIONS_CPU_READ = D2D1_BITMAP_OPTIONS.CPU_READ;
-pub const D2D1_BITMAP_OPTIONS_GDI_COMPATIBLE = D2D1_BITMAP_OPTIONS.GDI_COMPATIBLE;
-pub const D2D1_BITMAP_OPTIONS_FORCE_DWORD = D2D1_BITMAP_OPTIONS.FORCE_DWORD;
+pub const D2D1_BITMAP_OPTIONS_NONE = D2D1_BITMAP_OPTIONS{ };
+pub const D2D1_BITMAP_OPTIONS_TARGET = D2D1_BITMAP_OPTIONS{ .TARGET = 1 };
+pub const D2D1_BITMAP_OPTIONS_CANNOT_DRAW = D2D1_BITMAP_OPTIONS{ .CANNOT_DRAW = 1 };
+pub const D2D1_BITMAP_OPTIONS_CPU_READ = D2D1_BITMAP_OPTIONS{ .CPU_READ = 1 };
+pub const D2D1_BITMAP_OPTIONS_GDI_COMPATIBLE = D2D1_BITMAP_OPTIONS{ .GDI_COMPATIBLE = 1 };
+pub const D2D1_BITMAP_OPTIONS_FORCE_DWORD = D2D1_BITMAP_OPTIONS{
+    .TARGET = 1,
+    .CANNOT_DRAW = 1,
+    .CPU_READ = 1,
+    .GDI_COMPATIBLE = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_BUFFER_PRECISION = enum(u32) {
     UNKNOWN = 0,
@@ -4472,34 +4798,78 @@ pub const D2D1_BUFFER_PRECISION_16BPC_FLOAT = D2D1_BUFFER_PRECISION.@"16BPC_FLOA
 pub const D2D1_BUFFER_PRECISION_32BPC_FLOAT = D2D1_BUFFER_PRECISION.@"32BPC_FLOAT";
 pub const D2D1_BUFFER_PRECISION_FORCE_DWORD = D2D1_BUFFER_PRECISION.FORCE_DWORD;
 
-pub const D2D1_MAP_OPTIONS = enum(u32) {
-    NONE = 0,
-    READ = 1,
-    WRITE = 2,
-    DISCARD = 4,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        READ: u1 = 0,
-        WRITE: u1 = 0,
-        DISCARD: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_MAP_OPTIONS {
-        return @as(D2D1_MAP_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_MAP_OPTIONS.NONE) else 0)
-            | (if (o.READ == 1) @intFromEnum(D2D1_MAP_OPTIONS.READ) else 0)
-            | (if (o.WRITE == 1) @intFromEnum(D2D1_MAP_OPTIONS.WRITE) else 0)
-            | (if (o.DISCARD == 1) @intFromEnum(D2D1_MAP_OPTIONS.DISCARD) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_MAP_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_MAP_OPTIONS = packed struct(u32) {
+    READ: u1 = 0,
+    WRITE: u1 = 0,
+    DISCARD: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_MAP_OPTIONS_NONE = D2D1_MAP_OPTIONS.NONE;
-pub const D2D1_MAP_OPTIONS_READ = D2D1_MAP_OPTIONS.READ;
-pub const D2D1_MAP_OPTIONS_WRITE = D2D1_MAP_OPTIONS.WRITE;
-pub const D2D1_MAP_OPTIONS_DISCARD = D2D1_MAP_OPTIONS.DISCARD;
-pub const D2D1_MAP_OPTIONS_FORCE_DWORD = D2D1_MAP_OPTIONS.FORCE_DWORD;
+pub const D2D1_MAP_OPTIONS_NONE = D2D1_MAP_OPTIONS{ };
+pub const D2D1_MAP_OPTIONS_READ = D2D1_MAP_OPTIONS{ .READ = 1 };
+pub const D2D1_MAP_OPTIONS_WRITE = D2D1_MAP_OPTIONS{ .WRITE = 1 };
+pub const D2D1_MAP_OPTIONS_DISCARD = D2D1_MAP_OPTIONS{ .DISCARD = 1 };
+pub const D2D1_MAP_OPTIONS_FORCE_DWORD = D2D1_MAP_OPTIONS{
+    .READ = 1,
+    .WRITE = 1,
+    .DISCARD = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_INTERPOLATION_MODE = enum(u32) {
     NEAREST_NEIGHBOR = 0,
@@ -4538,26 +4908,76 @@ pub const D2D1_COLOR_SPACE_SRGB = D2D1_COLOR_SPACE.SRGB;
 pub const D2D1_COLOR_SPACE_SCRGB = D2D1_COLOR_SPACE.SCRGB;
 pub const D2D1_COLOR_SPACE_FORCE_DWORD = D2D1_COLOR_SPACE.FORCE_DWORD;
 
-pub const D2D1_DEVICE_CONTEXT_OPTIONS = enum(u32) {
-    NONE = 0,
-    ENABLE_MULTITHREADED_OPTIMIZATIONS = 1,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ENABLE_MULTITHREADED_OPTIMIZATIONS: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_DEVICE_CONTEXT_OPTIONS {
-        return @as(D2D1_DEVICE_CONTEXT_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_DEVICE_CONTEXT_OPTIONS.NONE) else 0)
-            | (if (o.ENABLE_MULTITHREADED_OPTIMIZATIONS == 1) @intFromEnum(D2D1_DEVICE_CONTEXT_OPTIONS.ENABLE_MULTITHREADED_OPTIMIZATIONS) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_DEVICE_CONTEXT_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_DEVICE_CONTEXT_OPTIONS = packed struct(u32) {
+    ENABLE_MULTITHREADED_OPTIMIZATIONS: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_DEVICE_CONTEXT_OPTIONS_NONE = D2D1_DEVICE_CONTEXT_OPTIONS.NONE;
-pub const D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS = D2D1_DEVICE_CONTEXT_OPTIONS.ENABLE_MULTITHREADED_OPTIMIZATIONS;
-pub const D2D1_DEVICE_CONTEXT_OPTIONS_FORCE_DWORD = D2D1_DEVICE_CONTEXT_OPTIONS.FORCE_DWORD;
+pub const D2D1_DEVICE_CONTEXT_OPTIONS_NONE = D2D1_DEVICE_CONTEXT_OPTIONS{ };
+pub const D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS = D2D1_DEVICE_CONTEXT_OPTIONS{ .ENABLE_MULTITHREADED_OPTIMIZATIONS = 1 };
+pub const D2D1_DEVICE_CONTEXT_OPTIONS_FORCE_DWORD = D2D1_DEVICE_CONTEXT_OPTIONS{
+    .ENABLE_MULTITHREADED_OPTIMIZATIONS = 1,
+    ._1 = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_STROKE_TRANSFORM_TYPE = enum(u32) {
     NORMAL = 0,
@@ -4659,30 +5079,77 @@ pub const D2D1_STROKE_STYLE_PROPERTIES1 = extern struct {
     transformType: D2D1_STROKE_TRANSFORM_TYPE,
 };
 
-pub const D2D1_LAYER_OPTIONS1 = enum(u32) {
-    NONE = 0,
-    INITIALIZE_FROM_BACKGROUND = 1,
-    IGNORE_ALPHA = 2,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        INITIALIZE_FROM_BACKGROUND: u1 = 0,
-        IGNORE_ALPHA: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_LAYER_OPTIONS1 {
-        return @as(D2D1_LAYER_OPTIONS1, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.NONE) else 0)
-            | (if (o.INITIALIZE_FROM_BACKGROUND == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.INITIALIZE_FROM_BACKGROUND) else 0)
-            | (if (o.IGNORE_ALPHA == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.IGNORE_ALPHA) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_LAYER_OPTIONS1.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_LAYER_OPTIONS1 = packed struct(u32) {
+    INITIALIZE_FROM_BACKGROUND: u1 = 0,
+    IGNORE_ALPHA: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_LAYER_OPTIONS1_NONE = D2D1_LAYER_OPTIONS1.NONE;
-pub const D2D1_LAYER_OPTIONS1_INITIALIZE_FROM_BACKGROUND = D2D1_LAYER_OPTIONS1.INITIALIZE_FROM_BACKGROUND;
-pub const D2D1_LAYER_OPTIONS1_IGNORE_ALPHA = D2D1_LAYER_OPTIONS1.IGNORE_ALPHA;
-pub const D2D1_LAYER_OPTIONS1_FORCE_DWORD = D2D1_LAYER_OPTIONS1.FORCE_DWORD;
+pub const D2D1_LAYER_OPTIONS1_NONE = D2D1_LAYER_OPTIONS1{ };
+pub const D2D1_LAYER_OPTIONS1_INITIALIZE_FROM_BACKGROUND = D2D1_LAYER_OPTIONS1{ .INITIALIZE_FROM_BACKGROUND = 1 };
+pub const D2D1_LAYER_OPTIONS1_IGNORE_ALPHA = D2D1_LAYER_OPTIONS1{ .IGNORE_ALPHA = 1 };
+pub const D2D1_LAYER_OPTIONS1_FORCE_DWORD = D2D1_LAYER_OPTIONS1{
+    .INITIALIZE_FROM_BACKGROUND = 1,
+    .IGNORE_ALPHA = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_LAYER_PARAMETERS1 = extern struct {
     contentBounds: D2D_RECT_F,
@@ -7093,84 +7560,225 @@ pub const PD2D1_PROPERTY_GET_FUNCTION = switch (@import("builtin").zig_backend) 
     ) callconv(@import("std").os.windows.WINAPI) HRESULT,
 } ;
 
-pub const D2D1_CHANGE_TYPE = enum(u32) {
-    NONE = 0,
-    PROPERTIES = 1,
-    CONTEXT = 2,
-    GRAPH = 3,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        PROPERTIES: u1 = 0,
-        CONTEXT: u1 = 0,
-        GRAPH: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_CHANGE_TYPE {
-        return @as(D2D1_CHANGE_TYPE, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_CHANGE_TYPE.NONE) else 0)
-            | (if (o.PROPERTIES == 1) @intFromEnum(D2D1_CHANGE_TYPE.PROPERTIES) else 0)
-            | (if (o.CONTEXT == 1) @intFromEnum(D2D1_CHANGE_TYPE.CONTEXT) else 0)
-            | (if (o.GRAPH == 1) @intFromEnum(D2D1_CHANGE_TYPE.GRAPH) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_CHANGE_TYPE.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_CHANGE_TYPE = packed struct(u32) {
+    PROPERTIES: u1 = 0,
+    CONTEXT: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_CHANGE_TYPE_NONE = D2D1_CHANGE_TYPE.NONE;
-pub const D2D1_CHANGE_TYPE_PROPERTIES = D2D1_CHANGE_TYPE.PROPERTIES;
-pub const D2D1_CHANGE_TYPE_CONTEXT = D2D1_CHANGE_TYPE.CONTEXT;
-pub const D2D1_CHANGE_TYPE_GRAPH = D2D1_CHANGE_TYPE.GRAPH;
-pub const D2D1_CHANGE_TYPE_FORCE_DWORD = D2D1_CHANGE_TYPE.FORCE_DWORD;
+pub const D2D1_CHANGE_TYPE_NONE = D2D1_CHANGE_TYPE{ };
+pub const D2D1_CHANGE_TYPE_PROPERTIES = D2D1_CHANGE_TYPE{ .PROPERTIES = 1 };
+pub const D2D1_CHANGE_TYPE_CONTEXT = D2D1_CHANGE_TYPE{ .CONTEXT = 1 };
+pub const D2D1_CHANGE_TYPE_GRAPH = D2D1_CHANGE_TYPE{
+    .PROPERTIES = 1,
+    .CONTEXT = 1,
+};
+pub const D2D1_CHANGE_TYPE_FORCE_DWORD = D2D1_CHANGE_TYPE{
+    .PROPERTIES = 1,
+    .CONTEXT = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
-pub const D2D1_PIXEL_OPTIONS = enum(u32) {
-    NONE = 0,
-    TRIVIAL_SAMPLING = 1,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        TRIVIAL_SAMPLING: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_PIXEL_OPTIONS {
-        return @as(D2D1_PIXEL_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_PIXEL_OPTIONS.NONE) else 0)
-            | (if (o.TRIVIAL_SAMPLING == 1) @intFromEnum(D2D1_PIXEL_OPTIONS.TRIVIAL_SAMPLING) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_PIXEL_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_PIXEL_OPTIONS = packed struct(u32) {
+    TRIVIAL_SAMPLING: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_PIXEL_OPTIONS_NONE = D2D1_PIXEL_OPTIONS.NONE;
-pub const D2D1_PIXEL_OPTIONS_TRIVIAL_SAMPLING = D2D1_PIXEL_OPTIONS.TRIVIAL_SAMPLING;
-pub const D2D1_PIXEL_OPTIONS_FORCE_DWORD = D2D1_PIXEL_OPTIONS.FORCE_DWORD;
+pub const D2D1_PIXEL_OPTIONS_NONE = D2D1_PIXEL_OPTIONS{ };
+pub const D2D1_PIXEL_OPTIONS_TRIVIAL_SAMPLING = D2D1_PIXEL_OPTIONS{ .TRIVIAL_SAMPLING = 1 };
+pub const D2D1_PIXEL_OPTIONS_FORCE_DWORD = D2D1_PIXEL_OPTIONS{
+    .TRIVIAL_SAMPLING = 1,
+    ._1 = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
-pub const D2D1_VERTEX_OPTIONS = enum(u32) {
-    NONE = 0,
-    DO_NOT_CLEAR = 1,
-    USE_DEPTH_BUFFER = 2,
-    ASSUME_NO_OVERLAP = 4,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DO_NOT_CLEAR: u1 = 0,
-        USE_DEPTH_BUFFER: u1 = 0,
-        ASSUME_NO_OVERLAP: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_VERTEX_OPTIONS {
-        return @as(D2D1_VERTEX_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.NONE) else 0)
-            | (if (o.DO_NOT_CLEAR == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.DO_NOT_CLEAR) else 0)
-            | (if (o.USE_DEPTH_BUFFER == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.USE_DEPTH_BUFFER) else 0)
-            | (if (o.ASSUME_NO_OVERLAP == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.ASSUME_NO_OVERLAP) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_VERTEX_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_VERTEX_OPTIONS = packed struct(u32) {
+    DO_NOT_CLEAR: u1 = 0,
+    USE_DEPTH_BUFFER: u1 = 0,
+    ASSUME_NO_OVERLAP: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_VERTEX_OPTIONS_NONE = D2D1_VERTEX_OPTIONS.NONE;
-pub const D2D1_VERTEX_OPTIONS_DO_NOT_CLEAR = D2D1_VERTEX_OPTIONS.DO_NOT_CLEAR;
-pub const D2D1_VERTEX_OPTIONS_USE_DEPTH_BUFFER = D2D1_VERTEX_OPTIONS.USE_DEPTH_BUFFER;
-pub const D2D1_VERTEX_OPTIONS_ASSUME_NO_OVERLAP = D2D1_VERTEX_OPTIONS.ASSUME_NO_OVERLAP;
-pub const D2D1_VERTEX_OPTIONS_FORCE_DWORD = D2D1_VERTEX_OPTIONS.FORCE_DWORD;
+pub const D2D1_VERTEX_OPTIONS_NONE = D2D1_VERTEX_OPTIONS{ };
+pub const D2D1_VERTEX_OPTIONS_DO_NOT_CLEAR = D2D1_VERTEX_OPTIONS{ .DO_NOT_CLEAR = 1 };
+pub const D2D1_VERTEX_OPTIONS_USE_DEPTH_BUFFER = D2D1_VERTEX_OPTIONS{ .USE_DEPTH_BUFFER = 1 };
+pub const D2D1_VERTEX_OPTIONS_ASSUME_NO_OVERLAP = D2D1_VERTEX_OPTIONS{ .ASSUME_NO_OVERLAP = 1 };
+pub const D2D1_VERTEX_OPTIONS_FORCE_DWORD = D2D1_VERTEX_OPTIONS{
+    .DO_NOT_CLEAR = 1,
+    .USE_DEPTH_BUFFER = 1,
+    .ASSUME_NO_OVERLAP = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_VERTEX_USAGE = enum(u32) {
     STATIC = 0,
@@ -10639,72 +11247,219 @@ pub const D2D1_ORIENTATION_ROTATE_CLOCKWISE270_FLIP_HORIZONTAL = D2D1_ORIENTATIO
 pub const D2D1_ORIENTATION_ROTATE_CLOCKWISE90 = D2D1_ORIENTATION.ROTATE_CLOCKWISE90;
 pub const D2D1_ORIENTATION_FORCE_DWORD = D2D1_ORIENTATION.FORCE_DWORD;
 
-pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS = enum(u32) {
-    NONE = 0,
-    RELEASE_SOURCE = 1,
-    CACHE_ON_DEMAND = 2,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        RELEASE_SOURCE: u1 = 0,
-        CACHE_ON_DEMAND: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_IMAGE_SOURCE_LOADING_OPTIONS {
-        return @as(D2D1_IMAGE_SOURCE_LOADING_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.NONE) else 0)
-            | (if (o.RELEASE_SOURCE == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.RELEASE_SOURCE) else 0)
-            | (if (o.CACHE_ON_DEMAND == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.CACHE_ON_DEMAND) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_IMAGE_SOURCE_LOADING_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS = packed struct(u32) {
+    RELEASE_SOURCE: u1 = 0,
+    CACHE_ON_DEMAND: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_NONE = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.NONE;
-pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_RELEASE_SOURCE = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.RELEASE_SOURCE;
-pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_CACHE_ON_DEMAND = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.CACHE_ON_DEMAND;
-pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_FORCE_DWORD = D2D1_IMAGE_SOURCE_LOADING_OPTIONS.FORCE_DWORD;
+pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_NONE = D2D1_IMAGE_SOURCE_LOADING_OPTIONS{ };
+pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_RELEASE_SOURCE = D2D1_IMAGE_SOURCE_LOADING_OPTIONS{ .RELEASE_SOURCE = 1 };
+pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_CACHE_ON_DEMAND = D2D1_IMAGE_SOURCE_LOADING_OPTIONS{ .CACHE_ON_DEMAND = 1 };
+pub const D2D1_IMAGE_SOURCE_LOADING_OPTIONS_FORCE_DWORD = D2D1_IMAGE_SOURCE_LOADING_OPTIONS{
+    .RELEASE_SOURCE = 1,
+    .CACHE_ON_DEMAND = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
-pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS = enum(u32) {
-    NONE = 0,
-    LOW_QUALITY_PRIMARY_CONVERSION = 1,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        LOW_QUALITY_PRIMARY_CONVERSION: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS {
-        return @as(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.NONE) else 0)
-            | (if (o.LOW_QUALITY_PRIMARY_CONVERSION == 1) @intFromEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.LOW_QUALITY_PRIMARY_CONVERSION) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS = packed struct(u32) {
+    LOW_QUALITY_PRIMARY_CONVERSION: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_NONE = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.NONE;
-pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_LOW_QUALITY_PRIMARY_CONVERSION = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.LOW_QUALITY_PRIMARY_CONVERSION;
-pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_FORCE_DWORD = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS.FORCE_DWORD;
+pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_NONE = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS{ };
+pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_LOW_QUALITY_PRIMARY_CONVERSION = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS{ .LOW_QUALITY_PRIMARY_CONVERSION = 1 };
+pub const D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS_FORCE_DWORD = D2D1_IMAGE_SOURCE_FROM_DXGI_OPTIONS{
+    .LOW_QUALITY_PRIMARY_CONVERSION = 1,
+    ._1 = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
-pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS = enum(u32) {
-    NONE = 0,
-    DISABLE_DPI_SCALE = 1,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DISABLE_DPI_SCALE: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS {
-        return @as(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.NONE) else 0)
-            | (if (o.DISABLE_DPI_SCALE == 1) @intFromEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.DISABLE_DPI_SCALE) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS = packed struct(u32) {
+    DISABLE_DPI_SCALE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_NONE = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.NONE;
-pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_DISABLE_DPI_SCALE = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.DISABLE_DPI_SCALE;
-pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_FORCE_DWORD = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS.FORCE_DWORD;
+pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_NONE = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS{ };
+pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_DISABLE_DPI_SCALE = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS{ .DISABLE_DPI_SCALE = 1 };
+pub const D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS_FORCE_DWORD = D2D1_TRANSFORMED_IMAGE_SOURCE_OPTIONS{
+    .DISABLE_DPI_SCALE = 1,
+    ._1 = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_TRANSFORMED_IMAGE_SOURCE_PROPERTIES = extern struct {
     orientation: D2D1_ORIENTATION,
@@ -10769,26 +11524,76 @@ pub const D2D1_GRADIENT_MESH_PATCH = extern struct {
     rightEdgeMode: D2D1_PATCH_EDGE_MODE,
 };
 
-pub const D2D1_SPRITE_OPTIONS = enum(u32) {
-    NONE = 0,
-    CLAMP_TO_SOURCE_RECTANGLE = 1,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        CLAMP_TO_SOURCE_RECTANGLE: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_SPRITE_OPTIONS {
-        return @as(D2D1_SPRITE_OPTIONS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_SPRITE_OPTIONS.NONE) else 0)
-            | (if (o.CLAMP_TO_SOURCE_RECTANGLE == 1) @intFromEnum(D2D1_SPRITE_OPTIONS.CLAMP_TO_SOURCE_RECTANGLE) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_SPRITE_OPTIONS.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_SPRITE_OPTIONS = packed struct(u32) {
+    CLAMP_TO_SOURCE_RECTANGLE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_SPRITE_OPTIONS_NONE = D2D1_SPRITE_OPTIONS.NONE;
-pub const D2D1_SPRITE_OPTIONS_CLAMP_TO_SOURCE_RECTANGLE = D2D1_SPRITE_OPTIONS.CLAMP_TO_SOURCE_RECTANGLE;
-pub const D2D1_SPRITE_OPTIONS_FORCE_DWORD = D2D1_SPRITE_OPTIONS.FORCE_DWORD;
+pub const D2D1_SPRITE_OPTIONS_NONE = D2D1_SPRITE_OPTIONS{ };
+pub const D2D1_SPRITE_OPTIONS_CLAMP_TO_SOURCE_RECTANGLE = D2D1_SPRITE_OPTIONS{ .CLAMP_TO_SOURCE_RECTANGLE = 1 };
+pub const D2D1_SPRITE_OPTIONS_FORCE_DWORD = D2D1_SPRITE_OPTIONS{
+    .CLAMP_TO_SOURCE_RECTANGLE = 1,
+    ._1 = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_COLOR_BITMAP_GLYPH_SNAP_OPTION = enum(u32) {
     DEFAULT = 0,

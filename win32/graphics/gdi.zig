@@ -1254,50 +1254,49 @@ pub const RGN_COPY = RGN_COMBINE_MODE.COPY;
 pub const RGN_MIN = RGN_COMBINE_MODE.AND;
 pub const RGN_MAX = RGN_COMBINE_MODE.COPY;
 
-pub const ETO_OPTIONS = enum(u32) {
-    OPAQUE = 2,
-    CLIPPED = 4,
-    GLYPH_INDEX = 16,
-    RTLREADING = 128,
-    NUMERICSLOCAL = 1024,
-    NUMERICSLATIN = 2048,
-    IGNORELANGUAGE = 4096,
-    PDY = 8192,
-    REVERSE_INDEX_MAP = 65536,
-    _,
-    pub fn initFlags(o: struct {
-        OPAQUE: u1 = 0,
-        CLIPPED: u1 = 0,
-        GLYPH_INDEX: u1 = 0,
-        RTLREADING: u1 = 0,
-        NUMERICSLOCAL: u1 = 0,
-        NUMERICSLATIN: u1 = 0,
-        IGNORELANGUAGE: u1 = 0,
-        PDY: u1 = 0,
-        REVERSE_INDEX_MAP: u1 = 0,
-    }) ETO_OPTIONS {
-        return @as(ETO_OPTIONS, @enumFromInt(
-              (if (o.OPAQUE == 1) @intFromEnum(ETO_OPTIONS.OPAQUE) else 0)
-            | (if (o.CLIPPED == 1) @intFromEnum(ETO_OPTIONS.CLIPPED) else 0)
-            | (if (o.GLYPH_INDEX == 1) @intFromEnum(ETO_OPTIONS.GLYPH_INDEX) else 0)
-            | (if (o.RTLREADING == 1) @intFromEnum(ETO_OPTIONS.RTLREADING) else 0)
-            | (if (o.NUMERICSLOCAL == 1) @intFromEnum(ETO_OPTIONS.NUMERICSLOCAL) else 0)
-            | (if (o.NUMERICSLATIN == 1) @intFromEnum(ETO_OPTIONS.NUMERICSLATIN) else 0)
-            | (if (o.IGNORELANGUAGE == 1) @intFromEnum(ETO_OPTIONS.IGNORELANGUAGE) else 0)
-            | (if (o.PDY == 1) @intFromEnum(ETO_OPTIONS.PDY) else 0)
-            | (if (o.REVERSE_INDEX_MAP == 1) @intFromEnum(ETO_OPTIONS.REVERSE_INDEX_MAP) else 0)
-        ));
-    }
+pub const ETO_OPTIONS = packed struct(u32) {
+    _0: u1 = 0,
+    OPAQUE: u1 = 0,
+    CLIPPED: u1 = 0,
+    _3: u1 = 0,
+    GLYPH_INDEX: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    RTLREADING: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    NUMERICSLOCAL: u1 = 0,
+    NUMERICSLATIN: u1 = 0,
+    IGNORELANGUAGE: u1 = 0,
+    PDY: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    REVERSE_INDEX_MAP: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const ETO_OPAQUE = ETO_OPTIONS.OPAQUE;
-pub const ETO_CLIPPED = ETO_OPTIONS.CLIPPED;
-pub const ETO_GLYPH_INDEX = ETO_OPTIONS.GLYPH_INDEX;
-pub const ETO_RTLREADING = ETO_OPTIONS.RTLREADING;
-pub const ETO_NUMERICSLOCAL = ETO_OPTIONS.NUMERICSLOCAL;
-pub const ETO_NUMERICSLATIN = ETO_OPTIONS.NUMERICSLATIN;
-pub const ETO_IGNORELANGUAGE = ETO_OPTIONS.IGNORELANGUAGE;
-pub const ETO_PDY = ETO_OPTIONS.PDY;
-pub const ETO_REVERSE_INDEX_MAP = ETO_OPTIONS.REVERSE_INDEX_MAP;
+pub const ETO_OPAQUE = ETO_OPTIONS{ .OPAQUE = 1 };
+pub const ETO_CLIPPED = ETO_OPTIONS{ .CLIPPED = 1 };
+pub const ETO_GLYPH_INDEX = ETO_OPTIONS{ .GLYPH_INDEX = 1 };
+pub const ETO_RTLREADING = ETO_OPTIONS{ .RTLREADING = 1 };
+pub const ETO_NUMERICSLOCAL = ETO_OPTIONS{ .NUMERICSLOCAL = 1 };
+pub const ETO_NUMERICSLATIN = ETO_OPTIONS{ .NUMERICSLATIN = 1 };
+pub const ETO_IGNORELANGUAGE = ETO_OPTIONS{ .IGNORELANGUAGE = 1 };
+pub const ETO_PDY = ETO_OPTIONS{ .PDY = 1 };
+pub const ETO_REVERSE_INDEX_MAP = ETO_OPTIONS{ .REVERSE_INDEX_MAP = 1 };
 
 pub const OBJ_TYPE = enum(i32) {
     PEN = 1,
@@ -1384,58 +1383,78 @@ pub const MONITORINFOEXW = extern struct {
     szDevice: [32]u16,
 };
 
-pub const DRAWEDGE_FLAGS = enum(u32) {
-    BDR_RAISEDOUTER = 1,
-    BDR_SUNKENOUTER = 2,
-    BDR_RAISEDINNER = 4,
-    BDR_SUNKENINNER = 8,
-    BDR_OUTER = 3,
-    BDR_INNER = 12,
-    BDR_RAISED = 5,
-    BDR_SUNKEN = 10,
-    // EDGE_RAISED = 5, this enum value conflicts with BDR_RAISED
-    // EDGE_SUNKEN = 10, this enum value conflicts with BDR_SUNKEN
-    EDGE_ETCHED = 6,
-    EDGE_BUMP = 9,
-    _,
-    pub fn initFlags(o: struct {
-        BDR_RAISEDOUTER: u1 = 0,
-        BDR_SUNKENOUTER: u1 = 0,
-        BDR_RAISEDINNER: u1 = 0,
-        BDR_SUNKENINNER: u1 = 0,
-        BDR_OUTER: u1 = 0,
-        BDR_INNER: u1 = 0,
-        BDR_RAISED: u1 = 0,
-        BDR_SUNKEN: u1 = 0,
-        EDGE_ETCHED: u1 = 0,
-        EDGE_BUMP: u1 = 0,
-    }) DRAWEDGE_FLAGS {
-        return @as(DRAWEDGE_FLAGS, @enumFromInt(
-              (if (o.BDR_RAISEDOUTER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_RAISEDOUTER) else 0)
-            | (if (o.BDR_SUNKENOUTER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_SUNKENOUTER) else 0)
-            | (if (o.BDR_RAISEDINNER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_RAISEDINNER) else 0)
-            | (if (o.BDR_SUNKENINNER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_SUNKENINNER) else 0)
-            | (if (o.BDR_OUTER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_OUTER) else 0)
-            | (if (o.BDR_INNER == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_INNER) else 0)
-            | (if (o.BDR_RAISED == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_RAISED) else 0)
-            | (if (o.BDR_SUNKEN == 1) @intFromEnum(DRAWEDGE_FLAGS.BDR_SUNKEN) else 0)
-            | (if (o.EDGE_ETCHED == 1) @intFromEnum(DRAWEDGE_FLAGS.EDGE_ETCHED) else 0)
-            | (if (o.EDGE_BUMP == 1) @intFromEnum(DRAWEDGE_FLAGS.EDGE_BUMP) else 0)
-        ));
-    }
+pub const DRAWEDGE_FLAGS = packed struct(u32) {
+    BDR_RAISEDOUTER: u1 = 0,
+    BDR_SUNKENOUTER: u1 = 0,
+    BDR_RAISEDINNER: u1 = 0,
+    BDR_SUNKENINNER: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // EDGE_RAISED (5) conflicts with BDR_RAISED
+    // EDGE_SUNKEN (10) conflicts with BDR_SUNKEN
 };
-pub const BDR_RAISEDOUTER = DRAWEDGE_FLAGS.BDR_RAISEDOUTER;
-pub const BDR_SUNKENOUTER = DRAWEDGE_FLAGS.BDR_SUNKENOUTER;
-pub const BDR_RAISEDINNER = DRAWEDGE_FLAGS.BDR_RAISEDINNER;
-pub const BDR_SUNKENINNER = DRAWEDGE_FLAGS.BDR_SUNKENINNER;
-pub const BDR_OUTER = DRAWEDGE_FLAGS.BDR_OUTER;
-pub const BDR_INNER = DRAWEDGE_FLAGS.BDR_INNER;
-pub const BDR_RAISED = DRAWEDGE_FLAGS.BDR_RAISED;
-pub const BDR_SUNKEN = DRAWEDGE_FLAGS.BDR_SUNKEN;
-pub const EDGE_RAISED = DRAWEDGE_FLAGS.BDR_RAISED;
-pub const EDGE_SUNKEN = DRAWEDGE_FLAGS.BDR_SUNKEN;
-pub const EDGE_ETCHED = DRAWEDGE_FLAGS.EDGE_ETCHED;
-pub const EDGE_BUMP = DRAWEDGE_FLAGS.EDGE_BUMP;
+pub const BDR_RAISEDOUTER = DRAWEDGE_FLAGS{ .BDR_RAISEDOUTER = 1 };
+pub const BDR_SUNKENOUTER = DRAWEDGE_FLAGS{ .BDR_SUNKENOUTER = 1 };
+pub const BDR_RAISEDINNER = DRAWEDGE_FLAGS{ .BDR_RAISEDINNER = 1 };
+pub const BDR_SUNKENINNER = DRAWEDGE_FLAGS{ .BDR_SUNKENINNER = 1 };
+pub const BDR_OUTER = DRAWEDGE_FLAGS{
+    .BDR_RAISEDOUTER = 1,
+    .BDR_SUNKENOUTER = 1,
+};
+pub const BDR_INNER = DRAWEDGE_FLAGS{
+    .BDR_RAISEDINNER = 1,
+    .BDR_SUNKENINNER = 1,
+};
+pub const BDR_RAISED = DRAWEDGE_FLAGS{
+    .BDR_RAISEDOUTER = 1,
+    .BDR_RAISEDINNER = 1,
+};
+pub const BDR_SUNKEN = DRAWEDGE_FLAGS{
+    .BDR_SUNKENOUTER = 1,
+    .BDR_SUNKENINNER = 1,
+};
+pub const EDGE_RAISED = DRAWEDGE_FLAGS{
+    .BDR_RAISEDOUTER = 1,
+    .BDR_RAISEDINNER = 1,
+};
+pub const EDGE_SUNKEN = DRAWEDGE_FLAGS{
+    .BDR_SUNKENOUTER = 1,
+    .BDR_SUNKENINNER = 1,
+};
+pub const EDGE_ETCHED = DRAWEDGE_FLAGS{
+    .BDR_SUNKENOUTER = 1,
+    .BDR_RAISEDINNER = 1,
+};
+pub const EDGE_BUMP = DRAWEDGE_FLAGS{
+    .BDR_RAISEDOUTER = 1,
+    .BDR_SUNKENINNER = 1,
+};
 
 pub const DFC_TYPE = enum(u32) {
     CAPTION = 1,
@@ -1450,159 +1469,139 @@ pub const DFC_SCROLL = DFC_TYPE.SCROLL;
 pub const DFC_BUTTON = DFC_TYPE.BUTTON;
 pub const DFC_POPUPMENU = DFC_TYPE.POPUPMENU;
 
-pub const DFCS_STATE = enum(u32) {
-    CAPTIONCLOSE = 0,
-    CAPTIONMIN = 1,
-    CAPTIONMAX = 2,
-    CAPTIONRESTORE = 3,
-    CAPTIONHELP = 4,
-    // MENUARROW = 0, this enum value conflicts with CAPTIONCLOSE
-    // MENUCHECK = 1, this enum value conflicts with CAPTIONMIN
-    // MENUBULLET = 2, this enum value conflicts with CAPTIONMAX
-    // MENUARROWRIGHT = 4, this enum value conflicts with CAPTIONHELP
-    // SCROLLUP = 0, this enum value conflicts with CAPTIONCLOSE
-    // SCROLLDOWN = 1, this enum value conflicts with CAPTIONMIN
-    // SCROLLLEFT = 2, this enum value conflicts with CAPTIONMAX
-    // SCROLLRIGHT = 3, this enum value conflicts with CAPTIONRESTORE
-    SCROLLCOMBOBOX = 5,
-    SCROLLSIZEGRIP = 8,
-    SCROLLSIZEGRIPRIGHT = 16,
-    // BUTTONCHECK = 0, this enum value conflicts with CAPTIONCLOSE
-    // BUTTONRADIOIMAGE = 1, this enum value conflicts with CAPTIONMIN
-    // BUTTONRADIOMASK = 2, this enum value conflicts with CAPTIONMAX
-    // BUTTONRADIO = 4, this enum value conflicts with CAPTIONHELP
-    // BUTTON3STATE = 8, this enum value conflicts with SCROLLSIZEGRIP
-    // BUTTONPUSH = 16, this enum value conflicts with SCROLLSIZEGRIPRIGHT
-    INACTIVE = 256,
-    PUSHED = 512,
-    CHECKED = 1024,
-    TRANSPARENT = 2048,
-    HOT = 4096,
-    ADJUSTRECT = 8192,
-    FLAT = 16384,
-    MONO = 32768,
-    _,
-    pub fn initFlags(o: struct {
-        CAPTIONCLOSE: u1 = 0,
-        CAPTIONMIN: u1 = 0,
-        CAPTIONMAX: u1 = 0,
-        CAPTIONRESTORE: u1 = 0,
-        CAPTIONHELP: u1 = 0,
-        SCROLLCOMBOBOX: u1 = 0,
-        SCROLLSIZEGRIP: u1 = 0,
-        SCROLLSIZEGRIPRIGHT: u1 = 0,
-        INACTIVE: u1 = 0,
-        PUSHED: u1 = 0,
-        CHECKED: u1 = 0,
-        TRANSPARENT: u1 = 0,
-        HOT: u1 = 0,
-        ADJUSTRECT: u1 = 0,
-        FLAT: u1 = 0,
-        MONO: u1 = 0,
-    }) DFCS_STATE {
-        return @as(DFCS_STATE, @enumFromInt(
-              (if (o.CAPTIONCLOSE == 1) @intFromEnum(DFCS_STATE.CAPTIONCLOSE) else 0)
-            | (if (o.CAPTIONMIN == 1) @intFromEnum(DFCS_STATE.CAPTIONMIN) else 0)
-            | (if (o.CAPTIONMAX == 1) @intFromEnum(DFCS_STATE.CAPTIONMAX) else 0)
-            | (if (o.CAPTIONRESTORE == 1) @intFromEnum(DFCS_STATE.CAPTIONRESTORE) else 0)
-            | (if (o.CAPTIONHELP == 1) @intFromEnum(DFCS_STATE.CAPTIONHELP) else 0)
-            | (if (o.SCROLLCOMBOBOX == 1) @intFromEnum(DFCS_STATE.SCROLLCOMBOBOX) else 0)
-            | (if (o.SCROLLSIZEGRIP == 1) @intFromEnum(DFCS_STATE.SCROLLSIZEGRIP) else 0)
-            | (if (o.SCROLLSIZEGRIPRIGHT == 1) @intFromEnum(DFCS_STATE.SCROLLSIZEGRIPRIGHT) else 0)
-            | (if (o.INACTIVE == 1) @intFromEnum(DFCS_STATE.INACTIVE) else 0)
-            | (if (o.PUSHED == 1) @intFromEnum(DFCS_STATE.PUSHED) else 0)
-            | (if (o.CHECKED == 1) @intFromEnum(DFCS_STATE.CHECKED) else 0)
-            | (if (o.TRANSPARENT == 1) @intFromEnum(DFCS_STATE.TRANSPARENT) else 0)
-            | (if (o.HOT == 1) @intFromEnum(DFCS_STATE.HOT) else 0)
-            | (if (o.ADJUSTRECT == 1) @intFromEnum(DFCS_STATE.ADJUSTRECT) else 0)
-            | (if (o.FLAT == 1) @intFromEnum(DFCS_STATE.FLAT) else 0)
-            | (if (o.MONO == 1) @intFromEnum(DFCS_STATE.MONO) else 0)
-        ));
-    }
+pub const DFCS_STATE = packed struct(u32) {
+    CAPTIONMIN: u1 = 0,
+    CAPTIONMAX: u1 = 0,
+    CAPTIONHELP: u1 = 0,
+    SCROLLSIZEGRIP: u1 = 0,
+    SCROLLSIZEGRIPRIGHT: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    INACTIVE: u1 = 0,
+    PUSHED: u1 = 0,
+    CHECKED: u1 = 0,
+    TRANSPARENT: u1 = 0,
+    HOT: u1 = 0,
+    ADJUSTRECT: u1 = 0,
+    FLAT: u1 = 0,
+    MONO: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // MENUARROW (0) conflicts with CAPTIONCLOSE
+    // MENUCHECK (1) conflicts with CAPTIONMIN
+    // MENUBULLET (2) conflicts with CAPTIONMAX
+    // MENUARROWRIGHT (4) conflicts with CAPTIONHELP
+    // SCROLLUP (0) conflicts with CAPTIONCLOSE
+    // SCROLLDOWN (1) conflicts with CAPTIONMIN
+    // SCROLLLEFT (2) conflicts with CAPTIONMAX
+    // SCROLLRIGHT (3) conflicts with CAPTIONRESTORE
+    // BUTTONCHECK (0) conflicts with CAPTIONCLOSE
+    // BUTTONRADIOIMAGE (1) conflicts with CAPTIONMIN
+    // BUTTONRADIOMASK (2) conflicts with CAPTIONMAX
+    // BUTTONRADIO (4) conflicts with CAPTIONHELP
+    // BUTTON3STATE (8) conflicts with SCROLLSIZEGRIP
+    // BUTTONPUSH (16) conflicts with SCROLLSIZEGRIPRIGHT
 };
-pub const DFCS_CAPTIONCLOSE = DFCS_STATE.CAPTIONCLOSE;
-pub const DFCS_CAPTIONMIN = DFCS_STATE.CAPTIONMIN;
-pub const DFCS_CAPTIONMAX = DFCS_STATE.CAPTIONMAX;
-pub const DFCS_CAPTIONRESTORE = DFCS_STATE.CAPTIONRESTORE;
-pub const DFCS_CAPTIONHELP = DFCS_STATE.CAPTIONHELP;
-pub const DFCS_MENUARROW = DFCS_STATE.CAPTIONCLOSE;
-pub const DFCS_MENUCHECK = DFCS_STATE.CAPTIONMIN;
-pub const DFCS_MENUBULLET = DFCS_STATE.CAPTIONMAX;
-pub const DFCS_MENUARROWRIGHT = DFCS_STATE.CAPTIONHELP;
-pub const DFCS_SCROLLUP = DFCS_STATE.CAPTIONCLOSE;
-pub const DFCS_SCROLLDOWN = DFCS_STATE.CAPTIONMIN;
-pub const DFCS_SCROLLLEFT = DFCS_STATE.CAPTIONMAX;
-pub const DFCS_SCROLLRIGHT = DFCS_STATE.CAPTIONRESTORE;
-pub const DFCS_SCROLLCOMBOBOX = DFCS_STATE.SCROLLCOMBOBOX;
-pub const DFCS_SCROLLSIZEGRIP = DFCS_STATE.SCROLLSIZEGRIP;
-pub const DFCS_SCROLLSIZEGRIPRIGHT = DFCS_STATE.SCROLLSIZEGRIPRIGHT;
-pub const DFCS_BUTTONCHECK = DFCS_STATE.CAPTIONCLOSE;
-pub const DFCS_BUTTONRADIOIMAGE = DFCS_STATE.CAPTIONMIN;
-pub const DFCS_BUTTONRADIOMASK = DFCS_STATE.CAPTIONMAX;
-pub const DFCS_BUTTONRADIO = DFCS_STATE.CAPTIONHELP;
-pub const DFCS_BUTTON3STATE = DFCS_STATE.SCROLLSIZEGRIP;
-pub const DFCS_BUTTONPUSH = DFCS_STATE.SCROLLSIZEGRIPRIGHT;
-pub const DFCS_INACTIVE = DFCS_STATE.INACTIVE;
-pub const DFCS_PUSHED = DFCS_STATE.PUSHED;
-pub const DFCS_CHECKED = DFCS_STATE.CHECKED;
-pub const DFCS_TRANSPARENT = DFCS_STATE.TRANSPARENT;
-pub const DFCS_HOT = DFCS_STATE.HOT;
-pub const DFCS_ADJUSTRECT = DFCS_STATE.ADJUSTRECT;
-pub const DFCS_FLAT = DFCS_STATE.FLAT;
-pub const DFCS_MONO = DFCS_STATE.MONO;
+pub const DFCS_CAPTIONCLOSE = DFCS_STATE{ };
+pub const DFCS_CAPTIONMIN = DFCS_STATE{ .CAPTIONMIN = 1 };
+pub const DFCS_CAPTIONMAX = DFCS_STATE{ .CAPTIONMAX = 1 };
+pub const DFCS_CAPTIONRESTORE = DFCS_STATE{
+    .CAPTIONMIN = 1,
+    .CAPTIONMAX = 1,
+};
+pub const DFCS_CAPTIONHELP = DFCS_STATE{ .CAPTIONHELP = 1 };
+pub const DFCS_MENUARROW = DFCS_STATE{ };
+pub const DFCS_MENUCHECK = DFCS_STATE{ .CAPTIONMIN = 1 };
+pub const DFCS_MENUBULLET = DFCS_STATE{ .CAPTIONMAX = 1 };
+pub const DFCS_MENUARROWRIGHT = DFCS_STATE{ .CAPTIONHELP = 1 };
+pub const DFCS_SCROLLUP = DFCS_STATE{ };
+pub const DFCS_SCROLLDOWN = DFCS_STATE{ .CAPTIONMIN = 1 };
+pub const DFCS_SCROLLLEFT = DFCS_STATE{ .CAPTIONMAX = 1 };
+pub const DFCS_SCROLLRIGHT = DFCS_STATE{
+    .CAPTIONMIN = 1,
+    .CAPTIONMAX = 1,
+};
+pub const DFCS_SCROLLCOMBOBOX = DFCS_STATE{
+    .CAPTIONMIN = 1,
+    .CAPTIONHELP = 1,
+};
+pub const DFCS_SCROLLSIZEGRIP = DFCS_STATE{ .SCROLLSIZEGRIP = 1 };
+pub const DFCS_SCROLLSIZEGRIPRIGHT = DFCS_STATE{ .SCROLLSIZEGRIPRIGHT = 1 };
+pub const DFCS_BUTTONCHECK = DFCS_STATE{ };
+pub const DFCS_BUTTONRADIOIMAGE = DFCS_STATE{ .CAPTIONMIN = 1 };
+pub const DFCS_BUTTONRADIOMASK = DFCS_STATE{ .CAPTIONMAX = 1 };
+pub const DFCS_BUTTONRADIO = DFCS_STATE{ .CAPTIONHELP = 1 };
+pub const DFCS_BUTTON3STATE = DFCS_STATE{ .SCROLLSIZEGRIP = 1 };
+pub const DFCS_BUTTONPUSH = DFCS_STATE{ .SCROLLSIZEGRIPRIGHT = 1 };
+pub const DFCS_INACTIVE = DFCS_STATE{ .INACTIVE = 1 };
+pub const DFCS_PUSHED = DFCS_STATE{ .PUSHED = 1 };
+pub const DFCS_CHECKED = DFCS_STATE{ .CHECKED = 1 };
+pub const DFCS_TRANSPARENT = DFCS_STATE{ .TRANSPARENT = 1 };
+pub const DFCS_HOT = DFCS_STATE{ .HOT = 1 };
+pub const DFCS_ADJUSTRECT = DFCS_STATE{ .ADJUSTRECT = 1 };
+pub const DFCS_FLAT = DFCS_STATE{ .FLAT = 1 };
+pub const DFCS_MONO = DFCS_STATE{ .MONO = 1 };
 
-pub const CDS_TYPE = enum(u32) {
-    FULLSCREEN = 4,
-    GLOBAL = 8,
-    NORESET = 268435456,
-    RESET = 1073741824,
-    SET_PRIMARY = 16,
-    TEST = 2,
-    UPDATEREGISTRY = 1,
-    VIDEOPARAMETERS = 32,
-    ENABLE_UNSAFE_MODES = 256,
-    DISABLE_UNSAFE_MODES = 512,
-    RESET_EX = 536870912,
-    _,
-    pub fn initFlags(o: struct {
-        FULLSCREEN: u1 = 0,
-        GLOBAL: u1 = 0,
-        NORESET: u1 = 0,
-        RESET: u1 = 0,
-        SET_PRIMARY: u1 = 0,
-        TEST: u1 = 0,
-        UPDATEREGISTRY: u1 = 0,
-        VIDEOPARAMETERS: u1 = 0,
-        ENABLE_UNSAFE_MODES: u1 = 0,
-        DISABLE_UNSAFE_MODES: u1 = 0,
-        RESET_EX: u1 = 0,
-    }) CDS_TYPE {
-        return @as(CDS_TYPE, @enumFromInt(
-              (if (o.FULLSCREEN == 1) @intFromEnum(CDS_TYPE.FULLSCREEN) else 0)
-            | (if (o.GLOBAL == 1) @intFromEnum(CDS_TYPE.GLOBAL) else 0)
-            | (if (o.NORESET == 1) @intFromEnum(CDS_TYPE.NORESET) else 0)
-            | (if (o.RESET == 1) @intFromEnum(CDS_TYPE.RESET) else 0)
-            | (if (o.SET_PRIMARY == 1) @intFromEnum(CDS_TYPE.SET_PRIMARY) else 0)
-            | (if (o.TEST == 1) @intFromEnum(CDS_TYPE.TEST) else 0)
-            | (if (o.UPDATEREGISTRY == 1) @intFromEnum(CDS_TYPE.UPDATEREGISTRY) else 0)
-            | (if (o.VIDEOPARAMETERS == 1) @intFromEnum(CDS_TYPE.VIDEOPARAMETERS) else 0)
-            | (if (o.ENABLE_UNSAFE_MODES == 1) @intFromEnum(CDS_TYPE.ENABLE_UNSAFE_MODES) else 0)
-            | (if (o.DISABLE_UNSAFE_MODES == 1) @intFromEnum(CDS_TYPE.DISABLE_UNSAFE_MODES) else 0)
-            | (if (o.RESET_EX == 1) @intFromEnum(CDS_TYPE.RESET_EX) else 0)
-        ));
-    }
+pub const CDS_TYPE = packed struct(u32) {
+    UPDATEREGISTRY: u1 = 0,
+    TEST: u1 = 0,
+    FULLSCREEN: u1 = 0,
+    GLOBAL: u1 = 0,
+    SET_PRIMARY: u1 = 0,
+    VIDEOPARAMETERS: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    ENABLE_UNSAFE_MODES: u1 = 0,
+    DISABLE_UNSAFE_MODES: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    NORESET: u1 = 0,
+    RESET_EX: u1 = 0,
+    RESET: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CDS_FULLSCREEN = CDS_TYPE.FULLSCREEN;
-pub const CDS_GLOBAL = CDS_TYPE.GLOBAL;
-pub const CDS_NORESET = CDS_TYPE.NORESET;
-pub const CDS_RESET = CDS_TYPE.RESET;
-pub const CDS_SET_PRIMARY = CDS_TYPE.SET_PRIMARY;
-pub const CDS_TEST = CDS_TYPE.TEST;
-pub const CDS_UPDATEREGISTRY = CDS_TYPE.UPDATEREGISTRY;
-pub const CDS_VIDEOPARAMETERS = CDS_TYPE.VIDEOPARAMETERS;
-pub const CDS_ENABLE_UNSAFE_MODES = CDS_TYPE.ENABLE_UNSAFE_MODES;
-pub const CDS_DISABLE_UNSAFE_MODES = CDS_TYPE.DISABLE_UNSAFE_MODES;
-pub const CDS_RESET_EX = CDS_TYPE.RESET_EX;
+pub const CDS_FULLSCREEN = CDS_TYPE{ .FULLSCREEN = 1 };
+pub const CDS_GLOBAL = CDS_TYPE{ .GLOBAL = 1 };
+pub const CDS_NORESET = CDS_TYPE{ .NORESET = 1 };
+pub const CDS_RESET = CDS_TYPE{ .RESET = 1 };
+pub const CDS_SET_PRIMARY = CDS_TYPE{ .SET_PRIMARY = 1 };
+pub const CDS_TEST = CDS_TYPE{ .TEST = 1 };
+pub const CDS_UPDATEREGISTRY = CDS_TYPE{ .UPDATEREGISTRY = 1 };
+pub const CDS_VIDEOPARAMETERS = CDS_TYPE{ .VIDEOPARAMETERS = 1 };
+pub const CDS_ENABLE_UNSAFE_MODES = CDS_TYPE{ .ENABLE_UNSAFE_MODES = 1 };
+pub const CDS_DISABLE_UNSAFE_MODES = CDS_TYPE{ .DISABLE_UNSAFE_MODES = 1 };
+pub const CDS_RESET_EX = CDS_TYPE{ .RESET_EX = 1 };
 
 pub const DISP_CHANGE = enum(i32) {
     SUCCESSFUL = 0,
@@ -1623,117 +1622,103 @@ pub const DISP_CHANGE_BADFLAGS = DISP_CHANGE.BADFLAGS;
 pub const DISP_CHANGE_BADPARAM = DISP_CHANGE.BADPARAM;
 pub const DISP_CHANGE_BADDUALVIEW = DISP_CHANGE.BADDUALVIEW;
 
-pub const DRAWSTATE_FLAGS = enum(u32) {
-    T_COMPLEX = 0,
-    T_TEXT = 1,
-    T_PREFIXTEXT = 2,
-    T_ICON = 3,
-    T_BITMAP = 4,
-    // S_NORMAL = 0, this enum value conflicts with T_COMPLEX
-    S_UNION = 16,
-    S_DISABLED = 32,
-    S_MONO = 128,
-    S_HIDEPREFIX = 512,
-    S_PREFIXONLY = 1024,
-    S_RIGHT = 32768,
-    _,
-    pub fn initFlags(o: struct {
-        T_COMPLEX: u1 = 0,
-        T_TEXT: u1 = 0,
-        T_PREFIXTEXT: u1 = 0,
-        T_ICON: u1 = 0,
-        T_BITMAP: u1 = 0,
-        S_UNION: u1 = 0,
-        S_DISABLED: u1 = 0,
-        S_MONO: u1 = 0,
-        S_HIDEPREFIX: u1 = 0,
-        S_PREFIXONLY: u1 = 0,
-        S_RIGHT: u1 = 0,
-    }) DRAWSTATE_FLAGS {
-        return @as(DRAWSTATE_FLAGS, @enumFromInt(
-              (if (o.T_COMPLEX == 1) @intFromEnum(DRAWSTATE_FLAGS.T_COMPLEX) else 0)
-            | (if (o.T_TEXT == 1) @intFromEnum(DRAWSTATE_FLAGS.T_TEXT) else 0)
-            | (if (o.T_PREFIXTEXT == 1) @intFromEnum(DRAWSTATE_FLAGS.T_PREFIXTEXT) else 0)
-            | (if (o.T_ICON == 1) @intFromEnum(DRAWSTATE_FLAGS.T_ICON) else 0)
-            | (if (o.T_BITMAP == 1) @intFromEnum(DRAWSTATE_FLAGS.T_BITMAP) else 0)
-            | (if (o.S_UNION == 1) @intFromEnum(DRAWSTATE_FLAGS.S_UNION) else 0)
-            | (if (o.S_DISABLED == 1) @intFromEnum(DRAWSTATE_FLAGS.S_DISABLED) else 0)
-            | (if (o.S_MONO == 1) @intFromEnum(DRAWSTATE_FLAGS.S_MONO) else 0)
-            | (if (o.S_HIDEPREFIX == 1) @intFromEnum(DRAWSTATE_FLAGS.S_HIDEPREFIX) else 0)
-            | (if (o.S_PREFIXONLY == 1) @intFromEnum(DRAWSTATE_FLAGS.S_PREFIXONLY) else 0)
-            | (if (o.S_RIGHT == 1) @intFromEnum(DRAWSTATE_FLAGS.S_RIGHT) else 0)
-        ));
-    }
+pub const DRAWSTATE_FLAGS = packed struct(u32) {
+    T_TEXT: u1 = 0,
+    T_PREFIXTEXT: u1 = 0,
+    T_BITMAP: u1 = 0,
+    _3: u1 = 0,
+    S_UNION: u1 = 0,
+    S_DISABLED: u1 = 0,
+    _6: u1 = 0,
+    S_MONO: u1 = 0,
+    _8: u1 = 0,
+    S_HIDEPREFIX: u1 = 0,
+    S_PREFIXONLY: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    S_RIGHT: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // S_NORMAL (0) conflicts with T_COMPLEX
 };
-pub const DST_COMPLEX = DRAWSTATE_FLAGS.T_COMPLEX;
-pub const DST_TEXT = DRAWSTATE_FLAGS.T_TEXT;
-pub const DST_PREFIXTEXT = DRAWSTATE_FLAGS.T_PREFIXTEXT;
-pub const DST_ICON = DRAWSTATE_FLAGS.T_ICON;
-pub const DST_BITMAP = DRAWSTATE_FLAGS.T_BITMAP;
-pub const DSS_NORMAL = DRAWSTATE_FLAGS.T_COMPLEX;
-pub const DSS_UNION = DRAWSTATE_FLAGS.S_UNION;
-pub const DSS_DISABLED = DRAWSTATE_FLAGS.S_DISABLED;
-pub const DSS_MONO = DRAWSTATE_FLAGS.S_MONO;
-pub const DSS_HIDEPREFIX = DRAWSTATE_FLAGS.S_HIDEPREFIX;
-pub const DSS_PREFIXONLY = DRAWSTATE_FLAGS.S_PREFIXONLY;
-pub const DSS_RIGHT = DRAWSTATE_FLAGS.S_RIGHT;
+pub const DST_COMPLEX = DRAWSTATE_FLAGS{ };
+pub const DST_TEXT = DRAWSTATE_FLAGS{ .T_TEXT = 1 };
+pub const DST_PREFIXTEXT = DRAWSTATE_FLAGS{ .T_PREFIXTEXT = 1 };
+pub const DST_ICON = DRAWSTATE_FLAGS{
+    .T_TEXT = 1,
+    .T_PREFIXTEXT = 1,
+};
+pub const DST_BITMAP = DRAWSTATE_FLAGS{ .T_BITMAP = 1 };
+pub const DSS_NORMAL = DRAWSTATE_FLAGS{ };
+pub const DSS_UNION = DRAWSTATE_FLAGS{ .S_UNION = 1 };
+pub const DSS_DISABLED = DRAWSTATE_FLAGS{ .S_DISABLED = 1 };
+pub const DSS_MONO = DRAWSTATE_FLAGS{ .S_MONO = 1 };
+pub const DSS_HIDEPREFIX = DRAWSTATE_FLAGS{ .S_HIDEPREFIX = 1 };
+pub const DSS_PREFIXONLY = DRAWSTATE_FLAGS{ .S_PREFIXONLY = 1 };
+pub const DSS_RIGHT = DRAWSTATE_FLAGS{ .S_RIGHT = 1 };
 
-pub const REDRAW_WINDOW_FLAGS = enum(u32) {
-    INVALIDATE = 1,
-    INTERNALPAINT = 2,
-    ERASE = 4,
-    VALIDATE = 8,
-    NOINTERNALPAINT = 16,
-    NOERASE = 32,
-    NOCHILDREN = 64,
-    ALLCHILDREN = 128,
-    UPDATENOW = 256,
-    ERASENOW = 512,
-    FRAME = 1024,
-    NOFRAME = 2048,
-    _,
-    pub fn initFlags(o: struct {
-        INVALIDATE: u1 = 0,
-        INTERNALPAINT: u1 = 0,
-        ERASE: u1 = 0,
-        VALIDATE: u1 = 0,
-        NOINTERNALPAINT: u1 = 0,
-        NOERASE: u1 = 0,
-        NOCHILDREN: u1 = 0,
-        ALLCHILDREN: u1 = 0,
-        UPDATENOW: u1 = 0,
-        ERASENOW: u1 = 0,
-        FRAME: u1 = 0,
-        NOFRAME: u1 = 0,
-    }) REDRAW_WINDOW_FLAGS {
-        return @as(REDRAW_WINDOW_FLAGS, @enumFromInt(
-              (if (o.INVALIDATE == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.INVALIDATE) else 0)
-            | (if (o.INTERNALPAINT == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.INTERNALPAINT) else 0)
-            | (if (o.ERASE == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.ERASE) else 0)
-            | (if (o.VALIDATE == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.VALIDATE) else 0)
-            | (if (o.NOINTERNALPAINT == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.NOINTERNALPAINT) else 0)
-            | (if (o.NOERASE == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.NOERASE) else 0)
-            | (if (o.NOCHILDREN == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.NOCHILDREN) else 0)
-            | (if (o.ALLCHILDREN == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.ALLCHILDREN) else 0)
-            | (if (o.UPDATENOW == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.UPDATENOW) else 0)
-            | (if (o.ERASENOW == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.ERASENOW) else 0)
-            | (if (o.FRAME == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.FRAME) else 0)
-            | (if (o.NOFRAME == 1) @intFromEnum(REDRAW_WINDOW_FLAGS.NOFRAME) else 0)
-        ));
-    }
+pub const REDRAW_WINDOW_FLAGS = packed struct(u32) {
+    INVALIDATE: u1 = 0,
+    INTERNALPAINT: u1 = 0,
+    ERASE: u1 = 0,
+    VALIDATE: u1 = 0,
+    NOINTERNALPAINT: u1 = 0,
+    NOERASE: u1 = 0,
+    NOCHILDREN: u1 = 0,
+    ALLCHILDREN: u1 = 0,
+    UPDATENOW: u1 = 0,
+    ERASENOW: u1 = 0,
+    FRAME: u1 = 0,
+    NOFRAME: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const RDW_INVALIDATE = REDRAW_WINDOW_FLAGS.INVALIDATE;
-pub const RDW_INTERNALPAINT = REDRAW_WINDOW_FLAGS.INTERNALPAINT;
-pub const RDW_ERASE = REDRAW_WINDOW_FLAGS.ERASE;
-pub const RDW_VALIDATE = REDRAW_WINDOW_FLAGS.VALIDATE;
-pub const RDW_NOINTERNALPAINT = REDRAW_WINDOW_FLAGS.NOINTERNALPAINT;
-pub const RDW_NOERASE = REDRAW_WINDOW_FLAGS.NOERASE;
-pub const RDW_NOCHILDREN = REDRAW_WINDOW_FLAGS.NOCHILDREN;
-pub const RDW_ALLCHILDREN = REDRAW_WINDOW_FLAGS.ALLCHILDREN;
-pub const RDW_UPDATENOW = REDRAW_WINDOW_FLAGS.UPDATENOW;
-pub const RDW_ERASENOW = REDRAW_WINDOW_FLAGS.ERASENOW;
-pub const RDW_FRAME = REDRAW_WINDOW_FLAGS.FRAME;
-pub const RDW_NOFRAME = REDRAW_WINDOW_FLAGS.NOFRAME;
+pub const RDW_INVALIDATE = REDRAW_WINDOW_FLAGS{ .INVALIDATE = 1 };
+pub const RDW_INTERNALPAINT = REDRAW_WINDOW_FLAGS{ .INTERNALPAINT = 1 };
+pub const RDW_ERASE = REDRAW_WINDOW_FLAGS{ .ERASE = 1 };
+pub const RDW_VALIDATE = REDRAW_WINDOW_FLAGS{ .VALIDATE = 1 };
+pub const RDW_NOINTERNALPAINT = REDRAW_WINDOW_FLAGS{ .NOINTERNALPAINT = 1 };
+pub const RDW_NOERASE = REDRAW_WINDOW_FLAGS{ .NOERASE = 1 };
+pub const RDW_NOCHILDREN = REDRAW_WINDOW_FLAGS{ .NOCHILDREN = 1 };
+pub const RDW_ALLCHILDREN = REDRAW_WINDOW_FLAGS{ .ALLCHILDREN = 1 };
+pub const RDW_UPDATENOW = REDRAW_WINDOW_FLAGS{ .UPDATENOW = 1 };
+pub const RDW_ERASENOW = REDRAW_WINDOW_FLAGS{ .ERASENOW = 1 };
+pub const RDW_FRAME = REDRAW_WINDOW_FLAGS{ .FRAME = 1 };
+pub const RDW_NOFRAME = REDRAW_WINDOW_FLAGS{ .NOFRAME = 1 };
 
 pub const ENUM_DISPLAY_SETTINGS_MODE = enum(u32) {
     CURRENT_SETTINGS = 4294967295,
@@ -1777,220 +1762,196 @@ pub const VTA_CENTER = TEXT_ALIGN_OPTIONS.TA_CENTER;
 pub const VTA_BOTTOM = TEXT_ALIGN_OPTIONS.TA_RIGHT;
 pub const VTA_TOP = TEXT_ALIGN_OPTIONS.TA_NOUPDATECP;
 
-pub const PEN_STYLE = enum(u32) {
-    GEOMETRIC = 65536,
-    COSMETIC = 0,
-    // SOLID = 0, this enum value conflicts with COSMETIC
-    DASH = 1,
-    DOT = 2,
-    DASHDOT = 3,
-    DASHDOTDOT = 4,
-    NULL = 5,
-    INSIDEFRAME = 6,
-    USERSTYLE = 7,
-    ALTERNATE = 8,
-    STYLE_MASK = 15,
-    // ENDCAP_ROUND = 0, this enum value conflicts with COSMETIC
-    ENDCAP_SQUARE = 256,
-    ENDCAP_FLAT = 512,
-    ENDCAP_MASK = 3840,
-    // JOIN_ROUND = 0, this enum value conflicts with COSMETIC
-    JOIN_BEVEL = 4096,
-    JOIN_MITER = 8192,
-    JOIN_MASK = 61440,
-    TYPE_MASK = 983040,
-    _,
-    pub fn initFlags(o: struct {
-        GEOMETRIC: u1 = 0,
-        COSMETIC: u1 = 0,
-        DASH: u1 = 0,
-        DOT: u1 = 0,
-        DASHDOT: u1 = 0,
-        DASHDOTDOT: u1 = 0,
-        NULL: u1 = 0,
-        INSIDEFRAME: u1 = 0,
-        USERSTYLE: u1 = 0,
-        ALTERNATE: u1 = 0,
-        STYLE_MASK: u1 = 0,
-        ENDCAP_SQUARE: u1 = 0,
-        ENDCAP_FLAT: u1 = 0,
-        ENDCAP_MASK: u1 = 0,
-        JOIN_BEVEL: u1 = 0,
-        JOIN_MITER: u1 = 0,
-        JOIN_MASK: u1 = 0,
-        TYPE_MASK: u1 = 0,
-    }) PEN_STYLE {
-        return @as(PEN_STYLE, @enumFromInt(
-              (if (o.GEOMETRIC == 1) @intFromEnum(PEN_STYLE.GEOMETRIC) else 0)
-            | (if (o.COSMETIC == 1) @intFromEnum(PEN_STYLE.COSMETIC) else 0)
-            | (if (o.DASH == 1) @intFromEnum(PEN_STYLE.DASH) else 0)
-            | (if (o.DOT == 1) @intFromEnum(PEN_STYLE.DOT) else 0)
-            | (if (o.DASHDOT == 1) @intFromEnum(PEN_STYLE.DASHDOT) else 0)
-            | (if (o.DASHDOTDOT == 1) @intFromEnum(PEN_STYLE.DASHDOTDOT) else 0)
-            | (if (o.NULL == 1) @intFromEnum(PEN_STYLE.NULL) else 0)
-            | (if (o.INSIDEFRAME == 1) @intFromEnum(PEN_STYLE.INSIDEFRAME) else 0)
-            | (if (o.USERSTYLE == 1) @intFromEnum(PEN_STYLE.USERSTYLE) else 0)
-            | (if (o.ALTERNATE == 1) @intFromEnum(PEN_STYLE.ALTERNATE) else 0)
-            | (if (o.STYLE_MASK == 1) @intFromEnum(PEN_STYLE.STYLE_MASK) else 0)
-            | (if (o.ENDCAP_SQUARE == 1) @intFromEnum(PEN_STYLE.ENDCAP_SQUARE) else 0)
-            | (if (o.ENDCAP_FLAT == 1) @intFromEnum(PEN_STYLE.ENDCAP_FLAT) else 0)
-            | (if (o.ENDCAP_MASK == 1) @intFromEnum(PEN_STYLE.ENDCAP_MASK) else 0)
-            | (if (o.JOIN_BEVEL == 1) @intFromEnum(PEN_STYLE.JOIN_BEVEL) else 0)
-            | (if (o.JOIN_MITER == 1) @intFromEnum(PEN_STYLE.JOIN_MITER) else 0)
-            | (if (o.JOIN_MASK == 1) @intFromEnum(PEN_STYLE.JOIN_MASK) else 0)
-            | (if (o.TYPE_MASK == 1) @intFromEnum(PEN_STYLE.TYPE_MASK) else 0)
-        ));
-    }
+pub const PEN_STYLE = packed struct(u32) {
+    DASH: u1 = 0,
+    DOT: u1 = 0,
+    DASHDOTDOT: u1 = 0,
+    ALTERNATE: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    ENDCAP_SQUARE: u1 = 0,
+    ENDCAP_FLAT: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    JOIN_BEVEL: u1 = 0,
+    JOIN_MITER: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    GEOMETRIC: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // SOLID (0) conflicts with COSMETIC
+    // ENDCAP_ROUND (0) conflicts with COSMETIC
+    // JOIN_ROUND (0) conflicts with COSMETIC
 };
-pub const PS_GEOMETRIC = PEN_STYLE.GEOMETRIC;
-pub const PS_COSMETIC = PEN_STYLE.COSMETIC;
-pub const PS_SOLID = PEN_STYLE.COSMETIC;
-pub const PS_DASH = PEN_STYLE.DASH;
-pub const PS_DOT = PEN_STYLE.DOT;
-pub const PS_DASHDOT = PEN_STYLE.DASHDOT;
-pub const PS_DASHDOTDOT = PEN_STYLE.DASHDOTDOT;
-pub const PS_NULL = PEN_STYLE.NULL;
-pub const PS_INSIDEFRAME = PEN_STYLE.INSIDEFRAME;
-pub const PS_USERSTYLE = PEN_STYLE.USERSTYLE;
-pub const PS_ALTERNATE = PEN_STYLE.ALTERNATE;
-pub const PS_STYLE_MASK = PEN_STYLE.STYLE_MASK;
-pub const PS_ENDCAP_ROUND = PEN_STYLE.COSMETIC;
-pub const PS_ENDCAP_SQUARE = PEN_STYLE.ENDCAP_SQUARE;
-pub const PS_ENDCAP_FLAT = PEN_STYLE.ENDCAP_FLAT;
-pub const PS_ENDCAP_MASK = PEN_STYLE.ENDCAP_MASK;
-pub const PS_JOIN_ROUND = PEN_STYLE.COSMETIC;
-pub const PS_JOIN_BEVEL = PEN_STYLE.JOIN_BEVEL;
-pub const PS_JOIN_MITER = PEN_STYLE.JOIN_MITER;
-pub const PS_JOIN_MASK = PEN_STYLE.JOIN_MASK;
-pub const PS_TYPE_MASK = PEN_STYLE.TYPE_MASK;
+pub const PS_GEOMETRIC = PEN_STYLE{ .GEOMETRIC = 1 };
+pub const PS_COSMETIC = PEN_STYLE{ };
+pub const PS_SOLID = PEN_STYLE{ };
+pub const PS_DASH = PEN_STYLE{ .DASH = 1 };
+pub const PS_DOT = PEN_STYLE{ .DOT = 1 };
+pub const PS_DASHDOT = PEN_STYLE{
+    .DASH = 1,
+    .DOT = 1,
+};
+pub const PS_DASHDOTDOT = PEN_STYLE{ .DASHDOTDOT = 1 };
+pub const PS_NULL = PEN_STYLE{
+    .DASH = 1,
+    .DASHDOTDOT = 1,
+};
+pub const PS_INSIDEFRAME = PEN_STYLE{
+    .DOT = 1,
+    .DASHDOTDOT = 1,
+};
+pub const PS_USERSTYLE = PEN_STYLE{
+    .DASH = 1,
+    .DOT = 1,
+    .DASHDOTDOT = 1,
+};
+pub const PS_ALTERNATE = PEN_STYLE{ .ALTERNATE = 1 };
+pub const PS_STYLE_MASK = PEN_STYLE{
+    .DASH = 1,
+    .DOT = 1,
+    .DASHDOTDOT = 1,
+    .ALTERNATE = 1,
+};
+pub const PS_ENDCAP_ROUND = PEN_STYLE{ };
+pub const PS_ENDCAP_SQUARE = PEN_STYLE{ .ENDCAP_SQUARE = 1 };
+pub const PS_ENDCAP_FLAT = PEN_STYLE{ .ENDCAP_FLAT = 1 };
+pub const PS_ENDCAP_MASK = PEN_STYLE{
+    .ENDCAP_SQUARE = 1,
+    .ENDCAP_FLAT = 1,
+    ._10 = 1,
+    ._11 = 1,
+};
+pub const PS_JOIN_ROUND = PEN_STYLE{ };
+pub const PS_JOIN_BEVEL = PEN_STYLE{ .JOIN_BEVEL = 1 };
+pub const PS_JOIN_MITER = PEN_STYLE{ .JOIN_MITER = 1 };
+pub const PS_JOIN_MASK = PEN_STYLE{
+    .JOIN_BEVEL = 1,
+    .JOIN_MITER = 1,
+    ._14 = 1,
+    ._15 = 1,
+};
+pub const PS_TYPE_MASK = PEN_STYLE{
+    .GEOMETRIC = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+};
 
-pub const TTEMBED_FLAGS = enum(u32) {
-    EMBEDEUDC = 32,
-    RAW = 0,
-    SUBSET = 1,
-    TTCOMPRESSED = 4,
-    _,
-    pub fn initFlags(o: struct {
-        EMBEDEUDC: u1 = 0,
-        RAW: u1 = 0,
-        SUBSET: u1 = 0,
-        TTCOMPRESSED: u1 = 0,
-    }) TTEMBED_FLAGS {
-        return @as(TTEMBED_FLAGS, @enumFromInt(
-              (if (o.EMBEDEUDC == 1) @intFromEnum(TTEMBED_FLAGS.EMBEDEUDC) else 0)
-            | (if (o.RAW == 1) @intFromEnum(TTEMBED_FLAGS.RAW) else 0)
-            | (if (o.SUBSET == 1) @intFromEnum(TTEMBED_FLAGS.SUBSET) else 0)
-            | (if (o.TTCOMPRESSED == 1) @intFromEnum(TTEMBED_FLAGS.TTCOMPRESSED) else 0)
-        ));
-    }
+pub const TTEMBED_FLAGS = packed struct(u32) {
+    SUBSET: u1 = 0,
+    _1: u1 = 0,
+    TTCOMPRESSED: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    EMBEDEUDC: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TTEMBED_EMBEDEUDC = TTEMBED_FLAGS.EMBEDEUDC;
-pub const TTEMBED_RAW = TTEMBED_FLAGS.RAW;
-pub const TTEMBED_SUBSET = TTEMBED_FLAGS.SUBSET;
-pub const TTEMBED_TTCOMPRESSED = TTEMBED_FLAGS.TTCOMPRESSED;
+pub const TTEMBED_EMBEDEUDC = TTEMBED_FLAGS{ .EMBEDEUDC = 1 };
+pub const TTEMBED_RAW = TTEMBED_FLAGS{ };
+pub const TTEMBED_SUBSET = TTEMBED_FLAGS{ .SUBSET = 1 };
+pub const TTEMBED_TTCOMPRESSED = TTEMBED_FLAGS{ .TTCOMPRESSED = 1 };
 
-pub const DRAW_TEXT_FORMAT = enum(u32) {
-    BOTTOM = 8,
-    CALCRECT = 1024,
-    CENTER = 1,
-    EDITCONTROL = 8192,
-    END_ELLIPSIS = 32768,
-    EXPANDTABS = 64,
-    EXTERNALLEADING = 512,
-    HIDEPREFIX = 1048576,
-    INTERNAL = 4096,
-    LEFT = 0,
-    MODIFYSTRING = 65536,
-    NOCLIP = 256,
-    NOFULLWIDTHCHARBREAK = 524288,
-    NOPREFIX = 2048,
-    PATH_ELLIPSIS = 16384,
-    PREFIXONLY = 2097152,
-    RIGHT = 2,
-    RTLREADING = 131072,
-    SINGLELINE = 32,
-    TABSTOP = 128,
-    // TOP = 0, this enum value conflicts with LEFT
-    VCENTER = 4,
-    WORDBREAK = 16,
-    WORD_ELLIPSIS = 262144,
-    _,
-    pub fn initFlags(o: struct {
-        BOTTOM: u1 = 0,
-        CALCRECT: u1 = 0,
-        CENTER: u1 = 0,
-        EDITCONTROL: u1 = 0,
-        END_ELLIPSIS: u1 = 0,
-        EXPANDTABS: u1 = 0,
-        EXTERNALLEADING: u1 = 0,
-        HIDEPREFIX: u1 = 0,
-        INTERNAL: u1 = 0,
-        LEFT: u1 = 0,
-        MODIFYSTRING: u1 = 0,
-        NOCLIP: u1 = 0,
-        NOFULLWIDTHCHARBREAK: u1 = 0,
-        NOPREFIX: u1 = 0,
-        PATH_ELLIPSIS: u1 = 0,
-        PREFIXONLY: u1 = 0,
-        RIGHT: u1 = 0,
-        RTLREADING: u1 = 0,
-        SINGLELINE: u1 = 0,
-        TABSTOP: u1 = 0,
-        VCENTER: u1 = 0,
-        WORDBREAK: u1 = 0,
-        WORD_ELLIPSIS: u1 = 0,
-    }) DRAW_TEXT_FORMAT {
-        return @as(DRAW_TEXT_FORMAT, @enumFromInt(
-              (if (o.BOTTOM == 1) @intFromEnum(DRAW_TEXT_FORMAT.BOTTOM) else 0)
-            | (if (o.CALCRECT == 1) @intFromEnum(DRAW_TEXT_FORMAT.CALCRECT) else 0)
-            | (if (o.CENTER == 1) @intFromEnum(DRAW_TEXT_FORMAT.CENTER) else 0)
-            | (if (o.EDITCONTROL == 1) @intFromEnum(DRAW_TEXT_FORMAT.EDITCONTROL) else 0)
-            | (if (o.END_ELLIPSIS == 1) @intFromEnum(DRAW_TEXT_FORMAT.END_ELLIPSIS) else 0)
-            | (if (o.EXPANDTABS == 1) @intFromEnum(DRAW_TEXT_FORMAT.EXPANDTABS) else 0)
-            | (if (o.EXTERNALLEADING == 1) @intFromEnum(DRAW_TEXT_FORMAT.EXTERNALLEADING) else 0)
-            | (if (o.HIDEPREFIX == 1) @intFromEnum(DRAW_TEXT_FORMAT.HIDEPREFIX) else 0)
-            | (if (o.INTERNAL == 1) @intFromEnum(DRAW_TEXT_FORMAT.INTERNAL) else 0)
-            | (if (o.LEFT == 1) @intFromEnum(DRAW_TEXT_FORMAT.LEFT) else 0)
-            | (if (o.MODIFYSTRING == 1) @intFromEnum(DRAW_TEXT_FORMAT.MODIFYSTRING) else 0)
-            | (if (o.NOCLIP == 1) @intFromEnum(DRAW_TEXT_FORMAT.NOCLIP) else 0)
-            | (if (o.NOFULLWIDTHCHARBREAK == 1) @intFromEnum(DRAW_TEXT_FORMAT.NOFULLWIDTHCHARBREAK) else 0)
-            | (if (o.NOPREFIX == 1) @intFromEnum(DRAW_TEXT_FORMAT.NOPREFIX) else 0)
-            | (if (o.PATH_ELLIPSIS == 1) @intFromEnum(DRAW_TEXT_FORMAT.PATH_ELLIPSIS) else 0)
-            | (if (o.PREFIXONLY == 1) @intFromEnum(DRAW_TEXT_FORMAT.PREFIXONLY) else 0)
-            | (if (o.RIGHT == 1) @intFromEnum(DRAW_TEXT_FORMAT.RIGHT) else 0)
-            | (if (o.RTLREADING == 1) @intFromEnum(DRAW_TEXT_FORMAT.RTLREADING) else 0)
-            | (if (o.SINGLELINE == 1) @intFromEnum(DRAW_TEXT_FORMAT.SINGLELINE) else 0)
-            | (if (o.TABSTOP == 1) @intFromEnum(DRAW_TEXT_FORMAT.TABSTOP) else 0)
-            | (if (o.VCENTER == 1) @intFromEnum(DRAW_TEXT_FORMAT.VCENTER) else 0)
-            | (if (o.WORDBREAK == 1) @intFromEnum(DRAW_TEXT_FORMAT.WORDBREAK) else 0)
-            | (if (o.WORD_ELLIPSIS == 1) @intFromEnum(DRAW_TEXT_FORMAT.WORD_ELLIPSIS) else 0)
-        ));
-    }
+pub const DRAW_TEXT_FORMAT = packed struct(u32) {
+    CENTER: u1 = 0,
+    RIGHT: u1 = 0,
+    VCENTER: u1 = 0,
+    BOTTOM: u1 = 0,
+    WORDBREAK: u1 = 0,
+    SINGLELINE: u1 = 0,
+    EXPANDTABS: u1 = 0,
+    TABSTOP: u1 = 0,
+    NOCLIP: u1 = 0,
+    EXTERNALLEADING: u1 = 0,
+    CALCRECT: u1 = 0,
+    NOPREFIX: u1 = 0,
+    INTERNAL: u1 = 0,
+    EDITCONTROL: u1 = 0,
+    PATH_ELLIPSIS: u1 = 0,
+    END_ELLIPSIS: u1 = 0,
+    MODIFYSTRING: u1 = 0,
+    RTLREADING: u1 = 0,
+    WORD_ELLIPSIS: u1 = 0,
+    NOFULLWIDTHCHARBREAK: u1 = 0,
+    HIDEPREFIX: u1 = 0,
+    PREFIXONLY: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // TOP (0) conflicts with LEFT
 };
-pub const DT_BOTTOM = DRAW_TEXT_FORMAT.BOTTOM;
-pub const DT_CALCRECT = DRAW_TEXT_FORMAT.CALCRECT;
-pub const DT_CENTER = DRAW_TEXT_FORMAT.CENTER;
-pub const DT_EDITCONTROL = DRAW_TEXT_FORMAT.EDITCONTROL;
-pub const DT_END_ELLIPSIS = DRAW_TEXT_FORMAT.END_ELLIPSIS;
-pub const DT_EXPANDTABS = DRAW_TEXT_FORMAT.EXPANDTABS;
-pub const DT_EXTERNALLEADING = DRAW_TEXT_FORMAT.EXTERNALLEADING;
-pub const DT_HIDEPREFIX = DRAW_TEXT_FORMAT.HIDEPREFIX;
-pub const DT_INTERNAL = DRAW_TEXT_FORMAT.INTERNAL;
-pub const DT_LEFT = DRAW_TEXT_FORMAT.LEFT;
-pub const DT_MODIFYSTRING = DRAW_TEXT_FORMAT.MODIFYSTRING;
-pub const DT_NOCLIP = DRAW_TEXT_FORMAT.NOCLIP;
-pub const DT_NOFULLWIDTHCHARBREAK = DRAW_TEXT_FORMAT.NOFULLWIDTHCHARBREAK;
-pub const DT_NOPREFIX = DRAW_TEXT_FORMAT.NOPREFIX;
-pub const DT_PATH_ELLIPSIS = DRAW_TEXT_FORMAT.PATH_ELLIPSIS;
-pub const DT_PREFIXONLY = DRAW_TEXT_FORMAT.PREFIXONLY;
-pub const DT_RIGHT = DRAW_TEXT_FORMAT.RIGHT;
-pub const DT_RTLREADING = DRAW_TEXT_FORMAT.RTLREADING;
-pub const DT_SINGLELINE = DRAW_TEXT_FORMAT.SINGLELINE;
-pub const DT_TABSTOP = DRAW_TEXT_FORMAT.TABSTOP;
-pub const DT_TOP = DRAW_TEXT_FORMAT.LEFT;
-pub const DT_VCENTER = DRAW_TEXT_FORMAT.VCENTER;
-pub const DT_WORDBREAK = DRAW_TEXT_FORMAT.WORDBREAK;
-pub const DT_WORD_ELLIPSIS = DRAW_TEXT_FORMAT.WORD_ELLIPSIS;
+pub const DT_BOTTOM = DRAW_TEXT_FORMAT{ .BOTTOM = 1 };
+pub const DT_CALCRECT = DRAW_TEXT_FORMAT{ .CALCRECT = 1 };
+pub const DT_CENTER = DRAW_TEXT_FORMAT{ .CENTER = 1 };
+pub const DT_EDITCONTROL = DRAW_TEXT_FORMAT{ .EDITCONTROL = 1 };
+pub const DT_END_ELLIPSIS = DRAW_TEXT_FORMAT{ .END_ELLIPSIS = 1 };
+pub const DT_EXPANDTABS = DRAW_TEXT_FORMAT{ .EXPANDTABS = 1 };
+pub const DT_EXTERNALLEADING = DRAW_TEXT_FORMAT{ .EXTERNALLEADING = 1 };
+pub const DT_HIDEPREFIX = DRAW_TEXT_FORMAT{ .HIDEPREFIX = 1 };
+pub const DT_INTERNAL = DRAW_TEXT_FORMAT{ .INTERNAL = 1 };
+pub const DT_LEFT = DRAW_TEXT_FORMAT{ };
+pub const DT_MODIFYSTRING = DRAW_TEXT_FORMAT{ .MODIFYSTRING = 1 };
+pub const DT_NOCLIP = DRAW_TEXT_FORMAT{ .NOCLIP = 1 };
+pub const DT_NOFULLWIDTHCHARBREAK = DRAW_TEXT_FORMAT{ .NOFULLWIDTHCHARBREAK = 1 };
+pub const DT_NOPREFIX = DRAW_TEXT_FORMAT{ .NOPREFIX = 1 };
+pub const DT_PATH_ELLIPSIS = DRAW_TEXT_FORMAT{ .PATH_ELLIPSIS = 1 };
+pub const DT_PREFIXONLY = DRAW_TEXT_FORMAT{ .PREFIXONLY = 1 };
+pub const DT_RIGHT = DRAW_TEXT_FORMAT{ .RIGHT = 1 };
+pub const DT_RTLREADING = DRAW_TEXT_FORMAT{ .RTLREADING = 1 };
+pub const DT_SINGLELINE = DRAW_TEXT_FORMAT{ .SINGLELINE = 1 };
+pub const DT_TABSTOP = DRAW_TEXT_FORMAT{ .TABSTOP = 1 };
+pub const DT_TOP = DRAW_TEXT_FORMAT{ };
+pub const DT_VCENTER = DRAW_TEXT_FORMAT{ .VCENTER = 1 };
+pub const DT_WORDBREAK = DRAW_TEXT_FORMAT{ .WORDBREAK = 1 };
+pub const DT_WORD_ELLIPSIS = DRAW_TEXT_FORMAT{ .WORD_ELLIPSIS = 1 };
 
 pub const EMBED_FONT_CHARSET = enum(u32) {
     UNICODE = 1,
@@ -1999,58 +1960,51 @@ pub const EMBED_FONT_CHARSET = enum(u32) {
 pub const CHARSET_UNICODE = EMBED_FONT_CHARSET.UNICODE;
 pub const CHARSET_SYMBOL = EMBED_FONT_CHARSET.SYMBOL;
 
-pub const GET_DCX_FLAGS = enum(u32) {
-    WINDOW = 1,
-    CACHE = 2,
-    PARENTCLIP = 32,
-    CLIPSIBLINGS = 16,
-    CLIPCHILDREN = 8,
-    NORESETATTRS = 4,
-    LOCKWINDOWUPDATE = 1024,
-    EXCLUDERGN = 64,
-    INTERSECTRGN = 128,
-    INTERSECTUPDATE = 512,
-    VALIDATE = 2097152,
-    _,
-    pub fn initFlags(o: struct {
-        WINDOW: u1 = 0,
-        CACHE: u1 = 0,
-        PARENTCLIP: u1 = 0,
-        CLIPSIBLINGS: u1 = 0,
-        CLIPCHILDREN: u1 = 0,
-        NORESETATTRS: u1 = 0,
-        LOCKWINDOWUPDATE: u1 = 0,
-        EXCLUDERGN: u1 = 0,
-        INTERSECTRGN: u1 = 0,
-        INTERSECTUPDATE: u1 = 0,
-        VALIDATE: u1 = 0,
-    }) GET_DCX_FLAGS {
-        return @as(GET_DCX_FLAGS, @enumFromInt(
-              (if (o.WINDOW == 1) @intFromEnum(GET_DCX_FLAGS.WINDOW) else 0)
-            | (if (o.CACHE == 1) @intFromEnum(GET_DCX_FLAGS.CACHE) else 0)
-            | (if (o.PARENTCLIP == 1) @intFromEnum(GET_DCX_FLAGS.PARENTCLIP) else 0)
-            | (if (o.CLIPSIBLINGS == 1) @intFromEnum(GET_DCX_FLAGS.CLIPSIBLINGS) else 0)
-            | (if (o.CLIPCHILDREN == 1) @intFromEnum(GET_DCX_FLAGS.CLIPCHILDREN) else 0)
-            | (if (o.NORESETATTRS == 1) @intFromEnum(GET_DCX_FLAGS.NORESETATTRS) else 0)
-            | (if (o.LOCKWINDOWUPDATE == 1) @intFromEnum(GET_DCX_FLAGS.LOCKWINDOWUPDATE) else 0)
-            | (if (o.EXCLUDERGN == 1) @intFromEnum(GET_DCX_FLAGS.EXCLUDERGN) else 0)
-            | (if (o.INTERSECTRGN == 1) @intFromEnum(GET_DCX_FLAGS.INTERSECTRGN) else 0)
-            | (if (o.INTERSECTUPDATE == 1) @intFromEnum(GET_DCX_FLAGS.INTERSECTUPDATE) else 0)
-            | (if (o.VALIDATE == 1) @intFromEnum(GET_DCX_FLAGS.VALIDATE) else 0)
-        ));
-    }
+pub const GET_DCX_FLAGS = packed struct(u32) {
+    WINDOW: u1 = 0,
+    CACHE: u1 = 0,
+    NORESETATTRS: u1 = 0,
+    CLIPCHILDREN: u1 = 0,
+    CLIPSIBLINGS: u1 = 0,
+    PARENTCLIP: u1 = 0,
+    EXCLUDERGN: u1 = 0,
+    INTERSECTRGN: u1 = 0,
+    _8: u1 = 0,
+    INTERSECTUPDATE: u1 = 0,
+    LOCKWINDOWUPDATE: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    VALIDATE: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DCX_WINDOW = GET_DCX_FLAGS.WINDOW;
-pub const DCX_CACHE = GET_DCX_FLAGS.CACHE;
-pub const DCX_PARENTCLIP = GET_DCX_FLAGS.PARENTCLIP;
-pub const DCX_CLIPSIBLINGS = GET_DCX_FLAGS.CLIPSIBLINGS;
-pub const DCX_CLIPCHILDREN = GET_DCX_FLAGS.CLIPCHILDREN;
-pub const DCX_NORESETATTRS = GET_DCX_FLAGS.NORESETATTRS;
-pub const DCX_LOCKWINDOWUPDATE = GET_DCX_FLAGS.LOCKWINDOWUPDATE;
-pub const DCX_EXCLUDERGN = GET_DCX_FLAGS.EXCLUDERGN;
-pub const DCX_INTERSECTRGN = GET_DCX_FLAGS.INTERSECTRGN;
-pub const DCX_INTERSECTUPDATE = GET_DCX_FLAGS.INTERSECTUPDATE;
-pub const DCX_VALIDATE = GET_DCX_FLAGS.VALIDATE;
+pub const DCX_WINDOW = GET_DCX_FLAGS{ .WINDOW = 1 };
+pub const DCX_CACHE = GET_DCX_FLAGS{ .CACHE = 1 };
+pub const DCX_PARENTCLIP = GET_DCX_FLAGS{ .PARENTCLIP = 1 };
+pub const DCX_CLIPSIBLINGS = GET_DCX_FLAGS{ .CLIPSIBLINGS = 1 };
+pub const DCX_CLIPCHILDREN = GET_DCX_FLAGS{ .CLIPCHILDREN = 1 };
+pub const DCX_NORESETATTRS = GET_DCX_FLAGS{ .NORESETATTRS = 1 };
+pub const DCX_LOCKWINDOWUPDATE = GET_DCX_FLAGS{ .LOCKWINDOWUPDATE = 1 };
+pub const DCX_EXCLUDERGN = GET_DCX_FLAGS{ .EXCLUDERGN = 1 };
+pub const DCX_INTERSECTRGN = GET_DCX_FLAGS{ .INTERSECTRGN = 1 };
+pub const DCX_INTERSECTUPDATE = GET_DCX_FLAGS{ .INTERSECTUPDATE = 1 };
+pub const DCX_VALIDATE = GET_DCX_FLAGS{ .VALIDATE = 1 };
 
 pub const GET_GLYPH_OUTLINE_FORMAT = enum(u32) {
     BEZIER = 3,
@@ -2136,46 +2090,53 @@ pub const MWT_IDENTITY = MODIFY_WORLD_TRANSFORM_MODE.IDENTITY;
 pub const MWT_LEFTMULTIPLY = MODIFY_WORLD_TRANSFORM_MODE.LEFTMULTIPLY;
 pub const MWT_RIGHTMULTIPLY = MODIFY_WORLD_TRANSFORM_MODE.RIGHTMULTIPLY;
 
-pub const FONT_CLIP_PRECISION = enum(u32) {
-    CHARACTER_PRECIS = 1,
-    DEFAULT_PRECIS = 0,
-    DFA_DISABLE = 64,
-    EMBEDDED = 128,
-    LH_ANGLES = 16,
-    MASK = 15,
-    STROKE_PRECIS = 2,
-    TT_ALWAYS = 32,
-    _,
-    pub fn initFlags(o: struct {
-        CHARACTER_PRECIS: u1 = 0,
-        DEFAULT_PRECIS: u1 = 0,
-        DFA_DISABLE: u1 = 0,
-        EMBEDDED: u1 = 0,
-        LH_ANGLES: u1 = 0,
-        MASK: u1 = 0,
-        STROKE_PRECIS: u1 = 0,
-        TT_ALWAYS: u1 = 0,
-    }) FONT_CLIP_PRECISION {
-        return @as(FONT_CLIP_PRECISION, @enumFromInt(
-              (if (o.CHARACTER_PRECIS == 1) @intFromEnum(FONT_CLIP_PRECISION.CHARACTER_PRECIS) else 0)
-            | (if (o.DEFAULT_PRECIS == 1) @intFromEnum(FONT_CLIP_PRECISION.DEFAULT_PRECIS) else 0)
-            | (if (o.DFA_DISABLE == 1) @intFromEnum(FONT_CLIP_PRECISION.DFA_DISABLE) else 0)
-            | (if (o.EMBEDDED == 1) @intFromEnum(FONT_CLIP_PRECISION.EMBEDDED) else 0)
-            | (if (o.LH_ANGLES == 1) @intFromEnum(FONT_CLIP_PRECISION.LH_ANGLES) else 0)
-            | (if (o.MASK == 1) @intFromEnum(FONT_CLIP_PRECISION.MASK) else 0)
-            | (if (o.STROKE_PRECIS == 1) @intFromEnum(FONT_CLIP_PRECISION.STROKE_PRECIS) else 0)
-            | (if (o.TT_ALWAYS == 1) @intFromEnum(FONT_CLIP_PRECISION.TT_ALWAYS) else 0)
-        ));
-    }
+pub const FONT_CLIP_PRECISION = packed struct(u32) {
+    CHARACTER_PRECIS: u1 = 0,
+    STROKE_PRECIS: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    LH_ANGLES: u1 = 0,
+    TT_ALWAYS: u1 = 0,
+    DFA_DISABLE: u1 = 0,
+    EMBEDDED: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CLIP_CHARACTER_PRECIS = FONT_CLIP_PRECISION.CHARACTER_PRECIS;
-pub const CLIP_DEFAULT_PRECIS = FONT_CLIP_PRECISION.DEFAULT_PRECIS;
-pub const CLIP_DFA_DISABLE = FONT_CLIP_PRECISION.DFA_DISABLE;
-pub const CLIP_EMBEDDED = FONT_CLIP_PRECISION.EMBEDDED;
-pub const CLIP_LH_ANGLES = FONT_CLIP_PRECISION.LH_ANGLES;
-pub const CLIP_MASK = FONT_CLIP_PRECISION.MASK;
-pub const CLIP_STROKE_PRECIS = FONT_CLIP_PRECISION.STROKE_PRECIS;
-pub const CLIP_TT_ALWAYS = FONT_CLIP_PRECISION.TT_ALWAYS;
+pub const CLIP_CHARACTER_PRECIS = FONT_CLIP_PRECISION{ .CHARACTER_PRECIS = 1 };
+pub const CLIP_DEFAULT_PRECIS = FONT_CLIP_PRECISION{ };
+pub const CLIP_DFA_DISABLE = FONT_CLIP_PRECISION{ .DFA_DISABLE = 1 };
+pub const CLIP_EMBEDDED = FONT_CLIP_PRECISION{ .EMBEDDED = 1 };
+pub const CLIP_LH_ANGLES = FONT_CLIP_PRECISION{ .LH_ANGLES = 1 };
+pub const CLIP_MASK = FONT_CLIP_PRECISION{
+    .CHARACTER_PRECIS = 1,
+    .STROKE_PRECIS = 1,
+    ._2 = 1,
+    ._3 = 1,
+};
+pub const CLIP_STROKE_PRECIS = FONT_CLIP_PRECISION{ .STROKE_PRECIS = 1 };
+pub const CLIP_TT_ALWAYS = FONT_CLIP_PRECISION{ .TT_ALWAYS = 1 };
 
 pub const CREATE_POLYGON_RGN_MODE = enum(u32) {
     ALTERNATE = 1,
@@ -2211,22 +2172,42 @@ pub const FONT_RESOURCE_CHARACTERISTICS = enum(u32) {
 pub const FR_PRIVATE = FONT_RESOURCE_CHARACTERISTICS.PRIVATE;
 pub const FR_NOT_ENUM = FONT_RESOURCE_CHARACTERISTICS.NOT_ENUM;
 
-pub const DC_LAYOUT = enum(u32) {
-    BITMAPORIENTATIONPRESERVED = 8,
-    RTL = 1,
-    _,
-    pub fn initFlags(o: struct {
-        BITMAPORIENTATIONPRESERVED: u1 = 0,
-        RTL: u1 = 0,
-    }) DC_LAYOUT {
-        return @as(DC_LAYOUT, @enumFromInt(
-              (if (o.BITMAPORIENTATIONPRESERVED == 1) @intFromEnum(DC_LAYOUT.BITMAPORIENTATIONPRESERVED) else 0)
-            | (if (o.RTL == 1) @intFromEnum(DC_LAYOUT.RTL) else 0)
-        ));
-    }
+pub const DC_LAYOUT = packed struct(u32) {
+    RTL: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    BITMAPORIENTATIONPRESERVED: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const LAYOUT_BITMAPORIENTATIONPRESERVED = DC_LAYOUT.BITMAPORIENTATIONPRESERVED;
-pub const LAYOUT_RTL = DC_LAYOUT.RTL;
+pub const LAYOUT_BITMAPORIENTATIONPRESERVED = DC_LAYOUT{ .BITMAPORIENTATIONPRESERVED = 1 };
+pub const LAYOUT_RTL = DC_LAYOUT{ .RTL = 1 };
 
 pub const GET_DEVICE_CAPS_INDEX = enum(u32) {
     DRIVERVERSION = 0,
@@ -2341,22 +2322,42 @@ pub const ARC_DIRECTION = enum(u32) {
 pub const AD_COUNTERCLOCKWISE = ARC_DIRECTION.OUNTERCLOCKWISE;
 pub const AD_CLOCKWISE = ARC_DIRECTION.LOCKWISE;
 
-pub const TTLOAD_EMBEDDED_FONT_STATUS = enum(u32) {
-    SUBSETTED = 1,
-    IN_SYSSTARTUP = 2,
-    _,
-    pub fn initFlags(o: struct {
-        SUBSETTED: u1 = 0,
-        IN_SYSSTARTUP: u1 = 0,
-    }) TTLOAD_EMBEDDED_FONT_STATUS {
-        return @as(TTLOAD_EMBEDDED_FONT_STATUS, @enumFromInt(
-              (if (o.SUBSETTED == 1) @intFromEnum(TTLOAD_EMBEDDED_FONT_STATUS.SUBSETTED) else 0)
-            | (if (o.IN_SYSSTARTUP == 1) @intFromEnum(TTLOAD_EMBEDDED_FONT_STATUS.IN_SYSSTARTUP) else 0)
-        ));
-    }
+pub const TTLOAD_EMBEDDED_FONT_STATUS = packed struct(u32) {
+    SUBSETTED: u1 = 0,
+    IN_SYSSTARTUP: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TTLOAD_FONT_SUBSETTED = TTLOAD_EMBEDDED_FONT_STATUS.SUBSETTED;
-pub const TTLOAD_FONT_IN_SYSSTARTUP = TTLOAD_EMBEDDED_FONT_STATUS.IN_SYSSTARTUP;
+pub const TTLOAD_FONT_SUBSETTED = TTLOAD_EMBEDDED_FONT_STATUS{ .SUBSETTED = 1 };
+pub const TTLOAD_FONT_IN_SYSSTARTUP = TTLOAD_EMBEDDED_FONT_STATUS{ .IN_SYSSTARTUP = 1 };
 
 pub const STRETCH_BLT_MODE = enum(u32) {
     BLACKONWHITE = 1,
@@ -2399,159 +2400,142 @@ pub const BACKGROUND_MODE = enum(u32) {
 pub const OPAQUE = BACKGROUND_MODE.OPAQUE;
 pub const TRANSPARENT = BACKGROUND_MODE.TRANSPARENT;
 
-pub const GET_CHARACTER_PLACEMENT_FLAGS = enum(u32) {
-    CLASSIN = 524288,
-    DIACRITIC = 256,
-    DISPLAYZWG = 4194304,
-    GLYPHSHAPE = 16,
-    JUSTIFY = 65536,
-    KASHIDA = 1024,
-    LIGATE = 32,
-    MAXEXTENT = 1048576,
-    NEUTRALOVERRIDE = 33554432,
-    NUMERICOVERRIDE = 16777216,
-    NUMERICSLATIN = 67108864,
-    NUMERICSLOCAL = 134217728,
-    REORDER = 2,
-    SYMSWAPOFF = 8388608,
-    USEKERNING = 8,
-    _,
-    pub fn initFlags(o: struct {
-        CLASSIN: u1 = 0,
-        DIACRITIC: u1 = 0,
-        DISPLAYZWG: u1 = 0,
-        GLYPHSHAPE: u1 = 0,
-        JUSTIFY: u1 = 0,
-        KASHIDA: u1 = 0,
-        LIGATE: u1 = 0,
-        MAXEXTENT: u1 = 0,
-        NEUTRALOVERRIDE: u1 = 0,
-        NUMERICOVERRIDE: u1 = 0,
-        NUMERICSLATIN: u1 = 0,
-        NUMERICSLOCAL: u1 = 0,
-        REORDER: u1 = 0,
-        SYMSWAPOFF: u1 = 0,
-        USEKERNING: u1 = 0,
-    }) GET_CHARACTER_PLACEMENT_FLAGS {
-        return @as(GET_CHARACTER_PLACEMENT_FLAGS, @enumFromInt(
-              (if (o.CLASSIN == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.CLASSIN) else 0)
-            | (if (o.DIACRITIC == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.DIACRITIC) else 0)
-            | (if (o.DISPLAYZWG == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.DISPLAYZWG) else 0)
-            | (if (o.GLYPHSHAPE == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.GLYPHSHAPE) else 0)
-            | (if (o.JUSTIFY == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.JUSTIFY) else 0)
-            | (if (o.KASHIDA == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.KASHIDA) else 0)
-            | (if (o.LIGATE == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.LIGATE) else 0)
-            | (if (o.MAXEXTENT == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.MAXEXTENT) else 0)
-            | (if (o.NEUTRALOVERRIDE == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.NEUTRALOVERRIDE) else 0)
-            | (if (o.NUMERICOVERRIDE == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICOVERRIDE) else 0)
-            | (if (o.NUMERICSLATIN == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLATIN) else 0)
-            | (if (o.NUMERICSLOCAL == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLOCAL) else 0)
-            | (if (o.REORDER == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.REORDER) else 0)
-            | (if (o.SYMSWAPOFF == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.SYMSWAPOFF) else 0)
-            | (if (o.USEKERNING == 1) @intFromEnum(GET_CHARACTER_PLACEMENT_FLAGS.USEKERNING) else 0)
-        ));
-    }
+pub const GET_CHARACTER_PLACEMENT_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    REORDER: u1 = 0,
+    _2: u1 = 0,
+    USEKERNING: u1 = 0,
+    GLYPHSHAPE: u1 = 0,
+    LIGATE: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    DIACRITIC: u1 = 0,
+    _9: u1 = 0,
+    KASHIDA: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    JUSTIFY: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    CLASSIN: u1 = 0,
+    MAXEXTENT: u1 = 0,
+    _21: u1 = 0,
+    DISPLAYZWG: u1 = 0,
+    SYMSWAPOFF: u1 = 0,
+    NUMERICOVERRIDE: u1 = 0,
+    NEUTRALOVERRIDE: u1 = 0,
+    NUMERICSLATIN: u1 = 0,
+    NUMERICSLOCAL: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const GCP_CLASSIN = GET_CHARACTER_PLACEMENT_FLAGS.CLASSIN;
-pub const GCP_DIACRITIC = GET_CHARACTER_PLACEMENT_FLAGS.DIACRITIC;
-pub const GCP_DISPLAYZWG = GET_CHARACTER_PLACEMENT_FLAGS.DISPLAYZWG;
-pub const GCP_GLYPHSHAPE = GET_CHARACTER_PLACEMENT_FLAGS.GLYPHSHAPE;
-pub const GCP_JUSTIFY = GET_CHARACTER_PLACEMENT_FLAGS.JUSTIFY;
-pub const GCP_KASHIDA = GET_CHARACTER_PLACEMENT_FLAGS.KASHIDA;
-pub const GCP_LIGATE = GET_CHARACTER_PLACEMENT_FLAGS.LIGATE;
-pub const GCP_MAXEXTENT = GET_CHARACTER_PLACEMENT_FLAGS.MAXEXTENT;
-pub const GCP_NEUTRALOVERRIDE = GET_CHARACTER_PLACEMENT_FLAGS.NEUTRALOVERRIDE;
-pub const GCP_NUMERICOVERRIDE = GET_CHARACTER_PLACEMENT_FLAGS.NUMERICOVERRIDE;
-pub const GCP_NUMERICSLATIN = GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLATIN;
-pub const GCP_NUMERICSLOCAL = GET_CHARACTER_PLACEMENT_FLAGS.NUMERICSLOCAL;
-pub const GCP_REORDER = GET_CHARACTER_PLACEMENT_FLAGS.REORDER;
-pub const GCP_SYMSWAPOFF = GET_CHARACTER_PLACEMENT_FLAGS.SYMSWAPOFF;
-pub const GCP_USEKERNING = GET_CHARACTER_PLACEMENT_FLAGS.USEKERNING;
+pub const GCP_CLASSIN = GET_CHARACTER_PLACEMENT_FLAGS{ .CLASSIN = 1 };
+pub const GCP_DIACRITIC = GET_CHARACTER_PLACEMENT_FLAGS{ .DIACRITIC = 1 };
+pub const GCP_DISPLAYZWG = GET_CHARACTER_PLACEMENT_FLAGS{ .DISPLAYZWG = 1 };
+pub const GCP_GLYPHSHAPE = GET_CHARACTER_PLACEMENT_FLAGS{ .GLYPHSHAPE = 1 };
+pub const GCP_JUSTIFY = GET_CHARACTER_PLACEMENT_FLAGS{ .JUSTIFY = 1 };
+pub const GCP_KASHIDA = GET_CHARACTER_PLACEMENT_FLAGS{ .KASHIDA = 1 };
+pub const GCP_LIGATE = GET_CHARACTER_PLACEMENT_FLAGS{ .LIGATE = 1 };
+pub const GCP_MAXEXTENT = GET_CHARACTER_PLACEMENT_FLAGS{ .MAXEXTENT = 1 };
+pub const GCP_NEUTRALOVERRIDE = GET_CHARACTER_PLACEMENT_FLAGS{ .NEUTRALOVERRIDE = 1 };
+pub const GCP_NUMERICOVERRIDE = GET_CHARACTER_PLACEMENT_FLAGS{ .NUMERICOVERRIDE = 1 };
+pub const GCP_NUMERICSLATIN = GET_CHARACTER_PLACEMENT_FLAGS{ .NUMERICSLATIN = 1 };
+pub const GCP_NUMERICSLOCAL = GET_CHARACTER_PLACEMENT_FLAGS{ .NUMERICSLOCAL = 1 };
+pub const GCP_REORDER = GET_CHARACTER_PLACEMENT_FLAGS{ .REORDER = 1 };
+pub const GCP_SYMSWAPOFF = GET_CHARACTER_PLACEMENT_FLAGS{ .SYMSWAPOFF = 1 };
+pub const GCP_USEKERNING = GET_CHARACTER_PLACEMENT_FLAGS{ .USEKERNING = 1 };
 
-pub const DRAW_EDGE_FLAGS = enum(u32) {
-    ADJUST = 8192,
-    BOTTOM = 8,
-    BOTTOMLEFT = 9,
-    BOTTOMRIGHT = 12,
-    DIAGONAL = 16,
-    DIAGONAL_ENDBOTTOMLEFT = 25,
-    DIAGONAL_ENDBOTTOMRIGHT = 28,
-    DIAGONAL_ENDTOPLEFT = 19,
-    DIAGONAL_ENDTOPRIGHT = 22,
-    FLAT = 16384,
-    LEFT = 1,
-    MIDDLE = 2048,
-    MONO = 32768,
-    RECT = 15,
-    RIGHT = 4,
-    SOFT = 4096,
-    TOP = 2,
-    TOPLEFT = 3,
-    TOPRIGHT = 6,
-    _,
-    pub fn initFlags(o: struct {
-        ADJUST: u1 = 0,
-        BOTTOM: u1 = 0,
-        BOTTOMLEFT: u1 = 0,
-        BOTTOMRIGHT: u1 = 0,
-        DIAGONAL: u1 = 0,
-        DIAGONAL_ENDBOTTOMLEFT: u1 = 0,
-        DIAGONAL_ENDBOTTOMRIGHT: u1 = 0,
-        DIAGONAL_ENDTOPLEFT: u1 = 0,
-        DIAGONAL_ENDTOPRIGHT: u1 = 0,
-        FLAT: u1 = 0,
-        LEFT: u1 = 0,
-        MIDDLE: u1 = 0,
-        MONO: u1 = 0,
-        RECT: u1 = 0,
-        RIGHT: u1 = 0,
-        SOFT: u1 = 0,
-        TOP: u1 = 0,
-        TOPLEFT: u1 = 0,
-        TOPRIGHT: u1 = 0,
-    }) DRAW_EDGE_FLAGS {
-        return @as(DRAW_EDGE_FLAGS, @enumFromInt(
-              (if (o.ADJUST == 1) @intFromEnum(DRAW_EDGE_FLAGS.ADJUST) else 0)
-            | (if (o.BOTTOM == 1) @intFromEnum(DRAW_EDGE_FLAGS.BOTTOM) else 0)
-            | (if (o.BOTTOMLEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.BOTTOMLEFT) else 0)
-            | (if (o.BOTTOMRIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.BOTTOMRIGHT) else 0)
-            | (if (o.DIAGONAL == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL) else 0)
-            | (if (o.DIAGONAL_ENDBOTTOMLEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMLEFT) else 0)
-            | (if (o.DIAGONAL_ENDBOTTOMRIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMRIGHT) else 0)
-            | (if (o.DIAGONAL_ENDTOPLEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPLEFT) else 0)
-            | (if (o.DIAGONAL_ENDTOPRIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPRIGHT) else 0)
-            | (if (o.FLAT == 1) @intFromEnum(DRAW_EDGE_FLAGS.FLAT) else 0)
-            | (if (o.LEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.LEFT) else 0)
-            | (if (o.MIDDLE == 1) @intFromEnum(DRAW_EDGE_FLAGS.MIDDLE) else 0)
-            | (if (o.MONO == 1) @intFromEnum(DRAW_EDGE_FLAGS.MONO) else 0)
-            | (if (o.RECT == 1) @intFromEnum(DRAW_EDGE_FLAGS.RECT) else 0)
-            | (if (o.RIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.RIGHT) else 0)
-            | (if (o.SOFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.SOFT) else 0)
-            | (if (o.TOP == 1) @intFromEnum(DRAW_EDGE_FLAGS.TOP) else 0)
-            | (if (o.TOPLEFT == 1) @intFromEnum(DRAW_EDGE_FLAGS.TOPLEFT) else 0)
-            | (if (o.TOPRIGHT == 1) @intFromEnum(DRAW_EDGE_FLAGS.TOPRIGHT) else 0)
-        ));
-    }
+pub const DRAW_EDGE_FLAGS = packed struct(u32) {
+    LEFT: u1 = 0,
+    TOP: u1 = 0,
+    RIGHT: u1 = 0,
+    BOTTOM: u1 = 0,
+    DIAGONAL: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    MIDDLE: u1 = 0,
+    SOFT: u1 = 0,
+    ADJUST: u1 = 0,
+    FLAT: u1 = 0,
+    MONO: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const BF_ADJUST = DRAW_EDGE_FLAGS.ADJUST;
-pub const BF_BOTTOM = DRAW_EDGE_FLAGS.BOTTOM;
-pub const BF_BOTTOMLEFT = DRAW_EDGE_FLAGS.BOTTOMLEFT;
-pub const BF_BOTTOMRIGHT = DRAW_EDGE_FLAGS.BOTTOMRIGHT;
-pub const BF_DIAGONAL = DRAW_EDGE_FLAGS.DIAGONAL;
-pub const BF_DIAGONAL_ENDBOTTOMLEFT = DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMLEFT;
-pub const BF_DIAGONAL_ENDBOTTOMRIGHT = DRAW_EDGE_FLAGS.DIAGONAL_ENDBOTTOMRIGHT;
-pub const BF_DIAGONAL_ENDTOPLEFT = DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPLEFT;
-pub const BF_DIAGONAL_ENDTOPRIGHT = DRAW_EDGE_FLAGS.DIAGONAL_ENDTOPRIGHT;
-pub const BF_FLAT = DRAW_EDGE_FLAGS.FLAT;
-pub const BF_LEFT = DRAW_EDGE_FLAGS.LEFT;
-pub const BF_MIDDLE = DRAW_EDGE_FLAGS.MIDDLE;
-pub const BF_MONO = DRAW_EDGE_FLAGS.MONO;
-pub const BF_RECT = DRAW_EDGE_FLAGS.RECT;
-pub const BF_RIGHT = DRAW_EDGE_FLAGS.RIGHT;
-pub const BF_SOFT = DRAW_EDGE_FLAGS.SOFT;
-pub const BF_TOP = DRAW_EDGE_FLAGS.TOP;
-pub const BF_TOPLEFT = DRAW_EDGE_FLAGS.TOPLEFT;
-pub const BF_TOPRIGHT = DRAW_EDGE_FLAGS.TOPRIGHT;
+pub const BF_ADJUST = DRAW_EDGE_FLAGS{ .ADJUST = 1 };
+pub const BF_BOTTOM = DRAW_EDGE_FLAGS{ .BOTTOM = 1 };
+pub const BF_BOTTOMLEFT = DRAW_EDGE_FLAGS{
+    .LEFT = 1,
+    .BOTTOM = 1,
+};
+pub const BF_BOTTOMRIGHT = DRAW_EDGE_FLAGS{
+    .RIGHT = 1,
+    .BOTTOM = 1,
+};
+pub const BF_DIAGONAL = DRAW_EDGE_FLAGS{ .DIAGONAL = 1 };
+pub const BF_DIAGONAL_ENDBOTTOMLEFT = DRAW_EDGE_FLAGS{
+    .LEFT = 1,
+    .BOTTOM = 1,
+    .DIAGONAL = 1,
+};
+pub const BF_DIAGONAL_ENDBOTTOMRIGHT = DRAW_EDGE_FLAGS{
+    .RIGHT = 1,
+    .BOTTOM = 1,
+    .DIAGONAL = 1,
+};
+pub const BF_DIAGONAL_ENDTOPLEFT = DRAW_EDGE_FLAGS{
+    .LEFT = 1,
+    .TOP = 1,
+    .DIAGONAL = 1,
+};
+pub const BF_DIAGONAL_ENDTOPRIGHT = DRAW_EDGE_FLAGS{
+    .TOP = 1,
+    .RIGHT = 1,
+    .DIAGONAL = 1,
+};
+pub const BF_FLAT = DRAW_EDGE_FLAGS{ .FLAT = 1 };
+pub const BF_LEFT = DRAW_EDGE_FLAGS{ .LEFT = 1 };
+pub const BF_MIDDLE = DRAW_EDGE_FLAGS{ .MIDDLE = 1 };
+pub const BF_MONO = DRAW_EDGE_FLAGS{ .MONO = 1 };
+pub const BF_RECT = DRAW_EDGE_FLAGS{
+    .LEFT = 1,
+    .TOP = 1,
+    .RIGHT = 1,
+    .BOTTOM = 1,
+};
+pub const BF_RIGHT = DRAW_EDGE_FLAGS{ .RIGHT = 1 };
+pub const BF_SOFT = DRAW_EDGE_FLAGS{ .SOFT = 1 };
+pub const BF_TOP = DRAW_EDGE_FLAGS{ .TOP = 1 };
+pub const BF_TOPLEFT = DRAW_EDGE_FLAGS{
+    .LEFT = 1,
+    .TOP = 1,
+};
+pub const BF_TOPRIGHT = DRAW_EDGE_FLAGS{
+    .TOP = 1,
+    .RIGHT = 1,
+};
 
 pub const FONT_LICENSE_PRIVS = enum(u32) {
     PREVIEWPRINT = 4,
@@ -2606,42 +2590,47 @@ pub const HS_FDIAGONAL = HATCH_BRUSH_STYLE.FDIAGONAL;
 pub const HS_HORIZONTAL = HATCH_BRUSH_STYLE.HORIZONTAL;
 pub const HS_VERTICAL = HATCH_BRUSH_STYLE.VERTICAL;
 
-pub const DRAW_CAPTION_FLAGS = enum(u32) {
-    ACTIVE = 1,
-    BUTTONS = 4096,
-    GRADIENT = 32,
-    ICON = 4,
-    INBUTTON = 16,
-    SMALLCAP = 2,
-    TEXT = 8,
-    _,
-    pub fn initFlags(o: struct {
-        ACTIVE: u1 = 0,
-        BUTTONS: u1 = 0,
-        GRADIENT: u1 = 0,
-        ICON: u1 = 0,
-        INBUTTON: u1 = 0,
-        SMALLCAP: u1 = 0,
-        TEXT: u1 = 0,
-    }) DRAW_CAPTION_FLAGS {
-        return @as(DRAW_CAPTION_FLAGS, @enumFromInt(
-              (if (o.ACTIVE == 1) @intFromEnum(DRAW_CAPTION_FLAGS.ACTIVE) else 0)
-            | (if (o.BUTTONS == 1) @intFromEnum(DRAW_CAPTION_FLAGS.BUTTONS) else 0)
-            | (if (o.GRADIENT == 1) @intFromEnum(DRAW_CAPTION_FLAGS.GRADIENT) else 0)
-            | (if (o.ICON == 1) @intFromEnum(DRAW_CAPTION_FLAGS.ICON) else 0)
-            | (if (o.INBUTTON == 1) @intFromEnum(DRAW_CAPTION_FLAGS.INBUTTON) else 0)
-            | (if (o.SMALLCAP == 1) @intFromEnum(DRAW_CAPTION_FLAGS.SMALLCAP) else 0)
-            | (if (o.TEXT == 1) @intFromEnum(DRAW_CAPTION_FLAGS.TEXT) else 0)
-        ));
-    }
+pub const DRAW_CAPTION_FLAGS = packed struct(u32) {
+    ACTIVE: u1 = 0,
+    SMALLCAP: u1 = 0,
+    ICON: u1 = 0,
+    TEXT: u1 = 0,
+    INBUTTON: u1 = 0,
+    GRADIENT: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    BUTTONS: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DC_ACTIVE = DRAW_CAPTION_FLAGS.ACTIVE;
-pub const DC_BUTTONS = DRAW_CAPTION_FLAGS.BUTTONS;
-pub const DC_GRADIENT = DRAW_CAPTION_FLAGS.GRADIENT;
-pub const DC_ICON = DRAW_CAPTION_FLAGS.ICON;
-pub const DC_INBUTTON = DRAW_CAPTION_FLAGS.INBUTTON;
-pub const DC_SMALLCAP = DRAW_CAPTION_FLAGS.SMALLCAP;
-pub const DC_TEXT = DRAW_CAPTION_FLAGS.TEXT;
+pub const DC_ACTIVE = DRAW_CAPTION_FLAGS{ .ACTIVE = 1 };
+pub const DC_BUTTONS = DRAW_CAPTION_FLAGS{ .BUTTONS = 1 };
+pub const DC_GRADIENT = DRAW_CAPTION_FLAGS{ .GRADIENT = 1 };
+pub const DC_ICON = DRAW_CAPTION_FLAGS{ .ICON = 1 };
+pub const DC_INBUTTON = DRAW_CAPTION_FLAGS{ .INBUTTON = 1 };
+pub const DC_SMALLCAP = DRAW_CAPTION_FLAGS{ .SMALLCAP = 1 };
+pub const DC_TEXT = DRAW_CAPTION_FLAGS{ .TEXT = 1 };
 
 pub const SYSTEM_PALETTE_USE = enum(u32) {
     NOSTATIC = 2,

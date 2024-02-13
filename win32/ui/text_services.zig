@@ -452,39 +452,79 @@ pub const LANG_BAR_ITEM_ICON_MODE_FLAGS = enum(u32) {
 pub const TF_DTLBI_NONE = LANG_BAR_ITEM_ICON_MODE_FLAGS.NONE;
 pub const TF_DTLBI_USEPROFILEICON = LANG_BAR_ITEM_ICON_MODE_FLAGS.USEPROFILEICON;
 
-pub const TEXT_STORE_TEXT_CHANGE_FLAGS = enum(u32) {
-    NONE = 0,
-    CORRECTION = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        CORRECTION: u1 = 0,
-    }) TEXT_STORE_TEXT_CHANGE_FLAGS {
-        return @as(TEXT_STORE_TEXT_CHANGE_FLAGS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(TEXT_STORE_TEXT_CHANGE_FLAGS.NONE) else 0)
-            | (if (o.CORRECTION == 1) @intFromEnum(TEXT_STORE_TEXT_CHANGE_FLAGS.CORRECTION) else 0)
-        ));
-    }
+pub const TEXT_STORE_TEXT_CHANGE_FLAGS = packed struct(u32) {
+    CORRECTION: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TS_ST_NONE = TEXT_STORE_TEXT_CHANGE_FLAGS.NONE;
-pub const TS_ST_CORRECTION = TEXT_STORE_TEXT_CHANGE_FLAGS.CORRECTION;
+pub const TS_ST_NONE = TEXT_STORE_TEXT_CHANGE_FLAGS{ };
+pub const TS_ST_CORRECTION = TEXT_STORE_TEXT_CHANGE_FLAGS{ .CORRECTION = 1 };
 
-pub const TEXT_STORE_CHANGE_FLAGS = enum(u32) {
-    NONE = 0,
-    CORRECTION = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        CORRECTION: u1 = 0,
-    }) TEXT_STORE_CHANGE_FLAGS {
-        return @as(TEXT_STORE_CHANGE_FLAGS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(TEXT_STORE_CHANGE_FLAGS.NONE) else 0)
-            | (if (o.CORRECTION == 1) @intFromEnum(TEXT_STORE_CHANGE_FLAGS.CORRECTION) else 0)
-        ));
-    }
+pub const TEXT_STORE_CHANGE_FLAGS = packed struct(u32) {
+    CORRECTION: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TS_TC_NONE = TEXT_STORE_CHANGE_FLAGS.NONE;
-pub const TS_TC_CORRECTION = TEXT_STORE_CHANGE_FLAGS.CORRECTION;
+pub const TS_TC_NONE = TEXT_STORE_CHANGE_FLAGS{ };
+pub const TS_TC_CORRECTION = TEXT_STORE_CHANGE_FLAGS{ .CORRECTION = 1 };
 
 pub const INSERT_TEXT_AT_SELECTION_FLAGS = enum(u32) {
     NOQUERY = 1,
@@ -495,22 +535,42 @@ pub const TF_IAS_NOQUERY = INSERT_TEXT_AT_SELECTION_FLAGS.NOQUERY;
 pub const TF_IAS_QUERYONLY = INSERT_TEXT_AT_SELECTION_FLAGS.QUERYONLY;
 pub const TF_IAS_NO_DEFAULT_COMPOSITION = INSERT_TEXT_AT_SELECTION_FLAGS.NO_DEFAULT_COMPOSITION;
 
-pub const ANCHOR_CHANGE_HISTORY_FLAGS = enum(u32) {
-    PRECEDING_DEL = 1,
-    FOLLOWING_DEL = 2,
-    _,
-    pub fn initFlags(o: struct {
-        PRECEDING_DEL: u1 = 0,
-        FOLLOWING_DEL: u1 = 0,
-    }) ANCHOR_CHANGE_HISTORY_FLAGS {
-        return @as(ANCHOR_CHANGE_HISTORY_FLAGS, @enumFromInt(
-              (if (o.PRECEDING_DEL == 1) @intFromEnum(ANCHOR_CHANGE_HISTORY_FLAGS.PRECEDING_DEL) else 0)
-            | (if (o.FOLLOWING_DEL == 1) @intFromEnum(ANCHOR_CHANGE_HISTORY_FLAGS.FOLLOWING_DEL) else 0)
-        ));
-    }
+pub const ANCHOR_CHANGE_HISTORY_FLAGS = packed struct(u32) {
+    PRECEDING_DEL: u1 = 0,
+    FOLLOWING_DEL: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TS_CH_PRECEDING_DEL = ANCHOR_CHANGE_HISTORY_FLAGS.PRECEDING_DEL;
-pub const TS_CH_FOLLOWING_DEL = ANCHOR_CHANGE_HISTORY_FLAGS.FOLLOWING_DEL;
+pub const TS_CH_PRECEDING_DEL = ANCHOR_CHANGE_HISTORY_FLAGS{ .PRECEDING_DEL = 1 };
+pub const TS_CH_FOLLOWING_DEL = ANCHOR_CHANGE_HISTORY_FLAGS{ .FOLLOWING_DEL = 1 };
 
 pub const TEXT_STORE_LOCK_FLAGS = enum(u32) {
     D = 2,
@@ -519,51 +579,85 @@ pub const TEXT_STORE_LOCK_FLAGS = enum(u32) {
 pub const TS_LF_READ = TEXT_STORE_LOCK_FLAGS.D;
 pub const TS_LF_READWRITE = TEXT_STORE_LOCK_FLAGS.WRITE;
 
-pub const GET_TEXT_AND_PROPERTY_UPDATES_FLAGS = enum(u32) {
-    NONE = 0,
-    INCL_TEXT = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        INCL_TEXT: u1 = 0,
-    }) GET_TEXT_AND_PROPERTY_UPDATES_FLAGS {
-        return @as(GET_TEXT_AND_PROPERTY_UPDATES_FLAGS, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(GET_TEXT_AND_PROPERTY_UPDATES_FLAGS.NONE) else 0)
-            | (if (o.INCL_TEXT == 1) @intFromEnum(GET_TEXT_AND_PROPERTY_UPDATES_FLAGS.INCL_TEXT) else 0)
-        ));
-    }
+pub const GET_TEXT_AND_PROPERTY_UPDATES_FLAGS = packed struct(u32) {
+    INCL_TEXT: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TF_GTP_NONE = GET_TEXT_AND_PROPERTY_UPDATES_FLAGS.NONE;
-pub const TF_GTP_INCL_TEXT = GET_TEXT_AND_PROPERTY_UPDATES_FLAGS.INCL_TEXT;
+pub const TF_GTP_NONE = GET_TEXT_AND_PROPERTY_UPDATES_FLAGS{ };
+pub const TF_GTP_INCL_TEXT = GET_TEXT_AND_PROPERTY_UPDATES_FLAGS{ .INCL_TEXT = 1 };
 
-pub const TF_CONTEXT_EDIT_CONTEXT_FLAGS = enum(u32) {
-    ASYNCDONTCARE = 0,
-    SYNC = 1,
-    READ = 2,
-    READWRITE = 6,
-    ASYNC = 8,
-    _,
-    pub fn initFlags(o: struct {
-        ASYNCDONTCARE: u1 = 0,
-        SYNC: u1 = 0,
-        READ: u1 = 0,
-        READWRITE: u1 = 0,
-        ASYNC: u1 = 0,
-    }) TF_CONTEXT_EDIT_CONTEXT_FLAGS {
-        return @as(TF_CONTEXT_EDIT_CONTEXT_FLAGS, @enumFromInt(
-              (if (o.ASYNCDONTCARE == 1) @intFromEnum(TF_CONTEXT_EDIT_CONTEXT_FLAGS.ASYNCDONTCARE) else 0)
-            | (if (o.SYNC == 1) @intFromEnum(TF_CONTEXT_EDIT_CONTEXT_FLAGS.SYNC) else 0)
-            | (if (o.READ == 1) @intFromEnum(TF_CONTEXT_EDIT_CONTEXT_FLAGS.READ) else 0)
-            | (if (o.READWRITE == 1) @intFromEnum(TF_CONTEXT_EDIT_CONTEXT_FLAGS.READWRITE) else 0)
-            | (if (o.ASYNC == 1) @intFromEnum(TF_CONTEXT_EDIT_CONTEXT_FLAGS.ASYNC) else 0)
-        ));
-    }
+pub const TF_CONTEXT_EDIT_CONTEXT_FLAGS = packed struct(u32) {
+    SYNC: u1 = 0,
+    READ: u1 = 0,
+    _2: u1 = 0,
+    ASYNC: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const TF_ES_ASYNCDONTCARE = TF_CONTEXT_EDIT_CONTEXT_FLAGS.ASYNCDONTCARE;
-pub const TF_ES_SYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS.SYNC;
-pub const TF_ES_READ = TF_CONTEXT_EDIT_CONTEXT_FLAGS.READ;
-pub const TF_ES_READWRITE = TF_CONTEXT_EDIT_CONTEXT_FLAGS.READWRITE;
-pub const TF_ES_ASYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS.ASYNC;
+pub const TF_ES_ASYNCDONTCARE = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ };
+pub const TF_ES_SYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ .SYNC = 1 };
+pub const TF_ES_READ = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ .READ = 1 };
+pub const TF_ES_READWRITE = TF_CONTEXT_EDIT_CONTEXT_FLAGS{
+    .READ = 1,
+    ._2 = 1,
+};
+pub const TF_ES_ASYNC = TF_CONTEXT_EDIT_CONTEXT_FLAGS{ .ASYNC = 1 };
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HKL = *opaque{};

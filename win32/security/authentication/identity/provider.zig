@@ -25,46 +25,48 @@ pub const IDENTITY_TYPE = enum(i32) {
 pub const IDENTITIES_ALL = IDENTITY_TYPE.ALL;
 pub const IDENTITIES_ME_ONLY = IDENTITY_TYPE.ME_ONLY;
 
-pub const IdentityUpdateEvent = enum(u32) {
-    ASSOCIATED = 1,
-    DISASSOCIATED = 2,
-    CREATED = 4,
-    IMPORTED = 8,
-    DELETED = 16,
-    PROPCHANGED = 32,
-    CONNECTED = 64,
-    DISCONNECTED = 128,
-    _,
-    pub fn initFlags(o: struct {
-        ASSOCIATED: u1 = 0,
-        DISASSOCIATED: u1 = 0,
-        CREATED: u1 = 0,
-        IMPORTED: u1 = 0,
-        DELETED: u1 = 0,
-        PROPCHANGED: u1 = 0,
-        CONNECTED: u1 = 0,
-        DISCONNECTED: u1 = 0,
-    }) IdentityUpdateEvent {
-        return @as(IdentityUpdateEvent, @enumFromInt(
-              (if (o.ASSOCIATED == 1) @intFromEnum(IdentityUpdateEvent.ASSOCIATED) else 0)
-            | (if (o.DISASSOCIATED == 1) @intFromEnum(IdentityUpdateEvent.DISASSOCIATED) else 0)
-            | (if (o.CREATED == 1) @intFromEnum(IdentityUpdateEvent.CREATED) else 0)
-            | (if (o.IMPORTED == 1) @intFromEnum(IdentityUpdateEvent.IMPORTED) else 0)
-            | (if (o.DELETED == 1) @intFromEnum(IdentityUpdateEvent.DELETED) else 0)
-            | (if (o.PROPCHANGED == 1) @intFromEnum(IdentityUpdateEvent.PROPCHANGED) else 0)
-            | (if (o.CONNECTED == 1) @intFromEnum(IdentityUpdateEvent.CONNECTED) else 0)
-            | (if (o.DISCONNECTED == 1) @intFromEnum(IdentityUpdateEvent.DISCONNECTED) else 0)
-        ));
-    }
+pub const IdentityUpdateEvent = packed struct(u32) {
+    ASSOCIATED: u1 = 0,
+    DISASSOCIATED: u1 = 0,
+    CREATED: u1 = 0,
+    IMPORTED: u1 = 0,
+    DELETED: u1 = 0,
+    PROPCHANGED: u1 = 0,
+    CONNECTED: u1 = 0,
+    DISCONNECTED: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const IDENTITY_ASSOCIATED = IdentityUpdateEvent.ASSOCIATED;
-pub const IDENTITY_DISASSOCIATED = IdentityUpdateEvent.DISASSOCIATED;
-pub const IDENTITY_CREATED = IdentityUpdateEvent.CREATED;
-pub const IDENTITY_IMPORTED = IdentityUpdateEvent.IMPORTED;
-pub const IDENTITY_DELETED = IdentityUpdateEvent.DELETED;
-pub const IDENTITY_PROPCHANGED = IdentityUpdateEvent.PROPCHANGED;
-pub const IDENTITY_CONNECTED = IdentityUpdateEvent.CONNECTED;
-pub const IDENTITY_DISCONNECTED = IdentityUpdateEvent.DISCONNECTED;
+pub const IDENTITY_ASSOCIATED = IdentityUpdateEvent{ .ASSOCIATED = 1 };
+pub const IDENTITY_DISASSOCIATED = IdentityUpdateEvent{ .DISASSOCIATED = 1 };
+pub const IDENTITY_CREATED = IdentityUpdateEvent{ .CREATED = 1 };
+pub const IDENTITY_IMPORTED = IdentityUpdateEvent{ .IMPORTED = 1 };
+pub const IDENTITY_DELETED = IdentityUpdateEvent{ .DELETED = 1 };
+pub const IDENTITY_PROPCHANGED = IdentityUpdateEvent{ .PROPCHANGED = 1 };
+pub const IDENTITY_CONNECTED = IdentityUpdateEvent{ .CONNECTED = 1 };
+pub const IDENTITY_DISCONNECTED = IdentityUpdateEvent{ .DISCONNECTED = 1 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IIdentityAdvise_Value = Guid.initString("4e982fed-d14b-440c-b8d6-bb386453d386");

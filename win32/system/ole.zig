@@ -631,50 +631,115 @@ pub const SID_ProvideRuntimeContext = Guid.initString("74a5040c-dd0c-48f0-ac85-1
 //--------------------------------------------------------------------------------
 // Section: Types (217)
 //--------------------------------------------------------------------------------
-pub const UPDFCACHE_FLAGS = enum(u32) {
-    ALL = 2147483647,
-    ALLBUTNODATACACHE = 2147483646,
-    NORMALCACHE = 8,
-    IFBLANK = 16,
-    ONLYIFBLANK = 2147483648,
-    NODATACACHE = 1,
-    ONSAVECACHE = 2,
-    ONSTOPCACHE = 4,
-    IFBLANKORONSAVECACHE = 18,
-    _,
-    pub fn initFlags(o: struct {
-        ALL: u1 = 0,
-        ALLBUTNODATACACHE: u1 = 0,
-        NORMALCACHE: u1 = 0,
-        IFBLANK: u1 = 0,
-        ONLYIFBLANK: u1 = 0,
-        NODATACACHE: u1 = 0,
-        ONSAVECACHE: u1 = 0,
-        ONSTOPCACHE: u1 = 0,
-        IFBLANKORONSAVECACHE: u1 = 0,
-    }) UPDFCACHE_FLAGS {
-        return @as(UPDFCACHE_FLAGS, @enumFromInt(
-              (if (o.ALL == 1) @intFromEnum(UPDFCACHE_FLAGS.ALL) else 0)
-            | (if (o.ALLBUTNODATACACHE == 1) @intFromEnum(UPDFCACHE_FLAGS.ALLBUTNODATACACHE) else 0)
-            | (if (o.NORMALCACHE == 1) @intFromEnum(UPDFCACHE_FLAGS.NORMALCACHE) else 0)
-            | (if (o.IFBLANK == 1) @intFromEnum(UPDFCACHE_FLAGS.IFBLANK) else 0)
-            | (if (o.ONLYIFBLANK == 1) @intFromEnum(UPDFCACHE_FLAGS.ONLYIFBLANK) else 0)
-            | (if (o.NODATACACHE == 1) @intFromEnum(UPDFCACHE_FLAGS.NODATACACHE) else 0)
-            | (if (o.ONSAVECACHE == 1) @intFromEnum(UPDFCACHE_FLAGS.ONSAVECACHE) else 0)
-            | (if (o.ONSTOPCACHE == 1) @intFromEnum(UPDFCACHE_FLAGS.ONSTOPCACHE) else 0)
-            | (if (o.IFBLANKORONSAVECACHE == 1) @intFromEnum(UPDFCACHE_FLAGS.IFBLANKORONSAVECACHE) else 0)
-        ));
-    }
+pub const UPDFCACHE_FLAGS = packed struct(u32) {
+    NODATACACHE: u1 = 0,
+    ONSAVECACHE: u1 = 0,
+    ONSTOPCACHE: u1 = 0,
+    NORMALCACHE: u1 = 0,
+    IFBLANK: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    ONLYIFBLANK: u1 = 0,
 };
-pub const UPDFCACHE_ALL = UPDFCACHE_FLAGS.ALL;
-pub const UPDFCACHE_ALLBUTNODATACACHE = UPDFCACHE_FLAGS.ALLBUTNODATACACHE;
-pub const UPDFCACHE_NORMALCACHE = UPDFCACHE_FLAGS.NORMALCACHE;
-pub const UPDFCACHE_IFBLANK = UPDFCACHE_FLAGS.IFBLANK;
-pub const UPDFCACHE_ONLYIFBLANK = UPDFCACHE_FLAGS.ONLYIFBLANK;
-pub const UPDFCACHE_NODATACACHE = UPDFCACHE_FLAGS.NODATACACHE;
-pub const UPDFCACHE_ONSAVECACHE = UPDFCACHE_FLAGS.ONSAVECACHE;
-pub const UPDFCACHE_ONSTOPCACHE = UPDFCACHE_FLAGS.ONSTOPCACHE;
-pub const UPDFCACHE_IFBLANKORONSAVECACHE = UPDFCACHE_FLAGS.IFBLANKORONSAVECACHE;
+pub const UPDFCACHE_ALL = UPDFCACHE_FLAGS{
+    .NODATACACHE = 1,
+    .ONSAVECACHE = 1,
+    .ONSTOPCACHE = 1,
+    .NORMALCACHE = 1,
+    .IFBLANK = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+};
+pub const UPDFCACHE_ALLBUTNODATACACHE = UPDFCACHE_FLAGS{
+    .ONSAVECACHE = 1,
+    .ONSTOPCACHE = 1,
+    .NORMALCACHE = 1,
+    .IFBLANK = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+};
+pub const UPDFCACHE_NORMALCACHE = UPDFCACHE_FLAGS{ .NORMALCACHE = 1 };
+pub const UPDFCACHE_IFBLANK = UPDFCACHE_FLAGS{ .IFBLANK = 1 };
+pub const UPDFCACHE_ONLYIFBLANK = UPDFCACHE_FLAGS{ .ONLYIFBLANK = 1 };
+pub const UPDFCACHE_NODATACACHE = UPDFCACHE_FLAGS{ .NODATACACHE = 1 };
+pub const UPDFCACHE_ONSAVECACHE = UPDFCACHE_FLAGS{ .ONSAVECACHE = 1 };
+pub const UPDFCACHE_ONSTOPCACHE = UPDFCACHE_FLAGS{ .ONSTOPCACHE = 1 };
+pub const UPDFCACHE_IFBLANKORONSAVECACHE = UPDFCACHE_FLAGS{
+    .ONSAVECACHE = 1,
+    .IFBLANK = 1,
+};
 
 pub const ENUM_CONTROLS_WHICH_FLAGS = enum(u32) {
     W_WCH_SIBLING = 1,
@@ -8579,42 +8644,47 @@ pub const IContinueCallback = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PRINTFLAG = enum(u32) {
-    MAYBOTHERUSER = 1,
-    PROMPTUSER = 2,
-    USERMAYCHANGEPRINTER = 4,
-    RECOMPOSETODEVICE = 8,
-    DONTACTUALLYPRINT = 16,
-    FORCEPROPERTIES = 32,
-    PRINTTOFILE = 64,
-    _,
-    pub fn initFlags(o: struct {
-        MAYBOTHERUSER: u1 = 0,
-        PROMPTUSER: u1 = 0,
-        USERMAYCHANGEPRINTER: u1 = 0,
-        RECOMPOSETODEVICE: u1 = 0,
-        DONTACTUALLYPRINT: u1 = 0,
-        FORCEPROPERTIES: u1 = 0,
-        PRINTTOFILE: u1 = 0,
-    }) PRINTFLAG {
-        return @as(PRINTFLAG, @enumFromInt(
-              (if (o.MAYBOTHERUSER == 1) @intFromEnum(PRINTFLAG.MAYBOTHERUSER) else 0)
-            | (if (o.PROMPTUSER == 1) @intFromEnum(PRINTFLAG.PROMPTUSER) else 0)
-            | (if (o.USERMAYCHANGEPRINTER == 1) @intFromEnum(PRINTFLAG.USERMAYCHANGEPRINTER) else 0)
-            | (if (o.RECOMPOSETODEVICE == 1) @intFromEnum(PRINTFLAG.RECOMPOSETODEVICE) else 0)
-            | (if (o.DONTACTUALLYPRINT == 1) @intFromEnum(PRINTFLAG.DONTACTUALLYPRINT) else 0)
-            | (if (o.FORCEPROPERTIES == 1) @intFromEnum(PRINTFLAG.FORCEPROPERTIES) else 0)
-            | (if (o.PRINTTOFILE == 1) @intFromEnum(PRINTFLAG.PRINTTOFILE) else 0)
-        ));
-    }
+pub const PRINTFLAG = packed struct(u32) {
+    MAYBOTHERUSER: u1 = 0,
+    PROMPTUSER: u1 = 0,
+    USERMAYCHANGEPRINTER: u1 = 0,
+    RECOMPOSETODEVICE: u1 = 0,
+    DONTACTUALLYPRINT: u1 = 0,
+    FORCEPROPERTIES: u1 = 0,
+    PRINTTOFILE: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PRINTFLAG_MAYBOTHERUSER = PRINTFLAG.MAYBOTHERUSER;
-pub const PRINTFLAG_PROMPTUSER = PRINTFLAG.PROMPTUSER;
-pub const PRINTFLAG_USERMAYCHANGEPRINTER = PRINTFLAG.USERMAYCHANGEPRINTER;
-pub const PRINTFLAG_RECOMPOSETODEVICE = PRINTFLAG.RECOMPOSETODEVICE;
-pub const PRINTFLAG_DONTACTUALLYPRINT = PRINTFLAG.DONTACTUALLYPRINT;
-pub const PRINTFLAG_FORCEPROPERTIES = PRINTFLAG.FORCEPROPERTIES;
-pub const PRINTFLAG_PRINTTOFILE = PRINTFLAG.PRINTTOFILE;
+pub const PRINTFLAG_MAYBOTHERUSER = PRINTFLAG{ .MAYBOTHERUSER = 1 };
+pub const PRINTFLAG_PROMPTUSER = PRINTFLAG{ .PROMPTUSER = 1 };
+pub const PRINTFLAG_USERMAYCHANGEPRINTER = PRINTFLAG{ .USERMAYCHANGEPRINTER = 1 };
+pub const PRINTFLAG_RECOMPOSETODEVICE = PRINTFLAG{ .RECOMPOSETODEVICE = 1 };
+pub const PRINTFLAG_DONTACTUALLYPRINT = PRINTFLAG{ .DONTACTUALLYPRINT = 1 };
+pub const PRINTFLAG_FORCEPROPERTIES = PRINTFLAG{ .FORCEPROPERTIES = 1 };
+pub const PRINTFLAG_PRINTTOFILE = PRINTFLAG{ .PRINTTOFILE = 1 };
 
 pub const PAGERANGE = extern struct {
     nFromPage: i32,

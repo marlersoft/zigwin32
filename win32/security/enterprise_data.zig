@@ -372,30 +372,44 @@ pub const HTHREAD_NETWORK_CONTEXT = extern struct {
     ThreadContext: ?HANDLE,
 };
 
-pub const ENTERPRISE_DATA_POLICIES = enum(u32) {
-    NONE = 0,
-    ALLOWED = 1,
-    ENLIGHTENED = 2,
-    EXEMPT = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ALLOWED: u1 = 0,
-        ENLIGHTENED: u1 = 0,
-        EXEMPT: u1 = 0,
-    }) ENTERPRISE_DATA_POLICIES {
-        return @as(ENTERPRISE_DATA_POLICIES, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(ENTERPRISE_DATA_POLICIES.NONE) else 0)
-            | (if (o.ALLOWED == 1) @intFromEnum(ENTERPRISE_DATA_POLICIES.ALLOWED) else 0)
-            | (if (o.ENLIGHTENED == 1) @intFromEnum(ENTERPRISE_DATA_POLICIES.ENLIGHTENED) else 0)
-            | (if (o.EXEMPT == 1) @intFromEnum(ENTERPRISE_DATA_POLICIES.EXEMPT) else 0)
-        ));
-    }
+pub const ENTERPRISE_DATA_POLICIES = packed struct(u32) {
+    ALLOWED: u1 = 0,
+    ENLIGHTENED: u1 = 0,
+    EXEMPT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const ENTERPRISE_POLICY_NONE = ENTERPRISE_DATA_POLICIES.NONE;
-pub const ENTERPRISE_POLICY_ALLOWED = ENTERPRISE_DATA_POLICIES.ALLOWED;
-pub const ENTERPRISE_POLICY_ENLIGHTENED = ENTERPRISE_DATA_POLICIES.ENLIGHTENED;
-pub const ENTERPRISE_POLICY_EXEMPT = ENTERPRISE_DATA_POLICIES.EXEMPT;
+pub const ENTERPRISE_POLICY_NONE = ENTERPRISE_DATA_POLICIES{ };
+pub const ENTERPRISE_POLICY_ALLOWED = ENTERPRISE_DATA_POLICIES{ .ALLOWED = 1 };
+pub const ENTERPRISE_POLICY_ENLIGHTENED = ENTERPRISE_DATA_POLICIES{ .ENLIGHTENED = 1 };
+pub const ENTERPRISE_POLICY_EXEMPT = ENTERPRISE_DATA_POLICIES{ .EXEMPT = 1 };
 
 pub const SRPHOSTING_TYPE = enum(i32) {
     NONE = 0,

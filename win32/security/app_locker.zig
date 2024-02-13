@@ -47,30 +47,44 @@ pub const SRP_POLICY_MANAGEDINSTALLER = "MANAGEDINSTALLER";
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS = enum(u32) {
-    NULL_IF_EQUAL = 1,
-    COMPARE_ONLY = 2,
-    MAKE_INERT = 4,
-    WANT_FLAGS = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NULL_IF_EQUAL: u1 = 0,
-        COMPARE_ONLY: u1 = 0,
-        MAKE_INERT: u1 = 0,
-        WANT_FLAGS: u1 = 0,
-    }) SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS {
-        return @as(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS, @enumFromInt(
-              (if (o.NULL_IF_EQUAL == 1) @intFromEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.NULL_IF_EQUAL) else 0)
-            | (if (o.COMPARE_ONLY == 1) @intFromEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.COMPARE_ONLY) else 0)
-            | (if (o.MAKE_INERT == 1) @intFromEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.MAKE_INERT) else 0)
-            | (if (o.WANT_FLAGS == 1) @intFromEnum(SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.WANT_FLAGS) else 0)
-        ));
-    }
+pub const SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS = packed struct(u32) {
+    NULL_IF_EQUAL: u1 = 0,
+    COMPARE_ONLY: u1 = 0,
+    MAKE_INERT: u1 = 0,
+    WANT_FLAGS: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const SAFER_TOKEN_NULL_IF_EQUAL = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.NULL_IF_EQUAL;
-pub const SAFER_TOKEN_COMPARE_ONLY = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.COMPARE_ONLY;
-pub const SAFER_TOKEN_MAKE_INERT = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.MAKE_INERT;
-pub const SAFER_TOKEN_WANT_FLAGS = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS.WANT_FLAGS;
+pub const SAFER_TOKEN_NULL_IF_EQUAL = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS{ .NULL_IF_EQUAL = 1 };
+pub const SAFER_TOKEN_COMPARE_ONLY = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS{ .COMPARE_ONLY = 1 };
+pub const SAFER_TOKEN_MAKE_INERT = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS{ .MAKE_INERT = 1 };
+pub const SAFER_TOKEN_WANT_FLAGS = SAFER_COMPUTE_TOKEN_FROM_LEVEL_FLAGS{ .WANT_FLAGS = 1 };
 
 pub const SAFER_CODE_PROPERTIES_V1 = extern struct {
     cbSize: u32,

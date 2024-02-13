@@ -288,26 +288,43 @@ pub const OLESCRIPT_E_SYNTAX = @import("../zig.zig").typedConst(HRESULT, @as(i32
 //--------------------------------------------------------------------------------
 // Section: Types (112)
 //--------------------------------------------------------------------------------
-pub const AUTHZ_RESOURCE_MANAGER_FLAGS = enum(u32) {
-    NO_AUDIT = 1,
-    INITIALIZE_UNDER_IMPERSONATION = 2,
-    NO_CENTRAL_ACCESS_POLICIES = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NO_AUDIT: u1 = 0,
-        INITIALIZE_UNDER_IMPERSONATION: u1 = 0,
-        NO_CENTRAL_ACCESS_POLICIES: u1 = 0,
-    }) AUTHZ_RESOURCE_MANAGER_FLAGS {
-        return @as(AUTHZ_RESOURCE_MANAGER_FLAGS, @enumFromInt(
-              (if (o.NO_AUDIT == 1) @intFromEnum(AUTHZ_RESOURCE_MANAGER_FLAGS.NO_AUDIT) else 0)
-            | (if (o.INITIALIZE_UNDER_IMPERSONATION == 1) @intFromEnum(AUTHZ_RESOURCE_MANAGER_FLAGS.INITIALIZE_UNDER_IMPERSONATION) else 0)
-            | (if (o.NO_CENTRAL_ACCESS_POLICIES == 1) @intFromEnum(AUTHZ_RESOURCE_MANAGER_FLAGS.NO_CENTRAL_ACCESS_POLICIES) else 0)
-        ));
-    }
+pub const AUTHZ_RESOURCE_MANAGER_FLAGS = packed struct(u32) {
+    NO_AUDIT: u1 = 0,
+    INITIALIZE_UNDER_IMPERSONATION: u1 = 0,
+    NO_CENTRAL_ACCESS_POLICIES: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AUTHZ_RM_FLAG_NO_AUDIT = AUTHZ_RESOURCE_MANAGER_FLAGS.NO_AUDIT;
-pub const AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION = AUTHZ_RESOURCE_MANAGER_FLAGS.INITIALIZE_UNDER_IMPERSONATION;
-pub const AUTHZ_RM_FLAG_NO_CENTRAL_ACCESS_POLICIES = AUTHZ_RESOURCE_MANAGER_FLAGS.NO_CENTRAL_ACCESS_POLICIES;
+pub const AUTHZ_RM_FLAG_NO_AUDIT = AUTHZ_RESOURCE_MANAGER_FLAGS{ .NO_AUDIT = 1 };
+pub const AUTHZ_RM_FLAG_INITIALIZE_UNDER_IMPERSONATION = AUTHZ_RESOURCE_MANAGER_FLAGS{ .INITIALIZE_UNDER_IMPERSONATION = 1 };
+pub const AUTHZ_RM_FLAG_NO_CENTRAL_ACCESS_POLICIES = AUTHZ_RESOURCE_MANAGER_FLAGS{ .NO_CENTRAL_ACCESS_POLICIES = 1 };
 
 pub const AUTHZ_ACCESS_CHECK_FLAGS = enum(u32) {
     D = 1,
@@ -350,22 +367,42 @@ pub const ACTRL_ACCESS_DENIED = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.CCESS_DENIED;
 pub const ACTRL_AUDIT_SUCCESS = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_SUCCESS;
 pub const ACTRL_AUDIT_FAILURE = ACTRL_ACCESS_ENTRY_ACCESS_FLAGS.UDIT_FAILURE;
 
-pub const AUTHZ_SECURITY_ATTRIBUTE_FLAGS = enum(u32) {
-    NON_INHERITABLE = 1,
-    VALUE_CASE_SENSITIVE = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NON_INHERITABLE: u1 = 0,
-        VALUE_CASE_SENSITIVE: u1 = 0,
-    }) AUTHZ_SECURITY_ATTRIBUTE_FLAGS {
-        return @as(AUTHZ_SECURITY_ATTRIBUTE_FLAGS, @enumFromInt(
-              (if (o.NON_INHERITABLE == 1) @intFromEnum(AUTHZ_SECURITY_ATTRIBUTE_FLAGS.NON_INHERITABLE) else 0)
-            | (if (o.VALUE_CASE_SENSITIVE == 1) @intFromEnum(AUTHZ_SECURITY_ATTRIBUTE_FLAGS.VALUE_CASE_SENSITIVE) else 0)
-        ));
-    }
+pub const AUTHZ_SECURITY_ATTRIBUTE_FLAGS = packed struct(u32) {
+    NON_INHERITABLE: u1 = 0,
+    VALUE_CASE_SENSITIVE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AUTHZ_SECURITY_ATTRIBUTE_NON_INHERITABLE = AUTHZ_SECURITY_ATTRIBUTE_FLAGS.NON_INHERITABLE;
-pub const AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = AUTHZ_SECURITY_ATTRIBUTE_FLAGS.VALUE_CASE_SENSITIVE;
+pub const AUTHZ_SECURITY_ATTRIBUTE_NON_INHERITABLE = AUTHZ_SECURITY_ATTRIBUTE_FLAGS{ .NON_INHERITABLE = 1 };
+pub const AUTHZ_SECURITY_ATTRIBUTE_VALUE_CASE_SENSITIVE = AUTHZ_SECURITY_ATTRIBUTE_FLAGS{ .VALUE_CASE_SENSITIVE = 1 };
 
 pub const SE_OBJECT_TYPE = enum(i32) {
     UNKNOWN_OBJECT_TYPE = 0,

@@ -34,51 +34,82 @@ pub const DPI_HOSTING_BEHAVIOR_INVALID = DPI_HOSTING_BEHAVIOR.INVALID;
 pub const DPI_HOSTING_BEHAVIOR_DEFAULT = DPI_HOSTING_BEHAVIOR.DEFAULT;
 pub const DPI_HOSTING_BEHAVIOR_MIXED = DPI_HOSTING_BEHAVIOR.MIXED;
 
-pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = enum(u32) {
-    EFAULT = 0,
-    ISABLE_FONT_UPDATE = 1,
-    ISABLE_RELAYOUT = 2,
-    _,
-    pub fn initFlags(o: struct {
-        EFAULT: u1 = 0,
-        ISABLE_FONT_UPDATE: u1 = 0,
-        ISABLE_RELAYOUT: u1 = 0,
-    }) DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS {
-        return @as(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS, @enumFromInt(
-              (if (o.EFAULT == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
-            | (if (o.ISABLE_FONT_UPDATE == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE) else 0)
-            | (if (o.ISABLE_RELAYOUT == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT) else 0)
-        ));
-    }
+pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = packed struct(u32) {
+    ISABLE_FONT_UPDATE: u1 = 0,
+    ISABLE_RELAYOUT: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT;
-pub const DCDC_DISABLE_FONT_UPDATE = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE;
-pub const DCDC_DISABLE_RELAYOUT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT;
+pub const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS{ };
+pub const DCDC_DISABLE_FONT_UPDATE = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS{ .ISABLE_FONT_UPDATE = 1 };
+pub const DCDC_DISABLE_RELAYOUT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS{ .ISABLE_RELAYOUT = 1 };
 
-pub const DIALOG_DPI_CHANGE_BEHAVIORS = enum(u32) {
-    EFAULT = 0,
-    ISABLE_ALL = 1,
-    ISABLE_RESIZE = 2,
-    ISABLE_CONTROL_RELAYOUT = 4,
-    _,
-    pub fn initFlags(o: struct {
-        EFAULT: u1 = 0,
-        ISABLE_ALL: u1 = 0,
-        ISABLE_RESIZE: u1 = 0,
-        ISABLE_CONTROL_RELAYOUT: u1 = 0,
-    }) DIALOG_DPI_CHANGE_BEHAVIORS {
-        return @as(DIALOG_DPI_CHANGE_BEHAVIORS, @enumFromInt(
-              (if (o.EFAULT == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT) else 0)
-            | (if (o.ISABLE_ALL == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL) else 0)
-            | (if (o.ISABLE_RESIZE == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE) else 0)
-            | (if (o.ISABLE_CONTROL_RELAYOUT == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT) else 0)
-        ));
-    }
+pub const DIALOG_DPI_CHANGE_BEHAVIORS = packed struct(u32) {
+    ISABLE_ALL: u1 = 0,
+    ISABLE_RESIZE: u1 = 0,
+    ISABLE_CONTROL_RELAYOUT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT;
-pub const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL;
-pub const DDC_DISABLE_RESIZE = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE;
-pub const DDC_DISABLE_CONTROL_RELAYOUT = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT;
+pub const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS{ };
+pub const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS{ .ISABLE_ALL = 1 };
+pub const DDC_DISABLE_RESIZE = DIALOG_DPI_CHANGE_BEHAVIORS{ .ISABLE_RESIZE = 1 };
+pub const DDC_DISABLE_CONTROL_RELAYOUT = DIALOG_DPI_CHANGE_BEHAVIORS{ .ISABLE_CONTROL_RELAYOUT = 1 };
 
 pub const PROCESS_DPI_AWARENESS = enum(i32) {
     DPI_UNAWARE = 0,

@@ -208,30 +208,77 @@ pub const D2D1_BEZIER_SEGMENT = extern struct {
     point3: D2D_POINT_2F,
 };
 
-pub const D2D1_PATH_SEGMENT = enum(u32) {
-    NONE = 0,
-    FORCE_UNSTROKED = 1,
-    FORCE_ROUND_LINE_JOIN = 2,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        FORCE_UNSTROKED: u1 = 0,
-        FORCE_ROUND_LINE_JOIN: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_PATH_SEGMENT {
-        return @as(D2D1_PATH_SEGMENT, @enumFromInt(
-              (if (o.NONE == 1) @intFromEnum(D2D1_PATH_SEGMENT.NONE) else 0)
-            | (if (o.FORCE_UNSTROKED == 1) @intFromEnum(D2D1_PATH_SEGMENT.FORCE_UNSTROKED) else 0)
-            | (if (o.FORCE_ROUND_LINE_JOIN == 1) @intFromEnum(D2D1_PATH_SEGMENT.FORCE_ROUND_LINE_JOIN) else 0)
-            | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_PATH_SEGMENT.FORCE_DWORD) else 0)
-        ));
-    }
+pub const D2D1_PATH_SEGMENT = packed struct(u32) {
+    FORCE_UNSTROKED: u1 = 0,
+    FORCE_ROUND_LINE_JOIN: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_PATH_SEGMENT_NONE = D2D1_PATH_SEGMENT.NONE;
-pub const D2D1_PATH_SEGMENT_FORCE_UNSTROKED = D2D1_PATH_SEGMENT.FORCE_UNSTROKED;
-pub const D2D1_PATH_SEGMENT_FORCE_ROUND_LINE_JOIN = D2D1_PATH_SEGMENT.FORCE_ROUND_LINE_JOIN;
-pub const D2D1_PATH_SEGMENT_FORCE_DWORD = D2D1_PATH_SEGMENT.FORCE_DWORD;
+pub const D2D1_PATH_SEGMENT_NONE = D2D1_PATH_SEGMENT{ };
+pub const D2D1_PATH_SEGMENT_FORCE_UNSTROKED = D2D1_PATH_SEGMENT{ .FORCE_UNSTROKED = 1 };
+pub const D2D1_PATH_SEGMENT_FORCE_ROUND_LINE_JOIN = D2D1_PATH_SEGMENT{ .FORCE_ROUND_LINE_JOIN = 1 };
+pub const D2D1_PATH_SEGMENT_FORCE_DWORD = D2D1_PATH_SEGMENT{
+    .FORCE_UNSTROKED = 1,
+    .FORCE_ROUND_LINE_JOIN = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_FILL_MODE = enum(u32) {
     ALTERNATE = 0,

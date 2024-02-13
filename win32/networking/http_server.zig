@@ -109,22 +109,42 @@ pub const HTTP_RECEIVE_HTTP_REQUEST_FLAGS = enum(u32) {
 pub const HTTP_RECEIVE_REQUEST_FLAG_COPY_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.COPY_BODY;
 pub const HTTP_RECEIVE_REQUEST_FLAG_FLUSH_BODY = HTTP_RECEIVE_HTTP_REQUEST_FLAGS.FLUSH_BODY;
 
-pub const HTTP_INITIALIZE = enum(u32) {
-    CONFIG = 2,
-    SERVER = 1,
-    _,
-    pub fn initFlags(o: struct {
-        CONFIG: u1 = 0,
-        SERVER: u1 = 0,
-    }) HTTP_INITIALIZE {
-        return @as(HTTP_INITIALIZE, @enumFromInt(
-              (if (o.CONFIG == 1) @intFromEnum(HTTP_INITIALIZE.CONFIG) else 0)
-            | (if (o.SERVER == 1) @intFromEnum(HTTP_INITIALIZE.SERVER) else 0)
-        ));
-    }
+pub const HTTP_INITIALIZE = packed struct(u32) {
+    SERVER: u1 = 0,
+    CONFIG: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const HTTP_INITIALIZE_CONFIG = HTTP_INITIALIZE.CONFIG;
-pub const HTTP_INITIALIZE_SERVER = HTTP_INITIALIZE.SERVER;
+pub const HTTP_INITIALIZE_CONFIG = HTTP_INITIALIZE{ .CONFIG = 1 };
+pub const HTTP_INITIALIZE_SERVER = HTTP_INITIALIZE{ .SERVER = 1 };
 
 pub const HTTP_SERVER_PROPERTY = enum(i32) {
     AuthenticationProperty = 0,

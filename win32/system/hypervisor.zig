@@ -293,22 +293,42 @@ pub const WHV_X64_CPUID_RESULT = extern struct {
     Edx: u32,
 };
 
-pub const WHV_X64_CPUID_RESULT2_FLAGS = enum(u32) {
-    SubleafSpecific = 1,
-    VpSpecific = 2,
-    _,
-    pub fn initFlags(o: struct {
-        SubleafSpecific: u1 = 0,
-        VpSpecific: u1 = 0,
-    }) WHV_X64_CPUID_RESULT2_FLAGS {
-        return @as(WHV_X64_CPUID_RESULT2_FLAGS, @enumFromInt(
-              (if (o.SubleafSpecific == 1) @intFromEnum(WHV_X64_CPUID_RESULT2_FLAGS.SubleafSpecific) else 0)
-            | (if (o.VpSpecific == 1) @intFromEnum(WHV_X64_CPUID_RESULT2_FLAGS.VpSpecific) else 0)
-        ));
-    }
+pub const WHV_X64_CPUID_RESULT2_FLAGS = packed struct(u32) {
+    SubleafSpecific: u1 = 0,
+    VpSpecific: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const WHvX64CpuidResult2FlagSubleafSpecific = WHV_X64_CPUID_RESULT2_FLAGS.SubleafSpecific;
-pub const WHvX64CpuidResult2FlagVpSpecific = WHV_X64_CPUID_RESULT2_FLAGS.VpSpecific;
+pub const WHvX64CpuidResult2FlagSubleafSpecific = WHV_X64_CPUID_RESULT2_FLAGS{ .SubleafSpecific = 1 };
+pub const WHvX64CpuidResult2FlagVpSpecific = WHV_X64_CPUID_RESULT2_FLAGS{ .VpSpecific = 1 };
 
 pub const WHV_CPUID_OUTPUT = extern struct {
     Eax: u32,
@@ -421,75 +441,88 @@ pub const WHV_PARTITION_PROPERTY = extern union {
     DisableSmt: BOOL,
 };
 
-pub const WHV_MAP_GPA_RANGE_FLAGS = enum(u32) {
-    None = 0,
-    Read = 1,
-    Write = 2,
-    Execute = 4,
-    TrackDirtyPages = 8,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        Read: u1 = 0,
-        Write: u1 = 0,
-        Execute: u1 = 0,
-        TrackDirtyPages: u1 = 0,
-    }) WHV_MAP_GPA_RANGE_FLAGS {
-        return @as(WHV_MAP_GPA_RANGE_FLAGS, @enumFromInt(
-              (if (o.None == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.None) else 0)
-            | (if (o.Read == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Read) else 0)
-            | (if (o.Write == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Write) else 0)
-            | (if (o.Execute == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.Execute) else 0)
-            | (if (o.TrackDirtyPages == 1) @intFromEnum(WHV_MAP_GPA_RANGE_FLAGS.TrackDirtyPages) else 0)
-        ));
-    }
+pub const WHV_MAP_GPA_RANGE_FLAGS = packed struct(u32) {
+    Read: u1 = 0,
+    Write: u1 = 0,
+    Execute: u1 = 0,
+    TrackDirtyPages: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const WHvMapGpaRangeFlagNone = WHV_MAP_GPA_RANGE_FLAGS.None;
-pub const WHvMapGpaRangeFlagRead = WHV_MAP_GPA_RANGE_FLAGS.Read;
-pub const WHvMapGpaRangeFlagWrite = WHV_MAP_GPA_RANGE_FLAGS.Write;
-pub const WHvMapGpaRangeFlagExecute = WHV_MAP_GPA_RANGE_FLAGS.Execute;
-pub const WHvMapGpaRangeFlagTrackDirtyPages = WHV_MAP_GPA_RANGE_FLAGS.TrackDirtyPages;
+pub const WHvMapGpaRangeFlagNone = WHV_MAP_GPA_RANGE_FLAGS{ };
+pub const WHvMapGpaRangeFlagRead = WHV_MAP_GPA_RANGE_FLAGS{ .Read = 1 };
+pub const WHvMapGpaRangeFlagWrite = WHV_MAP_GPA_RANGE_FLAGS{ .Write = 1 };
+pub const WHvMapGpaRangeFlagExecute = WHV_MAP_GPA_RANGE_FLAGS{ .Execute = 1 };
+pub const WHvMapGpaRangeFlagTrackDirtyPages = WHV_MAP_GPA_RANGE_FLAGS{ .TrackDirtyPages = 1 };
 
-pub const WHV_TRANSLATE_GVA_FLAGS = enum(u32) {
-    None = 0,
-    ValidateRead = 1,
-    ValidateWrite = 2,
-    ValidateExecute = 4,
-    PrivilegeExempt = 8,
-    SetPageTableBits = 16,
-    EnforceSmap = 256,
-    OverrideSmap = 512,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        ValidateRead: u1 = 0,
-        ValidateWrite: u1 = 0,
-        ValidateExecute: u1 = 0,
-        PrivilegeExempt: u1 = 0,
-        SetPageTableBits: u1 = 0,
-        EnforceSmap: u1 = 0,
-        OverrideSmap: u1 = 0,
-    }) WHV_TRANSLATE_GVA_FLAGS {
-        return @as(WHV_TRANSLATE_GVA_FLAGS, @enumFromInt(
-              (if (o.None == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.None) else 0)
-            | (if (o.ValidateRead == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateRead) else 0)
-            | (if (o.ValidateWrite == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateWrite) else 0)
-            | (if (o.ValidateExecute == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.ValidateExecute) else 0)
-            | (if (o.PrivilegeExempt == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.PrivilegeExempt) else 0)
-            | (if (o.SetPageTableBits == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.SetPageTableBits) else 0)
-            | (if (o.EnforceSmap == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.EnforceSmap) else 0)
-            | (if (o.OverrideSmap == 1) @intFromEnum(WHV_TRANSLATE_GVA_FLAGS.OverrideSmap) else 0)
-        ));
-    }
+pub const WHV_TRANSLATE_GVA_FLAGS = packed struct(u32) {
+    ValidateRead: u1 = 0,
+    ValidateWrite: u1 = 0,
+    ValidateExecute: u1 = 0,
+    PrivilegeExempt: u1 = 0,
+    SetPageTableBits: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    EnforceSmap: u1 = 0,
+    OverrideSmap: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const WHvTranslateGvaFlagNone = WHV_TRANSLATE_GVA_FLAGS.None;
-pub const WHvTranslateGvaFlagValidateRead = WHV_TRANSLATE_GVA_FLAGS.ValidateRead;
-pub const WHvTranslateGvaFlagValidateWrite = WHV_TRANSLATE_GVA_FLAGS.ValidateWrite;
-pub const WHvTranslateGvaFlagValidateExecute = WHV_TRANSLATE_GVA_FLAGS.ValidateExecute;
-pub const WHvTranslateGvaFlagPrivilegeExempt = WHV_TRANSLATE_GVA_FLAGS.PrivilegeExempt;
-pub const WHvTranslateGvaFlagSetPageTableBits = WHV_TRANSLATE_GVA_FLAGS.SetPageTableBits;
-pub const WHvTranslateGvaFlagEnforceSmap = WHV_TRANSLATE_GVA_FLAGS.EnforceSmap;
-pub const WHvTranslateGvaFlagOverrideSmap = WHV_TRANSLATE_GVA_FLAGS.OverrideSmap;
+pub const WHvTranslateGvaFlagNone = WHV_TRANSLATE_GVA_FLAGS{ };
+pub const WHvTranslateGvaFlagValidateRead = WHV_TRANSLATE_GVA_FLAGS{ .ValidateRead = 1 };
+pub const WHvTranslateGvaFlagValidateWrite = WHV_TRANSLATE_GVA_FLAGS{ .ValidateWrite = 1 };
+pub const WHvTranslateGvaFlagValidateExecute = WHV_TRANSLATE_GVA_FLAGS{ .ValidateExecute = 1 };
+pub const WHvTranslateGvaFlagPrivilegeExempt = WHV_TRANSLATE_GVA_FLAGS{ .PrivilegeExempt = 1 };
+pub const WHvTranslateGvaFlagSetPageTableBits = WHV_TRANSLATE_GVA_FLAGS{ .SetPageTableBits = 1 };
+pub const WHvTranslateGvaFlagEnforceSmap = WHV_TRANSLATE_GVA_FLAGS{ .EnforceSmap = 1 };
+pub const WHvTranslateGvaFlagOverrideSmap = WHV_TRANSLATE_GVA_FLAGS{ .OverrideSmap = 1 };
 
 pub const WHV_TRANSLATE_GVA_RESULT_CODE = enum(i32) {
     Success = 0,
@@ -1553,22 +1586,42 @@ pub const WHV_SYNIC_EVENT_PARAMETERS = extern struct {
     FlagNumber: u16,
 };
 
-pub const WHV_ALLOCATE_VPCI_RESOURCE_FLAGS = enum(u32) {
-    None = 0,
-    AllowDirectP2P = 1,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        AllowDirectP2P: u1 = 0,
-    }) WHV_ALLOCATE_VPCI_RESOURCE_FLAGS {
-        return @as(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS, @enumFromInt(
-              (if (o.None == 1) @intFromEnum(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.None) else 0)
-            | (if (o.AllowDirectP2P == 1) @intFromEnum(WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.AllowDirectP2P) else 0)
-        ));
-    }
+pub const WHV_ALLOCATE_VPCI_RESOURCE_FLAGS = packed struct(u32) {
+    AllowDirectP2P: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const WHvAllocateVpciResourceFlagNone = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.None;
-pub const WHvAllocateVpciResourceFlagAllowDirectP2P = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS.AllowDirectP2P;
+pub const WHvAllocateVpciResourceFlagNone = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS{ };
+pub const WHvAllocateVpciResourceFlagAllowDirectP2P = WHV_ALLOCATE_VPCI_RESOURCE_FLAGS{ .AllowDirectP2P = 1 };
 
 pub const WHV_SRIOV_RESOURCE_DESCRIPTOR = extern struct {
     PnpInstanceId: [200]u16,
@@ -1594,26 +1647,43 @@ pub const WHV_VPCI_DEVICE_NOTIFICATION = extern struct {
     },
 };
 
-pub const WHV_CREATE_VPCI_DEVICE_FLAGS = enum(u32) {
-    None = 0,
-    PhysicallyBacked = 1,
-    UseLogicalInterrupts = 2,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        PhysicallyBacked: u1 = 0,
-        UseLogicalInterrupts: u1 = 0,
-    }) WHV_CREATE_VPCI_DEVICE_FLAGS {
-        return @as(WHV_CREATE_VPCI_DEVICE_FLAGS, @enumFromInt(
-              (if (o.None == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.None) else 0)
-            | (if (o.PhysicallyBacked == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.PhysicallyBacked) else 0)
-            | (if (o.UseLogicalInterrupts == 1) @intFromEnum(WHV_CREATE_VPCI_DEVICE_FLAGS.UseLogicalInterrupts) else 0)
-        ));
-    }
+pub const WHV_CREATE_VPCI_DEVICE_FLAGS = packed struct(u32) {
+    PhysicallyBacked: u1 = 0,
+    UseLogicalInterrupts: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const WHvCreateVpciDeviceFlagNone = WHV_CREATE_VPCI_DEVICE_FLAGS.None;
-pub const WHvCreateVpciDeviceFlagPhysicallyBacked = WHV_CREATE_VPCI_DEVICE_FLAGS.PhysicallyBacked;
-pub const WHvCreateVpciDeviceFlagUseLogicalInterrupts = WHV_CREATE_VPCI_DEVICE_FLAGS.UseLogicalInterrupts;
+pub const WHvCreateVpciDeviceFlagNone = WHV_CREATE_VPCI_DEVICE_FLAGS{ };
+pub const WHvCreateVpciDeviceFlagPhysicallyBacked = WHV_CREATE_VPCI_DEVICE_FLAGS{ .PhysicallyBacked = 1 };
+pub const WHvCreateVpciDeviceFlagUseLogicalInterrupts = WHV_CREATE_VPCI_DEVICE_FLAGS{ .UseLogicalInterrupts = 1 };
 
 pub const WHV_VPCI_DEVICE_PROPERTY_CODE = enum(i32) {
     Undefined = 0,
@@ -1639,22 +1709,42 @@ pub const WHV_VPCI_PROBED_BARS = extern struct {
     Value: [6]u32,
 };
 
-pub const WHV_VPCI_MMIO_RANGE_FLAGS = enum(u32) {
-    ReadAccess = 1,
-    WriteAccess = 2,
-    _,
-    pub fn initFlags(o: struct {
-        ReadAccess: u1 = 0,
-        WriteAccess: u1 = 0,
-    }) WHV_VPCI_MMIO_RANGE_FLAGS {
-        return @as(WHV_VPCI_MMIO_RANGE_FLAGS, @enumFromInt(
-              (if (o.ReadAccess == 1) @intFromEnum(WHV_VPCI_MMIO_RANGE_FLAGS.ReadAccess) else 0)
-            | (if (o.WriteAccess == 1) @intFromEnum(WHV_VPCI_MMIO_RANGE_FLAGS.WriteAccess) else 0)
-        ));
-    }
+pub const WHV_VPCI_MMIO_RANGE_FLAGS = packed struct(u32) {
+    ReadAccess: u1 = 0,
+    WriteAccess: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const WHvVpciMmioRangeFlagReadAccess = WHV_VPCI_MMIO_RANGE_FLAGS.ReadAccess;
-pub const WHvVpciMmioRangeFlagWriteAccess = WHV_VPCI_MMIO_RANGE_FLAGS.WriteAccess;
+pub const WHvVpciMmioRangeFlagReadAccess = WHV_VPCI_MMIO_RANGE_FLAGS{ .ReadAccess = 1 };
+pub const WHvVpciMmioRangeFlagWriteAccess = WHV_VPCI_MMIO_RANGE_FLAGS{ .WriteAccess = 1 };
 
 pub const WHV_VPCI_DEVICE_REGISTER_SPACE = enum(i32) {
     ConfigSpace = -1,
@@ -1687,22 +1777,42 @@ pub const WHV_VPCI_DEVICE_REGISTER = extern struct {
     OffsetInBytes: u64,
 };
 
-pub const WHV_VPCI_INTERRUPT_TARGET_FLAGS = enum(u32) {
-    None = 0,
-    Multicast = 1,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        Multicast: u1 = 0,
-    }) WHV_VPCI_INTERRUPT_TARGET_FLAGS {
-        return @as(WHV_VPCI_INTERRUPT_TARGET_FLAGS, @enumFromInt(
-              (if (o.None == 1) @intFromEnum(WHV_VPCI_INTERRUPT_TARGET_FLAGS.None) else 0)
-            | (if (o.Multicast == 1) @intFromEnum(WHV_VPCI_INTERRUPT_TARGET_FLAGS.Multicast) else 0)
-        ));
-    }
+pub const WHV_VPCI_INTERRUPT_TARGET_FLAGS = packed struct(u32) {
+    Multicast: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const WHvVpciInterruptTargetFlagNone = WHV_VPCI_INTERRUPT_TARGET_FLAGS.None;
-pub const WHvVpciInterruptTargetFlagMulticast = WHV_VPCI_INTERRUPT_TARGET_FLAGS.Multicast;
+pub const WHvVpciInterruptTargetFlagNone = WHV_VPCI_INTERRUPT_TARGET_FLAGS{ };
+pub const WHvVpciInterruptTargetFlagMulticast = WHV_VPCI_INTERRUPT_TARGET_FLAGS{ .Multicast = 1 };
 
 pub const WHV_VPCI_INTERRUPT_TARGET = extern struct {
     Vector: u32,
@@ -1941,26 +2051,43 @@ pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_DWORD = HDV_DOORBELL_FLAGS.SIZE_DWORD;
 pub const HDV_DOORBELL_FLAG_TRIGGER_SIZE_QWORD = HDV_DOORBELL_FLAGS.SIZE_QWORD;
 pub const HDV_DOORBELL_FLAG_TRIGGER_ANY_VALUE = HDV_DOORBELL_FLAGS.ANY_VALUE;
 
-pub const HDV_MMIO_MAPPING_FLAGS = enum(u32) {
-    None = 0,
-    Writeable = 1,
-    Executable = 2,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        Writeable: u1 = 0,
-        Executable: u1 = 0,
-    }) HDV_MMIO_MAPPING_FLAGS {
-        return @as(HDV_MMIO_MAPPING_FLAGS, @enumFromInt(
-              (if (o.None == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.None) else 0)
-            | (if (o.Writeable == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.Writeable) else 0)
-            | (if (o.Executable == 1) @intFromEnum(HDV_MMIO_MAPPING_FLAGS.Executable) else 0)
-        ));
-    }
+pub const HDV_MMIO_MAPPING_FLAGS = packed struct(u32) {
+    Writeable: u1 = 0,
+    Executable: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const HdvMmioMappingFlagNone = HDV_MMIO_MAPPING_FLAGS.None;
-pub const HdvMmioMappingFlagWriteable = HDV_MMIO_MAPPING_FLAGS.Writeable;
-pub const HdvMmioMappingFlagExecutable = HDV_MMIO_MAPPING_FLAGS.Executable;
+pub const HdvMmioMappingFlagNone = HDV_MMIO_MAPPING_FLAGS{ };
+pub const HdvMmioMappingFlagWriteable = HDV_MMIO_MAPPING_FLAGS{ .Writeable = 1 };
+pub const HdvMmioMappingFlagExecutable = HDV_MMIO_MAPPING_FLAGS{ .Executable = 1 };
 
 pub const HDV_PCI_DEVICE_INITIALIZE = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
