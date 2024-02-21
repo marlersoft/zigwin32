@@ -527,24 +527,13 @@ pub const GUAR_ADSPARM_Csum = @as(i32, 135);
 pub const GUAR_ADSPARM_Dsum = @as(i32, 136);
 
 //--------------------------------------------------------------------------------
-// Section: Types (112)
+// Section: Types (110)
 //--------------------------------------------------------------------------------
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const LPM_HANDLE = isize;
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const RHANDLE = isize;
-
-pub const FLOWSPEC = extern struct {
-    TokenRate: u32,
-    TokenBucketSize: u32,
-    PeakBandwidth: u32,
-    Latency: u32,
-    DelayVariation: u32,
-    ServiceType: u32,
-    MaxSduSize: u32,
-    MinimumPolicedSize: u32,
-};
 
 pub const QOS_OBJECT_HDR = extern struct {
     ObjectType: u32,
@@ -1398,12 +1387,6 @@ pub const tag_SIPAEVENT_SBCP_INFO_PAYLOAD_V1 = extern struct {
     VarData: [1]u8 align(1),
 };
 
-pub const QOS = extern struct {
-    SendingFlowspec: FLOWSPEC,
-    ReceivingFlowspec: FLOWSPEC,
-    ProviderSpecific: WSABUF,
-};
-
 
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
@@ -1684,6 +1667,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const FLOWSPEC = @import("../networking/win_sock.zig").FLOWSPEC;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;
 const NETWORK_ADDRESS_LIST = @import("../network_management/ndis.zig").NETWORK_ADDRESS_LIST;
@@ -1692,7 +1676,6 @@ const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SOCKADDR = @import("../networking/win_sock.zig").SOCKADDR;
 const SOCKET = @import("../networking/win_sock.zig").SOCKET;
-const WSABUF = @import("../networking/win_sock.zig").WSABUF;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

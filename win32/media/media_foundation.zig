@@ -1709,7 +1709,7 @@ pub const MF_FRAMESERVER_VCAMEVENT_EXTENDED_PIPELINE_SHUTDOWN = Guid.initString(
 pub const MF_FRAMESERVER_VCAMEVENT_EXTENDED_CUSTOM_EVENT = Guid.initString("6e59489c-47d3-4467-83ef-12d34e871665");
 
 //--------------------------------------------------------------------------------
-// Section: Types (1492)
+// Section: Types (1500)
 //--------------------------------------------------------------------------------
 pub const MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS = enum(u32) {
     NE = 0,
@@ -1717,6 +1717,51 @@ pub const MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS = enum(u32) {
 };
 pub const MF_EVENT_FLAG_NONE = MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS.NE;
 pub const MF_EVENT_FLAG_NO_WAIT = MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS._WAIT;
+
+pub const MPEG2VIDEOINFO_FLAGS = packed struct(u32) {
+    DoPanScan: u1 = 0,
+    DVDLine21Field1: u1 = 0,
+    DVDLine21Field2: u1 = 0,
+    SourceIsLetterboxed: u1 = 0,
+    FilmCameraMode: u1 = 0,
+    LetterboxAnalogOut: u1 = 0,
+    DSS_UserData: u1 = 0,
+    DVB_UserData: u1 = 0,
+    @"27MhzTimebase": u1 = 0,
+    WidescreenAnalogOut: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS{ .DoPanScan = 1 };
+pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS{ .DVDLine21Field1 = 1 };
+pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS{ .DVDLine21Field2 = 1 };
+pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS{ .SourceIsLetterboxed = 1 };
+pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS{ .FilmCameraMode = 1 };
+pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS{ .LetterboxAnalogOut = 1 };
+pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS{ .DSS_UserData = 1 };
+pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS{ .DVB_UserData = 1 };
+pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS{ .@"27MhzTimebase" = 1 };
+pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS{ .WidescreenAnalogOut = 1 };
 
 pub const MF_Plugin_Type = enum(i32) {
     MFT = 0,
@@ -1728,6 +1773,18 @@ pub const MF_Plugin_Type_MFT = MF_Plugin_Type.MFT;
 pub const MF_Plugin_Type_MediaSource = MF_Plugin_Type.MediaSource;
 pub const MF_Plugin_Type_MFT_MatchOutputType = MF_Plugin_Type.MFT_MatchOutputType;
 pub const MF_Plugin_Type_Other = MF_Plugin_Type.Other;
+
+pub const AM_MEDIA_TYPE = extern struct {
+    majortype: Guid,
+    subtype: Guid,
+    bFixedSizeSamples: BOOL,
+    bTemporalCompression: BOOL,
+    lSampleSize: u32,
+    formattype: Guid,
+    pUnk: ?*IUnknown,
+    cbFormat: u32,
+    pbFormat: ?*u8,
+};
 
 pub const CodecAPIEventData = extern struct {
     guid: Guid,
@@ -1985,6 +2042,50 @@ pub const ICodecAPI = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
+};
+
+pub const VIDEOINFOHEADER = extern struct {
+    rcSource: RECT,
+    rcTarget: RECT,
+    dwBitRate: u32,
+    dwBitErrorRate: u32,
+    AvgTimePerFrame: i64,
+    bmiHeader: BITMAPINFOHEADER,
+};
+
+pub const MPEG1VIDEOINFO = extern struct {
+    hdr: VIDEOINFOHEADER,
+    dwStartTimeCode: u32,
+    cbSequenceHeader: u32,
+    bSequenceHeader: [1]u8,
+};
+
+pub const VIDEOINFOHEADER2 = extern struct {
+    rcSource: RECT,
+    rcTarget: RECT,
+    dwBitRate: u32,
+    dwBitErrorRate: u32,
+    AvgTimePerFrame: i64,
+    dwInterlaceFlags: u32,
+    dwCopyProtectFlags: u32,
+    dwPictAspectRatioX: u32,
+    dwPictAspectRatioY: u32,
+    Anonymous: extern union {
+        dwControlFlags: u32,
+        dwReserved1: u32,
+    },
+    dwReserved2: u32,
+    bmiHeader: BITMAPINFOHEADER,
+};
+
+pub const MPEG2VIDEOINFO = extern struct {
+    hdr: VIDEOINFOHEADER2,
+    dwStartTimeCode: u32,
+    cbSequenceHeader: u32,
+    dwProfile: u32,
+    dwLevel: u32,
+    dwFlags: MPEG2VIDEOINFO_FLAGS,
+    dwSequenceHeader: [1]u32,
 };
 
 pub const D3DOVERLAYCAPS = extern struct {
@@ -13822,7 +13923,7 @@ pub const OPM_STATUS_RENEGOTIATION_REQUIRED = OPM_STATUS.RENEGOTIATION_REQUIRED;
 pub const OPM_STATUS_TAMPERING_DETECTED = OPM_STATUS.TAMPERING_DETECTED;
 pub const OPM_STATUS_REVOKED_HDCP_DEVICE_ATTACHED = OPM_STATUS.REVOKED_HDCP_DEVICE_ATTACHED;
 
-pub const PM_CONNECTOR_TYPE = enum(i32) {
+pub const OPM_CONNECTOR_TYPE = enum(i32) {
     NNECTOR_TYPE_OTHER = -1,
     NNECTOR_TYPE_VGA = 0,
     NNECTOR_TYPE_SVIDEO = 1,
@@ -13843,25 +13944,25 @@ pub const PM_CONNECTOR_TYPE = enum(i32) {
     NNECTOR_TYPE_TRANSPORT_AGNOSTIC_DIGITAL_MODE_B = 17,
     PP_COMPATIBLE_CONNECTOR_TYPE_INTERNAL = -2147483648,
 };
-pub const OPM_CONNECTOR_TYPE_OTHER = PM_CONNECTOR_TYPE.NNECTOR_TYPE_OTHER;
-pub const OPM_CONNECTOR_TYPE_VGA = PM_CONNECTOR_TYPE.NNECTOR_TYPE_VGA;
-pub const OPM_CONNECTOR_TYPE_SVIDEO = PM_CONNECTOR_TYPE.NNECTOR_TYPE_SVIDEO;
-pub const OPM_CONNECTOR_TYPE_COMPOSITE_VIDEO = PM_CONNECTOR_TYPE.NNECTOR_TYPE_COMPOSITE_VIDEO;
-pub const OPM_CONNECTOR_TYPE_COMPONENT_VIDEO = PM_CONNECTOR_TYPE.NNECTOR_TYPE_COMPONENT_VIDEO;
-pub const OPM_CONNECTOR_TYPE_DVI = PM_CONNECTOR_TYPE.NNECTOR_TYPE_DVI;
-pub const OPM_CONNECTOR_TYPE_HDMI = PM_CONNECTOR_TYPE.NNECTOR_TYPE_HDMI;
-pub const OPM_CONNECTOR_TYPE_LVDS = PM_CONNECTOR_TYPE.NNECTOR_TYPE_LVDS;
-pub const OPM_CONNECTOR_TYPE_D_JPN = PM_CONNECTOR_TYPE.NNECTOR_TYPE_D_JPN;
-pub const OPM_CONNECTOR_TYPE_SDI = PM_CONNECTOR_TYPE.NNECTOR_TYPE_SDI;
-pub const OPM_CONNECTOR_TYPE_DISPLAYPORT_EXTERNAL = PM_CONNECTOR_TYPE.NNECTOR_TYPE_DISPLAYPORT_EXTERNAL;
-pub const OPM_CONNECTOR_TYPE_DISPLAYPORT_EMBEDDED = PM_CONNECTOR_TYPE.NNECTOR_TYPE_DISPLAYPORT_EMBEDDED;
-pub const OPM_CONNECTOR_TYPE_UDI_EXTERNAL = PM_CONNECTOR_TYPE.NNECTOR_TYPE_UDI_EXTERNAL;
-pub const OPM_CONNECTOR_TYPE_UDI_EMBEDDED = PM_CONNECTOR_TYPE.NNECTOR_TYPE_UDI_EMBEDDED;
-pub const OPM_CONNECTOR_TYPE_RESERVED = PM_CONNECTOR_TYPE.NNECTOR_TYPE_RESERVED;
-pub const OPM_CONNECTOR_TYPE_MIRACAST = PM_CONNECTOR_TYPE.NNECTOR_TYPE_MIRACAST;
-pub const OPM_CONNECTOR_TYPE_TRANSPORT_AGNOSTIC_DIGITAL_MODE_A = PM_CONNECTOR_TYPE.NNECTOR_TYPE_TRANSPORT_AGNOSTIC_DIGITAL_MODE_A;
-pub const OPM_CONNECTOR_TYPE_TRANSPORT_AGNOSTIC_DIGITAL_MODE_B = PM_CONNECTOR_TYPE.NNECTOR_TYPE_TRANSPORT_AGNOSTIC_DIGITAL_MODE_B;
-pub const OPM_COPP_COMPATIBLE_CONNECTOR_TYPE_INTERNAL = PM_CONNECTOR_TYPE.PP_COMPATIBLE_CONNECTOR_TYPE_INTERNAL;
+pub const OPM_CONNECTOR_TYPE_OTHER = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_OTHER;
+pub const OPM_CONNECTOR_TYPE_VGA = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_VGA;
+pub const OPM_CONNECTOR_TYPE_SVIDEO = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_SVIDEO;
+pub const OPM_CONNECTOR_TYPE_COMPOSITE_VIDEO = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_COMPOSITE_VIDEO;
+pub const OPM_CONNECTOR_TYPE_COMPONENT_VIDEO = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_COMPONENT_VIDEO;
+pub const OPM_CONNECTOR_TYPE_DVI = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_DVI;
+pub const OPM_CONNECTOR_TYPE_HDMI = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_HDMI;
+pub const OPM_CONNECTOR_TYPE_LVDS = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_LVDS;
+pub const OPM_CONNECTOR_TYPE_D_JPN = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_D_JPN;
+pub const OPM_CONNECTOR_TYPE_SDI = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_SDI;
+pub const OPM_CONNECTOR_TYPE_DISPLAYPORT_EXTERNAL = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_DISPLAYPORT_EXTERNAL;
+pub const OPM_CONNECTOR_TYPE_DISPLAYPORT_EMBEDDED = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_DISPLAYPORT_EMBEDDED;
+pub const OPM_CONNECTOR_TYPE_UDI_EXTERNAL = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_UDI_EXTERNAL;
+pub const OPM_CONNECTOR_TYPE_UDI_EMBEDDED = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_UDI_EMBEDDED;
+pub const OPM_CONNECTOR_TYPE_RESERVED = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_RESERVED;
+pub const OPM_CONNECTOR_TYPE_MIRACAST = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_MIRACAST;
+pub const OPM_CONNECTOR_TYPE_TRANSPORT_AGNOSTIC_DIGITAL_MODE_A = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_TRANSPORT_AGNOSTIC_DIGITAL_MODE_A;
+pub const OPM_CONNECTOR_TYPE_TRANSPORT_AGNOSTIC_DIGITAL_MODE_B = OPM_CONNECTOR_TYPE.NNECTOR_TYPE_TRANSPORT_AGNOSTIC_DIGITAL_MODE_B;
+pub const OPM_COPP_COMPATIBLE_CONNECTOR_TYPE_INTERNAL = OPM_CONNECTOR_TYPE.PP_COMPATIBLE_CONNECTOR_TYPE_INTERNAL;
 
 pub const OPM_DVI_CHARACTERISTIC = enum(i32) {
     @"0" = 1,
@@ -18193,6 +18294,392 @@ pub const DeviceStreamState_Disabled = DeviceStreamState.Disabled;
 pub const STREAM_MEDIUM = extern struct {
     gidMedium: Guid,
     unMediumInstance: u32,
+};
+
+// TODO: this type is limited to platform 'windows10.0.15063'
+const IID_IMFDeviceTransform_Value = Guid.initString("d818fbd8-fc46-42f2-87ac-1ea2d1f9bf32");
+pub const IID_IMFDeviceTransform = &IID_IMFDeviceTransform_Value;
+pub const IMFDeviceTransform = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        InitializeTransform: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                pAttributes: ?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                pAttributes: ?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputAvailableType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                dwTypeIndex: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                dwTypeIndex: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputCurrentType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputStreamAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                ppAttributes: ?*?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                ppAttributes: ?*?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputAvailableType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                dwTypeIndex: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                dwTypeIndex: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputCurrentType: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                pMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputStreamAttributes: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                ppAttributes: ?*?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwOutputStreamID: u32,
+                ppAttributes: ?*?*IMFAttributes,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamCount: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                pcInputStreams: ?*u32,
+                pcOutputStreams: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                pcInputStreams: ?*u32,
+                pcOutputStreams: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetStreamIDs: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputIDArraySize: u32,
+                pdwInputStreamIds: ?*u32,
+                dwOutputIDArraySize: u32,
+                pdwOutputStreamIds: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputIDArraySize: u32,
+                pdwInputStreamIds: ?*u32,
+                dwOutputIDArraySize: u32,
+                pdwOutputStreamIds: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessEvent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pEvent: ?*IMFMediaEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pEvent: ?*IMFMediaEvent,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessInput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pSample: ?*IMFSample,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwInputStreamID: u32,
+                pSample: ?*IMFSample,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessMessage: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                eMessage: MFT_MESSAGE_TYPE,
+                ulParam: usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                eMessage: MFT_MESSAGE_TYPE,
+                ulParam: usize,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        ProcessOutput: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwFlags: u32,
+                cOutputBufferCount: u32,
+                pOutputSample: ?*MFT_OUTPUT_DATA_BUFFER,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwFlags: u32,
+                cOutputBufferCount: u32,
+                pOutputSample: ?*MFT_OUTPUT_DATA_BUFFER,
+                pdwStatus: ?*u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetInputStreamState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                pMediaType: ?*IMFMediaType,
+                value: DeviceStreamState,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                pMediaType: ?*IMFMediaType,
+                value: DeviceStreamState,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputStreamState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetOutputStreamState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                pMediaType: ?*IMFMediaType,
+                value: DeviceStreamState,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                pMediaType: ?*IMFMediaType,
+                value: DeviceStreamState,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetOutputStreamState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        GetInputStreamPreferredState: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+                ppMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamID: u32,
+                value: ?*DeviceStreamState,
+                ppMediaType: ?*?*IMFMediaType,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FlushInputStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamIndex: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamIndex: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        FlushOutputStream: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransform,
+                dwStreamIndex: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransform,
+                dwStreamIndex: u32,
+                dwFlags: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_InitializeTransform(self: *const T, pAttributes: ?*IMFAttributes) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).InitializeTransform(@as(*const IMFDeviceTransform, @ptrCast(self)), pAttributes);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetInputAvailableType(self: *const T, dwInputStreamID: u32, dwTypeIndex: u32, pMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputAvailableType(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, dwTypeIndex, pMediaType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetInputCurrentType(self: *const T, dwInputStreamID: u32, pMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputCurrentType(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, pMediaType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetInputStreamAttributes(self: *const T, dwInputStreamID: u32, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputStreamAttributes(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, ppAttributes);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetOutputAvailableType(self: *const T, dwOutputStreamID: u32, dwTypeIndex: u32, pMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetOutputAvailableType(@as(*const IMFDeviceTransform, @ptrCast(self)), dwOutputStreamID, dwTypeIndex, pMediaType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetOutputCurrentType(self: *const T, dwOutputStreamID: u32, pMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetOutputCurrentType(@as(*const IMFDeviceTransform, @ptrCast(self)), dwOutputStreamID, pMediaType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetOutputStreamAttributes(self: *const T, dwOutputStreamID: u32, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetOutputStreamAttributes(@as(*const IMFDeviceTransform, @ptrCast(self)), dwOutputStreamID, ppAttributes);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetStreamCount(self: *const T, pcInputStreams: ?*u32, pcOutputStreams: ?*u32) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFDeviceTransform, @ptrCast(self)), pcInputStreams, pcOutputStreams);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetStreamIDs(self: *const T, dwInputIDArraySize: u32, pdwInputStreamIds: ?*u32, dwOutputIDArraySize: u32, pdwOutputStreamIds: ?*u32) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetStreamIDs(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputIDArraySize, pdwInputStreamIds, dwOutputIDArraySize, pdwOutputStreamIds);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_ProcessEvent(self: *const T, dwInputStreamID: u32, pEvent: ?*IMFMediaEvent) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).ProcessEvent(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, pEvent);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_ProcessInput(self: *const T, dwInputStreamID: u32, pSample: ?*IMFSample, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).ProcessInput(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, pSample, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_ProcessMessage(self: *const T, eMessage: MFT_MESSAGE_TYPE, ulParam: usize) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).ProcessMessage(@as(*const IMFDeviceTransform, @ptrCast(self)), eMessage, ulParam);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_ProcessOutput(self: *const T, dwFlags: u32, cOutputBufferCount: u32, pOutputSample: ?*MFT_OUTPUT_DATA_BUFFER, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).ProcessOutput(@as(*const IMFDeviceTransform, @ptrCast(self)), dwFlags, cOutputBufferCount, pOutputSample, pdwStatus);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_SetInputStreamState(self: *const T, dwStreamID: u32, pMediaType: ?*IMFMediaType, value: DeviceStreamState, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).SetInputStreamState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, pMediaType, value, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetInputStreamState(self: *const T, dwStreamID: u32, value: ?*DeviceStreamState) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputStreamState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_SetOutputStreamState(self: *const T, dwStreamID: u32, pMediaType: ?*IMFMediaType, value: DeviceStreamState, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).SetOutputStreamState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, pMediaType, value, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetOutputStreamState(self: *const T, dwStreamID: u32, value: ?*DeviceStreamState) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetOutputStreamState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, value);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_GetInputStreamPreferredState(self: *const T, dwStreamID: u32, value: ?*DeviceStreamState, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputStreamPreferredState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, value, ppMediaType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_FlushInputStream(self: *const T, dwStreamIndex: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).FlushInputStream(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamIndex, dwFlags);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransform_FlushOutputStream(self: *const T, dwStreamIndex: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).FlushOutputStream(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamIndex, dwFlags);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+// TODO: this type is limited to platform 'windows10.0.17134'
+const IID_IMFDeviceTransformCallback_Value = Guid.initString("6d5cb646-29ec-41fb-8179-8c4c6d750811");
+pub const IID_IMFDeviceTransformCallback = &IID_IMFDeviceTransformCallback_Value;
+pub const IMFDeviceTransformCallback = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        OnBufferSent: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IMFDeviceTransformCallback,
+                pCallbackAttributes: ?*IMFAttributes,
+                pinId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IMFDeviceTransformCallback,
+                pCallbackAttributes: ?*IMFAttributes,
+                pinId: u32,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IMFDeviceTransformCallback_OnBufferSent(self: *const T, pCallbackAttributes: ?*IMFAttributes, pinId: u32) callconv(.Inline) HRESULT {
+            return @as(*const IMFDeviceTransformCallback.VTable, @ptrCast(self.vtable)).OnBufferSent(@as(*const IMFDeviceTransformCallback, @ptrCast(self)), pCallbackAttributes, pinId);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
 };
 
 pub const MF3DVideoOutputType = enum(i32) {
@@ -42677,10 +43164,9 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (65)
+// Section: Imports (59)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const AM_MEDIA_TYPE = @import("../media/direct_show.zig").AM_MEDIA_TYPE;
 const AudioObjectType = @import("../media/audio.zig").AudioObjectType;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -42725,15 +43211,12 @@ const IDirect3DDevice9Ex = @import("../graphics/direct3d9.zig").IDirect3DDevice9
 const IDirect3DSurface9 = @import("../graphics/direct3d9.zig").IDirect3DSurface9;
 const IInspectable = @import("../system/win_rt.zig").IInspectable;
 const IMediaBuffer = @import("../media/dx_media_objects.zig").IMediaBuffer;
-const IMFDeviceTransform = @import("../media/streaming.zig").IMFDeviceTransform;
 const INamedPropertyStore = @import("../ui/shell/properties_system.zig").INamedPropertyStore;
 const IPropertyStore = @import("../ui/shell/properties_system.zig").IPropertyStore;
 const ISpatialAudioMetadataItems = @import("../media/audio.zig").ISpatialAudioMetadataItems;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LUID = @import("../foundation.zig").LUID;
-const MPEG1VIDEOINFO = @import("../media/direct_show.zig").MPEG1VIDEOINFO;
-const MPEG2VIDEOINFO = @import("../media/direct_show.zig").MPEG2VIDEOINFO;
 const POINT = @import("../foundation.zig").POINT;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const PSTR = @import("../foundation.zig").PSTR;
@@ -42741,8 +43224,6 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
 const SIZE = @import("../foundation.zig").SIZE;
 const VARIANT = @import("../system/com.zig").VARIANT;
-const VIDEOINFOHEADER = @import("../media/direct_show.zig").VIDEOINFOHEADER;
-const VIDEOINFOHEADER2 = @import("../media/direct_show.zig").VIDEOINFOHEADER2;
 const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 
 test {

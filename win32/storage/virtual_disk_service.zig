@@ -992,11 +992,11 @@ pub const VDS_ASYNC_OUTPUT = extern struct {
         pub const _sv = extern struct {
             ullReclaimedBytes: u64,
         };
-        pub const _cv = extern struct {
-            pVolumeUnk: ?*IUnknown,
-        };
         pub const _ct = extern struct {
             pTargetUnk: ?*IUnknown,
+        };
+        pub const _cv = extern struct {
+            pVolumeUnk: ?*IUnknown,
         };
         cp: _cp,
         cv: _cv,

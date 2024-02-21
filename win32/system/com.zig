@@ -44,7 +44,7 @@ pub const MAXLSN = @as(u64, 9223372036854775807);
 pub const DMUS_ERRBASE = @as(u32, 4096);
 
 //--------------------------------------------------------------------------------
-// Section: Types (232)
+// Section: Types (233)
 //--------------------------------------------------------------------------------
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
 pub const LPEXCEPFINO_DEFERRED_FILLIN = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
@@ -148,6 +148,46 @@ pub const DVASPECT_CONTENT = DVASPECT.CONTENT;
 pub const DVASPECT_THUMBNAIL = DVASPECT.THUMBNAIL;
 pub const DVASPECT_ICON = DVASPECT.ICON;
 pub const DVASPECT_DOCPRINT = DVASPECT.DOCPRINT;
+
+pub const STGC = packed struct(u32) {
+    OVERWRITE: u1 = 0,
+    ONLYIFCURRENT: u1 = 0,
+    DANGEROUSLYCOMMITMERELYTODISKCACHE: u1 = 0,
+    CONSOLIDATE: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const STGC_DEFAULT = STGC{ };
+pub const STGC_OVERWRITE = STGC{ .OVERWRITE = 1 };
+pub const STGC_ONLYIFCURRENT = STGC{ .ONLYIFCURRENT = 1 };
+pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC{ .DANGEROUSLYCOMMITMERELYTODISKCACHE = 1 };
+pub const STGC_CONSOLIDATE = STGC{ .CONSOLIDATE = 1 };
 
 pub const CY = extern union {
     Anonymous: extern struct {
@@ -10796,7 +10836,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (28)
+// Section: Imports (27)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ARRAYDESC = @import("../system/ole.zig").ARRAYDESC;
@@ -10819,7 +10859,6 @@ const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
-const STGC = @import("../system/com/structured_storage.zig").STGC;
 const ULARGE_INTEGER = @import("../foundation.zig").ULARGE_INTEGER;
 const userHBITMAP = @import("../system/system_services.zig").userHBITMAP;
 const userHENHMETAFILE = @import("../system/system_services.zig").userHENHMETAFILE;

@@ -1021,7 +1021,7 @@ pub const STREAMBUFFER_EC_RATE_CHANGING_FOR_SETPOSITIONS = @as(i32, 815);
 pub const STREAMBUFFER_EC_SETPOSITIONS_EVENTS_DONE = @as(i32, 816);
 
 //--------------------------------------------------------------------------------
-// Section: Types (1474)
+// Section: Types (1472)
 //--------------------------------------------------------------------------------
 pub const OA_BOOL = enum(i32) {
     TRUE = -1,
@@ -1029,51 +1029,6 @@ pub const OA_BOOL = enum(i32) {
 };
 pub const OATRUE = OA_BOOL.TRUE;
 pub const OAFALSE = OA_BOOL.FALSE;
-
-pub const MPEG2VIDEOINFO_FLAGS = packed struct(u32) {
-    DoPanScan: u1 = 0,
-    DVDLine21Field1: u1 = 0,
-    DVDLine21Field2: u1 = 0,
-    SourceIsLetterboxed: u1 = 0,
-    FilmCameraMode: u1 = 0,
-    LetterboxAnalogOut: u1 = 0,
-    DSS_UserData: u1 = 0,
-    DVB_UserData: u1 = 0,
-    @"27MhzTimebase": u1 = 0,
-    WidescreenAnalogOut: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const AMMPEG2_DoPanScan = MPEG2VIDEOINFO_FLAGS{ .DoPanScan = 1 };
-pub const AMMPEG2_DVDLine21Field1 = MPEG2VIDEOINFO_FLAGS{ .DVDLine21Field1 = 1 };
-pub const AMMPEG2_DVDLine21Field2 = MPEG2VIDEOINFO_FLAGS{ .DVDLine21Field2 = 1 };
-pub const AMMPEG2_SourceIsLetterboxed = MPEG2VIDEOINFO_FLAGS{ .SourceIsLetterboxed = 1 };
-pub const AMMPEG2_FilmCameraMode = MPEG2VIDEOINFO_FLAGS{ .FilmCameraMode = 1 };
-pub const AMMPEG2_LetterboxAnalogOut = MPEG2VIDEOINFO_FLAGS{ .LetterboxAnalogOut = 1 };
-pub const AMMPEG2_DSS_UserData = MPEG2VIDEOINFO_FLAGS{ .DSS_UserData = 1 };
-pub const AMMPEG2_DVB_UserData = MPEG2VIDEOINFO_FLAGS{ .DVB_UserData = 1 };
-pub const AMMPEG2_27MhzTimebase = MPEG2VIDEOINFO_FLAGS{ .@"27MhzTimebase" = 1 };
-pub const AMMPEG2_WidescreenAnalogOut = MPEG2VIDEOINFO_FLAGS{ .WidescreenAnalogOut = 1 };
 
 pub const MPEGLAYER3WAVEFORMAT_FLAGS = enum(u32) {
     ISO = 0,
@@ -1165,18 +1120,6 @@ pub const ICreateDevEnum = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const AM_MEDIA_TYPE = extern struct {
-    majortype: Guid,
-    subtype: Guid,
-    bFixedSizeSamples: BOOL,
-    bTemporalCompression: BOOL,
-    lSampleSize: u32,
-    formattype: Guid,
-    pUnk: ?*IUnknown,
-    cbFormat: u32,
-    pbFormat: ?*u8,
 };
 
 pub const PIN_DIRECTION = enum(i32) {
@@ -28565,6 +28508,66 @@ pub const IKsNodeControl = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
+const IID_IAMWMBufferPass_Value = Guid.initString("6dd816d7-e740-4123-9e24-2444412644d8");
+pub const IID_IAMWMBufferPass = &IID_IAMWMBufferPass_Value;
+pub const IAMWMBufferPass = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetNotify: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IAMWMBufferPass,
+                pCallback: ?*IAMWMBufferPassCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IAMWMBufferPass,
+                pCallback: ?*IAMWMBufferPassCallback,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAMWMBufferPass_SetNotify(self: *const T, pCallback: ?*IAMWMBufferPassCallback) callconv(.Inline) HRESULT {
+            return @as(*const IAMWMBufferPass.VTable, @ptrCast(self.vtable)).SetNotify(@as(*const IAMWMBufferPass, @ptrCast(self)), pCallback);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IAMWMBufferPassCallback_Value = Guid.initString("b25b8372-d2d2-44b2-8653-1b8dae332489");
+pub const IID_IAMWMBufferPassCallback = &IID_IAMWMBufferPassCallback_Value;
+pub const IAMWMBufferPassCallback = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        Notify: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IAMWMBufferPassCallback,
+                pNSSBuffer3: ?*INSSBuffer3,
+                pPin: ?*IPin,
+                prtStart: ?*i64,
+                prtEnd: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IAMWMBufferPassCallback,
+                pNSSBuffer3: ?*INSSBuffer3,
+                pPin: ?*IPin,
+                prtStart: ?*i64,
+                prtEnd: ?*i64,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IAMWMBufferPassCallback_Notify(self: *const T, pNSSBuffer3: ?*INSSBuffer3, pPin: ?*IPin, prtStart: ?*i64, prtEnd: ?*i64) callconv(.Inline) HRESULT {
+            return @as(*const IAMWMBufferPassCallback.VTable, @ptrCast(self.vtable)).Notify(@as(*const IAMWMBufferPassCallback, @ptrCast(self)), pNSSBuffer3, pPin, prtStart, prtEnd);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IConfigAsfWriter_Value = Guid.initString("45086030-f7e4-486a-b504-826bb5792a3b");
 pub const IID_IConfigAsfWriter = &IID_IConfigAsfWriter_Value;
@@ -31287,15 +31290,6 @@ pub const TRUECOLORINFO = extern struct {
     bmiColors: [256]RGBQUAD,
 };
 
-pub const VIDEOINFOHEADER = extern struct {
-    rcSource: RECT,
-    rcTarget: RECT,
-    dwBitRate: u32,
-    dwBitErrorRate: u32,
-    AvgTimePerFrame: i64,
-    bmiHeader: BITMAPINFOHEADER,
-};
-
 pub const VIDEOINFO = extern struct {
     rcSource: RECT,
     rcTarget: RECT,
@@ -31308,13 +31302,6 @@ pub const VIDEOINFO = extern struct {
         dwBitMasks: [3]u32,
         TrueColorInfo: TRUECOLORINFO,
     },
-};
-
-pub const MPEG1VIDEOINFO = extern struct {
-    hdr: VIDEOINFOHEADER,
-    dwStartTimeCode: u32,
-    cbSequenceHeader: u32,
-    bSequenceHeader: [1]u8,
 };
 
 pub const ANALOGVIDEOINFO = extern struct {
@@ -34505,34 +34492,6 @@ pub const AM_MPEG2Profile_Main = AM_MPEG2Profile.Main;
 pub const AM_MPEG2Profile_SNRScalable = AM_MPEG2Profile.SNRScalable;
 pub const AM_MPEG2Profile_SpatiallyScalable = AM_MPEG2Profile.SpatiallyScalable;
 pub const AM_MPEG2Profile_High = AM_MPEG2Profile.High;
-
-pub const VIDEOINFOHEADER2 = extern struct {
-    rcSource: RECT,
-    rcTarget: RECT,
-    dwBitRate: u32,
-    dwBitErrorRate: u32,
-    AvgTimePerFrame: i64,
-    dwInterlaceFlags: u32,
-    dwCopyProtectFlags: u32,
-    dwPictAspectRatioX: u32,
-    dwPictAspectRatioY: u32,
-    Anonymous: extern union {
-        dwControlFlags: u32,
-        dwReserved1: u32,
-    },
-    dwReserved2: u32,
-    bmiHeader: BITMAPINFOHEADER,
-};
-
-pub const MPEG2VIDEOINFO = extern struct {
-    hdr: VIDEOINFOHEADER2,
-    dwStartTimeCode: u32,
-    cbSequenceHeader: u32,
-    dwProfile: u32,
-    dwLevel: u32,
-    dwFlags: MPEG2VIDEOINFO_FLAGS,
-    dwSequenceHeader: [1]u32,
-};
 
 pub const AM_DvdKaraokeData = extern struct {
     dwDownmix: u32,
@@ -69893,6 +69852,104 @@ pub const HEAACWAVEFORMAT = extern struct {
     pbAudioSpecificConfig: [1]u8,
 };
 
+const IID_IWMCodecAMVideoAccelerator_Value = Guid.initString("d98ee251-34e0-4a2d-9312-9b4c788d9fa1");
+pub const IID_IWMCodecAMVideoAccelerator = &IID_IWMCodecAMVideoAccelerator_Value;
+pub const IWMCodecAMVideoAccelerator = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        SetAcceleratorInterface: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pIAMVA: ?*IAMVideoAccelerator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pIAMVA: ?*IAMVideoAccelerator,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        NegotiateConnection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pMediaType: ?*AM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pMediaType: ?*AM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPlayerNotify: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pHook: ?*IWMPlayerTimestampHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecAMVideoAccelerator,
+                pHook: ?*IWMPlayerTimestampHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWMCodecAMVideoAccelerator_SetAcceleratorInterface(self: *const T, pIAMVA: ?*IAMVideoAccelerator) callconv(.Inline) HRESULT {
+            return @as(*const IWMCodecAMVideoAccelerator.VTable, @ptrCast(self.vtable)).SetAcceleratorInterface(@as(*const IWMCodecAMVideoAccelerator, @ptrCast(self)), pIAMVA);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWMCodecAMVideoAccelerator_NegotiateConnection(self: *const T, pMediaType: ?*AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @as(*const IWMCodecAMVideoAccelerator.VTable, @ptrCast(self.vtable)).NegotiateConnection(@as(*const IWMCodecAMVideoAccelerator, @ptrCast(self)), pMediaType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWMCodecAMVideoAccelerator_SetPlayerNotify(self: *const T, pHook: ?*IWMPlayerTimestampHook) callconv(.Inline) HRESULT {
+            return @as(*const IWMCodecAMVideoAccelerator.VTable, @ptrCast(self.vtable)).SetPlayerNotify(@as(*const IWMCodecAMVideoAccelerator, @ptrCast(self)), pHook);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
+const IID_IWMCodecVideoAccelerator_Value = Guid.initString("990641b0-739f-4e94-a808-9888da8f75af");
+pub const IID_IWMCodecVideoAccelerator = &IID_IWMCodecVideoAccelerator_Value;
+pub const IWMCodecVideoAccelerator = extern struct {
+    pub const VTable = extern struct {
+        base: IUnknown.VTable,
+        NegotiateConnection: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecVideoAccelerator,
+                pIAMVA: ?*IAMVideoAccelerator,
+                pMediaType: ?*AM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecVideoAccelerator,
+                pIAMVA: ?*IAMVideoAccelerator,
+                pMediaType: ?*AM_MEDIA_TYPE,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+        SetPlayerNotify: switch (@import("builtin").zig_backend) {
+            .stage1 => fn(
+                self: *const IWMCodecVideoAccelerator,
+                pHook: ?*IWMPlayerTimestampHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+            else => *const fn(
+                self: *const IWMCodecVideoAccelerator,
+                pHook: ?*IWMPlayerTimestampHook,
+            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        },
+    };
+    vtable: *const VTable,
+    pub fn MethodMixin(comptime T: type) type { return struct {
+        pub usingnamespace IUnknown.MethodMixin(T);
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWMCodecVideoAccelerator_NegotiateConnection(self: *const T, pIAMVA: ?*IAMVideoAccelerator, pMediaType: ?*AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
+            return @as(*const IWMCodecVideoAccelerator.VTable, @ptrCast(self.vtable)).NegotiateConnection(@as(*const IWMCodecVideoAccelerator, @ptrCast(self)), pIAMVA, pMediaType);
+        }
+        // NOTE: method is namespaced with interface name to avoid conflicts for now
+        pub fn IWMCodecVideoAccelerator_SetPlayerNotify(self: *const T, pHook: ?*IWMPlayerTimestampHook) callconv(.Inline) HRESULT {
+            return @as(*const IWMCodecVideoAccelerator.VTable, @ptrCast(self.vtable)).SetPlayerNotify(@as(*const IWMCodecVideoAccelerator, @ptrCast(self)), pHook);
+        }
+    };}
+    pub usingnamespace MethodMixin(@This());
+};
+
 pub const VIDEOENCODER_BITRATE_MODE = enum(i32) {
     ConstantBitRate = 0,
     VariableBitRateAverage = 1,
@@ -70180,9 +70237,10 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (79)
+// Section: Imports (82)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const AM_MEDIA_TYPE = @import("../media/media_foundation.zig").AM_MEDIA_TYPE;
 const BITMAPINFO = @import("../graphics/gdi.zig").BITMAPINFO;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -70233,11 +70291,13 @@ const IEnumVARIANT = @import("../system/ole.zig").IEnumVARIANT;
 const IErrorLog = @import("../system/com.zig").IErrorLog;
 const IMFVideoPresenter = @import("../media/media_foundation.zig").IMFVideoPresenter;
 const IMoniker = @import("../system/com.zig").IMoniker;
+const INSSBuffer3 = @import("../media/windows_media_format.zig").INSSBuffer3;
 const IPersist = @import("../system/com.zig").IPersist;
 const IPictureDisp = @import("../system/ole.zig").IPictureDisp;
 const IPropertyBag = @import("../system/com/structured_storage.zig").IPropertyBag;
 const IReferenceClock = @import("../media.zig").IReferenceClock;
 const IUnknown = @import("../system/com.zig").IUnknown;
+const IWMPlayerTimestampHook = @import("../media/windows_media_format.zig").IWMPlayerTimestampHook;
 const IWMProfile = @import("../media/windows_media_format.zig").IWMProfile;
 const KSDATAFORMAT = @import("../media/kernel_streaming.zig").KSDATAFORMAT;
 const KSEVENTDATA = @import("../media/kernel_streaming.zig").KSEVENTDATA;

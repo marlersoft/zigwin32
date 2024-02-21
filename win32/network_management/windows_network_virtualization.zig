@@ -135,7 +135,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
-const DL_EUI48 = @import("../network_management/windows_filtering_platform.zig").DL_EUI48;
+const DL_EUI48 = @import("../networking/win_sock.zig").DL_EUI48;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const IN6_ADDR = @import("../networking/win_sock.zig").IN6_ADDR;
 const IN_ADDR = @import("../networking/win_sock.zig").IN_ADDR;

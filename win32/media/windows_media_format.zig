@@ -346,68 +346,8 @@ pub const WMT_DMOCATEGORY_VIDEO_WATERMARK = Guid.initString("187cc922-8efc-4404-
 pub const CLSID_ClientNetManager = Guid.initString("cd12a3ce-9c42-11d2-beed-0060082f2054");
 
 //--------------------------------------------------------------------------------
-// Section: Types (180)
+// Section: Types (176)
 //--------------------------------------------------------------------------------
-const IID_IAMWMBufferPass_Value = Guid.initString("6dd816d7-e740-4123-9e24-2444412644d8");
-pub const IID_IAMWMBufferPass = &IID_IAMWMBufferPass_Value;
-pub const IAMWMBufferPass = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAMWMBufferPass,
-                pCallback: ?*IAMWMBufferPassCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAMWMBufferPass,
-                pCallback: ?*IAMWMBufferPassCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMWMBufferPass_SetNotify(self: *const T, pCallback: ?*IAMWMBufferPassCallback) callconv(.Inline) HRESULT {
-            return @as(*const IAMWMBufferPass.VTable, @ptrCast(self.vtable)).SetNotify(@as(*const IAMWMBufferPass, @ptrCast(self)), pCallback);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IAMWMBufferPassCallback_Value = Guid.initString("b25b8372-d2d2-44b2-8653-1b8dae332489");
-pub const IID_IAMWMBufferPassCallback = &IID_IAMWMBufferPassCallback_Value;
-pub const IAMWMBufferPassCallback = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        Notify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAMWMBufferPassCallback,
-                pNSSBuffer3: ?*INSSBuffer3,
-                pPin: ?*IPin,
-                prtStart: ?*i64,
-                prtEnd: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAMWMBufferPassCallback,
-                pNSSBuffer3: ?*INSSBuffer3,
-                pPin: ?*IPin,
-                prtStart: ?*i64,
-                prtEnd: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IAMWMBufferPassCallback_Notify(self: *const T, pNSSBuffer3: ?*INSSBuffer3, pPin: ?*IPin, prtStart: ?*i64, prtEnd: ?*i64) callconv(.Inline) HRESULT {
-            return @as(*const IAMWMBufferPassCallback.VTable, @ptrCast(self.vtable)).Notify(@as(*const IAMWMBufferPassCallback, @ptrCast(self)), pNSSBuffer3, pPin, prtStart, prtEnd);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const _AM_ASFWRITERCONFIG_PARAM = enum(i32) {
     AUTOINDEX = 1,
     MULTIPASS = 2,
@@ -10361,104 +10301,6 @@ pub const IWMPlayerTimestampHook = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-const IID_IWMCodecAMVideoAccelerator_Value = Guid.initString("d98ee251-34e0-4a2d-9312-9b4c788d9fa1");
-pub const IID_IWMCodecAMVideoAccelerator = &IID_IWMCodecAMVideoAccelerator_Value;
-pub const IWMCodecAMVideoAccelerator = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        SetAcceleratorInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWMCodecAMVideoAccelerator,
-                pIAMVA: ?*IAMVideoAccelerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWMCodecAMVideoAccelerator,
-                pIAMVA: ?*IAMVideoAccelerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NegotiateConnection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWMCodecAMVideoAccelerator,
-                pMediaType: ?*AM_MEDIA_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWMCodecAMVideoAccelerator,
-                pMediaType: ?*AM_MEDIA_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPlayerNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWMCodecAMVideoAccelerator,
-                pHook: ?*IWMPlayerTimestampHook,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWMCodecAMVideoAccelerator,
-                pHook: ?*IWMPlayerTimestampHook,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecAMVideoAccelerator_SetAcceleratorInterface(self: *const T, pIAMVA: ?*IAMVideoAccelerator) callconv(.Inline) HRESULT {
-            return @as(*const IWMCodecAMVideoAccelerator.VTable, @ptrCast(self.vtable)).SetAcceleratorInterface(@as(*const IWMCodecAMVideoAccelerator, @ptrCast(self)), pIAMVA);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecAMVideoAccelerator_NegotiateConnection(self: *const T, pMediaType: ?*AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IWMCodecAMVideoAccelerator.VTable, @ptrCast(self.vtable)).NegotiateConnection(@as(*const IWMCodecAMVideoAccelerator, @ptrCast(self)), pMediaType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecAMVideoAccelerator_SetPlayerNotify(self: *const T, pHook: ?*IWMPlayerTimestampHook) callconv(.Inline) HRESULT {
-            return @as(*const IWMCodecAMVideoAccelerator.VTable, @ptrCast(self.vtable)).SetPlayerNotify(@as(*const IWMCodecAMVideoAccelerator, @ptrCast(self)), pHook);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
-const IID_IWMCodecVideoAccelerator_Value = Guid.initString("990641b0-739f-4e94-a808-9888da8f75af");
-pub const IID_IWMCodecVideoAccelerator = &IID_IWMCodecVideoAccelerator_Value;
-pub const IWMCodecVideoAccelerator = extern struct {
-    pub const VTable = extern struct {
-        base: IUnknown.VTable,
-        NegotiateConnection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWMCodecVideoAccelerator,
-                pIAMVA: ?*IAMVideoAccelerator,
-                pMediaType: ?*AM_MEDIA_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWMCodecVideoAccelerator,
-                pIAMVA: ?*IAMVideoAccelerator,
-                pMediaType: ?*AM_MEDIA_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPlayerNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWMCodecVideoAccelerator,
-                pHook: ?*IWMPlayerTimestampHook,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWMCodecVideoAccelerator,
-                pHook: ?*IWMPlayerTimestampHook,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-    };
-    vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type { return struct {
-        pub usingnamespace IUnknown.MethodMixin(T);
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecVideoAccelerator_NegotiateConnection(self: *const T, pIAMVA: ?*IAMVideoAccelerator, pMediaType: ?*AM_MEDIA_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IWMCodecVideoAccelerator.VTable, @ptrCast(self.vtable)).NegotiateConnection(@as(*const IWMCodecVideoAccelerator, @ptrCast(self)), pIAMVA, pMediaType);
-        }
-        // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMCodecVideoAccelerator_SetPlayerNotify(self: *const T, pHook: ?*IWMPlayerTimestampHook) callconv(.Inline) HRESULT {
-            return @as(*const IWMCodecVideoAccelerator.VTable, @ptrCast(self.vtable)).SetPlayerNotify(@as(*const IWMCodecVideoAccelerator, @ptrCast(self)), pHook);
-        }
-    };}
-    pub usingnamespace MethodMixin(@This());
-};
-
 pub const NETSOURCE_URLCREDPOLICY_SETTINGS = enum(i32) {
     SILENTLOGONOK = 0,
     MUSTPROMPTUSER = 1,
@@ -11014,16 +10856,13 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (14)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
-const AM_MEDIA_TYPE = @import("../media/direct_show.zig").AM_MEDIA_TYPE;
 const BITMAPINFOHEADER = @import("../graphics/gdi.zig").BITMAPINFOHEADER;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const HRESULT = @import("../foundation.zig").HRESULT;
-const IAMVideoAccelerator = @import("../media/direct_show.zig").IAMVideoAccelerator;
-const IPin = @import("../media/direct_show.zig").IPin;
 const IStream = @import("../system/com.zig").IStream;
 const IUnknown = @import("../system/com.zig").IUnknown;
 const LPARAM = @import("../foundation.zig").LPARAM;

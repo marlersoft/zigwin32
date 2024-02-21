@@ -32,7 +32,7 @@ pub const CRYPTCAT_ADDCATALOG_NONE = @as(u32, 0);
 pub const CRYPTCAT_ADDCATALOG_HARDLINK = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (8)
+// Section: Types (9)
 //--------------------------------------------------------------------------------
 pub const CRYPTCAT_VERSION = enum(u32) {
     @"1" = 256,
@@ -165,6 +165,12 @@ pub const PFN_CDF_PARSE_ERROR_CALLBACK = switch (@import("builtin").zig_backend)
         pwszLine: ?PWSTR,
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
+
+pub const MS_ADDINFO_CATALOGMEMBER = extern struct {
+    cbStruct: u32,
+    pStore: ?*CRYPTCATSTORE,
+    pMember: ?*CRYPTCATMEMBER,
+};
 
 
 //--------------------------------------------------------------------------------

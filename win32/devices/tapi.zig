@@ -17716,7 +17716,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ALLOCATOR_PROPERTIES = @import("../media/direct_show.zig").ALLOCATOR_PROPERTIES;
-const AM_MEDIA_TYPE = @import("../media/direct_show.zig").AM_MEDIA_TYPE;
+const AM_MEDIA_TYPE = @import("../media/media_foundation.zig").AM_MEDIA_TYPE;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
 const CHAR = @import("../foundation.zig").CHAR;

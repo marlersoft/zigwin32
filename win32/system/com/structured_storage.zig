@@ -70,7 +70,7 @@ pub const STGOPTIONS_VERSION = @as(u32, 1);
 pub const CCH_MAX_PROPSTG_NAME = @as(u32, 31);
 
 //--------------------------------------------------------------------------------
-// Section: Types (58)
+// Section: Types (57)
 //--------------------------------------------------------------------------------
 pub const PROPSPEC_KIND = enum(u32) {
     LPWSTR = 0,
@@ -151,46 +151,6 @@ pub const STGFMT_FILE = STGFMT.FILE;
 pub const STGFMT_ANY = STGFMT.ANY;
 pub const STGFMT_DOCFILE = STGFMT.DOCFILE;
 pub const STGFMT_DOCUMENT = STGFMT.STORAGE;
-
-pub const STGC = packed struct(u32) {
-    OVERWRITE: u1 = 0,
-    ONLYIFCURRENT: u1 = 0,
-    DANGEROUSLYCOMMITMERELYTODISKCACHE: u1 = 0,
-    CONSOLIDATE: u1 = 0,
-    _4: u1 = 0,
-    _5: u1 = 0,
-    _6: u1 = 0,
-    _7: u1 = 0,
-    _8: u1 = 0,
-    _9: u1 = 0,
-    _10: u1 = 0,
-    _11: u1 = 0,
-    _12: u1 = 0,
-    _13: u1 = 0,
-    _14: u1 = 0,
-    _15: u1 = 0,
-    _16: u1 = 0,
-    _17: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
-    _20: u1 = 0,
-    _21: u1 = 0,
-    _22: u1 = 0,
-    _23: u1 = 0,
-    _24: u1 = 0,
-    _25: u1 = 0,
-    _26: u1 = 0,
-    _27: u1 = 0,
-    _28: u1 = 0,
-    _29: u1 = 0,
-    _30: u1 = 0,
-    _31: u1 = 0,
-};
-pub const STGC_DEFAULT = STGC{ };
-pub const STGC_OVERWRITE = STGC{ .OVERWRITE = 1 };
-pub const STGC_ONLYIFCURRENT = STGC{ .ONLYIFCURRENT = 1 };
-pub const STGC_DANGEROUSLYCOMMITMERELYTODISKCACHE = STGC{ .DANGEROUSLYCOMMITMERELYTODISKCACHE = 1 };
-pub const STGC_CONSOLIDATE = STGC{ .CONSOLIDATE = 1 };
 
 pub const STGMOVE = enum(i32) {
     MOVE = 0,
@@ -2302,7 +2262,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (29)
+// Section: Imports (30)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BLOB = @import("../../system/com.zig").BLOB;
@@ -2329,6 +2289,7 @@ const PSTR = @import("../../foundation.zig").PSTR;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
 const STATSTG = @import("../../system/com.zig").STATSTG;
+const STGC = @import("../../system/com.zig").STGC;
 const STGMEDIUM = @import("../../system/com.zig").STGMEDIUM;
 const StorageLayout = @import("../../system/com.zig").StorageLayout;
 const ULARGE_INTEGER = @import("../../foundation.zig").ULARGE_INTEGER;

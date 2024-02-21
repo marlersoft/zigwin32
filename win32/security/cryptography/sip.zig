@@ -28,7 +28,7 @@ pub const SIP_CAP_FLAG_SEALING = @as(u32, 1);
 pub const SIP_MAX_MAGIC_NUMBER = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
-// Section: Types (18)
+// Section: Types (17)
 //--------------------------------------------------------------------------------
 pub const SIP_SUBJECTINFO = extern struct {
     cbSize: u32,
@@ -58,12 +58,6 @@ pub const SIP_SUBJECTINFO = extern struct {
 pub const MS_ADDINFO_FLAT = extern struct {
     cbStruct: u32,
     pIndirectData: ?*SIP_INDIRECT_DATA,
-};
-
-pub const MS_ADDINFO_CATALOGMEMBER = extern struct {
-    cbStruct: u32,
-    pStore: ?*CRYPTCATSTORE,
-    pMember: ?*CRYPTCATMEMBER,
 };
 
 pub const MS_ADDINFO_BLOB = extern struct {
@@ -342,17 +336,16 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (10)
+// Section: Imports (9)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
 const CERT_QUERY_ENCODING_TYPE = @import("../../security/cryptography.zig").CERT_QUERY_ENCODING_TYPE;
 const CRYPT_ALGORITHM_IDENTIFIER = @import("../../security/cryptography.zig").CRYPT_ALGORITHM_IDENTIFIER;
 const CRYPT_ATTRIBUTE_TYPE_VALUE = @import("../../security/cryptography.zig").CRYPT_ATTRIBUTE_TYPE_VALUE;
-const CRYPTCATMEMBER = @import("../../security/cryptography/catalog.zig").CRYPTCATMEMBER;
-const CRYPTCATSTORE = @import("../../security/cryptography/catalog.zig").CRYPTCATSTORE;
 const CRYPTOAPI_BLOB = @import("../../security/cryptography.zig").CRYPTOAPI_BLOB;
 const HANDLE = @import("../../foundation.zig").HANDLE;
+const MS_ADDINFO_CATALOGMEMBER = @import("../../security/cryptography/catalog.zig").MS_ADDINFO_CATALOGMEMBER;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
