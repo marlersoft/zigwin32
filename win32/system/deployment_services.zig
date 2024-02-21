@@ -803,15 +803,12 @@ pub const IWdsTransportCollection = extern struct {
                 pulCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWdsTransportCollection,
                 ulIndex: u32,
                 ppVal: ?*?*IDispatch,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWdsTransportCollection,
                 ulIndex: u32,
@@ -1189,15 +1186,12 @@ pub const IWdsTransportConfigurationManager = extern struct {
                 ppWdsTransportDiagnosticsPolicy: ?*?*IWdsTransportDiagnosticsPolicy,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WdsTransportServicesRunning: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWdsTransportConfigurationManager,
                 bRealtimeStatus: i16,
                 pbServicesRunning: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWdsTransportConfigurationManager,
                 bRealtimeStatus: i16,
@@ -1435,90 +1429,72 @@ pub const IID_IWdsTransportServicePolicy = &IID_IWdsTransportServicePolicy_Value
 pub const IWdsTransportServicePolicy = extern struct {
     pub const VTable = extern struct {
         base: IWdsTransportCacheable.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpAddressSource: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpAddressSource: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartIpAddress: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 pbszStartIpAddress: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 pbszStartIpAddress: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartIpAddress: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 bszStartIpAddress: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 bszStartIpAddress: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EndIpAddress: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 pbszEndIpAddress: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 pbszEndIpAddress: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EndIpAddress: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
                 bszEndIpAddress: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWdsTransportServicePolicy,
                 AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,

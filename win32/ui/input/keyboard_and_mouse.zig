@@ -1026,7 +1026,7 @@ pub const TRACKMOUSEEVENT = extern struct {
 pub const MOUSEINPUT = extern struct {
     dx: i32,
     dy: i32,
-    mouseData: u32,
+    mouseData: i32,
     dwFlags: MOUSE_EVENT_FLAGS,
     time: u32,
     dwExtraInfo: usize,

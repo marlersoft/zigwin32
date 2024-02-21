@@ -865,45 +865,36 @@ pub const IContactAggregationManager = extern struct {
                 ppItem: ?*?*IContactAggregationServerPerson,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Contacts: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppItems: ?*?*IContactAggregationContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppItems: ?*?*IContactAggregationContactCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AggregateContacts: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppAggregates: ?*?*IContactAggregationAggregateCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppAggregates: ?*?*IContactAggregationAggregateCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Groups: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppGroups: ?*?*IContactAggregationGroupCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IContactAggregationManager,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
@@ -923,15 +914,12 @@ pub const IContactAggregationManager = extern struct {
                 ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerContactLinks: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IContactAggregationManager,
                 pPersonItemId: ?[*:0]const u16,
                 ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IContactAggregationManager,
                 pPersonItemId: ?[*:0]const u16,
@@ -1438,15 +1426,12 @@ pub const IContactAggregationAggregate = extern struct {
                 pAggregateId: ?[*:0]const u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Groups: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IContactAggregationAggregate,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
                 ppGroups: ?*?*IContactAggregationGroupCollection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IContactAggregationAggregate,
                 options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,

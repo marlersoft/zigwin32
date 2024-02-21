@@ -652,15 +652,12 @@ pub const IRDPSRAPIWindowList = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRDPSRAPIWindowList,
                 item: i32,
                 pWindow: ?*?*IRDPSRAPIWindow,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRDPSRAPIWindowList,
                 item: i32,
@@ -818,15 +815,12 @@ pub const IRDPSRAPIApplicationList = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRDPSRAPIApplicationList,
                 item: i32,
                 pApplication: ?*?*IRDPSRAPIApplication,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRDPSRAPIApplicationList,
                 item: i32,
@@ -937,30 +931,24 @@ pub const IID_IRDPSRAPISessionProperties = &IID_IRDPSRAPISessionProperties_Value
 pub const IRDPSRAPISessionProperties = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Property: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRDPSRAPISessionProperties,
                 PropertyName: ?BSTR,
                 pVal: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRDPSRAPISessionProperties,
                 PropertyName: ?BSTR,
                 pVal: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Property: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRDPSRAPISessionProperties,
                 PropertyName: ?BSTR,
                 newVal: VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRDPSRAPISessionProperties,
                 PropertyName: ?BSTR,
@@ -1135,15 +1123,12 @@ pub const IRDPSRAPIInvitationManager = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRDPSRAPIInvitationManager,
                 item: VARIANT,
                 ppInvitation: ?*?*IRDPSRAPIInvitation,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRDPSRAPIInvitationManager,
                 item: VARIANT,
@@ -1468,15 +1453,12 @@ pub const IRDPSRAPIAttendeeManager = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRDPSRAPIAttendeeManager,
                 id: i32,
                 ppItem: ?*?*IRDPSRAPIAttendee,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRDPSRAPIAttendeeManager,
                 id: i32,
@@ -1682,15 +1664,12 @@ pub const IRDPSRAPIVirtualChannelManager = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRDPSRAPIVirtualChannelManager,
                 item: VARIANT,
                 pChannel: ?*?*IRDPSRAPIVirtualChannel,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRDPSRAPIVirtualChannelManager,
                 item: VARIANT,

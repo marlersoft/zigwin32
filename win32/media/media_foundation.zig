@@ -1106,7 +1106,7 @@ pub const MF_INVALID_ACCESS_ERR = @as(u32, 2154823695);
 pub const MF_QUOTA_EXCEEDED_ERR = @as(u32, 2154823702);
 pub const MF_PARSE_ERR = @as(u32, 2154823761);
 pub const MF_TYPE_ERR = @as(u32, 2154840069);
-pub const DEVPKEY_DeviceInterface_IsVirtualCamera = PROPERTYKEY { .fmtid = Guid.initString("6edc630d-c2e3-43b7-b2d1-20525a1af120"), .pid = 3 };
+pub const DEVPKEY_DeviceInterface_IsVirtualCamera = DEVPROPKEY { .fmtid = Guid.initString("6edc630d-c2e3-43b7-b2d1-20525a1af120"), .pid = 3 };
 pub const g_wszSpeechFormatCaps = "SpeechFormatCap";
 pub const g_wszWMCPCodecName = "_CODECNAME";
 pub const g_wszWMCPSupportedVBRModes = "_SUPPORTEDVBRMODES";
@@ -30730,32 +30730,68 @@ pub const DigitalWindowSetting = extern struct {
     WindowSize: f64,
 };
 
-pub const _MFT_ENUM_FLAG = enum(i32) {
-    SYNCMFT = 1,
-    ASYNCMFT = 2,
-    HARDWARE = 4,
-    FIELDOFUSE = 8,
-    LOCALMFT = 16,
-    TRANSCODE_ONLY = 32,
-    SORTANDFILTER = 64,
-    SORTANDFILTER_APPROVED_ONLY = 192,
-    SORTANDFILTER_WEB_ONLY = 320,
-    SORTANDFILTER_WEB_ONLY_EDGEMODE = 576,
-    UNTRUSTED_STOREMFT = 1024,
-    ALL = 63,
+pub const MFT_ENUM_FLAG = packed struct(u32) {
+    SYNCMFT: u1 = 0,
+    ASYNCMFT: u1 = 0,
+    HARDWARE: u1 = 0,
+    FIELDOFUSE: u1 = 0,
+    LOCALMFT: u1 = 0,
+    TRANSCODE_ONLY: u1 = 0,
+    SORTANDFILTER: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    UNTRUSTED_STOREMFT: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const MFT_ENUM_FLAG_SYNCMFT = _MFT_ENUM_FLAG.SYNCMFT;
-pub const MFT_ENUM_FLAG_ASYNCMFT = _MFT_ENUM_FLAG.ASYNCMFT;
-pub const MFT_ENUM_FLAG_HARDWARE = _MFT_ENUM_FLAG.HARDWARE;
-pub const MFT_ENUM_FLAG_FIELDOFUSE = _MFT_ENUM_FLAG.FIELDOFUSE;
-pub const MFT_ENUM_FLAG_LOCALMFT = _MFT_ENUM_FLAG.LOCALMFT;
-pub const MFT_ENUM_FLAG_TRANSCODE_ONLY = _MFT_ENUM_FLAG.TRANSCODE_ONLY;
-pub const MFT_ENUM_FLAG_SORTANDFILTER = _MFT_ENUM_FLAG.SORTANDFILTER;
-pub const MFT_ENUM_FLAG_SORTANDFILTER_APPROVED_ONLY = _MFT_ENUM_FLAG.SORTANDFILTER_APPROVED_ONLY;
-pub const MFT_ENUM_FLAG_SORTANDFILTER_WEB_ONLY = _MFT_ENUM_FLAG.SORTANDFILTER_WEB_ONLY;
-pub const MFT_ENUM_FLAG_SORTANDFILTER_WEB_ONLY_EDGEMODE = _MFT_ENUM_FLAG.SORTANDFILTER_WEB_ONLY_EDGEMODE;
-pub const MFT_ENUM_FLAG_UNTRUSTED_STOREMFT = _MFT_ENUM_FLAG.UNTRUSTED_STOREMFT;
-pub const MFT_ENUM_FLAG_ALL = _MFT_ENUM_FLAG.ALL;
+pub const MFT_ENUM_FLAG_SYNCMFT = MFT_ENUM_FLAG{ .SYNCMFT = 1 };
+pub const MFT_ENUM_FLAG_ASYNCMFT = MFT_ENUM_FLAG{ .ASYNCMFT = 1 };
+pub const MFT_ENUM_FLAG_HARDWARE = MFT_ENUM_FLAG{ .HARDWARE = 1 };
+pub const MFT_ENUM_FLAG_FIELDOFUSE = MFT_ENUM_FLAG{ .FIELDOFUSE = 1 };
+pub const MFT_ENUM_FLAG_LOCALMFT = MFT_ENUM_FLAG{ .LOCALMFT = 1 };
+pub const MFT_ENUM_FLAG_TRANSCODE_ONLY = MFT_ENUM_FLAG{ .TRANSCODE_ONLY = 1 };
+pub const MFT_ENUM_FLAG_SORTANDFILTER = MFT_ENUM_FLAG{ .SORTANDFILTER = 1 };
+pub const MFT_ENUM_FLAG_SORTANDFILTER_APPROVED_ONLY = MFT_ENUM_FLAG{
+    .SORTANDFILTER = 1,
+    ._7 = 1,
+};
+pub const MFT_ENUM_FLAG_SORTANDFILTER_WEB_ONLY = MFT_ENUM_FLAG{
+    .SORTANDFILTER = 1,
+    ._8 = 1,
+};
+pub const MFT_ENUM_FLAG_SORTANDFILTER_WEB_ONLY_EDGEMODE = MFT_ENUM_FLAG{
+    .SORTANDFILTER = 1,
+    ._9 = 1,
+};
+pub const MFT_ENUM_FLAG_UNTRUSTED_STOREMFT = MFT_ENUM_FLAG{ .UNTRUSTED_STOREMFT = 1 };
+pub const MFT_ENUM_FLAG_ALL = MFT_ENUM_FLAG{
+    .SYNCMFT = 1,
+    .ASYNCMFT = 1,
+    .HARDWARE = 1,
+    .FIELDOFUSE = 1,
+    .LOCALMFT = 1,
+    .TRANSCODE_ONLY = 1,
+};
 
 pub const MFFrameSourceTypes = enum(i32) {
     Color = 1,
@@ -36383,15 +36419,12 @@ pub const IID_IMFMediaKeySession2 = &IID_IMFMediaKeySession2_Value;
 pub const IMFMediaKeySession2 = extern struct {
     pub const VTable = extern struct {
         base: IMFMediaKeySession.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_KeyStatuses: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IMFMediaKeySession2,
                 pKeyStatusesArray: ?*?*MFMediaKeyStatus,
                 puSize: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IMFMediaKeySession2,
                 pKeyStatusesArray: ?*?*MFMediaKeyStatus,
@@ -42080,7 +42113,7 @@ pub extern "mfplat" fn MFTEnum(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "mfplat" fn MFTEnumEx(
     guidCategory: Guid,
-    Flags: u32,
+    Flags: MFT_ENUM_FLAG,
     pInputType: ?*const MFT_REGISTER_TYPE_INFO,
     pOutputType: ?*const MFT_REGISTER_TYPE_INFO,
     pppMFTActivate: ?*?*?*IMFActivate,
@@ -42090,7 +42123,7 @@ pub extern "mfplat" fn MFTEnumEx(
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mfplat" fn MFTEnum2(
     guidCategory: Guid,
-    Flags: u32,
+    Flags: MFT_ENUM_FLAG,
     pInputType: ?*const MFT_REGISTER_TYPE_INFO,
     pOutputType: ?*const MFT_REGISTER_TYPE_INFO,
     pAttributes: ?*IMFAttributes,
@@ -42644,7 +42677,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (66)
+// Section: Imports (65)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const AM_MEDIA_TYPE = @import("../media/direct_show.zig").AM_MEDIA_TYPE;
@@ -42702,7 +42735,6 @@ const LUID = @import("../foundation.zig").LUID;
 const MPEG1VIDEOINFO = @import("../media/direct_show.zig").MPEG1VIDEOINFO;
 const MPEG2VIDEOINFO = @import("../media/direct_show.zig").MPEG2VIDEOINFO;
 const POINT = @import("../foundation.zig").POINT;
-const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;

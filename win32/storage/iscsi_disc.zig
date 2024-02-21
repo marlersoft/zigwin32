@@ -185,7 +185,7 @@ pub const ISCSI_TARGET_FLAG_HIDE_STATIC_TARGET = @as(u32, 2);
 pub const ISCSI_TARGET_FLAG_MERGE_TARGET_INFORMATION = @as(u32, 4);
 
 //--------------------------------------------------------------------------------
-// Section: Types (94)
+// Section: Types (93)
 //--------------------------------------------------------------------------------
 pub const _ADAPTER_OBJECT = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -669,19 +669,12 @@ pub const SCSI_ADDRESS = extern struct {
     Lun: u8,
 };
 
-pub const DUMP_DEVICE_POWERON_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
 pub const PDUMP_DEVICE_POWERON_ROUTINE = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
+        Context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
     else => *const fn(
+        Context: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) i32,
 } ;
 
@@ -1958,7 +1951,6 @@ const STORAGE_DEVICE_NUMBER = @import("../system/ioctl.zig").STORAGE_DEVICE_NUMB
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DUMP_DEVICE_POWERON_ROUTINE")) { _ = DUMP_DEVICE_POWERON_ROUTINE; }
     if (@hasDecl(@This(), "PDUMP_DEVICE_POWERON_ROUTINE")) { _ = PDUMP_DEVICE_POWERON_ROUTINE; }
 
     @setEvalBranchQuota(

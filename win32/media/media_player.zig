@@ -934,15 +934,12 @@ pub const IWMPError = extern struct {
                 plNumErrors: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWMPError,
                 dwIndex: i32,
                 ppErrorItem: ?*?*IWMPErrorItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWMPError,
                 dwIndex: i32,
@@ -986,15 +983,12 @@ pub const IID_IWMPMedia = &IID_IWMPMedia_Value;
 pub const IWMPMedia = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isIdentical: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWMPMedia,
                 pIWMPMedia: ?*IWMPMedia,
                 pvbool: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWMPMedia,
                 pIWMPMedia: ?*IWMPMedia,
@@ -1299,15 +1293,12 @@ pub const IID_IWMPControls = &IID_IWMPControls_Value;
 pub const IWMPControls = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isAvailable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWMPControls,
                 bstrItem: ?BSTR,
                 pIsAvailable: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWMPControls,
                 bstrItem: ?BSTR,
@@ -1548,15 +1539,12 @@ pub const IID_IWMPSettings = &IID_IWMPSettings_Value;
 pub const IWMPSettings = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isAvailable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWMPSettings,
                 bstrItem: ?BSTR,
                 pIsAvailable: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWMPSettings,
                 bstrItem: ?BSTR,
@@ -2153,30 +2141,24 @@ pub const IWMPPlaylist = extern struct {
                 plCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_attributeName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWMPPlaylist,
                 lIndex: i32,
                 pbstrAttributeName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWMPPlaylist,
                 lIndex: i32,
                 pbstrAttributeName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWMPPlaylist,
                 lIndex: i32,
                 ppIWMPMedia: ?*?*IWMPMedia,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWMPPlaylist,
                 lIndex: i32,
@@ -2207,15 +2189,12 @@ pub const IWMPPlaylist = extern struct {
                 bstrValue: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isIdentical: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWMPPlaylist,
                 pIWMPPlaylist: ?*IWMPPlaylist,
                 pvbool: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWMPPlaylist,
                 pIWMPPlaylist: ?*IWMPPlaylist,
@@ -4148,15 +4127,12 @@ pub const IID_IWMPDVD = &IID_IWMPDVD_Value;
 pub const IWMPDVD = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_isAvailable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWMPDVD,
                 bstrItem: ?BSTR,
                 pIsAvailable: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWMPDVD,
                 bstrItem: ?BSTR,

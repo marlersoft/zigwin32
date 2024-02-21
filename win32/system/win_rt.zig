@@ -14,6 +14,14 @@ pub const EventRegistrationToken = extern struct {
     value: i64,
 };
 
+pub const HSTRING_HEADER = extern struct {
+    flags: u32,
+    length: u32,
+    padding1: u32,
+    padding2: u32,
+    data: isize,
+};
+
 // TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSTRING = *opaque{};
@@ -175,13 +183,6 @@ pub const IHolographicSpaceInterop = extern struct {
         }
     };}
     pub usingnamespace MethodMixin(@This());
-};
-
-pub const HSTRING_HEADER = extern struct {
-    Reserved: extern union {
-        Reserved1: ?*anyopaque,
-        Reserved2: [24]CHAR,
-    },
 };
 
 pub const TrustLevel = enum(i32) {
@@ -2475,12 +2476,11 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (12)
+// Section: Imports (11)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BSTR = @import("../foundation.zig").BSTR;
-const CHAR = @import("../foundation.zig").CHAR;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const HWND = @import("../foundation.zig").HWND;
 const IMarshal = @import("../system/com/marshal.zig").IMarshal;

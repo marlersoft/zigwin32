@@ -3123,15 +3123,12 @@ pub const IID_IAzApplications = &IID_IAzApplications_Value;
 pub const IAzApplications = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IAzApplications,
                 Index: i32,
                 pvarObtPtr: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IAzApplications,
                 Index: i32,
@@ -3409,15 +3406,12 @@ pub const IID_IAzOperations = &IID_IAzOperations_Value;
 pub const IAzOperations = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IAzOperations,
                 Index: i32,
                 pvarObtPtr: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IAzOperations,
                 Index: i32,
@@ -3931,15 +3925,12 @@ pub const IID_IAzTasks = &IID_IAzTasks_Value;
 pub const IAzTasks = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IAzTasks,
                 Index: i32,
                 pvarObtPtr: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IAzTasks,
                 Index: i32,
@@ -4656,15 +4647,12 @@ pub const IID_IAzScopes = &IID_IAzScopes_Value;
 pub const IAzScopes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IAzScopes,
                 Index: i32,
                 pvarObtPtr: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IAzScopes,
                 Index: i32,
@@ -5272,15 +5260,12 @@ pub const IID_IAzApplicationGroups = &IID_IAzApplicationGroups_Value;
 pub const IAzApplicationGroups = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IAzApplicationGroups,
                 Index: i32,
                 pvarObtPtr: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IAzApplicationGroups,
                 Index: i32,
@@ -5805,15 +5790,12 @@ pub const IID_IAzRoles = &IID_IAzRoles_Value;
 pub const IAzRoles = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IAzRoles,
                 Index: i32,
                 pvarObtPtr: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IAzRoles,
                 Index: i32,
@@ -7087,15 +7069,12 @@ pub const IID_IAzRoleDefinitions = &IID_IAzRoleDefinitions_Value;
 pub const IAzRoleDefinitions = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IAzRoleDefinitions,
                 Index: i32,
                 pvarObtPtr: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IAzRoleDefinitions,
                 Index: i32,
@@ -7307,15 +7286,12 @@ pub const IID_IAzRoleAssignments = &IID_IAzRoleAssignments_Value;
 pub const IAzRoleAssignments = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IAzRoleAssignments,
                 Index: i32,
                 pvarObtPtr: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IAzRoleAssignments,
                 Index: i32,
@@ -8257,7 +8233,7 @@ pub extern "advapi32" fn GetNamedSecurityInfoA(
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
     ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetNamedSecurityInfoW(
@@ -8269,7 +8245,7 @@ pub extern "advapi32" fn GetNamedSecurityInfoW(
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
     ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetSecurityInfo(
@@ -8281,7 +8257,7 @@ pub extern "advapi32" fn GetSecurityInfo(
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
     ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoA(
@@ -8826,7 +8802,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (26)
+// Section: Imports (27)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const ACE_FLAGS = @import("../security.zig").ACE_FLAGS;
@@ -8854,6 +8830,7 @@ const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 const SYSTEM_AUDIT_OBJECT_ACE_FLAGS = @import("../security.zig").SYSTEM_AUDIT_OBJECT_ACE_FLAGS;
 const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
 const VARIANT = @import("../system/com.zig").VARIANT;
+const WIN32_ERROR = @import("../foundation.zig").WIN32_ERROR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476

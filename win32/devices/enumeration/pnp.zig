@@ -387,15 +387,12 @@ pub const IUPnPServices = extern struct {
                 ppunk: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUPnPServices,
                 bstrServiceId: ?BSTR,
                 ppService: ?*?*IUPnPService,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUPnPServices,
                 bstrServiceId: ?BSTR,
@@ -877,15 +874,12 @@ pub const IUPnPDevices = extern struct {
                 ppunk: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUPnPDevices,
                 bstrUDN: ?BSTR,
                 ppDevice: ?*?*IUPnPDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUPnPDevices,
                 bstrUDN: ?BSTR,

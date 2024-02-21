@@ -241,16 +241,13 @@ pub const IID_IQueryRecentWinSATAssessment = &IID_IQueryRecentWinSATAssessment_V
 pub const IQueryRecentWinSATAssessment = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_XML: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IQueryRecentWinSATAssessment,
                 xPath: ?BSTR,
                 namespaces: ?BSTR,
                 ppDomNodeList: ?*?*IXMLDOMNodeList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IQueryRecentWinSATAssessment,
                 xPath: ?BSTR,
@@ -293,9 +290,7 @@ pub const IID_IProvideWinSATVisuals = &IID_IProvideWinSATVisuals_Value;
 pub const IProvideWinSATVisuals = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Bitmap: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IProvideWinSATVisuals,
                 bitmapSize: WINSAT_BITMAP_SIZE,
@@ -303,7 +298,6 @@ pub const IProvideWinSATVisuals = extern struct {
                 rating: f32,
                 pBitmap: ?*?HBITMAP,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IProvideWinSATVisuals,
                 bitmapSize: WINSAT_BITMAP_SIZE,
@@ -330,16 +324,13 @@ pub const IID_IQueryAllWinSATAssessments = &IID_IQueryAllWinSATAssessments_Value
 pub const IQueryAllWinSATAssessments = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllXML: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IQueryAllWinSATAssessments,
                 xPath: ?BSTR,
                 namespaces: ?BSTR,
                 ppDomNodeList: ?*?*IXMLDOMNodeList,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IQueryAllWinSATAssessments,
                 xPath: ?BSTR,

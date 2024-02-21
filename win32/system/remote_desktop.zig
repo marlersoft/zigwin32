@@ -3863,30 +3863,24 @@ pub const ITsSbTarget = extern struct {
                 Val: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpAddresses: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITsSbTarget,
                 SOCKADDR: [*]TSSD_ConnectionPoint,
                 numAddresses: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITsSbTarget,
                 SOCKADDR: [*]TSSD_ConnectionPoint,
                 numAddresses: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IpAddresses: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITsSbTarget,
                 SOCKADDR: [*]TSSD_ConnectionPoint,
                 numAddresses: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITsSbTarget,
                 SOCKADDR: [*]TSSD_ConnectionPoint,
@@ -5190,13 +5184,10 @@ pub const ITsSbClientConnection = extern struct {
                 ppEnvironment: ?*?*ITsSbEnvironment,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectionError: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITsSbClientConnection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITsSbClientConnection,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,

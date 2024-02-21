@@ -9777,15 +9777,12 @@ pub const ISClusApplication = extern struct {
                 ppDomains: ?*?*ISDomainNames,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClusterNames: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusApplication,
                 bstrDomainName: ?BSTR,
                 ppClusters: ?*?*ISClusterNames,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusApplication,
                 bstrDomainName: ?BSTR,
@@ -9863,15 +9860,12 @@ pub const ISDomainNames = extern struct {
                 self: *const ISDomainNames,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISDomainNames,
                 varIndex: VARIANT,
                 pbstrDomainName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISDomainNames,
                 varIndex: VARIANT,
@@ -9941,15 +9935,12 @@ pub const ISClusterNames = extern struct {
                 self: *const ISClusterNames,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusterNames,
                 varIndex: VARIANT,
                 pbstrClusterName: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusterNames,
                 varIndex: VARIANT,
@@ -10852,15 +10843,12 @@ pub const ISClusNodes = extern struct {
                 self: *const ISClusNodes,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusNodes,
                 varIndex: VARIANT,
                 ppNode: ?*?*ISClusNode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusNodes,
                 varIndex: VARIANT,
@@ -11130,15 +11118,12 @@ pub const ISClusNetworks = extern struct {
                 self: *const ISClusNetworks,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusNetworks,
                 varIndex: VARIANT,
                 ppClusNetwork: ?*?*ISClusNetwork,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusNetworks,
                 varIndex: VARIANT,
@@ -11357,15 +11342,12 @@ pub const ISClusNetInterfaces = extern struct {
                 self: *const ISClusNetInterfaces,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusNetInterfaces,
                 varIndex: VARIANT,
                 ppClusNetInterface: ?*?*ISClusNetInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusNetInterfaces,
                 varIndex: VARIANT,
@@ -11435,15 +11417,12 @@ pub const ISClusNodeNetInterfaces = extern struct {
                 self: *const ISClusNodeNetInterfaces,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusNodeNetInterfaces,
                 varIndex: VARIANT,
                 ppClusNetInterface: ?*?*ISClusNetInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusNodeNetInterfaces,
                 varIndex: VARIANT,
@@ -11513,15 +11492,12 @@ pub const ISClusNetworkNetInterfaces = extern struct {
                 self: *const ISClusNetworkNetInterfaces,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusNetworkNetInterfaces,
                 varIndex: VARIANT,
                 ppClusNetInterface: ?*?*ISClusNetInterface,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusNetworkNetInterfaces,
                 varIndex: VARIANT,
@@ -11872,15 +11848,12 @@ pub const ISClusResGroups = extern struct {
                 self: *const ISClusResGroups,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResGroups,
                 varIndex: VARIANT,
                 ppClusResGroup: ?*?*ISClusResGroup,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResGroups,
                 varIndex: VARIANT,
@@ -12514,15 +12487,12 @@ pub const ISClusResDependencies = extern struct {
                 self: *const ISClusResDependencies,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResDependencies,
                 varIndex: VARIANT,
                 ppClusResource: ?*?*ISClusResource,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResDependencies,
                 varIndex: VARIANT,
@@ -12654,15 +12624,12 @@ pub const ISClusResGroupResources = extern struct {
                 self: *const ISClusResGroupResources,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResGroupResources,
                 varIndex: VARIANT,
                 ppClusResource: ?*?*ISClusResource,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResGroupResources,
                 varIndex: VARIANT,
@@ -12766,15 +12733,12 @@ pub const ISClusResTypeResources = extern struct {
                 self: *const ISClusResTypeResources,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResTypeResources,
                 varIndex: VARIANT,
                 ppClusResource: ?*?*ISClusResource,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResTypeResources,
                 varIndex: VARIANT,
@@ -12878,15 +12842,12 @@ pub const ISClusResources = extern struct {
                 self: *const ISClusResources,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResources,
                 varIndex: VARIANT,
                 ppClusResource: ?*?*ISClusResource,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResources,
                 varIndex: VARIANT,
@@ -12992,15 +12953,12 @@ pub const ISClusResGroupPreferredOwnerNodes = extern struct {
                 self: *const ISClusResGroupPreferredOwnerNodes,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResGroupPreferredOwnerNodes,
                 varIndex: VARIANT,
                 ppNode: ?*?*ISClusNode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResGroupPreferredOwnerNodes,
                 varIndex: VARIANT,
@@ -13143,15 +13101,12 @@ pub const ISClusResPossibleOwnerNodes = extern struct {
                 self: *const ISClusResPossibleOwnerNodes,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResPossibleOwnerNodes,
                 varIndex: VARIANT,
                 ppNode: ?*?*ISClusNode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResPossibleOwnerNodes,
                 varIndex: VARIANT,
@@ -13266,15 +13221,12 @@ pub const ISClusResTypePossibleOwnerNodes = extern struct {
                 self: *const ISClusResTypePossibleOwnerNodes,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResTypePossibleOwnerNodes,
                 varIndex: VARIANT,
                 ppNode: ?*?*ISClusNode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResTypePossibleOwnerNodes,
                 varIndex: VARIANT,
@@ -13522,15 +13474,12 @@ pub const ISClusResTypes = extern struct {
                 self: *const ISClusResTypes,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResTypes,
                 varIndex: VARIANT,
                 ppClusResType: ?*?*ISClusResType,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResTypes,
                 varIndex: VARIANT,
@@ -14059,15 +14008,12 @@ pub const ISClusPropertyValues = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusPropertyValues,
                 varIndex: VARIANT,
                 ppPropertyValue: ?*?*ISClusPropertyValue,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusPropertyValues,
                 varIndex: VARIANT,
@@ -14165,15 +14111,12 @@ pub const ISClusProperties = extern struct {
                 self: *const ISClusProperties,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusProperties,
                 varIndex: VARIANT,
                 ppClusProperty: ?*?*ISClusProperty,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusProperties,
                 varIndex: VARIANT,
@@ -14349,15 +14292,12 @@ pub const ISClusPropertyValueData = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusPropertyValueData,
                 varIndex: VARIANT,
                 pvarValue: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusPropertyValueData,
                 varIndex: VARIANT,
@@ -14676,15 +14616,12 @@ pub const ISClusPartitions = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusPartitions,
                 varIndex: VARIANT,
                 ppPartition: ?*?*ISClusPartition,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusPartitions,
                 varIndex: VARIANT,
@@ -14823,15 +14760,12 @@ pub const ISClusDisks = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusDisks,
                 varIndex: VARIANT,
                 ppDisk: ?*?*ISClusDisk,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusDisks,
                 varIndex: VARIANT,
@@ -14978,15 +14912,12 @@ pub const ISClusRegistryKeys = extern struct {
                 self: *const ISClusRegistryKeys,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusRegistryKeys,
                 varIndex: VARIANT,
                 pbstrRegistryKey: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusRegistryKeys,
                 varIndex: VARIANT,
@@ -15084,15 +15015,12 @@ pub const ISClusCryptoKeys = extern struct {
                 self: *const ISClusCryptoKeys,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusCryptoKeys,
                 varIndex: VARIANT,
                 pbstrCyrptoKey: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusCryptoKeys,
                 varIndex: VARIANT,
@@ -15190,15 +15118,12 @@ pub const ISClusResDependents = extern struct {
                 self: *const ISClusResDependents,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISClusResDependents,
                 varIndex: VARIANT,
                 ppClusResource: ?*?*ISClusResource,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISClusResDependents,
                 varIndex: VARIANT,

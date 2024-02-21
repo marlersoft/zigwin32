@@ -889,15 +889,12 @@ pub const Node = extern struct {
                 Name: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Property: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const Node,
                 PropertyName: ?BSTR,
                 PropertyValue: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const Node,
                 PropertyName: ?BSTR,
@@ -2269,15 +2266,12 @@ pub const View = extern struct {
                 NewName: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScopeNodeContextMenu: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const View,
                 ScopeNode: VARIANT,
                 ContextMenu: ?*?*ContextMenu,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const View,
                 ScopeNode: VARIANT,
@@ -2465,16 +2459,13 @@ pub const View = extern struct {
                 Columns: ?*?*Columns,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CellContents: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const View,
                 Node: ?*Node,
                 Column: i32,
                 CellContents: ?*?*u16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const View,
                 Node: ?*Node,
@@ -2790,15 +2781,12 @@ pub const ContextMenu = extern struct {
                 retval: ?*?*IUnknown,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ContextMenu,
                 IndexOrPath: VARIANT,
                 MenuItem: ?*?*MenuItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ContextMenu,
                 IndexOrPath: VARIANT,

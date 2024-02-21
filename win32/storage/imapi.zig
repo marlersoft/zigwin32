@@ -759,15 +759,12 @@ pub const IDiscMaster2 = extern struct {
                 ppunk: ?*?*IEnumVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IDiscMaster2,
                 index: i32,
                 value: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IDiscMaster2,
                 index: i32,
@@ -4340,30 +4337,24 @@ pub const IStreamPseudoRandomBased = extern struct {
                 value: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExtendedSeed: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IStreamPseudoRandomBased,
                 values: [*]u32,
                 eCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IStreamPseudoRandomBased,
                 values: [*]u32,
                 eCount: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtendedSeed: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IStreamPseudoRandomBased,
                 values: [*]?*u32,
                 eCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IStreamPseudoRandomBased,
                 values: [*]?*u32,
@@ -4695,15 +4686,12 @@ pub const IRawCDImageCreator = extern struct {
                 value: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TrackInfo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRawCDImageCreator,
                 trackIndex: i32,
                 value: ?*?*IRawCDImageTrackInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRawCDImageCreator,
                 trackIndex: i32,
@@ -5566,15 +5554,12 @@ pub const IProgressItems = extern struct {
                 NewEnum: ?*?*IEnumVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IProgressItems,
                 Index: i32,
                 item: ?*?*IProgressItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IProgressItems,
                 Index: i32,
@@ -6311,15 +6296,12 @@ pub const IFsiNamedStreams = extern struct {
                 NewEnum: ?*?*IEnumVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IFsiNamedStreams,
                 index: i32,
                 item: ?*?*IFsiFileItem2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IFsiNamedStreams,
                 index: i32,
@@ -6395,15 +6377,12 @@ pub const IFsiDirectoryItem = extern struct {
                 NewEnum: ?*?*IEnumVARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IFsiDirectoryItem,
                 path: ?BSTR,
                 item: ?*?*IFsiItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IFsiDirectoryItem,
                 path: ?BSTR,

@@ -3857,16 +3857,13 @@ pub const ITTerminalSupport2 = extern struct {
                 ppSuperclassEnumerator: ?*?*IEnumPluggableSuperclassInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PluggableTerminalClasses: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITTerminalSupport2,
                 bstrTerminalSuperclass: ?BSTR,
                 lMediaType: i32,
                 pVariant: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITTerminalSupport2,
                 bstrTerminalSuperclass: ?BSTR,
@@ -4239,16 +4236,13 @@ pub const ITAddress2 = extern struct {
                 ppEnumPhone: ?*?*IEnumPhone,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventFilter: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITAddress2,
                 TapiEvent: TAPI_EVENT,
                 lSubEvent: i32,
                 pEnable: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITAddress2,
                 TapiEvent: TAPI_EVENT,
@@ -4256,16 +4250,13 @@ pub const ITAddress2 = extern struct {
                 pEnable: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventFilter: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITAddress2,
                 TapiEvent: TAPI_EVENT,
                 lSubEvent: i32,
                 bEnable: i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITAddress2,
                 TapiEvent: TAPI_EVENT,
@@ -4366,30 +4357,24 @@ pub const IID_ITAddressCapabilities = &IID_ITAddressCapabilities_Value;
 pub const ITAddressCapabilities = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddressCapability: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITAddressCapabilities,
                 AddressCap: ADDRESS_CAPABILITY,
                 plCapability: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITAddressCapabilities,
                 AddressCap: ADDRESS_CAPABILITY,
                 plCapability: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddressCapabilityString: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITAddressCapabilities,
                 AddressCapString: ADDRESS_CAPABILITY_STRING,
                 ppCapabilityString: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITAddressCapabilities,
                 AddressCapString: ADDRESS_CAPABILITY_STRING,
@@ -4551,45 +4536,36 @@ pub const ITPhone = extern struct {
                 ppEnumAddress: ?*?*IEnumAddress,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhoneCapsLong: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 pclCap: PHONECAPS_LONG,
                 plCapability: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 pclCap: PHONECAPS_LONG,
                 plCapability: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhoneCapsString: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 pcsCap: PHONECAPS_STRING,
                 ppCapability: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 pcsCap: PHONECAPS_STRING,
                 ppCapability: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Terminals: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 pAddress: ?*ITAddress,
                 pTerminals: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 pAddress: ?*ITAddress,
@@ -4608,135 +4584,108 @@ pub const ITPhone = extern struct {
                 ppEnumTerminal: ?*?*IEnumTerminal,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ButtonMode: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 pButtonMode: ?*PHONE_BUTTON_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 pButtonMode: ?*PHONE_BUTTON_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ButtonMode: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 ButtonMode: PHONE_BUTTON_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 ButtonMode: PHONE_BUTTON_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ButtonFunction: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 pButtonFunction: ?*PHONE_BUTTON_FUNCTION,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 pButtonFunction: ?*PHONE_BUTTON_FUNCTION,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ButtonFunction: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 ButtonFunction: PHONE_BUTTON_FUNCTION,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 ButtonFunction: PHONE_BUTTON_FUNCTION,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ButtonText: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 ppButtonText: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 ppButtonText: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ButtonText: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 bstrButtonText: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 bstrButtonText: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ButtonState: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 pButtonState: ?*PHONE_BUTTON_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 lButtonID: i32,
                 pButtonState: ?*PHONE_BUTTON_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HookSwitchState: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 HookSwitchDevice: PHONE_HOOK_SWITCH_DEVICE,
                 pHookSwitchState: ?*PHONE_HOOK_SWITCH_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 HookSwitchDevice: PHONE_HOOK_SWITCH_DEVICE,
                 pHookSwitchState: ?*PHONE_HOOK_SWITCH_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HookSwitchState: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 HookSwitchDevice: PHONE_HOOK_SWITCH_DEVICE,
                 HookSwitchState: PHONE_HOOK_SWITCH_STATE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 HookSwitchDevice: PHONE_HOOK_SWITCH_DEVICE,
@@ -4822,45 +4771,36 @@ pub const ITPhone = extern struct {
                 ppPhoneCapsBuffer: ?*?*u8,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhoneCapsBuffer: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 pcbCaps: PHONECAPS_BUFFER,
                 pVarBuffer: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 pcbCaps: PHONECAPS_BUFFER,
                 pVarBuffer: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LampMode: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 lLampID: i32,
                 pLampMode: ?*PHONE_LAMP_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 lLampID: i32,
                 pLampMode: ?*PHONE_LAMP_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LampMode: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITPhone,
                 lLampID: i32,
                 LampMode: PHONE_LAMP_MODE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITPhone,
                 lLampID: i32,
@@ -5953,90 +5893,72 @@ pub const ITCallInfo = extern struct {
                 ppCallHub: ?*?*ITCallHub,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CallInfoLong: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITCallInfo,
                 CallInfoLong: CALLINFO_LONG,
                 plCallInfoLongVal: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITCallInfo,
                 CallInfoLong: CALLINFO_LONG,
                 plCallInfoLongVal: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CallInfoLong: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITCallInfo,
                 CallInfoLong: CALLINFO_LONG,
                 lCallInfoLongVal: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITCallInfo,
                 CallInfoLong: CALLINFO_LONG,
                 lCallInfoLongVal: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CallInfoString: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITCallInfo,
                 CallInfoString: CALLINFO_STRING,
                 ppCallInfoString: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITCallInfo,
                 CallInfoString: CALLINFO_STRING,
                 ppCallInfoString: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CallInfoString: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITCallInfo,
                 CallInfoString: CALLINFO_STRING,
                 pCallInfoString: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITCallInfo,
                 CallInfoString: CALLINFO_STRING,
                 pCallInfoString: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CallInfoBuffer: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITCallInfo,
                 CallInfoBuffer: CALLINFO_BUFFER,
                 ppCallInfoBuffer: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITCallInfo,
                 CallInfoBuffer: CALLINFO_BUFFER,
                 ppCallInfoBuffer: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CallInfoBuffer: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITCallInfo,
                 CallInfoBuffer: CALLINFO_BUFFER,
                 pCallInfoBuffer: VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITCallInfo,
                 CallInfoBuffer: CALLINFO_BUFFER,
@@ -6144,16 +6066,13 @@ pub const IID_ITCallInfo2 = &IID_ITCallInfo2_Value;
 pub const ITCallInfo2 = extern struct {
     pub const VTable = extern struct {
         base: ITCallInfo.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventFilter: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITCallInfo2,
                 TapiEvent: TAPI_EVENT,
                 lSubEvent: i32,
                 pEnable: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITCallInfo2,
                 TapiEvent: TAPI_EVENT,
@@ -6161,16 +6080,13 @@ pub const ITCallInfo2 = extern struct {
                 pEnable: ?*i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventFilter: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITCallInfo2,
                 TapiEvent: TAPI_EVENT,
                 lSubEvent: i32,
                 bEnable: i16,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITCallInfo2,
                 TapiEvent: TAPI_EVENT,
@@ -7458,30 +7374,24 @@ pub const ITDetectTone = extern struct {
                 lDuration: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Frequency: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITDetectTone,
                 Index: i32,
                 plFrequency: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITDetectTone,
                 Index: i32,
                 plFrequency: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Frequency: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITDetectTone,
                 Index: i32,
                 lFrequency: i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITDetectTone,
                 Index: i32,
@@ -10076,15 +9986,12 @@ pub const ITCollection = extern struct {
                 lCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITCollection,
                 Index: i32,
                 pVariant: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITCollection,
                 Index: i32,
@@ -10212,30 +10119,24 @@ pub const ITForwardInformation = extern struct {
                 pCallerAddress: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForwardTypeDestination: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITForwardInformation,
                 ForwardType: i32,
                 ppDestAddress: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITForwardInformation,
                 ForwardType: i32,
                 ppDestAddress: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForwardTypeCaller: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITForwardInformation,
                 Forwardtype: i32,
                 ppCallerAddress: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITForwardInformation,
                 Forwardtype: i32,
@@ -10341,30 +10242,24 @@ pub const ITForwardInformation2 = extern struct {
                 pCallerAddressType: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForwardTypeDestinationAddressType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITForwardInformation2,
                 ForwardType: i32,
                 pDestAddressType: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITForwardInformation2,
                 ForwardType: i32,
                 pDestAddressType: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForwardTypeCallerAddressType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITForwardInformation2,
                 Forwardtype: i32,
                 pCallerAddressType: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITForwardInformation2,
                 Forwardtype: i32,
@@ -14668,15 +14563,12 @@ pub const ITDirectoryObject = extern struct {
                 pName: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DialableAddrs: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITDirectoryObject,
                 dwAddressType: i32,
                 pVariant: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITDirectoryObject,
                 dwAddressType: i32,
@@ -15021,16 +14913,13 @@ pub const ITDirectory = extern struct {
                 pDirectoryObject: ?*ITDirectoryObject,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DirectoryObjects: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITDirectory,
                 DirectoryObjectType: DIRECTORY_OBJECT_TYPE,
                 pName: ?BSTR,
                 pVariant: ?*VARIANT,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITDirectory,
                 DirectoryObjectType: DIRECTORY_OBJECT_TYPE,

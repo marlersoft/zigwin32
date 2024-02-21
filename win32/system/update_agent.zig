@@ -741,30 +741,24 @@ pub const IID_IStringCollection = &IID_IStringCollection_Value;
 pub const IStringCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IStringCollection,
                 index: i32,
                 retval: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IStringCollection,
                 index: i32,
                 retval: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IStringCollection,
                 index: i32,
                 value: ?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IStringCollection,
                 index: i32,
@@ -2047,15 +2041,12 @@ pub const IID_ICategoryCollection = &IID_ICategoryCollection_Value;
 pub const ICategoryCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ICategoryCollection,
                 index: i32,
                 retval: ?*?*ICategory,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ICategoryCollection,
                 index: i32,
@@ -2258,15 +2249,12 @@ pub const IID_IUpdateDownloadContentCollection = &IID_IUpdateDownloadContentColl
 pub const IUpdateDownloadContentCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUpdateDownloadContentCollection,
                 index: i32,
                 retval: ?*?*IUpdateDownloadContent,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUpdateDownloadContentCollection,
                 index: i32,
@@ -3697,15 +3685,12 @@ pub const IID_IWindowsDriverUpdateEntryCollection = &IID_IWindowsDriverUpdateEnt
 pub const IWindowsDriverUpdateEntryCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWindowsDriverUpdateEntryCollection,
                 index: i32,
                 retval: ?*?*IWindowsDriverUpdateEntry,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWindowsDriverUpdateEntryCollection,
                 index: i32,
@@ -3860,30 +3845,24 @@ pub const IID_IUpdateCollection = &IID_IUpdateCollection_Value;
 pub const IUpdateCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUpdateCollection,
                 index: i32,
                 retval: ?*?*IUpdate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUpdateCollection,
                 index: i32,
                 retval: ?*?*IUpdate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUpdateCollection,
                 index: i32,
                 value: ?*IUpdate,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUpdateCollection,
                 index: i32,
@@ -4131,15 +4110,12 @@ pub const IID_IUpdateExceptionCollection = &IID_IUpdateExceptionCollection_Value
 pub const IUpdateExceptionCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUpdateExceptionCollection,
                 index: i32,
                 retval: ?*?*IUpdateException,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUpdateExceptionCollection,
                 index: i32,
@@ -4679,15 +4655,12 @@ pub const IID_IUpdateHistoryEntryCollection = &IID_IUpdateHistoryEntryCollection
 pub const IUpdateHistoryEntryCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUpdateHistoryEntryCollection,
                 index: i32,
                 retval: ?*?*IUpdateHistoryEntry,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUpdateHistoryEntryCollection,
                 index: i32,
@@ -7276,15 +7249,12 @@ pub const IID_IUpdateServiceCollection = &IID_IUpdateServiceCollection_Value;
 pub const IUpdateServiceCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IUpdateServiceCollection,
                 index: i32,
                 retval: ?*?*IUpdateService,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IUpdateServiceCollection,
                 index: i32,

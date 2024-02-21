@@ -1850,15 +1850,12 @@ pub const IID_IXMLDOMNodeList = &IID_IXMLDOMNodeList_Value;
 pub const IXMLDOMNodeList = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IXMLDOMNodeList,
                 index: i32,
                 listItem: ?*?*IXMLDOMNode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IXMLDOMNodeList,
                 index: i32,
@@ -1978,15 +1975,12 @@ pub const IXMLDOMNamedNodeMap = extern struct {
                 namedItem: ?*?*IXMLDOMNode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IXMLDOMNamedNodeMap,
                 index: i32,
                 listItem: ?*?*IXMLDOMNode,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IXMLDOMNamedNodeMap,
                 index: i32,
@@ -4812,15 +4806,12 @@ pub const IXMLDOMSchemaCollection = extern struct {
                 length: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_namespaceURI: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IXMLDOMSchemaCollection,
                 index: i32,
                 length: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IXMLDOMSchemaCollection,
                 index: i32,
@@ -5151,15 +5142,12 @@ pub const IID_IXMLDOMParseErrorCollection = &IID_IXMLDOMParseErrorCollection_Val
 pub const IXMLDOMParseErrorCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IXMLDOMParseErrorCollection,
                 index: i32,
                 @"error": ?*?*IXMLDOMParseError2,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IXMLDOMParseErrorCollection,
                 index: i32,
@@ -8928,15 +8916,12 @@ pub const IID_IMXNamespacePrefixes = &IID_IMXNamespacePrefixes_Value;
 pub const IMXNamespacePrefixes = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IMXNamespacePrefixes,
                 index: i32,
                 prefix: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IMXNamespacePrefixes,
                 index: i32,
@@ -9853,15 +9838,12 @@ pub const IID_ISchemaStringCollection = &IID_ISchemaStringCollection_Value;
 pub const ISchemaStringCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISchemaStringCollection,
                 index: i32,
                 bstr: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISchemaStringCollection,
                 index: i32,
@@ -9919,15 +9901,12 @@ pub const IID_ISchemaItemCollection = &IID_ISchemaItemCollection_Value;
 pub const ISchemaItemCollection = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISchemaItemCollection,
                 index: i32,
                 item: ?*?*ISchemaItem,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISchemaItemCollection,
                 index: i32,

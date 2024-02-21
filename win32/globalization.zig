@@ -2160,29 +2160,23 @@ pub const ISpellChecker = extern struct {
                 value: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         add_SpellCheckerChanged: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISpellChecker,
                 handler: ?*ISpellCheckerChangedEventHandler,
                 eventCookie: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISpellChecker,
                 handler: ?*ISpellCheckerChangedEventHandler,
                 eventCookie: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         remove_SpellCheckerChanged: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ISpellChecker,
                 eventCookie: u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ISpellChecker,
                 eventCookie: u32,

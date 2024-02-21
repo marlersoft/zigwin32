@@ -1513,7 +1513,7 @@ pub const GUID_PARTITION_UNIT_INTERFACE_STANDARD = Guid.initString("52363f5b-d89
 pub const GUID_QUERY_CRASHDUMP_FUNCTIONS = Guid.initString("9cc6b8ff-32e2-4834-b1de-b32ef8880a4b");
 
 //--------------------------------------------------------------------------------
-// Section: Types (172)
+// Section: Types (173)
 //--------------------------------------------------------------------------------
 pub const SP_COPY_STYLE = packed struct(u32) {
     DELETESOURCE: u1 = 0,
@@ -1747,6 +1747,10 @@ pub const NUM_CR_RESULTS = CONFIGRET.NUM_CR_RESULTS;
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCMNOTIFICATION = *opaque{};
 
+// TODO: this type has a FreeFunc 'SetupDiDestroyDeviceInfoList', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDEVINFO = isize;
+
 
 
 
@@ -1857,13 +1861,13 @@ pub const SP_POWERMESSAGEWAKE_PARAMS_A = extern struct {
 
 pub const PSP_DETSIG_CMPPROC = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
-        DeviceInfoSet: ?*anyopaque,
+        DeviceInfoSet: HDEVINFO,
         NewDeviceData: ?*SP_DEVINFO_DATA,
         ExistingDeviceData: ?*SP_DEVINFO_DATA,
         CompareContext: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) u32,
     else => *const fn(
-        DeviceInfoSet: ?*anyopaque,
+        DeviceInfoSet: HDEVINFO,
         NewDeviceData: ?*SP_DEVINFO_DATA,
         ExistingDeviceData: ?*SP_DEVINFO_DATA,
         CompareContext: ?*anyopaque,
@@ -3166,13 +3170,13 @@ pub const SP_PROPSHEETPAGE_REQUEST = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         cbSize: u32,
         PageRequested: u32,
-        DeviceInfoSet: ?*anyopaque,
+        DeviceInfoSet: HDEVINFO,
         DeviceInfoData: ?*SP_DEVINFO_DATA,
     },
     .X86 => extern struct {
         cbSize: u32 align(1),
         PageRequested: u32 align(1),
-        DeviceInfoSet: ?*anyopaque align(1),
+        DeviceInfoSet: HDEVINFO align(1),
         DeviceInfoData: ?*SP_DEVINFO_DATA align(1),
     },
 };
@@ -4559,7 +4563,7 @@ pub extern "setupapi" fn SetupInstallFromInfSectionA(
     CopyFlags: u32,
     MsgHandler: ?PSP_FILE_CALLBACK_A,
     Context: ?*anyopaque,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4574,7 +4578,7 @@ pub extern "setupapi" fn SetupInstallFromInfSectionW(
     CopyFlags: u32,
     MsgHandler: ?PSP_FILE_CALLBACK_W,
     Context: ?*anyopaque,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -4617,7 +4621,7 @@ pub extern "setupapi" fn SetupInstallServicesFromInfSectionExA(
     InfHandle: ?*anyopaque,
     SectionName: ?[*:0]const u8,
     Flags: u32,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Reserved1: ?*anyopaque,
     Reserved2: ?*anyopaque,
@@ -4628,7 +4632,7 @@ pub extern "setupapi" fn SetupInstallServicesFromInfSectionExW(
     InfHandle: ?*anyopaque,
     SectionName: ?[*:0]const u16,
     Flags: u32,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Reserved1: ?*anyopaque,
     Reserved2: ?*anyopaque,
@@ -4819,7 +4823,7 @@ pub extern "setupapi" fn SetupGetNonInteractiveMode(
 pub extern "setupapi" fn SetupDiCreateDeviceInfoList(
     ClassGuid: ?*const Guid,
     hwndParent: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInfoListExA(
@@ -4827,7 +4831,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInfoListExA(
     hwndParent: ?HWND,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInfoListExW(
@@ -4835,29 +4839,29 @@ pub extern "setupapi" fn SetupDiCreateDeviceInfoListExW(
     hwndParent: ?HWND,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInfoListClass(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     ClassGuid: ?*Guid,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInfoListDetailA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoSetDetailData: ?*SP_DEVINFO_LIST_DETAIL_DATA_A,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInfoListDetailW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoSetDetailData: ?*SP_DEVINFO_LIST_DETAIL_DATA_W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInfoA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceName: ?[*:0]const u8,
     ClassGuid: ?*const Guid,
     DeviceDescription: ?[*:0]const u8,
@@ -4868,7 +4872,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInfoA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInfoW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceName: ?[*:0]const u16,
     ClassGuid: ?*const Guid,
     DeviceDescription: ?[*:0]const u16,
@@ -4879,7 +4883,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInfoW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInfoA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInstanceId: ?[*:0]const u8,
     hwndParent: ?HWND,
     OpenFlags: u32,
@@ -4888,7 +4892,7 @@ pub extern "setupapi" fn SetupDiOpenDeviceInfoA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInfoW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInstanceId: ?[*:0]const u16,
     hwndParent: ?HWND,
     OpenFlags: u32,
@@ -4897,7 +4901,7 @@ pub extern "setupapi" fn SetupDiOpenDeviceInfoW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInstanceIdA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstanceId: ?[*:0]u8,
     DeviceInstanceIdSize: u32,
@@ -4906,7 +4910,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInstanceIdA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInstanceIdW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstanceId: ?[*:0]u16,
     DeviceInstanceIdSize: u32,
@@ -4915,25 +4919,25 @@ pub extern "setupapi" fn SetupDiGetDeviceInstanceIdW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDeleteDeviceInfo(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiEnumDeviceInfo(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     MemberIndex: u32,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDestroyDeviceInfoList(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiEnumDeviceInterfaces(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     InterfaceClassGuid: ?*const Guid,
     MemberIndex: u32,
@@ -4942,7 +4946,7 @@ pub extern "setupapi" fn SetupDiEnumDeviceInterfaces(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInterfaceA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     InterfaceClassGuid: ?*const Guid,
     ReferenceString: ?[*:0]const u8,
@@ -4952,7 +4956,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInterfaceA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInterfaceW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     InterfaceClassGuid: ?*const Guid,
     ReferenceString: ?[*:0]const u16,
@@ -4962,7 +4966,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInterfaceW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInterfaceA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DevicePath: ?[*:0]const u8,
     OpenFlags: u32,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
@@ -4970,7 +4974,7 @@ pub extern "setupapi" fn SetupDiOpenDeviceInterfaceA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInterfaceW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DevicePath: ?[*:0]const u16,
     OpenFlags: u32,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
@@ -4978,7 +4982,7 @@ pub extern "setupapi" fn SetupDiOpenDeviceInterfaceW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInterfaceAlias(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     AliasInterfaceClassGuid: ?*const Guid,
     AliasDeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
@@ -4986,19 +4990,19 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfaceAlias(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDeleteDeviceInterfaceData(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiRemoveDeviceInterface(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     // TODO: what to do with BytesParamIndex 3?
     DeviceInterfaceDetailData: ?*SP_DEVICE_INTERFACE_DETAIL_DATA_A,
@@ -5009,7 +5013,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     // TODO: what to do with BytesParamIndex 3?
     DeviceInterfaceDetailData: ?*SP_DEVICE_INTERFACE_DETAIL_DATA_W,
@@ -5020,13 +5024,13 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallDeviceInterfaces(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiSetDeviceInterfaceDefault(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     Flags: u32,
     Reserved: ?*anyopaque,
@@ -5034,7 +5038,7 @@ pub extern "setupapi" fn SetupDiSetDeviceInterfaceDefault(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiRegisterDeviceInfo(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Flags: u32,
     CompareProc: ?PSP_DETSIG_CMPPROC,
@@ -5044,19 +5048,19 @@ pub extern "setupapi" fn SetupDiRegisterDeviceInfo(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiBuildDriverInfoList(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverType: SETUP_DI_BUILD_DRIVER_DRIVER_TYPE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCancelDriverInfoSearch(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiEnumDriverInfoA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverType: u32,
     MemberIndex: u32,
@@ -5065,7 +5069,7 @@ pub extern "setupapi" fn SetupDiEnumDriverInfoA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiEnumDriverInfoW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverType: u32,
     MemberIndex: u32,
@@ -5074,35 +5078,35 @@ pub extern "setupapi" fn SetupDiEnumDriverInfoW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetSelectedDriverA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetSelectedDriverW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetSelectedDriverA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetSelectedDriverW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDriverInfoDetailA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
     // TODO: what to do with BytesParamIndex 4?
@@ -5113,7 +5117,7 @@ pub extern "setupapi" fn SetupDiGetDriverInfoDetailA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDriverInfoDetailW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
     // TODO: what to do with BytesParamIndex 4?
@@ -5124,7 +5128,7 @@ pub extern "setupapi" fn SetupDiGetDriverInfoDetailW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDestroyDriverInfoList(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverType: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -5135,7 +5139,7 @@ pub extern "setupapi" fn SetupDiGetClassDevsA(
     Enumerator: ?[*:0]const u8,
     hwndParent: ?HWND,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevsW(
@@ -5143,7 +5147,7 @@ pub extern "setupapi" fn SetupDiGetClassDevsW(
     Enumerator: ?[*:0]const u16,
     hwndParent: ?HWND,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevsExA(
@@ -5151,10 +5155,10 @@ pub extern "setupapi" fn SetupDiGetClassDevsExA(
     Enumerator: ?[*:0]const u8,
     hwndParent: ?HWND,
     Flags: u32,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevsExW(
@@ -5162,10 +5166,10 @@ pub extern "setupapi" fn SetupDiGetClassDevsExW(
     Enumerator: ?[*:0]const u16,
     hwndParent: ?HWND,
     Flags: u32,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetINFClassA(
@@ -5252,60 +5256,60 @@ pub extern "setupapi" fn SetupDiGetClassDescriptionExW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCallClassInstaller(
     InstallFunction: u32,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSelectDevice(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSelectBestCompatDrv(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallDevice(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallDriverFiles(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiRegisterCoDeviceInstallers(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiRemoveDevice(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiUnremoveDevice(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "setupapi" fn SetupDiRestartDevices(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiChangeState(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -5373,7 +5377,7 @@ pub extern "setupapi" fn SetupDiOpenClassRegKeyExW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInterfaceRegKeyA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     Reserved: u32,
     samDesired: u32,
@@ -5383,7 +5387,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInterfaceRegKeyA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInterfaceRegKeyW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     Reserved: u32,
     samDesired: u32,
@@ -5393,7 +5397,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInterfaceRegKeyW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInterfaceRegKey(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     Reserved: u32,
     samDesired: u32,
@@ -5401,14 +5405,14 @@ pub extern "setupapi" fn SetupDiOpenDeviceInterfaceRegKey(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDeleteDeviceInterfaceRegKey(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     Reserved: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDevRegKeyA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Scope: u32,
     HwProfile: u32,
@@ -5419,7 +5423,7 @@ pub extern "setupapi" fn SetupDiCreateDevRegKeyA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDevRegKeyW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Scope: u32,
     HwProfile: u32,
@@ -5430,7 +5434,7 @@ pub extern "setupapi" fn SetupDiCreateDevRegKeyW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDevRegKey(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Scope: u32,
     HwProfile: u32,
@@ -5440,7 +5444,7 @@ pub extern "setupapi" fn SetupDiOpenDevRegKey(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDeleteDevRegKey(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Scope: u32,
     HwProfile: u32,
@@ -5477,7 +5481,7 @@ pub extern "setupapi" fn SetupDiGetHwProfileListExW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetDevicePropertyKeys(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     PropertyKeyArray: ?[*]DEVPROPKEY,
     PropertyKeyCount: u32,
@@ -5487,7 +5491,7 @@ pub extern "setupapi" fn SetupDiGetDevicePropertyKeys(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetDevicePropertyW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
@@ -5500,7 +5504,7 @@ pub extern "setupapi" fn SetupDiGetDevicePropertyW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiSetDevicePropertyW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
@@ -5512,7 +5516,7 @@ pub extern "setupapi" fn SetupDiSetDevicePropertyW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyKeys(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     PropertyKeyArray: ?[*]DEVPROPKEY,
     PropertyKeyCount: u32,
@@ -5522,7 +5526,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyKeys(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: ?*u32,
@@ -5535,7 +5539,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyW(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiSetDeviceInterfacePropertyW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     PropertyKey: ?*const DEVPROPKEY,
     PropertyType: u32,
@@ -5617,7 +5621,7 @@ pub extern "setupapi" fn SetupDiSetClassPropertyExW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceRegistryPropertyA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Property: u32,
     PropertyRegDataType: ?*u32,
@@ -5629,7 +5633,7 @@ pub extern "setupapi" fn SetupDiGetDeviceRegistryPropertyA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceRegistryPropertyW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Property: u32,
     PropertyRegDataType: ?*u32,
@@ -5667,7 +5671,7 @@ pub extern "setupapi" fn SetupDiGetClassRegistryPropertyW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDeviceRegistryPropertyA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Property: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -5677,7 +5681,7 @@ pub extern "setupapi" fn SetupDiSetDeviceRegistryPropertyA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDeviceRegistryPropertyW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Property: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -5709,21 +5713,21 @@ pub extern "setupapi" fn SetupDiSetClassRegistryPropertyW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInstallParamsA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstallParams: ?*SP_DEVINSTALL_PARAMS_A,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInstallParamsW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstallParams: ?*SP_DEVINSTALL_PARAMS_W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassInstallParamsA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     // TODO: what to do with BytesParamIndex 3?
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
@@ -5733,7 +5737,7 @@ pub extern "setupapi" fn SetupDiGetClassInstallParamsA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassInstallParamsW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     // TODO: what to do with BytesParamIndex 3?
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
@@ -5743,21 +5747,21 @@ pub extern "setupapi" fn SetupDiGetClassInstallParamsW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDeviceInstallParamsA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstallParams: ?*SP_DEVINSTALL_PARAMS_A,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDeviceInstallParamsW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstallParams: ?*SP_DEVINSTALL_PARAMS_W,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetClassInstallParamsA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     // TODO: what to do with BytesParamIndex 3?
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
@@ -5766,7 +5770,7 @@ pub extern "setupapi" fn SetupDiSetClassInstallParamsA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetClassInstallParamsW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     // TODO: what to do with BytesParamIndex 3?
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
@@ -5775,7 +5779,7 @@ pub extern "setupapi" fn SetupDiSetClassInstallParamsW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDriverInstallParamsA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
     DriverInstallParams: ?*SP_DRVINSTALL_PARAMS,
@@ -5783,7 +5787,7 @@ pub extern "setupapi" fn SetupDiGetDriverInstallParamsA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDriverInstallParamsW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
     DriverInstallParams: ?*SP_DRVINSTALL_PARAMS,
@@ -5791,7 +5795,7 @@ pub extern "setupapi" fn SetupDiGetDriverInstallParamsW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDriverInstallParamsA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
     DriverInstallParams: ?*SP_DRVINSTALL_PARAMS,
@@ -5799,7 +5803,7 @@ pub extern "setupapi" fn SetupDiSetDriverInstallParamsA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDriverInstallParamsW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
     DriverInstallParams: ?*SP_DRVINSTALL_PARAMS,
@@ -5814,7 +5818,7 @@ pub extern "setupapi" fn SetupDiLoadClassIcon(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiLoadDeviceIcon(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     cxIcon: u32,
     cyIcon: u32,
@@ -5869,7 +5873,7 @@ pub extern "setupapi" fn SetupDiDestroyClassImageList(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevPropertySheetsA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     PropertySheetHeader: ?*PROPSHEETHEADERA_V2,
     PropertySheetHeaderPageListSize: u32,
@@ -5879,7 +5883,7 @@ pub extern "setupapi" fn SetupDiGetClassDevPropertySheetsA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevPropertySheetsW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     PropertySheetHeader: ?*PROPSHEETHEADERW_V2,
     PropertySheetHeaderPageListSize: u32,
@@ -5889,14 +5893,14 @@ pub extern "setupapi" fn SetupDiGetClassDevPropertySheetsW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiAskForOEMDisk(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSelectOEMDrv(
     hwndParent: ?HWND,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6009,7 +6013,7 @@ pub extern "setupapi" fn SetupDiGetHwProfileFriendlyNameExW(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "setupapi" fn SetupDiGetWizardPage(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     InstallWizardData: ?*SP_INSTALLWIZARD_DATA,
     PageType: u32,
@@ -6018,13 +6022,13 @@ pub extern "setupapi" fn SetupDiGetWizardPage(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetSelectedDevice(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetSelectedDevice(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -6124,7 +6128,7 @@ pub extern "setupapi" fn SetupVerifyInfFileW(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiGetCustomDevicePropertyA(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     CustomPropertyName: ?[*:0]const u8,
     Flags: u32,
@@ -6137,7 +6141,7 @@ pub extern "setupapi" fn SetupDiGetCustomDevicePropertyA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiGetCustomDevicePropertyW(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     CustomPropertyName: ?[*:0]const u16,
     Flags: u32,
@@ -7998,7 +8002,7 @@ pub extern "newdev" fn UpdateDriverForPlugAndPlayDevicesW(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "newdev" fn DiInstallDevice(
     hwndParent: ?HWND,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
     Flags: u32,
@@ -8024,7 +8028,7 @@ pub extern "newdev" fn DiInstallDriverA(
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "newdev" fn DiUninstallDevice(
     hwndParent: ?HWND,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Flags: u32,
     NeedReboot: ?*BOOL,
@@ -8048,7 +8052,7 @@ pub extern "newdev" fn DiUninstallDriverA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "newdev" fn DiShowUpdateDevice(
     hwndParent: ?HWND,
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Flags: u32,
     NeedReboot: ?*BOOL,
@@ -8056,7 +8060,7 @@ pub extern "newdev" fn DiShowUpdateDevice(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "newdev" fn DiRollbackDriver(
-    DeviceInfoSet: ?*anyopaque,
+    DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     hwndParent: ?HWND,
     Flags: u32,

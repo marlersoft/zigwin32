@@ -472,7 +472,7 @@ pub const WINHTTP_WEB_SOCKET_MAX_CLOSE_REASON_LENGTH = @as(u32, 123);
 pub const WINHTTP_WEB_SOCKET_MIN_KEEPALIVE_VALUE = @as(u32, 15000);
 
 //--------------------------------------------------------------------------------
-// Section: Types (47)
+// Section: Types (46)
 //--------------------------------------------------------------------------------
 pub const INTERNET_PORT = enum(u32) {
     HTTP_PORT = 80,
@@ -874,13 +874,6 @@ pub const WINHTTP_STATUS_CALLBACK = switch (@import("builtin").zig_backend) {
         dwInternetStatus: u32,
         lpvStatusInformation: ?*anyopaque,
         dwStatusInformationLength: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const LPWINHTTP_STATUS_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
     ) callconv(@import("std").os.windows.WINAPI) void,
 } ;
 
@@ -1438,7 +1431,6 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
     if (@hasDecl(@This(), "WINHTTP_STATUS_CALLBACK")) { _ = WINHTTP_STATUS_CALLBACK; }
-    if (@hasDecl(@This(), "LPWINHTTP_STATUS_CALLBACK")) { _ = LPWINHTTP_STATUS_CALLBACK; }
 
     @setEvalBranchQuota(
         comptime @import("std").meta.declarations(@This()).len * 3

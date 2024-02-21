@@ -72,15 +72,12 @@ pub const IID_IWindowsMediaLibrarySharingDeviceProperties = &IID_IWindowsMediaLi
 pub const IWindowsMediaLibrarySharingDeviceProperties = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWindowsMediaLibrarySharingDeviceProperties,
                 index: i32,
                 property: ?*?*IWindowsMediaLibrarySharingDeviceProperty,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWindowsMediaLibrarySharingDeviceProperties,
                 index: i32,
@@ -220,15 +217,12 @@ pub const IID_IWindowsMediaLibrarySharingDevices = &IID_IWindowsMediaLibraryShar
 pub const IWindowsMediaLibrarySharingDevices = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IWindowsMediaLibrarySharingDevices,
                 index: i32,
                 device: ?*?*IWindowsMediaLibrarySharingDevice,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IWindowsMediaLibrarySharingDevices,
                 index: i32,

@@ -1236,15 +1236,12 @@ pub const ITaskFolderCollection = extern struct {
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITaskFolderCollection,
                 index: VARIANT,
                 ppFolder: ?*?*ITaskFolder,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITaskFolderCollection,
                 index: VARIANT,
@@ -1720,15 +1717,12 @@ pub const ITaskNamedValueCollection = extern struct {
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITaskNamedValueCollection,
                 index: i32,
                 ppPair: ?*?*ITaskNamedValuePair,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITaskNamedValueCollection,
                 index: i32,
@@ -1971,15 +1965,12 @@ pub const IRunningTaskCollection = extern struct {
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRunningTaskCollection,
                 index: VARIANT,
                 ppRunningTask: ?*?*IRunningTask,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRunningTaskCollection,
                 index: VARIANT,
@@ -4344,15 +4335,12 @@ pub const ITriggerCollection = extern struct {
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const ITriggerCollection,
                 index: i32,
                 ppTrigger: ?*?*ITrigger,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const ITriggerCollection,
                 index: i32,
@@ -4453,15 +4441,12 @@ pub const IActionCollection = extern struct {
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IActionCollection,
                 index: i32,
                 ppAction: ?*?*IAction,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IActionCollection,
                 index: i32,
@@ -4874,15 +4859,12 @@ pub const IPrincipal2 = extern struct {
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequiredPrivilege: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IPrincipal2,
                 index: i32,
                 pPrivilege: ?*?BSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IPrincipal2,
                 index: i32,
@@ -6572,15 +6554,12 @@ pub const IRegisteredTaskCollection = extern struct {
                 pCount: ?*i32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             .stage1 => fn(
                 self: *const IRegisteredTaskCollection,
                 index: VARIANT,
                 ppRegisteredTask: ?*?*IRegisteredTask,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
             else => *const fn(
                 self: *const IRegisteredTaskCollection,
                 index: VARIANT,

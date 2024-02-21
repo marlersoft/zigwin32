@@ -222,7 +222,7 @@ pub const szHrDispatchNotifications = "HrDispatchNotifications";
 pub const szScCreateConversationIndex = "ScCreateConversationIndex";
 
 //--------------------------------------------------------------------------------
-// Section: Types (129)
+// Section: Types (128)
 //--------------------------------------------------------------------------------
 pub const ENTRYID = extern struct {
     abFlags: [4]u8,
@@ -2981,19 +2981,12 @@ pub const IPropData = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FNIDLE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
 pub const PFNIDLE = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
+        param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
+        param0: ?*anyopaque,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
 } ;
 
@@ -4688,7 +4681,6 @@ test {
     if (@hasDecl(@This(), "LPFNABSDI")) { _ = LPFNABSDI; }
     if (@hasDecl(@This(), "LPFNDISMISS")) { _ = LPFNDISMISS; }
     if (@hasDecl(@This(), "LPFNBUTTON")) { _ = LPFNBUTTON; }
-    if (@hasDecl(@This(), "FNIDLE")) { _ = FNIDLE; }
     if (@hasDecl(@This(), "PFNIDLE")) { _ = PFNIDLE; }
     if (@hasDecl(@This(), "LPOPENSTREAMONFILE")) { _ = LPOPENSTREAMONFILE; }
     if (@hasDecl(@This(), "LPDISPATCHNOTIFICATIONS")) { _ = LPDISPATCHNOTIFICATIONS; }

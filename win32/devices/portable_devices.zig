@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (1215)
 //--------------------------------------------------------------------------------
-pub const DEVPKEY_MTPBTH_IsConnected = PROPERTYKEY { .fmtid = Guid.initString("ea1237fa-589d-4472-84e4-0abe36fd62ef"), .pid = 2 };
+pub const DEVPKEY_MTPBTH_IsConnected = DEVPROPKEY { .fmtid = Guid.initString("ea1237fa-589d-4472-84e4-0abe36fd62ef"), .pid = 2 };
 pub const GUID_DEVINTERFACE_WPD = Guid.initString("6ac27878-a6fa-4155-ba85-f98f491d4f33");
 pub const GUID_DEVINTERFACE_WPD_PRIVATE = Guid.initString("ba0c718f-4ded-49b7-bdd3-fabe28661211");
 pub const GUID_DEVINTERFACE_WPD_SERVICE = Guid.initString("9ef44f80-3d64-4246-a6aa-206f328d1edc");
