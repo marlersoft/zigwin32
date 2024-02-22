@@ -501,12 +501,12 @@ pub const CFM_MASK = packed struct(u32) {
     FACE: u1 = 0,
     COLOR: u1 = 0,
     SIZE: u1 = 0,
-    // FONTBOUND (1048576) conflicts with KERNING
-    // LINKPROTECTED (8388608) conflicts with UNDERLINETYPE
-    // EXTENDED (33554432) conflicts with LCID
-    // MATHNOBUILDUP (134217728) conflicts with CHARSET
-    // MATH (268435456) conflicts with OFFSET
-    // MATHORDINARY (536870912) conflicts with FACE
+    // FONTBOUND (bit index 20) conflicts with KERNING
+    // LINKPROTECTED (bit index 23) conflicts with UNDERLINETYPE
+    // EXTENDED (bit index 25) conflicts with LCID
+    // MATHNOBUILDUP (bit index 27) conflicts with CHARSET
+    // MATH (bit index 28) conflicts with OFFSET
+    // MATHORDINARY (bit index 29) conflicts with FACE
 };
 pub const CFM_SUBSCRIPT = CFM_MASK{
     ._16 = 1,

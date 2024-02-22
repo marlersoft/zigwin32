@@ -1548,7 +1548,7 @@ pub const SP_COPY_STYLE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // NEWER (4) conflicts with NEWER_OR_SAME
+    // NEWER (bit index 2) conflicts with NEWER_OR_SAME
 };
 pub const SP_COPY_DELETESOURCE = SP_COPY_STYLE{ .DELETESOURCE = 1 };
 pub const SP_COPY_REPLACEONLY = SP_COPY_STYLE{ .REPLACEONLY = 1 };

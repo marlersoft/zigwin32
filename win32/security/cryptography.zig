@@ -2967,13 +2967,13 @@ pub const CERT_FIND_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // SHA1_HASH (65536) conflicts with HASH
-    // OPTIONAL_CTL_USAGE_FLAG (1) conflicts with OPTIONAL_ENHKEY_USAGE_FLAG
-    // EXT_ONLY_CTL_USAGE_FLAG (2) conflicts with EXT_ONLY_ENHKEY_USAGE_FLAG
-    // PROP_ONLY_CTL_USAGE_FLAG (4) conflicts with PROP_ONLY_ENHKEY_USAGE_FLAG
-    // NO_CTL_USAGE_FLAG (8) conflicts with NO_ENHKEY_USAGE_FLAG
-    // OR_CTL_USAGE_FLAG (16) conflicts with OR_ENHKEY_USAGE_FLAG
-    // VALID_CTL_USAGE_FLAG (32) conflicts with VALID_ENHKEY_USAGE_FLAG
+    // SHA1_HASH (bit index 16) conflicts with HASH
+    // OPTIONAL_CTL_USAGE_FLAG (bit index 0) conflicts with OPTIONAL_ENHKEY_USAGE_FLAG
+    // EXT_ONLY_CTL_USAGE_FLAG (bit index 1) conflicts with EXT_ONLY_ENHKEY_USAGE_FLAG
+    // PROP_ONLY_CTL_USAGE_FLAG (bit index 2) conflicts with PROP_ONLY_ENHKEY_USAGE_FLAG
+    // NO_CTL_USAGE_FLAG (bit index 3) conflicts with NO_ENHKEY_USAGE_FLAG
+    // OR_CTL_USAGE_FLAG (bit index 4) conflicts with OR_ENHKEY_USAGE_FLAG
+    // VALID_CTL_USAGE_FLAG (bit index 5) conflicts with VALID_ENHKEY_USAGE_FLAG
 };
 pub const CERT_FIND_ANY = CERT_FIND_FLAGS{ };
 pub const CERT_FIND_CERT_ID = CERT_FIND_FLAGS{ .CERT_ID = 1 };
@@ -3334,14 +3334,14 @@ pub const NCRYPT_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     NCRYPT_PERSIST_ONLY_FLAG: u1 = 0,
     NCRYPT_PERSIST_FLAG: u1 = 0,
-    // NCRYPT_NO_PADDING_FLAG (1) conflicts with BCRYPT_PAD_NONE
-    // NCRYPT_PAD_OAEP_FLAG (4) conflicts with BCRYPT_PAD_OAEP
-    // NCRYPT_PAD_PKCS1_FLAG (2) conflicts with BCRYPT_PAD_PKCS1
-    // NCRYPT_REGISTER_NOTIFY_FLAG (1) conflicts with BCRYPT_PAD_NONE
-    // NCRYPT_UNREGISTER_NOTIFY_FLAG (2) conflicts with BCRYPT_PAD_PKCS1
-    // NCRYPT_UNPROTECT_NO_DECRYPT (1) conflicts with BCRYPT_PAD_NONE
-    // NCRYPT_NO_KEY_VALIDATION (8) conflicts with BCRYPT_PAD_PSS
-    // NCRYPT_PAD_PSS_FLAG (8) conflicts with BCRYPT_PAD_PSS
+    // NCRYPT_NO_PADDING_FLAG (bit index 0) conflicts with BCRYPT_PAD_NONE
+    // NCRYPT_PAD_OAEP_FLAG (bit index 2) conflicts with BCRYPT_PAD_OAEP
+    // NCRYPT_PAD_PKCS1_FLAG (bit index 1) conflicts with BCRYPT_PAD_PKCS1
+    // NCRYPT_REGISTER_NOTIFY_FLAG (bit index 0) conflicts with BCRYPT_PAD_NONE
+    // NCRYPT_UNREGISTER_NOTIFY_FLAG (bit index 1) conflicts with BCRYPT_PAD_PKCS1
+    // NCRYPT_UNPROTECT_NO_DECRYPT (bit index 0) conflicts with BCRYPT_PAD_NONE
+    // NCRYPT_NO_KEY_VALIDATION (bit index 3) conflicts with BCRYPT_PAD_PSS
+    // NCRYPT_PAD_PSS_FLAG (bit index 3) conflicts with BCRYPT_PAD_PSS
 };
 pub const BCRYPT_PAD_NONE = NCRYPT_FLAGS{ .BCRYPT_PAD_NONE = 1 };
 pub const BCRYPT_PAD_OAEP = NCRYPT_FLAGS{ .BCRYPT_PAD_OAEP = 1 };
@@ -3777,22 +3777,22 @@ pub const CRYPT_KEY_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // CRYPT_PREGEN (64) conflicts with CRYPT_INITIATOR
-    // CRYPT_RECIPIENT (16) conflicts with CRYPT_NO_SALT
-    // CRYPT_USER_KEYSET (4096) conflicts with CRYPT_VOLATILE
-    // PKCS12_PREFER_CNG_KSP (256) conflicts with CRYPT_SF
-    // PKCS12_ALWAYS_CNG_KSP (512) conflicts with CRYPT_CREATE_IV
-    // PKCS12_ALLOW_OVERWRITE_KEY (16384) conflicts with CRYPT_ARCHIVABLE
-    // PKCS12_NO_PERSIST_KEY (32768) conflicts with CRYPT_FORCE_KEY_PROTECTION_HIGH
-    // PKCS12_INCLUDE_EXTENDED_PROPERTIES (16) conflicts with CRYPT_NO_SALT
-    // CRYPT_OAEP (64) conflicts with CRYPT_INITIATOR
-    // CRYPT_BLOB_VER3 (128) conflicts with CRYPT_ONLINE
-    // CRYPT_DESTROYKEY (4) conflicts with CRYPT_CREATE_SALT
-    // CRYPT_SSL2_FALLBACK (2) conflicts with CRYPT_USER_PROTECTED
-    // CRYPT_Y_ONLY (1) conflicts with CRYPT_EXPORTABLE
-    // CRYPT_IPSEC_HMAC_KEY (256) conflicts with CRYPT_SF
-    // CERT_SET_KEY_PROV_HANDLE_PROP_ID (1) conflicts with CRYPT_EXPORTABLE
-    // CERT_SET_KEY_CONTEXT_PROP_ID (1) conflicts with CRYPT_EXPORTABLE
+    // CRYPT_PREGEN (bit index 6) conflicts with CRYPT_INITIATOR
+    // CRYPT_RECIPIENT (bit index 4) conflicts with CRYPT_NO_SALT
+    // CRYPT_USER_KEYSET (bit index 12) conflicts with CRYPT_VOLATILE
+    // PKCS12_PREFER_CNG_KSP (bit index 8) conflicts with CRYPT_SF
+    // PKCS12_ALWAYS_CNG_KSP (bit index 9) conflicts with CRYPT_CREATE_IV
+    // PKCS12_ALLOW_OVERWRITE_KEY (bit index 14) conflicts with CRYPT_ARCHIVABLE
+    // PKCS12_NO_PERSIST_KEY (bit index 15) conflicts with CRYPT_FORCE_KEY_PROTECTION_HIGH
+    // PKCS12_INCLUDE_EXTENDED_PROPERTIES (bit index 4) conflicts with CRYPT_NO_SALT
+    // CRYPT_OAEP (bit index 6) conflicts with CRYPT_INITIATOR
+    // CRYPT_BLOB_VER3 (bit index 7) conflicts with CRYPT_ONLINE
+    // CRYPT_DESTROYKEY (bit index 2) conflicts with CRYPT_CREATE_SALT
+    // CRYPT_SSL2_FALLBACK (bit index 1) conflicts with CRYPT_USER_PROTECTED
+    // CRYPT_Y_ONLY (bit index 0) conflicts with CRYPT_EXPORTABLE
+    // CRYPT_IPSEC_HMAC_KEY (bit index 8) conflicts with CRYPT_SF
+    // CERT_SET_KEY_PROV_HANDLE_PROP_ID (bit index 0) conflicts with CRYPT_EXPORTABLE
+    // CERT_SET_KEY_CONTEXT_PROP_ID (bit index 0) conflicts with CRYPT_EXPORTABLE
 };
 pub const CRYPT_EXPORTABLE = CRYPT_KEY_FLAGS{ .CRYPT_EXPORTABLE = 1 };
 pub const CRYPT_USER_PROTECTED = CRYPT_KEY_FLAGS{ .CRYPT_USER_PROTECTED = 1 };

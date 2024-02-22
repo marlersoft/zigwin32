@@ -2681,8 +2681,8 @@ pub const IMAGE_LIST_DRAW_STYLE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // BLEND50 (4) conflicts with BLEND
-    // SELECTED (4) conflicts with BLEND
+    // BLEND50 (bit index 2) conflicts with BLEND
+    // SELECTED (bit index 2) conflicts with BLEND
 };
 pub const ILD_BLEND = IMAGE_LIST_DRAW_STYLE{ .BLEND = 1 };
 pub const ILD_BLEND50 = IMAGE_LIST_DRAW_STYLE{ .BLEND = 1 };
@@ -2832,7 +2832,7 @@ pub const HDI_MASK = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // HEIGHT (1) conflicts with WIDTH
+    // HEIGHT (bit index 0) conflicts with WIDTH
 };
 pub const HDI_WIDTH = HDI_MASK{ .WIDTH = 1 };
 pub const HDI_HEIGHT = HDI_MASK{ .WIDTH = 1 };
@@ -3669,7 +3669,7 @@ pub const LVHITTESTINFO_FLAGS = packed struct(u32) {
     EX_GROUP_FOOTER: u1 = 0,
     EX_GROUP_COLLAPSE: u1 = 0,
     EX_GROUP_BACKGROUND: u1 = 0,
-    // ONITEMSTATEICON (8) conflicts with ABOVE
+    // ONITEMSTATEICON (bit index 3) conflicts with ABOVE
 };
 pub const LVHT_ABOVE = LVHITTESTINFO_FLAGS{ .ABOVE = 1 };
 pub const LVHT_BELOW = LVHITTESTINFO_FLAGS{ .BELOW = 1 };

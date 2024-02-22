@@ -2009,8 +2009,8 @@ pub const QITIPF_FLAGS = packed struct(i32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // F_CACHED (1) conflicts with TIPF_USENAME
-    // F_DONTEXPANDFOLDER (2) conflicts with TIPF_LINKNOTARGET
+    // F_CACHED (bit index 0) conflicts with TIPF_USENAME
+    // F_DONTEXPANDFOLDER (bit index 1) conflicts with TIPF_LINKNOTARGET
 };
 pub const QITIPF_DEFAULT = QITIPF_FLAGS{ };
 pub const QITIPF_USENAME = QITIPF_FLAGS{ .TIPF_USENAME = 1 };
@@ -2629,7 +2629,7 @@ pub const SSF_MASK = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // SERVERADMINUI (4) conflicts with HIDDENFILEEXTS
+    // SERVERADMINUI (bit index 2) conflicts with HIDDENFILEEXTS
 };
 pub const SSF_SHOWALLOBJECTS = SSF_MASK{ .SHOWALLOBJECTS = 1 };
 pub const SSF_SHOWEXTENSIONS = SSF_MASK{ .SHOWEXTENSIONS = 1 };
