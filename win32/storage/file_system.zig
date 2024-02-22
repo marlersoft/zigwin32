@@ -1102,7 +1102,6 @@ pub const LZOPENFILE_STYLE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // SHARE_COMPAT (0) conflicts with READ
 };
 pub const OF_CANCEL = LZOPENFILE_STYLE{ .CANCEL = 1 };
 pub const OF_CREATE = LZOPENFILE_STYLE{ .CREATE = 1 };

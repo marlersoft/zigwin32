@@ -43,11 +43,7 @@ pub const NAMED_PIPE_MODE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // READMODE_BYTE (0) conflicts with WAIT
-    // CLIENT_END (0) conflicts with WAIT
     // SERVER_END (1) conflicts with NOWAIT
-    // TYPE_BYTE (0) conflicts with WAIT
-    // ACCEPT_REMOTE_CLIENTS (0) conflicts with WAIT
 };
 pub const PIPE_WAIT = NAMED_PIPE_MODE{ };
 pub const PIPE_NOWAIT = NAMED_PIPE_MODE{ .NOWAIT = 1 };

@@ -1531,12 +1531,9 @@ pub const MESSAGEBOX_STYLE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // ICONWARNING (48) conflicts with ICONEXCLAMATION
     // ICONERROR (16) conflicts with ICONHAND
     // ICONINFORMATION (64) conflicts with ICONASTERISK
     // ICONSTOP (16) conflicts with ICONHAND
-    // DEFBUTTON1 (0) conflicts with OK
-    // APPLMODAL (0) conflicts with OK
     // SERVICE_NOTIFICATION_NT3X (262144) conflicts with TOPMOST
 };
 pub const MB_ABORTRETRYIGNORE = MESSAGEBOX_STYLE{ .ABORTRETRYIGNORE = 1 };
@@ -1649,13 +1646,8 @@ pub const MENU_ITEM_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // ENABLED (0) conflicts with BYCOMMAND
-    // STRING (0) conflicts with BYCOMMAND
-    // UNCHECKED (0) conflicts with BYCOMMAND
-    // INSERT (0) conflicts with BYCOMMAND
     // APPEND (256) conflicts with OWNERDRAW
     // USECHECKBITMAPS (512) conflicts with DELETE
-    // UNHILITE (0) conflicts with BYCOMMAND
     // HILITE (128) conflicts with CHANGE
     // DEFAULT (4096) conflicts with REMOVE
     // RIGHTJUSTIFY (16384) conflicts with HELP
@@ -1723,12 +1715,9 @@ pub const SHOW_WINDOW_CMD = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // SHOWMAXIMIZED (3) conflicts with MAXIMIZE
     // NORMAL (1) conflicts with SHOWNORMAL
-    // MAX (11) conflicts with FORCEMINIMIZE
     // PARENTCLOSING (1) conflicts with SHOWNORMAL
     // OTHERZOOM (2) conflicts with SHOWMINIMIZED
-    // PARENTOPENING (3) conflicts with MAXIMIZE
     // OTHERUNZOOM (4) conflicts with SHOWNOACTIVATE
     // SCROLLCHILDREN (1) conflicts with SHOWNORMAL
     // INVALIDATE (2) conflicts with SHOWMINIMIZED
@@ -1824,9 +1813,6 @@ pub const SYSTEM_PARAMETERS_INFO_ACTION = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // SCREENSAVERRUNNING (97) conflicts with SETSCREENSAVERRUNNING
-    // GETMENUUNDERLINES (4106) conflicts with GETKEYBOARDCUES
-    // SETMENUUNDERLINES (4107) conflicts with SETKEYBOARDCUES
 };
 pub const SPI_GETBEEP = SYSTEM_PARAMETERS_INFO_ACTION{ .GETBEEP = 1 };
 pub const SPI_SETBEEP = SYSTEM_PARAMETERS_INFO_ACTION{ .SETBEEP = 1 };
@@ -3186,9 +3172,6 @@ pub const TRACK_POPUP_MENU_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // LEFTALIGN (0) conflicts with LEFTBUTTON
-    // TOPALIGN (0) conflicts with LEFTBUTTON
-    // HORIZONTAL (0) conflicts with LEFTBUTTON
 };
 pub const TPM_LEFTBUTTON = TRACK_POPUP_MENU_FLAGS{ };
 pub const TPM_RIGHTBUTTON = TRACK_POPUP_MENU_FLAGS{ .RIGHTBUTTON = 1 };
@@ -3244,8 +3227,6 @@ pub const WINDOW_EX_STYLE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // LTRREADING (0) conflicts with LEFT
-    // RIGHTSCROLLBAR (0) conflicts with LEFT
 };
 pub const WS_EX_DLGMODALFRAME = WINDOW_EX_STYLE{ .DLGMODALFRAME = 1 };
 pub const WS_EX_NOPARENTNOTIFY = WINDOW_EX_STYLE{ .NOPARENTNOTIFY = 1 };
@@ -3317,10 +3298,8 @@ pub const WINDOW_STYLE = packed struct(u32) {
     POPUP: u1 = 0,
     // MINIMIZEBOX (131072) conflicts with GROUP
     // MAXIMIZEBOX (65536) conflicts with TABSTOP
-    // TILED (0) conflicts with OVERLAPPED
     // ICONIC (536870912) conflicts with MINIMIZE
     // SIZEBOX (262144) conflicts with THICKFRAME
-    // OVERLAPPEDWINDOW (13565952) conflicts with TILEDWINDOW
     // CHILDWINDOW (1073741824) conflicts with CHILD
 };
 pub const WS_OVERLAPPED = WINDOW_STYLE{ };
@@ -3510,9 +3489,6 @@ pub const MENU_ITEM_STATE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // DISABLED (3) conflicts with GRAYED
-    // UNCHECKED (0) conflicts with ENABLED
-    // UNHILITE (0) conflicts with ENABLED
 };
 pub const MFS_GRAYED = MENU_ITEM_STATE{
     ._0 = 1,

@@ -316,7 +316,6 @@ pub const LOCAL_ALLOC_FLAGS = packed struct(u32) {
     _31: u1 = 0,
     // LPTR (64) conflicts with LMEM_ZEROINIT
     // NONZEROLHND (2) conflicts with LMEM_MOVEABLE
-    // NONZEROLPTR (0) conflicts with LMEM_FIXED
 };
 pub const LHND = LOCAL_ALLOC_FLAGS{
     .LMEM_MOVEABLE = 1,

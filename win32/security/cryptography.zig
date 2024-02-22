@@ -2967,10 +2967,7 @@ pub const CERT_FIND_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // ENHKEY_USAGE (655360) conflicts with CTL_USAGE
     // SHA1_HASH (65536) conflicts with HASH
-    // SUBJECT_STR_W (524295) conflicts with SUBJECT_STR
-    // ISSUER_STR_W (524292) conflicts with ISSUER_STR
     // OPTIONAL_CTL_USAGE_FLAG (1) conflicts with OPTIONAL_ENHKEY_USAGE_FLAG
     // EXT_ONLY_CTL_USAGE_FLAG (2) conflicts with EXT_ONLY_ENHKEY_USAGE_FLAG
     // PROP_ONLY_CTL_USAGE_FLAG (4) conflicts with PROP_ONLY_ENHKEY_USAGE_FLAG

@@ -1416,8 +1416,6 @@ pub const DRAWEDGE_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // EDGE_RAISED (5) conflicts with BDR_RAISED
-    // EDGE_SUNKEN (10) conflicts with BDR_SUNKEN
 };
 pub const BDR_RAISEDOUTER = DRAWEDGE_FLAGS{ .BDR_RAISEDOUTER = 1 };
 pub const BDR_SUNKENOUTER = DRAWEDGE_FLAGS{ .BDR_SUNKENOUTER = 1 };
@@ -1502,15 +1500,11 @@ pub const DFCS_STATE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // MENUARROW (0) conflicts with CAPTIONCLOSE
     // MENUCHECK (1) conflicts with CAPTIONMIN
     // MENUBULLET (2) conflicts with CAPTIONMAX
     // MENUARROWRIGHT (4) conflicts with CAPTIONHELP
-    // SCROLLUP (0) conflicts with CAPTIONCLOSE
     // SCROLLDOWN (1) conflicts with CAPTIONMIN
     // SCROLLLEFT (2) conflicts with CAPTIONMAX
-    // SCROLLRIGHT (3) conflicts with CAPTIONRESTORE
-    // BUTTONCHECK (0) conflicts with CAPTIONCLOSE
     // BUTTONRADIOIMAGE (1) conflicts with CAPTIONMIN
     // BUTTONRADIOMASK (2) conflicts with CAPTIONMAX
     // BUTTONRADIO (4) conflicts with CAPTIONHELP
@@ -1655,7 +1649,6 @@ pub const DRAWSTATE_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // S_NORMAL (0) conflicts with T_COMPLEX
 };
 pub const DST_COMPLEX = DRAWSTATE_FLAGS{ };
 pub const DST_TEXT = DRAWSTATE_FLAGS{ .T_TEXT = 1 };
@@ -1795,9 +1788,6 @@ pub const PEN_STYLE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // SOLID (0) conflicts with COSMETIC
-    // ENDCAP_ROUND (0) conflicts with COSMETIC
-    // JOIN_ROUND (0) conflicts with COSMETIC
 };
 pub const PS_GEOMETRIC = PEN_STYLE{ .GEOMETRIC = 1 };
 pub const PS_COSMETIC = PEN_STYLE{ };
@@ -1926,7 +1916,6 @@ pub const DRAW_TEXT_FORMAT = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // TOP (0) conflicts with LEFT
 };
 pub const DT_BOTTOM = DRAW_TEXT_FORMAT{ .BOTTOM = 1 };
 pub const DT_CALCRECT = DRAW_TEXT_FORMAT{ .CALCRECT = 1 };

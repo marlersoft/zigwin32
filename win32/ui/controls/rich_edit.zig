@@ -501,7 +501,6 @@ pub const CFM_MASK = packed struct(u32) {
     FACE: u1 = 0,
     COLOR: u1 = 0,
     SIZE: u1 = 0,
-    // SUPERSCRIPT (196608) conflicts with SUBSCRIPT
     // FONTBOUND (1048576) conflicts with KERNING
     // LINKPROTECTED (8388608) conflicts with UNDERLINETYPE
     // EXTENDED (33554432) conflicts with LCID

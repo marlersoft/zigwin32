@@ -10843,7 +10843,6 @@ pub const CONDITION_CREATION_OPTIONS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // NONE (0) conflicts with DEFAULT
 };
 pub const CONDITION_CREATION_DEFAULT = CONDITION_CREATION_OPTIONS{ };
 pub const CONDITION_CREATION_NONE = CONDITION_CREATION_OPTIONS{ };
