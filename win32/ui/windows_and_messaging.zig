@@ -6318,7 +6318,7 @@ pub extern "user32" fn GetClassInfoExW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateWindowExA(
     dwExStyle: WINDOW_EX_STYLE,
-    lpClassName: ?[*:0]const u8,
+    lpClassName: ?[*:0]align(1) const u8,
     lpWindowName: ?[*:0]const u8,
     dwStyle: WINDOW_STYLE,
     X: i32,
@@ -6334,7 +6334,7 @@ pub extern "user32" fn CreateWindowExA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateWindowExW(
     dwExStyle: WINDOW_EX_STYLE,
-    lpClassName: ?[*:0]const u16,
+    lpClassName: ?[*:0]align(1) const u16,
     lpWindowName: ?[*:0]const u16,
     dwStyle: WINDOW_STYLE,
     X: i32,
