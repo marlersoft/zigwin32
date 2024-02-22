@@ -310,7 +310,6 @@ pub const PAGESETUPDLG_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // INWININIINTLMEASURE (0) conflicts with DEFAULTMINMARGINS
 };
 pub const PSD_DEFAULTMINMARGINS = PAGESETUPDLG_FLAGS{ };
 pub const PSD_DISABLEMARGINS = PAGESETUPDLG_FLAGS{ .DISABLEMARGINS = 1 };

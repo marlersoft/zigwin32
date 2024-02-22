@@ -52,10 +52,6 @@ pub const SHUTDOWN_REASON = packed struct(u32) {
     _29: u1 = 0,
     FLAG_USER_DEFINED: u1 = 0,
     FLAG_PLANNED: u1 = 0,
-    // MAJOR_OTHER (0) conflicts with NONE
-    // MAJOR_NONE (0) conflicts with NONE
-    // MINOR_OTHER (0) conflicts with NONE
-    // UNKNOWN (255) conflicts with MINOR_NONE
 };
 pub const SHTDN_REASON_NONE = SHUTDOWN_REASON{ };
 pub const SHTDN_REASON_FLAG_COMMENT_REQUIRED = SHUTDOWN_REASON{ .FLAG_COMMENT_REQUIRED = 1 };

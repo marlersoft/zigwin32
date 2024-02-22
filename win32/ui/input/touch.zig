@@ -39,7 +39,6 @@ pub const GESTURECONFIG_ID = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // ROLLOVER (7) conflicts with PRESSANDTAP
 };
 pub const GID_BEGIN = GESTURECONFIG_ID{ .BEGIN = 1 };
 pub const GID_END = GESTURECONFIG_ID{ .END = 1 };

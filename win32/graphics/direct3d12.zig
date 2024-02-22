@@ -1889,7 +1889,6 @@ pub const D3D12_HEAP_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // ALLOW_ALL_BUFFERS_AND_TEXTURES (0) conflicts with NONE
 };
 pub const D3D12_HEAP_FLAG_NONE = D3D12_HEAP_FLAGS{ };
 pub const D3D12_HEAP_FLAG_SHARED = D3D12_HEAP_FLAGS{ .SHARED = 1 };
@@ -2214,7 +2213,6 @@ pub const D3D12_RESOURCE_STATES = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // PRESENT (0) conflicts with COMMON
     // PREDICATION (512) conflicts with INDIRECT_ARGUMENT
 };
 pub const D3D12_RESOURCE_STATE_COMMON = D3D12_RESOURCE_STATES{ };
@@ -6356,7 +6354,6 @@ pub const D3D12_MULTIPLE_FENCE_WAIT_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // ALL (0) conflicts with NONE
 };
 pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_NONE = D3D12_MULTIPLE_FENCE_WAIT_FLAGS{ };
 pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_ANY = D3D12_MULTIPLE_FENCE_WAIT_FLAGS{ .ANY = 1 };

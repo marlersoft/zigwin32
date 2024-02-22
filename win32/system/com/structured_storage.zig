@@ -112,8 +112,6 @@ pub const STGM = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // READ (0) conflicts with DIRECT
-    // FAILIFTHERE (0) conflicts with DIRECT
 };
 pub const STGM_DIRECT = STGM{ };
 pub const STGM_TRANSACTED = STGM{ .TRANSACTED = 1 };

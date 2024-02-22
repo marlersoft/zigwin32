@@ -1935,8 +1935,6 @@ pub const SHCNF_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // PATH (5) conflicts with PATHW
-    // PRINTER (6) conflicts with PRINTERW
 };
 pub const SHCNF_IDLIST = SHCNF_FLAGS{ };
 pub const SHCNF_PATHA = SHCNF_FLAGS{ .PATHA = 1 };

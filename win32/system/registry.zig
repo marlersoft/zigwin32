@@ -983,7 +983,6 @@ pub const REG_SAM_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // EXECUTE (131097) conflicts with READ
 };
 pub const KEY_QUERY_VALUE = REG_SAM_FLAGS{ .QUERY_VALUE = 1 };
 pub const KEY_SET_VALUE = REG_SAM_FLAGS{ .SET_VALUE = 1 };
@@ -1060,7 +1059,6 @@ pub const REG_OPEN_CREATE_OPTIONS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // NON_VOLATILE (0) conflicts with RESERVED
 };
 // TODO: enum 'REG_OPEN_CREATE_OPTIONS' has known issues with its value aliases
 
