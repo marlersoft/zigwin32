@@ -10,23 +10,23 @@ pub const WM_CONTEXTMENU = @as(u32, 123);
 pub const WM_UNICHAR = @as(u32, 265);
 pub const WM_PRINTCLIENT = @as(u32, 792);
 pub const WM_NOTIFY = @as(u32, 78);
-// skipped 'RT_CURSOR'
-// skipped 'RT_BITMAP'
-// skipped 'RT_ICON'
-// skipped 'RT_MENU'
-// skipped 'RT_DIALOG'
-// skipped 'RT_FONTDIR'
-// skipped 'RT_FONT'
-// skipped 'RT_ACCELERATOR'
-// skipped 'RT_MESSAGETABLE'
+pub const RT_CURSOR = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 1));
+pub const RT_BITMAP = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 2));
+pub const RT_ICON = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 3));
+pub const RT_MENU = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 4));
+pub const RT_DIALOG = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 5));
+pub const RT_FONTDIR = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 7));
+pub const RT_FONT = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 8));
+pub const RT_ACCELERATOR = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 9));
+pub const RT_MESSAGETABLE = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 11));
 pub const DIFFERENCE = @as(u32, 11);
-// skipped 'RT_VERSION'
-// skipped 'RT_DLGINCLUDE'
-// skipped 'RT_PLUGPLAY'
-// skipped 'RT_VXD'
-// skipped 'RT_ANICURSOR'
-// skipped 'RT_ANIICON'
-// skipped 'RT_HTML'
+pub const RT_VERSION = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 16));
+pub const RT_DLGINCLUDE = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 17));
+pub const RT_PLUGPLAY = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 19));
+pub const RT_VXD = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 20));
+pub const RT_ANICURSOR = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 21));
+pub const RT_ANIICON = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 22));
+pub const RT_HTML = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 23));
 pub const RT_MANIFEST = @as(u32, 24);
 pub const CREATEPROCESS_MANIFEST_RESOURCE_ID = @as(u32, 1);
 pub const ISOLATIONAWARE_MANIFEST_RESOURCE_ID = @as(u32, 2);
@@ -668,24 +668,24 @@ pub const SC_SEPARATOR = @as(u32, 61455);
 pub const SCF_ISSECURE = @as(u32, 1);
 pub const SC_ICON = @as(u32, 61472);
 pub const SC_ZOOM = @as(u32, 61488);
-pub const IDC_ARROW = @import("../zig.zig").typedConst([*:0]const u16, @as(i32, 32512));
-// skipped 'IDC_IBEAM'
-// skipped 'IDC_WAIT'
-// skipped 'IDC_CROSS'
-// skipped 'IDC_UPARROW'
-// skipped 'IDC_SIZE'
-// skipped 'IDC_ICON'
-// skipped 'IDC_SIZENWSE'
-// skipped 'IDC_SIZENESW'
-// skipped 'IDC_SIZEWE'
-// skipped 'IDC_SIZENS'
-// skipped 'IDC_SIZEALL'
-// skipped 'IDC_NO'
-// skipped 'IDC_HAND'
-// skipped 'IDC_APPSTARTING'
-// skipped 'IDC_HELP'
-// skipped 'IDC_PIN'
-// skipped 'IDC_PERSON'
+pub const IDC_ARROW = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32512));
+pub const IDC_IBEAM = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32513));
+pub const IDC_WAIT = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32514));
+pub const IDC_CROSS = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32515));
+pub const IDC_UPARROW = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32516));
+pub const IDC_SIZE = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32640));
+pub const IDC_ICON = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32641));
+pub const IDC_SIZENWSE = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32642));
+pub const IDC_SIZENESW = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32643));
+pub const IDC_SIZEWE = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32644));
+pub const IDC_SIZENS = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32645));
+pub const IDC_SIZEALL = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32646));
+pub const IDC_NO = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32648));
+pub const IDC_HAND = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32649));
+pub const IDC_APPSTARTING = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32650));
+pub const IDC_HELP = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32651));
+pub const IDC_PIN = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32671));
+pub const IDC_PERSON = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(i32, 32672));
 pub const CURSOR_CREATION_SCALING_NONE = @as(u32, 1);
 pub const CURSOR_CREATION_SCALING_DEFAULT = @as(u32, 2);
 pub const IMAGE_ENHMETAFILE = @as(u32, 3);
@@ -740,13 +740,13 @@ pub const OIC_ERROR = @as(u32, 32513);
 pub const OIC_INFORMATION = @as(u32, 32516);
 pub const OIC_SHIELD = @as(u32, 32518);
 pub const ORD_LANGDRIVER = @as(u32, 1);
-pub const IDI_APPLICATION = @import("../zig.zig").typedConst([*:0]const u16, @as(u32, 32512));
-// skipped 'IDI_HAND'
-// skipped 'IDI_QUESTION'
-// skipped 'IDI_EXCLAMATION'
-// skipped 'IDI_ASTERISK'
-// skipped 'IDI_WINLOGO'
-// skipped 'IDI_SHIELD'
+pub const IDI_APPLICATION = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(u32, 32512));
+pub const IDI_HAND = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(u32, 32513));
+pub const IDI_QUESTION = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(u32, 32514));
+pub const IDI_EXCLAMATION = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(u32, 32515));
+pub const IDI_ASTERISK = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(u32, 32516));
+pub const IDI_WINLOGO = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(u32, 32517));
+pub const IDI_SHIELD = @import("../zig.zig").typedConst([*:0]align(1) const u16, @as(u32, 32518));
 pub const IDI_WARNING = @as(u32, 32515);
 pub const IDI_ERROR = @as(u32, 32513);
 pub const IDI_INFORMATION = @as(u32, 32516);
@@ -8088,7 +8088,7 @@ pub extern "user32" fn LoadCursorA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadCursorW(
     hInstance: ?HINSTANCE,
-    lpCursorName: ?[*:0]const u16,
+    lpCursorName: ?[*:0]align(1) const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -8132,7 +8132,7 @@ pub extern "user32" fn LoadIconA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadIconW(
     hInstance: ?HINSTANCE,
-    lpIconName: ?[*:0]const u16,
+    lpIconName: ?[*:0]align(1) const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.0'
