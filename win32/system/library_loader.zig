@@ -95,14 +95,14 @@ pub const ENUMRESLANGPROCA = switch (@import("builtin").zig_backend) {
 pub const ENUMRESLANGPROCW = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u16,
+        lpType: ?[*:0]align(1) const u16,
         lpName: ?[*:0]const u16,
         wLanguage: u16,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
         hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u16,
+        lpType: ?[*:0]align(1) const u16,
         lpName: ?[*:0]const u16,
         wLanguage: u16,
         lParam: isize,
@@ -127,13 +127,13 @@ pub const ENUMRESNAMEPROCA = switch (@import("builtin").zig_backend) {
 pub const ENUMRESNAMEPROCW = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
         hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u16,
+        lpType: ?[*:0]align(1) const u16,
         lpName: ?PWSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
     else => *const fn(
         hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u16,
+        lpType: ?[*:0]align(1) const u16,
         lpName: ?PWSTR,
         lParam: isize,
     ) callconv(@import("std").os.windows.WINAPI) BOOL,
@@ -214,7 +214,7 @@ pub extern "kernel32" fn DisableThreadLibraryCalls(
 
 pub extern "kernel32" fn FindResourceExW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpName: ?[*:0]const u16,
     wLanguage: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
@@ -339,7 +339,7 @@ pub extern "kernel32" fn EnumResourceLanguagesExA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn EnumResourceLanguagesExW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpName: ?[*:0]const u16,
     lpEnumFunc: ?ENUMRESLANGPROCW,
     lParam: isize,
@@ -360,7 +360,7 @@ pub extern "kernel32" fn EnumResourceNamesExA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn EnumResourceNamesExW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpEnumFunc: ?ENUMRESNAMEPROCW,
     lParam: isize,
     dwFlags: u32,
@@ -388,7 +388,7 @@ pub extern "kernel32" fn EnumResourceTypesExW(
 pub extern "kernel32" fn FindResourceW(
     hModule: ?HINSTANCE,
     lpName: ?[*:0]const u16,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -403,7 +403,7 @@ pub extern "kernel32" fn LoadLibraryW(
 
 pub extern "kernel32" fn EnumResourceNamesW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpEnumFunc: ?ENUMRESNAMEPROCW,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -469,7 +469,7 @@ pub extern "kernel32" fn EnumResourceLanguagesA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn EnumResourceLanguagesW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpName: ?[*:0]const u16,
     lpEnumFunc: ?ENUMRESLANGPROCW,
     lParam: isize,
@@ -501,7 +501,7 @@ pub extern "kernel32" fn UpdateResourceA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn UpdateResourceW(
     hUpdate: ?HANDLE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpName: ?[*:0]const u16,
     wLanguage: u16,
     // TODO: what to do with BytesParamIndex 5?
