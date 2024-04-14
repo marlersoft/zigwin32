@@ -364,8 +364,8 @@ pub const CHOOSEFONT_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // NOVECTORFONTS (2048) conflicts with NOOEMFONTS
-    // SCRIPTSONLY (1024) conflicts with ANSIONLY
+    // NOVECTORFONTS (bit index 11) conflicts with NOOEMFONTS
+    // SCRIPTSONLY (bit index 10) conflicts with ANSIONLY
 };
 pub const CF_APPLY = CHOOSEFONT_FLAGS{ .APPLY = 1 };
 pub const CF_ANSIONLY = CHOOSEFONT_FLAGS{ .ANSIONLY = 1 };
@@ -485,7 +485,7 @@ pub const PRINTDLGEX_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // USEDEVMODECOPIESANDCOLLATE (262144) conflicts with USEDEVMODECOPIES
+    // USEDEVMODECOPIESANDCOLLATE (bit index 18) conflicts with USEDEVMODECOPIES
 };
 pub const PD_ALLPAGES = PRINTDLGEX_FLAGS{ };
 pub const PD_COLLATE = PRINTDLGEX_FLAGS{ .COLLATE = 1 };

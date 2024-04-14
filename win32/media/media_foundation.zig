@@ -3102,9 +3102,9 @@ pub const D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // R (1) conflicts with Y
-    // G (2) conflicts with U
-    // B (4) conflicts with V
+    // R (bit index 0) conflicts with Y
+    // G (bit index 1) conflicts with U
+    // B (bit index 2) conflicts with V
 };
 pub const D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAG_NONE = D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS{ };
 pub const D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAG_Y = D3D12_VIDEO_DECODE_HISTOGRAM_COMPONENT_FLAGS{ .Y = 1 };

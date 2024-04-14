@@ -3463,12 +3463,12 @@ pub const GESTURECONFIG_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // ZOOM (1) conflicts with ALLGESTURES
-    // PAN (1) conflicts with ALLGESTURES
-    // ROTATE (1) conflicts with ALLGESTURES
-    // TWOFINGERTAP (1) conflicts with ALLGESTURES
-    // PRESSANDTAP (1) conflicts with ALLGESTURES
-    // ROLLOVER (1) conflicts with ALLGESTURES
+    // ZOOM (bit index 0) conflicts with ALLGESTURES
+    // PAN (bit index 0) conflicts with ALLGESTURES
+    // ROTATE (bit index 0) conflicts with ALLGESTURES
+    // TWOFINGERTAP (bit index 0) conflicts with ALLGESTURES
+    // PRESSANDTAP (bit index 0) conflicts with ALLGESTURES
+    // ROLLOVER (bit index 0) conflicts with ALLGESTURES
 };
 pub const GC_ALLGESTURES = GESTURECONFIG_FLAGS{ .ALLGESTURES = 1 };
 pub const GC_ZOOM = GESTURECONFIG_FLAGS{ .ALLGESTURES = 1 };

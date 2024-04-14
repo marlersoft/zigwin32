@@ -2217,7 +2217,7 @@ pub const NET_SERVER_TYPE = packed struct(u32) {
     ALTERNATE_XPORT: u1 = 0,
     LOCAL_LIST_ONLY: u1 = 0,
     DOMAIN_ENUM: u1 = 0,
-    // SERVER_UNIX (2048) conflicts with XENIX_SERVER
+    // SERVER_UNIX (bit index 11) conflicts with XENIX_SERVER
 };
 pub const SV_TYPE_WORKSTATION = NET_SERVER_TYPE{ .WORKSTATION = 1 };
 pub const SV_TYPE_SERVER = NET_SERVER_TYPE{ .SERVER = 1 };

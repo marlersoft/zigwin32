@@ -1395,8 +1395,8 @@ pub const IMAGE_SECTION_CHARACTERISTICS = packed struct(u32) {
     MEM_EXECUTE: u1 = 0,
     MEM_READ: u1 = 0,
     MEM_WRITE: u1 = 0,
-    // MEM_FARDATA (32768) conflicts with GPREL
-    // MEM_16BIT (131072) conflicts with MEM_PURGEABLE
+    // MEM_FARDATA (bit index 15) conflicts with GPREL
+    // MEM_16BIT (bit index 17) conflicts with MEM_PURGEABLE
 };
 pub const IMAGE_SCN_TYPE_NO_PAD = IMAGE_SECTION_CHARACTERISTICS{ .TYPE_NO_PAD = 1 };
 pub const IMAGE_SCN_CNT_CODE = IMAGE_SECTION_CHARACTERISTICS{ .CNT_CODE = 1 };
@@ -1594,7 +1594,7 @@ pub const IMAGE_DLL_CHARACTERISTICS = packed struct(u16) {
     WDM_DRIVER: u1 = 0,
     GUARD_CF: u1 = 0,
     TERMINAL_SERVER_AWARE: u1 = 0,
-    // EX_CET_RESERVED_2 (32) conflicts with HIGH_ENTROPY_VA
+    // EX_CET_RESERVED_2 (bit index 5) conflicts with HIGH_ENTROPY_VA
 };
 pub const IMAGE_DLLCHARACTERISTICS_HIGH_ENTROPY_VA = IMAGE_DLL_CHARACTERISTICS{ .HIGH_ENTROPY_VA = 1 };
 pub const IMAGE_DLLCHARACTERISTICS_DYNAMIC_BASE = IMAGE_DLL_CHARACTERISTICS{ .DYNAMIC_BASE = 1 };
@@ -59599,7 +59599,7 @@ pub const OBJECT_ATTRIB_FLAG = packed struct(u32) {
     IS_TYPE: u1 = 0,
     IS_INHERITED: u1 = 0,
     IS_INTERFACE: u1 = 0,
-    // TYPE_IS_EXPANDABLE (256) conflicts with TYPE_IS_OBJECT
+    // TYPE_IS_EXPANDABLE (bit index 8) conflicts with TYPE_IS_OBJECT
 };
 pub const OBJECT_ATTRIB_NO_ATTRIB = OBJECT_ATTRIB_FLAG{ };
 pub const OBJECT_ATTRIB_NO_NAME = OBJECT_ATTRIB_FLAG{ .NO_NAME = 1 };

@@ -1500,16 +1500,16 @@ pub const DFCS_STATE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // MENUCHECK (1) conflicts with CAPTIONMIN
-    // MENUBULLET (2) conflicts with CAPTIONMAX
-    // MENUARROWRIGHT (4) conflicts with CAPTIONHELP
-    // SCROLLDOWN (1) conflicts with CAPTIONMIN
-    // SCROLLLEFT (2) conflicts with CAPTIONMAX
-    // BUTTONRADIOIMAGE (1) conflicts with CAPTIONMIN
-    // BUTTONRADIOMASK (2) conflicts with CAPTIONMAX
-    // BUTTONRADIO (4) conflicts with CAPTIONHELP
-    // BUTTON3STATE (8) conflicts with SCROLLSIZEGRIP
-    // BUTTONPUSH (16) conflicts with SCROLLSIZEGRIPRIGHT
+    // MENUCHECK (bit index 0) conflicts with CAPTIONMIN
+    // MENUBULLET (bit index 1) conflicts with CAPTIONMAX
+    // MENUARROWRIGHT (bit index 2) conflicts with CAPTIONHELP
+    // SCROLLDOWN (bit index 0) conflicts with CAPTIONMIN
+    // SCROLLLEFT (bit index 1) conflicts with CAPTIONMAX
+    // BUTTONRADIOIMAGE (bit index 0) conflicts with CAPTIONMIN
+    // BUTTONRADIOMASK (bit index 1) conflicts with CAPTIONMAX
+    // BUTTONRADIO (bit index 2) conflicts with CAPTIONHELP
+    // BUTTON3STATE (bit index 3) conflicts with SCROLLSIZEGRIP
+    // BUTTONPUSH (bit index 4) conflicts with SCROLLSIZEGRIPRIGHT
 };
 pub const DFCS_CAPTIONCLOSE = DFCS_STATE{ };
 pub const DFCS_CAPTIONMIN = DFCS_STATE{ .CAPTIONMIN = 1 };

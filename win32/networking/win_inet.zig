@@ -1036,7 +1036,7 @@ pub const HTTP_ADDREQ_FLAG = packed struct(u32) {
     ADD: u1 = 0,
     COALESCE: u1 = 0,
     REPLACE: u1 = 0,
-    // COALESCE_WITH_COMMA (1073741824) conflicts with COALESCE
+    // COALESCE_WITH_COMMA (bit index 30) conflicts with COALESCE
 };
 pub const HTTP_ADDREQ_FLAG_ADD = HTTP_ADDREQ_FLAG{ .ADD = 1 };
 pub const HTTP_ADDREQ_FLAG_ADD_IF_NEW = HTTP_ADDREQ_FLAG{ .ADD_IF_NEW = 1 };

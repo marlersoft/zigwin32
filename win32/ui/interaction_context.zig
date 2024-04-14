@@ -135,20 +135,20 @@ pub const INTERACTION_CONFIGURATION_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // CROSS_SLIDE (1) conflicts with MANIPULATION
-    // CROSS_SLIDE_HORIZONTAL (2) conflicts with MANIPULATION_TRANSLATION_X
-    // CROSS_SLIDE_SELECT (4) conflicts with MANIPULATION_TRANSLATION_Y
-    // CROSS_SLIDE_SPEED_BUMP (8) conflicts with MANIPULATION_ROTATION
-    // CROSS_SLIDE_REARRANGE (16) conflicts with MANIPULATION_SCALING
-    // CROSS_SLIDE_EXACT (32) conflicts with MANIPULATION_TRANSLATION_INERTIA
-    // TAP (1) conflicts with MANIPULATION
-    // TAP_DOUBLE (2) conflicts with MANIPULATION_TRANSLATION_X
-    // TAP_MULTIPLE_FINGER (4) conflicts with MANIPULATION_TRANSLATION_Y
-    // SECONDARY_TAP (1) conflicts with MANIPULATION
-    // HOLD (1) conflicts with MANIPULATION
-    // HOLD_MOUSE (2) conflicts with MANIPULATION_TRANSLATION_X
-    // HOLD_MULTIPLE_FINGER (4) conflicts with MANIPULATION_TRANSLATION_Y
-    // DRAG (1) conflicts with MANIPULATION
+    // CROSS_SLIDE (bit index 0) conflicts with MANIPULATION
+    // CROSS_SLIDE_HORIZONTAL (bit index 1) conflicts with MANIPULATION_TRANSLATION_X
+    // CROSS_SLIDE_SELECT (bit index 2) conflicts with MANIPULATION_TRANSLATION_Y
+    // CROSS_SLIDE_SPEED_BUMP (bit index 3) conflicts with MANIPULATION_ROTATION
+    // CROSS_SLIDE_REARRANGE (bit index 4) conflicts with MANIPULATION_SCALING
+    // CROSS_SLIDE_EXACT (bit index 5) conflicts with MANIPULATION_TRANSLATION_INERTIA
+    // TAP (bit index 0) conflicts with MANIPULATION
+    // TAP_DOUBLE (bit index 1) conflicts with MANIPULATION_TRANSLATION_X
+    // TAP_MULTIPLE_FINGER (bit index 2) conflicts with MANIPULATION_TRANSLATION_Y
+    // SECONDARY_TAP (bit index 0) conflicts with MANIPULATION
+    // HOLD (bit index 0) conflicts with MANIPULATION
+    // HOLD_MOUSE (bit index 1) conflicts with MANIPULATION_TRANSLATION_X
+    // HOLD_MULTIPLE_FINGER (bit index 2) conflicts with MANIPULATION_TRANSLATION_Y
+    // DRAG (bit index 0) conflicts with MANIPULATION
 };
 pub const INTERACTION_CONFIGURATION_FLAG_NONE = INTERACTION_CONFIGURATION_FLAGS{ };
 pub const INTERACTION_CONFIGURATION_FLAG_MANIPULATION = INTERACTION_CONFIGURATION_FLAGS{ .MANIPULATION = 1 };

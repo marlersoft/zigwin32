@@ -516,7 +516,7 @@ pub const WINHTTP_OPEN_REQUEST_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // REFRESH (256) conflicts with BYPASS_PROXY_CACHE
+    // REFRESH (bit index 8) conflicts with BYPASS_PROXY_CACHE
 };
 pub const WINHTTP_FLAG_BYPASS_PROXY_CACHE = WINHTTP_OPEN_REQUEST_FLAGS{ .BYPASS_PROXY_CACHE = 1 };
 pub const WINHTTP_FLAG_ESCAPE_DISABLE = WINHTTP_OPEN_REQUEST_FLAGS{ .ESCAPE_DISABLE = 1 };

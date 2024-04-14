@@ -334,7 +334,7 @@ pub const CLSCTX = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     PS_DLL: u1 = 0,
-    // ACTIVATE_32_BIT_SERVER (262144) conflicts with ACTIVATE_X86_SERVER
+    // ACTIVATE_32_BIT_SERVER (bit index 18) conflicts with ACTIVATE_X86_SERVER
 };
 pub const CLSCTX_INPROC_SERVER = CLSCTX{ .INPROC_SERVER = 1 };
 pub const CLSCTX_INPROC_HANDLER = CLSCTX{ .INPROC_HANDLER = 1 };

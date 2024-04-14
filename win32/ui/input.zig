@@ -64,7 +64,7 @@ pub const RAWINPUTDEVICE_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // NOHOTKEYS (512) conflicts with CAPTUREMOUSE
+    // NOHOTKEYS (bit index 9) conflicts with CAPTUREMOUSE
 };
 pub const RIDEV_REMOVE = RAWINPUTDEVICE_FLAGS{ .REMOVE = 1 };
 pub const RIDEV_EXCLUDE = RAWINPUTDEVICE_FLAGS{ .EXCLUDE = 1 };

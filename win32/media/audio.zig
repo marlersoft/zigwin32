@@ -558,7 +558,7 @@ pub const MIDI_WAVE_OPEN_TYPE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // CALLBACK_THREAD (131072) conflicts with CALLBACK_TASK
+    // CALLBACK_THREAD (bit index 17) conflicts with CALLBACK_TASK
 };
 pub const CALLBACK_TYPEMASK = MIDI_WAVE_OPEN_TYPE{
     .CALLBACK_WINDOW = 1,

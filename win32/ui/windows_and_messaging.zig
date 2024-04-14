@@ -1531,10 +1531,10 @@ pub const MESSAGEBOX_STYLE = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // ICONERROR (16) conflicts with ICONHAND
-    // ICONINFORMATION (64) conflicts with ICONASTERISK
-    // ICONSTOP (16) conflicts with ICONHAND
-    // SERVICE_NOTIFICATION_NT3X (262144) conflicts with TOPMOST
+    // ICONERROR (bit index 4) conflicts with ICONHAND
+    // ICONINFORMATION (bit index 6) conflicts with ICONASTERISK
+    // ICONSTOP (bit index 4) conflicts with ICONHAND
+    // SERVICE_NOTIFICATION_NT3X (bit index 18) conflicts with TOPMOST
 };
 pub const MB_ABORTRETRYIGNORE = MESSAGEBOX_STYLE{ .ABORTRETRYIGNORE = 1 };
 pub const MB_CANCELTRYCONTINUE = MESSAGEBOX_STYLE{
@@ -1646,12 +1646,12 @@ pub const MENU_ITEM_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // APPEND (256) conflicts with OWNERDRAW
-    // USECHECKBITMAPS (512) conflicts with DELETE
-    // HILITE (128) conflicts with CHANGE
-    // DEFAULT (4096) conflicts with REMOVE
-    // RIGHTJUSTIFY (16384) conflicts with HELP
-    // END (128) conflicts with CHANGE
+    // APPEND (bit index 8) conflicts with OWNERDRAW
+    // USECHECKBITMAPS (bit index 9) conflicts with DELETE
+    // HILITE (bit index 7) conflicts with CHANGE
+    // DEFAULT (bit index 12) conflicts with REMOVE
+    // RIGHTJUSTIFY (bit index 14) conflicts with HELP
+    // END (bit index 7) conflicts with CHANGE
 };
 pub const MF_BYCOMMAND = MENU_ITEM_FLAGS{ };
 pub const MF_BYPOSITION = MENU_ITEM_FLAGS{ .BYPOSITION = 1 };
@@ -1715,13 +1715,13 @@ pub const SHOW_WINDOW_CMD = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // NORMAL (1) conflicts with SHOWNORMAL
-    // PARENTCLOSING (1) conflicts with SHOWNORMAL
-    // OTHERZOOM (2) conflicts with SHOWMINIMIZED
-    // OTHERUNZOOM (4) conflicts with SHOWNOACTIVATE
-    // SCROLLCHILDREN (1) conflicts with SHOWNORMAL
-    // INVALIDATE (2) conflicts with SHOWMINIMIZED
-    // ERASE (4) conflicts with SHOWNOACTIVATE
+    // NORMAL (bit index 0) conflicts with SHOWNORMAL
+    // PARENTCLOSING (bit index 0) conflicts with SHOWNORMAL
+    // OTHERZOOM (bit index 1) conflicts with SHOWMINIMIZED
+    // OTHERUNZOOM (bit index 2) conflicts with SHOWNOACTIVATE
+    // SCROLLCHILDREN (bit index 0) conflicts with SHOWNORMAL
+    // INVALIDATE (bit index 1) conflicts with SHOWMINIMIZED
+    // ERASE (bit index 2) conflicts with SHOWNOACTIVATE
 };
 pub const SW_FORCEMINIMIZE = SHOW_WINDOW_CMD{
     .SHOWNORMAL = 1,
@@ -3296,11 +3296,11 @@ pub const WINDOW_STYLE = packed struct(u32) {
     MINIMIZE: u1 = 0,
     CHILD: u1 = 0,
     POPUP: u1 = 0,
-    // MINIMIZEBOX (131072) conflicts with GROUP
-    // MAXIMIZEBOX (65536) conflicts with TABSTOP
-    // ICONIC (536870912) conflicts with MINIMIZE
-    // SIZEBOX (262144) conflicts with THICKFRAME
-    // CHILDWINDOW (1073741824) conflicts with CHILD
+    // MINIMIZEBOX (bit index 17) conflicts with GROUP
+    // MAXIMIZEBOX (bit index 16) conflicts with TABSTOP
+    // ICONIC (bit index 29) conflicts with MINIMIZE
+    // SIZEBOX (bit index 18) conflicts with THICKFRAME
+    // CHILDWINDOW (bit index 30) conflicts with CHILD
 };
 pub const WS_OVERLAPPED = WINDOW_STYLE{ };
 pub const WS_POPUP = WINDOW_STYLE{ .POPUP = 1 };
@@ -3798,7 +3798,7 @@ pub const SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // SENDWININICHANGE (2) conflicts with SENDCHANGE
+    // SENDWININICHANGE (bit index 1) conflicts with SENDCHANGE
 };
 pub const SPIF_UPDATEINIFILE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS{ .UPDATEINIFILE = 1 };
 pub const SPIF_SENDCHANGE = SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS{ .SENDCHANGE = 1 };
@@ -3837,9 +3837,9 @@ pub const SET_WINDOW_POS_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // FRAMECHANGED (32) conflicts with DRAWFRAME
-    // NOREPOSITION (512) conflicts with NOOWNERZORDER
-    // _NOOWNERZORDER (512) conflicts with NOOWNERZORDER
+    // FRAMECHANGED (bit index 5) conflicts with DRAWFRAME
+    // NOREPOSITION (bit index 9) conflicts with NOOWNERZORDER
+    // _NOOWNERZORDER (bit index 9) conflicts with NOOWNERZORDER
 };
 pub const SWP_ASYNCWINDOWPOS = SET_WINDOW_POS_FLAGS{ .ASYNCWINDOWPOS = 1 };
 pub const SWP_DEFERERASE = SET_WINDOW_POS_FLAGS{ .DEFERERASE = 1 };

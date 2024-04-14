@@ -39,8 +39,8 @@ pub const JOB_OBJECT_LIMIT = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // LIMIT_JOB_MEMORY_HIGH (512) conflicts with LIMIT_JOB_MEMORY
-    // LIMIT_CPU_RATE_CONTROL (262144) conflicts with LIMIT_RATE_CONTROL
+    // LIMIT_JOB_MEMORY_HIGH (bit index 9) conflicts with LIMIT_JOB_MEMORY
+    // LIMIT_CPU_RATE_CONTROL (bit index 18) conflicts with LIMIT_RATE_CONTROL
 };
 pub const JOB_OBJECT_LIMIT_WORKINGSET = JOB_OBJECT_LIMIT{ .LIMIT_WORKINGSET = 1 };
 pub const JOB_OBJECT_LIMIT_PROCESS_TIME = JOB_OBJECT_LIMIT{ .LIMIT_PROCESS_TIME = 1 };

@@ -165,13 +165,13 @@ pub const PAGE_PROTECTION_FLAGS = packed struct(u32) {
     PAGE_ENCLAVE_UNVALIDATED: u1 = 0,
     PAGE_TARGETS_NO_UPDATE: u1 = 0,
     PAGE_ENCLAVE_THREAD_CONTROL: u1 = 0,
-    // PAGE_REVERT_TO_FILE_MAP (2147483648) conflicts with PAGE_ENCLAVE_THREAD_CONTROL
-    // PAGE_TARGETS_INVALID (1073741824) conflicts with PAGE_TARGETS_NO_UPDATE
-    // PAGE_ENCLAVE_DECOMMIT (268435456) conflicts with PAGE_ENCLAVE_MASK
-    // SEC_PARTITION_OWNER_HANDLE (262144) conflicts with PAGE_GRAPHICS_NOCACHE
-    // SEC_NOCACHE (268435456) conflicts with PAGE_ENCLAVE_MASK
-    // SEC_WRITECOMBINE (1073741824) conflicts with PAGE_TARGETS_NO_UPDATE
-    // SEC_LARGE_PAGES (2147483648) conflicts with PAGE_ENCLAVE_THREAD_CONTROL
+    // PAGE_REVERT_TO_FILE_MAP (bit index 31) conflicts with PAGE_ENCLAVE_THREAD_CONTROL
+    // PAGE_TARGETS_INVALID (bit index 30) conflicts with PAGE_TARGETS_NO_UPDATE
+    // PAGE_ENCLAVE_DECOMMIT (bit index 28) conflicts with PAGE_ENCLAVE_MASK
+    // SEC_PARTITION_OWNER_HANDLE (bit index 18) conflicts with PAGE_GRAPHICS_NOCACHE
+    // SEC_NOCACHE (bit index 28) conflicts with PAGE_ENCLAVE_MASK
+    // SEC_WRITECOMBINE (bit index 30) conflicts with PAGE_TARGETS_NO_UPDATE
+    // SEC_LARGE_PAGES (bit index 31) conflicts with PAGE_ENCLAVE_THREAD_CONTROL
 };
 pub const PAGE_NOACCESS = PAGE_PROTECTION_FLAGS{ .PAGE_NOACCESS = 1 };
 pub const PAGE_READONLY = PAGE_PROTECTION_FLAGS{ .PAGE_READONLY = 1 };
@@ -314,8 +314,8 @@ pub const LOCAL_ALLOC_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // LPTR (64) conflicts with LMEM_ZEROINIT
-    // NONZEROLHND (2) conflicts with LMEM_MOVEABLE
+    // LPTR (bit index 6) conflicts with LMEM_ZEROINIT
+    // NONZEROLHND (bit index 1) conflicts with LMEM_MOVEABLE
 };
 pub const LHND = LOCAL_ALLOC_FLAGS{
     .LMEM_MOVEABLE = 1,
@@ -361,7 +361,7 @@ pub const GLOBAL_ALLOC_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // PTR (64) conflicts with MEM_ZEROINIT
+    // PTR (bit index 6) conflicts with MEM_ZEROINIT
 };
 pub const GHND = GLOBAL_ALLOC_FLAGS{
     .MEM_MOVEABLE = 1,

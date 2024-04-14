@@ -169,10 +169,10 @@ pub const ACE_FLAGS = packed struct(u32) {
     _29: u1 = 0,
     _30: u1 = 0,
     _31: u1 = 0,
-    // SUB_CONTAINERS_ONLY_INHERIT (2) conflicts with CONTAINER_INHERIT_ACE
-    // SUB_OBJECTS_ONLY_INHERIT (1) conflicts with OBJECT_INHERIT_ACE
-    // INHERIT_NO_PROPAGATE (4) conflicts with NO_PROPAGATE_INHERIT_ACE
-    // INHERIT_ONLY (8) conflicts with INHERIT_ONLY_ACE
+    // SUB_CONTAINERS_ONLY_INHERIT (bit index 1) conflicts with CONTAINER_INHERIT_ACE
+    // SUB_OBJECTS_ONLY_INHERIT (bit index 0) conflicts with OBJECT_INHERIT_ACE
+    // INHERIT_NO_PROPAGATE (bit index 2) conflicts with NO_PROPAGATE_INHERIT_ACE
+    // INHERIT_ONLY (bit index 3) conflicts with INHERIT_ONLY_ACE
 };
 pub const CONTAINER_INHERIT_ACE = ACE_FLAGS{ .CONTAINER_INHERIT_ACE = 1 };
 pub const FAILED_ACCESS_ACE_FLAG = ACE_FLAGS{ .FAILED_ACCESS_ACE_FLAG = 1 };
