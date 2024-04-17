@@ -2851,7 +2851,7 @@ pub const AUDIT_STORE_DELETE = @import("../zig.zig").typedConst(HRESULT, @as(i32
 pub const AUDIT_SERVICE_IDLE_STOP = @import("../zig.zig").typedConst(HRESULT, @as(i32, 1074070022));
 
 //--------------------------------------------------------------------------------
-// Section: Types (583)
+// Section: Types (586)
 //--------------------------------------------------------------------------------
 pub const BCRYPT_OPERATION = packed struct(u32) {
     CIPHER_OPERATION: u1 = 0,
@@ -4544,11 +4544,34 @@ pub const HCERTCHAINENGINE = *opaque{};
 
 // TODO: this type has a FreeFunc 'BCryptCloseAlgorithmProvider', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const BCRYPT_ALG_HANDLE = isize;
+//TODO: type 'BCRYPT_ALG_HANDLE' is "AlsoUsableFor" 'BCRYPT_HANDLE' which means this type is implicitly
+//      convertible to 'BCRYPT_HANDLE' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const BCRYPT_ALG_HANDLE = BCRYPT_HANDLE;
 
 // TODO: this type has a FreeFunc 'BCryptDestroyKey', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
-pub const BCRYPT_KEY_HANDLE = isize;
+//TODO: type 'BCRYPT_KEY_HANDLE' is "AlsoUsableFor" 'BCRYPT_HANDLE' which means this type is implicitly
+//      convertible to 'BCRYPT_HANDLE' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const BCRYPT_KEY_HANDLE = BCRYPT_HANDLE;
+
+// TODO: this type has a FreeFunc 'BCryptDestroyHash', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+//TODO: type 'BCRYPT_HASH_HANDLE' is "AlsoUsableFor" 'BCRYPT_HANDLE' which means this type is implicitly
+//      convertible to 'BCRYPT_HANDLE' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const BCRYPT_HASH_HANDLE = BCRYPT_HANDLE;
+
+// TODO: this type has a FreeFunc 'BCryptDestroySecret', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+//TODO: type 'BCRYPT_SECRET_HANDLE' is "AlsoUsableFor" 'BCRYPT_HANDLE' which means this type is implicitly
+//      convertible to 'BCRYPT_HANDLE' but not the other way around.  I don't know how to do this
+//      in Zig so for now I'm just defining it as an alias
+pub const BCRYPT_SECRET_HANDLE = BCRYPT_HANDLE;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const BCRYPT_HANDLE = isize;
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const NCRYPT_HANDLE = usize;
@@ -10489,7 +10512,7 @@ pub extern "bcrypt" fn BCryptEnumProviders(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptGetProperty(
-    hObject: ?*anyopaque,
+    hObject: BCRYPT_HANDLE,
     pszProperty: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pbOutput: ?*u8,
@@ -10500,7 +10523,7 @@ pub extern "bcrypt" fn BCryptGetProperty(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptSetProperty(
-    hObject: ?*anyopaque,
+    hObject: BCRYPT_HANDLE,
     pszProperty: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 3?
     pbInput: ?*u8,
@@ -10523,6 +10546,7 @@ pub extern "bcrypt" fn BCryptFreeBuffer(
 pub extern "bcrypt" fn BCryptGenerateSymmetricKey(
     hAlgorithm: BCRYPT_ALG_HANDLE,
     phKey: ?*BCRYPT_KEY_HANDLE,
+    // TODO: what to do with BytesParamIndex 3?
     pbKeyObject: ?*u8,
     cbKeyObject: u32,
     // TODO: what to do with BytesParamIndex 5?
@@ -10591,6 +10615,7 @@ pub extern "bcrypt" fn BCryptImportKey(
     hImportKey: BCRYPT_KEY_HANDLE,
     pszBlobType: ?[*:0]const u16,
     phKey: ?*BCRYPT_KEY_HANDLE,
+    // TODO: what to do with BytesParamIndex 5?
     pbKeyObject: ?*u8,
     cbKeyObject: u32,
     // TODO: what to do with BytesParamIndex 7?
@@ -10615,6 +10640,7 @@ pub extern "bcrypt" fn BCryptImportKeyPair(
 pub extern "bcrypt" fn BCryptDuplicateKey(
     hKey: BCRYPT_KEY_HANDLE,
     phNewKey: ?*BCRYPT_KEY_HANDLE,
+    // TODO: what to do with BytesParamIndex 3?
     pbKeyObject: ?*u8,
     cbKeyObject: u32,
     dwFlags: u32,
@@ -10633,7 +10659,7 @@ pub extern "bcrypt" fn BCryptDestroyKey(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDestroySecret(
-    hSecret: ?*anyopaque,
+    hSecret: BCRYPT_SECRET_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -10667,13 +10693,13 @@ pub extern "bcrypt" fn BCryptVerifySignature(
 pub extern "bcrypt" fn BCryptSecretAgreement(
     hPrivKey: BCRYPT_KEY_HANDLE,
     hPubKey: BCRYPT_KEY_HANDLE,
-    phAgreedSecret: ?*?*anyopaque,
+    phAgreedSecret: ?*BCRYPT_SECRET_HANDLE,
     dwFlags: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDeriveKey(
-    hSharedSecret: ?*anyopaque,
+    hSharedSecret: BCRYPT_SECRET_HANDLE,
     pwszKDF: ?[*:0]const u16,
     pParameterList: ?*BCryptBufferDesc,
     // TODO: what to do with BytesParamIndex 4?
@@ -10697,7 +10723,8 @@ pub extern "bcrypt" fn BCryptKeyDerivation(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptCreateHash(
     hAlgorithm: BCRYPT_ALG_HANDLE,
-    phHash: ?*?*anyopaque,
+    phHash: ?*BCRYPT_HASH_HANDLE,
+    // TODO: what to do with BytesParamIndex 3?
     pbHashObject: ?*u8,
     cbHashObject: u32,
     // TODO: what to do with BytesParamIndex 5?
@@ -10708,7 +10735,7 @@ pub extern "bcrypt" fn BCryptCreateHash(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptHashData(
-    hHash: ?*anyopaque,
+    hHash: BCRYPT_HASH_HANDLE,
     // TODO: what to do with BytesParamIndex 2?
     pbInput: ?*u8,
     cbInput: u32,
@@ -10717,7 +10744,8 @@ pub extern "bcrypt" fn BCryptHashData(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptFinishHash(
-    hHash: ?*anyopaque,
+    hHash: BCRYPT_HASH_HANDLE,
+    // TODO: what to do with BytesParamIndex 2?
     pbOutput: ?*u8,
     cbOutput: u32,
     dwFlags: u32,
@@ -10726,8 +10754,9 @@ pub extern "bcrypt" fn BCryptFinishHash(
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "bcrypt" fn BCryptCreateMultiHash(
     hAlgorithm: BCRYPT_ALG_HANDLE,
-    phHash: ?*?*anyopaque,
+    phHash: ?*BCRYPT_HASH_HANDLE,
     nHashes: u32,
+    // TODO: what to do with BytesParamIndex 4?
     pbHashObject: ?*u8,
     cbHashObject: u32,
     // TODO: what to do with BytesParamIndex 6?
@@ -10738,7 +10767,7 @@ pub extern "bcrypt" fn BCryptCreateMultiHash(
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "bcrypt" fn BCryptProcessMultiOperations(
-    hObject: ?*anyopaque,
+    hObject: BCRYPT_HANDLE,
     operationType: BCRYPT_MULTI_OPERATION_TYPE,
     // TODO: what to do with BytesParamIndex 3?
     pOperations: ?*anyopaque,
@@ -10748,8 +10777,9 @@ pub extern "bcrypt" fn BCryptProcessMultiOperations(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDuplicateHash(
-    hHash: ?*anyopaque,
-    phNewHash: ?*?*anyopaque,
+    hHash: BCRYPT_HASH_HANDLE,
+    phNewHash: ?*BCRYPT_HASH_HANDLE,
+    // TODO: what to do with BytesParamIndex 3?
     pbHashObject: ?*u8,
     cbHashObject: u32,
     dwFlags: u32,
@@ -10757,7 +10787,7 @@ pub extern "bcrypt" fn BCryptDuplicateHash(
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "bcrypt" fn BCryptDestroyHash(
-    hHash: ?*anyopaque,
+    hHash: BCRYPT_HASH_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
@@ -10769,6 +10799,7 @@ pub extern "bcrypt" fn BCryptHash(
     // TODO: what to do with BytesParamIndex 4?
     pbInput: ?*u8,
     cbInput: u32,
+    // TODO: what to do with BytesParamIndex 6?
     pbOutput: ?*u8,
     cbOutput: u32,
 ) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
@@ -10784,7 +10815,7 @@ pub extern "bcrypt" fn BCryptGenRandom(
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "bcrypt" fn BCryptDeriveKeyCapi(
-    hHash: ?*anyopaque,
+    hHash: BCRYPT_HASH_HANDLE,
     hTargetAlg: BCRYPT_ALG_HANDLE,
     // TODO: what to do with BytesParamIndex 3?
     pbDerivedKey: ?*u8,
@@ -12359,6 +12390,7 @@ pub extern "crypt32" fn CertFindRDNAttr(
 pub extern "crypt32" fn CertGetIntendedKeyUsage(
     dwCertEncodingType: u32,
     pCertInfo: ?*CERT_INFO,
+    // TODO: what to do with BytesParamIndex 3?
     pbKeyUsage: ?*u8,
     cbKeyUsage: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;

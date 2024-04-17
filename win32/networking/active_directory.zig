@@ -706,7 +706,7 @@ pub const hrAccessDenied = @import("../zig.zig").typedConst(HRESULT, @as(i32, -9
 pub const CLSID_DsObjectPicker = Guid.initString("17d6ccd8-3b7b-11d2-b9e0-00c04fd8dbf7");
 
 //--------------------------------------------------------------------------------
-// Section: Types (264)
+// Section: Types (265)
 //--------------------------------------------------------------------------------
 pub const CQFORM = extern struct {
     cbStruct: u32,
@@ -9639,78 +9639,78 @@ pub const IDirectorySearch = extern struct {
                 pszSearchFilter: ?PWSTR,
                 pAttributeNames: ?*?PWSTR,
                 dwNumberAttributes: u32,
-                phSearchResult: ?*isize,
+                phSearchResult: ?*ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDirectorySearch,
                 pszSearchFilter: ?PWSTR,
                 pAttributeNames: ?*?PWSTR,
                 dwNumberAttributes: u32,
-                phSearchResult: ?*isize,
+                phSearchResult: ?*ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         AbandonSearch: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDirectorySearch,
-                phSearchResult: isize,
+                phSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDirectorySearch,
-                phSearchResult: isize,
+                phSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetFirstRow: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNextRow: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetPreviousRow: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetNextColumnName: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDirectorySearch,
-                hSearchHandle: isize,
+                hSearchHandle: ADS_SEARCH_HANDLE,
                 ppszColumnName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDirectorySearch,
-                hSearchHandle: isize,
+                hSearchHandle: ADS_SEARCH_HANDLE,
                 ppszColumnName: ?*?PWSTR,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetColumn: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
                 szColumnName: ?PWSTR,
                 pSearchColumn: ?*ads_search_column,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
                 szColumnName: ?PWSTR,
                 pSearchColumn: ?*ads_search_column,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -9728,11 +9728,11 @@ pub const IDirectorySearch = extern struct {
         CloseSearchHandle: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDirectorySearch,
-                hSearchResult: isize,
+                hSearchResult: ADS_SEARCH_HANDLE,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -9744,31 +9744,31 @@ pub const IDirectorySearch = extern struct {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).SetSearchPreference(@as(*const IDirectorySearch, @ptrCast(self)), pSearchPrefs, dwNumPrefs);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_ExecuteSearch(self: *const T, pszSearchFilter: ?PWSTR, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, phSearchResult: ?*isize) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_ExecuteSearch(self: *const T, pszSearchFilter: ?PWSTR, pAttributeNames: ?*?PWSTR, dwNumberAttributes: u32, phSearchResult: ?*ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).ExecuteSearch(@as(*const IDirectorySearch, @ptrCast(self)), pszSearchFilter, pAttributeNames, dwNumberAttributes, phSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_AbandonSearch(self: *const T, phSearchResult: isize) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_AbandonSearch(self: *const T, phSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).AbandonSearch(@as(*const IDirectorySearch, @ptrCast(self)), phSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetFirstRow(self: *const T, hSearchResult: isize) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetFirstRow(self: *const T, hSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetFirstRow(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetNextRow(self: *const T, hSearchResult: isize) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetNextRow(self: *const T, hSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetNextRow(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetPreviousRow(self: *const T, hSearchResult: isize) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetPreviousRow(self: *const T, hSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetPreviousRow(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetNextColumnName(self: *const T, hSearchHandle: isize, ppszColumnName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetNextColumnName(self: *const T, hSearchHandle: ADS_SEARCH_HANDLE, ppszColumnName: ?*?PWSTR) callconv(.Inline) HRESULT {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetNextColumnName(@as(*const IDirectorySearch, @ptrCast(self)), hSearchHandle, ppszColumnName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_GetColumn(self: *const T, hSearchResult: isize, szColumnName: ?PWSTR, pSearchColumn: ?*ads_search_column) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_GetColumn(self: *const T, hSearchResult: ADS_SEARCH_HANDLE, szColumnName: ?PWSTR, pSearchColumn: ?*ads_search_column) callconv(.Inline) HRESULT {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).GetColumn(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult, szColumnName, pSearchColumn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9776,7 +9776,7 @@ pub const IDirectorySearch = extern struct {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).FreeColumn(@as(*const IDirectorySearch, @ptrCast(self)), pSearchColumn);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectorySearch_CloseSearchHandle(self: *const T, hSearchResult: isize) callconv(.Inline) HRESULT {
+        pub fn IDirectorySearch_CloseSearchHandle(self: *const T, hSearchResult: ADS_SEARCH_HANDLE) callconv(.Inline) HRESULT {
             return @as(*const IDirectorySearch.VTable, @ptrCast(self.vtable)).CloseSearchHandle(@as(*const IDirectorySearch, @ptrCast(self)), hSearchResult);
         }
     };}
@@ -14677,6 +14677,9 @@ pub const DS_DOMAIN_TRUSTSA = extern struct {
 // TODO: this type has a FreeFunc 'DsGetDcCloseW', what can Zig do with this information?
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const GetDcContextHandle = isize;
+
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const ADS_SEARCH_HANDLE = isize;
 
 
 //--------------------------------------------------------------------------------

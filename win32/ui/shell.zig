@@ -3867,18 +3867,18 @@ pub const IEnumFullIDList = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const _SHGDNF = enum(i32) {
+pub const SHGDNF = enum(u32) {
     NORMAL = 0,
     INFOLDER = 1,
     FOREDITING = 4096,
     FORADDRESSBAR = 16384,
     FORPARSING = 32768,
 };
-pub const SHGDN_NORMAL = _SHGDNF.NORMAL;
-pub const SHGDN_INFOLDER = _SHGDNF.INFOLDER;
-pub const SHGDN_FOREDITING = _SHGDNF.FOREDITING;
-pub const SHGDN_FORADDRESSBAR = _SHGDNF.FORADDRESSBAR;
-pub const SHGDN_FORPARSING = _SHGDNF.FORPARSING;
+pub const SHGDN_NORMAL = SHGDNF.NORMAL;
+pub const SHGDN_INFOLDER = SHGDNF.INFOLDER;
+pub const SHGDN_FOREDITING = SHGDNF.FOREDITING;
+pub const SHGDN_FORADDRESSBAR = SHGDNF.FORADDRESSBAR;
+pub const SHGDN_FORPARSING = SHGDNF.FORPARSING;
 
 pub const _SHCONTF = enum(i32) {
     CHECKING_FOR_CHILDREN = 16,
@@ -4206,13 +4206,13 @@ pub const IShellFolder = extern struct {
             .stage1 => fn(
                 self: *const IShellFolder,
                 pidl: ?*ITEMIDLIST,
-                uFlags: u32,
+                uFlags: SHGDNF,
                 pName: ?*STRRET,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IShellFolder,
                 pidl: ?*ITEMIDLIST,
-                uFlags: u32,
+                uFlags: SHGDNF,
                 pName: ?*STRRET,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -4222,7 +4222,7 @@ pub const IShellFolder = extern struct {
                 hwnd: ?HWND,
                 pidl: ?*ITEMIDLIST,
                 pszName: ?[*:0]const u16,
-                uFlags: u32,
+                uFlags: SHGDNF,
                 ppidlOut: ?*?*ITEMIDLIST,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
@@ -4230,7 +4230,7 @@ pub const IShellFolder = extern struct {
                 hwnd: ?HWND,
                 pidl: ?*ITEMIDLIST,
                 pszName: ?[*:0]const u16,
-                uFlags: u32,
+                uFlags: SHGDNF,
                 ppidlOut: ?*?*ITEMIDLIST,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -4271,11 +4271,11 @@ pub const IShellFolder = extern struct {
             return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).GetUIObjectOf(@as(*const IShellFolder, @ptrCast(self)), hwndOwner, cidl, apidl, riid, rgfReserved, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_GetDisplayNameOf(self: *const T, pidl: ?*ITEMIDLIST, uFlags: u32, pName: ?*STRRET) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_GetDisplayNameOf(self: *const T, pidl: ?*ITEMIDLIST, uFlags: SHGDNF, pName: ?*STRRET) callconv(.Inline) HRESULT {
             return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).GetDisplayNameOf(@as(*const IShellFolder, @ptrCast(self)), pidl, uFlags, pName);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IShellFolder_SetNameOf(self: *const T, hwnd: ?HWND, pidl: ?*ITEMIDLIST, pszName: ?[*:0]const u16, uFlags: u32, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
+        pub fn IShellFolder_SetNameOf(self: *const T, hwnd: ?HWND, pidl: ?*ITEMIDLIST, pszName: ?[*:0]const u16, uFlags: SHGDNF, ppidlOut: ?*?*ITEMIDLIST) callconv(.Inline) HRESULT {
             return @as(*const IShellFolder.VTable, @ptrCast(self.vtable)).SetNameOf(@as(*const IShellFolder, @ptrCast(self)), hwnd, pidl, pszName, uFlags, ppidlOut);
         }
     };}
@@ -12990,54 +12990,63 @@ pub const IFileDialogEvents = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const FILEOPENDIALOGOPTIONS = enum(u32) {
-    OVERWRITEPROMPT = 2,
-    STRICTFILETYPES = 4,
-    NOCHANGEDIR = 8,
-    PICKFOLDERS = 32,
-    FORCEFILESYSTEM = 64,
-    ALLNONSTORAGEITEMS = 128,
-    NOVALIDATE = 256,
-    ALLOWMULTISELECT = 512,
-    PATHMUSTEXIST = 2048,
-    FILEMUSTEXIST = 4096,
-    CREATEPROMPT = 8192,
-    SHAREAWARE = 16384,
-    NOREADONLYRETURN = 32768,
-    NOTESTFILECREATE = 65536,
-    HIDEMRUPLACES = 131072,
-    HIDEPINNEDPLACES = 262144,
-    NODEREFERENCELINKS = 1048576,
-    OKBUTTONNEEDSINTERACTION = 2097152,
-    DONTADDTORECENT = 33554432,
-    FORCESHOWHIDDEN = 268435456,
-    DEFAULTNOMINIMODE = 536870912,
-    FORCEPREVIEWPANEON = 1073741824,
-    SUPPORTSTREAMABLEITEMS = 2147483648,
+pub const FILEOPENDIALOGOPTIONS = packed struct(u32) {
+    _0: u1 = 0,
+    OVERWRITEPROMPT: u1 = 0,
+    STRICTFILETYPES: u1 = 0,
+    NOCHANGEDIR: u1 = 0,
+    _4: u1 = 0,
+    PICKFOLDERS: u1 = 0,
+    FORCEFILESYSTEM: u1 = 0,
+    ALLNONSTORAGEITEMS: u1 = 0,
+    NOVALIDATE: u1 = 0,
+    ALLOWMULTISELECT: u1 = 0,
+    _10: u1 = 0,
+    PATHMUSTEXIST: u1 = 0,
+    FILEMUSTEXIST: u1 = 0,
+    CREATEPROMPT: u1 = 0,
+    SHAREAWARE: u1 = 0,
+    NOREADONLYRETURN: u1 = 0,
+    NOTESTFILECREATE: u1 = 0,
+    HIDEMRUPLACES: u1 = 0,
+    HIDEPINNEDPLACES: u1 = 0,
+    _19: u1 = 0,
+    NODEREFERENCELINKS: u1 = 0,
+    OKBUTTONNEEDSINTERACTION: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    DONTADDTORECENT: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    FORCESHOWHIDDEN: u1 = 0,
+    DEFAULTNOMINIMODE: u1 = 0,
+    FORCEPREVIEWPANEON: u1 = 0,
+    SUPPORTSTREAMABLEITEMS: u1 = 0,
 };
-pub const FOS_OVERWRITEPROMPT = FILEOPENDIALOGOPTIONS.OVERWRITEPROMPT;
-pub const FOS_STRICTFILETYPES = FILEOPENDIALOGOPTIONS.STRICTFILETYPES;
-pub const FOS_NOCHANGEDIR = FILEOPENDIALOGOPTIONS.NOCHANGEDIR;
-pub const FOS_PICKFOLDERS = FILEOPENDIALOGOPTIONS.PICKFOLDERS;
-pub const FOS_FORCEFILESYSTEM = FILEOPENDIALOGOPTIONS.FORCEFILESYSTEM;
-pub const FOS_ALLNONSTORAGEITEMS = FILEOPENDIALOGOPTIONS.ALLNONSTORAGEITEMS;
-pub const FOS_NOVALIDATE = FILEOPENDIALOGOPTIONS.NOVALIDATE;
-pub const FOS_ALLOWMULTISELECT = FILEOPENDIALOGOPTIONS.ALLOWMULTISELECT;
-pub const FOS_PATHMUSTEXIST = FILEOPENDIALOGOPTIONS.PATHMUSTEXIST;
-pub const FOS_FILEMUSTEXIST = FILEOPENDIALOGOPTIONS.FILEMUSTEXIST;
-pub const FOS_CREATEPROMPT = FILEOPENDIALOGOPTIONS.CREATEPROMPT;
-pub const FOS_SHAREAWARE = FILEOPENDIALOGOPTIONS.SHAREAWARE;
-pub const FOS_NOREADONLYRETURN = FILEOPENDIALOGOPTIONS.NOREADONLYRETURN;
-pub const FOS_NOTESTFILECREATE = FILEOPENDIALOGOPTIONS.NOTESTFILECREATE;
-pub const FOS_HIDEMRUPLACES = FILEOPENDIALOGOPTIONS.HIDEMRUPLACES;
-pub const FOS_HIDEPINNEDPLACES = FILEOPENDIALOGOPTIONS.HIDEPINNEDPLACES;
-pub const FOS_NODEREFERENCELINKS = FILEOPENDIALOGOPTIONS.NODEREFERENCELINKS;
-pub const FOS_OKBUTTONNEEDSINTERACTION = FILEOPENDIALOGOPTIONS.OKBUTTONNEEDSINTERACTION;
-pub const FOS_DONTADDTORECENT = FILEOPENDIALOGOPTIONS.DONTADDTORECENT;
-pub const FOS_FORCESHOWHIDDEN = FILEOPENDIALOGOPTIONS.FORCESHOWHIDDEN;
-pub const FOS_DEFAULTNOMINIMODE = FILEOPENDIALOGOPTIONS.DEFAULTNOMINIMODE;
-pub const FOS_FORCEPREVIEWPANEON = FILEOPENDIALOGOPTIONS.FORCEPREVIEWPANEON;
-pub const FOS_SUPPORTSTREAMABLEITEMS = FILEOPENDIALOGOPTIONS.SUPPORTSTREAMABLEITEMS;
+pub const FOS_OVERWRITEPROMPT = FILEOPENDIALOGOPTIONS{ .OVERWRITEPROMPT = 1 };
+pub const FOS_STRICTFILETYPES = FILEOPENDIALOGOPTIONS{ .STRICTFILETYPES = 1 };
+pub const FOS_NOCHANGEDIR = FILEOPENDIALOGOPTIONS{ .NOCHANGEDIR = 1 };
+pub const FOS_PICKFOLDERS = FILEOPENDIALOGOPTIONS{ .PICKFOLDERS = 1 };
+pub const FOS_FORCEFILESYSTEM = FILEOPENDIALOGOPTIONS{ .FORCEFILESYSTEM = 1 };
+pub const FOS_ALLNONSTORAGEITEMS = FILEOPENDIALOGOPTIONS{ .ALLNONSTORAGEITEMS = 1 };
+pub const FOS_NOVALIDATE = FILEOPENDIALOGOPTIONS{ .NOVALIDATE = 1 };
+pub const FOS_ALLOWMULTISELECT = FILEOPENDIALOGOPTIONS{ .ALLOWMULTISELECT = 1 };
+pub const FOS_PATHMUSTEXIST = FILEOPENDIALOGOPTIONS{ .PATHMUSTEXIST = 1 };
+pub const FOS_FILEMUSTEXIST = FILEOPENDIALOGOPTIONS{ .FILEMUSTEXIST = 1 };
+pub const FOS_CREATEPROMPT = FILEOPENDIALOGOPTIONS{ .CREATEPROMPT = 1 };
+pub const FOS_SHAREAWARE = FILEOPENDIALOGOPTIONS{ .SHAREAWARE = 1 };
+pub const FOS_NOREADONLYRETURN = FILEOPENDIALOGOPTIONS{ .NOREADONLYRETURN = 1 };
+pub const FOS_NOTESTFILECREATE = FILEOPENDIALOGOPTIONS{ .NOTESTFILECREATE = 1 };
+pub const FOS_HIDEMRUPLACES = FILEOPENDIALOGOPTIONS{ .HIDEMRUPLACES = 1 };
+pub const FOS_HIDEPINNEDPLACES = FILEOPENDIALOGOPTIONS{ .HIDEPINNEDPLACES = 1 };
+pub const FOS_NODEREFERENCELINKS = FILEOPENDIALOGOPTIONS{ .NODEREFERENCELINKS = 1 };
+pub const FOS_OKBUTTONNEEDSINTERACTION = FILEOPENDIALOGOPTIONS{ .OKBUTTONNEEDSINTERACTION = 1 };
+pub const FOS_DONTADDTORECENT = FILEOPENDIALOGOPTIONS{ .DONTADDTORECENT = 1 };
+pub const FOS_FORCESHOWHIDDEN = FILEOPENDIALOGOPTIONS{ .FORCESHOWHIDDEN = 1 };
+pub const FOS_DEFAULTNOMINIMODE = FILEOPENDIALOGOPTIONS{ .DEFAULTNOMINIMODE = 1 };
+pub const FOS_FORCEPREVIEWPANEON = FILEOPENDIALOGOPTIONS{ .FORCEPREVIEWPANEON = 1 };
+pub const FOS_SUPPORTSTREAMABLEITEMS = FILEOPENDIALOGOPTIONS{ .SUPPORTSTREAMABLEITEMS = 1 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFileDialog_Value = Guid.initString("42f85136-db7e-439c-85f1-e4075d135fc8");
@@ -44056,24 +44065,48 @@ pub const ITranscodeImage = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PATHCCH_OPTIONS = enum(i32) {
-    NONE = 0,
-    ALLOW_LONG_PATHS = 1,
-    FORCE_ENABLE_LONG_NAME_PROCESS = 2,
-    FORCE_DISABLE_LONG_NAME_PROCESS = 4,
-    DO_NOT_NORMALIZE_SEGMENTS = 8,
-    ENSURE_IS_EXTENDED_LENGTH_PATH = 16,
-    ENSURE_TRAILING_SLASH = 32,
-    CANONICALIZE_SLASHES = 64,
+pub const PATHCCH_OPTIONS = packed struct(u32) {
+    ALLOW_LONG_PATHS: u1 = 0,
+    FORCE_ENABLE_LONG_NAME_PROCESS: u1 = 0,
+    FORCE_DISABLE_LONG_NAME_PROCESS: u1 = 0,
+    DO_NOT_NORMALIZE_SEGMENTS: u1 = 0,
+    ENSURE_IS_EXTENDED_LENGTH_PATH: u1 = 0,
+    ENSURE_TRAILING_SLASH: u1 = 0,
+    CANONICALIZE_SLASHES: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PATHCCH_NONE = PATHCCH_OPTIONS.NONE;
-pub const PATHCCH_ALLOW_LONG_PATHS = PATHCCH_OPTIONS.ALLOW_LONG_PATHS;
-pub const PATHCCH_FORCE_ENABLE_LONG_NAME_PROCESS = PATHCCH_OPTIONS.FORCE_ENABLE_LONG_NAME_PROCESS;
-pub const PATHCCH_FORCE_DISABLE_LONG_NAME_PROCESS = PATHCCH_OPTIONS.FORCE_DISABLE_LONG_NAME_PROCESS;
-pub const PATHCCH_DO_NOT_NORMALIZE_SEGMENTS = PATHCCH_OPTIONS.DO_NOT_NORMALIZE_SEGMENTS;
-pub const PATHCCH_ENSURE_IS_EXTENDED_LENGTH_PATH = PATHCCH_OPTIONS.ENSURE_IS_EXTENDED_LENGTH_PATH;
-pub const PATHCCH_ENSURE_TRAILING_SLASH = PATHCCH_OPTIONS.ENSURE_TRAILING_SLASH;
-pub const PATHCCH_CANONICALIZE_SLASHES = PATHCCH_OPTIONS.CANONICALIZE_SLASHES;
+pub const PATHCCH_NONE = PATHCCH_OPTIONS{ };
+pub const PATHCCH_ALLOW_LONG_PATHS = PATHCCH_OPTIONS{ .ALLOW_LONG_PATHS = 1 };
+pub const PATHCCH_FORCE_ENABLE_LONG_NAME_PROCESS = PATHCCH_OPTIONS{ .FORCE_ENABLE_LONG_NAME_PROCESS = 1 };
+pub const PATHCCH_FORCE_DISABLE_LONG_NAME_PROCESS = PATHCCH_OPTIONS{ .FORCE_DISABLE_LONG_NAME_PROCESS = 1 };
+pub const PATHCCH_DO_NOT_NORMALIZE_SEGMENTS = PATHCCH_OPTIONS{ .DO_NOT_NORMALIZE_SEGMENTS = 1 };
+pub const PATHCCH_ENSURE_IS_EXTENDED_LENGTH_PATH = PATHCCH_OPTIONS{ .ENSURE_IS_EXTENDED_LENGTH_PATH = 1 };
+pub const PATHCCH_ENSURE_TRAILING_SLASH = PATHCCH_OPTIONS{ .ENSURE_TRAILING_SLASH = 1 };
+pub const PATHCCH_CANONICALIZE_SLASHES = PATHCCH_OPTIONS{ .CANONICALIZE_SLASHES = 1 };
 
 pub const APPLET_PROC = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
@@ -48862,6 +48895,7 @@ pub extern "shlwapi" fn IUnknown_QueryService(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "shlwapi" fn IStream_Read(
     pstm: ?*IStream,
+    // TODO: what to do with BytesParamIndex 2?
     pv: ?*anyopaque,
     cb: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -49489,7 +49523,7 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchCanonicalizeEx(
     pszPathOut: [*:0]u16,
     cchPathOut: usize,
     pszPathIn: ?[*:0]const u16,
-    dwFlags: u32,
+    dwFlags: PATHCCH_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -49505,7 +49539,7 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchCombineEx(
     cchPathOut: usize,
     pszPathIn: ?[*:0]const u16,
     pszMore: ?[*:0]const u16,
-    dwFlags: u32,
+    dwFlags: PATHCCH_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -49521,7 +49555,7 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchAppendEx(
     pszPath: [*:0]u16,
     cchPath: usize,
     pszMore: ?[*:0]const u16,
-    dwFlags: u32,
+    dwFlags: PATHCCH_OPTIONS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
@@ -49541,14 +49575,14 @@ pub extern "api-ms-win-core-path-l1-1-0" fn PathCchStripPrefix(
 pub extern "api-ms-win-core-path-l1-1-0" fn PathAllocCombine(
     pszPathIn: ?[*:0]const u16,
     pszMore: ?[*:0]const u16,
-    dwFlags: u32,
+    dwFlags: PATHCCH_OPTIONS,
     ppszPathOut: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-core-path-l1-1-0" fn PathAllocCanonicalize(
     pszPathIn: ?[*:0]const u16,
-    dwFlags: u32,
+    dwFlags: PATHCCH_OPTIONS,
     ppszPathOut: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

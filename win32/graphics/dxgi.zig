@@ -1646,13 +1646,13 @@ pub const IDXGIDevice2 = extern struct {
                 self: *const IDXGIDevice2,
                 NumResources: u32,
                 ppResources: [*]?*IDXGIResource,
-                pDiscarded: ?*BOOL,
+                pDiscarded: ?[*]BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDXGIDevice2,
                 NumResources: u32,
                 ppResources: [*]?*IDXGIResource,
-                pDiscarded: ?*BOOL,
+                pDiscarded: ?[*]BOOL,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         EnqueueSetEvent: switch (@import("builtin").zig_backend) {
@@ -1674,7 +1674,7 @@ pub const IDXGIDevice2 = extern struct {
             return @as(*const IDXGIDevice2.VTable, @ptrCast(self.vtable)).OfferResources(@as(*const IDXGIDevice2, @ptrCast(self)), NumResources, ppResources, Priority);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXGIDevice2_ReclaimResources(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, pDiscarded: ?*BOOL) callconv(.Inline) HRESULT {
+        pub fn IDXGIDevice2_ReclaimResources(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, pDiscarded: ?[*]BOOL) callconv(.Inline) HRESULT {
             return @as(*const IDXGIDevice2.VTable, @ptrCast(self.vtable)).ReclaimResources(@as(*const IDXGIDevice2, @ptrCast(self)), NumResources, ppResources, pDiscarded);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3233,13 +3233,13 @@ pub const IDXGIDevice4 = extern struct {
                 self: *const IDXGIDevice4,
                 NumResources: u32,
                 ppResources: [*]?*IDXGIResource,
-                pResults: ?*DXGI_RECLAIM_RESOURCE_RESULTS,
+                pResults: [*]DXGI_RECLAIM_RESOURCE_RESULTS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IDXGIDevice4,
                 NumResources: u32,
                 ppResources: [*]?*IDXGIResource,
-                pResults: ?*DXGI_RECLAIM_RESOURCE_RESULTS,
+                pResults: [*]DXGI_RECLAIM_RESOURCE_RESULTS,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -3251,7 +3251,7 @@ pub const IDXGIDevice4 = extern struct {
             return @as(*const IDXGIDevice4.VTable, @ptrCast(self.vtable)).OfferResources1(@as(*const IDXGIDevice4, @ptrCast(self)), NumResources, ppResources, Priority, Flags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDXGIDevice4_ReclaimResources1(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, pResults: ?*DXGI_RECLAIM_RESOURCE_RESULTS) callconv(.Inline) HRESULT {
+        pub fn IDXGIDevice4_ReclaimResources1(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, pResults: [*]DXGI_RECLAIM_RESOURCE_RESULTS) callconv(.Inline) HRESULT {
             return @as(*const IDXGIDevice4.VTable, @ptrCast(self.vtable)).ReclaimResources1(@as(*const IDXGIDevice4, @ptrCast(self)), NumResources, ppResources, pResults);
         }
     };}

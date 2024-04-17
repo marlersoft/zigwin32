@@ -483,10 +483,10 @@ pub const FILE_ACCESS_FLAGS = packed struct(u32) {
     _13: u1 = 0,
     _14: u1 = 0,
     _15: u1 = 0,
-    _16: u1 = 0,
+    DELETE: u1 = 0,
     READ_CONTROL: u1 = 0,
-    _18: u1 = 0,
-    _19: u1 = 0,
+    WRITE_DAC: u1 = 0,
+    WRITE_OWNER: u1 = 0,
     SYNCHRONIZE: u1 = 0,
     _21: u1 = 0,
     _22: u1 = 0,
@@ -522,22 +522,25 @@ pub const FILE_TRAVERSE = FILE_ACCESS_FLAGS{ .FILE_EXECUTE = 1 };
 pub const FILE_DELETE_CHILD = FILE_ACCESS_FLAGS{ .FILE_DELETE_CHILD = 1 };
 pub const FILE_READ_ATTRIBUTES = FILE_ACCESS_FLAGS{ .FILE_READ_ATTRIBUTES = 1 };
 pub const FILE_WRITE_ATTRIBUTES = FILE_ACCESS_FLAGS{ .FILE_WRITE_ATTRIBUTES = 1 };
+pub const DELETE = FILE_ACCESS_FLAGS{ .DELETE = 1 };
 pub const READ_CONTROL = FILE_ACCESS_FLAGS{ .READ_CONTROL = 1 };
+pub const WRITE_DAC = FILE_ACCESS_FLAGS{ .WRITE_DAC = 1 };
+pub const WRITE_OWNER = FILE_ACCESS_FLAGS{ .WRITE_OWNER = 1 };
 pub const SYNCHRONIZE = FILE_ACCESS_FLAGS{ .SYNCHRONIZE = 1 };
 pub const STANDARD_RIGHTS_REQUIRED = FILE_ACCESS_FLAGS{
-    ._16 = 1,
+    .DELETE = 1,
     .READ_CONTROL = 1,
-    ._18 = 1,
-    ._19 = 1,
+    .WRITE_DAC = 1,
+    .WRITE_OWNER = 1,
 };
 pub const STANDARD_RIGHTS_READ = FILE_ACCESS_FLAGS{ .READ_CONTROL = 1 };
 pub const STANDARD_RIGHTS_WRITE = FILE_ACCESS_FLAGS{ .READ_CONTROL = 1 };
 pub const STANDARD_RIGHTS_EXECUTE = FILE_ACCESS_FLAGS{ .READ_CONTROL = 1 };
 pub const STANDARD_RIGHTS_ALL = FILE_ACCESS_FLAGS{
-    ._16 = 1,
+    .DELETE = 1,
     .READ_CONTROL = 1,
-    ._18 = 1,
-    ._19 = 1,
+    .WRITE_DAC = 1,
+    .WRITE_OWNER = 1,
     .SYNCHRONIZE = 1,
 };
 pub const SPECIFIC_RIGHTS_ALL = FILE_ACCESS_FLAGS{
@@ -568,10 +571,10 @@ pub const FILE_ALL_ACCESS = FILE_ACCESS_FLAGS{
     .FILE_DELETE_CHILD = 1,
     .FILE_READ_ATTRIBUTES = 1,
     .FILE_WRITE_ATTRIBUTES = 1,
-    ._16 = 1,
+    .DELETE = 1,
     .READ_CONTROL = 1,
-    ._18 = 1,
-    ._19 = 1,
+    .WRITE_DAC = 1,
+    .WRITE_OWNER = 1,
     .SYNCHRONIZE = 1,
 };
 pub const FILE_GENERIC_READ = FILE_ACCESS_FLAGS{
@@ -5501,7 +5504,7 @@ pub extern "kernel32" fn FindNextFileA(
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn FindNextFileW(
-    hFindFile: ?HANDLE,
+    hFindFile: FindFileHandle,
     lpFindFileData: ?*WIN32_FIND_DATAW,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 

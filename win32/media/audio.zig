@@ -474,7 +474,7 @@ pub const ACMDM_STREAM_UNPREPARE = @as(u32, 24658);
 pub const ACMDM_STREAM_UPDATE = @as(u32, 24659);
 
 //--------------------------------------------------------------------------------
-// Section: Types (229)
+// Section: Types (230)
 //--------------------------------------------------------------------------------
 pub const LPWAVECALLBACK = switch (@import("builtin").zig_backend) {
     .stage1 => fn(
@@ -572,6 +572,62 @@ pub const WAVE_FORMAT_DIRECT_QUERY = MIDI_WAVE_OPEN_TYPE{
 };
 pub const WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = MIDI_WAVE_OPEN_TYPE{ .WAVE_MAPPED_DEFAULT_COMMUNICATION_DEVICE = 1 };
 pub const MIDI_IO_STATUS = MIDI_WAVE_OPEN_TYPE{ .MIDI_IO_STATUS = 1 };
+
+pub const SND_FLAGS = packed struct(u32) {
+    ASYNC: u1 = 0,
+    NODEFAULT: u1 = 0,
+    MEMORY: u1 = 0,
+    LOOP: u1 = 0,
+    NOSTOP: u1 = 0,
+    _5: u1 = 0,
+    PURGE: u1 = 0,
+    APPLICATION: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    NOWAIT: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    ALIAS: u1 = 0,
+    FILENAME: u1 = 0,
+    _18: u1 = 0,
+    SENTRY: u1 = 0,
+    _20: u1 = 0,
+    SYSTEM: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const SND_APPLICATION = SND_FLAGS{ .APPLICATION = 1 };
+pub const SND_ALIAS = SND_FLAGS{ .ALIAS = 1 };
+pub const SND_ALIAS_ID = SND_FLAGS{
+    .ALIAS = 1,
+    ._20 = 1,
+};
+pub const SND_FILENAME = SND_FLAGS{ .FILENAME = 1 };
+pub const SND_RESOURCE = SND_FLAGS{
+    .MEMORY = 1,
+    ._18 = 1,
+};
+pub const SND_ASYNC = SND_FLAGS{ .ASYNC = 1 };
+pub const SND_NODEFAULT = SND_FLAGS{ .NODEFAULT = 1 };
+pub const SND_LOOP = SND_FLAGS{ .LOOP = 1 };
+pub const SND_MEMORY = SND_FLAGS{ .MEMORY = 1 };
+pub const SND_NOSTOP = SND_FLAGS{ .NOSTOP = 1 };
+pub const SND_NOWAIT = SND_FLAGS{ .NOWAIT = 1 };
+pub const SND_PURGE = SND_FLAGS{ .PURGE = 1 };
+pub const SND_SENTRY = SND_FLAGS{ .SENTRY = 1 };
+pub const SND_SYNC = SND_FLAGS{ };
+pub const SND_SYSTEM = SND_FLAGS{ .SYSTEM = 1 };
 
 pub const MIXERLINE_COMPONENTTYPE = enum(u32) {
     DST_DIGITAL = 1,
@@ -7012,13 +7068,13 @@ pub extern "winmm" fn sndPlaySoundW(
 pub extern "winmm" fn PlaySoundA(
     pszSound: ?[*:0]const u8,
     hmod: ?HINSTANCE,
-    fdwSound: u32,
+    fdwSound: SND_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub extern "winmm" fn PlaySoundW(
     pszSound: ?[*:0]const u16,
     hmod: ?HINSTANCE,
-    fdwSound: u32,
+    fdwSound: SND_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'

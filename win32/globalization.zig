@@ -11333,8 +11333,8 @@ pub extern "usp10" fn ScriptItemize(
 pub extern "usp10" fn ScriptLayout(
     cRuns: i32,
     pbLevel: [*:0]const u8,
-    piVisualToLogical: ?*i32,
-    piLogicalToVisual: ?*i32,
+    piVisualToLogical: ?[*]i32,
+    piLogicalToVisual: ?[*]i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -11346,7 +11346,7 @@ pub extern "usp10" fn ScriptShape(
     cMaxGlyphs: i32,
     psa: ?*SCRIPT_ANALYSIS,
     pwOutGlyphs: [*:0]u16,
-    pwLogClust: ?*u16,
+    pwLogClust: [*:0]u16,
     psva: [*]SCRIPT_VISATTR,
     pcGlyphs: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
@@ -11359,8 +11359,8 @@ pub extern "usp10" fn ScriptPlace(
     cGlyphs: i32,
     psva: [*]const SCRIPT_VISATTR,
     psa: ?*SCRIPT_ANALYSIS,
-    piAdvance: ?*i32,
-    pGoffset: ?*GOFFSET,
+    piAdvance: [*]i32,
+    pGoffset: ?[*]GOFFSET,
     pABC: ?*ABC,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -11389,7 +11389,7 @@ pub extern "usp10" fn ScriptJustify(
     cGlyphs: i32,
     iDx: i32,
     iMinKashida: i32,
-    piJustify: ?*i32,
+    piJustify: [*]i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -11397,7 +11397,7 @@ pub extern "usp10" fn ScriptBreak(
     pwcChars: [*:0]const u16,
     cChars: i32,
     psa: ?*const SCRIPT_ANALYSIS,
-    psla: ?*SCRIPT_LOGATTR,
+    psla: [*]SCRIPT_LOGATTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -11447,7 +11447,7 @@ pub extern "usp10" fn ScriptApplyLogicalWidth(
     piAdvance: [*]const i32,
     psa: ?*const SCRIPT_ANALYSIS,
     pABC: ?*ABC,
-    piJustify: ?*i32,
+    piJustify: [*]i32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -11603,8 +11603,8 @@ pub extern "usp10" fn ScriptShapeOpenType(
     pwcChars: [*:0]const u16,
     cChars: i32,
     cMaxGlyphs: i32,
-    pwLogClust: ?*u16,
-    pCharProps: ?*script_charprop,
+    pwLogClust: [*:0]u16,
+    pCharProps: [*]script_charprop,
     pwOutGlyphs: [*:0]u16,
     pOutGlyphProps: [*]script_glyphprop,
     pcGlyphs: ?*i32,
@@ -11627,8 +11627,8 @@ pub extern "usp10" fn ScriptPlaceOpenType(
     pwGlyphs: [*:0]const u16,
     pGlyphProps: [*]const script_glyphprop,
     cGlyphs: i32,
-    piAdvance: ?*i32,
-    pGoffset: ?*GOFFSET,
+    piAdvance: [*]i32,
+    pGoffset: [*]GOFFSET,
     pABC: ?*ABC,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

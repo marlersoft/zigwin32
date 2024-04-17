@@ -7971,7 +7971,7 @@ pub extern "authz" fn AuthzInitializeContextFromToken(
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
-    phAuthzClientContext: ?*isize,
+    phAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7982,7 +7982,7 @@ pub extern "authz" fn AuthzInitializeContextFromSid(
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
-    phAuthzClientContext: ?*isize,
+    phAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -7992,14 +7992,14 @@ pub extern "authz" fn AuthzInitializeContextFromAuthzContext(
     pExpirationTime: ?*LARGE_INTEGER,
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
-    phNewAuthzClientContext: ?*isize,
+    phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzInitializeCompoundContext(
     UserContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     DeviceContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-    phCompoundContext: ?*isize,
+    phCompoundContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -8009,7 +8009,7 @@ pub extern "authz" fn AuthzAddSidsToContext(
     SidCount: u32,
     RestrictedSids: ?*SID_AND_ATTRIBUTES,
     RestrictedSidCount: u32,
-    phNewAuthzClientContext: ?*isize,
+    phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'

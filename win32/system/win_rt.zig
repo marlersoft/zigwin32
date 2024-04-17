@@ -23,7 +23,6 @@ pub const HSTRING_HEADER = extern struct {
 };
 
 // TODO: this type has a FreeFunc 'WindowsDeleteString', what can Zig do with this information?
-// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HSTRING = *opaque{};
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?

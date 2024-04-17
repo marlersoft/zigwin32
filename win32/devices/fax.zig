@@ -268,7 +268,7 @@ pub const lDEFAULT_PREFETCH_SIZE = @as(i32, 100);
 pub const wcharREASSIGN_RECIPIENTS_DELIMITER = @as(u16, 59);
 
 //--------------------------------------------------------------------------------
-// Section: Types (275)
+// Section: Types (274)
 //--------------------------------------------------------------------------------
 pub const FAX_ENUM_LOG_LEVELS = enum(i32) {
     NONE = 0,
@@ -13142,10 +13142,6 @@ pub const STINOTIFY = extern struct {
     dwSize: u32,
     guidNotificationCode: Guid,
     abNotificationData: [64]u8,
-};
-
-pub const IStiDeviceW = extern struct {
-    placeholder: usize, // TODO: why is this type empty?
 };
 
 const IID_IStillImageW_Value = Guid.initString("641bd880-2dc8-11d0-90ea-00aa0060f86c");

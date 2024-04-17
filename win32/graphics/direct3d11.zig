@@ -1228,9 +1228,9 @@ pub const ID3D11Resource = extern struct {
 pub const D3D11_BUFFER_DESC = extern struct {
     ByteWidth: u32,
     Usage: D3D11_USAGE,
-    BindFlags: u32,
-    CPUAccessFlags: u32,
-    MiscFlags: u32,
+    BindFlags: D3D11_BIND_FLAG,
+    CPUAccessFlags: D3D11_CPU_ACCESS_FLAG,
+    MiscFlags: D3D11_RESOURCE_MISC_FLAG,
     StructureByteStride: u32,
 };
 
@@ -1269,9 +1269,9 @@ pub const D3D11_TEXTURE1D_DESC = extern struct {
     ArraySize: u32,
     Format: DXGI_FORMAT,
     Usage: D3D11_USAGE,
-    BindFlags: u32,
-    CPUAccessFlags: u32,
-    MiscFlags: u32,
+    BindFlags: D3D11_BIND_FLAG,
+    CPUAccessFlags: D3D11_CPU_ACCESS_FLAG,
+    MiscFlags: D3D11_RESOURCE_MISC_FLAG,
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -1352,9 +1352,9 @@ pub const D3D11_TEXTURE3D_DESC = extern struct {
     MipLevels: u32,
     Format: DXGI_FORMAT,
     Usage: D3D11_USAGE,
-    BindFlags: u32,
-    CPUAccessFlags: u32,
-    MiscFlags: u32,
+    BindFlags: D3D11_BIND_FLAG,
+    CPUAccessFlags: D3D11_CPU_ACCESS_FLAG,
+    MiscFlags: D3D11_RESOURCE_MISC_FLAG,
 };
 
 // TODO: this type is limited to platform 'windows6.1'
@@ -13406,9 +13406,9 @@ pub const D3D11_TEXTURE2D_DESC1 = extern struct {
     Format: DXGI_FORMAT,
     SampleDesc: DXGI_SAMPLE_DESC,
     Usage: D3D11_USAGE,
-    BindFlags: u32,
-    CPUAccessFlags: u32,
-    MiscFlags: u32,
+    BindFlags: D3D11_BIND_FLAG,
+    CPUAccessFlags: D3D11_CPU_ACCESS_FLAG,
+    MiscFlags: D3D11_RESOURCE_MISC_FLAG,
     TextureLayout: D3D11_TEXTURE_LAYOUT,
 };
 
@@ -13448,9 +13448,9 @@ pub const D3D11_TEXTURE3D_DESC1 = extern struct {
     MipLevels: u32,
     Format: DXGI_FORMAT,
     Usage: D3D11_USAGE,
-    BindFlags: u32,
-    CPUAccessFlags: u32,
-    MiscFlags: u32,
+    BindFlags: D3D11_BIND_FLAG,
+    CPUAccessFlags: D3D11_CPU_ACCESS_FLAG,
+    MiscFlags: D3D11_RESOURCE_MISC_FLAG,
     TextureLayout: D3D11_TEXTURE_LAYOUT,
 };
 

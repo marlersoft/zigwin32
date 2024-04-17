@@ -3052,7 +3052,7 @@ pub const IInternetHostSecurityManager = extern struct {
             .stage1 => fn(
                 self: *const IInternetHostSecurityManager,
                 dwAction: u32,
-                pPolicy: ?*u8,
+                pPolicy: [*:0]u8,
                 cbPolicy: u32,
                 pContext: ?[*:0]u8,
                 cbContext: u32,
@@ -3062,7 +3062,7 @@ pub const IInternetHostSecurityManager = extern struct {
             else => *const fn(
                 self: *const IInternetHostSecurityManager,
                 dwAction: u32,
-                pPolicy: ?*u8,
+                pPolicy: [*:0]u8,
                 cbPolicy: u32,
                 pContext: ?[*:0]u8,
                 cbContext: u32,
@@ -3099,7 +3099,7 @@ pub const IInternetHostSecurityManager = extern struct {
             return @as(*const IInternetHostSecurityManager.VTable, @ptrCast(self.vtable)).GetSecurityId(@as(*const IInternetHostSecurityManager, @ptrCast(self)), pbSecurityId, pcbSecurityId, dwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IInternetHostSecurityManager_ProcessUrlAction(self: *const T, dwAction: u32, pPolicy: ?*u8, cbPolicy: u32, pContext: ?[*:0]u8, cbContext: u32, dwFlags: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+        pub fn IInternetHostSecurityManager_ProcessUrlAction(self: *const T, dwAction: u32, pPolicy: [*:0]u8, cbPolicy: u32, pContext: ?[*:0]u8, cbContext: u32, dwFlags: u32, dwReserved: u32) callconv(.Inline) HRESULT {
             return @as(*const IInternetHostSecurityManager.VTable, @ptrCast(self.vtable)).ProcessUrlAction(@as(*const IInternetHostSecurityManager, @ptrCast(self)), dwAction, pPolicy, cbPolicy, pContext, cbContext, dwFlags, dwReserved);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now

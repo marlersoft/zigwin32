@@ -138,8 +138,33 @@ pub const PDCAP_S5_SUPPORTED = @as(u32, 33554432);
 pub const THERMAL_EVENT_VERSION = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (70)
+// Section: Types (73)
 //--------------------------------------------------------------------------------
+pub const POWER_COOLING_MODE = enum(u16) {
+    ACTIVE = 0,
+    PASSIVE = 1,
+    INVALID_MODE = 2,
+};
+pub const PO_TZ_ACTIVE = POWER_COOLING_MODE.ACTIVE;
+pub const PO_TZ_PASSIVE = POWER_COOLING_MODE.PASSIVE;
+pub const PO_TZ_INVALID_MODE = POWER_COOLING_MODE.INVALID_MODE;
+
+pub const PROCESSOR_POWER_INFORMATION = extern struct {
+    Number: u64,
+    MaxMhz: u64,
+    CurrentMhz: u64,
+    MhzLimit: u64,
+    MaxIdleState: u64,
+    CurrentIdleState: u64,
+};
+
+pub const SYSTEM_POWER_INFORMATION = extern struct {
+    MaxIdlenessAllowed: u64,
+    Idleness: u64,
+    TimeRemaining: u64,
+    CoolingMode: POWER_COOLING_MODE,
+};
+
 pub const POWER_PLATFORM_ROLE_VERSION = enum(u32) {
     @"1" = 1,
     @"2" = 2,
@@ -1201,7 +1226,7 @@ pub extern "powrprof" fn CallNtPowerInformation(
     // TODO: what to do with BytesParamIndex 4?
     OutputBuffer: ?*anyopaque,
     OutputBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "powrprof" fn GetPwrCapabilities(
@@ -1900,7 +1925,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -1910,6 +1935,7 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const LPARAM = @import("../foundation.zig").LPARAM;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const REASON_CONTEXT = @import("../system/threading.zig").REASON_CONTEXT;
 const REG_SAM_FLAGS = @import("../system/registry.zig").REG_SAM_FLAGS;

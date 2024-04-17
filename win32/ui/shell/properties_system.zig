@@ -4424,7 +4424,7 @@ pub extern "shell32" fn SHPropStgReadMultiple(
     uCodePage: u32,
     cpspec: u32,
     rgpspec: [*]const PROPSPEC,
-    rgvar: ?*PROPVARIANT,
+    rgvar: [*]PROPVARIANT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'

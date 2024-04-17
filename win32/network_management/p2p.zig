@@ -2158,6 +2158,7 @@ pub extern "drt" fn DrtGetEventDataSize(
 pub extern "drt" fn DrtGetEventData(
     hDrt: ?*anyopaque,
     ulEventDataLen: u32,
+    // TODO: what to do with BytesParamIndex 1?
     pEventData: ?*DRT_EVENT_DATA,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2206,6 +2207,7 @@ pub extern "drt" fn DrtGetSearchResultSize(
 pub extern "drt" fn DrtGetSearchResult(
     hSearchContext: ?*anyopaque,
     ulSearchResultSize: u32,
+    // TODO: what to do with BytesParamIndex 1?
     pSearchResult: ?*DRT_SEARCH_RESULT,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2219,6 +2221,7 @@ pub extern "drt" fn DrtGetSearchPathSize(
 pub extern "drt" fn DrtGetSearchPath(
     hSearchContext: ?*anyopaque,
     ulSearchPathSize: u32,
+    // TODO: what to do with BytesParamIndex 1?
     pSearchPath: ?*DRT_ADDRESS_LIST,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -2231,6 +2234,7 @@ pub extern "drt" fn DrtEndSearch(
 pub extern "drt" fn DrtGetInstanceName(
     hDrt: ?*anyopaque,
     ulcbInstanceNameSize: u32,
+    // TODO: what to do with BytesParamIndex 1?
     pwzDrtInstanceName: ?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
