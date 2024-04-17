@@ -1321,7 +1321,7 @@ pub const SOURCETEXT_ATTR_MEMBERLOOKUP = @as(u32, 512);
 pub const SOURCETEXT_ATTR_THIS = @as(u32, 1024);
 
 //--------------------------------------------------------------------------------
-// Section: Types (841)
+// Section: Types (840)
 //--------------------------------------------------------------------------------
 pub const SYM_LOAD_FLAGS = packed struct(u32) {
     VIRTUAL: u1 = 0,
@@ -1476,73 +1476,6 @@ pub const IMAGE_SCN_MEM_EXECUTE = IMAGE_SECTION_CHARACTERISTICS{ .MEM_EXECUTE = 
 pub const IMAGE_SCN_MEM_READ = IMAGE_SECTION_CHARACTERISTICS{ .MEM_READ = 1 };
 pub const IMAGE_SCN_MEM_WRITE = IMAGE_SECTION_CHARACTERISTICS{ .MEM_WRITE = 1 };
 pub const IMAGE_SCN_SCALE_INDEX = IMAGE_SECTION_CHARACTERISTICS{ .SCALE_INDEX = 1 };
-
-pub const IMAGE_FILE_MACHINE = enum(u16) {
-    AXP64 = 644,
-    I386 = 332,
-    IA64 = 512,
-    AMD64 = 34404,
-    UNKNOWN = 0,
-    TARGET_HOST = 1,
-    R3000 = 354,
-    R4000 = 358,
-    R10000 = 360,
-    WCEMIPSV2 = 361,
-    ALPHA = 388,
-    SH3 = 418,
-    SH3DSP = 419,
-    SH3E = 420,
-    SH4 = 422,
-    SH5 = 424,
-    ARM = 448,
-    THUMB = 450,
-    ARMNT = 452,
-    AM33 = 467,
-    POWERPC = 496,
-    POWERPCFP = 497,
-    MIPS16 = 614,
-    // ALPHA64 = 644, this enum value conflicts with AXP64
-    MIPSFPU = 870,
-    MIPSFPU16 = 1126,
-    TRICORE = 1312,
-    CEF = 3311,
-    EBC = 3772,
-    M32R = 36929,
-    ARM64 = 43620,
-    CEE = 49390,
-};
-pub const IMAGE_FILE_MACHINE_AXP64 = IMAGE_FILE_MACHINE.AXP64;
-pub const IMAGE_FILE_MACHINE_I386 = IMAGE_FILE_MACHINE.I386;
-pub const IMAGE_FILE_MACHINE_IA64 = IMAGE_FILE_MACHINE.IA64;
-pub const IMAGE_FILE_MACHINE_AMD64 = IMAGE_FILE_MACHINE.AMD64;
-pub const IMAGE_FILE_MACHINE_UNKNOWN = IMAGE_FILE_MACHINE.UNKNOWN;
-pub const IMAGE_FILE_MACHINE_TARGET_HOST = IMAGE_FILE_MACHINE.TARGET_HOST;
-pub const IMAGE_FILE_MACHINE_R3000 = IMAGE_FILE_MACHINE.R3000;
-pub const IMAGE_FILE_MACHINE_R4000 = IMAGE_FILE_MACHINE.R4000;
-pub const IMAGE_FILE_MACHINE_R10000 = IMAGE_FILE_MACHINE.R10000;
-pub const IMAGE_FILE_MACHINE_WCEMIPSV2 = IMAGE_FILE_MACHINE.WCEMIPSV2;
-pub const IMAGE_FILE_MACHINE_ALPHA = IMAGE_FILE_MACHINE.ALPHA;
-pub const IMAGE_FILE_MACHINE_SH3 = IMAGE_FILE_MACHINE.SH3;
-pub const IMAGE_FILE_MACHINE_SH3DSP = IMAGE_FILE_MACHINE.SH3DSP;
-pub const IMAGE_FILE_MACHINE_SH3E = IMAGE_FILE_MACHINE.SH3E;
-pub const IMAGE_FILE_MACHINE_SH4 = IMAGE_FILE_MACHINE.SH4;
-pub const IMAGE_FILE_MACHINE_SH5 = IMAGE_FILE_MACHINE.SH5;
-pub const IMAGE_FILE_MACHINE_ARM = IMAGE_FILE_MACHINE.ARM;
-pub const IMAGE_FILE_MACHINE_THUMB = IMAGE_FILE_MACHINE.THUMB;
-pub const IMAGE_FILE_MACHINE_ARMNT = IMAGE_FILE_MACHINE.ARMNT;
-pub const IMAGE_FILE_MACHINE_AM33 = IMAGE_FILE_MACHINE.AM33;
-pub const IMAGE_FILE_MACHINE_POWERPC = IMAGE_FILE_MACHINE.POWERPC;
-pub const IMAGE_FILE_MACHINE_POWERPCFP = IMAGE_FILE_MACHINE.POWERPCFP;
-pub const IMAGE_FILE_MACHINE_MIPS16 = IMAGE_FILE_MACHINE.MIPS16;
-pub const IMAGE_FILE_MACHINE_ALPHA64 = IMAGE_FILE_MACHINE.AXP64;
-pub const IMAGE_FILE_MACHINE_MIPSFPU = IMAGE_FILE_MACHINE.MIPSFPU;
-pub const IMAGE_FILE_MACHINE_MIPSFPU16 = IMAGE_FILE_MACHINE.MIPSFPU16;
-pub const IMAGE_FILE_MACHINE_TRICORE = IMAGE_FILE_MACHINE.TRICORE;
-pub const IMAGE_FILE_MACHINE_CEF = IMAGE_FILE_MACHINE.CEF;
-pub const IMAGE_FILE_MACHINE_EBC = IMAGE_FILE_MACHINE.EBC;
-pub const IMAGE_FILE_MACHINE_M32R = IMAGE_FILE_MACHINE.M32R;
-pub const IMAGE_FILE_MACHINE_ARM64 = IMAGE_FILE_MACHINE.ARM64;
-pub const IMAGE_FILE_MACHINE_CEE = IMAGE_FILE_MACHINE.CEE;
 
 pub const IMAGE_SUBSYSTEM = enum(u16) {
     UNKNOWN = 0,
@@ -69569,7 +69502,7 @@ pub const IJsDebugBreakPoint = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const __MIDL___MIDL_itf_jscript9diag_0000_0007_0001 = extern struct {
+pub const JS_NATIVE_FRAME = extern struct {
     InstructionOffset: u64,
     ReturnOffset: u64,
     FrameOffset: u64,
@@ -69585,13 +69518,13 @@ pub const IEnumJsStackFrames = extern struct {
             .stage1 => fn(
                 self: *const IEnumJsStackFrames,
                 cFrameCount: u32,
-                pFrames: [*]__MIDL___MIDL_itf_jscript9diag_0000_0007_0001,
+                pFrames: [*]JS_NATIVE_FRAME,
                 pcFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IEnumJsStackFrames,
                 cFrameCount: u32,
-                pFrames: [*]__MIDL___MIDL_itf_jscript9diag_0000_0007_0001,
+                pFrames: [*]JS_NATIVE_FRAME,
                 pcFetched: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
@@ -69608,7 +69541,7 @@ pub const IEnumJsStackFrames = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IEnumJsStackFrames_Next(self: *const T, cFrameCount: u32, pFrames: [*]__MIDL___MIDL_itf_jscript9diag_0000_0007_0001, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IEnumJsStackFrames_Next(self: *const T, cFrameCount: u32, pFrames: [*]JS_NATIVE_FRAME, pcFetched: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IEnumJsStackFrames.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumJsStackFrames, @ptrCast(self)), cFrameCount, pFrames, pcFetched);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -73855,7 +73788,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (38)
+// Section: Imports (39)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BOOL = @import("../../foundation.zig").BOOL;
@@ -73874,6 +73807,7 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
 const IDispatch = @import("../../system/com.zig").IDispatch;
 const ILockBytes = @import("../../system/com/structured_storage.zig").ILockBytes;
+const IMAGE_FILE_MACHINE = @import("../../system/system_information.zig").IMAGE_FILE_MACHINE;
 const IStream = @import("../../system/com.zig").IStream;
 const ITypeInfo = @import("../../system/com.zig").ITypeInfo;
 const IUnknown = @import("../../system/com.zig").IUnknown;

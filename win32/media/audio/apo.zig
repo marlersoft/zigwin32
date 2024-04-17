@@ -942,7 +942,7 @@ pub const AUDIO_ENDPOINT_PROPERTY_CHANGE_NOTIFICATION = extern struct {
 pub const AUDIO_SYSTEMEFFECTS_PROPERTY_CHANGE_NOTIFICATION = extern struct {
     endpoint: ?*IMMDevice,
     propertyStoreContext: Guid,
-    propertyStoreType: __MIDL___MIDL_itf_mmdeviceapi_0000_0008_0002,
+    propertyStoreType: AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE,
     propertyStore: ?*IPropertyStore,
     propertyKey: PROPERTYKEY,
 };
@@ -1043,7 +1043,7 @@ pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
 // Section: Imports (15)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
-const __MIDL___MIDL_itf_mmdeviceapi_0000_0008_0002 = @import("../../media/audio.zig").__MIDL___MIDL_itf_mmdeviceapi_0000_0008_0002;
+const AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE = @import("../../media/audio.zig").AUDIO_SYSTEMEFFECTS_PROPERTYSTORE_TYPE;
 const AUDIO_VOLUME_NOTIFICATION_DATA = @import("../../media/audio.zig").AUDIO_VOLUME_NOTIFICATION_DATA;
 const BOOL = @import("../../foundation.zig").BOOL;
 const HANDLE = @import("../../foundation.zig").HANDLE;

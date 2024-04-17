@@ -117,7 +117,7 @@ pub const NTDDI_VERSION = @as(u32, 167772171);
 pub const SCEX2_ALT_NETBIOS_NAME = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (37)
+// Section: Types (38)
 //--------------------------------------------------------------------------------
 pub const VER_FLAGS = packed struct(u32) {
     MINORVERSION: u1 = 0,
@@ -161,6 +161,73 @@ pub const VER_SERVICEPACKMINOR = VER_FLAGS{ .SERVICEPACKMINOR = 1 };
 pub const VER_SERVICEPACKMAJOR = VER_FLAGS{ .SERVICEPACKMAJOR = 1 };
 pub const VER_SUITENAME = VER_FLAGS{ .SUITENAME = 1 };
 pub const VER_PRODUCT_TYPE = VER_FLAGS{ .PRODUCT_TYPE = 1 };
+
+pub const IMAGE_FILE_MACHINE = enum(u16) {
+    AXP64 = 644,
+    I386 = 332,
+    IA64 = 512,
+    AMD64 = 34404,
+    UNKNOWN = 0,
+    TARGET_HOST = 1,
+    R3000 = 354,
+    R4000 = 358,
+    R10000 = 360,
+    WCEMIPSV2 = 361,
+    ALPHA = 388,
+    SH3 = 418,
+    SH3DSP = 419,
+    SH3E = 420,
+    SH4 = 422,
+    SH5 = 424,
+    ARM = 448,
+    THUMB = 450,
+    ARMNT = 452,
+    AM33 = 467,
+    POWERPC = 496,
+    POWERPCFP = 497,
+    MIPS16 = 614,
+    // ALPHA64 = 644, this enum value conflicts with AXP64
+    MIPSFPU = 870,
+    MIPSFPU16 = 1126,
+    TRICORE = 1312,
+    CEF = 3311,
+    EBC = 3772,
+    M32R = 36929,
+    ARM64 = 43620,
+    CEE = 49390,
+};
+pub const IMAGE_FILE_MACHINE_AXP64 = IMAGE_FILE_MACHINE.AXP64;
+pub const IMAGE_FILE_MACHINE_I386 = IMAGE_FILE_MACHINE.I386;
+pub const IMAGE_FILE_MACHINE_IA64 = IMAGE_FILE_MACHINE.IA64;
+pub const IMAGE_FILE_MACHINE_AMD64 = IMAGE_FILE_MACHINE.AMD64;
+pub const IMAGE_FILE_MACHINE_UNKNOWN = IMAGE_FILE_MACHINE.UNKNOWN;
+pub const IMAGE_FILE_MACHINE_TARGET_HOST = IMAGE_FILE_MACHINE.TARGET_HOST;
+pub const IMAGE_FILE_MACHINE_R3000 = IMAGE_FILE_MACHINE.R3000;
+pub const IMAGE_FILE_MACHINE_R4000 = IMAGE_FILE_MACHINE.R4000;
+pub const IMAGE_FILE_MACHINE_R10000 = IMAGE_FILE_MACHINE.R10000;
+pub const IMAGE_FILE_MACHINE_WCEMIPSV2 = IMAGE_FILE_MACHINE.WCEMIPSV2;
+pub const IMAGE_FILE_MACHINE_ALPHA = IMAGE_FILE_MACHINE.ALPHA;
+pub const IMAGE_FILE_MACHINE_SH3 = IMAGE_FILE_MACHINE.SH3;
+pub const IMAGE_FILE_MACHINE_SH3DSP = IMAGE_FILE_MACHINE.SH3DSP;
+pub const IMAGE_FILE_MACHINE_SH3E = IMAGE_FILE_MACHINE.SH3E;
+pub const IMAGE_FILE_MACHINE_SH4 = IMAGE_FILE_MACHINE.SH4;
+pub const IMAGE_FILE_MACHINE_SH5 = IMAGE_FILE_MACHINE.SH5;
+pub const IMAGE_FILE_MACHINE_ARM = IMAGE_FILE_MACHINE.ARM;
+pub const IMAGE_FILE_MACHINE_THUMB = IMAGE_FILE_MACHINE.THUMB;
+pub const IMAGE_FILE_MACHINE_ARMNT = IMAGE_FILE_MACHINE.ARMNT;
+pub const IMAGE_FILE_MACHINE_AM33 = IMAGE_FILE_MACHINE.AM33;
+pub const IMAGE_FILE_MACHINE_POWERPC = IMAGE_FILE_MACHINE.POWERPC;
+pub const IMAGE_FILE_MACHINE_POWERPCFP = IMAGE_FILE_MACHINE.POWERPCFP;
+pub const IMAGE_FILE_MACHINE_MIPS16 = IMAGE_FILE_MACHINE.MIPS16;
+pub const IMAGE_FILE_MACHINE_ALPHA64 = IMAGE_FILE_MACHINE.AXP64;
+pub const IMAGE_FILE_MACHINE_MIPSFPU = IMAGE_FILE_MACHINE.MIPSFPU;
+pub const IMAGE_FILE_MACHINE_MIPSFPU16 = IMAGE_FILE_MACHINE.MIPSFPU16;
+pub const IMAGE_FILE_MACHINE_TRICORE = IMAGE_FILE_MACHINE.TRICORE;
+pub const IMAGE_FILE_MACHINE_CEF = IMAGE_FILE_MACHINE.CEF;
+pub const IMAGE_FILE_MACHINE_EBC = IMAGE_FILE_MACHINE.EBC;
+pub const IMAGE_FILE_MACHINE_M32R = IMAGE_FILE_MACHINE.M32R;
+pub const IMAGE_FILE_MACHINE_ARM64 = IMAGE_FILE_MACHINE.ARM64;
+pub const IMAGE_FILE_MACHINE_CEE = IMAGE_FILE_MACHINE.CEE;
 
 pub const FIRMWARE_TABLE_PROVIDER = enum(u32) {
     ACPI = 1094930505,
@@ -1161,19 +1228,19 @@ pub extern "kernel32" fn GetSystemWow64DirectoryW(
 pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2A(
     lpBuffer: ?[*:0]u8,
     uSize: u32,
-    ImageFileMachineType: u16,
+    ImageFileMachineType: IMAGE_FILE_MACHINE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10586'
 pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2W(
     lpBuffer: ?[*:0]u16,
     uSize: u32,
-    ImageFileMachineType: u16,
+    ImageFileMachineType: IMAGE_FILE_MACHINE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "kernel32" fn IsWow64GuestMachineSupported(
-    WowGuestMachine: u16,
+    WowGuestMachine: IMAGE_FILE_MACHINE,
     MachineIsSupported: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 

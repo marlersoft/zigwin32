@@ -1803,7 +1803,7 @@ pub const IBidiSpl2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const __MIDL___MIDL_itf_imgerror_0000_0000_0001 = extern struct {
+pub const ImgErrorInfo = extern struct {
     description: ?BSTR,
     guid: Guid,
     helpContext: u32,
@@ -1887,11 +1887,11 @@ pub const IImgErrorInfo = extern struct {
         DetachErrorInfo: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IImgErrorInfo,
-                pErrorInfo: ?*__MIDL___MIDL_itf_imgerror_0000_0000_0001,
+                pErrorInfo: ?*ImgErrorInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IImgErrorInfo,
-                pErrorInfo: ?*__MIDL___MIDL_itf_imgerror_0000_0000_0001,
+                pErrorInfo: ?*ImgErrorInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -1923,7 +1923,7 @@ pub const IImgErrorInfo = extern struct {
             return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).GetExceptionId(@as(*const IImgErrorInfo, @ptrCast(self)), pExceptionId);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImgErrorInfo_DetachErrorInfo(self: *const T, pErrorInfo: ?*__MIDL___MIDL_itf_imgerror_0000_0000_0001) callconv(.Inline) HRESULT {
+        pub fn IImgErrorInfo_DetachErrorInfo(self: *const T, pErrorInfo: ?*ImgErrorInfo) callconv(.Inline) HRESULT {
             return @as(*const IImgErrorInfo.VTable, @ptrCast(self.vtable)).DetachErrorInfo(@as(*const IImgErrorInfo, @ptrCast(self)), pErrorInfo);
         }
     };}
@@ -1938,11 +1938,11 @@ pub const IImgCreateErrorInfo = extern struct {
         AttachToErrorInfo: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IImgCreateErrorInfo,
-                pErrorInfo: ?*__MIDL___MIDL_itf_imgerror_0000_0000_0001,
+                pErrorInfo: ?*ImgErrorInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IImgCreateErrorInfo,
-                pErrorInfo: ?*__MIDL___MIDL_itf_imgerror_0000_0000_0001,
+                pErrorInfo: ?*ImgErrorInfo,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -1950,7 +1950,7 @@ pub const IImgCreateErrorInfo = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ICreateErrorInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImgCreateErrorInfo_AttachToErrorInfo(self: *const T, pErrorInfo: ?*__MIDL___MIDL_itf_imgerror_0000_0000_0001) callconv(.Inline) HRESULT {
+        pub fn IImgCreateErrorInfo_AttachToErrorInfo(self: *const T, pErrorInfo: ?*ImgErrorInfo) callconv(.Inline) HRESULT {
             return @as(*const IImgCreateErrorInfo.VTable, @ptrCast(self.vtable)).AttachToErrorInfo(@as(*const IImgCreateErrorInfo, @ptrCast(self)), pErrorInfo);
         }
     };}

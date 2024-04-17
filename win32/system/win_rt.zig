@@ -1009,6 +1009,7 @@ pub const IWebAuthenticationCoreManagerInterop = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
+// This COM type is Agile, not sure what that means
 const IID_IRestrictedErrorInfo_Value = Guid.initString("82ba7092-4c88-427d-a7bc-16dd93feb67e");
 pub const IID_IRestrictedErrorInfo = &IID_IRestrictedErrorInfo_Value;
 pub const IRestrictedErrorInfo = extern struct {

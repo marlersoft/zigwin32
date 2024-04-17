@@ -281,7 +281,7 @@ pub const MTP_RESPONSE_MAX_PARAMS = @as(u32, 5);
 pub const MTP_RESPONSE_OK = @as(u16, 8193);
 
 //--------------------------------------------------------------------------------
-// Section: Types (91)
+// Section: Types (88)
 //--------------------------------------------------------------------------------
 pub const __MACINFO = extern struct {
     fUsed: BOOL,
@@ -340,39 +340,6 @@ pub const WMDM_SESSION_TRANSFER_TO_DEVICE = WMDM_SESSION_TYPE.TRANSFER_TO_DEVICE
 pub const WMDM_SESSION_TRANSFER_FROM_DEVICE = WMDM_SESSION_TYPE.TRANSFER_FROM_DEVICE;
 pub const WMDM_SESSION_DELETE = WMDM_SESSION_TYPE.DELETE;
 pub const WMDM_SESSION_CUSTOM = WMDM_SESSION_TYPE.CUSTOM;
-
-pub const _WAVEFORMATEX = extern struct {
-    wFormatTag: u16,
-    nChannels: u16,
-    nSamplesPerSec: u32,
-    nAvgBytesPerSec: u32,
-    nBlockAlign: u16,
-    wBitsPerSample: u16,
-    cbSize: u16,
-};
-
-pub const _BITMAPINFOHEADER = extern struct {
-    biSize: u32,
-    biWidth: i32,
-    biHeight: i32,
-    biPlanes: u16,
-    biBitCount: u16,
-    biCompression: u32,
-    biSizeImage: u32,
-    biXPelsPerMeter: i32,
-    biYPelsPerMeter: i32,
-    biClrUsed: u32,
-    biClrImportant: u32,
-};
-
-pub const _VIDEOINFOHEADER = extern struct {
-    rcSource: RECT,
-    rcTarget: RECT,
-    dwBitRate: u32,
-    dwBitErrorRate: u32,
-    AvgTimePerFrame: i64,
-    bmiHeader: _BITMAPINFOHEADER,
-};
 
 pub const WMFILECAPABILITIES = extern struct {
     pwszMimeType: ?PWSTR,
@@ -1034,12 +1001,12 @@ pub const IWMDMStorage = extern struct {
             .stage1 => fn(
                 self: *const IWMDMStorage,
                 dwAttributes: u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMStorage,
                 dwAttributes: u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStorageGlobals: switch (@import("builtin").zig_backend) {
@@ -1056,12 +1023,12 @@ pub const IWMDMStorage = extern struct {
             .stage1 => fn(
                 self: *const IWMDMStorage,
                 pdwAttributes: ?*u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMStorage,
                 pdwAttributes: ?*u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetName: switch (@import("builtin").zig_backend) {
@@ -1137,7 +1104,7 @@ pub const IWMDMStorage = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage_SetAttributes(self: *const T, dwAttributes: u32, pFormat: ?*_WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage_SetAttributes(self: *const T, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @as(*const IWMDMStorage.VTable, @ptrCast(self.vtable)).SetAttributes(@as(*const IWMDMStorage, @ptrCast(self)), dwAttributes, pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1145,7 +1112,7 @@ pub const IWMDMStorage = extern struct {
             return @as(*const IWMDMStorage.VTable, @ptrCast(self.vtable)).GetStorageGlobals(@as(*const IWMDMStorage, @ptrCast(self)), ppStorageGlobals);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage_GetAttributes(self: *const T, pdwAttributes: ?*u32, pFormat: ?*_WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage_GetAttributes(self: *const T, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @as(*const IWMDMStorage.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IWMDMStorage, @ptrCast(self)), pdwAttributes, pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1198,15 +1165,15 @@ pub const IWMDMStorage2 = extern struct {
                 self: *const IWMDMStorage2,
                 dwAttributes: u32,
                 dwAttributesEx: u32,
-                pFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMStorage2,
                 dwAttributes: u32,
                 dwAttributesEx: u32,
-                pFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAttributes2: switch (@import("builtin").zig_backend) {
@@ -1214,15 +1181,15 @@ pub const IWMDMStorage2 = extern struct {
                 self: *const IWMDMStorage2,
                 pdwAttributes: ?*u32,
                 pdwAttributesEx: ?*u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMStorage2,
                 pdwAttributes: ?*u32,
                 pdwAttributesEx: ?*u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -1234,11 +1201,11 @@ pub const IWMDMStorage2 = extern struct {
             return @as(*const IWMDMStorage2.VTable, @ptrCast(self.vtable)).GetStorage(@as(*const IWMDMStorage2, @ptrCast(self)), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage2_SetAttributes2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*_WAVEFORMATEX, pVideoFormat: ?*_VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage2_SetAttributes2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
             return @as(*const IWMDMStorage2.VTable, @ptrCast(self.vtable)).SetAttributes2(@as(*const IWMDMStorage2, @ptrCast(self)), dwAttributes, dwAttributesEx, pFormat, pVideoFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMStorage2_GetAttributes2(self: *const T, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*_WAVEFORMATEX, pVideoFormat: ?*_VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+        pub fn IWMDMStorage2_GetAttributes2(self: *const T, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
             return @as(*const IWMDMStorage2.VTable, @ptrCast(self.vtable)).GetAttributes2(@as(*const IWMDMStorage2, @ptrCast(self)), pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
         }
     };}
@@ -1480,24 +1447,24 @@ pub const IWMDMOperation = extern struct {
             .stage1 => fn(
                 self: *const IWMDMOperation,
                 pdwAttributes: ?*u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMOperation,
                 pdwAttributes: ?*u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         SetObjectAttributes: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IWMDMOperation,
                 dwAttributes: u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMOperation,
                 dwAttributes: u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetObjectTotalSize: switch (@import("builtin").zig_backend) {
@@ -1571,11 +1538,11 @@ pub const IWMDMOperation = extern struct {
             return @as(*const IWMDMOperation.VTable, @ptrCast(self.vtable)).SetObjectName(@as(*const IWMDMOperation, @ptrCast(self)), pwszName, nMaxChars);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMOperation_GetObjectAttributes(self: *const T, pdwAttributes: ?*u32, pFormat: ?*_WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IWMDMOperation_GetObjectAttributes(self: *const T, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @as(*const IWMDMOperation.VTable, @ptrCast(self.vtable)).GetObjectAttributes(@as(*const IWMDMOperation, @ptrCast(self)), pdwAttributes, pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMOperation_SetObjectAttributes(self: *const T, dwAttributes: u32, pFormat: ?*_WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IWMDMOperation_SetObjectAttributes(self: *const T, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @as(*const IWMDMOperation.VTable, @ptrCast(self.vtable)).SetObjectAttributes(@as(*const IWMDMOperation, @ptrCast(self)), dwAttributes, pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1608,15 +1575,15 @@ pub const IWMDMOperation2 = extern struct {
                 self: *const IWMDMOperation2,
                 dwAttributes: u32,
                 dwAttributesEx: u32,
-                pFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMOperation2,
                 dwAttributes: u32,
                 dwAttributesEx: u32,
-                pFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetObjectAttributes2: switch (@import("builtin").zig_backend) {
@@ -1624,15 +1591,15 @@ pub const IWMDMOperation2 = extern struct {
                 self: *const IWMDMOperation2,
                 pdwAttributes: ?*u32,
                 pdwAttributesEx: ?*u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMOperation2,
                 pdwAttributes: ?*u32,
                 pdwAttributesEx: ?*u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -1640,11 +1607,11 @@ pub const IWMDMOperation2 = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDMOperation.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMOperation2_SetObjectAttributes2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*_WAVEFORMATEX, pVideoFormat: ?*_VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+        pub fn IWMDMOperation2_SetObjectAttributes2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
             return @as(*const IWMDMOperation2.VTable, @ptrCast(self.vtable)).SetObjectAttributes2(@as(*const IWMDMOperation2, @ptrCast(self)), dwAttributes, dwAttributesEx, pFormat, pVideoFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMOperation2_GetObjectAttributes2(self: *const T, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*_WAVEFORMATEX, pVideoFormat: ?*_VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+        pub fn IWMDMOperation2_GetObjectAttributes2(self: *const T, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
             return @as(*const IWMDMOperation2.VTable, @ptrCast(self.vtable)).GetObjectAttributes2(@as(*const IWMDMOperation2, @ptrCast(self)), pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
         }
     };}
@@ -1933,14 +1900,14 @@ pub const IWMDMDevice = extern struct {
         GetFormatSupport: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IWMDMDevice,
-                ppFormatEx: [*]?*_WAVEFORMATEX,
+                ppFormatEx: [*]?*WAVEFORMATEX,
                 pnFormatCount: ?*u32,
                 pppwszMimeType: [*]?*?PWSTR,
                 pnMimeTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMDevice,
-                ppFormatEx: [*]?*_WAVEFORMATEX,
+                ppFormatEx: [*]?*WAVEFORMATEX,
                 pnFormatCount: ?*u32,
                 pppwszMimeType: [*]?*?PWSTR,
                 pnMimeTypeCount: ?*u32,
@@ -1997,7 +1964,7 @@ pub const IWMDMDevice = extern struct {
             return @as(*const IWMDMDevice.VTable, @ptrCast(self.vtable)).EnumStorage(@as(*const IWMDMDevice, @ptrCast(self)), ppEnumStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDevice_GetFormatSupport(self: *const T, ppFormatEx: [*]?*_WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMDevice_GetFormatSupport(self: *const T, ppFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMDMDevice.VTable, @ptrCast(self.vtable)).GetFormatSupport(@as(*const IWMDMDevice, @ptrCast(self)), ppFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2029,9 +1996,9 @@ pub const IWMDMDevice2 = extern struct {
             .stage1 => fn(
                 self: *const IWMDMDevice2,
                 dwFlags: u32,
-                ppAudioFormatEx: [*]?*_WAVEFORMATEX,
+                ppAudioFormatEx: [*]?*WAVEFORMATEX,
                 pnAudioFormatCount: ?*u32,
-                ppVideoFormatEx: [*]?*_VIDEOINFOHEADER,
+                ppVideoFormatEx: [*]?*VIDEOINFOHEADER,
                 pnVideoFormatCount: ?*u32,
                 ppFileType: [*]?*WMFILECAPABILITIES,
                 pnFileTypeCount: ?*u32,
@@ -2039,9 +2006,9 @@ pub const IWMDMDevice2 = extern struct {
             else => *const fn(
                 self: *const IWMDMDevice2,
                 dwFlags: u32,
-                ppAudioFormatEx: [*]?*_WAVEFORMATEX,
+                ppAudioFormatEx: [*]?*WAVEFORMATEX,
                 pnAudioFormatCount: ?*u32,
-                ppVideoFormatEx: [*]?*_VIDEOINFOHEADER,
+                ppVideoFormatEx: [*]?*VIDEOINFOHEADER,
                 pnVideoFormatCount: ?*u32,
                 ppFileType: [*]?*WMFILECAPABILITIES,
                 pnFileTypeCount: ?*u32,
@@ -2082,7 +2049,7 @@ pub const IWMDMDevice2 = extern struct {
             return @as(*const IWMDMDevice2.VTable, @ptrCast(self.vtable)).GetStorage(@as(*const IWMDMDevice2, @ptrCast(self)), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDevice2_GetFormatSupport2(self: *const T, dwFlags: u32, ppAudioFormatEx: [*]?*_WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*_VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IWMDMDevice2_GetFormatSupport2(self: *const T, dwFlags: u32, ppAudioFormatEx: [*]?*WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IWMDMDevice2.VTable, @ptrCast(self.vtable)).GetFormatSupport2(@as(*const IWMDMDevice2, @ptrCast(self)), dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2356,11 +2323,11 @@ pub const IWMDMDeviceControl = extern struct {
         Record: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IWMDMDeviceControl,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IWMDMDeviceControl,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Pause: switch (@import("builtin").zig_backend) {
@@ -2416,7 +2383,7 @@ pub const IWMDMDeviceControl = extern struct {
             return @as(*const IWMDMDeviceControl.VTable, @ptrCast(self.vtable)).Play(@as(*const IWMDMDeviceControl, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDeviceControl_Record(self: *const T, pFormat: ?*_WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IWMDMDeviceControl_Record(self: *const T, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @as(*const IWMDMDeviceControl.VTable, @ptrCast(self.vtable)).Record(@as(*const IWMDMDeviceControl, @ptrCast(self)), pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3235,14 +3202,14 @@ pub const IMDSPDevice = extern struct {
         GetFormatSupport: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IMDSPDevice,
-                pFormatEx: [*]?*_WAVEFORMATEX,
+                pFormatEx: [*]?*WAVEFORMATEX,
                 pnFormatCount: ?*u32,
                 pppwszMimeType: [*]?*?PWSTR,
                 pnMimeTypeCount: ?*u32,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPDevice,
-                pFormatEx: [*]?*_WAVEFORMATEX,
+                pFormatEx: [*]?*WAVEFORMATEX,
                 pnFormatCount: ?*u32,
                 pppwszMimeType: [*]?*?PWSTR,
                 pnMimeTypeCount: ?*u32,
@@ -3299,7 +3266,7 @@ pub const IMDSPDevice = extern struct {
             return @as(*const IMDSPDevice.VTable, @ptrCast(self.vtable)).EnumStorage(@as(*const IMDSPDevice, @ptrCast(self)), ppEnumStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDevice_GetFormatSupport(self: *const T, pFormatEx: [*]?*_WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMDSPDevice_GetFormatSupport(self: *const T, pFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IMDSPDevice.VTable, @ptrCast(self.vtable)).GetFormatSupport(@as(*const IMDSPDevice, @ptrCast(self)), pFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3331,9 +3298,9 @@ pub const IMDSPDevice2 = extern struct {
             .stage1 => fn(
                 self: *const IMDSPDevice2,
                 dwFlags: u32,
-                ppAudioFormatEx: [*]?*_WAVEFORMATEX,
+                ppAudioFormatEx: [*]?*WAVEFORMATEX,
                 pnAudioFormatCount: ?*u32,
-                ppVideoFormatEx: [*]?*_VIDEOINFOHEADER,
+                ppVideoFormatEx: [*]?*VIDEOINFOHEADER,
                 pnVideoFormatCount: ?*u32,
                 ppFileType: [*]?*WMFILECAPABILITIES,
                 pnFileTypeCount: ?*u32,
@@ -3341,9 +3308,9 @@ pub const IMDSPDevice2 = extern struct {
             else => *const fn(
                 self: *const IMDSPDevice2,
                 dwFlags: u32,
-                ppAudioFormatEx: [*]?*_WAVEFORMATEX,
+                ppAudioFormatEx: [*]?*WAVEFORMATEX,
                 pnAudioFormatCount: ?*u32,
-                ppVideoFormatEx: [*]?*_VIDEOINFOHEADER,
+                ppVideoFormatEx: [*]?*VIDEOINFOHEADER,
                 pnVideoFormatCount: ?*u32,
                 ppFileType: [*]?*WMFILECAPABILITIES,
                 pnFileTypeCount: ?*u32,
@@ -3384,7 +3351,7 @@ pub const IMDSPDevice2 = extern struct {
             return @as(*const IMDSPDevice2.VTable, @ptrCast(self.vtable)).GetStorage(@as(*const IMDSPDevice2, @ptrCast(self)), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDevice2_GetFormatSupport2(self: *const T, dwFlags: u32, ppAudioFormatEx: [*]?*_WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*_VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
+        pub fn IMDSPDevice2_GetFormatSupport2(self: *const T, dwFlags: u32, ppAudioFormatEx: [*]?*WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
             return @as(*const IMDSPDevice2.VTable, @ptrCast(self.vtable)).GetFormatSupport2(@as(*const IMDSPDevice2, @ptrCast(self)), dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3536,11 +3503,11 @@ pub const IMDSPDeviceControl = extern struct {
         Record: switch (@import("builtin").zig_backend) {
             .stage1 => fn(
                 self: *const IMDSPDeviceControl,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPDeviceControl,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         Pause: switch (@import("builtin").zig_backend) {
@@ -3596,7 +3563,7 @@ pub const IMDSPDeviceControl = extern struct {
             return @as(*const IMDSPDeviceControl.VTable, @ptrCast(self.vtable)).Play(@as(*const IMDSPDeviceControl, @ptrCast(self)));
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPDeviceControl_Record(self: *const T, pFormat: ?*_WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IMDSPDeviceControl_Record(self: *const T, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @as(*const IMDSPDeviceControl.VTable, @ptrCast(self.vtable)).Record(@as(*const IMDSPDeviceControl, @ptrCast(self)), pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3701,12 +3668,12 @@ pub const IMDSPStorage = extern struct {
             .stage1 => fn(
                 self: *const IMDSPStorage,
                 dwAttributes: u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPStorage,
                 dwAttributes: u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetStorageGlobals: switch (@import("builtin").zig_backend) {
@@ -3723,12 +3690,12 @@ pub const IMDSPStorage = extern struct {
             .stage1 => fn(
                 self: *const IMDSPStorage,
                 pdwAttributes: ?*u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPStorage,
                 pdwAttributes: ?*u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetName: switch (@import("builtin").zig_backend) {
@@ -3783,14 +3750,14 @@ pub const IMDSPStorage = extern struct {
             .stage1 => fn(
                 self: *const IMDSPStorage,
                 dwAttributes: u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
                 pwszName: ?PWSTR,
                 ppNewStorage: ?*?*IMDSPStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPStorage,
                 dwAttributes: u32,
-                pFormat: ?*_WAVEFORMATEX,
+                pFormat: ?*WAVEFORMATEX,
                 pwszName: ?PWSTR,
                 ppNewStorage: ?*?*IMDSPStorage,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
@@ -3820,7 +3787,7 @@ pub const IMDSPStorage = extern struct {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage_SetAttributes(self: *const T, dwAttributes: u32, pFormat: ?*_WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage_SetAttributes(self: *const T, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @as(*const IMDSPStorage.VTable, @ptrCast(self.vtable)).SetAttributes(@as(*const IMDSPStorage, @ptrCast(self)), dwAttributes, pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3828,7 +3795,7 @@ pub const IMDSPStorage = extern struct {
             return @as(*const IMDSPStorage.VTable, @ptrCast(self.vtable)).GetStorageGlobals(@as(*const IMDSPStorage, @ptrCast(self)), ppStorageGlobals);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage_GetAttributes(self: *const T, pdwAttributes: ?*u32, pFormat: ?*_WAVEFORMATEX) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage_GetAttributes(self: *const T, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
             return @as(*const IMDSPStorage.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IMDSPStorage, @ptrCast(self)), pdwAttributes, pFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3848,7 +3815,7 @@ pub const IMDSPStorage = extern struct {
             return @as(*const IMDSPStorage.VTable, @ptrCast(self.vtable)).GetRights(@as(*const IMDSPStorage, @ptrCast(self)), ppRights, pnRightsCount, abMac);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage_CreateStorage(self: *const T, dwAttributes: u32, pFormat: ?*_WAVEFORMATEX, pwszName: ?PWSTR, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage_CreateStorage(self: *const T, dwAttributes: u32, pFormat: ?*WAVEFORMATEX, pwszName: ?PWSTR, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @as(*const IMDSPStorage.VTable, @ptrCast(self.vtable)).CreateStorage(@as(*const IMDSPStorage, @ptrCast(self)), dwAttributes, pFormat, pwszName, ppNewStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3885,8 +3852,8 @@ pub const IMDSPStorage2 = extern struct {
                 self: *const IMDSPStorage2,
                 dwAttributes: u32,
                 dwAttributesEx: u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
                 pwszName: ?PWSTR,
                 qwFileSize: u64,
                 ppNewStorage: ?*?*IMDSPStorage,
@@ -3895,8 +3862,8 @@ pub const IMDSPStorage2 = extern struct {
                 self: *const IMDSPStorage2,
                 dwAttributes: u32,
                 dwAttributesEx: u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
                 pwszName: ?PWSTR,
                 qwFileSize: u64,
                 ppNewStorage: ?*?*IMDSPStorage,
@@ -3907,15 +3874,15 @@ pub const IMDSPStorage2 = extern struct {
                 self: *const IMDSPStorage2,
                 dwAttributes: u32,
                 dwAttributesEx: u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPStorage2,
                 dwAttributes: u32,
                 dwAttributesEx: u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
         GetAttributes2: switch (@import("builtin").zig_backend) {
@@ -3923,15 +3890,15 @@ pub const IMDSPStorage2 = extern struct {
                 self: *const IMDSPStorage2,
                 pdwAttributes: ?*u32,
                 pdwAttributesEx: ?*u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
             else => *const fn(
                 self: *const IMDSPStorage2,
                 pdwAttributes: ?*u32,
                 pdwAttributesEx: ?*u32,
-                pAudioFormat: ?*_WAVEFORMATEX,
-                pVideoFormat: ?*_VIDEOINFOHEADER,
+                pAudioFormat: ?*WAVEFORMATEX,
+                pVideoFormat: ?*VIDEOINFOHEADER,
             ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         },
     };
@@ -3943,15 +3910,15 @@ pub const IMDSPStorage2 = extern struct {
             return @as(*const IMDSPStorage2.VTable, @ptrCast(self.vtable)).GetStorage(@as(*const IMDSPStorage2, @ptrCast(self)), pszStorageName, ppStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage2_CreateStorage2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*_WAVEFORMATEX, pVideoFormat: ?*_VIDEOINFOHEADER, pwszName: ?PWSTR, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage2_CreateStorage2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER, pwszName: ?PWSTR, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
             return @as(*const IMDSPStorage2.VTable, @ptrCast(self.vtable)).CreateStorage2(@as(*const IMDSPStorage2, @ptrCast(self)), dwAttributes, dwAttributesEx, pAudioFormat, pVideoFormat, pwszName, qwFileSize, ppNewStorage);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage2_SetAttributes2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*_WAVEFORMATEX, pVideoFormat: ?*_VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage2_SetAttributes2(self: *const T, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
             return @as(*const IMDSPStorage2.VTable, @ptrCast(self.vtable)).SetAttributes2(@as(*const IMDSPStorage2, @ptrCast(self)), dwAttributes, dwAttributesEx, pAudioFormat, pVideoFormat);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IMDSPStorage2_GetAttributes2(self: *const T, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*_WAVEFORMATEX, pVideoFormat: ?*_VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+        pub fn IMDSPStorage2_GetAttributes2(self: *const T, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
             return @as(*const IMDSPStorage2.VTable, @ptrCast(self.vtable)).GetAttributes2(@as(*const IMDSPStorage2, @ptrCast(self)), pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
         }
     };}
@@ -5420,7 +5387,7 @@ pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
     },
 };
 //--------------------------------------------------------------------------------
-// Section: Imports (9)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
@@ -5430,7 +5397,8 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const RECT = @import("../foundation.zig").RECT;
+const VIDEOINFOHEADER = @import("../media/media_foundation.zig").VIDEOINFOHEADER;
+const WAVEFORMATEX = @import("../media/audio.zig").WAVEFORMATEX;
 
 test {
     @setEvalBranchQuota(

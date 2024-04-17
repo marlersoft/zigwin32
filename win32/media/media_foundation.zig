@@ -41163,24 +41163,24 @@ pub const IMFContentDecryptionModuleFactory = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0001 = enum(i32) {
+pub const MFVirtualCameraType = enum(i32) {
     e = 0,
 };
-pub const MFVirtualCameraType_SoftwareCameraSource = __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0001.e;
+pub const MFVirtualCameraType_SoftwareCameraSource = MFVirtualCameraType.e;
 
-pub const __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0002 = enum(i32) {
+pub const MFVirtualCameraLifetime = enum(i32) {
     ession = 0,
     ystem = 1,
 };
-pub const MFVirtualCameraLifetime_Session = __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0002.ession;
-pub const MFVirtualCameraLifetime_System = __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0002.ystem;
+pub const MFVirtualCameraLifetime_Session = MFVirtualCameraLifetime.ession;
+pub const MFVirtualCameraLifetime_System = MFVirtualCameraLifetime.ystem;
 
-pub const __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0003 = enum(i32) {
+pub const MFVirtualCameraAccess = enum(i32) {
     CurrentUser = 0,
     AllUsers = 1,
 };
-pub const MFVirtualCameraAccess_CurrentUser = __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0003.CurrentUser;
-pub const MFVirtualCameraAccess_AllUsers = __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0003.AllUsers;
+pub const MFVirtualCameraAccess_CurrentUser = MFVirtualCameraAccess.CurrentUser;
+pub const MFVirtualCameraAccess_AllUsers = MFVirtualCameraAccess.AllUsers;
 
 const IID_IMFCameraSyncObject_Value = Guid.initString("6338b23a-3042-49d2-a3ea-ec0fed815407");
 pub const IID_IMFCameraSyncObject = &IID_IMFCameraSyncObject_Value;
@@ -43121,9 +43121,9 @@ pub extern "mf" fn MFCreateEncryptedMediaExtensionsStoreActivate(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mfsensorgroup" fn MFCreateVirtualCamera(
-    type: __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0001,
-    lifetime: __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0002,
-    access: __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0003,
+    type: MFVirtualCameraType,
+    lifetime: MFVirtualCameraLifetime,
+    access: MFVirtualCameraAccess,
     friendlyName: ?[*:0]const u16,
     sourceId: ?[*:0]const u16,
     categories: ?[*]const Guid,
@@ -43132,7 +43132,7 @@ pub extern "mfsensorgroup" fn MFCreateVirtualCamera(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mfsensorgroup" fn MFIsVirtualCameraTypeSupported(
-    type: __MIDL___MIDL_itf_mfvirtualcamera_0000_0000_0001,
+    type: MFVirtualCameraType,
     supported: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
