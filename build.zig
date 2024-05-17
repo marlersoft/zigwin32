@@ -1,16 +1,27 @@
 const builtin = @import("builtin");
 const std = @import("std");
 
-const is_zig_0_11 = std.mem.eql(u8, builtin.zig_version_string, "0.11.0");
+const zig_version = builtin.zig_version;
 
 pub fn build(b: *std.Build) void {
-    if (is_zig_0_11) {
-        _ = b.addModule("zigwin32", .{
-            .source_file = .{ .path = "win32.zig" },
-        });
-    } else {
-        _ = b.addModule("zigwin32", .{
-            .root_source_file = .{ .path = "win32.zig" },
-        });
+    switch (zig_version.minor) {
+        11 => {
+            _ = b.addModule("zigwin32", .{
+                .source_file = .{ .path = "win32.zig" },
+            });
+        },
+        12 => {
+            _ = b.addModule("zigwin32", .{
+                .root_source_file = .{ .path = "win32.zig" },
+            });
+        },
+        13 => {
+            _ = b.addModule("zigwin32", .{
+                .root_source_file = b.path("win32.zig"),
+            });
+        },
+        else => {
+            @panic("Unsupported zig version '" ++ builtin.zig_version_string ++ "'");
+        },
     }
 }
