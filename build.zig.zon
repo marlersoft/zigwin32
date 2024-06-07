@@ -1,0 +1,13 @@
+.{
+    .name = "zigwin32",
+    .version = "25.0.28-preview",
+    .minimum_zig_version = "0.12.0",
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "win32",
+        "win32.zig",
+        "LICENSE",
+        "README.md",
+    },
+}
