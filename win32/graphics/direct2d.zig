@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (69)
 //--------------------------------------------------------------------------------
-pub const D2D1_DEFAULT_FLATTENING_TOLERANCE = @as(f32, 2.5e-01);
+pub const D2D1_DEFAULT_FLATTENING_TOLERANCE = @as(f32, 2.5e-1);
 pub const CLSID_D2D12DAffineTransform = Guid.initString("6aa97485-6354-4cfc-908c-e4a74f62c96c");
 pub const CLSID_D2D13DPerspectiveTransform = Guid.initString("c2844d0b-3d86-46e7-85ba-526c9240f3fb");
 pub const CLSID_D2D13DTransform = Guid.initString("e8467b04-ec61-4b8a-b5de-d4d73debea5a");
