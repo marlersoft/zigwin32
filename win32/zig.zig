@@ -107,6 +107,22 @@ pub const PropertyKey = extern struct {
     }
 };
 
+const c_cast = @import("std").zig.c_translation.cast;
+/// "HRESULT From WIN32 Error Code"
+/// https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/0c0bcf55-277e-4120-b5dc-f6115fc8dc38
+pub fn HRESULT_FROM_WIN32(x: @import("foundation.zig").WIN32_ERROR) @import("foundation.zig").HRESULT {
+    const err = @as(c_uint, @intFromEnum(x));
+    if (err <= 0) {
+        return c_cast(@import("foundation.zig").HRESULT, err);
+    } else {
+        return c_cast(@import("foundation.zig").HRESULT, ((err & @as(c_uint, 0x0000FFFF)) | @as(c_uint, (7 << 16)) | @as(c_uint, 0x80000000)));
+    }
+}
+
+test "HRESULT from WIN32_ERR" {
+    try testing.expectEqual(@as(i32, -2147023728), HRESULT_FROM_WIN32(@import("foundation.zig").WIN32_ERROR.ERROR_NOT_FOUND));
+}
+
 pub fn FAILED(hr: @import("foundation.zig").HRESULT) bool {
     return hr < 0;
 }
