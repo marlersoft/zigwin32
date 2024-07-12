@@ -153,18 +153,11 @@ pub const CATALOG_INFO = extern struct {
     wszCatalogFile: [260]u16,
 };
 
-pub const PFN_CDF_PARSE_ERROR_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwErrorArea: u32,
-        dwLocalError: u32,
-        pwszLine: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwErrorArea: u32,
-        dwLocalError: u32,
-        pwszLine: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFN_CDF_PARSE_ERROR_CALLBACK = *const fn(
+    dwErrorArea: u32,
+    dwLocalError: u32,
+    pwszLine: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MS_ADDINFO_CATALOGMEMBER = extern struct {
     cbStruct: u32,

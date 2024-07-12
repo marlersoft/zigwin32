@@ -962,20 +962,12 @@ pub const JET_OSSNAPID = usize;
 pub const JET_LS = usize;
 
 
-pub const JET_PFNSTATUS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        sesid: ?JET_SESID,
-        snp: u32,
-        snt: u32,
-        pv: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        sesid: ?JET_SESID,
-        snp: u32,
-        snt: u32,
-        pv: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const JET_PFNSTATUS = *const fn(
+    sesid: ?JET_SESID,
+    snp: u32,
+    snt: u32,
+    pv: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const JET_RSTMAP_A = extern struct {
     szDatabaseName: ?PSTR,
@@ -1007,28 +999,16 @@ pub const CONVERT_W = extern struct {
     },
 };
 
-pub const JET_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        sesid: ?JET_SESID,
-        dbid: u32,
-        tableid: JET_TABLEID,
-        cbtyp: u32,
-        pvArg1: ?*anyopaque,
-        pvArg2: ?*anyopaque,
-        pvContext: ?*anyopaque,
-        ulUnused: JET_API_PTR,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        sesid: ?JET_SESID,
-        dbid: u32,
-        tableid: JET_TABLEID,
-        cbtyp: u32,
-        pvArg1: ?*anyopaque,
-        pvArg2: ?*anyopaque,
-        pvContext: ?*anyopaque,
-        ulUnused: JET_API_PTR,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const JET_CALLBACK = *const fn(
+    sesid: ?JET_SESID,
+    dbid: u32,
+    tableid: JET_TABLEID,
+    cbtyp: u32,
+    pvArg1: ?*anyopaque,
+    pvArg2: ?*anyopaque,
+    pvContext: ?*anyopaque,
+    ulUnused: JET_API_PTR,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const JET_SNPROG = extern struct {
     cbStruct: u32,
@@ -1879,18 +1859,11 @@ pub const JET_ERRINFOBASIC_W = extern struct {
 };
 
 
-pub const JET_PFNDURABLECOMMITCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        instance: JET_INSTANCE,
-        pCommitIdSeen: ?*JET_COMMIT_ID,
-        grbit: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        instance: JET_INSTANCE,
-        pCommitIdSeen: ?*JET_COMMIT_ID,
-        grbit: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const JET_PFNDURABLECOMMITCALLBACK = *const fn(
+    instance: JET_INSTANCE,
+    pCommitIdSeen: ?*JET_COMMIT_ID,
+    grbit: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 
 
@@ -1977,18 +1950,11 @@ pub const JET_ENUMCOLUMN = extern struct {
     },
 };
 
-pub const JET_PFNREALLOC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pvContext: ?*anyopaque,
-        pv: ?*anyopaque,
-        cb: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
-        pvContext: ?*anyopaque,
-        pv: ?*anyopaque,
-        cb: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+pub const JET_PFNREALLOC = *const fn(
+    pvContext: ?*anyopaque,
+    pv: ?*anyopaque,
+    cb: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 
 

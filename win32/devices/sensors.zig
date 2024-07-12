@@ -376,66 +376,31 @@ pub const IID_ISensorManager = &IID_ISensorManager_Value;
 pub const ISensorManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSensorsByCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorManager,
-                sensorCategory: ?*Guid,
-                ppSensorsFound: ?*?*ISensorCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorManager,
-                sensorCategory: ?*Guid,
-                ppSensorsFound: ?*?*ISensorCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSensorsByType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorManager,
-                sensorType: ?*Guid,
-                ppSensorsFound: ?*?*ISensorCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorManager,
-                sensorType: ?*Guid,
-                ppSensorsFound: ?*?*ISensorCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSensorByID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorManager,
-                sensorID: ?*Guid,
-                ppSensor: ?*?*ISensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorManager,
-                sensorID: ?*Guid,
-                ppSensor: ?*?*ISensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEventSink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorManager,
-                pEvents: ?*ISensorManagerEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorManager,
-                pEvents: ?*ISensorManagerEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RequestPermissions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorManager,
-                hParent: ?HWND,
-                pSensors: ?*ISensorCollection,
-                fModal: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorManager,
-                hParent: ?HWND,
-                pSensors: ?*ISensorCollection,
-                fModal: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSensorsByCategory: *const fn(
+            self: *const ISensorManager,
+            sensorCategory: ?*Guid,
+            ppSensorsFound: ?*?*ISensorCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSensorsByType: *const fn(
+            self: *const ISensorManager,
+            sensorType: ?*Guid,
+            ppSensorsFound: ?*?*ISensorCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSensorByID: *const fn(
+            self: *const ISensorManager,
+            sensorID: ?*Guid,
+            ppSensor: ?*?*ISensor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventSink: *const fn(
+            self: *const ISensorManager,
+            pEvents: ?*ISensorManagerEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestPermissions: *const fn(
+            self: *const ISensorManager,
+            hParent: ?HWND,
+            pSensors: ?*ISensorCollection,
+            fModal: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -470,26 +435,14 @@ pub const IID_ILocationPermissions = &IID_ILocationPermissions_Value;
 pub const ILocationPermissions = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetGlobalLocationPermission: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ILocationPermissions,
-                pfEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ILocationPermissions,
-                pfEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckLocationCapability: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ILocationPermissions,
-                dwClientThreadId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ILocationPermissions,
-                dwClientThreadId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetGlobalLocationPermission: *const fn(
+            self: *const ILocationPermissions,
+            pfEnabled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckLocationCapability: *const fn(
+            self: *const ILocationPermissions,
+            dwClientThreadId: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -512,66 +465,30 @@ pub const IID_ISensorCollection = &IID_ISensorCollection_Value;
 pub const ISensorCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorCollection,
-                ulIndex: u32,
-                ppSensor: ?*?*ISensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorCollection,
-                ulIndex: u32,
-                ppSensor: ?*?*ISensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorCollection,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorCollection,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorCollection,
-                pSensor: ?*ISensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorCollection,
-                pSensor: ?*ISensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorCollection,
-                pSensor: ?*ISensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorCollection,
-                pSensor: ?*ISensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveByID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorCollection,
-                sensorID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorCollection,
-                sensorID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAt: *const fn(
+            self: *const ISensorCollection,
+            ulIndex: u32,
+            ppSensor: ?*?*ISensor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const ISensorCollection,
+            pCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Add: *const fn(
+            self: *const ISensorCollection,
+            pSensor: ?*ISensor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Remove: *const fn(
+            self: *const ISensorCollection,
+            pSensor: ?*ISensor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveByID: *const fn(
+            self: *const ISensorCollection,
+            sensorID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clear: *const fn(
+            self: *const ISensorCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -610,170 +527,73 @@ pub const IID_ISensor = &IID_ISensor_Value;
 pub const ISensor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                pID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                pID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                pSensorCategory: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                pSensorCategory: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                pSensorType: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                pSensorType: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFriendlyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                pFriendlyName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                pFriendlyName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                key: ?*const PROPERTYKEY,
-                pProperty: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                key: ?*const PROPERTYKEY,
-                pProperty: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                pKeys: ?*IPortableDeviceKeyCollection,
-                ppProperties: ?*?*IPortableDeviceValues,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                pKeys: ?*IPortableDeviceKeyCollection,
-                ppProperties: ?*?*IPortableDeviceValues,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSupportedDataFields: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                ppDataFields: ?*?*IPortableDeviceKeyCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                ppDataFields: ?*?*IPortableDeviceKeyCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                pProperties: ?*IPortableDeviceValues,
-                ppResults: ?*?*IPortableDeviceValues,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                pProperties: ?*IPortableDeviceValues,
-                ppResults: ?*?*IPortableDeviceValues,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SupportsDataField: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                key: ?*const PROPERTYKEY,
-                pIsSupported: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                key: ?*const PROPERTYKEY,
-                pIsSupported: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                pState: ?*SensorState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                pState: ?*SensorState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                ppDataReport: ?*?*ISensorDataReport,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                ppDataReport: ?*?*ISensorDataReport,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SupportsEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                eventGuid: ?*const Guid,
-                pIsSupported: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                eventGuid: ?*const Guid,
-                pIsSupported: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEventInterest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                ppValues: [*]?*Guid,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                ppValues: [*]?*Guid,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEventInterest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                pValues: ?[*]Guid,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                pValues: ?[*]Guid,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEventSink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensor,
-                pEvents: ?*ISensorEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensor,
-                pEvents: ?*ISensorEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetID: *const fn(
+            self: *const ISensor,
+            pID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCategory: *const fn(
+            self: *const ISensor,
+            pSensorCategory: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetType: *const fn(
+            self: *const ISensor,
+            pSensorType: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFriendlyName: *const fn(
+            self: *const ISensor,
+            pFriendlyName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const ISensor,
+            key: ?*const PROPERTYKEY,
+            pProperty: ?*PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperties: *const fn(
+            self: *const ISensor,
+            pKeys: ?*IPortableDeviceKeyCollection,
+            ppProperties: ?*?*IPortableDeviceValues,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSupportedDataFields: *const fn(
+            self: *const ISensor,
+            ppDataFields: ?*?*IPortableDeviceKeyCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperties: *const fn(
+            self: *const ISensor,
+            pProperties: ?*IPortableDeviceValues,
+            ppResults: ?*?*IPortableDeviceValues,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SupportsDataField: *const fn(
+            self: *const ISensor,
+            key: ?*const PROPERTYKEY,
+            pIsSupported: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetState: *const fn(
+            self: *const ISensor,
+            pState: ?*SensorState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetData: *const fn(
+            self: *const ISensor,
+            ppDataReport: ?*?*ISensorDataReport,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SupportsEvent: *const fn(
+            self: *const ISensor,
+            eventGuid: ?*const Guid,
+            pIsSupported: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEventInterest: *const fn(
+            self: *const ISensor,
+            ppValues: [*]?*Guid,
+            pCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventInterest: *const fn(
+            self: *const ISensor,
+            pValues: ?[*]Guid,
+            count: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventSink: *const fn(
+            self: *const ISensor,
+            pEvents: ?*ISensorEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -848,40 +668,20 @@ pub const IID_ISensorDataReport = &IID_ISensorDataReport_Value;
 pub const ISensorDataReport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetTimestamp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorDataReport,
-                pTimeStamp: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorDataReport,
-                pTimeStamp: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSensorValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorDataReport,
-                pKey: ?*const PROPERTYKEY,
-                pValue: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorDataReport,
-                pKey: ?*const PROPERTYKEY,
-                pValue: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSensorValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorDataReport,
-                pKeys: ?*IPortableDeviceKeyCollection,
-                ppValues: ?*?*IPortableDeviceValues,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorDataReport,
-                pKeys: ?*IPortableDeviceKeyCollection,
-                ppValues: ?*?*IPortableDeviceValues,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetTimestamp: *const fn(
+            self: *const ISensorDataReport,
+            pTimeStamp: ?*SYSTEMTIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSensorValue: *const fn(
+            self: *const ISensorDataReport,
+            pKey: ?*const PROPERTYKEY,
+            pValue: ?*PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSensorValues: *const fn(
+            self: *const ISensorDataReport,
+            pKeys: ?*IPortableDeviceKeyCollection,
+            ppValues: ?*?*IPortableDeviceValues,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -908,18 +708,11 @@ pub const IID_ISensorManagerEvents = &IID_ISensorManagerEvents_Value;
 pub const ISensorManagerEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnSensorEnter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorManagerEvents,
-                pSensor: ?*ISensor,
-                state: SensorState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorManagerEvents,
-                pSensor: ?*ISensor,
-                state: SensorState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnSensorEnter: *const fn(
+            self: *const ISensorManagerEvents,
+            pSensor: ?*ISensor,
+            state: SensorState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -938,54 +731,26 @@ pub const IID_ISensorEvents = &IID_ISensorEvents_Value;
 pub const ISensorEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnStateChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorEvents,
-                pSensor: ?*ISensor,
-                state: SensorState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorEvents,
-                pSensor: ?*ISensor,
-                state: SensorState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnDataUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorEvents,
-                pSensor: ?*ISensor,
-                pNewData: ?*ISensorDataReport,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorEvents,
-                pSensor: ?*ISensor,
-                pNewData: ?*ISensorDataReport,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorEvents,
-                pSensor: ?*ISensor,
-                eventID: ?*const Guid,
-                pEventData: ?*IPortableDeviceValues,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorEvents,
-                pSensor: ?*ISensor,
-                eventID: ?*const Guid,
-                pEventData: ?*IPortableDeviceValues,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnLeave: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISensorEvents,
-                ID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISensorEvents,
-                ID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnStateChanged: *const fn(
+            self: *const ISensorEvents,
+            pSensor: ?*ISensor,
+            state: SensorState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnDataUpdated: *const fn(
+            self: *const ISensorEvents,
+            pSensor: ?*ISensor,
+            pNewData: ?*ISensorDataReport,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnEvent: *const fn(
+            self: *const ISensorEvents,
+            pSensor: ?*ISensor,
+            eventID: ?*const Guid,
+            pEventData: ?*IPortableDeviceValues,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnLeave: *const fn(
+            self: *const ISensorEvents,
+            ID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

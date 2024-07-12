@@ -124,22 +124,12 @@ pub const IID_IWPCProviderState = &IID_IWPCProviderState_Value;
 pub const IWPCProviderState = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Enable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCProviderState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCProviderState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Disable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCProviderState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCProviderState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Enable: *const fn(
+            self: *const IWPCProviderState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Disable: *const fn(
+            self: *const IWPCProviderState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -167,44 +157,22 @@ pub const IID_IWPCProviderConfig = &IID_IWPCProviderConfig_Value;
 pub const IWPCProviderConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetUserSummary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCProviderConfig,
-                bstrSID: ?BSTR,
-                pbstrUserSummary: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCProviderConfig,
-                bstrSID: ?BSTR,
-                pbstrUserSummary: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Configure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCProviderConfig,
-                hWnd: ?HWND,
-                bstrSID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCProviderConfig,
-                hWnd: ?HWND,
-                bstrSID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RequestOverride: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCProviderConfig,
-                hWnd: ?HWND,
-                bstrPath: ?BSTR,
-                dwFlags: WPCFLAG_RESTRICTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCProviderConfig,
-                hWnd: ?HWND,
-                bstrPath: ?BSTR,
-                dwFlags: WPCFLAG_RESTRICTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetUserSummary: *const fn(
+            self: *const IWPCProviderConfig,
+            bstrSID: ?BSTR,
+            pbstrUserSummary: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Configure: *const fn(
+            self: *const IWPCProviderConfig,
+            hWnd: ?HWND,
+            bstrSID: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestOverride: *const fn(
+            self: *const IWPCProviderConfig,
+            hWnd: ?HWND,
+            bstrPath: ?BSTR,
+            dwFlags: WPCFLAG_RESTRICTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -250,36 +218,18 @@ pub const IID_IWPCSettings = &IID_IWPCSettings_Value;
 pub const IWPCSettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsLoggingRequired: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCSettings,
-                pfRequired: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCSettings,
-                pfRequired: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastSettingsChangeTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCSettings,
-                pTime: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCSettings,
-                pTime: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestrictions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCSettings,
-                pdwRestrictions: ?*WPCFLAG_RESTRICTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCSettings,
-                pdwRestrictions: ?*WPCFLAG_RESTRICTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsLoggingRequired: *const fn(
+            self: *const IWPCSettings,
+            pfRequired: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastSettingsChangeTime: *const fn(
+            self: *const IWPCSettings,
+            pTime: ?*SYSTEMTIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestrictions: *const fn(
+            self: *const IWPCSettings,
+            pdwRestrictions: ?*WPCFLAG_RESTRICTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -306,18 +256,11 @@ pub const IID_IWPCGamesSettings = &IID_IWPCGamesSettings_Value;
 pub const IWPCGamesSettings = extern struct {
     pub const VTable = extern struct {
         base: IWPCSettings.VTable,
-        IsBlocked: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCGamesSettings,
-                guidAppID: Guid,
-                pdwReasons: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCGamesSettings,
-                guidAppID: Guid,
-                pdwReasons: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsBlocked: *const fn(
+            self: *const IWPCGamesSettings,
+            guidAppID: Guid,
+            pdwReasons: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -343,34 +286,18 @@ pub const IID_IWPCWebSettings = &IID_IWPCWebSettings_Value;
 pub const IWPCWebSettings = extern struct {
     pub const VTable = extern struct {
         base: IWPCSettings.VTable,
-        GetSettings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCWebSettings,
-                pdwSettings: ?*WPCFLAG_WEB_SETTING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCWebSettings,
-                pdwSettings: ?*WPCFLAG_WEB_SETTING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RequestURLOverride: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCWebSettings,
-                hWnd: ?HWND,
-                pcszURL: ?[*:0]const u16,
-                cURLs: u32,
-                ppcszSubURLs: ?[*]?PWSTR,
-                pfChanged: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCWebSettings,
-                hWnd: ?HWND,
-                pcszURL: ?[*:0]const u16,
-                cURLs: u32,
-                ppcszSubURLs: ?[*]?PWSTR,
-                pfChanged: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSettings: *const fn(
+            self: *const IWPCWebSettings,
+            pdwSettings: ?*WPCFLAG_WEB_SETTING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestURLOverride: *const fn(
+            self: *const IWPCWebSettings,
+            hWnd: ?HWND,
+            pcszURL: ?[*:0]const u16,
+            cURLs: u32,
+            ppcszSubURLs: ?[*]?PWSTR,
+            pfChanged: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -400,52 +327,25 @@ pub const IID_IWindowsParentalControlsCore = &IID_IWindowsParentalControlsCore_V
 pub const IWindowsParentalControlsCore = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetVisibility: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWindowsParentalControlsCore,
-                peVisibility: ?*WPCFLAG_VISIBILITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWindowsParentalControlsCore,
-                peVisibility: ?*WPCFLAG_VISIBILITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUserSettings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWindowsParentalControlsCore,
-                pcszSID: ?[*:0]const u16,
-                ppSettings: ?*?*IWPCSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWindowsParentalControlsCore,
-                pcszSID: ?[*:0]const u16,
-                ppSettings: ?*?*IWPCSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWebSettings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWindowsParentalControlsCore,
-                pcszSID: ?[*:0]const u16,
-                ppSettings: ?*?*IWPCWebSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWindowsParentalControlsCore,
-                pcszSID: ?[*:0]const u16,
-                ppSettings: ?*?*IWPCWebSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWebFilterInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWindowsParentalControlsCore,
-                pguidID: ?*Guid,
-                ppszName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWindowsParentalControlsCore,
-                pguidID: ?*Guid,
-                ppszName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetVisibility: *const fn(
+            self: *const IWindowsParentalControlsCore,
+            peVisibility: ?*WPCFLAG_VISIBILITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUserSettings: *const fn(
+            self: *const IWindowsParentalControlsCore,
+            pcszSID: ?[*:0]const u16,
+            ppSettings: ?*?*IWPCSettings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWebSettings: *const fn(
+            self: *const IWindowsParentalControlsCore,
+            pcszSID: ?[*:0]const u16,
+            ppSettings: ?*?*IWPCWebSettings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWebFilterInfo: *const fn(
+            self: *const IWindowsParentalControlsCore,
+            pguidID: ?*Guid,
+            ppszName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -476,18 +376,11 @@ pub const IID_IWindowsParentalControls = &IID_IWindowsParentalControls_Value;
 pub const IWindowsParentalControls = extern struct {
     pub const VTable = extern struct {
         base: IWindowsParentalControlsCore.VTable,
-        GetGamesSettings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWindowsParentalControls,
-                pcszSID: ?[*:0]const u16,
-                ppSettings: ?*?*IWPCGamesSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWindowsParentalControls,
-                pcszSID: ?[*:0]const u16,
-                ppSettings: ?*?*IWPCGamesSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetGamesSettings: *const fn(
+            self: *const IWindowsParentalControls,
+            pcszSID: ?[*:0]const u16,
+            ppSettings: ?*?*IWPCGamesSettings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -506,16 +399,10 @@ pub const IID_IWPCProviderSupport = &IID_IWPCProviderSupport_Value;
 pub const IWPCProviderSupport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCurrent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWPCProviderSupport,
-                pguidProvider: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWPCProviderSupport,
-                pguidProvider: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCurrent: *const fn(
+            self: *const IWPCProviderSupport,
+            pguidProvider: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

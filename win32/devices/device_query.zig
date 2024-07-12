@@ -313,18 +313,11 @@ pub const HDEVQUERY__ = extern struct {
     unused: i32,
 };
 
-pub const PDEV_QUERY_RESULT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hDevQuery: ?*HDEVQUERY__,
-        pContext: ?*anyopaque,
-        pActionData: ?*const DEV_QUERY_RESULT_ACTION_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hDevQuery: ?*HDEVQUERY__,
-        pContext: ?*anyopaque,
-        pActionData: ?*const DEV_QUERY_RESULT_ACTION_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PDEV_QUERY_RESULT_CALLBACK = *const fn(
+    hDevQuery: ?*HDEVQUERY__,
+    pContext: ?*anyopaque,
+    pActionData: ?*const DEV_QUERY_RESULT_ACTION_DATA,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 
 //--------------------------------------------------------------------------------

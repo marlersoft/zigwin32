@@ -775,40 +775,21 @@ pub const REASON_CONTEXT = extern struct {
     },
 };
 
-pub const LPTHREAD_START_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpThreadParameter: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lpThreadParameter: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPTHREAD_START_ROUTINE = *const fn(
+    lpThreadParameter: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PINIT_ONCE_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        InitOnce: ?*RTL_RUN_ONCE,
-        Parameter: ?*anyopaque,
-        Context: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        InitOnce: ?*RTL_RUN_ONCE,
-        Parameter: ?*anyopaque,
-        Context: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PINIT_ONCE_FN = *const fn(
+    InitOnce: ?*RTL_RUN_ONCE,
+    Parameter: ?*anyopaque,
+    Context: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PTIMERAPCROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpArgToCompletionRoutine: ?*anyopaque,
-        dwTimerLowValue: u32,
-        dwTimerHighValue: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        lpArgToCompletionRoutine: ?*anyopaque,
-        dwTimerLowValue: u32,
-        dwTimerHighValue: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PTIMERAPCROUTINE = *const fn(
+    lpArgToCompletionRoutine: ?*anyopaque,
+    dwTimerLowValue: u32,
+    dwTimerHighValue: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PROCESS_INFORMATION = extern struct {
     hProcess: ?HANDLE,
@@ -994,24 +975,14 @@ pub const PROCESS_LEAP_SECOND_INFO = extern struct {
     Reserved: u32,
 };
 
-pub const PTP_WIN32_IO_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-        Overlapped: ?*anyopaque,
-        IoResult: u32,
-        NumberOfBytesTransferred: usize,
-        Io: ?*TP_IO,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-        Overlapped: ?*anyopaque,
-        IoResult: u32,
-        NumberOfBytesTransferred: usize,
-        Io: ?*TP_IO,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PTP_WIN32_IO_CALLBACK = *const fn(
+    Instance: ?*TP_CALLBACK_INSTANCE,
+    Context: ?*anyopaque,
+    Overlapped: ?*anyopaque,
+    IoResult: u32,
+    NumberOfBytesTransferred: usize,
+    Io: ?*TP_IO,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const AVRT_PRIORITY = enum(i32) {
     VERYLOW = -2,
@@ -1130,18 +1101,11 @@ pub const UmsThreadIsSuspended = RTL_UMS_THREAD_INFO_CLASS.IsSuspended;
 pub const UmsThreadIsTerminated = RTL_UMS_THREAD_INFO_CLASS.IsTerminated;
 pub const UmsThreadMaxInfoClass = RTL_UMS_THREAD_INFO_CLASS.MaxInfoClass;
 
-pub const PRTL_UMS_SCHEDULER_ENTRY_POINT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Reason: RTL_UMS_SCHEDULER_REASON,
-        ActivationPayload: usize,
-        SchedulerParam: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        Reason: RTL_UMS_SCHEDULER_REASON,
-        ActivationPayload: usize,
-        SchedulerParam: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PRTL_UMS_SCHEDULER_ENTRY_POINT = *const fn(
+    Reason: RTL_UMS_SCHEDULER_REASON,
+    ActivationPayload: usize,
+    SchedulerParam: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const RTL_CRITICAL_SECTION_DEBUG = extern struct {
     Type: u16,
@@ -1172,36 +1136,19 @@ pub const RTL_CONDITION_VARIABLE = extern struct {
     Ptr: ?*anyopaque,
 };
 
-pub const WAITORTIMERCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*anyopaque,
-        param1: BOOLEAN,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*anyopaque,
-        param1: BOOLEAN,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WAITORTIMERCALLBACK = *const fn(
+    param0: ?*anyopaque,
+    param1: BOOLEAN,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFLS_CALLBACK_FUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpFlsData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        lpFlsData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFLS_CALLBACK_FUNCTION = *const fn(
+    lpFlsData: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PTP_SIMPLE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PTP_SIMPLE_CALLBACK = *const fn(
+    Instance: ?*TP_CALLBACK_INSTANCE,
+    Context: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const TP_CALLBACK_PRIORITY = enum(i32) {
     HIGH = 0,
@@ -1221,16 +1168,10 @@ pub const TP_POOL_STACK_INFORMATION = extern struct {
     StackCommit: usize,
 };
 
-pub const PTP_CLEANUP_GROUP_CANCEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ObjectContext: ?*anyopaque,
-        CleanupContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        ObjectContext: ?*anyopaque,
-        CleanupContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PTP_CLEANUP_GROUP_CANCEL_CALLBACK = *const fn(
+    ObjectContext: ?*anyopaque,
+    CleanupContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
     pub const _ACTIVATION_CONTEXT = extern struct {
@@ -1253,55 +1194,28 @@ pub const TP_CALLBACK_ENVIRON_V3 = extern struct {
     Size: u32,
 };
 
-pub const PTP_WORK_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-        Work: ?*TP_WORK,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-        Work: ?*TP_WORK,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PTP_WORK_CALLBACK = *const fn(
+    Instance: ?*TP_CALLBACK_INSTANCE,
+    Context: ?*anyopaque,
+    Work: ?*TP_WORK,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PTP_TIMER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-        Timer: ?*TP_TIMER,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-        Timer: ?*TP_TIMER,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PTP_TIMER_CALLBACK = *const fn(
+    Instance: ?*TP_CALLBACK_INSTANCE,
+    Context: ?*anyopaque,
+    Timer: ?*TP_TIMER,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PTP_WAIT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-        Wait: ?*TP_WAIT,
-        WaitResult: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        Instance: ?*TP_CALLBACK_INSTANCE,
-        Context: ?*anyopaque,
-        Wait: ?*TP_WAIT,
-        WaitResult: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PTP_WAIT_CALLBACK = *const fn(
+    Instance: ?*TP_CALLBACK_INSTANCE,
+    Context: ?*anyopaque,
+    Wait: ?*TP_WAIT,
+    WaitResult: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPFIBER_START_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpFiberParameter: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        lpFiberParameter: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPFIBER_START_ROUTINE = *const fn(
+    lpFiberParameter: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const UMS_SCHEDULER_STARTUP_INFO = extern struct {
     UmsVersion: u32,
@@ -1386,12 +1300,8 @@ pub const RTL_USER_PROCESS_PARAMETERS = extern struct {
     CommandLine: UNICODE_STRING,
 };
 
-pub const PPS_POST_PROCESS_INIT_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PPS_POST_PROCESS_INIT_ROUTINE = *const fn(
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PEB = extern struct {
     Reserved1: [2]u8,

@@ -3956,31 +3956,17 @@ pub const HDSA = *opaque{};
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HDPA = *opaque{};
 
-pub const LPFNPSPCALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hwnd: ?HWND,
-        uMsg: PSPCB_MESSAGE,
-        ppsp: ?*PROPSHEETPAGEA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hwnd: ?HWND,
-        uMsg: PSPCB_MESSAGE,
-        ppsp: ?*PROPSHEETPAGEA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPFNPSPCALLBACKA = *const fn(
+    hwnd: ?HWND,
+    uMsg: PSPCB_MESSAGE,
+    ppsp: ?*PROPSHEETPAGEA,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPFNPSPCALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hwnd: ?HWND,
-        uMsg: PSPCB_MESSAGE,
-        ppsp: ?*PROPSHEETPAGEW,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hwnd: ?HWND,
-        uMsg: PSPCB_MESSAGE,
-        ppsp: ?*PROPSHEETPAGEW,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPFNPSPCALLBACKW = *const fn(
+    hwnd: ?HWND,
+    uMsg: PSPCB_MESSAGE,
+    ppsp: ?*PROPSHEETPAGEW,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const PROPSHEETPAGEA_V1 = extern struct {
     dwSize: u32,
@@ -4158,18 +4144,11 @@ pub const PROPSHEETPAGEW = extern struct {
     },
 };
 
-pub const PFNPROPSHEETCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFNPROPSHEETCALLBACK = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const PROPSHEETHEADERA_V1 = extern struct {
     dwSize: u32,
@@ -4277,29 +4256,16 @@ pub const PROPSHEETHEADERW_V2 = extern struct {
     },
 };
 
-pub const LPFNSVADDPROPSHEETPAGE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HPROPSHEETPAGE,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?HPROPSHEETPAGE,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFNSVADDPROPSHEETPAGE = *const fn(
+    param0: ?HPROPSHEETPAGE,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFNADDPROPSHEETPAGES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*anyopaque,
-        param1: ?LPFNSVADDPROPSHEETPAGE,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*anyopaque,
-        param1: ?LPFNSVADDPROPSHEETPAGE,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFNADDPROPSHEETPAGES = *const fn(
+    param0: ?*anyopaque,
+    param1: ?LPFNSVADDPROPSHEETPAGE,
+    param2: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PSHNOTIFY = extern struct {
     hdr: NMHDR,
@@ -4981,18 +4947,11 @@ pub const LVCOLUMNW = extern struct {
     cxIdeal: i32,
 };
 
-pub const PFNLVCOMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: LPARAM,
-        param1: LPARAM,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: LPARAM,
-        param1: LPARAM,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFNLVCOMPARE = *const fn(
+    param0: LPARAM,
+    param1: LPARAM,
+    param2: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LVBKIMAGEA = extern struct {
     ulFlags: u32,
@@ -5054,18 +5013,11 @@ pub const LVGROUPMETRICS = extern struct {
     crFooter: u32,
 };
 
-pub const PFNLVGROUPCOMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: i32,
-        param1: i32,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: i32,
-        param1: i32,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFNLVGROUPCOMPARE = *const fn(
+    param0: i32,
+    param1: i32,
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const LVINSERTGROUPSORTED = extern struct {
     pfnGroupCompare: ?PFNLVGROUPCOMPARE,
@@ -5349,18 +5301,11 @@ pub const TVGETITEMPARTRECTINFO = extern struct {
     partID: TVITEMPART,
 };
 
-pub const PFNTVCOMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lParam1: LPARAM,
-        lParam2: LPARAM,
-        lParamSort: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lParam1: LPARAM,
-        lParam2: LPARAM,
-        lParamSort: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFNTVCOMPARE = *const fn(
+    lParam1: LPARAM,
+    lParam2: LPARAM,
+    lParamSort: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const TVSORTCB = extern struct {
     hParent: ?HTREEITEM,
@@ -5766,22 +5711,13 @@ pub const NMSEARCHWEB = extern struct {
     invokeSucceeded: BOOL,
 };
 
-pub const PFTASKDIALOGCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hwnd: ?HWND,
-        msg: u32,
-        wParam: WPARAM,
-        lParam: LPARAM,
-        lpRefData: isize,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        hwnd: ?HWND,
-        msg: u32,
-        wParam: WPARAM,
-        lParam: LPARAM,
-        lpRefData: isize,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PFTASKDIALOGCALLBACK = *const fn(
+    hwnd: ?HWND,
+    msg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+    lpRefData: isize,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const TASKDIALOG_FLAGS = enum(i32) {
     ENABLE_HYPERLINKS = 1,
@@ -5951,101 +5887,52 @@ pub const TASKDIALOGCONFIG = extern struct {
     cxWidth: u32 align(1),
 };
 
-pub const PFNDAENUMCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        p: ?*anyopaque,
-        pData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        p: ?*anyopaque,
-        pData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFNDAENUMCALLBACK = *const fn(
+    p: ?*anyopaque,
+    pData: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNDAENUMCALLBACKCONST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        p: ?*const anyopaque,
-        pData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        p: ?*const anyopaque,
-        pData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFNDAENUMCALLBACKCONST = *const fn(
+    p: ?*const anyopaque,
+    pData: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNDACOMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        p1: ?*anyopaque,
-        p2: ?*anyopaque,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        p1: ?*anyopaque,
-        p2: ?*anyopaque,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFNDACOMPARE = *const fn(
+    p1: ?*anyopaque,
+    p2: ?*anyopaque,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFNDACOMPARECONST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        p1: ?*const anyopaque,
-        p2: ?*const anyopaque,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        p1: ?*const anyopaque,
-        p2: ?*const anyopaque,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFNDACOMPARECONST = *const fn(
+    p1: ?*const anyopaque,
+    p2: ?*const anyopaque,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const DPASTREAMINFO = extern struct {
     iPos: i32,
     pvItem: ?*anyopaque,
 };
 
-pub const PFNDPASTREAM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pinfo: ?*DPASTREAMINFO,
-        pstream: ?*IStream,
-        pvInstData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        pinfo: ?*DPASTREAMINFO,
-        pstream: ?*IStream,
-        pvInstData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PFNDPASTREAM = *const fn(
+    pinfo: ?*DPASTREAMINFO,
+    pstream: ?*IStream,
+    pvInstData: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFNDPAMERGE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        uMsg: DPAMM_MESSAGE,
-        pvDest: ?*anyopaque,
-        pvSrc: ?*anyopaque,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
-        uMsg: DPAMM_MESSAGE,
-        pvDest: ?*anyopaque,
-        pvSrc: ?*anyopaque,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+pub const PFNDPAMERGE = *const fn(
+    uMsg: DPAMM_MESSAGE,
+    pvDest: ?*anyopaque,
+    pvSrc: ?*anyopaque,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PFNDPAMERGECONST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        uMsg: DPAMM_MESSAGE,
-        pvDest: ?*const anyopaque,
-        pvSrc: ?*const anyopaque,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
-        uMsg: DPAMM_MESSAGE,
-        pvDest: ?*const anyopaque,
-        pvSrc: ?*const anyopaque,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+pub const PFNDPAMERGECONST = *const fn(
+    uMsg: DPAMM_MESSAGE,
+    pvDest: ?*const anyopaque,
+    pvSrc: ?*const anyopaque,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
 pub const _LI_METRIC = enum(i32) {
     SMALL = 0,
@@ -6063,372 +5950,160 @@ pub const IID_IImageList = &IID_IImageList_Value;
 pub const IImageList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                hbmImage: ?HBITMAP,
-                hbmMask: ?HBITMAP,
-                pi: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                hbmImage: ?HBITMAP,
-                hbmMask: ?HBITMAP,
-                pi: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReplaceIcon: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                i: i32,
-                hicon: ?HICON,
-                pi: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                i: i32,
-                hicon: ?HICON,
-                pi: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOverlayImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                iImage: i32,
-                iOverlay: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                iImage: i32,
-                iOverlay: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Replace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                i: i32,
-                hbmImage: ?HBITMAP,
-                hbmMask: ?HBITMAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                i: i32,
-                hbmImage: ?HBITMAP,
-                hbmMask: ?HBITMAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddMasked: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                hbmImage: ?HBITMAP,
-                crMask: u32,
-                pi: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                hbmImage: ?HBITMAP,
-                crMask: u32,
-                pi: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Draw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                pimldp: ?*IMAGELISTDRAWPARAMS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                pimldp: ?*IMAGELISTDRAWPARAMS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                i: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                i: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIcon: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                i: i32,
-                flags: u32,
-                picon: ?*?HICON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                i: i32,
-                flags: u32,
-                picon: ?*?HICON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImageInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                i: i32,
-                pImageInfo: ?*IMAGEINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                i: i32,
-                pImageInfo: ?*IMAGEINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Copy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                iDst: i32,
-                punkSrc: ?*IUnknown,
-                iSrc: i32,
-                uFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                iDst: i32,
-                punkSrc: ?*IUnknown,
-                iSrc: i32,
-                uFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Merge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                i1: i32,
-                punk2: ?*IUnknown,
-                i2: i32,
-                dx: i32,
-                dy: i32,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                i1: i32,
-                punk2: ?*IUnknown,
-                i2: i32,
-                dx: i32,
-                dy: i32,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImageRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                i: i32,
-                prc: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                i: i32,
-                prc: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIconSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                cx: ?*i32,
-                cy: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                cx: ?*i32,
-                cy: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIconSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                cx: i32,
-                cy: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                cx: i32,
-                cy: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImageCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                pi: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                pi: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetImageCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                uNewCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                uNewCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBkColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                clrBk: u32,
-                pclr: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                clrBk: u32,
-                pclr: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBkColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                pclr: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                pclr: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginDrag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                iTrack: i32,
-                dxHotspot: i32,
-                dyHotspot: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                iTrack: i32,
-                dxHotspot: i32,
-                dyHotspot: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndDrag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DragEnter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                hwndLock: ?HWND,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                hwndLock: ?HWND,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DragLeave: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                hwndLock: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                hwndLock: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DragMove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDragCursorImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                punk: ?*IUnknown,
-                iDrag: i32,
-                dxHotspot: i32,
-                dyHotspot: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                punk: ?*IUnknown,
-                iDrag: i32,
-                dxHotspot: i32,
-                dyHotspot: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DragShowNolock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                fShow: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                fShow: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDragImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                ppt: ?*POINT,
-                pptHotspot: ?*POINT,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                ppt: ?*POINT,
-                pptHotspot: ?*POINT,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetItemFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                i: i32,
-                dwFlags: ?*IMAGE_LIST_ITEM_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                i: i32,
-                dwFlags: ?*IMAGE_LIST_ITEM_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOverlayImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList,
-                iOverlay: i32,
-                piIndex: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList,
-                iOverlay: i32,
-                piIndex: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Add: *const fn(
+            self: *const IImageList,
+            hbmImage: ?HBITMAP,
+            hbmMask: ?HBITMAP,
+            pi: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReplaceIcon: *const fn(
+            self: *const IImageList,
+            i: i32,
+            hicon: ?HICON,
+            pi: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOverlayImage: *const fn(
+            self: *const IImageList,
+            iImage: i32,
+            iOverlay: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Replace: *const fn(
+            self: *const IImageList,
+            i: i32,
+            hbmImage: ?HBITMAP,
+            hbmMask: ?HBITMAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddMasked: *const fn(
+            self: *const IImageList,
+            hbmImage: ?HBITMAP,
+            crMask: u32,
+            pi: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Draw: *const fn(
+            self: *const IImageList,
+            pimldp: ?*IMAGELISTDRAWPARAMS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Remove: *const fn(
+            self: *const IImageList,
+            i: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIcon: *const fn(
+            self: *const IImageList,
+            i: i32,
+            flags: u32,
+            picon: ?*?HICON,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageInfo: *const fn(
+            self: *const IImageList,
+            i: i32,
+            pImageInfo: ?*IMAGEINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Copy: *const fn(
+            self: *const IImageList,
+            iDst: i32,
+            punkSrc: ?*IUnknown,
+            iSrc: i32,
+            uFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Merge: *const fn(
+            self: *const IImageList,
+            i1: i32,
+            punk2: ?*IUnknown,
+            i2: i32,
+            dx: i32,
+            dy: i32,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IImageList,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageRect: *const fn(
+            self: *const IImageList,
+            i: i32,
+            prc: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIconSize: *const fn(
+            self: *const IImageList,
+            cx: ?*i32,
+            cy: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIconSize: *const fn(
+            self: *const IImageList,
+            cx: i32,
+            cy: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageCount: *const fn(
+            self: *const IImageList,
+            pi: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetImageCount: *const fn(
+            self: *const IImageList,
+            uNewCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBkColor: *const fn(
+            self: *const IImageList,
+            clrBk: u32,
+            pclr: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBkColor: *const fn(
+            self: *const IImageList,
+            pclr: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginDrag: *const fn(
+            self: *const IImageList,
+            iTrack: i32,
+            dxHotspot: i32,
+            dyHotspot: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndDrag: *const fn(
+            self: *const IImageList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DragEnter: *const fn(
+            self: *const IImageList,
+            hwndLock: ?HWND,
+            x: i32,
+            y: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DragLeave: *const fn(
+            self: *const IImageList,
+            hwndLock: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DragMove: *const fn(
+            self: *const IImageList,
+            x: i32,
+            y: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDragCursorImage: *const fn(
+            self: *const IImageList,
+            punk: ?*IUnknown,
+            iDrag: i32,
+            dxHotspot: i32,
+            dyHotspot: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DragShowNolock: *const fn(
+            self: *const IImageList,
+            fShow: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDragImage: *const fn(
+            self: *const IImageList,
+            ppt: ?*POINT,
+            pptHotspot: ?*POINT,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetItemFlags: *const fn(
+            self: *const IImageList,
+            i: i32,
+            dwFlags: ?*IMAGE_LIST_ITEM_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOverlayImage: *const fn(
+            self: *const IImageList,
+            iOverlay: i32,
+            piIndex: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6566,170 +6241,76 @@ pub const IID_IImageList2 = &IID_IImageList2_Value;
 pub const IImageList2 = extern struct {
     pub const VTable = extern struct {
         base: IImageList.VTable,
-        Resize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                cxNewIconSize: i32,
-                cyNewIconSize: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                cxNewIconSize: i32,
-                cyNewIconSize: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOriginalSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                iImage: i32,
-                dwFlags: u32,
-                pcx: ?*i32,
-                pcy: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                iImage: i32,
-                dwFlags: u32,
-                pcx: ?*i32,
-                pcy: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOriginalSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                iImage: i32,
-                cx: i32,
-                cy: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                iImage: i32,
-                cx: i32,
-                cy: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                punk: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                punk: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ForceImagePresent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                iImage: i32,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                iImage: i32,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DiscardImages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                iFirstImage: i32,
-                iLastImage: i32,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                iFirstImage: i32,
-                iLastImage: i32,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PreloadImages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                pimldp: ?*IMAGELISTDRAWPARAMS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                pimldp: ?*IMAGELISTDRAWPARAMS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                pils: ?*IMAGELISTSTATS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                pils: ?*IMAGELISTSTATS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                cx: i32,
-                cy: i32,
-                flags: IMAGELIST_CREATION_FLAGS,
-                cInitial: i32,
-                cGrow: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                cx: i32,
-                cy: i32,
-                flags: IMAGELIST_CREATION_FLAGS,
-                cInitial: i32,
-                cGrow: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Replace2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                i: i32,
-                hbmImage: ?HBITMAP,
-                hbmMask: ?HBITMAP,
-                punk: ?*IUnknown,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                i: i32,
-                hbmImage: ?HBITMAP,
-                hbmMask: ?HBITMAP,
-                punk: ?*IUnknown,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReplaceFromImageList: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImageList2,
-                i: i32,
-                pil: ?*IImageList,
-                iSrc: i32,
-                punk: ?*IUnknown,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImageList2,
-                i: i32,
-                pil: ?*IImageList,
-                iSrc: i32,
-                punk: ?*IUnknown,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Resize: *const fn(
+            self: *const IImageList2,
+            cxNewIconSize: i32,
+            cyNewIconSize: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOriginalSize: *const fn(
+            self: *const IImageList2,
+            iImage: i32,
+            dwFlags: u32,
+            pcx: ?*i32,
+            pcy: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOriginalSize: *const fn(
+            self: *const IImageList2,
+            iImage: i32,
+            cx: i32,
+            cy: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCallback: *const fn(
+            self: *const IImageList2,
+            punk: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCallback: *const fn(
+            self: *const IImageList2,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ForceImagePresent: *const fn(
+            self: *const IImageList2,
+            iImage: i32,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DiscardImages: *const fn(
+            self: *const IImageList2,
+            iFirstImage: i32,
+            iLastImage: i32,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PreloadImages: *const fn(
+            self: *const IImageList2,
+            pimldp: ?*IMAGELISTDRAWPARAMS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatistics: *const fn(
+            self: *const IImageList2,
+            pils: ?*IMAGELISTSTATS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IImageList2,
+            cx: i32,
+            cy: i32,
+            flags: IMAGELIST_CREATION_FLAGS,
+            cInitial: i32,
+            cGrow: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Replace2: *const fn(
+            self: *const IImageList2,
+            i: i32,
+            hbmImage: ?HBITMAP,
+            hbmMask: ?HBITMAP,
+            punk: ?*IUnknown,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReplaceFromImageList: *const fn(
+            self: *const IImageList2,
+            i: i32,
+            pil: ?*IImageList,
+            iSrc: i32,
+            punk: ?*IUnknown,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6969,24 +6550,14 @@ pub const WTA_OPTIONS = extern struct {
     dwMask: u32,
 };
 
-pub const DTT_CALLBACK_PROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hdc: ?HDC,
-        pszText: [*:0]u16,
-        cchText: i32,
-        prc: ?*RECT,
-        dwFlags: u32,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hdc: ?HDC,
-        pszText: [*:0]u16,
-        cchText: i32,
-        prc: ?*RECT,
-        dwFlags: u32,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const DTT_CALLBACK_PROC = *const fn(
+    hdc: ?HDC,
+    pszText: [*:0]u16,
+    cchText: i32,
+    prc: ?*RECT,
+    dwFlags: u32,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const DTTOPTS = extern struct {
     dwSize: u32,
@@ -9896,57 +9467,29 @@ pub const CCSTYLEW = extern struct {
     wReserved1: u16,
 };
 
-pub const LPFNCCSTYLEA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hwndParent: ?HWND,
-        pccs: ?*CCSTYLEA,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hwndParent: ?HWND,
-        pccs: ?*CCSTYLEA,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFNCCSTYLEA = *const fn(
+    hwndParent: ?HWND,
+    pccs: ?*CCSTYLEA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFNCCSTYLEW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hwndParent: ?HWND,
-        pccs: ?*CCSTYLEW,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hwndParent: ?HWND,
-        pccs: ?*CCSTYLEW,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFNCCSTYLEW = *const fn(
+    hwndParent: ?HWND,
+    pccs: ?*CCSTYLEW,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFNCCSIZETOTEXTA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        flStyle: u32,
-        flExtStyle: u32,
-        hfont: ?HFONT,
-        pszText: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        flStyle: u32,
-        flExtStyle: u32,
-        hfont: ?HFONT,
-        pszText: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPFNCCSIZETOTEXTA = *const fn(
+    flStyle: u32,
+    flExtStyle: u32,
+    hfont: ?HFONT,
+    pszText: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPFNCCSIZETOTEXTW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        flStyle: u32,
-        flExtStyle: u32,
-        hfont: ?HFONT,
-        pszText: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        flStyle: u32,
-        flExtStyle: u32,
-        hfont: ?HFONT,
-        pszText: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPFNCCSIZETOTEXTW = *const fn(
+    flStyle: u32,
+    flExtStyle: u32,
+    hfont: ?HFONT,
+    pszText: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const CCSTYLEFLAGA = extern struct {
     flStyle: u32,
@@ -9996,53 +9539,27 @@ pub const CCINFOW = extern struct {
     dwReserved2: u32,
 };
 
-pub const LPFNCCINFOA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        acci: ?*CCINFOA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        acci: ?*CCINFOA,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPFNCCINFOA = *const fn(
+    acci: ?*CCINFOA,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPFNCCINFOW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        acci: ?*CCINFOW,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        acci: ?*CCINFOW,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPFNCCINFOW = *const fn(
+    acci: ?*CCINFOW,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const EDITWORDBREAKPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpch: ?PSTR,
-        ichCurrent: i32,
-        cch: i32,
-        code: WORD_BREAK_ACTION,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpch: ?PSTR,
-        ichCurrent: i32,
-        cch: i32,
-        code: WORD_BREAK_ACTION,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const EDITWORDBREAKPROCA = *const fn(
+    lpch: ?PSTR,
+    ichCurrent: i32,
+    cch: i32,
+    code: WORD_BREAK_ACTION,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const EDITWORDBREAKPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpch: ?PWSTR,
-        ichCurrent: i32,
-        cch: i32,
-        code: WORD_BREAK_ACTION,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpch: ?PWSTR,
-        ichCurrent: i32,
-        cch: i32,
-        code: WORD_BREAK_ACTION,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const EDITWORDBREAKPROCW = *const fn(
+    lpch: ?PWSTR,
+    ichCurrent: i32,
+    cch: i32,
+    code: WORD_BREAK_ACTION,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const NMHDR = extern struct {
     hwndFrom: ?HWND,

@@ -11,34 +11,18 @@ pub const IID_IGraphicsCaptureItemInterop = &IID_IGraphicsCaptureItemInterop_Val
 pub const IGraphicsCaptureItemInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateForWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGraphicsCaptureItemInterop,
-                window: ?HWND,
-                riid: ?*const Guid,
-                result: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGraphicsCaptureItemInterop,
-                window: ?HWND,
-                riid: ?*const Guid,
-                result: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateForMonitor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGraphicsCaptureItemInterop,
-                monitor: ?HMONITOR,
-                riid: ?*const Guid,
-                result: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGraphicsCaptureItemInterop,
-                monitor: ?HMONITOR,
-                riid: ?*const Guid,
-                result: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateForWindow: *const fn(
+            self: *const IGraphicsCaptureItemInterop,
+            window: ?HWND,
+            riid: ?*const Guid,
+            result: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateForMonitor: *const fn(
+            self: *const IGraphicsCaptureItemInterop,
+            monitor: ?HMONITOR,
+            riid: ?*const Guid,
+            result: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

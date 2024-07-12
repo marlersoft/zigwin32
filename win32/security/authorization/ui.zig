@@ -183,100 +183,46 @@ pub const IID_ISecurityInformation = &IID_ISecurityInformation_Value;
 pub const ISecurityInformation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetObjectInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation,
-                pObjectInfo: ?*SI_OBJECT_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation,
-                pObjectInfo: ?*SI_OBJECT_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSecurity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation,
-                RequestedInformation: OBJECT_SECURITY_INFORMATION,
-                ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-                fDefault: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation,
-                RequestedInformation: OBJECT_SECURITY_INFORMATION,
-                ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-                fDefault: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSecurity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation,
-                SecurityInformation: OBJECT_SECURITY_INFORMATION,
-                pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation,
-                SecurityInformation: OBJECT_SECURITY_INFORMATION,
-                pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAccessRights: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation,
-                pguidObjectType: ?*const Guid,
-                dwFlags: SECURITY_INFO_PAGE_FLAGS,
-                ppAccess: ?*?*SI_ACCESS,
-                pcAccesses: ?*u32,
-                piDefaultAccess: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation,
-                pguidObjectType: ?*const Guid,
-                dwFlags: SECURITY_INFO_PAGE_FLAGS,
-                ppAccess: ?*?*SI_ACCESS,
-                pcAccesses: ?*u32,
-                piDefaultAccess: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MapGeneric: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation,
-                pguidObjectType: ?*const Guid,
-                pAceFlags: ?*u8,
-                pMask: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation,
-                pguidObjectType: ?*const Guid,
-                pAceFlags: ?*u8,
-                pMask: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInheritTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation,
-                ppInheritTypes: ?*?*SI_INHERIT_TYPE,
-                pcInheritTypes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation,
-                ppInheritTypes: ?*?*SI_INHERIT_TYPE,
-                pcInheritTypes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PropertySheetPageCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation,
-                hwnd: ?HWND,
-                uMsg: PSPCB_MESSAGE,
-                uPage: SI_PAGE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation,
-                hwnd: ?HWND,
-                uMsg: PSPCB_MESSAGE,
-                uPage: SI_PAGE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetObjectInformation: *const fn(
+            self: *const ISecurityInformation,
+            pObjectInfo: ?*SI_OBJECT_INFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSecurity: *const fn(
+            self: *const ISecurityInformation,
+            RequestedInformation: OBJECT_SECURITY_INFORMATION,
+            ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
+            fDefault: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSecurity: *const fn(
+            self: *const ISecurityInformation,
+            SecurityInformation: OBJECT_SECURITY_INFORMATION,
+            pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAccessRights: *const fn(
+            self: *const ISecurityInformation,
+            pguidObjectType: ?*const Guid,
+            dwFlags: SECURITY_INFO_PAGE_FLAGS,
+            ppAccess: ?*?*SI_ACCESS,
+            pcAccesses: ?*u32,
+            piDefaultAccess: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MapGeneric: *const fn(
+            self: *const ISecurityInformation,
+            pguidObjectType: ?*const Guid,
+            pAceFlags: ?*u8,
+            pMask: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInheritTypes: *const fn(
+            self: *const ISecurityInformation,
+            ppInheritTypes: ?*?*SI_INHERIT_TYPE,
+            pcInheritTypes: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PropertySheetPageCallback: *const fn(
+            self: *const ISecurityInformation,
+            hwnd: ?HWND,
+            uMsg: PSPCB_MESSAGE,
+            uPage: SI_PAGE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -319,30 +265,16 @@ pub const IID_ISecurityInformation2 = &IID_ISecurityInformation2_Value;
 pub const ISecurityInformation2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsDaclCanonical: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation2,
-                pDacl: ?*ACL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ISecurityInformation2,
-                pDacl: ?*ACL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        LookupSids: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation2,
-                cSids: u32,
-                rgpSids: ?*?PSID,
-                ppdo: ?*?*IDataObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation2,
-                cSids: u32,
-                rgpSids: ?*?PSID,
-                ppdo: ?*?*IDataObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsDaclCanonical: *const fn(
+            self: *const ISecurityInformation2,
+            pDacl: ?*ACL,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        LookupSids: *const fn(
+            self: *const ISecurityInformation2,
+            cSids: u32,
+            rgpSids: ?*?PSID,
+            ppdo: ?*?*IDataObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -377,30 +309,17 @@ pub const IID_IEffectivePermission = &IID_IEffectivePermission_Value;
 pub const IEffectivePermission = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetEffectivePermission: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEffectivePermission,
-                pguidObjectType: ?*const Guid,
-                pUserSid: ?PSID,
-                pszServerName: ?[*:0]const u16,
-                pSD: ?PSECURITY_DESCRIPTOR,
-                ppObjectTypeList: ?*?*OBJECT_TYPE_LIST,
-                pcObjectTypeListLength: ?*u32,
-                ppGrantedAccessList: ?*?*u32,
-                pcGrantedAccessListLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEffectivePermission,
-                pguidObjectType: ?*const Guid,
-                pUserSid: ?PSID,
-                pszServerName: ?[*:0]const u16,
-                pSD: ?PSECURITY_DESCRIPTOR,
-                ppObjectTypeList: ?*?*OBJECT_TYPE_LIST,
-                pcObjectTypeListLength: ?*u32,
-                ppGrantedAccessList: ?*?*u32,
-                pcGrantedAccessListLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetEffectivePermission: *const fn(
+            self: *const IEffectivePermission,
+            pguidObjectType: ?*const Guid,
+            pUserSid: ?PSID,
+            pszServerName: ?[*:0]const u16,
+            pSD: ?PSECURITY_DESCRIPTOR,
+            ppObjectTypeList: ?*?*OBJECT_TYPE_LIST,
+            pcObjectTypeListLength: ?*u32,
+            ppGrantedAccessList: ?*?*u32,
+            pcGrantedAccessListLength: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -419,20 +338,12 @@ pub const IID_ISecurityObjectTypeInfo = &IID_ISecurityObjectTypeInfo_Value;
 pub const ISecurityObjectTypeInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInheritSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityObjectTypeInfo,
-                si: u32,
-                pACL: ?*ACL,
-                ppInheritArray: ?*?*INHERITED_FROMA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityObjectTypeInfo,
-                si: u32,
-                pACL: ?*ACL,
-                ppInheritArray: ?*?*INHERITED_FROMA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetInheritSource: *const fn(
+            self: *const ISecurityObjectTypeInfo,
+            si: u32,
+            pACL: ?*ACL,
+            ppInheritArray: ?*?*INHERITED_FROMA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -451,28 +362,15 @@ pub const IID_ISecurityInformation3 = &IID_ISecurityInformation3_Value;
 pub const ISecurityInformation3 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFullResourceName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation3,
-                ppszResourceName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation3,
-                ppszResourceName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenElevatedEditor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation3,
-                hWnd: ?HWND,
-                uPage: SI_PAGE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation3,
-                hWnd: ?HWND,
-                uPage: SI_PAGE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFullResourceName: *const fn(
+            self: *const ISecurityInformation3,
+            ppszResourceName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenElevatedEditor: *const fn(
+            self: *const ISecurityInformation3,
+            hWnd: ?HWND,
+            uPage: SI_PAGE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -512,18 +410,11 @@ pub const IID_ISecurityInformation4 = &IID_ISecurityInformation4_Value;
 pub const ISecurityInformation4 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSecondarySecurity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISecurityInformation4,
-                pSecurityObjects: ?*?*SECURITY_OBJECT,
-                pSecurityObjectCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISecurityInformation4,
-                pSecurityObjects: ?*?*SECURITY_OBJECT,
-                pSecurityObjectCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSecondarySecurity: *const fn(
+            self: *const ISecurityInformation4,
+            pSecurityObjects: ?*?*SECURITY_OBJECT,
+            pSecurityObjectCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -542,42 +433,23 @@ pub const IID_IEffectivePermission2 = &IID_IEffectivePermission2_Value;
 pub const IEffectivePermission2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ComputeEffectivePermissionWithSecondarySecurity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEffectivePermission2,
-                pSid: ?PSID,
-                pDeviceSid: ?PSID,
-                pszServerName: ?[*:0]const u16,
-                pSecurityObjects: [*]SECURITY_OBJECT,
-                dwSecurityObjectCount: u32,
-                pUserGroups: ?*TOKEN_GROUPS,
-                pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION,
-                pDeviceGroups: ?*TOKEN_GROUPS,
-                pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION,
-                pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-                pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
-                pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-                pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
-                pEffpermResultLists: [*]EFFPERM_RESULT_LIST,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEffectivePermission2,
-                pSid: ?PSID,
-                pDeviceSid: ?PSID,
-                pszServerName: ?[*:0]const u16,
-                pSecurityObjects: [*]SECURITY_OBJECT,
-                dwSecurityObjectCount: u32,
-                pUserGroups: ?*TOKEN_GROUPS,
-                pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION,
-                pDeviceGroups: ?*TOKEN_GROUPS,
-                pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION,
-                pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-                pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
-                pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-                pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
-                pEffpermResultLists: [*]EFFPERM_RESULT_LIST,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ComputeEffectivePermissionWithSecondarySecurity: *const fn(
+            self: *const IEffectivePermission2,
+            pSid: ?PSID,
+            pDeviceSid: ?PSID,
+            pszServerName: ?[*:0]const u16,
+            pSecurityObjects: [*]SECURITY_OBJECT,
+            dwSecurityObjectCount: u32,
+            pUserGroups: ?*TOKEN_GROUPS,
+            pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION,
+            pDeviceGroups: ?*TOKEN_GROUPS,
+            pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION,
+            pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
+            pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
+            pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
+            pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
+            pEffpermResultLists: [*]EFFPERM_RESULT_LIST,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

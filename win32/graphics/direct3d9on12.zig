@@ -15,83 +15,43 @@ pub const D3D9ON12_ARGS = extern struct {
     NodeMask: u32,
 };
 
-pub const PFN_Direct3DCreate9On12Ex = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        SDKVersion: u32,
-        pOverrideList: ?*D3D9ON12_ARGS,
-        NumOverrideEntries: u32,
-        ppOutputInterface: ?*?*IDirect3D9Ex,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        SDKVersion: u32,
-        pOverrideList: ?*D3D9ON12_ARGS,
-        NumOverrideEntries: u32,
-        ppOutputInterface: ?*?*IDirect3D9Ex,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PFN_Direct3DCreate9On12Ex = *const fn(
+    SDKVersion: u32,
+    pOverrideList: ?*D3D9ON12_ARGS,
+    NumOverrideEntries: u32,
+    ppOutputInterface: ?*?*IDirect3D9Ex,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_Direct3DCreate9On12 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        SDKVersion: u32,
-        pOverrideList: ?*D3D9ON12_ARGS,
-        NumOverrideEntries: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*IDirect3D9,
-    else => *const fn(
-        SDKVersion: u32,
-        pOverrideList: ?*D3D9ON12_ARGS,
-        NumOverrideEntries: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*IDirect3D9,
-} ;
+pub const PFN_Direct3DCreate9On12 = *const fn(
+    SDKVersion: u32,
+    pOverrideList: ?*D3D9ON12_ARGS,
+    NumOverrideEntries: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*IDirect3D9;
 
 const IID_IDirect3DDevice9On12_Value = Guid.initString("e7fda234-b589-4049-940d-8878977531c8");
 pub const IID_IDirect3DDevice9On12 = &IID_IDirect3DDevice9On12_Value;
 pub const IDirect3DDevice9On12 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetD3D12Device: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirect3DDevice9On12,
-                riid: ?*const Guid,
-                ppvDevice: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirect3DDevice9On12,
-                riid: ?*const Guid,
-                ppvDevice: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnwrapUnderlyingResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirect3DDevice9On12,
-                pResource: ?*IDirect3DResource9,
-                pCommandQueue: ?*ID3D12CommandQueue,
-                riid: ?*const Guid,
-                ppvResource12: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirect3DDevice9On12,
-                pResource: ?*IDirect3DResource9,
-                pCommandQueue: ?*ID3D12CommandQueue,
-                riid: ?*const Guid,
-                ppvResource12: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReturnUnderlyingResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirect3DDevice9On12,
-                pResource: ?*IDirect3DResource9,
-                NumSync: u32,
-                pSignalValues: ?*u64,
-                ppFences: ?*?*ID3D12Fence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirect3DDevice9On12,
-                pResource: ?*IDirect3DResource9,
-                NumSync: u32,
-                pSignalValues: ?*u64,
-                ppFences: ?*?*ID3D12Fence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetD3D12Device: *const fn(
+            self: *const IDirect3DDevice9On12,
+            riid: ?*const Guid,
+            ppvDevice: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnwrapUnderlyingResource: *const fn(
+            self: *const IDirect3DDevice9On12,
+            pResource: ?*IDirect3DResource9,
+            pCommandQueue: ?*ID3D12CommandQueue,
+            riid: ?*const Guid,
+            ppvResource12: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReturnUnderlyingResource: *const fn(
+            self: *const IDirect3DDevice9On12,
+            pResource: ?*IDirect3DResource9,
+            NumSync: u32,
+            pSignalValues: ?*u64,
+            ppFences: ?*?*ID3D12Fence,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

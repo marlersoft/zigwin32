@@ -1263,64 +1263,31 @@ pub const IID_ICloneViewHelper = &IID_ICloneViewHelper_Value;
 pub const ICloneViewHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetConnectedIDs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICloneViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                pulCount: ?*u32,
-                pulID: ?*u32,
-                ulFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICloneViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                pulCount: ?*u32,
-                pulID: ?*u32,
-                ulFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetActiveTopology: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICloneViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                ulSourceID: u32,
-                pulCount: ?*u32,
-                pulTargetID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICloneViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                ulSourceID: u32,
-                pulCount: ?*u32,
-                pulTargetID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActiveTopology: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICloneViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                ulSourceID: u32,
-                ulCount: u32,
-                pulTargetID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICloneViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                ulSourceID: u32,
-                ulCount: u32,
-                pulTargetID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICloneViewHelper,
-                fFinalCall: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICloneViewHelper,
-                fFinalCall: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetConnectedIDs: *const fn(
+            self: *const ICloneViewHelper,
+            wszAdaptorName: ?[*:0]const u16,
+            pulCount: ?*u32,
+            pulID: ?*u32,
+            ulFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetActiveTopology: *const fn(
+            self: *const ICloneViewHelper,
+            wszAdaptorName: ?[*:0]const u16,
+            ulSourceID: u32,
+            pulCount: ?*u32,
+            pulTargetID: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActiveTopology: *const fn(
+            self: *const ICloneViewHelper,
+            wszAdaptorName: ?[*:0]const u16,
+            ulSourceID: u32,
+            ulCount: u32,
+            pulTargetID: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Commit: *const fn(
+            self: *const ICloneViewHelper,
+            fFinalCall: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1350,82 +1317,38 @@ pub const IID_IViewHelper = &IID_IViewHelper_Value;
 pub const IViewHelper = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetConnectedIDs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                pulCount: ?*u32,
-                pulID: ?*u32,
-                ulFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                pulCount: ?*u32,
-                pulID: ?*u32,
-                ulFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetActiveTopology: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                ulSourceID: u32,
-                pulCount: ?*u32,
-                pulTargetID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                ulSourceID: u32,
-                pulCount: ?*u32,
-                pulTargetID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActiveTopology: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                ulSourceID: u32,
-                ulCount: u32,
-                pulTargetID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IViewHelper,
-                wszAdaptorName: ?[*:0]const u16,
-                ulSourceID: u32,
-                ulCount: u32,
-                pulTargetID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IViewHelper,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IViewHelper,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConfiguration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IViewHelper,
-                pIStream: ?*IStream,
-                pulStatus: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IViewHelper,
-                pIStream: ?*IStream,
-                pulStatus: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProceedOnNewConfiguration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IViewHelper,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IViewHelper,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetConnectedIDs: *const fn(
+            self: *const IViewHelper,
+            wszAdaptorName: ?[*:0]const u16,
+            pulCount: ?*u32,
+            pulID: ?*u32,
+            ulFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetActiveTopology: *const fn(
+            self: *const IViewHelper,
+            wszAdaptorName: ?[*:0]const u16,
+            ulSourceID: u32,
+            pulCount: ?*u32,
+            pulTargetID: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActiveTopology: *const fn(
+            self: *const IViewHelper,
+            wszAdaptorName: ?[*:0]const u16,
+            ulSourceID: u32,
+            ulCount: u32,
+            pulTargetID: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Commit: *const fn(
+            self: *const IViewHelper,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConfiguration: *const fn(
+            self: *const IViewHelper,
+            pIStream: ?*IStream,
+            pulStatus: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProceedOnNewConfiguration: *const fn(
+            self: *const IViewHelper,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1598,12 +1521,8 @@ pub const IFIEXTRA = extern struct {
     aulReserved: [1]u32,
 };
 
-pub const PFN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) isize,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) isize,
-} ;
+pub const PFN = *const fn(
+) callconv(@import("std").os.windows.WINAPI) isize;
 
 pub const DRVFN = extern struct {
     iFunc: u32,
@@ -1728,7 +1647,7 @@ pub const CLIPOBJ = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const FREEOBJPROC = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const FREEOBJPROC = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DRIVEROBJ = extern struct {
     pvObj: ?*anyopaque,
@@ -1884,16 +1803,10 @@ pub const GAMMARAMP = extern struct {
     Blue: [256]u16,
 };
 
-pub const WNDOBJCHANGEPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pwo: ?*WNDOBJ,
-        fl: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pwo: ?*WNDOBJ,
-        fl: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WNDOBJCHANGEPROC = *const fn(
+    pwo: ?*WNDOBJ,
+    fl: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DEVHTINFO = extern struct {
     HTFlags: u32,
@@ -1922,16 +1835,10 @@ pub const ENGSAFESEMAPHORE = extern struct {
 };
 
 
-pub const SORTCOMP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pv1: ?*const anyopaque,
-        pv2: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        pv1: ?*const anyopaque,
-        pv2: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const SORTCOMP = *const fn(
+    pv1: ?*const anyopaque,
+    pv2: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const ENG_TIME_FIELDS = extern struct {
     usYear: u16,
@@ -1969,1476 +1876,696 @@ pub const EMFINFO = extern struct {
     pvCurrentRecord: ?*u8,
 };
 
-pub const PFN_DrvEnableDriver = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: u32,
-        param2: ?*DRVENABLEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: u32,
-        param1: u32,
-        param2: ?*DRVENABLEDATA,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvEnablePDEV = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DEVMODEW,
-        param1: ?PWSTR,
-        param2: u32,
-        param3: ?*?HSURF,
-        param4: u32,
-        param5: ?*GDIINFO,
-        param6: u32,
-        param7: ?*DEVINFO,
-        param8: ?HDEV,
-        param9: ?PWSTR,
-        param10: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) DHPDEV,
-    else => *const fn(
-        param0: ?*DEVMODEW,
-        param1: ?PWSTR,
-        param2: u32,
-        param3: ?*?HSURF,
-        param4: u32,
-        param5: ?*GDIINFO,
-        param6: u32,
-        param7: ?*DEVINFO,
-        param8: ?HDEV,
-        param9: ?PWSTR,
-        param10: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) DHPDEV,
-} ;
-
-pub const PFN_DrvCompletePDEV = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?HDEV,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?HDEV,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvResetDevice = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
-
-pub const PFN_DrvDisablePDEV = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvSynchronize = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvEnableSurface = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) ?HSURF,
-    else => *const fn(
-        param0: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) ?HSURF,
-} ;
-
-pub const PFN_DrvDisableDriver = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvDisableSurface = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvAssertMode = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvTextOut = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*STROBJ,
-        param2: ?*FONTOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*RECTL,
-        param5: ?*RECTL,
-        param6: ?*BRUSHOBJ,
-        param7: ?*BRUSHOBJ,
-        param8: ?*POINTL,
-        param9: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*STROBJ,
-        param2: ?*FONTOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*RECTL,
-        param5: ?*RECTL,
-        param6: ?*BRUSHOBJ,
-        param7: ?*BRUSHOBJ,
-        param8: ?*POINTL,
-        param9: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvStretchBlt = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*XLATEOBJ,
-        param5: ?*COLORADJUSTMENT,
-        param6: ?*POINTL,
-        param7: ?*RECTL,
-        param8: ?*RECTL,
-        param9: ?*POINTL,
-        param10: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*XLATEOBJ,
-        param5: ?*COLORADJUSTMENT,
-        param6: ?*POINTL,
-        param7: ?*RECTL,
-        param8: ?*RECTL,
-        param9: ?*POINTL,
-        param10: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvStretchBltROP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*XLATEOBJ,
-        param5: ?*COLORADJUSTMENT,
-        param6: ?*POINTL,
-        param7: ?*RECTL,
-        param8: ?*RECTL,
-        param9: ?*POINTL,
-        param10: u32,
-        param11: ?*BRUSHOBJ,
-        param12: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*XLATEOBJ,
-        param5: ?*COLORADJUSTMENT,
-        param6: ?*POINTL,
-        param7: ?*RECTL,
-        param8: ?*RECTL,
-        param9: ?*POINTL,
-        param10: u32,
-        param11: ?*BRUSHOBJ,
-        param12: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvTransparentBlt = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XLATEOBJ,
-        param4: ?*RECTL,
-        param5: ?*RECTL,
-        param6: u32,
-        param7: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XLATEOBJ,
-        param4: ?*RECTL,
-        param5: ?*RECTL,
-        param6: u32,
-        param7: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvPlgBlt = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*XLATEOBJ,
-        param5: ?*COLORADJUSTMENT,
-        param6: ?*POINTL,
-        param7: ?*POINTFIX,
-        param8: ?*RECTL,
-        param9: ?*POINTL,
-        param10: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*XLATEOBJ,
-        param5: ?*COLORADJUSTMENT,
-        param6: ?*POINTL,
-        param7: ?*POINTFIX,
-        param8: ?*RECTL,
-        param9: ?*POINTL,
-        param10: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvBitBlt = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*XLATEOBJ,
-        param5: ?*RECTL,
-        param6: ?*POINTL,
-        param7: ?*POINTL,
-        param8: ?*BRUSHOBJ,
-        param9: ?*POINTL,
-        param10: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*CLIPOBJ,
-        param4: ?*XLATEOBJ,
-        param5: ?*RECTL,
-        param6: ?*POINTL,
-        param7: ?*POINTL,
-        param8: ?*BRUSHOBJ,
-        param9: ?*POINTL,
-        param10: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvRealizeBrush = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*BRUSHOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*SURFOBJ,
-        param4: ?*XLATEOBJ,
-        param5: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*BRUSHOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*SURFOBJ,
-        param4: ?*XLATEOBJ,
-        param5: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvCopyBits = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XLATEOBJ,
-        param4: ?*RECTL,
-        param5: ?*POINTL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XLATEOBJ,
-        param4: ?*RECTL,
-        param5: ?*POINTL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvDitherColor = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: u32,
-        param2: u32,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: u32,
-        param2: u32,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
-
-pub const PFN_DrvCreateDeviceBitmap = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: SIZE,
-        param2: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: SIZE,
-        param2: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP,
-} ;
-
-pub const PFN_DrvDeleteDeviceBitmap = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHSURF,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: DHSURF,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvSetPalette = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*PALOBJ,
-        param2: u32,
-        param3: u32,
-        param4: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*PALOBJ,
-        param2: u32,
-        param3: u32,
-        param4: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvEscape = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: u32,
-        param2: u32,
-        param3: ?*anyopaque,
-        param4: u32,
-        param5: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: u32,
-        param2: u32,
-        param3: ?*anyopaque,
-        param4: u32,
-        param5: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
-
-pub const PFN_DrvDrawEscape = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: u32,
-        param2: ?*CLIPOBJ,
-        param3: ?*RECTL,
-        param4: u32,
-        param5: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: u32,
-        param2: ?*CLIPOBJ,
-        param3: ?*RECTL,
-        param4: u32,
-        param5: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
-
-pub const PFN_DrvQueryFont = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: usize,
-        param2: u32,
-        param3: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?*IFIMETRICS,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: usize,
-        param2: u32,
-        param3: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?*IFIMETRICS,
-} ;
-
-pub const PFN_DrvQueryFontTree = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: usize,
-        param2: u32,
-        param3: u32,
-        param4: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: usize,
-        param2: u32,
-        param3: u32,
-        param4: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
-
-pub const PFN_DrvQueryFontData = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*FONTOBJ,
-        param2: u32,
-        param3: u32,
-        param4: ?*GLYPHDATA,
-        param5: ?*anyopaque,
-        param6: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*FONTOBJ,
-        param2: u32,
-        param3: u32,
-        param4: ?*GLYPHDATA,
-        param5: ?*anyopaque,
-        param6: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
-pub const PFN_DrvFree = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*anyopaque,
-        param1: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*anyopaque,
-        param1: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvDestroyFont = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*FONTOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*FONTOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvQueryFontCaps = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: u32,
-        param1: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
-pub const PFN_DrvLoadFontFile = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: ?*usize,
-        param2: ?*?*anyopaque,
-        param3: ?*u32,
-        param4: ?*DESIGNVECTOR,
-        param5: u32,
-        param6: u32,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: u32,
-        param1: ?*usize,
-        param2: ?*?*anyopaque,
-        param3: ?*u32,
-        param4: ?*DESIGNVECTOR,
-        param5: u32,
-        param6: u32,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
-
-pub const PFN_DrvUnloadFontFile = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvSetPointerShape = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*XLATEOBJ,
-        param4: i32,
-        param5: i32,
-        param6: i32,
-        param7: i32,
-        param8: ?*RECTL,
-        param9: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*SURFOBJ,
-        param3: ?*XLATEOBJ,
-        param4: i32,
-        param5: i32,
-        param6: i32,
-        param7: i32,
-        param8: ?*RECTL,
-        param9: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
-
-pub const PFN_DrvMovePointer = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pso: ?*SURFOBJ,
-        x: i32,
-        y: i32,
-        prcl: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pso: ?*SURFOBJ,
-        x: i32,
-        y: i32,
-        prcl: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvSendPage = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvStartPage = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pso: ?*SURFOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pso: ?*SURFOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvStartDoc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pso: ?*SURFOBJ,
-        pwszDocName: ?PWSTR,
-        dwJobId: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pso: ?*SURFOBJ,
-        pwszDocName: ?PWSTR,
-        dwJobId: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvEndDoc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pso: ?*SURFOBJ,
-        fl: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pso: ?*SURFOBJ,
-        fl: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvQuerySpoolType = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dhpdev: DHPDEV,
-        pwchType: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        dhpdev: DHPDEV,
-        pwchType: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvLineTo = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*CLIPOBJ,
-        param2: ?*BRUSHOBJ,
-        param3: i32,
-        param4: i32,
-        param5: i32,
-        param6: i32,
-        param7: ?*RECTL,
-        param8: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*CLIPOBJ,
-        param2: ?*BRUSHOBJ,
-        param3: i32,
-        param4: i32,
-        param5: i32,
-        param6: i32,
-        param7: ?*RECTL,
-        param8: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvStrokePath = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*PATHOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XFORMOBJ,
-        param4: ?*BRUSHOBJ,
-        param5: ?*POINTL,
-        param6: ?*LINEATTRS,
-        param7: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*PATHOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XFORMOBJ,
-        param4: ?*BRUSHOBJ,
-        param5: ?*POINTL,
-        param6: ?*LINEATTRS,
-        param7: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvFillPath = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*PATHOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*BRUSHOBJ,
-        param4: ?*POINTL,
-        param5: u32,
-        param6: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*PATHOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*BRUSHOBJ,
-        param4: ?*POINTL,
-        param5: u32,
-        param6: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvStrokeAndFillPath = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*PATHOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XFORMOBJ,
-        param4: ?*BRUSHOBJ,
-        param5: ?*LINEATTRS,
-        param6: ?*BRUSHOBJ,
-        param7: ?*POINTL,
-        param8: u32,
-        param9: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*PATHOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XFORMOBJ,
-        param4: ?*BRUSHOBJ,
-        param5: ?*LINEATTRS,
-        param6: ?*BRUSHOBJ,
-        param7: ?*POINTL,
-        param8: u32,
-        param9: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvPaint = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*CLIPOBJ,
-        param2: ?*BRUSHOBJ,
-        param3: ?*POINTL,
-        param4: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*CLIPOBJ,
-        param2: ?*BRUSHOBJ,
-        param3: ?*POINTL,
-        param4: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvGetGlyphMode = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dhpdev: DHPDEV,
-        pfo: ?*FONTOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dhpdev: DHPDEV,
-        pfo: ?*FONTOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
-
-pub const PFN_DrvResetPDEV = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dhpdevOld: DHPDEV,
-        dhpdevNew: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        dhpdevOld: DHPDEV,
-        dhpdevNew: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvSaveScreenBits = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: u32,
-        param2: usize,
-        param3: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: u32,
-        param2: usize,
-        param3: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
-
-pub const PFN_DrvGetModes = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HANDLE,
-        param1: u32,
-        param2: ?*DEVMODEW,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?HANDLE,
-        param1: u32,
-        param2: ?*DEVMODEW,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
-
-pub const PFN_DrvQueryTrueTypeTable = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: u32,
-        param2: u32,
-        param3: i32,
-        param4: u32,
-        param5: ?*u8,
-        param6: ?*?*u8,
-        param7: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: usize,
-        param1: u32,
-        param2: u32,
-        param3: i32,
-        param4: u32,
-        param5: ?*u8,
-        param6: ?*?*u8,
-        param7: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
-pub const PFN_DrvQueryTrueTypeSection = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: u32,
-        param2: u32,
-        param3: ?*?HANDLE,
-        param4: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: u32,
-        param1: u32,
-        param2: u32,
-        param3: ?*?HANDLE,
-        param4: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
-pub const PFN_DrvQueryTrueTypeOutline = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*FONTOBJ,
-        param2: u32,
-        param3: BOOL,
-        param4: ?*GLYPHDATA,
-        param5: u32,
-        param6: ?*TTPOLYGONHEADER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*FONTOBJ,
-        param2: u32,
-        param3: BOOL,
-        param4: ?*GLYPHDATA,
-        param5: u32,
-        param6: ?*TTPOLYGONHEADER,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
-pub const PFN_DrvGetTrueTypeFile = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
-        param0: usize,
-        param1: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
-
-pub const PFN_DrvQueryFontFile = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: u32,
-        param2: u32,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: usize,
-        param1: u32,
-        param2: u32,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
-pub const PFN_DrvQueryGlyphAttrs = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*FONTOBJ,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*FD_GLYPHATTR,
-    else => *const fn(
-        param0: ?*FONTOBJ,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*FD_GLYPHATTR,
-} ;
-
-pub const PFN_DrvQueryAdvanceWidths = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*FONTOBJ,
-        param2: u32,
-        param3: ?*u32,
-        param4: ?*anyopaque,
-        param5: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*FONTOBJ,
-        param2: u32,
-        param3: ?*u32,
-        param4: ?*anyopaque,
-        param5: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvFontManagement = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*FONTOBJ,
-        param2: u32,
-        param3: u32,
-        param4: ?*anyopaque,
-        param5: u32,
-        param6: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*FONTOBJ,
-        param2: u32,
-        param3: u32,
-        param4: ?*anyopaque,
-        param5: u32,
-        param6: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
-
-pub const PFN_DrvSetPixelFormat = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: i32,
-        param2: ?HWND,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: i32,
-        param2: ?HWND,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvDescribePixelFormat = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: i32,
-        param2: u32,
-        param3: ?*PIXELFORMATDESCRIPTOR,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: i32,
-        param2: u32,
-        param3: ?*PIXELFORMATDESCRIPTOR,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
-
-pub const PFN_DrvSwapBuffers = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*WNDOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*WNDOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvStartBanding = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        ppointl: ?*POINTL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        ppointl: ?*POINTL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvNextBand = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        ppointl: ?*POINTL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        ppointl: ?*POINTL,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvQueryPerBandInfo = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*PERBANDINFO,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*PERBANDINFO,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvEnableDirectDraw = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*DD_CALLBACKS,
-        param2: ?*DD_SURFACECALLBACKS,
-        param3: ?*DD_PALETTECALLBACKS,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*DD_CALLBACKS,
-        param2: ?*DD_SURFACECALLBACKS,
-        param3: ?*DD_PALETTECALLBACKS,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvDisableDirectDraw = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: DHPDEV,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvGetDirectDrawInfo = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*DD_HALINFO,
-        param2: ?*u32,
-        param3: ?*VIDEOMEMORY,
-        param4: ?*u32,
-        param5: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*DD_HALINFO,
-        param2: ?*u32,
-        param3: ?*VIDEOMEMORY,
-        param4: ?*u32,
-        param5: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvIcmCreateColorTransform = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*LOGCOLORSPACEW,
-        param2: ?*anyopaque,
-        param3: u32,
-        param4: ?*anyopaque,
-        param5: u32,
-        param6: ?*anyopaque,
-        param7: u32,
-        param8: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*LOGCOLORSPACEW,
-        param2: ?*anyopaque,
-        param3: u32,
-        param4: ?*anyopaque,
-        param5: u32,
-        param6: ?*anyopaque,
-        param7: u32,
-        param8: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-} ;
-
-pub const PFN_DrvIcmDeleteColorTransform = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvIcmCheckBitmapBits = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?HANDLE,
-        param2: ?*SURFOBJ,
-        param3: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?HANDLE,
-        param2: ?*SURFOBJ,
-        param3: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvIcmSetDeviceGammaRamp = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: u32,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: u32,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvAlphaBlend = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XLATEOBJ,
-        param4: ?*RECTL,
-        param5: ?*RECTL,
-        param6: ?*BLENDOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*SURFOBJ,
-        param2: ?*CLIPOBJ,
-        param3: ?*XLATEOBJ,
-        param4: ?*RECTL,
-        param5: ?*RECTL,
-        param6: ?*BLENDOBJ,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvGradientFill = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*CLIPOBJ,
-        param2: ?*XLATEOBJ,
-        param3: ?*TRIVERTEX,
-        param4: u32,
-        param5: ?*anyopaque,
-        param6: u32,
-        param7: ?*RECTL,
-        param8: ?*POINTL,
-        param9: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*CLIPOBJ,
-        param2: ?*XLATEOBJ,
-        param3: ?*TRIVERTEX,
-        param4: u32,
-        param5: ?*anyopaque,
-        param6: u32,
-        param7: ?*RECTL,
-        param8: ?*POINTL,
-        param9: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvQueryDeviceSupport = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*XLATEOBJ,
-        param2: ?*XFORMOBJ,
-        param3: u32,
-        param4: u32,
-        param5: ?*anyopaque,
-        param6: u32,
-        param7: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*XLATEOBJ,
-        param2: ?*XFORMOBJ,
-        param3: u32,
-        param4: u32,
-        param5: ?*anyopaque,
-        param6: u32,
-        param7: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
-
-pub const PFN_DrvDeriveSurface = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DD_DIRECTDRAW_GLOBAL,
-        param1: ?*DD_SURFACE_LOCAL,
-    ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP,
-    else => *const fn(
-        param0: ?*DD_DIRECTDRAW_GLOBAL,
-        param1: ?*DD_SURFACE_LOCAL,
-    ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP,
-} ;
-
-pub const PFN_DrvSynchronizeSurface = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*RECTL,
-        param2: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*RECTL,
-        param2: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvNotify = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: u32,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: u32,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
-
-pub const PFN_DrvRenderHint = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dhpdev: DHPDEV,
-        NotifyCode: u32,
-        Length: usize,
-        // TODO: what to do with BytesParamIndex 2?
-        Data: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        dhpdev: DHPDEV,
-        NotifyCode: u32,
-        Length: usize,
-        // TODO: what to do with BytesParamIndex 2?
-        Data: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFN_DrvEnableDriver = *const fn(
+    param0: u32,
+    param1: u32,
+    param2: ?*DRVENABLEDATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvEnablePDEV = *const fn(
+    param0: ?*DEVMODEW,
+    param1: ?PWSTR,
+    param2: u32,
+    param3: ?*?HSURF,
+    param4: u32,
+    param5: ?*GDIINFO,
+    param6: u32,
+    param7: ?*DEVINFO,
+    param8: ?HDEV,
+    param9: ?PWSTR,
+    param10: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) DHPDEV;
+
+pub const PFN_DrvCompletePDEV = *const fn(
+    param0: DHPDEV,
+    param1: ?HDEV,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvResetDevice = *const fn(
+    param0: DHPDEV,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_DrvDisablePDEV = *const fn(
+    param0: DHPDEV,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvSynchronize = *const fn(
+    param0: DHPDEV,
+    param1: ?*RECTL,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvEnableSurface = *const fn(
+    param0: DHPDEV,
+) callconv(@import("std").os.windows.WINAPI) ?HSURF;
+
+pub const PFN_DrvDisableDriver = *const fn(
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvDisableSurface = *const fn(
+    param0: DHPDEV,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvAssertMode = *const fn(
+    param0: DHPDEV,
+    param1: BOOL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvTextOut = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*STROBJ,
+    param2: ?*FONTOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*RECTL,
+    param5: ?*RECTL,
+    param6: ?*BRUSHOBJ,
+    param7: ?*BRUSHOBJ,
+    param8: ?*POINTL,
+    param9: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvStretchBlt = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*XLATEOBJ,
+    param5: ?*COLORADJUSTMENT,
+    param6: ?*POINTL,
+    param7: ?*RECTL,
+    param8: ?*RECTL,
+    param9: ?*POINTL,
+    param10: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvStretchBltROP = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*XLATEOBJ,
+    param5: ?*COLORADJUSTMENT,
+    param6: ?*POINTL,
+    param7: ?*RECTL,
+    param8: ?*RECTL,
+    param9: ?*POINTL,
+    param10: u32,
+    param11: ?*BRUSHOBJ,
+    param12: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvTransparentBlt = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XLATEOBJ,
+    param4: ?*RECTL,
+    param5: ?*RECTL,
+    param6: u32,
+    param7: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvPlgBlt = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*XLATEOBJ,
+    param5: ?*COLORADJUSTMENT,
+    param6: ?*POINTL,
+    param7: ?*POINTFIX,
+    param8: ?*RECTL,
+    param9: ?*POINTL,
+    param10: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvBitBlt = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*CLIPOBJ,
+    param4: ?*XLATEOBJ,
+    param5: ?*RECTL,
+    param6: ?*POINTL,
+    param7: ?*POINTL,
+    param8: ?*BRUSHOBJ,
+    param9: ?*POINTL,
+    param10: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvRealizeBrush = *const fn(
+    param0: ?*BRUSHOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*SURFOBJ,
+    param4: ?*XLATEOBJ,
+    param5: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvCopyBits = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XLATEOBJ,
+    param4: ?*RECTL,
+    param5: ?*POINTL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvDitherColor = *const fn(
+    param0: DHPDEV,
+    param1: u32,
+    param2: u32,
+    param3: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_DrvCreateDeviceBitmap = *const fn(
+    param0: DHPDEV,
+    param1: SIZE,
+    param2: u32,
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
+
+pub const PFN_DrvDeleteDeviceBitmap = *const fn(
+    param0: DHSURF,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvSetPalette = *const fn(
+    param0: DHPDEV,
+    param1: ?*PALOBJ,
+    param2: u32,
+    param3: u32,
+    param4: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvEscape = *const fn(
+    param0: ?*SURFOBJ,
+    param1: u32,
+    param2: u32,
+    param3: ?*anyopaque,
+    param4: u32,
+    param5: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_DrvDrawEscape = *const fn(
+    param0: ?*SURFOBJ,
+    param1: u32,
+    param2: ?*CLIPOBJ,
+    param3: ?*RECTL,
+    param4: u32,
+    param5: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_DrvQueryFont = *const fn(
+    param0: DHPDEV,
+    param1: usize,
+    param2: u32,
+    param3: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) ?*IFIMETRICS;
+
+pub const PFN_DrvQueryFontTree = *const fn(
+    param0: DHPDEV,
+    param1: usize,
+    param2: u32,
+    param3: u32,
+    param4: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+
+pub const PFN_DrvQueryFontData = *const fn(
+    param0: DHPDEV,
+    param1: ?*FONTOBJ,
+    param2: u32,
+    param3: u32,
+    param4: ?*GLYPHDATA,
+    param5: ?*anyopaque,
+    param6: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const PFN_DrvFree = *const fn(
+    param0: ?*anyopaque,
+    param1: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvDestroyFont = *const fn(
+    param0: ?*FONTOBJ,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvQueryFontCaps = *const fn(
+    param0: u32,
+    param1: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const PFN_DrvLoadFontFile = *const fn(
+    param0: u32,
+    param1: ?*usize,
+    param2: ?*?*anyopaque,
+    param3: ?*u32,
+    param4: ?*DESIGNVECTOR,
+    param5: u32,
+    param6: u32,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const PFN_DrvUnloadFontFile = *const fn(
+    param0: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvSetPointerShape = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*SURFOBJ,
+    param3: ?*XLATEOBJ,
+    param4: i32,
+    param5: i32,
+    param6: i32,
+    param7: i32,
+    param8: ?*RECTL,
+    param9: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_DrvMovePointer = *const fn(
+    pso: ?*SURFOBJ,
+    x: i32,
+    y: i32,
+    prcl: ?*RECTL,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvSendPage = *const fn(
+    param0: ?*SURFOBJ,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvStartPage = *const fn(
+    pso: ?*SURFOBJ,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvStartDoc = *const fn(
+    pso: ?*SURFOBJ,
+    pwszDocName: ?PWSTR,
+    dwJobId: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvEndDoc = *const fn(
+    pso: ?*SURFOBJ,
+    fl: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvQuerySpoolType = *const fn(
+    dhpdev: DHPDEV,
+    pwchType: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvLineTo = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*CLIPOBJ,
+    param2: ?*BRUSHOBJ,
+    param3: i32,
+    param4: i32,
+    param5: i32,
+    param6: i32,
+    param7: ?*RECTL,
+    param8: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvStrokePath = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*PATHOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XFORMOBJ,
+    param4: ?*BRUSHOBJ,
+    param5: ?*POINTL,
+    param6: ?*LINEATTRS,
+    param7: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvFillPath = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*PATHOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*BRUSHOBJ,
+    param4: ?*POINTL,
+    param5: u32,
+    param6: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvStrokeAndFillPath = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*PATHOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XFORMOBJ,
+    param4: ?*BRUSHOBJ,
+    param5: ?*LINEATTRS,
+    param6: ?*BRUSHOBJ,
+    param7: ?*POINTL,
+    param8: u32,
+    param9: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvPaint = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*CLIPOBJ,
+    param2: ?*BRUSHOBJ,
+    param3: ?*POINTL,
+    param4: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvGetGlyphMode = *const fn(
+    dhpdev: DHPDEV,
+    pfo: ?*FONTOBJ,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_DrvResetPDEV = *const fn(
+    dhpdevOld: DHPDEV,
+    dhpdevNew: DHPDEV,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvSaveScreenBits = *const fn(
+    param0: ?*SURFOBJ,
+    param1: u32,
+    param2: usize,
+    param3: ?*RECTL,
+) callconv(@import("std").os.windows.WINAPI) usize;
+
+pub const PFN_DrvGetModes = *const fn(
+    param0: ?HANDLE,
+    param1: u32,
+    param2: ?*DEVMODEW,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_DrvQueryTrueTypeTable = *const fn(
+    param0: usize,
+    param1: u32,
+    param2: u32,
+    param3: i32,
+    param4: u32,
+    param5: ?*u8,
+    param6: ?*?*u8,
+    param7: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const PFN_DrvQueryTrueTypeSection = *const fn(
+    param0: u32,
+    param1: u32,
+    param2: u32,
+    param3: ?*?HANDLE,
+    param4: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const PFN_DrvQueryTrueTypeOutline = *const fn(
+    param0: DHPDEV,
+    param1: ?*FONTOBJ,
+    param2: u32,
+    param3: BOOL,
+    param4: ?*GLYPHDATA,
+    param5: u32,
+    param6: ?*TTPOLYGONHEADER,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const PFN_DrvGetTrueTypeFile = *const fn(
+    param0: usize,
+    param1: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+
+pub const PFN_DrvQueryFontFile = *const fn(
+    param0: usize,
+    param1: u32,
+    param2: u32,
+    param3: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const PFN_DrvQueryGlyphAttrs = *const fn(
+    param0: ?*FONTOBJ,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*FD_GLYPHATTR;
+
+pub const PFN_DrvQueryAdvanceWidths = *const fn(
+    param0: DHPDEV,
+    param1: ?*FONTOBJ,
+    param2: u32,
+    param3: ?*u32,
+    param4: ?*anyopaque,
+    param5: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvFontManagement = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*FONTOBJ,
+    param2: u32,
+    param3: u32,
+    param4: ?*anyopaque,
+    param5: u32,
+    param6: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
+pub const PFN_DrvSetPixelFormat = *const fn(
+    param0: ?*SURFOBJ,
+    param1: i32,
+    param2: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvDescribePixelFormat = *const fn(
+    param0: DHPDEV,
+    param1: i32,
+    param2: u32,
+    param3: ?*PIXELFORMATDESCRIPTOR,
+) callconv(@import("std").os.windows.WINAPI) i32;
+
+pub const PFN_DrvSwapBuffers = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*WNDOBJ,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvStartBanding = *const fn(
+    param0: ?*SURFOBJ,
+    ppointl: ?*POINTL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvNextBand = *const fn(
+    param0: ?*SURFOBJ,
+    ppointl: ?*POINTL,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvQueryPerBandInfo = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*PERBANDINFO,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvEnableDirectDraw = *const fn(
+    param0: DHPDEV,
+    param1: ?*DD_CALLBACKS,
+    param2: ?*DD_SURFACECALLBACKS,
+    param3: ?*DD_PALETTECALLBACKS,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvDisableDirectDraw = *const fn(
+    param0: DHPDEV,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvGetDirectDrawInfo = *const fn(
+    param0: DHPDEV,
+    param1: ?*DD_HALINFO,
+    param2: ?*u32,
+    param3: ?*VIDEOMEMORY,
+    param4: ?*u32,
+    param5: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvIcmCreateColorTransform = *const fn(
+    param0: DHPDEV,
+    param1: ?*LOGCOLORSPACEW,
+    param2: ?*anyopaque,
+    param3: u32,
+    param4: ?*anyopaque,
+    param5: u32,
+    param6: ?*anyopaque,
+    param7: u32,
+    param8: u32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+
+pub const PFN_DrvIcmDeleteColorTransform = *const fn(
+    param0: DHPDEV,
+    param1: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvIcmCheckBitmapBits = *const fn(
+    param0: DHPDEV,
+    param1: ?HANDLE,
+    param2: ?*SURFOBJ,
+    param3: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvIcmSetDeviceGammaRamp = *const fn(
+    param0: DHPDEV,
+    param1: u32,
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvAlphaBlend = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*SURFOBJ,
+    param2: ?*CLIPOBJ,
+    param3: ?*XLATEOBJ,
+    param4: ?*RECTL,
+    param5: ?*RECTL,
+    param6: ?*BLENDOBJ,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvGradientFill = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*CLIPOBJ,
+    param2: ?*XLATEOBJ,
+    param3: ?*TRIVERTEX,
+    param4: u32,
+    param5: ?*anyopaque,
+    param6: u32,
+    param7: ?*RECTL,
+    param8: ?*POINTL,
+    param9: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvQueryDeviceSupport = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*XLATEOBJ,
+    param2: ?*XFORMOBJ,
+    param3: u32,
+    param4: u32,
+    param5: ?*anyopaque,
+    param6: u32,
+    param7: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
+pub const PFN_DrvDeriveSurface = *const fn(
+    param0: ?*DD_DIRECTDRAW_GLOBAL,
+    param1: ?*DD_SURFACE_LOCAL,
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
+
+pub const PFN_DrvSynchronizeSurface = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*RECTL,
+    param2: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvNotify = *const fn(
+    param0: ?*SURFOBJ,
+    param1: u32,
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
+
+pub const PFN_DrvRenderHint = *const fn(
+    dhpdev: DHPDEV,
+    NotifyCode: u32,
+    Length: usize,
+    // TODO: what to do with BytesParamIndex 2?
+    Data: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const DRH_APIBITMAPDATA = extern struct {
     pso: ?*SURFOBJ,
     b: BOOL,
 };
 
-pub const PFN_EngCreateRectRgn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        left: i32,
-        top: i32,
-        right: i32,
-        bottom: i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-    else => *const fn(
-        left: i32,
-        top: i32,
-        right: i32,
-        bottom: i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-} ;
+pub const PFN_EngCreateRectRgn = *const fn(
+    left: i32,
+    top: i32,
+    right: i32,
+    bottom: i32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub const PFN_EngDeleteRgn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hrgn: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hrgn: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFN_EngDeleteRgn = *const fn(
+    hrgn: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_EngCombineRgn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hrgnTrg: ?HANDLE,
-        hrgnSrc1: ?HANDLE,
-        hrgnSrc2: ?HANDLE,
-        imode: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hrgnTrg: ?HANDLE,
-        hrgnSrc1: ?HANDLE,
-        hrgnSrc2: ?HANDLE,
-        imode: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFN_EngCombineRgn = *const fn(
+    hrgnTrg: ?HANDLE,
+    hrgnSrc1: ?HANDLE,
+    hrgnSrc2: ?HANDLE,
+    imode: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFN_EngCopyRgn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hrgnDst: ?HANDLE,
-        hrgnSrc: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hrgnDst: ?HANDLE,
-        hrgnSrc: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFN_EngCopyRgn = *const fn(
+    hrgnDst: ?HANDLE,
+    hrgnSrc: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFN_EngIntersectRgn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hrgnResult: ?HANDLE,
-        hRgnA: ?HANDLE,
-        hRgnB: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hrgnResult: ?HANDLE,
-        hRgnA: ?HANDLE,
-        hRgnB: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFN_EngIntersectRgn = *const fn(
+    hrgnResult: ?HANDLE,
+    hRgnA: ?HANDLE,
+    hRgnB: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFN_EngSubtractRgn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hrgnResult: ?HANDLE,
-        hRgnA: ?HANDLE,
-        hRgnB: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hrgnResult: ?HANDLE,
-        hRgnA: ?HANDLE,
-        hRgnB: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFN_EngSubtractRgn = *const fn(
+    hrgnResult: ?HANDLE,
+    hRgnA: ?HANDLE,
+    hRgnB: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFN_EngUnionRgn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hrgnResult: ?HANDLE,
-        hRgnA: ?HANDLE,
-        hRgnB: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hrgnResult: ?HANDLE,
-        hRgnA: ?HANDLE,
-        hRgnB: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFN_EngUnionRgn = *const fn(
+    hrgnResult: ?HANDLE,
+    hRgnA: ?HANDLE,
+    hRgnB: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFN_EngXorRgn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hrgnResult: ?HANDLE,
-        hRgnA: ?HANDLE,
-        hRgnB: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hrgnResult: ?HANDLE,
-        hRgnA: ?HANDLE,
-        hRgnB: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PFN_EngXorRgn = *const fn(
+    hrgnResult: ?HANDLE,
+    hRgnA: ?HANDLE,
+    hRgnB: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PFN_DrvCreateDeviceBitmapEx = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: SIZE,
-        param2: u32,
-        param3: u32,
-        param4: DHSURF,
-        param5: u32,
-        param6: u32,
-        param7: ?*?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: SIZE,
-        param2: u32,
-        param3: u32,
-        param4: DHSURF,
-        param5: u32,
-        param6: u32,
-        param7: ?*?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) ?HBITMAP,
-} ;
+pub const PFN_DrvCreateDeviceBitmapEx = *const fn(
+    param0: DHPDEV,
+    param1: SIZE,
+    param2: u32,
+    param3: u32,
+    param4: DHSURF,
+    param5: u32,
+    param6: u32,
+    param7: ?*?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) ?HBITMAP;
 
-pub const PFN_DrvDeleteDeviceBitmapEx = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHSURF,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: DHSURF,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFN_DrvDeleteDeviceBitmapEx = *const fn(
+    param0: DHSURF,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_DrvAssociateSharedSurface = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?HANDLE,
-        param2: ?HANDLE,
-        param3: SIZE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?HANDLE,
-        param2: ?HANDLE,
-        param3: SIZE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFN_DrvAssociateSharedSurface = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?HANDLE,
+    param2: ?HANDLE,
+    param3: SIZE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_DrvSynchronizeRedirectionBitmaps = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*u64,
-    ) callconv(@import("std").os.windows.WINAPI) NTSTATUS,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*u64,
-    ) callconv(@import("std").os.windows.WINAPI) NTSTATUS,
-} ;
+pub const PFN_DrvSynchronizeRedirectionBitmaps = *const fn(
+    param0: DHPDEV,
+    param1: ?*u64,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
-pub const PFN_DrvAccumulateD3DDirtyRect = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: ?*CDDDXGK_REDIRBITMAPPRESENTINFO,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: ?*CDDDXGK_REDIRBITMAPPRESENTINFO,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFN_DrvAccumulateD3DDirtyRect = *const fn(
+    param0: ?*SURFOBJ,
+    param1: ?*CDDDXGK_REDIRBITMAPPRESENTINFO,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_DrvStartDxInterop = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: BOOL,
-        KernelModeDeviceHandle: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: BOOL,
-        KernelModeDeviceHandle: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFN_DrvStartDxInterop = *const fn(
+    param0: ?*SURFOBJ,
+    param1: BOOL,
+    KernelModeDeviceHandle: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_DrvEndDxInterop = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*SURFOBJ,
-        param1: BOOL,
-        param2: ?*BOOL,
-        KernelModeDeviceHandle: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*SURFOBJ,
-        param1: BOOL,
-        param2: ?*BOOL,
-        KernelModeDeviceHandle: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFN_DrvEndDxInterop = *const fn(
+    param0: ?*SURFOBJ,
+    param1: BOOL,
+    param2: ?*BOOL,
+    KernelModeDeviceHandle: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_DrvLockDisplayArea = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFN_DrvLockDisplayArea = *const fn(
+    param0: DHPDEV,
+    param1: ?*RECTL,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_DrvUnlockDisplayArea = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?*RECTL,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFN_DrvUnlockDisplayArea = *const fn(
+    param0: DHPDEV,
+    param1: ?*RECTL,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFN_DrvSurfaceComplete = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DHPDEV,
-        param1: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: DHPDEV,
-        param1: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFN_DrvSurfaceComplete = *const fn(
+    param0: DHPDEV,
+    param1: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const INDIRECT_DISPLAY_INFO = extern struct {
     DisplayAdapterLuid: LUID,
@@ -3513,14 +2640,9 @@ pub const VIDEO_WIN32K_CALLBACKS_PARAMS = extern struct {
     WaitForQueueReady: BOOLEAN,
 };
 
-pub const PVIDEO_WIN32K_CALLOUT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Params: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        Params: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PVIDEO_WIN32K_CALLOUT = *const fn(
+    Params: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const VIDEO_WIN32K_CALLBACKS = extern struct {
     PhysDisp: ?*anyopaque,

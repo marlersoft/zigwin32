@@ -214,18 +214,11 @@ pub const EVT_SUBSCRIBE_NOTIFY_ACTION = enum(i32) {
 pub const EvtSubscribeActionError = EVT_SUBSCRIBE_NOTIFY_ACTION.Error;
 pub const EvtSubscribeActionDeliver = EVT_SUBSCRIBE_NOTIFY_ACTION.Deliver;
 
-pub const EVT_SUBSCRIBE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
-        UserContext: ?*anyopaque,
-        Event: isize,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
-        UserContext: ?*anyopaque,
-        Event: isize,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const EVT_SUBSCRIBE_CALLBACK = *const fn(
+    Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
+    UserContext: ?*anyopaque,
+    Event: isize,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const EVT_SYSTEM_PROPERTY_ID = enum(i32) {
     ProviderName = 0,

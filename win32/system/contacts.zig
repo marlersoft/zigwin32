@@ -123,72 +123,33 @@ pub const IID_IContactManager = &IID_IContactManager_Value;
 pub const IContactManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactManager,
-                pszAppName: ?[*:0]const u16,
-                pszAppVersion: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactManager,
-                pszAppName: ?[*:0]const u16,
-                pszAppVersion: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Load: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactManager,
-                pszContactID: ?[*:0]const u16,
-                ppContact: ?*?*IContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactManager,
-                pszContactID: ?[*:0]const u16,
-                ppContact: ?*?*IContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MergeContactIDs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactManager,
-                pszNewContactID: ?[*:0]const u16,
-                pszOldContactID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactManager,
-                pszNewContactID: ?[*:0]const u16,
-                pszOldContactID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMeContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactManager,
-                ppMeContact: ?*?*IContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactManager,
-                ppMeContact: ?*?*IContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMeContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactManager,
-                pMeContact: ?*IContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactManager,
-                pMeContact: ?*IContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetContactCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactManager,
-                ppContactCollection: ?*?*IContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactManager,
-                ppContactCollection: ?*?*IContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IContactManager,
+            pszAppName: ?[*:0]const u16,
+            pszAppVersion: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Load: *const fn(
+            self: *const IContactManager,
+            pszContactID: ?[*:0]const u16,
+            ppContact: ?*?*IContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MergeContactIDs: *const fn(
+            self: *const IContactManager,
+            pszNewContactID: ?[*:0]const u16,
+            pszOldContactID: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMeContact: *const fn(
+            self: *const IContactManager,
+            ppMeContact: ?*?*IContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMeContact: *const fn(
+            self: *const IContactManager,
+            pMeContact: ?*IContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContactCollection: *const fn(
+            self: *const IContactManager,
+            ppContactCollection: ?*?*IContactCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -227,32 +188,16 @@ pub const IID_IContactCollection = &IID_IContactCollection_Value;
 pub const IContactCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCurrent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactCollection,
-                ppContact: ?*?*IContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactCollection,
-                ppContact: ?*?*IContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Reset: *const fn(
+            self: *const IContactCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: *const fn(
+            self: *const IContactCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrent: *const fn(
+            self: *const IContactCollection,
+            ppContact: ?*?*IContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -279,212 +224,96 @@ pub const IID_IContactProperties = &IID_IContactProperties_Value;
 pub const IContactProperties = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszValue: [*:0]u16,
-                cchValue: u32,
-                pdwcchPropertyValueRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszValue: [*:0]u16,
-                cchValue: u32,
-                pdwcchPropertyValueRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pftDateTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pftDateTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBinary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszContentType: [*:0]u16,
-                cchContentType: u32,
-                pdwcchContentTypeRequired: ?*u32,
-                ppStream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszContentType: [*:0]u16,
-                cchContentType: u32,
-                pdwcchContentTypeRequired: ?*u32,
-                ppStream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLabels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszArrayElementName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszLabels: [*:0]u16,
-                cchLabels: u32,
-                pdwcchLabelsRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszArrayElementName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszLabels: [*:0]u16,
-                cchLabels: u32,
-                pdwcchLabelsRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                ftDateTime: FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                ftDateTime: FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBinary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszContentType: ?[*:0]const u16,
-                pStream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-                pszContentType: ?[*:0]const u16,
-                pStream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLabels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszArrayElementName: ?[*:0]const u16,
-                dwFlags: u32,
-                dwLabelCount: u32,
-                ppszLabels: [*]?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszArrayElementName: ?[*:0]const u16,
-                dwFlags: u32,
-                dwLabelCount: u32,
-                ppszLabels: [*]?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateArrayNode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszArrayName: ?[*:0]const u16,
-                dwFlags: u32,
-                fAppend: BOOL,
-                pszNewArrayElementName: [*:0]u16,
-                cchNewArrayElementName: u32,
-                pdwcchNewArrayElementNameRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszArrayName: ?[*:0]const u16,
-                dwFlags: u32,
-                fAppend: BOOL,
-                pszNewArrayElementName: [*:0]u16,
-                cchNewArrayElementName: u32,
-                pdwcchNewArrayElementNameRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszPropertyName: ?[*:0]const u16,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteArrayNode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszArrayElementName: ?[*:0]const u16,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszArrayElementName: ?[*:0]const u16,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteLabels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                pszArrayElementName: ?[*:0]const u16,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                pszArrayElementName: ?[*:0]const u16,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactProperties,
-                ppPropertyCollection: ?*?*IContactPropertyCollection,
-                dwFlags: u32,
-                pszMultiValueName: ?[*:0]const u16,
-                dwLabelCount: u32,
-                ppszLabels: [*]?PWSTR,
-                fAnyLabelMatches: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactProperties,
-                ppPropertyCollection: ?*?*IContactPropertyCollection,
-                dwFlags: u32,
-                pszMultiValueName: ?[*:0]const u16,
-                dwLabelCount: u32,
-                ppszLabels: [*]?PWSTR,
-                fAnyLabelMatches: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetString: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszValue: [*:0]u16,
+            cchValue: u32,
+            pdwcchPropertyValueRequired: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDate: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pftDateTime: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBinary: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszContentType: [*:0]u16,
+            cchContentType: u32,
+            pdwcchContentTypeRequired: ?*u32,
+            ppStream: ?*?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLabels: *const fn(
+            self: *const IContactProperties,
+            pszArrayElementName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszLabels: [*:0]u16,
+            cchLabels: u32,
+            pdwcchLabelsRequired: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetString: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszValue: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDate: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            ftDateTime: FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBinary: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+            pszContentType: ?[*:0]const u16,
+            pStream: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLabels: *const fn(
+            self: *const IContactProperties,
+            pszArrayElementName: ?[*:0]const u16,
+            dwFlags: u32,
+            dwLabelCount: u32,
+            ppszLabels: [*]?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateArrayNode: *const fn(
+            self: *const IContactProperties,
+            pszArrayName: ?[*:0]const u16,
+            dwFlags: u32,
+            fAppend: BOOL,
+            pszNewArrayElementName: [*:0]u16,
+            cchNewArrayElementName: u32,
+            pdwcchNewArrayElementNameRequired: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteProperty: *const fn(
+            self: *const IContactProperties,
+            pszPropertyName: ?[*:0]const u16,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteArrayNode: *const fn(
+            self: *const IContactProperties,
+            pszArrayElementName: ?[*:0]const u16,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteLabels: *const fn(
+            self: *const IContactProperties,
+            pszArrayElementName: ?[*:0]const u16,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyCollection: *const fn(
+            self: *const IContactProperties,
+            ppPropertyCollection: ?*?*IContactPropertyCollection,
+            dwFlags: u32,
+            pszMultiValueName: ?[*:0]const u16,
+            dwLabelCount: u32,
+            ppszLabels: [*]?PWSTR,
+            fAnyLabelMatches: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -551,44 +380,22 @@ pub const IID_IContact = &IID_IContact_Value;
 pub const IContact = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetContactID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContact,
-                pszContactID: [*:0]u16,
-                cchContactID: u32,
-                pdwcchContactIDRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContact,
-                pszContactID: [*:0]u16,
-                cchContactID: u32,
-                pdwcchContactIDRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContact,
-                pszPath: [*:0]u16,
-                cchPath: u32,
-                pdwcchPathRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContact,
-                pszPath: [*:0]u16,
-                cchPath: u32,
-                pdwcchPathRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CommitChanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContact,
-                dwCommitFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContact,
-                dwCommitFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetContactID: *const fn(
+            self: *const IContact,
+            pszContactID: [*:0]u16,
+            cchContactID: u32,
+            pdwcchContactIDRequired: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPath: *const fn(
+            self: *const IContact,
+            pszPath: [*:0]u16,
+            cchPath: u32,
+            pdwcchPathRequired: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CommitChanges: *const fn(
+            self: *const IContact,
+            dwCommitFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -615,80 +422,36 @@ pub const IID_IContactPropertyCollection = &IID_IContactPropertyCollection_Value
 pub const IContactPropertyCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactPropertyCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactPropertyCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactPropertyCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactPropertyCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactPropertyCollection,
-                pszPropertyName: [*:0]u16,
-                cchPropertyName: u32,
-                pdwcchPropertyNameRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactPropertyCollection,
-                pszPropertyName: [*:0]u16,
-                cchPropertyName: u32,
-                pdwcchPropertyNameRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactPropertyCollection,
-                pdwType: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactPropertyCollection,
-                pdwType: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactPropertyCollection,
-                pdwVersion: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactPropertyCollection,
-                pdwVersion: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyModificationDate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactPropertyCollection,
-                pftModificationDate: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactPropertyCollection,
-                pftModificationDate: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyArrayElementID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactPropertyCollection,
-                pszArrayElementID: [*:0]u16,
-                cchArrayElementID: u32,
-                pdwcchArrayElementIDRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactPropertyCollection,
-                pszArrayElementID: [*:0]u16,
-                cchArrayElementID: u32,
-                pdwcchArrayElementIDRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Reset: *const fn(
+            self: *const IContactPropertyCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: *const fn(
+            self: *const IContactPropertyCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyName: *const fn(
+            self: *const IContactPropertyCollection,
+            pszPropertyName: [*:0]u16,
+            cchPropertyName: u32,
+            pdwcchPropertyNameRequired: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyType: *const fn(
+            self: *const IContactPropertyCollection,
+            pdwType: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyVersion: *const fn(
+            self: *const IContactPropertyCollection,
+            pdwVersion: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyModificationDate: *const fn(
+            self: *const IContactPropertyCollection,
+            pftModificationDate: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyArrayElementID: *const fn(
+            self: *const IContactPropertyCollection,
+            pszArrayElementID: [*:0]u16,
+            cchArrayElementID: u32,
+            pdwcchArrayElementIDRequired: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -751,181 +514,78 @@ pub const IID_IContactAggregationManager = &IID_IContactAggregationManager_Value
 pub const IContactAggregationManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetVersionInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                plMajorVersion: ?*i32,
-                plMinorVersion: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                plMajorVersion: ?*i32,
-                plMinorVersion: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateOrOpenGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                pGroupName: ?[*:0]const u16,
-                options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS,
-                pCreatedGroup: ?*BOOL,
-                ppGroup: ?*?*IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                pGroupName: ?[*:0]const u16,
-                options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS,
-                pCreatedGroup: ?*BOOL,
-                ppGroup: ?*?*IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateExternalContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateServerPerson: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateServerContactLink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                ppServerContactLink: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                ppServerContactLink: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Flush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenAggregateContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                pItemId: ?[*:0]const u16,
-                ppItem: ?*?*IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                pItemId: ?[*:0]const u16,
-                ppItem: ?*?*IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenContact: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                pItemId: ?[*:0]const u16,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                pItemId: ?[*:0]const u16,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenServerContactLink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                pItemId: ?[*:0]const u16,
-                ppItem: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                pItemId: ?[*:0]const u16,
-                ppItem: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenServerPerson: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                pItemId: ?[*:0]const u16,
-                ppItem: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                pItemId: ?[*:0]const u16,
-                ppItem: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_Contacts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-                ppItems: ?*?*IContactAggregationContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-                ppItems: ?*?*IContactAggregationContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_AggregateContacts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-                ppAggregates: ?*?*IContactAggregationAggregateCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-                ppAggregates: ?*?*IContactAggregationAggregateCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_Groups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-                ppGroups: ?*?*IContactAggregationGroupCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-                ppGroups: ?*?*IContactAggregationGroupCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetVersionInfo: *const fn(
+            self: *const IContactAggregationManager,
+            plMajorVersion: ?*i32,
+            plMinorVersion: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateOrOpenGroup: *const fn(
+            self: *const IContactAggregationManager,
+            pGroupName: ?[*:0]const u16,
+            options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS,
+            pCreatedGroup: ?*BOOL,
+            ppGroup: ?*?*IContactAggregationGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateExternalContact: *const fn(
+            self: *const IContactAggregationManager,
+            ppItem: ?*?*IContactAggregationContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateServerPerson: *const fn(
+            self: *const IContactAggregationManager,
+            ppServerPerson: ?*?*IContactAggregationServerPerson,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateServerContactLink: *const fn(
+            self: *const IContactAggregationManager,
+            ppServerContactLink: ?*?*IContactAggregationLink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Flush: *const fn(
+            self: *const IContactAggregationManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenAggregateContact: *const fn(
+            self: *const IContactAggregationManager,
+            pItemId: ?[*:0]const u16,
+            ppItem: ?*?*IContactAggregationAggregate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenContact: *const fn(
+            self: *const IContactAggregationManager,
+            pItemId: ?[*:0]const u16,
+            ppItem: ?*?*IContactAggregationContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenServerContactLink: *const fn(
+            self: *const IContactAggregationManager,
+            pItemId: ?[*:0]const u16,
+            ppItem: ?*?*IContactAggregationLink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenServerPerson: *const fn(
+            self: *const IContactAggregationManager,
+            pItemId: ?[*:0]const u16,
+            ppItem: ?*?*IContactAggregationServerPerson,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Contacts: *const fn(
+            self: *const IContactAggregationManager,
+            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
+            ppItems: ?*?*IContactAggregationContactCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AggregateContacts: *const fn(
+            self: *const IContactAggregationManager,
+            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
+            ppAggregates: ?*?*IContactAggregationAggregateCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Groups: *const fn(
+            self: *const IContactAggregationManager,
+            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
+            ppGroups: ?*?*IContactAggregationGroupCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServerPersons: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_ServerContactLinks: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationManager,
-                pPersonItemId: ?[*:0]const u16,
-                ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationManager,
-                pPersonItemId: ?[*:0]const u16,
-                ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ServerPersons: *const fn(
+            self: *const IContactAggregationManager,
+            ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ServerContactLinks: *const fn(
+            self: *const IContactAggregationManager,
+            pPersonItemId: ?[*:0]const u16,
+            ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -999,222 +659,89 @@ pub const IID_IContactAggregationContact = &IID_IContactAggregationContact_Value
 pub const IContactAggregationContact = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveToAggregate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unlink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Delete: *const fn(
+            self: *const IContactAggregationContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Save: *const fn(
+            self: *const IContactAggregationContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveToAggregate: *const fn(
+            self: *const IContactAggregationContact,
+            pAggregateId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unlink: *const fn(
+            self: *const IContactAggregationContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AccountId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                ppAccountId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                ppAccountId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AccountId: *const fn(
+            self: *const IContactAggregationContact,
+            ppAccountId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AccountId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                pAccountId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                pAccountId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AccountId: *const fn(
+            self: *const IContactAggregationContact,
+            pAccountId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AggregateId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                ppAggregateId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                ppAggregateId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AggregateId: *const fn(
+            self: *const IContactAggregationContact,
+            ppAggregateId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                ppItemId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                ppItemId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IContactAggregationContact,
+            ppItemId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsMe: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                pIsMe: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                pIsMe: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsMe: *const fn(
+            self: *const IContactAggregationContact,
+            pIsMe: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsExternal: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                pIsExternal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                pIsExternal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsExternal: *const fn(
+            self: *const IContactAggregationContact,
+            pIsExternal: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkSourceId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                pNetworkSourceId: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                pNetworkSourceId: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NetworkSourceId: *const fn(
+            self: *const IContactAggregationContact,
+            pNetworkSourceId: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NetworkSourceId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                networkSourceId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                networkSourceId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_NetworkSourceId: *const fn(
+            self: *const IContactAggregationContact,
+            networkSourceId: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkSourceIdString: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                ppNetworkSourceId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                ppNetworkSourceId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NetworkSourceIdString: *const fn(
+            self: *const IContactAggregationContact,
+            ppNetworkSourceId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NetworkSourceIdString: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                pNetworkSourceId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                pNetworkSourceId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_NetworkSourceIdString: *const fn(
+            self: *const IContactAggregationContact,
+            pNetworkSourceId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteObjectId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RemoteObjectId: *const fn(
+            self: *const IContactAggregationContact,
+            ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteObjectId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_RemoteObjectId: *const fn(
+            self: *const IContactAggregationContact,
+            pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SyncIdentityHash: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SyncIdentityHash: *const fn(
+            self: *const IContactAggregationContact,
+            ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SyncIdentityHash: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContact,
-                pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContact,
-                pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_SyncIdentityHash: *const fn(
+            self: *const IContactAggregationContact,
+            pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1300,71 +827,33 @@ pub const IID_IContactAggregationContactCollection = &IID_IContactAggregationCon
 pub const IContactAggregationContactCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationContactCollection,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationContactCollection,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationContactCollection,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationContactCollection,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFirstByIdentityHash: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationContactCollection,
-                pSourceType: ?[*:0]const u16,
-                pAccountId: ?[*:0]const u16,
-                pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationContactCollection,
-                pSourceType: ?[*:0]const u16,
-                pAccountId: ?[*:0]const u16,
-                pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindFirst: *const fn(
+            self: *const IContactAggregationContactCollection,
+            ppItem: ?*?*IContactAggregationContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindNext: *const fn(
+            self: *const IContactAggregationContactCollection,
+            ppItem: ?*?*IContactAggregationContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFirstByIdentityHash: *const fn(
+            self: *const IContactAggregationContactCollection,
+            pSourceType: ?[*:0]const u16,
+            pAccountId: ?[*:0]const u16,
+            pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
+            ppItem: ?*?*IContactAggregationContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationContactCollection,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationContactCollection,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFirstByRemoteId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationContactCollection,
-                pSourceType: ?[*:0]const u16,
-                pAccountId: ?[*:0]const u16,
-                pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationContactCollection,
-                pSourceType: ?[*:0]const u16,
-                pAccountId: ?[*:0]const u16,
-                pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
-                ppItem: ?*?*IContactAggregationContact,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IContactAggregationContactCollection,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFirstByRemoteId: *const fn(
+            self: *const IContactAggregationContactCollection,
+            pSourceType: ?[*:0]const u16,
+            pAccountId: ?[*:0]const u16,
+            pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
+            ppItem: ?*?*IContactAggregationContact,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1398,111 +887,47 @@ pub const IID_IContactAggregationAggregate = &IID_IContactAggregationAggregate_V
 pub const IContactAggregationAggregate = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetComponentItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationAggregate,
-                pComponentItems: ?*?*IContactAggregationContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationAggregate,
-                pComponentItems: ?*?*IContactAggregationContactCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Link: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationAggregate,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationAggregate,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_Groups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationAggregate,
-                options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-                ppGroups: ?*?*IContactAggregationGroupCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationAggregate,
-                options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
-                ppGroups: ?*?*IContactAggregationGroupCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Save: *const fn(
+            self: *const IContactAggregationAggregate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetComponentItems: *const fn(
+            self: *const IContactAggregationAggregate,
+            pComponentItems: ?*?*IContactAggregationContactCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Link: *const fn(
+            self: *const IContactAggregationAggregate,
+            pAggregateId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Groups: *const fn(
+            self: *const IContactAggregationAggregate,
+            options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
+            ppGroups: ?*?*IContactAggregationGroupCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntiLink: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationAggregate,
-                ppAntiLink: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationAggregate,
-                ppAntiLink: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AntiLink: *const fn(
+            self: *const IContactAggregationAggregate,
+            ppAntiLink: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AntiLink: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationAggregate,
-                pAntiLink: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationAggregate,
-                pAntiLink: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AntiLink: *const fn(
+            self: *const IContactAggregationAggregate,
+            pAntiLink: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FavoriteOrder: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationAggregate,
-                pFavoriteOrder: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationAggregate,
-                pFavoriteOrder: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FavoriteOrder: *const fn(
+            self: *const IContactAggregationAggregate,
+            pFavoriteOrder: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FavoriteOrder: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationAggregate,
-                favoriteOrder: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationAggregate,
-                favoriteOrder: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_FavoriteOrder: *const fn(
+            self: *const IContactAggregationAggregate,
+            favoriteOrder: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationAggregate,
-                ppItemId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationAggregate,
-                ppItemId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IContactAggregationAggregate,
+            ppItemId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1552,51 +977,24 @@ pub const IID_IContactAggregationAggregateCollection = &IID_IContactAggregationA
 pub const IContactAggregationAggregateCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationAggregateCollection,
-                ppAggregate: ?*?*IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationAggregateCollection,
-                ppAggregate: ?*?*IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFirstByAntiLinkId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationAggregateCollection,
-                pAntiLinkId: ?[*:0]const u16,
-                ppAggregate: ?*?*IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationAggregateCollection,
-                pAntiLinkId: ?[*:0]const u16,
-                ppAggregate: ?*?*IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationAggregateCollection,
-                ppAggregate: ?*?*IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationAggregateCollection,
-                ppAggregate: ?*?*IContactAggregationAggregate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindFirst: *const fn(
+            self: *const IContactAggregationAggregateCollection,
+            ppAggregate: ?*?*IContactAggregationAggregate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFirstByAntiLinkId: *const fn(
+            self: *const IContactAggregationAggregateCollection,
+            pAntiLinkId: ?[*:0]const u16,
+            ppAggregate: ?*?*IContactAggregationAggregate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindNext: *const fn(
+            self: *const IContactAggregationAggregateCollection,
+            ppAggregate: ?*?*IContactAggregationAggregate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationAggregateCollection,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationAggregateCollection,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IContactAggregationAggregateCollection,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1626,120 +1024,50 @@ pub const IID_IContactAggregationGroup = &IID_IContactAggregationGroup_Value;
 pub const IContactAggregationGroup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Delete: *const fn(
+            self: *const IContactAggregationGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Save: *const fn(
+            self: *const IContactAggregationGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Add: *const fn(
+            self: *const IContactAggregationGroup,
+            pAggregateId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Remove: *const fn(
+            self: *const IContactAggregationGroup,
+            pAggregateId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Members: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-                ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-                ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Members: *const fn(
+            self: *const IContactAggregationGroup,
+            ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GlobalObjectId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-                pGlobalObjectId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-                pGlobalObjectId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_GlobalObjectId: *const fn(
+            self: *const IContactAggregationGroup,
+            pGlobalObjectId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_GlobalObjectId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-                pGlobalObjectId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-                pGlobalObjectId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_GlobalObjectId: *const fn(
+            self: *const IContactAggregationGroup,
+            pGlobalObjectId: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-                ppItemId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-                ppItemId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IContactAggregationGroup,
+            ppItemId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-                ppName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-                ppName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IContactAggregationGroup,
+            ppName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationGroup,
-                pName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationGroup,
-                pName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IContactAggregationGroup,
+            pName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1793,51 +1121,24 @@ pub const IID_IContactAggregationGroupCollection = &IID_IContactAggregationGroup
 pub const IContactAggregationGroupCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationGroupCollection,
-                ppGroup: ?*?*IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationGroupCollection,
-                ppGroup: ?*?*IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFirstByGlobalObjectId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationGroupCollection,
-                pGlobalObjectId: ?*const Guid,
-                ppGroup: ?*?*IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationGroupCollection,
-                pGlobalObjectId: ?*const Guid,
-                ppGroup: ?*?*IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationGroupCollection,
-                ppGroup: ?*?*IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationGroupCollection,
-                ppGroup: ?*?*IContactAggregationGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindFirst: *const fn(
+            self: *const IContactAggregationGroupCollection,
+            ppGroup: ?*?*IContactAggregationGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFirstByGlobalObjectId: *const fn(
+            self: *const IContactAggregationGroupCollection,
+            pGlobalObjectId: ?*const Guid,
+            ppGroup: ?*?*IContactAggregationGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindNext: *const fn(
+            self: *const IContactAggregationGroupCollection,
+            ppGroup: ?*?*IContactAggregationGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationGroupCollection,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationGroupCollection,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IContactAggregationGroupCollection,
+            pCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1867,217 +1168,87 @@ pub const IID_IContactAggregationLink = &IID_IContactAggregationLink_Value;
 pub const IContactAggregationLink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Delete: *const fn(
+            self: *const IContactAggregationLink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Save: *const fn(
+            self: *const IContactAggregationLink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AccountId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                ppAccountId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                ppAccountId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AccountId: *const fn(
+            self: *const IContactAggregationLink,
+            ppAccountId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AccountId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                pAccountId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                pAccountId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AccountId: *const fn(
+            self: *const IContactAggregationLink,
+            pAccountId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                ppItemId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                ppItemId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IContactAggregationLink,
+            ppItemId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLinkResolved: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                pIsLinkResolved: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                pIsLinkResolved: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsLinkResolved: *const fn(
+            self: *const IContactAggregationLink,
+            pIsLinkResolved: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IsLinkResolved: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                isLinkResolved: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                isLinkResolved: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_IsLinkResolved: *const fn(
+            self: *const IContactAggregationLink,
+            isLinkResolved: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NetworkSourceIdString: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                ppNetworkSourceId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                ppNetworkSourceId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NetworkSourceIdString: *const fn(
+            self: *const IContactAggregationLink,
+            ppNetworkSourceId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NetworkSourceIdString: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                pNetworkSourceId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                pNetworkSourceId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_NetworkSourceIdString: *const fn(
+            self: *const IContactAggregationLink,
+            pNetworkSourceId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteObjectId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RemoteObjectId: *const fn(
+            self: *const IContactAggregationLink,
+            ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RemoteObjectId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_RemoteObjectId: *const fn(
+            self: *const IContactAggregationLink,
+            pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServerPerson: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                ppServerPersonId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                ppServerPersonId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ServerPerson: *const fn(
+            self: *const IContactAggregationLink,
+            ppServerPersonId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ServerPerson: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                pServerPersonId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                pServerPersonId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ServerPerson: *const fn(
+            self: *const IContactAggregationLink,
+            pServerPersonId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ServerPersonBaseline: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                ppServerPersonId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                ppServerPersonId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ServerPersonBaseline: *const fn(
+            self: *const IContactAggregationLink,
+            ppServerPersonId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ServerPersonBaseline: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                pServerPersonId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                pServerPersonId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ServerPersonBaseline: *const fn(
+            self: *const IContactAggregationLink,
+            pServerPersonId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SyncIdentityHash: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SyncIdentityHash: *const fn(
+            self: *const IContactAggregationLink,
+            ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SyncIdentityHash: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLink,
-                pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLink,
-                pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_SyncIdentityHash: *const fn(
+            self: *const IContactAggregationLink,
+            pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2159,55 +1330,26 @@ pub const IID_IContactAggregationLinkCollection = &IID_IContactAggregationLinkCo
 pub const IContactAggregationLinkCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationLinkCollection,
-                ppServerContactLink: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationLinkCollection,
-                ppServerContactLink: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFirstByRemoteId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationLinkCollection,
-                pSourceType: ?[*:0]const u16,
-                pAccountId: ?[*:0]const u16,
-                pRemoteId: ?*const CONTACT_AGGREGATION_BLOB,
-                ppServerContactLink: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationLinkCollection,
-                pSourceType: ?[*:0]const u16,
-                pAccountId: ?[*:0]const u16,
-                pRemoteId: ?*const CONTACT_AGGREGATION_BLOB,
-                ppServerContactLink: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationLinkCollection,
-                ppServerContactLink: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationLinkCollection,
-                ppServerContactLink: ?*?*IContactAggregationLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindFirst: *const fn(
+            self: *const IContactAggregationLinkCollection,
+            ppServerContactLink: ?*?*IContactAggregationLink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFirstByRemoteId: *const fn(
+            self: *const IContactAggregationLinkCollection,
+            pSourceType: ?[*:0]const u16,
+            pAccountId: ?[*:0]const u16,
+            pRemoteId: ?*const CONTACT_AGGREGATION_BLOB,
+            ppServerContactLink: ?*?*IContactAggregationLink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindNext: *const fn(
+            self: *const IContactAggregationLinkCollection,
+            ppServerContactLink: ?*?*IContactAggregationLink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationLinkCollection,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationLinkCollection,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IContactAggregationLinkCollection,
+            pCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2237,295 +1379,117 @@ pub const IID_IContactAggregationServerPerson = &IID_IContactAggregationServerPe
 pub const IContactAggregationServerPerson = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Delete: *const fn(
+            self: *const IContactAggregationServerPerson,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Save: *const fn(
+            self: *const IContactAggregationServerPerson,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AggregateId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                ppAggregateId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                ppAggregateId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AggregateId: *const fn(
+            self: *const IContactAggregationServerPerson,
+            ppAggregateId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AggregateId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AggregateId: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pAggregateId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntiLink: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                ppAntiLink: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                ppAntiLink: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AntiLink: *const fn(
+            self: *const IContactAggregationServerPerson,
+            ppAntiLink: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AntiLink: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pAntiLink: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pAntiLink: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AntiLink: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pAntiLink: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntiLinkBaseline: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                ppAntiLink: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                ppAntiLink: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AntiLinkBaseline: *const fn(
+            self: *const IContactAggregationServerPerson,
+            ppAntiLink: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AntiLinkBaseline: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pAntiLink: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pAntiLink: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AntiLinkBaseline: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pAntiLink: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FavoriteOrder: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pFavoriteOrder: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pFavoriteOrder: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FavoriteOrder: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pFavoriteOrder: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FavoriteOrder: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                favoriteOrder: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                favoriteOrder: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_FavoriteOrder: *const fn(
+            self: *const IContactAggregationServerPerson,
+            favoriteOrder: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FavoriteOrderBaseline: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pFavoriteOrder: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pFavoriteOrder: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FavoriteOrderBaseline: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pFavoriteOrder: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FavoriteOrderBaseline: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                favoriteOrder: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                favoriteOrder: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_FavoriteOrderBaseline: *const fn(
+            self: *const IContactAggregationServerPerson,
+            favoriteOrder: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Groups: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pGroups: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pGroups: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Groups: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pGroups: ?*?*CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Groups: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pGroups: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pGroups: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Groups: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pGroups: ?*const CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GroupsBaseline: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                ppGroups: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                ppGroups: ?*?*CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_GroupsBaseline: *const fn(
+            self: *const IContactAggregationServerPerson,
+            ppGroups: ?*?*CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_GroupsBaseline: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pGroups: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pGroups: ?*const CONTACT_AGGREGATION_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_GroupsBaseline: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pGroups: ?*const CONTACT_AGGREGATION_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                ppId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                ppId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IContactAggregationServerPerson,
+            ppId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTombstone: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pIsTombstone: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pIsTombstone: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsTombstone: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pIsTombstone: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_IsTombstone: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                isTombstone: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                isTombstone: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_IsTombstone: *const fn(
+            self: *const IContactAggregationServerPerson,
+            isTombstone: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LinkedAggregateId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                ppLinkedAggregateId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                ppLinkedAggregateId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LinkedAggregateId: *const fn(
+            self: *const IContactAggregationServerPerson,
+            ppLinkedAggregateId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LinkedAggregateId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pLinkedAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pLinkedAggregateId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_LinkedAggregateId: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pLinkedAggregateId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ObjectId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                ppObjectId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                ppObjectId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ObjectId: *const fn(
+            self: *const IContactAggregationServerPerson,
+            ppObjectId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ObjectId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPerson,
-                pObjectId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPerson,
-                pObjectId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ObjectId: *const fn(
+            self: *const IContactAggregationServerPerson,
+            pObjectId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2631,75 +1595,34 @@ pub const IID_IContactAggregationServerPersonCollection = &IID_IContactAggregati
 pub const IContactAggregationServerPersonCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindFirst: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationServerPersonCollection,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationServerPersonCollection,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFirstByServerId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationServerPersonCollection,
-                pServerId: ?[*:0]const u16,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationServerPersonCollection,
-                pServerId: ?[*:0]const u16,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFirstByAggregateId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationServerPersonCollection,
-                pAggregateId: ?[*:0]const u16,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationServerPersonCollection,
-                pAggregateId: ?[*:0]const u16,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFirstByLinkedAggregateId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationServerPersonCollection,
-                pAggregateId: ?[*:0]const u16,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationServerPersonCollection,
-                pAggregateId: ?[*:0]const u16,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContactAggregationServerPersonCollection,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContactAggregationServerPersonCollection,
-                ppServerPerson: ?*?*IContactAggregationServerPerson,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindFirst: *const fn(
+            self: *const IContactAggregationServerPersonCollection,
+            ppServerPerson: ?*?*IContactAggregationServerPerson,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFirstByServerId: *const fn(
+            self: *const IContactAggregationServerPersonCollection,
+            pServerId: ?[*:0]const u16,
+            ppServerPerson: ?*?*IContactAggregationServerPerson,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFirstByAggregateId: *const fn(
+            self: *const IContactAggregationServerPersonCollection,
+            pAggregateId: ?[*:0]const u16,
+            ppServerPerson: ?*?*IContactAggregationServerPerson,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFirstByLinkedAggregateId: *const fn(
+            self: *const IContactAggregationServerPersonCollection,
+            pAggregateId: ?[*:0]const u16,
+            ppServerPerson: ?*?*IContactAggregationServerPerson,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindNext: *const fn(
+            self: *const IContactAggregationServerPersonCollection,
+            ppServerPerson: ?*?*IContactAggregationServerPerson,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IContactAggregationServerPersonCollection,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IContactAggregationServerPersonCollection,
-                pCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IContactAggregationServerPersonCollection,
+            pCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

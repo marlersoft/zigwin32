@@ -2159,921 +2159,434 @@ pub const WS_HTTP_SSL_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE = WS
 pub const WS_TCP_SSPI_USERNAME_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE = WS_BINDING_TEMPLATE_TYPE.TCP_SSPI_USERNAME_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE;
 pub const WS_TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE = WS_BINDING_TEMPLATE_TYPE.TCP_SSPI_KERBEROS_APREQ_SECURITY_CONTEXT_BINDING_TEMPLATE_TYPE;
 
-pub const WS_READ_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackState: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        bytes: ?*anyopaque,
-        maxSize: u32,
-        actualSize: ?*u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackState: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        bytes: ?*anyopaque,
-        maxSize: u32,
-        actualSize: ?*u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_READ_CALLBACK = *const fn(
+    callbackState: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 2?
+    bytes: ?*anyopaque,
+    maxSize: u32,
+    actualSize: ?*u32,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_WRITE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackState: ?*anyopaque,
-        buffers: [*]const WS_BYTES,
-        count: u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackState: ?*anyopaque,
-        buffers: [*]const WS_BYTES,
-        count: u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_WRITE_CALLBACK = *const fn(
+    callbackState: ?*anyopaque,
+    buffers: [*]const WS_BYTES,
+    count: u32,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_PUSH_BYTES_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackState: ?*anyopaque,
-        writeCallback: ?WS_WRITE_CALLBACK,
-        writeCallbackState: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackState: ?*anyopaque,
-        writeCallback: ?WS_WRITE_CALLBACK,
-        writeCallbackState: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_PUSH_BYTES_CALLBACK = *const fn(
+    callbackState: ?*anyopaque,
+    writeCallback: ?WS_WRITE_CALLBACK,
+    writeCallbackState: ?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_PULL_BYTES_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackState: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        bytes: ?*anyopaque,
-        maxSize: u32,
-        actualSize: ?*u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackState: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        bytes: ?*anyopaque,
-        maxSize: u32,
-        actualSize: ?*u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_PULL_BYTES_CALLBACK = *const fn(
+    callbackState: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 2?
+    bytes: ?*anyopaque,
+    maxSize: u32,
+    actualSize: ?*u32,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DYNAMIC_STRING_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackState: ?*anyopaque,
-        string: ?*const WS_XML_STRING,
-        found: ?*BOOL,
-        id: ?*u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackState: ?*anyopaque,
-        string: ?*const WS_XML_STRING,
-        found: ?*BOOL,
-        id: ?*u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_DYNAMIC_STRING_CALLBACK = *const fn(
+    callbackState: ?*anyopaque,
+    string: ?*const WS_XML_STRING,
+    found: ?*BOOL,
+    id: ?*u32,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ASYNC_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        errorCode: HRESULT,
-        callbackModel: WS_CALLBACK_MODEL,
-        callbackState: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        errorCode: HRESULT,
-        callbackModel: WS_CALLBACK_MODEL,
-        callbackState: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WS_ASYNC_CALLBACK = *const fn(
+    errorCode: HRESULT,
+    callbackModel: WS_CALLBACK_MODEL,
+    callbackState: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const WS_ASYNC_FUNCTION = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const WS_ASYNC_FUNCTION = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_CREATE_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelType: WS_CHANNEL_TYPE,
-        // TODO: what to do with BytesParamIndex 2?
-        channelParameters: ?*const anyopaque,
-        channelParametersSize: u32,
-        channelInstance: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelType: WS_CHANNEL_TYPE,
-        // TODO: what to do with BytesParamIndex 2?
-        channelParameters: ?*const anyopaque,
-        channelParametersSize: u32,
-        channelInstance: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_CREATE_CHANNEL_CALLBACK = *const fn(
+    channelType: WS_CHANNEL_TYPE,
+    // TODO: what to do with BytesParamIndex 2?
+    channelParameters: ?*const anyopaque,
+    channelParametersSize: u32,
+    channelInstance: ?*?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_FREE_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WS_FREE_CHANNEL_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_RESET_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_RESET_CHANNEL_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ABORT_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_ABORT_CHANNEL_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_OPEN_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        endpointAddress: ?*const WS_ENDPOINT_ADDRESS,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        endpointAddress: ?*const WS_ENDPOINT_ADDRESS,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_OPEN_CHANNEL_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    endpointAddress: ?*const WS_ENDPOINT_ADDRESS,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CLOSE_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_CLOSE_CHANNEL_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        id: WS_CHANNEL_PROPERTY_ID,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*const anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        id: WS_CHANNEL_PROPERTY_ID,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*const anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_SET_CHANNEL_PROPERTY_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    id: WS_CHANNEL_PROPERTY_ID,
+    // TODO: what to do with BytesParamIndex 3?
+    value: ?*const anyopaque,
+    valueSize: u32,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_GET_CHANNEL_PROPERTY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        id: WS_CHANNEL_PROPERTY_ID,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        id: WS_CHANNEL_PROPERTY_ID,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_GET_CHANNEL_PROPERTY_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    id: WS_CHANNEL_PROPERTY_ID,
+    // TODO: what to do with BytesParamIndex 3?
+    value: ?*anyopaque,
+    valueSize: u32,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_READ_MESSAGE_START_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_READ_MESSAGE_START_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    message: ?*WS_MESSAGE,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_READ_MESSAGE_END_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_READ_MESSAGE_END_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    message: ?*WS_MESSAGE,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_WRITE_MESSAGE_START_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_WRITE_MESSAGE_START_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    message: ?*WS_MESSAGE,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_WRITE_MESSAGE_END_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_WRITE_MESSAGE_END_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    message: ?*WS_MESSAGE,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ABANDON_MESSAGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        message: ?*WS_MESSAGE,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_ABANDON_MESSAGE_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    message: ?*WS_MESSAGE,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelInstance: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelInstance: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_SHUTDOWN_SESSION_CHANNEL_CALLBACK = *const fn(
+    channelInstance: ?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CREATE_ENCODER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        createContext: ?*anyopaque,
-        writeCallback: ?WS_WRITE_CALLBACK,
-        writeContext: ?*anyopaque,
-        encoderContext: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        createContext: ?*anyopaque,
-        writeCallback: ?WS_WRITE_CALLBACK,
-        writeContext: ?*anyopaque,
-        encoderContext: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_CREATE_ENCODER_CALLBACK = *const fn(
+    createContext: ?*anyopaque,
+    writeCallback: ?WS_WRITE_CALLBACK,
+    writeContext: ?*anyopaque,
+    encoderContext: ?*?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ENCODER_GET_CONTENT_TYPE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        encoderContext: ?*anyopaque,
-        contentType: ?*const WS_STRING,
-        newContentType: ?*WS_STRING,
-        contentEncoding: ?*WS_STRING,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        encoderContext: ?*anyopaque,
-        contentType: ?*const WS_STRING,
-        newContentType: ?*WS_STRING,
-        contentEncoding: ?*WS_STRING,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_ENCODER_GET_CONTENT_TYPE_CALLBACK = *const fn(
+    encoderContext: ?*anyopaque,
+    contentType: ?*const WS_STRING,
+    newContentType: ?*WS_STRING,
+    contentEncoding: ?*WS_STRING,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ENCODER_START_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        encoderContext: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        encoderContext: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_ENCODER_START_CALLBACK = *const fn(
+    encoderContext: ?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ENCODER_ENCODE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        encoderContext: ?*anyopaque,
-        buffers: [*]const WS_BYTES,
-        count: u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        encoderContext: ?*anyopaque,
-        buffers: [*]const WS_BYTES,
-        count: u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_ENCODER_ENCODE_CALLBACK = *const fn(
+    encoderContext: ?*anyopaque,
+    buffers: [*]const WS_BYTES,
+    count: u32,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ENCODER_END_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        encoderContext: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        encoderContext: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_ENCODER_END_CALLBACK = *const fn(
+    encoderContext: ?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_FREE_ENCODER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        encoderContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        encoderContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WS_FREE_ENCODER_CALLBACK = *const fn(
+    encoderContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_CREATE_DECODER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        createContext: ?*anyopaque,
-        readCallback: ?WS_READ_CALLBACK,
-        readContext: ?*anyopaque,
-        decoderContext: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        createContext: ?*anyopaque,
-        readCallback: ?WS_READ_CALLBACK,
-        readContext: ?*anyopaque,
-        decoderContext: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_CREATE_DECODER_CALLBACK = *const fn(
+    createContext: ?*anyopaque,
+    readCallback: ?WS_READ_CALLBACK,
+    readContext: ?*anyopaque,
+    decoderContext: ?*?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DECODER_GET_CONTENT_TYPE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        decoderContext: ?*anyopaque,
-        contentType: ?*const WS_STRING,
-        contentEncoding: ?*const WS_STRING,
-        newContentType: ?*WS_STRING,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        decoderContext: ?*anyopaque,
-        contentType: ?*const WS_STRING,
-        contentEncoding: ?*const WS_STRING,
-        newContentType: ?*WS_STRING,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_DECODER_GET_CONTENT_TYPE_CALLBACK = *const fn(
+    decoderContext: ?*anyopaque,
+    contentType: ?*const WS_STRING,
+    contentEncoding: ?*const WS_STRING,
+    newContentType: ?*WS_STRING,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DECODER_START_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        encoderContext: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        encoderContext: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_DECODER_START_CALLBACK = *const fn(
+    encoderContext: ?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DECODER_DECODE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        encoderContext: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        buffer: ?*anyopaque,
-        maxLength: u32,
-        length: ?*u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        encoderContext: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        buffer: ?*anyopaque,
-        maxLength: u32,
-        length: ?*u32,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_DECODER_DECODE_CALLBACK = *const fn(
+    encoderContext: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 2?
+    buffer: ?*anyopaque,
+    maxLength: u32,
+    length: ?*u32,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DECODER_END_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        encoderContext: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        encoderContext: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_DECODER_END_CALLBACK = *const fn(
+    encoderContext: ?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_FREE_DECODER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        decoderContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        decoderContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WS_FREE_DECODER_CALLBACK = *const fn(
+    decoderContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_HTTP_REDIRECT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        state: ?*anyopaque,
-        originalUrl: ?*const WS_STRING,
-        newUrl: ?*const WS_STRING,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        state: ?*anyopaque,
-        originalUrl: ?*const WS_STRING,
-        newUrl: ?*const WS_STRING,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_HTTP_REDIRECT_CALLBACK = *const fn(
+    state: ?*anyopaque,
+    originalUrl: ?*const WS_STRING,
+    newUrl: ?*const WS_STRING,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CREATE_LISTENER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        channelType: WS_CHANNEL_TYPE,
-        // TODO: what to do with BytesParamIndex 2?
-        listenerParameters: ?*const anyopaque,
-        listenerParametersSize: u32,
-        listenerInstance: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        channelType: WS_CHANNEL_TYPE,
-        // TODO: what to do with BytesParamIndex 2?
-        listenerParameters: ?*const anyopaque,
-        listenerParametersSize: u32,
-        listenerInstance: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_CREATE_LISTENER_CALLBACK = *const fn(
+    channelType: WS_CHANNEL_TYPE,
+    // TODO: what to do with BytesParamIndex 2?
+    listenerParameters: ?*const anyopaque,
+    listenerParametersSize: u32,
+    listenerInstance: ?*?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_FREE_LISTENER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        listenerInstance: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        listenerInstance: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WS_FREE_LISTENER_CALLBACK = *const fn(
+    listenerInstance: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_RESET_LISTENER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        listenerInstance: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        listenerInstance: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_RESET_LISTENER_CALLBACK = *const fn(
+    listenerInstance: ?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_OPEN_LISTENER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        listenerInstance: ?*anyopaque,
-        url: ?*const WS_STRING,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        listenerInstance: ?*anyopaque,
-        url: ?*const WS_STRING,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_OPEN_LISTENER_CALLBACK = *const fn(
+    listenerInstance: ?*anyopaque,
+    url: ?*const WS_STRING,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CLOSE_LISTENER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        listenerInstance: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        listenerInstance: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_CLOSE_LISTENER_CALLBACK = *const fn(
+    listenerInstance: ?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_GET_LISTENER_PROPERTY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        listenerInstance: ?*anyopaque,
-        id: WS_LISTENER_PROPERTY_ID,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        listenerInstance: ?*anyopaque,
-        id: WS_LISTENER_PROPERTY_ID,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_GET_LISTENER_PROPERTY_CALLBACK = *const fn(
+    listenerInstance: ?*anyopaque,
+    id: WS_LISTENER_PROPERTY_ID,
+    // TODO: what to do with BytesParamIndex 3?
+    value: ?*anyopaque,
+    valueSize: u32,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SET_LISTENER_PROPERTY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        listenerInstance: ?*anyopaque,
-        id: WS_LISTENER_PROPERTY_ID,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*const anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        listenerInstance: ?*anyopaque,
-        id: WS_LISTENER_PROPERTY_ID,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*const anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_SET_LISTENER_PROPERTY_CALLBACK = *const fn(
+    listenerInstance: ?*anyopaque,
+    id: WS_LISTENER_PROPERTY_ID,
+    // TODO: what to do with BytesParamIndex 3?
+    value: ?*const anyopaque,
+    valueSize: u32,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ACCEPT_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        listenerInstance: ?*anyopaque,
-        channelInstance: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        listenerInstance: ?*anyopaque,
-        channelInstance: ?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_ACCEPT_CHANNEL_CALLBACK = *const fn(
+    listenerInstance: ?*anyopaque,
+    channelInstance: ?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_ABORT_LISTENER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        listenerInstance: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        listenerInstance: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_ABORT_LISTENER_CALLBACK = *const fn(
+    listenerInstance: ?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        listenerInstance: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        channelParameters: ?*const anyopaque,
-        channelParametersSize: u32,
-        channelInstance: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        listenerInstance: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        channelParameters: ?*const anyopaque,
-        channelParametersSize: u32,
-        channelInstance: ?*?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_CREATE_CHANNEL_FOR_LISTENER_CALLBACK = *const fn(
+    listenerInstance: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 2?
+    channelParameters: ?*const anyopaque,
+    channelParametersSize: u32,
+    channelInstance: ?*?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_MESSAGE_DONE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        doneCallbackState: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        doneCallbackState: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WS_MESSAGE_DONE_CALLBACK = *const fn(
+    doneCallbackState: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_CERTIFICATE_VALIDATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        certContext: ?*const CERT_CONTEXT,
-        state: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        certContext: ?*const CERT_CONTEXT,
-        state: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_CERTIFICATE_VALIDATION_CALLBACK = *const fn(
+    certContext: ?*const CERT_CONTEXT,
+    state: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_GET_CERT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        getCertCallbackState: ?*anyopaque,
-        targetAddress: ?*const WS_ENDPOINT_ADDRESS,
-        viaUri: ?*const WS_STRING,
-        cert: ?*const ?*CERT_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        getCertCallbackState: ?*anyopaque,
-        targetAddress: ?*const WS_ENDPOINT_ADDRESS,
-        viaUri: ?*const WS_STRING,
-        cert: ?*const ?*CERT_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_GET_CERT_CALLBACK = *const fn(
+    getCertCallbackState: ?*anyopaque,
+    targetAddress: ?*const WS_ENDPOINT_ADDRESS,
+    viaUri: ?*const WS_STRING,
+    cert: ?*const ?*CERT_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        certIssuerListNotificationCallbackState: ?*anyopaque,
-        issuerList: ?*const SecPkgContext_IssuerListInfoEx,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        certIssuerListNotificationCallbackState: ?*anyopaque,
-        issuerList: ?*const SecPkgContext_IssuerListInfoEx,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_CERT_ISSUER_LIST_NOTIFICATION_CALLBACK = *const fn(
+    certIssuerListNotificationCallbackState: ?*anyopaque,
+    issuerList: ?*const SecPkgContext_IssuerListInfoEx,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_VALIDATE_PASSWORD_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        passwordValidatorCallbackState: ?*anyopaque,
-        username: ?*const WS_STRING,
-        password: ?*const WS_STRING,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        passwordValidatorCallbackState: ?*anyopaque,
-        username: ?*const WS_STRING,
-        password: ?*const WS_STRING,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_VALIDATE_PASSWORD_CALLBACK = *const fn(
+    passwordValidatorCallbackState: ?*anyopaque,
+    username: ?*const WS_STRING,
+    password: ?*const WS_STRING,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_VALIDATE_SAML_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        samlValidatorCallbackState: ?*anyopaque,
-        samlAssertion: ?*WS_XML_BUFFER,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        samlValidatorCallbackState: ?*anyopaque,
-        samlAssertion: ?*WS_XML_BUFFER,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_VALIDATE_SAML_CALLBACK = *const fn(
+    samlValidatorCallbackState: ?*anyopaque,
+    samlAssertion: ?*WS_XML_BUFFER,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_DURATION_COMPARISON_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        duration1: ?*const WS_DURATION,
-        duration2: ?*const WS_DURATION,
-        result: ?*i32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        duration1: ?*const WS_DURATION,
-        duration2: ?*const WS_DURATION,
-        result: ?*i32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_DURATION_COMPARISON_CALLBACK = *const fn(
+    duration1: ?*const WS_DURATION,
+    duration2: ?*const WS_DURATION,
+    result: ?*i32,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_READ_TYPE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        reader: ?*WS_XML_READER,
-        typeMapping: WS_TYPE_MAPPING,
-        descriptionData: ?*const anyopaque,
-        heap: ?*WS_HEAP,
-        // TODO: what to do with BytesParamIndex 5?
-        value: ?*anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        reader: ?*WS_XML_READER,
-        typeMapping: WS_TYPE_MAPPING,
-        descriptionData: ?*const anyopaque,
-        heap: ?*WS_HEAP,
-        // TODO: what to do with BytesParamIndex 5?
-        value: ?*anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_READ_TYPE_CALLBACK = *const fn(
+    reader: ?*WS_XML_READER,
+    typeMapping: WS_TYPE_MAPPING,
+    descriptionData: ?*const anyopaque,
+    heap: ?*WS_HEAP,
+    // TODO: what to do with BytesParamIndex 5?
+    value: ?*anyopaque,
+    valueSize: u32,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_WRITE_TYPE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        writer: ?*WS_XML_WRITER,
-        typeMapping: WS_TYPE_MAPPING,
-        descriptionData: ?*const anyopaque,
-        // TODO: what to do with BytesParamIndex 4?
-        value: ?*const anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        writer: ?*WS_XML_WRITER,
-        typeMapping: WS_TYPE_MAPPING,
-        descriptionData: ?*const anyopaque,
-        // TODO: what to do with BytesParamIndex 4?
-        value: ?*const anyopaque,
-        valueSize: u32,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_WRITE_TYPE_CALLBACK = *const fn(
+    writer: ?*WS_XML_WRITER,
+    typeMapping: WS_TYPE_MAPPING,
+    descriptionData: ?*const anyopaque,
+    // TODO: what to do with BytesParamIndex 4?
+    value: ?*const anyopaque,
+    valueSize: u32,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_IS_DEFAULT_VALUE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        descriptionData: ?*const anyopaque,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*const anyopaque,
-        // TODO: what to do with BytesParamIndex 3?
-        defaultValue: ?*const anyopaque,
-        valueSize: u32,
-        isDefault: ?*BOOL,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        descriptionData: ?*const anyopaque,
-        // TODO: what to do with BytesParamIndex 3?
-        value: ?*const anyopaque,
-        // TODO: what to do with BytesParamIndex 3?
-        defaultValue: ?*const anyopaque,
-        valueSize: u32,
-        isDefault: ?*BOOL,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_IS_DEFAULT_VALUE_CALLBACK = *const fn(
+    descriptionData: ?*const anyopaque,
+    // TODO: what to do with BytesParamIndex 3?
+    value: ?*const anyopaque,
+    // TODO: what to do with BytesParamIndex 3?
+    defaultValue: ?*const anyopaque,
+    valueSize: u32,
+    isDefault: ?*BOOL,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SERVICE_MESSAGE_RECEIVE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_SERVICE_MESSAGE_RECEIVE_CALLBACK = *const fn(
+    context: ?*const WS_OPERATION_CONTEXT,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_OPERATION_CANCEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        reason: WS_SERVICE_CANCEL_REASON,
-        state: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        reason: WS_SERVICE_CANCEL_REASON,
-        state: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WS_OPERATION_CANCEL_CALLBACK = *const fn(
+    reason: WS_SERVICE_CANCEL_REASON,
+    state: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_OPERATION_FREE_STATE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        state: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        state: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WS_OPERATION_FREE_STATE_CALLBACK = *const fn(
+    state: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WS_SERVICE_STUB_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        frame: ?*anyopaque,
-        callback: ?*const anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        frame: ?*anyopaque,
-        callback: ?*const anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_SERVICE_STUB_CALLBACK = *const fn(
+    context: ?*const WS_OPERATION_CONTEXT,
+    frame: ?*anyopaque,
+    callback: ?*const anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SERVICE_ACCEPT_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        channelState: ?*?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        channelState: ?*?*anyopaque,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_SERVICE_ACCEPT_CHANNEL_CALLBACK = *const fn(
+    context: ?*const WS_OPERATION_CONTEXT,
+    channelState: ?*?*anyopaque,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SERVICE_CLOSE_CHANNEL_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        asyncContext: ?*const WS_ASYNC_CONTEXT,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_SERVICE_CLOSE_CHANNEL_CALLBACK = *const fn(
+    context: ?*const WS_OPERATION_CONTEXT,
+    asyncContext: ?*const WS_ASYNC_CONTEXT,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_SERVICE_SECURITY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        authorized: ?*BOOL,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        context: ?*const WS_OPERATION_CONTEXT,
-        authorized: ?*BOOL,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_SERVICE_SECURITY_CALLBACK = *const fn(
+    context: ?*const WS_OPERATION_CONTEXT,
+    authorized: ?*BOOL,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WS_PROXY_MESSAGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        message: ?*WS_MESSAGE,
-        heap: ?*WS_HEAP,
-        state: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        message: ?*WS_MESSAGE,
-        heap: ?*WS_HEAP,
-        state: ?*anyopaque,
-        @"error": ?*WS_ERROR,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WS_PROXY_MESSAGE_CALLBACK = *const fn(
+    message: ?*WS_MESSAGE,
+    heap: ?*WS_HEAP,
+    state: ?*anyopaque,
+    @"error": ?*WS_ERROR,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WS_XML_DICTIONARY = extern struct {
     guid: Guid,
@@ -4639,28 +4152,15 @@ pub const IID_IContentPrefetcherTaskTrigger = &IID_IContentPrefetcherTaskTrigger
 pub const IContentPrefetcherTaskTrigger = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        TriggerContentPrefetcherTask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContentPrefetcherTaskTrigger,
-                packageFullName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContentPrefetcherTaskTrigger,
-                packageFullName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsRegisteredForContentPrefetch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IContentPrefetcherTaskTrigger,
-                packageFullName: ?[*:0]const u16,
-                isRegistered: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IContentPrefetcherTaskTrigger,
-                packageFullName: ?[*:0]const u16,
-                isRegistered: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        TriggerContentPrefetcherTask: *const fn(
+            self: *const IContentPrefetcherTaskTrigger,
+            packageFullName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsRegisteredForContentPrefetch: *const fn(
+            self: *const IContentPrefetcherTaskTrigger,
+            packageFullName: ?[*:0]const u16,
+            isRegistered: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

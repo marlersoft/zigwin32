@@ -11,36 +11,19 @@ pub const IID_IThumbnailExtractor = &IID_IThumbnailExtractor_Value;
 pub const IThumbnailExtractor = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ExtractThumbnail: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IThumbnailExtractor,
-                pStg: ?*IStorage,
-                ulLength: u32,
-                ulHeight: u32,
-                pulOutputLength: ?*u32,
-                pulOutputHeight: ?*u32,
-                phOutputBitmap: ?*?HBITMAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IThumbnailExtractor,
-                pStg: ?*IStorage,
-                ulLength: u32,
-                ulHeight: u32,
-                pulOutputLength: ?*u32,
-                pulOutputHeight: ?*u32,
-                phOutputBitmap: ?*?HBITMAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnFileUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IThumbnailExtractor,
-                pStg: ?*IStorage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IThumbnailExtractor,
-                pStg: ?*IStorage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ExtractThumbnail: *const fn(
+            self: *const IThumbnailExtractor,
+            pStg: ?*IStorage,
+            ulLength: u32,
+            ulHeight: u32,
+            pulOutputLength: ?*u32,
+            pulOutputHeight: ?*u32,
+            phOutputBitmap: ?*?HBITMAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnFileUpdated: *const fn(
+            self: *const IThumbnailExtractor,
+            pStg: ?*IStorage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -62,18 +45,11 @@ pub const IID_IDummyHICONIncluder = &IID_IDummyHICONIncluder_Value;
 pub const IDummyHICONIncluder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Dummy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDummyHICONIncluder,
-                h1: ?HICON,
-                h2: ?HDC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDummyHICONIncluder,
-                h1: ?HICON,
-                h2: ?HDC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Dummy: *const fn(
+            self: *const IDummyHICONIncluder,
+            h1: ?HICON,
+            h2: ?HDC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

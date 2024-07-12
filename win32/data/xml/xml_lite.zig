@@ -296,246 +296,103 @@ pub const IID_IXmlReader = &IID_IXmlReader_Value;
 pub const IXmlReader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetInput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                pInput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                pInput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Read: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                pNodeType: ?*XmlNodeType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                pNodeType: ?*XmlNodeType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNodeType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                pNodeType: ?*XmlNodeType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                pNodeType: ?*XmlNodeType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveToFirstAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveToNextAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveToAttributeByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveToElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQualifiedName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                ppwszQualifiedName: ?*?PWSTR,
-                pcwchQualifiedName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                ppwszQualifiedName: ?*?PWSTR,
-                pcwchQualifiedName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNamespaceUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                ppwszNamespaceUri: ?*?PWSTR,
-                pcwchNamespaceUri: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                ppwszNamespaceUri: ?*?PWSTR,
-                pcwchNamespaceUri: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocalName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                ppwszLocalName: ?*?PWSTR,
-                pcwchLocalName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                ppwszLocalName: ?*?PWSTR,
-                pcwchLocalName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrefix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                ppwszPrefix: ?*?PWSTR,
-                pcwchPrefix: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                ppwszPrefix: ?*?PWSTR,
-                pcwchPrefix: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                ppwszValue: ?*?PWSTR,
-                pcwchValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                ppwszValue: ?*?PWSTR,
-                pcwchValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReadValueChunk: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                pwchBuffer: [*:0]u16,
-                cwchChunkSize: u32,
-                pcwchRead: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                pwchBuffer: [*:0]u16,
-                cwchChunkSize: u32,
-                pcwchRead: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBaseUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                ppwszBaseUri: ?*?PWSTR,
-                pcwchBaseUri: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                ppwszBaseUri: ?*?PWSTR,
-                pcwchBaseUri: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsDefault: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        IsEmptyElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetLineNumber: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                pnLineNumber: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                pnLineNumber: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLinePosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                pnLinePosition: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                pnLinePosition: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAttributeCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                pnAttributeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                pnAttributeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDepth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-                pnDepth: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlReader,
-                pnDepth: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEOF: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        SetInput: *const fn(
+            self: *const IXmlReader,
+            pInput: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IXmlReader,
+            nProperty: u32,
+            ppValue: ?*isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IXmlReader,
+            nProperty: u32,
+            pValue: isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Read: *const fn(
+            self: *const IXmlReader,
+            pNodeType: ?*XmlNodeType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNodeType: *const fn(
+            self: *const IXmlReader,
+            pNodeType: ?*XmlNodeType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveToFirstAttribute: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveToNextAttribute: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveToAttributeByName: *const fn(
+            self: *const IXmlReader,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveToElement: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQualifiedName: *const fn(
+            self: *const IXmlReader,
+            ppwszQualifiedName: ?*?PWSTR,
+            pcwchQualifiedName: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNamespaceUri: *const fn(
+            self: *const IXmlReader,
+            ppwszNamespaceUri: ?*?PWSTR,
+            pcwchNamespaceUri: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalName: *const fn(
+            self: *const IXmlReader,
+            ppwszLocalName: ?*?PWSTR,
+            pcwchLocalName: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrefix: *const fn(
+            self: *const IXmlReader,
+            ppwszPrefix: ?*?PWSTR,
+            pcwchPrefix: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValue: *const fn(
+            self: *const IXmlReader,
+            ppwszValue: ?*?PWSTR,
+            pcwchValue: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReadValueChunk: *const fn(
+            self: *const IXmlReader,
+            pwchBuffer: [*:0]u16,
+            cwchChunkSize: u32,
+            pcwchRead: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBaseUri: *const fn(
+            self: *const IXmlReader,
+            ppwszBaseUri: ?*?PWSTR,
+            pcwchBaseUri: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsDefault: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        IsEmptyElement: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetLineNumber: *const fn(
+            self: *const IXmlReader,
+            pnLineNumber: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLinePosition: *const fn(
+            self: *const IXmlReader,
+            pnLinePosition: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAttributeCount: *const fn(
+            self: *const IXmlReader,
+            pnAttributeCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDepth: *const fn(
+            self: *const IXmlReader,
+            pnDepth: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEOF: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -641,22 +498,13 @@ pub const IID_IXmlResolver = &IID_IXmlResolver_Value;
 pub const IXmlResolver = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ResolveUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlResolver,
-                pwszBaseUri: ?[*:0]const u16,
-                pwszPublicIdentifier: ?[*:0]const u16,
-                pwszSystemIdentifier: ?[*:0]const u16,
-                ppResolvedInput: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlResolver,
-                pwszBaseUri: ?[*:0]const u16,
-                pwszPublicIdentifier: ?[*:0]const u16,
-                pwszSystemIdentifier: ?[*:0]const u16,
-                ppResolvedInput: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ResolveUri: *const fn(
+            self: *const IXmlResolver,
+            pwszBaseUri: ?[*:0]const u16,
+            pwszPublicIdentifier: ?[*:0]const u16,
+            pwszSystemIdentifier: ?[*:0]const u16,
+            ppResolvedInput: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -674,330 +522,139 @@ pub const IID_IXmlWriter = &IID_IXmlWriter_Value;
 pub const IXmlWriter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pOutput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pOutput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteAttributeString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteCData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteCharEntity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                wch: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                wch: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteChars: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteComment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszComment: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszComment: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteDocType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-                pwszPublicId: ?[*:0]const u16,
-                pwszSystemId: ?[*:0]const u16,
-                pwszSubset: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-                pwszPublicId: ?[*:0]const u16,
-                pwszSystemId: ?[*:0]const u16,
-                pwszSubset: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteElementString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEndDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEndElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEntityRef: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteFullEndElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNmToken: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszNmToken: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszNmToken: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNodeShallow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteProcessingInstruction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteQualifiedName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteRaw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteRawChars: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteStartDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                standalone: XmlStandalone,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                standalone: XmlStandalone,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteStartElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteSurrogateCharEntity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                wchLow: u16,
-                wchHigh: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                wchLow: u16,
-                wchHigh: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteWhitespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-                pwszWhitespace: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-                pwszWhitespace: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Flush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOutput: *const fn(
+            self: *const IXmlWriter,
+            pOutput: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IXmlWriter,
+            nProperty: u32,
+            ppValue: ?*isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IXmlWriter,
+            nProperty: u32,
+            pValue: isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteAttributes: *const fn(
+            self: *const IXmlWriter,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteAttributeString: *const fn(
+            self: *const IXmlWriter,
+            pwszPrefix: ?[*:0]const u16,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+            pwszValue: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteCData: *const fn(
+            self: *const IXmlWriter,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteCharEntity: *const fn(
+            self: *const IXmlWriter,
+            wch: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteChars: *const fn(
+            self: *const IXmlWriter,
+            pwch: ?[*:0]const u16,
+            cwch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteComment: *const fn(
+            self: *const IXmlWriter,
+            pwszComment: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteDocType: *const fn(
+            self: *const IXmlWriter,
+            pwszName: ?[*:0]const u16,
+            pwszPublicId: ?[*:0]const u16,
+            pwszSystemId: ?[*:0]const u16,
+            pwszSubset: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteElementString: *const fn(
+            self: *const IXmlWriter,
+            pwszPrefix: ?[*:0]const u16,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+            pwszValue: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEndDocument: *const fn(
+            self: *const IXmlWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEndElement: *const fn(
+            self: *const IXmlWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEntityRef: *const fn(
+            self: *const IXmlWriter,
+            pwszName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteFullEndElement: *const fn(
+            self: *const IXmlWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteName: *const fn(
+            self: *const IXmlWriter,
+            pwszName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNmToken: *const fn(
+            self: *const IXmlWriter,
+            pwszNmToken: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNode: *const fn(
+            self: *const IXmlWriter,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNodeShallow: *const fn(
+            self: *const IXmlWriter,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteProcessingInstruction: *const fn(
+            self: *const IXmlWriter,
+            pwszName: ?[*:0]const u16,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteQualifiedName: *const fn(
+            self: *const IXmlWriter,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteRaw: *const fn(
+            self: *const IXmlWriter,
+            pwszData: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteRawChars: *const fn(
+            self: *const IXmlWriter,
+            pwch: ?[*:0]const u16,
+            cwch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteStartDocument: *const fn(
+            self: *const IXmlWriter,
+            standalone: XmlStandalone,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteStartElement: *const fn(
+            self: *const IXmlWriter,
+            pwszPrefix: ?[*:0]const u16,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteString: *const fn(
+            self: *const IXmlWriter,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteSurrogateCharEntity: *const fn(
+            self: *const IXmlWriter,
+            wchLow: u16,
+            wchHigh: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteWhitespace: *const fn(
+            self: *const IXmlWriter,
+            pwszWhitespace: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Flush: *const fn(
+            self: *const IXmlWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1127,322 +784,136 @@ pub const IID_IXmlWriterLite = &IID_IXmlWriterLite_Value;
 pub const IXmlWriterLite = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pOutput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pOutput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteAttributeString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-                pwszValue: ?[*:0]const u16,
-                cwszValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-                pwszValue: ?[*:0]const u16,
-                cwszValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteCData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteCharEntity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                wch: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                wch: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteChars: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteComment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszComment: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszComment: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteDocType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-                pwszPublicId: ?[*:0]const u16,
-                pwszSystemId: ?[*:0]const u16,
-                pwszSubset: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-                pwszPublicId: ?[*:0]const u16,
-                pwszSystemId: ?[*:0]const u16,
-                pwszSubset: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteElementString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEndDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEndElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEntityRef: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteFullEndElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNmToken: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszNmToken: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszNmToken: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNodeShallow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteProcessingInstruction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteRaw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteRawChars: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteStartDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                standalone: XmlStandalone,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                standalone: XmlStandalone,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteStartElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteSurrogateCharEntity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                wchLow: u16,
-                wchHigh: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                wchLow: u16,
-                wchHigh: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteWhitespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-                pwszWhitespace: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-                pwszWhitespace: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Flush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXmlWriterLite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXmlWriterLite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOutput: *const fn(
+            self: *const IXmlWriterLite,
+            pOutput: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IXmlWriterLite,
+            nProperty: u32,
+            ppValue: ?*isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IXmlWriterLite,
+            nProperty: u32,
+            pValue: isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteAttributes: *const fn(
+            self: *const IXmlWriterLite,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteAttributeString: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+            pwszValue: ?[*:0]const u16,
+            cwszValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteCData: *const fn(
+            self: *const IXmlWriterLite,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteCharEntity: *const fn(
+            self: *const IXmlWriterLite,
+            wch: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteChars: *const fn(
+            self: *const IXmlWriterLite,
+            pwch: ?[*:0]const u16,
+            cwch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteComment: *const fn(
+            self: *const IXmlWriterLite,
+            pwszComment: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteDocType: *const fn(
+            self: *const IXmlWriterLite,
+            pwszName: ?[*:0]const u16,
+            pwszPublicId: ?[*:0]const u16,
+            pwszSystemId: ?[*:0]const u16,
+            pwszSubset: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteElementString: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+            pwszValue: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEndDocument: *const fn(
+            self: *const IXmlWriterLite,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEndElement: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEntityRef: *const fn(
+            self: *const IXmlWriterLite,
+            pwszName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteFullEndElement: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteName: *const fn(
+            self: *const IXmlWriterLite,
+            pwszName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNmToken: *const fn(
+            self: *const IXmlWriterLite,
+            pwszNmToken: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNode: *const fn(
+            self: *const IXmlWriterLite,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNodeShallow: *const fn(
+            self: *const IXmlWriterLite,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteProcessingInstruction: *const fn(
+            self: *const IXmlWriterLite,
+            pwszName: ?[*:0]const u16,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteRaw: *const fn(
+            self: *const IXmlWriterLite,
+            pwszData: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteRawChars: *const fn(
+            self: *const IXmlWriterLite,
+            pwch: ?[*:0]const u16,
+            cwch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteStartDocument: *const fn(
+            self: *const IXmlWriterLite,
+            standalone: XmlStandalone,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteStartElement: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteString: *const fn(
+            self: *const IXmlWriterLite,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteSurrogateCharEntity: *const fn(
+            self: *const IXmlWriterLite,
+            wchLow: u16,
+            wchHigh: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteWhitespace: *const fn(
+            self: *const IXmlWriterLite,
+            pwszWhitespace: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Flush: *const fn(
+            self: *const IXmlWriterLite,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

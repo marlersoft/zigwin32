@@ -1905,74 +1905,37 @@ pub const WHV_EMULATOR_IO_ACCESS_INFO = extern struct {
     Data: u32,
 };
 
-pub const WHV_EMULATOR_IO_PORT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-        IoAccess: ?*WHV_EMULATOR_IO_ACCESS_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        Context: ?*anyopaque,
-        IoAccess: ?*WHV_EMULATOR_IO_ACCESS_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WHV_EMULATOR_IO_PORT_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    IoAccess: ?*WHV_EMULATOR_IO_ACCESS_INFO,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WHV_EMULATOR_MEMORY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-        MemoryAccess: ?*WHV_EMULATOR_MEMORY_ACCESS_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        Context: ?*anyopaque,
-        MemoryAccess: ?*WHV_EMULATOR_MEMORY_ACCESS_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WHV_EMULATOR_MEMORY_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    MemoryAccess: ?*WHV_EMULATOR_MEMORY_ACCESS_INFO,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-        RegisterNames: [*]const WHV_REGISTER_NAME,
-        RegisterCount: u32,
-        RegisterValues: [*]WHV_REGISTER_VALUE,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        Context: ?*anyopaque,
-        RegisterNames: [*]const WHV_REGISTER_NAME,
-        RegisterCount: u32,
-        RegisterValues: [*]WHV_REGISTER_VALUE,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    RegisterNames: [*]const WHV_REGISTER_NAME,
+    RegisterCount: u32,
+    RegisterValues: [*]WHV_REGISTER_VALUE,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-        RegisterNames: [*]const WHV_REGISTER_NAME,
-        RegisterCount: u32,
-        RegisterValues: [*]const WHV_REGISTER_VALUE,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        Context: ?*anyopaque,
-        RegisterNames: [*]const WHV_REGISTER_NAME,
-        RegisterCount: u32,
-        RegisterValues: [*]const WHV_REGISTER_VALUE,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    RegisterNames: [*]const WHV_REGISTER_NAME,
+    RegisterCount: u32,
+    RegisterValues: [*]const WHV_REGISTER_VALUE,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-        Gva: u64,
-        TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
-        TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT_CODE,
-        Gpa: ?*u64,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        Context: ?*anyopaque,
-        Gva: u64,
-        TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
-        TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT_CODE,
-        Gpa: ?*u64,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    Gva: u64,
+    TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
+    TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT_CODE,
+    Gpa: ?*u64,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WHV_EMULATOR_CALLBACKS = extern struct {
     Size: u32,
@@ -2089,129 +2052,62 @@ pub const HdvMmioMappingFlagNone = HDV_MMIO_MAPPING_FLAGS{ };
 pub const HdvMmioMappingFlagWriteable = HDV_MMIO_MAPPING_FLAGS{ .Writeable = 1 };
 pub const HdvMmioMappingFlagExecutable = HDV_MMIO_MAPPING_FLAGS{ .Executable = 1 };
 
-pub const HDV_PCI_DEVICE_INITIALIZE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const HDV_PCI_DEVICE_INITIALIZE = *const fn(
+    deviceContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const HDV_PCI_DEVICE_TEARDOWN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const HDV_PCI_DEVICE_TEARDOWN = *const fn(
+    deviceContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const HDV_PCI_DEVICE_SET_CONFIGURATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-        configurationValueCount: u32,
-        configurationValues: [*]const ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-        configurationValueCount: u32,
-        configurationValues: [*]const ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const HDV_PCI_DEVICE_SET_CONFIGURATION = *const fn(
+    deviceContext: ?*anyopaque,
+    configurationValueCount: u32,
+    configurationValues: [*]const ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const HDV_PCI_DEVICE_GET_DETAILS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-        pnpId: ?*HDV_PCI_PNP_ID,
-        probedBarsCount: u32,
-        probedBars: [*]u32,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-        pnpId: ?*HDV_PCI_PNP_ID,
-        probedBarsCount: u32,
-        probedBars: [*]u32,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const HDV_PCI_DEVICE_GET_DETAILS = *const fn(
+    deviceContext: ?*anyopaque,
+    pnpId: ?*HDV_PCI_PNP_ID,
+    probedBarsCount: u32,
+    probedBars: [*]u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const HDV_PCI_DEVICE_START = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const HDV_PCI_DEVICE_START = *const fn(
+    deviceContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const HDV_PCI_DEVICE_STOP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const HDV_PCI_DEVICE_STOP = *const fn(
+    deviceContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const HDV_PCI_READ_CONFIG_SPACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-        offset: u32,
-        value: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-        offset: u32,
-        value: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const HDV_PCI_READ_CONFIG_SPACE = *const fn(
+    deviceContext: ?*anyopaque,
+    offset: u32,
+    value: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const HDV_PCI_WRITE_CONFIG_SPACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-        offset: u32,
-        value: u32,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-        offset: u32,
-        value: u32,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const HDV_PCI_WRITE_CONFIG_SPACE = *const fn(
+    deviceContext: ?*anyopaque,
+    offset: u32,
+    value: u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const HDV_PCI_READ_INTERCEPTED_MEMORY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-        barIndex: HDV_PCI_BAR_SELECTOR,
-        offset: u64,
-        length: u64,
-        value: [*:0]u8,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-        barIndex: HDV_PCI_BAR_SELECTOR,
-        offset: u64,
-        length: u64,
-        value: [*:0]u8,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const HDV_PCI_READ_INTERCEPTED_MEMORY = *const fn(
+    deviceContext: ?*anyopaque,
+    barIndex: HDV_PCI_BAR_SELECTOR,
+    offset: u64,
+    length: u64,
+    value: [*:0]u8,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const HDV_PCI_WRITE_INTERCEPTED_MEMORY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        deviceContext: ?*anyopaque,
-        barIndex: HDV_PCI_BAR_SELECTOR,
-        offset: u64,
-        length: u64,
-        value: [*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        deviceContext: ?*anyopaque,
-        barIndex: HDV_PCI_BAR_SELECTOR,
-        offset: u64,
-        length: u64,
-        value: [*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const HDV_PCI_WRITE_INTERCEPTED_MEMORY = *const fn(
+    deviceContext: ?*anyopaque,
+    barIndex: HDV_PCI_BAR_SELECTOR,
+    offset: u64,
+    length: u64,
+    value: [*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const HDV_PCI_INTERFACE_VERSION = enum(i32) {
     Invalid = 0,
@@ -2708,25 +2604,14 @@ pub const DOS_IMAGE_INFO = extern struct {
     Timestamp: u32,
 };
 
-pub const GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        InfoMessage: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        InfoMessage: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK = *const fn(
+    InfoMessage: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FOUND_IMAGE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-        ImageInfo: ?*DOS_IMAGE_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        Context: ?*anyopaque,
-        ImageInfo: ?*DOS_IMAGE_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const FOUND_IMAGE_CALLBACK = *const fn(
+    Context: ?*anyopaque,
+    ImageInfo: ?*DOS_IMAGE_INFO,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const MODULE_INFO = extern struct {
     ProcessImageName: ?[*:0]const u8,

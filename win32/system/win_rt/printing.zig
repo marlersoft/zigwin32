@@ -11,34 +11,18 @@ pub const IID_IPrinting3DManagerInterop = &IID_IPrinting3DManagerInterop_Value;
 pub const IPrinting3DManagerInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrinting3DManagerInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                printManager: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrinting3DManagerInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                printManager: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ShowPrintUIForWindowAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrinting3DManagerInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                asyncOperation: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrinting3DManagerInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                asyncOperation: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetForWindow: *const fn(
+            self: *const IPrinting3DManagerInterop,
+            appWindow: ?HWND,
+            riid: ?*const Guid,
+            printManager: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ShowPrintUIForWindowAsync: *const fn(
+            self: *const IPrinting3DManagerInterop,
+            appWindow: ?HWND,
+            riid: ?*const Guid,
+            asyncOperation: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -61,34 +45,18 @@ pub const IID_IPrintManagerInterop = &IID_IPrintManagerInterop_Value;
 pub const IPrintManagerInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintManagerInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                printManager: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintManagerInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                printManager: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ShowPrintUIForWindowAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintManagerInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                asyncOperation: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintManagerInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                asyncOperation: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetForWindow: *const fn(
+            self: *const IPrintManagerInterop,
+            appWindow: ?HWND,
+            riid: ?*const Guid,
+            printManager: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ShowPrintUIForWindowAsync: *const fn(
+            self: *const IPrintManagerInterop,
+            appWindow: ?HWND,
+            riid: ?*const Guid,
+            asyncOperation: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -110,64 +78,30 @@ pub const IID_IPrintWorkflowXpsReceiver = &IID_IPrintWorkflowXpsReceiver_Value;
 pub const IPrintWorkflowXpsReceiver = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetDocumentSequencePrintTicket: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintWorkflowXpsReceiver,
-                documentSequencePrintTicket: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintWorkflowXpsReceiver,
-                documentSequencePrintTicket: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDocumentSequenceUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintWorkflowXpsReceiver,
-                documentSequenceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintWorkflowXpsReceiver,
-                documentSequenceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddDocumentData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintWorkflowXpsReceiver,
-                documentId: u32,
-                documentPrintTicket: ?*IStream,
-                documentUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintWorkflowXpsReceiver,
-                documentId: u32,
-                documentPrintTicket: ?*IStream,
-                documentUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddPage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintWorkflowXpsReceiver,
-                documentId: u32,
-                pageId: u32,
-                pageReference: ?*IXpsOMPageReference,
-                pageUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintWorkflowXpsReceiver,
-                documentId: u32,
-                pageId: u32,
-                pageReference: ?*IXpsOMPageReference,
-                pageUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintWorkflowXpsReceiver,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintWorkflowXpsReceiver,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetDocumentSequencePrintTicket: *const fn(
+            self: *const IPrintWorkflowXpsReceiver,
+            documentSequencePrintTicket: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDocumentSequenceUri: *const fn(
+            self: *const IPrintWorkflowXpsReceiver,
+            documentSequenceUri: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDocumentData: *const fn(
+            self: *const IPrintWorkflowXpsReceiver,
+            documentId: u32,
+            documentPrintTicket: ?*IStream,
+            documentUri: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddPage: *const fn(
+            self: *const IPrintWorkflowXpsReceiver,
+            documentId: u32,
+            pageId: u32,
+            pageReference: ?*IXpsOMPageReference,
+            pageUri: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: *const fn(
+            self: *const IPrintWorkflowXpsReceiver,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -201,16 +135,10 @@ pub const IID_IPrintWorkflowXpsReceiver2 = &IID_IPrintWorkflowXpsReceiver2_Value
 pub const IPrintWorkflowXpsReceiver2 = extern struct {
     pub const VTable = extern struct {
         base: IPrintWorkflowXpsReceiver.VTable,
-        Failed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintWorkflowXpsReceiver2,
-                XpsError: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintWorkflowXpsReceiver2,
-                XpsError: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Failed: *const fn(
+            self: *const IPrintWorkflowXpsReceiver2,
+            XpsError: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -228,29 +156,15 @@ pub const IID_IPrintWorkflowObjectModelSourceFileContentNative = &IID_IPrintWork
 pub const IPrintWorkflowObjectModelSourceFileContentNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartXpsOMGeneration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintWorkflowObjectModelSourceFileContentNative,
-                receiver: ?*IPrintWorkflowXpsReceiver,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintWorkflowObjectModelSourceFileContentNative,
-                receiver: ?*IPrintWorkflowXpsReceiver,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        StartXpsOMGeneration: *const fn(
+            self: *const IPrintWorkflowObjectModelSourceFileContentNative,
+            receiver: ?*IPrintWorkflowXpsReceiver,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ObjectFactory: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPrintWorkflowObjectModelSourceFileContentNative,
-                value: ?*?*IXpsOMObjectFactory1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPrintWorkflowObjectModelSourceFileContentNative,
-                value: ?*?*IXpsOMObjectFactory1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ObjectFactory: *const fn(
+            self: *const IPrintWorkflowObjectModelSourceFileContentNative,
+            value: ?*?*IXpsOMObjectFactory1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -273,18 +187,10 @@ pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DocumentPackageTarget: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPrintWorkflowXpsObjectModelTargetPackageNative,
-                value: ?*?*IXpsDocumentPackageTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPrintWorkflowXpsObjectModelTargetPackageNative,
-                value: ?*?*IXpsDocumentPackageTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DocumentPackageTarget: *const fn(
+            self: *const IPrintWorkflowXpsObjectModelTargetPackageNative,
+            value: ?*?*IXpsDocumentPackageTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -303,44 +209,20 @@ pub const IPrintWorkflowConfigurationNative = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PrinterQueue: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPrintWorkflowConfigurationNative,
-                value: ?*?*IPrinterQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPrintWorkflowConfigurationNative,
-                value: ?*?*IPrinterQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PrinterQueue: *const fn(
+            self: *const IPrintWorkflowConfigurationNative,
+            value: ?*?*IPrinterQueue,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DriverProperties: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPrintWorkflowConfigurationNative,
-                value: ?*?*IPrinterPropertyBag,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPrintWorkflowConfigurationNative,
-                value: ?*?*IPrinterPropertyBag,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DriverProperties: *const fn(
+            self: *const IPrintWorkflowConfigurationNative,
+            value: ?*?*IPrinterPropertyBag,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserProperties: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPrintWorkflowConfigurationNative,
-                value: ?*?*IPrinterPropertyBag,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPrintWorkflowConfigurationNative,
-                value: ?*?*IPrinterPropertyBag,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_UserProperties: *const fn(
+            self: *const IPrintWorkflowConfigurationNative,
+            value: ?*?*IPrinterPropertyBag,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

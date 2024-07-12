@@ -83,63 +83,32 @@ pub const SCESVC_ANALYSIS_INFO = extern struct {
     Lines: ?*SCESVC_ANALYSIS_LINE,
 };
 
-pub const PFSCE_QUERY_INFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        sceHandle: ?*anyopaque,
-        sceType: SCESVC_INFO_TYPE,
-        lpPrefix: ?*i8,
-        bExact: BOOL,
-        ppvInfo: ?*?*anyopaque,
-        psceEnumHandle: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        sceHandle: ?*anyopaque,
-        sceType: SCESVC_INFO_TYPE,
-        lpPrefix: ?*i8,
-        bExact: BOOL,
-        ppvInfo: ?*?*anyopaque,
-        psceEnumHandle: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFSCE_QUERY_INFO = *const fn(
+    sceHandle: ?*anyopaque,
+    sceType: SCESVC_INFO_TYPE,
+    lpPrefix: ?*i8,
+    bExact: BOOL,
+    ppvInfo: ?*?*anyopaque,
+    psceEnumHandle: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFSCE_SET_INFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        sceHandle: ?*anyopaque,
-        sceType: SCESVC_INFO_TYPE,
-        lpPrefix: ?*i8,
-        bExact: BOOL,
-        pvInfo: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        sceHandle: ?*anyopaque,
-        sceType: SCESVC_INFO_TYPE,
-        lpPrefix: ?*i8,
-        bExact: BOOL,
-        pvInfo: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFSCE_SET_INFO = *const fn(
+    sceHandle: ?*anyopaque,
+    sceType: SCESVC_INFO_TYPE,
+    lpPrefix: ?*i8,
+    bExact: BOOL,
+    pvInfo: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFSCE_FREE_INFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pvServiceInfo: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pvServiceInfo: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFSCE_FREE_INFO = *const fn(
+    pvServiceInfo: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFSCE_LOG_INFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ErrLevel: SCE_LOG_ERR_LEVEL,
-        Win32rc: u32,
-        pErrFmt: ?*i8,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        ErrLevel: SCE_LOG_ERR_LEVEL,
-        Win32rc: u32,
-        pErrFmt: ?*i8,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFSCE_LOG_INFO = *const fn(
+    ErrLevel: SCE_LOG_ERR_LEVEL,
+    Win32rc: u32,
+    pErrFmt: ?*i8,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const SCESVC_CALLBACK_INFO = extern struct {
     sceHandle: ?*anyopaque,
@@ -149,25 +118,14 @@ pub const SCESVC_CALLBACK_INFO = extern struct {
     pfLogInfo: ?PFSCE_LOG_INFO,
 };
 
-pub const PF_ConfigAnalyzeService = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PF_ConfigAnalyzeService = *const fn(
+    pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PF_UpdateService = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
-        ServiceInfo: ?*SCESVC_CONFIGURATION_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
-        ServiceInfo: ?*SCESVC_CONFIGURATION_INFO,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PF_UpdateService = *const fn(
+    pSceCbInfo: ?*SCESVC_CALLBACK_INFO,
+    ServiceInfo: ?*SCESVC_CONFIGURATION_INFO,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISceSvcAttachmentPersistInfo_Value = Guid.initString("6d90e0d0-200d-11d1-affb-00c04fb984f9");
@@ -175,42 +133,21 @@ pub const IID_ISceSvcAttachmentPersistInfo = &IID_ISceSvcAttachmentPersistInfo_V
 pub const ISceSvcAttachmentPersistInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISceSvcAttachmentPersistInfo,
-                lpTemplateName: ?*i8,
-                scesvcHandle: ?*?*anyopaque,
-                ppvData: ?*?*anyopaque,
-                pbOverwriteAll: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISceSvcAttachmentPersistInfo,
-                lpTemplateName: ?*i8,
-                scesvcHandle: ?*?*anyopaque,
-                ppvData: ?*?*anyopaque,
-                pbOverwriteAll: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsDirty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISceSvcAttachmentPersistInfo,
-                lpTemplateName: ?*i8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISceSvcAttachmentPersistInfo,
-                lpTemplateName: ?*i8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FreeBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISceSvcAttachmentPersistInfo,
-                pvData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISceSvcAttachmentPersistInfo,
-                pvData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Save: *const fn(
+            self: *const ISceSvcAttachmentPersistInfo,
+            lpTemplateName: ?*i8,
+            scesvcHandle: ?*?*anyopaque,
+            ppvData: ?*?*anyopaque,
+            pbOverwriteAll: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsDirty: *const fn(
+            self: *const ISceSvcAttachmentPersistInfo,
+            lpTemplateName: ?*i8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FreeBuffer: *const fn(
+            self: *const ISceSvcAttachmentPersistInfo,
+            pvData: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -237,58 +174,28 @@ pub const IID_ISceSvcAttachmentData = &IID_ISceSvcAttachmentData_Value;
 pub const ISceSvcAttachmentData = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISceSvcAttachmentData,
-                scesvcHandle: ?*anyopaque,
-                sceType: SCESVC_INFO_TYPE,
-                ppvData: ?*?*anyopaque,
-                psceEnumHandle: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISceSvcAttachmentData,
-                scesvcHandle: ?*anyopaque,
-                sceType: SCESVC_INFO_TYPE,
-                ppvData: ?*?*anyopaque,
-                psceEnumHandle: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISceSvcAttachmentData,
-                lpServiceName: ?*i8,
-                lpTemplateName: ?*i8,
-                lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo,
-                pscesvcHandle: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISceSvcAttachmentData,
-                lpServiceName: ?*i8,
-                lpTemplateName: ?*i8,
-                lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo,
-                pscesvcHandle: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FreeBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISceSvcAttachmentData,
-                pvData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISceSvcAttachmentData,
-                pvData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CloseHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISceSvcAttachmentData,
-                scesvcHandle: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISceSvcAttachmentData,
-                scesvcHandle: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetData: *const fn(
+            self: *const ISceSvcAttachmentData,
+            scesvcHandle: ?*anyopaque,
+            sceType: SCESVC_INFO_TYPE,
+            ppvData: ?*?*anyopaque,
+            psceEnumHandle: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const ISceSvcAttachmentData,
+            lpServiceName: ?*i8,
+            lpTemplateName: ?*i8,
+            lpSceSvcPersistInfo: ?*ISceSvcAttachmentPersistInfo,
+            pscesvcHandle: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FreeBuffer: *const fn(
+            self: *const ISceSvcAttachmentData,
+            pvData: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CloseHandle: *const fn(
+            self: *const ISceSvcAttachmentData,
+            scesvcHandle: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

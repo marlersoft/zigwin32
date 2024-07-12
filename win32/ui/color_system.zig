@@ -156,27 +156,15 @@ pub const LOGCOLORSPACEW = extern struct {
     lcsFilename: [260]u16,
 };
 
-pub const ICMENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: ?PSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const ICMENUMPROCA = *const fn(
+    param0: ?PSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const ICMENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const ICMENUMPROCW = *const fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const EMRCREATECOLORSPACE = extern struct {
     emr: EMR,
@@ -265,154 +253,69 @@ pub const IID_IDeviceModelPlugIn = &IID_IDeviceModelPlugIn_Value;
 pub const IDeviceModelPlugIn = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                bstrXml: ?BSTR,
-                cNumModels: u32,
-                iModelPosition: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                bstrXml: ?BSTR,
-                cNumModels: u32,
-                iModelPosition: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNumChannels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                pNumChannels: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                pNumChannels: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeviceToColorimetricColors: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                cColors: u32,
-                cChannels: u32,
-                pDeviceValues: ?*const f32,
-                pXYZColors: [*]XYZColorF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                cColors: u32,
-                cChannels: u32,
-                pDeviceValues: ?*const f32,
-                pXYZColors: [*]XYZColorF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ColorimetricToDeviceColors: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                cColors: u32,
-                cChannels: u32,
-                pXYZColors: [*]const XYZColorF,
-                pDeviceValues: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                cColors: u32,
-                cChannels: u32,
-                pXYZColors: [*]const XYZColorF,
-                pDeviceValues: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ColorimetricToDeviceColorsWithBlack: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                cColors: u32,
-                cChannels: u32,
-                pXYZColors: [*]const XYZColorF,
-                pBlackInformation: [*]const BlackInformation,
-                pDeviceValues: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                cColors: u32,
-                cChannels: u32,
-                pXYZColors: [*]const XYZColorF,
-                pBlackInformation: [*]const BlackInformation,
-                pDeviceValues: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformDeviceModelInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                iModelPosition: u32,
-                pIDeviceModelOther: ?*IDeviceModelPlugIn,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                iModelPosition: u32,
-                pIDeviceModelOther: ?*IDeviceModelPlugIn,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrimarySamples: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                pPrimaryColor: ?*PrimaryXYZColors,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                pPrimaryColor: ?*PrimaryXYZColors,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGamutBoundaryMeshSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                pNumVertices: ?*u32,
-                pNumTriangles: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                pNumVertices: ?*u32,
-                pNumTriangles: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGamutBoundaryMesh: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                cChannels: u32,
-                cVertices: u32,
-                cTriangles: u32,
-                pVertices: ?*f32,
-                pTriangles: [*]GamutShellTriangle,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                cChannels: u32,
-                cVertices: u32,
-                cTriangles: u32,
-                pVertices: ?*f32,
-                pTriangles: [*]GamutShellTriangle,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNeutralAxisSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                pcColors: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                pcColors: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNeutralAxis: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDeviceModelPlugIn,
-                cColors: u32,
-                pXYZColors: [*]XYZColorF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDeviceModelPlugIn,
-                cColors: u32,
-                pXYZColors: [*]XYZColorF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IDeviceModelPlugIn,
+            bstrXml: ?BSTR,
+            cNumModels: u32,
+            iModelPosition: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNumChannels: *const fn(
+            self: *const IDeviceModelPlugIn,
+            pNumChannels: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeviceToColorimetricColors: *const fn(
+            self: *const IDeviceModelPlugIn,
+            cColors: u32,
+            cChannels: u32,
+            pDeviceValues: ?*const f32,
+            pXYZColors: [*]XYZColorF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ColorimetricToDeviceColors: *const fn(
+            self: *const IDeviceModelPlugIn,
+            cColors: u32,
+            cChannels: u32,
+            pXYZColors: [*]const XYZColorF,
+            pDeviceValues: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ColorimetricToDeviceColorsWithBlack: *const fn(
+            self: *const IDeviceModelPlugIn,
+            cColors: u32,
+            cChannels: u32,
+            pXYZColors: [*]const XYZColorF,
+            pBlackInformation: [*]const BlackInformation,
+            pDeviceValues: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformDeviceModelInfo: *const fn(
+            self: *const IDeviceModelPlugIn,
+            iModelPosition: u32,
+            pIDeviceModelOther: ?*IDeviceModelPlugIn,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrimarySamples: *const fn(
+            self: *const IDeviceModelPlugIn,
+            pPrimaryColor: ?*PrimaryXYZColors,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGamutBoundaryMeshSize: *const fn(
+            self: *const IDeviceModelPlugIn,
+            pNumVertices: ?*u32,
+            pNumTriangles: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGamutBoundaryMesh: *const fn(
+            self: *const IDeviceModelPlugIn,
+            cChannels: u32,
+            cVertices: u32,
+            cTriangles: u32,
+            pVertices: ?*f32,
+            pTriangles: [*]GamutShellTriangle,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNeutralAxisSize: *const fn(
+            self: *const IDeviceModelPlugIn,
+            pcColors: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNeutralAxis: *const fn(
+            self: *const IDeviceModelPlugIn,
+            cColors: u32,
+            pXYZColors: [*]XYZColorF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -470,38 +373,20 @@ pub const IID_IGamutMapModelPlugIn = &IID_IGamutMapModelPlugIn_Value;
 pub const IGamutMapModelPlugIn = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGamutMapModelPlugIn,
-                bstrXml: ?BSTR,
-                pSrcPlugIn: ?*IDeviceModelPlugIn,
-                pDestPlugIn: ?*IDeviceModelPlugIn,
-                pSrcGBD: ?*GamutBoundaryDescription,
-                pDestGBD: ?*GamutBoundaryDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGamutMapModelPlugIn,
-                bstrXml: ?BSTR,
-                pSrcPlugIn: ?*IDeviceModelPlugIn,
-                pDestPlugIn: ?*IDeviceModelPlugIn,
-                pSrcGBD: ?*GamutBoundaryDescription,
-                pDestGBD: ?*GamutBoundaryDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SourceToDestinationAppearanceColors: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGamutMapModelPlugIn,
-                cColors: u32,
-                pInputColors: [*]const JChColorF,
-                pOutputColors: [*]JChColorF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGamutMapModelPlugIn,
-                cColors: u32,
-                pInputColors: [*]const JChColorF,
-                pOutputColors: [*]JChColorF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IGamutMapModelPlugIn,
+            bstrXml: ?BSTR,
+            pSrcPlugIn: ?*IDeviceModelPlugIn,
+            pDestPlugIn: ?*IDeviceModelPlugIn,
+            pSrcGBD: ?*GamutBoundaryDescription,
+            pDestGBD: ?*GamutBoundaryDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SourceToDestinationAppearanceColors: *const fn(
+            self: *const IGamutMapModelPlugIn,
+            cColors: u32,
+            pInputColors: [*]const JChColorF,
+            pOutputColors: [*]JChColorF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -752,18 +637,11 @@ pub const BM_R10G10B10A2 = BMFORMAT.R10G10B10A2;
 pub const BM_R10G10B10A2_XR = BMFORMAT.R10G10B10A2_XR;
 pub const BM_R16G16B16A16_FLOAT = BMFORMAT.R16G16B16A16_FLOAT;
 
-pub const LPBMCALLBACKFN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: u32,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: u32,
-        param1: u32,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPBMCALLBACKFN = *const fn(
+    param0: u32,
+    param1: u32,
+    param2: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PROFILEHEADER = extern struct {
     phSize: u32,
@@ -845,10 +723,10 @@ pub const WCS_PROFILE_MANAGEMENT_SCOPE_SYSTEM_WIDE = WCS_PROFILE_MANAGEMENT_SCOP
 pub const WCS_PROFILE_MANAGEMENT_SCOPE_CURRENT_USER = WCS_PROFILE_MANAGEMENT_SCOPE.CURRENT_USER;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PCMSCALLBACKW = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PCMSCALLBACKW = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PCMSCALLBACKA = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PCMSCALLBACKA = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 pub const COLORMATCHSETUPW = extern struct {
     dwSize: u32,

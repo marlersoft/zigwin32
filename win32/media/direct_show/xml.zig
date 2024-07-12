@@ -13,44 +13,22 @@ pub const IID_IXMLGraphBuilder = &IID_IXMLGraphBuilder_Value;
 pub const IXMLGraphBuilder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BuildFromXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                pxml: ?*IXMLElement,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                pxml: ?*IXMLElement,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SaveToXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                pbstrxml: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                pbstrxml: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BuildFromXMLFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                wszFileName: ?[*:0]const u16,
-                wszBaseURL: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                wszFileName: ?[*:0]const u16,
-                wszBaseURL: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BuildFromXML: *const fn(
+            self: *const IXMLGraphBuilder,
+            pGraph: ?*IGraphBuilder,
+            pxml: ?*IXMLElement,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SaveToXML: *const fn(
+            self: *const IXMLGraphBuilder,
+            pGraph: ?*IGraphBuilder,
+            pbstrxml: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BuildFromXMLFile: *const fn(
+            self: *const IXMLGraphBuilder,
+            pGraph: ?*IGraphBuilder,
+            wszFileName: ?[*:0]const u16,
+            wszBaseURL: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

@@ -4894,16 +4894,10 @@ pub const JPEGINFOHEADER = extern struct {
     JPEGVSubSampling: u32 align(1),
 };
 
-pub const YIELDPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        mciId: u32,
-        dwYieldData: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        mciId: u32,
-        dwYieldData: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const YIELDPROC = *const fn(
+    mciId: u32,
+    dwYieldData: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const MCI_GENERIC_PARMS = extern struct {
     dwCallback: usize align(1),
@@ -5223,54 +5217,28 @@ pub const DRVCONFIGINFO = extern struct {
     lpszDCIAliasName: ?[*:0]const u16 align(1),
 };
 
-pub const DRIVERPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: ?HDRVR,
-        param2: u32,
-        param3: LPARAM,
-        param4: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        param0: usize,
-        param1: ?HDRVR,
-        param2: u32,
-        param3: LPARAM,
-        param4: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const DRIVERPROC = *const fn(
+    param0: usize,
+    param1: ?HDRVR,
+    param2: u32,
+    param3: LPARAM,
+    param4: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const DRIVERMSGPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: u32,
-        param2: usize,
-        param3: usize,
-        param4: usize,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: u32,
-        param1: u32,
-        param2: usize,
-        param3: usize,
-        param4: usize,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const DRIVERMSGPROC = *const fn(
+    param0: u32,
+    param1: u32,
+    param2: usize,
+    param3: usize,
+    param4: usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMMIOPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpmmioinfo: ?PSTR,
-        uMsg: u32,
-        lParam1: LPARAM,
-        lParam2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        lpmmioinfo: ?PSTR,
-        uMsg: u32,
-        lParam1: LPARAM,
-        lParam2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const LPMMIOPROC = *const fn(
+    lpmmioinfo: ?PSTR,
+    uMsg: u32,
+    lParam1: LPARAM,
+    lParam2: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 pub const MMIOINFO = extern struct {
     dwFlags: u32 align(1),
@@ -5941,14 +5909,9 @@ pub const AVIFILEINFOA = extern struct {
     szFileType: [64]CHAR,
 };
 
-pub const AVISAVECALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const AVISAVECALLBACK = *const fn(
+    param0: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const AVICOMPRESSOPTIONS = extern struct {
     fccType: u32,
@@ -5970,180 +5933,82 @@ pub const IID_IAVIStream = &IID_IAVIStream_Value;
 pub const IAVIStream = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Create: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                lParam1: LPARAM,
-                lParam2: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                lParam1: LPARAM,
-                lParam2: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Info: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                // TODO: what to do with BytesParamIndex 1?
-                psi: ?*AVISTREAMINFOW,
-                lSize: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                // TODO: what to do with BytesParamIndex 1?
-                psi: ?*AVISTREAMINFOW,
-                lSize: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindSample: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                lPos: i32,
-                lFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-            else => *const fn(
-                self: *const IAVIStream,
-                lPos: i32,
-                lFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-        },
-        ReadFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                lPos: i32,
-                // TODO: what to do with BytesParamIndex 2?
-                lpFormat: ?*anyopaque,
-                lpcbFormat: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                lPos: i32,
-                // TODO: what to do with BytesParamIndex 2?
-                lpFormat: ?*anyopaque,
-                lpcbFormat: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                lPos: i32,
-                // TODO: what to do with BytesParamIndex 2?
-                lpFormat: ?*anyopaque,
-                cbFormat: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                lPos: i32,
-                // TODO: what to do with BytesParamIndex 2?
-                lpFormat: ?*anyopaque,
-                cbFormat: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Read: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                lStart: i32,
-                lSamples: i32,
-                // TODO: what to do with BytesParamIndex 3?
-                lpBuffer: ?*anyopaque,
-                cbBuffer: i32,
-                plBytes: ?*i32,
-                plSamples: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                lStart: i32,
-                lSamples: i32,
-                // TODO: what to do with BytesParamIndex 3?
-                lpBuffer: ?*anyopaque,
-                cbBuffer: i32,
-                plBytes: ?*i32,
-                plSamples: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Write: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                lStart: i32,
-                lSamples: i32,
-                // TODO: what to do with BytesParamIndex 3?
-                lpBuffer: ?*anyopaque,
-                cbBuffer: i32,
-                dwFlags: u32,
-                plSampWritten: ?*i32,
-                plBytesWritten: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                lStart: i32,
-                lSamples: i32,
-                // TODO: what to do with BytesParamIndex 3?
-                lpBuffer: ?*anyopaque,
-                cbBuffer: i32,
-                dwFlags: u32,
-                plSampWritten: ?*i32,
-                plBytesWritten: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                lStart: i32,
-                lSamples: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                lStart: i32,
-                lSamples: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReadData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                fcc: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                lp: ?*anyopaque,
-                lpcb: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                fcc: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                lp: ?*anyopaque,
-                lpcb: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                fcc: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                lp: ?*anyopaque,
-                cb: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                fcc: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                lp: ?*anyopaque,
-                cb: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStream,
-                // TODO: what to do with BytesParamIndex 1?
-                lpInfo: ?*AVISTREAMINFOW,
-                cbInfo: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStream,
-                // TODO: what to do with BytesParamIndex 1?
-                lpInfo: ?*AVISTREAMINFOW,
-                cbInfo: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Create: *const fn(
+            self: *const IAVIStream,
+            lParam1: LPARAM,
+            lParam2: LPARAM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Info: *const fn(
+            self: *const IAVIStream,
+            // TODO: what to do with BytesParamIndex 1?
+            psi: ?*AVISTREAMINFOW,
+            lSize: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindSample: *const fn(
+            self: *const IAVIStream,
+            lPos: i32,
+            lFlags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ReadFormat: *const fn(
+            self: *const IAVIStream,
+            lPos: i32,
+            // TODO: what to do with BytesParamIndex 2?
+            lpFormat: ?*anyopaque,
+            lpcbFormat: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFormat: *const fn(
+            self: *const IAVIStream,
+            lPos: i32,
+            // TODO: what to do with BytesParamIndex 2?
+            lpFormat: ?*anyopaque,
+            cbFormat: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Read: *const fn(
+            self: *const IAVIStream,
+            lStart: i32,
+            lSamples: i32,
+            // TODO: what to do with BytesParamIndex 3?
+            lpBuffer: ?*anyopaque,
+            cbBuffer: i32,
+            plBytes: ?*i32,
+            plSamples: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Write: *const fn(
+            self: *const IAVIStream,
+            lStart: i32,
+            lSamples: i32,
+            // TODO: what to do with BytesParamIndex 3?
+            lpBuffer: ?*anyopaque,
+            cbBuffer: i32,
+            dwFlags: u32,
+            plSampWritten: ?*i32,
+            plBytesWritten: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const IAVIStream,
+            lStart: i32,
+            lSamples: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReadData: *const fn(
+            self: *const IAVIStream,
+            fcc: u32,
+            // TODO: what to do with BytesParamIndex 2?
+            lp: ?*anyopaque,
+            lpcb: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteData: *const fn(
+            self: *const IAVIStream,
+            fcc: u32,
+            // TODO: what to do with BytesParamIndex 2?
+            lp: ?*anyopaque,
+            cb: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInfo: *const fn(
+            self: *const IAVIStream,
+            // TODO: what to do with BytesParamIndex 1?
+            lpInfo: ?*AVISTREAMINFOW,
+            cbInfo: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6202,28 +6067,15 @@ pub const IID_IAVIStreaming = &IID_IAVIStreaming_Value;
 pub const IAVIStreaming = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStreaming,
-                lStart: i32,
-                lEnd: i32,
-                lRate: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStreaming,
-                lStart: i32,
-                lEnd: i32,
-                lRate: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        End: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIStreaming,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIStreaming,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin: *const fn(
+            self: *const IAVIStreaming,
+            lStart: i32,
+            lEnd: i32,
+            lRate: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        End: *const fn(
+            self: *const IAVIStreaming,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6246,76 +6098,36 @@ pub const IID_IAVIEditStream = &IID_IAVIEditStream_Value;
 pub const IAVIEditStream = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Cut: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIEditStream,
-                plStart: ?*i32,
-                plLength: ?*i32,
-                ppResult: ?*?*IAVIStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIEditStream,
-                plStart: ?*i32,
-                plLength: ?*i32,
-                ppResult: ?*?*IAVIStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Copy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIEditStream,
-                plStart: ?*i32,
-                plLength: ?*i32,
-                ppResult: ?*?*IAVIStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIEditStream,
-                plStart: ?*i32,
-                plLength: ?*i32,
-                ppResult: ?*?*IAVIStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Paste: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIEditStream,
-                plPos: ?*i32,
-                plLength: ?*i32,
-                pstream: ?*IAVIStream,
-                lStart: i32,
-                lEnd: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIEditStream,
-                plPos: ?*i32,
-                plLength: ?*i32,
-                pstream: ?*IAVIStream,
-                lStart: i32,
-                lEnd: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIEditStream,
-                ppResult: ?*?*IAVIStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIEditStream,
-                ppResult: ?*?*IAVIStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIEditStream,
-                // TODO: what to do with BytesParamIndex 1?
-                lpInfo: ?*AVISTREAMINFOW,
-                cbInfo: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIEditStream,
-                // TODO: what to do with BytesParamIndex 1?
-                lpInfo: ?*AVISTREAMINFOW,
-                cbInfo: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Cut: *const fn(
+            self: *const IAVIEditStream,
+            plStart: ?*i32,
+            plLength: ?*i32,
+            ppResult: ?*?*IAVIStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Copy: *const fn(
+            self: *const IAVIEditStream,
+            plStart: ?*i32,
+            plLength: ?*i32,
+            ppResult: ?*?*IAVIStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Paste: *const fn(
+            self: *const IAVIEditStream,
+            plPos: ?*i32,
+            plLength: ?*i32,
+            pstream: ?*IAVIStream,
+            lStart: i32,
+            lEnd: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IAVIEditStream,
+            ppResult: ?*?*IAVIStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInfo: *const fn(
+            self: *const IAVIEditStream,
+            // TODO: what to do with BytesParamIndex 1?
+            lpInfo: ?*AVISTREAMINFOW,
+            cbInfo: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6349,14 +6161,9 @@ pub const IID_IAVIPersistFile = &IID_IAVIPersistFile_Value;
 pub const IAVIPersistFile = extern struct {
     pub const VTable = extern struct {
         base: IPersistFile.VTable,
-        Reserved1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIPersistFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIPersistFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Reserved1: *const fn(
+            self: *const IAVIPersistFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6375,98 +6182,45 @@ pub const IID_IAVIFile = &IID_IAVIFile_Value;
 pub const IAVIFile = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Info: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIFile,
-                // TODO: what to do with BytesParamIndex 1?
-                pfi: ?*AVIFILEINFOW,
-                lSize: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIFile,
-                // TODO: what to do with BytesParamIndex 1?
-                pfi: ?*AVIFILEINFOW,
-                lSize: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIFile,
-                ppStream: ?*?*IAVIStream,
-                fccType: u32,
-                lParam: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIFile,
-                ppStream: ?*?*IAVIStream,
-                fccType: u32,
-                lParam: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIFile,
-                ppStream: ?*?*IAVIStream,
-                psi: ?*AVISTREAMINFOW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIFile,
-                ppStream: ?*?*IAVIStream,
-                psi: ?*AVISTREAMINFOW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIFile,
-                ckid: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                lpData: ?*anyopaque,
-                cbData: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIFile,
-                ckid: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                lpData: ?*anyopaque,
-                cbData: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReadData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIFile,
-                ckid: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                lpData: ?*anyopaque,
-                lpcbData: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIFile,
-                ckid: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                lpData: ?*anyopaque,
-                lpcbData: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndRecord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAVIFile,
-                fccType: u32,
-                lParam: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAVIFile,
-                fccType: u32,
-                lParam: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Info: *const fn(
+            self: *const IAVIFile,
+            // TODO: what to do with BytesParamIndex 1?
+            pfi: ?*AVIFILEINFOW,
+            lSize: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStream: *const fn(
+            self: *const IAVIFile,
+            ppStream: ?*?*IAVIStream,
+            fccType: u32,
+            lParam: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateStream: *const fn(
+            self: *const IAVIFile,
+            ppStream: ?*?*IAVIStream,
+            psi: ?*AVISTREAMINFOW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteData: *const fn(
+            self: *const IAVIFile,
+            ckid: u32,
+            // TODO: what to do with BytesParamIndex 2?
+            lpData: ?*anyopaque,
+            cbData: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReadData: *const fn(
+            self: *const IAVIFile,
+            ckid: u32,
+            // TODO: what to do with BytesParamIndex 2?
+            lpData: ?*anyopaque,
+            lpcbData: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndRecord: *const fn(
+            self: *const IAVIFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteStream: *const fn(
+            self: *const IAVIFile,
+            fccType: u32,
+            lParam: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6509,58 +6263,28 @@ pub const IID_IGetFrame = &IID_IGetFrame_Value;
 pub const IGetFrame = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFrame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGetFrame,
-                lPos: i32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-            else => *const fn(
-                self: *const IGetFrame,
-                lPos: i32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-        },
-        Begin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGetFrame,
-                lStart: i32,
-                lEnd: i32,
-                lRate: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGetFrame,
-                lStart: i32,
-                lEnd: i32,
-                lRate: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        End: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGetFrame,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGetFrame,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGetFrame,
-                lpbi: ?*BITMAPINFOHEADER,
-                lpBits: ?*anyopaque,
-                x: i32,
-                y: i32,
-                dx: i32,
-                dy: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGetFrame,
-                lpbi: ?*BITMAPINFOHEADER,
-                lpBits: ?*anyopaque,
-                x: i32,
-                y: i32,
-                dx: i32,
-                dy: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFrame: *const fn(
+            self: *const IGetFrame,
+            lPos: i32,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+        Begin: *const fn(
+            self: *const IGetFrame,
+            lStart: i32,
+            lEnd: i32,
+            lRate: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        End: *const fn(
+            self: *const IGetFrame,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFormat: *const fn(
+            self: *const IGetFrame,
+            lpbi: ?*BITMAPINFOHEADER,
+            lpBits: ?*anyopaque,
+            x: i32,
+            y: i32,
+            dx: i32,
+            dy: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6675,99 +6399,48 @@ pub const CAPINFOCHUNK = extern struct {
     cbData: i32,
 };
 
-pub const CAPYIELDCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        hWnd: ?HWND,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const CAPYIELDCALLBACK = *const fn(
+    hWnd: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPSTATUSCALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-        nID: i32,
-        lpsz: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        hWnd: ?HWND,
-        nID: i32,
-        lpsz: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const CAPSTATUSCALLBACKW = *const fn(
+    hWnd: ?HWND,
+    nID: i32,
+    lpsz: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPERRORCALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-        nID: i32,
-        lpsz: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        hWnd: ?HWND,
-        nID: i32,
-        lpsz: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const CAPERRORCALLBACKW = *const fn(
+    hWnd: ?HWND,
+    nID: i32,
+    lpsz: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPSTATUSCALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-        nID: i32,
-        lpsz: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        hWnd: ?HWND,
-        nID: i32,
-        lpsz: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const CAPSTATUSCALLBACKA = *const fn(
+    hWnd: ?HWND,
+    nID: i32,
+    lpsz: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPERRORCALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-        nID: i32,
-        lpsz: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        hWnd: ?HWND,
-        nID: i32,
-        lpsz: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const CAPERRORCALLBACKA = *const fn(
+    hWnd: ?HWND,
+    nID: i32,
+    lpsz: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPVIDEOCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-        lpVHdr: ?*VIDEOHDR,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        hWnd: ?HWND,
-        lpVHdr: ?*VIDEOHDR,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const CAPVIDEOCALLBACK = *const fn(
+    hWnd: ?HWND,
+    lpVHdr: ?*VIDEOHDR,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPWAVECALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-        lpWHdr: ?*WAVEHDR,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        hWnd: ?HWND,
-        lpWHdr: ?*WAVEHDR,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const CAPWAVECALLBACK = *const fn(
+    hWnd: ?HWND,
+    lpWHdr: ?*WAVEHDR,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const CAPCONTROLCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-        nState: i32,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        hWnd: ?HWND,
-        nState: i32,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const CAPCONTROLCALLBACK = *const fn(
+    hWnd: ?HWND,
+    nState: i32,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
 pub const DRVM_IOCTL_DATA = extern struct {
     dwSize: u32 align(1),
@@ -6812,52 +6485,27 @@ pub const MCI_OPEN_DRIVER_PARMS = extern struct {
     wType: u32 align(1),
 };
 
-pub const LPTASKCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwInst: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwInst: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPTASKCALLBACK = *const fn(
+    dwInst: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const VFWWDMExtensionProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pfnDeviceIoControl: ?*anyopaque,
-        pfnAddPropertyPage: ?LPFNSVADDPROPSHEETPAGE,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pfnDeviceIoControl: ?*anyopaque,
-        pfnAddPropertyPage: ?LPFNSVADDPROPSHEETPAGE,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const VFWWDMExtensionProc = *const fn(
+    pfnDeviceIoControl: ?*anyopaque,
+    pfnAddPropertyPage: ?LPFNSVADDPROPSHEETPAGE,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPFNEXTDEVIO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lParam: LPARAM,
-        dwFlags: u32,
-        dwIoControlCode: u32,
-        lpInBuffer: ?*anyopaque,
-        nInBufferSize: u32,
-        lpOutBuffer: ?*anyopaque,
-        nOutBufferSize: u32,
-        lpBytesReturned: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        lParam: LPARAM,
-        dwFlags: u32,
-        dwIoControlCode: u32,
-        lpInBuffer: ?*anyopaque,
-        nInBufferSize: u32,
-        lpOutBuffer: ?*anyopaque,
-        nOutBufferSize: u32,
-        lpBytesReturned: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFNEXTDEVIO = *const fn(
+    lParam: LPARAM,
+    dwFlags: u32,
+    dwIoControlCode: u32,
+    lpInBuffer: ?*anyopaque,
+    nInBufferSize: u32,
+    lpOutBuffer: ?*anyopaque,
+    nOutBufferSize: u32,
+    lpBytesReturned: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
 //--------------------------------------------------------------------------------

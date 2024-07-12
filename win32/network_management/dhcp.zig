@@ -400,134 +400,66 @@ pub const DHCPCAPI_CLASSID = extern struct {
 };
 
 
-pub const LPDHCP_CONTROL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwControlCode: u32,
-        lpReserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwControlCode: u32,
-        lpReserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPDHCP_CONTROL = *const fn(
+    dwControlCode: u32,
+    lpReserved: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_NEWPKT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Packet: ?*?*u8,
-        PacketSize: ?*u32,
-        IpAddress: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*?*anyopaque,
-        ProcessIt: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        Packet: ?*?*u8,
-        PacketSize: ?*u32,
-        IpAddress: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*?*anyopaque,
-        ProcessIt: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPDHCP_NEWPKT = *const fn(
+    Packet: ?*?*u8,
+    PacketSize: ?*u32,
+    IpAddress: u32,
+    Reserved: ?*anyopaque,
+    PktContext: ?*?*anyopaque,
+    ProcessIt: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_DROP_SEND = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Packet: ?*?*u8,
-        PacketSize: ?*u32,
-        ControlCode: u32,
-        IpAddress: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        Packet: ?*?*u8,
-        PacketSize: ?*u32,
-        ControlCode: u32,
-        IpAddress: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPDHCP_DROP_SEND = *const fn(
+    Packet: ?*?*u8,
+    PacketSize: ?*u32,
+    ControlCode: u32,
+    IpAddress: u32,
+    Reserved: ?*anyopaque,
+    PktContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_PROB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Packet: ?*u8,
-        PacketSize: u32,
-        ControlCode: u32,
-        IpAddress: u32,
-        AltAddress: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        Packet: ?*u8,
-        PacketSize: u32,
-        ControlCode: u32,
-        IpAddress: u32,
-        AltAddress: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPDHCP_PROB = *const fn(
+    Packet: ?*u8,
+    PacketSize: u32,
+    ControlCode: u32,
+    IpAddress: u32,
+    AltAddress: u32,
+    Reserved: ?*anyopaque,
+    PktContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_GIVE_ADDRESS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Packet: ?*u8,
-        PacketSize: u32,
-        ControlCode: u32,
-        IpAddress: u32,
-        AltAddress: u32,
-        AddrType: u32,
-        LeaseTime: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        Packet: ?*u8,
-        PacketSize: u32,
-        ControlCode: u32,
-        IpAddress: u32,
-        AltAddress: u32,
-        AddrType: u32,
-        LeaseTime: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPDHCP_GIVE_ADDRESS = *const fn(
+    Packet: ?*u8,
+    PacketSize: u32,
+    ControlCode: u32,
+    IpAddress: u32,
+    AltAddress: u32,
+    AddrType: u32,
+    LeaseTime: u32,
+    Reserved: ?*anyopaque,
+    PktContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_HANDLE_OPTIONS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Packet: ?*u8,
-        PacketSize: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*anyopaque,
-        ServerOptions: ?*DHCP_SERVER_OPTIONS,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        Packet: ?*u8,
-        PacketSize: u32,
-        Reserved: ?*anyopaque,
-        PktContext: ?*anyopaque,
-        ServerOptions: ?*DHCP_SERVER_OPTIONS,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPDHCP_HANDLE_OPTIONS = *const fn(
+    Packet: ?*u8,
+    PacketSize: u32,
+    Reserved: ?*anyopaque,
+    PktContext: ?*anyopaque,
+    ServerOptions: ?*DHCP_SERVER_OPTIONS,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPDHCP_DELETE_CLIENT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        IpAddress: u32,
-        HwAddress: ?*u8,
-        HwAddressLength: u32,
-        Reserved: u32,
-        ClientType: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        IpAddress: u32,
-        HwAddress: ?*u8,
-        HwAddressLength: u32,
-        Reserved: u32,
-        ClientType: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPDHCP_DELETE_CLIENT = *const fn(
+    IpAddress: u32,
+    HwAddress: ?*u8,
+    HwAddressLength: u32,
+    Reserved: u32,
+    ClientType: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DHCP_CALLOUT_TABLE = extern struct {
     DhcpControlHook: ?LPDHCP_CONTROL,
@@ -542,18 +474,11 @@ pub const DHCP_CALLOUT_TABLE = extern struct {
     DhcpReservedHook: ?*anyopaque,
 };
 
-pub const LPDHCP_ENTRY_POINT_FUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ChainDlls: ?PWSTR,
-        CalloutVersion: u32,
-        CalloutTbl: ?*DHCP_CALLOUT_TABLE,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        ChainDlls: ?PWSTR,
-        CalloutVersion: u32,
-        CalloutTbl: ?*DHCP_CALLOUT_TABLE,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPDHCP_ENTRY_POINT_FUNC = *const fn(
+    ChainDlls: ?PWSTR,
+    CalloutVersion: u32,
+    CalloutTbl: ?*DHCP_CALLOUT_TABLE,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DATE_TIME = extern struct {
     dwLowDateTime: u32,

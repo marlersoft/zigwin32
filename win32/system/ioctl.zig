@@ -6434,7 +6434,7 @@ pub const VOLUME_GET_GPT_ATTRIBUTES_INFORMATION = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PIO_IRP_EXT_PROCESS_TRACKED_OFFSET_CALLBACK = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IO_IRP_EXT_TRACK_OFFSET_HEADER = extern struct {
     Validation: u16,

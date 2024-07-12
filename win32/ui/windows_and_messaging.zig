@@ -5022,167 +5022,80 @@ pub const MESSAGE_RESOURCE_DATA = extern struct {
     Blocks: [1]MESSAGE_RESOURCE_BLOCK,
 };
 
-pub const WNDPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        param0: HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const WNDPROC = *const fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const DLGPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) isize,
-    else => *const fn(
-        param0: HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) isize,
-} ;
+pub const DLGPROC = *const fn(
+    param0: HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) isize;
 
-pub const TIMERPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: HWND,
-        param1: u32,
-        param2: usize,
-        param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: HWND,
-        param1: u32,
-        param2: usize,
-        param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const TIMERPROC = *const fn(
+    param0: HWND,
+    param1: u32,
+    param2: usize,
+    param3: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WNDENUMPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: HWND,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: HWND,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const WNDENUMPROC = *const fn(
+    param0: HWND,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const HOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        code: i32,
-        wParam: WPARAM,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-    else => *const fn(
-        code: i32,
-        wParam: WPARAM,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) LRESULT,
-} ;
+pub const HOOKPROC = *const fn(
+    code: i32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) LRESULT;
 
-pub const SENDASYNCPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: HWND,
-        param1: u32,
-        param2: usize,
-        param3: LRESULT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: HWND,
-        param1: u32,
-        param2: usize,
-        param3: LRESULT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const SENDASYNCPROC = *const fn(
+    param0: HWND,
+    param1: u32,
+    param2: usize,
+    param3: LRESULT,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PROPENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: HWND,
-        param1: ?[*:0]const u8,
-        param2: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: HWND,
-        param1: ?[*:0]const u8,
-        param2: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PROPENUMPROCA = *const fn(
+    param0: HWND,
+    param1: ?[*:0]const u8,
+    param2: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PROPENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: HWND,
-        param1: ?[*:0]const u16,
-        param2: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: HWND,
-        param1: ?[*:0]const u16,
-        param2: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PROPENUMPROCW = *const fn(
+    param0: HWND,
+    param1: ?[*:0]const u16,
+    param2: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PROPENUMPROCEXA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: HWND,
-        param1: ?PSTR,
-        param2: ?HANDLE,
-        param3: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: HWND,
-        param1: ?PSTR,
-        param2: ?HANDLE,
-        param3: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PROPENUMPROCEXA = *const fn(
+    param0: HWND,
+    param1: ?PSTR,
+    param2: ?HANDLE,
+    param3: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PROPENUMPROCEXW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: HWND,
-        param1: ?PWSTR,
-        param2: ?HANDLE,
-        param3: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: HWND,
-        param1: ?PWSTR,
-        param2: ?HANDLE,
-        param3: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PROPENUMPROCEXW = *const fn(
+    param0: HWND,
+    param1: ?PWSTR,
+    param2: ?HANDLE,
+    param3: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const NAMEENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const NAMEENUMPROCA = *const fn(
+    param0: ?PSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const NAMEENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const NAMEENUMPROCW = *const fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CBT_CREATEWNDA = extern struct {
     lpcs: ?*CREATESTRUCTA,
@@ -5414,14 +5327,9 @@ pub const STYLESTRUCT = extern struct {
     styleNew: u32,
 };
 
-pub const PREGISTERCLASSNAMEW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
-        param0: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
+pub const PREGISTERCLASSNAMEW = *const fn(
+    param0: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const UPDATELAYEREDWINDOWINFO = extern struct {
     cbSize: u32,
@@ -5539,14 +5447,9 @@ pub const DROPSTRUCT = extern struct {
     dwControlData: u32,
 };
 
-pub const MSGBOXCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpHelpInfo: ?*HELPINFO,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        lpHelpInfo: ?*HELPINFO,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const MSGBOXCALLBACK = *const fn(
+    lpHelpInfo: ?*HELPINFO,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MSGBOXPARAMSA = extern struct {
     cbSize: u32,

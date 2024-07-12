@@ -364,28 +364,16 @@ pub const CONVINFO = extern struct {
     hwndPartner: ?HWND,
 };
 
-pub const PFNCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        wType: u32,
-        wFmt: u32,
-        hConv: ?HCONV,
-        hsz1: ?HSZ,
-        hsz2: ?HSZ,
-        hData: ?HDDEDATA,
-        dwData1: usize,
-        dwData2: usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA,
-    else => *const fn(
-        wType: u32,
-        wFmt: u32,
-        hConv: ?HCONV,
-        hsz1: ?HSZ,
-        hsz2: ?HSZ,
-        hData: ?HDDEDATA,
-        dwData1: usize,
-        dwData2: usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA,
-} ;
+pub const PFNCALLBACK = *const fn(
+    wType: u32,
+    wFmt: u32,
+    hConv: ?HCONV,
+    hsz1: ?HSZ,
+    hsz2: ?HSZ,
+    hData: ?HDDEDATA,
+    dwData1: usize,
+    dwData2: usize,
+) callconv(@import("std").os.windows.WINAPI) ?HDDEDATA;
 
 pub const DDEML_MSG_HOOK_DATA = extern struct {
     uiLo: usize,

@@ -2929,42 +2929,22 @@ pub const MediaLabelInfo = extern struct {
     LabelAppDescr: [256]u16,
 };
 
-pub const MAXMEDIALABEL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pMaxSize: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pMaxSize: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const MAXMEDIALABEL = *const fn(
+    pMaxSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const CLAIMMEDIALABEL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pBuffer: ?*const u8,
-        nBufferSize: u32,
-        pLabelInfo: ?*MediaLabelInfo,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pBuffer: ?*const u8,
-        nBufferSize: u32,
-        pLabelInfo: ?*MediaLabelInfo,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const CLAIMMEDIALABEL = *const fn(
+    pBuffer: ?*const u8,
+    nBufferSize: u32,
+    pLabelInfo: ?*MediaLabelInfo,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const CLAIMMEDIALABELEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pBuffer: ?*const u8,
-        nBufferSize: u32,
-        pLabelInfo: ?*MediaLabelInfo,
-        LabelGuid: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pBuffer: ?*const u8,
-        nBufferSize: u32,
-        pLabelInfo: ?*MediaLabelInfo,
-        LabelGuid: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const CLAIMMEDIALABELEX = *const fn(
+    pBuffer: ?*const u8,
+    nBufferSize: u32,
+    pLabelInfo: ?*MediaLabelInfo,
+    LabelGuid: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const CLS_LSN = extern struct {
     Internal: u64,
@@ -3112,27 +3092,15 @@ pub const CLS_ARCHIVE_DESCRIPTOR = extern struct {
     infoContainer: CLS_CONTAINER_INFORMATION,
 };
 
-pub const CLFS_BLOCK_ALLOCATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        cbBufferLength: u32,
-        pvUserContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
-        cbBufferLength: u32,
-        pvUserContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+pub const CLFS_BLOCK_ALLOCATION = *const fn(
+    cbBufferLength: u32,
+    pvUserContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const CLFS_BLOCK_DEALLOCATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pvBuffer: ?*anyopaque,
-        pvUserContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pvBuffer: ?*anyopaque,
-        pvUserContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const CLFS_BLOCK_DEALLOCATION = *const fn(
+    pvBuffer: ?*anyopaque,
+    pvUserContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CLFS_LOG_ARCHIVE_MODE = enum(i32) {
     Enabled = 1,
@@ -3141,16 +3109,10 @@ pub const CLFS_LOG_ARCHIVE_MODE = enum(i32) {
 pub const ClfsLogArchiveEnabled = CLFS_LOG_ARCHIVE_MODE.Enabled;
 pub const ClfsLogArchiveDisabled = CLFS_LOG_ARCHIVE_MODE.Disabled;
 
-pub const PCLFS_COMPLETION_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pvOverlapped: ?*anyopaque,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pvOverlapped: ?*anyopaque,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PCLFS_COMPLETION_ROUTINE = *const fn(
+    pvOverlapped: ?*anyopaque,
+    ulReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CLFS_MGMT_POLICY_TYPE = enum(i32) {
     MaximumSize = 0,
@@ -3237,44 +3199,23 @@ pub const CLFS_MGMT_NOTIFICATION = extern struct {
     LogIsPinned: u16,
 };
 
-pub const PLOG_TAIL_ADVANCE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hLogFile: ?HANDLE,
-        lsnTarget: CLS_LSN,
-        pvClientContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hLogFile: ?HANDLE,
-        lsnTarget: CLS_LSN,
-        pvClientContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PLOG_TAIL_ADVANCE_CALLBACK = *const fn(
+    hLogFile: ?HANDLE,
+    lsnTarget: CLS_LSN,
+    pvClientContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PLOG_FULL_HANDLER_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hLogFile: ?HANDLE,
-        dwError: u32,
-        fLogIsPinned: BOOL,
-        pvClientContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hLogFile: ?HANDLE,
-        dwError: u32,
-        fLogIsPinned: BOOL,
-        pvClientContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PLOG_FULL_HANDLER_CALLBACK = *const fn(
+    hLogFile: ?HANDLE,
+    dwError: u32,
+    fLogIsPinned: BOOL,
+    pvClientContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PLOG_UNPINNED_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hLogFile: ?HANDLE,
-        pvClientContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hLogFile: ?HANDLE,
-        pvClientContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PLOG_UNPINNED_CALLBACK = *const fn(
+    hLogFile: ?HANDLE,
+    pvClientContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const LOG_MANAGEMENT_CALLBACKS = extern struct {
     CallbackContext: ?*anyopaque,
@@ -3295,178 +3236,77 @@ pub const IID_IDiskQuotaUser = &IID_IDiskQuotaUser_Value;
 pub const IDiskQuotaUser = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pulID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pulID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pszAccountContainer: ?PWSTR,
-                cchAccountContainer: u32,
-                pszLogonName: ?PWSTR,
-                cchLogonName: u32,
-                pszDisplayName: ?PWSTR,
-                cchDisplayName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pszAccountContainer: ?PWSTR,
-                cchAccountContainer: u32,
-                pszLogonName: ?PWSTR,
-                cchLogonName: u32,
-                pszDisplayName: ?PWSTR,
-                cchDisplayName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSidLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pdwLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pdwLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pbSidBuffer: ?*u8,
-                cbSidBuffer: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pbSidBuffer: ?*u8,
-                cbSidBuffer: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuotaThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pllThreshold: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pllThreshold: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuotaThresholdText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuotaLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pllLimit: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pllLimit: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuotaLimitText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuotaUsed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pllUsed: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pllUsed: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuotaUsedText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuotaInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pbQuotaInfo: ?*anyopaque,
-                cbQuotaInfo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pbQuotaInfo: ?*anyopaque,
-                cbQuotaInfo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetQuotaThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                llThreshold: i64,
-                fWriteThrough: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                llThreshold: i64,
-                fWriteThrough: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetQuotaLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                llLimit: i64,
-                fWriteThrough: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                llLimit: i64,
-                fWriteThrough: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Invalidate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAccountStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUser,
-                pdwStatus: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUser,
-                pdwStatus: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetID: *const fn(
+            self: *const IDiskQuotaUser,
+            pulID: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetName: *const fn(
+            self: *const IDiskQuotaUser,
+            pszAccountContainer: ?PWSTR,
+            cchAccountContainer: u32,
+            pszLogonName: ?PWSTR,
+            cchLogonName: u32,
+            pszDisplayName: ?PWSTR,
+            cchDisplayName: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSidLength: *const fn(
+            self: *const IDiskQuotaUser,
+            pdwLength: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSid: *const fn(
+            self: *const IDiskQuotaUser,
+            pbSidBuffer: ?*u8,
+            cbSidBuffer: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuotaThreshold: *const fn(
+            self: *const IDiskQuotaUser,
+            pllThreshold: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuotaThresholdText: *const fn(
+            self: *const IDiskQuotaUser,
+            pszText: ?PWSTR,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuotaLimit: *const fn(
+            self: *const IDiskQuotaUser,
+            pllLimit: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuotaLimitText: *const fn(
+            self: *const IDiskQuotaUser,
+            pszText: ?PWSTR,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuotaUsed: *const fn(
+            self: *const IDiskQuotaUser,
+            pllUsed: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuotaUsedText: *const fn(
+            self: *const IDiskQuotaUser,
+            pszText: ?PWSTR,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuotaInformation: *const fn(
+            self: *const IDiskQuotaUser,
+            pbQuotaInfo: ?*anyopaque,
+            cbQuotaInfo: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetQuotaThreshold: *const fn(
+            self: *const IDiskQuotaUser,
+            llThreshold: i64,
+            fWriteThrough: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetQuotaLimit: *const fn(
+            self: *const IDiskQuotaUser,
+            llLimit: i64,
+            fWriteThrough: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Invalidate: *const fn(
+            self: *const IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAccountStatus: *const fn(
+            self: *const IDiskQuotaUser,
+            pdwStatus: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3541,48 +3381,23 @@ pub const IID_IEnumDiskQuotaUsers = &IID_IEnumDiskQuotaUsers_Value;
 pub const IEnumDiskQuotaUsers = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumDiskQuotaUsers,
-                cUsers: u32,
-                rgUsers: ?*?*IDiskQuotaUser,
-                pcUsersFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumDiskQuotaUsers,
-                cUsers: u32,
-                rgUsers: ?*?*IDiskQuotaUser,
-                pcUsersFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumDiskQuotaUsers,
-                cUsers: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumDiskQuotaUsers,
-                cUsers: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumDiskQuotaUsers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumDiskQuotaUsers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumDiskQuotaUsers,
-                ppEnum: ?*?*IEnumDiskQuotaUsers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumDiskQuotaUsers,
-                ppEnum: ?*?*IEnumDiskQuotaUsers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumDiskQuotaUsers,
+            cUsers: u32,
+            rgUsers: ?*?*IDiskQuotaUser,
+            pcUsersFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumDiskQuotaUsers,
+            cUsers: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumDiskQuotaUsers,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumDiskQuotaUsers,
+            ppEnum: ?*?*IEnumDiskQuotaUsers,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3613,42 +3428,20 @@ pub const IID_IDiskQuotaUserBatch = &IID_IDiskQuotaUserBatch_Value;
 pub const IDiskQuotaUserBatch = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUserBatch,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUserBatch,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUserBatch,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUserBatch,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUserBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUserBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FlushToDisk: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaUserBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaUserBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Add: *const fn(
+            self: *const IDiskQuotaUserBatch,
+            pUser: ?*IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Remove: *const fn(
+            self: *const IDiskQuotaUserBatch,
+            pUser: ?*IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAll: *const fn(
+            self: *const IDiskQuotaUserBatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FlushToDisk: *const fn(
+            self: *const IDiskQuotaUserBatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3679,238 +3472,101 @@ pub const IID_IDiskQuotaControl = &IID_IDiskQuotaControl_Value;
 pub const IDiskQuotaControl = extern struct {
     pub const VTable = extern struct {
         base: IConnectionPointContainer.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pszPath: ?[*:0]const u16,
-                bReadWrite: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pszPath: ?[*:0]const u16,
-                bReadWrite: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetQuotaState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                dwState: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                dwState: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuotaState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pdwState: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pdwState: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetQuotaLogFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuotaLogFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDefaultQuotaThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                llThreshold: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                llThreshold: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDefaultQuotaThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pllThreshold: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pllThreshold: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDefaultQuotaThresholdText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDefaultQuotaLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                llLimit: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                llLimit: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDefaultQuotaLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pllLimit: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pllLimit: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDefaultQuotaLimitText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pszText: ?PWSTR,
-                cchText: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddUserSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pUserSid: ?PSID,
-                fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-                ppUser: ?*?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pUserSid: ?PSID,
-                fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-                ppUser: ?*?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddUserName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pszLogonName: ?[*:0]const u16,
-                fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-                ppUser: ?*?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pszLogonName: ?[*:0]const u16,
-                fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-                ppUser: ?*?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteUser: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindUserSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pUserSid: ?PSID,
-                fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-                ppUser: ?*?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pUserSid: ?PSID,
-                fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-                ppUser: ?*?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindUserName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pszLogonName: ?[*:0]const u16,
-                ppUser: ?*?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pszLogonName: ?[*:0]const u16,
-                ppUser: ?*?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateEnumUsers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                rgpUserSids: ?*?PSID,
-                cpSids: u32,
-                fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-                ppEnum: ?*?*IEnumDiskQuotaUsers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                rgpUserSids: ?*?PSID,
-                cpSids: u32,
-                fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
-                ppEnum: ?*?*IEnumDiskQuotaUsers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateUserBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                ppBatch: ?*?*IDiskQuotaUserBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                ppBatch: ?*?*IDiskQuotaUserBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InvalidateSidNameCache: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GiveUserNameResolutionPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ShutdownNameResolution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaControl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaControl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IDiskQuotaControl,
+            pszPath: ?[*:0]const u16,
+            bReadWrite: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetQuotaState: *const fn(
+            self: *const IDiskQuotaControl,
+            dwState: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuotaState: *const fn(
+            self: *const IDiskQuotaControl,
+            pdwState: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetQuotaLogFlags: *const fn(
+            self: *const IDiskQuotaControl,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuotaLogFlags: *const fn(
+            self: *const IDiskQuotaControl,
+            pdwFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDefaultQuotaThreshold: *const fn(
+            self: *const IDiskQuotaControl,
+            llThreshold: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultQuotaThreshold: *const fn(
+            self: *const IDiskQuotaControl,
+            pllThreshold: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultQuotaThresholdText: *const fn(
+            self: *const IDiskQuotaControl,
+            pszText: ?PWSTR,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDefaultQuotaLimit: *const fn(
+            self: *const IDiskQuotaControl,
+            llLimit: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultQuotaLimit: *const fn(
+            self: *const IDiskQuotaControl,
+            pllLimit: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultQuotaLimitText: *const fn(
+            self: *const IDiskQuotaControl,
+            pszText: ?PWSTR,
+            cchText: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddUserSid: *const fn(
+            self: *const IDiskQuotaControl,
+            pUserSid: ?PSID,
+            fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
+            ppUser: ?*?*IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddUserName: *const fn(
+            self: *const IDiskQuotaControl,
+            pszLogonName: ?[*:0]const u16,
+            fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
+            ppUser: ?*?*IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteUser: *const fn(
+            self: *const IDiskQuotaControl,
+            pUser: ?*IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindUserSid: *const fn(
+            self: *const IDiskQuotaControl,
+            pUserSid: ?PSID,
+            fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
+            ppUser: ?*?*IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindUserName: *const fn(
+            self: *const IDiskQuotaControl,
+            pszLogonName: ?[*:0]const u16,
+            ppUser: ?*?*IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEnumUsers: *const fn(
+            self: *const IDiskQuotaControl,
+            rgpUserSids: ?*?PSID,
+            cpSids: u32,
+            fNameResolution: DISKQUOTA_USERNAME_RESOLVE,
+            ppEnum: ?*?*IEnumDiskQuotaUsers,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateUserBatch: *const fn(
+            self: *const IDiskQuotaControl,
+            ppBatch: ?*?*IDiskQuotaUserBatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InvalidateSidNameCache: *const fn(
+            self: *const IDiskQuotaControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GiveUserNameResolutionPriority: *const fn(
+            self: *const IDiskQuotaControl,
+            pUser: ?*IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ShutdownNameResolution: *const fn(
+            self: *const IDiskQuotaControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4009,16 +3665,10 @@ pub const IID_IDiskQuotaEvents = &IID_IDiskQuotaEvents_Value;
 pub const IDiskQuotaEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnUserNameChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDiskQuotaEvents,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDiskQuotaEvents,
-                pUser: ?*IDiskQuotaUser,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnUserNameChanged: *const fn(
+            self: *const IDiskQuotaEvents,
+            pUser: ?*IDiskQuotaUser,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4121,29 +3771,16 @@ pub const ENCRYPTION_PROTECTOR_LIST = extern struct {
     pProtectors: ?*?*ENCRYPTION_PROTECTOR,
 };
 
-pub const WofEnumEntryProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        EntryInfo: ?*const anyopaque,
-        UserData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        EntryInfo: ?*const anyopaque,
-        UserData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const WofEnumEntryProc = *const fn(
+    EntryInfo: ?*const anyopaque,
+    UserData: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const WofEnumFilesProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        FilePath: ?[*:0]const u16,
-        ExternalFileInfo: ?*anyopaque,
-        UserData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        FilePath: ?[*:0]const u16,
-        ExternalFileInfo: ?*anyopaque,
-        UserData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const WofEnumFilesProc = *const fn(
+    FilePath: ?[*:0]const u16,
+    ExternalFileInfo: ?*anyopaque,
+    UserData: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const WIM_ENTRY_INFO = extern struct {
     WimEntryInfoSize: u32,
@@ -4552,7 +4189,7 @@ pub const STAT_SERVER_0 = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_IO_COMPLETION = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_IO_COMPLETION = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 pub const FH_OVERLAPPED = extern struct {
     Internal: usize,
@@ -4575,116 +4212,57 @@ pub const FIO_CONTEXT = extern struct {
     m_dwHeaderLength: u32,
 };
 
-pub const FCACHE_CREATE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpstrName: ?PSTR,
-        lpvData: ?*anyopaque,
-        cbFileSize: ?*u32,
-        cbFileSizeHigh: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-    else => *const fn(
-        lpstrName: ?PSTR,
-        lpvData: ?*anyopaque,
-        cbFileSize: ?*u32,
-        cbFileSizeHigh: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-} ;
+pub const FCACHE_CREATE_CALLBACK = *const fn(
+    lpstrName: ?PSTR,
+    lpvData: ?*anyopaque,
+    cbFileSize: ?*u32,
+    cbFileSizeHigh: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub const FCACHE_RICHCREATE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpstrName: ?PSTR,
-        lpvData: ?*anyopaque,
-        cbFileSize: ?*u32,
-        cbFileSizeHigh: ?*u32,
-        pfDidWeScanIt: ?*BOOL,
-        pfIsStuffed: ?*BOOL,
-        pfStoredWithDots: ?*BOOL,
-        pfStoredWithTerminatingDot: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-    else => *const fn(
-        lpstrName: ?PSTR,
-        lpvData: ?*anyopaque,
-        cbFileSize: ?*u32,
-        cbFileSizeHigh: ?*u32,
-        pfDidWeScanIt: ?*BOOL,
-        pfIsStuffed: ?*BOOL,
-        pfStoredWithDots: ?*BOOL,
-        pfStoredWithTerminatingDot: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-} ;
+pub const FCACHE_RICHCREATE_CALLBACK = *const fn(
+    lpstrName: ?PSTR,
+    lpvData: ?*anyopaque,
+    cbFileSize: ?*u32,
+    cbFileSizeHigh: ?*u32,
+    pfDidWeScanIt: ?*BOOL,
+    pfIsStuffed: ?*BOOL,
+    pfStoredWithDots: ?*BOOL,
+    pfStoredWithTerminatingDot: ?*BOOL,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub const CACHE_KEY_COMPARE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        cbKey1: u32,
-        lpbKey1: ?*u8,
-        cbKey2: u32,
-        lpbKey2: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        cbKey1: u32,
-        lpbKey1: ?*u8,
-        cbKey2: u32,
-        lpbKey2: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const CACHE_KEY_COMPARE = *const fn(
+    cbKey1: u32,
+    lpbKey1: ?*u8,
+    cbKey2: u32,
+    lpbKey2: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const CACHE_KEY_HASH = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpbKey: ?*u8,
-        cbKey: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lpbKey: ?*u8,
-        cbKey: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const CACHE_KEY_HASH = *const fn(
+    lpbKey: ?*u8,
+    cbKey: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const CACHE_READ_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        cb: u32,
-        lpb: ?*u8,
-        lpvContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        cb: u32,
-        lpb: ?*u8,
-        lpvContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const CACHE_READ_CALLBACK = *const fn(
+    cb: u32,
+    lpb: ?*u8,
+    lpvContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const CACHE_DESTROY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        cb: u32,
-        lpb: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        cb: u32,
-        lpb: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const CACHE_DESTROY_CALLBACK = *const fn(
+    cb: u32,
+    lpb: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const CACHE_ACCESS_CHECK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-        hClientToken: ?HANDLE,
-        dwDesiredAccess: u32,
-        GenericMapping: ?*GENERIC_MAPPING,
-        PrivilegeSet: ?*PRIVILEGE_SET,
-        PrivilegeSetLength: ?*u32,
-        GrantedAccess: ?*u32,
-        AccessStatus: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-        hClientToken: ?HANDLE,
-        dwDesiredAccess: u32,
-        GenericMapping: ?*GENERIC_MAPPING,
-        PrivilegeSet: ?*PRIVILEGE_SET,
-        PrivilegeSetLength: ?*u32,
-        GrantedAccess: ?*u32,
-        AccessStatus: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const CACHE_ACCESS_CHECK = *const fn(
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
+    hClientToken: ?HANDLE,
+    dwDesiredAccess: u32,
+    GenericMapping: ?*GENERIC_MAPPING,
+    PrivilegeSet: ?*PRIVILEGE_SET,
+    PrivilegeSetLength: ?*u32,
+    GrantedAccess: ?*u32,
+    AccessStatus: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const NAME_CACHE_CONTEXT = extern struct {
     m_dwSignature: u32,
@@ -4935,35 +4513,19 @@ pub const OFSTRUCT = extern struct {
     szPathName: [128]CHAR,
 };
 
-pub const PFE_EXPORT_FUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        // TODO: what to do with BytesParamIndex 2?
-        pbData: ?*u8,
-        pvCallbackContext: ?*anyopaque,
-        ulLength: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        // TODO: what to do with BytesParamIndex 2?
-        pbData: ?*u8,
-        pvCallbackContext: ?*anyopaque,
-        ulLength: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFE_EXPORT_FUNC = *const fn(
+    // TODO: what to do with BytesParamIndex 2?
+    pbData: ?*u8,
+    pvCallbackContext: ?*anyopaque,
+    ulLength: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFE_IMPORT_FUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        // TODO: what to do with BytesParamIndex 2?
-        pbData: ?*u8,
-        pvCallbackContext: ?*anyopaque,
-        ulLength: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        // TODO: what to do with BytesParamIndex 2?
-        pbData: ?*u8,
-        pvCallbackContext: ?*anyopaque,
-        ulLength: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFE_IMPORT_FUNC = *const fn(
+    // TODO: what to do with BytesParamIndex 2?
+    pbData: ?*u8,
+    pvCallbackContext: ?*anyopaque,
+    ulLength: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WIN32_STREAM_ID = extern struct {
     dwStreamId: WIN_STREAM_ID,
@@ -4973,30 +4535,17 @@ pub const WIN32_STREAM_ID = extern struct {
     cStreamName: [1]u16,
 };
 
-pub const LPPROGRESS_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        TotalFileSize: LARGE_INTEGER,
-        TotalBytesTransferred: LARGE_INTEGER,
-        StreamSize: LARGE_INTEGER,
-        StreamBytesTransferred: LARGE_INTEGER,
-        dwStreamNumber: u32,
-        dwCallbackReason: LPPROGRESS_ROUTINE_CALLBACK_REASON,
-        hSourceFile: ?HANDLE,
-        hDestinationFile: ?HANDLE,
-        lpData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        TotalFileSize: LARGE_INTEGER,
-        TotalBytesTransferred: LARGE_INTEGER,
-        StreamSize: LARGE_INTEGER,
-        StreamBytesTransferred: LARGE_INTEGER,
-        dwStreamNumber: u32,
-        dwCallbackReason: LPPROGRESS_ROUTINE_CALLBACK_REASON,
-        hSourceFile: ?HANDLE,
-        hDestinationFile: ?HANDLE,
-        lpData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPPROGRESS_ROUTINE = *const fn(
+    TotalFileSize: LARGE_INTEGER,
+    TotalBytesTransferred: LARGE_INTEGER,
+    StreamSize: LARGE_INTEGER,
+    StreamBytesTransferred: LARGE_INTEGER,
+    dwStreamNumber: u32,
+    dwCallbackReason: LPPROGRESS_ROUTINE_CALLBACK_REASON,
+    hSourceFile: ?HANDLE,
+    hDestinationFile: ?HANDLE,
+    lpData: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const COPYFILE2_MESSAGE_TYPE = enum(i32) {
     NONE = 0,
@@ -5110,16 +4659,10 @@ pub const COPYFILE2_MESSAGE = extern struct {
     },
 };
 
-pub const PCOPYFILE2_PROGRESS_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pMessage: ?*const COPYFILE2_MESSAGE,
-        pvCallbackContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) COPYFILE2_MESSAGE_ACTION,
-    else => *const fn(
-        pMessage: ?*const COPYFILE2_MESSAGE,
-        pvCallbackContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) COPYFILE2_MESSAGE_ACTION,
-} ;
+pub const PCOPYFILE2_PROGRESS_ROUTINE = *const fn(
+    pMessage: ?*const COPYFILE2_MESSAGE,
+    pvCallbackContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) COPYFILE2_MESSAGE_ACTION;
 
 pub const COPYFILE2_EXTENDED_PARAMETERS = extern struct {
     dwSize: u32,

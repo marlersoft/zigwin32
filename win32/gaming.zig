@@ -28,54 +28,26 @@ pub const IID_IGameExplorer = &IID_IGameExplorer_Value;
 pub const IGameExplorer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddGame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameExplorer,
-                bstrGDFBinaryPath: ?BSTR,
-                bstrGameInstallDirectory: ?BSTR,
-                installScope: GAME_INSTALL_SCOPE,
-                pguidInstanceID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameExplorer,
-                bstrGDFBinaryPath: ?BSTR,
-                bstrGameInstallDirectory: ?BSTR,
-                installScope: GAME_INSTALL_SCOPE,
-                pguidInstanceID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveGame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameExplorer,
-                guidInstanceID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameExplorer,
-                guidInstanceID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UpdateGame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameExplorer,
-                guidInstanceID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameExplorer,
-                guidInstanceID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        VerifyAccess: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameExplorer,
-                bstrGDFBinaryPath: ?BSTR,
-                pfHasAccess: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameExplorer,
-                bstrGDFBinaryPath: ?BSTR,
-                pfHasAccess: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddGame: *const fn(
+            self: *const IGameExplorer,
+            bstrGDFBinaryPath: ?BSTR,
+            bstrGameInstallDirectory: ?BSTR,
+            installScope: GAME_INSTALL_SCOPE,
+            pguidInstanceID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveGame: *const fn(
+            self: *const IGameExplorer,
+            guidInstanceID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateGame: *const fn(
+            self: *const IGameExplorer,
+            guidInstanceID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        VerifyAccess: *const fn(
+            self: *const IGameExplorer,
+            bstrGDFBinaryPath: ?BSTR,
+            pfHasAccess: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -119,142 +91,62 @@ pub const IID_IGameStatistics = &IID_IGameStatistics_Value;
 pub const IGameStatistics = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMaxCategoryLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                cch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                cch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMaxNameLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                cch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                cch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMaxValueLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                cch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                cch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMaxCategories: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                pMax: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                pMax: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMaxStatsPerCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                pMax: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                pMax: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCategoryTitle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                categoryIndex: u16,
-                title: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                categoryIndex: u16,
-                title: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCategoryTitle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                categoryIndex: u16,
-                pTitle: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                categoryIndex: u16,
-                pTitle: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStatistic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                categoryIndex: u16,
-                statIndex: u16,
-                pName: ?*?PWSTR,
-                pValue: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                categoryIndex: u16,
-                statIndex: u16,
-                pName: ?*?PWSTR,
-                pValue: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStatistic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                categoryIndex: u16,
-                statIndex: u16,
-                name: ?[*:0]const u16,
-                value: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                categoryIndex: u16,
-                statIndex: u16,
-                name: ?[*:0]const u16,
-                value: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                trackChanges: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                trackChanges: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLastPlayedCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                categoryIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                categoryIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastPlayedCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatistics,
-                pCategoryIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatistics,
-                pCategoryIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetMaxCategoryLength: *const fn(
+            self: *const IGameStatistics,
+            cch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxNameLength: *const fn(
+            self: *const IGameStatistics,
+            cch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxValueLength: *const fn(
+            self: *const IGameStatistics,
+            cch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxCategories: *const fn(
+            self: *const IGameStatistics,
+            pMax: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxStatsPerCategory: *const fn(
+            self: *const IGameStatistics,
+            pMax: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCategoryTitle: *const fn(
+            self: *const IGameStatistics,
+            categoryIndex: u16,
+            title: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCategoryTitle: *const fn(
+            self: *const IGameStatistics,
+            categoryIndex: u16,
+            pTitle: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatistic: *const fn(
+            self: *const IGameStatistics,
+            categoryIndex: u16,
+            statIndex: u16,
+            pName: ?*?PWSTR,
+            pValue: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStatistic: *const fn(
+            self: *const IGameStatistics,
+            categoryIndex: u16,
+            statIndex: u16,
+            name: ?[*:0]const u16,
+            value: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Save: *const fn(
+            self: *const IGameStatistics,
+            trackChanges: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLastPlayedCategory: *const fn(
+            self: *const IGameStatistics,
+            categoryIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastPlayedCategory: *const fn(
+            self: *const IGameStatistics,
+            pCategoryIndex: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -316,32 +208,17 @@ pub const IID_IGameStatisticsMgr = &IID_IGameStatisticsMgr_Value;
 pub const IGameStatisticsMgr = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetGameStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatisticsMgr,
-                GDFBinaryPath: ?[*:0]const u16,
-                openType: GAMESTATS_OPEN_TYPE,
-                pOpenResult: ?*GAMESTATS_OPEN_RESULT,
-                ppiStats: ?*?*IGameStatistics,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatisticsMgr,
-                GDFBinaryPath: ?[*:0]const u16,
-                openType: GAMESTATS_OPEN_TYPE,
-                pOpenResult: ?*GAMESTATS_OPEN_RESULT,
-                ppiStats: ?*?*IGameStatistics,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveGameStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameStatisticsMgr,
-                GDFBinaryPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameStatisticsMgr,
-                GDFBinaryPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetGameStatistics: *const fn(
+            self: *const IGameStatisticsMgr,
+            GDFBinaryPath: ?[*:0]const u16,
+            openType: GAMESTATS_OPEN_TYPE,
+            pOpenResult: ?*GAMESTATS_OPEN_RESULT,
+            ppiStats: ?*?*IGameStatistics,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveGameStatistics: *const fn(
+            self: *const IGameStatisticsMgr,
+            GDFBinaryPath: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -363,42 +240,21 @@ pub const IID_IGameExplorer2 = &IID_IGameExplorer2_Value;
 pub const IGameExplorer2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InstallGame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameExplorer2,
-                binaryGDFPath: ?[*:0]const u16,
-                installDirectory: ?[*:0]const u16,
-                installScope: GAME_INSTALL_SCOPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameExplorer2,
-                binaryGDFPath: ?[*:0]const u16,
-                installDirectory: ?[*:0]const u16,
-                installScope: GAME_INSTALL_SCOPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UninstallGame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameExplorer2,
-                binaryGDFPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameExplorer2,
-                binaryGDFPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckAccess: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IGameExplorer2,
-                binaryGDFPath: ?[*:0]const u16,
-                pHasAccess: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IGameExplorer2,
-                binaryGDFPath: ?[*:0]const u16,
-                pHasAccess: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InstallGame: *const fn(
+            self: *const IGameExplorer2,
+            binaryGDFPath: ?[*:0]const u16,
+            installDirectory: ?[*:0]const u16,
+            installScope: GAME_INSTALL_SCOPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UninstallGame: *const fn(
+            self: *const IGameExplorer2,
+            binaryGDFPath: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckAccess: *const fn(
+            self: *const IGameExplorer2,
+            binaryGDFPath: ?[*:0]const u16,
+            pHasAccess: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -444,31 +300,17 @@ pub const GAMING_DEVICE_MODEL_INFORMATION = extern struct {
     deviceId: GAMING_DEVICE_DEVICE_ID,
 };
 
-pub const GameUICompletionRoutine = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        returnCode: HRESULT,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        returnCode: HRESULT,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GameUICompletionRoutine = *const fn(
+    returnCode: HRESULT,
+    context: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PlayerPickerUICompletionRoutine = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        returnCode: HRESULT,
-        context: ?*anyopaque,
-        selectedXuids: [*]const ?HSTRING,
-        selectedXuidsCount: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        returnCode: HRESULT,
-        context: ?*anyopaque,
-        selectedXuids: [*]const ?HSTRING,
-        selectedXuidsCount: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PlayerPickerUICompletionRoutine = *const fn(
+    returnCode: HRESULT,
+    context: ?*anyopaque,
+    selectedXuids: [*]const ?HSTRING,
+    selectedXuidsCount: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const KnownGamingPrivileges = enum(i32) {
     BROADCAST = 190,
@@ -549,92 +391,43 @@ pub const IID_IXblIdpAuthManager = &IID_IXblIdpAuthManager_Value;
 pub const IXblIdpAuthManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetGamerAccount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthManager,
-                msaAccountId: ?[*:0]const u16,
-                xuid: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthManager,
-                msaAccountId: ?[*:0]const u16,
-                xuid: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGamerAccount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthManager,
-                msaAccountId: ?*?PWSTR,
-                xuid: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthManager,
-                msaAccountId: ?*?PWSTR,
-                xuid: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAppViewInitialized: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthManager,
-                appSid: ?[*:0]const u16,
-                msaAccountId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthManager,
-                appSid: ?[*:0]const u16,
-                msaAccountId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEnvironment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthManager,
-                environment: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthManager,
-                environment: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSandbox: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthManager,
-                sandbox: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthManager,
-                sandbox: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTokenAndSignatureWithTokenResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthManager,
-                msaAccountId: ?[*:0]const u16,
-                appSid: ?[*:0]const u16,
-                msaTarget: ?[*:0]const u16,
-                msaPolicy: ?[*:0]const u16,
-                httpMethod: ?[*:0]const u16,
-                uri: ?[*:0]const u16,
-                headers: ?[*:0]const u16,
-                body: [*:0]u8,
-                bodySize: u32,
-                forceRefresh: BOOL,
-                result: ?*?*IXblIdpAuthTokenResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthManager,
-                msaAccountId: ?[*:0]const u16,
-                appSid: ?[*:0]const u16,
-                msaTarget: ?[*:0]const u16,
-                msaPolicy: ?[*:0]const u16,
-                httpMethod: ?[*:0]const u16,
-                uri: ?[*:0]const u16,
-                headers: ?[*:0]const u16,
-                body: [*:0]u8,
-                bodySize: u32,
-                forceRefresh: BOOL,
-                result: ?*?*IXblIdpAuthTokenResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetGamerAccount: *const fn(
+            self: *const IXblIdpAuthManager,
+            msaAccountId: ?[*:0]const u16,
+            xuid: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGamerAccount: *const fn(
+            self: *const IXblIdpAuthManager,
+            msaAccountId: ?*?PWSTR,
+            xuid: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAppViewInitialized: *const fn(
+            self: *const IXblIdpAuthManager,
+            appSid: ?[*:0]const u16,
+            msaAccountId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEnvironment: *const fn(
+            self: *const IXblIdpAuthManager,
+            environment: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSandbox: *const fn(
+            self: *const IXblIdpAuthManager,
+            sandbox: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTokenAndSignatureWithTokenResult: *const fn(
+            self: *const IXblIdpAuthManager,
+            msaAccountId: ?[*:0]const u16,
+            appSid: ?[*:0]const u16,
+            msaTarget: ?[*:0]const u16,
+            msaPolicy: ?[*:0]const u16,
+            httpMethod: ?[*:0]const u16,
+            uri: ?[*:0]const u16,
+            headers: ?[*:0]const u16,
+            body: [*:0]u8,
+            bodySize: u32,
+            forceRefresh: BOOL,
+            result: ?*?*IXblIdpAuthTokenResult,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -672,206 +465,86 @@ pub const IID_IXblIdpAuthTokenResult = &IID_IXblIdpAuthTokenResult_Value;
 pub const IXblIdpAuthTokenResult = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                status: ?*XBL_IDP_AUTH_TOKEN_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                status: ?*XBL_IDP_AUTH_TOKEN_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetErrorCode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                errorCode: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                errorCode: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetToken: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                token: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                token: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                signature: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                signature: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSandbox: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                sandbox: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                sandbox: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEnvironment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                environment: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                environment: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMsaAccountId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                msaAccountId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                msaAccountId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetXuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                xuid: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                xuid: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGamertag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                gamertag: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                gamertag: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAgeGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                ageGroup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                ageGroup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrivileges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                privileges: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                privileges: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMsaTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                msaTarget: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                msaTarget: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMsaPolicy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                msaPolicy: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                msaPolicy: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMsaAppId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                msaAppId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                msaAppId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRedirect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                redirect: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                redirect: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                message: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                message: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHelpId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                helpId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                helpId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEnforcementBans: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                enforcementBans: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                enforcementBans: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestrictions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                restrictions: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                restrictions: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTitleRestrictions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult,
-                titleRestrictions: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult,
-                titleRestrictions: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStatus: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            status: ?*XBL_IDP_AUTH_TOKEN_STATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorCode: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            errorCode: ?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetToken: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            token: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignature: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            signature: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSandbox: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            sandbox: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEnvironment: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            environment: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMsaAccountId: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            msaAccountId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetXuid: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            xuid: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGamertag: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            gamertag: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAgeGroup: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            ageGroup: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrivileges: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            privileges: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMsaTarget: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            msaTarget: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMsaPolicy: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            msaPolicy: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMsaAppId: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            msaAppId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRedirect: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            redirect: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMessage: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            message: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHelpId: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            helpId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEnforcementBans: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            enforcementBans: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestrictions: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            restrictions: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTitleRestrictions: *const fn(
+            self: *const IXblIdpAuthTokenResult,
+            titleRestrictions: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -965,36 +638,18 @@ pub const IID_IXblIdpAuthTokenResult2 = &IID_IXblIdpAuthTokenResult2_Value;
 pub const IXblIdpAuthTokenResult2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetModernGamertag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult2,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult2,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetModernGamertagSuffix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult2,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult2,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUniqueModernGamertag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IXblIdpAuthTokenResult2,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IXblIdpAuthTokenResult2,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetModernGamertag: *const fn(
+            self: *const IXblIdpAuthTokenResult2,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetModernGamertagSuffix: *const fn(
+            self: *const IXblIdpAuthTokenResult2,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUniqueModernGamertag: *const fn(
+            self: *const IXblIdpAuthTokenResult2,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

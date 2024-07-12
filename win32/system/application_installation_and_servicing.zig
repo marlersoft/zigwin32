@@ -713,111 +713,53 @@ pub const ieStatusSuccess = STATUSTYPES.Success;
 pub const ieStatusFail = STATUSTYPES.Fail;
 pub const ieStatusCancel = STATUSTYPES.Cancel;
 
-pub const LPDISPLAYVAL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pContext: ?*anyopaque,
-        uiType: RESULTTYPES,
-        szwVal: ?[*:0]const u16,
-        szwDescription: ?[*:0]const u16,
-        szwLocation: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pContext: ?*anyopaque,
-        uiType: RESULTTYPES,
-        szwVal: ?[*:0]const u16,
-        szwDescription: ?[*:0]const u16,
-        szwLocation: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDISPLAYVAL = *const fn(
+    pContext: ?*anyopaque,
+    uiType: RESULTTYPES,
+    szwVal: ?[*:0]const u16,
+    szwDescription: ?[*:0]const u16,
+    szwLocation: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPEVALCOMCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        iStatus: STATUSTYPES,
-        szData: ?[*:0]const u16,
-        pContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        iStatus: STATUSTYPES,
-        szData: ?[*:0]const u16,
-        pContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPEVALCOMCALLBACK = *const fn(
+    iStatus: STATUSTYPES,
+    szData: ?[*:0]const u16,
+    pContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IValidate_Value = Guid.initString("e482e5c6-e31e-4143-a2e6-dbc3d8e4b8d3");
 pub const IID_IValidate = &IID_IValidate_Value;
 pub const IValidate = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OpenDatabase: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IValidate,
-                szDatabase: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IValidate,
-                szDatabase: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenCUB: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IValidate,
-                szCUBFile: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IValidate,
-                szCUBFile: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CloseDatabase: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IValidate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IValidate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CloseCUB: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IValidate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IValidate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDisplay: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IValidate,
-                pDisplayFunction: ?LPDISPLAYVAL,
-                pContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IValidate,
-                pDisplayFunction: ?LPDISPLAYVAL,
-                pContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IValidate,
-                pStatusFunction: ?LPEVALCOMCALLBACK,
-                pContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IValidate,
-                pStatusFunction: ?LPEVALCOMCALLBACK,
-                pContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Validate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IValidate,
-                wzICEs: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IValidate,
-                wzICEs: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OpenDatabase: *const fn(
+            self: *const IValidate,
+            szDatabase: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenCUB: *const fn(
+            self: *const IValidate,
+            szCUBFile: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CloseDatabase: *const fn(
+            self: *const IValidate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CloseCUB: *const fn(
+            self: *const IValidate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDisplay: *const fn(
+            self: *const IValidate,
+            pDisplayFunction: ?LPDISPLAYVAL,
+            pContext: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStatus: *const fn(
+            self: *const IValidate,
+            pStatusFunction: ?LPEVALCOMCALLBACK,
+            pContext: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Validate: *const fn(
+            self: *const IValidate,
+            wzICEs: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -881,48 +823,23 @@ pub const IID_IEnumMsmString = &IID_IEnumMsmString_Value;
 pub const IEnumMsmString = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmString,
-                cFetch: u32,
-                rgbstrStrings: ?*?BSTR,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmString,
-                cFetch: u32,
-                rgbstrStrings: ?*?BSTR,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmString,
-                cSkip: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmString,
-                cSkip: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmString,
-                pemsmStrings: ?*?*IEnumMsmString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmString,
-                pemsmStrings: ?*?*IEnumMsmString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumMsmString,
+            cFetch: u32,
+            rgbstrStrings: ?*?BSTR,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumMsmString,
+            cSkip: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumMsmString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumMsmString,
+            pemsmStrings: ?*?*IEnumMsmString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -952,44 +869,21 @@ pub const IID_IMsmStrings = &IID_IMsmStrings_Value;
 pub const IMsmStrings = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        get_Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmStrings,
-                Item: i32,
-                Return: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmStrings,
-                Item: i32,
-                Return: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Item: *const fn(
+            self: *const IMsmStrings,
+            Item: i32,
+            Return: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmStrings,
-                Count: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmStrings,
-                Count: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IMsmStrings,
+            Count: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmStrings,
-                NewEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmStrings,
-                NewEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get__NewEnum: *const fn(
+            self: *const IMsmStrings,
+            NewEnum: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1016,96 +910,40 @@ pub const IMsmError = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmError,
-                ErrorType: ?*msmErrorType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmError,
-                ErrorType: ?*msmErrorType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Type: *const fn(
+            self: *const IMsmError,
+            ErrorType: ?*msmErrorType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmError,
-                ErrorPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmError,
-                ErrorPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Path: *const fn(
+            self: *const IMsmError,
+            ErrorPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Language: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmError,
-                ErrorLanguage: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmError,
-                ErrorLanguage: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Language: *const fn(
+            self: *const IMsmError,
+            ErrorLanguage: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DatabaseTable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmError,
-                ErrorTable: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmError,
-                ErrorTable: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DatabaseTable: *const fn(
+            self: *const IMsmError,
+            ErrorTable: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DatabaseKeys: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmError,
-                ErrorKeys: ?*?*IMsmStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmError,
-                ErrorKeys: ?*?*IMsmStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DatabaseKeys: *const fn(
+            self: *const IMsmError,
+            ErrorKeys: ?*?*IMsmStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleTable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmError,
-                ErrorTable: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmError,
-                ErrorTable: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ModuleTable: *const fn(
+            self: *const IMsmError,
+            ErrorTable: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleKeys: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmError,
-                ErrorKeys: ?*?*IMsmStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmError,
-                ErrorKeys: ?*?*IMsmStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ModuleKeys: *const fn(
+            self: *const IMsmError,
+            ErrorKeys: ?*?*IMsmStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1147,48 +985,23 @@ pub const IID_IEnumMsmError = &IID_IEnumMsmError_Value;
 pub const IEnumMsmError = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmError,
-                cFetch: u32,
-                rgmsmErrors: ?*?*IMsmError,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmError,
-                cFetch: u32,
-                rgmsmErrors: ?*?*IMsmError,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmError,
-                cSkip: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmError,
-                cSkip: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmError,
-                pemsmErrors: ?*?*IEnumMsmError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmError,
-                pemsmErrors: ?*?*IEnumMsmError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumMsmError,
+            cFetch: u32,
+            rgmsmErrors: ?*?*IMsmError,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumMsmError,
+            cSkip: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumMsmError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumMsmError,
+            pemsmErrors: ?*?*IEnumMsmError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1218,44 +1031,21 @@ pub const IID_IMsmErrors = &IID_IMsmErrors_Value;
 pub const IMsmErrors = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        get_Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmErrors,
-                Item: i32,
-                Return: ?*?*IMsmError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmErrors,
-                Item: i32,
-                Return: ?*?*IMsmError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Item: *const fn(
+            self: *const IMsmErrors,
+            Item: i32,
+            Return: ?*?*IMsmError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmErrors,
-                Count: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmErrors,
-                Count: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IMsmErrors,
+            Count: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmErrors,
-                NewEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmErrors,
-                NewEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get__NewEnum: *const fn(
+            self: *const IMsmErrors,
+            NewEnum: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1282,44 +1072,20 @@ pub const IMsmDependency = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Module: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmDependency,
-                Module: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmDependency,
-                Module: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Module: *const fn(
+            self: *const IMsmDependency,
+            Module: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Language: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmDependency,
-                Language: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmDependency,
-                Language: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Language: *const fn(
+            self: *const IMsmDependency,
+            Language: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Version: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmDependency,
-                Version: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmDependency,
-                Version: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Version: *const fn(
+            self: *const IMsmDependency,
+            Version: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1345,48 +1111,23 @@ pub const IID_IEnumMsmDependency = &IID_IEnumMsmDependency_Value;
 pub const IEnumMsmDependency = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmDependency,
-                cFetch: u32,
-                rgmsmDependencies: ?*?*IMsmDependency,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmDependency,
-                cFetch: u32,
-                rgmsmDependencies: ?*?*IMsmDependency,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmDependency,
-                cSkip: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmDependency,
-                cSkip: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmDependency,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmDependency,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumMsmDependency,
-                pemsmDependencies: ?*?*IEnumMsmDependency,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumMsmDependency,
-                pemsmDependencies: ?*?*IEnumMsmDependency,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumMsmDependency,
+            cFetch: u32,
+            rgmsmDependencies: ?*?*IMsmDependency,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumMsmDependency,
+            cSkip: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumMsmDependency,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumMsmDependency,
+            pemsmDependencies: ?*?*IEnumMsmDependency,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1416,44 +1157,21 @@ pub const IID_IMsmDependencies = &IID_IMsmDependencies_Value;
 pub const IMsmDependencies = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        get_Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmDependencies,
-                Item: i32,
-                Return: ?*?*IMsmDependency,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmDependencies,
-                Item: i32,
-                Return: ?*?*IMsmDependency,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Item: *const fn(
+            self: *const IMsmDependencies,
+            Item: i32,
+            Return: ?*?*IMsmDependency,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmDependencies,
-                Count: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmDependencies,
-                Count: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IMsmDependencies,
+            Count: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmDependencies,
-                NewEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmDependencies,
-                NewEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get__NewEnum: *const fn(
+            self: *const IMsmDependencies,
+            NewEnum: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1479,142 +1197,60 @@ pub const IID_IMsmMerge = &IID_IMsmMerge_Value;
 pub const IMsmMerge = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        OpenDatabase: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Path: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-                Path: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenModule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Path: ?BSTR,
-                Language: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-                Path: ?BSTR,
-                Language: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CloseDatabase: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Commit: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-                Commit: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CloseModule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenLog: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Path: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-                Path: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CloseLog: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Log: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Message: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-                Message: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OpenDatabase: *const fn(
+            self: *const IMsmMerge,
+            Path: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenModule: *const fn(
+            self: *const IMsmMerge,
+            Path: ?BSTR,
+            Language: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CloseDatabase: *const fn(
+            self: *const IMsmMerge,
+            Commit: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CloseModule: *const fn(
+            self: *const IMsmMerge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenLog: *const fn(
+            self: *const IMsmMerge,
+            Path: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CloseLog: *const fn(
+            self: *const IMsmMerge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Log: *const fn(
+            self: *const IMsmMerge,
+            Message: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Errors: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Errors: ?*?*IMsmErrors,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmMerge,
-                Errors: ?*?*IMsmErrors,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Errors: *const fn(
+            self: *const IMsmMerge,
+            Errors: ?*?*IMsmErrors,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Dependencies: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Dependencies: ?*?*IMsmDependencies,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmMerge,
-                Dependencies: ?*?*IMsmDependencies,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Merge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Feature: ?BSTR,
-                RedirectDir: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-                Feature: ?BSTR,
-                RedirectDir: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Connect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Feature: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-                Feature: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExtractCAB: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                FileName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-                FileName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExtractFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMsmMerge,
-                Path: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMsmMerge,
-                Path: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Dependencies: *const fn(
+            self: *const IMsmMerge,
+            Dependencies: ?*?*IMsmDependencies,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Merge: *const fn(
+            self: *const IMsmMerge,
+            Feature: ?BSTR,
+            RedirectDir: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Connect: *const fn(
+            self: *const IMsmMerge,
+            Feature: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExtractCAB: *const fn(
+            self: *const IMsmMerge,
+            FileName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExtractFiles: *const fn(
+            self: *const IMsmMerge,
+            Path: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1681,18 +1317,10 @@ pub const IMsmGetFiles = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleFiles: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMsmGetFiles,
-                Files: ?*?*IMsmStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMsmGetFiles,
-                Files: ?*?*IMsmStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ModuleFiles: *const fn(
+            self: *const IMsmGetFiles,
+            Files: ?*?*IMsmStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1750,44 +1378,23 @@ pub const INSTALLMESSAGE_RMFILESINUSE = INSTALLMESSAGE.RMFILESINUSE;
 pub const INSTALLMESSAGE_INSTALLSTART = INSTALLMESSAGE.INSTALLSTART;
 pub const INSTALLMESSAGE_INSTALLEND = INSTALLMESSAGE.INSTALLEND;
 
-pub const INSTALLUI_HANDLERA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pvContext: ?*anyopaque,
-        iMessageType: u32,
-        szMessage: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        pvContext: ?*anyopaque,
-        iMessageType: u32,
-        szMessage: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const INSTALLUI_HANDLERA = *const fn(
+    pvContext: ?*anyopaque,
+    iMessageType: u32,
+    szMessage: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const INSTALLUI_HANDLERW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pvContext: ?*anyopaque,
-        iMessageType: u32,
-        szMessage: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        pvContext: ?*anyopaque,
-        iMessageType: u32,
-        szMessage: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const INSTALLUI_HANDLERW = *const fn(
+    pvContext: ?*anyopaque,
+    iMessageType: u32,
+    szMessage: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PINSTALLUI_HANDLER_RECORD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pvContext: ?*anyopaque,
-        iMessageType: u32,
-        hRecord: MSIHANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        pvContext: ?*anyopaque,
-        iMessageType: u32,
-        hRecord: MSIHANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PINSTALLUI_HANDLER_RECORD = *const fn(
+    pvContext: ?*anyopaque,
+    iMessageType: u32,
+    hRecord: MSIHANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const INSTALLUILEVEL = enum(i32) {
     NOCHANGE = 0,
@@ -2497,126 +2104,57 @@ pub const IID_IAssemblyName = &IID_IAssemblyName_Value;
 pub const IAssemblyName = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyName,
-                PropertyId: u32,
-                pvProperty: ?*anyopaque,
-                cbProperty: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyName,
-                PropertyId: u32,
-                pvProperty: ?*anyopaque,
-                cbProperty: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyName,
-                PropertyId: u32,
-                pvProperty: ?*anyopaque,
-                pcbProperty: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyName,
-                PropertyId: u32,
-                pvProperty: ?*anyopaque,
-                pcbProperty: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finalize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyName,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyName,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyName,
-                szDisplayName: ?[*:0]u16,
-                pccDisplayName: ?*u32,
-                dwDisplayFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyName,
-                szDisplayName: ?[*:0]u16,
-                pccDisplayName: ?*u32,
-                dwDisplayFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reserved: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyName,
-                refIID: ?*const Guid,
-                pUnkReserved1: ?*IUnknown,
-                pUnkReserved2: ?*IUnknown,
-                szReserved: ?[*:0]const u16,
-                llReserved: i64,
-                pvReserved: ?*anyopaque,
-                cbReserved: u32,
-                ppReserved: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyName,
-                refIID: ?*const Guid,
-                pUnkReserved1: ?*IUnknown,
-                pUnkReserved2: ?*IUnknown,
-                szReserved: ?[*:0]const u16,
-                llReserved: i64,
-                pvReserved: ?*anyopaque,
-                cbReserved: u32,
-                ppReserved: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyName,
-                lpcwBuffer: ?*u32,
-                pwzName: ?[*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyName,
-                lpcwBuffer: ?*u32,
-                pwzName: ?[*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyName,
-                pdwVersionHi: ?*u32,
-                pdwVersionLow: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyName,
-                pdwVersionHi: ?*u32,
-                pdwVersionLow: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEqual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyName,
-                pName: ?*IAssemblyName,
-                dwCmpFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyName,
-                pName: ?*IAssemblyName,
-                dwCmpFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyName,
-                pName: ?*?*IAssemblyName,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyName,
-                pName: ?*?*IAssemblyName,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetProperty: *const fn(
+            self: *const IAssemblyName,
+            PropertyId: u32,
+            pvProperty: ?*anyopaque,
+            cbProperty: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IAssemblyName,
+            PropertyId: u32,
+            pvProperty: ?*anyopaque,
+            pcbProperty: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finalize: *const fn(
+            self: *const IAssemblyName,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDisplayName: *const fn(
+            self: *const IAssemblyName,
+            szDisplayName: ?[*:0]u16,
+            pccDisplayName: ?*u32,
+            dwDisplayFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reserved: *const fn(
+            self: *const IAssemblyName,
+            refIID: ?*const Guid,
+            pUnkReserved1: ?*IUnknown,
+            pUnkReserved2: ?*IUnknown,
+            szReserved: ?[*:0]const u16,
+            llReserved: i64,
+            pvReserved: ?*anyopaque,
+            cbReserved: u32,
+            ppReserved: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetName: *const fn(
+            self: *const IAssemblyName,
+            lpcwBuffer: ?*u32,
+            pwzName: ?[*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVersion: *const fn(
+            self: *const IAssemblyName,
+            pdwVersionHi: ?*u32,
+            pdwVersionLow: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEqual: *const fn(
+            self: *const IAssemblyName,
+            pName: ?*IAssemblyName,
+            dwCmpFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IAssemblyName,
+            pName: ?*?*IAssemblyName,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2667,46 +2205,23 @@ pub const IID_IAssemblyCacheItem = &IID_IAssemblyCacheItem_Value;
 pub const IAssemblyCacheItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyCacheItem,
-                dwFlags: u32,
-                pszStreamName: ?[*:0]const u16,
-                dwFormat: u32,
-                dwFormatFlags: u32,
-                ppIStream: ?*?*IStream,
-                puliMaxSize: ?*ULARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyCacheItem,
-                dwFlags: u32,
-                pszStreamName: ?[*:0]const u16,
-                dwFormat: u32,
-                dwFormatFlags: u32,
-                ppIStream: ?*?*IStream,
-                puliMaxSize: ?*ULARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyCacheItem,
-                dwFlags: u32,
-                pulDisposition: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyCacheItem,
-                dwFlags: u32,
-                pulDisposition: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AbortItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyCacheItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyCacheItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateStream: *const fn(
+            self: *const IAssemblyCacheItem,
+            dwFlags: u32,
+            pszStreamName: ?[*:0]const u16,
+            dwFormat: u32,
+            dwFormatFlags: u32,
+            ppIStream: ?*?*IStream,
+            puliMaxSize: ?*ULARGE_INTEGER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Commit: *const fn(
+            self: *const IAssemblyCacheItem,
+            dwFlags: u32,
+            pulDisposition: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AbortItem: *const fn(
+            self: *const IAssemblyCacheItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2733,76 +2248,36 @@ pub const IID_IAssemblyCache = &IID_IAssemblyCache_Value;
 pub const IAssemblyCache = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        UninstallAssembly: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyCache,
-                dwFlags: u32,
-                pszAssemblyName: ?[*:0]const u16,
-                pRefData: ?*FUSION_INSTALL_REFERENCE,
-                pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyCache,
-                dwFlags: u32,
-                pszAssemblyName: ?[*:0]const u16,
-                pRefData: ?*FUSION_INSTALL_REFERENCE,
-                pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryAssemblyInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyCache,
-                dwFlags: QUERYASMINFO_FLAGS,
-                pszAssemblyName: ?[*:0]const u16,
-                pAsmInfo: ?*ASSEMBLY_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyCache,
-                dwFlags: QUERYASMINFO_FLAGS,
-                pszAssemblyName: ?[*:0]const u16,
-                pAsmInfo: ?*ASSEMBLY_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateAssemblyCacheItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyCache,
-                dwFlags: u32,
-                pvReserved: ?*anyopaque,
-                ppAsmItem: ?*?*IAssemblyCacheItem,
-                pszAssemblyName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyCache,
-                dwFlags: u32,
-                pvReserved: ?*anyopaque,
-                ppAsmItem: ?*?*IAssemblyCacheItem,
-                pszAssemblyName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reserved: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyCache,
-                ppUnk: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyCache,
-                ppUnk: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InstallAssembly: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssemblyCache,
-                dwFlags: u32,
-                pszManifestFilePath: ?[*:0]const u16,
-                pRefData: ?*FUSION_INSTALL_REFERENCE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssemblyCache,
-                dwFlags: u32,
-                pszManifestFilePath: ?[*:0]const u16,
-                pRefData: ?*FUSION_INSTALL_REFERENCE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        UninstallAssembly: *const fn(
+            self: *const IAssemblyCache,
+            dwFlags: u32,
+            pszAssemblyName: ?[*:0]const u16,
+            pRefData: ?*FUSION_INSTALL_REFERENCE,
+            pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryAssemblyInfo: *const fn(
+            self: *const IAssemblyCache,
+            dwFlags: QUERYASMINFO_FLAGS,
+            pszAssemblyName: ?[*:0]const u16,
+            pAsmInfo: ?*ASSEMBLY_INFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAssemblyCacheItem: *const fn(
+            self: *const IAssemblyCache,
+            dwFlags: u32,
+            pvReserved: ?*anyopaque,
+            ppAsmItem: ?*?*IAssemblyCacheItem,
+            pszAssemblyName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reserved: *const fn(
+            self: *const IAssemblyCache,
+            ppUnk: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InstallAssembly: *const fn(
+            self: *const IAssemblyCache,
+            dwFlags: u32,
+            pszManifestFilePath: ?[*:0]const u16,
+            pRefData: ?*FUSION_INSTALL_REFERENCE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3782,695 +3257,272 @@ pub const IPMApplicationInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductID: *const fn(
+            self: *const IPMApplicationInfo,
+            pProductID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InstanceID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pInstanceID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pInstanceID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_InstanceID: *const fn(
+            self: *const IPMApplicationInfo,
+            pInstanceID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OfferID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pOfferID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pOfferID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_OfferID: *const fn(
+            self: *const IPMApplicationInfo,
+            pOfferID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DefaultTask: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pDefaultTask: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pDefaultTask: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DefaultTask: *const fn(
+            self: *const IPMApplicationInfo,
+            pDefaultTask: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppTitle: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pAppTitle: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pAppTitle: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AppTitle: *const fn(
+            self: *const IPMApplicationInfo,
+            pAppTitle: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IconPath: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pAppIconPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pAppIconPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IconPath: *const fn(
+            self: *const IPMApplicationInfo,
+            pAppIconPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NotificationState: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsNotified: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsNotified: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NotificationState: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsNotified: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppInstallType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pAppInstallType: ?*PM_APPLICATION_INSTALL_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pAppInstallType: ?*PM_APPLICATION_INSTALL_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AppInstallType: *const fn(
+            self: *const IPMApplicationInfo,
+            pAppInstallType: ?*PM_APPLICATION_INSTALL_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pState: ?*PM_APPLICATION_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pState: ?*PM_APPLICATION_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_State: *const fn(
+            self: *const IPMApplicationInfo,
+            pState: ?*PM_APPLICATION_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsRevoked: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsRevoked: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsRevoked: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsRevoked: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsRevoked: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UpdateAvailable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsUpdateAvailable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsUpdateAvailable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_UpdateAvailable: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsUpdateAvailable: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InstallDate: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pInstallDate: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pInstallDate: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_InstallDate: *const fn(
+            self: *const IPMApplicationInfo,
+            pInstallDate: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsUninstallable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsUninstallable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsUninstallable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsUninstallable: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsUninstallable: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsThemable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsThemable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsThemable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsThemable: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsThemable: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsTrial: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsTrial: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsTrial: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsTrial: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsTrial: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InstallPath: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pInstallPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pInstallPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_InstallPath: *const fn(
+            self: *const IPMApplicationInfo,
+            pInstallPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataRoot: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pDataRoot: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pDataRoot: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DataRoot: *const fn(
+            self: *const IPMApplicationInfo,
+            pDataRoot: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Genre: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pGenre: ?*PM_APP_GENRE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pGenre: ?*PM_APP_GENRE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Genre: *const fn(
+            self: *const IPMApplicationInfo,
+            pGenre: ?*PM_APP_GENRE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Publisher: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pPublisher: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pPublisher: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Publisher: *const fn(
+            self: *const IPMApplicationInfo,
+            pPublisher: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Author: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pAuthor: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pAuthor: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Author: *const fn(
+            self: *const IPMApplicationInfo,
+            pAuthor: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pDescription: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pDescription: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Description: *const fn(
+            self: *const IPMApplicationInfo,
+            pDescription: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Version: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pVersion: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pVersion: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_InvocationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Version: *const fn(
+            self: *const IPMApplicationInfo,
+            pVersion: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_InvocationInfo: *const fn(
+            self: *const IPMApplicationInfo,
+            pImageUrn: ?*?BSTR,
+            pParameters: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppPlatMajorVersion: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pMajorVer: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pMajorVer: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AppPlatMajorVersion: *const fn(
+            self: *const IPMApplicationInfo,
+            pMajorVer: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppPlatMinorVersion: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pMinorVer: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pMinorVer: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AppPlatMinorVersion: *const fn(
+            self: *const IPMApplicationInfo,
+            pMinorVer: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PublisherID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pPublisherID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pPublisherID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PublisherID: *const fn(
+            self: *const IPMApplicationInfo,
+            pPublisherID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsMultiCore: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsMultiCore: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsMultiCore: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsMultiCore: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsMultiCore: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pSID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pSID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SID: *const fn(
+            self: *const IPMApplicationInfo,
+            pSID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppPlatMajorVersionLightUp: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pMajorVer: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pMajorVer: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AppPlatMajorVersionLightUp: *const fn(
+            self: *const IPMApplicationInfo,
+            pMajorVer: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppPlatMinorVersionLightUp: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pMinorVer: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pMinorVer: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_UpdateAvailable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                IsUpdateAvailable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                IsUpdateAvailable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_NotificationState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                IsNotified: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                IsNotified: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_IconPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                AppIconPath: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                AppIconPath: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_UninstallableState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                IsUninstallable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                IsUninstallable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AppPlatMinorVersionLightUp: *const fn(
+            self: *const IPMApplicationInfo,
+            pMinorVer: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_UpdateAvailable: *const fn(
+            self: *const IPMApplicationInfo,
+            IsUpdateAvailable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_NotificationState: *const fn(
+            self: *const IPMApplicationInfo,
+            IsNotified: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_IconPath: *const fn(
+            self: *const IPMApplicationInfo,
+            AppIconPath: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_UninstallableState: *const fn(
+            self: *const IPMApplicationInfo,
+            IsUninstallable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsPinableOnKidZone: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsPinable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsPinable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsPinableOnKidZone: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsPinable: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOriginallyPreInstalled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsPreinstalled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsPreinstalled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsOriginallyPreInstalled: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsPreinstalled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsInstallOnSD: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsInstallOnSD: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsInstallOnSD: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsInstallOnSD: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsInstallOnSD: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOptoutOnSD: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsOptoutOnSD: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsOptoutOnSD: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsOptoutOnSD: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsOptoutOnSD: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOptoutBackupRestore: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsOptoutBackupRestore: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsOptoutBackupRestore: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_EnterpriseDisabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                IsDisabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                IsDisabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_EnterpriseUninstallable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                IsUninstallable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                IsUninstallable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsOptoutBackupRestore: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsOptoutBackupRestore: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_EnterpriseDisabled: *const fn(
+            self: *const IPMApplicationInfo,
+            IsDisabled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_EnterpriseUninstallable: *const fn(
+            self: *const IPMApplicationInfo,
+            IsUninstallable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnterpriseDisabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                IsDisabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                IsDisabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_EnterpriseDisabled: *const fn(
+            self: *const IPMApplicationInfo,
+            IsDisabled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnterpriseUninstallable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                IsUninstallable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                IsUninstallable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_EnterpriseUninstallable: *const fn(
+            self: *const IPMApplicationInfo,
+            IsUninstallable: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsVisibleOnAppList: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsVisible: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsVisible: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsVisibleOnAppList: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsVisible: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsInboxApp: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsInboxApp: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsInboxApp: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsInboxApp: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsInboxApp: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StorageID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pStorageID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pStorageID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_StorageID: *const fn(
+            self: *const IPMApplicationInfo,
+            pStorageID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StartAppBlob: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pBlob: ?*PM_STARTAPPBLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pBlob: ?*PM_STARTAPPBLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_StartAppBlob: *const fn(
+            self: *const IPMApplicationInfo,
+            pBlob: ?*PM_STARTAPPBLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsMovable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsMovable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsMovable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsMovable: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsMovable: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DeploymentAppEnumerationHubFilter: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                HubType: ?*PM_TILE_HUBTYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                HubType: ?*PM_TILE_HUBTYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DeploymentAppEnumerationHubFilter: *const fn(
+            self: *const IPMApplicationInfo,
+            HubType: ?*PM_TILE_HUBTYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModifiedDate: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pModifiedDate: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pModifiedDate: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ModifiedDate: *const fn(
+            self: *const IPMApplicationInfo,
+            pModifiedDate: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOriginallyRestored: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pIsRestored: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pIsRestored: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsOriginallyRestored: *const fn(
+            self: *const IPMApplicationInfo,
+            pIsRestored: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ShouldDeferMdilBind: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pfDeferMdilBind: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pfDeferMdilBind: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ShouldDeferMdilBind: *const fn(
+            self: *const IPMApplicationInfo,
+            pfDeferMdilBind: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsFullyPreInstall: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                pfIsFullyPreInstall: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                pfIsFullyPreInstall: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_IsMdilMaintenanceNeeded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                fIsMdilMaintenanceNeeded: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                fIsMdilMaintenanceNeeded: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_Title: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMApplicationInfo,
-                AppTitle: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMApplicationInfo,
-                AppTitle: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsFullyPreInstall: *const fn(
+            self: *const IPMApplicationInfo,
+            pfIsFullyPreInstall: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_IsMdilMaintenanceNeeded: *const fn(
+            self: *const IPMApplicationInfo,
+            fIsMdilMaintenanceNeeded: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_Title: *const fn(
+            self: *const IPMApplicationInfo,
+            AppTitle: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4705,41 +3757,19 @@ pub const IPMTilePropertyInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTilePropertyInfo,
-                pPropID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTilePropertyInfo,
-                pPropID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyID: *const fn(
+            self: *const IPMTilePropertyInfo,
+            pPropID: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyValue: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTilePropertyInfo,
-                pPropValue: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTilePropertyInfo,
-                pPropValue: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_Property: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTilePropertyInfo,
-                PropValue: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTilePropertyInfo,
-                PropValue: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyValue: *const fn(
+            self: *const IPMTilePropertyInfo,
+            pPropValue: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_Property: *const fn(
+            self: *const IPMTilePropertyInfo,
+            PropValue: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4766,18 +3796,10 @@ pub const IPMTilePropertyEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Next: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTilePropertyEnumerator,
-                ppPropInfo: ?*?*IPMTilePropertyInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTilePropertyEnumerator,
-                ppPropInfo: ?*?*IPMTilePropertyInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Next: *const fn(
+            self: *const IPMTilePropertyEnumerator,
+            ppPropInfo: ?*?*IPMTilePropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4796,299 +3818,122 @@ pub const IPMTileInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductID: *const fn(
+            self: *const IPMTileInfo,
+            pProductID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TileID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pTileID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pTileID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TileID: *const fn(
+            self: *const IPMTileInfo,
+            pTileID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TemplateType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pTemplateType: ?*TILE_TEMPLATE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pTemplateType: ?*TILE_TEMPLATE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_HubPinnedState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                pPinned: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                pPinned: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_HubPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                pPosition: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                pPosition: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TemplateType: *const fn(
+            self: *const IPMTileInfo,
+            pTemplateType: ?*TILE_TEMPLATE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_HubPinnedState: *const fn(
+            self: *const IPMTileInfo,
+            HubType: PM_TILE_HUBTYPE,
+            pPinned: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_HubPosition: *const fn(
+            self: *const IPMTileInfo,
+            HubType: PM_TILE_HUBTYPE,
+            pPosition: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsNotified: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pIsNotified: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pIsNotified: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsNotified: *const fn(
+            self: *const IPMTileInfo,
+            pIsNotified: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsDefault: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pIsDefault: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pIsDefault: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsDefault: *const fn(
+            self: *const IPMTileInfo,
+            pIsDefault: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TaskID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pTaskID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pTaskID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TaskID: *const fn(
+            self: *const IPMTileInfo,
+            pTaskID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TileType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pStartTileType: ?*PM_STARTTILE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pStartTileType: ?*PM_STARTTILE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TileType: *const fn(
+            self: *const IPMTileInfo,
+            pStartTileType: ?*PM_STARTTILE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsThemable: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pIsThemable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pIsThemable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_PropertyById: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                PropID: u32,
-                ppPropInfo: ?*?*IPMTilePropertyInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                PropID: u32,
-                ppPropInfo: ?*?*IPMTilePropertyInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_InvocationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsThemable: *const fn(
+            self: *const IPMTileInfo,
+            pIsThemable: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_PropertyById: *const fn(
+            self: *const IPMTileInfo,
+            PropID: u32,
+            ppPropInfo: ?*?*IPMTilePropertyInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_InvocationInfo: *const fn(
+            self: *const IPMTileInfo,
+            pImageUrn: ?*?BSTR,
+            pParameters: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                ppTilePropEnum: ?*?*IPMTilePropertyEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                ppTilePropEnum: ?*?*IPMTilePropertyEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_HubTileSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                pSize: ?*PM_TILE_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                pSize: ?*PM_TILE_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_HubPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                Position: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                Position: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_NotifiedState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                Notified: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                Notified: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_HubPinnedState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                Pinned: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                Pinned: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_HubTileSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                Size: PM_TILE_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                HubType: PM_TILE_HUBTYPE,
-                Size: PM_TILE_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_InvocationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                TaskName: ?BSTR,
-                TaskParameters: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                TaskName: ?BSTR,
-                TaskParameters: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyEnum: *const fn(
+            self: *const IPMTileInfo,
+            ppTilePropEnum: ?*?*IPMTilePropertyEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_HubTileSize: *const fn(
+            self: *const IPMTileInfo,
+            HubType: PM_TILE_HUBTYPE,
+            pSize: ?*PM_TILE_SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_HubPosition: *const fn(
+            self: *const IPMTileInfo,
+            HubType: PM_TILE_HUBTYPE,
+            Position: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_NotifiedState: *const fn(
+            self: *const IPMTileInfo,
+            Notified: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_HubPinnedState: *const fn(
+            self: *const IPMTileInfo,
+            HubType: PM_TILE_HUBTYPE,
+            Pinned: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_HubTileSize: *const fn(
+            self: *const IPMTileInfo,
+            HubType: PM_TILE_HUBTYPE,
+            Size: PM_TILE_SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_InvocationInfo: *const fn(
+            self: *const IPMTileInfo,
+            TaskName: ?BSTR,
+            TaskParameters: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StartTileBlob: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pBlob: ?*PM_STARTTILEBLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pBlob: ?*PM_STARTTILEBLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_StartTileBlob: *const fn(
+            self: *const IPMTileInfo,
+            pBlob: ?*PM_STARTTILEBLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsRestoring: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pIsRestoring: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pIsRestoring: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsRestoring: *const fn(
+            self: *const IPMTileInfo,
+            pIsRestoring: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsAutoRestoreDisabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                pIsAutoRestoreDisabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfo,
-                pIsAutoRestoreDisabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_IsRestoring: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                Restoring: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                Restoring: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_IsAutoRestoreDisabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTileInfo,
-                AutoRestoreDisabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTileInfo,
-                AutoRestoreDisabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsAutoRestoreDisabled: *const fn(
+            self: *const IPMTileInfo,
+            pIsAutoRestoreDisabled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_IsRestoring: *const fn(
+            self: *const IPMTileInfo,
+            Restoring: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_IsAutoRestoreDisabled: *const fn(
+            self: *const IPMTileInfo,
+            AutoRestoreDisabled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5199,18 +4044,10 @@ pub const IPMTileInfoEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Next: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTileInfoEnumerator,
-                ppTileInfo: ?*?*IPMTileInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTileInfoEnumerator,
-                ppTileInfo: ?*?*IPMTileInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Next: *const fn(
+            self: *const IPMTileInfoEnumerator,
+            ppTileInfo: ?*?*IPMTileInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5229,18 +4066,10 @@ pub const IPMApplicationInfoEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Next: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMApplicationInfoEnumerator,
-                ppAppInfo: ?*?*IPMApplicationInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMApplicationInfoEnumerator,
-                ppAppInfo: ?*?*IPMApplicationInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Next: *const fn(
+            self: *const IPMApplicationInfoEnumerator,
+            ppAppInfo: ?*?*IPMApplicationInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5259,286 +4088,116 @@ pub const IPMLiveTileJobInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductID: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pProductID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TileID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pTileID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pTileID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TileID: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pTileID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NextSchedule: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pNextSchedule: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pNextSchedule: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_NextSchedule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                ftNextSchedule: FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                ftNextSchedule: FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NextSchedule: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pNextSchedule: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_NextSchedule: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            ftNextSchedule: FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StartSchedule: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pStartSchedule: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pStartSchedule: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_StartSchedule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                ftStartSchedule: FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                ftStartSchedule: FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_StartSchedule: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pStartSchedule: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_StartSchedule: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            ftStartSchedule: FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IntervalDuration: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pIntervalDuration: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pIntervalDuration: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_IntervalDuration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                ulIntervalDuration: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                ulIntervalDuration: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IntervalDuration: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pIntervalDuration: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_IntervalDuration: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            ulIntervalDuration: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RunForever: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                IsRunForever: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                IsRunForever: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_RunForever: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                fRunForever: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                fRunForever: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RunForever: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            IsRunForever: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_RunForever: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            fRunForever: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxRunCount: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pMaxRunCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pMaxRunCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_MaxRunCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                ulMaxRunCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                ulMaxRunCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MaxRunCount: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pMaxRunCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_MaxRunCount: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            ulMaxRunCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RunCount: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pRunCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pRunCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_RunCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                ulRunCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                ulRunCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RunCount: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pRunCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_RunCount: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            ulRunCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RecurrenceType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pRecurrenceType: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pRecurrenceType: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_RecurrenceType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                ulRecurrenceType: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                ulRecurrenceType: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_TileXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pTileXml: [*]?*u8,
-                pcbTileXml: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pTileXml: [*]?*u8,
-                pcbTileXml: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_TileXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pTileXml: [*:0]u8,
-                cbTileXml: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pTileXml: [*:0]u8,
-                cbTileXml: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_UrlXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pUrlXML: [*]?*u8,
-                pcbUrlXML: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pUrlXML: [*]?*u8,
-                pcbUrlXML: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_UrlXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pUrlXML: [*:0]u8,
-                cbUrlXML: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pUrlXML: [*:0]u8,
-                cbUrlXML: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RecurrenceType: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pRecurrenceType: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_RecurrenceType: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            ulRecurrenceType: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_TileXML: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pTileXml: [*]?*u8,
+            pcbTileXml: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_TileXML: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pTileXml: [*:0]u8,
+            cbTileXml: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_UrlXML: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pUrlXML: [*]?*u8,
+            pcbUrlXML: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_UrlXML: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pUrlXML: [*:0]u8,
+            cbUrlXML: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttemptCount: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pAttemptCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pAttemptCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_AttemptCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                ulAttemptCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                ulAttemptCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AttemptCount: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pAttemptCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_AttemptCount: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            ulAttemptCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DownloadState: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                pDownloadState: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                pDownloadState: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_DownloadState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfo,
-                ulDownloadState: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMLiveTileJobInfo,
-                ulDownloadState: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DownloadState: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            pDownloadState: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_DownloadState: *const fn(
+            self: *const IPMLiveTileJobInfo,
+            ulDownloadState: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5649,18 +4308,10 @@ pub const IPMLiveTileJobInfoEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Next: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMLiveTileJobInfoEnumerator,
-                ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMLiveTileJobInfoEnumerator,
-                ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Next: *const fn(
+            self: *const IPMLiveTileJobInfoEnumerator,
+            ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5678,430 +4329,183 @@ pub const IID_IPMDeploymentManager = &IID_IPMDeploymentManager_Value;
 pub const IPMDeploymentManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ReportDownloadBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReportDownloadProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                usProgress: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                usProgress: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReportDownloadComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginInstall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                pInstallInfo: ?*PM_INSTALLINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                pInstallInfo: ?*PM_INSTALLINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginUpdate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                pUpdateInfo: ?*PM_UPDATEINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                pUpdateInfo: ?*PM_UPDATEINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginDeployPackage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                pInstallInfo: ?*PM_INSTALLINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                pInstallInfo: ?*PM_INSTALLINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginUpdateDeployedPackageLegacy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                pUpdateInfo: ?*PM_UPDATEINFO_LEGACY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                pUpdateInfo: ?*PM_UPDATEINFO_LEGACY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginUninstall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginEnterpriseAppInstall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                pInstallInfo: ?*PM_INSTALLINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                pInstallInfo: ?*PM_INSTALLINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginEnterpriseAppUpdate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                pUpdateInfo: ?*PM_UPDATEINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                pUpdateInfo: ?*PM_UPDATEINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginUpdateLicense: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                offerID: Guid,
-                pbLicense: [*:0]u8,
-                cbLicense: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                offerID: Guid,
-                pbLicense: [*:0]u8,
-                cbLicense: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLicenseChallenge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                PackagePath: ?BSTR,
-                ppbChallenge: [*]?*u8,
-                pcbChallenge: ?*u32,
-                ppbKID: ?[*]?*u8,
-                pcbKID: ?*u32,
-                ppbDeviceID: ?[*]?*u8,
-                pcbDeviceID: ?*u32,
-                ppbSaltValue: ?[*]?*u8,
-                pcbSaltValue: ?*u32,
-                ppbKGVValue: ?[*]?*u8,
-                pcbKGVValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                PackagePath: ?BSTR,
-                ppbChallenge: [*]?*u8,
-                pcbChallenge: ?*u32,
-                ppbKID: ?[*]?*u8,
-                pcbKID: ?*u32,
-                ppbDeviceID: ?[*]?*u8,
-                pcbDeviceID: ?*u32,
-                ppbSaltValue: ?[*]?*u8,
-                pcbSaltValue: ?*u32,
-                ppbKGVValue: ?[*]?*u8,
-                pcbKGVValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLicenseChallengeByProductID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                ppbChallenge: [*]?*u8,
-                pcbLicense: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                ppbChallenge: [*]?*u8,
-                pcbLicense: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLicenseChallengeByProductID2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                ppbChallenge: [*]?*u8,
-                pcbLicense: ?*u32,
-                ppbKID: ?[*]?*u8,
-                pcbKID: ?*u32,
-                ppbDeviceID: ?[*]?*u8,
-                pcbDeviceID: ?*u32,
-                ppbSaltValue: ?[*]?*u8,
-                pcbSaltValue: ?*u32,
-                ppbKGVValue: ?[*]?*u8,
-                pcbKGVValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                ppbChallenge: [*]?*u8,
-                pcbLicense: ?*u32,
-                ppbKID: ?[*]?*u8,
-                pcbKID: ?*u32,
-                ppbDeviceID: ?[*]?*u8,
-                pcbDeviceID: ?*u32,
-                ppbSaltValue: ?[*]?*u8,
-                pcbSaltValue: ?*u32,
-                ppbKGVValue: ?[*]?*u8,
-                pcbKGVValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RevokeLicense: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RebindMdilBinaries: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                FileNames: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                FileNames: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RebindAllMdilBinaries: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                InstanceID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                InstanceID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegenerateXbf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                AssemblyPaths: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                AssemblyPaths: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GenerateXbfForCurrentLocale: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginProvision: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                XMLpath: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-                XMLpath: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginDeprovision: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReindexSQLCEDatabases: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetApplicationsNeedMaintenance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                RequiredMaintenanceOperations: u32,
-                pcApplications: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                RequiredMaintenanceOperations: u32,
-                pcApplications: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UpdateChamberProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                ProductID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnterprisePolicyIsApplicationAllowed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productId: Guid,
-                publisherName: ?[*:0]const u16,
-                pIsAllowed: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productId: Guid,
-                publisherName: ?[*:0]const u16,
-                pIsAllowed: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginUpdateDeployedPackage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                pUpdateInfo: ?*PM_UPDATEINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                pUpdateInfo: ?*PM_UPDATEINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReportRestoreCancelled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResolveResourceString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                resourceString: ?[*:0]const u16,
-                pResolvedResourceString: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                resourceString: ?[*:0]const u16,
-                pResolvedResourceString: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UpdateCapabilitiesForModernApps: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReportDownloadStatusUpdate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginUninstallWithOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                removalOptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                removalOptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BindDeferredMdilBinaries: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GenerateXamlLightupXbfForCurrentLocale: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                PackageFamilyName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                PackageFamilyName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddLicenseForAppx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                pbLicense: [*:0]u8,
-                cbLicense: u32,
-                pbPlayReadyHeader: ?[*:0]u8,
-                cbPlayReadyHeader: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-                productID: Guid,
-                pbLicense: [*:0]u8,
-                cbLicense: u32,
-                pbPlayReadyHeader: ?[*:0]u8,
-                cbPlayReadyHeader: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FixJunctionsForAppsOnSDCard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMDeploymentManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMDeploymentManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ReportDownloadBegin: *const fn(
+            self: *const IPMDeploymentManager,
+            productID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReportDownloadProgress: *const fn(
+            self: *const IPMDeploymentManager,
+            productID: Guid,
+            usProgress: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReportDownloadComplete: *const fn(
+            self: *const IPMDeploymentManager,
+            productID: Guid,
+            hrResult: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginInstall: *const fn(
+            self: *const IPMDeploymentManager,
+            pInstallInfo: ?*PM_INSTALLINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginUpdate: *const fn(
+            self: *const IPMDeploymentManager,
+            pUpdateInfo: ?*PM_UPDATEINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginDeployPackage: *const fn(
+            self: *const IPMDeploymentManager,
+            pInstallInfo: ?*PM_INSTALLINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginUpdateDeployedPackageLegacy: *const fn(
+            self: *const IPMDeploymentManager,
+            pUpdateInfo: ?*PM_UPDATEINFO_LEGACY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginUninstall: *const fn(
+            self: *const IPMDeploymentManager,
+            productID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginEnterpriseAppInstall: *const fn(
+            self: *const IPMDeploymentManager,
+            pInstallInfo: ?*PM_INSTALLINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginEnterpriseAppUpdate: *const fn(
+            self: *const IPMDeploymentManager,
+            pUpdateInfo: ?*PM_UPDATEINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginUpdateLicense: *const fn(
+            self: *const IPMDeploymentManager,
+            productID: Guid,
+            offerID: Guid,
+            pbLicense: [*:0]u8,
+            cbLicense: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLicenseChallenge: *const fn(
+            self: *const IPMDeploymentManager,
+            PackagePath: ?BSTR,
+            ppbChallenge: [*]?*u8,
+            pcbChallenge: ?*u32,
+            ppbKID: ?[*]?*u8,
+            pcbKID: ?*u32,
+            ppbDeviceID: ?[*]?*u8,
+            pcbDeviceID: ?*u32,
+            ppbSaltValue: ?[*]?*u8,
+            pcbSaltValue: ?*u32,
+            ppbKGVValue: ?[*]?*u8,
+            pcbKGVValue: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLicenseChallengeByProductID: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+            ppbChallenge: [*]?*u8,
+            pcbLicense: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLicenseChallengeByProductID2: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+            ppbChallenge: [*]?*u8,
+            pcbLicense: ?*u32,
+            ppbKID: ?[*]?*u8,
+            pcbKID: ?*u32,
+            ppbDeviceID: ?[*]?*u8,
+            pcbDeviceID: ?*u32,
+            ppbSaltValue: ?[*]?*u8,
+            pcbSaltValue: ?*u32,
+            ppbKGVValue: ?[*]?*u8,
+            pcbKGVValue: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RevokeLicense: *const fn(
+            self: *const IPMDeploymentManager,
+            productID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RebindMdilBinaries: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+            FileNames: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RebindAllMdilBinaries: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+            InstanceID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegenerateXbf: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+            AssemblyPaths: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GenerateXbfForCurrentLocale: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginProvision: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+            XMLpath: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginDeprovision: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReindexSQLCEDatabases: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetApplicationsNeedMaintenance: *const fn(
+            self: *const IPMDeploymentManager,
+            RequiredMaintenanceOperations: u32,
+            pcApplications: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateChamberProfile: *const fn(
+            self: *const IPMDeploymentManager,
+            ProductID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnterprisePolicyIsApplicationAllowed: *const fn(
+            self: *const IPMDeploymentManager,
+            productId: Guid,
+            publisherName: ?[*:0]const u16,
+            pIsAllowed: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginUpdateDeployedPackage: *const fn(
+            self: *const IPMDeploymentManager,
+            pUpdateInfo: ?*PM_UPDATEINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReportRestoreCancelled: *const fn(
+            self: *const IPMDeploymentManager,
+            productID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResolveResourceString: *const fn(
+            self: *const IPMDeploymentManager,
+            resourceString: ?[*:0]const u16,
+            pResolvedResourceString: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateCapabilitiesForModernApps: *const fn(
+            self: *const IPMDeploymentManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReportDownloadStatusUpdate: *const fn(
+            self: *const IPMDeploymentManager,
+            productId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginUninstallWithOptions: *const fn(
+            self: *const IPMDeploymentManager,
+            productID: Guid,
+            removalOptions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BindDeferredMdilBinaries: *const fn(
+            self: *const IPMDeploymentManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GenerateXamlLightupXbfForCurrentLocale: *const fn(
+            self: *const IPMDeploymentManager,
+            PackageFamilyName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddLicenseForAppx: *const fn(
+            self: *const IPMDeploymentManager,
+            productID: Guid,
+            pbLicense: [*:0]u8,
+            cbLicense: u32,
+            pbPlayReadyHeader: ?[*:0]u8,
+            cbPlayReadyHeader: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FixJunctionsForAppsOnSDCard: *const fn(
+            self: *const IPMDeploymentManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6255,241 +4659,105 @@ pub const IID_IPMEnumerationManager = &IID_IPMEnumerationManager_Value;
 pub const IPMEnumerationManager = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        get_AllApplications: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ppAppEnum: ?*?*IPMApplicationInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ppAppEnum: ?*?*IPMApplicationInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_AllTiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ppTileEnum: ?*?*IPMTileInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ppTileEnum: ?*?*IPMTileInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_AllTasks: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ppTaskEnum: ?*?*IPMTaskInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ppTaskEnum: ?*?*IPMTaskInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_AllExtensions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ppExtensionEnum: ?*?*IPMExtensionInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ppExtensionEnum: ?*?*IPMExtensionInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_AllBackgroundServiceAgents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ppBSAEnum: ?*?*IPMBackgroundServiceAgentInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ppBSAEnum: ?*?*IPMBackgroundServiceAgentInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_AllBackgroundWorkers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ppBSWEnum: ?*?*IPMBackgroundWorkerInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ppBSWEnum: ?*?*IPMBackgroundWorkerInfoEnumerator,
-                Filter: PM_ENUM_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_ApplicationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                ppAppInfo: ?*?*IPMApplicationInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                ppAppInfo: ?*?*IPMApplicationInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_TileInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                TileID: ?BSTR,
-                ppTileInfo: ?*?*IPMTileInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                TileID: ?BSTR,
-                ppTileInfo: ?*?*IPMTileInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_TaskInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                TaskID: ?BSTR,
-                ppTaskInfo: ?*?*IPMTaskInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                TaskID: ?BSTR,
-                ppTaskInfo: ?*?*IPMTaskInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_TaskInfoEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                TaskID: ?[*:0]const u16,
-                ppTaskInfo: ?*?*IPMTaskInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                TaskID: ?[*:0]const u16,
-                ppTaskInfo: ?*?*IPMTaskInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_BackgroundServiceAgentInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                BSAID: u32,
-                ppTaskInfo: ?*?*IPMBackgroundServiceAgentInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                BSAID: u32,
-                ppTaskInfo: ?*?*IPMBackgroundServiceAgentInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AllApplications: *const fn(
+            self: *const IPMEnumerationManager,
+            ppAppEnum: ?*?*IPMApplicationInfoEnumerator,
+            Filter: PM_ENUM_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AllTiles: *const fn(
+            self: *const IPMEnumerationManager,
+            ppTileEnum: ?*?*IPMTileInfoEnumerator,
+            Filter: PM_ENUM_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AllTasks: *const fn(
+            self: *const IPMEnumerationManager,
+            ppTaskEnum: ?*?*IPMTaskInfoEnumerator,
+            Filter: PM_ENUM_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AllExtensions: *const fn(
+            self: *const IPMEnumerationManager,
+            ppExtensionEnum: ?*?*IPMExtensionInfoEnumerator,
+            Filter: PM_ENUM_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AllBackgroundServiceAgents: *const fn(
+            self: *const IPMEnumerationManager,
+            ppBSAEnum: ?*?*IPMBackgroundServiceAgentInfoEnumerator,
+            Filter: PM_ENUM_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AllBackgroundWorkers: *const fn(
+            self: *const IPMEnumerationManager,
+            ppBSWEnum: ?*?*IPMBackgroundWorkerInfoEnumerator,
+            Filter: PM_ENUM_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ApplicationInfo: *const fn(
+            self: *const IPMEnumerationManager,
+            ProductID: Guid,
+            ppAppInfo: ?*?*IPMApplicationInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_TileInfo: *const fn(
+            self: *const IPMEnumerationManager,
+            ProductID: Guid,
+            TileID: ?BSTR,
+            ppTileInfo: ?*?*IPMTileInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_TaskInfo: *const fn(
+            self: *const IPMEnumerationManager,
+            ProductID: Guid,
+            TaskID: ?BSTR,
+            ppTaskInfo: ?*?*IPMTaskInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_TaskInfoEx: *const fn(
+            self: *const IPMEnumerationManager,
+            ProductID: Guid,
+            TaskID: ?[*:0]const u16,
+            ppTaskInfo: ?*?*IPMTaskInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_BackgroundServiceAgentInfo: *const fn(
+            self: *const IPMEnumerationManager,
+            BSAID: u32,
+            ppTaskInfo: ?*?*IPMBackgroundServiceAgentInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllLiveTileJobs: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ppLiveTileJobEnum: ?*?*IPMLiveTileJobInfoEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ppLiveTileJobEnum: ?*?*IPMLiveTileJobInfoEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_LiveTileJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                TileID: ?BSTR,
-                RecurrenceType: PM_LIVETILE_RECURRENCE_TYPE,
-                ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                TileID: ?BSTR,
-                RecurrenceType: PM_LIVETILE_RECURRENCE_TYPE,
-                ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_ApplicationInfoExternal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                ppAppInfo: ?*?*IPMApplicationInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                ProductID: Guid,
-                ppAppInfo: ?*?*IPMApplicationInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_FileHandlerGenericLogo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                FileType: ?BSTR,
-                LogoSize: PM_LOGO_SIZE,
-                pLogo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                FileType: ?BSTR,
-                LogoSize: PM_LOGO_SIZE,
-                pLogo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_ApplicationInfoFromAccessClaims: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                SysAppID0: ?BSTR,
-                SysAppID1: ?BSTR,
-                ppAppInfo: ?*?*IPMApplicationInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                SysAppID0: ?BSTR,
-                SysAppID1: ?BSTR,
-                ppAppInfo: ?*?*IPMApplicationInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_StartTileEnumeratorBlob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                Filter: PM_ENUM_FILTER,
-                pcTiles: ?*u32,
-                ppTileBlobs: [*]?*PM_STARTTILEBLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                Filter: PM_ENUM_FILTER,
-                pcTiles: ?*u32,
-                ppTileBlobs: [*]?*PM_STARTTILEBLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_StartAppEnumeratorBlob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMEnumerationManager,
-                Filter: PM_ENUM_FILTER,
-                pcApps: ?*u32,
-                ppAppBlobs: [*]?*PM_STARTAPPBLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMEnumerationManager,
-                Filter: PM_ENUM_FILTER,
-                pcApps: ?*u32,
-                ppAppBlobs: [*]?*PM_STARTAPPBLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AllLiveTileJobs: *const fn(
+            self: *const IPMEnumerationManager,
+            ppLiveTileJobEnum: ?*?*IPMLiveTileJobInfoEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_LiveTileJob: *const fn(
+            self: *const IPMEnumerationManager,
+            ProductID: Guid,
+            TileID: ?BSTR,
+            RecurrenceType: PM_LIVETILE_RECURRENCE_TYPE,
+            ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ApplicationInfoExternal: *const fn(
+            self: *const IPMEnumerationManager,
+            ProductID: Guid,
+            ppAppInfo: ?*?*IPMApplicationInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_FileHandlerGenericLogo: *const fn(
+            self: *const IPMEnumerationManager,
+            FileType: ?BSTR,
+            LogoSize: PM_LOGO_SIZE,
+            pLogo: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ApplicationInfoFromAccessClaims: *const fn(
+            self: *const IPMEnumerationManager,
+            SysAppID0: ?BSTR,
+            SysAppID1: ?BSTR,
+            ppAppInfo: ?*?*IPMApplicationInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StartTileEnumeratorBlob: *const fn(
+            self: *const IPMEnumerationManager,
+            Filter: PM_ENUM_FILTER,
+            pcTiles: ?*u32,
+            ppTileBlobs: [*]?*PM_STARTTILEBLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_StartAppEnumeratorBlob: *const fn(
+            self: *const IPMEnumerationManager,
+            Filter: PM_ENUM_FILTER,
+            pcApps: ?*u32,
+            ppAppBlobs: [*]?*PM_STARTAPPBLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6576,276 +4844,110 @@ pub const IPMTaskInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductID: *const fn(
+            self: *const IPMTaskInfo,
+            pProductID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TaskID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pTaskID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pTaskID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TaskID: *const fn(
+            self: *const IPMTaskInfo,
+            pTaskID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NavigationPage: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pNavigationPage: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pNavigationPage: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NavigationPage: *const fn(
+            self: *const IPMTaskInfo,
+            pNavigationPage: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TaskTransition: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pTaskTransition: ?*PM_TASK_TRANSITION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pTaskTransition: ?*PM_TASK_TRANSITION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TaskTransition: *const fn(
+            self: *const IPMTaskInfo,
+            pTaskTransition: ?*PM_TASK_TRANSITION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RuntimeType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pRuntimetype: ?*PACKMAN_RUNTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pRuntimetype: ?*PACKMAN_RUNTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RuntimeType: *const fn(
+            self: *const IPMTaskInfo,
+            pRuntimetype: ?*PACKMAN_RUNTIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActivationPolicy: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pActivationPolicy: ?*PM_ACTIVATION_POLICY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pActivationPolicy: ?*PM_ACTIVATION_POLICY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ActivationPolicy: *const fn(
+            self: *const IPMTaskInfo,
+            pActivationPolicy: ?*PM_ACTIVATION_POLICY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TaskType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pTaskType: ?*PM_TASK_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pTaskType: ?*PM_TASK_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_InvocationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TaskType: *const fn(
+            self: *const IPMTaskInfo,
+            pTaskType: ?*PM_TASK_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_InvocationInfo: *const fn(
+            self: *const IPMTaskInfo,
+            pImageUrn: ?*?BSTR,
+            pParameters: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ImagePath: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pImagePath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pImagePath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ImagePath: *const fn(
+            self: *const IPMTaskInfo,
+            pImagePath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ImageParams: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pImageParams: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pImageParams: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ImageParams: *const fn(
+            self: *const IPMTaskInfo,
+            pImageParams: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InstallRootFolder: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pInstallRootFolder: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pInstallRootFolder: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_InstallRootFolder: *const fn(
+            self: *const IPMTaskInfo,
+            pInstallRootFolder: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DataRootFolder: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pDataRootFolder: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pDataRootFolder: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DataRootFolder: *const fn(
+            self: *const IPMTaskInfo,
+            pDataRootFolder: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsSingleInstanceHost: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pIsSingleInstanceHost: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pIsSingleInstanceHost: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsSingleInstanceHost: *const fn(
+            self: *const IPMTaskInfo,
+            pIsSingleInstanceHost: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsInteropEnabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pIsInteropEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pIsInteropEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsInteropEnabled: *const fn(
+            self: *const IPMTaskInfo,
+            pIsInteropEnabled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplicationState: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pApplicationState: ?*PM_APPLICATION_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pApplicationState: ?*PM_APPLICATION_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ApplicationState: *const fn(
+            self: *const IPMTaskInfo,
+            pApplicationState: ?*PM_APPLICATION_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_InstallType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pInstallType: ?*PM_APPLICATION_INSTALL_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pInstallType: ?*PM_APPLICATION_INSTALL_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_Version: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pTargetMajorVersion: ?*u8,
-                pTargetMinorVersion: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pTargetMajorVersion: ?*u8,
-                pTargetMinorVersion: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_InstallType: *const fn(
+            self: *const IPMTaskInfo,
+            pInstallType: ?*PM_APPLICATION_INSTALL_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Version: *const fn(
+            self: *const IPMTaskInfo,
+            pTargetMajorVersion: ?*u8,
+            pTargetMinorVersion: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BitsPerPixel: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pBitsPerPixel: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pBitsPerPixel: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_BitsPerPixel: *const fn(
+            self: *const IPMTaskInfo,
+            pBitsPerPixel: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SuppressesDehydration: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pSuppressesDehydration: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pSuppressesDehydration: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SuppressesDehydration: *const fn(
+            self: *const IPMTaskInfo,
+            pSuppressesDehydration: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BackgroundExecutionAbilities: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pBackgroundExecutionAbilities: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pBackgroundExecutionAbilities: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_BackgroundExecutionAbilities: *const fn(
+            self: *const IPMTaskInfo,
+            pBackgroundExecutionAbilities: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsOptedForExtendedMem: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfo,
-                pIsOptedIn: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfo,
-                pIsOptedIn: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsOptedForExtendedMem: *const fn(
+            self: *const IPMTaskInfo,
+            pIsOptedIn: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6944,18 +5046,10 @@ pub const IPMTaskInfoEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Next: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMTaskInfoEnumerator,
-                ppTaskInfo: ?*?*IPMTaskInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMTaskInfoEnumerator,
-                ppTaskInfo: ?*?*IPMTaskInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Next: *const fn(
+            self: *const IPMTaskInfoEnumerator,
+            ppTaskInfo: ?*?*IPMTaskInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6974,82 +5068,35 @@ pub const IPMExtensionInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupplierPID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionInfo,
-                pSupplierPID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionInfo,
-                pSupplierPID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SupplierPID: *const fn(
+            self: *const IPMExtensionInfo,
+            pSupplierPID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupplierTaskID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionInfo,
-                pSupplierTID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionInfo,
-                pSupplierTID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SupplierTaskID: *const fn(
+            self: *const IPMExtensionInfo,
+            pSupplierTID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Title: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionInfo,
-                pTitle: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionInfo,
-                pTitle: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Title: *const fn(
+            self: *const IPMExtensionInfo,
+            pTitle: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IconPath: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionInfo,
-                pIconPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionInfo,
-                pIconPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IconPath: *const fn(
+            self: *const IPMExtensionInfo,
+            pIconPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExtraFile: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionInfo,
-                pFilePath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionInfo,
-                pFilePath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_InvocationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ExtraFile: *const fn(
+            self: *const IPMExtensionInfo,
+            pFilePath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_InvocationInfo: *const fn(
+            self: *const IPMExtensionInfo,
+            pImageUrn: ?*?BSTR,
+            pParameters: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7088,91 +5135,40 @@ pub const IPMExtensionFileExtensionInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                pName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                pName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IPMExtensionFileExtensionInfo,
+            pName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                pDisplayName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                pDisplayName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_Logo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                LogoSize: PM_LOGO_SIZE,
-                pLogo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                LogoSize: PM_LOGO_SIZE,
-                pLogo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_ContentType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                FileType: ?BSTR,
-                pContentType: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                FileType: ?BSTR,
-                pContentType: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_FileType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                ContentType: ?BSTR,
-                pFileType: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                ContentType: ?BSTR,
-                pFileType: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_InvocationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_AllFileTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                pcbTypes: ?*u32,
-                ppTypes: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionFileExtensionInfo,
-                pcbTypes: ?*u32,
-                ppTypes: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DisplayName: *const fn(
+            self: *const IPMExtensionFileExtensionInfo,
+            pDisplayName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Logo: *const fn(
+            self: *const IPMExtensionFileExtensionInfo,
+            LogoSize: PM_LOGO_SIZE,
+            pLogo: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_ContentType: *const fn(
+            self: *const IPMExtensionFileExtensionInfo,
+            FileType: ?BSTR,
+            pContentType: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_FileType: *const fn(
+            self: *const IPMExtensionFileExtensionInfo,
+            ContentType: ?BSTR,
+            pFileType: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_InvocationInfo: *const fn(
+            self: *const IPMExtensionFileExtensionInfo,
+            pImageUrn: ?*?BSTR,
+            pParameters: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AllFileTypes: *const fn(
+            self: *const IPMExtensionFileExtensionInfo,
+            pcbTypes: ?*u32,
+            ppTypes: [*]?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7215,30 +5211,15 @@ pub const IPMExtensionProtocolInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Protocol: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionProtocolInfo,
-                pProtocol: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionProtocolInfo,
-                pProtocol: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_InvocationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionProtocolInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionProtocolInfo,
-                pImageUrn: ?*?BSTR,
-                pParameters: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Protocol: *const fn(
+            self: *const IPMExtensionProtocolInfo,
+            pProtocol: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_InvocationInfo: *const fn(
+            self: *const IPMExtensionProtocolInfo,
+            pImageUrn: ?*?BSTR,
+            pParameters: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7260,43 +5241,21 @@ pub const IID_IPMExtensionShareTargetInfo = &IID_IPMExtensionShareTargetInfo_Val
 pub const IPMExtensionShareTargetInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        get_AllFileTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionShareTargetInfo,
-                pcTypes: ?*u32,
-                ppTypes: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionShareTargetInfo,
-                pcTypes: ?*u32,
-                ppTypes: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_AllDataFormats: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionShareTargetInfo,
-                pcDataFormats: ?*u32,
-                ppDataFormats: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionShareTargetInfo,
-                pcDataFormats: ?*u32,
-                ppDataFormats: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AllFileTypes: *const fn(
+            self: *const IPMExtensionShareTargetInfo,
+            pcTypes: ?*u32,
+            ppTypes: [*]?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_AllDataFormats: *const fn(
+            self: *const IPMExtensionShareTargetInfo,
+            pcDataFormats: ?*u32,
+            ppDataFormats: [*]?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportsAllFileTypes: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionShareTargetInfo,
-                pSupportsAllTypes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionShareTargetInfo,
-                pSupportsAllTypes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SupportsAllFileTypes: *const fn(
+            self: *const IPMExtensionShareTargetInfo,
+            pSupportsAllTypes: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7322,18 +5281,11 @@ pub const IID_IPMExtensionContractInfo = &IID_IPMExtensionContractInfo_Value;
 pub const IPMExtensionContractInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        get_InvocationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionContractInfo,
-                pAUMID: ?*?BSTR,
-                pArgs: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionContractInfo,
-                pAUMID: ?*?BSTR,
-                pArgs: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_InvocationInfo: *const fn(
+            self: *const IPMExtensionContractInfo,
+            pAUMID: ?*?BSTR,
+            pArgs: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7351,31 +5303,16 @@ pub const IID_IPMExtensionFileOpenPickerInfo = &IID_IPMExtensionFileOpenPickerIn
 pub const IPMExtensionFileOpenPickerInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        get_AllFileTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionFileOpenPickerInfo,
-                pcTypes: ?*u32,
-                ppTypes: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionFileOpenPickerInfo,
-                pcTypes: ?*u32,
-                ppTypes: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AllFileTypes: *const fn(
+            self: *const IPMExtensionFileOpenPickerInfo,
+            pcTypes: ?*u32,
+            ppTypes: [*]?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportsAllFileTypes: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionFileOpenPickerInfo,
-                pSupportsAllTypes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionFileOpenPickerInfo,
-                pSupportsAllTypes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SupportsAllFileTypes: *const fn(
+            self: *const IPMExtensionFileOpenPickerInfo,
+            pSupportsAllTypes: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7397,31 +5334,16 @@ pub const IID_IPMExtensionFileSavePickerInfo = &IID_IPMExtensionFileSavePickerIn
 pub const IPMExtensionFileSavePickerInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        get_AllFileTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMExtensionFileSavePickerInfo,
-                pcTypes: ?*u32,
-                ppTypes: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMExtensionFileSavePickerInfo,
-                pcTypes: ?*u32,
-                ppTypes: [*]?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AllFileTypes: *const fn(
+            self: *const IPMExtensionFileSavePickerInfo,
+            pcTypes: ?*u32,
+            ppTypes: [*]?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportsAllFileTypes: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionFileSavePickerInfo,
-                pSupportsAllTypes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionFileSavePickerInfo,
-                pSupportsAllTypes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SupportsAllFileTypes: *const fn(
+            self: *const IPMExtensionFileSavePickerInfo,
+            pSupportsAllTypes: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7444,18 +5366,10 @@ pub const IPMExtensionCachedFileUpdaterInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportsUpdates: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionCachedFileUpdaterInfo,
-                pSupportsUpdates: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionCachedFileUpdaterInfo,
-                pSupportsUpdates: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SupportsUpdates: *const fn(
+            self: *const IPMExtensionCachedFileUpdaterInfo,
+            pSupportsUpdates: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7474,18 +5388,10 @@ pub const IPMExtensionInfoEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Next: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMExtensionInfoEnumerator,
-                ppExtensionInfo: ?*?*IPMExtensionInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMExtensionInfoEnumerator,
-                ppExtensionInfo: ?*?*IPMExtensionInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Next: *const fn(
+            self: *const IPMExtensionInfoEnumerator,
+            ppExtensionInfo: ?*?*IPMExtensionInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7504,181 +5410,73 @@ pub const IPMBackgroundServiceAgentInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductID: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pProductID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TaskID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pTaskID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pTaskID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TaskID: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pTaskID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BSAID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBSAID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBSAID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_BSAID: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pBSAID: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BGSpecifier: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBGSpecifier: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBGSpecifier: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_BGSpecifier: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pBGSpecifier: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BGName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBGName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBGName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_BGName: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pBGName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BGSource: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBGSource: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBGSource: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_BGSource: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pBGSource: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BGType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBGType: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pBGType: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_BGType: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pBGType: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsPeriodic: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pIsPeriodic: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pIsPeriodic: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsPeriodic: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pIsPeriodic: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsScheduled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pIsScheduled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pIsScheduled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsScheduled: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pIsScheduled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsScheduleAllowed: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pIsScheduleAllowed: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pIsScheduleAllowed: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsScheduleAllowed: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pIsScheduleAllowed: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pDescription: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pDescription: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Description: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pDescription: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsLaunchOnBoot: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pLaunchOnBoot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                pLaunchOnBoot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_IsScheduled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                IsScheduled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                IsScheduled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        set_IsScheduleAllowed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                IsScheduleAllowed: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfo,
-                IsScheduleAllowed: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsLaunchOnBoot: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            pLaunchOnBoot: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_IsScheduled: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            IsScheduled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        set_IsScheduleAllowed: *const fn(
+            self: *const IPMBackgroundServiceAgentInfo,
+            IsScheduleAllowed: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7749,83 +5547,35 @@ pub const IPMBackgroundWorkerInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pProductID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductID: *const fn(
+            self: *const IPMBackgroundWorkerInfo,
+            pProductID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_TaskID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pTaskID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pTaskID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_TaskID: *const fn(
+            self: *const IPMBackgroundWorkerInfo,
+            pTaskID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BGName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pBGName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pBGName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_BGName: *const fn(
+            self: *const IPMBackgroundWorkerInfo,
+            pBGName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MaxStartupLatency: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pMaxStartupLatency: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pMaxStartupLatency: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MaxStartupLatency: *const fn(
+            self: *const IPMBackgroundWorkerInfo,
+            pMaxStartupLatency: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExpectedRuntime: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pExpectedRuntime: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pExpectedRuntime: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ExpectedRuntime: *const fn(
+            self: *const IPMBackgroundWorkerInfo,
+            pExpectedRuntime: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_IsBootWorker: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pIsBootWorker: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundWorkerInfo,
-                pIsBootWorker: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_IsBootWorker: *const fn(
+            self: *const IPMBackgroundWorkerInfo,
+            pIsBootWorker: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7864,18 +5614,10 @@ pub const IPMBackgroundServiceAgentInfoEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Next: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundServiceAgentInfoEnumerator,
-                ppBSAInfo: ?*?*IPMBackgroundServiceAgentInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundServiceAgentInfoEnumerator,
-                ppBSAInfo: ?*?*IPMBackgroundServiceAgentInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Next: *const fn(
+            self: *const IPMBackgroundServiceAgentInfoEnumerator,
+            ppBSAInfo: ?*?*IPMBackgroundServiceAgentInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7894,18 +5636,10 @@ pub const IPMBackgroundWorkerInfoEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Next: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IPMBackgroundWorkerInfoEnumerator,
-                ppBWInfo: ?*?*IPMBackgroundWorkerInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IPMBackgroundWorkerInfoEnumerator,
-                ppBWInfo: ?*?*IPMBackgroundWorkerInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Next: *const fn(
+            self: *const IPMBackgroundWorkerInfoEnumerator,
+            ppBWInfo: ?*?*IPMBackgroundWorkerInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7918,41 +5652,22 @@ pub const IPMBackgroundWorkerInfoEnumerator = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PPATCH_PROGRESS_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        CallbackContext: ?*anyopaque,
-        CurrentPosition: u32,
-        MaximumPosition: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        CallbackContext: ?*anyopaque,
-        CurrentPosition: u32,
-        MaximumPosition: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PPATCH_PROGRESS_CALLBACK = *const fn(
+    CallbackContext: ?*anyopaque,
+    CurrentPosition: u32,
+    MaximumPosition: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PPATCH_SYMLOAD_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        WhichFile: u32,
-        SymbolFileName: ?[*:0]const u8,
-        SymType: u32,
-        SymbolFileCheckSum: u32,
-        SymbolFileTimeDate: u32,
-        ImageFileCheckSum: u32,
-        ImageFileTimeDate: u32,
-        CallbackContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        WhichFile: u32,
-        SymbolFileName: ?[*:0]const u8,
-        SymType: u32,
-        SymbolFileCheckSum: u32,
-        SymbolFileTimeDate: u32,
-        ImageFileCheckSum: u32,
-        ImageFileTimeDate: u32,
-        CallbackContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PPATCH_SYMLOAD_CALLBACK = *const fn(
+    WhichFile: u32,
+    SymbolFileName: ?[*:0]const u8,
+    SymType: u32,
+    SymbolFileCheckSum: u32,
+    SymbolFileTimeDate: u32,
+    ImageFileCheckSum: u32,
+    ImageFileTimeDate: u32,
+    CallbackContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const PATCH_IGNORE_RANGE = extern struct {
     OffsetInOldFile: u32,

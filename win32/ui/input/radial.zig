@@ -12,20 +12,12 @@ pub const IID_IRadialControllerInterop = &IID_IRadialControllerInterop_Value;
 pub const IRadialControllerInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        CreateForWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRadialControllerInterop,
-                hwnd: ?HWND,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRadialControllerInterop,
-                hwnd: ?HWND,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateForWindow: *const fn(
+            self: *const IRadialControllerInterop,
+            hwnd: ?HWND,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -44,20 +36,12 @@ pub const IID_IRadialControllerConfigurationInterop = &IID_IRadialControllerConf
 pub const IRadialControllerConfigurationInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRadialControllerConfigurationInterop,
-                hwnd: ?HWND,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRadialControllerConfigurationInterop,
-                hwnd: ?HWND,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetForWindow: *const fn(
+            self: *const IRadialControllerConfigurationInterop,
+            hwnd: ?HWND,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -75,20 +59,12 @@ pub const IID_IRadialControllerIndependentInputSourceInterop = &IID_IRadialContr
 pub const IRadialControllerIndependentInputSourceInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        CreateForWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRadialControllerIndependentInputSourceInterop,
-                hwnd: ?HWND,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRadialControllerIndependentInputSourceInterop,
-                hwnd: ?HWND,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateForWindow: *const fn(
+            self: *const IRadialControllerIndependentInputSourceInterop,
+            hwnd: ?HWND,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

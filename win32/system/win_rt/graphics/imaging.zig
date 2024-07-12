@@ -12,18 +12,11 @@ pub const IID_ISoftwareBitmapNative = &IID_ISoftwareBitmapNative_Value;
 pub const ISoftwareBitmapNative = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISoftwareBitmapNative,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISoftwareBitmapNative,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetData: *const fn(
+            self: *const ISoftwareBitmapNative,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -41,46 +34,24 @@ pub const IID_ISoftwareBitmapNativeFactory = &IID_ISoftwareBitmapNativeFactory_V
 pub const ISoftwareBitmapNativeFactory = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        CreateFromWICBitmap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISoftwareBitmapNativeFactory,
-                data: ?*IWICBitmap,
-                forceReadOnly: BOOL,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISoftwareBitmapNativeFactory,
-                data: ?*IWICBitmap,
-                forceReadOnly: BOOL,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFromMF2DBuffer2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISoftwareBitmapNativeFactory,
-                data: ?*IMF2DBuffer2,
-                subtype: ?*const Guid,
-                width: u32,
-                height: u32,
-                forceReadOnly: BOOL,
-                minDisplayAperture: ?*const MFVideoArea,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISoftwareBitmapNativeFactory,
-                data: ?*IMF2DBuffer2,
-                subtype: ?*const Guid,
-                width: u32,
-                height: u32,
-                forceReadOnly: BOOL,
-                minDisplayAperture: ?*const MFVideoArea,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateFromWICBitmap: *const fn(
+            self: *const ISoftwareBitmapNativeFactory,
+            data: ?*IWICBitmap,
+            forceReadOnly: BOOL,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFromMF2DBuffer2: *const fn(
+            self: *const ISoftwareBitmapNativeFactory,
+            data: ?*IMF2DBuffer2,
+            subtype: ?*const Guid,
+            width: u32,
+            height: u32,
+            forceReadOnly: BOOL,
+            minDisplayAperture: ?*const MFVideoArea,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

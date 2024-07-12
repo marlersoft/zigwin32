@@ -1114,43 +1114,25 @@ pub const EVENT_TRACE = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PEVENT_TRACE_BUFFER_CALLBACKW = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PEVENT_TRACE_BUFFER_CALLBACKW = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PEVENT_TRACE_BUFFER_CALLBACKA = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PEVENT_TRACE_BUFFER_CALLBACKA = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PEVENT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pEvent: ?*EVENT_TRACE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pEvent: ?*EVENT_TRACE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PEVENT_CALLBACK = *const fn(
+    pEvent: ?*EVENT_TRACE,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PEVENT_RECORD_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        EventRecord: ?*EVENT_RECORD,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        EventRecord: ?*EVENT_RECORD,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PEVENT_RECORD_CALLBACK = *const fn(
+    EventRecord: ?*EVENT_RECORD,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const WMIDPREQUEST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        RequestCode: WMIDPREQUESTCODE,
-        RequestContext: ?*anyopaque,
-        BufferSize: ?*u32,
-        Buffer: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        RequestCode: WMIDPREQUESTCODE,
-        RequestContext: ?*anyopaque,
-        BufferSize: ?*u32,
-        Buffer: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const WMIDPREQUEST = *const fn(
+    RequestCode: WMIDPREQUESTCODE,
+    RequestContext: ?*anyopaque,
+    BufferSize: ?*u32,
+    Buffer: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const EVENT_TRACE_LOGFILEW = extern struct {
     LogFileName: ?PWSTR,
@@ -1401,26 +1383,15 @@ pub const EventProviderSetTraits = EVENT_INFO_CLASS.EventProviderSetTraits;
 pub const EventProviderUseDescriptorType = EVENT_INFO_CLASS.EventProviderUseDescriptorType;
 pub const MaxEventInfo = EVENT_INFO_CLASS.MaxEventInfo;
 
-pub const PENABLECALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        SourceId: ?*const Guid,
-        IsEnabled: ENABLECALLBACK_ENABLED_STATE,
-        Level: u8,
-        MatchAnyKeyword: u64,
-        MatchAllKeyword: u64,
-        FilterData: ?*EVENT_FILTER_DESCRIPTOR,
-        CallbackContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        SourceId: ?*const Guid,
-        IsEnabled: ENABLECALLBACK_ENABLED_STATE,
-        Level: u8,
-        MatchAnyKeyword: u64,
-        MatchAllKeyword: u64,
-        FilterData: ?*EVENT_FILTER_DESCRIPTOR,
-        CallbackContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PENABLECALLBACK = *const fn(
+    SourceId: ?*const Guid,
+    IsEnabled: ENABLECALLBACK_ENABLED_STATE,
+    Level: u8,
+    MatchAnyKeyword: u64,
+    MatchAllKeyword: u64,
+    FilterData: ?*EVENT_FILTER_DESCRIPTOR,
+    CallbackContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const EVENT_HEADER_EXTENDED_DATA_ITEM = extern struct {
     Reserved1: u16,
@@ -1981,130 +1952,56 @@ pub const IID_ITraceEvent = &IID_ITraceEvent_Value;
 pub const ITraceEvent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                NewEvent: ?*?*ITraceEvent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                NewEvent: ?*?*ITraceEvent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUserContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                UserContext: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                UserContext: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEventRecord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                EventRecord: ?*?*EVENT_RECORD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                EventRecord: ?*?*EVENT_RECORD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPayload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                Payload: [*:0]u8,
-                PayloadSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                Payload: [*:0]u8,
-                PayloadSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEventDescriptor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                EventDescriptor: ?*const EVENT_DESCRIPTOR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                EventDescriptor: ?*const EVENT_DESCRIPTOR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProcessId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                ProcessId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                ProcessId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProcessorIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                ProcessorIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                ProcessorIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetThreadId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                ThreadId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                ThreadId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetThreadTimes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                KernelTime: u32,
-                UserTime: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                KernelTime: u32,
-                UserTime: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActivityId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                ActivityId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                ActivityId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTimeStamp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                TimeStamp: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                TimeStamp: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProviderId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEvent,
-                ProviderId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEvent,
-                ProviderId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Clone: *const fn(
+            self: *const ITraceEvent,
+            NewEvent: ?*?*ITraceEvent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUserContext: *const fn(
+            self: *const ITraceEvent,
+            UserContext: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEventRecord: *const fn(
+            self: *const ITraceEvent,
+            EventRecord: ?*?*EVENT_RECORD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPayload: *const fn(
+            self: *const ITraceEvent,
+            Payload: [*:0]u8,
+            PayloadSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventDescriptor: *const fn(
+            self: *const ITraceEvent,
+            EventDescriptor: ?*const EVENT_DESCRIPTOR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProcessId: *const fn(
+            self: *const ITraceEvent,
+            ProcessId: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProcessorIndex: *const fn(
+            self: *const ITraceEvent,
+            ProcessorIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetThreadId: *const fn(
+            self: *const ITraceEvent,
+            ThreadId: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetThreadTimes: *const fn(
+            self: *const ITraceEvent,
+            KernelTime: u32,
+            UserTime: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActivityId: *const fn(
+            self: *const ITraceEvent,
+            ActivityId: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTimeStamp: *const fn(
+            self: *const ITraceEvent,
+            TimeStamp: ?*LARGE_INTEGER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProviderId: *const fn(
+            self: *const ITraceEvent,
+            ProviderId: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2167,40 +2064,20 @@ pub const IID_ITraceEventCallback = &IID_ITraceEventCallback_Value;
 pub const ITraceEventCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnBeginProcessTrace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEventCallback,
-                HeaderEvent: ?*ITraceEvent,
-                Relogger: ?*ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEventCallback,
-                HeaderEvent: ?*ITraceEvent,
-                Relogger: ?*ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnFinalizeProcessTrace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEventCallback,
-                Relogger: ?*ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEventCallback,
-                Relogger: ?*ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceEventCallback,
-                Event: ?*ITraceEvent,
-                Relogger: ?*ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceEventCallback,
-                Event: ?*ITraceEvent,
-                Relogger: ?*ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnBeginProcessTrace: *const fn(
+            self: *const ITraceEventCallback,
+            HeaderEvent: ?*ITraceEvent,
+            Relogger: ?*ITraceRelogger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnFinalizeProcessTrace: *const fn(
+            self: *const ITraceEventCallback,
+            Relogger: ?*ITraceRelogger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnEvent: *const fn(
+            self: *const ITraceEventCallback,
+            Event: ?*ITraceEvent,
+            Relogger: ?*ITraceRelogger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2227,104 +2104,46 @@ pub const IID_ITraceRelogger = &IID_ITraceRelogger_Value;
 pub const ITraceRelogger = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddLogfileTraceStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceRelogger,
-                LogfileName: ?BSTR,
-                UserContext: ?*anyopaque,
-                TraceHandle: ?*RELOGSTREAM_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceRelogger,
-                LogfileName: ?BSTR,
-                UserContext: ?*anyopaque,
-                TraceHandle: ?*RELOGSTREAM_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddRealtimeTraceStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceRelogger,
-                LoggerName: ?BSTR,
-                UserContext: ?*anyopaque,
-                TraceHandle: ?*RELOGSTREAM_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceRelogger,
-                LoggerName: ?BSTR,
-                UserContext: ?*anyopaque,
-                TraceHandle: ?*RELOGSTREAM_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceRelogger,
-                Callback: ?*ITraceEventCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceRelogger,
-                Callback: ?*ITraceEventCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Inject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceRelogger,
-                Event: ?*ITraceEvent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceRelogger,
-                Event: ?*ITraceEvent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateEventInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceRelogger,
-                TraceHandle: RELOGSTREAM_HANDLE,
-                Flags: u32,
-                Event: ?*?*ITraceEvent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceRelogger,
-                TraceHandle: RELOGSTREAM_HANDLE,
-                Flags: u32,
-                Event: ?*?*ITraceEvent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProcessTrace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOutputFilename: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceRelogger,
-                LogfileName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceRelogger,
-                LogfileName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompressionMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceRelogger,
-                CompressionMode: BOOLEAN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceRelogger,
-                CompressionMode: BOOLEAN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITraceRelogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddLogfileTraceStream: *const fn(
+            self: *const ITraceRelogger,
+            LogfileName: ?BSTR,
+            UserContext: ?*anyopaque,
+            TraceHandle: ?*RELOGSTREAM_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddRealtimeTraceStream: *const fn(
+            self: *const ITraceRelogger,
+            LoggerName: ?BSTR,
+            UserContext: ?*anyopaque,
+            TraceHandle: ?*RELOGSTREAM_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterCallback: *const fn(
+            self: *const ITraceRelogger,
+            Callback: ?*ITraceEventCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Inject: *const fn(
+            self: *const ITraceRelogger,
+            Event: ?*ITraceEvent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEventInstance: *const fn(
+            self: *const ITraceRelogger,
+            TraceHandle: RELOGSTREAM_HANDLE,
+            Flags: u32,
+            Event: ?*?*ITraceEvent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessTrace: *const fn(
+            self: *const ITraceRelogger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOutputFilename: *const fn(
+            self: *const ITraceRelogger,
+            LogfileName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompressionMode: *const fn(
+            self: *const ITraceRelogger,
+            CompressionMode: BOOLEAN,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: *const fn(
+            self: *const ITraceRelogger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

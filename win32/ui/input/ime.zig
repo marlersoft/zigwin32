@@ -850,46 +850,24 @@ pub const IMECHARPOSITION = extern struct {
     rcDocument: RECT,
 };
 
-pub const IMCENUMPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HIMC,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?HIMC,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const IMCENUMPROC = *const fn(
+    param0: ?HIMC,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const REGISTERWORDENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpszReading: ?[*:0]const u8,
-        param1: u32,
-        lpszString: ?[*:0]const u8,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpszReading: ?[*:0]const u8,
-        param1: u32,
-        lpszString: ?[*:0]const u8,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const REGISTERWORDENUMPROCA = *const fn(
+    lpszReading: ?[*:0]const u8,
+    param1: u32,
+    lpszString: ?[*:0]const u8,
+    param3: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const REGISTERWORDENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpszReading: ?[*:0]const u16,
-        param1: u32,
-        lpszString: ?[*:0]const u16,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpszReading: ?[*:0]const u16,
-        param1: u32,
-        lpszString: ?[*:0]const u16,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const REGISTERWORDENUMPROCW = *const fn(
+    lpszReading: ?[*:0]const u16,
+    param1: u32,
+    lpszString: ?[*:0]const u16,
+    param3: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const IFEClassFactory = extern struct {
     pub const VTable = extern struct {
@@ -914,46 +892,22 @@ pub const IID_IFECommon = &IID_IFECommon_Value;
 pub const IFECommon = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsDefaultIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFECommon,
-                szName: [*:0]const u8,
-                cszName: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFECommon,
-                szName: [*:0]const u8,
-                cszName: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDefaultIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFECommon,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFECommon,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InvokeWordRegDialog: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFECommon,
-                pimedlg: ?*IMEDLG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFECommon,
-                pimedlg: ?*IMEDLG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InvokeDictToolDialog: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFECommon,
-                pimedlg: ?*IMEDLG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFECommon,
-                pimedlg: ?*IMEDLG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsDefaultIME: *const fn(
+            self: *const IFECommon,
+            szName: [*:0]const u8,
+            cszName: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDefaultIME: *const fn(
+            self: *const IFECommon,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InvokeWordRegDialog: *const fn(
+            self: *const IFECommon,
+            pimedlg: ?*IMEDLG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InvokeDictToolDialog: *const fn(
+            self: *const IFECommon,
+            pimedlg: ?*IMEDLG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1025,84 +979,39 @@ pub const IID_IFELanguage = &IID_IFELanguage_Value;
 pub const IFELanguage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFELanguage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFELanguage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFELanguage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFELanguage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetJMorphResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFELanguage,
-                dwRequest: u32,
-                dwCMode: u32,
-                cwchInput: i32,
-                pwchInput: ?[*:0]const u16,
-                pfCInfo: ?*u32,
-                ppResult: ?*?*MORRSLT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFELanguage,
-                dwRequest: u32,
-                dwCMode: u32,
-                cwchInput: i32,
-                pwchInput: ?[*:0]const u16,
-                pfCInfo: ?*u32,
-                ppResult: ?*?*MORRSLT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConversionModeCaps: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFELanguage,
-                pdwCaps: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFELanguage,
-                pdwCaps: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPhonetic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFELanguage,
-                string: ?BSTR,
-                start: i32,
-                length: i32,
-                phonetic: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFELanguage,
-                string: ?BSTR,
-                start: i32,
-                length: i32,
-                phonetic: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConversion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFELanguage,
-                string: ?BSTR,
-                start: i32,
-                length: i32,
-                result: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFELanguage,
-                string: ?BSTR,
-                start: i32,
-                length: i32,
-                result: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Open: *const fn(
+            self: *const IFELanguage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: *const fn(
+            self: *const IFELanguage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetJMorphResult: *const fn(
+            self: *const IFELanguage,
+            dwRequest: u32,
+            dwCMode: u32,
+            cwchInput: i32,
+            pwchInput: ?[*:0]const u16,
+            pfCInfo: ?*u32,
+            ppResult: ?*?*MORRSLT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConversionModeCaps: *const fn(
+            self: *const IFELanguage,
+            pdwCaps: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPhonetic: *const fn(
+            self: *const IFELanguage,
+            string: ?BSTR,
+            start: i32,
+            length: i32,
+            phonetic: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConversion: *const fn(
+            self: *const IFELanguage,
+            string: ?BSTR,
+            start: i32,
+            length: i32,
+            result: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1302,252 +1211,114 @@ pub const IMEDP = extern struct {
     relID: IMEREL align(1),
 };
 
-pub const PFNLOG = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*IMEDP,
-        param1: HRESULT,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*IMEDP,
-        param1: HRESULT,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFNLOG = *const fn(
+    param0: ?*IMEDP,
+    param1: HRESULT,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IFEDictionary_Value = Guid.initString("019f7153-e6db-11d0-83c3-00c04fddb82e");
 pub const IID_IFEDictionary = &IID_IFEDictionary_Value;
 pub const IFEDictionary = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pchDictPath: ?*[260]u8,
-                pshf: ?*IMESHF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pchDictPath: ?*[260]u8,
-                pshf: ?*IMESHF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHeader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pchDictPath: ?*[260]u8,
-                pshf: ?*IMESHF,
-                pjfmt: ?*IMEFMT,
-                pulType: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pchDictPath: ?*[260]u8,
-                pshf: ?*IMESHF,
-                pjfmt: ?*IMEFMT,
-                pulType: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisplayProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                hwnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                hwnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPosTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                prgPosTbl: ?*?*POSTBL,
-                pcPosTbl: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                prgPosTbl: ?*?*POSTBL,
-                pcPosTbl: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWords: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pwchFirst: ?[*:0]const u16,
-                pwchLast: ?[*:0]const u16,
-                pwchDisplay: ?[*:0]const u16,
-                ulPos: u32,
-                ulSelect: u32,
-                ulWordSrc: u32,
-                pchBuffer: ?*u8,
-                cbBuffer: u32,
-                pcWrd: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pwchFirst: ?[*:0]const u16,
-                pwchLast: ?[*:0]const u16,
-                pwchDisplay: ?[*:0]const u16,
-                ulPos: u32,
-                ulSelect: u32,
-                ulWordSrc: u32,
-                pchBuffer: ?*u8,
-                cbBuffer: u32,
-                pcWrd: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NextWords: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pchBuffer: ?*u8,
-                cbBuffer: u32,
-                pcWrd: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pchBuffer: ?*u8,
-                cbBuffer: u32,
-                pcWrd: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Create: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pchDictPath: ?[*:0]const u8,
-                pshf: ?*IMESHF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pchDictPath: ?[*:0]const u8,
-                pshf: ?*IMESHF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetHeader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pshf: ?*IMESHF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pshf: ?*IMESHF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExistWord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pwrd: ?*IMEWRD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pwrd: ?*IMEWRD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExistDependency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pdp: ?*IMEDP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pdp: ?*IMEDP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterWord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                reg: IMEREG,
-                pwrd: ?*IMEWRD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                reg: IMEREG,
-                pwrd: ?*IMEWRD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterDependency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                reg: IMEREG,
-                pdp: ?*IMEDP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                reg: IMEREG,
-                pdp: ?*IMEDP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDependencies: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pwchKakariReading: ?[*:0]const u16,
-                pwchKakariDisplay: ?[*:0]const u16,
-                ulKakariPos: u32,
-                pwchUkeReading: ?[*:0]const u16,
-                pwchUkeDisplay: ?[*:0]const u16,
-                ulUkePos: u32,
-                jrel: IMEREL,
-                ulWordSrc: u32,
-                pchBuffer: ?*u8,
-                cbBuffer: u32,
-                pcdp: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pwchKakariReading: ?[*:0]const u16,
-                pwchKakariDisplay: ?[*:0]const u16,
-                ulKakariPos: u32,
-                pwchUkeReading: ?[*:0]const u16,
-                pwchUkeDisplay: ?[*:0]const u16,
-                ulUkePos: u32,
-                jrel: IMEREL,
-                ulWordSrc: u32,
-                pchBuffer: ?*u8,
-                cbBuffer: u32,
-                pcdp: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NextDependencies: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pchBuffer: ?*u8,
-                cbBuffer: u32,
-                pcDp: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pchBuffer: ?*u8,
-                cbBuffer: u32,
-                pcDp: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertFromOldMSIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-                pchDic: ?[*:0]const u8,
-                pfnLog: ?PFNLOG,
-                reg: IMEREG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-                pchDic: ?[*:0]const u8,
-                pfnLog: ?PFNLOG,
-                reg: IMEREG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertFromUserToSys: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFEDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFEDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Open: *const fn(
+            self: *const IFEDictionary,
+            pchDictPath: ?*[260]u8,
+            pshf: ?*IMESHF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: *const fn(
+            self: *const IFEDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHeader: *const fn(
+            self: *const IFEDictionary,
+            pchDictPath: ?*[260]u8,
+            pshf: ?*IMESHF,
+            pjfmt: ?*IMEFMT,
+            pulType: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisplayProperty: *const fn(
+            self: *const IFEDictionary,
+            hwnd: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPosTable: *const fn(
+            self: *const IFEDictionary,
+            prgPosTbl: ?*?*POSTBL,
+            pcPosTbl: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWords: *const fn(
+            self: *const IFEDictionary,
+            pwchFirst: ?[*:0]const u16,
+            pwchLast: ?[*:0]const u16,
+            pwchDisplay: ?[*:0]const u16,
+            ulPos: u32,
+            ulSelect: u32,
+            ulWordSrc: u32,
+            pchBuffer: ?*u8,
+            cbBuffer: u32,
+            pcWrd: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NextWords: *const fn(
+            self: *const IFEDictionary,
+            pchBuffer: ?*u8,
+            cbBuffer: u32,
+            pcWrd: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: *const fn(
+            self: *const IFEDictionary,
+            pchDictPath: ?[*:0]const u8,
+            pshf: ?*IMESHF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetHeader: *const fn(
+            self: *const IFEDictionary,
+            pshf: ?*IMESHF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExistWord: *const fn(
+            self: *const IFEDictionary,
+            pwrd: ?*IMEWRD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExistDependency: *const fn(
+            self: *const IFEDictionary,
+            pdp: ?*IMEDP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterWord: *const fn(
+            self: *const IFEDictionary,
+            reg: IMEREG,
+            pwrd: ?*IMEWRD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterDependency: *const fn(
+            self: *const IFEDictionary,
+            reg: IMEREG,
+            pdp: ?*IMEDP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDependencies: *const fn(
+            self: *const IFEDictionary,
+            pwchKakariReading: ?[*:0]const u16,
+            pwchKakariDisplay: ?[*:0]const u16,
+            ulKakariPos: u32,
+            pwchUkeReading: ?[*:0]const u16,
+            pwchUkeDisplay: ?[*:0]const u16,
+            ulUkePos: u32,
+            jrel: IMEREL,
+            ulWordSrc: u32,
+            pchBuffer: ?*u8,
+            cbBuffer: u32,
+            pcdp: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NextDependencies: *const fn(
+            self: *const IFEDictionary,
+            pchBuffer: ?*u8,
+            cbBuffer: u32,
+            pcDp: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertFromOldMSIME: *const fn(
+            self: *const IFEDictionary,
+            pchDic: ?[*:0]const u8,
+            pfnLog: ?PFNLOG,
+            reg: IMEREG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertFromUserToSys: *const fn(
+            self: *const IFEDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1679,34 +1450,18 @@ pub const IMEKMSFUNCDESC = extern struct {
     pwszDescription: [128]u16 align(1),
 };
 
-pub const fpCreateIFECommonInstanceType = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ppvObj: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        ppvObj: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const fpCreateIFECommonInstanceType = *const fn(
+    ppvObj: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const fpCreateIFELanguageInstanceType = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        clsid: ?*const Guid,
-        ppvObj: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        clsid: ?*const Guid,
-        ppvObj: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const fpCreateIFELanguageInstanceType = *const fn(
+    clsid: ?*const Guid,
+    ppvObj: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const fpCreateIFEDictionaryInstanceType = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ppvObj: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        ppvObj: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const fpCreateIFEDictionaryInstanceType = *const fn(
+    ppvObj: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const COMPOSITIONSTRING = extern struct {
     dwSize: u32,
@@ -1895,18 +1650,11 @@ pub const IID_IImeSpecifyApplets = &IID_IImeSpecifyApplets_Value;
 pub const IImeSpecifyApplets = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAppletIIDList: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImeSpecifyApplets,
-                refiid: ?*const Guid,
-                lpIIDList: ?*APPLETIDLIST,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImeSpecifyApplets,
-                refiid: ?*const Guid,
-                lpIIDList: ?*APPLETIDLIST,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAppletIIDList: *const fn(
+            self: *const IImeSpecifyApplets,
+            refiid: ?*const Guid,
+            lpIIDList: ?*APPLETIDLIST,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1924,62 +1672,29 @@ pub const IID_IImePadApplet = &IID_IImePadApplet_Value;
 pub const IImePadApplet = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImePadApplet,
-                lpIImePad: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImePadApplet,
-                lpIImePad: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Terminate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImePadApplet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImePadApplet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAppletConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImePadApplet,
-                lpAppletCfg: ?*IMEAPPLETCFG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImePadApplet,
-                lpAppletCfg: ?*IMEAPPLETCFG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImePadApplet,
-                hwndParent: ?HWND,
-                lpImeAppletUI: ?*IMEAPPLETUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImePadApplet,
-                hwndParent: ?HWND,
-                lpImeAppletUI: ?*IMEAPPLETUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Notify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImePadApplet,
-                lpImePad: ?*IUnknown,
-                notify: i32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImePadApplet,
-                lpImePad: ?*IUnknown,
-                notify: i32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IImePadApplet,
+            lpIImePad: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Terminate: *const fn(
+            self: *const IImePadApplet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAppletConfig: *const fn(
+            self: *const IImePadApplet,
+            lpAppletCfg: ?*IMEAPPLETCFG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateUI: *const fn(
+            self: *const IImePadApplet,
+            hwndParent: ?HWND,
+            lpImeAppletUI: ?*IMEAPPLETUI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Notify: *const fn(
+            self: *const IImePadApplet,
+            lpImePad: ?*IUnknown,
+            notify: i32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2013,22 +1728,13 @@ pub const IID_IImePad = &IID_IImePad_Value;
 pub const IImePad = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Request: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImePad,
-                pIImePadApplet: ?*IImePadApplet,
-                reqId: IME_PAD_REQUEST_FLAGS,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImePad,
-                pIImePadApplet: ?*IImePadApplet,
-                reqId: IME_PAD_REQUEST_FLAGS,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Request: *const fn(
+            self: *const IImePad,
+            pIImePadApplet: ?*IImePadApplet,
+            reqId: IME_PAD_REQUEST_FLAGS,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2047,30 +1753,16 @@ pub const IID_IImePlugInDictDictionaryList = &IID_IImePlugInDictDictionaryList_V
 pub const IImePlugInDictDictionaryList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDictionariesInUse: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImePlugInDictDictionaryList,
-                prgDictionaryGUID: ?*?*SAFEARRAY,
-                prgDateCreated: ?*?*SAFEARRAY,
-                prgfEncrypted: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImePlugInDictDictionaryList,
-                prgDictionaryGUID: ?*?*SAFEARRAY,
-                prgDateCreated: ?*?*SAFEARRAY,
-                prgfEncrypted: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteDictionary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IImePlugInDictDictionaryList,
-                bstrDictionaryGUID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IImePlugInDictDictionaryList,
-                bstrDictionaryGUID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDictionariesInUse: *const fn(
+            self: *const IImePlugInDictDictionaryList,
+            prgDictionaryGUID: ?*?*SAFEARRAY,
+            prgDateCreated: ?*?*SAFEARRAY,
+            prgfEncrypted: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteDictionary: *const fn(
+            self: *const IImePlugInDictDictionaryList,
+            bstrDictionaryGUID: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2095,48 +1787,23 @@ pub const IID_IEnumRegisterWordA = &IID_IEnumRegisterWordA_Value;
 pub const IEnumRegisterWordA = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRegisterWordA,
-                ppEnum: ?*?*IEnumRegisterWordA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRegisterWordA,
-                ppEnum: ?*?*IEnumRegisterWordA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRegisterWordA,
-                ulCount: u32,
-                rgRegisterWord: ?*REGISTERWORDA,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRegisterWordA,
-                ulCount: u32,
-                rgRegisterWord: ?*REGISTERWORDA,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRegisterWordA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRegisterWordA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRegisterWordA,
-                ulCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRegisterWordA,
-                ulCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Clone: *const fn(
+            self: *const IEnumRegisterWordA,
+            ppEnum: ?*?*IEnumRegisterWordA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: *const fn(
+            self: *const IEnumRegisterWordA,
+            ulCount: u32,
+            rgRegisterWord: ?*REGISTERWORDA,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumRegisterWordA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumRegisterWordA,
+            ulCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2166,48 +1833,23 @@ pub const IID_IEnumRegisterWordW = &IID_IEnumRegisterWordW_Value;
 pub const IEnumRegisterWordW = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRegisterWordW,
-                ppEnum: ?*?*IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRegisterWordW,
-                ppEnum: ?*?*IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRegisterWordW,
-                ulCount: u32,
-                rgRegisterWord: ?*REGISTERWORDW,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRegisterWordW,
-                ulCount: u32,
-                rgRegisterWord: ?*REGISTERWORDW,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRegisterWordW,
-                ulCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRegisterWordW,
-                ulCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Clone: *const fn(
+            self: *const IEnumRegisterWordW,
+            ppEnum: ?*?*IEnumRegisterWordW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: *const fn(
+            self: *const IEnumRegisterWordW,
+            ulCount: u32,
+            rgRegisterWord: ?*REGISTERWORDW,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumRegisterWordW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumRegisterWordW,
+            ulCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2237,48 +1879,23 @@ pub const IID_IEnumInputContext = &IID_IEnumInputContext_Value;
 pub const IEnumInputContext = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumInputContext,
-                ppEnum: ?*?*IEnumInputContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumInputContext,
-                ppEnum: ?*?*IEnumInputContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumInputContext,
-                ulCount: u32,
-                rgInputContext: ?*?HIMC,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumInputContext,
-                ulCount: u32,
-                rgInputContext: ?*?HIMC,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumInputContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumInputContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumInputContext,
-                ulCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumInputContext,
-                ulCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Clone: *const fn(
+            self: *const IEnumInputContext,
+            ppEnum: ?*?*IEnumInputContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: *const fn(
+            self: *const IEnumInputContext,
+            ulCount: u32,
+            rgInputContext: ?*?HIMC,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumInputContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumInputContext,
+            ulCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2308,32 +1925,17 @@ pub const IID_IActiveIMMRegistrar = &IID_IActiveIMMRegistrar_Value;
 pub const IActiveIMMRegistrar = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMRegistrar,
-                rclsid: ?*const Guid,
-                lgid: u16,
-                pszIconFile: ?[*:0]const u16,
-                pszDesc: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMRegistrar,
-                rclsid: ?*const Guid,
-                lgid: u16,
-                pszIconFile: ?[*:0]const u16,
-                pszDesc: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMRegistrar,
-                rclsid: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMRegistrar,
-                rclsid: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RegisterIME: *const fn(
+            self: *const IActiveIMMRegistrar,
+            rclsid: ?*const Guid,
+            lgid: u16,
+            pszIconFile: ?[*:0]const u16,
+            pszDesc: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterIME: *const fn(
+            self: *const IActiveIMMRegistrar,
+            rclsid: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2355,52 +1957,24 @@ pub const IID_IActiveIMMMessagePumpOwner = &IID_IActiveIMMMessagePumpOwner_Value
 pub const IActiveIMMMessagePumpOwner = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Start: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMMessagePumpOwner,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMMessagePumpOwner,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        End: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMMessagePumpOwner,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMMessagePumpOwner,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnTranslateMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMMessagePumpOwner,
-                pMsg: ?*const MSG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMMessagePumpOwner,
-                pMsg: ?*const MSG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Pause: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMMessagePumpOwner,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMMessagePumpOwner,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Resume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMMessagePumpOwner,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMMessagePumpOwner,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Start: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        End: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnTranslateMessage: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
+            pMsg: ?*const MSG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Pause: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Resume: *const fn(
+            self: *const IActiveIMMMessagePumpOwner,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2434,1012 +2008,441 @@ pub const IID_IActiveIMMApp = &IID_IActiveIMMApp_Value;
 pub const IActiveIMMApp = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AssociateContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                hIME: ?HIMC,
-                phPrev: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                hIME: ?HIMC,
-                phPrev: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConfigureIMEA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pData: ?*REGISTERWORDA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pData: ?*REGISTERWORDA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConfigureIMEW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pData: ?*REGISTERWORDW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pData: ?*REGISTERWORDW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                phIMC: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                phIMC: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DestroyContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIME: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIME: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumRegisterWordA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szRegister: ?PSTR,
-                pData: ?*anyopaque,
-                pEnum: ?*?*IEnumRegisterWordA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szRegister: ?PSTR,
-                pData: ?*anyopaque,
-                pEnum: ?*?*IEnumRegisterWordA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumRegisterWordW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-                pData: ?*anyopaque,
-                pEnum: ?*?*IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-                pData: ?*anyopaque,
-                pEnum: ?*?*IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EscapeA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EscapeW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateListA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                uBufLen: u32,
-                pCandList: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                uBufLen: u32,
-                pCandList: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateListW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                uBufLen: u32,
-                pCandList: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                uBufLen: u32,
-                pCandList: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateListCountA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pdwListSize: ?*u32,
-                pdwBufLen: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pdwListSize: ?*u32,
-                pdwBufLen: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateListCountW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pdwListSize: ?*u32,
-                pdwBufLen: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pdwListSize: ?*u32,
-                pdwBufLen: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pCandidate: ?*CANDIDATEFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pCandidate: ?*CANDIDATEFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionFontA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionFontW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionStringA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                plCopied: ?*i32,
-                pBuf: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                plCopied: ?*i32,
-                pBuf: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionStringW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                plCopied: ?*i32,
-                pBuf: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                plCopied: ?*i32,
-                pBuf: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pCompForm: ?*COMPOSITIONFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pCompForm: ?*COMPOSITIONFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                phIMC: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                phIMC: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConversionListA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                pSrc: ?PSTR,
-                uBufLen: u32,
-                uFlag: u32,
-                pDst: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                pSrc: ?PSTR,
-                uBufLen: u32,
-                uFlag: u32,
-                pDst: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConversionListW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                pSrc: ?PWSTR,
-                uBufLen: u32,
-                uFlag: u32,
-                pDst: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                pSrc: ?PWSTR,
-                uBufLen: u32,
-                uFlag: u32,
-                pDst: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConversionStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pfdwConversion: ?*u32,
-                pfdwSentence: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pfdwConversion: ?*u32,
-                pfdwSentence: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDefaultIMEWnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                phDefWnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                phDefWnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDescriptionA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szDescription: ?PSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szDescription: ?PSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDescriptionW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szDescription: ?PWSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szDescription: ?PWSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGuideLineA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                pBuf: ?PSTR,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                pBuf: ?PSTR,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGuideLineW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                pBuf: ?PWSTR,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                pBuf: ?PWSTR,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIMEFileNameA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szFileName: ?PSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szFileName: ?PSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIMEFileNameW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szFileName: ?PWSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szFileName: ?PWSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOpenStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                fdwIndex: u32,
-                pdwProperty: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                fdwIndex: u32,
-                pdwProperty: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRegisterWordStyleA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFA,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFA,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRegisterWordStyleW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFW,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFW,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStatusWindowPos: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pptPos: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pptPos: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVirtualKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                puVirtualKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                puVirtualKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InstallIMEA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                szIMEFileName: ?PSTR,
-                szLayoutText: ?PSTR,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                szIMEFileName: ?PSTR,
-                szLayoutText: ?PSTR,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InstallIMEW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                szIMEFileName: ?PWSTR,
-                szLayoutText: ?PWSTR,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                szIMEFileName: ?PWSTR,
-                szLayoutText: ?PWSTR,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsUIMessageA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWndIME: ?HWND,
-                msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWndIME: ?HWND,
-                msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsUIMessageW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWndIME: ?HWND,
-                msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWndIME: ?HWND,
-                msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NotifyIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwAction: u32,
-                dwIndex: u32,
-                dwValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwAction: u32,
-                dwIndex: u32,
-                dwValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterWordA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szRegister: ?PSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szRegister: ?PSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterWordW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCandidateWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pCandidate: ?*CANDIDATEFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pCandidate: ?*CANDIDATEFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionFontA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionFontW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionStringA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionStringW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pCompForm: ?*COMPOSITIONFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pCompForm: ?*COMPOSITIONFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConversionStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                fdwConversion: u32,
-                fdwSentence: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                fdwConversion: u32,
-                fdwSentence: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpenStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                fOpen: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                fOpen: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStatusWindowPos: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pptPos: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                pptPos: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SimulateHotKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                dwHotKeyID: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                dwHotKeyID: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterWordA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szUnregister: ?PSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szUnregister: ?PSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterWordW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szUnregister: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szUnregister: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Activate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                fRestoreLayout: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                fRestoreLayout: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Deactivate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnDefWindowProc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                Msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                Msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FilterClientWindows: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                aaClassList: ?*u16,
-                uSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                aaClassList: ?*u16,
-                uSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCodePageA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                uCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLangId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                plid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hKL: ?HKL,
-                plid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AssociateContextEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hWnd: ?HWND,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisableIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                idThread: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                idThread: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImeMenuItemsA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-                dwType: u32,
-                pImeParentMenu: ?*IMEMENUITEMINFOA,
-                pImeMenu: ?*IMEMENUITEMINFOA,
-                dwSize: u32,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-                dwType: u32,
-                pImeParentMenu: ?*IMEMENUITEMINFOA,
-                pImeMenu: ?*IMEMENUITEMINFOA,
-                dwSize: u32,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImeMenuItemsW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-                dwType: u32,
-                pImeParentMenu: ?*IMEMENUITEMINFOW,
-                pImeMenu: ?*IMEMENUITEMINFOW,
-                dwSize: u32,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-                dwType: u32,
-                pImeParentMenu: ?*IMEMENUITEMINFOW,
-                pImeMenu: ?*IMEMENUITEMINFOW,
-                dwSize: u32,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumInputContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMApp,
-                idThread: u32,
-                ppEnum: ?*?*IEnumInputContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMApp,
-                idThread: u32,
-                ppEnum: ?*?*IEnumInputContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AssociateContext: *const fn(
+            self: *const IActiveIMMApp,
+            hWnd: ?HWND,
+            hIME: ?HIMC,
+            phPrev: ?*?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConfigureIMEA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            hWnd: ?HWND,
+            dwMode: u32,
+            pData: ?*REGISTERWORDA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConfigureIMEW: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            hWnd: ?HWND,
+            dwMode: u32,
+            pData: ?*REGISTERWORDW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateContext: *const fn(
+            self: *const IActiveIMMApp,
+            phIMC: ?*?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DestroyContext: *const fn(
+            self: *const IActiveIMMApp,
+            hIME: ?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumRegisterWordA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            szReading: ?PSTR,
+            dwStyle: u32,
+            szRegister: ?PSTR,
+            pData: ?*anyopaque,
+            pEnum: ?*?*IEnumRegisterWordA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumRegisterWordW: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szRegister: ?PWSTR,
+            pData: ?*anyopaque,
+            pEnum: ?*?*IEnumRegisterWordW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EscapeA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            hIMC: ?HIMC,
+            uEscape: u32,
+            pData: ?*anyopaque,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EscapeW: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            hIMC: ?HIMC,
+            uEscape: u32,
+            pData: ?*anyopaque,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateListA: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            uBufLen: u32,
+            pCandList: ?*CANDIDATELIST,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateListW: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            uBufLen: u32,
+            pCandList: ?*CANDIDATELIST,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateListCountA: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            pdwListSize: ?*u32,
+            pdwBufLen: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateListCountW: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            pdwListSize: ?*u32,
+            pdwBufLen: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateWindow: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            pCandidate: ?*CANDIDATEFORM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionFontA: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            plf: ?*LOGFONTA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionFontW: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            plf: ?*LOGFONTW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionStringA: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            dwBufLen: u32,
+            plCopied: ?*i32,
+            pBuf: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionStringW: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            dwBufLen: u32,
+            plCopied: ?*i32,
+            pBuf: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionWindow: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            pCompForm: ?*COMPOSITIONFORM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContext: *const fn(
+            self: *const IActiveIMMApp,
+            hWnd: ?HWND,
+            phIMC: ?*?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConversionListA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            hIMC: ?HIMC,
+            pSrc: ?PSTR,
+            uBufLen: u32,
+            uFlag: u32,
+            pDst: ?*CANDIDATELIST,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConversionListW: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            hIMC: ?HIMC,
+            pSrc: ?PWSTR,
+            uBufLen: u32,
+            uFlag: u32,
+            pDst: ?*CANDIDATELIST,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConversionStatus: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            pfdwConversion: ?*u32,
+            pfdwSentence: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultIMEWnd: *const fn(
+            self: *const IActiveIMMApp,
+            hWnd: ?HWND,
+            phDefWnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescriptionA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            uBufLen: u32,
+            szDescription: ?PSTR,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescriptionW: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            uBufLen: u32,
+            szDescription: ?PWSTR,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGuideLineA: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            dwBufLen: u32,
+            pBuf: ?PSTR,
+            pdwResult: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGuideLineW: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            dwBufLen: u32,
+            pBuf: ?PWSTR,
+            pdwResult: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIMEFileNameA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            uBufLen: u32,
+            szFileName: ?PSTR,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIMEFileNameW: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            uBufLen: u32,
+            szFileName: ?PWSTR,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOpenStatus: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            fdwIndex: u32,
+            pdwProperty: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRegisterWordStyleA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            nItem: u32,
+            pStyleBuf: ?*STYLEBUFA,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRegisterWordStyleW: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            nItem: u32,
+            pStyleBuf: ?*STYLEBUFW,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatusWindowPos: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            pptPos: ?*POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVirtualKey: *const fn(
+            self: *const IActiveIMMApp,
+            hWnd: ?HWND,
+            puVirtualKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InstallIMEA: *const fn(
+            self: *const IActiveIMMApp,
+            szIMEFileName: ?PSTR,
+            szLayoutText: ?PSTR,
+            phKL: ?*?HKL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InstallIMEW: *const fn(
+            self: *const IActiveIMMApp,
+            szIMEFileName: ?PWSTR,
+            szLayoutText: ?PWSTR,
+            phKL: ?*?HKL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsIME: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsUIMessageA: *const fn(
+            self: *const IActiveIMMApp,
+            hWndIME: ?HWND,
+            msg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsUIMessageW: *const fn(
+            self: *const IActiveIMMApp,
+            hWndIME: ?HWND,
+            msg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NotifyIME: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwAction: u32,
+            dwIndex: u32,
+            dwValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterWordA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            szReading: ?PSTR,
+            dwStyle: u32,
+            szRegister: ?PSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterWordW: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szRegister: ?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseContext: *const fn(
+            self: *const IActiveIMMApp,
+            hWnd: ?HWND,
+            hIMC: ?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCandidateWindow: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            pCandidate: ?*CANDIDATEFORM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionFontA: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            plf: ?*LOGFONTA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionFontW: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            plf: ?*LOGFONTW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionStringA: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            pComp: ?*anyopaque,
+            dwCompLen: u32,
+            pRead: ?*anyopaque,
+            dwReadLen: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionStringW: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            pComp: ?*anyopaque,
+            dwCompLen: u32,
+            pRead: ?*anyopaque,
+            dwReadLen: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionWindow: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            pCompForm: ?*COMPOSITIONFORM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConversionStatus: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            fdwConversion: u32,
+            fdwSentence: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpenStatus: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            fOpen: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStatusWindowPos: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            pptPos: ?*POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SimulateHotKey: *const fn(
+            self: *const IActiveIMMApp,
+            hWnd: ?HWND,
+            dwHotKeyID: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterWordA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            szReading: ?PSTR,
+            dwStyle: u32,
+            szUnregister: ?PSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterWordW: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szUnregister: ?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Activate: *const fn(
+            self: *const IActiveIMMApp,
+            fRestoreLayout: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Deactivate: *const fn(
+            self: *const IActiveIMMApp,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnDefWindowProc: *const fn(
+            self: *const IActiveIMMApp,
+            hWnd: ?HWND,
+            Msg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FilterClientWindows: *const fn(
+            self: *const IActiveIMMApp,
+            aaClassList: ?*u16,
+            uSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodePageA: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            uCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLangId: *const fn(
+            self: *const IActiveIMMApp,
+            hKL: ?HKL,
+            plid: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AssociateContextEx: *const fn(
+            self: *const IActiveIMMApp,
+            hWnd: ?HWND,
+            hIMC: ?HIMC,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisableIME: *const fn(
+            self: *const IActiveIMMApp,
+            idThread: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImeMenuItemsA: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwFlags: u32,
+            dwType: u32,
+            pImeParentMenu: ?*IMEMENUITEMINFOA,
+            pImeMenu: ?*IMEMENUITEMINFOA,
+            dwSize: u32,
+            pdwResult: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImeMenuItemsW: *const fn(
+            self: *const IActiveIMMApp,
+            hIMC: ?HIMC,
+            dwFlags: u32,
+            dwType: u32,
+            pImeParentMenu: ?*IMEMENUITEMINFOW,
+            pImeMenu: ?*IMEMENUITEMINFOW,
+            dwSize: u32,
+            pdwResult: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumInputContext: *const fn(
+            self: *const IActiveIMMApp,
+            idThread: u32,
+            ppEnum: ?*?*IEnumInputContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3725,1272 +2728,551 @@ pub const IID_IActiveIMMIME = &IID_IActiveIMMIME_Value;
 pub const IActiveIMMIME = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AssociateContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                hIME: ?HIMC,
-                phPrev: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                hIME: ?HIMC,
-                phPrev: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConfigureIMEA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pData: ?*REGISTERWORDA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pData: ?*REGISTERWORDA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConfigureIMEW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pData: ?*REGISTERWORDW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pData: ?*REGISTERWORDW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                phIMC: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                phIMC: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DestroyContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIME: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIME: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumRegisterWordA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szRegister: ?PSTR,
-                pData: ?*anyopaque,
-                pEnum: ?*?*IEnumRegisterWordA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szRegister: ?PSTR,
-                pData: ?*anyopaque,
-                pEnum: ?*?*IEnumRegisterWordA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumRegisterWordW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-                pData: ?*anyopaque,
-                pEnum: ?*?*IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-                pData: ?*anyopaque,
-                pEnum: ?*?*IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EscapeA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EscapeW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateListA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                uBufLen: u32,
-                pCandList: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                uBufLen: u32,
-                pCandList: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateListW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                uBufLen: u32,
-                pCandList: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                uBufLen: u32,
-                pCandList: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateListCountA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pdwListSize: ?*u32,
-                pdwBufLen: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pdwListSize: ?*u32,
-                pdwBufLen: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateListCountW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pdwListSize: ?*u32,
-                pdwBufLen: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pdwListSize: ?*u32,
-                pdwBufLen: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCandidateWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pCandidate: ?*CANDIDATEFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pCandidate: ?*CANDIDATEFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionFontA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionFontW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionStringA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                plCopied: ?*i32,
-                pBuf: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                plCopied: ?*i32,
-                pBuf: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionStringW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                plCopied: ?*i32,
-                pBuf: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                plCopied: ?*i32,
-                pBuf: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompositionWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pCompForm: ?*COMPOSITIONFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pCompForm: ?*COMPOSITIONFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                phIMC: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                phIMC: ?*?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConversionListA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                pSrc: ?PSTR,
-                uBufLen: u32,
-                uFlag: u32,
-                pDst: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                pSrc: ?PSTR,
-                uBufLen: u32,
-                uFlag: u32,
-                pDst: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConversionListW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                pSrc: ?PWSTR,
-                uBufLen: u32,
-                uFlag: u32,
-                pDst: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                hIMC: ?HIMC,
-                pSrc: ?PWSTR,
-                uBufLen: u32,
-                uFlag: u32,
-                pDst: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConversionStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pfdwConversion: ?*u32,
-                pfdwSentence: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pfdwConversion: ?*u32,
-                pfdwSentence: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDefaultIMEWnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                phDefWnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                phDefWnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDescriptionA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szDescription: ?PSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szDescription: ?PSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDescriptionW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szDescription: ?PWSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szDescription: ?PWSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGuideLineA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                pBuf: ?PSTR,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                pBuf: ?PSTR,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGuideLineW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                pBuf: ?PWSTR,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                dwBufLen: u32,
-                pBuf: ?PWSTR,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIMEFileNameA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szFileName: ?PSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szFileName: ?PSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIMEFileNameW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szFileName: ?PWSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uBufLen: u32,
-                szFileName: ?PWSTR,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOpenStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                fdwIndex: u32,
-                pdwProperty: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                fdwIndex: u32,
-                pdwProperty: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRegisterWordStyleA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFA,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFA,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRegisterWordStyleW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFW,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFW,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStatusWindowPos: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pptPos: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pptPos: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVirtualKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                puVirtualKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                puVirtualKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InstallIMEA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                szIMEFileName: ?PSTR,
-                szLayoutText: ?PSTR,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                szIMEFileName: ?PSTR,
-                szLayoutText: ?PSTR,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InstallIMEW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                szIMEFileName: ?PWSTR,
-                szLayoutText: ?PWSTR,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                szIMEFileName: ?PWSTR,
-                szLayoutText: ?PWSTR,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsUIMessageA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWndIME: ?HWND,
-                msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWndIME: ?HWND,
-                msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsUIMessageW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWndIME: ?HWND,
-                msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWndIME: ?HWND,
-                msg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NotifyIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwAction: u32,
-                dwIndex: u32,
-                dwValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwAction: u32,
-                dwIndex: u32,
-                dwValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterWordA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szRegister: ?PSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szRegister: ?PSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterWordW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCandidateWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pCandidate: ?*CANDIDATEFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pCandidate: ?*CANDIDATEFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionFontA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionFontW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                plf: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionStringA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionStringW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pCompForm: ?*COMPOSITIONFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pCompForm: ?*COMPOSITIONFORM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConversionStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                fdwConversion: u32,
-                fdwSentence: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                fdwConversion: u32,
-                fdwSentence: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpenStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                fOpen: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                fOpen: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStatusWindowPos: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pptPos: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pptPos: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SimulateHotKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                dwHotKeyID: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                dwHotKeyID: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterWordA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szUnregister: ?PSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PSTR,
-                dwStyle: u32,
-                szUnregister: ?PSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterWordW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szUnregister: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szUnregister: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GenerateMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LockIMC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                ppIMC: ?*?*INPUTCONTEXT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                ppIMC: ?*?*INPUTCONTEXT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnlockIMC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIMCLockCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pdwLockCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                pdwLockCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateIMCC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                dwSize: u32,
-                phIMCC: ?*?HIMCC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                dwSize: u32,
-                phIMCC: ?*?HIMCC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DestroyIMCC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LockIMCC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnlockIMCC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReSizeIMCC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-                dwSize: u32,
-                phIMCC: ?*?HIMCC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-                dwSize: u32,
-                phIMCC: ?*?HIMCC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIMCCSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-                pdwSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-                pdwSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIMCCLockCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-                pdwLockCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMCC: ?HIMCC,
-                pdwLockCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHotKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                dwHotKeyID: u32,
-                puModifiers: ?*u32,
-                puVKey: ?*u32,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                dwHotKeyID: u32,
-                puModifiers: ?*u32,
-                puVKey: ?*u32,
-                phKL: ?*?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetHotKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                dwHotKeyID: u32,
-                uModifiers: u32,
-                uVKey: u32,
-                hKL: ?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                dwHotKeyID: u32,
-                uModifiers: u32,
-                uVKey: u32,
-                hKL: ?HKL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSoftKeyboard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                uType: u32,
-                hOwner: ?HWND,
-                x: i32,
-                y: i32,
-                phSoftKbdWnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                uType: u32,
-                hOwner: ?HWND,
-                x: i32,
-                y: i32,
-                phSoftKbdWnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DestroySoftKeyboard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hSoftKbdWnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hSoftKbdWnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ShowSoftKeyboard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hSoftKbdWnd: ?HWND,
-                nCmdShow: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hSoftKbdWnd: ?HWND,
-                nCmdShow: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCodePageA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                uCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLangId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                plid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hKL: ?HKL,
-                plid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        KeybdEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                lgidIME: u16,
-                bVk: u8,
-                bScan: u8,
-                dwFlags: u32,
-                dwExtraInfo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                lgidIME: u16,
-                bVk: u8,
-                bScan: u8,
-                dwFlags: u32,
-                dwExtraInfo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LockModal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnlockModal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AssociateContextEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisableIME: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                idThread: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                idThread: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImeMenuItemsA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-                dwType: u32,
-                pImeParentMenu: ?*IMEMENUITEMINFOA,
-                pImeMenu: ?*IMEMENUITEMINFOA,
-                dwSize: u32,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-                dwType: u32,
-                pImeParentMenu: ?*IMEMENUITEMINFOA,
-                pImeMenu: ?*IMEMENUITEMINFOA,
-                dwSize: u32,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImeMenuItemsW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-                dwType: u32,
-                pImeParentMenu: ?*IMEMENUITEMINFOW,
-                pImeMenu: ?*IMEMENUITEMINFOW,
-                dwSize: u32,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                dwFlags: u32,
-                dwType: u32,
-                pImeParentMenu: ?*IMEMENUITEMINFOW,
-                pImeMenu: ?*IMEMENUITEMINFOW,
-                dwSize: u32,
-                pdwResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumInputContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                idThread: u32,
-                ppEnum: ?*?*IEnumInputContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                idThread: u32,
-                ppEnum: ?*?*IEnumInputContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RequestMessageA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RequestMessageW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hIMC: ?HIMC,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendIMCA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                uMsg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                uMsg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendIMCW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                uMsg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-                hWnd: ?HWND,
-                uMsg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsSleeping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIMMIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIMMIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AssociateContext: *const fn(
+            self: *const IActiveIMMIME,
+            hWnd: ?HWND,
+            hIME: ?HIMC,
+            phPrev: ?*?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConfigureIMEA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            hWnd: ?HWND,
+            dwMode: u32,
+            pData: ?*REGISTERWORDA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConfigureIMEW: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            hWnd: ?HWND,
+            dwMode: u32,
+            pData: ?*REGISTERWORDW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateContext: *const fn(
+            self: *const IActiveIMMIME,
+            phIMC: ?*?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DestroyContext: *const fn(
+            self: *const IActiveIMMIME,
+            hIME: ?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumRegisterWordA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            szReading: ?PSTR,
+            dwStyle: u32,
+            szRegister: ?PSTR,
+            pData: ?*anyopaque,
+            pEnum: ?*?*IEnumRegisterWordA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumRegisterWordW: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szRegister: ?PWSTR,
+            pData: ?*anyopaque,
+            pEnum: ?*?*IEnumRegisterWordW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EscapeA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            hIMC: ?HIMC,
+            uEscape: u32,
+            pData: ?*anyopaque,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EscapeW: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            hIMC: ?HIMC,
+            uEscape: u32,
+            pData: ?*anyopaque,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateListA: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            uBufLen: u32,
+            pCandList: ?*CANDIDATELIST,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateListW: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            uBufLen: u32,
+            pCandList: ?*CANDIDATELIST,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateListCountA: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            pdwListSize: ?*u32,
+            pdwBufLen: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateListCountW: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            pdwListSize: ?*u32,
+            pdwBufLen: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCandidateWindow: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            pCandidate: ?*CANDIDATEFORM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionFontA: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            plf: ?*LOGFONTA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionFontW: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            plf: ?*LOGFONTW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionStringA: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            dwBufLen: u32,
+            plCopied: ?*i32,
+            pBuf: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionStringW: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            dwBufLen: u32,
+            plCopied: ?*i32,
+            pBuf: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompositionWindow: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            pCompForm: ?*COMPOSITIONFORM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContext: *const fn(
+            self: *const IActiveIMMIME,
+            hWnd: ?HWND,
+            phIMC: ?*?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConversionListA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            hIMC: ?HIMC,
+            pSrc: ?PSTR,
+            uBufLen: u32,
+            uFlag: u32,
+            pDst: ?*CANDIDATELIST,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConversionListW: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            hIMC: ?HIMC,
+            pSrc: ?PWSTR,
+            uBufLen: u32,
+            uFlag: u32,
+            pDst: ?*CANDIDATELIST,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConversionStatus: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            pfdwConversion: ?*u32,
+            pfdwSentence: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultIMEWnd: *const fn(
+            self: *const IActiveIMMIME,
+            hWnd: ?HWND,
+            phDefWnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescriptionA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            uBufLen: u32,
+            szDescription: ?PSTR,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescriptionW: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            uBufLen: u32,
+            szDescription: ?PWSTR,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGuideLineA: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            dwBufLen: u32,
+            pBuf: ?PSTR,
+            pdwResult: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGuideLineW: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            dwBufLen: u32,
+            pBuf: ?PWSTR,
+            pdwResult: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIMEFileNameA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            uBufLen: u32,
+            szFileName: ?PSTR,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIMEFileNameW: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            uBufLen: u32,
+            szFileName: ?PWSTR,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOpenStatus: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            fdwIndex: u32,
+            pdwProperty: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRegisterWordStyleA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            nItem: u32,
+            pStyleBuf: ?*STYLEBUFA,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRegisterWordStyleW: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            nItem: u32,
+            pStyleBuf: ?*STYLEBUFW,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatusWindowPos: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            pptPos: ?*POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVirtualKey: *const fn(
+            self: *const IActiveIMMIME,
+            hWnd: ?HWND,
+            puVirtualKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InstallIMEA: *const fn(
+            self: *const IActiveIMMIME,
+            szIMEFileName: ?PSTR,
+            szLayoutText: ?PSTR,
+            phKL: ?*?HKL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InstallIMEW: *const fn(
+            self: *const IActiveIMMIME,
+            szIMEFileName: ?PWSTR,
+            szLayoutText: ?PWSTR,
+            phKL: ?*?HKL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsIME: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsUIMessageA: *const fn(
+            self: *const IActiveIMMIME,
+            hWndIME: ?HWND,
+            msg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsUIMessageW: *const fn(
+            self: *const IActiveIMMIME,
+            hWndIME: ?HWND,
+            msg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NotifyIME: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwAction: u32,
+            dwIndex: u32,
+            dwValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterWordA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            szReading: ?PSTR,
+            dwStyle: u32,
+            szRegister: ?PSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterWordW: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szRegister: ?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseContext: *const fn(
+            self: *const IActiveIMMIME,
+            hWnd: ?HWND,
+            hIMC: ?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCandidateWindow: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            pCandidate: ?*CANDIDATEFORM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionFontA: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            plf: ?*LOGFONTA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionFontW: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            plf: ?*LOGFONTW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionStringA: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            pComp: ?*anyopaque,
+            dwCompLen: u32,
+            pRead: ?*anyopaque,
+            dwReadLen: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionStringW: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            pComp: ?*anyopaque,
+            dwCompLen: u32,
+            pRead: ?*anyopaque,
+            dwReadLen: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionWindow: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            pCompForm: ?*COMPOSITIONFORM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConversionStatus: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            fdwConversion: u32,
+            fdwSentence: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpenStatus: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            fOpen: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStatusWindowPos: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            pptPos: ?*POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SimulateHotKey: *const fn(
+            self: *const IActiveIMMIME,
+            hWnd: ?HWND,
+            dwHotKeyID: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterWordA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            szReading: ?PSTR,
+            dwStyle: u32,
+            szUnregister: ?PSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterWordW: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szUnregister: ?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GenerateMessage: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LockIMC: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            ppIMC: ?*?*INPUTCONTEXT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnlockIMC: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIMCLockCount: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            pdwLockCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateIMCC: *const fn(
+            self: *const IActiveIMMIME,
+            dwSize: u32,
+            phIMCC: ?*?HIMCC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DestroyIMCC: *const fn(
+            self: *const IActiveIMMIME,
+            hIMCC: ?HIMCC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LockIMCC: *const fn(
+            self: *const IActiveIMMIME,
+            hIMCC: ?HIMCC,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnlockIMCC: *const fn(
+            self: *const IActiveIMMIME,
+            hIMCC: ?HIMCC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReSizeIMCC: *const fn(
+            self: *const IActiveIMMIME,
+            hIMCC: ?HIMCC,
+            dwSize: u32,
+            phIMCC: ?*?HIMCC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIMCCSize: *const fn(
+            self: *const IActiveIMMIME,
+            hIMCC: ?HIMCC,
+            pdwSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIMCCLockCount: *const fn(
+            self: *const IActiveIMMIME,
+            hIMCC: ?HIMCC,
+            pdwLockCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHotKey: *const fn(
+            self: *const IActiveIMMIME,
+            dwHotKeyID: u32,
+            puModifiers: ?*u32,
+            puVKey: ?*u32,
+            phKL: ?*?HKL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetHotKey: *const fn(
+            self: *const IActiveIMMIME,
+            dwHotKeyID: u32,
+            uModifiers: u32,
+            uVKey: u32,
+            hKL: ?HKL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSoftKeyboard: *const fn(
+            self: *const IActiveIMMIME,
+            uType: u32,
+            hOwner: ?HWND,
+            x: i32,
+            y: i32,
+            phSoftKbdWnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DestroySoftKeyboard: *const fn(
+            self: *const IActiveIMMIME,
+            hSoftKbdWnd: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ShowSoftKeyboard: *const fn(
+            self: *const IActiveIMMIME,
+            hSoftKbdWnd: ?HWND,
+            nCmdShow: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodePageA: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            uCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLangId: *const fn(
+            self: *const IActiveIMMIME,
+            hKL: ?HKL,
+            plid: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        KeybdEvent: *const fn(
+            self: *const IActiveIMMIME,
+            lgidIME: u16,
+            bVk: u8,
+            bScan: u8,
+            dwFlags: u32,
+            dwExtraInfo: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LockModal: *const fn(
+            self: *const IActiveIMMIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnlockModal: *const fn(
+            self: *const IActiveIMMIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AssociateContextEx: *const fn(
+            self: *const IActiveIMMIME,
+            hWnd: ?HWND,
+            hIMC: ?HIMC,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisableIME: *const fn(
+            self: *const IActiveIMMIME,
+            idThread: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImeMenuItemsA: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwFlags: u32,
+            dwType: u32,
+            pImeParentMenu: ?*IMEMENUITEMINFOA,
+            pImeMenu: ?*IMEMENUITEMINFOA,
+            dwSize: u32,
+            pdwResult: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImeMenuItemsW: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            dwFlags: u32,
+            dwType: u32,
+            pImeParentMenu: ?*IMEMENUITEMINFOW,
+            pImeMenu: ?*IMEMENUITEMINFOW,
+            dwSize: u32,
+            pdwResult: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumInputContext: *const fn(
+            self: *const IActiveIMMIME,
+            idThread: u32,
+            ppEnum: ?*?*IEnumInputContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestMessageA: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestMessageW: *const fn(
+            self: *const IActiveIMMIME,
+            hIMC: ?HIMC,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendIMCA: *const fn(
+            self: *const IActiveIMMIME,
+            hWnd: ?HWND,
+            uMsg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendIMCW: *const fn(
+            self: *const IActiveIMMIME,
+            hWnd: ?HWND,
+            uMsg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsSleeping: *const fn(
+            self: *const IActiveIMMIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5356,262 +3638,117 @@ pub const IID_IActiveIME = &IID_IActiveIME_Value;
 pub const IActiveIME = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Inquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                dwSystemInfoFlags: u32,
-                pIMEInfo: ?*IMEINFO,
-                szWndClass: ?PWSTR,
-                pdwPrivate: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                dwSystemInfoFlags: u32,
-                pIMEInfo: ?*IMEINFO,
-                szWndClass: ?PWSTR,
-                pdwPrivate: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConversionList: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                szSource: ?PWSTR,
-                uFlag: u32,
-                uBufLen: u32,
-                pDest: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                szSource: ?PWSTR,
-                uFlag: u32,
-                uBufLen: u32,
-                pDest: ?*CANDIDATELIST,
-                puCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Configure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pRegisterWord: ?*REGISTERWORDW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                hKL: ?HKL,
-                hWnd: ?HWND,
-                dwMode: u32,
-                pRegisterWord: ?*REGISTERWORDW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Destroy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                uReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                uReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Escape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                uEscape: u32,
-                pData: ?*anyopaque,
-                plResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActiveContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                fFlag: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                fFlag: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProcessKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                uVirKey: u32,
-                lParam: u32,
-                pbKeyState: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                uVirKey: u32,
-                lParam: u32,
-                pbKeyState: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Notify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                dwAction: u32,
-                dwIndex: u32,
-                dwValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                dwAction: u32,
-                dwIndex: u32,
-                dwValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Select: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                fSelect: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                fSelect: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositionString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                hIMC: ?HIMC,
-                dwIndex: u32,
-                pComp: ?*anyopaque,
-                dwCompLen: u32,
-                pRead: ?*anyopaque,
-                dwReadLen: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ToAsciiEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                uVirKey: u32,
-                uScanCode: u32,
-                pbKeyState: ?*u8,
-                fuState: u32,
-                hIMC: ?HIMC,
-                pdwTransBuf: ?*u32,
-                puSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                uVirKey: u32,
-                uScanCode: u32,
-                pbKeyState: ?*u8,
-                fuState: u32,
-                hIMC: ?HIMC,
-                pdwTransBuf: ?*u32,
-                puSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterWord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szString: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szString: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterWord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szString: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szString: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRegisterWordStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFW,
-                puBufSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                nItem: u32,
-                pStyleBuf: ?*STYLEBUFW,
-                puBufSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumRegisterWord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-                pData: ?*anyopaque,
-                ppEnum: ?*?*IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                szReading: ?PWSTR,
-                dwStyle: u32,
-                szRegister: ?PWSTR,
-                pData: ?*anyopaque,
-                ppEnum: ?*?*IEnumRegisterWordW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCodePageA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                uCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                uCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLangId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME,
-                plid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME,
-                plid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Inquire: *const fn(
+            self: *const IActiveIME,
+            dwSystemInfoFlags: u32,
+            pIMEInfo: ?*IMEINFO,
+            szWndClass: ?PWSTR,
+            pdwPrivate: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConversionList: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            szSource: ?PWSTR,
+            uFlag: u32,
+            uBufLen: u32,
+            pDest: ?*CANDIDATELIST,
+            puCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Configure: *const fn(
+            self: *const IActiveIME,
+            hKL: ?HKL,
+            hWnd: ?HWND,
+            dwMode: u32,
+            pRegisterWord: ?*REGISTERWORDW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Destroy: *const fn(
+            self: *const IActiveIME,
+            uReserved: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Escape: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            uEscape: u32,
+            pData: ?*anyopaque,
+            plResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActiveContext: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            fFlag: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessKey: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            uVirKey: u32,
+            lParam: u32,
+            pbKeyState: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Notify: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            dwAction: u32,
+            dwIndex: u32,
+            dwValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Select: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            fSelect: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositionString: *const fn(
+            self: *const IActiveIME,
+            hIMC: ?HIMC,
+            dwIndex: u32,
+            pComp: ?*anyopaque,
+            dwCompLen: u32,
+            pRead: ?*anyopaque,
+            dwReadLen: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ToAsciiEx: *const fn(
+            self: *const IActiveIME,
+            uVirKey: u32,
+            uScanCode: u32,
+            pbKeyState: ?*u8,
+            fuState: u32,
+            hIMC: ?HIMC,
+            pdwTransBuf: ?*u32,
+            puSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterWord: *const fn(
+            self: *const IActiveIME,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szString: ?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterWord: *const fn(
+            self: *const IActiveIME,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szString: ?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRegisterWordStyle: *const fn(
+            self: *const IActiveIME,
+            nItem: u32,
+            pStyleBuf: ?*STYLEBUFW,
+            puBufSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumRegisterWord: *const fn(
+            self: *const IActiveIME,
+            szReading: ?PWSTR,
+            dwStyle: u32,
+            szRegister: ?PWSTR,
+            pData: ?*anyopaque,
+            ppEnum: ?*?*IEnumRegisterWordW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodePageA: *const fn(
+            self: *const IActiveIME,
+            uCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLangId: *const fn(
+            self: *const IActiveIME,
+            plid: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5693,24 +3830,13 @@ pub const IID_IActiveIME2 = &IID_IActiveIME2_Value;
 pub const IActiveIME2 = extern struct {
     pub const VTable = extern struct {
         base: IActiveIME.VTable,
-        Sleep: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unsleep: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IActiveIME2,
-                fDead: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IActiveIME2,
-                fDead: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Sleep: *const fn(
+            self: *const IActiveIME2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unsleep: *const fn(
+            self: *const IActiveIME2,
+            fDead: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

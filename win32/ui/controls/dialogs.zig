@@ -541,39 +541,23 @@ pub const REGULAR_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .REGULAR_FONTTYPE = 1 };
 pub const SCREEN_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .SCREEN_FONTTYPE = 1 };
 pub const SIMULATED_FONTTYPE = CHOOSEFONT_FONT_TYPE{ .SIMULATED_FONTTYPE = 1 };
 
-pub const LPOFNHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPOFNHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 
 
 
 
-pub const LPCCHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPCCHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 
 
@@ -581,69 +565,37 @@ pub const LPCCHOOKPROC = switch (@import("builtin").zig_backend) {
 
 
 
-pub const LPFRHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPFRHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 
 
-pub const LPCFHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPCFHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 
 
-pub const LPPRINTHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPPRINTHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub const LPSETUPHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPSETUPHOOKPROC = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 
 
@@ -653,40 +605,20 @@ pub const IID_IPrintDialogCallback = &IID_IPrintDialogCallback_Value;
 pub const IPrintDialogCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitDone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintDialogCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintDialogCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SelectionChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintDialogCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintDialogCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HandleMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintDialogCallback,
-                hDlg: ?HWND,
-                uMsg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                pResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintDialogCallback,
-                hDlg: ?HWND,
-                uMsg: u32,
-                wParam: WPARAM,
-                lParam: LPARAM,
-                pResult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InitDone: *const fn(
+            self: *const IPrintDialogCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SelectionChange: *const fn(
+            self: *const IPrintDialogCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandleMessage: *const fn(
+            self: *const IPrintDialogCallback,
+            hDlg: ?HWND,
+            uMsg: u32,
+            wParam: WPARAM,
+            lParam: LPARAM,
+            pResult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -713,42 +645,21 @@ pub const IID_IPrintDialogServices = &IID_IPrintDialogServices_Value;
 pub const IPrintDialogServices = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCurrentDevMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintDialogServices,
-                pDevMode: ?*DEVMODEA,
-                pcbSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintDialogServices,
-                pDevMode: ?*DEVMODEA,
-                pcbSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCurrentPrinterName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintDialogServices,
-                pPrinterName: ?[*:0]u16,
-                pcchSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintDialogServices,
-                pPrinterName: ?[*:0]u16,
-                pcchSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCurrentPortName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPrintDialogServices,
-                pPortName: ?[*:0]u16,
-                pcchSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPrintDialogServices,
-                pPortName: ?[*:0]u16,
-                pcchSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCurrentDevMode: *const fn(
+            self: *const IPrintDialogServices,
+            pDevMode: ?*DEVMODEA,
+            pcbSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentPrinterName: *const fn(
+            self: *const IPrintDialogServices,
+            pPrinterName: ?[*:0]u16,
+            pcchSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentPortName: *const fn(
+            self: *const IPrintDialogServices,
+            pPortName: ?[*:0]u16,
+            pcchSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -773,35 +684,19 @@ pub const IPrintDialogServices = extern struct {
 
 
 
-pub const LPPAGEPAINTHOOK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPPAGEPAINTHOOK = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub const LPPAGESETUPHOOK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: ?HWND,
-        param1: u32,
-        param2: WPARAM,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPPAGESETUPHOOK = *const fn(
+    param0: ?HWND,
+    param1: u32,
+    param2: WPARAM,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
 
 

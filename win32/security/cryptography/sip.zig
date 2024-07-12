@@ -91,74 +91,37 @@ pub const SIP_INDIRECT_DATA = extern struct {
     Digest: CRYPTOAPI_BLOB,
 };
 
-pub const pCryptSIPGetSignedDataMsg = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        pdwEncodingType: ?*u32,
-        dwIndex: u32,
-        pcbSignedDataMsg: ?*u32,
-        pbSignedDataMsg: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        pdwEncodingType: ?*u32,
-        dwIndex: u32,
-        pcbSignedDataMsg: ?*u32,
-        pbSignedDataMsg: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const pCryptSIPGetSignedDataMsg = *const fn(
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pdwEncodingType: ?*u32,
+    dwIndex: u32,
+    pcbSignedDataMsg: ?*u32,
+    pbSignedDataMsg: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const pCryptSIPPutSignedDataMsg = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        dwEncodingType: u32,
-        pdwIndex: ?*u32,
-        cbSignedDataMsg: u32,
-        pbSignedDataMsg: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        dwEncodingType: u32,
-        pdwIndex: ?*u32,
-        cbSignedDataMsg: u32,
-        pbSignedDataMsg: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const pCryptSIPPutSignedDataMsg = *const fn(
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    dwEncodingType: u32,
+    pdwIndex: ?*u32,
+    cbSignedDataMsg: u32,
+    pbSignedDataMsg: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const pCryptSIPCreateIndirectData = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        pcbIndirectData: ?*u32,
-        pIndirectData: ?*SIP_INDIRECT_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        pcbIndirectData: ?*u32,
-        pIndirectData: ?*SIP_INDIRECT_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const pCryptSIPCreateIndirectData = *const fn(
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pcbIndirectData: ?*u32,
+    pIndirectData: ?*SIP_INDIRECT_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const pCryptSIPVerifyIndirectData = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        pIndirectData: ?*SIP_INDIRECT_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        pIndirectData: ?*SIP_INDIRECT_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const pCryptSIPVerifyIndirectData = *const fn(
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pIndirectData: ?*SIP_INDIRECT_DATA,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const pCryptSIPRemoveSignedDataMsg = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        dwIndex: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        dwIndex: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const pCryptSIPRemoveSignedDataMsg = *const fn(
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    dwIndex: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SIP_DISPATCH_INFO = extern struct {
     cbSize: u32,
@@ -170,27 +133,15 @@ pub const SIP_DISPATCH_INFO = extern struct {
     pfRemove: ?pCryptSIPRemoveSignedDataMsg,
 };
 
-pub const pfnIsFileSupported = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hFile: ?HANDLE,
-        pgSubject: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hFile: ?HANDLE,
-        pgSubject: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const pfnIsFileSupported = *const fn(
+    hFile: ?HANDLE,
+    pgSubject: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const pfnIsFileSupportedName = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pwszFileName: ?PWSTR,
-        pgSubject: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pwszFileName: ?PWSTR,
-        pgSubject: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const pfnIsFileSupportedName = *const fn(
+    pwszFileName: ?PWSTR,
+    pgSubject: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const SIP_ADD_NEWPROVIDER = extern struct {
     cbStruct: u32,
@@ -207,33 +158,18 @@ pub const SIP_ADD_NEWPROVIDER = extern struct {
     pwszGetCapFuncName: ?PWSTR,
 };
 
-pub const pCryptSIPGetCaps = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSubjInfo: ?*SIP_SUBJECTINFO,
-        pCaps: ?*SIP_CAP_SET_V3,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pSubjInfo: ?*SIP_SUBJECTINFO,
-        pCaps: ?*SIP_CAP_SET_V3,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const pCryptSIPGetCaps = *const fn(
+    pSubjInfo: ?*SIP_SUBJECTINFO,
+    pCaps: ?*SIP_CAP_SET_V3,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const pCryptSIPGetSealedDigest = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        pSig: ?[*:0]const u8,
-        dwSig: u32,
-        pbDigest: ?[*:0]u8,
-        pcbDigest: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pSubjectInfo: ?*SIP_SUBJECTINFO,
-        pSig: ?[*:0]const u8,
-        dwSig: u32,
-        pbDigest: ?[*:0]u8,
-        pcbDigest: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const pCryptSIPGetSealedDigest = *const fn(
+    pSubjectInfo: ?*SIP_SUBJECTINFO,
+    pSig: ?[*:0]const u8,
+    dwSig: u32,
+    pbDigest: ?[*:0]u8,
+    pcbDigest: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
 //--------------------------------------------------------------------------------

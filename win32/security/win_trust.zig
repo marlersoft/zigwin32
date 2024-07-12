@@ -405,46 +405,46 @@ pub const WINTRUST_CERT_INFO = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_MEM_ALLOC = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_CPD_MEM_ALLOC = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_MEM_FREE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_CPD_MEM_FREE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_ADD_STORE = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_CPD_ADD_STORE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_ADD_SGNR = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_CPD_ADD_SGNR = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_ADD_CERT = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_CPD_ADD_CERT = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_ADD_PRIVDATA = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_CPD_ADD_PRIVDATA = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_INIT_CALL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_PROVIDER_INIT_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_OBJTRUST_CALL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_PROVIDER_OBJTRUST_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_SIGTRUST_CALL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_PROVIDER_SIGTRUST_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_CERTTRUST_CALL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_PROVIDER_CERTTRUST_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_FINALPOLICY_CALL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_PROVIDER_FINALPOLICY_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_TESTFINALPOLICY_CALL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_PROVIDER_TESTFINALPOLICY_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_CLEANUP_CALL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_PROVIDER_CLEANUP_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_CERTCHKPOLICY_CALL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_PROVIDER_CERTCHKPOLICY_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CRYPT_PROVIDER_DATA = extern struct {
     cbStruct: u32,
@@ -519,7 +519,7 @@ pub const CRYPT_PROVIDER_FUNCTIONS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVUI_CALL = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const PFN_PROVUI_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CRYPT_PROVUI_FUNCS = extern struct {
     cbStruct: u32,
@@ -608,27 +608,15 @@ pub const CRYPT_REGISTER_ACTIONID = extern struct {
     sCleanupProvider: CRYPT_TRUST_REG_ENTRY,
 };
 
-pub const PFN_ALLOCANDFILLDEFUSAGE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pszUsageOID: ?[*:0]const u8,
-        psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pszUsageOID: ?[*:0]const u8,
-        psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFN_ALLOCANDFILLDEFUSAGE = *const fn(
+    pszUsageOID: ?[*:0]const u8,
+    psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_FREEDEFUSAGE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pszUsageOID: ?[*:0]const u8,
-        psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pszUsageOID: ?[*:0]const u8,
-        psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFN_FREEDEFUSAGE = *const fn(
+    pszUsageOID: ?[*:0]const u8,
+    psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CRYPT_PROVIDER_REGDEFUSAGE = extern struct {
     cbStruct: u32,
@@ -792,24 +780,14 @@ pub const WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO = extern struct {
     rgpCounterSigner: ?*?*WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO,
 };
 
-pub const PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pProvData: ?*CRYPT_PROVIDER_DATA,
-        dwStepError: u32,
-        dwRegPolicySettings: u32,
-        cSigner: u32,
-        rgpSigner: ?*?*WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO,
-        pvPolicyArg: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        pProvData: ?*CRYPT_PROVIDER_DATA,
-        dwStepError: u32,
-        dwRegPolicySettings: u32,
-        cSigner: u32,
-        rgpSigner: ?*?*WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO,
-        pvPolicyArg: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK = *const fn(
+    pProvData: ?*CRYPT_PROVIDER_DATA,
+    dwStepError: u32,
+    dwRegPolicySettings: u32,
+    cSigner: u32,
+    rgpSigner: ?*?*WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO,
+    pvPolicyArg: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const WTD_GENERIC_CHAIN_POLICY_CREATE_INFO = extern struct {
     Anonymous: extern union {

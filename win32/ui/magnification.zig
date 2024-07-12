@@ -31,28 +31,16 @@ pub const MAGCOLOREFFECT = extern struct {
     transform: [25]f32,
 };
 
-pub const MagImageScalingCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hwnd: ?HWND,
-        srcdata: ?*anyopaque,
-        srcheader: MAGIMAGEHEADER,
-        destdata: ?*anyopaque,
-        destheader: MAGIMAGEHEADER,
-        unclipped: RECT,
-        clipped: RECT,
-        dirty: ?HRGN,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hwnd: ?HWND,
-        srcdata: ?*anyopaque,
-        srcheader: MAGIMAGEHEADER,
-        destdata: ?*anyopaque,
-        destheader: MAGIMAGEHEADER,
-        unclipped: RECT,
-        clipped: RECT,
-        dirty: ?HRGN,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const MagImageScalingCallback = *const fn(
+    hwnd: ?HWND,
+    srcdata: ?*anyopaque,
+    srcheader: MAGIMAGEHEADER,
+    destdata: ?*anyopaque,
+    destheader: MAGIMAGEHEADER,
+    unclipped: RECT,
+    clipped: RECT,
+    dirty: ?HRGN,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 
 //--------------------------------------------------------------------------------

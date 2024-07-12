@@ -120,84 +120,39 @@ pub const IID_IDCompositionAnimation = &IID_IDCompositionAnimation_Value;
 pub const IDCompositionAnimation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAbsoluteBeginTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAnimation,
-                beginTime: LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAnimation,
-                beginTime: LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddCubic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAnimation,
-                beginOffset: f64,
-                constantCoefficient: f32,
-                linearCoefficient: f32,
-                quadraticCoefficient: f32,
-                cubicCoefficient: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAnimation,
-                beginOffset: f64,
-                constantCoefficient: f32,
-                linearCoefficient: f32,
-                quadraticCoefficient: f32,
-                cubicCoefficient: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddSinusoidal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAnimation,
-                beginOffset: f64,
-                bias: f32,
-                amplitude: f32,
-                frequency: f32,
-                phase: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAnimation,
-                beginOffset: f64,
-                bias: f32,
-                amplitude: f32,
-                frequency: f32,
-                phase: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddRepeat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAnimation,
-                beginOffset: f64,
-                durationToRepeat: f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAnimation,
-                beginOffset: f64,
-                durationToRepeat: f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        End: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAnimation,
-                endOffset: f64,
-                endValue: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAnimation,
-                endOffset: f64,
-                endValue: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Reset: *const fn(
+            self: *const IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAbsoluteBeginTime: *const fn(
+            self: *const IDCompositionAnimation,
+            beginTime: LARGE_INTEGER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddCubic: *const fn(
+            self: *const IDCompositionAnimation,
+            beginOffset: f64,
+            constantCoefficient: f32,
+            linearCoefficient: f32,
+            quadraticCoefficient: f32,
+            cubicCoefficient: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddSinusoidal: *const fn(
+            self: *const IDCompositionAnimation,
+            beginOffset: f64,
+            bias: f32,
+            amplitude: f32,
+            frequency: f32,
+            phase: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddRepeat: *const fn(
+            self: *const IDCompositionAnimation,
+            beginOffset: f64,
+            durationToRepeat: f64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        End: *const fn(
+            self: *const IDCompositionAnimation,
+            endOffset: f64,
+            endValue: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -236,274 +191,116 @@ pub const IID_IDCompositionDevice = &IID_IDCompositionDevice_Value;
 pub const IDCompositionDevice = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WaitForCommitCompletion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFrameStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                statistics: ?*DCOMPOSITION_FRAME_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                statistics: ?*DCOMPOSITION_FRAME_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTargetForHwnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                hwnd: ?HWND,
-                topmost: BOOL,
-                target: ?*?*IDCompositionTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                hwnd: ?HWND,
-                topmost: BOOL,
-                target: ?*?*IDCompositionTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateVisual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                visual: ?*?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                visual: ?*?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                width: u32,
-                height: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                surface: ?*?*IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                width: u32,
-                height: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                surface: ?*?*IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateVirtualSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                initialWidth: u32,
-                initialHeight: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                virtualSurface: ?*?*IDCompositionVirtualSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                initialWidth: u32,
-                initialHeight: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                virtualSurface: ?*?*IDCompositionVirtualSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSurfaceFromHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                handle: ?HANDLE,
-                surface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                handle: ?HANDLE,
-                surface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSurfaceFromHwnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                hwnd: ?HWND,
-                surface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                hwnd: ?HWND,
-                surface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTranslateTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                translateTransform: ?*?*IDCompositionTranslateTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                translateTransform: ?*?*IDCompositionTranslateTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateScaleTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                scaleTransform: ?*?*IDCompositionScaleTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                scaleTransform: ?*?*IDCompositionScaleTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRotateTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                rotateTransform: ?*?*IDCompositionRotateTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                rotateTransform: ?*?*IDCompositionRotateTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSkewTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                skewTransform: ?*?*IDCompositionSkewTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                skewTransform: ?*?*IDCompositionSkewTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateMatrixTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                matrixTransform: ?*?*IDCompositionMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                matrixTransform: ?*?*IDCompositionMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTransformGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                transforms: [*]?*IDCompositionTransform,
-                elements: u32,
-                transformGroup: ?*?*IDCompositionTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                transforms: [*]?*IDCompositionTransform,
-                elements: u32,
-                transformGroup: ?*?*IDCompositionTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTranslateTransform3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                translateTransform3D: ?*?*IDCompositionTranslateTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                translateTransform3D: ?*?*IDCompositionTranslateTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateScaleTransform3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                scaleTransform3D: ?*?*IDCompositionScaleTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                scaleTransform3D: ?*?*IDCompositionScaleTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRotateTransform3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                rotateTransform3D: ?*?*IDCompositionRotateTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                rotateTransform3D: ?*?*IDCompositionRotateTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateMatrixTransform3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                matrixTransform3D: ?*?*IDCompositionMatrixTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                matrixTransform3D: ?*?*IDCompositionMatrixTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTransform3DGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                transforms3D: [*]?*IDCompositionTransform3D,
-                elements: u32,
-                transform3DGroup: ?*?*IDCompositionTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                transforms3D: [*]?*IDCompositionTransform3D,
-                elements: u32,
-                transform3DGroup: ?*?*IDCompositionTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateEffectGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                effectGroup: ?*?*IDCompositionEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                effectGroup: ?*?*IDCompositionEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRectangleClip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                clip: ?*?*IDCompositionRectangleClip,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                clip: ?*?*IDCompositionRectangleClip,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateAnimation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                animation: ?*?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                animation: ?*?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckDeviceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice,
-                pfValid: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice,
-                pfValid: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Commit: *const fn(
+            self: *const IDCompositionDevice,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WaitForCommitCompletion: *const fn(
+            self: *const IDCompositionDevice,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFrameStatistics: *const fn(
+            self: *const IDCompositionDevice,
+            statistics: ?*DCOMPOSITION_FRAME_STATISTICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTargetForHwnd: *const fn(
+            self: *const IDCompositionDevice,
+            hwnd: ?HWND,
+            topmost: BOOL,
+            target: ?*?*IDCompositionTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVisual: *const fn(
+            self: *const IDCompositionDevice,
+            visual: ?*?*IDCompositionVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSurface: *const fn(
+            self: *const IDCompositionDevice,
+            width: u32,
+            height: u32,
+            pixelFormat: DXGI_FORMAT,
+            alphaMode: DXGI_ALPHA_MODE,
+            surface: ?*?*IDCompositionSurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVirtualSurface: *const fn(
+            self: *const IDCompositionDevice,
+            initialWidth: u32,
+            initialHeight: u32,
+            pixelFormat: DXGI_FORMAT,
+            alphaMode: DXGI_ALPHA_MODE,
+            virtualSurface: ?*?*IDCompositionVirtualSurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSurfaceFromHandle: *const fn(
+            self: *const IDCompositionDevice,
+            handle: ?HANDLE,
+            surface: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSurfaceFromHwnd: *const fn(
+            self: *const IDCompositionDevice,
+            hwnd: ?HWND,
+            surface: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTranslateTransform: *const fn(
+            self: *const IDCompositionDevice,
+            translateTransform: ?*?*IDCompositionTranslateTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateScaleTransform: *const fn(
+            self: *const IDCompositionDevice,
+            scaleTransform: ?*?*IDCompositionScaleTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRotateTransform: *const fn(
+            self: *const IDCompositionDevice,
+            rotateTransform: ?*?*IDCompositionRotateTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSkewTransform: *const fn(
+            self: *const IDCompositionDevice,
+            skewTransform: ?*?*IDCompositionSkewTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateMatrixTransform: *const fn(
+            self: *const IDCompositionDevice,
+            matrixTransform: ?*?*IDCompositionMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTransformGroup: *const fn(
+            self: *const IDCompositionDevice,
+            transforms: [*]?*IDCompositionTransform,
+            elements: u32,
+            transformGroup: ?*?*IDCompositionTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTranslateTransform3D: *const fn(
+            self: *const IDCompositionDevice,
+            translateTransform3D: ?*?*IDCompositionTranslateTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateScaleTransform3D: *const fn(
+            self: *const IDCompositionDevice,
+            scaleTransform3D: ?*?*IDCompositionScaleTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRotateTransform3D: *const fn(
+            self: *const IDCompositionDevice,
+            rotateTransform3D: ?*?*IDCompositionRotateTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateMatrixTransform3D: *const fn(
+            self: *const IDCompositionDevice,
+            matrixTransform3D: ?*?*IDCompositionMatrixTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTransform3DGroup: *const fn(
+            self: *const IDCompositionDevice,
+            transforms3D: [*]?*IDCompositionTransform3D,
+            elements: u32,
+            transform3DGroup: ?*?*IDCompositionTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEffectGroup: *const fn(
+            self: *const IDCompositionDevice,
+            effectGroup: ?*?*IDCompositionEffectGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRectangleClip: *const fn(
+            self: *const IDCompositionDevice,
+            clip: ?*?*IDCompositionRectangleClip,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAnimation: *const fn(
+            self: *const IDCompositionDevice,
+            animation: ?*?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckDeviceState: *const fn(
+            self: *const IDCompositionDevice,
+            pfValid: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -614,16 +411,10 @@ pub const IID_IDCompositionTarget = &IID_IDCompositionTarget_Value;
 pub const IDCompositionTarget = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetRoot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTarget,
-                visual: ?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTarget,
-                visual: ?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetRoot: *const fn(
+            self: *const IDCompositionTarget,
+            visual: ?*IDCompositionVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -642,178 +433,75 @@ pub const IID_IDCompositionVisual = &IID_IDCompositionVisual_Value;
 pub const IDCompositionVisual = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetOffsetX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                offsetX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                offsetX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                offsetY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                offsetY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                transform: ?*IDCompositionTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                transform: ?*IDCompositionTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransform1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                matrix: ?*const D2D_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                matrix: ?*const D2D_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformParent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                visual: ?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                visual: ?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                effect: ?*IDCompositionEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                effect: ?*IDCompositionEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBitmapInterpolationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                interpolationMode: DCOMPOSITION_BITMAP_INTERPOLATION_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                interpolationMode: DCOMPOSITION_BITMAP_INTERPOLATION_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBorderMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                borderMode: DCOMPOSITION_BORDER_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                borderMode: DCOMPOSITION_BORDER_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetClip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                clip: ?*IDCompositionClip,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                clip: ?*IDCompositionClip,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetClip1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                rect: ?*const D2D_RECT_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                rect: ?*const D2D_RECT_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                content: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                content: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddVisual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                visual: ?*IDCompositionVisual,
-                insertAbove: BOOL,
-                referenceVisual: ?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                visual: ?*IDCompositionVisual,
-                insertAbove: BOOL,
-                referenceVisual: ?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveVisual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                visual: ?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                visual: ?*IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAllVisuals: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompositeMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual,
-                compositeMode: DCOMPOSITION_COMPOSITE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual,
-                compositeMode: DCOMPOSITION_COMPOSITE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOffsetX: *const fn(
+            self: *const IDCompositionVisual,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetX1: *const fn(
+            self: *const IDCompositionVisual,
+            offsetX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetY: *const fn(
+            self: *const IDCompositionVisual,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetY1: *const fn(
+            self: *const IDCompositionVisual,
+            offsetY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransform: *const fn(
+            self: *const IDCompositionVisual,
+            transform: ?*IDCompositionTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransform1: *const fn(
+            self: *const IDCompositionVisual,
+            matrix: ?*const D2D_MATRIX_3X2_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformParent: *const fn(
+            self: *const IDCompositionVisual,
+            visual: ?*IDCompositionVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEffect: *const fn(
+            self: *const IDCompositionVisual,
+            effect: ?*IDCompositionEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBitmapInterpolationMode: *const fn(
+            self: *const IDCompositionVisual,
+            interpolationMode: DCOMPOSITION_BITMAP_INTERPOLATION_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBorderMode: *const fn(
+            self: *const IDCompositionVisual,
+            borderMode: DCOMPOSITION_BORDER_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClip: *const fn(
+            self: *const IDCompositionVisual,
+            clip: ?*IDCompositionClip,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClip1: *const fn(
+            self: *const IDCompositionVisual,
+            rect: ?*const D2D_RECT_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContent: *const fn(
+            self: *const IDCompositionVisual,
+            content: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddVisual: *const fn(
+            self: *const IDCompositionVisual,
+            visual: ?*IDCompositionVisual,
+            insertAbove: BOOL,
+            referenceVisual: ?*IDCompositionVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveVisual: *const fn(
+            self: *const IDCompositionVisual,
+            visual: ?*IDCompositionVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAllVisuals: *const fn(
+            self: *const IDCompositionVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompositeMode: *const fn(
+            self: *const IDCompositionVisual,
+            compositeMode: DCOMPOSITION_COMPOSITE_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -938,46 +626,22 @@ pub const IID_IDCompositionTranslateTransform = &IID_IDCompositionTranslateTrans
 pub const IDCompositionTranslateTransform = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
-        SetOffsetX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform,
-                offsetX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform,
-                offsetX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform,
-                offsetY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform,
-                offsetY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOffsetX: *const fn(
+            self: *const IDCompositionTranslateTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetX1: *const fn(
+            self: *const IDCompositionTranslateTransform,
+            offsetX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetY: *const fn(
+            self: *const IDCompositionTranslateTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetY1: *const fn(
+            self: *const IDCompositionTranslateTransform,
+            offsetY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1008,86 +672,38 @@ pub const IID_IDCompositionScaleTransform = &IID_IDCompositionScaleTransform_Val
 pub const IDCompositionScaleTransform = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
-        SetScaleX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetScaleX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform,
-                scaleX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform,
-                scaleX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetScaleY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetScaleY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform,
-                scaleY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform,
-                scaleY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetScaleX: *const fn(
+            self: *const IDCompositionScaleTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScaleX1: *const fn(
+            self: *const IDCompositionScaleTransform,
+            scaleX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScaleY: *const fn(
+            self: *const IDCompositionScaleTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScaleY1: *const fn(
+            self: *const IDCompositionScaleTransform,
+            scaleY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX: *const fn(
+            self: *const IDCompositionScaleTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX1: *const fn(
+            self: *const IDCompositionScaleTransform,
+            centerX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY: *const fn(
+            self: *const IDCompositionScaleTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY1: *const fn(
+            self: *const IDCompositionScaleTransform,
+            centerY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1134,66 +750,30 @@ pub const IID_IDCompositionRotateTransform = &IID_IDCompositionRotateTransform_V
 pub const IDCompositionRotateTransform = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
-        SetAngle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAngle1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform,
-                angle: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform,
-                angle: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetAngle: *const fn(
+            self: *const IDCompositionRotateTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAngle1: *const fn(
+            self: *const IDCompositionRotateTransform,
+            angle: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX: *const fn(
+            self: *const IDCompositionRotateTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX1: *const fn(
+            self: *const IDCompositionRotateTransform,
+            centerX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY: *const fn(
+            self: *const IDCompositionRotateTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY1: *const fn(
+            self: *const IDCompositionRotateTransform,
+            centerY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1232,86 +812,38 @@ pub const IID_IDCompositionSkewTransform = &IID_IDCompositionSkewTransform_Value
 pub const IDCompositionSkewTransform = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
-        SetAngleX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSkewTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSkewTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAngleX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSkewTransform,
-                angleX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSkewTransform,
-                angleX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAngleY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSkewTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSkewTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAngleY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSkewTransform,
-                angleY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSkewTransform,
-                angleY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSkewTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSkewTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSkewTransform,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSkewTransform,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSkewTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSkewTransform,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSkewTransform,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSkewTransform,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetAngleX: *const fn(
+            self: *const IDCompositionSkewTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAngleX1: *const fn(
+            self: *const IDCompositionSkewTransform,
+            angleX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAngleY: *const fn(
+            self: *const IDCompositionSkewTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAngleY1: *const fn(
+            self: *const IDCompositionSkewTransform,
+            angleY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX: *const fn(
+            self: *const IDCompositionSkewTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX1: *const fn(
+            self: *const IDCompositionSkewTransform,
+            centerX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY: *const fn(
+            self: *const IDCompositionSkewTransform,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY1: *const fn(
+            self: *const IDCompositionSkewTransform,
+            centerY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1358,44 +890,22 @@ pub const IID_IDCompositionMatrixTransform = &IID_IDCompositionMatrixTransform_V
 pub const IDCompositionMatrixTransform = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
-        SetMatrix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionMatrixTransform,
-                matrix: ?*const D2D_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionMatrixTransform,
-                matrix: ?*const D2D_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMatrixElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionMatrixTransform,
-                row: i32,
-                column: i32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionMatrixTransform,
-                row: i32,
-                column: i32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMatrixElement1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionMatrixTransform,
-                row: i32,
-                column: i32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionMatrixTransform,
-                row: i32,
-                column: i32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetMatrix: *const fn(
+            self: *const IDCompositionMatrixTransform,
+            matrix: ?*const D2D_MATRIX_3X2_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMatrixElement: *const fn(
+            self: *const IDCompositionMatrixTransform,
+            row: i32,
+            column: i32,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMatrixElement1: *const fn(
+            self: *const IDCompositionMatrixTransform,
+            row: i32,
+            column: i32,
+            value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1422,36 +932,18 @@ pub const IID_IDCompositionEffectGroup = &IID_IDCompositionEffectGroup_Value;
 pub const IDCompositionEffectGroup = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionEffect.VTable,
-        SetOpacity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionEffectGroup,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionEffectGroup,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpacity1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionEffectGroup,
-                opacity: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionEffectGroup,
-                opacity: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransform3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionEffectGroup,
-                transform3D: ?*IDCompositionTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionEffectGroup,
-                transform3D: ?*IDCompositionTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOpacity: *const fn(
+            self: *const IDCompositionEffectGroup,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpacity1: *const fn(
+            self: *const IDCompositionEffectGroup,
+            opacity: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransform3D: *const fn(
+            self: *const IDCompositionEffectGroup,
+            transform3D: ?*IDCompositionTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1478,66 +970,30 @@ pub const IID_IDCompositionTranslateTransform3D = &IID_IDCompositionTranslateTra
 pub const IDCompositionTranslateTransform3D = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionTransform3D.VTable,
-        SetOffsetX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform3D,
-                offsetX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform3D,
-                offsetX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform3D,
-                offsetY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform3D,
-                offsetY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetZ: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetZ1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTranslateTransform3D,
-                offsetZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTranslateTransform3D,
-                offsetZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOffsetX: *const fn(
+            self: *const IDCompositionTranslateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetX1: *const fn(
+            self: *const IDCompositionTranslateTransform3D,
+            offsetX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetY: *const fn(
+            self: *const IDCompositionTranslateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetY1: *const fn(
+            self: *const IDCompositionTranslateTransform3D,
+            offsetY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetZ: *const fn(
+            self: *const IDCompositionTranslateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetZ1: *const fn(
+            self: *const IDCompositionTranslateTransform3D,
+            offsetZ: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1576,126 +1032,54 @@ pub const IID_IDCompositionScaleTransform3D = &IID_IDCompositionScaleTransform3D
 pub const IDCompositionScaleTransform3D = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionTransform3D.VTable,
-        SetScaleX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetScaleX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                scaleX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                scaleX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetScaleY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetScaleY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                scaleY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                scaleY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetScaleZ: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetScaleZ1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                scaleZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                scaleZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterZ: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterZ1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionScaleTransform3D,
-                centerZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionScaleTransform3D,
-                centerZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetScaleX: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScaleX1: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            scaleX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScaleY: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScaleY1: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            scaleY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScaleZ: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScaleZ1: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            scaleZ: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX1: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            centerX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY1: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            centerY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterZ: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterZ1: *const fn(
+            self: *const IDCompositionScaleTransform3D,
+            centerZ: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1758,146 +1142,62 @@ pub const IID_IDCompositionRotateTransform3D = &IID_IDCompositionRotateTransform
 pub const IDCompositionRotateTransform3D = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionTransform3D.VTable,
-        SetAngle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAngle1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                angle: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                angle: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAxisX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAxisX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                axisX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                axisX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAxisY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAxisY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                axisY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                axisY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAxisZ: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAxisZ1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                axisZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                axisZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                centerX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                centerY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterZ: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenterZ1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRotateTransform3D,
-                centerZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRotateTransform3D,
-                centerZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetAngle: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAngle1: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            angle: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAxisX: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAxisX1: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            axisX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAxisY: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAxisY1: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            axisY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAxisZ: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAxisZ1: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            axisZ: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterX1: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            centerX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterY1: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            centerY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterZ: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenterZ1: *const fn(
+            self: *const IDCompositionRotateTransform3D,
+            centerZ: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1968,44 +1268,22 @@ pub const IID_IDCompositionMatrixTransform3D = &IID_IDCompositionMatrixTransform
 pub const IDCompositionMatrixTransform3D = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionTransform3D.VTable,
-        SetMatrix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionMatrixTransform3D,
-                matrix: ?*const D3DMATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionMatrixTransform3D,
-                matrix: ?*const D3DMATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMatrixElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionMatrixTransform3D,
-                row: i32,
-                column: i32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionMatrixTransform3D,
-                row: i32,
-                column: i32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMatrixElement1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionMatrixTransform3D,
-                row: i32,
-                column: i32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionMatrixTransform3D,
-                row: i32,
-                column: i32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetMatrix: *const fn(
+            self: *const IDCompositionMatrixTransform3D,
+            matrix: ?*const D3DMATRIX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMatrixElement: *const fn(
+            self: *const IDCompositionMatrixTransform3D,
+            row: i32,
+            column: i32,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMatrixElement1: *const fn(
+            self: *const IDCompositionMatrixTransform3D,
+            row: i32,
+            column: i32,
+            value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2046,246 +1324,102 @@ pub const IID_IDCompositionRectangleClip = &IID_IDCompositionRectangleClip_Value
 pub const IDCompositionRectangleClip = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionClip.VTable,
-        SetLeft: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLeft1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                left: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                left: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTop1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                top: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                top: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRight1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                right: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                right: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottom: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottom1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                bottom: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                bottom: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTopLeftRadiusX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTopLeftRadiusX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTopLeftRadiusY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTopLeftRadiusY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTopRightRadiusX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTopRightRadiusX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTopRightRadiusY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTopRightRadiusY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottomLeftRadiusX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottomLeftRadiusX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottomLeftRadiusY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottomLeftRadiusY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottomRightRadiusX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottomRightRadiusX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottomRightRadiusY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBottomRightRadiusY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionRectangleClip,
-                radius: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetLeft: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLeft1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            left: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTop: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTop1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            top: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRight: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRight1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            right: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottom: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottom1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            bottom: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTopLeftRadiusX: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTopLeftRadiusX1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            radius: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTopLeftRadiusY: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTopLeftRadiusY1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            radius: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTopRightRadiusX: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTopRightRadiusX1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            radius: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTopRightRadiusY: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTopRightRadiusY1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            radius: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottomLeftRadiusX: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottomLeftRadiusX1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            radius: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottomLeftRadiusY: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottomLeftRadiusY1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            radius: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottomRightRadiusX: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottomRightRadiusX1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            radius: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottomRightRadiusY: *const fn(
+            self: *const IDCompositionRectangleClip,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBottomRightRadiusY1: *const fn(
+            self: *const IDCompositionRectangleClip,
+            radius: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2396,62 +1530,29 @@ pub const IID_IDCompositionSurface = &IID_IDCompositionSurface_Value;
 pub const IDCompositionSurface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BeginDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSurface,
-                updateRect: ?*const RECT,
-                iid: ?*const Guid,
-                updateObject: ?*?*anyopaque,
-                updateOffset: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSurface,
-                updateRect: ?*const RECT,
-                iid: ?*const Guid,
-                updateObject: ?*?*anyopaque,
-                updateOffset: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SuspendDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResumeDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Scroll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSurface,
-                scrollRect: ?*const RECT,
-                clipRect: ?*const RECT,
-                offsetX: i32,
-                offsetY: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSurface,
-                scrollRect: ?*const RECT,
-                clipRect: ?*const RECT,
-                offsetX: i32,
-                offsetY: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BeginDraw: *const fn(
+            self: *const IDCompositionSurface,
+            updateRect: ?*const RECT,
+            iid: ?*const Guid,
+            updateObject: ?*?*anyopaque,
+            updateOffset: ?*POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndDraw: *const fn(
+            self: *const IDCompositionSurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SuspendDraw: *const fn(
+            self: *const IDCompositionSurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResumeDraw: *const fn(
+            self: *const IDCompositionSurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Scroll: *const fn(
+            self: *const IDCompositionSurface,
+            scrollRect: ?*const RECT,
+            clipRect: ?*const RECT,
+            offsetX: i32,
+            offsetY: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2486,30 +1587,16 @@ pub const IID_IDCompositionVirtualSurface = &IID_IDCompositionVirtualSurface_Val
 pub const IDCompositionVirtualSurface = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionSurface.VTable,
-        Resize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVirtualSurface,
-                width: u32,
-                height: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVirtualSurface,
-                width: u32,
-                height: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Trim: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVirtualSurface,
-                rectangles: ?[*]const RECT,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVirtualSurface,
-                rectangles: ?[*]const RECT,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Resize: *const fn(
+            self: *const IDCompositionVirtualSurface,
+            width: u32,
+            height: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Trim: *const fn(
+            self: *const IDCompositionVirtualSurface,
+            rectangles: ?[*]const RECT,
+            count: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2532,238 +1619,101 @@ pub const IID_IDCompositionDevice2 = &IID_IDCompositionDevice2_Value;
 pub const IDCompositionDevice2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WaitForCommitCompletion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFrameStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                statistics: ?*DCOMPOSITION_FRAME_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                statistics: ?*DCOMPOSITION_FRAME_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateVisual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                visual: ?*?*IDCompositionVisual2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                visual: ?*?*IDCompositionVisual2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSurfaceFactory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                renderingDevice: ?*IUnknown,
-                surfaceFactory: ?*?*IDCompositionSurfaceFactory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                renderingDevice: ?*IUnknown,
-                surfaceFactory: ?*?*IDCompositionSurfaceFactory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                width: u32,
-                height: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                surface: ?*?*IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                width: u32,
-                height: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                surface: ?*?*IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateVirtualSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                initialWidth: u32,
-                initialHeight: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                virtualSurface: ?*?*IDCompositionVirtualSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                initialWidth: u32,
-                initialHeight: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                virtualSurface: ?*?*IDCompositionVirtualSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTranslateTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                translateTransform: ?*?*IDCompositionTranslateTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                translateTransform: ?*?*IDCompositionTranslateTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateScaleTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                scaleTransform: ?*?*IDCompositionScaleTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                scaleTransform: ?*?*IDCompositionScaleTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRotateTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                rotateTransform: ?*?*IDCompositionRotateTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                rotateTransform: ?*?*IDCompositionRotateTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSkewTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                skewTransform: ?*?*IDCompositionSkewTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                skewTransform: ?*?*IDCompositionSkewTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateMatrixTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                matrixTransform: ?*?*IDCompositionMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                matrixTransform: ?*?*IDCompositionMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTransformGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                transforms: [*]?*IDCompositionTransform,
-                elements: u32,
-                transformGroup: ?*?*IDCompositionTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                transforms: [*]?*IDCompositionTransform,
-                elements: u32,
-                transformGroup: ?*?*IDCompositionTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTranslateTransform3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                translateTransform3D: ?*?*IDCompositionTranslateTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                translateTransform3D: ?*?*IDCompositionTranslateTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateScaleTransform3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                scaleTransform3D: ?*?*IDCompositionScaleTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                scaleTransform3D: ?*?*IDCompositionScaleTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRotateTransform3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                rotateTransform3D: ?*?*IDCompositionRotateTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                rotateTransform3D: ?*?*IDCompositionRotateTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateMatrixTransform3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                matrixTransform3D: ?*?*IDCompositionMatrixTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                matrixTransform3D: ?*?*IDCompositionMatrixTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTransform3DGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                transforms3D: [*]?*IDCompositionTransform3D,
-                elements: u32,
-                transform3DGroup: ?*?*IDCompositionTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                transforms3D: [*]?*IDCompositionTransform3D,
-                elements: u32,
-                transform3DGroup: ?*?*IDCompositionTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateEffectGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                effectGroup: ?*?*IDCompositionEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                effectGroup: ?*?*IDCompositionEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRectangleClip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                clip: ?*?*IDCompositionRectangleClip,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                clip: ?*?*IDCompositionRectangleClip,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateAnimation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice2,
-                animation: ?*?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice2,
-                animation: ?*?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Commit: *const fn(
+            self: *const IDCompositionDevice2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WaitForCommitCompletion: *const fn(
+            self: *const IDCompositionDevice2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFrameStatistics: *const fn(
+            self: *const IDCompositionDevice2,
+            statistics: ?*DCOMPOSITION_FRAME_STATISTICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVisual: *const fn(
+            self: *const IDCompositionDevice2,
+            visual: ?*?*IDCompositionVisual2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSurfaceFactory: *const fn(
+            self: *const IDCompositionDevice2,
+            renderingDevice: ?*IUnknown,
+            surfaceFactory: ?*?*IDCompositionSurfaceFactory,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSurface: *const fn(
+            self: *const IDCompositionDevice2,
+            width: u32,
+            height: u32,
+            pixelFormat: DXGI_FORMAT,
+            alphaMode: DXGI_ALPHA_MODE,
+            surface: ?*?*IDCompositionSurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVirtualSurface: *const fn(
+            self: *const IDCompositionDevice2,
+            initialWidth: u32,
+            initialHeight: u32,
+            pixelFormat: DXGI_FORMAT,
+            alphaMode: DXGI_ALPHA_MODE,
+            virtualSurface: ?*?*IDCompositionVirtualSurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTranslateTransform: *const fn(
+            self: *const IDCompositionDevice2,
+            translateTransform: ?*?*IDCompositionTranslateTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateScaleTransform: *const fn(
+            self: *const IDCompositionDevice2,
+            scaleTransform: ?*?*IDCompositionScaleTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRotateTransform: *const fn(
+            self: *const IDCompositionDevice2,
+            rotateTransform: ?*?*IDCompositionRotateTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSkewTransform: *const fn(
+            self: *const IDCompositionDevice2,
+            skewTransform: ?*?*IDCompositionSkewTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateMatrixTransform: *const fn(
+            self: *const IDCompositionDevice2,
+            matrixTransform: ?*?*IDCompositionMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTransformGroup: *const fn(
+            self: *const IDCompositionDevice2,
+            transforms: [*]?*IDCompositionTransform,
+            elements: u32,
+            transformGroup: ?*?*IDCompositionTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTranslateTransform3D: *const fn(
+            self: *const IDCompositionDevice2,
+            translateTransform3D: ?*?*IDCompositionTranslateTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateScaleTransform3D: *const fn(
+            self: *const IDCompositionDevice2,
+            scaleTransform3D: ?*?*IDCompositionScaleTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRotateTransform3D: *const fn(
+            self: *const IDCompositionDevice2,
+            rotateTransform3D: ?*?*IDCompositionRotateTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateMatrixTransform3D: *const fn(
+            self: *const IDCompositionDevice2,
+            matrixTransform3D: ?*?*IDCompositionMatrixTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTransform3DGroup: *const fn(
+            self: *const IDCompositionDevice2,
+            transforms3D: [*]?*IDCompositionTransform3D,
+            elements: u32,
+            transform3DGroup: ?*?*IDCompositionTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEffectGroup: *const fn(
+            self: *const IDCompositionDevice2,
+            effectGroup: ?*?*IDCompositionEffectGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRectangleClip: *const fn(
+            self: *const IDCompositionDevice2,
+            clip: ?*?*IDCompositionRectangleClip,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAnimation: *const fn(
+            self: *const IDCompositionDevice2,
+            animation: ?*?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2862,44 +1812,22 @@ pub const IID_IDCompositionDesktopDevice = &IID_IDCompositionDesktopDevice_Value
 pub const IDCompositionDesktopDevice = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionDevice2.VTable,
-        CreateTargetForHwnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDesktopDevice,
-                hwnd: ?HWND,
-                topmost: BOOL,
-                target: ?*?*IDCompositionTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDesktopDevice,
-                hwnd: ?HWND,
-                topmost: BOOL,
-                target: ?*?*IDCompositionTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSurfaceFromHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDesktopDevice,
-                handle: ?HANDLE,
-                surface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDesktopDevice,
-                handle: ?HANDLE,
-                surface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSurfaceFromHwnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDesktopDevice,
-                hwnd: ?HWND,
-                surface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDesktopDevice,
-                hwnd: ?HWND,
-                surface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateTargetForHwnd: *const fn(
+            self: *const IDCompositionDesktopDevice,
+            hwnd: ?HWND,
+            topmost: BOOL,
+            target: ?*?*IDCompositionTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSurfaceFromHandle: *const fn(
+            self: *const IDCompositionDesktopDevice,
+            handle: ?HANDLE,
+            surface: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSurfaceFromHwnd: *const fn(
+            self: *const IDCompositionDesktopDevice,
+            hwnd: ?HWND,
+            surface: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2925,22 +1853,12 @@ pub const IID_IDCompositionDeviceDebug = &IID_IDCompositionDeviceDebug_Value;
 pub const IDCompositionDeviceDebug = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnableDebugCounters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDeviceDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDeviceDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisableDebugCounters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDeviceDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDeviceDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnableDebugCounters: *const fn(
+            self: *const IDCompositionDeviceDebug,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisableDebugCounters: *const fn(
+            self: *const IDCompositionDeviceDebug,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2963,42 +1881,22 @@ pub const IID_IDCompositionSurfaceFactory = &IID_IDCompositionSurfaceFactory_Val
 pub const IDCompositionSurfaceFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSurfaceFactory,
-                width: u32,
-                height: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                surface: ?*?*IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSurfaceFactory,
-                width: u32,
-                height: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                surface: ?*?*IDCompositionSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateVirtualSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSurfaceFactory,
-                initialWidth: u32,
-                initialHeight: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                virtualSurface: ?*?*IDCompositionVirtualSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSurfaceFactory,
-                initialWidth: u32,
-                initialHeight: u32,
-                pixelFormat: DXGI_FORMAT,
-                alphaMode: DXGI_ALPHA_MODE,
-                virtualSurface: ?*?*IDCompositionVirtualSurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateSurface: *const fn(
+            self: *const IDCompositionSurfaceFactory,
+            width: u32,
+            height: u32,
+            pixelFormat: DXGI_FORMAT,
+            alphaMode: DXGI_ALPHA_MODE,
+            surface: ?*?*IDCompositionSurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVirtualSurface: *const fn(
+            self: *const IDCompositionSurfaceFactory,
+            initialWidth: u32,
+            initialHeight: u32,
+            pixelFormat: DXGI_FORMAT,
+            alphaMode: DXGI_ALPHA_MODE,
+            virtualSurface: ?*?*IDCompositionVirtualSurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3021,26 +1919,14 @@ pub const IID_IDCompositionVisual2 = &IID_IDCompositionVisual2_Value;
 pub const IDCompositionVisual2 = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionVisual.VTable,
-        SetOpacityMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual2,
-                mode: DCOMPOSITION_OPACITY_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual2,
-                mode: DCOMPOSITION_OPACITY_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBackFaceVisibility: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual2,
-                visibility: DCOMPOSITION_BACKFACE_VISIBILITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual2,
-                visibility: DCOMPOSITION_BACKFACE_VISIBILITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOpacityMode: *const fn(
+            self: *const IDCompositionVisual2,
+            mode: DCOMPOSITION_OPACITY_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBackFaceVisibility: *const fn(
+            self: *const IDCompositionVisual2,
+            visibility: DCOMPOSITION_BACKFACE_VISIBILITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3063,40 +1949,19 @@ pub const IID_IDCompositionVisualDebug = &IID_IDCompositionVisualDebug_Value;
 pub const IDCompositionVisualDebug = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionVisual2.VTable,
-        EnableHeatMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisualDebug,
-                color: ?*const D2D1_COLOR_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisualDebug,
-                color: ?*const D2D1_COLOR_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisableHeatMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisualDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisualDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnableRedrawRegions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisualDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisualDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisableRedrawRegions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisualDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisualDebug,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnableHeatMap: *const fn(
+            self: *const IDCompositionVisualDebug,
+            color: ?*const D2D1_COLOR_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisableHeatMap: *const fn(
+            self: *const IDCompositionVisualDebug,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnableRedrawRegions: *const fn(
+            self: *const IDCompositionVisualDebug,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisableRedrawRegions: *const fn(
+            self: *const IDCompositionVisualDebug,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3127,86 +1992,38 @@ pub const IID_IDCompositionVisual3 = &IID_IDCompositionVisual3_Value;
 pub const IDCompositionVisual3 = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionVisualDebug.VTable,
-        SetDepthMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual3,
-                mode: DCOMPOSITION_DEPTH_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual3,
-                mode: DCOMPOSITION_DEPTH_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetZ: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual3,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual3,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffsetZ1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual3,
-                offsetZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual3,
-                offsetZ: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpacity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual3,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual3,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpacity1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual3,
-                opacity: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual3,
-                opacity: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual3,
-                transform: ?*IDCompositionTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual3,
-                transform: ?*IDCompositionTransform3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransform1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual3,
-                matrix: ?*const D2D_MATRIX_4X4_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual3,
-                matrix: ?*const D2D_MATRIX_4X4_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetVisible: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionVisual3,
-                visible: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionVisual3,
-                visible: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetDepthMode: *const fn(
+            self: *const IDCompositionVisual3,
+            mode: DCOMPOSITION_DEPTH_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetZ: *const fn(
+            self: *const IDCompositionVisual3,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffsetZ1: *const fn(
+            self: *const IDCompositionVisual3,
+            offsetZ: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpacity: *const fn(
+            self: *const IDCompositionVisual3,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpacity1: *const fn(
+            self: *const IDCompositionVisual3,
+            opacity: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransform: *const fn(
+            self: *const IDCompositionVisual3,
+            transform: ?*IDCompositionTransform3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransform1: *const fn(
+            self: *const IDCompositionVisual3,
+            matrix: ?*const D2D_MATRIX_4X4_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetVisible: *const fn(
+            self: *const IDCompositionVisual3,
+            visible: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3253,136 +2070,58 @@ pub const IID_IDCompositionDevice3 = &IID_IDCompositionDevice3_Value;
 pub const IDCompositionDevice3 = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionDevice2.VTable,
-        CreateGaussianBlurEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                gaussianBlurEffect: ?*?*IDCompositionGaussianBlurEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                gaussianBlurEffect: ?*?*IDCompositionGaussianBlurEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateBrightnessEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                brightnessEffect: ?*?*IDCompositionBrightnessEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                brightnessEffect: ?*?*IDCompositionBrightnessEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateColorMatrixEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                colorMatrixEffect: ?*?*IDCompositionColorMatrixEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                colorMatrixEffect: ?*?*IDCompositionColorMatrixEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateShadowEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                shadowEffect: ?*?*IDCompositionShadowEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                shadowEffect: ?*?*IDCompositionShadowEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateHueRotationEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                hueRotationEffect: ?*?*IDCompositionHueRotationEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                hueRotationEffect: ?*?*IDCompositionHueRotationEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSaturationEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                saturationEffect: ?*?*IDCompositionSaturationEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                saturationEffect: ?*?*IDCompositionSaturationEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTurbulenceEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                turbulenceEffect: ?*?*IDCompositionTurbulenceEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                turbulenceEffect: ?*?*IDCompositionTurbulenceEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateLinearTransferEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                linearTransferEffect: ?*?*IDCompositionLinearTransferEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                linearTransferEffect: ?*?*IDCompositionLinearTransferEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTableTransferEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                tableTransferEffect: ?*?*IDCompositionTableTransferEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                tableTransferEffect: ?*?*IDCompositionTableTransferEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCompositeEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                compositeEffect: ?*?*IDCompositionCompositeEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                compositeEffect: ?*?*IDCompositionCompositeEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateBlendEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                blendEffect: ?*?*IDCompositionBlendEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                blendEffect: ?*?*IDCompositionBlendEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateArithmeticCompositeEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                arithmeticCompositeEffect: ?*?*IDCompositionArithmeticCompositeEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                arithmeticCompositeEffect: ?*?*IDCompositionArithmeticCompositeEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateAffineTransform2DEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDevice3,
-                affineTransform2dEffect: ?*?*IDCompositionAffineTransform2DEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDevice3,
-                affineTransform2dEffect: ?*?*IDCompositionAffineTransform2DEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateGaussianBlurEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            gaussianBlurEffect: ?*?*IDCompositionGaussianBlurEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateBrightnessEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            brightnessEffect: ?*?*IDCompositionBrightnessEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateColorMatrixEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            colorMatrixEffect: ?*?*IDCompositionColorMatrixEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateShadowEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            shadowEffect: ?*?*IDCompositionShadowEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateHueRotationEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            hueRotationEffect: ?*?*IDCompositionHueRotationEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSaturationEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            saturationEffect: ?*?*IDCompositionSaturationEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTurbulenceEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            turbulenceEffect: ?*?*IDCompositionTurbulenceEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateLinearTransferEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            linearTransferEffect: ?*?*IDCompositionLinearTransferEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTableTransferEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            tableTransferEffect: ?*?*IDCompositionTableTransferEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCompositeEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            compositeEffect: ?*?*IDCompositionCompositeEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateBlendEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            blendEffect: ?*?*IDCompositionBlendEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateArithmeticCompositeEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            arithmeticCompositeEffect: ?*?*IDCompositionArithmeticCompositeEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAffineTransform2DEffect: *const fn(
+            self: *const IDCompositionDevice3,
+            affineTransform2dEffect: ?*?*IDCompositionAffineTransform2DEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3449,20 +2188,12 @@ pub const IID_IDCompositionFilterEffect = &IID_IDCompositionFilterEffect_Value;
 pub const IDCompositionFilterEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionEffect.VTable,
-        SetInput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionFilterEffect,
-                index: u32,
-                input: ?*IUnknown,
-                flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionFilterEffect,
-                index: u32,
-                input: ?*IUnknown,
-                flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetInput: *const fn(
+            self: *const IDCompositionFilterEffect,
+            index: u32,
+            input: ?*IUnknown,
+            flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3480,36 +2211,18 @@ pub const IID_IDCompositionGaussianBlurEffect = &IID_IDCompositionGaussianBlurEf
 pub const IDCompositionGaussianBlurEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetStandardDeviation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionGaussianBlurEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionGaussianBlurEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStandardDeviation1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionGaussianBlurEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionGaussianBlurEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBorderMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionGaussianBlurEffect,
-                mode: D2D1_BORDER_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionGaussianBlurEffect,
-                mode: D2D1_BORDER_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetStandardDeviation: *const fn(
+            self: *const IDCompositionGaussianBlurEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStandardDeviation1: *const fn(
+            self: *const IDCompositionGaussianBlurEffect,
+            amount: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBorderMode: *const fn(
+            self: *const IDCompositionGaussianBlurEffect,
+            mode: D2D1_BORDER_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3535,106 +2248,46 @@ pub const IID_IDCompositionBrightnessEffect = &IID_IDCompositionBrightnessEffect
 pub const IDCompositionBrightnessEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetWhitePoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                whitePoint: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                whitePoint: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlackPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                blackPoint: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                blackPoint: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWhitePointX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWhitePointX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                whitePointX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                whitePointX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWhitePointY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWhitePointY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                whitePointY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                whitePointY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlackPointX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlackPointX1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                blackPointX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                blackPointX: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlackPointY: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlackPointY1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBrightnessEffect,
-                blackPointY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBrightnessEffect,
-                blackPointY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetWhitePoint: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            whitePoint: ?*const D2D_VECTOR_2F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlackPoint: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            blackPoint: ?*const D2D_VECTOR_2F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWhitePointX: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWhitePointX1: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            whitePointX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWhitePointY: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWhitePointY1: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            whitePointY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlackPointX: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlackPointX1: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            blackPointX: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlackPointY: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlackPointY1: *const fn(
+            self: *const IDCompositionBrightnessEffect,
+            blackPointY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3688,64 +2341,30 @@ pub const IID_IDCompositionColorMatrixEffect = &IID_IDCompositionColorMatrixEffe
 pub const IDCompositionColorMatrixEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetMatrix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionColorMatrixEffect,
-                matrix: ?*const D2D_MATRIX_5X4_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionColorMatrixEffect,
-                matrix: ?*const D2D_MATRIX_5X4_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMatrixElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionColorMatrixEffect,
-                row: i32,
-                column: i32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionColorMatrixEffect,
-                row: i32,
-                column: i32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMatrixElement1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionColorMatrixEffect,
-                row: i32,
-                column: i32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionColorMatrixEffect,
-                row: i32,
-                column: i32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionColorMatrixEffect,
-                mode: D2D1_COLORMATRIX_ALPHA_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionColorMatrixEffect,
-                mode: D2D1_COLORMATRIX_ALPHA_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetClampOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionColorMatrixEffect,
-                clamp: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionColorMatrixEffect,
-                clamp: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetMatrix: *const fn(
+            self: *const IDCompositionColorMatrixEffect,
+            matrix: ?*const D2D_MATRIX_5X4_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMatrixElement: *const fn(
+            self: *const IDCompositionColorMatrixEffect,
+            row: i32,
+            column: i32,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMatrixElement1: *const fn(
+            self: *const IDCompositionColorMatrixEffect,
+            row: i32,
+            column: i32,
+            value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaMode: *const fn(
+            self: *const IDCompositionColorMatrixEffect,
+            mode: D2D1_COLORMATRIX_ALPHA_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClampOutput: *const fn(
+            self: *const IDCompositionColorMatrixEffect,
+            clamp: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3779,116 +2398,50 @@ pub const IID_IDCompositionShadowEffect = &IID_IDCompositionShadowEffect_Value;
 pub const IDCompositionShadowEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetStandardDeviation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStandardDeviation1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                color: ?*const D2D_VECTOR_4F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                color: ?*const D2D_VECTOR_4F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRed1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreen: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreen1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlue1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlpha: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlpha1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionShadowEffect,
-                amount: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetStandardDeviation: *const fn(
+            self: *const IDCompositionShadowEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStandardDeviation1: *const fn(
+            self: *const IDCompositionShadowEffect,
+            amount: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetColor: *const fn(
+            self: *const IDCompositionShadowEffect,
+            color: ?*const D2D_VECTOR_4F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRed: *const fn(
+            self: *const IDCompositionShadowEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRed1: *const fn(
+            self: *const IDCompositionShadowEffect,
+            amount: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreen: *const fn(
+            self: *const IDCompositionShadowEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreen1: *const fn(
+            self: *const IDCompositionShadowEffect,
+            amount: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlue: *const fn(
+            self: *const IDCompositionShadowEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlue1: *const fn(
+            self: *const IDCompositionShadowEffect,
+            amount: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlpha: *const fn(
+            self: *const IDCompositionShadowEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlpha1: *const fn(
+            self: *const IDCompositionShadowEffect,
+            amount: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3946,26 +2499,14 @@ pub const IID_IDCompositionHueRotationEffect = &IID_IDCompositionHueRotationEffe
 pub const IDCompositionHueRotationEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetAngle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionHueRotationEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionHueRotationEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAngle1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionHueRotationEffect,
-                amountDegrees: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionHueRotationEffect,
-                amountDegrees: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetAngle: *const fn(
+            self: *const IDCompositionHueRotationEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAngle1: *const fn(
+            self: *const IDCompositionHueRotationEffect,
+            amountDegrees: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3987,26 +2528,14 @@ pub const IID_IDCompositionSaturationEffect = &IID_IDCompositionSaturationEffect
 pub const IDCompositionSaturationEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetSaturation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSaturationEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSaturationEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSaturation1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionSaturationEffect,
-                ratio: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionSaturationEffect,
-                ratio: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetSaturation: *const fn(
+            self: *const IDCompositionSaturationEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSaturation1: *const fn(
+            self: *const IDCompositionSaturationEffect,
+            ratio: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4028,76 +2557,34 @@ pub const IID_IDCompositionTurbulenceEffect = &IID_IDCompositionTurbulenceEffect
 pub const IDCompositionTurbulenceEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetOffset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTurbulenceEffect,
-                offset: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTurbulenceEffect,
-                offset: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBaseFrequency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTurbulenceEffect,
-                frequency: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTurbulenceEffect,
-                frequency: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTurbulenceEffect,
-                size: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTurbulenceEffect,
-                size: ?*const D2D_VECTOR_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNumOctaves: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTurbulenceEffect,
-                numOctaves: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTurbulenceEffect,
-                numOctaves: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSeed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTurbulenceEffect,
-                seed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTurbulenceEffect,
-                seed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNoise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTurbulenceEffect,
-                noise: D2D1_TURBULENCE_NOISE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTurbulenceEffect,
-                noise: D2D1_TURBULENCE_NOISE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStitchable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTurbulenceEffect,
-                stitchable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTurbulenceEffect,
-                stitchable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOffset: *const fn(
+            self: *const IDCompositionTurbulenceEffect,
+            offset: ?*const D2D_VECTOR_2F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBaseFrequency: *const fn(
+            self: *const IDCompositionTurbulenceEffect,
+            frequency: ?*const D2D_VECTOR_2F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSize: *const fn(
+            self: *const IDCompositionTurbulenceEffect,
+            size: ?*const D2D_VECTOR_2F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNumOctaves: *const fn(
+            self: *const IDCompositionTurbulenceEffect,
+            numOctaves: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSeed: *const fn(
+            self: *const IDCompositionTurbulenceEffect,
+            seed: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNoise: *const fn(
+            self: *const IDCompositionTurbulenceEffect,
+            noise: D2D1_TURBULENCE_NOISE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStitchable: *const fn(
+            self: *const IDCompositionTurbulenceEffect,
+            stitchable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4139,216 +2626,90 @@ pub const IID_IDCompositionLinearTransferEffect = &IID_IDCompositionLinearTransf
 pub const IDCompositionLinearTransferEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetRedYIntercept: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRedYIntercept1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                redYIntercept: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                redYIntercept: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRedSlope: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRedSlope1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                redSlope: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                redSlope: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRedDisable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                redDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                redDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreenYIntercept: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreenYIntercept1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                greenYIntercept: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                greenYIntercept: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreenSlope: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreenSlope1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                greenSlope: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                greenSlope: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreenDisable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                greenDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                greenDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlueYIntercept: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlueYIntercept1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                blueYIntercept: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                blueYIntercept: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlueSlope: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlueSlope1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                blueSlope: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                blueSlope: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlueDisable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                blueDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                blueDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaYIntercept: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaYIntercept1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                alphaYIntercept: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                alphaYIntercept: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaSlope: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaSlope1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                alphaSlope: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                alphaSlope: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaDisable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                alphaDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                alphaDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetClampOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionLinearTransferEffect,
-                clampOutput: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionLinearTransferEffect,
-                clampOutput: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetRedYIntercept: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRedYIntercept1: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            redYIntercept: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRedSlope: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRedSlope1: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            redSlope: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRedDisable: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            redDisable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreenYIntercept: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreenYIntercept1: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            greenYIntercept: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreenSlope: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreenSlope1: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            greenSlope: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreenDisable: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            greenDisable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlueYIntercept: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlueYIntercept1: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            blueYIntercept: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlueSlope: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlueSlope1: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            blueSlope: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlueDisable: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            blueDisable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaYIntercept: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaYIntercept1: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            alphaYIntercept: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaSlope: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaSlope1: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            alphaSlope: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaDisable: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            alphaDisable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClampOutput: *const fn(
+            self: *const IDCompositionLinearTransferEffect,
+            clampOutput: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4446,200 +2807,86 @@ pub const IID_IDCompositionTableTransferEffect = &IID_IDCompositionTableTransfer
 pub const IDCompositionTableTransferEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetRedTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                tableValues: [*]const f32,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                tableValues: [*]const f32,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreenTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                tableValues: [*]const f32,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                tableValues: [*]const f32,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlueTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                tableValues: [*]const f32,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                tableValues: [*]const f32,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                tableValues: [*]const f32,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                tableValues: [*]const f32,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRedDisable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                redDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                redDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreenDisable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                greenDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                greenDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlueDisable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                blueDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                blueDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaDisable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                alphaDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                alphaDisable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetClampOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                clampOutput: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                clampOutput: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRedTableValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRedTableValue1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreenTableValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGreenTableValue1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlueTableValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBlueTableValue1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaTableValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlphaTableValue1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionTableTransferEffect,
-                index: u32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetRedTable: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            tableValues: [*]const f32,
+            count: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreenTable: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            tableValues: [*]const f32,
+            count: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlueTable: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            tableValues: [*]const f32,
+            count: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaTable: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            tableValues: [*]const f32,
+            count: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRedDisable: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            redDisable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreenDisable: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            greenDisable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlueDisable: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            blueDisable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaDisable: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            alphaDisable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClampOutput: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            clampOutput: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRedTableValue: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            index: u32,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRedTableValue1: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            index: u32,
+            value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreenTableValue: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            index: u32,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGreenTableValue1: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            index: u32,
+            value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlueTableValue: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            index: u32,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBlueTableValue1: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            index: u32,
+            value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaTableValue: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            index: u32,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlphaTableValue1: *const fn(
+            self: *const IDCompositionTableTransferEffect,
+            index: u32,
+            value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4721,16 +2968,10 @@ pub const IID_IDCompositionCompositeEffect = &IID_IDCompositionCompositeEffect_V
 pub const IDCompositionCompositeEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionCompositeEffect,
-                mode: D2D1_COMPOSITE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionCompositeEffect,
-                mode: D2D1_COMPOSITE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetMode: *const fn(
+            self: *const IDCompositionCompositeEffect,
+            mode: D2D1_COMPOSITE_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4748,16 +2989,10 @@ pub const IID_IDCompositionBlendEffect = &IID_IDCompositionBlendEffect_Value;
 pub const IDCompositionBlendEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionBlendEffect,
-                mode: D2D1_BLEND_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionBlendEffect,
-                mode: D2D1_BLEND_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetMode: *const fn(
+            self: *const IDCompositionBlendEffect,
+            mode: D2D1_BLEND_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4775,106 +3010,46 @@ pub const IID_IDCompositionArithmeticCompositeEffect = &IID_IDCompositionArithme
 pub const IDCompositionArithmeticCompositeEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetCoefficients: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                coefficients: ?*const D2D_VECTOR_4F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                coefficients: ?*const D2D_VECTOR_4F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetClampOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                clampoutput: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                clampoutput: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCoefficient1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCoefficient11: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                Coeffcient1: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                Coeffcient1: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCoefficient2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCoefficient21: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                Coefficient2: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                Coefficient2: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCoefficient3: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCoefficient31: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                Coefficient3: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                Coefficient3: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCoefficient4: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCoefficient41: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                Coefficient4: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionArithmeticCompositeEffect,
-                Coefficient4: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetCoefficients: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            coefficients: ?*const D2D_VECTOR_4F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClampOutput: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            clampoutput: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCoefficient1: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCoefficient11: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            Coeffcient1: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCoefficient2: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCoefficient21: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            Coefficient2: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCoefficient3: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCoefficient31: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            Coefficient3: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCoefficient4: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCoefficient41: *const fn(
+            self: *const IDCompositionArithmeticCompositeEffect,
+            Coefficient4: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4928,84 +3103,38 @@ pub const IID_IDCompositionAffineTransform2DEffect = &IID_IDCompositionAffineTra
 pub const IDCompositionAffineTransform2DEffect = extern struct {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
-        SetInterpolationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                interpolationMode: D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                interpolationMode: D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBorderMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                borderMode: D2D1_BORDER_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                borderMode: D2D1_BORDER_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformMatrix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                transformMatrix: ?*const D2D_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                transformMatrix: ?*const D2D_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformMatrixElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                row: i32,
-                column: i32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                row: i32,
-                column: i32,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformMatrixElement1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                row: i32,
-                column: i32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                row: i32,
-                column: i32,
-                value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSharpness: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                animation: ?*IDCompositionAnimation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSharpness1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                sharpness: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionAffineTransform2DEffect,
-                sharpness: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetInterpolationMode: *const fn(
+            self: *const IDCompositionAffineTransform2DEffect,
+            interpolationMode: D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBorderMode: *const fn(
+            self: *const IDCompositionAffineTransform2DEffect,
+            borderMode: D2D1_BORDER_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformMatrix: *const fn(
+            self: *const IDCompositionAffineTransform2DEffect,
+            transformMatrix: ?*const D2D_MATRIX_3X2_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformMatrixElement: *const fn(
+            self: *const IDCompositionAffineTransform2DEffect,
+            row: i32,
+            column: i32,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformMatrixElement1: *const fn(
+            self: *const IDCompositionAffineTransform2DEffect,
+            row: i32,
+            column: i32,
+            value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSharpness: *const fn(
+            self: *const IDCompositionAffineTransform2DEffect,
+            animation: ?*IDCompositionAnimation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSharpness1: *const fn(
+            self: *const IDCompositionAffineTransform2DEffect,
+            sharpness: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5053,58 +3182,28 @@ pub const IID_IDCompositionDelegatedInkTrail = &IID_IDCompositionDelegatedInkTra
 pub const IDCompositionDelegatedInkTrail = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddTrailPoints: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDelegatedInkTrail,
-                inkPoints: [*]const DCompositionInkTrailPoint,
-                inkPointsCount: u32,
-                generationId: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDelegatedInkTrail,
-                inkPoints: [*]const DCompositionInkTrailPoint,
-                inkPointsCount: u32,
-                generationId: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddTrailPointsWithPrediction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDelegatedInkTrail,
-                inkPoints: [*]const DCompositionInkTrailPoint,
-                inkPointsCount: u32,
-                predictedInkPoints: [*]const DCompositionInkTrailPoint,
-                predictedInkPointsCount: u32,
-                generationId: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDelegatedInkTrail,
-                inkPoints: [*]const DCompositionInkTrailPoint,
-                inkPointsCount: u32,
-                predictedInkPoints: [*]const DCompositionInkTrailPoint,
-                predictedInkPointsCount: u32,
-                generationId: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveTrailPoints: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDelegatedInkTrail,
-                generationId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDelegatedInkTrail,
-                generationId: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        StartNewTrail: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionDelegatedInkTrail,
-                color: ?*const D2D1_COLOR_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionDelegatedInkTrail,
-                color: ?*const D2D1_COLOR_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddTrailPoints: *const fn(
+            self: *const IDCompositionDelegatedInkTrail,
+            inkPoints: [*]const DCompositionInkTrailPoint,
+            inkPointsCount: u32,
+            generationId: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddTrailPointsWithPrediction: *const fn(
+            self: *const IDCompositionDelegatedInkTrail,
+            inkPoints: [*]const DCompositionInkTrailPoint,
+            inkPointsCount: u32,
+            predictedInkPoints: [*]const DCompositionInkTrailPoint,
+            predictedInkPointsCount: u32,
+            generationId: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveTrailPoints: *const fn(
+            self: *const IDCompositionDelegatedInkTrail,
+            generationId: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartNewTrail: *const fn(
+            self: *const IDCompositionDelegatedInkTrail,
+            color: ?*const D2D1_COLOR_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5134,28 +3233,15 @@ pub const IID_IDCompositionInkTrailDevice = &IID_IDCompositionInkTrailDevice_Val
 pub const IDCompositionInkTrailDevice = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDelegatedInkTrail: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionInkTrailDevice,
-                inkTrail: ?*?*IDCompositionDelegatedInkTrail,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionInkTrailDevice,
-                inkTrail: ?*?*IDCompositionDelegatedInkTrail,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateDelegatedInkTrailForSwapChain: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDCompositionInkTrailDevice,
-                swapChain: ?*IUnknown,
-                inkTrail: ?*?*IDCompositionDelegatedInkTrail,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDCompositionInkTrailDevice,
-                swapChain: ?*IUnknown,
-                inkTrail: ?*?*IDCompositionDelegatedInkTrail,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateDelegatedInkTrail: *const fn(
+            self: *const IDCompositionInkTrailDevice,
+            inkTrail: ?*?*IDCompositionDelegatedInkTrail,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDelegatedInkTrailForSwapChain: *const fn(
+            self: *const IDCompositionInkTrailDevice,
+            swapChain: ?*IUnknown,
+            inkTrail: ?*?*IDCompositionDelegatedInkTrail,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
