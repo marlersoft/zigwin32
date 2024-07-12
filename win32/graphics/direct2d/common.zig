@@ -295,80 +295,36 @@ pub const IID_ID2D1SimplifiedGeometrySink = &IID_ID2D1SimplifiedGeometrySink_Val
 pub const ID2D1SimplifiedGeometrySink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetFillMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                fillMode: D2D1_FILL_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                fillMode: D2D1_FILL_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetSegmentFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                vertexFlags: D2D1_PATH_SEGMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                vertexFlags: D2D1_PATH_SEGMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        BeginFigure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                startPoint: D2D_POINT_2F,
-                figureBegin: D2D1_FIGURE_BEGIN,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                startPoint: D2D_POINT_2F,
-                figureBegin: D2D1_FIGURE_BEGIN,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        AddLines: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                points: [*]const D2D_POINT_2F,
-                pointsCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                points: [*]const D2D_POINT_2F,
-                pointsCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        AddBeziers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                beziers: [*]const D2D1_BEZIER_SEGMENT,
-                beziersCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                beziers: [*]const D2D1_BEZIER_SEGMENT,
-                beziersCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EndFigure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                figureEnd: D2D1_FIGURE_END,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-                figureEnd: D2D1_FIGURE_END,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ID2D1SimplifiedGeometrySink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetFillMode: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            fillMode: D2D1_FILL_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetSegmentFlags: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            vertexFlags: D2D1_PATH_SEGMENT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        BeginFigure: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            startPoint: D2D_POINT_2F,
+            figureBegin: D2D1_FIGURE_BEGIN,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        AddLines: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            points: [*]const D2D_POINT_2F,
+            pointsCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        AddBeziers: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            beziers: [*]const D2D1_BEZIER_SEGMENT,
+            beziersCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EndFigure: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            figureEnd: D2D1_FIGURE_END,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        Close: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

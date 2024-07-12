@@ -57,96 +57,40 @@ pub const IWscProduct = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductName: *const fn(
+            self: *const IWscProduct,
+            pVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductState: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct,
-                pVal: ?*WSC_SECURITY_PRODUCT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct,
-                pVal: ?*WSC_SECURITY_PRODUCT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductState: *const fn(
+            self: *const IWscProduct,
+            pVal: ?*WSC_SECURITY_PRODUCT_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SignatureStatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct,
-                pVal: ?*WSC_SECURITY_SIGNATURE_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct,
-                pVal: ?*WSC_SECURITY_SIGNATURE_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SignatureStatus: *const fn(
+            self: *const IWscProduct,
+            pVal: ?*WSC_SECURITY_SIGNATURE_STATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemediationPath: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RemediationPath: *const fn(
+            self: *const IWscProduct,
+            pVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductStateTimestamp: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductStateTimestamp: *const fn(
+            self: *const IWscProduct,
+            pVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductGuid: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductGuid: *const fn(
+            self: *const IWscProduct,
+            pVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ProductIsDefault: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct,
-                pVal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct,
-                pVal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ProductIsDefault: *const fn(
+            self: *const IWscProduct,
+            pVal: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -189,83 +133,35 @@ pub const IWscProduct2 = extern struct {
     pub const VTable = extern struct {
         base: IWscProduct.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntivirusScanSubstatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AntivirusScanSubstatus: *const fn(
+            self: *const IWscProduct2,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntivirusSettingsSubstatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AntivirusSettingsSubstatus: *const fn(
+            self: *const IWscProduct2,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntivirusProtectionUpdateSubstatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AntivirusProtectionUpdateSubstatus: *const fn(
+            self: *const IWscProduct2,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FirewallDomainProfileSubstatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FirewallDomainProfileSubstatus: *const fn(
+            self: *const IWscProduct2,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FirewallPrivateProfileSubstatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FirewallPrivateProfileSubstatus: *const fn(
+            self: *const IWscProduct2,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FirewallPublicProfileSubstatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct2,
-                peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FirewallPublicProfileSubstatus: *const fn(
+            self: *const IWscProduct2,
+            peStatus: ?*WSC_SECURITY_PRODUCT_SUBSTATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -304,18 +200,10 @@ pub const IWscProduct3 = extern struct {
     pub const VTable = extern struct {
         base: IWscProduct2.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AntivirusDaysUntilExpired: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWscProduct3,
-                pdwDays: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWscProduct3,
-                pdwDays: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AntivirusDaysUntilExpired: *const fn(
+            self: *const IWscProduct3,
+            pdwDays: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -334,41 +222,20 @@ pub const IID_IWSCProductList = &IID_IWSCProductList_Value;
 pub const IWSCProductList = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWSCProductList,
-                provider: WSC_SECURITY_PROVIDER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWSCProductList,
-                provider: WSC_SECURITY_PROVIDER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IWSCProductList,
+            provider: WSC_SECURITY_PROVIDER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IWSCProductList,
-                pVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IWSCProductList,
-                pVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        get_Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWSCProductList,
-                index: u32,
-                pVal: ?*?*IWscProduct,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWSCProductList,
-                index: u32,
-                pVal: ?*?*IWscProduct,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IWSCProductList,
+            pVal: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: *const fn(
+            self: *const IWSCProductList,
+            index: u32,
+            pVal: ?*?*IWscProduct,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -394,18 +261,11 @@ pub const IID_IWSCDefaultProduct = &IID_IWSCDefaultProduct_Value;
 pub const IWSCDefaultProduct = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        SetDefaultProduct: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWSCDefaultProduct,
-                eType: SECURITY_PRODUCT_TYPE,
-                pGuid: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWSCDefaultProduct,
-                eType: SECURITY_PRODUCT_TYPE,
-                pGuid: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetDefaultProduct: *const fn(
+            self: *const IWSCDefaultProduct,
+            eType: SECURITY_PRODUCT_TYPE,
+            pGuid: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

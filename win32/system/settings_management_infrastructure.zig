@@ -158,34 +158,17 @@ pub const IID_IItemEnumerator = &IID_IItemEnumerator_Value;
 pub const IItemEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Current: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IItemEnumerator,
-                Item: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IItemEnumerator,
-                Item: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IItemEnumerator,
-                ItemValid: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IItemEnumerator,
-                ItemValid: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Current: *const fn(
+            self: *const IItemEnumerator,
+            Item: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveNext: *const fn(
+            self: *const IItemEnumerator,
+            ItemValid: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IItemEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -212,54 +195,26 @@ pub const IID_ISettingsIdentity = &IID_ISettingsIdentity_Value;
 pub const ISettingsIdentity = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsIdentity,
-                Reserved: ?*anyopaque,
-                Name: ?[*:0]const u16,
-                Value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsIdentity,
-                Reserved: ?*anyopaque,
-                Name: ?[*:0]const u16,
-                Value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsIdentity,
-                Reserved: ?*anyopaque,
-                Name: ?[*:0]const u16,
-                Value: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsIdentity,
-                Reserved: ?*anyopaque,
-                Name: ?[*:0]const u16,
-                Value: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsIdentity,
-                Flags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsIdentity,
-                Flags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsIdentity,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsIdentity,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAttribute: *const fn(
+            self: *const ISettingsIdentity,
+            Reserved: ?*anyopaque,
+            Name: ?[*:0]const u16,
+            Value: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAttribute: *const fn(
+            self: *const ISettingsIdentity,
+            Reserved: ?*anyopaque,
+            Name: ?[*:0]const u16,
+            Value: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFlags: *const fn(
+            self: *const ISettingsIdentity,
+            Flags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFlags: *const fn(
+            self: *const ISettingsIdentity,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -290,242 +245,103 @@ pub const IID_ITargetInfo = &IID_ITargetInfo_Value;
 pub const ITargetInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetTargetMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                TargetMode: ?*WcmTargetMode,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                TargetMode: ?*WcmTargetMode,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTargetMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                TargetMode: WcmTargetMode,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                TargetMode: WcmTargetMode,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTemporaryStoreLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                TemporaryStoreLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                TemporaryStoreLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTemporaryStoreLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                TemporaryStoreLocation: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                TemporaryStoreLocation: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTargetID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                TargetID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                TargetID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTargetID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                TargetID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                TargetID: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTargetProcessorArchitecture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                ProcessorArchitecture: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                ProcessorArchitecture: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTargetProcessorArchitecture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                ProcessorArchitecture: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                ProcessorArchitecture: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                Offline: BOOL,
-                Property: ?[*:0]const u16,
-                Value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                Offline: BOOL,
-                Property: ?[*:0]const u16,
-                Value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                Offline: BOOL,
-                Property: ?[*:0]const u16,
-                Value: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                Offline: BOOL,
-                Property: ?[*:0]const u16,
-                Value: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEnumerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                Enumerator: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                Enumerator: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExpandTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                Offline: BOOL,
-                Location: ?[*:0]const u16,
-                ExpandedLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                Offline: BOOL,
-                Location: ?[*:0]const u16,
-                ExpandedLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExpandTargetPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                Offline: BOOL,
-                Location: ?[*:0]const u16,
-                ExpandedLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                Offline: BOOL,
-                Location: ?[*:0]const u16,
-                ExpandedLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetModulePath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                Module: ?[*:0]const u16,
-                Path: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                Module: ?[*:0]const u16,
-                Path: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadModule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                Module: ?[*:0]const u16,
-                ModuleHandle: ?*?HINSTANCE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                Module: ?[*:0]const u16,
-                ModuleHandle: ?*?HINSTANCE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWow64Context: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                InstallerModule: ?[*:0]const u16,
-                Wow64Context: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                InstallerModule: ?[*:0]const u16,
-                Wow64Context: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TranslateWow64: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                ClientArchitecture: ?[*:0]const u16,
-                Value: ?[*:0]const u16,
-                TranslatedValue: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                ClientArchitecture: ?[*:0]const u16,
-                Value: ?[*:0]const u16,
-                TranslatedValue: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSchemaHiveLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                pwzHiveDir: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                pwzHiveDir: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSchemaHiveLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                pHiveLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                pHiveLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSchemaHiveMountName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                pwzMountName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                pwzMountName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSchemaHiveMountName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITargetInfo,
-                pMountName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITargetInfo,
-                pMountName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetTargetMode: *const fn(
+            self: *const ITargetInfo,
+            TargetMode: ?*WcmTargetMode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTargetMode: *const fn(
+            self: *const ITargetInfo,
+            TargetMode: WcmTargetMode,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTemporaryStoreLocation: *const fn(
+            self: *const ITargetInfo,
+            TemporaryStoreLocation: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTemporaryStoreLocation: *const fn(
+            self: *const ITargetInfo,
+            TemporaryStoreLocation: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTargetID: *const fn(
+            self: *const ITargetInfo,
+            TargetID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTargetID: *const fn(
+            self: *const ITargetInfo,
+            TargetID: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTargetProcessorArchitecture: *const fn(
+            self: *const ITargetInfo,
+            ProcessorArchitecture: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTargetProcessorArchitecture: *const fn(
+            self: *const ITargetInfo,
+            ProcessorArchitecture: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const ITargetInfo,
+            Offline: BOOL,
+            Property: ?[*:0]const u16,
+            Value: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const ITargetInfo,
+            Offline: BOOL,
+            Property: ?[*:0]const u16,
+            Value: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEnumerator: *const fn(
+            self: *const ITargetInfo,
+            Enumerator: ?*?*IItemEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExpandTarget: *const fn(
+            self: *const ITargetInfo,
+            Offline: BOOL,
+            Location: ?[*:0]const u16,
+            ExpandedLocation: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExpandTargetPath: *const fn(
+            self: *const ITargetInfo,
+            Offline: BOOL,
+            Location: ?[*:0]const u16,
+            ExpandedLocation: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetModulePath: *const fn(
+            self: *const ITargetInfo,
+            Module: ?[*:0]const u16,
+            Path: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadModule: *const fn(
+            self: *const ITargetInfo,
+            Module: ?[*:0]const u16,
+            ModuleHandle: ?*?HINSTANCE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWow64Context: *const fn(
+            self: *const ITargetInfo,
+            InstallerModule: ?[*:0]const u16,
+            Wow64Context: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TranslateWow64: *const fn(
+            self: *const ITargetInfo,
+            ClientArchitecture: ?[*:0]const u16,
+            Value: ?[*:0]const u16,
+            TranslatedValue: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSchemaHiveLocation: *const fn(
+            self: *const ITargetInfo,
+            pwzHiveDir: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSchemaHiveLocation: *const fn(
+            self: *const ITargetInfo,
+            pHiveLocation: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSchemaHiveMountName: *const fn(
+            self: *const ITargetInfo,
+            pwzMountName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSchemaHiveMountName: *const fn(
+            self: *const ITargetInfo,
+            pMountName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -624,196 +440,85 @@ pub const IID_ISettingsEngine = &IID_ISettingsEngine_Value;
 pub const ISettingsEngine = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNamespaces: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                Flags: WcmNamespaceEnumerationFlags,
-                Reserved: ?*anyopaque,
-                Namespaces: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                Flags: WcmNamespaceEnumerationFlags,
-                Reserved: ?*anyopaque,
-                Namespaces: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNamespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                SettingsID: ?*ISettingsIdentity,
-                Access: WcmNamespaceAccess,
-                Reserved: ?*anyopaque,
-                NamespaceItem: ?*?*ISettingsNamespace,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                SettingsID: ?*ISettingsIdentity,
-                Access: WcmNamespaceAccess,
-                Reserved: ?*anyopaque,
-                NamespaceItem: ?*?*ISettingsNamespace,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetErrorDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                HResult: i32,
-                Message: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                HResult: i32,
-                Message: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSettingsIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                SettingsID: ?*?*ISettingsIdentity,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                SettingsID: ?*?*ISettingsIdentity,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStoreStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                Reserved: ?*anyopaque,
-                Status: ?*WcmUserStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                Reserved: ?*anyopaque,
-                Status: ?*WcmUserStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnloadStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                Reserved: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                Reserved: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterNamespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                SettingsID: ?*ISettingsIdentity,
-                Stream: ?*IStream,
-                PushSettings: BOOL,
-                Results: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                SettingsID: ?*ISettingsIdentity,
-                Stream: ?*IStream,
-                PushSettings: BOOL,
-                Results: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterNamespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                SettingsID: ?*ISettingsIdentity,
-                RemoveSettings: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                SettingsID: ?*ISettingsIdentity,
-                RemoveSettings: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTargetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                Target: ?*?*ITargetInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                Target: ?*?*ITargetInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTargetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                Target: ?*?*ITargetInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                Target: ?*?*ITargetInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTargetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                Target: ?*ITargetInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                Target: ?*ITargetInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSettingsContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                Flags: u32,
-                Reserved: ?*anyopaque,
-                SettingsContext: ?*?*ISettingsContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                Flags: u32,
-                Reserved: ?*anyopaque,
-                SettingsContext: ?*?*ISettingsContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSettingsContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                SettingsContext: ?*ISettingsContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                SettingsContext: ?*ISettingsContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ApplySettingsContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                SettingsContext: ?*ISettingsContext,
-                pppwzIdentities: ?*?*?PWSTR,
-                pcIdentities: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                SettingsContext: ?*ISettingsContext,
-                pppwzIdentities: ?*?*?PWSTR,
-                pcIdentities: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSettingsContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsEngine,
-                SettingsContext: ?*?*ISettingsContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsEngine,
-                SettingsContext: ?*?*ISettingsContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetNamespaces: *const fn(
+            self: *const ISettingsEngine,
+            Flags: WcmNamespaceEnumerationFlags,
+            Reserved: ?*anyopaque,
+            Namespaces: ?*?*IItemEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNamespace: *const fn(
+            self: *const ISettingsEngine,
+            SettingsID: ?*ISettingsIdentity,
+            Access: WcmNamespaceAccess,
+            Reserved: ?*anyopaque,
+            NamespaceItem: ?*?*ISettingsNamespace,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorDescription: *const fn(
+            self: *const ISettingsEngine,
+            HResult: i32,
+            Message: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSettingsIdentity: *const fn(
+            self: *const ISettingsEngine,
+            SettingsID: ?*?*ISettingsIdentity,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStoreStatus: *const fn(
+            self: *const ISettingsEngine,
+            Reserved: ?*anyopaque,
+            Status: ?*WcmUserStatus,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadStore: *const fn(
+            self: *const ISettingsEngine,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnloadStore: *const fn(
+            self: *const ISettingsEngine,
+            Reserved: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterNamespace: *const fn(
+            self: *const ISettingsEngine,
+            SettingsID: ?*ISettingsIdentity,
+            Stream: ?*IStream,
+            PushSettings: BOOL,
+            Results: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterNamespace: *const fn(
+            self: *const ISettingsEngine,
+            SettingsID: ?*ISettingsIdentity,
+            RemoveSettings: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTargetInfo: *const fn(
+            self: *const ISettingsEngine,
+            Target: ?*?*ITargetInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTargetInfo: *const fn(
+            self: *const ISettingsEngine,
+            Target: ?*?*ITargetInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTargetInfo: *const fn(
+            self: *const ISettingsEngine,
+            Target: ?*ITargetInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSettingsContext: *const fn(
+            self: *const ISettingsEngine,
+            Flags: u32,
+            Reserved: ?*anyopaque,
+            SettingsContext: ?*?*ISettingsContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSettingsContext: *const fn(
+            self: *const ISettingsEngine,
+            SettingsContext: ?*ISettingsContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ApplySettingsContext: *const fn(
+            self: *const ISettingsEngine,
+            SettingsContext: ?*ISettingsContext,
+            pppwzIdentities: ?*?*?PWSTR,
+            pcIdentities: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSettingsContext: *const fn(
+            self: *const ISettingsEngine,
+            SettingsContext: ?*?*ISettingsContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -892,246 +597,104 @@ pub const IID_ISettingsItem = &IID_ISettingsItem_Value;
 pub const ISettingsItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Value: ?*const VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Value: ?*const VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSettingType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Type: ?*WcmSettingType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Type: ?*WcmSettingType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDataType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Type: ?*WcmDataType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Type: ?*WcmDataType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetValueRaw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Data: [*]?*u8,
-                DataSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Data: [*]?*u8,
-                DataSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetValueRaw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                DataType: i32,
-                Data: [*:0]const u8,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                DataType: i32,
-                Data: [*:0]const u8,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasChild: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                ItemHasChild: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                ItemHasChild: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Children: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Children: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Children: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChild: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Name: ?[*:0]const u16,
-                Child: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Name: ?[*:0]const u16,
-                Child: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Path: ?[*:0]const u16,
-                Setting: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Path: ?[*:0]const u16,
-                Setting: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Path: ?[*:0]const u16,
-                Setting: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Path: ?[*:0]const u16,
-                Setting: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Path: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Path: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetListKeyInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                KeyName: ?*?BSTR,
-                DataType: ?*WcmDataType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                KeyName: ?*?BSTR,
-                DataType: ?*WcmDataType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateListElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                KeyData: ?*const VARIANT,
-                Child: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                KeyData: ?*const VARIANT,
-                Child: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveListElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                ElementName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                ElementName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Attributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Attributes: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Attributes: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Name: ?[*:0]const u16,
-                Value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Name: ?[*:0]const u16,
-                Value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestrictionFacets: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                RestrictionFacets: ?*WcmRestrictionFacets,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                RestrictionFacets: ?*WcmRestrictionFacets,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestriction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                RestrictionFacet: WcmRestrictionFacets,
-                FacetData: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                RestrictionFacet: WcmRestrictionFacets,
-                FacetData: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKeyValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsItem,
-                Value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsItem,
-                Value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetName: *const fn(
+            self: *const ISettingsItem,
+            Name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValue: *const fn(
+            self: *const ISettingsItem,
+            Value: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValue: *const fn(
+            self: *const ISettingsItem,
+            Value: ?*const VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSettingType: *const fn(
+            self: *const ISettingsItem,
+            Type: ?*WcmSettingType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDataType: *const fn(
+            self: *const ISettingsItem,
+            Type: ?*WcmDataType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValueRaw: *const fn(
+            self: *const ISettingsItem,
+            Data: [*]?*u8,
+            DataSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValueRaw: *const fn(
+            self: *const ISettingsItem,
+            DataType: i32,
+            Data: [*:0]const u8,
+            DataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasChild: *const fn(
+            self: *const ISettingsItem,
+            ItemHasChild: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Children: *const fn(
+            self: *const ISettingsItem,
+            Children: ?*?*IItemEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChild: *const fn(
+            self: *const ISettingsItem,
+            Name: ?[*:0]const u16,
+            Child: ?*?*ISettingsItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSettingByPath: *const fn(
+            self: *const ISettingsItem,
+            Path: ?[*:0]const u16,
+            Setting: ?*?*ISettingsItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSettingByPath: *const fn(
+            self: *const ISettingsItem,
+            Path: ?[*:0]const u16,
+            Setting: ?*?*ISettingsItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveSettingByPath: *const fn(
+            self: *const ISettingsItem,
+            Path: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetListKeyInformation: *const fn(
+            self: *const ISettingsItem,
+            KeyName: ?*?BSTR,
+            DataType: ?*WcmDataType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateListElement: *const fn(
+            self: *const ISettingsItem,
+            KeyData: ?*const VARIANT,
+            Child: ?*?*ISettingsItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveListElement: *const fn(
+            self: *const ISettingsItem,
+            ElementName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Attributes: *const fn(
+            self: *const ISettingsItem,
+            Attributes: ?*?*IItemEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAttribute: *const fn(
+            self: *const ISettingsItem,
+            Name: ?[*:0]const u16,
+            Value: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPath: *const fn(
+            self: *const ISettingsItem,
+            Path: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestrictionFacets: *const fn(
+            self: *const ISettingsItem,
+            RestrictionFacets: ?*WcmRestrictionFacets,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestriction: *const fn(
+            self: *const ISettingsItem,
+            RestrictionFacet: WcmRestrictionFacets,
+            FacetData: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKeyValue: *const fn(
+            self: *const ISettingsItem,
+            Value: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1234,84 +797,38 @@ pub const IID_ISettingsNamespace = &IID_ISettingsNamespace_Value;
 pub const ISettingsNamespace = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsNamespace,
-                SettingsID: ?*?*ISettingsIdentity,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsNamespace,
-                SettingsID: ?*?*ISettingsIdentity,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Settings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsNamespace,
-                Settings: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsNamespace,
-                Settings: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsNamespace,
-                PushSettings: BOOL,
-                Result: ?*?*ISettingsResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsNamespace,
-                PushSettings: BOOL,
-                Result: ?*?*ISettingsResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsNamespace,
-                Path: ?[*:0]const u16,
-                Setting: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsNamespace,
-                Path: ?[*:0]const u16,
-                Setting: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsNamespace,
-                Path: ?[*:0]const u16,
-                Setting: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsNamespace,
-                Path: ?[*:0]const u16,
-                Setting: ?*?*ISettingsItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveSettingByPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsNamespace,
-                Path: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsNamespace,
-                Path: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsNamespace,
-                Name: ?[*:0]const u16,
-                Value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsNamespace,
-                Name: ?[*:0]const u16,
-                Value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdentity: *const fn(
+            self: *const ISettingsNamespace,
+            SettingsID: ?*?*ISettingsIdentity,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Settings: *const fn(
+            self: *const ISettingsNamespace,
+            Settings: ?*?*IItemEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Save: *const fn(
+            self: *const ISettingsNamespace,
+            PushSettings: BOOL,
+            Result: ?*?*ISettingsResult,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSettingByPath: *const fn(
+            self: *const ISettingsNamespace,
+            Path: ?[*:0]const u16,
+            Setting: ?*?*ISettingsItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSettingByPath: *const fn(
+            self: *const ISettingsNamespace,
+            Path: ?[*:0]const u16,
+            Setting: ?*?*ISettingsItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveSettingByPath: *const fn(
+            self: *const ISettingsNamespace,
+            Path: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAttribute: *const fn(
+            self: *const ISettingsNamespace,
+            Name: ?[*:0]const u16,
+            Value: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1354,66 +871,30 @@ pub const IID_ISettingsResult = &IID_ISettingsResult_Value;
 pub const ISettingsResult = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsResult,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsResult,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetErrorCode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsResult,
-                hrOut: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsResult,
-                hrOut: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetContextDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsResult,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsResult,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLine: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsResult,
-                dwLine: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsResult,
-                dwLine: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetColumn: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsResult,
-                dwColumn: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsResult,
-                dwColumn: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsResult,
-                file: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsResult,
-                file: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDescription: *const fn(
+            self: *const ISettingsResult,
+            description: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorCode: *const fn(
+            self: *const ISettingsResult,
+            hrOut: ?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContextDescription: *const fn(
+            self: *const ISettingsResult,
+            description: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLine: *const fn(
+            self: *const ISettingsResult,
+            dwLine: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColumn: *const fn(
+            self: *const ISettingsResult,
+            dwColumn: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSource: *const fn(
+            self: *const ISettingsResult,
+            file: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1452,92 +933,42 @@ pub const IID_ISettingsContext = &IID_ISettingsContext_Value;
 pub const ISettingsContext = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsContext,
-                pStream: ?*IStream,
-                pTarget: ?*ITargetInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsContext,
-                pStream: ?*IStream,
-                pTarget: ?*ITargetInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Deserialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsContext,
-                pStream: ?*IStream,
-                pTarget: ?*ITargetInfo,
-                pppResults: [*]?*?*ISettingsResult,
-                pcResultCount: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsContext,
-                pStream: ?*IStream,
-                pTarget: ?*ITargetInfo,
-                pppResults: [*]?*?*ISettingsResult,
-                pcResultCount: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUserData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsContext,
-                pUserData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsContext,
-                pUserData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUserData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsContext,
-                pUserData: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsContext,
-                pUserData: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNamespaces: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsContext,
-                ppNamespaceIds: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsContext,
-                ppNamespaceIds: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStoredSettings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsContext,
-                pIdentity: ?*ISettingsIdentity,
-                ppAddedSettings: ?*?*IItemEnumerator,
-                ppModifiedSettings: ?*?*IItemEnumerator,
-                ppDeletedSettings: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsContext,
-                pIdentity: ?*ISettingsIdentity,
-                ppAddedSettings: ?*?*IItemEnumerator,
-                ppModifiedSettings: ?*?*IItemEnumerator,
-                ppDeletedSettings: ?*?*IItemEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RevertSetting: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISettingsContext,
-                pIdentity: ?*ISettingsIdentity,
-                pwzSetting: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISettingsContext,
-                pIdentity: ?*ISettingsIdentity,
-                pwzSetting: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Serialize: *const fn(
+            self: *const ISettingsContext,
+            pStream: ?*IStream,
+            pTarget: ?*ITargetInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Deserialize: *const fn(
+            self: *const ISettingsContext,
+            pStream: ?*IStream,
+            pTarget: ?*ITargetInfo,
+            pppResults: [*]?*?*ISettingsResult,
+            pcResultCount: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUserData: *const fn(
+            self: *const ISettingsContext,
+            pUserData: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUserData: *const fn(
+            self: *const ISettingsContext,
+            pUserData: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNamespaces: *const fn(
+            self: *const ISettingsContext,
+            ppNamespaceIds: ?*?*IItemEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStoredSettings: *const fn(
+            self: *const ISettingsContext,
+            pIdentity: ?*ISettingsIdentity,
+            ppAddedSettings: ?*?*IItemEnumerator,
+            ppModifiedSettings: ?*?*IItemEnumerator,
+            ppDeletedSettings: ?*?*IItemEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RevertSetting: *const fn(
+            self: *const ISettingsContext,
+            pIdentity: ?*ISettingsIdentity,
+            pwzSetting: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

@@ -374,73 +374,36 @@ pub const PRJ_CALLBACK_DATA = extern struct {
     InstanceContext: ?*anyopaque,
 };
 
-pub const PRJ_START_DIRECTORY_ENUMERATION_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        enumerationId: ?*const Guid,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        enumerationId: ?*const Guid,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PRJ_START_DIRECTORY_ENUMERATION_CB = *const fn(
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+    enumerationId: ?*const Guid,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PRJ_GET_DIRECTORY_ENUMERATION_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        enumerationId: ?*const Guid,
-        searchExpression: ?[*:0]const u16,
-        dirEntryBufferHandle: PRJ_DIR_ENTRY_BUFFER_HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        enumerationId: ?*const Guid,
-        searchExpression: ?[*:0]const u16,
-        dirEntryBufferHandle: PRJ_DIR_ENTRY_BUFFER_HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PRJ_GET_DIRECTORY_ENUMERATION_CB = *const fn(
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+    enumerationId: ?*const Guid,
+    searchExpression: ?[*:0]const u16,
+    dirEntryBufferHandle: PRJ_DIR_ENTRY_BUFFER_HANDLE,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PRJ_END_DIRECTORY_ENUMERATION_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        enumerationId: ?*const Guid,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        enumerationId: ?*const Guid,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PRJ_END_DIRECTORY_ENUMERATION_CB = *const fn(
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+    enumerationId: ?*const Guid,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PRJ_GET_PLACEHOLDER_INFO_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PRJ_GET_PLACEHOLDER_INFO_CB = *const fn(
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PRJ_GET_FILE_DATA_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        byteOffset: u64,
-        length: u32,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        byteOffset: u64,
-        length: u32,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PRJ_GET_FILE_DATA_CB = *const fn(
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+    byteOffset: u64,
+    length: u32,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PRJ_QUERY_FILE_NAME_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PRJ_QUERY_FILE_NAME_CB = *const fn(
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const PRJ_NOTIFICATION_PARAMETERS = extern union {
     PostCreate: extern struct {
@@ -454,31 +417,17 @@ pub const PRJ_NOTIFICATION_PARAMETERS = extern union {
     },
 };
 
-pub const PRJ_NOTIFICATION_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        isDirectory: BOOLEAN,
-        notification: PRJ_NOTIFICATION,
-        destinationFileName: ?[*:0]const u16,
-        operationParameters: ?*PRJ_NOTIFICATION_PARAMETERS,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-        isDirectory: BOOLEAN,
-        notification: PRJ_NOTIFICATION,
-        destinationFileName: ?[*:0]const u16,
-        operationParameters: ?*PRJ_NOTIFICATION_PARAMETERS,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PRJ_NOTIFICATION_CB = *const fn(
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+    isDirectory: BOOLEAN,
+    notification: PRJ_NOTIFICATION,
+    destinationFileName: ?[*:0]const u16,
+    operationParameters: ?*PRJ_NOTIFICATION_PARAMETERS,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PRJ_CANCEL_COMMAND_CB = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        callbackData: ?*const PRJ_CALLBACK_DATA,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PRJ_CANCEL_COMMAND_CB = *const fn(
+    callbackData: ?*const PRJ_CALLBACK_DATA,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const PRJ_CALLBACKS = extern struct {
     StartDirectoryEnumerationCallback: ?PRJ_START_DIRECTORY_ENUMERATION_CB,

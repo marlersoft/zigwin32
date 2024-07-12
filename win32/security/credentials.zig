@@ -714,61 +714,31 @@ pub const SCARD_ATRMASK = extern struct {
     rgbMask: [36]u8,
 };
 
-pub const LPOCNCONNPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: ?PSTR,
-        param2: ?PSTR,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: usize,
-        param1: ?PSTR,
-        param2: ?PSTR,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPOCNCONNPROCA = *const fn(
+    param0: usize,
+    param1: ?PSTR,
+    param2: ?PSTR,
+    param3: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub const LPOCNCONNPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: ?PWSTR,
-        param2: ?PWSTR,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-    else => *const fn(
-        param0: usize,
-        param1: ?PWSTR,
-        param2: ?PWSTR,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) usize,
-} ;
+pub const LPOCNCONNPROCW = *const fn(
+    param0: usize,
+    param1: ?PWSTR,
+    param2: ?PWSTR,
+    param3: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) usize;
 
-pub const LPOCNCHKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: usize,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: usize,
-        param1: usize,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPOCNCHKPROC = *const fn(
+    param0: usize,
+    param1: usize,
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPOCNDSCPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: usize,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: usize,
-        param1: usize,
-        param2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPOCNDSCPROC = *const fn(
+    param0: usize,
+    param1: usize,
+    param2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const OPENCARD_SEARCH_CRITERIAA = extern struct {
     dwStructSize: u32,

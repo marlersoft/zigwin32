@@ -331,22 +331,13 @@ pub const IID_IDWriteFontFileLoader = &IID_IDWriteFontFileLoader_Value;
 pub const IDWriteFontFileLoader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateStreamFromKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                fontFileStream: ?*?*IDWriteFontFileStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                fontFileStream: ?*?*IDWriteFontFileStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateStreamFromKey: *const fn(
+            self: *const IDWriteFontFileLoader,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: ?*const anyopaque,
+            fontFileReferenceKeySize: u32,
+            fontFileStream: ?*?*IDWriteFontFileStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -364,56 +355,28 @@ pub const IID_IDWriteLocalFontFileLoader = &IID_IDWriteLocalFontFileLoader_Value
 pub const IDWriteLocalFontFileLoader = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFileLoader.VTable,
-        GetFilePathLengthFromKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteLocalFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                filePathLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteLocalFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                filePathLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilePathFromKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteLocalFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                filePath: [*:0]u16,
-                filePathSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteLocalFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                filePath: [*:0]u16,
-                filePathSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastWriteTimeFromKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteLocalFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                lastWriteTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteLocalFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                lastWriteTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilePathLengthFromKey: *const fn(
+            self: *const IDWriteLocalFontFileLoader,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: ?*const anyopaque,
+            fontFileReferenceKeySize: u32,
+            filePathLength: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilePathFromKey: *const fn(
+            self: *const IDWriteLocalFontFileLoader,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: ?*const anyopaque,
+            fontFileReferenceKeySize: u32,
+            filePath: [*:0]u16,
+            filePathSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastWriteTimeFromKey: *const fn(
+            self: *const IDWriteLocalFontFileLoader,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: ?*const anyopaque,
+            fontFileReferenceKeySize: u32,
+            lastWriteTime: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -440,52 +403,25 @@ pub const IID_IDWriteFontFileStream = &IID_IDWriteFontFileStream_Value;
 pub const IDWriteFontFileStream = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ReadFileFragment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFileStream,
-                fragmentStart: ?*const ?*anyopaque,
-                fileOffset: u64,
-                fragmentSize: u64,
-                fragmentContext: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFileStream,
-                fragmentStart: ?*const ?*anyopaque,
-                fileOffset: u64,
-                fragmentSize: u64,
-                fragmentContext: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseFileFragment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFileStream,
-                fragmentContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFontFileStream,
-                fragmentContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetFileSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFileStream,
-                fileSize: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFileStream,
-                fileSize: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastWriteTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFileStream,
-                lastWriteTime: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFileStream,
-                lastWriteTime: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ReadFileFragment: *const fn(
+            self: *const IDWriteFontFileStream,
+            fragmentStart: ?*const ?*anyopaque,
+            fileOffset: u64,
+            fragmentSize: u64,
+            fragmentContext: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseFileFragment: *const fn(
+            self: *const IDWriteFontFileStream,
+            fragmentContext: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetFileSize: *const fn(
+            self: *const IDWriteFontFileStream,
+            fileSize: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastWriteTime: *const fn(
+            self: *const IDWriteFontFileStream,
+            lastWriteTime: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -516,44 +452,22 @@ pub const IID_IDWriteFontFile = &IID_IDWriteFontFile_Value;
 pub const IDWriteFontFile = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetReferenceKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFile,
-                fontFileReferenceKey: ?*const ?*anyopaque,
-                fontFileReferenceKeySize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFile,
-                fontFileReferenceKey: ?*const ?*anyopaque,
-                fontFileReferenceKeySize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLoader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFile,
-                fontFileLoader: ?*?*IDWriteFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFile,
-                fontFileLoader: ?*?*IDWriteFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Analyze: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFile,
-                isSupportedFontType: ?*BOOL,
-                fontFileType: ?*DWRITE_FONT_FILE_TYPE,
-                fontFaceType: ?*DWRITE_FONT_FACE_TYPE,
-                numberOfFaces: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFile,
-                isSupportedFontType: ?*BOOL,
-                fontFileType: ?*DWRITE_FONT_FILE_TYPE,
-                fontFaceType: ?*DWRITE_FONT_FACE_TYPE,
-                numberOfFaces: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetReferenceKey: *const fn(
+            self: *const IDWriteFontFile,
+            fontFileReferenceKey: ?*const ?*anyopaque,
+            fontFileReferenceKeySize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLoader: *const fn(
+            self: *const IDWriteFontFile,
+            fontFileLoader: ?*?*IDWriteFontFileLoader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Analyze: *const fn(
+            self: *const IDWriteFontFile,
+            isSupportedFontType: ?*BOOL,
+            fontFileType: ?*DWRITE_FONT_FILE_TYPE,
+            fontFaceType: ?*DWRITE_FONT_FACE_TYPE,
+            numberOfFaces: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -623,46 +537,21 @@ pub const IID_IDWriteRenderingParams = &IID_IDWriteRenderingParams_Value;
 pub const IDWriteRenderingParams = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetGamma: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-            else => *const fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-        },
-        GetEnhancedContrast: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-            else => *const fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-        },
-        GetClearTypeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-            else => *const fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-        },
-        GetPixelGeometry: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_PIXEL_GEOMETRY,
-            else => *const fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_PIXEL_GEOMETRY,
-        },
-        GetRenderingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE,
-            else => *const fn(
-                self: *const IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE,
-        },
+        GetGamma: *const fn(
+            self: *const IDWriteRenderingParams,
+        ) callconv(@import("std").os.windows.WINAPI) f32,
+        GetEnhancedContrast: *const fn(
+            self: *const IDWriteRenderingParams,
+        ) callconv(@import("std").os.windows.WINAPI) f32,
+        GetClearTypeLevel: *const fn(
+            self: *const IDWriteRenderingParams,
+        ) callconv(@import("std").os.windows.WINAPI) f32,
+        GetPixelGeometry: *const fn(
+            self: *const IDWriteRenderingParams,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_PIXEL_GEOMETRY,
+        GetRenderingMode: *const fn(
+            self: *const IDWriteRenderingParams,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -697,208 +586,92 @@ pub const IID_IDWriteFontFace = &IID_IDWriteFontFace_Value;
 pub const IDWriteFontFace = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_FACE_TYPE,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_FACE_TYPE,
-        },
-        GetFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                numberOfFiles: ?*u32,
-                fontFiles: ?[*]?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                numberOfFiles: ?*u32,
-                fontFiles: ?[*]?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetSimulations: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
-        },
-        IsSymbolFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                fontFaceMetrics: ?*DWRITE_FONT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                fontFaceMetrics: ?*DWRITE_FONT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetGlyphCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) u16,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) u16,
-        },
-        GetDesignGlyphMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                glyphIndices: [*:0]const u16,
-                glyphCount: u32,
-                glyphMetrics: [*]DWRITE_GLYPH_METRICS,
-                isSideways: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                glyphIndices: [*:0]const u16,
-                glyphCount: u32,
-                glyphMetrics: [*]DWRITE_GLYPH_METRICS,
-                isSideways: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphIndices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                codePoints: [*]const u32,
-                codePointCount: u32,
-                glyphIndices: [*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                codePoints: [*]const u32,
-                codePointCount: u32,
-                glyphIndices: [*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TryGetFontTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                openTypeTableTag: u32,
-                tableData: ?*const ?*anyopaque,
-                tableSize: ?*u32,
-                tableContext: ?*?*anyopaque,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                openTypeTableTag: u32,
-                tableData: ?*const ?*anyopaque,
-                tableSize: ?*u32,
-                tableContext: ?*?*anyopaque,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseFontTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                tableContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                tableContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetGlyphRunOutline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                emSize: f32,
-                glyphIndices: [*:0]const u16,
-                glyphAdvances: ?[*]const f32,
-                glyphOffsets: ?[*]const DWRITE_GLYPH_OFFSET,
-                glyphCount: u32,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                geometrySink: ?*ID2D1SimplifiedGeometrySink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                emSize: f32,
-                glyphIndices: [*:0]const u16,
-                glyphAdvances: ?[*]const f32,
-                glyphOffsets: ?[*]const DWRITE_GLYPH_OFFSET,
-                glyphCount: u32,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                geometrySink: ?*ID2D1SimplifiedGeometrySink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRecommendedRenderingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                emSize: f32,
-                pixelsPerDip: f32,
-                measuringMode: DWRITE_MEASURING_MODE,
-                renderingParams: ?*IDWriteRenderingParams,
-                renderingMode: ?*DWRITE_RENDERING_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                emSize: f32,
-                pixelsPerDip: f32,
-                measuringMode: DWRITE_MEASURING_MODE,
-                renderingParams: ?*IDWriteRenderingParams,
-                renderingMode: ?*DWRITE_RENDERING_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGdiCompatibleMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                emSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                fontFaceMetrics: ?*DWRITE_FONT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                emSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                fontFaceMetrics: ?*DWRITE_FONT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGdiCompatibleGlyphMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace,
-                emSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                useGdiNatural: BOOL,
-                glyphIndices: [*:0]const u16,
-                glyphCount: u32,
-                glyphMetrics: [*]DWRITE_GLYPH_METRICS,
-                isSideways: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace,
-                emSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                useGdiNatural: BOOL,
-                glyphIndices: [*:0]const u16,
-                glyphCount: u32,
-                glyphMetrics: [*]DWRITE_GLYPH_METRICS,
-                isSideways: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetType: *const fn(
+            self: *const IDWriteFontFace,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_FACE_TYPE,
+        GetFiles: *const fn(
+            self: *const IDWriteFontFace,
+            numberOfFiles: ?*u32,
+            fontFiles: ?[*]?*IDWriteFontFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIndex: *const fn(
+            self: *const IDWriteFontFace,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetSimulations: *const fn(
+            self: *const IDWriteFontFace,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
+        IsSymbolFont: *const fn(
+            self: *const IDWriteFontFace,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetMetrics: *const fn(
+            self: *const IDWriteFontFace,
+            fontFaceMetrics: ?*DWRITE_FONT_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetGlyphCount: *const fn(
+            self: *const IDWriteFontFace,
+        ) callconv(@import("std").os.windows.WINAPI) u16,
+        GetDesignGlyphMetrics: *const fn(
+            self: *const IDWriteFontFace,
+            glyphIndices: [*:0]const u16,
+            glyphCount: u32,
+            glyphMetrics: [*]DWRITE_GLYPH_METRICS,
+            isSideways: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphIndices: *const fn(
+            self: *const IDWriteFontFace,
+            codePoints: [*]const u32,
+            codePointCount: u32,
+            glyphIndices: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TryGetFontTable: *const fn(
+            self: *const IDWriteFontFace,
+            openTypeTableTag: u32,
+            tableData: ?*const ?*anyopaque,
+            tableSize: ?*u32,
+            tableContext: ?*?*anyopaque,
+            exists: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseFontTable: *const fn(
+            self: *const IDWriteFontFace,
+            tableContext: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetGlyphRunOutline: *const fn(
+            self: *const IDWriteFontFace,
+            emSize: f32,
+            glyphIndices: [*:0]const u16,
+            glyphAdvances: ?[*]const f32,
+            glyphOffsets: ?[*]const DWRITE_GLYPH_OFFSET,
+            glyphCount: u32,
+            isSideways: BOOL,
+            isRightToLeft: BOOL,
+            geometrySink: ?*ID2D1SimplifiedGeometrySink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRecommendedRenderingMode: *const fn(
+            self: *const IDWriteFontFace,
+            emSize: f32,
+            pixelsPerDip: f32,
+            measuringMode: DWRITE_MEASURING_MODE,
+            renderingParams: ?*IDWriteRenderingParams,
+            renderingMode: ?*DWRITE_RENDERING_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGdiCompatibleMetrics: *const fn(
+            self: *const IDWriteFontFace,
+            emSize: f32,
+            pixelsPerDip: f32,
+            transform: ?*const DWRITE_MATRIX,
+            fontFaceMetrics: ?*DWRITE_FONT_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGdiCompatibleGlyphMetrics: *const fn(
+            self: *const IDWriteFontFace,
+            emSize: f32,
+            pixelsPerDip: f32,
+            transform: ?*const DWRITE_MATRIX,
+            useGdiNatural: BOOL,
+            glyphIndices: [*:0]const u16,
+            glyphCount: u32,
+            glyphMetrics: [*]DWRITE_GLYPH_METRICS,
+            isSideways: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -973,24 +746,14 @@ pub const IID_IDWriteFontCollectionLoader = &IID_IDWriteFontCollectionLoader_Val
 pub const IDWriteFontCollectionLoader = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateEnumeratorFromKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollectionLoader,
-                factory: ?*IDWriteFactory,
-                // TODO: what to do with BytesParamIndex 2?
-                collectionKey: ?*const anyopaque,
-                collectionKeySize: u32,
-                fontFileEnumerator: ?*?*IDWriteFontFileEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontCollectionLoader,
-                factory: ?*IDWriteFactory,
-                // TODO: what to do with BytesParamIndex 2?
-                collectionKey: ?*const anyopaque,
-                collectionKeySize: u32,
-                fontFileEnumerator: ?*?*IDWriteFontFileEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateEnumeratorFromKey: *const fn(
+            self: *const IDWriteFontCollectionLoader,
+            factory: ?*IDWriteFactory,
+            // TODO: what to do with BytesParamIndex 2?
+            collectionKey: ?*const anyopaque,
+            collectionKeySize: u32,
+            fontFileEnumerator: ?*?*IDWriteFontFileEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1009,26 +772,14 @@ pub const IID_IDWriteFontFileEnumerator = &IID_IDWriteFontFileEnumerator_Value;
 pub const IDWriteFontFileEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        MoveNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFileEnumerator,
-                hasCurrentFile: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFileEnumerator,
-                hasCurrentFile: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCurrentFontFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFileEnumerator,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFileEnumerator,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        MoveNext: *const fn(
+            self: *const IDWriteFontFileEnumerator,
+            hasCurrentFile: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentFontFile: *const fn(
+            self: *const IDWriteFontFileEnumerator,
+            fontFile: ?*?*IDWriteFontFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1051,80 +802,37 @@ pub const IID_IDWriteLocalizedStrings = &IID_IDWriteLocalizedStrings_Value;
 pub const IDWriteLocalizedStrings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        FindLocaleName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteLocalizedStrings,
-                localeName: ?[*:0]const u16,
-                index: ?*u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteLocalizedStrings,
-                localeName: ?[*:0]const u16,
-                index: ?*u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocaleNameLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteLocalizedStrings,
-                index: u32,
-                length: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteLocalizedStrings,
-                index: u32,
-                length: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocaleName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteLocalizedStrings,
-                index: u32,
-                localeName: [*:0]u16,
-                size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteLocalizedStrings,
-                index: u32,
-                localeName: [*:0]u16,
-                size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStringLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteLocalizedStrings,
-                index: u32,
-                length: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteLocalizedStrings,
-                index: u32,
-                length: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteLocalizedStrings,
-                index: u32,
-                stringBuffer: [*:0]u16,
-                size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteLocalizedStrings,
-                index: u32,
-                stringBuffer: [*:0]u16,
-                size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        FindLocaleName: *const fn(
+            self: *const IDWriteLocalizedStrings,
+            localeName: ?[*:0]const u16,
+            index: ?*u32,
+            exists: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocaleNameLength: *const fn(
+            self: *const IDWriteLocalizedStrings,
+            index: u32,
+            length: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocaleName: *const fn(
+            self: *const IDWriteLocalizedStrings,
+            index: u32,
+            localeName: [*:0]u16,
+            size: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStringLength: *const fn(
+            self: *const IDWriteLocalizedStrings,
+            index: u32,
+            length: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetString: *const fn(
+            self: *const IDWriteLocalizedStrings,
+            index: u32,
+            stringBuffer: [*:0]u16,
+            size: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1163,52 +871,25 @@ pub const IID_IDWriteFontCollection = &IID_IDWriteFontCollection_Value;
 pub const IDWriteFontCollection = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFontFamilyCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontCollection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontFamily: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection,
-                index: u32,
-                fontFamily: ?*?*IDWriteFontFamily,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontCollection,
-                index: u32,
-                fontFamily: ?*?*IDWriteFontFamily,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFamilyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection,
-                familyName: ?[*:0]const u16,
-                index: ?*u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontCollection,
-                familyName: ?[*:0]const u16,
-                index: ?*u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFromFontFace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection,
-                fontFace: ?*IDWriteFontFace,
-                font: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontCollection,
-                fontFace: ?*IDWriteFontFace,
-                font: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontFamilyCount: *const fn(
+            self: *const IDWriteFontCollection,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontFamily: *const fn(
+            self: *const IDWriteFontCollection,
+            index: u32,
+            fontFamily: ?*?*IDWriteFontFamily,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFamilyName: *const fn(
+            self: *const IDWriteFontCollection,
+            familyName: ?[*:0]const u16,
+            index: ?*u32,
+            exists: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFromFontFace: *const fn(
+            self: *const IDWriteFontCollection,
+            fontFace: ?*IDWriteFontFace,
+            font: ?*?*IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1239,36 +920,18 @@ pub const IID_IDWriteFontList = &IID_IDWriteFontList_Value;
 pub const IDWriteFontList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontList,
-                fontCollection: ?*?*IDWriteFontCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontList,
-                fontCollection: ?*?*IDWriteFontCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontList,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontList,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontList,
-                index: u32,
-                font: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontList,
-                index: u32,
-                font: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontCollection: *const fn(
+            self: *const IDWriteFontList,
+            fontCollection: ?*?*IDWriteFontCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontCount: *const fn(
+            self: *const IDWriteFontList,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFont: *const fn(
+            self: *const IDWriteFontList,
+            index: u32,
+            font: ?*?*IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1295,48 +958,24 @@ pub const IID_IDWriteFontFamily = &IID_IDWriteFontFamily_Value;
 pub const IDWriteFontFamily = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontList.VTable,
-        GetFamilyNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFamily,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFamily,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFirstMatchingFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFamily,
-                weight: DWRITE_FONT_WEIGHT,
-                stretch: DWRITE_FONT_STRETCH,
-                style: DWRITE_FONT_STYLE,
-                matchingFont: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFamily,
-                weight: DWRITE_FONT_WEIGHT,
-                stretch: DWRITE_FONT_STRETCH,
-                style: DWRITE_FONT_STYLE,
-                matchingFont: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMatchingFonts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFamily,
-                weight: DWRITE_FONT_WEIGHT,
-                stretch: DWRITE_FONT_STRETCH,
-                style: DWRITE_FONT_STYLE,
-                matchingFonts: ?*?*IDWriteFontList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFamily,
-                weight: DWRITE_FONT_WEIGHT,
-                stretch: DWRITE_FONT_STRETCH,
-                style: DWRITE_FONT_STYLE,
-                matchingFonts: ?*?*IDWriteFontList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFamilyNames: *const fn(
+            self: *const IDWriteFontFamily,
+            names: ?*?*IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFirstMatchingFont: *const fn(
+            self: *const IDWriteFontFamily,
+            weight: DWRITE_FONT_WEIGHT,
+            stretch: DWRITE_FONT_STRETCH,
+            style: DWRITE_FONT_STYLE,
+            matchingFont: ?*?*IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMatchingFonts: *const fn(
+            self: *const IDWriteFontFamily,
+            weight: DWRITE_FONT_WEIGHT,
+            stretch: DWRITE_FONT_STRETCH,
+            style: DWRITE_FONT_STYLE,
+            matchingFonts: ?*?*IDWriteFontList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1363,112 +1002,48 @@ pub const IID_IDWriteFont = &IID_IDWriteFont_Value;
 pub const IDWriteFont = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFontFamily: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-                fontFamily: ?*?*IDWriteFontFamily,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFont,
-                fontFamily: ?*?*IDWriteFontFamily,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
-            else => *const fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
-        },
-        GetStretch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
-            else => *const fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
-        },
-        GetStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
-            else => *const fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
-        },
-        IsSymbolFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetFaceNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFont,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInformationalStrings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-                informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
-                informationalStrings: ?*?*IDWriteLocalizedStrings,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFont,
-                informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
-                informationalStrings: ?*?*IDWriteLocalizedStrings,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSimulations: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
-            else => *const fn(
-                self: *const IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
-        },
-        GetMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-                fontMetrics: ?*DWRITE_FONT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFont,
-                fontMetrics: ?*DWRITE_FONT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        HasCharacter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-                unicodeValue: u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFont,
-                unicodeValue: u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont,
-                fontFace: ?*?*IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFont,
-                fontFace: ?*?*IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontFamily: *const fn(
+            self: *const IDWriteFont,
+            fontFamily: ?*?*IDWriteFontFamily,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWeight: *const fn(
+            self: *const IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
+        GetStretch: *const fn(
+            self: *const IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
+        GetStyle: *const fn(
+            self: *const IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
+        IsSymbolFont: *const fn(
+            self: *const IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetFaceNames: *const fn(
+            self: *const IDWriteFont,
+            names: ?*?*IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInformationalStrings: *const fn(
+            self: *const IDWriteFont,
+            informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
+            informationalStrings: ?*?*IDWriteLocalizedStrings,
+            exists: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSimulations: *const fn(
+            self: *const IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
+        GetMetrics: *const fn(
+            self: *const IDWriteFont,
+            fontMetrics: ?*DWRITE_FONT_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        HasCharacter: *const fn(
+            self: *const IDWriteFont,
+            unicodeValue: u32,
+            exists: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFace: *const fn(
+            self: *const IDWriteFont,
+            fontFace: ?*?*IDWriteFontFace,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1786,248 +1361,102 @@ pub const IID_IDWriteTextFormat = &IID_IDWriteTextFormat_Value;
 pub const IDWriteTextFormat = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetTextAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                textAlignment: DWRITE_TEXT_ALIGNMENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                textAlignment: DWRITE_TEXT_ALIGNMENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetParagraphAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                paragraphAlignment: DWRITE_PARAGRAPH_ALIGNMENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                paragraphAlignment: DWRITE_PARAGRAPH_ALIGNMENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWordWrapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                wordWrapping: DWRITE_WORD_WRAPPING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                wordWrapping: DWRITE_WORD_WRAPPING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetReadingDirection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                readingDirection: DWRITE_READING_DIRECTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                readingDirection: DWRITE_READING_DIRECTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFlowDirection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                flowDirection: DWRITE_FLOW_DIRECTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                flowDirection: DWRITE_FLOW_DIRECTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIncrementalTabStop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                incrementalTabStop: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                incrementalTabStop: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTrimming: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                trimmingOptions: ?*const DWRITE_TRIMMING,
-                trimmingSign: ?*IDWriteInlineObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                trimmingOptions: ?*const DWRITE_TRIMMING,
-                trimmingSign: ?*IDWriteInlineObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLineSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                lineSpacingMethod: DWRITE_LINE_SPACING_METHOD,
-                lineSpacing: f32,
-                baseline: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                lineSpacingMethod: DWRITE_LINE_SPACING_METHOD,
-                lineSpacing: f32,
-                baseline: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTextAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_TEXT_ALIGNMENT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_TEXT_ALIGNMENT,
-        },
-        GetParagraphAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_PARAGRAPH_ALIGNMENT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_PARAGRAPH_ALIGNMENT,
-        },
-        GetWordWrapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_WORD_WRAPPING,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_WORD_WRAPPING,
-        },
-        GetReadingDirection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_READING_DIRECTION,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_READING_DIRECTION,
-        },
-        GetFlowDirection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FLOW_DIRECTION,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FLOW_DIRECTION,
-        },
-        GetIncrementalTabStop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-        },
-        GetTrimming: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                trimmingOptions: ?*DWRITE_TRIMMING,
-                trimmingSign: ?*?*IDWriteInlineObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                trimmingOptions: ?*DWRITE_TRIMMING,
-                trimmingSign: ?*?*IDWriteInlineObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLineSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                lineSpacingMethod: ?*DWRITE_LINE_SPACING_METHOD,
-                lineSpacing: ?*f32,
-                baseline: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                lineSpacingMethod: ?*DWRITE_LINE_SPACING_METHOD,
-                lineSpacing: ?*f32,
-                baseline: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                fontCollection: ?*?*IDWriteFontCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                fontCollection: ?*?*IDWriteFontCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFamilyNameLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontFamilyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                fontFamilyName: [*:0]u16,
-                nameSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                fontFamilyName: [*:0]u16,
-                nameSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontWeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
-        },
-        GetFontStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
-        },
-        GetFontStretch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
-        },
-        GetFontSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-        },
-        GetLocaleNameLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetLocaleName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat,
-                localeName: [*:0]u16,
-                nameSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat,
-                localeName: [*:0]u16,
-                nameSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetTextAlignment: *const fn(
+            self: *const IDWriteTextFormat,
+            textAlignment: DWRITE_TEXT_ALIGNMENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetParagraphAlignment: *const fn(
+            self: *const IDWriteTextFormat,
+            paragraphAlignment: DWRITE_PARAGRAPH_ALIGNMENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWordWrapping: *const fn(
+            self: *const IDWriteTextFormat,
+            wordWrapping: DWRITE_WORD_WRAPPING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetReadingDirection: *const fn(
+            self: *const IDWriteTextFormat,
+            readingDirection: DWRITE_READING_DIRECTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFlowDirection: *const fn(
+            self: *const IDWriteTextFormat,
+            flowDirection: DWRITE_FLOW_DIRECTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIncrementalTabStop: *const fn(
+            self: *const IDWriteTextFormat,
+            incrementalTabStop: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTrimming: *const fn(
+            self: *const IDWriteTextFormat,
+            trimmingOptions: ?*const DWRITE_TRIMMING,
+            trimmingSign: ?*IDWriteInlineObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLineSpacing: *const fn(
+            self: *const IDWriteTextFormat,
+            lineSpacingMethod: DWRITE_LINE_SPACING_METHOD,
+            lineSpacing: f32,
+            baseline: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTextAlignment: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_TEXT_ALIGNMENT,
+        GetParagraphAlignment: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_PARAGRAPH_ALIGNMENT,
+        GetWordWrapping: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_WORD_WRAPPING,
+        GetReadingDirection: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_READING_DIRECTION,
+        GetFlowDirection: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FLOW_DIRECTION,
+        GetIncrementalTabStop: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) f32,
+        GetTrimming: *const fn(
+            self: *const IDWriteTextFormat,
+            trimmingOptions: ?*DWRITE_TRIMMING,
+            trimmingSign: ?*?*IDWriteInlineObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLineSpacing: *const fn(
+            self: *const IDWriteTextFormat,
+            lineSpacingMethod: ?*DWRITE_LINE_SPACING_METHOD,
+            lineSpacing: ?*f32,
+            baseline: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontCollection: *const fn(
+            self: *const IDWriteTextFormat,
+            fontCollection: ?*?*IDWriteFontCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFamilyNameLength: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontFamilyName: *const fn(
+            self: *const IDWriteTextFormat,
+            fontFamilyName: [*:0]u16,
+            nameSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontWeight: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
+        GetFontStyle: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
+        GetFontStretch: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
+        GetFontSize: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) f32,
+        GetLocaleNameLength: *const fn(
+            self: *const IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetLocaleName: *const fn(
+            self: *const IDWriteTextFormat,
+            localeName: [*:0]u16,
+            nameSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2142,36 +1571,18 @@ pub const IID_IDWriteTypography = &IID_IDWriteTypography_Value;
 pub const IDWriteTypography = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddFontFeature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTypography,
-                fontFeature: DWRITE_FONT_FEATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTypography,
-                fontFeature: DWRITE_FONT_FEATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFeatureCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTypography,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteTypography,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontFeature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTypography,
-                fontFeatureIndex: u32,
-                fontFeature: ?*DWRITE_FONT_FEATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTypography,
-                fontFeatureIndex: u32,
-                fontFeature: ?*DWRITE_FONT_FEATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddFontFeature: *const fn(
+            self: *const IDWriteTypography,
+            fontFeature: DWRITE_FONT_FEATURE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFeatureCount: *const fn(
+            self: *const IDWriteTypography,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontFeature: *const fn(
+            self: *const IDWriteTypography,
+            fontFeatureIndex: u32,
+            fontFeature: ?*DWRITE_FONT_FEATURE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2289,70 +1700,33 @@ pub const IID_IDWriteTextAnalysisSource = &IID_IDWriteTextAnalysisSource_Value;
 pub const IDWriteTextAnalysisSource = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetTextAtPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textString: ?*const ?*u16,
-                textLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textString: ?*const ?*u16,
-                textLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTextBeforePosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textString: ?*const ?*u16,
-                textLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textString: ?*const ?*u16,
-                textLength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetParagraphReadingDirection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSource,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_READING_DIRECTION,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSource,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_READING_DIRECTION,
-        },
-        GetLocaleName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: ?*u32,
-                localeName: ?*const ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: ?*u32,
-                localeName: ?*const ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNumberSubstitution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: ?*u32,
-                numberSubstitution: ?*?*IDWriteNumberSubstitution,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: ?*u32,
-                numberSubstitution: ?*?*IDWriteNumberSubstitution,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetTextAtPosition: *const fn(
+            self: *const IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textString: ?*const ?*u16,
+            textLength: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTextBeforePosition: *const fn(
+            self: *const IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textString: ?*const ?*u16,
+            textLength: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParagraphReadingDirection: *const fn(
+            self: *const IDWriteTextAnalysisSource,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_READING_DIRECTION,
+        GetLocaleName: *const fn(
+            self: *const IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textLength: ?*u32,
+            localeName: ?*const ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNumberSubstitution: *const fn(
+            self: *const IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textLength: ?*u32,
+            numberSubstitution: ?*?*IDWriteNumberSubstitution,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2387,64 +1761,31 @@ pub const IID_IDWriteTextAnalysisSink = &IID_IDWriteTextAnalysisSink_Value;
 pub const IDWriteTextAnalysisSink = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetScriptAnalysis: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSink,
-                textPosition: u32,
-                textLength: u32,
-                scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSink,
-                textPosition: u32,
-                textLength: u32,
-                scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLineBreakpoints: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSink,
-                textPosition: u32,
-                textLength: u32,
-                lineBreakpoints: [*]const DWRITE_LINE_BREAKPOINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSink,
-                textPosition: u32,
-                textLength: u32,
-                lineBreakpoints: [*]const DWRITE_LINE_BREAKPOINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBidiLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSink,
-                textPosition: u32,
-                textLength: u32,
-                explicitLevel: u8,
-                resolvedLevel: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSink,
-                textPosition: u32,
-                textLength: u32,
-                explicitLevel: u8,
-                resolvedLevel: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNumberSubstitution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSink,
-                textPosition: u32,
-                textLength: u32,
-                numberSubstitution: ?*IDWriteNumberSubstitution,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSink,
-                textPosition: u32,
-                textLength: u32,
-                numberSubstitution: ?*IDWriteNumberSubstitution,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetScriptAnalysis: *const fn(
+            self: *const IDWriteTextAnalysisSink,
+            textPosition: u32,
+            textLength: u32,
+            scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLineBreakpoints: *const fn(
+            self: *const IDWriteTextAnalysisSink,
+            textPosition: u32,
+            textLength: u32,
+            lineBreakpoints: [*]const DWRITE_LINE_BREAKPOINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBidiLevel: *const fn(
+            self: *const IDWriteTextAnalysisSink,
+            textPosition: u32,
+            textLength: u32,
+            explicitLevel: u8,
+            resolvedLevel: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNumberSubstitution: *const fn(
+            self: *const IDWriteTextAnalysisSink,
+            textPosition: u32,
+            textLength: u32,
+            numberSubstitution: ?*IDWriteNumberSubstitution,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2475,206 +1816,99 @@ pub const IID_IDWriteTextAnalyzer = &IID_IDWriteTextAnalyzer_Value;
 pub const IDWriteTextAnalyzer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AnalyzeScript: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AnalyzeBidi: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AnalyzeNumberSubstitution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AnalyzeLineBreakpoints: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer,
-                textString: [*:0]const u16,
-                textLength: u32,
-                fontFace: ?*IDWriteFontFace,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                numberSubstitution: ?*IDWriteNumberSubstitution,
-                features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES,
-                featureRangeLengths: ?[*]const u32,
-                featureRanges: u32,
-                maxGlyphCount: u32,
-                clusterMap: [*:0]u16,
-                textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES,
-                glyphIndices: [*:0]u16,
-                glyphProps: [*]DWRITE_SHAPING_GLYPH_PROPERTIES,
-                actualGlyphCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer,
-                textString: [*:0]const u16,
-                textLength: u32,
-                fontFace: ?*IDWriteFontFace,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                numberSubstitution: ?*IDWriteNumberSubstitution,
-                features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES,
-                featureRangeLengths: ?[*]const u32,
-                featureRanges: u32,
-                maxGlyphCount: u32,
-                clusterMap: [*:0]u16,
-                textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES,
-                glyphIndices: [*:0]u16,
-                glyphProps: [*]DWRITE_SHAPING_GLYPH_PROPERTIES,
-                actualGlyphCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphPlacements: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer,
-                textString: [*:0]const u16,
-                clusterMap: [*:0]const u16,
-                textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES,
-                textLength: u32,
-                glyphIndices: [*:0]const u16,
-                glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                glyphCount: u32,
-                fontFace: ?*IDWriteFontFace,
-                fontEmSize: f32,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES,
-                featureRangeLengths: ?[*]const u32,
-                featureRanges: u32,
-                glyphAdvances: [*]f32,
-                glyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer,
-                textString: [*:0]const u16,
-                clusterMap: [*:0]const u16,
-                textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES,
-                textLength: u32,
-                glyphIndices: [*:0]const u16,
-                glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                glyphCount: u32,
-                fontFace: ?*IDWriteFontFace,
-                fontEmSize: f32,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES,
-                featureRangeLengths: ?[*]const u32,
-                featureRanges: u32,
-                glyphAdvances: [*]f32,
-                glyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGdiCompatibleGlyphPlacements: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer,
-                textString: [*:0]const u16,
-                clusterMap: [*:0]const u16,
-                textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES,
-                textLength: u32,
-                glyphIndices: [*:0]const u16,
-                glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                glyphCount: u32,
-                fontFace: ?*IDWriteFontFace,
-                fontEmSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                useGdiNatural: BOOL,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES,
-                featureRangeLengths: ?[*]const u32,
-                featureRanges: u32,
-                glyphAdvances: [*]f32,
-                glyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer,
-                textString: [*:0]const u16,
-                clusterMap: [*:0]const u16,
-                textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES,
-                textLength: u32,
-                glyphIndices: [*:0]const u16,
-                glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                glyphCount: u32,
-                fontFace: ?*IDWriteFontFace,
-                fontEmSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                useGdiNatural: BOOL,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES,
-                featureRangeLengths: ?[*]const u32,
-                featureRanges: u32,
-                glyphAdvances: [*]f32,
-                glyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AnalyzeScript: *const fn(
+            self: *const IDWriteTextAnalyzer,
+            analysisSource: ?*IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textLength: u32,
+            analysisSink: ?*IDWriteTextAnalysisSink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AnalyzeBidi: *const fn(
+            self: *const IDWriteTextAnalyzer,
+            analysisSource: ?*IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textLength: u32,
+            analysisSink: ?*IDWriteTextAnalysisSink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AnalyzeNumberSubstitution: *const fn(
+            self: *const IDWriteTextAnalyzer,
+            analysisSource: ?*IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textLength: u32,
+            analysisSink: ?*IDWriteTextAnalysisSink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AnalyzeLineBreakpoints: *const fn(
+            self: *const IDWriteTextAnalyzer,
+            analysisSource: ?*IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textLength: u32,
+            analysisSink: ?*IDWriteTextAnalysisSink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphs: *const fn(
+            self: *const IDWriteTextAnalyzer,
+            textString: [*:0]const u16,
+            textLength: u32,
+            fontFace: ?*IDWriteFontFace,
+            isSideways: BOOL,
+            isRightToLeft: BOOL,
+            scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
+            localeName: ?[*:0]const u16,
+            numberSubstitution: ?*IDWriteNumberSubstitution,
+            features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES,
+            featureRangeLengths: ?[*]const u32,
+            featureRanges: u32,
+            maxGlyphCount: u32,
+            clusterMap: [*:0]u16,
+            textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES,
+            glyphIndices: [*:0]u16,
+            glyphProps: [*]DWRITE_SHAPING_GLYPH_PROPERTIES,
+            actualGlyphCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphPlacements: *const fn(
+            self: *const IDWriteTextAnalyzer,
+            textString: [*:0]const u16,
+            clusterMap: [*:0]const u16,
+            textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES,
+            textLength: u32,
+            glyphIndices: [*:0]const u16,
+            glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
+            glyphCount: u32,
+            fontFace: ?*IDWriteFontFace,
+            fontEmSize: f32,
+            isSideways: BOOL,
+            isRightToLeft: BOOL,
+            scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
+            localeName: ?[*:0]const u16,
+            features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES,
+            featureRangeLengths: ?[*]const u32,
+            featureRanges: u32,
+            glyphAdvances: [*]f32,
+            glyphOffsets: [*]DWRITE_GLYPH_OFFSET,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGdiCompatibleGlyphPlacements: *const fn(
+            self: *const IDWriteTextAnalyzer,
+            textString: [*:0]const u16,
+            clusterMap: [*:0]const u16,
+            textProps: [*]DWRITE_SHAPING_TEXT_PROPERTIES,
+            textLength: u32,
+            glyphIndices: [*:0]const u16,
+            glyphProps: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
+            glyphCount: u32,
+            fontFace: ?*IDWriteFontFace,
+            fontEmSize: f32,
+            pixelsPerDip: f32,
+            transform: ?*const DWRITE_MATRIX,
+            useGdiNatural: BOOL,
+            isSideways: BOOL,
+            isRightToLeft: BOOL,
+            scriptAnalysis: ?*const DWRITE_SCRIPT_ANALYSIS,
+            localeName: ?[*:0]const u16,
+            features: ?[*]const ?*const DWRITE_TYPOGRAPHIC_FEATURES,
+            featureRangeLengths: ?[*]const u32,
+            featureRanges: u32,
+            glyphAdvances: [*]f32,
+            glyphOffsets: [*]DWRITE_GLYPH_OFFSET,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2810,60 +2044,29 @@ pub const IID_IDWriteInlineObject = &IID_IDWriteInlineObject_Value;
 pub const IDWriteInlineObject = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Draw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteInlineObject,
-                clientDrawingContext: ?*anyopaque,
-                renderer: ?*IDWriteTextRenderer,
-                originX: f32,
-                originY: f32,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteInlineObject,
-                clientDrawingContext: ?*anyopaque,
-                renderer: ?*IDWriteTextRenderer,
-                originX: f32,
-                originY: f32,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteInlineObject,
-                metrics: ?*DWRITE_INLINE_OBJECT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteInlineObject,
-                metrics: ?*DWRITE_INLINE_OBJECT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOverhangMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteInlineObject,
-                overhangs: ?*DWRITE_OVERHANG_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteInlineObject,
-                overhangs: ?*DWRITE_OVERHANG_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBreakConditions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteInlineObject,
-                breakConditionBefore: ?*DWRITE_BREAK_CONDITION,
-                breakConditionAfter: ?*DWRITE_BREAK_CONDITION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteInlineObject,
-                breakConditionBefore: ?*DWRITE_BREAK_CONDITION,
-                breakConditionAfter: ?*DWRITE_BREAK_CONDITION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Draw: *const fn(
+            self: *const IDWriteInlineObject,
+            clientDrawingContext: ?*anyopaque,
+            renderer: ?*IDWriteTextRenderer,
+            originX: f32,
+            originY: f32,
+            isSideways: BOOL,
+            isRightToLeft: BOOL,
+            clientDrawingEffect: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMetrics: *const fn(
+            self: *const IDWriteInlineObject,
+            metrics: ?*DWRITE_INLINE_OBJECT_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOverhangMetrics: *const fn(
+            self: *const IDWriteInlineObject,
+            overhangs: ?*DWRITE_OVERHANG_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBreakConditions: *const fn(
+            self: *const IDWriteInlineObject,
+            breakConditionBefore: ?*DWRITE_BREAK_CONDITION,
+            breakConditionAfter: ?*DWRITE_BREAK_CONDITION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2894,42 +2097,21 @@ pub const IID_IDWritePixelSnapping = &IID_IDWritePixelSnapping_Value;
 pub const IDWritePixelSnapping = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsPixelSnappingDisabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWritePixelSnapping,
-                clientDrawingContext: ?*anyopaque,
-                isDisabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWritePixelSnapping,
-                clientDrawingContext: ?*anyopaque,
-                isDisabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCurrentTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWritePixelSnapping,
-                clientDrawingContext: ?*anyopaque,
-                transform: ?*DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWritePixelSnapping,
-                clientDrawingContext: ?*anyopaque,
-                transform: ?*DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPixelsPerDip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWritePixelSnapping,
-                clientDrawingContext: ?*anyopaque,
-                pixelsPerDip: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWritePixelSnapping,
-                clientDrawingContext: ?*anyopaque,
-                pixelsPerDip: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsPixelSnappingDisabled: *const fn(
+            self: *const IDWritePixelSnapping,
+            clientDrawingContext: ?*anyopaque,
+            isDisabled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentTransform: *const fn(
+            self: *const IDWritePixelSnapping,
+            clientDrawingContext: ?*anyopaque,
+            transform: ?*DWRITE_MATRIX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPixelsPerDip: *const fn(
+            self: *const IDWritePixelSnapping,
+            clientDrawingContext: ?*anyopaque,
+            pixelsPerDip: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2956,86 +2138,42 @@ pub const IID_IDWriteTextRenderer = &IID_IDWriteTextRenderer_Value;
 pub const IDWriteTextRenderer = extern struct {
     pub const VTable = extern struct {
         base: IDWritePixelSnapping.VTable,
-        DrawGlyphRun: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextRenderer,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                measuringMode: DWRITE_MEASURING_MODE,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextRenderer,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                measuringMode: DWRITE_MEASURING_MODE,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DrawUnderline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextRenderer,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                underline: ?*const DWRITE_UNDERLINE,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextRenderer,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                underline: ?*const DWRITE_UNDERLINE,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DrawStrikethrough: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextRenderer,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                strikethrough: ?*const DWRITE_STRIKETHROUGH,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextRenderer,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                strikethrough: ?*const DWRITE_STRIKETHROUGH,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DrawInlineObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextRenderer,
-                clientDrawingContext: ?*anyopaque,
-                originX: f32,
-                originY: f32,
-                inlineObject: ?*IDWriteInlineObject,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextRenderer,
-                clientDrawingContext: ?*anyopaque,
-                originX: f32,
-                originY: f32,
-                inlineObject: ?*IDWriteInlineObject,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DrawGlyphRun: *const fn(
+            self: *const IDWriteTextRenderer,
+            clientDrawingContext: ?*anyopaque,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            measuringMode: DWRITE_MEASURING_MODE,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
+            clientDrawingEffect: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DrawUnderline: *const fn(
+            self: *const IDWriteTextRenderer,
+            clientDrawingContext: ?*anyopaque,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            underline: ?*const DWRITE_UNDERLINE,
+            clientDrawingEffect: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DrawStrikethrough: *const fn(
+            self: *const IDWriteTextRenderer,
+            clientDrawingContext: ?*anyopaque,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            strikethrough: ?*const DWRITE_STRIKETHROUGH,
+            clientDrawingEffect: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DrawInlineObject: *const fn(
+            self: *const IDWriteTextRenderer,
+            clientDrawingContext: ?*anyopaque,
+            originX: f32,
+            originY: f32,
+            inlineObject: ?*IDWriteInlineObject,
+            isSideways: BOOL,
+            isRightToLeft: BOOL,
+            clientDrawingEffect: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3066,518 +2204,223 @@ pub const IID_IDWriteTextLayout = &IID_IDWriteTextLayout_Value;
 pub const IDWriteTextLayout = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextFormat.VTable,
-        SetMaxWidth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                maxWidth: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                maxWidth: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMaxHeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                maxHeight: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                maxHeight: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                fontCollection: ?*IDWriteFontCollection,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                fontCollection: ?*IDWriteFontCollection,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontFamilyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                fontFamilyName: ?[*:0]const u16,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                fontFamilyName: ?[*:0]const u16,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontWeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                fontWeight: DWRITE_FONT_WEIGHT,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                fontWeight: DWRITE_FONT_WEIGHT,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                fontStyle: DWRITE_FONT_STYLE,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                fontStyle: DWRITE_FONT_STYLE,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontStretch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                fontStretch: DWRITE_FONT_STRETCH,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                fontStretch: DWRITE_FONT_STRETCH,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                fontSize: f32,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                fontSize: f32,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUnderline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                hasUnderline: BOOL,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                hasUnderline: BOOL,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrikethrough: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                hasStrikethrough: BOOL,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                hasStrikethrough: BOOL,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDrawingEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                drawingEffect: ?*IUnknown,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                drawingEffect: ?*IUnknown,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetInlineObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                inlineObject: ?*IDWriteInlineObject,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                inlineObject: ?*IDWriteInlineObject,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTypography: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                typography: ?*IDWriteTypography,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                typography: ?*IDWriteTypography,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLocaleName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                localeName: ?[*:0]const u16,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                localeName: ?[*:0]const u16,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMaxWidth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-        },
-        GetMaxHeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-        },
-        GetFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontCollection: ?*?*IDWriteFontCollection,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontCollection: ?*?*IDWriteFontCollection,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFamilyNameLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                nameLength: ?*u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                nameLength: ?*u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFamilyName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontFamilyName: [*:0]u16,
-                nameSize: u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontFamilyName: [*:0]u16,
-                nameSize: u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontWeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontWeight: ?*DWRITE_FONT_WEIGHT,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontWeight: ?*DWRITE_FONT_WEIGHT,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontStyle: ?*DWRITE_FONT_STYLE,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontStyle: ?*DWRITE_FONT_STYLE,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontStretch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontStretch: ?*DWRITE_FONT_STRETCH,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontStretch: ?*DWRITE_FONT_STRETCH,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontSize: ?*f32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                fontSize: ?*f32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUnderline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                hasUnderline: ?*BOOL,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                hasUnderline: ?*BOOL,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrikethrough: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                hasStrikethrough: ?*BOOL,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                hasStrikethrough: ?*BOOL,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDrawingEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                drawingEffect: ?*?*IUnknown,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                drawingEffect: ?*?*IUnknown,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInlineObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                inlineObject: ?*?*IDWriteInlineObject,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                inlineObject: ?*?*IDWriteInlineObject,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTypography: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                typography: ?*?*IDWriteTypography,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                typography: ?*?*IDWriteTypography,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocaleNameLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                nameLength: ?*u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                nameLength: ?*u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocaleName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                localeName: [*:0]u16,
-                nameSize: u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                currentPosition: u32,
-                localeName: [*:0]u16,
-                nameSize: u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Draw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                clientDrawingContext: ?*anyopaque,
-                renderer: ?*IDWriteTextRenderer,
-                originX: f32,
-                originY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                clientDrawingContext: ?*anyopaque,
-                renderer: ?*IDWriteTextRenderer,
-                originX: f32,
-                originY: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLineMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                lineMetrics: ?[*]DWRITE_LINE_METRICS,
-                maxLineCount: u32,
-                actualLineCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                lineMetrics: ?[*]DWRITE_LINE_METRICS,
-                maxLineCount: u32,
-                actualLineCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                textMetrics: ?*DWRITE_TEXT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                textMetrics: ?*DWRITE_TEXT_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOverhangMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                overhangs: ?*DWRITE_OVERHANG_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                overhangs: ?*DWRITE_OVERHANG_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClusterMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                clusterMetrics: ?[*]DWRITE_CLUSTER_METRICS,
-                maxClusterCount: u32,
-                actualClusterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                clusterMetrics: ?[*]DWRITE_CLUSTER_METRICS,
-                maxClusterCount: u32,
-                actualClusterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DetermineMinWidth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                minWidth: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                minWidth: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HitTestPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                pointX: f32,
-                pointY: f32,
-                isTrailingHit: ?*BOOL,
-                isInside: ?*BOOL,
-                hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                pointX: f32,
-                pointY: f32,
-                isTrailingHit: ?*BOOL,
-                isInside: ?*BOOL,
-                hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HitTestTextPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                textPosition: u32,
-                isTrailingHit: BOOL,
-                pointX: ?*f32,
-                pointY: ?*f32,
-                hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                textPosition: u32,
-                isTrailingHit: BOOL,
-                pointX: ?*f32,
-                pointY: ?*f32,
-                hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HitTestTextRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout,
-                textPosition: u32,
-                textLength: u32,
-                originX: f32,
-                originY: f32,
-                hitTestMetrics: ?[*]DWRITE_HIT_TEST_METRICS,
-                maxHitTestMetricsCount: u32,
-                actualHitTestMetricsCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout,
-                textPosition: u32,
-                textLength: u32,
-                originX: f32,
-                originY: f32,
-                hitTestMetrics: ?[*]DWRITE_HIT_TEST_METRICS,
-                maxHitTestMetricsCount: u32,
-                actualHitTestMetricsCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetMaxWidth: *const fn(
+            self: *const IDWriteTextLayout,
+            maxWidth: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMaxHeight: *const fn(
+            self: *const IDWriteTextLayout,
+            maxHeight: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontCollection: *const fn(
+            self: *const IDWriteTextLayout,
+            fontCollection: ?*IDWriteFontCollection,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontFamilyName: *const fn(
+            self: *const IDWriteTextLayout,
+            fontFamilyName: ?[*:0]const u16,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontWeight: *const fn(
+            self: *const IDWriteTextLayout,
+            fontWeight: DWRITE_FONT_WEIGHT,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontStyle: *const fn(
+            self: *const IDWriteTextLayout,
+            fontStyle: DWRITE_FONT_STYLE,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontStretch: *const fn(
+            self: *const IDWriteTextLayout,
+            fontStretch: DWRITE_FONT_STRETCH,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontSize: *const fn(
+            self: *const IDWriteTextLayout,
+            fontSize: f32,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUnderline: *const fn(
+            self: *const IDWriteTextLayout,
+            hasUnderline: BOOL,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrikethrough: *const fn(
+            self: *const IDWriteTextLayout,
+            hasStrikethrough: BOOL,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDrawingEffect: *const fn(
+            self: *const IDWriteTextLayout,
+            drawingEffect: ?*IUnknown,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInlineObject: *const fn(
+            self: *const IDWriteTextLayout,
+            inlineObject: ?*IDWriteInlineObject,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTypography: *const fn(
+            self: *const IDWriteTextLayout,
+            typography: ?*IDWriteTypography,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLocaleName: *const fn(
+            self: *const IDWriteTextLayout,
+            localeName: ?[*:0]const u16,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaxWidth: *const fn(
+            self: *const IDWriteTextLayout,
+        ) callconv(@import("std").os.windows.WINAPI) f32,
+        GetMaxHeight: *const fn(
+            self: *const IDWriteTextLayout,
+        ) callconv(@import("std").os.windows.WINAPI) f32,
+        GetFontCollection: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            fontCollection: ?*?*IDWriteFontCollection,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFamilyNameLength: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            nameLength: ?*u32,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFamilyName: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            fontFamilyName: [*:0]u16,
+            nameSize: u32,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontWeight: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            fontWeight: ?*DWRITE_FONT_WEIGHT,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontStyle: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            fontStyle: ?*DWRITE_FONT_STYLE,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontStretch: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            fontStretch: ?*DWRITE_FONT_STRETCH,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontSize: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            fontSize: ?*f32,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUnderline: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            hasUnderline: ?*BOOL,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrikethrough: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            hasStrikethrough: ?*BOOL,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDrawingEffect: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            drawingEffect: ?*?*IUnknown,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInlineObject: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            inlineObject: ?*?*IDWriteInlineObject,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTypography: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            typography: ?*?*IDWriteTypography,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocaleNameLength: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            nameLength: ?*u32,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocaleName: *const fn(
+            self: *const IDWriteTextLayout,
+            currentPosition: u32,
+            localeName: [*:0]u16,
+            nameSize: u32,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Draw: *const fn(
+            self: *const IDWriteTextLayout,
+            clientDrawingContext: ?*anyopaque,
+            renderer: ?*IDWriteTextRenderer,
+            originX: f32,
+            originY: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLineMetrics: *const fn(
+            self: *const IDWriteTextLayout,
+            lineMetrics: ?[*]DWRITE_LINE_METRICS,
+            maxLineCount: u32,
+            actualLineCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMetrics: *const fn(
+            self: *const IDWriteTextLayout,
+            textMetrics: ?*DWRITE_TEXT_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOverhangMetrics: *const fn(
+            self: *const IDWriteTextLayout,
+            overhangs: ?*DWRITE_OVERHANG_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClusterMetrics: *const fn(
+            self: *const IDWriteTextLayout,
+            clusterMetrics: ?[*]DWRITE_CLUSTER_METRICS,
+            maxClusterCount: u32,
+            actualClusterCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DetermineMinWidth: *const fn(
+            self: *const IDWriteTextLayout,
+            minWidth: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HitTestPoint: *const fn(
+            self: *const IDWriteTextLayout,
+            pointX: f32,
+            pointY: f32,
+            isTrailingHit: ?*BOOL,
+            isInside: ?*BOOL,
+            hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HitTestTextPosition: *const fn(
+            self: *const IDWriteTextLayout,
+            textPosition: u32,
+            isTrailingHit: BOOL,
+            pointX: ?*f32,
+            pointY: ?*f32,
+            hitTestMetrics: ?*DWRITE_HIT_TEST_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HitTestTextRange: *const fn(
+            self: *const IDWriteTextLayout,
+            textPosition: u32,
+            textLength: u32,
+            originX: f32,
+            originY: f32,
+            hitTestMetrics: ?[*]DWRITE_HIT_TEST_METRICS,
+            maxHitTestMetricsCount: u32,
+            actualHitTestMetricsCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3748,96 +2591,43 @@ pub const IID_IDWriteBitmapRenderTarget = &IID_IDWriteBitmapRenderTarget_Value;
 pub const IDWriteBitmapRenderTarget = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DrawGlyphRun: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                measuringMode: DWRITE_MEASURING_MODE,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                renderingParams: ?*IDWriteRenderingParams,
-                textColor: u32,
-                blackBoxRect: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                measuringMode: DWRITE_MEASURING_MODE,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                renderingParams: ?*IDWriteRenderingParams,
-                textColor: u32,
-                blackBoxRect: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMemoryDC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget,
-            ) callconv(@import("std").os.windows.WINAPI) ?HDC,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget,
-            ) callconv(@import("std").os.windows.WINAPI) ?HDC,
-        },
-        GetPixelsPerDip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-        },
-        SetPixelsPerDip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget,
-                pixelsPerDip: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget,
-                pixelsPerDip: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCurrentTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget,
-                transform: ?*DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget,
-                transform: ?*DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCurrentTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget,
-                transform: ?*const DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget,
-                transform: ?*const DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget,
-                size: ?*SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget,
-                size: ?*SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Resize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget,
-                width: u32,
-                height: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget,
-                width: u32,
-                height: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DrawGlyphRun: *const fn(
+            self: *const IDWriteBitmapRenderTarget,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            measuringMode: DWRITE_MEASURING_MODE,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            renderingParams: ?*IDWriteRenderingParams,
+            textColor: u32,
+            blackBoxRect: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMemoryDC: *const fn(
+            self: *const IDWriteBitmapRenderTarget,
+        ) callconv(@import("std").os.windows.WINAPI) ?HDC,
+        GetPixelsPerDip: *const fn(
+            self: *const IDWriteBitmapRenderTarget,
+        ) callconv(@import("std").os.windows.WINAPI) f32,
+        SetPixelsPerDip: *const fn(
+            self: *const IDWriteBitmapRenderTarget,
+            pixelsPerDip: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentTransform: *const fn(
+            self: *const IDWriteBitmapRenderTarget,
+            transform: ?*DWRITE_MATRIX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCurrentTransform: *const fn(
+            self: *const IDWriteBitmapRenderTarget,
+            transform: ?*const DWRITE_MATRIX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSize: *const fn(
+            self: *const IDWriteBitmapRenderTarget,
+            size: ?*SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Resize: *const fn(
+            self: *const IDWriteBitmapRenderTarget,
+            width: u32,
+            height: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3884,72 +2674,34 @@ pub const IID_IDWriteGdiInterop = &IID_IDWriteGdiInterop_Value;
 pub const IDWriteGdiInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateFontFromLOGFONT: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGdiInterop,
-                logFont: ?*const LOGFONTW,
-                font: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGdiInterop,
-                logFont: ?*const LOGFONTW,
-                font: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertFontToLOGFONT: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGdiInterop,
-                font: ?*IDWriteFont,
-                logFont: ?*LOGFONTW,
-                isSystemFont: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGdiInterop,
-                font: ?*IDWriteFont,
-                logFont: ?*LOGFONTW,
-                isSystemFont: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertFontFaceToLOGFONT: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGdiInterop,
-                font: ?*IDWriteFontFace,
-                logFont: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGdiInterop,
-                font: ?*IDWriteFontFace,
-                logFont: ?*LOGFONTW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFaceFromHdc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGdiInterop,
-                hdc: ?HDC,
-                fontFace: ?*?*IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGdiInterop,
-                hdc: ?HDC,
-                fontFace: ?*?*IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateBitmapRenderTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGdiInterop,
-                hdc: ?HDC,
-                width: u32,
-                height: u32,
-                renderTarget: ?*?*IDWriteBitmapRenderTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGdiInterop,
-                hdc: ?HDC,
-                width: u32,
-                height: u32,
-                renderTarget: ?*?*IDWriteBitmapRenderTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateFontFromLOGFONT: *const fn(
+            self: *const IDWriteGdiInterop,
+            logFont: ?*const LOGFONTW,
+            font: ?*?*IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertFontToLOGFONT: *const fn(
+            self: *const IDWriteGdiInterop,
+            font: ?*IDWriteFont,
+            logFont: ?*LOGFONTW,
+            isSystemFont: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertFontFaceToLOGFONT: *const fn(
+            self: *const IDWriteGdiInterop,
+            font: ?*IDWriteFontFace,
+            logFont: ?*LOGFONTW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFaceFromHdc: *const fn(
+            self: *const IDWriteGdiInterop,
+            hdc: ?HDC,
+            fontFace: ?*?*IDWriteFontFace,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateBitmapRenderTarget: *const fn(
+            self: *const IDWriteGdiInterop,
+            hdc: ?HDC,
+            width: u32,
+            height: u32,
+            renderTarget: ?*?*IDWriteBitmapRenderTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3991,52 +2743,26 @@ pub const IID_IDWriteGlyphRunAnalysis = &IID_IDWriteGlyphRunAnalysis_Value;
 pub const IDWriteGlyphRunAnalysis = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAlphaTextureBounds: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGlyphRunAnalysis,
-                textureType: DWRITE_TEXTURE_TYPE,
-                textureBounds: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGlyphRunAnalysis,
-                textureType: DWRITE_TEXTURE_TYPE,
-                textureBounds: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateAlphaTexture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGlyphRunAnalysis,
-                textureType: DWRITE_TEXTURE_TYPE,
-                textureBounds: ?*const RECT,
-                // TODO: what to do with BytesParamIndex 3?
-                alphaValues: ?*u8,
-                bufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGlyphRunAnalysis,
-                textureType: DWRITE_TEXTURE_TYPE,
-                textureBounds: ?*const RECT,
-                // TODO: what to do with BytesParamIndex 3?
-                alphaValues: ?*u8,
-                bufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAlphaBlendParams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGlyphRunAnalysis,
-                renderingParams: ?*IDWriteRenderingParams,
-                blendGamma: ?*f32,
-                blendEnhancedContrast: ?*f32,
-                blendClearTypeLevel: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGlyphRunAnalysis,
-                renderingParams: ?*IDWriteRenderingParams,
-                blendGamma: ?*f32,
-                blendEnhancedContrast: ?*f32,
-                blendClearTypeLevel: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAlphaTextureBounds: *const fn(
+            self: *const IDWriteGlyphRunAnalysis,
+            textureType: DWRITE_TEXTURE_TYPE,
+            textureBounds: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAlphaTexture: *const fn(
+            self: *const IDWriteGlyphRunAnalysis,
+            textureType: DWRITE_TEXTURE_TYPE,
+            textureBounds: ?*const RECT,
+            // TODO: what to do with BytesParamIndex 3?
+            alphaValues: ?*u8,
+            bufferSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAlphaBlendParams: *const fn(
+            self: *const IDWriteGlyphRunAnalysis,
+            renderingParams: ?*IDWriteRenderingParams,
+            blendGamma: ?*f32,
+            blendEnhancedContrast: ?*f32,
+            blendClearTypeLevel: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4063,322 +2789,143 @@ pub const IID_IDWriteFactory = &IID_IDWriteFactory_Value;
 pub const IDWriteFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSystemFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                fontCollection: ?*?*IDWriteFontCollection,
-                checkForUpdates: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                fontCollection: ?*?*IDWriteFontCollection,
-                checkForUpdates: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCustomFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                collectionLoader: ?*IDWriteFontCollectionLoader,
-                // TODO: what to do with BytesParamIndex 2?
-                collectionKey: ?*const anyopaque,
-                collectionKeySize: u32,
-                fontCollection: ?*?*IDWriteFontCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                collectionLoader: ?*IDWriteFontCollectionLoader,
-                // TODO: what to do with BytesParamIndex 2?
-                collectionKey: ?*const anyopaque,
-                collectionKeySize: u32,
-                fontCollection: ?*?*IDWriteFontCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterFontCollectionLoader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                fontCollectionLoader: ?*IDWriteFontCollectionLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                fontCollectionLoader: ?*IDWriteFontCollectionLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterFontCollectionLoader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                fontCollectionLoader: ?*IDWriteFontCollectionLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                fontCollectionLoader: ?*IDWriteFontCollectionLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFileReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                filePath: ?[*:0]const u16,
-                lastWriteTime: ?*const FILETIME,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                filePath: ?[*:0]const u16,
-                lastWriteTime: ?*const FILETIME,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCustomFontFileReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                fontFileLoader: ?*IDWriteFontFileLoader,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                fontFileLoader: ?*IDWriteFontFileLoader,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                fontFaceType: DWRITE_FONT_FACE_TYPE,
-                numberOfFiles: u32,
-                fontFiles: [*]?*IDWriteFontFile,
-                faceIndex: u32,
-                fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS,
-                fontFace: ?*?*IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                fontFaceType: DWRITE_FONT_FACE_TYPE,
-                numberOfFiles: u32,
-                fontFiles: [*]?*IDWriteFontFile,
-                faceIndex: u32,
-                fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS,
-                fontFace: ?*?*IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRenderingParams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                renderingParams: ?*?*IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                renderingParams: ?*?*IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateMonitorRenderingParams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                monitor: ?HMONITOR,
-                renderingParams: ?*?*IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                monitor: ?HMONITOR,
-                renderingParams: ?*?*IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCustomRenderingParams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                gamma: f32,
-                enhancedContrast: f32,
-                clearTypeLevel: f32,
-                pixelGeometry: DWRITE_PIXEL_GEOMETRY,
-                renderingMode: DWRITE_RENDERING_MODE,
-                renderingParams: ?*?*IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                gamma: f32,
-                enhancedContrast: f32,
-                clearTypeLevel: f32,
-                pixelGeometry: DWRITE_PIXEL_GEOMETRY,
-                renderingMode: DWRITE_RENDERING_MODE,
-                renderingParams: ?*?*IDWriteRenderingParams,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterFontFileLoader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                fontFileLoader: ?*IDWriteFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                fontFileLoader: ?*IDWriteFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterFontFileLoader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                fontFileLoader: ?*IDWriteFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                fontFileLoader: ?*IDWriteFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTextFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                fontFamilyName: ?[*:0]const u16,
-                fontCollection: ?*IDWriteFontCollection,
-                fontWeight: DWRITE_FONT_WEIGHT,
-                fontStyle: DWRITE_FONT_STYLE,
-                fontStretch: DWRITE_FONT_STRETCH,
-                fontSize: f32,
-                localeName: ?[*:0]const u16,
-                textFormat: ?*?*IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                fontFamilyName: ?[*:0]const u16,
-                fontCollection: ?*IDWriteFontCollection,
-                fontWeight: DWRITE_FONT_WEIGHT,
-                fontStyle: DWRITE_FONT_STYLE,
-                fontStretch: DWRITE_FONT_STRETCH,
-                fontSize: f32,
-                localeName: ?[*:0]const u16,
-                textFormat: ?*?*IDWriteTextFormat,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTypography: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                typography: ?*?*IDWriteTypography,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                typography: ?*?*IDWriteTypography,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGdiInterop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                gdiInterop: ?*?*IDWriteGdiInterop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                gdiInterop: ?*?*IDWriteGdiInterop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTextLayout: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                string: [*:0]const u16,
-                stringLength: u32,
-                textFormat: ?*IDWriteTextFormat,
-                maxWidth: f32,
-                maxHeight: f32,
-                textLayout: ?*?*IDWriteTextLayout,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                string: [*:0]const u16,
-                stringLength: u32,
-                textFormat: ?*IDWriteTextFormat,
-                maxWidth: f32,
-                maxHeight: f32,
-                textLayout: ?*?*IDWriteTextLayout,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateGdiCompatibleTextLayout: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                string: [*:0]const u16,
-                stringLength: u32,
-                textFormat: ?*IDWriteTextFormat,
-                layoutWidth: f32,
-                layoutHeight: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                useGdiNatural: BOOL,
-                textLayout: ?*?*IDWriteTextLayout,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                string: [*:0]const u16,
-                stringLength: u32,
-                textFormat: ?*IDWriteTextFormat,
-                layoutWidth: f32,
-                layoutHeight: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                useGdiNatural: BOOL,
-                textLayout: ?*?*IDWriteTextLayout,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateEllipsisTrimmingSign: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                textFormat: ?*IDWriteTextFormat,
-                trimmingSign: ?*?*IDWriteInlineObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                textFormat: ?*IDWriteTextFormat,
-                trimmingSign: ?*?*IDWriteInlineObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTextAnalyzer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                textAnalyzer: ?*?*IDWriteTextAnalyzer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                textAnalyzer: ?*?*IDWriteTextAnalyzer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateNumberSubstitution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                substitutionMethod: DWRITE_NUMBER_SUBSTITUTION_METHOD,
-                localeName: ?[*:0]const u16,
-                ignoreUserOverride: BOOL,
-                numberSubstitution: ?*?*IDWriteNumberSubstitution,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                substitutionMethod: DWRITE_NUMBER_SUBSTITUTION_METHOD,
-                localeName: ?[*:0]const u16,
-                ignoreUserOverride: BOOL,
-                numberSubstitution: ?*?*IDWriteNumberSubstitution,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateGlyphRunAnalysis: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                renderingMode: DWRITE_RENDERING_MODE,
-                measuringMode: DWRITE_MEASURING_MODE,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                renderingMode: DWRITE_RENDERING_MODE,
-                measuringMode: DWRITE_MEASURING_MODE,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSystemFontCollection: *const fn(
+            self: *const IDWriteFactory,
+            fontCollection: ?*?*IDWriteFontCollection,
+            checkForUpdates: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCustomFontCollection: *const fn(
+            self: *const IDWriteFactory,
+            collectionLoader: ?*IDWriteFontCollectionLoader,
+            // TODO: what to do with BytesParamIndex 2?
+            collectionKey: ?*const anyopaque,
+            collectionKeySize: u32,
+            fontCollection: ?*?*IDWriteFontCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterFontCollectionLoader: *const fn(
+            self: *const IDWriteFactory,
+            fontCollectionLoader: ?*IDWriteFontCollectionLoader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterFontCollectionLoader: *const fn(
+            self: *const IDWriteFactory,
+            fontCollectionLoader: ?*IDWriteFontCollectionLoader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFileReference: *const fn(
+            self: *const IDWriteFactory,
+            filePath: ?[*:0]const u16,
+            lastWriteTime: ?*const FILETIME,
+            fontFile: ?*?*IDWriteFontFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCustomFontFileReference: *const fn(
+            self: *const IDWriteFactory,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: ?*const anyopaque,
+            fontFileReferenceKeySize: u32,
+            fontFileLoader: ?*IDWriteFontFileLoader,
+            fontFile: ?*?*IDWriteFontFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFace: *const fn(
+            self: *const IDWriteFactory,
+            fontFaceType: DWRITE_FONT_FACE_TYPE,
+            numberOfFiles: u32,
+            fontFiles: [*]?*IDWriteFontFile,
+            faceIndex: u32,
+            fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS,
+            fontFace: ?*?*IDWriteFontFace,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRenderingParams: *const fn(
+            self: *const IDWriteFactory,
+            renderingParams: ?*?*IDWriteRenderingParams,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateMonitorRenderingParams: *const fn(
+            self: *const IDWriteFactory,
+            monitor: ?HMONITOR,
+            renderingParams: ?*?*IDWriteRenderingParams,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCustomRenderingParams: *const fn(
+            self: *const IDWriteFactory,
+            gamma: f32,
+            enhancedContrast: f32,
+            clearTypeLevel: f32,
+            pixelGeometry: DWRITE_PIXEL_GEOMETRY,
+            renderingMode: DWRITE_RENDERING_MODE,
+            renderingParams: ?*?*IDWriteRenderingParams,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterFontFileLoader: *const fn(
+            self: *const IDWriteFactory,
+            fontFileLoader: ?*IDWriteFontFileLoader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterFontFileLoader: *const fn(
+            self: *const IDWriteFactory,
+            fontFileLoader: ?*IDWriteFontFileLoader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTextFormat: *const fn(
+            self: *const IDWriteFactory,
+            fontFamilyName: ?[*:0]const u16,
+            fontCollection: ?*IDWriteFontCollection,
+            fontWeight: DWRITE_FONT_WEIGHT,
+            fontStyle: DWRITE_FONT_STYLE,
+            fontStretch: DWRITE_FONT_STRETCH,
+            fontSize: f32,
+            localeName: ?[*:0]const u16,
+            textFormat: ?*?*IDWriteTextFormat,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTypography: *const fn(
+            self: *const IDWriteFactory,
+            typography: ?*?*IDWriteTypography,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGdiInterop: *const fn(
+            self: *const IDWriteFactory,
+            gdiInterop: ?*?*IDWriteGdiInterop,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTextLayout: *const fn(
+            self: *const IDWriteFactory,
+            string: [*:0]const u16,
+            stringLength: u32,
+            textFormat: ?*IDWriteTextFormat,
+            maxWidth: f32,
+            maxHeight: f32,
+            textLayout: ?*?*IDWriteTextLayout,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateGdiCompatibleTextLayout: *const fn(
+            self: *const IDWriteFactory,
+            string: [*:0]const u16,
+            stringLength: u32,
+            textFormat: ?*IDWriteTextFormat,
+            layoutWidth: f32,
+            layoutHeight: f32,
+            pixelsPerDip: f32,
+            transform: ?*const DWRITE_MATRIX,
+            useGdiNatural: BOOL,
+            textLayout: ?*?*IDWriteTextLayout,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEllipsisTrimmingSign: *const fn(
+            self: *const IDWriteFactory,
+            textFormat: ?*IDWriteTextFormat,
+            trimmingSign: ?*?*IDWriteInlineObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTextAnalyzer: *const fn(
+            self: *const IDWriteFactory,
+            textAnalyzer: ?*?*IDWriteTextAnalyzer,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateNumberSubstitution: *const fn(
+            self: *const IDWriteFactory,
+            substitutionMethod: DWRITE_NUMBER_SUBSTITUTION_METHOD,
+            localeName: ?[*:0]const u16,
+            ignoreUserOverride: BOOL,
+            numberSubstitution: ?*?*IDWriteNumberSubstitution,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateGlyphRunAnalysis: *const fn(
+            self: *const IDWriteFactory,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            pixelsPerDip: f32,
+            transform: ?*const DWRITE_MATRIX,
+            renderingMode: DWRITE_RENDERING_MODE,
+            measuringMode: DWRITE_MEASURING_MODE,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5264,40 +3811,21 @@ pub const IID_IDWriteFactory1 = &IID_IDWriteFactory1_Value;
 pub const IDWriteFactory1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFactory.VTable,
-        GetEudcFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory1,
-                fontCollection: ?*?*IDWriteFontCollection,
-                checkForUpdates: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory1,
-                fontCollection: ?*?*IDWriteFontCollection,
-                checkForUpdates: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCustomRenderingParams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory1,
-                gamma: f32,
-                enhancedContrast: f32,
-                enhancedContrastGrayscale: f32,
-                clearTypeLevel: f32,
-                pixelGeometry: DWRITE_PIXEL_GEOMETRY,
-                renderingMode: DWRITE_RENDERING_MODE,
-                renderingParams: ?*?*IDWriteRenderingParams1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory1,
-                gamma: f32,
-                enhancedContrast: f32,
-                enhancedContrastGrayscale: f32,
-                clearTypeLevel: f32,
-                pixelGeometry: DWRITE_PIXEL_GEOMETRY,
-                renderingMode: DWRITE_RENDERING_MODE,
-                renderingParams: ?*?*IDWriteRenderingParams1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetEudcFontCollection: *const fn(
+            self: *const IDWriteFactory1,
+            fontCollection: ?*?*IDWriteFontCollection,
+            checkForUpdates: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCustomRenderingParams: *const fn(
+            self: *const IDWriteFactory1,
+            gamma: f32,
+            enhancedContrast: f32,
+            enhancedContrastGrayscale: f32,
+            clearTypeLevel: f32,
+            pixelGeometry: DWRITE_PIXEL_GEOMETRY,
+            renderingMode: DWRITE_RENDERING_MODE,
+            renderingParams: ?*?*IDWriteRenderingParams1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5320,172 +3848,77 @@ pub const IID_IDWriteFontFace1 = &IID_IDWriteFontFace1_Value;
 pub const IDWriteFontFace1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFace.VTable,
-        GetMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-                fontMetrics: ?*DWRITE_FONT_METRICS1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-                fontMetrics: ?*DWRITE_FONT_METRICS1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetGdiCompatibleMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-                emSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                fontMetrics: ?*DWRITE_FONT_METRICS1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-                emSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                fontMetrics: ?*DWRITE_FONT_METRICS1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCaretMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-                caretMetrics: ?*DWRITE_CARET_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-                caretMetrics: ?*DWRITE_CARET_METRICS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetUnicodeRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-                maxRangeCount: u32,
-                unicodeRanges: ?[*]DWRITE_UNICODE_RANGE,
-                actualRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-                maxRangeCount: u32,
-                unicodeRanges: ?[*]DWRITE_UNICODE_RANGE,
-                actualRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsMonospacedFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetDesignGlyphAdvances: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-                glyphCount: u32,
-                glyphIndices: [*:0]const u16,
-                glyphAdvances: [*]i32,
-                isSideways: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-                glyphCount: u32,
-                glyphIndices: [*:0]const u16,
-                glyphAdvances: [*]i32,
-                isSideways: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGdiCompatibleGlyphAdvances: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-                emSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                useGdiNatural: BOOL,
-                isSideways: BOOL,
-                glyphCount: u32,
-                glyphIndices: [*:0]const u16,
-                glyphAdvances: [*]i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-                emSize: f32,
-                pixelsPerDip: f32,
-                transform: ?*const DWRITE_MATRIX,
-                useGdiNatural: BOOL,
-                isSideways: BOOL,
-                glyphCount: u32,
-                glyphIndices: [*:0]const u16,
-                glyphAdvances: [*]i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKerningPairAdjustments: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-                glyphCount: u32,
-                glyphIndices: [*:0]const u16,
-                glyphAdvanceAdjustments: [*]i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-                glyphCount: u32,
-                glyphIndices: [*:0]const u16,
-                glyphAdvanceAdjustments: [*]i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasKerningPairs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetRecommendedRenderingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-                fontEmSize: f32,
-                dpiX: f32,
-                dpiY: f32,
-                transform: ?*const DWRITE_MATRIX,
-                isSideways: BOOL,
-                outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
-                measuringMode: DWRITE_MEASURING_MODE,
-                renderingMode: ?*DWRITE_RENDERING_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-                fontEmSize: f32,
-                dpiX: f32,
-                dpiY: f32,
-                transform: ?*const DWRITE_MATRIX,
-                isSideways: BOOL,
-                outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
-                measuringMode: DWRITE_MEASURING_MODE,
-                renderingMode: ?*DWRITE_RENDERING_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVerticalGlyphVariants: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-                glyphCount: u32,
-                nominalGlyphIndices: [*:0]const u16,
-                verticalGlyphIndices: [*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-                glyphCount: u32,
-                nominalGlyphIndices: [*:0]const u16,
-                verticalGlyphIndices: [*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasVerticalGlyphVariants: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        GetMetrics: *const fn(
+            self: *const IDWriteFontFace1,
+            fontMetrics: ?*DWRITE_FONT_METRICS1,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetGdiCompatibleMetrics: *const fn(
+            self: *const IDWriteFontFace1,
+            emSize: f32,
+            pixelsPerDip: f32,
+            transform: ?*const DWRITE_MATRIX,
+            fontMetrics: ?*DWRITE_FONT_METRICS1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCaretMetrics: *const fn(
+            self: *const IDWriteFontFace1,
+            caretMetrics: ?*DWRITE_CARET_METRICS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetUnicodeRanges: *const fn(
+            self: *const IDWriteFontFace1,
+            maxRangeCount: u32,
+            unicodeRanges: ?[*]DWRITE_UNICODE_RANGE,
+            actualRangeCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsMonospacedFont: *const fn(
+            self: *const IDWriteFontFace1,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetDesignGlyphAdvances: *const fn(
+            self: *const IDWriteFontFace1,
+            glyphCount: u32,
+            glyphIndices: [*:0]const u16,
+            glyphAdvances: [*]i32,
+            isSideways: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGdiCompatibleGlyphAdvances: *const fn(
+            self: *const IDWriteFontFace1,
+            emSize: f32,
+            pixelsPerDip: f32,
+            transform: ?*const DWRITE_MATRIX,
+            useGdiNatural: BOOL,
+            isSideways: BOOL,
+            glyphCount: u32,
+            glyphIndices: [*:0]const u16,
+            glyphAdvances: [*]i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKerningPairAdjustments: *const fn(
+            self: *const IDWriteFontFace1,
+            glyphCount: u32,
+            glyphIndices: [*:0]const u16,
+            glyphAdvanceAdjustments: [*]i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasKerningPairs: *const fn(
+            self: *const IDWriteFontFace1,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetRecommendedRenderingMode: *const fn(
+            self: *const IDWriteFontFace1,
+            fontEmSize: f32,
+            dpiX: f32,
+            dpiY: f32,
+            transform: ?*const DWRITE_MATRIX,
+            isSideways: BOOL,
+            outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
+            measuringMode: DWRITE_MEASURING_MODE,
+            renderingMode: ?*DWRITE_RENDERING_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVerticalGlyphVariants: *const fn(
+            self: *const IDWriteFontFace1,
+            glyphCount: u32,
+            nominalGlyphIndices: [*:0]const u16,
+            verticalGlyphIndices: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasVerticalGlyphVariants: *const fn(
+            self: *const IDWriteFontFace1,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5548,48 +3981,23 @@ pub const IID_IDWriteFont1 = &IID_IDWriteFont1_Value;
 pub const IDWriteFont1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFont.VTable,
-        GetMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont1,
-                fontMetrics: ?*DWRITE_FONT_METRICS1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFont1,
-                fontMetrics: ?*DWRITE_FONT_METRICS1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetPanose: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont1,
-                panose: ?*DWRITE_PANOSE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFont1,
-                panose: ?*DWRITE_PANOSE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetUnicodeRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont1,
-                maxRangeCount: u32,
-                unicodeRanges: ?[*]DWRITE_UNICODE_RANGE,
-                actualRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFont1,
-                maxRangeCount: u32,
-                unicodeRanges: ?[*]DWRITE_UNICODE_RANGE,
-                actualRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsMonospacedFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFont1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        GetMetrics: *const fn(
+            self: *const IDWriteFont1,
+            fontMetrics: ?*DWRITE_FONT_METRICS1,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetPanose: *const fn(
+            self: *const IDWriteFont1,
+            panose: ?*DWRITE_PANOSE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetUnicodeRanges: *const fn(
+            self: *const IDWriteFont1,
+            maxRangeCount: u32,
+            unicodeRanges: ?[*]DWRITE_UNICODE_RANGE,
+            actualRangeCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsMonospacedFont: *const fn(
+            self: *const IDWriteFont1,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5620,14 +4028,9 @@ pub const IID_IDWriteRenderingParams1 = &IID_IDWriteRenderingParams1_Value;
 pub const IDWriteRenderingParams1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteRenderingParams.VTable,
-        GetGrayscaleEnhancedContrast: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRenderingParams1,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-            else => *const fn(
-                self: *const IDWriteRenderingParams1,
-            ) callconv(@import("std").os.windows.WINAPI) f32,
-        },
+        GetGrayscaleEnhancedContrast: *const fn(
+            self: *const IDWriteRenderingParams1,
+        ) callconv(@import("std").os.windows.WINAPI) f32,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5646,212 +4049,100 @@ pub const IID_IDWriteTextAnalyzer1 = &IID_IDWriteTextAnalyzer1_Value;
 pub const IDWriteTextAnalyzer1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextAnalyzer.VTable,
-        ApplyCharacterSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer1,
-                leadingSpacing: f32,
-                trailingSpacing: f32,
-                minimumAdvanceWidth: f32,
-                textLength: u32,
-                glyphCount: u32,
-                clusterMap: [*:0]const u16,
-                glyphAdvances: [*]const f32,
-                glyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
-                glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                modifiedGlyphAdvances: [*]f32,
-                modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer1,
-                leadingSpacing: f32,
-                trailingSpacing: f32,
-                minimumAdvanceWidth: f32,
-                textLength: u32,
-                glyphCount: u32,
-                clusterMap: [*:0]const u16,
-                glyphAdvances: [*]const f32,
-                glyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
-                glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                modifiedGlyphAdvances: [*]f32,
-                modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBaseline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer1,
-                fontFace: ?*IDWriteFontFace,
-                baseline: DWRITE_BASELINE,
-                isVertical: BOOL,
-                isSimulationAllowed: BOOL,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                baselineCoordinate: ?*i32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer1,
-                fontFace: ?*IDWriteFontFace,
-                baseline: DWRITE_BASELINE,
-                isVertical: BOOL,
-                isSimulationAllowed: BOOL,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                baselineCoordinate: ?*i32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AnalyzeVerticalGlyphOrientation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer1,
-                analysisSource: ?*IDWriteTextAnalysisSource1,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer1,
-                analysisSource: ?*IDWriteTextAnalysisSource1,
-                textPosition: u32,
-                textLength: u32,
-                analysisSink: ?*IDWriteTextAnalysisSink1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphOrientationTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer1,
-                glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                isSideways: BOOL,
-                transform: ?*DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer1,
-                glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                isSideways: BOOL,
-                transform: ?*DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetScriptProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer1,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                scriptProperties: ?*DWRITE_SCRIPT_PROPERTIES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer1,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                scriptProperties: ?*DWRITE_SCRIPT_PROPERTIES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTextComplexity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer1,
-                textString: [*:0]const u16,
-                textLength: u32,
-                fontFace: ?*IDWriteFontFace,
-                isTextSimple: ?*BOOL,
-                textLengthRead: ?*u32,
-                glyphIndices: ?[*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer1,
-                textString: [*:0]const u16,
-                textLength: u32,
-                fontFace: ?*IDWriteFontFace,
-                isTextSimple: ?*BOOL,
-                textLengthRead: ?*u32,
-                glyphIndices: ?[*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetJustificationOpportunities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer1,
-                fontFace: ?*IDWriteFontFace,
-                fontEmSize: f32,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                textLength: u32,
-                glyphCount: u32,
-                textString: [*:0]const u16,
-                clusterMap: [*:0]const u16,
-                glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                justificationOpportunities: [*]DWRITE_JUSTIFICATION_OPPORTUNITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer1,
-                fontFace: ?*IDWriteFontFace,
-                fontEmSize: f32,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                textLength: u32,
-                glyphCount: u32,
-                textString: [*:0]const u16,
-                clusterMap: [*:0]const u16,
-                glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                justificationOpportunities: [*]DWRITE_JUSTIFICATION_OPPORTUNITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        JustifyGlyphAdvances: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer1,
-                lineWidth: f32,
-                glyphCount: u32,
-                justificationOpportunities: [*]const DWRITE_JUSTIFICATION_OPPORTUNITY,
-                glyphAdvances: [*]const f32,
-                glyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
-                justifiedGlyphAdvances: [*]f32,
-                justifiedGlyphOffsets: ?[*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer1,
-                lineWidth: f32,
-                glyphCount: u32,
-                justificationOpportunities: [*]const DWRITE_JUSTIFICATION_OPPORTUNITY,
-                glyphAdvances: [*]const f32,
-                glyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
-                justifiedGlyphAdvances: [*]f32,
-                justifiedGlyphOffsets: ?[*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetJustifiedGlyphs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer1,
-                fontFace: ?*IDWriteFontFace,
-                fontEmSize: f32,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                textLength: u32,
-                glyphCount: u32,
-                maxGlyphCount: u32,
-                clusterMap: ?[*:0]const u16,
-                glyphIndices: [*:0]const u16,
-                glyphAdvances: [*]const f32,
-                justifiedGlyphAdvances: [*]const f32,
-                justifiedGlyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
-                glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                actualGlyphCount: ?*u32,
-                modifiedClusterMap: ?[*:0]u16,
-                modifiedGlyphIndices: [*:0]u16,
-                modifiedGlyphAdvances: [*]f32,
-                modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer1,
-                fontFace: ?*IDWriteFontFace,
-                fontEmSize: f32,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                textLength: u32,
-                glyphCount: u32,
-                maxGlyphCount: u32,
-                clusterMap: ?[*:0]const u16,
-                glyphIndices: [*:0]const u16,
-                glyphAdvances: [*]const f32,
-                justifiedGlyphAdvances: [*]const f32,
-                justifiedGlyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
-                glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
-                actualGlyphCount: ?*u32,
-                modifiedClusterMap: ?[*:0]u16,
-                modifiedGlyphIndices: [*:0]u16,
-                modifiedGlyphAdvances: [*]f32,
-                modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ApplyCharacterSpacing: *const fn(
+            self: *const IDWriteTextAnalyzer1,
+            leadingSpacing: f32,
+            trailingSpacing: f32,
+            minimumAdvanceWidth: f32,
+            textLength: u32,
+            glyphCount: u32,
+            clusterMap: [*:0]const u16,
+            glyphAdvances: [*]const f32,
+            glyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
+            glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
+            modifiedGlyphAdvances: [*]f32,
+            modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBaseline: *const fn(
+            self: *const IDWriteTextAnalyzer1,
+            fontFace: ?*IDWriteFontFace,
+            baseline: DWRITE_BASELINE,
+            isVertical: BOOL,
+            isSimulationAllowed: BOOL,
+            scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
+            localeName: ?[*:0]const u16,
+            baselineCoordinate: ?*i32,
+            exists: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AnalyzeVerticalGlyphOrientation: *const fn(
+            self: *const IDWriteTextAnalyzer1,
+            analysisSource: ?*IDWriteTextAnalysisSource1,
+            textPosition: u32,
+            textLength: u32,
+            analysisSink: ?*IDWriteTextAnalysisSink1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphOrientationTransform: *const fn(
+            self: *const IDWriteTextAnalyzer1,
+            glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
+            isSideways: BOOL,
+            transform: ?*DWRITE_MATRIX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptProperties: *const fn(
+            self: *const IDWriteTextAnalyzer1,
+            scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
+            scriptProperties: ?*DWRITE_SCRIPT_PROPERTIES,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTextComplexity: *const fn(
+            self: *const IDWriteTextAnalyzer1,
+            textString: [*:0]const u16,
+            textLength: u32,
+            fontFace: ?*IDWriteFontFace,
+            isTextSimple: ?*BOOL,
+            textLengthRead: ?*u32,
+            glyphIndices: ?[*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetJustificationOpportunities: *const fn(
+            self: *const IDWriteTextAnalyzer1,
+            fontFace: ?*IDWriteFontFace,
+            fontEmSize: f32,
+            scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
+            textLength: u32,
+            glyphCount: u32,
+            textString: [*:0]const u16,
+            clusterMap: [*:0]const u16,
+            glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
+            justificationOpportunities: [*]DWRITE_JUSTIFICATION_OPPORTUNITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        JustifyGlyphAdvances: *const fn(
+            self: *const IDWriteTextAnalyzer1,
+            lineWidth: f32,
+            glyphCount: u32,
+            justificationOpportunities: [*]const DWRITE_JUSTIFICATION_OPPORTUNITY,
+            glyphAdvances: [*]const f32,
+            glyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
+            justifiedGlyphAdvances: [*]f32,
+            justifiedGlyphOffsets: ?[*]DWRITE_GLYPH_OFFSET,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetJustifiedGlyphs: *const fn(
+            self: *const IDWriteTextAnalyzer1,
+            fontFace: ?*IDWriteFontFace,
+            fontEmSize: f32,
+            scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
+            textLength: u32,
+            glyphCount: u32,
+            maxGlyphCount: u32,
+            clusterMap: ?[*:0]const u16,
+            glyphIndices: [*:0]const u16,
+            glyphAdvances: [*]const f32,
+            justifiedGlyphAdvances: [*]const f32,
+            justifiedGlyphOffsets: [*]const DWRITE_GLYPH_OFFSET,
+            glyphProperties: [*]const DWRITE_SHAPING_GLYPH_PROPERTIES,
+            actualGlyphCount: ?*u32,
+            modifiedClusterMap: ?[*:0]u16,
+            modifiedGlyphIndices: [*:0]u16,
+            modifiedGlyphAdvances: [*]f32,
+            modifiedGlyphOffsets: [*]DWRITE_GLYPH_OFFSET,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5902,22 +4193,13 @@ pub const IID_IDWriteTextAnalysisSource1 = &IID_IDWriteTextAnalysisSource1_Value
 pub const IDWriteTextAnalysisSource1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextAnalysisSource.VTable,
-        GetVerticalGlyphOrientation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSource1,
-                textPosition: u32,
-                textLength: ?*u32,
-                glyphOrientation: ?*DWRITE_VERTICAL_GLYPH_ORIENTATION,
-                bidiLevel: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSource1,
-                textPosition: u32,
-                textLength: ?*u32,
-                glyphOrientation: ?*DWRITE_VERTICAL_GLYPH_ORIENTATION,
-                bidiLevel: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetVerticalGlyphOrientation: *const fn(
+            self: *const IDWriteTextAnalysisSource1,
+            textPosition: u32,
+            textLength: ?*u32,
+            glyphOrientation: ?*DWRITE_VERTICAL_GLYPH_ORIENTATION,
+            bidiLevel: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5936,26 +4218,15 @@ pub const IID_IDWriteTextAnalysisSink1 = &IID_IDWriteTextAnalysisSink1_Value;
 pub const IDWriteTextAnalysisSink1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextAnalysisSink.VTable,
-        SetGlyphOrientation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalysisSink1,
-                textPosition: u32,
-                textLength: u32,
-                glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                adjustedBidiLevel: u8,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalysisSink1,
-                textPosition: u32,
-                textLength: u32,
-                glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                adjustedBidiLevel: u8,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetGlyphOrientation: *const fn(
+            self: *const IDWriteTextAnalysisSink1,
+            textPosition: u32,
+            textLength: u32,
+            glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
+            adjustedBidiLevel: u8,
+            isSideways: BOOL,
+            isRightToLeft: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5974,66 +4245,32 @@ pub const IID_IDWriteTextLayout1 = &IID_IDWriteTextLayout1_Value;
 pub const IDWriteTextLayout1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextLayout.VTable,
-        SetPairKerning: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout1,
-                isPairKerningEnabled: BOOL,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout1,
-                isPairKerningEnabled: BOOL,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPairKerning: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout1,
-                currentPosition: u32,
-                isPairKerningEnabled: ?*BOOL,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout1,
-                currentPosition: u32,
-                isPairKerningEnabled: ?*BOOL,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCharacterSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout1,
-                leadingSpacing: f32,
-                trailingSpacing: f32,
-                minimumAdvanceWidth: f32,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout1,
-                leadingSpacing: f32,
-                trailingSpacing: f32,
-                minimumAdvanceWidth: f32,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCharacterSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout1,
-                currentPosition: u32,
-                leadingSpacing: ?*f32,
-                trailingSpacing: ?*f32,
-                minimumAdvanceWidth: ?*f32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout1,
-                currentPosition: u32,
-                leadingSpacing: ?*f32,
-                trailingSpacing: ?*f32,
-                minimumAdvanceWidth: ?*f32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetPairKerning: *const fn(
+            self: *const IDWriteTextLayout1,
+            isPairKerningEnabled: BOOL,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPairKerning: *const fn(
+            self: *const IDWriteTextLayout1,
+            currentPosition: u32,
+            isPairKerningEnabled: ?*BOOL,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCharacterSpacing: *const fn(
+            self: *const IDWriteTextLayout1,
+            leadingSpacing: f32,
+            trailingSpacing: f32,
+            minimumAdvanceWidth: f32,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCharacterSpacing: *const fn(
+            self: *const IDWriteTextLayout1,
+            currentPosition: u32,
+            leadingSpacing: ?*f32,
+            trailingSpacing: ?*f32,
+            minimumAdvanceWidth: ?*f32,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6071,24 +4308,13 @@ pub const IID_IDWriteBitmapRenderTarget1 = &IID_IDWriteBitmapRenderTarget1_Value
 pub const IDWriteBitmapRenderTarget1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteBitmapRenderTarget.VTable,
-        GetTextAntialiasMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget1,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_TEXT_ANTIALIAS_MODE,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget1,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_TEXT_ANTIALIAS_MODE,
-        },
-        SetTextAntialiasMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteBitmapRenderTarget1,
-                antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteBitmapRenderTarget1,
-                antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetTextAntialiasMode: *const fn(
+            self: *const IDWriteBitmapRenderTarget1,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_TEXT_ANTIALIAS_MODE,
+        SetTextAntialiasMode: *const fn(
+            self: *const IDWriteBitmapRenderTarget1,
+            antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6132,94 +4358,46 @@ pub const IID_IDWriteTextRenderer1 = &IID_IDWriteTextRenderer1_Value;
 pub const IDWriteTextRenderer1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextRenderer.VTable,
-        DrawGlyphRun: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextRenderer1,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                measuringMode: DWRITE_MEASURING_MODE,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextRenderer1,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                measuringMode: DWRITE_MEASURING_MODE,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DrawUnderline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextRenderer1,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                underline: ?*const DWRITE_UNDERLINE,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextRenderer1,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                underline: ?*const DWRITE_UNDERLINE,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DrawStrikethrough: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextRenderer1,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                strikethrough: ?*const DWRITE_STRIKETHROUGH,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextRenderer1,
-                clientDrawingContext: ?*anyopaque,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                strikethrough: ?*const DWRITE_STRIKETHROUGH,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DrawInlineObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextRenderer1,
-                clientDrawingContext: ?*anyopaque,
-                originX: f32,
-                originY: f32,
-                orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                inlineObject: ?*IDWriteInlineObject,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextRenderer1,
-                clientDrawingContext: ?*anyopaque,
-                originX: f32,
-                originY: f32,
-                orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                inlineObject: ?*IDWriteInlineObject,
-                isSideways: BOOL,
-                isRightToLeft: BOOL,
-                clientDrawingEffect: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DrawGlyphRun: *const fn(
+            self: *const IDWriteTextRenderer1,
+            clientDrawingContext: ?*anyopaque,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
+            measuringMode: DWRITE_MEASURING_MODE,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
+            clientDrawingEffect: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DrawUnderline: *const fn(
+            self: *const IDWriteTextRenderer1,
+            clientDrawingContext: ?*anyopaque,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
+            underline: ?*const DWRITE_UNDERLINE,
+            clientDrawingEffect: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DrawStrikethrough: *const fn(
+            self: *const IDWriteTextRenderer1,
+            clientDrawingContext: ?*anyopaque,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
+            strikethrough: ?*const DWRITE_STRIKETHROUGH,
+            clientDrawingEffect: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DrawInlineObject: *const fn(
+            self: *const IDWriteTextRenderer1,
+            clientDrawingContext: ?*anyopaque,
+            originX: f32,
+            originY: f32,
+            orientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
+            inlineObject: ?*IDWriteInlineObject,
+            isSideways: BOOL,
+            isRightToLeft: BOOL,
+            clientDrawingEffect: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6250,80 +4428,35 @@ pub const IID_IDWriteTextFormat1 = &IID_IDWriteTextFormat1_Value;
 pub const IDWriteTextFormat1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextFormat.VTable,
-        SetVerticalGlyphOrientation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat1,
-                glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat1,
-                glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVerticalGlyphOrientation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat1,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_VERTICAL_GLYPH_ORIENTATION,
-            else => *const fn(
-                self: *const IDWriteTextFormat1,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_VERTICAL_GLYPH_ORIENTATION,
-        },
-        SetLastLineWrapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat1,
-                isLastLineWrappingEnabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat1,
-                isLastLineWrappingEnabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastLineWrapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteTextFormat1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        SetOpticalAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat1,
-                opticalAlignment: DWRITE_OPTICAL_ALIGNMENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat1,
-                opticalAlignment: DWRITE_OPTICAL_ALIGNMENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOpticalAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat1,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_OPTICAL_ALIGNMENT,
-            else => *const fn(
-                self: *const IDWriteTextFormat1,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_OPTICAL_ALIGNMENT,
-        },
-        SetFontFallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat1,
-                fontFallback: ?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat1,
-                fontFallback: ?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat1,
-                fontFallback: ?*?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat1,
-                fontFallback: ?*?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetVerticalGlyphOrientation: *const fn(
+            self: *const IDWriteTextFormat1,
+            glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVerticalGlyphOrientation: *const fn(
+            self: *const IDWriteTextFormat1,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_VERTICAL_GLYPH_ORIENTATION,
+        SetLastLineWrapping: *const fn(
+            self: *const IDWriteTextFormat1,
+            isLastLineWrappingEnabled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastLineWrapping: *const fn(
+            self: *const IDWriteTextFormat1,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        SetOpticalAlignment: *const fn(
+            self: *const IDWriteTextFormat1,
+            opticalAlignment: DWRITE_OPTICAL_ALIGNMENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOpticalAlignment: *const fn(
+            self: *const IDWriteTextFormat1,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_OPTICAL_ALIGNMENT,
+        SetFontFallback: *const fn(
+            self: *const IDWriteTextFormat1,
+            fontFallback: ?*IDWriteFontFallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFallback: *const fn(
+            self: *const IDWriteTextFormat1,
+            fontFallback: ?*?*IDWriteFontFallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6370,90 +4503,39 @@ pub const IID_IDWriteTextLayout2 = &IID_IDWriteTextLayout2_Value;
 pub const IDWriteTextLayout2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextLayout1.VTable,
-        GetMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout2,
-                textMetrics: ?*DWRITE_TEXT_METRICS1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout2,
-                textMetrics: ?*DWRITE_TEXT_METRICS1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetVerticalGlyphOrientation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout2,
-                glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout2,
-                glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVerticalGlyphOrientation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout2,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_VERTICAL_GLYPH_ORIENTATION,
-            else => *const fn(
-                self: *const IDWriteTextLayout2,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_VERTICAL_GLYPH_ORIENTATION,
-        },
-        SetLastLineWrapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout2,
-                isLastLineWrappingEnabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout2,
-                isLastLineWrappingEnabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastLineWrapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteTextLayout2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        SetOpticalAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout2,
-                opticalAlignment: DWRITE_OPTICAL_ALIGNMENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout2,
-                opticalAlignment: DWRITE_OPTICAL_ALIGNMENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOpticalAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout2,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_OPTICAL_ALIGNMENT,
-            else => *const fn(
-                self: *const IDWriteTextLayout2,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_OPTICAL_ALIGNMENT,
-        },
-        SetFontFallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout2,
-                fontFallback: ?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout2,
-                fontFallback: ?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout2,
-                fontFallback: ?*?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout2,
-                fontFallback: ?*?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetMetrics: *const fn(
+            self: *const IDWriteTextLayout2,
+            textMetrics: ?*DWRITE_TEXT_METRICS1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetVerticalGlyphOrientation: *const fn(
+            self: *const IDWriteTextLayout2,
+            glyphOrientation: DWRITE_VERTICAL_GLYPH_ORIENTATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVerticalGlyphOrientation: *const fn(
+            self: *const IDWriteTextLayout2,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_VERTICAL_GLYPH_ORIENTATION,
+        SetLastLineWrapping: *const fn(
+            self: *const IDWriteTextLayout2,
+            isLastLineWrappingEnabled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastLineWrapping: *const fn(
+            self: *const IDWriteTextLayout2,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        SetOpticalAlignment: *const fn(
+            self: *const IDWriteTextLayout2,
+            opticalAlignment: DWRITE_OPTICAL_ALIGNMENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOpticalAlignment: *const fn(
+            self: *const IDWriteTextLayout2,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_OPTICAL_ALIGNMENT,
+        SetFontFallback: *const fn(
+            self: *const IDWriteTextLayout2,
+            fontFallback: ?*IDWriteFontFallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFallback: *const fn(
+            self: *const IDWriteTextLayout2,
+            fontFallback: ?*?*IDWriteFontFallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6504,66 +4586,33 @@ pub const IID_IDWriteTextAnalyzer2 = &IID_IDWriteTextAnalyzer2_Value;
 pub const IDWriteTextAnalyzer2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextAnalyzer1.VTable,
-        GetGlyphOrientationTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer2,
-                glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                isSideways: BOOL,
-                originX: f32,
-                originY: f32,
-                transform: ?*DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer2,
-                glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
-                isSideways: BOOL,
-                originX: f32,
-                originY: f32,
-                transform: ?*DWRITE_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTypographicFeatures: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer2,
-                fontFace: ?*IDWriteFontFace,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                maxTagCount: u32,
-                actualTagCount: ?*u32,
-                tags: [*]DWRITE_FONT_FEATURE_TAG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer2,
-                fontFace: ?*IDWriteFontFace,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                maxTagCount: u32,
-                actualTagCount: ?*u32,
-                tags: [*]DWRITE_FONT_FEATURE_TAG,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckTypographicFeature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextAnalyzer2,
-                fontFace: ?*IDWriteFontFace,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                featureTag: DWRITE_FONT_FEATURE_TAG,
-                glyphCount: u32,
-                glyphIndices: [*:0]const u16,
-                featureApplies: [*:0]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextAnalyzer2,
-                fontFace: ?*IDWriteFontFace,
-                scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
-                localeName: ?[*:0]const u16,
-                featureTag: DWRITE_FONT_FEATURE_TAG,
-                glyphCount: u32,
-                glyphIndices: [*:0]const u16,
-                featureApplies: [*:0]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetGlyphOrientationTransform: *const fn(
+            self: *const IDWriteTextAnalyzer2,
+            glyphOrientationAngle: DWRITE_GLYPH_ORIENTATION_ANGLE,
+            isSideways: BOOL,
+            originX: f32,
+            originY: f32,
+            transform: ?*DWRITE_MATRIX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTypographicFeatures: *const fn(
+            self: *const IDWriteTextAnalyzer2,
+            fontFace: ?*IDWriteFontFace,
+            scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
+            localeName: ?[*:0]const u16,
+            maxTagCount: u32,
+            actualTagCount: ?*u32,
+            tags: [*]DWRITE_FONT_FEATURE_TAG,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckTypographicFeature: *const fn(
+            self: *const IDWriteTextAnalyzer2,
+            fontFace: ?*IDWriteFontFace,
+            scriptAnalysis: DWRITE_SCRIPT_ANALYSIS,
+            localeName: ?[*:0]const u16,
+            featureTag: DWRITE_FONT_FEATURE_TAG,
+            glyphCount: u32,
+            glyphIndices: [*:0]const u16,
+            featureApplies: [*:0]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6590,36 +4639,20 @@ pub const IID_IDWriteFontFallback = &IID_IDWriteFontFallback_Value;
 pub const IDWriteFontFallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        MapCharacters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFallback,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                baseFontCollection: ?*IDWriteFontCollection,
-                baseFamilyName: ?[*:0]const u16,
-                baseWeight: DWRITE_FONT_WEIGHT,
-                baseStyle: DWRITE_FONT_STYLE,
-                baseStretch: DWRITE_FONT_STRETCH,
-                mappedLength: ?*u32,
-                mappedFont: ?*?*IDWriteFont,
-                scale: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFallback,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                baseFontCollection: ?*IDWriteFontCollection,
-                baseFamilyName: ?[*:0]const u16,
-                baseWeight: DWRITE_FONT_WEIGHT,
-                baseStyle: DWRITE_FONT_STYLE,
-                baseStretch: DWRITE_FONT_STRETCH,
-                mappedLength: ?*u32,
-                mappedFont: ?*?*IDWriteFont,
-                scale: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        MapCharacters: *const fn(
+            self: *const IDWriteFontFallback,
+            analysisSource: ?*IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textLength: u32,
+            baseFontCollection: ?*IDWriteFontCollection,
+            baseFamilyName: ?[*:0]const u16,
+            baseWeight: DWRITE_FONT_WEIGHT,
+            baseStyle: DWRITE_FONT_STYLE,
+            baseStretch: DWRITE_FONT_STRETCH,
+            mappedLength: ?*u32,
+            mappedFont: ?*?*IDWriteFont,
+            scale: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6638,50 +4671,25 @@ pub const IID_IDWriteFontFallbackBuilder = &IID_IDWriteFontFallbackBuilder_Value
 pub const IDWriteFontFallbackBuilder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddMapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFallbackBuilder,
-                ranges: [*]const DWRITE_UNICODE_RANGE,
-                rangesCount: u32,
-                targetFamilyNames: [*]const ?*const u16,
-                targetFamilyNamesCount: u32,
-                fontCollection: ?*IDWriteFontCollection,
-                localeName: ?[*:0]const u16,
-                baseFamilyName: ?[*:0]const u16,
-                scale: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFallbackBuilder,
-                ranges: [*]const DWRITE_UNICODE_RANGE,
-                rangesCount: u32,
-                targetFamilyNames: [*]const ?*const u16,
-                targetFamilyNamesCount: u32,
-                fontCollection: ?*IDWriteFontCollection,
-                localeName: ?[*:0]const u16,
-                baseFamilyName: ?[*:0]const u16,
-                scale: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddMappings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFallbackBuilder,
-                fontFallback: ?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFallbackBuilder,
-                fontFallback: ?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFallbackBuilder,
-                fontFallback: ?*?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFallbackBuilder,
-                fontFallback: ?*?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddMapping: *const fn(
+            self: *const IDWriteFontFallbackBuilder,
+            ranges: [*]const DWRITE_UNICODE_RANGE,
+            rangesCount: u32,
+            targetFamilyNames: [*]const ?*const u16,
+            targetFamilyNamesCount: u32,
+            fontCollection: ?*IDWriteFontCollection,
+            localeName: ?[*:0]const u16,
+            baseFamilyName: ?[*:0]const u16,
+            scale: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddMappings: *const fn(
+            self: *const IDWriteFontFallbackBuilder,
+            fontFallback: ?*IDWriteFontFallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFallback: *const fn(
+            self: *const IDWriteFontFallbackBuilder,
+            fontFallback: ?*?*IDWriteFontFallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6708,14 +4716,9 @@ pub const IID_IDWriteFont2 = &IID_IDWriteFont2_Value;
 pub const IDWriteFont2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFont1.VTable,
-        IsColorFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFont2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        IsColorFont: *const fn(
+            self: *const IDWriteFont2,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6734,74 +4737,35 @@ pub const IID_IDWriteFontFace2 = &IID_IDWriteFontFace2_Value;
 pub const IDWriteFontFace2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFace1.VTable,
-        IsColorFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetColorPaletteCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace2,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontFace2,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetPaletteEntryCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace2,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontFace2,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetPaletteEntries: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace2,
-                colorPaletteIndex: u32,
-                firstEntryIndex: u32,
-                entryCount: u32,
-                paletteEntries: [*]DWRITE_COLOR_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace2,
-                colorPaletteIndex: u32,
-                firstEntryIndex: u32,
-                entryCount: u32,
-                paletteEntries: [*]DWRITE_COLOR_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRecommendedRenderingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace2,
-                fontEmSize: f32,
-                dpiX: f32,
-                dpiY: f32,
-                transform: ?*const DWRITE_MATRIX,
-                isSideways: BOOL,
-                outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
-                measuringMode: DWRITE_MEASURING_MODE,
-                renderingParams: ?*IDWriteRenderingParams,
-                renderingMode: ?*DWRITE_RENDERING_MODE,
-                gridFitMode: ?*DWRITE_GRID_FIT_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace2,
-                fontEmSize: f32,
-                dpiX: f32,
-                dpiY: f32,
-                transform: ?*const DWRITE_MATRIX,
-                isSideways: BOOL,
-                outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
-                measuringMode: DWRITE_MEASURING_MODE,
-                renderingParams: ?*IDWriteRenderingParams,
-                renderingMode: ?*DWRITE_RENDERING_MODE,
-                gridFitMode: ?*DWRITE_GRID_FIT_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsColorFont: *const fn(
+            self: *const IDWriteFontFace2,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetColorPaletteCount: *const fn(
+            self: *const IDWriteFontFace2,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetPaletteEntryCount: *const fn(
+            self: *const IDWriteFontFace2,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetPaletteEntries: *const fn(
+            self: *const IDWriteFontFace2,
+            colorPaletteIndex: u32,
+            firstEntryIndex: u32,
+            entryCount: u32,
+            paletteEntries: [*]DWRITE_COLOR_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRecommendedRenderingMode: *const fn(
+            self: *const IDWriteFontFace2,
+            fontEmSize: f32,
+            dpiX: f32,
+            dpiY: f32,
+            transform: ?*const DWRITE_MATRIX,
+            isSideways: BOOL,
+            outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
+            measuringMode: DWRITE_MEASURING_MODE,
+            renderingParams: ?*IDWriteRenderingParams,
+            renderingMode: ?*DWRITE_RENDERING_MODE,
+            gridFitMode: ?*DWRITE_GRID_FIT_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6845,26 +4809,14 @@ pub const IID_IDWriteColorGlyphRunEnumerator = &IID_IDWriteColorGlyphRunEnumerat
 pub const IDWriteColorGlyphRunEnumerator = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        MoveNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteColorGlyphRunEnumerator,
-                hasRun: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteColorGlyphRunEnumerator,
-                hasRun: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCurrentRun: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteColorGlyphRunEnumerator,
-                colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteColorGlyphRunEnumerator,
-                colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        MoveNext: *const fn(
+            self: *const IDWriteColorGlyphRunEnumerator,
+            hasRun: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentRun: *const fn(
+            self: *const IDWriteColorGlyphRunEnumerator,
+            colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6887,14 +4839,9 @@ pub const IID_IDWriteRenderingParams2 = &IID_IDWriteRenderingParams2_Value;
 pub const IDWriteRenderingParams2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteRenderingParams1.VTable,
-        GetGridFitMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRenderingParams2,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_GRID_FIT_MODE,
-            else => *const fn(
-                self: *const IDWriteRenderingParams2,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_GRID_FIT_MODE,
-        },
+        GetGridFitMode: *const fn(
+            self: *const IDWriteRenderingParams2,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_GRID_FIT_MODE,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6913,100 +4860,48 @@ pub const IID_IDWriteFactory2 = &IID_IDWriteFactory2_Value;
 pub const IDWriteFactory2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFactory1.VTable,
-        GetSystemFontFallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory2,
-                fontFallback: ?*?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory2,
-                fontFallback: ?*?*IDWriteFontFallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFallbackBuilder: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory2,
-                fontFallbackBuilder: ?*?*IDWriteFontFallbackBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory2,
-                fontFallbackBuilder: ?*?*IDWriteFontFallbackBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TranslateColorGlyphRun: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory2,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-                measuringMode: DWRITE_MEASURING_MODE,
-                worldToDeviceTransform: ?*const DWRITE_MATRIX,
-                colorPaletteIndex: u32,
-                colorLayers: ?*?*IDWriteColorGlyphRunEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory2,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-                measuringMode: DWRITE_MEASURING_MODE,
-                worldToDeviceTransform: ?*const DWRITE_MATRIX,
-                colorPaletteIndex: u32,
-                colorLayers: ?*?*IDWriteColorGlyphRunEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCustomRenderingParams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory2,
-                gamma: f32,
-                enhancedContrast: f32,
-                grayscaleEnhancedContrast: f32,
-                clearTypeLevel: f32,
-                pixelGeometry: DWRITE_PIXEL_GEOMETRY,
-                renderingMode: DWRITE_RENDERING_MODE,
-                gridFitMode: DWRITE_GRID_FIT_MODE,
-                renderingParams: ?*?*IDWriteRenderingParams2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory2,
-                gamma: f32,
-                enhancedContrast: f32,
-                grayscaleEnhancedContrast: f32,
-                clearTypeLevel: f32,
-                pixelGeometry: DWRITE_PIXEL_GEOMETRY,
-                renderingMode: DWRITE_RENDERING_MODE,
-                gridFitMode: DWRITE_GRID_FIT_MODE,
-                renderingParams: ?*?*IDWriteRenderingParams2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateGlyphRunAnalysis: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory2,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                transform: ?*const DWRITE_MATRIX,
-                renderingMode: DWRITE_RENDERING_MODE,
-                measuringMode: DWRITE_MEASURING_MODE,
-                gridFitMode: DWRITE_GRID_FIT_MODE,
-                antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory2,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                transform: ?*const DWRITE_MATRIX,
-                renderingMode: DWRITE_RENDERING_MODE,
-                measuringMode: DWRITE_MEASURING_MODE,
-                gridFitMode: DWRITE_GRID_FIT_MODE,
-                antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSystemFontFallback: *const fn(
+            self: *const IDWriteFactory2,
+            fontFallback: ?*?*IDWriteFontFallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFallbackBuilder: *const fn(
+            self: *const IDWriteFactory2,
+            fontFallbackBuilder: ?*?*IDWriteFontFallbackBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TranslateColorGlyphRun: *const fn(
+            self: *const IDWriteFactory2,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
+            measuringMode: DWRITE_MEASURING_MODE,
+            worldToDeviceTransform: ?*const DWRITE_MATRIX,
+            colorPaletteIndex: u32,
+            colorLayers: ?*?*IDWriteColorGlyphRunEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCustomRenderingParams: *const fn(
+            self: *const IDWriteFactory2,
+            gamma: f32,
+            enhancedContrast: f32,
+            grayscaleEnhancedContrast: f32,
+            clearTypeLevel: f32,
+            pixelGeometry: DWRITE_PIXEL_GEOMETRY,
+            renderingMode: DWRITE_RENDERING_MODE,
+            gridFitMode: DWRITE_GRID_FIT_MODE,
+            renderingParams: ?*?*IDWriteRenderingParams2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateGlyphRunAnalysis: *const fn(
+            self: *const IDWriteFactory2,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            transform: ?*const DWRITE_MATRIX,
+            renderingMode: DWRITE_RENDERING_MODE,
+            measuringMode: DWRITE_MEASURING_MODE,
+            gridFitMode: DWRITE_GRID_FIT_MODE,
+            antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7116,14 +5011,9 @@ pub const IID_IDWriteRenderingParams3 = &IID_IDWriteRenderingParams3_Value;
 pub const IDWriteRenderingParams3 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteRenderingParams2.VTable,
-        GetRenderingMode1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRenderingParams3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE1,
-            else => *const fn(
-                self: *const IDWriteRenderingParams3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE1,
-        },
+        GetRenderingMode1: *const fn(
+            self: *const IDWriteRenderingParams3,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE1,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7142,146 +5032,67 @@ pub const IID_IDWriteFactory3 = &IID_IDWriteFactory3_Value;
 pub const IDWriteFactory3 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFactory2.VTable,
-        CreateGlyphRunAnalysis: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory3,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                transform: ?*const DWRITE_MATRIX,
-                renderingMode: DWRITE_RENDERING_MODE1,
-                measuringMode: DWRITE_MEASURING_MODE,
-                gridFitMode: DWRITE_GRID_FIT_MODE,
-                antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory3,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                transform: ?*const DWRITE_MATRIX,
-                renderingMode: DWRITE_RENDERING_MODE1,
-                measuringMode: DWRITE_MEASURING_MODE,
-                gridFitMode: DWRITE_GRID_FIT_MODE,
-                antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
-                baselineOriginX: f32,
-                baselineOriginY: f32,
-                glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCustomRenderingParams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory3,
-                gamma: f32,
-                enhancedContrast: f32,
-                grayscaleEnhancedContrast: f32,
-                clearTypeLevel: f32,
-                pixelGeometry: DWRITE_PIXEL_GEOMETRY,
-                renderingMode: DWRITE_RENDERING_MODE1,
-                gridFitMode: DWRITE_GRID_FIT_MODE,
-                renderingParams: ?*?*IDWriteRenderingParams3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory3,
-                gamma: f32,
-                enhancedContrast: f32,
-                grayscaleEnhancedContrast: f32,
-                clearTypeLevel: f32,
-                pixelGeometry: DWRITE_PIXEL_GEOMETRY,
-                renderingMode: DWRITE_RENDERING_MODE1,
-                gridFitMode: DWRITE_GRID_FIT_MODE,
-                renderingParams: ?*?*IDWriteRenderingParams3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory3,
-                fontFile: ?*IDWriteFontFile,
-                faceIndex: u32,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory3,
-                fontFile: ?*IDWriteFontFile,
-                faceIndex: u32,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFaceReference1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory3,
-                filePath: ?[*:0]const u16,
-                lastWriteTime: ?*const FILETIME,
-                faceIndex: u32,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory3,
-                filePath: ?[*:0]const u16,
-                lastWriteTime: ?*const FILETIME,
-                faceIndex: u32,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSystemFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory3,
-                fontSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory3,
-                fontSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontSetBuilder: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory3,
-                fontSetBuilder: ?*?*IDWriteFontSetBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory3,
-                fontSetBuilder: ?*?*IDWriteFontSetBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontCollectionFromFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory3,
-                fontSet: ?*IDWriteFontSet,
-                fontCollection: ?*?*IDWriteFontCollection1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory3,
-                fontSet: ?*IDWriteFontSet,
-                fontCollection: ?*?*IDWriteFontCollection1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSystemFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory3,
-                includeDownloadableFonts: BOOL,
-                fontCollection: ?*?*IDWriteFontCollection1,
-                checkForUpdates: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory3,
-                includeDownloadableFonts: BOOL,
-                fontCollection: ?*?*IDWriteFontCollection1,
-                checkForUpdates: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontDownloadQueue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory3,
-                fontDownloadQueue: ?*?*IDWriteFontDownloadQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory3,
-                fontDownloadQueue: ?*?*IDWriteFontDownloadQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateGlyphRunAnalysis: *const fn(
+            self: *const IDWriteFactory3,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            transform: ?*const DWRITE_MATRIX,
+            renderingMode: DWRITE_RENDERING_MODE1,
+            measuringMode: DWRITE_MEASURING_MODE,
+            gridFitMode: DWRITE_GRID_FIT_MODE,
+            antialiasMode: DWRITE_TEXT_ANTIALIAS_MODE,
+            baselineOriginX: f32,
+            baselineOriginY: f32,
+            glyphRunAnalysis: ?*?*IDWriteGlyphRunAnalysis,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCustomRenderingParams: *const fn(
+            self: *const IDWriteFactory3,
+            gamma: f32,
+            enhancedContrast: f32,
+            grayscaleEnhancedContrast: f32,
+            clearTypeLevel: f32,
+            pixelGeometry: DWRITE_PIXEL_GEOMETRY,
+            renderingMode: DWRITE_RENDERING_MODE1,
+            gridFitMode: DWRITE_GRID_FIT_MODE,
+            renderingParams: ?*?*IDWriteRenderingParams3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFaceReference: *const fn(
+            self: *const IDWriteFactory3,
+            fontFile: ?*IDWriteFontFile,
+            faceIndex: u32,
+            fontSimulations: DWRITE_FONT_SIMULATIONS,
+            fontFaceReference: ?*?*IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFaceReference1: *const fn(
+            self: *const IDWriteFactory3,
+            filePath: ?[*:0]const u16,
+            lastWriteTime: ?*const FILETIME,
+            faceIndex: u32,
+            fontSimulations: DWRITE_FONT_SIMULATIONS,
+            fontFaceReference: ?*?*IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSystemFontSet: *const fn(
+            self: *const IDWriteFactory3,
+            fontSet: ?*?*IDWriteFontSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontSetBuilder: *const fn(
+            self: *const IDWriteFactory3,
+            fontSetBuilder: ?*?*IDWriteFontSetBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontCollectionFromFontSet: *const fn(
+            self: *const IDWriteFactory3,
+            fontSet: ?*IDWriteFontSet,
+            fontCollection: ?*?*IDWriteFontCollection1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSystemFontCollection: *const fn(
+            self: *const IDWriteFactory3,
+            includeDownloadableFonts: BOOL,
+            fontCollection: ?*?*IDWriteFontCollection1,
+            checkForUpdates: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontDownloadQueue: *const fn(
+            self: *const IDWriteFactory3,
+            fontDownloadQueue: ?*?*IDWriteFontDownloadQueue,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7332,140 +5143,63 @@ pub const IID_IDWriteFontSet = &IID_IDWriteFontSet_Value;
 pub const IDWriteFontSet = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFontCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-                listIndex: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-                listIndex: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-                fontFaceReference: ?*IDWriteFontFaceReference,
-                listIndex: ?*u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-                fontFaceReference: ?*IDWriteFontFaceReference,
-                listIndex: ?*u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindFontFace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-                fontFace: ?*IDWriteFontFace,
-                listIndex: ?*u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-                fontFace: ?*IDWriteFontFace,
-                listIndex: ?*u32,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-                propertyID: DWRITE_FONT_PROPERTY_ID,
-                values: ?*?*IDWriteStringList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-                propertyID: DWRITE_FONT_PROPERTY_ID,
-                values: ?*?*IDWriteStringList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyValues1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-                propertyID: DWRITE_FONT_PROPERTY_ID,
-                preferredLocaleNames: ?[*:0]const u16,
-                values: ?*?*IDWriteStringList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-                propertyID: DWRITE_FONT_PROPERTY_ID,
-                preferredLocaleNames: ?[*:0]const u16,
-                values: ?*?*IDWriteStringList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyValues2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-                listIndex: u32,
-                propertyId: DWRITE_FONT_PROPERTY_ID,
-                exists: ?*BOOL,
-                values: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-                listIndex: u32,
-                propertyId: DWRITE_FONT_PROPERTY_ID,
-                exists: ?*BOOL,
-                values: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyOccurrenceCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-                property: ?*const DWRITE_FONT_PROPERTY,
-                propertyOccurrenceCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-                property: ?*const DWRITE_FONT_PROPERTY,
-                propertyOccurrenceCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMatchingFonts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-                familyName: ?[*:0]const u16,
-                fontWeight: DWRITE_FONT_WEIGHT,
-                fontStretch: DWRITE_FONT_STRETCH,
-                fontStyle: DWRITE_FONT_STYLE,
-                filteredSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-                familyName: ?[*:0]const u16,
-                fontWeight: DWRITE_FONT_WEIGHT,
-                fontStretch: DWRITE_FONT_STRETCH,
-                fontStyle: DWRITE_FONT_STYLE,
-                filteredSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMatchingFonts1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet,
-                properties: [*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-                filteredSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet,
-                properties: [*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-                filteredSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontCount: *const fn(
+            self: *const IDWriteFontSet,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontFaceReference: *const fn(
+            self: *const IDWriteFontSet,
+            listIndex: u32,
+            fontFaceReference: ?*?*IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFontFaceReference: *const fn(
+            self: *const IDWriteFontSet,
+            fontFaceReference: ?*IDWriteFontFaceReference,
+            listIndex: ?*u32,
+            exists: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindFontFace: *const fn(
+            self: *const IDWriteFontSet,
+            fontFace: ?*IDWriteFontFace,
+            listIndex: ?*u32,
+            exists: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyValues: *const fn(
+            self: *const IDWriteFontSet,
+            propertyID: DWRITE_FONT_PROPERTY_ID,
+            values: ?*?*IDWriteStringList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyValues1: *const fn(
+            self: *const IDWriteFontSet,
+            propertyID: DWRITE_FONT_PROPERTY_ID,
+            preferredLocaleNames: ?[*:0]const u16,
+            values: ?*?*IDWriteStringList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyValues2: *const fn(
+            self: *const IDWriteFontSet,
+            listIndex: u32,
+            propertyId: DWRITE_FONT_PROPERTY_ID,
+            exists: ?*BOOL,
+            values: ?*?*IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyOccurrenceCount: *const fn(
+            self: *const IDWriteFontSet,
+            property: ?*const DWRITE_FONT_PROPERTY,
+            propertyOccurrenceCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMatchingFonts: *const fn(
+            self: *const IDWriteFontSet,
+            familyName: ?[*:0]const u16,
+            fontWeight: DWRITE_FONT_WEIGHT,
+            fontStretch: DWRITE_FONT_STRETCH,
+            fontStyle: DWRITE_FONT_STYLE,
+            filteredSet: ?*?*IDWriteFontSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMatchingFonts1: *const fn(
+            self: *const IDWriteFontSet,
+            properties: [*]const DWRITE_FONT_PROPERTY,
+            propertyCount: u32,
+            filteredSet: ?*?*IDWriteFontSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7519,50 +5253,24 @@ pub const IID_IDWriteFontSetBuilder = &IID_IDWriteFontSetBuilder_Value;
 pub const IDWriteFontSetBuilder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSetBuilder,
-                fontFaceReference: ?*IDWriteFontFaceReference,
-                properties: [*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSetBuilder,
-                fontFaceReference: ?*IDWriteFontFaceReference,
-                properties: [*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFontFaceReference1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSetBuilder,
-                fontFaceReference: ?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSetBuilder,
-                fontFaceReference: ?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSetBuilder,
-                fontSet: ?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSetBuilder,
-                fontSet: ?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSetBuilder,
-                fontSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSetBuilder,
-                fontSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddFontFaceReference: *const fn(
+            self: *const IDWriteFontSetBuilder,
+            fontFaceReference: ?*IDWriteFontFaceReference,
+            properties: [*]const DWRITE_FONT_PROPERTY,
+            propertyCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFontFaceReference1: *const fn(
+            self: *const IDWriteFontSetBuilder,
+            fontFaceReference: ?*IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFontSet: *const fn(
+            self: *const IDWriteFontSetBuilder,
+            fontSet: ?*IDWriteFontSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontSet: *const fn(
+            self: *const IDWriteFontSetBuilder,
+            fontSet: ?*?*IDWriteFontSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7593,28 +5301,15 @@ pub const IID_IDWriteFontCollection1 = &IID_IDWriteFontCollection1_Value;
 pub const IDWriteFontCollection1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontCollection.VTable,
-        GetFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection1,
-                fontSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontCollection1,
-                fontSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFamily: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection1,
-                index: u32,
-                fontFamily: ?*?*IDWriteFontFamily1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontCollection1,
-                index: u32,
-                fontFamily: ?*?*IDWriteFontFamily1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontSet: *const fn(
+            self: *const IDWriteFontCollection1,
+            fontSet: ?*?*IDWriteFontSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFamily: *const fn(
+            self: *const IDWriteFontCollection1,
+            index: u32,
+            fontFamily: ?*?*IDWriteFontFamily1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7637,40 +5332,20 @@ pub const IID_IDWriteFontFamily1 = &IID_IDWriteFontFamily1_Value;
 pub const IDWriteFontFamily1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFamily.VTable,
-        GetFontLocality: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFamily1,
-                listIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-            else => *const fn(
-                self: *const IDWriteFontFamily1,
-                listIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-        },
-        GetFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFamily1,
-                listIndex: u32,
-                font: ?*?*IDWriteFont3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFamily1,
-                listIndex: u32,
-                font: ?*?*IDWriteFont3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFamily1,
-                listIndex: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFamily1,
-                listIndex: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontLocality: *const fn(
+            self: *const IDWriteFontFamily1,
+            listIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        GetFont: *const fn(
+            self: *const IDWriteFontFamily1,
+            listIndex: u32,
+            font: ?*?*IDWriteFont3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFaceReference: *const fn(
+            self: *const IDWriteFontFamily1,
+            listIndex: u32,
+            fontFaceReference: ?*?*IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7697,40 +5372,20 @@ pub const IID_IDWriteFontList1 = &IID_IDWriteFontList1_Value;
 pub const IDWriteFontList1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontList.VTable,
-        GetFontLocality: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontList1,
-                listIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-            else => *const fn(
-                self: *const IDWriteFontList1,
-                listIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-        },
-        GetFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontList1,
-                listIndex: u32,
-                font: ?*?*IDWriteFont3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontList1,
-                listIndex: u32,
-                font: ?*?*IDWriteFont3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontList1,
-                listIndex: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontList1,
-                listIndex: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontLocality: *const fn(
+            self: *const IDWriteFontList1,
+            listIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        GetFont: *const fn(
+            self: *const IDWriteFontList1,
+            listIndex: u32,
+            font: ?*?*IDWriteFont3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFaceReference: *const fn(
+            self: *const IDWriteFontList1,
+            listIndex: u32,
+            fontFaceReference: ?*?*IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7757,142 +5412,60 @@ pub const IID_IDWriteFontFaceReference = &IID_IDWriteFontFaceReference_Value;
 pub const IDWriteFontFaceReference = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateFontFace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-                fontFace: ?*?*IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-                fontFace: ?*?*IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFaceWithSimulations: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-                fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS,
-                fontFace: ?*?*IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-                fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS,
-                fontFace: ?*?*IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Equals: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-                fontFaceReference: ?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-                fontFaceReference: ?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetFontFaceIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetSimulations: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
-        },
-        GetFontFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocalFileSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetFileSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetFileTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-                lastWriteTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-                lastWriteTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocality: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-        },
-        EnqueueFontDownloadRequest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnqueueCharacterDownloadRequest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-                characters: [*:0]const u16,
-                characterCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-                characters: [*:0]const u16,
-                characterCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnqueueGlyphDownloadRequest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-                glyphIndices: [*:0]const u16,
-                glyphCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-                glyphIndices: [*:0]const u16,
-                glyphCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnqueueFileFragmentDownloadRequest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference,
-                fileOffset: u64,
-                fragmentSize: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference,
-                fileOffset: u64,
-                fragmentSize: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateFontFace: *const fn(
+            self: *const IDWriteFontFaceReference,
+            fontFace: ?*?*IDWriteFontFace3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFaceWithSimulations: *const fn(
+            self: *const IDWriteFontFaceReference,
+            fontFaceSimulationFlags: DWRITE_FONT_SIMULATIONS,
+            fontFace: ?*?*IDWriteFontFace3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Equals: *const fn(
+            self: *const IDWriteFontFaceReference,
+            fontFaceReference: ?*IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetFontFaceIndex: *const fn(
+            self: *const IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetSimulations: *const fn(
+            self: *const IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SIMULATIONS,
+        GetFontFile: *const fn(
+            self: *const IDWriteFontFaceReference,
+            fontFile: ?*?*IDWriteFontFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalFileSize: *const fn(
+            self: *const IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetFileSize: *const fn(
+            self: *const IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetFileTime: *const fn(
+            self: *const IDWriteFontFaceReference,
+            lastWriteTime: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocality: *const fn(
+            self: *const IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        EnqueueFontDownloadRequest: *const fn(
+            self: *const IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnqueueCharacterDownloadRequest: *const fn(
+            self: *const IDWriteFontFaceReference,
+            characters: [*:0]const u16,
+            characterCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnqueueGlyphDownloadRequest: *const fn(
+            self: *const IDWriteFontFaceReference,
+            glyphIndices: [*:0]const u16,
+            glyphCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnqueueFileFragmentDownloadRequest: *const fn(
+            self: *const IDWriteFontFaceReference,
+            fileOffset: u64,
+            fragmentSize: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7963,54 +5536,25 @@ pub const IID_IDWriteFont3 = &IID_IDWriteFont3_Value;
 pub const IDWriteFont3 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFont2.VTable,
-        CreateFontFace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont3,
-                fontFace: ?*?*IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFont3,
-                fontFace: ?*?*IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Equals: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont3,
-                font: ?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFont3,
-                font: ?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont3,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFont3,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasCharacter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont3,
-                unicodeValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFont3,
-                unicodeValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetLocality: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFont3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-            else => *const fn(
-                self: *const IDWriteFont3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-        },
+        CreateFontFace: *const fn(
+            self: *const IDWriteFont3,
+            fontFace: ?*?*IDWriteFontFace3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Equals: *const fn(
+            self: *const IDWriteFont3,
+            font: ?*IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetFontFaceReference: *const fn(
+            self: *const IDWriteFont3,
+            fontFaceReference: ?*?*IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasCharacter: *const fn(
+            self: *const IDWriteFont3,
+            unicodeValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetLocality: *const fn(
+            self: *const IDWriteFont3,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8045,174 +5589,76 @@ pub const IID_IDWriteFontFace3 = &IID_IDWriteFontFace3_Value;
 pub const IDWriteFontFace3 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFace2.VTable,
-        GetFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                fontFaceReference: ?*?*IDWriteFontFaceReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPanose: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                panose: ?*DWRITE_PANOSE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                panose: ?*DWRITE_PANOSE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetWeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
-        },
-        GetStretch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
-        },
-        GetStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
-        },
-        GetFamilyNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFaceNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInformationalStrings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
-                informationalStrings: ?*?*IDWriteLocalizedStrings,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
-                informationalStrings: ?*?*IDWriteLocalizedStrings,
-                exists: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasCharacter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                unicodeValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                unicodeValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetRecommendedRenderingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                fontEmSize: f32,
-                dpiX: f32,
-                dpiY: f32,
-                transform: ?*const DWRITE_MATRIX,
-                isSideways: BOOL,
-                outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
-                measuringMode: DWRITE_MEASURING_MODE,
-                renderingParams: ?*IDWriteRenderingParams,
-                renderingMode: ?*DWRITE_RENDERING_MODE1,
-                gridFitMode: ?*DWRITE_GRID_FIT_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                fontEmSize: f32,
-                dpiX: f32,
-                dpiY: f32,
-                transform: ?*const DWRITE_MATRIX,
-                isSideways: BOOL,
-                outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
-                measuringMode: DWRITE_MEASURING_MODE,
-                renderingParams: ?*IDWriteRenderingParams,
-                renderingMode: ?*DWRITE_RENDERING_MODE1,
-                gridFitMode: ?*DWRITE_GRID_FIT_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsCharacterLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                unicodeValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                unicodeValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        IsGlyphLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                glyphId: u16,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                glyphId: u16,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        AreCharactersLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                characters: [*:0]const u16,
-                characterCount: u32,
-                enqueueIfNotLocal: BOOL,
-                isLocal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                characters: [*:0]const u16,
-                characterCount: u32,
-                enqueueIfNotLocal: BOOL,
-                isLocal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AreGlyphsLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace3,
-                glyphIndices: [*:0]const u16,
-                glyphCount: u32,
-                enqueueIfNotLocal: BOOL,
-                isLocal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace3,
-                glyphIndices: [*:0]const u16,
-                glyphCount: u32,
-                enqueueIfNotLocal: BOOL,
-                isLocal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontFaceReference: *const fn(
+            self: *const IDWriteFontFace3,
+            fontFaceReference: ?*?*IDWriteFontFaceReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPanose: *const fn(
+            self: *const IDWriteFontFace3,
+            panose: ?*DWRITE_PANOSE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetWeight: *const fn(
+            self: *const IDWriteFontFace3,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_WEIGHT,
+        GetStretch: *const fn(
+            self: *const IDWriteFontFace3,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STRETCH,
+        GetStyle: *const fn(
+            self: *const IDWriteFontFace3,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_STYLE,
+        GetFamilyNames: *const fn(
+            self: *const IDWriteFontFace3,
+            names: ?*?*IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFaceNames: *const fn(
+            self: *const IDWriteFontFace3,
+            names: ?*?*IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInformationalStrings: *const fn(
+            self: *const IDWriteFontFace3,
+            informationalStringID: DWRITE_INFORMATIONAL_STRING_ID,
+            informationalStrings: ?*?*IDWriteLocalizedStrings,
+            exists: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasCharacter: *const fn(
+            self: *const IDWriteFontFace3,
+            unicodeValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetRecommendedRenderingMode: *const fn(
+            self: *const IDWriteFontFace3,
+            fontEmSize: f32,
+            dpiX: f32,
+            dpiY: f32,
+            transform: ?*const DWRITE_MATRIX,
+            isSideways: BOOL,
+            outlineThreshold: DWRITE_OUTLINE_THRESHOLD,
+            measuringMode: DWRITE_MEASURING_MODE,
+            renderingParams: ?*IDWriteRenderingParams,
+            renderingMode: ?*DWRITE_RENDERING_MODE1,
+            gridFitMode: ?*DWRITE_GRID_FIT_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsCharacterLocal: *const fn(
+            self: *const IDWriteFontFace3,
+            unicodeValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        IsGlyphLocal: *const fn(
+            self: *const IDWriteFontFace3,
+            glyphId: u16,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        AreCharactersLocal: *const fn(
+            self: *const IDWriteFontFace3,
+            characters: [*:0]const u16,
+            characterCount: u32,
+            enqueueIfNotLocal: BOOL,
+            isLocal: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AreGlyphsLocal: *const fn(
+            self: *const IDWriteFontFace3,
+            glyphIndices: [*:0]const u16,
+            glyphCount: u32,
+            enqueueIfNotLocal: BOOL,
+            isLocal: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8282,66 +5728,31 @@ pub const IID_IDWriteStringList = &IID_IDWriteStringList_Value;
 pub const IDWriteStringList = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteStringList,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteStringList,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetLocaleNameLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteStringList,
-                listIndex: u32,
-                length: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteStringList,
-                listIndex: u32,
-                length: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocaleName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteStringList,
-                listIndex: u32,
-                localeName: [*:0]u16,
-                size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteStringList,
-                listIndex: u32,
-                localeName: [*:0]u16,
-                size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStringLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteStringList,
-                listIndex: u32,
-                length: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteStringList,
-                listIndex: u32,
-                length: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteStringList,
-                listIndex: u32,
-                stringBuffer: [*:0]u16,
-                stringBufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteStringList,
-                listIndex: u32,
-                stringBuffer: [*:0]u16,
-                stringBufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IDWriteStringList,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetLocaleNameLength: *const fn(
+            self: *const IDWriteStringList,
+            listIndex: u32,
+            length: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocaleName: *const fn(
+            self: *const IDWriteStringList,
+            listIndex: u32,
+            localeName: [*:0]u16,
+            size: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStringLength: *const fn(
+            self: *const IDWriteStringList,
+            listIndex: u32,
+            length: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetString: *const fn(
+            self: *const IDWriteStringList,
+            listIndex: u32,
+            stringBuffer: [*:0]u16,
+            stringBufferSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8376,20 +5787,12 @@ pub const IID_IDWriteFontDownloadListener = &IID_IDWriteFontDownloadListener_Val
 pub const IDWriteFontDownloadListener = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DownloadCompleted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontDownloadListener,
-                downloadQueue: ?*IDWriteFontDownloadQueue,
-                context: ?*IUnknown,
-                downloadResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFontDownloadListener,
-                downloadQueue: ?*IDWriteFontDownloadQueue,
-                context: ?*IUnknown,
-                downloadResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        DownloadCompleted: *const fn(
+            self: *const IDWriteFontDownloadListener,
+            downloadQueue: ?*IDWriteFontDownloadQueue,
+            context: ?*IUnknown,
+            downloadResult: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8408,62 +5811,28 @@ pub const IID_IDWriteFontDownloadQueue = &IID_IDWriteFontDownloadQueue_Value;
 pub const IDWriteFontDownloadQueue = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddListener: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontDownloadQueue,
-                listener: ?*IDWriteFontDownloadListener,
-                token: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontDownloadQueue,
-                listener: ?*IDWriteFontDownloadListener,
-                token: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveListener: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontDownloadQueue,
-                token: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontDownloadQueue,
-                token: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEmpty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontDownloadQueue,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontDownloadQueue,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        BeginDownload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontDownloadQueue,
-                context: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontDownloadQueue,
-                context: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CancelDownload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontDownloadQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontDownloadQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGenerationCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontDownloadQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn(
-                self: *const IDWriteFontDownloadQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
+        AddListener: *const fn(
+            self: *const IDWriteFontDownloadQueue,
+            listener: ?*IDWriteFontDownloadListener,
+            token: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveListener: *const fn(
+            self: *const IDWriteFontDownloadQueue,
+            token: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEmpty: *const fn(
+            self: *const IDWriteFontDownloadQueue,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        BeginDownload: *const fn(
+            self: *const IDWriteFontDownloadQueue,
+            context: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CancelDownload: *const fn(
+            self: *const IDWriteFontDownloadQueue,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGenerationCount: *const fn(
+            self: *const IDWriteFontDownloadQueue,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8501,58 +5870,28 @@ pub const IID_IDWriteGdiInterop1 = &IID_IDWriteGdiInterop1_Value;
 pub const IDWriteGdiInterop1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteGdiInterop.VTable,
-        CreateFontFromLOGFONT: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGdiInterop1,
-                logFont: ?*const LOGFONTW,
-                fontCollection: ?*IDWriteFontCollection,
-                font: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGdiInterop1,
-                logFont: ?*const LOGFONTW,
-                fontCollection: ?*IDWriteFontCollection,
-                font: ?*?*IDWriteFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGdiInterop1,
-                fontFace: ?*IDWriteFontFace,
-                fontSignature: ?*FONTSIGNATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGdiInterop1,
-                fontFace: ?*IDWriteFontFace,
-                fontSignature: ?*FONTSIGNATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontSignature1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGdiInterop1,
-                font: ?*IDWriteFont,
-                fontSignature: ?*FONTSIGNATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGdiInterop1,
-                font: ?*IDWriteFont,
-                fontSignature: ?*FONTSIGNATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMatchingFontsByLOGFONT: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteGdiInterop1,
-                logFont: ?*const LOGFONTA,
-                fontSet: ?*IDWriteFontSet,
-                filteredSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteGdiInterop1,
-                logFont: ?*const LOGFONTA,
-                fontSet: ?*IDWriteFontSet,
-                filteredSet: ?*?*IDWriteFontSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateFontFromLOGFONT: *const fn(
+            self: *const IDWriteGdiInterop1,
+            logFont: ?*const LOGFONTW,
+            fontCollection: ?*IDWriteFontCollection,
+            font: ?*?*IDWriteFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontSignature: *const fn(
+            self: *const IDWriteGdiInterop1,
+            fontFace: ?*IDWriteFontFace,
+            fontSignature: ?*FONTSIGNATURE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontSignature1: *const fn(
+            self: *const IDWriteGdiInterop1,
+            font: ?*IDWriteFont,
+            fontSignature: ?*FONTSIGNATURE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMatchingFontsByLOGFONT: *const fn(
+            self: *const IDWriteGdiInterop1,
+            logFont: ?*const LOGFONTA,
+            fontSet: ?*IDWriteFontSet,
+            filteredSet: ?*?*IDWriteFontSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8606,26 +5945,14 @@ pub const IID_IDWriteTextFormat2 = &IID_IDWriteTextFormat2_Value;
 pub const IDWriteTextFormat2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextFormat1.VTable,
-        SetLineSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat2,
-                lineSpacingOptions: ?*const DWRITE_LINE_SPACING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat2,
-                lineSpacingOptions: ?*const DWRITE_LINE_SPACING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLineSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat2,
-                lineSpacingOptions: ?*DWRITE_LINE_SPACING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat2,
-                lineSpacingOptions: ?*DWRITE_LINE_SPACING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetLineSpacing: *const fn(
+            self: *const IDWriteTextFormat2,
+            lineSpacingOptions: ?*const DWRITE_LINE_SPACING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLineSpacing: *const fn(
+            self: *const IDWriteTextFormat2,
+            lineSpacingOptions: ?*DWRITE_LINE_SPACING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8648,48 +5975,23 @@ pub const IID_IDWriteTextLayout3 = &IID_IDWriteTextLayout3_Value;
 pub const IDWriteTextLayout3 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextLayout2.VTable,
-        InvalidateLayout: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLineSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout3,
-                lineSpacingOptions: ?*const DWRITE_LINE_SPACING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout3,
-                lineSpacingOptions: ?*const DWRITE_LINE_SPACING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLineSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout3,
-                lineSpacingOptions: ?*DWRITE_LINE_SPACING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout3,
-                lineSpacingOptions: ?*DWRITE_LINE_SPACING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLineMetrics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout3,
-                lineMetrics: ?[*]DWRITE_LINE_METRICS1,
-                maxLineCount: u32,
-                actualLineCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout3,
-                lineMetrics: ?[*]DWRITE_LINE_METRICS1,
-                maxLineCount: u32,
-                actualLineCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InvalidateLayout: *const fn(
+            self: *const IDWriteTextLayout3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLineSpacing: *const fn(
+            self: *const IDWriteTextLayout3,
+            lineSpacingOptions: ?*const DWRITE_LINE_SPACING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLineSpacing: *const fn(
+            self: *const IDWriteTextLayout3,
+            lineSpacingOptions: ?*DWRITE_LINE_SPACING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLineMetrics: *const fn(
+            self: *const IDWriteTextLayout3,
+            lineMetrics: ?[*]DWRITE_LINE_METRICS1,
+            maxLineCount: u32,
+            actualLineCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8737,16 +6039,10 @@ pub const IID_IDWriteColorGlyphRunEnumerator1 = &IID_IDWriteColorGlyphRunEnumera
 pub const IDWriteColorGlyphRunEnumerator1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteColorGlyphRunEnumerator.VTable,
-        GetCurrentRun: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteColorGlyphRunEnumerator1,
-                colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteColorGlyphRunEnumerator1,
-                colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCurrentRun: *const fn(
+            self: *const IDWriteColorGlyphRunEnumerator1,
+            colorGlyphRun: ?*const ?*DWRITE_COLOR_GLYPH_RUN1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8764,58 +6060,28 @@ pub const IID_IDWriteFontFace4 = &IID_IDWriteFontFace4_Value;
 pub const IDWriteFontFace4 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFace3.VTable,
-        GetGlyphImageFormats: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace4,
-                glyphId: u16,
-                pixelsPerEmFirst: u32,
-                pixelsPerEmLast: u32,
-                glyphImageFormats: ?*DWRITE_GLYPH_IMAGE_FORMATS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace4,
-                glyphId: u16,
-                pixelsPerEmFirst: u32,
-                pixelsPerEmLast: u32,
-                glyphImageFormats: ?*DWRITE_GLYPH_IMAGE_FORMATS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphImageFormats1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace4,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_GLYPH_IMAGE_FORMATS,
-            else => *const fn(
-                self: *const IDWriteFontFace4,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_GLYPH_IMAGE_FORMATS,
-        },
-        GetGlyphImageData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace4,
-                glyphId: u16,
-                pixelsPerEm: u32,
-                glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS,
-                glyphData: ?*DWRITE_GLYPH_IMAGE_DATA,
-                glyphDataContext: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace4,
-                glyphId: u16,
-                pixelsPerEm: u32,
-                glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS,
-                glyphData: ?*DWRITE_GLYPH_IMAGE_DATA,
-                glyphDataContext: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseGlyphImageData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace4,
-                glyphDataContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IDWriteFontFace4,
-                glyphDataContext: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        GetGlyphImageFormats: *const fn(
+            self: *const IDWriteFontFace4,
+            glyphId: u16,
+            pixelsPerEmFirst: u32,
+            pixelsPerEmLast: u32,
+            glyphImageFormats: ?*DWRITE_GLYPH_IMAGE_FORMATS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphImageFormats1: *const fn(
+            self: *const IDWriteFontFace4,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_GLYPH_IMAGE_FORMATS,
+        GetGlyphImageData: *const fn(
+            self: *const IDWriteFontFace4,
+            glyphId: u16,
+            pixelsPerEm: u32,
+            glyphImageFormat: DWRITE_GLYPH_IMAGE_FORMATS,
+            glyphData: ?*DWRITE_GLYPH_IMAGE_DATA,
+            glyphDataContext: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseGlyphImageData: *const fn(
+            self: *const IDWriteFontFace4,
+            glyphDataContext: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8845,62 +6111,31 @@ pub const IID_IDWriteFactory4 = &IID_IDWriteFactory4_Value;
 pub const IDWriteFactory4 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFactory3.VTable,
-        TranslateColorGlyphRun: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory4,
-                baselineOrigin: D2D_POINT_2F,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-                desiredGlyphImageFormats: DWRITE_GLYPH_IMAGE_FORMATS,
-                measuringMode: DWRITE_MEASURING_MODE,
-                worldAndDpiTransform: ?*const DWRITE_MATRIX,
-                colorPaletteIndex: u32,
-                colorLayers: ?*?*IDWriteColorGlyphRunEnumerator1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory4,
-                baselineOrigin: D2D_POINT_2F,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
-                desiredGlyphImageFormats: DWRITE_GLYPH_IMAGE_FORMATS,
-                measuringMode: DWRITE_MEASURING_MODE,
-                worldAndDpiTransform: ?*const DWRITE_MATRIX,
-                colorPaletteIndex: u32,
-                colorLayers: ?*?*IDWriteColorGlyphRunEnumerator1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ComputeGlyphOrigins: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory4,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                baselineOrigin: D2D_POINT_2F,
-                glyphOrigins: ?*D2D_POINT_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory4,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                baselineOrigin: D2D_POINT_2F,
-                glyphOrigins: ?*D2D_POINT_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ComputeGlyphOrigins1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory4,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                measuringMode: DWRITE_MEASURING_MODE,
-                baselineOrigin: D2D_POINT_2F,
-                worldAndDpiTransform: ?*const DWRITE_MATRIX,
-                glyphOrigins: ?*D2D_POINT_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory4,
-                glyphRun: ?*const DWRITE_GLYPH_RUN,
-                measuringMode: DWRITE_MEASURING_MODE,
-                baselineOrigin: D2D_POINT_2F,
-                worldAndDpiTransform: ?*const DWRITE_MATRIX,
-                glyphOrigins: ?*D2D_POINT_2F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        TranslateColorGlyphRun: *const fn(
+            self: *const IDWriteFactory4,
+            baselineOrigin: D2D_POINT_2F,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            glyphRunDescription: ?*const DWRITE_GLYPH_RUN_DESCRIPTION,
+            desiredGlyphImageFormats: DWRITE_GLYPH_IMAGE_FORMATS,
+            measuringMode: DWRITE_MEASURING_MODE,
+            worldAndDpiTransform: ?*const DWRITE_MATRIX,
+            colorPaletteIndex: u32,
+            colorLayers: ?*?*IDWriteColorGlyphRunEnumerator1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ComputeGlyphOrigins: *const fn(
+            self: *const IDWriteFactory4,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            baselineOrigin: D2D_POINT_2F,
+            glyphOrigins: ?*D2D_POINT_2F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ComputeGlyphOrigins1: *const fn(
+            self: *const IDWriteFactory4,
+            glyphRun: ?*const DWRITE_GLYPH_RUN,
+            measuringMode: DWRITE_MEASURING_MODE,
+            baselineOrigin: D2D_POINT_2F,
+            worldAndDpiTransform: ?*const DWRITE_MATRIX,
+            glyphOrigins: ?*D2D_POINT_2F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8926,16 +6161,10 @@ pub const IID_IDWriteFontSetBuilder1 = &IID_IDWriteFontSetBuilder1_Value;
 pub const IDWriteFontSetBuilder1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontSetBuilder.VTable,
-        AddFontFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSetBuilder1,
-                fontFile: ?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSetBuilder1,
-                fontFile: ?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddFontFile: *const fn(
+            self: *const IDWriteFontSetBuilder1,
+            fontFile: ?*IDWriteFontFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8953,22 +6182,12 @@ pub const IID_IDWriteAsyncResult = &IID_IDWriteAsyncResult_Value;
 pub const IDWriteAsyncResult = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetWaitHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteAsyncResult,
-            ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-            else => *const fn(
-                self: *const IDWriteAsyncResult,
-            ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-        },
-        GetResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteAsyncResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteAsyncResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetWaitHandle: *const fn(
+            self: *const IDWriteAsyncResult,
+        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        GetResult: *const fn(
+            self: *const IDWriteAsyncResult,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8995,56 +6214,27 @@ pub const IID_IDWriteRemoteFontFileStream = &IID_IDWriteRemoteFontFileStream_Val
 pub const IDWriteRemoteFontFileStream = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFileStream.VTable,
-        GetLocalFileSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRemoteFontFileStream,
-                localFileSize: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteRemoteFontFileStream,
-                localFileSize: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileFragmentLocality: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRemoteFontFileStream,
-                fileOffset: u64,
-                fragmentSize: u64,
-                isLocal: ?*BOOL,
-                partialSize: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteRemoteFontFileStream,
-                fileOffset: u64,
-                fragmentSize: u64,
-                isLocal: ?*BOOL,
-                partialSize: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocality: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRemoteFontFileStream,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-            else => *const fn(
-                self: *const IDWriteRemoteFontFileStream,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-        },
-        BeginDownload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRemoteFontFileStream,
-                downloadOperationID: ?*const Guid,
-                fileFragments: [*]const DWRITE_FILE_FRAGMENT,
-                fragmentCount: u32,
-                asyncResult: ?*?*IDWriteAsyncResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteRemoteFontFileStream,
-                downloadOperationID: ?*const Guid,
-                fileFragments: [*]const DWRITE_FILE_FRAGMENT,
-                fragmentCount: u32,
-                asyncResult: ?*?*IDWriteAsyncResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetLocalFileSize: *const fn(
+            self: *const IDWriteRemoteFontFileStream,
+            localFileSize: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileFragmentLocality: *const fn(
+            self: *const IDWriteRemoteFontFileStream,
+            fileOffset: u64,
+            fragmentSize: u64,
+            isLocal: ?*BOOL,
+            partialSize: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocality: *const fn(
+            self: *const IDWriteRemoteFontFileStream,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
+        BeginDownload: *const fn(
+            self: *const IDWriteRemoteFontFileStream,
+            downloadOperationID: ?*const Guid,
+            fileFragments: [*]const DWRITE_FILE_FRAGMENT,
+            fragmentCount: u32,
+            asyncResult: ?*?*IDWriteAsyncResult,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9083,54 +6273,27 @@ pub const IID_IDWriteRemoteFontFileLoader = &IID_IDWriteRemoteFontFileLoader_Val
 pub const IDWriteRemoteFontFileLoader = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFileLoader.VTable,
-        CreateRemoteStreamFromKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRemoteFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                fontFileStream: ?*?*IDWriteRemoteFontFileStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteRemoteFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                fontFileStream: ?*?*IDWriteRemoteFontFileStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocalityFromKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRemoteFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                locality: ?*DWRITE_LOCALITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteRemoteFontFileLoader,
-                // TODO: what to do with BytesParamIndex 1?
-                fontFileReferenceKey: ?*const anyopaque,
-                fontFileReferenceKeySize: u32,
-                locality: ?*DWRITE_LOCALITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFileReferenceFromUrl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteRemoteFontFileLoader,
-                factory: ?*IDWriteFactory,
-                baseUrl: ?[*:0]const u16,
-                fontFileUrl: ?[*:0]const u16,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteRemoteFontFileLoader,
-                factory: ?*IDWriteFactory,
-                baseUrl: ?[*:0]const u16,
-                fontFileUrl: ?[*:0]const u16,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateRemoteStreamFromKey: *const fn(
+            self: *const IDWriteRemoteFontFileLoader,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: ?*const anyopaque,
+            fontFileReferenceKeySize: u32,
+            fontFileStream: ?*?*IDWriteRemoteFontFileStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalityFromKey: *const fn(
+            self: *const IDWriteRemoteFontFileLoader,
+            // TODO: what to do with BytesParamIndex 1?
+            fontFileReferenceKey: ?*const anyopaque,
+            fontFileReferenceKeySize: u32,
+            locality: ?*DWRITE_LOCALITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFileReferenceFromUrl: *const fn(
+            self: *const IDWriteRemoteFontFileLoader,
+            factory: ?*IDWriteFactory,
+            baseUrl: ?[*:0]const u16,
+            fontFileUrl: ?[*:0]const u16,
+            fontFile: ?*?*IDWriteFontFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9156,34 +6319,18 @@ pub const IID_IDWriteInMemoryFontFileLoader = &IID_IDWriteInMemoryFontFileLoader
 pub const IDWriteInMemoryFontFileLoader = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFileLoader.VTable,
-        CreateInMemoryFontFileReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteInMemoryFontFileLoader,
-                factory: ?*IDWriteFactory,
-                // TODO: what to do with BytesParamIndex 2?
-                fontData: ?*const anyopaque,
-                fontDataSize: u32,
-                ownerObject: ?*IUnknown,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteInMemoryFontFileLoader,
-                factory: ?*IDWriteFactory,
-                // TODO: what to do with BytesParamIndex 2?
-                fontData: ?*const anyopaque,
-                fontDataSize: u32,
-                ownerObject: ?*IUnknown,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteInMemoryFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteInMemoryFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
+        CreateInMemoryFontFileReference: *const fn(
+            self: *const IDWriteInMemoryFontFileLoader,
+            factory: ?*IDWriteFactory,
+            // TODO: what to do with BytesParamIndex 2?
+            fontData: ?*const anyopaque,
+            fontDataSize: u32,
+            ownerObject: ?*IUnknown,
+            fontFile: ?*?*IDWriteFontFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileCount: *const fn(
+            self: *const IDWriteInMemoryFontFileLoader,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9205,72 +6352,34 @@ pub const IID_IDWriteFactory5 = &IID_IDWriteFactory5_Value;
 pub const IDWriteFactory5 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFactory4.VTable,
-        CreateFontSetBuilder: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory5,
-                fontSetBuilder: ?*?*IDWriteFontSetBuilder1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory5,
-                fontSetBuilder: ?*?*IDWriteFontSetBuilder1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateInMemoryFontFileLoader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory5,
-                newLoader: ?*?*IDWriteInMemoryFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory5,
-                newLoader: ?*?*IDWriteInMemoryFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateHttpFontFileLoader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory5,
-                referrerUrl: ?[*:0]const u16,
-                extraHeaders: ?[*:0]const u16,
-                newLoader: ?*?*IDWriteRemoteFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory5,
-                referrerUrl: ?[*:0]const u16,
-                extraHeaders: ?[*:0]const u16,
-                newLoader: ?*?*IDWriteRemoteFontFileLoader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AnalyzeContainerType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory5,
-                // TODO: what to do with BytesParamIndex 1?
-                fileData: ?*const anyopaque,
-                fileDataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_CONTAINER_TYPE,
-            else => *const fn(
-                self: *const IDWriteFactory5,
-                // TODO: what to do with BytesParamIndex 1?
-                fileData: ?*const anyopaque,
-                fileDataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_CONTAINER_TYPE,
-        },
-        UnpackFontFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory5,
-                containerType: DWRITE_CONTAINER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                fileData: ?*const anyopaque,
-                fileDataSize: u32,
-                unpackedFontStream: ?*?*IDWriteFontFileStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory5,
-                containerType: DWRITE_CONTAINER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                fileData: ?*const anyopaque,
-                fileDataSize: u32,
-                unpackedFontStream: ?*?*IDWriteFontFileStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateFontSetBuilder: *const fn(
+            self: *const IDWriteFactory5,
+            fontSetBuilder: ?*?*IDWriteFontSetBuilder1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateInMemoryFontFileLoader: *const fn(
+            self: *const IDWriteFactory5,
+            newLoader: ?*?*IDWriteInMemoryFontFileLoader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateHttpFontFileLoader: *const fn(
+            self: *const IDWriteFactory5,
+            referrerUrl: ?[*:0]const u16,
+            extraHeaders: ?[*:0]const u16,
+            newLoader: ?*?*IDWriteRemoteFontFileLoader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AnalyzeContainerType: *const fn(
+            self: *const IDWriteFactory5,
+            // TODO: what to do with BytesParamIndex 1?
+            fileData: ?*const anyopaque,
+            fileDataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_CONTAINER_TYPE,
+        UnpackFontFile: *const fn(
+            self: *const IDWriteFactory5,
+            containerType: DWRITE_CONTAINER_TYPE,
+            // TODO: what to do with BytesParamIndex 2?
+            fileData: ?*const anyopaque,
+            fileDataSize: u32,
+            unpackedFontStream: ?*?*IDWriteFontFileStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9397,112 +6506,52 @@ pub const IID_IDWriteFactory6 = &IID_IDWriteFactory6_Value;
 pub const IDWriteFactory6 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFactory5.VTable,
-        CreateFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory6,
-                fontFile: ?*IDWriteFontFile,
-                faceIndex: u32,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory6,
-                fontFile: ?*IDWriteFontFile,
-                faceIndex: u32,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory6,
-                fontFile: ?*IDWriteFontFile,
-                faceIndex: u32,
-                fontResource: ?*?*IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory6,
-                fontFile: ?*IDWriteFontFile,
-                faceIndex: u32,
-                fontResource: ?*?*IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSystemFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory6,
-                includeDownloadableFonts: BOOL,
-                fontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory6,
-                includeDownloadableFonts: BOOL,
-                fontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSystemFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory6,
-                includeDownloadableFonts: BOOL,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                fontCollection: ?*?*IDWriteFontCollection2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory6,
-                includeDownloadableFonts: BOOL,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                fontCollection: ?*?*IDWriteFontCollection2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontCollectionFromFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory6,
-                fontSet: ?*IDWriteFontSet,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                fontCollection: ?*?*IDWriteFontCollection2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory6,
-                fontSet: ?*IDWriteFontSet,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                fontCollection: ?*?*IDWriteFontCollection2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontSetBuilder: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory6,
-                fontSetBuilder: ?*?*IDWriteFontSetBuilder2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory6,
-                fontSetBuilder: ?*?*IDWriteFontSetBuilder2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateTextFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory6,
-                fontFamilyName: ?[*:0]const u16,
-                fontCollection: ?*IDWriteFontCollection,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontSize: f32,
-                localeName: ?[*:0]const u16,
-                textFormat: ?*?*IDWriteTextFormat3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory6,
-                fontFamilyName: ?[*:0]const u16,
-                fontCollection: ?*IDWriteFontCollection,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontSize: f32,
-                localeName: ?[*:0]const u16,
-                textFormat: ?*?*IDWriteTextFormat3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateFontFaceReference: *const fn(
+            self: *const IDWriteFactory6,
+            fontFile: ?*IDWriteFontFile,
+            faceIndex: u32,
+            fontSimulations: DWRITE_FONT_SIMULATIONS,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            fontFaceReference: ?*?*IDWriteFontFaceReference1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontResource: *const fn(
+            self: *const IDWriteFactory6,
+            fontFile: ?*IDWriteFontFile,
+            faceIndex: u32,
+            fontResource: ?*?*IDWriteFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSystemFontSet: *const fn(
+            self: *const IDWriteFactory6,
+            includeDownloadableFonts: BOOL,
+            fontSet: ?*?*IDWriteFontSet1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSystemFontCollection: *const fn(
+            self: *const IDWriteFactory6,
+            includeDownloadableFonts: BOOL,
+            fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
+            fontCollection: ?*?*IDWriteFontCollection2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontCollectionFromFontSet: *const fn(
+            self: *const IDWriteFactory6,
+            fontSet: ?*IDWriteFontSet,
+            fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
+            fontCollection: ?*?*IDWriteFontCollection2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontSetBuilder: *const fn(
+            self: *const IDWriteFactory6,
+            fontSetBuilder: ?*?*IDWriteFontSetBuilder2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateTextFormat: *const fn(
+            self: *const IDWriteFactory6,
+            fontFamilyName: ?[*:0]const u16,
+            fontCollection: ?*IDWriteFontCollection,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            fontSize: f32,
+            localeName: ?[*:0]const u16,
+            textFormat: ?*?*IDWriteTextFormat3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9544,54 +6593,25 @@ pub const IID_IDWriteFontFace5 = &IID_IDWriteFontFace5_Value;
 pub const IDWriteFontFace5 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFace4.VTable,
-        GetFontAxisValueCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontAxisValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace5,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace5,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasVariations: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetFontResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace5,
-                fontResource: ?*?*IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace5,
-                fontResource: ?*?*IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Equals: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace5,
-                fontFace: ?*IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontFace5,
-                fontFace: ?*IDWriteFontFace,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        GetFontAxisValueCount: *const fn(
+            self: *const IDWriteFontFace5,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontAxisValues: *const fn(
+            self: *const IDWriteFontFace5,
+            fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasVariations: *const fn(
+            self: *const IDWriteFontFace5,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetFontResource: *const fn(
+            self: *const IDWriteFontFace5,
+            fontResource: ?*?*IDWriteFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Equals: *const fn(
+            self: *const IDWriteFontFace5,
+            fontFace: ?*IDWriteFontFace,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9625,144 +6645,63 @@ pub const IID_IDWriteFontResource = &IID_IDWriteFontResource_Value;
 pub const IDWriteFontResource = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFontFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-                fontFile: ?*?*IDWriteFontFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFaceIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontAxisCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetDefaultFontAxisValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontAxisRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-                fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
-                fontAxisRangeCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-                fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
-                fontAxisRangeCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontAxisAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-                axisIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_AXIS_ATTRIBUTES,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-                axisIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_AXIS_ATTRIBUTES,
-        },
-        GetAxisNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-                axisIndex: u32,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-                axisIndex: u32,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAxisValueNameCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-                axisIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-                axisIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetAxisValueNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-                axisIndex: u32,
-                axisValueIndex: u32,
-                fontAxisRange: ?*DWRITE_FONT_AXIS_RANGE,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-                axisIndex: u32,
-                axisValueIndex: u32,
-                fontAxisRange: ?*DWRITE_FONT_AXIS_RANGE,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasVariations: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        CreateFontFace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontFace: ?*?*IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontFace: ?*?*IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontResource,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontResource,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontFile: *const fn(
+            self: *const IDWriteFontResource,
+            fontFile: ?*?*IDWriteFontFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFaceIndex: *const fn(
+            self: *const IDWriteFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontAxisCount: *const fn(
+            self: *const IDWriteFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetDefaultFontAxisValues: *const fn(
+            self: *const IDWriteFontResource,
+            fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontAxisRanges: *const fn(
+            self: *const IDWriteFontResource,
+            fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
+            fontAxisRangeCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontAxisAttributes: *const fn(
+            self: *const IDWriteFontResource,
+            axisIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_AXIS_ATTRIBUTES,
+        GetAxisNames: *const fn(
+            self: *const IDWriteFontResource,
+            axisIndex: u32,
+            names: ?*?*IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAxisValueNameCount: *const fn(
+            self: *const IDWriteFontResource,
+            axisIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetAxisValueNames: *const fn(
+            self: *const IDWriteFontResource,
+            axisIndex: u32,
+            axisValueIndex: u32,
+            fontAxisRange: ?*DWRITE_FONT_AXIS_RANGE,
+            names: ?*?*IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasVariations: *const fn(
+            self: *const IDWriteFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        CreateFontFace: *const fn(
+            self: *const IDWriteFontResource,
+            fontSimulations: DWRITE_FONT_SIMULATIONS,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            fontFace: ?*?*IDWriteFontFace5,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFaceReference: *const fn(
+            self: *const IDWriteFontResource,
+            fontSimulations: DWRITE_FONT_SIMULATIONS,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            fontFaceReference: ?*?*IDWriteFontFaceReference1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9824,36 +6763,18 @@ pub const IID_IDWriteFontFaceReference1 = &IID_IDWriteFontFaceReference1_Value;
 pub const IDWriteFontFaceReference1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFaceReference.VTable,
-        CreateFontFace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference1,
-                fontFace: ?*?*IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference1,
-                fontFace: ?*?*IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontAxisValueCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference1,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference1,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontAxisValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFaceReference1,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFaceReference1,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateFontFace: *const fn(
+            self: *const IDWriteFontFaceReference1,
+            fontFace: ?*?*IDWriteFontFace5,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontAxisValueCount: *const fn(
+            self: *const IDWriteFontFaceReference1,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontAxisValues: *const fn(
+            self: *const IDWriteFontFaceReference1,
+            fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9879,42 +6800,22 @@ pub const IID_IDWriteFontSetBuilder2 = &IID_IDWriteFontSetBuilder2_Value;
 pub const IDWriteFontSetBuilder2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontSetBuilder1.VTable,
-        AddFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSetBuilder2,
-                fontFile: ?*IDWriteFontFile,
-                fontFaceIndex: u32,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
-                fontAxisRangeCount: u32,
-                properties: [*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSetBuilder2,
-                fontFile: ?*IDWriteFontFile,
-                fontFaceIndex: u32,
-                fontSimulations: DWRITE_FONT_SIMULATIONS,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
-                fontAxisRangeCount: u32,
-                properties: [*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFontFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSetBuilder2,
-                filePath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSetBuilder2,
-                filePath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddFont: *const fn(
+            self: *const IDWriteFontSetBuilder2,
+            fontFile: ?*IDWriteFontFile,
+            fontFaceIndex: u32,
+            fontSimulations: DWRITE_FONT_SIMULATIONS,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
+            fontAxisRangeCount: u32,
+            properties: [*]const DWRITE_FONT_PROPERTY,
+            propertyCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFontFile: *const fn(
+            self: *const IDWriteFontSetBuilder2,
+            filePath: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9936,194 +6837,87 @@ pub const IID_IDWriteFontSet1 = &IID_IDWriteFontSet1_Value;
 pub const IDWriteFontSet1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontSet.VTable,
-        GetMatchingFonts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                fontProperty: ?*const DWRITE_FONT_PROPERTY,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                matchingFonts: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                fontProperty: ?*const DWRITE_FONT_PROPERTY,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                matchingFonts: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFirstFontResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                filteredFontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                filteredFontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredFonts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                indices: [*]const u32,
-                indexCount: u32,
-                filteredFontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                indices: [*]const u32,
-                indexCount: u32,
-                filteredFontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredFonts1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
-                fontAxisRangeCount: u32,
-                selectAnyRange: BOOL,
-                filteredFontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
-                fontAxisRangeCount: u32,
-                selectAnyRange: BOOL,
-                filteredFontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredFonts2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                properties: ?[*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-                selectAnyProperty: BOOL,
-                filteredFontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                properties: ?[*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-                selectAnyProperty: BOOL,
-                filteredFontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredFontIndices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
-                fontAxisRangeCount: u32,
-                selectAnyRange: BOOL,
-                indices: [*]u32,
-                maxIndexCount: u32,
-                actualIndexCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
-                fontAxisRangeCount: u32,
-                selectAnyRange: BOOL,
-                indices: [*]u32,
-                maxIndexCount: u32,
-                actualIndexCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredFontIndices1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                properties: [*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-                selectAnyProperty: BOOL,
-                indices: [*]u32,
-                maxIndexCount: u32,
-                actualIndexCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                properties: [*]const DWRITE_FONT_PROPERTY,
-                propertyCount: u32,
-                selectAnyProperty: BOOL,
-                indices: [*]u32,
-                maxIndexCount: u32,
-                actualIndexCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontAxisRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-                fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
-                maxFontAxisRangeCount: u32,
-                actualFontAxisRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-                fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
-                maxFontAxisRangeCount: u32,
-                actualFontAxisRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontAxisRanges1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
-                maxFontAxisRangeCount: u32,
-                actualFontAxisRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
-                maxFontAxisRangeCount: u32,
-                actualFontAxisRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFaceReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-                fontFaceReference: ?*?*IDWriteFontFaceReference1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-                fontResource: ?*?*IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-                fontResource: ?*?*IDWriteFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontFace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-                fontFace: ?*?*IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-                fontFace: ?*?*IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontLocality: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-            else => *const fn(
-                self: *const IDWriteFontSet1,
-                listIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
-        },
+        GetMatchingFonts: *const fn(
+            self: *const IDWriteFontSet1,
+            fontProperty: ?*const DWRITE_FONT_PROPERTY,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            matchingFonts: ?*?*IDWriteFontSet1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFirstFontResources: *const fn(
+            self: *const IDWriteFontSet1,
+            filteredFontSet: ?*?*IDWriteFontSet1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredFonts: *const fn(
+            self: *const IDWriteFontSet1,
+            indices: [*]const u32,
+            indexCount: u32,
+            filteredFontSet: ?*?*IDWriteFontSet1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredFonts1: *const fn(
+            self: *const IDWriteFontSet1,
+            fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
+            fontAxisRangeCount: u32,
+            selectAnyRange: BOOL,
+            filteredFontSet: ?*?*IDWriteFontSet1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredFonts2: *const fn(
+            self: *const IDWriteFontSet1,
+            properties: ?[*]const DWRITE_FONT_PROPERTY,
+            propertyCount: u32,
+            selectAnyProperty: BOOL,
+            filteredFontSet: ?*?*IDWriteFontSet1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredFontIndices: *const fn(
+            self: *const IDWriteFontSet1,
+            fontAxisRanges: [*]const DWRITE_FONT_AXIS_RANGE,
+            fontAxisRangeCount: u32,
+            selectAnyRange: BOOL,
+            indices: [*]u32,
+            maxIndexCount: u32,
+            actualIndexCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredFontIndices1: *const fn(
+            self: *const IDWriteFontSet1,
+            properties: [*]const DWRITE_FONT_PROPERTY,
+            propertyCount: u32,
+            selectAnyProperty: BOOL,
+            indices: [*]u32,
+            maxIndexCount: u32,
+            actualIndexCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontAxisRanges: *const fn(
+            self: *const IDWriteFontSet1,
+            listIndex: u32,
+            fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
+            maxFontAxisRangeCount: u32,
+            actualFontAxisRangeCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontAxisRanges1: *const fn(
+            self: *const IDWriteFontSet1,
+            fontAxisRanges: [*]DWRITE_FONT_AXIS_RANGE,
+            maxFontAxisRangeCount: u32,
+            actualFontAxisRangeCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFaceReference: *const fn(
+            self: *const IDWriteFontSet1,
+            listIndex: u32,
+            fontFaceReference: ?*?*IDWriteFontFaceReference1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontResource: *const fn(
+            self: *const IDWriteFontSet1,
+            listIndex: u32,
+            fontResource: ?*?*IDWriteFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontFace: *const fn(
+            self: *const IDWriteFontSet1,
+            listIndex: u32,
+            fontFace: ?*?*IDWriteFontFace5,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontLocality: *const fn(
+            self: *const IDWriteFontSet1,
+            listIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10189,16 +6983,10 @@ pub const IID_IDWriteFontList2 = &IID_IDWriteFontList2_Value;
 pub const IDWriteFontList2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontList1.VTable,
-        GetFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontList2,
-                fontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontList2,
-                fontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontSet: *const fn(
+            self: *const IDWriteFontList2,
+            fontSet: ?*?*IDWriteFontSet1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10216,30 +7004,16 @@ pub const IID_IDWriteFontFamily2 = &IID_IDWriteFontFamily2_Value;
 pub const IDWriteFontFamily2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFamily1.VTable,
-        GetMatchingFonts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFamily2,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                matchingFonts: ?*?*IDWriteFontList2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFamily2,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                matchingFonts: ?*?*IDWriteFontList2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFamily2,
-                fontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFamily2,
-                fontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetMatchingFonts: *const fn(
+            self: *const IDWriteFontFamily2,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            matchingFonts: ?*?*IDWriteFontList2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontSet: *const fn(
+            self: *const IDWriteFontFamily2,
+            fontSet: ?*?*IDWriteFontSet1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10261,52 +7035,25 @@ pub const IID_IDWriteFontCollection2 = &IID_IDWriteFontCollection2_Value;
 pub const IDWriteFontCollection2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontCollection1.VTable,
-        GetFontFamily: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection2,
-                index: u32,
-                fontFamily: ?*?*IDWriteFontFamily2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontCollection2,
-                index: u32,
-                fontFamily: ?*?*IDWriteFontFamily2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMatchingFonts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection2,
-                familyName: ?[*:0]const u16,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontList: ?*?*IDWriteFontList2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontCollection2,
-                familyName: ?[*:0]const u16,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                fontList: ?*?*IDWriteFontList2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFamilyModel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection2,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_FAMILY_MODEL,
-            else => *const fn(
-                self: *const IDWriteFontCollection2,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_FAMILY_MODEL,
-        },
-        GetFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection2,
-                fontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontCollection2,
-                fontSet: ?*?*IDWriteFontSet1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontFamily: *const fn(
+            self: *const IDWriteFontCollection2,
+            index: u32,
+            fontFamily: ?*?*IDWriteFontFamily2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMatchingFonts: *const fn(
+            self: *const IDWriteFontCollection2,
+            familyName: ?[*:0]const u16,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            fontList: ?*?*IDWriteFontList2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFamilyModel: *const fn(
+            self: *const IDWriteFontCollection2,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_FAMILY_MODEL,
+        GetFontSet: *const fn(
+            self: *const IDWriteFontCollection2,
+            fontSet: ?*?*IDWriteFontSet1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10336,64 +7083,30 @@ pub const IID_IDWriteTextLayout4 = &IID_IDWriteTextLayout4_Value;
 pub const IDWriteTextLayout4 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextLayout3.VTable,
-        SetFontAxisValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout4,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout4,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                textRange: DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontAxisValueCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout4,
-                currentPosition: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteTextLayout4,
-                currentPosition: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontAxisValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout4,
-                currentPosition: u32,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout4,
-                currentPosition: u32,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                textRange: ?*DWRITE_TEXT_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAutomaticFontAxes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout4,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_AUTOMATIC_FONT_AXES,
-            else => *const fn(
-                self: *const IDWriteTextLayout4,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_AUTOMATIC_FONT_AXES,
-        },
-        SetAutomaticFontAxes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextLayout4,
-                automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextLayout4,
-                automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetFontAxisValues: *const fn(
+            self: *const IDWriteTextLayout4,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            textRange: DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontAxisValueCount: *const fn(
+            self: *const IDWriteTextLayout4,
+            currentPosition: u32,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontAxisValues: *const fn(
+            self: *const IDWriteTextLayout4,
+            currentPosition: u32,
+            fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            textRange: ?*DWRITE_TEXT_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAutomaticFontAxes: *const fn(
+            self: *const IDWriteTextLayout4,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_AUTOMATIC_FONT_AXES,
+        SetAutomaticFontAxes: *const fn(
+            self: *const IDWriteTextLayout4,
+            automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10427,56 +7140,26 @@ pub const IID_IDWriteTextFormat3 = &IID_IDWriteTextFormat3_Value;
 pub const IDWriteTextFormat3 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteTextFormat2.VTable,
-        SetFontAxisValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat3,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat3,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontAxisValueCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat3,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteTextFormat3,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontAxisValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat3,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat3,
-                fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAutomaticFontAxes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_AUTOMATIC_FONT_AXES,
-            else => *const fn(
-                self: *const IDWriteTextFormat3,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_AUTOMATIC_FONT_AXES,
-        },
-        SetAutomaticFontAxes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteTextFormat3,
-                automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteTextFormat3,
-                automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetFontAxisValues: *const fn(
+            self: *const IDWriteTextFormat3,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontAxisValueCount: *const fn(
+            self: *const IDWriteTextFormat3,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontAxisValues: *const fn(
+            self: *const IDWriteTextFormat3,
+            fontAxisValues: [*]DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAutomaticFontAxes: *const fn(
+            self: *const IDWriteTextFormat3,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_AUTOMATIC_FONT_AXES,
+        SetAutomaticFontAxes: *const fn(
+            self: *const IDWriteTextFormat3,
+            automaticFontAxes: DWRITE_AUTOMATIC_FONT_AXES,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10510,34 +7193,19 @@ pub const IID_IDWriteFontFallback1 = &IID_IDWriteFontFallback1_Value;
 pub const IDWriteFontFallback1 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFallback.VTable,
-        MapCharacters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFallback1,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                baseFontCollection: ?*IDWriteFontCollection,
-                baseFamilyName: ?[*:0]const u16,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                mappedLength: ?*u32,
-                scale: ?*f32,
-                mappedFontFace: ?*?*IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFallback1,
-                analysisSource: ?*IDWriteTextAnalysisSource,
-                textPosition: u32,
-                textLength: u32,
-                baseFontCollection: ?*IDWriteFontCollection,
-                baseFamilyName: ?[*:0]const u16,
-                fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
-                fontAxisValueCount: u32,
-                mappedLength: ?*u32,
-                scale: ?*f32,
-                mappedFontFace: ?*?*IDWriteFontFace5,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        MapCharacters: *const fn(
+            self: *const IDWriteFontFallback1,
+            analysisSource: ?*IDWriteTextAnalysisSource,
+            textPosition: u32,
+            textLength: u32,
+            baseFontCollection: ?*IDWriteFontCollection,
+            baseFamilyName: ?[*:0]const u16,
+            fontAxisValues: [*]const DWRITE_FONT_AXIS_VALUE,
+            fontAxisValueCount: u32,
+            mappedLength: ?*u32,
+            scale: ?*f32,
+            mappedFontFace: ?*?*IDWriteFontFace5,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10555,14 +7223,9 @@ pub const IID_IDWriteFontSet2 = &IID_IDWriteFontSet2_Value;
 pub const IDWriteFontSet2 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontSet1.VTable,
-        GetExpirationEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet2,
-            ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-            else => *const fn(
-                self: *const IDWriteFontSet2,
-            ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-        },
+        GetExpirationEvent: *const fn(
+            self: *const IDWriteFontSet2,
+        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10580,14 +7243,9 @@ pub const IID_IDWriteFontCollection3 = &IID_IDWriteFontCollection3_Value;
 pub const IDWriteFontCollection3 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontCollection2.VTable,
-        GetExpirationEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontCollection3,
-            ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-            else => *const fn(
-                self: *const IDWriteFontCollection3,
-            ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-        },
+        GetExpirationEvent: *const fn(
+            self: *const IDWriteFontCollection3,
+        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10605,32 +7263,17 @@ pub const IID_IDWriteFactory7 = &IID_IDWriteFactory7_Value;
 pub const IDWriteFactory7 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFactory6.VTable,
-        GetSystemFontSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory7,
-                includeDownloadableFonts: BOOL,
-                fontSet: ?*?*IDWriteFontSet2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory7,
-                includeDownloadableFonts: BOOL,
-                fontSet: ?*?*IDWriteFontSet2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSystemFontCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFactory7,
-                includeDownloadableFonts: BOOL,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                fontCollection: ?*?*IDWriteFontCollection3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFactory7,
-                includeDownloadableFonts: BOOL,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                fontCollection: ?*?*IDWriteFontCollection3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSystemFontSet: *const fn(
+            self: *const IDWriteFactory7,
+            includeDownloadableFonts: BOOL,
+            fontSet: ?*?*IDWriteFontSet2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSystemFontCollection: *const fn(
+            self: *const IDWriteFactory7,
+            includeDownloadableFonts: BOOL,
+            fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
+            fontCollection: ?*?*IDWriteFontCollection3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10665,40 +7308,20 @@ pub const IID_IDWriteFontSet3 = &IID_IDWriteFontSet3_Value;
 pub const IDWriteFontSet3 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontSet2.VTable,
-        GetFontSourceType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet3,
-                fontIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SOURCE_TYPE,
-            else => *const fn(
-                self: *const IDWriteFontSet3,
-                fontIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SOURCE_TYPE,
-        },
-        GetFontSourceNameLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet3,
-                listIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const IDWriteFontSet3,
-                listIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetFontSourceName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontSet3,
-                listIndex: u32,
-                stringBuffer: [*:0]u16,
-                stringBufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontSet3,
-                listIndex: u32,
-                stringBuffer: [*:0]u16,
-                stringBufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontSourceType: *const fn(
+            self: *const IDWriteFontSet3,
+            fontIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) DWRITE_FONT_SOURCE_TYPE,
+        GetFontSourceNameLength: *const fn(
+            self: *const IDWriteFontSet3,
+            listIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetFontSourceName: *const fn(
+            self: *const IDWriteFontSet3,
+            listIndex: u32,
+            stringBuffer: [*:0]u16,
+            stringBufferSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10724,30 +7347,16 @@ pub const IID_IDWriteFontFace6 = &IID_IDWriteFontFace6_Value;
 pub const IDWriteFontFace6 = extern struct {
     pub const VTable = extern struct {
         base: IDWriteFontFace5.VTable,
-        GetFamilyNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace6,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace6,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFaceNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDWriteFontFace6,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDWriteFontFace6,
-                fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
-                names: ?*?*IDWriteLocalizedStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFamilyNames: *const fn(
+            self: *const IDWriteFontFace6,
+            fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
+            names: ?*?*IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFaceNames: *const fn(
+            self: *const IDWriteFontFace6,
+            fontFamilyModel: DWRITE_FONT_FAMILY_MODEL,
+            names: ?*?*IDWriteLocalizedStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

@@ -16,16 +16,10 @@ pub const IID_IAudioEndpointFormatControl = &IID_IAudioEndpointFormatControl_Val
 pub const IAudioEndpointFormatControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ResetToDefault: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointFormatControl,
-                ResetFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointFormatControl,
-                ResetFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ResetToDefault: *const fn(
+            self: *const IAudioEndpointFormatControl,
+            ResetFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -63,44 +57,22 @@ pub const IID_IAudioEndpointOffloadStreamVolume = &IID_IAudioEndpointOffloadStre
 pub const IAudioEndpointOffloadStreamVolume = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetVolumeChannelCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointOffloadStreamVolume,
-                pu32ChannelCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointOffloadStreamVolume,
-                pu32ChannelCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetChannelVolumes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointOffloadStreamVolume,
-                u32ChannelCount: u32,
-                pf32Volumes: ?*f32,
-                u32CurveType: AUDIO_CURVE_TYPE,
-                pCurveDuration: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointOffloadStreamVolume,
-                u32ChannelCount: u32,
-                pf32Volumes: ?*f32,
-                u32CurveType: AUDIO_CURVE_TYPE,
-                pCurveDuration: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChannelVolumes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointOffloadStreamVolume,
-                u32ChannelCount: u32,
-                pf32Volumes: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointOffloadStreamVolume,
-                u32ChannelCount: u32,
-                pf32Volumes: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetVolumeChannelCount: *const fn(
+            self: *const IAudioEndpointOffloadStreamVolume,
+            pu32ChannelCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetChannelVolumes: *const fn(
+            self: *const IAudioEndpointOffloadStreamVolume,
+            u32ChannelCount: u32,
+            pf32Volumes: ?*f32,
+            u32CurveType: AUDIO_CURVE_TYPE,
+            pCurveDuration: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChannelVolumes: *const fn(
+            self: *const IAudioEndpointOffloadStreamVolume,
+            u32ChannelCount: u32,
+            pf32Volumes: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -127,26 +99,14 @@ pub const IID_IAudioEndpointOffloadStreamMute = &IID_IAudioEndpointOffloadStream
 pub const IAudioEndpointOffloadStreamMute = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetMute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointOffloadStreamMute,
-                bMuted: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointOffloadStreamMute,
-                bMuted: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointOffloadStreamMute,
-                pbMuted: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointOffloadStreamMute,
-                pbMuted: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetMute: *const fn(
+            self: *const IAudioEndpointOffloadStreamMute,
+            bMuted: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMute: *const fn(
+            self: *const IAudioEndpointOffloadStreamMute,
+            pbMuted: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -168,28 +128,15 @@ pub const IID_IAudioEndpointOffloadStreamMeter = &IID_IAudioEndpointOffloadStrea
 pub const IAudioEndpointOffloadStreamMeter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMeterChannelCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointOffloadStreamMeter,
-                pu32ChannelCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointOffloadStreamMeter,
-                pu32ChannelCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMeteringData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointOffloadStreamMeter,
-                u32ChannelCount: u32,
-                pf32PeakValues: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointOffloadStreamMeter,
-                u32ChannelCount: u32,
-                pf32PeakValues: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetMeterChannelCount: *const fn(
+            self: *const IAudioEndpointOffloadStreamMeter,
+            pu32ChannelCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMeteringData: *const fn(
+            self: *const IAudioEndpointOffloadStreamMeter,
+            u32ChannelCount: u32,
+            pf32PeakValues: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -212,24 +159,13 @@ pub const IID_IAudioEndpointLastBufferControl = &IID_IAudioEndpointLastBufferCon
 pub const IAudioEndpointLastBufferControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsLastBufferControlSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointLastBufferControl,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const IAudioEndpointLastBufferControl,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        ReleaseOutputDataPointerForLastBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointLastBufferControl,
-                pConnectionProperty: ?*const APO_CONNECTION_PROPERTY,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const IAudioEndpointLastBufferControl,
-                pConnectionProperty: ?*const APO_CONNECTION_PROPERTY,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        IsLastBufferControlSupported: *const fn(
+            self: *const IAudioEndpointLastBufferControl,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ReleaseOutputDataPointerForLastBuffer: *const fn(
+            self: *const IAudioEndpointLastBufferControl,
+            pConnectionProperty: ?*const APO_CONNECTION_PROPERTY,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -252,26 +188,14 @@ pub const IID_IAudioLfxControl = &IID_IAudioLfxControl_Value;
 pub const IAudioLfxControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetLocalEffectsState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioLfxControl,
-                bEnabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioLfxControl,
-                bEnabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocalEffectsState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioLfxControl,
-                pbEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioLfxControl,
-                pbEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetLocalEffectsState: *const fn(
+            self: *const IAudioLfxControl,
+            bEnabled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalEffectsState: *const fn(
+            self: *const IAudioLfxControl,
+            pbEnabled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -294,70 +218,33 @@ pub const IID_IHardwareAudioEngineBase = &IID_IHardwareAudioEngineBase_Value;
 pub const IHardwareAudioEngineBase = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAvailableOffloadConnectorCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IHardwareAudioEngineBase,
-                _pwstrDeviceId: ?PWSTR,
-                _uConnectorId: u32,
-                _pAvailableConnectorInstanceCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IHardwareAudioEngineBase,
-                _pwstrDeviceId: ?PWSTR,
-                _uConnectorId: u32,
-                _pAvailableConnectorInstanceCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEngineFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IHardwareAudioEngineBase,
-                pDevice: ?*IMMDevice,
-                _bRequestDeviceFormat: BOOL,
-                _ppwfxFormat: ?*?*WAVEFORMATEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IHardwareAudioEngineBase,
-                pDevice: ?*IMMDevice,
-                _bRequestDeviceFormat: BOOL,
-                _ppwfxFormat: ?*?*WAVEFORMATEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEngineDeviceFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IHardwareAudioEngineBase,
-                pDevice: ?*IMMDevice,
-                _pwfxFormat: ?*WAVEFORMATEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IHardwareAudioEngineBase,
-                pDevice: ?*IMMDevice,
-                _pwfxFormat: ?*WAVEFORMATEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGfxState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IHardwareAudioEngineBase,
-                pDevice: ?*IMMDevice,
-                _bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IHardwareAudioEngineBase,
-                pDevice: ?*IMMDevice,
-                _bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGfxState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IHardwareAudioEngineBase,
-                pDevice: ?*IMMDevice,
-                _pbEnable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IHardwareAudioEngineBase,
-                pDevice: ?*IMMDevice,
-                _pbEnable: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAvailableOffloadConnectorCount: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            _pwstrDeviceId: ?PWSTR,
+            _uConnectorId: u32,
+            _pAvailableConnectorInstanceCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEngineFormat: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            pDevice: ?*IMMDevice,
+            _bRequestDeviceFormat: BOOL,
+            _ppwfxFormat: ?*?*WAVEFORMATEX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEngineDeviceFormat: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            pDevice: ?*IMMDevice,
+            _pwfxFormat: ?*WAVEFORMATEX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGfxState: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            pDevice: ?*IMMDevice,
+            _bEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGfxState: *const fn(
+            self: *const IHardwareAudioEngineBase,
+            pDevice: ?*IMMDevice,
+            _pbEnable: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -395,16 +282,10 @@ pub const IID_IAudioEndpointVolumeCallback = &IID_IAudioEndpointVolumeCallback_V
 pub const IAudioEndpointVolumeCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolumeCallback,
-                pNotify: ?*AUDIO_VOLUME_NOTIFICATION_DATA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolumeCallback,
-                pNotify: ?*AUDIO_VOLUME_NOTIFICATION_DATA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnNotify: *const fn(
+            self: *const IAudioEndpointVolumeCallback,
+            pNotify: ?*AUDIO_VOLUME_NOTIFICATION_DATA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -423,210 +304,90 @@ pub const IID_IAudioEndpointVolume = &IID_IAudioEndpointVolume_Value;
 pub const IAudioEndpointVolume = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterControlChangeNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pNotify: ?*IAudioEndpointVolumeCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pNotify: ?*IAudioEndpointVolumeCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterControlChangeNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pNotify: ?*IAudioEndpointVolumeCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pNotify: ?*IAudioEndpointVolumeCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChannelCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pnChannelCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pnChannelCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMasterVolumeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                fLevelDB: f32,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                fLevelDB: f32,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMasterVolumeLevelScalar: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                fLevel: f32,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                fLevel: f32,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMasterVolumeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pfLevelDB: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pfLevelDB: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMasterVolumeLevelScalar: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pfLevel: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pfLevel: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetChannelVolumeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                nChannel: u32,
-                fLevelDB: f32,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                nChannel: u32,
-                fLevelDB: f32,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetChannelVolumeLevelScalar: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                nChannel: u32,
-                fLevel: f32,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                nChannel: u32,
-                fLevel: f32,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChannelVolumeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                nChannel: u32,
-                pfLevelDB: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                nChannel: u32,
-                pfLevelDB: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChannelVolumeLevelScalar: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                nChannel: u32,
-                pfLevel: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                nChannel: u32,
-                pfLevel: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                bMute: BOOL,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                bMute: BOOL,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pbMute: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pbMute: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVolumeStepInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pnStep: ?*u32,
-                pnStepCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pnStep: ?*u32,
-                pnStepCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        VolumeStepUp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        VolumeStepDown: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pguidEventContext: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryHardwareSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pdwHardwareSupportMask: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pdwHardwareSupportMask: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVolumeRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolume,
-                pflVolumeMindB: ?*f32,
-                pflVolumeMaxdB: ?*f32,
-                pflVolumeIncrementdB: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolume,
-                pflVolumeMindB: ?*f32,
-                pflVolumeMaxdB: ?*f32,
-                pflVolumeIncrementdB: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RegisterControlChangeNotify: *const fn(
+            self: *const IAudioEndpointVolume,
+            pNotify: ?*IAudioEndpointVolumeCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterControlChangeNotify: *const fn(
+            self: *const IAudioEndpointVolume,
+            pNotify: ?*IAudioEndpointVolumeCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChannelCount: *const fn(
+            self: *const IAudioEndpointVolume,
+            pnChannelCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMasterVolumeLevel: *const fn(
+            self: *const IAudioEndpointVolume,
+            fLevelDB: f32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMasterVolumeLevelScalar: *const fn(
+            self: *const IAudioEndpointVolume,
+            fLevel: f32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMasterVolumeLevel: *const fn(
+            self: *const IAudioEndpointVolume,
+            pfLevelDB: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMasterVolumeLevelScalar: *const fn(
+            self: *const IAudioEndpointVolume,
+            pfLevel: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetChannelVolumeLevel: *const fn(
+            self: *const IAudioEndpointVolume,
+            nChannel: u32,
+            fLevelDB: f32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetChannelVolumeLevelScalar: *const fn(
+            self: *const IAudioEndpointVolume,
+            nChannel: u32,
+            fLevel: f32,
+            pguidEventContext: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChannelVolumeLevel: *const fn(
+            self: *const IAudioEndpointVolume,
+            nChannel: u32,
+            pfLevelDB: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChannelVolumeLevelScalar: *const fn(
+            self: *const IAudioEndpointVolume,
+            nChannel: u32,
+            pfLevel: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMute: *const fn(
+            self: *const IAudioEndpointVolume,
+            bMute: BOOL,
+            pguidEventContext: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMute: *const fn(
+            self: *const IAudioEndpointVolume,
+            pbMute: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVolumeStepInfo: *const fn(
+            self: *const IAudioEndpointVolume,
+            pnStep: ?*u32,
+            pnStepCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        VolumeStepUp: *const fn(
+            self: *const IAudioEndpointVolume,
+            pguidEventContext: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        VolumeStepDown: *const fn(
+            self: *const IAudioEndpointVolume,
+            pguidEventContext: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryHardwareSupport: *const fn(
+            self: *const IAudioEndpointVolume,
+            pdwHardwareSupportMask: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVolumeRange: *const fn(
+            self: *const IAudioEndpointVolume,
+            pflVolumeMindB: ?*f32,
+            pflVolumeMaxdB: ?*f32,
+            pflVolumeIncrementdB: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -713,22 +474,13 @@ pub const IID_IAudioEndpointVolumeEx = &IID_IAudioEndpointVolumeEx_Value;
 pub const IAudioEndpointVolumeEx = extern struct {
     pub const VTable = extern struct {
         base: IAudioEndpointVolume.VTable,
-        GetVolumeRangeChannel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioEndpointVolumeEx,
-                iChannel: u32,
-                pflVolumeMindB: ?*f32,
-                pflVolumeMaxdB: ?*f32,
-                pflVolumeIncrementdB: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioEndpointVolumeEx,
-                iChannel: u32,
-                pflVolumeMindB: ?*f32,
-                pflVolumeMaxdB: ?*f32,
-                pflVolumeIncrementdB: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetVolumeRangeChannel: *const fn(
+            self: *const IAudioEndpointVolumeEx,
+            iChannel: u32,
+            pflVolumeMindB: ?*f32,
+            pflVolumeMaxdB: ?*f32,
+            pflVolumeIncrementdB: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -747,48 +499,23 @@ pub const IID_IAudioMeterInformation = &IID_IAudioMeterInformation_Value;
 pub const IAudioMeterInformation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPeakValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioMeterInformation,
-                pfPeak: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioMeterInformation,
-                pfPeak: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMeteringChannelCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioMeterInformation,
-                pnChannelCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioMeterInformation,
-                pnChannelCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChannelsPeakValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioMeterInformation,
-                u32ChannelCount: u32,
-                afPeakValues: [*]f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioMeterInformation,
-                u32ChannelCount: u32,
-                afPeakValues: [*]f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryHardwareSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAudioMeterInformation,
-                pdwHardwareSupportMask: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAudioMeterInformation,
-                pdwHardwareSupportMask: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPeakValue: *const fn(
+            self: *const IAudioMeterInformation,
+            pfPeak: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMeteringChannelCount: *const fn(
+            self: *const IAudioMeterInformation,
+            pnChannelCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChannelsPeakValues: *const fn(
+            self: *const IAudioMeterInformation,
+            u32ChannelCount: u32,
+            afPeakValues: [*]f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryHardwareSupport: *const fn(
+            self: *const IAudioMeterInformation,
+            pdwHardwareSupportMask: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

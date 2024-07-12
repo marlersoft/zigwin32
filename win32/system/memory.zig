@@ -454,12 +454,8 @@ pub const WIN32_MEMORY_RANGE_ENTRY = extern struct {
     NumberOfBytes: usize,
 };
 
-pub const PBAD_MEMORY_CALLBACK_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PBAD_MEMORY_CALLBACK_ROUTINE = *const fn(
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const OFFER_PRIORITY = enum(i32) {
     VeryLow = 1,
@@ -594,18 +590,11 @@ pub const HeapEnableTerminationOnCorruption = HEAP_INFORMATION_CLASS.EnableTermi
 pub const HeapOptimizeResources = HEAP_INFORMATION_CLASS.OptimizeResources;
 pub const HeapTag = HEAP_INFORMATION_CLASS.Tag;
 
-pub const PSECURE_MEMORY_CACHE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        // TODO: what to do with BytesParamIndex 1?
-        Addr: ?*anyopaque,
-        Range: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
-        // TODO: what to do with BytesParamIndex 1?
-        Addr: ?*anyopaque,
-        Range: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
+pub const PSECURE_MEMORY_CACHE_CALLBACK = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    Addr: ?*anyopaque,
+    Range: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 
 pub const MEMORY_BASIC_INFORMATION = switch(@import("../zig.zig").arch) {

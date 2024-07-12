@@ -117,14 +117,9 @@ pub const RM_FILTER_INFO = extern struct {
     },
 };
 
-pub const RM_WRITE_STATUS_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        nPercentComplete: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        nPercentComplete: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const RM_WRITE_STATUS_CALLBACK = *const fn(
+    nPercentComplete: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 
 //--------------------------------------------------------------------------------

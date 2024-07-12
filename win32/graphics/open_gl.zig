@@ -857,258 +857,123 @@ pub const LAYERPLANEDESCRIPTOR = extern struct {
     crTransparent: u32,
 };
 
-pub const PFNGLARRAYELEMENTEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        i: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        i: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLARRAYELEMENTEXTPROC = *const fn(
+    i: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLDRAWARRAYSEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        mode: u32,
-        first: i32,
-        count: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        mode: u32,
-        first: i32,
-        count: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLDRAWARRAYSEXTPROC = *const fn(
+    mode: u32,
+    first: i32,
+    count: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLVERTEXPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLVERTEXPOINTEREXTPROC = *const fn(
+    size: i32,
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLNORMALPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLNORMALPOINTEREXTPROC = *const fn(
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLCOLORPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLCOLORPOINTEREXTPROC = *const fn(
+    size: i32,
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLINDEXPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLINDEXPOINTEREXTPROC = *const fn(
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLTEXCOORDPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLTEXCOORDPOINTEREXTPROC = *const fn(
+    size: i32,
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLEDGEFLAGPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        stride: i32,
-        count: i32,
-        pointer: ?*const u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        stride: i32,
-        count: i32,
-        pointer: ?*const u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLEDGEFLAGPOINTEREXTPROC = *const fn(
+    stride: i32,
+    count: i32,
+    pointer: ?*const u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLGETPOINTERVEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pname: u32,
-        params: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pname: u32,
-        params: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLGETPOINTERVEXTPROC = *const fn(
+    pname: u32,
+    params: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLARRAYELEMENTARRAYEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        mode: u32,
-        count: i32,
-        pi: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        mode: u32,
-        count: i32,
-        pi: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLARRAYELEMENTARRAYEXTPROC = *const fn(
+    mode: u32,
+    count: i32,
+    pi: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLDRAWRANGEELEMENTSWINPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        mode: u32,
-        start: u32,
-        end: u32,
-        count: i32,
-        type: u32,
-        indices: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        mode: u32,
-        start: u32,
-        end: u32,
-        count: i32,
-        type: u32,
-        indices: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLDRAWRANGEELEMENTSWINPROC = *const fn(
+    mode: u32,
+    start: u32,
+    end: u32,
+    count: i32,
+    type: u32,
+    indices: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLADDSWAPHINTRECTWINPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLADDSWAPHINTRECTWINPROC = *const fn(
+    x: i32,
+    y: i32,
+    width: i32,
+    height: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLCOLORTABLEEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        target: u32,
-        internalFormat: u32,
-        width: i32,
-        format: u32,
-        type: u32,
-        data: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        target: u32,
-        internalFormat: u32,
-        width: i32,
-        format: u32,
-        type: u32,
-        data: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLCOLORTABLEEXTPROC = *const fn(
+    target: u32,
+    internalFormat: u32,
+    width: i32,
+    format: u32,
+    type: u32,
+    data: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLCOLORSUBTABLEEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        target: u32,
-        start: i32,
-        count: i32,
-        format: u32,
-        type: u32,
-        data: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        target: u32,
-        start: i32,
-        count: i32,
-        format: u32,
-        type: u32,
-        data: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLCOLORSUBTABLEEXTPROC = *const fn(
+    target: u32,
+    start: i32,
+    count: i32,
+    format: u32,
+    type: u32,
+    data: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLGETCOLORTABLEEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        target: u32,
-        format: u32,
-        type: u32,
-        data: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        target: u32,
-        format: u32,
-        type: u32,
-        data: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLGETCOLORTABLEEXTPROC = *const fn(
+    target: u32,
+    format: u32,
+    type: u32,
+    data: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLGETCOLORTABLEPARAMETERIVEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        target: u32,
-        pname: u32,
-        params: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        target: u32,
-        pname: u32,
-        params: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLGETCOLORTABLEPARAMETERIVEXTPROC = *const fn(
+    target: u32,
+    pname: u32,
+    params: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLGETCOLORTABLEPARAMETERFVEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        target: u32,
-        pname: u32,
-        params: ?*f32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        target: u32,
-        pname: u32,
-        params: ?*f32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFNGLGETCOLORTABLEPARAMETERFVEXTPROC = *const fn(
+    target: u32,
+    pname: u32,
+    params: ?*f32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUnurbs = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -1122,151 +987,71 @@ pub const GLUtesselator = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const GLUquadricErrorProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUquadricErrorProc = *const fn(
+    param0: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessBeginProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessBeginProc = *const fn(
+    param0: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessEdgeFlagProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessEdgeFlagProc = *const fn(
+    param0: u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessVertexProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessVertexProc = *const fn(
+    param0: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessEndProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessEndProc = *const fn(
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessErrorProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessErrorProc = *const fn(
+    param0: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessCombineProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*f64,
-        param1: ?*?*anyopaque,
-        param2: ?*f32,
-        param3: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*f64,
-        param1: ?*?*anyopaque,
-        param2: ?*f32,
-        param3: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessCombineProc = *const fn(
+    param0: ?*f64,
+    param1: ?*?*anyopaque,
+    param2: ?*f32,
+    param3: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessBeginDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: u32,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessBeginDataProc = *const fn(
+    param0: u32,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessEdgeFlagDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u8,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: u8,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessEdgeFlagDataProc = *const fn(
+    param0: u8,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessVertexDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*anyopaque,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*anyopaque,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessVertexDataProc = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessEndDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessEndDataProc = *const fn(
+    param0: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessErrorDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: u32,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessErrorDataProc = *const fn(
+    param0: u32,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessCombineDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*f64,
-        param1: ?*?*anyopaque,
-        param2: ?*f32,
-        param3: ?*?*anyopaque,
-        param4: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*f64,
-        param1: ?*?*anyopaque,
-        param2: ?*f32,
-        param3: ?*?*anyopaque,
-        param4: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUtessCombineDataProc = *const fn(
+    param0: ?*f64,
+    param1: ?*?*anyopaque,
+    param2: ?*f32,
+    param3: ?*?*anyopaque,
+    param4: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUnurbsErrorProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const GLUnurbsErrorProc = *const fn(
+    param0: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 
 //--------------------------------------------------------------------------------

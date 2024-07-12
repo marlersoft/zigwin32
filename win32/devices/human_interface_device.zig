@@ -2525,16 +2525,10 @@ pub const DIFILEEFFECT = extern struct {
     szFriendlyName: [260]CHAR,
 };
 
-pub const LPDIENUMEFFECTSINFILECALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DIFILEEFFECT,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*DIFILEEFFECT,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMEFFECTSINFILECALLBACK = *const fn(
+    param0: ?*DIFILEEFFECT,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DIEFFESCAPE = extern struct {
     dwSize: u32,
@@ -2550,110 +2544,48 @@ pub const IID_IDirectInputEffect = &IID_IDirectInputEffect_Value;
 pub const IDirectInputEffect = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffectGuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-                param0: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-                param0: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-                param0: ?*DIEFFECT,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-                param0: ?*DIEFFECT,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-                param0: ?*DIEFFECT,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-                param0: ?*DIEFFECT,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Start: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Stop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffectStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Download: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Escape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffect,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffect,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IDirectInputEffect,
+            param0: ?HINSTANCE,
+            param1: u32,
+            param2: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectGuid: *const fn(
+            self: *const IDirectInputEffect,
+            param0: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParameters: *const fn(
+            self: *const IDirectInputEffect,
+            param0: ?*DIEFFECT,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetParameters: *const fn(
+            self: *const IDirectInputEffect,
+            param0: ?*DIEFFECT,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Start: *const fn(
+            self: *const IDirectInputEffect,
+            param0: u32,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Stop: *const fn(
+            self: *const IDirectInputEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectStatus: *const fn(
+            self: *const IDirectInputEffect,
+            param0: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Download: *const fn(
+            self: *const IDirectInputEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unload: *const fn(
+            self: *const IDirectInputEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Escape: *const fn(
+            self: *const IDirectInputEffect,
+            param0: ?*DIEFFESCAPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2937,27 +2869,15 @@ pub const DIDEVICEOBJECTINSTANCEW = extern struct {
     wReportId: u16,
 };
 
-pub const LPDIENUMDEVICEOBJECTSCALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DIDEVICEOBJECTINSTANCEA,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*DIDEVICEOBJECTINSTANCEA,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMDEVICEOBJECTSCALLBACKA = *const fn(
+    param0: ?*DIDEVICEOBJECTINSTANCEA,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPDIENUMDEVICEOBJECTSCALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DIDEVICEOBJECTINSTANCEW,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*DIDEVICEOBJECTINSTANCEW,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMDEVICEOBJECTSCALLBACKW = *const fn(
+    param0: ?*DIDEVICEOBJECTINSTANCEW,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DIPROPHEADER = extern struct {
     dwSize: u32,
@@ -3079,180 +2999,78 @@ pub const IID_IDirectInputDeviceW = &IID_IDirectInputDeviceW_Value;
 pub const IDirectInputDeviceW = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*DIDEVCAPS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*DIDEVCAPS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Acquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unacquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: u32,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: u32,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDataFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*DIDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*DIDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEventNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetObjectInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*DIDEVICEOBJECTINSTANCEW,
-                param1: u32,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*DIDEVICEOBJECTINSTANCEW,
-                param1: u32,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*DIDEVICEINSTANCEW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?*DIDEVICEINSTANCEW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RunControlPanel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceW,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCapabilities: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?*DIDEVCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumObjects: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?*const Guid,
+            param1: ?*DIPROPHEADER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?*const Guid,
+            param1: ?*DIPROPHEADER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Acquire: *const fn(
+            self: *const IDirectInputDeviceW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unacquire: *const fn(
+            self: *const IDirectInputDeviceW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceState: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: u32,
+            param1: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceData: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: u32,
+            param1: ?*DIDEVICEOBJECTDATA,
+            param2: ?*u32,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDataFormat: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?*DIDATAFORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventNotification: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCooperativeLevel: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetObjectInfo: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?*DIDEVICEOBJECTINSTANCEW,
+            param1: u32,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceInfo: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?*DIDEVICEINSTANCEW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RunControlPanel: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IDirectInputDeviceW,
+            param0: ?HINSTANCE,
+            param1: u32,
+            param2: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3326,180 +3144,78 @@ pub const IID_IDirectInputDeviceA = &IID_IDirectInputDeviceA_Value;
 pub const IDirectInputDeviceA = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*DIDEVCAPS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*DIDEVCAPS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Acquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unacquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: u32,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: u32,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDataFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*DIDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*DIDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEventNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetObjectInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*DIDEVICEOBJECTINSTANCEA,
-                param1: u32,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*DIDEVICEOBJECTINSTANCEA,
-                param1: u32,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*DIDEVICEINSTANCEA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?*DIDEVICEINSTANCEA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RunControlPanel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDeviceA,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCapabilities: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?*DIDEVCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumObjects: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?*const Guid,
+            param1: ?*DIPROPHEADER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?*const Guid,
+            param1: ?*DIPROPHEADER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Acquire: *const fn(
+            self: *const IDirectInputDeviceA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unacquire: *const fn(
+            self: *const IDirectInputDeviceA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceState: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: u32,
+            param1: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceData: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: u32,
+            param1: ?*DIDEVICEOBJECTDATA,
+            param2: ?*u32,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDataFormat: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?*DIDATAFORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventNotification: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCooperativeLevel: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetObjectInfo: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?*DIDEVICEOBJECTINSTANCEA,
+            param1: u32,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceInfo: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?*DIDEVICEINSTANCEA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RunControlPanel: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IDirectInputDeviceA,
+            param0: ?HINSTANCE,
+            param1: u32,
+            param2: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3586,154 +3302,72 @@ pub const DIEFFECTINFOW = extern struct {
     tszName: [260]u16,
 };
 
-pub const LPDIENUMEFFECTSCALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DIEFFECTINFOA,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*DIEFFECTINFOA,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMEFFECTSCALLBACKA = *const fn(
+    param0: ?*DIEFFECTINFOA,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPDIENUMEFFECTSCALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DIEFFECTINFOW,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*DIEFFECTINFOW,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMEFFECTSCALLBACKW = *const fn(
+    param0: ?*DIEFFECTINFOW,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPDIENUMCREATEDEFFECTOBJECTSCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*IDirectInputEffect,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*IDirectInputEffect,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMCREATEDEFFECTOBJECTSCALLBACK = *const fn(
+    param0: ?*IDirectInputEffect,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IDirectInputDevice2W_Value = Guid.initString("5944e683-c92e-11cf-bfc7-444553540000");
 pub const IID_IDirectInputDevice2W = &IID_IDirectInputDevice2W_Value;
 pub const IDirectInputDevice2W = extern struct {
     pub const VTable = extern struct {
         base: IDirectInputDeviceW.VTable,
-        CreateEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?*const Guid,
-                param1: ?*DIEFFECT,
-                param2: ?*?*IDirectInputEffect,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?*const Guid,
-                param1: ?*DIEFFECT,
-                param2: ?*?*IDirectInputEffect,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumEffects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?LPDIENUMEFFECTSCALLBACKW,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?LPDIENUMEFFECTSCALLBACKW,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffectInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?*DIEFFECTINFOW,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?*DIEFFECTINFOW,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForceFeedbackState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendForceFeedbackCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2W,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2W,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumCreatedEffectObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Escape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2W,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Poll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2W,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2W,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendDeviceData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2W,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2W,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateEffect: *const fn(
+            self: *const IDirectInputDevice2W,
+            param0: ?*const Guid,
+            param1: ?*DIEFFECT,
+            param2: ?*?*IDirectInputEffect,
+            param3: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumEffects: *const fn(
+            self: *const IDirectInputDevice2W,
+            param0: ?LPDIENUMEFFECTSCALLBACKW,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectInfo: *const fn(
+            self: *const IDirectInputDevice2W,
+            param0: ?*DIEFFECTINFOW,
+            param1: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForceFeedbackState: *const fn(
+            self: *const IDirectInputDevice2W,
+            param0: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendForceFeedbackCommand: *const fn(
+            self: *const IDirectInputDevice2W,
+            param0: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumCreatedEffectObjects: *const fn(
+            self: *const IDirectInputDevice2W,
+            param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Escape: *const fn(
+            self: *const IDirectInputDevice2W,
+            param0: ?*DIEFFESCAPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Poll: *const fn(
+            self: *const IDirectInputDevice2W,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendDeviceData: *const fn(
+            self: *const IDirectInputDevice2W,
+            param0: u32,
+            param1: ?*DIDEVICEOBJECTDATA,
+            param2: ?*u32,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3783,116 +3417,52 @@ pub const IID_IDirectInputDevice2A = &IID_IDirectInputDevice2A_Value;
 pub const IDirectInputDevice2A = extern struct {
     pub const VTable = extern struct {
         base: IDirectInputDeviceA.VTable,
-        CreateEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?*const Guid,
-                param1: ?*DIEFFECT,
-                param2: ?*?*IDirectInputEffect,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?*const Guid,
-                param1: ?*DIEFFECT,
-                param2: ?*?*IDirectInputEffect,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumEffects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?LPDIENUMEFFECTSCALLBACKA,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?LPDIENUMEFFECTSCALLBACKA,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffectInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?*DIEFFECTINFOA,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?*DIEFFECTINFOA,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForceFeedbackState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendForceFeedbackCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2A,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2A,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumCreatedEffectObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Escape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2A,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Poll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2A,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2A,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendDeviceData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice2A,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice2A,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateEffect: *const fn(
+            self: *const IDirectInputDevice2A,
+            param0: ?*const Guid,
+            param1: ?*DIEFFECT,
+            param2: ?*?*IDirectInputEffect,
+            param3: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumEffects: *const fn(
+            self: *const IDirectInputDevice2A,
+            param0: ?LPDIENUMEFFECTSCALLBACKA,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectInfo: *const fn(
+            self: *const IDirectInputDevice2A,
+            param0: ?*DIEFFECTINFOA,
+            param1: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForceFeedbackState: *const fn(
+            self: *const IDirectInputDevice2A,
+            param0: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendForceFeedbackCommand: *const fn(
+            self: *const IDirectInputDevice2A,
+            param0: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumCreatedEffectObjects: *const fn(
+            self: *const IDirectInputDevice2A,
+            param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Escape: *const fn(
+            self: *const IDirectInputDevice2A,
+            param0: ?*DIEFFESCAPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Poll: *const fn(
+            self: *const IDirectInputDevice2A,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendDeviceData: *const fn(
+            self: *const IDirectInputDevice2A,
+            param0: u32,
+            param1: ?*DIDEVICEOBJECTDATA,
+            param2: ?*u32,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3942,38 +3512,20 @@ pub const IID_IDirectInputDevice7W = &IID_IDirectInputDevice7W_Value;
 pub const IDirectInputDevice7W = extern struct {
     pub const VTable = extern struct {
         base: IDirectInputDevice2W.VTable,
-        EnumEffectsInFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice7W,
-                param0: ?[*:0]const u16,
-                param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice7W,
-                param0: ?[*:0]const u16,
-                param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEffectToFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice7W,
-                param0: ?[*:0]const u16,
-                param1: u32,
-                param2: ?*DIFILEEFFECT,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice7W,
-                param0: ?[*:0]const u16,
-                param1: u32,
-                param2: ?*DIFILEEFFECT,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnumEffectsInFile: *const fn(
+            self: *const IDirectInputDevice7W,
+            param0: ?[*:0]const u16,
+            param1: ?LPDIENUMEFFECTSINFILECALLBACK,
+            param2: ?*anyopaque,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEffectToFile: *const fn(
+            self: *const IDirectInputDevice7W,
+            param0: ?[*:0]const u16,
+            param1: u32,
+            param2: ?*DIFILEEFFECT,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3995,38 +3547,20 @@ pub const IID_IDirectInputDevice7A = &IID_IDirectInputDevice7A_Value;
 pub const IDirectInputDevice7A = extern struct {
     pub const VTable = extern struct {
         base: IDirectInputDevice2A.VTable,
-        EnumEffectsInFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice7A,
-                param0: ?[*:0]const u8,
-                param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice7A,
-                param0: ?[*:0]const u8,
-                param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEffectToFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice7A,
-                param0: ?[*:0]const u8,
-                param1: u32,
-                param2: ?*DIFILEEFFECT,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice7A,
-                param0: ?[*:0]const u8,
-                param1: u32,
-                param2: ?*DIFILEEFFECT,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnumEffectsInFile: *const fn(
+            self: *const IDirectInputDevice7A,
+            param0: ?[*:0]const u8,
+            param1: ?LPDIENUMEFFECTSINFILECALLBACK,
+            param2: ?*anyopaque,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEffectToFile: *const fn(
+            self: *const IDirectInputDevice7A,
+            param0: ?[*:0]const u8,
+            param1: u32,
+            param2: ?*DIFILEEFFECT,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4048,360 +3582,154 @@ pub const IID_IDirectInputDevice8W = &IID_IDirectInputDevice8W_Value;
 pub const IDirectInputDevice8W = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDEVCAPS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDEVCAPS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Acquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unacquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: u32,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: u32,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDataFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEventNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetObjectInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDEVICEOBJECTINSTANCEW,
-                param1: u32,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDEVICEOBJECTINSTANCEW,
-                param1: u32,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDEVICEINSTANCEW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDEVICEINSTANCEW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RunControlPanel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*const Guid,
-                param1: ?*DIEFFECT,
-                param2: ?*?*IDirectInputEffect,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*const Guid,
-                param1: ?*DIEFFECT,
-                param2: ?*?*IDirectInputEffect,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumEffects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?LPDIENUMEFFECTSCALLBACKW,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?LPDIENUMEFFECTSCALLBACKW,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffectInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIEFFECTINFOW,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIEFFECTINFOW,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForceFeedbackState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendForceFeedbackCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumCreatedEffectObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Escape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Poll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendDeviceData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumEffectsInFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?[*:0]const u16,
-                param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?[*:0]const u16,
-                param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEffectToFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?[*:0]const u16,
-                param1: u32,
-                param2: ?*DIFILEEFFECT,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?[*:0]const u16,
-                param1: u32,
-                param2: ?*DIFILEEFFECT,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BuildActionMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIACTIONFORMATW,
-                param1: ?[*:0]const u16,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIACTIONFORMATW,
-                param1: ?[*:0]const u16,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActionMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIACTIONFORMATW,
-                param1: ?[*:0]const u16,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIACTIONFORMATW,
-                param1: ?[*:0]const u16,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImageInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDEVICEIMAGEINFOHEADERW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8W,
-                param0: ?*DIDEVICEIMAGEINFOHEADERW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCapabilities: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*DIDEVCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumObjects: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?LPDIENUMDEVICEOBJECTSCALLBACKW,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*const Guid,
+            param1: ?*DIPROPHEADER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*const Guid,
+            param1: ?*DIPROPHEADER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Acquire: *const fn(
+            self: *const IDirectInputDevice8W,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unacquire: *const fn(
+            self: *const IDirectInputDevice8W,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceState: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: u32,
+            param1: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceData: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: u32,
+            param1: ?*DIDEVICEOBJECTDATA,
+            param2: ?*u32,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDataFormat: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*DIDATAFORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventNotification: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCooperativeLevel: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetObjectInfo: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*DIDEVICEOBJECTINSTANCEW,
+            param1: u32,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceInfo: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*DIDEVICEINSTANCEW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RunControlPanel: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?HINSTANCE,
+            param1: u32,
+            param2: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEffect: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*const Guid,
+            param1: ?*DIEFFECT,
+            param2: ?*?*IDirectInputEffect,
+            param3: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumEffects: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?LPDIENUMEFFECTSCALLBACKW,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectInfo: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*DIEFFECTINFOW,
+            param1: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForceFeedbackState: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendForceFeedbackCommand: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumCreatedEffectObjects: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Escape: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*DIEFFESCAPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Poll: *const fn(
+            self: *const IDirectInputDevice8W,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendDeviceData: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: u32,
+            param1: ?*DIDEVICEOBJECTDATA,
+            param2: ?*u32,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumEffectsInFile: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?[*:0]const u16,
+            param1: ?LPDIENUMEFFECTSINFILECALLBACK,
+            param2: ?*anyopaque,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEffectToFile: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?[*:0]const u16,
+            param1: u32,
+            param2: ?*DIFILEEFFECT,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BuildActionMap: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*DIACTIONFORMATW,
+            param1: ?[*:0]const u16,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActionMap: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*DIACTIONFORMATW,
+            param1: ?[*:0]const u16,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageInfo: *const fn(
+            self: *const IDirectInputDevice8W,
+            param0: ?*DIDEVICEIMAGEINFOHEADERW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4531,360 +3859,154 @@ pub const IID_IDirectInputDevice8A = &IID_IDirectInputDevice8A_Value;
 pub const IDirectInputDevice8A = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDEVCAPS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDEVCAPS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*const Guid,
-                param1: ?*DIPROPHEADER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Acquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unacquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: u32,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: u32,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDataFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEventNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetObjectInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDEVICEOBJECTINSTANCEA,
-                param1: u32,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDEVICEOBJECTINSTANCEA,
-                param1: u32,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDEVICEINSTANCEA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDEVICEINSTANCEA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RunControlPanel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?HINSTANCE,
-                param1: u32,
-                param2: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*const Guid,
-                param1: ?*DIEFFECT,
-                param2: ?*?*IDirectInputEffect,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*const Guid,
-                param1: ?*DIEFFECT,
-                param2: ?*?*IDirectInputEffect,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumEffects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?LPDIENUMEFFECTSCALLBACKA,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?LPDIENUMEFFECTSCALLBACKA,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffectInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIEFFECTINFOA,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIEFFECTINFOA,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForceFeedbackState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendForceFeedbackCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumCreatedEffectObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
-                param1: ?*anyopaque,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Escape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Poll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendDeviceData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: u32,
-                param1: ?*DIDEVICEOBJECTDATA,
-                param2: ?*u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumEffectsInFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?[*:0]const u8,
-                param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?[*:0]const u8,
-                param1: ?LPDIENUMEFFECTSINFILECALLBACK,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEffectToFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?[*:0]const u8,
-                param1: u32,
-                param2: ?*DIFILEEFFECT,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?[*:0]const u8,
-                param1: u32,
-                param2: ?*DIFILEEFFECT,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BuildActionMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIACTIONFORMATA,
-                param1: ?[*:0]const u8,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIACTIONFORMATA,
-                param1: ?[*:0]const u8,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActionMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIACTIONFORMATA,
-                param1: ?[*:0]const u8,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIACTIONFORMATA,
-                param1: ?[*:0]const u8,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImageInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDEVICEIMAGEINFOHEADERA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputDevice8A,
-                param0: ?*DIDEVICEIMAGEINFOHEADERA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCapabilities: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*DIDEVCAPS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumObjects: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?LPDIENUMDEVICEOBJECTSCALLBACKA,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*const Guid,
+            param1: ?*DIPROPHEADER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*const Guid,
+            param1: ?*DIPROPHEADER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Acquire: *const fn(
+            self: *const IDirectInputDevice8A,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unacquire: *const fn(
+            self: *const IDirectInputDevice8A,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceState: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: u32,
+            param1: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceData: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: u32,
+            param1: ?*DIDEVICEOBJECTDATA,
+            param2: ?*u32,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDataFormat: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*DIDATAFORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventNotification: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCooperativeLevel: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetObjectInfo: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*DIDEVICEOBJECTINSTANCEA,
+            param1: u32,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceInfo: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*DIDEVICEINSTANCEA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RunControlPanel: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?HINSTANCE,
+            param1: u32,
+            param2: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEffect: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*const Guid,
+            param1: ?*DIEFFECT,
+            param2: ?*?*IDirectInputEffect,
+            param3: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumEffects: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?LPDIENUMEFFECTSCALLBACKA,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectInfo: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*DIEFFECTINFOA,
+            param1: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForceFeedbackState: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendForceFeedbackCommand: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumCreatedEffectObjects: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?LPDIENUMCREATEDEFFECTOBJECTSCALLBACK,
+            param1: ?*anyopaque,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Escape: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*DIEFFESCAPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Poll: *const fn(
+            self: *const IDirectInputDevice8A,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendDeviceData: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: u32,
+            param1: ?*DIDEVICEOBJECTDATA,
+            param2: ?*u32,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumEffectsInFile: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?[*:0]const u8,
+            param1: ?LPDIENUMEFFECTSINFILECALLBACK,
+            param2: ?*anyopaque,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEffectToFile: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?[*:0]const u8,
+            param1: u32,
+            param2: ?*DIFILEEFFECT,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BuildActionMap: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*DIACTIONFORMATA,
+            param1: ?[*:0]const u8,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActionMap: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*DIACTIONFORMATA,
+            param1: ?[*:0]const u8,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageInfo: *const fn(
+            self: *const IDirectInputDevice8A,
+            param0: ?*DIDEVICEIMAGEINFOHEADERA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5068,142 +4190,69 @@ pub const DIJOYSTATE2 = extern struct {
     rglFSlider: [2]i32,
 };
 
-pub const LPDIENUMDEVICESCALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DIDEVICEINSTANCEA,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*DIDEVICEINSTANCEA,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMDEVICESCALLBACKA = *const fn(
+    param0: ?*DIDEVICEINSTANCEA,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPDIENUMDEVICESCALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DIDEVICEINSTANCEW,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*DIDEVICEINSTANCEW,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMDEVICESCALLBACKW = *const fn(
+    param0: ?*DIDEVICEINSTANCEW,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPDICONFIGUREDEVICESCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*IUnknown,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*IUnknown,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDICONFIGUREDEVICESCALLBACK = *const fn(
+    param0: ?*IUnknown,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPDIENUMDEVICESBYSEMANTICSCBA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DIDEVICEINSTANCEA,
-        param1: ?*IDirectInputDevice8A,
-        param2: u32,
-        param3: u32,
-        param4: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*DIDEVICEINSTANCEA,
-        param1: ?*IDirectInputDevice8A,
-        param2: u32,
-        param3: u32,
-        param4: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMDEVICESBYSEMANTICSCBA = *const fn(
+    param0: ?*DIDEVICEINSTANCEA,
+    param1: ?*IDirectInputDevice8A,
+    param2: u32,
+    param3: u32,
+    param4: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPDIENUMDEVICESBYSEMANTICSCBW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*DIDEVICEINSTANCEW,
-        param1: ?*IDirectInputDevice8W,
-        param2: u32,
-        param3: u32,
-        param4: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*DIDEVICEINSTANCEW,
-        param1: ?*IDirectInputDevice8W,
-        param2: u32,
-        param3: u32,
-        param4: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIENUMDEVICESBYSEMANTICSCBW = *const fn(
+    param0: ?*DIDEVICEINSTANCEW,
+    param1: ?*IDirectInputDevice8W,
+    param2: u32,
+    param3: u32,
+    param4: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 const IID_IDirectInputW_Value = Guid.initString("89521361-aa8a-11cf-bfc7-444553540000");
 pub const IID_IDirectInputW = &IID_IDirectInputW_Value;
 pub const IDirectInputW = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputW,
-                param0: ?*const Guid,
-                param1: ?*?*IDirectInputDeviceW,
-                param2: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputW,
-                param0: ?*const Guid,
-                param1: ?*?*IDirectInputDeviceW,
-                param2: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumDevices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputW,
-                param0: u32,
-                param1: ?LPDIENUMDEVICESCALLBACKW,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputW,
-                param0: u32,
-                param1: ?LPDIENUMDEVICESCALLBACKW,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputW,
-                param0: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputW,
-                param0: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RunControlPanel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputW,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputW,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputW,
-                param0: ?HINSTANCE,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputW,
-                param0: ?HINSTANCE,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateDevice: *const fn(
+            self: *const IDirectInputW,
+            param0: ?*const Guid,
+            param1: ?*?*IDirectInputDeviceW,
+            param2: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumDevices: *const fn(
+            self: *const IDirectInputW,
+            param0: u32,
+            param1: ?LPDIENUMDEVICESCALLBACKW,
+            param2: ?*anyopaque,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceStatus: *const fn(
+            self: *const IDirectInputW,
+            param0: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RunControlPanel: *const fn(
+            self: *const IDirectInputW,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IDirectInputW,
+            param0: ?HINSTANCE,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5237,70 +4286,33 @@ pub const IID_IDirectInputA = &IID_IDirectInputA_Value;
 pub const IDirectInputA = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputA,
-                param0: ?*const Guid,
-                param1: ?*?*IDirectInputDeviceA,
-                param2: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputA,
-                param0: ?*const Guid,
-                param1: ?*?*IDirectInputDeviceA,
-                param2: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumDevices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputA,
-                param0: u32,
-                param1: ?LPDIENUMDEVICESCALLBACKA,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputA,
-                param0: u32,
-                param1: ?LPDIENUMDEVICESCALLBACKA,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputA,
-                param0: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputA,
-                param0: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RunControlPanel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputA,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputA,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputA,
-                param0: ?HINSTANCE,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputA,
-                param0: ?HINSTANCE,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateDevice: *const fn(
+            self: *const IDirectInputA,
+            param0: ?*const Guid,
+            param1: ?*?*IDirectInputDeviceA,
+            param2: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumDevices: *const fn(
+            self: *const IDirectInputA,
+            param0: u32,
+            param1: ?LPDIENUMDEVICESCALLBACKA,
+            param2: ?*anyopaque,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceStatus: *const fn(
+            self: *const IDirectInputA,
+            param0: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RunControlPanel: *const fn(
+            self: *const IDirectInputA,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IDirectInputA,
+            param0: ?HINSTANCE,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5334,20 +4346,12 @@ pub const IID_IDirectInput2W = &IID_IDirectInput2W_Value;
 pub const IDirectInput2W = extern struct {
     pub const VTable = extern struct {
         base: IDirectInputW.VTable,
-        FindDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput2W,
-                param0: ?*const Guid,
-                param1: ?[*:0]const u16,
-                param2: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput2W,
-                param0: ?*const Guid,
-                param1: ?[*:0]const u16,
-                param2: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindDevice: *const fn(
+            self: *const IDirectInput2W,
+            param0: ?*const Guid,
+            param1: ?[*:0]const u16,
+            param2: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5365,20 +4369,12 @@ pub const IID_IDirectInput2A = &IID_IDirectInput2A_Value;
 pub const IDirectInput2A = extern struct {
     pub const VTable = extern struct {
         base: IDirectInputA.VTable,
-        FindDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput2A,
-                param0: ?*const Guid,
-                param1: ?[*:0]const u8,
-                param2: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput2A,
-                param0: ?*const Guid,
-                param1: ?[*:0]const u8,
-                param2: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindDevice: *const fn(
+            self: *const IDirectInput2A,
+            param0: ?*const Guid,
+            param1: ?[*:0]const u8,
+            param2: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5396,22 +4392,13 @@ pub const IID_IDirectInput7W = &IID_IDirectInput7W_Value;
 pub const IDirectInput7W = extern struct {
     pub const VTable = extern struct {
         base: IDirectInput2W.VTable,
-        CreateDeviceEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput7W,
-                param0: ?*const Guid,
-                param1: ?*const Guid,
-                param2: ?*?*anyopaque,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput7W,
-                param0: ?*const Guid,
-                param1: ?*const Guid,
-                param2: ?*?*anyopaque,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateDeviceEx: *const fn(
+            self: *const IDirectInput7W,
+            param0: ?*const Guid,
+            param1: ?*const Guid,
+            param2: ?*?*anyopaque,
+            param3: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5429,22 +4416,13 @@ pub const IID_IDirectInput7A = &IID_IDirectInput7A_Value;
 pub const IDirectInput7A = extern struct {
     pub const VTable = extern struct {
         base: IDirectInput2A.VTable,
-        CreateDeviceEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput7A,
-                param0: ?*const Guid,
-                param1: ?*const Guid,
-                param2: ?*?*anyopaque,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput7A,
-                param0: ?*const Guid,
-                param1: ?*const Guid,
-                param2: ?*?*anyopaque,
-                param3: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateDeviceEx: *const fn(
+            self: *const IDirectInput7A,
+            param0: ?*const Guid,
+            param1: ?*const Guid,
+            param2: ?*?*anyopaque,
+            param3: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5462,118 +4440,54 @@ pub const IID_IDirectInput8W = &IID_IDirectInput8W_Value;
 pub const IDirectInput8W = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8W,
-                param0: ?*const Guid,
-                param1: ?*?*IDirectInputDevice8W,
-                param2: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8W,
-                param0: ?*const Guid,
-                param1: ?*?*IDirectInputDevice8W,
-                param2: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumDevices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8W,
-                param0: u32,
-                param1: ?LPDIENUMDEVICESCALLBACKW,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8W,
-                param0: u32,
-                param1: ?LPDIENUMDEVICESCALLBACKW,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8W,
-                param0: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8W,
-                param0: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RunControlPanel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8W,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8W,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8W,
-                param0: ?HINSTANCE,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8W,
-                param0: ?HINSTANCE,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8W,
-                param0: ?*const Guid,
-                param1: ?[*:0]const u16,
-                param2: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8W,
-                param0: ?*const Guid,
-                param1: ?[*:0]const u16,
-                param2: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumDevicesBySemantics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8W,
-                param0: ?[*:0]const u16,
-                param1: ?*DIACTIONFORMATW,
-                param2: ?LPDIENUMDEVICESBYSEMANTICSCBW,
-                param3: ?*anyopaque,
-                param4: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8W,
-                param0: ?[*:0]const u16,
-                param1: ?*DIACTIONFORMATW,
-                param2: ?LPDIENUMDEVICESBYSEMANTICSCBW,
-                param3: ?*anyopaque,
-                param4: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConfigureDevices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8W,
-                param0: ?LPDICONFIGUREDEVICESCALLBACK,
-                param1: ?*DICONFIGUREDEVICESPARAMSW,
-                param2: u32,
-                param3: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8W,
-                param0: ?LPDICONFIGUREDEVICESCALLBACK,
-                param1: ?*DICONFIGUREDEVICESPARAMSW,
-                param2: u32,
-                param3: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateDevice: *const fn(
+            self: *const IDirectInput8W,
+            param0: ?*const Guid,
+            param1: ?*?*IDirectInputDevice8W,
+            param2: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumDevices: *const fn(
+            self: *const IDirectInput8W,
+            param0: u32,
+            param1: ?LPDIENUMDEVICESCALLBACKW,
+            param2: ?*anyopaque,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceStatus: *const fn(
+            self: *const IDirectInput8W,
+            param0: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RunControlPanel: *const fn(
+            self: *const IDirectInput8W,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IDirectInput8W,
+            param0: ?HINSTANCE,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindDevice: *const fn(
+            self: *const IDirectInput8W,
+            param0: ?*const Guid,
+            param1: ?[*:0]const u16,
+            param2: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumDevicesBySemantics: *const fn(
+            self: *const IDirectInput8W,
+            param0: ?[*:0]const u16,
+            param1: ?*DIACTIONFORMATW,
+            param2: ?LPDIENUMDEVICESBYSEMANTICSCBW,
+            param3: ?*anyopaque,
+            param4: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConfigureDevices: *const fn(
+            self: *const IDirectInput8W,
+            param0: ?LPDICONFIGUREDEVICESCALLBACK,
+            param1: ?*DICONFIGUREDEVICESPARAMSW,
+            param2: u32,
+            param3: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5619,118 +4533,54 @@ pub const IID_IDirectInput8A = &IID_IDirectInput8A_Value;
 pub const IDirectInput8A = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8A,
-                param0: ?*const Guid,
-                param1: ?*?*IDirectInputDevice8A,
-                param2: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8A,
-                param0: ?*const Guid,
-                param1: ?*?*IDirectInputDevice8A,
-                param2: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumDevices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8A,
-                param0: u32,
-                param1: ?LPDIENUMDEVICESCALLBACKA,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8A,
-                param0: u32,
-                param1: ?LPDIENUMDEVICESCALLBACKA,
-                param2: ?*anyopaque,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8A,
-                param0: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8A,
-                param0: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RunControlPanel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8A,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8A,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8A,
-                param0: ?HINSTANCE,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8A,
-                param0: ?HINSTANCE,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8A,
-                param0: ?*const Guid,
-                param1: ?[*:0]const u8,
-                param2: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8A,
-                param0: ?*const Guid,
-                param1: ?[*:0]const u8,
-                param2: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumDevicesBySemantics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8A,
-                param0: ?[*:0]const u8,
-                param1: ?*DIACTIONFORMATA,
-                param2: ?LPDIENUMDEVICESBYSEMANTICSCBA,
-                param3: ?*anyopaque,
-                param4: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8A,
-                param0: ?[*:0]const u8,
-                param1: ?*DIACTIONFORMATA,
-                param2: ?LPDIENUMDEVICESBYSEMANTICSCBA,
-                param3: ?*anyopaque,
-                param4: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConfigureDevices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInput8A,
-                param0: ?LPDICONFIGUREDEVICESCALLBACK,
-                param1: ?*DICONFIGUREDEVICESPARAMSA,
-                param2: u32,
-                param3: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInput8A,
-                param0: ?LPDICONFIGUREDEVICESCALLBACK,
-                param1: ?*DICONFIGUREDEVICESPARAMSA,
-                param2: u32,
-                param3: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateDevice: *const fn(
+            self: *const IDirectInput8A,
+            param0: ?*const Guid,
+            param1: ?*?*IDirectInputDevice8A,
+            param2: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumDevices: *const fn(
+            self: *const IDirectInput8A,
+            param0: u32,
+            param1: ?LPDIENUMDEVICESCALLBACKA,
+            param2: ?*anyopaque,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceStatus: *const fn(
+            self: *const IDirectInput8A,
+            param0: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RunControlPanel: *const fn(
+            self: *const IDirectInput8A,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IDirectInput8A,
+            param0: ?HINSTANCE,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindDevice: *const fn(
+            self: *const IDirectInput8A,
+            param0: ?*const Guid,
+            param1: ?[*:0]const u8,
+            param2: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumDevicesBySemantics: *const fn(
+            self: *const IDirectInput8A,
+            param0: ?[*:0]const u8,
+            param1: ?*DIACTIONFORMATA,
+            param2: ?LPDIENUMDEVICESBYSEMANTICSCBA,
+            param3: ?*anyopaque,
+            param4: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConfigureDevices: *const fn(
+            self: *const IDirectInput8A,
+            param0: ?LPDICONFIGUREDEVICESCALLBACK,
+            param1: ?*DICONFIGUREDEVICESPARAMSA,
+            param2: u32,
+            param3: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5771,14 +4621,9 @@ pub const IDirectInput8A = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const LPFNSHOWJOYCPL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hWnd: ?HWND,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPFNSHOWJOYCPL = *const fn(
+    hWnd: ?HWND,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DIOBJECTATTRIBUTES = extern struct {
     dwFlags: u32,
@@ -5840,156 +4685,70 @@ pub const IID_IDirectInputEffectDriver = &IID_IDirectInputEffectDriver_Value;
 pub const IDirectInputEffectDriver = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DeviceID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: u32,
-                param3: u32,
-                param4: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: u32,
-                param3: u32,
-                param4: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVersions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: ?*DIDRIVERVERSIONS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: ?*DIDRIVERVERSIONS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Escape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: ?*DIEFFESCAPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGain: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendForceFeedbackCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForceFeedbackState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: ?*DIDEVICESTATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: ?*DIDEVICESTATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DownloadEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: ?*u32,
-                param3: ?*DIEFFECT,
-                param4: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: ?*u32,
-                param3: ?*DIEFFECT,
-                param4: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DestroyEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        StartEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: u32,
-                param3: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        StopEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffectStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputEffectDriver,
-                param0: u32,
-                param1: u32,
-                param2: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DeviceID: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: u32,
+            param2: u32,
+            param3: u32,
+            param4: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVersions: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: ?*DIDRIVERVERSIONS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Escape: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: u32,
+            param2: ?*DIEFFESCAPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGain: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendForceFeedbackCommand: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForceFeedbackState: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: ?*DIDEVICESTATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DownloadEffect: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: u32,
+            param2: ?*u32,
+            param3: ?*DIEFFECT,
+            param4: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DestroyEffect: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartEffect: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: u32,
+            param2: u32,
+            param3: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StopEffect: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectStatus: *const fn(
+            self: *const IDirectInputEffectDriver,
+            param0: u32,
+            param1: u32,
+            param2: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6091,16 +4850,10 @@ pub const JOYCALIBRATE = extern struct {
     wZdelta: u32,
 };
 
-pub const LPDIJOYTYPECALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?[*:0]const u16,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?[*:0]const u16,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPDIJOYTYPECALLBACK = *const fn(
+    param0: ?[*:0]const u16,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DIJOYTYPEINFO_DX5 = extern struct {
     dwSize: u32,
@@ -6163,194 +4916,84 @@ pub const IID_IDirectInputJoyConfig = &IID_IDirectInputJoyConfig_Value;
 pub const IDirectInputJoyConfig = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Acquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unacquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?LPDIJOYTYPECALLBACK,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?LPDIJOYTYPECALLBACK,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTypeInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?[*:0]const u16,
-                param1: ?*DIJOYTYPEINFO,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?[*:0]const u16,
-                param1: ?*DIJOYTYPEINFO,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTypeInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?[*:0]const u16,
-                param1: ?*DIJOYTYPEINFO,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?[*:0]const u16,
-                param1: ?*DIJOYTYPEINFO,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: u32,
-                param1: ?*DIJOYCONFIG,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: u32,
-                param1: ?*DIJOYCONFIG,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: u32,
-                param1: ?*DIJOYCONFIG,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: u32,
-                param1: ?*DIJOYCONFIG,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUserValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?*DIJOYUSERVALUES,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?*DIJOYUSERVALUES,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUserValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?*DIJOYUSERVALUES,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?*DIJOYUSERVALUES,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddNewHardware: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?HWND,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?HWND,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenTypeKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?[*:0]const u16,
-                param1: u32,
-                param2: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: ?[*:0]const u16,
-                param1: u32,
-                param2: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenConfigKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig,
-                param0: u32,
-                param1: u32,
-                param2: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig,
-                param0: u32,
-                param1: u32,
-                param2: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Acquire: *const fn(
+            self: *const IDirectInputJoyConfig,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unacquire: *const fn(
+            self: *const IDirectInputJoyConfig,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCooperativeLevel: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendNotify: *const fn(
+            self: *const IDirectInputJoyConfig,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumTypes: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: ?LPDIJOYTYPECALLBACK,
+            param1: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTypeInfo: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: ?[*:0]const u16,
+            param1: ?*DIJOYTYPEINFO,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTypeInfo: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: ?[*:0]const u16,
+            param1: ?*DIJOYTYPEINFO,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteType: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConfig: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: u32,
+            param1: ?*DIJOYCONFIG,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConfig: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: u32,
+            param1: ?*DIJOYCONFIG,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteConfig: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUserValues: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: ?*DIJOYUSERVALUES,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUserValues: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: ?*DIJOYUSERVALUES,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddNewHardware: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: ?HWND,
+            param1: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenTypeKey: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: ?[*:0]const u16,
+            param1: u32,
+            param2: ?*?HKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenConfigKey: *const fn(
+            self: *const IDirectInputJoyConfig,
+            param0: u32,
+            param1: u32,
+            param2: ?*?HKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6428,192 +5071,83 @@ pub const IID_IDirectInputJoyConfig8 = &IID_IDirectInputJoyConfig8_Value;
 pub const IDirectInputJoyConfig8 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Acquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unacquire: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCooperativeLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?HWND,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?LPDIJOYTYPECALLBACK,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?LPDIJOYTYPECALLBACK,
-                param1: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTypeInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?[*:0]const u16,
-                param1: ?*DIJOYTYPEINFO,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?[*:0]const u16,
-                param1: ?*DIJOYTYPEINFO,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTypeInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?[*:0]const u16,
-                param1: ?*DIJOYTYPEINFO,
-                param2: u32,
-                param3: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?[*:0]const u16,
-                param1: ?*DIJOYTYPEINFO,
-                param2: u32,
-                param3: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: u32,
-                param1: ?*DIJOYCONFIG,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: u32,
-                param1: ?*DIJOYCONFIG,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: u32,
-                param1: ?*DIJOYCONFIG,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: u32,
-                param1: ?*DIJOYCONFIG,
-                param2: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteConfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUserValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?*DIJOYUSERVALUES,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?*DIJOYUSERVALUES,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUserValues: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?*DIJOYUSERVALUES,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?*DIJOYUSERVALUES,
-                param1: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddNewHardware: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?HWND,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?HWND,
-                param1: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenTypeKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?[*:0]const u16,
-                param1: u32,
-                param2: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?[*:0]const u16,
-                param1: u32,
-                param2: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenAppStatusKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDirectInputJoyConfig8,
-                param0: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Acquire: *const fn(
+            self: *const IDirectInputJoyConfig8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unacquire: *const fn(
+            self: *const IDirectInputJoyConfig8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCooperativeLevel: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?HWND,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendNotify: *const fn(
+            self: *const IDirectInputJoyConfig8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumTypes: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?LPDIJOYTYPECALLBACK,
+            param1: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTypeInfo: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?[*:0]const u16,
+            param1: ?*DIJOYTYPEINFO,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTypeInfo: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?[*:0]const u16,
+            param1: ?*DIJOYTYPEINFO,
+            param2: u32,
+            param3: ?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteType: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConfig: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: u32,
+            param1: ?*DIJOYCONFIG,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConfig: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: u32,
+            param1: ?*DIJOYCONFIG,
+            param2: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteConfig: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUserValues: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?*DIJOYUSERVALUES,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUserValues: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?*DIJOYUSERVALUES,
+            param1: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddNewHardware: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?HWND,
+            param1: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenTypeKey: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?[*:0]const u16,
+            param1: u32,
+            param2: ?*?HKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenAppStatusKey: *const fn(
+            self: *const IDirectInputJoyConfig8,
+            param0: ?*?HKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6955,29 +5489,16 @@ pub const HIDP_KEYBOARD_MODIFIER_STATE = extern struct {
     },
 };
 
-pub const PHIDP_INSERT_SCANCODES = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        NewScanCodes: ?[*]u8,
-        Length: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
-        Context: ?*anyopaque,
-        // TODO: what to do with BytesParamIndex 2?
-        NewScanCodes: ?[*]u8,
-        Length: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
+pub const PHIDP_INSERT_SCANCODES = *const fn(
+    Context: ?*anyopaque,
+    // TODO: what to do with BytesParamIndex 2?
+    NewScanCodes: ?[*]u8,
+    Length: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub const PFN_HidP_GetVersionInternal = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Version: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) NTSTATUS,
-    else => *const fn(
-        Version: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) NTSTATUS,
-} ;
+pub const PFN_HidP_GetVersionInternal = *const fn(
+    Version: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 pub const HIDD_CONFIGURATION = extern struct {
     cookie: ?*anyopaque align(4),

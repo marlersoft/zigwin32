@@ -1312,56 +1312,29 @@ pub const RAS_PROJECTION_INFO = extern struct {
     },
 };
 
-pub const RASDIALFUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: RASCONNSTATE,
-        param2: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: u32,
-        param1: RASCONNSTATE,
-        param2: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const RASDIALFUNC = *const fn(
+    param0: u32,
+    param1: RASCONNSTATE,
+    param2: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RASDIALFUNC1 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HRASCONN,
-        param1: u32,
-        param2: RASCONNSTATE,
-        param3: u32,
-        param4: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?HRASCONN,
-        param1: u32,
-        param2: RASCONNSTATE,
-        param3: u32,
-        param4: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const RASDIALFUNC1 = *const fn(
+    param0: ?HRASCONN,
+    param1: u32,
+    param2: RASCONNSTATE,
+    param3: u32,
+    param4: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RASDIALFUNC2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: u32,
-        param2: ?HRASCONN,
-        param3: u32,
-        param4: RASCONNSTATE,
-        param5: u32,
-        param6: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: usize,
-        param1: u32,
-        param2: ?HRASCONN,
-        param3: u32,
-        param4: RASCONNSTATE,
-        param5: u32,
-        param6: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const RASDIALFUNC2 = *const fn(
+    param0: usize,
+    param1: u32,
+    param2: ?HRASCONN,
+    param3: u32,
+    param4: RASCONNSTATE,
+    param5: u32,
+    param6: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RASDEVINFOW = extern struct {
     dwSize: u32,
@@ -1511,20 +1484,12 @@ pub const RASENTRYW = extern struct {
     fDisableIKEv2Fragmentation: BOOL,
 };
 
-pub const ORASADFUNC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?HWND,
-        param1: ?PSTR,
-        param2: u32,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?HWND,
-        param1: ?PSTR,
-        param2: u32,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const ORASADFUNC = *const fn(
+    param0: ?HWND,
+    param1: ?PSTR,
+    param2: u32,
+    param3: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const RASADPARAMS = extern struct {
     dwSize: u32 align(4),
@@ -1534,35 +1499,19 @@ pub const RASADPARAMS = extern struct {
     yDlg: i32 align(4),
 };
 
-pub const RASADFUNCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-        param1: ?PSTR,
-        param2: ?*RASADPARAMS,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-        param1: ?PSTR,
-        param2: ?*RASADPARAMS,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const RASADFUNCA = *const fn(
+    param0: ?PSTR,
+    param1: ?PSTR,
+    param2: ?*RASADPARAMS,
+    param3: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const RASADFUNCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*RASADPARAMS,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*RASADPARAMS,
-        param3: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const RASADFUNCW = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*RASADPARAMS,
+    param3: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const RASSUBENTRYA = extern struct {
     dwSize: u32,
@@ -1624,97 +1573,48 @@ pub const RASEAPUSERIDENTITYW = extern struct {
     pbEapInfo: [1]u8,
 };
 
-pub const PFNRASGETBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ppBuffer: ?*?*u8,
-        pdwSize: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        ppBuffer: ?*?*u8,
-        pdwSize: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNRASGETBUFFER = *const fn(
+    ppBuffer: ?*?*u8,
+    pdwSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNRASFREEBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pBufer: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pBufer: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNRASFREEBUFFER = *const fn(
+    pBufer: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNRASSENDBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hPort: ?HANDLE,
-        pBuffer: ?*u8,
-        dwSize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hPort: ?HANDLE,
-        pBuffer: ?*u8,
-        dwSize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNRASSENDBUFFER = *const fn(
+    hPort: ?HANDLE,
+    pBuffer: ?*u8,
+    dwSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNRASRECEIVEBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hPort: ?HANDLE,
-        pBuffer: ?*u8,
-        pdwSize: ?*u32,
-        dwTimeOut: u32,
-        hEvent: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hPort: ?HANDLE,
-        pBuffer: ?*u8,
-        pdwSize: ?*u32,
-        dwTimeOut: u32,
-        hEvent: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNRASRECEIVEBUFFER = *const fn(
+    hPort: ?HANDLE,
+    pBuffer: ?*u8,
+    pdwSize: ?*u32,
+    dwTimeOut: u32,
+    hEvent: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNRASRETRIEVEBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hPort: ?HANDLE,
-        pBuffer: ?*u8,
-        pdwSize: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hPort: ?HANDLE,
-        pBuffer: ?*u8,
-        pdwSize: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNRASRETRIEVEBUFFER = *const fn(
+    hPort: ?HANDLE,
+    pBuffer: ?*u8,
+    pdwSize: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const RasCustomScriptExecuteFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hPort: ?HANDLE,
-        lpszPhonebook: ?[*:0]const u16,
-        lpszEntryName: ?[*:0]const u16,
-        pfnRasGetBuffer: ?PFNRASGETBUFFER,
-        pfnRasFreeBuffer: ?PFNRASFREEBUFFER,
-        pfnRasSendBuffer: ?PFNRASSENDBUFFER,
-        pfnRasReceiveBuffer: ?PFNRASRECEIVEBUFFER,
-        pfnRasRetrieveBuffer: ?PFNRASRETRIEVEBUFFER,
-        hWnd: ?HWND,
-        pRasDialParams: ?*RASDIALPARAMSA,
-        pvReserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hPort: ?HANDLE,
-        lpszPhonebook: ?[*:0]const u16,
-        lpszEntryName: ?[*:0]const u16,
-        pfnRasGetBuffer: ?PFNRASGETBUFFER,
-        pfnRasFreeBuffer: ?PFNRASFREEBUFFER,
-        pfnRasSendBuffer: ?PFNRASSENDBUFFER,
-        pfnRasReceiveBuffer: ?PFNRASRECEIVEBUFFER,
-        pfnRasRetrieveBuffer: ?PFNRASRETRIEVEBUFFER,
-        hWnd: ?HWND,
-        pRasDialParams: ?*RASDIALPARAMSA,
-        pvReserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const RasCustomScriptExecuteFn = *const fn(
+    hPort: ?HANDLE,
+    lpszPhonebook: ?[*:0]const u16,
+    lpszEntryName: ?[*:0]const u16,
+    pfnRasGetBuffer: ?PFNRASGETBUFFER,
+    pfnRasFreeBuffer: ?PFNRASFREEBUFFER,
+    pfnRasSendBuffer: ?PFNRASSENDBUFFER,
+    pfnRasReceiveBuffer: ?PFNRASRECEIVEBUFFER,
+    pfnRasRetrieveBuffer: ?PFNRASRETRIEVEBUFFER,
+    hWnd: ?HWND,
+    pRasDialParams: ?*RASDIALPARAMSA,
+    pvReserved: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RASCOMMSETTINGS = extern struct {
     dwSize: u32,
@@ -1724,18 +1624,11 @@ pub const RASCOMMSETTINGS = extern struct {
     bAlign: u8,
 };
 
-pub const PFNRASSETCOMMSETTINGS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hPort: ?HANDLE,
-        pRasCommSettings: ?*RASCOMMSETTINGS,
-        pvReserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hPort: ?HANDLE,
-        pRasCommSettings: ?*RASCOMMSETTINGS,
-        pvReserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNRASSETCOMMSETTINGS = *const fn(
+    hPort: ?HANDLE,
+    pRasCommSettings: ?*RASCOMMSETTINGS,
+    pvReserved: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RASCUSTOMSCRIPTEXTENSIONS = extern struct {
     dwSize: u32 align(4),
@@ -1760,50 +1653,26 @@ pub const RAS_STATS = extern struct {
     dwConnectDuration: u32,
 };
 
-pub const RasCustomHangUpFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hRasConn: ?HRASCONN,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hRasConn: ?HRASCONN,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const RasCustomHangUpFn = *const fn(
+    hRasConn: ?HRASCONN,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const RasCustomDialFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hInstDll: ?HINSTANCE,
-        lpRasDialExtensions: ?*RASDIALEXTENSIONS,
-        lpszPhonebook: ?[*:0]const u16,
-        lpRasDialParams: ?*RASDIALPARAMSA,
-        dwNotifierType: u32,
-        lpvNotifier: ?*anyopaque,
-        lphRasConn: ?*?HRASCONN,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hInstDll: ?HINSTANCE,
-        lpRasDialExtensions: ?*RASDIALEXTENSIONS,
-        lpszPhonebook: ?[*:0]const u16,
-        lpRasDialParams: ?*RASDIALPARAMSA,
-        dwNotifierType: u32,
-        lpvNotifier: ?*anyopaque,
-        lphRasConn: ?*?HRASCONN,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const RasCustomDialFn = *const fn(
+    hInstDll: ?HINSTANCE,
+    lpRasDialExtensions: ?*RASDIALEXTENSIONS,
+    lpszPhonebook: ?[*:0]const u16,
+    lpRasDialParams: ?*RASDIALPARAMSA,
+    dwNotifierType: u32,
+    lpvNotifier: ?*anyopaque,
+    lphRasConn: ?*?HRASCONN,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const RasCustomDeleteEntryNotifyFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpszPhonebook: ?[*:0]const u16,
-        lpszEntry: ?[*:0]const u16,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lpszPhonebook: ?[*:0]const u16,
-        lpszEntry: ?[*:0]const u16,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const RasCustomDeleteEntryNotifyFn = *const fn(
+    lpszPhonebook: ?[*:0]const u16,
+    lpszEntry: ?[*:0]const u16,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RASUPDATECONN = extern struct {
     version: RASAPIVERSION,
@@ -1814,35 +1683,19 @@ pub const RASUPDATECONN = extern struct {
     remoteEndPoint: RASTUNNELENDPOINT,
 };
 
-pub const RASPBDLGFUNCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: u32,
-        param2: ?PWSTR,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: usize,
-        param1: u32,
-        param2: ?PWSTR,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const RASPBDLGFUNCW = *const fn(
+    param0: usize,
+    param1: u32,
+    param2: ?PWSTR,
+    param3: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const RASPBDLGFUNCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: usize,
-        param1: u32,
-        param2: ?PSTR,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: usize,
-        param1: u32,
-        param2: ?PSTR,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const RASPBDLGFUNCA = *const fn(
+    param0: usize,
+    param1: u32,
+    param2: ?PSTR,
+    param3: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const RASNOUSERW = extern struct {
     dwSize: u32,
@@ -1924,43 +1777,23 @@ pub const RASDIALDLG = extern struct {
     reserved2: usize align(4),
 };
 
-pub const RasCustomDialDlgFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hInstDll: ?HINSTANCE,
-        dwFlags: u32,
-        lpszPhonebook: ?PWSTR,
-        lpszEntry: ?PWSTR,
-        lpszPhoneNumber: ?PWSTR,
-        lpInfo: ?*RASDIALDLG,
-        pvInfo: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hInstDll: ?HINSTANCE,
-        dwFlags: u32,
-        lpszPhonebook: ?PWSTR,
-        lpszEntry: ?PWSTR,
-        lpszPhoneNumber: ?PWSTR,
-        lpInfo: ?*RASDIALDLG,
-        pvInfo: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const RasCustomDialDlgFn = *const fn(
+    hInstDll: ?HINSTANCE,
+    dwFlags: u32,
+    lpszPhonebook: ?PWSTR,
+    lpszEntry: ?PWSTR,
+    lpszPhoneNumber: ?PWSTR,
+    lpInfo: ?*RASDIALDLG,
+    pvInfo: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const RasCustomEntryDlgFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hInstDll: ?HINSTANCE,
-        lpszPhonebook: ?PWSTR,
-        lpszEntry: ?PWSTR,
-        lpInfo: ?*RASENTRYDLGA,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hInstDll: ?HINSTANCE,
-        lpszPhonebook: ?PWSTR,
-        lpszEntry: ?PWSTR,
-        lpInfo: ?*RASENTRYDLGA,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const RasCustomEntryDlgFn = *const fn(
+    hInstDll: ?HINSTANCE,
+    lpszPhonebook: ?PWSTR,
+    lpszEntry: ?PWSTR,
+    lpInfo: ?*RASENTRYDLGA,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const ROUTER_INTERFACE_TYPE = enum(i32) {
     CLIENT = 0,
@@ -2869,228 +2702,107 @@ pub const RAS_UPDATE_CONNECTION = extern struct {
     wszRemoteEndpointAddress: [65]u16,
 };
 
-pub const PMPRADMINGETIPADDRESSFORUSER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*u32,
-        param3: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*u32,
-        param3: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMPRADMINGETIPADDRESSFORUSER = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*u32,
+    param3: ?*BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMPRADMINRELEASEIPADRESS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PMPRADMINRELEASEIPADRESS = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PMPRADMINGETIPV6ADDRESSFORUSER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*IN6_ADDR,
-        param3: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*IN6_ADDR,
-        param3: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMPRADMINGETIPV6ADDRESSFORUSER = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*IN6_ADDR,
+    param3: ?*BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMPRADMINRELEASEIPV6ADDRESSFORUSER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*IN6_ADDR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: ?PWSTR,
-        param2: ?*IN6_ADDR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PMPRADMINRELEASEIPV6ADDRESSFORUSER = *const fn(
+    param0: ?PWSTR,
+    param1: ?PWSTR,
+    param2: ?*IN6_ADDR,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PMPRADMINACCEPTNEWCONNECTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PMPRADMINACCEPTNEWCONNECTION = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PMPRADMINACCEPTNEWCONNECTION2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PMPRADMINACCEPTNEWCONNECTION2 = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PMPRADMINACCEPTNEWCONNECTION3 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-        param3: ?*RAS_CONNECTION_3,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-        param3: ?*RAS_CONNECTION_3,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PMPRADMINACCEPTNEWCONNECTION3 = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+    param3: ?*RAS_CONNECTION_3,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PMPRADMINACCEPTNEWLINK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_PORT_0,
-        param1: ?*RAS_PORT_1,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*RAS_PORT_0,
-        param1: ?*RAS_PORT_1,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PMPRADMINACCEPTNEWLINK = *const fn(
+    param0: ?*RAS_PORT_0,
+    param1: ?*RAS_PORT_1,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION2 = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION3 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-        param3: RAS_CONNECTION_3,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-        param3: RAS_CONNECTION_3,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PMPRADMINCONNECTIONHANGUPNOTIFICATION3 = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+    param3: RAS_CONNECTION_3,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PMPRADMINLINKHANGUPNOTIFICATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_PORT_0,
-        param1: ?*RAS_PORT_1,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*RAS_PORT_0,
-        param1: ?*RAS_PORT_1,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PMPRADMINLINKHANGUPNOTIFICATION = *const fn(
+    param0: ?*RAS_PORT_0,
+    param1: ?*RAS_PORT_1,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PMPRADMINTERMINATEDLL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMPRADMINTERMINATEDLL = *const fn(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMPRADMINACCEPTREAUTHENTICATION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-        param3: ?*RAS_CONNECTION_3,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_0,
-        param1: ?*RAS_CONNECTION_1,
-        param2: ?*RAS_CONNECTION_2,
-        param3: ?*RAS_CONNECTION_3,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PMPRADMINACCEPTREAUTHENTICATION = *const fn(
+    param0: ?*RAS_CONNECTION_0,
+    param1: ?*RAS_CONNECTION_1,
+    param2: ?*RAS_CONNECTION_2,
+    param3: ?*RAS_CONNECTION_3,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PMPRADMINACCEPTNEWCONNECTIONEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PMPRADMINACCEPTNEWCONNECTIONEX = *const fn(
+    param0: ?*RAS_CONNECTION_EX,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PMPRADMINACCEPTREAUTHENTICATIONEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PMPRADMINACCEPTREAUTHENTICATIONEX = *const fn(
+    param0: ?*RAS_CONNECTION_EX,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PMPRADMINACCEPTTUNNELENDPOINTCHANGEEX = *const fn(
+    param0: ?*RAS_CONNECTION_EX,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*RAS_CONNECTION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*RAS_CONNECTION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PMPRADMINCONNECTIONHANGUPNOTIFICATIONEX = *const fn(
+    param0: ?*RAS_CONNECTION_EX,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*AUTH_VALIDATION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        param0: ?*AUTH_VALIDATION_EX,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMPRADMINRASVALIDATEPREAUTHENTICATEDCONNECTIONEX = *const fn(
+    param0: ?*AUTH_VALIDATION_EX,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const MPRAPI_ADMIN_DLL_CALLBACKS = extern struct {
     revision: u8,
@@ -3122,12 +2834,8 @@ pub const RAS_SECURITY_INFO = extern struct {
     DeviceName: [129]CHAR,
 };
 
-pub const RASSECURITYPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const RASSECURITYPROC = *const fn(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const MGM_IF_ENTRY = extern struct {
     dwIfIndex: u32,
@@ -3136,174 +2844,85 @@ pub const MGM_IF_ENTRY = extern struct {
     bIsEnabled: BOOL,
 };
 
-pub const PMGM_RPF_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        pdwInIfIndex: ?*u32,
-        pdwInIfNextHopAddr: ?*u32,
-        pdwUpStreamNbr: ?*u32,
-        dwHdrSize: u32,
-        pbPacketHdr: ?*u8,
-        pbRoute: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        pdwInIfIndex: ?*u32,
-        pdwInIfNextHopAddr: ?*u32,
-        pdwUpStreamNbr: ?*u32,
-        dwHdrSize: u32,
-        pbPacketHdr: ?*u8,
-        pbRoute: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMGM_RPF_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    pdwInIfIndex: ?*u32,
+    pdwInIfNextHopAddr: ?*u32,
+    pdwUpStreamNbr: ?*u32,
+    dwHdrSize: u32,
+    pbPacketHdr: ?*u8,
+    pbRoute: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMGM_CREATION_ALERT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        dwInIfIndex: u32,
-        dwInIfNextHopAddr: u32,
-        dwIfCount: u32,
-        pmieOutIfList: ?*MGM_IF_ENTRY,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        dwInIfIndex: u32,
-        dwInIfNextHopAddr: u32,
-        dwIfCount: u32,
-        pmieOutIfList: ?*MGM_IF_ENTRY,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMGM_CREATION_ALERT_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwInIfIndex: u32,
+    dwInIfNextHopAddr: u32,
+    dwIfCount: u32,
+    pmieOutIfList: ?*MGM_IF_ENTRY,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMGM_PRUNE_ALERT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-        bMemberDelete: BOOL,
-        pdwTimeout: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-        bMemberDelete: BOOL,
-        pdwTimeout: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMGM_PRUNE_ALERT_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+    bMemberDelete: BOOL,
+    pdwTimeout: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMGM_JOIN_ALERT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        bMemberUpdate: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        bMemberUpdate: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMGM_JOIN_ALERT_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    bMemberUpdate: BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMGM_WRONG_IF_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwSourceAddr: u32,
-        dwGroupAddr: u32,
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-        dwHdrSize: u32,
-        pbPacketHdr: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwSourceAddr: u32,
-        dwGroupAddr: u32,
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-        dwHdrSize: u32,
-        pbPacketHdr: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMGM_WRONG_IF_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwGroupAddr: u32,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+    dwHdrSize: u32,
+    pbPacketHdr: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMGM_LOCAL_JOIN_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMGM_LOCAL_JOIN_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMGM_LOCAL_LEAVE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwSourceAddr: u32,
-        dwSourceMask: u32,
-        dwGroupAddr: u32,
-        dwGroupMask: u32,
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMGM_LOCAL_LEAVE_CALLBACK = *const fn(
+    dwSourceAddr: u32,
+    dwSourceMask: u32,
+    dwGroupAddr: u32,
+    dwGroupMask: u32,
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMGM_DISABLE_IGMP_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMGM_DISABLE_IGMP_CALLBACK = *const fn(
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PMGM_ENABLE_IGMP_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwIfIndex: u32,
-        dwIfNextHopAddr: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PMGM_ENABLE_IGMP_CALLBACK = *const fn(
+    dwIfIndex: u32,
+    dwIfNextHopAddr: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const ROUTING_PROTOCOL_CONFIG = extern struct {
     dwCallbackFlags: u32,
@@ -3421,20 +3040,12 @@ pub const RTM_ENTITY_DEREGISTERED = RTM_EVENT_TYPE.ENTITY_DEREGISTERED;
 pub const RTM_ROUTE_EXPIRED = RTM_EVENT_TYPE.ROUTE_EXPIRED;
 pub const RTM_CHANGE_NOTIFICATION = RTM_EVENT_TYPE.CHANGE_NOTIFICATION;
 
-pub const RTM_EVENT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        RtmRegHandle: isize,
-        EventType: RTM_EVENT_TYPE,
-        Context1: ?*anyopaque,
-        Context2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        RtmRegHandle: isize,
-        EventType: RTM_EVENT_TYPE,
-        Context1: ?*anyopaque,
-        Context2: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const RTM_EVENT_CALLBACK = *const fn(
+    RtmRegHandle: isize,
+    EventType: RTM_EVENT_TYPE,
+    Context1: ?*anyopaque,
+    Context2: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const RTM_ENTITY_METHOD_INPUT = extern struct {
     MethodType: u32,
@@ -3449,20 +3060,12 @@ pub const RTM_ENTITY_METHOD_OUTPUT = extern struct {
     OutputData: [1]u8,
 };
 
-pub const RTM_ENTITY_EXPORT_METHOD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        CallerHandle: isize,
-        CalleeHandle: isize,
-        Input: ?*RTM_ENTITY_METHOD_INPUT,
-        Output: ?*RTM_ENTITY_METHOD_OUTPUT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        CallerHandle: isize,
-        CalleeHandle: isize,
-        Input: ?*RTM_ENTITY_METHOD_INPUT,
-        Output: ?*RTM_ENTITY_METHOD_OUTPUT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const RTM_ENTITY_EXPORT_METHOD = *const fn(
+    CallerHandle: isize,
+    CalleeHandle: isize,
+    Input: ?*RTM_ENTITY_METHOD_INPUT,
+    Output: ?*RTM_ENTITY_METHOD_OUTPUT,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const RTM_ENTITY_EXPORT_METHODS = extern struct {
     NumMethods: u32,

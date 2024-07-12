@@ -566,49 +566,25 @@ pub const QUERY_SERVICE_CONFIGW = extern struct {
     lpDisplayName: ?PWSTR,
 };
 
-pub const SERVICE_MAIN_FUNCTIONW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwNumServicesArgs: u32,
-        lpServiceArgVectors: ?*?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwNumServicesArgs: u32,
-        lpServiceArgVectors: ?*?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const SERVICE_MAIN_FUNCTIONW = *const fn(
+    dwNumServicesArgs: u32,
+    lpServiceArgVectors: ?*?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const SERVICE_MAIN_FUNCTIONA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwNumServicesArgs: u32,
-        lpServiceArgVectors: ?*?*i8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwNumServicesArgs: u32,
-        lpServiceArgVectors: ?*?*i8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const SERVICE_MAIN_FUNCTIONA = *const fn(
+    dwNumServicesArgs: u32,
+    lpServiceArgVectors: ?*?*i8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPSERVICE_MAIN_FUNCTIONW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwNumServicesArgs: u32,
-        lpServiceArgVectors: ?*?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwNumServicesArgs: u32,
-        lpServiceArgVectors: ?*?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPSERVICE_MAIN_FUNCTIONW = *const fn(
+    dwNumServicesArgs: u32,
+    lpServiceArgVectors: ?*?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPSERVICE_MAIN_FUNCTIONA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwNumServicesArgs: u32,
-        lpServiceArgVectors: ?*?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwNumServicesArgs: u32,
-        lpServiceArgVectors: ?*?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPSERVICE_MAIN_FUNCTIONA = *const fn(
+    dwNumServicesArgs: u32,
+    lpServiceArgVectors: ?*?PSTR,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const SERVICE_TABLE_ENTRYA = extern struct {
     lpServiceName: ?PSTR,
@@ -620,62 +596,31 @@ pub const SERVICE_TABLE_ENTRYW = extern struct {
     lpServiceProc: ?LPSERVICE_MAIN_FUNCTIONW,
 };
 
-pub const HANDLER_FUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwControl: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwControl: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const HANDLER_FUNCTION = *const fn(
+    dwControl: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const HANDLER_FUNCTION_EX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwControl: u32,
-        dwEventType: u32,
-        lpEventData: ?*anyopaque,
-        lpContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwControl: u32,
-        dwEventType: u32,
-        lpEventData: ?*anyopaque,
-        lpContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const HANDLER_FUNCTION_EX = *const fn(
+    dwControl: u32,
+    dwEventType: u32,
+    lpEventData: ?*anyopaque,
+    lpContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPHANDLER_FUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwControl: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwControl: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPHANDLER_FUNCTION = *const fn(
+    dwControl: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPHANDLER_FUNCTION_EX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwControl: u32,
-        dwEventType: u32,
-        lpEventData: ?*anyopaque,
-        lpContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwControl: u32,
-        dwEventType: u32,
-        lpEventData: ?*anyopaque,
-        lpContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPHANDLER_FUNCTION_EX = *const fn(
+    dwControl: u32,
+    dwEventType: u32,
+    lpEventData: ?*anyopaque,
+    lpContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFN_SC_NOTIFY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pParameter: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pParameter: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFN_SC_NOTIFY_CALLBACK = *const fn(
+    pParameter: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const SERVICE_NOTIFY_1 = extern struct {
     dwVersion: u32,
@@ -730,16 +675,10 @@ pub const SC_EVENT_DATABASE_CHANGE = SC_EVENT_TYPE.DATABASE_CHANGE;
 pub const SC_EVENT_PROPERTY_CHANGE = SC_EVENT_TYPE.PROPERTY_CHANGE;
 pub const SC_EVENT_STATUS_CHANGE = SC_EVENT_TYPE.STATUS_CHANGE;
 
-pub const PSC_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwNotify: u32,
-        pCallbackContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwNotify: u32,
-        pCallbackContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PSC_NOTIFICATION_CALLBACK = *const fn(
+    dwNotify: u32,
+    pCallbackContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const _SC_NOTIFICATION_REGISTRATION = extern struct {
     placeholder: usize, // TODO: why is this type empty?

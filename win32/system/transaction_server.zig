@@ -32,56 +32,26 @@ pub const IID_ICatalog = &IID_ICatalog_Value;
 pub const ICatalog = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICatalog,
-                bstrCollName: ?BSTR,
-                ppCatalogCollection: ?*?*IDispatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICatalog,
-                bstrCollName: ?BSTR,
-                ppCatalogCollection: ?*?*IDispatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Connect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICatalog,
-                bstrConnectString: ?BSTR,
-                ppCatalogCollection: ?*?*IDispatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICatalog,
-                bstrConnectString: ?BSTR,
-                ppCatalogCollection: ?*?*IDispatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCollection: *const fn(
+            self: *const ICatalog,
+            bstrCollName: ?BSTR,
+            ppCatalogCollection: ?*?*IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Connect: *const fn(
+            self: *const ICatalog,
+            bstrConnectString: ?BSTR,
+            ppCatalogCollection: ?*?*IDispatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MajorVersion: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ICatalog,
-                retval: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ICatalog,
-                retval: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MajorVersion: *const fn(
+            self: *const ICatalog,
+            retval: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MinorVersion: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ICatalog,
-                retval: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ICatalog,
-                retval: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MinorVersion: *const fn(
+            self: *const ICatalog,
+            retval: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -111,54 +81,26 @@ pub const IID_IComponentUtil = &IID_IComponentUtil_Value;
 pub const IComponentUtil = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        InstallComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IComponentUtil,
-                bstrDLLFile: ?BSTR,
-                bstrTypelibFile: ?BSTR,
-                bstrProxyStubDLLFile: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IComponentUtil,
-                bstrDLLFile: ?BSTR,
-                bstrTypelibFile: ?BSTR,
-                bstrProxyStubDLLFile: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImportComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IComponentUtil,
-                bstrCLSID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IComponentUtil,
-                bstrCLSID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImportComponentByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IComponentUtil,
-                bstrProgID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IComponentUtil,
-                bstrProgID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCLSIDs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IComponentUtil,
-                bstrDLLFile: ?BSTR,
-                bstrTypelibFile: ?BSTR,
-                aCLSIDs: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IComponentUtil,
-                bstrDLLFile: ?BSTR,
-                bstrTypelibFile: ?BSTR,
-                aCLSIDs: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InstallComponent: *const fn(
+            self: *const IComponentUtil,
+            bstrDLLFile: ?BSTR,
+            bstrTypelibFile: ?BSTR,
+            bstrProxyStubDLLFile: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImportComponent: *const fn(
+            self: *const IComponentUtil,
+            bstrCLSID: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImportComponentByName: *const fn(
+            self: *const IComponentUtil,
+            bstrProgID: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCLSIDs: *const fn(
+            self: *const IComponentUtil,
+            bstrDLLFile: ?BSTR,
+            bstrTypelibFile: ?BSTR,
+            aCLSIDs: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -188,44 +130,22 @@ pub const IID_IPackageUtil = &IID_IPackageUtil_Value;
 pub const IPackageUtil = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        InstallPackage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPackageUtil,
-                bstrPackageFile: ?BSTR,
-                bstrInstallPath: ?BSTR,
-                lOptions: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPackageUtil,
-                bstrPackageFile: ?BSTR,
-                bstrInstallPath: ?BSTR,
-                lOptions: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExportPackage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPackageUtil,
-                bstrPackageID: ?BSTR,
-                bstrPackageFile: ?BSTR,
-                lOptions: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPackageUtil,
-                bstrPackageID: ?BSTR,
-                bstrPackageFile: ?BSTR,
-                lOptions: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ShutdownPackage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IPackageUtil,
-                bstrPackageID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IPackageUtil,
-                bstrPackageID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InstallPackage: *const fn(
+            self: *const IPackageUtil,
+            bstrPackageFile: ?BSTR,
+            bstrInstallPath: ?BSTR,
+            lOptions: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExportPackage: *const fn(
+            self: *const IPackageUtil,
+            bstrPackageID: ?BSTR,
+            bstrPackageFile: ?BSTR,
+            lOptions: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ShutdownPackage: *const fn(
+            self: *const IPackageUtil,
+            bstrPackageID: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -251,34 +171,18 @@ pub const IID_IRemoteComponentUtil = &IID_IRemoteComponentUtil_Value;
 pub const IRemoteComponentUtil = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        InstallRemoteComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRemoteComponentUtil,
-                bstrServer: ?BSTR,
-                bstrPackageID: ?BSTR,
-                bstrCLSID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRemoteComponentUtil,
-                bstrServer: ?BSTR,
-                bstrPackageID: ?BSTR,
-                bstrCLSID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InstallRemoteComponentByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRemoteComponentUtil,
-                bstrServer: ?BSTR,
-                bstrPackageName: ?BSTR,
-                bstrProgID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRemoteComponentUtil,
-                bstrServer: ?BSTR,
-                bstrPackageName: ?BSTR,
-                bstrProgID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InstallRemoteComponent: *const fn(
+            self: *const IRemoteComponentUtil,
+            bstrServer: ?BSTR,
+            bstrPackageID: ?BSTR,
+            bstrCLSID: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InstallRemoteComponentByName: *const fn(
+            self: *const IRemoteComponentUtil,
+            bstrServer: ?BSTR,
+            bstrPackageName: ?BSTR,
+            bstrProgID: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -300,26 +204,14 @@ pub const IID_IRoleAssociationUtil = &IID_IRoleAssociationUtil_Value;
 pub const IRoleAssociationUtil = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        AssociateRole: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRoleAssociationUtil,
-                bstrRoleID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRoleAssociationUtil,
-                bstrRoleID: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AssociateRoleByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRoleAssociationUtil,
-                bstrRoleName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRoleAssociationUtil,
-                bstrRoleName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AssociateRole: *const fn(
+            self: *const IRoleAssociationUtil,
+            bstrRoleID: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AssociateRoleByName: *const fn(
+            self: *const IRoleAssociationUtil,
+            bstrRoleName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

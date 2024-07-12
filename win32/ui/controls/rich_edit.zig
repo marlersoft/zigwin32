@@ -1053,22 +1053,13 @@ pub const TABLECELLPARMS = extern struct {
     crForePat: u32,
 };
 
-pub const AutoCorrectProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        langid: u16,
-        pszBefore: ?[*:0]const u16,
-        pszAfter: ?PWSTR,
-        cchAfter: i32,
-        pcchReplaced: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        langid: u16,
-        pszBefore: ?[*:0]const u16,
-        pszAfter: ?PWSTR,
-        cchAfter: i32,
-        pcchReplaced: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const AutoCorrectProc = *const fn(
+    langid: u16,
+    pszBefore: ?[*:0]const u16,
+    pszAfter: ?PWSTR,
+    cchAfter: i32,
+    pcchReplaced: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const RICHEDIT_IMAGE_PARAMETERS = extern struct {
     xWidth: i32 align(4),
@@ -1084,20 +1075,12 @@ pub const ENDCOMPOSITIONNOTIFY = extern struct {
     dwCode: ENDCOMPOSITIONNOTIFY_CODE align(4),
 };
 
-pub const EDITWORDBREAKPROCEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pchText: ?PSTR,
-        cchText: i32,
-        bCharSet: u8,
-        action: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        pchText: ?PSTR,
-        cchText: i32,
-        bCharSet: u8,
-        action: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const EDITWORDBREAKPROCEX = *const fn(
+    pchText: ?PSTR,
+    cchText: i32,
+    bCharSet: u8,
+    action: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const CHARFORMATA = extern struct {
     cbSize: u32,
@@ -1174,20 +1157,12 @@ pub const TEXTRANGEW = extern struct {
     lpstrText: ?PWSTR align(4),
 };
 
-pub const EDITSTREAMCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwCookie: usize,
-        pbBuff: ?*u8,
-        cb: i32,
-        pcb: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwCookie: usize,
-        pbBuff: ?*u8,
-        cb: i32,
-        pcb: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const EDITSTREAMCALLBACK = *const fn(
+    dwCookie: usize,
+    pbBuff: ?*u8,
+    cb: i32,
+    pcb: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const EDITSTREAM = extern struct {
     dwCookie: usize align(4),
@@ -1494,276 +1469,123 @@ pub const CHANGENOTIFY = extern struct {
 pub const ITextServices = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TxSendMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                msg: u32,
-                wparam: WPARAM,
-                lparam: LPARAM,
-                plresult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                msg: u32,
-                wparam: WPARAM,
-                lparam: LPARAM,
-                plresult: ?*LRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                dwDrawAspect: DVASPECT,
-                lindex: i32,
-                pvAspect: ?*anyopaque,
-                ptd: ?*DVTARGETDEVICE,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                lprcBounds: ?*RECTL,
-                lprcWBounds: ?*RECTL,
-                lprcUpdate: ?*RECT,
-                pfnContinue: isize,
-                dwContinue: u32,
-                lViewId: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                dwDrawAspect: DVASPECT,
-                lindex: i32,
-                pvAspect: ?*anyopaque,
-                ptd: ?*DVTARGETDEVICE,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                lprcBounds: ?*RECTL,
-                lprcWBounds: ?*RECTL,
-                lprcUpdate: ?*RECT,
-                pfnContinue: isize,
-                dwContinue: u32,
-                lViewId: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetHScroll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                plMin: ?*i32,
-                plMax: ?*i32,
-                plPos: ?*i32,
-                plPage: ?*i32,
-                pfEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                plMin: ?*i32,
-                plMax: ?*i32,
-                plPos: ?*i32,
-                plPage: ?*i32,
-                pfEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetVScroll: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                plMin: ?*i32,
-                plMax: ?*i32,
-                plPos: ?*i32,
-                plPage: ?*i32,
-                pfEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                plMin: ?*i32,
-                plMax: ?*i32,
-                plPos: ?*i32,
-                plPage: ?*i32,
-                pfEnabled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnTxSetCursor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                dwDrawAspect: DVASPECT,
-                lindex: i32,
-                pvAspect: ?*anyopaque,
-                ptd: ?*DVTARGETDEVICE,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                lprcClient: ?*RECT,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                dwDrawAspect: DVASPECT,
-                lindex: i32,
-                pvAspect: ?*anyopaque,
-                ptd: ?*DVTARGETDEVICE,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                lprcClient: ?*RECT,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxQueryHitPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                dwDrawAspect: DVASPECT,
-                lindex: i32,
-                pvAspect: ?*anyopaque,
-                ptd: ?*DVTARGETDEVICE,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                lprcClient: ?*RECT,
-                x: i32,
-                y: i32,
-                pHitResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                dwDrawAspect: DVASPECT,
-                lindex: i32,
-                pvAspect: ?*anyopaque,
-                ptd: ?*DVTARGETDEVICE,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                lprcClient: ?*RECT,
-                x: i32,
-                y: i32,
-                pHitResult: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnTxInPlaceActivate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                prcClient: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                prcClient: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnTxInPlaceDeactivate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnTxUIActivate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnTxUIDeactivate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                pbstrText: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                pbstrText: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxSetText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                pszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                pszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetCurTargetX: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                param0: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                param0: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetBaseLinePos: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                param0: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                param0: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetNaturalSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                dwAspect: u32,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                ptd: ?*DVTARGETDEVICE,
-                dwMode: u32,
-                psizelExtent: ?*const SIZE,
-                pwidth: ?*i32,
-                pheight: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                dwAspect: u32,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                ptd: ?*DVTARGETDEVICE,
-                dwMode: u32,
-                psizelExtent: ?*const SIZE,
-                pwidth: ?*i32,
-                pheight: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetDropTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                ppDropTarget: ?*?*IDropTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                ppDropTarget: ?*?*IDropTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnTxPropertyBitsChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                dwMask: u32,
-                dwBits: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                dwMask: u32,
-                dwBits: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetCachedSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices,
-                pdwWidth: ?*u32,
-                pdwHeight: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices,
-                pdwWidth: ?*u32,
-                pdwHeight: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        TxSendMessage: *const fn(
+            self: *const ITextServices,
+            msg: u32,
+            wparam: WPARAM,
+            lparam: LPARAM,
+            plresult: ?*LRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxDraw: *const fn(
+            self: *const ITextServices,
+            dwDrawAspect: DVASPECT,
+            lindex: i32,
+            pvAspect: ?*anyopaque,
+            ptd: ?*DVTARGETDEVICE,
+            hdcDraw: ?HDC,
+            hicTargetDev: ?HDC,
+            lprcBounds: ?*RECTL,
+            lprcWBounds: ?*RECTL,
+            lprcUpdate: ?*RECT,
+            pfnContinue: isize,
+            dwContinue: u32,
+            lViewId: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetHScroll: *const fn(
+            self: *const ITextServices,
+            plMin: ?*i32,
+            plMax: ?*i32,
+            plPos: ?*i32,
+            plPage: ?*i32,
+            pfEnabled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetVScroll: *const fn(
+            self: *const ITextServices,
+            plMin: ?*i32,
+            plMax: ?*i32,
+            plPos: ?*i32,
+            plPage: ?*i32,
+            pfEnabled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnTxSetCursor: *const fn(
+            self: *const ITextServices,
+            dwDrawAspect: DVASPECT,
+            lindex: i32,
+            pvAspect: ?*anyopaque,
+            ptd: ?*DVTARGETDEVICE,
+            hdcDraw: ?HDC,
+            hicTargetDev: ?HDC,
+            lprcClient: ?*RECT,
+            x: i32,
+            y: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxQueryHitPoint: *const fn(
+            self: *const ITextServices,
+            dwDrawAspect: DVASPECT,
+            lindex: i32,
+            pvAspect: ?*anyopaque,
+            ptd: ?*DVTARGETDEVICE,
+            hdcDraw: ?HDC,
+            hicTargetDev: ?HDC,
+            lprcClient: ?*RECT,
+            x: i32,
+            y: i32,
+            pHitResult: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnTxInPlaceActivate: *const fn(
+            self: *const ITextServices,
+            prcClient: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnTxInPlaceDeactivate: *const fn(
+            self: *const ITextServices,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnTxUIActivate: *const fn(
+            self: *const ITextServices,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnTxUIDeactivate: *const fn(
+            self: *const ITextServices,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetText: *const fn(
+            self: *const ITextServices,
+            pbstrText: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxSetText: *const fn(
+            self: *const ITextServices,
+            pszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetCurTargetX: *const fn(
+            self: *const ITextServices,
+            param0: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetBaseLinePos: *const fn(
+            self: *const ITextServices,
+            param0: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetNaturalSize: *const fn(
+            self: *const ITextServices,
+            dwAspect: u32,
+            hdcDraw: ?HDC,
+            hicTargetDev: ?HDC,
+            ptd: ?*DVTARGETDEVICE,
+            dwMode: u32,
+            psizelExtent: ?*const SIZE,
+            pwidth: ?*i32,
+            pheight: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetDropTarget: *const fn(
+            self: *const ITextServices,
+            ppDropTarget: ?*?*IDropTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnTxPropertyBitsChange: *const fn(
+            self: *const ITextServices,
+            dwMask: u32,
+            dwBits: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetCachedSize: *const fn(
+            self: *const ITextServices,
+            pdwWidth: ?*u32,
+            pdwHeight: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1867,432 +1689,180 @@ pub const CARET_INFO = extern union {
 pub const ITextHost = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        TxGetDC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-            ) callconv(@import("std").os.windows.WINAPI) ?HDC,
-            else => *const fn(
-                self: *const ITextHost,
-            ) callconv(@import("std").os.windows.WINAPI) ?HDC,
-        },
-        TxReleaseDC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                hdc: ?HDC,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-            else => *const fn(
-                self: *const ITextHost,
-                hdc: ?HDC,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-        },
-        TxShowScrollBar: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                fnBar: i32,
-                fShow: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                fnBar: i32,
-                fShow: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxEnableScrollBar: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                fuSBFlags: SCROLLBAR_CONSTANTS,
-                fuArrowflags: ENABLE_SCROLL_BAR_ARROWS,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                fuSBFlags: SCROLLBAR_CONSTANTS,
-                fuArrowflags: ENABLE_SCROLL_BAR_ARROWS,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxSetScrollRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                fnBar: i32,
-                nMinPos: i32,
-                nMaxPos: i32,
-                fRedraw: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                fnBar: i32,
-                nMinPos: i32,
-                nMaxPos: i32,
-                fRedraw: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxSetScrollPos: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                fnBar: i32,
-                nPos: i32,
-                fRedraw: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                fnBar: i32,
-                nPos: i32,
-                fRedraw: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxInvalidateRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                prc: ?*RECT,
-                fMode: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ITextHost,
-                prc: ?*RECT,
-                fMode: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        TxViewChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                fUpdate: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ITextHost,
-                fUpdate: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        TxCreateCaret: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                hbmp: ?HBITMAP,
-                xWidth: i32,
-                yHeight: i32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                hbmp: ?HBITMAP,
-                xWidth: i32,
-                yHeight: i32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxShowCaret: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                fShow: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                fShow: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxSetCaretPos: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxSetTimer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                idTimer: u32,
-                uTimeout: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                idTimer: u32,
-                uTimeout: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxKillTimer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                idTimer: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ITextHost,
-                idTimer: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        TxScrollWindowEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                dx: i32,
-                dy: i32,
-                lprcScroll: ?*RECT,
-                lprcClip: ?*RECT,
-                hrgnUpdate: ?HRGN,
-                lprcUpdate: ?*RECT,
-                fuScroll: SHOW_WINDOW_CMD,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ITextHost,
-                dx: i32,
-                dy: i32,
-                lprcScroll: ?*RECT,
-                lprcClip: ?*RECT,
-                hrgnUpdate: ?HRGN,
-                lprcUpdate: ?*RECT,
-                fuScroll: SHOW_WINDOW_CMD,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        TxSetCapture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                fCapture: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ITextHost,
-                fCapture: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        TxSetFocus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ITextHost,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        TxSetCursor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                hcur: ?HCURSOR,
-                fText: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ITextHost,
-                hcur: ?HCURSOR,
-                fText: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        TxScreenToClient: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                lppt: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                lppt: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxClientToScreen: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                lppt: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost,
-                lppt: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxActivate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                plOldState: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                plOldState: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxDeactivate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                lNewState: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                lNewState: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetClientRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                prc: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                prc: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetViewInset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                prc: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                prc: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetCharFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                ppCF: ?*const ?*CHARFORMATW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                ppCF: ?*const ?*CHARFORMATW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetParaFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                ppPF: ?*const ?*PARAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                ppPF: ?*const ?*PARAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetSysColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                nIndex: i32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn(
-                self: *const ITextHost,
-                nIndex: i32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        TxGetBackStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                pstyle: ?*TXTBACKSTYLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                pstyle: ?*TXTBACKSTYLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetMaxLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                plength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                plength: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetScrollBars: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                pdwScrollBar: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                pdwScrollBar: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetPasswordChar: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                pch: ?*i8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                pch: ?*i8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetAcceleratorPos: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                pcp: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                pcp: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetExtent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                lpExtent: ?*SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                lpExtent: ?*SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnTxCharFormatChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                pCF: ?*const CHARFORMATW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                pCF: ?*const CHARFORMATW,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnTxParaFormatChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                pPF: ?*const PARAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                pPF: ?*const PARAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetPropertyBits: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                dwMask: u32,
-                pdwBits: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                dwMask: u32,
-                pdwBits: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                iNotify: u32,
-                pv: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                iNotify: u32,
-                pv: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxImmGetContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-            ) callconv(@import("std").os.windows.WINAPI) ?HIMC,
-            else => *const fn(
-                self: *const ITextHost,
-            ) callconv(@import("std").os.windows.WINAPI) ?HIMC,
-        },
-        TxImmReleaseContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                himc: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ITextHost,
-                himc: ?HIMC,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        TxGetSelectionBarWidth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost,
-                lSelBarWidth: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost,
-                lSelBarWidth: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        TxGetDC: *const fn(
+            self: *const ITextHost,
+        ) callconv(@import("std").os.windows.WINAPI) ?HDC,
+        TxReleaseDC: *const fn(
+            self: *const ITextHost,
+            hdc: ?HDC,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        TxShowScrollBar: *const fn(
+            self: *const ITextHost,
+            fnBar: i32,
+            fShow: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxEnableScrollBar: *const fn(
+            self: *const ITextHost,
+            fuSBFlags: SCROLLBAR_CONSTANTS,
+            fuArrowflags: ENABLE_SCROLL_BAR_ARROWS,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxSetScrollRange: *const fn(
+            self: *const ITextHost,
+            fnBar: i32,
+            nMinPos: i32,
+            nMaxPos: i32,
+            fRedraw: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxSetScrollPos: *const fn(
+            self: *const ITextHost,
+            fnBar: i32,
+            nPos: i32,
+            fRedraw: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxInvalidateRect: *const fn(
+            self: *const ITextHost,
+            prc: ?*RECT,
+            fMode: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        TxViewChange: *const fn(
+            self: *const ITextHost,
+            fUpdate: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        TxCreateCaret: *const fn(
+            self: *const ITextHost,
+            hbmp: ?HBITMAP,
+            xWidth: i32,
+            yHeight: i32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxShowCaret: *const fn(
+            self: *const ITextHost,
+            fShow: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxSetCaretPos: *const fn(
+            self: *const ITextHost,
+            x: i32,
+            y: i32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxSetTimer: *const fn(
+            self: *const ITextHost,
+            idTimer: u32,
+            uTimeout: u32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxKillTimer: *const fn(
+            self: *const ITextHost,
+            idTimer: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        TxScrollWindowEx: *const fn(
+            self: *const ITextHost,
+            dx: i32,
+            dy: i32,
+            lprcScroll: ?*RECT,
+            lprcClip: ?*RECT,
+            hrgnUpdate: ?HRGN,
+            lprcUpdate: ?*RECT,
+            fuScroll: SHOW_WINDOW_CMD,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        TxSetCapture: *const fn(
+            self: *const ITextHost,
+            fCapture: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        TxSetFocus: *const fn(
+            self: *const ITextHost,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        TxSetCursor: *const fn(
+            self: *const ITextHost,
+            hcur: ?HCURSOR,
+            fText: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        TxScreenToClient: *const fn(
+            self: *const ITextHost,
+            lppt: ?*POINT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxClientToScreen: *const fn(
+            self: *const ITextHost,
+            lppt: ?*POINT,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxActivate: *const fn(
+            self: *const ITextHost,
+            plOldState: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxDeactivate: *const fn(
+            self: *const ITextHost,
+            lNewState: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetClientRect: *const fn(
+            self: *const ITextHost,
+            prc: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetViewInset: *const fn(
+            self: *const ITextHost,
+            prc: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetCharFormat: *const fn(
+            self: *const ITextHost,
+            ppCF: ?*const ?*CHARFORMATW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetParaFormat: *const fn(
+            self: *const ITextHost,
+            ppPF: ?*const ?*PARAFORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetSysColor: *const fn(
+            self: *const ITextHost,
+            nIndex: i32,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        TxGetBackStyle: *const fn(
+            self: *const ITextHost,
+            pstyle: ?*TXTBACKSTYLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetMaxLength: *const fn(
+            self: *const ITextHost,
+            plength: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetScrollBars: *const fn(
+            self: *const ITextHost,
+            pdwScrollBar: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetPasswordChar: *const fn(
+            self: *const ITextHost,
+            pch: ?*i8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetAcceleratorPos: *const fn(
+            self: *const ITextHost,
+            pcp: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetExtent: *const fn(
+            self: *const ITextHost,
+            lpExtent: ?*SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnTxCharFormatChange: *const fn(
+            self: *const ITextHost,
+            pCF: ?*const CHARFORMATW,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnTxParaFormatChange: *const fn(
+            self: *const ITextHost,
+            pPF: ?*const PARAFORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetPropertyBits: *const fn(
+            self: *const ITextHost,
+            dwMask: u32,
+            pdwBits: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxNotify: *const fn(
+            self: *const ITextHost,
+            iNotify: u32,
+            pv: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxImmGetContext: *const fn(
+            self: *const ITextHost,
+        ) callconv(@import("std").os.windows.WINAPI) ?HIMC,
+        TxImmReleaseContext: *const fn(
+            self: *const ITextHost,
+            himc: ?HIMC,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        TxGetSelectionBarWidth: *const fn(
+            self: *const ITextHost,
+            lSelBarWidth: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2461,18 +2031,11 @@ pub const ITextHost = extern struct {
 pub const IRicheditUiaOverrides = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPropertyOverrideValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRicheditUiaOverrides,
-                propertyId: i32,
-                pRetValue: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRicheditUiaOverrides,
-                propertyId: i32,
-                pRetValue: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPropertyOverrideValue: *const fn(
+            self: *const IRicheditUiaOverrides,
+            propertyId: i32,
+            pRetValue: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2485,151 +2048,67 @@ pub const IRicheditUiaOverrides = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const PCreateTextServices = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        punkOuter: ?*IUnknown,
-        pITextHost: ?*ITextHost,
-        ppUnk: ?*?*IUnknown,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        punkOuter: ?*IUnknown,
-        pITextHost: ?*ITextHost,
-        ppUnk: ?*?*IUnknown,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PCreateTextServices = *const fn(
+    punkOuter: ?*IUnknown,
+    pITextHost: ?*ITextHost,
+    ppUnk: ?*?*IUnknown,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PShutdownTextServices = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pTextServices: ?*IUnknown,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        pTextServices: ?*IUnknown,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PShutdownTextServices = *const fn(
+    pTextServices: ?*IUnknown,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const ITextHost2 = extern struct {
     pub const VTable = extern struct {
         base: ITextHost.VTable,
-        TxIsDoubleClickPending: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        TxGetWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-                phwnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost2,
-                phwnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxSetForegroundWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetPalette: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) ?HPALETTE,
-            else => *const fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) ?HPALETTE,
-        },
-        TxGetEastAsianFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-                pFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost2,
-                pFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxSetCursor2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-                hcur: ?HCURSOR,
-                bText: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) ?HCURSOR,
-            else => *const fn(
-                self: *const ITextHost2,
-                hcur: ?HCURSOR,
-                bText: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) ?HCURSOR,
-        },
-        TxFreeTextServicesNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        TxGetEditStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-                dwItem: u32,
-                pdwData: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost2,
-                dwItem: u32,
-                pdwData: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetWindowStyles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-                pdwStyle: ?*u32,
-                pdwExStyle: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost2,
-                pdwStyle: ?*u32,
-                pdwExStyle: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxShowDropCaret: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-                fShow: BOOL,
-                hdc: ?HDC,
-                prc: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost2,
-                fShow: BOOL,
-                hdc: ?HDC,
-                prc: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxDestroyCaret: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxGetHorzExtent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextHost2,
-                plHorzExtent: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextHost2,
-                plHorzExtent: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        TxIsDoubleClickPending: *const fn(
+            self: *const ITextHost2,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        TxGetWindow: *const fn(
+            self: *const ITextHost2,
+            phwnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxSetForegroundWindow: *const fn(
+            self: *const ITextHost2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetPalette: *const fn(
+            self: *const ITextHost2,
+        ) callconv(@import("std").os.windows.WINAPI) ?HPALETTE,
+        TxGetEastAsianFlags: *const fn(
+            self: *const ITextHost2,
+            pFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxSetCursor2: *const fn(
+            self: *const ITextHost2,
+            hcur: ?HCURSOR,
+            bText: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) ?HCURSOR,
+        TxFreeTextServicesNotification: *const fn(
+            self: *const ITextHost2,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        TxGetEditStyle: *const fn(
+            self: *const ITextHost2,
+            dwItem: u32,
+            pdwData: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetWindowStyles: *const fn(
+            self: *const ITextHost2,
+            pdwStyle: ?*u32,
+            pdwExStyle: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxShowDropCaret: *const fn(
+            self: *const ITextHost2,
+            fShow: BOOL,
+            hdc: ?HDC,
+            prc: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxDestroyCaret: *const fn(
+            self: *const ITextHost2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxGetHorzExtent: *const fn(
+            self: *const ITextHost2,
+            plHorzExtent: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2689,48 +2168,25 @@ pub const ITextHost2 = extern struct {
 pub const ITextServices2 = extern struct {
     pub const VTable = extern struct {
         base: ITextServices.VTable,
-        TxGetNaturalSize2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices2,
-                dwAspect: u32,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                ptd: ?*DVTARGETDEVICE,
-                dwMode: u32,
-                psizelExtent: ?*const SIZE,
-                pwidth: ?*i32,
-                pheight: ?*i32,
-                pascent: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices2,
-                dwAspect: u32,
-                hdcDraw: ?HDC,
-                hicTargetDev: ?HDC,
-                ptd: ?*DVTARGETDEVICE,
-                dwMode: u32,
-                psizelExtent: ?*const SIZE,
-                pwidth: ?*i32,
-                pheight: ?*i32,
-                pascent: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TxDrawD2D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextServices2,
-                pRenderTarget: ?*ID2D1RenderTarget,
-                lprcBounds: ?*RECTL,
-                lprcUpdate: ?*RECT,
-                lViewId: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextServices2,
-                pRenderTarget: ?*ID2D1RenderTarget,
-                lprcBounds: ?*RECTL,
-                lprcUpdate: ?*RECT,
-                lViewId: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        TxGetNaturalSize2: *const fn(
+            self: *const ITextServices2,
+            dwAspect: u32,
+            hdcDraw: ?HDC,
+            hicTargetDev: ?HDC,
+            ptd: ?*DVTARGETDEVICE,
+            dwMode: u32,
+            psizelExtent: ?*const SIZE,
+            pwidth: ?*i32,
+            pheight: ?*i32,
+            pascent: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TxDrawD2D: *const fn(
+            self: *const ITextServices2,
+            pRenderTarget: ?*ID2D1RenderTarget,
+            lprcBounds: ?*RECTL,
+            lprcUpdate: ?*RECT,
+            lViewId: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2766,186 +2222,80 @@ pub const IID_IRichEditOle = &IID_IRichEditOle_Value;
 pub const IRichEditOle = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClientSite: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                lplpolesite: ?*?*IOleClientSite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                lplpolesite: ?*?*IOleClientSite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetObjectCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-            else => *const fn(
-                self: *const IRichEditOle,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-        },
-        GetLinkCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-            else => *const fn(
-                self: *const IRichEditOle,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-        },
-        GetObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                lpreobject: ?*REOBJECT,
-                dwFlags: RICH_EDIT_GET_OBJECT_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                lpreobject: ?*REOBJECT,
-                dwFlags: RICH_EDIT_GET_OBJECT_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                lpreobject: ?*REOBJECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                lpreobject: ?*REOBJECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                rclsidNew: ?*const Guid,
-                lpstrUserTypeNew: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                rclsidNew: ?*const Guid,
-                lpstrUserTypeNew: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ActivateAs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                rclsid: ?*const Guid,
-                rclsidAs: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                rclsid: ?*const Guid,
-                rclsidAs: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetHostNames: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                lpstrContainerApp: ?[*:0]const u8,
-                lpstrContainerObj: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                lpstrContainerApp: ?[*:0]const u8,
-                lpstrContainerObj: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLinkAvailable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                fAvailable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                fAvailable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDvaspect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                dvaspect: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                dvaspect: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HandsOffStorage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                iob: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                iob: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SaveCompleted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                lpstg: ?*IStorage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                iob: i32,
-                lpstg: ?*IStorage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InPlaceDeactivate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContextSensitiveHelp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                fEnterMode: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                fEnterMode: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClipboardData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                lpchrg: ?*CHARRANGE,
-                reco: u32,
-                lplpdataobj: ?*?*IDataObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                lpchrg: ?*CHARRANGE,
-                reco: u32,
-                lplpdataobj: ?*?*IDataObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImportDataObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOle,
-                lpdataobj: ?*IDataObject,
-                cf: u16,
-                hMetaPict: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOle,
-                lpdataobj: ?*IDataObject,
-                cf: u16,
-                hMetaPict: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetClientSite: *const fn(
+            self: *const IRichEditOle,
+            lplpolesite: ?*?*IOleClientSite,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetObjectCount: *const fn(
+            self: *const IRichEditOle,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        GetLinkCount: *const fn(
+            self: *const IRichEditOle,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        GetObject: *const fn(
+            self: *const IRichEditOle,
+            iob: i32,
+            lpreobject: ?*REOBJECT,
+            dwFlags: RICH_EDIT_GET_OBJECT_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertObject: *const fn(
+            self: *const IRichEditOle,
+            lpreobject: ?*REOBJECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertObject: *const fn(
+            self: *const IRichEditOle,
+            iob: i32,
+            rclsidNew: ?*const Guid,
+            lpstrUserTypeNew: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ActivateAs: *const fn(
+            self: *const IRichEditOle,
+            rclsid: ?*const Guid,
+            rclsidAs: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetHostNames: *const fn(
+            self: *const IRichEditOle,
+            lpstrContainerApp: ?[*:0]const u8,
+            lpstrContainerObj: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLinkAvailable: *const fn(
+            self: *const IRichEditOle,
+            iob: i32,
+            fAvailable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDvaspect: *const fn(
+            self: *const IRichEditOle,
+            iob: i32,
+            dvaspect: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HandsOffStorage: *const fn(
+            self: *const IRichEditOle,
+            iob: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SaveCompleted: *const fn(
+            self: *const IRichEditOle,
+            iob: i32,
+            lpstg: ?*IStorage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InPlaceDeactivate: *const fn(
+            self: *const IRichEditOle,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContextSensitiveHelp: *const fn(
+            self: *const IRichEditOle,
+            fEnterMode: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClipboardData: *const fn(
+            self: *const IRichEditOle,
+            lpchrg: ?*CHARRANGE,
+            reco: u32,
+            lplpdataobj: ?*?*IDataObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImportDataObject: *const fn(
+            self: *const IRichEditOle,
+            lpdataobj: ?*IDataObject,
+            cf: u16,
+            hMetaPict: isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3024,136 +2374,61 @@ pub const IID_IRichEditOleCallback = &IID_IRichEditOleCallback_Value;
 pub const IRichEditOleCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNewStorage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                lplpstg: ?*?*IStorage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                lplpstg: ?*?*IStorage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInPlaceContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                lplpFrame: ?*?*IOleInPlaceFrame,
-                lplpDoc: ?*?*IOleInPlaceUIWindow,
-                lpFrameInfo: ?*OIFI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                lplpFrame: ?*?*IOleInPlaceFrame,
-                lplpDoc: ?*?*IOleInPlaceUIWindow,
-                lpFrameInfo: ?*OIFI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ShowContainerUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                fShow: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                fShow: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryInsertObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                lpclsid: ?*Guid,
-                lpstg: ?*IStorage,
-                cp: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                lpclsid: ?*Guid,
-                lpstg: ?*IStorage,
-                cp: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                lpoleobj: ?*IOleObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                lpoleobj: ?*IOleObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryAcceptData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                lpdataobj: ?*IDataObject,
-                lpcfFormat: ?*u16,
-                reco: u32,
-                fReally: BOOL,
-                hMetaPict: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                lpdataobj: ?*IDataObject,
-                lpcfFormat: ?*u16,
-                reco: u32,
-                fReally: BOOL,
-                hMetaPict: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContextSensitiveHelp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                fEnterMode: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                fEnterMode: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClipboardData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                lpchrg: ?*CHARRANGE,
-                reco: u32,
-                lplpdataobj: ?*?*IDataObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                lpchrg: ?*CHARRANGE,
-                reco: u32,
-                lplpdataobj: ?*?*IDataObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDragDropEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                fDrag: BOOL,
-                grfKeyState: u32,
-                pdwEffect: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                fDrag: BOOL,
-                grfKeyState: u32,
-                pdwEffect: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetContextMenu: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRichEditOleCallback,
-                seltype: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
-                lpoleobj: ?*IOleObject,
-                lpchrg: ?*CHARRANGE,
-                lphmenu: ?*?HMENU,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRichEditOleCallback,
-                seltype: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
-                lpoleobj: ?*IOleObject,
-                lpchrg: ?*CHARRANGE,
-                lphmenu: ?*?HMENU,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetNewStorage: *const fn(
+            self: *const IRichEditOleCallback,
+            lplpstg: ?*?*IStorage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInPlaceContext: *const fn(
+            self: *const IRichEditOleCallback,
+            lplpFrame: ?*?*IOleInPlaceFrame,
+            lplpDoc: ?*?*IOleInPlaceUIWindow,
+            lpFrameInfo: ?*OIFI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ShowContainerUI: *const fn(
+            self: *const IRichEditOleCallback,
+            fShow: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryInsertObject: *const fn(
+            self: *const IRichEditOleCallback,
+            lpclsid: ?*Guid,
+            lpstg: ?*IStorage,
+            cp: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteObject: *const fn(
+            self: *const IRichEditOleCallback,
+            lpoleobj: ?*IOleObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryAcceptData: *const fn(
+            self: *const IRichEditOleCallback,
+            lpdataobj: ?*IDataObject,
+            lpcfFormat: ?*u16,
+            reco: u32,
+            fReally: BOOL,
+            hMetaPict: isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContextSensitiveHelp: *const fn(
+            self: *const IRichEditOleCallback,
+            fEnterMode: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClipboardData: *const fn(
+            self: *const IRichEditOleCallback,
+            lpchrg: ?*CHARRANGE,
+            reco: u32,
+            lplpdataobj: ?*?*IDataObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDragDropEffect: *const fn(
+            self: *const IRichEditOleCallback,
+            fDrag: BOOL,
+            grfKeyState: u32,
+            pdwEffect: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContextMenu: *const fn(
+            self: *const IRichEditOleCallback,
+            seltype: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE,
+            lpoleobj: ?*IOleObject,
+            lpchrg: ?*CHARRANGE,
+            lphmenu: ?*?HMENU,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4479,210 +3754,89 @@ pub const IID_ITextDocument = &IID_ITextDocument_Value;
 pub const ITextDocument = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                pName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                pName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSelection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                ppSel: ?*?*ITextSelection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                ppSel: ?*?*ITextSelection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStoryCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStoryRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                ppStories: ?*?*ITextStoryRanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                ppStories: ?*?*ITextStoryRanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSaved: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSaved: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                Value: tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                Value: tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDefaultTabStop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDefaultTabStop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        New: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                pVar: ?*VARIANT,
-                Flags: i32,
-                CodePage: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                pVar: ?*VARIANT,
-                Flags: i32,
-                CodePage: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Save: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                pVar: ?*VARIANT,
-                Flags: i32,
-                CodePage: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                pVar: ?*VARIANT,
-                Flags: i32,
-                CodePage: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Freeze: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unfreeze: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginEditCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndEditCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Undo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                Count: i32,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                Count: i32,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Redo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                Count: i32,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                Count: i32,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Range: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                cpActive: i32,
-                cpAnchor: i32,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                cpActive: i32,
-                cpAnchor: i32,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RangeFromPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument,
-                x: i32,
-                y: i32,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument,
-                x: i32,
-                y: i32,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetName: *const fn(
+            self: *const ITextDocument,
+            pName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSelection: *const fn(
+            self: *const ITextDocument,
+            ppSel: ?*?*ITextSelection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStoryCount: *const fn(
+            self: *const ITextDocument,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStoryRanges: *const fn(
+            self: *const ITextDocument,
+            ppStories: ?*?*ITextStoryRanges,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSaved: *const fn(
+            self: *const ITextDocument,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSaved: *const fn(
+            self: *const ITextDocument,
+            Value: tomConstants,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultTabStop: *const fn(
+            self: *const ITextDocument,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDefaultTabStop: *const fn(
+            self: *const ITextDocument,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        New: *const fn(
+            self: *const ITextDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: *const fn(
+            self: *const ITextDocument,
+            pVar: ?*VARIANT,
+            Flags: i32,
+            CodePage: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Save: *const fn(
+            self: *const ITextDocument,
+            pVar: ?*VARIANT,
+            Flags: i32,
+            CodePage: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Freeze: *const fn(
+            self: *const ITextDocument,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unfreeze: *const fn(
+            self: *const ITextDocument,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginEditCollection: *const fn(
+            self: *const ITextDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndEditCollection: *const fn(
+            self: *const ITextDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Undo: *const fn(
+            self: *const ITextDocument,
+            Count: i32,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Redo: *const fn(
+            self: *const ITextDocument,
+            Count: i32,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Range: *const fn(
+            self: *const ITextDocument,
+            cpActive: i32,
+            cpAnchor: i32,
+            ppRange: ?*?*ITextRange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RangeFromPoint: *const fn(
+            self: *const ITextDocument,
+            x: i32,
+            y: i32,
+            ppRange: ?*?*ITextRange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4773,612 +3927,258 @@ pub const IID_ITextRange = &IID_ITextRange_Value;
 pub const ITextRange = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChar: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pChar: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pChar: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetChar: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Char: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Char: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDuplicate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFormattedText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFormattedText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pRange: ?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pRange: ?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pcpFirst: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pcpFirst: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                cpFirst: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                cpFirst: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pcpLim: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pcpLim: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                cpLim: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                cpLim: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                ppFont: ?*?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                ppFont: ?*?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pFont: ?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pFont: ?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPara: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                ppPara: ?*?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                ppPara: ?*?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPara: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pPara: ?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pPara: ?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStoryLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStoryType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Collapse: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                bStart: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                bStart: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Expand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Unit: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Unit: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Unit: i32,
-                pIndex: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Unit: i32,
-                pIndex: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Index: i32,
-                Extend: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Index: i32,
-                Extend: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                cpAnchor: i32,
-                cpActive: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                cpAnchor: i32,
-                cpActive: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pRange: ?*ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pRange: ?*ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InStory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pRange: ?*ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pRange: ?*ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEqual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pRange: ?*ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pRange: ?*ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Select: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        StartOf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndOf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Move: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveWhile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveStartWhile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveEndWhile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveUntil: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveStartUntil: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveEndUntil: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Cset: ?*VARIANT,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                bstr: ?BSTR,
-                Count: i32,
-                Flags: i32,
-                pLength: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                bstr: ?BSTR,
-                Count: i32,
-                Flags: i32,
-                pLength: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindTextStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                bstr: ?BSTR,
-                Count: i32,
-                Flags: i32,
-                pLength: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                bstr: ?BSTR,
-                Count: i32,
-                Flags: i32,
-                pLength: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindTextEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                bstr: ?BSTR,
-                Count: i32,
-                Flags: i32,
-                pLength: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                bstr: ?BSTR,
-                Count: i32,
-                Flags: i32,
-                pLength: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Unit: i32,
-                Count: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Cut: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pVar: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pVar: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Copy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pVar: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pVar: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Paste: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pVar: ?*VARIANT,
-                Format: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pVar: ?*VARIANT,
-                Format: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CanPaste: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pVar: ?*VARIANT,
-                Format: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pVar: ?*VARIANT,
-                Format: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CanEdit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ChangeCase: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Type: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Type: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Type: i32,
-                px: ?*i32,
-                py: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Type: i32,
-                px: ?*i32,
-                py: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                x: i32,
-                y: i32,
-                Type: i32,
-                Extend: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                x: i32,
-                y: i32,
-                Type: i32,
-                Extend: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ScrollIntoView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEmbeddedObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange,
-                ppObject: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange,
-                ppObject: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetText: *const fn(
+            self: *const ITextRange,
+            pbstr: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetText: *const fn(
+            self: *const ITextRange,
+            bstr: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChar: *const fn(
+            self: *const ITextRange,
+            pChar: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetChar: *const fn(
+            self: *const ITextRange,
+            Char: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDuplicate: *const fn(
+            self: *const ITextRange,
+            ppRange: ?*?*ITextRange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFormattedText: *const fn(
+            self: *const ITextRange,
+            ppRange: ?*?*ITextRange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFormattedText: *const fn(
+            self: *const ITextRange,
+            pRange: ?*ITextRange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStart: *const fn(
+            self: *const ITextRange,
+            pcpFirst: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStart: *const fn(
+            self: *const ITextRange,
+            cpFirst: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEnd: *const fn(
+            self: *const ITextRange,
+            pcpLim: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEnd: *const fn(
+            self: *const ITextRange,
+            cpLim: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFont: *const fn(
+            self: *const ITextRange,
+            ppFont: ?*?*ITextFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFont: *const fn(
+            self: *const ITextRange,
+            pFont: ?*ITextFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPara: *const fn(
+            self: *const ITextRange,
+            ppPara: ?*?*ITextPara,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPara: *const fn(
+            self: *const ITextRange,
+            pPara: ?*ITextPara,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStoryLength: *const fn(
+            self: *const ITextRange,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStoryType: *const fn(
+            self: *const ITextRange,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Collapse: *const fn(
+            self: *const ITextRange,
+            bStart: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Expand: *const fn(
+            self: *const ITextRange,
+            Unit: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIndex: *const fn(
+            self: *const ITextRange,
+            Unit: i32,
+            pIndex: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIndex: *const fn(
+            self: *const ITextRange,
+            Unit: i32,
+            Index: i32,
+            Extend: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRange: *const fn(
+            self: *const ITextRange,
+            cpAnchor: i32,
+            cpActive: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InRange: *const fn(
+            self: *const ITextRange,
+            pRange: ?*ITextRange,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InStory: *const fn(
+            self: *const ITextRange,
+            pRange: ?*ITextRange,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEqual: *const fn(
+            self: *const ITextRange,
+            pRange: ?*ITextRange,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Select: *const fn(
+            self: *const ITextRange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartOf: *const fn(
+            self: *const ITextRange,
+            Unit: i32,
+            Extend: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndOf: *const fn(
+            self: *const ITextRange,
+            Unit: i32,
+            Extend: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Move: *const fn(
+            self: *const ITextRange,
+            Unit: i32,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveStart: *const fn(
+            self: *const ITextRange,
+            Unit: i32,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveEnd: *const fn(
+            self: *const ITextRange,
+            Unit: i32,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveWhile: *const fn(
+            self: *const ITextRange,
+            Cset: ?*VARIANT,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveStartWhile: *const fn(
+            self: *const ITextRange,
+            Cset: ?*VARIANT,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveEndWhile: *const fn(
+            self: *const ITextRange,
+            Cset: ?*VARIANT,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveUntil: *const fn(
+            self: *const ITextRange,
+            Cset: ?*VARIANT,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveStartUntil: *const fn(
+            self: *const ITextRange,
+            Cset: ?*VARIANT,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveEndUntil: *const fn(
+            self: *const ITextRange,
+            Cset: ?*VARIANT,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindText: *const fn(
+            self: *const ITextRange,
+            bstr: ?BSTR,
+            Count: i32,
+            Flags: i32,
+            pLength: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindTextStart: *const fn(
+            self: *const ITextRange,
+            bstr: ?BSTR,
+            Count: i32,
+            Flags: i32,
+            pLength: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindTextEnd: *const fn(
+            self: *const ITextRange,
+            bstr: ?BSTR,
+            Count: i32,
+            Flags: i32,
+            pLength: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const ITextRange,
+            Unit: i32,
+            Count: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cut: *const fn(
+            self: *const ITextRange,
+            pVar: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Copy: *const fn(
+            self: *const ITextRange,
+            pVar: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Paste: *const fn(
+            self: *const ITextRange,
+            pVar: ?*VARIANT,
+            Format: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CanPaste: *const fn(
+            self: *const ITextRange,
+            pVar: ?*VARIANT,
+            Format: i32,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CanEdit: *const fn(
+            self: *const ITextRange,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ChangeCase: *const fn(
+            self: *const ITextRange,
+            Type: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPoint: *const fn(
+            self: *const ITextRange,
+            Type: i32,
+            px: ?*i32,
+            py: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPoint: *const fn(
+            self: *const ITextRange,
+            x: i32,
+            y: i32,
+            Type: i32,
+            Extend: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ScrollIntoView: *const fn(
+            self: *const ITextRange,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEmbeddedObject: *const fn(
+            self: *const ITextRange,
+            ppObject: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5597,138 +4397,62 @@ pub const IID_ITextSelection = &IID_ITextSelection_Value;
 pub const ITextSelection = extern struct {
     pub const VTable = extern struct {
         base: ITextRange.VTable,
-        GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                pFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                pFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                Flags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                Flags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                pType: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                pType: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveLeft: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Count: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Count: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveRight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Count: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Count: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveUp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Count: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Count: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveDown: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Count: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Count: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HomeKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                Unit: tomConstants,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                Unit: tomConstants,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                Unit: i32,
-                Extend: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TypeText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextSelection,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextSelection,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFlags: *const fn(
+            self: *const ITextSelection,
+            pFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFlags: *const fn(
+            self: *const ITextSelection,
+            Flags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetType: *const fn(
+            self: *const ITextSelection,
+            pType: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveLeft: *const fn(
+            self: *const ITextSelection,
+            Unit: i32,
+            Count: i32,
+            Extend: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveRight: *const fn(
+            self: *const ITextSelection,
+            Unit: i32,
+            Count: i32,
+            Extend: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveUp: *const fn(
+            self: *const ITextSelection,
+            Unit: i32,
+            Count: i32,
+            Extend: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveDown: *const fn(
+            self: *const ITextSelection,
+            Unit: i32,
+            Count: i32,
+            Extend: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HomeKey: *const fn(
+            self: *const ITextSelection,
+            Unit: tomConstants,
+            Extend: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndKey: *const fn(
+            self: *const ITextSelection,
+            Unit: i32,
+            Extend: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TypeText: *const fn(
+            self: *const ITextSelection,
+            bstr: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5783,558 +4507,227 @@ pub const IID_ITextFont = &IID_ITextFont_Value;
 pub const ITextFont = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetDuplicate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                ppFont: ?*?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                ppFont: ?*?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDuplicate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pFont: ?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pFont: ?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CanChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEqual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pFont: ?*ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pFont: ?*ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAllCaps: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAllCaps: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAnimation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAnimation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBackColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBackColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEmboss: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEmboss: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForeColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetForeColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHidden: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetHidden: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEngrave: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEngrave: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetItalic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetItalic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKerning: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetKerning: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLanguageID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLanguageID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOutline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProtected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProtected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetShadow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetShadow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSmallCaps: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSmallCaps: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrikeThrough: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrikeThrough: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSubscript: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSubscript: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSuperscript: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSuperscript: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUnderline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUnderline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDuplicate: *const fn(
+            self: *const ITextFont,
+            ppFont: ?*?*ITextFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDuplicate: *const fn(
+            self: *const ITextFont,
+            pFont: ?*ITextFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CanChange: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEqual: *const fn(
+            self: *const ITextFont,
+            pFont: ?*ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const ITextFont,
+            Value: tomConstants,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStyle: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStyle: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAllCaps: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllCaps: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAnimation: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAnimation: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBackColor: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBackColor: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBold: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBold: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEmboss: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEmboss: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForeColor: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetForeColor: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHidden: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetHidden: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEngrave: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEngrave: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetItalic: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetItalic: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKerning: *const fn(
+            self: *const ITextFont,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetKerning: *const fn(
+            self: *const ITextFont,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLanguageID: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLanguageID: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetName: *const fn(
+            self: *const ITextFont,
+            pbstr: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetName: *const fn(
+            self: *const ITextFont,
+            bstr: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutline: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOutline: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPosition: *const fn(
+            self: *const ITextFont,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPosition: *const fn(
+            self: *const ITextFont,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProtected: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProtected: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetShadow: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetShadow: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSize: *const fn(
+            self: *const ITextFont,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSize: *const fn(
+            self: *const ITextFont,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSmallCaps: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSmallCaps: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSpacing: *const fn(
+            self: *const ITextFont,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSpacing: *const fn(
+            self: *const ITextFont,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrikeThrough: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrikeThrough: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSubscript: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSubscript: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSuperscript: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSuperscript: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUnderline: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUnderline: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWeight: *const fn(
+            self: *const ITextFont,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWeight: *const fn(
+            self: *const ITextFont,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6569,502 +4962,206 @@ pub const IID_ITextPara = &IID_ITextPara_Value;
 pub const ITextPara = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetDuplicate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                ppPara: ?*?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                ppPara: ?*?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDuplicate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pPara: ?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pPara: ?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CanChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEqual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pPara: ?*ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pPara: ?*ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStyle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHyphenation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetHyphenation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFirstLineIndent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKeepTogether: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetKeepTogether: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKeepWithNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetKeepWithNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLeftIndent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLineSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLineSpacingRule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetListAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetListAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetListLevelIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetListLevelIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetListStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetListStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetListTab: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetListTab: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetListType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetListType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNoLineNumber: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNoLineNumber: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPageBreakBefore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPageBreakBefore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRightIndent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRightIndent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIndents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                First: f32,
-                Left: f32,
-                Right: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                First: f32,
-                Left: f32,
-                Right: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLineSpacing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Rule: i32,
-                Spacing: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Rule: i32,
-                Spacing: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSpaceAfter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSpaceAfter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSpaceBefore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSpaceBefore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWidowControl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWidowControl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTabCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddTab: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                tbPos: f32,
-                tbAlign: i32,
-                tbLeader: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                tbPos: f32,
-                tbAlign: i32,
-                tbLeader: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearAllTabs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteTab: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                tbPos: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                tbPos: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTab: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara,
-                iTab: i32,
-                ptbPos: ?*f32,
-                ptbAlign: ?*i32,
-                ptbLeader: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara,
-                iTab: i32,
-                ptbPos: ?*f32,
-                ptbAlign: ?*i32,
-                ptbLeader: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDuplicate: *const fn(
+            self: *const ITextPara,
+            ppPara: ?*?*ITextPara,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDuplicate: *const fn(
+            self: *const ITextPara,
+            pPara: ?*ITextPara,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CanChange: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEqual: *const fn(
+            self: *const ITextPara,
+            pPara: ?*ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStyle: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStyle: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAlignment: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlignment: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHyphenation: *const fn(
+            self: *const ITextPara,
+            pValue: ?*tomConstants,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetHyphenation: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFirstLineIndent: *const fn(
+            self: *const ITextPara,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKeepTogether: *const fn(
+            self: *const ITextPara,
+            pValue: ?*tomConstants,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetKeepTogether: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKeepWithNext: *const fn(
+            self: *const ITextPara,
+            pValue: ?*tomConstants,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetKeepWithNext: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLeftIndent: *const fn(
+            self: *const ITextPara,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLineSpacing: *const fn(
+            self: *const ITextPara,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLineSpacingRule: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetListAlignment: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetListAlignment: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetListLevelIndex: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetListLevelIndex: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetListStart: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetListStart: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetListTab: *const fn(
+            self: *const ITextPara,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetListTab: *const fn(
+            self: *const ITextPara,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetListType: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetListType: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNoLineNumber: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNoLineNumber: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPageBreakBefore: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPageBreakBefore: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRightIndent: *const fn(
+            self: *const ITextPara,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRightIndent: *const fn(
+            self: *const ITextPara,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIndents: *const fn(
+            self: *const ITextPara,
+            First: f32,
+            Left: f32,
+            Right: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLineSpacing: *const fn(
+            self: *const ITextPara,
+            Rule: i32,
+            Spacing: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSpaceAfter: *const fn(
+            self: *const ITextPara,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSpaceAfter: *const fn(
+            self: *const ITextPara,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSpaceBefore: *const fn(
+            self: *const ITextPara,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSpaceBefore: *const fn(
+            self: *const ITextPara,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWidowControl: *const fn(
+            self: *const ITextPara,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWidowControl: *const fn(
+            self: *const ITextPara,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTabCount: *const fn(
+            self: *const ITextPara,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddTab: *const fn(
+            self: *const ITextPara,
+            tbPos: f32,
+            tbAlign: i32,
+            tbLeader: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearAllTabs: *const fn(
+            self: *const ITextPara,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteTab: *const fn(
+            self: *const ITextPara,
+            tbPos: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTab: *const fn(
+            self: *const ITextPara,
+            iTab: i32,
+            ptbPos: ?*f32,
+            ptbAlign: ?*i32,
+            ptbLeader: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7271,38 +5368,19 @@ pub const IID_ITextStoryRanges = &IID_ITextStoryRanges_Value;
 pub const ITextStoryRanges = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        _NewEnum: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStoryRanges,
-                ppunkEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStoryRanges,
-                ppunkEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStoryRanges,
-                Index: i32,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStoryRanges,
-                Index: i32,
-                ppRange: ?*?*ITextRange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStoryRanges,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStoryRanges,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        _NewEnum: *const fn(
+            self: *const ITextStoryRanges,
+            ppunkEnum: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Item: *const fn(
+            self: *const ITextStoryRanges,
+            Index: i32,
+            ppRange: ?*?*ITextRange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const ITextStoryRanges,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7329,490 +5407,204 @@ pub const IID_ITextDocument2 = &IID_ITextDocument2_Value;
 pub const ITextDocument2 = extern struct {
     pub const VTable = extern struct {
         base: ITextDocument.VTable,
-        GetCaretType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCaretType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDisplays: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppDisplays: ?*?*ITextDisplays,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppDisplays: ?*?*ITextDisplays,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocumentFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppFont: ?*?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppFont: ?*?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDocumentFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pFont: ?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pFont: ?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocumentPara: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppPara: ?*?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppPara: ?*?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDocumentPara: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pPara: ?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pPara: ?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEastAsianFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pFlags: ?*tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pFlags: ?*tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGenerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIMEInProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNotificationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNotificationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSelection2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppSel: ?*?*ITextSelection2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppSel: ?*?*ITextSelection2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStoryRanges2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppStories: ?*?*ITextStoryRanges2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppStories: ?*?*ITextStoryRanges2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTypographyOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pOptions: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pOptions: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pHwnd: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pHwnd: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AttachMsgFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pFilter: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pFilter: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckTextLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                cch: i32,
-                pcch: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                cch: i32,
-                pcch: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCallManager: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppVoid: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppVoid: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClientRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Type: tomConstants,
-                pLeft: ?*i32,
-                pTop: ?*i32,
-                pRight: ?*i32,
-                pBottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Type: tomConstants,
-                pLeft: ?*i32,
-                pTop: ?*i32,
-                pRight: ?*i32,
-                pBottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffectColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Index: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Index: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImmContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pContext: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pContext: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPreferredFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                cp: i32,
-                CharRep: i32,
-                Options: i32,
-                curCharRep: i32,
-                curFontSize: i32,
-                pbstr: ?*?BSTR,
-                pPitchAndFamily: ?*i32,
-                pNewFontSize: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                cp: i32,
-                CharRep: i32,
-                Options: i32,
-                curCharRep: i32,
-                curFontSize: i32,
-                pbstr: ?*?BSTR,
-                pPitchAndFamily: ?*i32,
-                pNewFontSize: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppStrs: ?*?*ITextStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppStrs: ?*?*ITextStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Notify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Notify: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Notify: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Range2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                cpActive: i32,
-                cpAnchor: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                cpActive: i32,
-                cpAnchor: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RangeFromPoint2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                x: i32,
-                y: i32,
-                Type: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                x: i32,
-                y: i32,
-                Type: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseCallManager: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pVoid: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pVoid: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseImmContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Context: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Context: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEffectColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Index: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Index: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTypographyOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Options: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Options: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SysBeep: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Update: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UpdateWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMathProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pOptions: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pOptions: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMathProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Options: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Options: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetActiveStory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppStory: ?*?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppStory: ?*?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActiveStory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                pStory: ?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                pStory: ?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMainStory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppStory: ?*?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppStory: ?*?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNewStory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                ppStory: ?*?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                ppStory: ?*?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2,
-                Index: i32,
-                ppStory: ?*?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2,
-                Index: i32,
-                ppStory: ?*?*ITextStory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCaretType: *const fn(
+            self: *const ITextDocument2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCaretType: *const fn(
+            self: *const ITextDocument2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDisplays: *const fn(
+            self: *const ITextDocument2,
+            ppDisplays: ?*?*ITextDisplays,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocumentFont: *const fn(
+            self: *const ITextDocument2,
+            ppFont: ?*?*ITextFont2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDocumentFont: *const fn(
+            self: *const ITextDocument2,
+            pFont: ?*ITextFont2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocumentPara: *const fn(
+            self: *const ITextDocument2,
+            ppPara: ?*?*ITextPara2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDocumentPara: *const fn(
+            self: *const ITextDocument2,
+            pPara: ?*ITextPara2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEastAsianFlags: *const fn(
+            self: *const ITextDocument2,
+            pFlags: ?*tomConstants,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGenerator: *const fn(
+            self: *const ITextDocument2,
+            pbstr: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIMEInProgress: *const fn(
+            self: *const ITextDocument2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNotificationMode: *const fn(
+            self: *const ITextDocument2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNotificationMode: *const fn(
+            self: *const ITextDocument2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSelection2: *const fn(
+            self: *const ITextDocument2,
+            ppSel: ?*?*ITextSelection2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStoryRanges2: *const fn(
+            self: *const ITextDocument2,
+            ppStories: ?*?*ITextStoryRanges2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTypographyOptions: *const fn(
+            self: *const ITextDocument2,
+            pOptions: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVersion: *const fn(
+            self: *const ITextDocument2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWindow: *const fn(
+            self: *const ITextDocument2,
+            pHwnd: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AttachMsgFilter: *const fn(
+            self: *const ITextDocument2,
+            pFilter: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckTextLimit: *const fn(
+            self: *const ITextDocument2,
+            cch: i32,
+            pcch: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCallManager: *const fn(
+            self: *const ITextDocument2,
+            ppVoid: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClientRect: *const fn(
+            self: *const ITextDocument2,
+            Type: tomConstants,
+            pLeft: ?*i32,
+            pTop: ?*i32,
+            pRight: ?*i32,
+            pBottom: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectColor: *const fn(
+            self: *const ITextDocument2,
+            Index: i32,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImmContext: *const fn(
+            self: *const ITextDocument2,
+            pContext: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPreferredFont: *const fn(
+            self: *const ITextDocument2,
+            cp: i32,
+            CharRep: i32,
+            Options: i32,
+            curCharRep: i32,
+            curFontSize: i32,
+            pbstr: ?*?BSTR,
+            pPitchAndFamily: ?*i32,
+            pNewFontSize: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const ITextDocument2,
+            Type: i32,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrings: *const fn(
+            self: *const ITextDocument2,
+            ppStrs: ?*?*ITextStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Notify: *const fn(
+            self: *const ITextDocument2,
+            Notify: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Range2: *const fn(
+            self: *const ITextDocument2,
+            cpActive: i32,
+            cpAnchor: i32,
+            ppRange: ?*?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RangeFromPoint2: *const fn(
+            self: *const ITextDocument2,
+            x: i32,
+            y: i32,
+            Type: i32,
+            ppRange: ?*?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseCallManager: *const fn(
+            self: *const ITextDocument2,
+            pVoid: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseImmContext: *const fn(
+            self: *const ITextDocument2,
+            Context: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEffectColor: *const fn(
+            self: *const ITextDocument2,
+            Index: i32,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const ITextDocument2,
+            Type: i32,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTypographyOptions: *const fn(
+            self: *const ITextDocument2,
+            Options: i32,
+            Mask: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SysBeep: *const fn(
+            self: *const ITextDocument2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Update: *const fn(
+            self: *const ITextDocument2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateWindow: *const fn(
+            self: *const ITextDocument2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMathProperties: *const fn(
+            self: *const ITextDocument2,
+            pOptions: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMathProperties: *const fn(
+            self: *const ITextDocument2,
+            Options: i32,
+            Mask: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetActiveStory: *const fn(
+            self: *const ITextDocument2,
+            ppStory: ?*?*ITextStory,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActiveStory: *const fn(
+            self: *const ITextDocument2,
+            pStory: ?*ITextStory,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMainStory: *const fn(
+            self: *const ITextDocument2,
+            ppStory: ?*?*ITextStory,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNewStory: *const fn(
+            self: *const ITextDocument2,
+            ppStory: ?*?*ITextStory,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStory: *const fn(
+            self: *const ITextDocument2,
+            Index: i32,
+            ppStory: ?*?*ITextStory,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8003,490 +5795,208 @@ pub const IID_ITextRange2 = &IID_ITextRange2_Value;
 pub const ITextRange2 = extern struct {
     pub const VTable = extern struct {
         base: ITextSelection.VTable,
-        GetCch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pcch: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pcch: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCells: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                ppCells: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                ppCells: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetColumn: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                ppColumn: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                ppColumn: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDuplicate2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFont2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                ppFont: ?*?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                ppFont: ?*?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFont2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pFont: ?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pFont: ?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFormattedText2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFormattedText2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pRange: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pRange: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGravity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGravity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPara2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                ppPara: ?*?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                ppPara: ?*?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPara2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pPara: ?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pPara: ?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                ppRow: ?*?*ITextRow,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                ppRow: ?*?*ITextRow,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStartPara: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                ppTable: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                ppTable: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetURL: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetURL: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddSubrange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                cp1: i32,
-                cp2: i32,
-                Activate: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                cp1: i32,
-                cp2: i32,
-                Activate: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BuildUpMath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                Flags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                Flags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteSubrange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                cpFirst: i32,
-                cpLim: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                cpFirst: i32,
-                cpLim: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Find: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pRange: ?*ITextRange2,
-                Count: i32,
-                Flags: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pRange: ?*ITextRange2,
-                Count: i32,
-                Flags: i32,
-                pDelta: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChar2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pChar: ?*i32,
-                Offset: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pChar: ?*i32,
-                Offset: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDropCap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pcLine: ?*i32,
-                pPosition: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pcLine: ?*i32,
-                pPosition: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInlineObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                pType: ?*i32,
-                pAlign: ?*i32,
-                pChar: ?*i32,
-                pChar1: ?*i32,
-                pChar2: ?*i32,
-                pCount: ?*i32,
-                pTeXStyle: ?*i32,
-                pcCol: ?*i32,
-                pLevel: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                pType: ?*i32,
-                pAlign: ?*i32,
-                pChar: ?*i32,
-                pChar1: ?*i32,
-                pChar2: ?*i32,
-                pCount: ?*i32,
-                pTeXStyle: ?*i32,
-                pcCol: ?*i32,
-                pLevel: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                Type: i32,
-                pLeft: ?*i32,
-                pTop: ?*i32,
-                pRight: ?*i32,
-                pBottom: ?*i32,
-                pHit: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                Type: i32,
-                pLeft: ?*i32,
-                pTop: ?*i32,
-                pRight: ?*i32,
-                pBottom: ?*i32,
-                pHit: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSubrange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                iSubrange: i32,
-                pcpFirst: ?*i32,
-                pcpLim: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                iSubrange: i32,
-                pcpFirst: ?*i32,
-                pcpLim: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetText2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                Flags: i32,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                Flags: i32,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HexToUnicode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                cCol: i32,
-                cRow: i32,
-                AutoFit: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                cCol: i32,
-                cRow: i32,
-                AutoFit: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Linearize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                Flags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                Flags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActiveSubrange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                cpAnchor: i32,
-                cpActive: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                cpAnchor: i32,
-                cpActive: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDropCap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                cLine: i32,
-                Position: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                cLine: i32,
-                Position: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetText2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                Flags: i32,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                Flags: i32,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnicodeToHex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetInlineObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                Type: i32,
-                Align: i32,
-                Char: i32,
-                Char1: i32,
-                Char2: i32,
-                Count: i32,
-                TeXStyle: i32,
-                cCol: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                Type: i32,
-                Align: i32,
-                Char: i32,
-                Char1: i32,
-                Char2: i32,
-                Count: i32,
-                TeXStyle: i32,
-                cCol: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMathFunctionType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                bstr: ?BSTR,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                bstr: ?BSTR,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRange2,
-                width: i32,
-                height: i32,
-                ascent: i32,
-                Type: TEXT_ALIGN_OPTIONS,
-                bstrAltText: ?BSTR,
-                pStream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRange2,
-                width: i32,
-                height: i32,
-                ascent: i32,
-                Type: TEXT_ALIGN_OPTIONS,
-                bstrAltText: ?BSTR,
-                pStream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCch: *const fn(
+            self: *const ITextRange2,
+            pcch: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCells: *const fn(
+            self: *const ITextRange2,
+            ppCells: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColumn: *const fn(
+            self: *const ITextRange2,
+            ppColumn: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const ITextRange2,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDuplicate2: *const fn(
+            self: *const ITextRange2,
+            ppRange: ?*?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFont2: *const fn(
+            self: *const ITextRange2,
+            ppFont: ?*?*ITextFont2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFont2: *const fn(
+            self: *const ITextRange2,
+            pFont: ?*ITextFont2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFormattedText2: *const fn(
+            self: *const ITextRange2,
+            ppRange: ?*?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFormattedText2: *const fn(
+            self: *const ITextRange2,
+            pRange: ?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGravity: *const fn(
+            self: *const ITextRange2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGravity: *const fn(
+            self: *const ITextRange2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPara2: *const fn(
+            self: *const ITextRange2,
+            ppPara: ?*?*ITextPara2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPara2: *const fn(
+            self: *const ITextRange2,
+            pPara: ?*ITextPara2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRow: *const fn(
+            self: *const ITextRange2,
+            ppRow: ?*?*ITextRow,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStartPara: *const fn(
+            self: *const ITextRange2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTable: *const fn(
+            self: *const ITextRange2,
+            ppTable: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetURL: *const fn(
+            self: *const ITextRange2,
+            pbstr: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetURL: *const fn(
+            self: *const ITextRange2,
+            bstr: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddSubrange: *const fn(
+            self: *const ITextRange2,
+            cp1: i32,
+            cp2: i32,
+            Activate: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BuildUpMath: *const fn(
+            self: *const ITextRange2,
+            Flags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteSubrange: *const fn(
+            self: *const ITextRange2,
+            cpFirst: i32,
+            cpLim: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Find: *const fn(
+            self: *const ITextRange2,
+            pRange: ?*ITextRange2,
+            Count: i32,
+            Flags: i32,
+            pDelta: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChar2: *const fn(
+            self: *const ITextRange2,
+            pChar: ?*i32,
+            Offset: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDropCap: *const fn(
+            self: *const ITextRange2,
+            pcLine: ?*i32,
+            pPosition: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInlineObject: *const fn(
+            self: *const ITextRange2,
+            pType: ?*i32,
+            pAlign: ?*i32,
+            pChar: ?*i32,
+            pChar1: ?*i32,
+            pChar2: ?*i32,
+            pCount: ?*i32,
+            pTeXStyle: ?*i32,
+            pcCol: ?*i32,
+            pLevel: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const ITextRange2,
+            Type: i32,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRect: *const fn(
+            self: *const ITextRange2,
+            Type: i32,
+            pLeft: ?*i32,
+            pTop: ?*i32,
+            pRight: ?*i32,
+            pBottom: ?*i32,
+            pHit: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSubrange: *const fn(
+            self: *const ITextRange2,
+            iSubrange: i32,
+            pcpFirst: ?*i32,
+            pcpLim: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetText2: *const fn(
+            self: *const ITextRange2,
+            Flags: i32,
+            pbstr: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HexToUnicode: *const fn(
+            self: *const ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertTable: *const fn(
+            self: *const ITextRange2,
+            cCol: i32,
+            cRow: i32,
+            AutoFit: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Linearize: *const fn(
+            self: *const ITextRange2,
+            Flags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActiveSubrange: *const fn(
+            self: *const ITextRange2,
+            cpAnchor: i32,
+            cpActive: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDropCap: *const fn(
+            self: *const ITextRange2,
+            cLine: i32,
+            Position: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const ITextRange2,
+            Type: i32,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetText2: *const fn(
+            self: *const ITextRange2,
+            Flags: i32,
+            bstr: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnicodeToHex: *const fn(
+            self: *const ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInlineObject: *const fn(
+            self: *const ITextRange2,
+            Type: i32,
+            Align: i32,
+            Char: i32,
+            Char1: i32,
+            Char2: i32,
+            Count: i32,
+            TeXStyle: i32,
+            cCol: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMathFunctionType: *const fn(
+            self: *const ITextRange2,
+            bstr: ?BSTR,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertImage: *const fn(
+            self: *const ITextRange2,
+            width: i32,
+            height: i32,
+            ascent: i32,
+            Type: TEXT_ALIGN_OPTIONS,
+            bstrAltText: ?BSTR,
+            pStream: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8675,484 +6185,199 @@ pub const IID_ITextFont2 = &IID_ITextFont2_Value;
 pub const ITextFont2 = extern struct {
     pub const VTable = extern struct {
         base: ITextFont.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAutoLigatures: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAutoLigatures: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAutospaceAlpha: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAutospaceAlpha: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAutospaceNumeric: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAutospaceNumeric: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAutospaceParens: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAutospaceParens: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCharRep: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCharRep: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCompressionMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCompressionMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCookie: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCookie: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDoubleStrike: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDoubleStrike: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDuplicate2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                ppFont: ?*?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                ppFont: ?*?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDuplicate2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pFont: ?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pFont: ?*ITextFont2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLinkType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMathZone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMathZone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetModWidthPairs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetModWidthPairs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetModWidthSpace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetModWidthSpace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOldNumbers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOldNumbers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOverlapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOverlapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPositionSubSuper: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPositionSubSuper: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetScaling: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetScaling: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSpaceExtension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSpaceExtension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUnderlinePositionMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUnderlinePositionMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-                pMask: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-                pMask: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffects2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-                pMask: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pValue: ?*i32,
-                pMask: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Index: i32,
-                pType: ?*i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Index: i32,
-                pType: ?*i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEqual2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                pFont: ?*ITextFont2,
-                pB: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                pFont: ?*ITextFont2,
-                pB: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEffects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEffects2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Value: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Value: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextFont2,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextFont2,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const ITextFont2,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAutoLigatures: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAutoLigatures: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAutospaceAlpha: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAutospaceAlpha: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAutospaceNumeric: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAutospaceNumeric: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAutospaceParens: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAutospaceParens: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCharRep: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCharRep: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCompressionMode: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCompressionMode: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCookie: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCookie: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDoubleStrike: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDoubleStrike: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDuplicate2: *const fn(
+            self: *const ITextFont2,
+            ppFont: ?*?*ITextFont2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDuplicate2: *const fn(
+            self: *const ITextFont2,
+            pFont: ?*ITextFont2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLinkType: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMathZone: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMathZone: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetModWidthPairs: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetModWidthPairs: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetModWidthSpace: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetModWidthSpace: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOldNumbers: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOldNumbers: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOverlapping: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOverlapping: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPositionSubSuper: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPositionSubSuper: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScaling: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetScaling: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSpaceExtension: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSpaceExtension: *const fn(
+            self: *const ITextFont2,
+            Value: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUnderlinePositionMode: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUnderlinePositionMode: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffects: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+            pMask: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffects2: *const fn(
+            self: *const ITextFont2,
+            pValue: ?*i32,
+            pMask: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const ITextFont2,
+            Type: i32,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyInfo: *const fn(
+            self: *const ITextFont2,
+            Index: i32,
+            pType: ?*i32,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEqual2: *const fn(
+            self: *const ITextFont2,
+            pFont: ?*ITextFont2,
+            pB: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEffects: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+            Mask: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEffects2: *const fn(
+            self: *const ITextFont2,
+            Value: i32,
+            Mask: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const ITextFont2,
+            Type: i32,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9351,176 +6576,75 @@ pub const IID_ITextPara2 = &IID_ITextPara2_Value;
 pub const ITextPara2 = extern struct {
     pub const VTable = extern struct {
         base: ITextPara.VTable,
-        GetBorders: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                ppBorders: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                ppBorders: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDuplicate2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                ppPara: ?*?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                ppPara: ?*?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDuplicate2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                pPara: ?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                pPara: ?*ITextPara2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHangingPunctuation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetHangingPunctuation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSnapToGrid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSnapToGrid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTrimPunctuationAtStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTrimPunctuationAtStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-                pMask: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                pValue: ?*i32,
-                pMask: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEqual2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                pPara: ?*ITextPara2,
-                pB: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                pPara: ?*ITextPara2,
-                pB: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEffects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                Value: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                Value: i32,
-                Mask: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextPara2,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextPara2,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetBorders: *const fn(
+            self: *const ITextPara2,
+            ppBorders: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDuplicate2: *const fn(
+            self: *const ITextPara2,
+            ppPara: ?*?*ITextPara2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDuplicate2: *const fn(
+            self: *const ITextPara2,
+            pPara: ?*ITextPara2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontAlignment: *const fn(
+            self: *const ITextPara2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontAlignment: *const fn(
+            self: *const ITextPara2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHangingPunctuation: *const fn(
+            self: *const ITextPara2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetHangingPunctuation: *const fn(
+            self: *const ITextPara2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSnapToGrid: *const fn(
+            self: *const ITextPara2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSnapToGrid: *const fn(
+            self: *const ITextPara2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTrimPunctuationAtStart: *const fn(
+            self: *const ITextPara2,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTrimPunctuationAtStart: *const fn(
+            self: *const ITextPara2,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffects: *const fn(
+            self: *const ITextPara2,
+            pValue: ?*i32,
+            pMask: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const ITextPara2,
+            Type: i32,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEqual2: *const fn(
+            self: *const ITextPara2,
+            pPara: ?*ITextPara2,
+            pB: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEffects: *const fn(
+            self: *const ITextPara2,
+            Value: i32,
+            Mask: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const ITextPara2,
+            Type: i32,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9599,18 +6723,11 @@ pub const IID_ITextStoryRanges2 = &IID_ITextStoryRanges2_Value;
 pub const ITextStoryRanges2 = extern struct {
     pub const VTable = extern struct {
         base: ITextStoryRanges.VTable,
-        Item2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStoryRanges2,
-                Index: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStoryRanges2,
-                Index: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Item2: *const fn(
+            self: *const ITextStoryRanges2,
+            Index: i32,
+            ppRange: ?*?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9629,138 +6746,60 @@ pub const IID_ITextStory = &IID_ITextStory_Value;
 pub const ITextStory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetActive: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActive: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDisplay: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                ppDisplay: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                ppDisplay: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                cpActive: i32,
-                cpAnchor: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                cpActive: i32,
-                cpAnchor: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                Flags: i32,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                Flags: i32,
-                pbstr: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFormattedText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                pUnk: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                pUnk: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStory,
-                Flags: i32,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStory,
-                Flags: i32,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetActive: *const fn(
+            self: *const ITextStory,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActive: *const fn(
+            self: *const ITextStory,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDisplay: *const fn(
+            self: *const ITextStory,
+            ppDisplay: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIndex: *const fn(
+            self: *const ITextStory,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetType: *const fn(
+            self: *const ITextStory,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetType: *const fn(
+            self: *const ITextStory,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const ITextStory,
+            Type: i32,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRange: *const fn(
+            self: *const ITextStory,
+            cpActive: i32,
+            cpAnchor: i32,
+            ppRange: ?*?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetText: *const fn(
+            self: *const ITextStory,
+            Flags: i32,
+            pbstr: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFormattedText: *const fn(
+            self: *const ITextStory,
+            pUnk: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const ITextStory,
+            Type: i32,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetText: *const fn(
+            self: *const ITextStory,
+            Flags: i32,
+            bstr: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9823,206 +6862,89 @@ pub const IID_ITextStrings = &IID_ITextStrings_Value;
 pub const ITextStrings = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                Index: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                Index: i32,
-                ppRange: ?*?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                pCount: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                pRange: ?*ITextRange2,
-                iString: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                pRange: ?*ITextRange2,
-                iString: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Cat2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                iString: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                iString: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CatTop2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                pRange: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                pRange: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EncodeFunction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                Type: i32,
-                Align: i32,
-                Char: i32,
-                Char1: i32,
-                Char2: i32,
-                Count: i32,
-                TeXStyle: i32,
-                cCol: i32,
-                pRange: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                Type: i32,
-                Align: i32,
-                Char: i32,
-                Char1: i32,
-                Char2: i32,
-                Count: i32,
-                TeXStyle: i32,
-                cCol: i32,
-                pRange: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                iString: i32,
-                pcch: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                iString: i32,
-                pcch: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertNullStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                iString: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                iString: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveBoundary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                iString: i32,
-                cch: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                iString: i32,
-                cch: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PrefixTop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                bstr: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                iString: i32,
-                cString: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                iString: i32,
-                cString: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFormattedText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                pRangeD: ?*ITextRange2,
-                pRangeS: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                pRangeD: ?*ITextRange2,
-                pRangeS: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpCp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                iString: i32,
-                cp: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                iString: i32,
-                cp: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SuffixTop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-                bstr: ?BSTR,
-                pRange: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-                bstr: ?BSTR,
-                pRange: ?*ITextRange2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Swap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextStrings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Item: *const fn(
+            self: *const ITextStrings,
+            Index: i32,
+            ppRange: ?*?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const ITextStrings,
+            pCount: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Add: *const fn(
+            self: *const ITextStrings,
+            bstr: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const ITextStrings,
+            pRange: ?*ITextRange2,
+            iString: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cat2: *const fn(
+            self: *const ITextStrings,
+            iString: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CatTop2: *const fn(
+            self: *const ITextStrings,
+            bstr: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteRange: *const fn(
+            self: *const ITextStrings,
+            pRange: ?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EncodeFunction: *const fn(
+            self: *const ITextStrings,
+            Type: i32,
+            Align: i32,
+            Char: i32,
+            Char1: i32,
+            Char2: i32,
+            Count: i32,
+            TeXStyle: i32,
+            cCol: i32,
+            pRange: ?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCch: *const fn(
+            self: *const ITextStrings,
+            iString: i32,
+            pcch: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertNullStr: *const fn(
+            self: *const ITextStrings,
+            iString: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveBoundary: *const fn(
+            self: *const ITextStrings,
+            iString: i32,
+            cch: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PrefixTop: *const fn(
+            self: *const ITextStrings,
+            bstr: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Remove: *const fn(
+            self: *const ITextStrings,
+            iString: i32,
+            cString: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFormattedText: *const fn(
+            self: *const ITextStrings,
+            pRangeD: ?*ITextRange2,
+            pRangeS: ?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpCp: *const fn(
+            self: *const ITextStrings,
+            iString: i32,
+            cp: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SuffixTop: *const fn(
+            self: *const ITextStrings,
+            bstr: ?BSTR,
+            pRange: ?*ITextRange2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Swap: *const fn(
+            self: *const ITextStrings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10105,498 +7027,206 @@ pub const IID_ITextRow = &IID_ITextRow_Value;
 pub const ITextRow = extern struct {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellCountCache: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellCountCache: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellMargin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellMargin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetHeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIndent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIndent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKeepTogether: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetKeepTogether: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKeepWithNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetKeepWithNext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNestLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRTL: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRTL: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellAlignment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellColorBack: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellColorBack: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellColorFore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellColorFore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellMergeFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellMergeFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellShading: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellShading: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellVerticalText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellVerticalText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellWidth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellWidth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellBorderColors: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pcrLeft: ?*i32,
-                pcrTop: ?*i32,
-                pcrRight: ?*i32,
-                pcrBottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pcrLeft: ?*i32,
-                pcrTop: ?*i32,
-                pcrRight: ?*i32,
-                pcrBottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCellBorderWidths: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pduLeft: ?*i32,
-                pduTop: ?*i32,
-                pduRight: ?*i32,
-                pduBottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pduLeft: ?*i32,
-                pduTop: ?*i32,
-                pduRight: ?*i32,
-                pduBottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellBorderColors: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                crLeft: i32,
-                crTop: i32,
-                crRight: i32,
-                crBottom: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                crLeft: i32,
-                crTop: i32,
-                crRight: i32,
-                crBottom: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCellBorderWidths: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                duLeft: i32,
-                duTop: i32,
-                duRight: i32,
-                duBottom: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                duLeft: i32,
-                duTop: i32,
-                duRight: i32,
-                duBottom: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Apply: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                cRow: i32,
-                Flags: tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                cRow: i32,
-                Flags: tomConstants,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CanChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Type: i32,
-                pValue: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Insert: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                cRow: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                cRow: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEqual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                pRow: ?*ITextRow,
-                pB: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                pRow: ?*ITextRow,
-                pB: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextRow,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextRow,
-                Type: i32,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAlignment: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAlignment: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellCount: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellCount: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellCountCache: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellCountCache: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellIndex: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellIndex: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellMargin: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellMargin: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHeight: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetHeight: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIndent: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIndent: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKeepTogether: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetKeepTogether: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKeepWithNext: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetKeepWithNext: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNestLevel: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRTL: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRTL: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellAlignment: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellAlignment: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellColorBack: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellColorBack: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellColorFore: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellColorFore: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellMergeFlags: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellMergeFlags: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellShading: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellShading: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellVerticalText: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellVerticalText: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellWidth: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellWidth: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellBorderColors: *const fn(
+            self: *const ITextRow,
+            pcrLeft: ?*i32,
+            pcrTop: ?*i32,
+            pcrRight: ?*i32,
+            pcrBottom: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCellBorderWidths: *const fn(
+            self: *const ITextRow,
+            pduLeft: ?*i32,
+            pduTop: ?*i32,
+            pduRight: ?*i32,
+            pduBottom: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellBorderColors: *const fn(
+            self: *const ITextRow,
+            crLeft: i32,
+            crTop: i32,
+            crRight: i32,
+            crBottom: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCellBorderWidths: *const fn(
+            self: *const ITextRow,
+            duLeft: i32,
+            duTop: i32,
+            duRight: i32,
+            duBottom: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Apply: *const fn(
+            self: *const ITextRow,
+            cRow: i32,
+            Flags: tomConstants,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CanChange: *const fn(
+            self: *const ITextRow,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const ITextRow,
+            Type: i32,
+            pValue: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Insert: *const fn(
+            self: *const ITextRow,
+            cRow: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEqual: *const fn(
+            self: *const ITextRow,
+            pRow: ?*ITextRow,
+            pB: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const ITextRow,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const ITextRow,
+            Type: i32,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10808,270 +7438,114 @@ pub const IID_ITextDocument2Old = &IID_ITextDocument2Old_Value;
 pub const ITextDocument2Old = extern struct {
     pub const VTable = extern struct {
         base: ITextDocument.VTable,
-        AttachMsgFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                pFilter: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                pFilter: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEffectColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                Index: i32,
-                cr: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                Index: i32,
-                cr: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEffectColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                Index: i32,
-                pcr: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                Index: i32,
-                pcr: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCaretType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                pCaretType: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                pCaretType: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCaretType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                CaretType: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                CaretType: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImmContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                pContext: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                pContext: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseImmContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                Context: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                Context: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPreferredFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                cp: i32,
-                CharRep: i32,
-                Option: i32,
-                CharRepCur: i32,
-                curFontSize: i32,
-                pbstr: ?*?BSTR,
-                pPitchAndFamily: ?*i32,
-                pNewFontSize: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                cp: i32,
-                CharRep: i32,
-                Option: i32,
-                CharRepCur: i32,
-                curFontSize: i32,
-                pbstr: ?*?BSTR,
-                pPitchAndFamily: ?*i32,
-                pNewFontSize: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNotificationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                pMode: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                pMode: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNotificationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                Mode: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                Mode: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClientRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                Type: i32,
-                pLeft: ?*i32,
-                pTop: ?*i32,
-                pRight: ?*i32,
-                pBottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                Type: i32,
-                pLeft: ?*i32,
-                pTop: ?*i32,
-                pRight: ?*i32,
-                pBottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSelection2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                ppSel: ?*?*ITextSelection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                ppSel: ?*?*ITextSelection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                phWnd: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                phWnd: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFEFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                pFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                pFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UpdateWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckTextLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                cch: i32,
-                pcch: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                cch: i32,
-                pcch: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IMEInProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                Value: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SysBeep: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Update: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                Mode: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                Mode: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Notify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                Notify: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                Notify: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocumentFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                ppITextFont: ?*?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                ppITextFont: ?*?*ITextFont,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocumentPara: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                ppITextPara: ?*?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                ppITextPara: ?*?*ITextPara,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCallManager: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                ppVoid: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                ppVoid: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseCallManager: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ITextDocument2Old,
-                pVoid: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ITextDocument2Old,
-                pVoid: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AttachMsgFilter: *const fn(
+            self: *const ITextDocument2Old,
+            pFilter: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEffectColor: *const fn(
+            self: *const ITextDocument2Old,
+            Index: i32,
+            cr: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEffectColor: *const fn(
+            self: *const ITextDocument2Old,
+            Index: i32,
+            pcr: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCaretType: *const fn(
+            self: *const ITextDocument2Old,
+            pCaretType: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCaretType: *const fn(
+            self: *const ITextDocument2Old,
+            CaretType: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImmContext: *const fn(
+            self: *const ITextDocument2Old,
+            pContext: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseImmContext: *const fn(
+            self: *const ITextDocument2Old,
+            Context: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPreferredFont: *const fn(
+            self: *const ITextDocument2Old,
+            cp: i32,
+            CharRep: i32,
+            Option: i32,
+            CharRepCur: i32,
+            curFontSize: i32,
+            pbstr: ?*?BSTR,
+            pPitchAndFamily: ?*i32,
+            pNewFontSize: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNotificationMode: *const fn(
+            self: *const ITextDocument2Old,
+            pMode: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNotificationMode: *const fn(
+            self: *const ITextDocument2Old,
+            Mode: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClientRect: *const fn(
+            self: *const ITextDocument2Old,
+            Type: i32,
+            pLeft: ?*i32,
+            pTop: ?*i32,
+            pRight: ?*i32,
+            pBottom: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSelection2: *const fn(
+            self: *const ITextDocument2Old,
+            ppSel: ?*?*ITextSelection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWindow: *const fn(
+            self: *const ITextDocument2Old,
+            phWnd: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFEFlags: *const fn(
+            self: *const ITextDocument2Old,
+            pFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateWindow: *const fn(
+            self: *const ITextDocument2Old,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckTextLimit: *const fn(
+            self: *const ITextDocument2Old,
+            cch: i32,
+            pcch: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IMEInProgress: *const fn(
+            self: *const ITextDocument2Old,
+            Value: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SysBeep: *const fn(
+            self: *const ITextDocument2Old,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Update: *const fn(
+            self: *const ITextDocument2Old,
+            Mode: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Notify: *const fn(
+            self: *const ITextDocument2Old,
+            Notify: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocumentFont: *const fn(
+            self: *const ITextDocument2Old,
+            ppITextFont: ?*?*ITextFont,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocumentPara: *const fn(
+            self: *const ITextDocument2Old,
+            ppITextPara: ?*?*ITextPara,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCallManager: *const fn(
+            self: *const ITextDocument2Old,
+            ppVoid: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseCallManager: *const fn(
+            self: *const ITextDocument2Old,
+            pVoid: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

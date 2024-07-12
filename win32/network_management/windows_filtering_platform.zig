@@ -3670,108 +3670,52 @@ pub const FWPM_VSWITCH_EVENT_SUBSCRIPTION0 = extern struct {
     sessionKey: Guid,
 };
 
-pub const FWPM_PROVIDER_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_PROVIDER_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_PROVIDER_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_PROVIDER_CHANGE_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    change: ?*const FWPM_PROVIDER_CHANGE0,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_PROVIDER_CONTEXT_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_PROVIDER_CONTEXT_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_PROVIDER_CONTEXT_CHANGE_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    change: ?*const FWPM_PROVIDER_CONTEXT_CHANGE0,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_SUBLAYER_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_SUBLAYER_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_SUBLAYER_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_SUBLAYER_CHANGE_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    change: ?*const FWPM_SUBLAYER_CHANGE0,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_CALLOUT_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_CALLOUT_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_CALLOUT_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_CALLOUT_CHANGE_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    change: ?*const FWPM_CALLOUT_CHANGE0,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_FILTER_CHANGE_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_FILTER_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        change: ?*const FWPM_FILTER_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_FILTER_CHANGE_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    change: ?*const FWPM_FILTER_CHANGE0,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const IPSEC_SA_CONTEXT_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        change: ?*const IPSEC_SA_CONTEXT_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        change: ?*const IPSEC_SA_CONTEXT_CHANGE0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const IPSEC_SA_CONTEXT_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    change: ?*const IPSEC_SA_CONTEXT_CHANGE0,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ikeTraffic: ?*const IKEEXT_TRAFFIC0,
-        willDictateKey: ?*BOOL,
-        weight: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        ikeTraffic: ?*const IKEEXT_TRAFFIC0,
-        willDictateKey: ?*BOOL,
-        weight: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const IPSEC_KEY_MANAGER_KEY_DICTATION_CHECK0 = *const fn(
+    ikeTraffic: ?*const IKEEXT_TRAFFIC0,
+    willDictateKey: ?*BOOL,
+    weight: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const IPSEC_KEY_MANAGER_DICTATE_KEY0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        inboundSaDetails: ?*IPSEC_SA_DETAILS1,
-        outboundSaDetails: ?*IPSEC_SA_DETAILS1,
-        keyingModuleGenKey: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        inboundSaDetails: ?*IPSEC_SA_DETAILS1,
-        outboundSaDetails: ?*IPSEC_SA_DETAILS1,
-        keyingModuleGenKey: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const IPSEC_KEY_MANAGER_DICTATE_KEY0 = *const fn(
+    inboundSaDetails: ?*IPSEC_SA_DETAILS1,
+    outboundSaDetails: ?*IPSEC_SA_DETAILS1,
+    keyingModuleGenKey: ?*BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const IPSEC_KEY_MANAGER_NOTIFY_KEY0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        inboundSa: ?*const IPSEC_SA_DETAILS1,
-        outboundSa: ?*const IPSEC_SA_DETAILS1,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        inboundSa: ?*const IPSEC_SA_DETAILS1,
-        outboundSa: ?*const IPSEC_SA_DETAILS1,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const IPSEC_KEY_MANAGER_NOTIFY_KEY0 = *const fn(
+    inboundSa: ?*const IPSEC_SA_DETAILS1,
+    outboundSa: ?*const IPSEC_SA_DETAILS1,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const IPSEC_KEY_MANAGER_CALLBACKS0 = extern struct {
     reserved: Guid,
@@ -3781,106 +3725,51 @@ pub const IPSEC_KEY_MANAGER_CALLBACKS0 = extern struct {
     keyNotify: ?IPSEC_KEY_MANAGER_NOTIFY_KEY0,
 };
 
-pub const FWPM_NET_EVENT_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT1,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT1,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_NET_EVENT_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    event: ?*const FWPM_NET_EVENT1,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_NET_EVENT_CALLBACK1 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT2,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT2,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_NET_EVENT_CALLBACK1 = *const fn(
+    context: ?*anyopaque,
+    event: ?*const FWPM_NET_EVENT2,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_NET_EVENT_CALLBACK2 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT3,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT3,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_NET_EVENT_CALLBACK2 = *const fn(
+    context: ?*anyopaque,
+    event: ?*const FWPM_NET_EVENT3,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_NET_EVENT_CALLBACK3 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT4_,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT4_,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_NET_EVENT_CALLBACK3 = *const fn(
+    context: ?*anyopaque,
+    event: ?*const FWPM_NET_EVENT4_,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_NET_EVENT_CALLBACK4 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT5_,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        event: ?*const FWPM_NET_EVENT5_,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_NET_EVENT_CALLBACK4 = *const fn(
+    context: ?*anyopaque,
+    event: ?*const FWPM_NET_EVENT5_,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_DYNAMIC_KEYWORD_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        notification: ?*anyopaque,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        notification: ?*anyopaque,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_DYNAMIC_KEYWORD_CALLBACK0 = *const fn(
+    notification: ?*anyopaque,
+    context: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_SYSTEM_PORTS_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        sysPorts: ?*const FWPM_SYSTEM_PORTS0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        sysPorts: ?*const FWPM_SYSTEM_PORTS0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_SYSTEM_PORTS_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    sysPorts: ?*const FWPM_SYSTEM_PORTS0,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_CONNECTION_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        eventType: FWPM_CONNECTION_EVENT_TYPE,
-        connection: ?*const FWPM_CONNECTION0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*anyopaque,
-        eventType: FWPM_CONNECTION_EVENT_TYPE,
-        connection: ?*const FWPM_CONNECTION0,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const FWPM_CONNECTION_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    eventType: FWPM_CONNECTION_EVENT_TYPE,
+    connection: ?*const FWPM_CONNECTION0,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const FWPM_VSWITCH_EVENT_CALLBACK0 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        vSwitchEvent: ?*const FWPM_VSWITCH_EVENT0,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        context: ?*anyopaque,
-        vSwitchEvent: ?*const FWPM_VSWITCH_EVENT0,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const FWPM_VSWITCH_EVENT_CALLBACK0 = *const fn(
+    context: ?*anyopaque,
+    vSwitchEvent: ?*const FWPM_VSWITCH_EVENT0,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 
 //--------------------------------------------------------------------------------

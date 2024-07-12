@@ -192,26 +192,14 @@ pub const IID_IClockVectorElement = &IID_IClockVectorElement_Value;
 pub const IClockVectorElement = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetReplicaKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IClockVectorElement,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IClockVectorElement,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTickCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IClockVectorElement,
-                pullTickCount: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IClockVectorElement,
-                pullTickCount: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetReplicaKey: *const fn(
+            self: *const IClockVectorElement,
+            pdwReplicaKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTickCount: *const fn(
+            self: *const IClockVectorElement,
+            pullTickCount: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -234,26 +222,14 @@ pub const IID_IFeedClockVectorElement = &IID_IFeedClockVectorElement_Value;
 pub const IFeedClockVectorElement = extern struct {
     pub const VTable = extern struct {
         base: IClockVectorElement.VTable,
-        GetSyncTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFeedClockVectorElement,
-                pSyncTime: ?*SYNC_TIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFeedClockVectorElement,
-                pSyncTime: ?*SYNC_TIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFeedClockVectorElement,
-                pbFlags: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFeedClockVectorElement,
-                pbFlags: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncTime: *const fn(
+            self: *const IFeedClockVectorElement,
+            pSyncTime: ?*SYNC_TIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFlags: *const fn(
+            self: *const IFeedClockVectorElement,
+            pbFlags: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -276,28 +252,15 @@ pub const IID_IClockVector = &IID_IClockVector_Value;
 pub const IClockVector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClockVectorElements: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IClockVector,
-                riid: ?*const Guid,
-                ppiEnumClockVector: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IClockVector,
-                riid: ?*const Guid,
-                ppiEnumClockVector: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClockVectorElementCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IClockVector,
-                pdwCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IClockVector,
-                pdwCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetClockVectorElements: *const fn(
+            self: *const IClockVector,
+            riid: ?*const Guid,
+            ppiEnumClockVector: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClockVectorElementCount: *const fn(
+            self: *const IClockVector,
+            pdwCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -320,26 +283,14 @@ pub const IID_IFeedClockVector = &IID_IFeedClockVector_Value;
 pub const IFeedClockVector = extern struct {
     pub const VTable = extern struct {
         base: IClockVector.VTable,
-        GetUpdateCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFeedClockVector,
-                pdwUpdateCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFeedClockVector,
-                pdwUpdateCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsNoConflictsSpecified: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFeedClockVector,
-                pfIsNoConflictsSpecified: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFeedClockVector,
-                pfIsNoConflictsSpecified: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetUpdateCount: *const fn(
+            self: *const IFeedClockVector,
+            pdwUpdateCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsNoConflictsSpecified: *const fn(
+            self: *const IFeedClockVector,
+            pfIsNoConflictsSpecified: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -362,48 +313,23 @@ pub const IID_IEnumClockVector = &IID_IEnumClockVector_Value;
 pub const IEnumClockVector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumClockVector,
-                cClockVectorElements: u32,
-                ppiClockVectorElements: ?*?*IClockVectorElement,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumClockVector,
-                cClockVectorElements: u32,
-                ppiClockVectorElements: ?*?*IClockVectorElement,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumClockVector,
-                cSyncVersions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumClockVector,
-                cSyncVersions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumClockVector,
-                ppiEnum: ?*?*IEnumClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumClockVector,
-                ppiEnum: ?*?*IEnumClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumClockVector,
+            cClockVectorElements: u32,
+            ppiClockVectorElements: ?*?*IClockVectorElement,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumClockVector,
+            cSyncVersions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumClockVector,
+            ppiEnum: ?*?*IEnumClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -434,48 +360,23 @@ pub const IID_IEnumFeedClockVector = &IID_IEnumFeedClockVector_Value;
 pub const IEnumFeedClockVector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumFeedClockVector,
-                cClockVectorElements: u32,
-                ppiClockVectorElements: ?*?*IFeedClockVectorElement,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumFeedClockVector,
-                cClockVectorElements: u32,
-                ppiClockVectorElements: ?*?*IFeedClockVectorElement,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumFeedClockVector,
-                cSyncVersions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumFeedClockVector,
-                cSyncVersions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumFeedClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumFeedClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumFeedClockVector,
-                ppiEnum: ?*?*IEnumFeedClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumFeedClockVector,
-                ppiEnum: ?*?*IEnumFeedClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumFeedClockVector,
+            cClockVectorElements: u32,
+            ppiClockVectorElements: ?*?*IFeedClockVectorElement,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumFeedClockVector,
+            cSyncVersions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumFeedClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumFeedClockVector,
+            ppiEnum: ?*?*IEnumFeedClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -506,60 +407,28 @@ pub const IID_ICoreFragment = &IID_ICoreFragment_Value;
 pub const ICoreFragment = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        NextColumn: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICoreFragment,
-                pChangeUnitId: ?*u8,
-                pChangeUnitIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICoreFragment,
-                pChangeUnitId: ?*u8,
-                pChangeUnitIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NextRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICoreFragment,
-                pItemId: ?*u8,
-                pItemIdSize: ?*u32,
-                piClockVector: ?*?*IClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICoreFragment,
-                pItemId: ?*u8,
-                pItemIdSize: ?*u32,
-                piClockVector: ?*?*IClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICoreFragment,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICoreFragment,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetColumnCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICoreFragment,
-                pColumnCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICoreFragment,
-                pColumnCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRangeCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICoreFragment,
-                pRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICoreFragment,
-                pRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        NextColumn: *const fn(
+            self: *const ICoreFragment,
+            pChangeUnitId: ?*u8,
+            pChangeUnitIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NextRange: *const fn(
+            self: *const ICoreFragment,
+            pItemId: ?*u8,
+            pItemIdSize: ?*u32,
+            piClockVector: ?*?*IClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const ICoreFragment,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColumnCount: *const fn(
+            self: *const ICoreFragment,
+            pColumnCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRangeCount: *const fn(
+            self: *const ICoreFragment,
+            pRangeCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -594,28 +463,15 @@ pub const IID_ICoreFragmentInspector = &IID_ICoreFragmentInspector_Value;
 pub const ICoreFragmentInspector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        NextCoreFragments: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICoreFragmentInspector,
-                requestedCount: u32,
-                ppiCoreFragments: ?*?*ICoreFragment,
-                pFetchedCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICoreFragmentInspector,
-                requestedCount: u32,
-                ppiCoreFragments: ?*?*ICoreFragment,
-                pFetchedCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICoreFragmentInspector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICoreFragmentInspector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        NextCoreFragments: *const fn(
+            self: *const ICoreFragmentInspector,
+            requestedCount: u32,
+            ppiCoreFragments: ?*?*ICoreFragment,
+            pFetchedCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const ICoreFragmentInspector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -638,42 +494,21 @@ pub const IID_IRangeException = &IID_IRangeException_Value;
 pub const IRangeException = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClosedRangeStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRangeException,
-                pbClosedRangeStart: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRangeException,
-                pbClosedRangeStart: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClosedRangeEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRangeException,
-                pbClosedRangeEnd: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRangeException,
-                pbClosedRangeEnd: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClockVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRangeException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRangeException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetClosedRangeStart: *const fn(
+            self: *const IRangeException,
+            pbClosedRangeStart: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClosedRangeEnd: *const fn(
+            self: *const IRangeException,
+            pbClosedRangeEnd: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClockVector: *const fn(
+            self: *const IRangeException,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -700,48 +535,23 @@ pub const IID_IEnumRangeExceptions = &IID_IEnumRangeExceptions_Value;
 pub const IEnumRangeExceptions = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRangeExceptions,
-                cExceptions: u32,
-                ppRangeException: ?*?*IRangeException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRangeExceptions,
-                cExceptions: u32,
-                ppRangeException: ?*?*IRangeException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRangeExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRangeExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRangeExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRangeExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRangeExceptions,
-                ppEnum: ?*?*IEnumRangeExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRangeExceptions,
-                ppEnum: ?*?*IEnumRangeExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumRangeExceptions,
+            cExceptions: u32,
+            ppRangeException: ?*?*IRangeException,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumRangeExceptions,
+            cExceptions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumRangeExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumRangeExceptions,
+            ppEnum: ?*?*IEnumRangeExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -772,30 +582,16 @@ pub const IID_ISingleItemException = &IID_ISingleItemException_Value;
 pub const ISingleItemException = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISingleItemException,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISingleItemException,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClockVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISingleItemException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISingleItemException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetItemId: *const fn(
+            self: *const ISingleItemException,
+            pbItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClockVector: *const fn(
+            self: *const ISingleItemException,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -818,48 +614,23 @@ pub const IID_IEnumSingleItemExceptions = &IID_IEnumSingleItemExceptions_Value;
 pub const IEnumSingleItemExceptions = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSingleItemExceptions,
-                cExceptions: u32,
-                ppSingleItemException: ?*?*ISingleItemException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSingleItemExceptions,
-                cExceptions: u32,
-                ppSingleItemException: ?*?*ISingleItemException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSingleItemExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSingleItemExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSingleItemExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSingleItemExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSingleItemExceptions,
-                ppEnum: ?*?*IEnumSingleItemExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSingleItemExceptions,
-                ppEnum: ?*?*IEnumSingleItemExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSingleItemExceptions,
+            cExceptions: u32,
+            ppSingleItemException: ?*?*ISingleItemException,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSingleItemExceptions,
+            cExceptions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSingleItemExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSingleItemExceptions,
+            ppEnum: ?*?*IEnumSingleItemExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -890,42 +661,21 @@ pub const IID_IChangeUnitException = &IID_IChangeUnitException_Value;
 pub const IChangeUnitException = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeUnitException,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeUnitException,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeUnitException,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeUnitException,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClockVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeUnitException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeUnitException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetItemId: *const fn(
+            self: *const IChangeUnitException,
+            pbItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitId: *const fn(
+            self: *const IChangeUnitException,
+            pbChangeUnitId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClockVector: *const fn(
+            self: *const IChangeUnitException,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -952,48 +702,23 @@ pub const IID_IEnumChangeUnitExceptions = &IID_IEnumChangeUnitExceptions_Value;
 pub const IEnumChangeUnitExceptions = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumChangeUnitExceptions,
-                cExceptions: u32,
-                ppChangeUnitException: ?*?*IChangeUnitException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumChangeUnitExceptions,
-                cExceptions: u32,
-                ppChangeUnitException: ?*?*IChangeUnitException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumChangeUnitExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumChangeUnitExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumChangeUnitExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumChangeUnitExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumChangeUnitExceptions,
-                ppEnum: ?*?*IEnumChangeUnitExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumChangeUnitExceptions,
-                ppEnum: ?*?*IEnumChangeUnitExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumChangeUnitExceptions,
+            cExceptions: u32,
+            ppChangeUnitException: ?*?*IChangeUnitException,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumChangeUnitExceptions,
+            cExceptions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumChangeUnitExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumChangeUnitExceptions,
+            ppEnum: ?*?*IEnumChangeUnitExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1024,44 +749,22 @@ pub const IID_IReplicaKeyMap = &IID_IReplicaKeyMap_Value;
 pub const IReplicaKeyMap = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LookupReplicaKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IReplicaKeyMap,
-                pbReplicaId: ?*const u8,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IReplicaKeyMap,
-                pbReplicaId: ?*const u8,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LookupReplicaId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IReplicaKeyMap,
-                dwReplicaKey: u32,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IReplicaKeyMap,
-                dwReplicaKey: u32,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IReplicaKeyMap,
-                pbReplicaKeyMap: ?*u8,
-                pcbReplicaKeyMap: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IReplicaKeyMap,
-                pbReplicaKeyMap: ?*u8,
-                pcbReplicaKeyMap: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        LookupReplicaKey: *const fn(
+            self: *const IReplicaKeyMap,
+            pbReplicaId: ?*const u8,
+            pdwReplicaKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LookupReplicaId: *const fn(
+            self: *const IReplicaKeyMap,
+            dwReplicaKey: u32,
+            pbReplicaId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const IReplicaKeyMap,
+            pbReplicaKeyMap: ?*u8,
+            pcbReplicaKeyMap: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1088,18 +791,11 @@ pub const IID_IConstructReplicaKeyMap = &IID_IConstructReplicaKeyMap_Value;
 pub const IConstructReplicaKeyMap = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindOrAddReplica: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstructReplicaKeyMap,
-                pbReplicaId: ?*const u8,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstructReplicaKeyMap,
-                pbReplicaId: ?*const u8,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindOrAddReplica: *const fn(
+            self: *const IConstructReplicaKeyMap,
+            pbReplicaId: ?*const u8,
+            pdwReplicaKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1118,304 +814,131 @@ pub const IID_ISyncKnowledge = &IID_ISyncKnowledge_Value;
 pub const ISyncKnowledge = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOwnerReplicaId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                fSerializeReplicaKeyMap: BOOL,
-                pbKnowledge: ?*u8,
-                pcbKnowledge: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                fSerializeReplicaKeyMap: BOOL,
-                pbKnowledge: ?*u8,
-                pcbKnowledge: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLocalTickCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                ullTickCount: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                ullTickCount: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbVersionOwnerReplicaId: ?*const u8,
-                pgidItemId: ?*const u8,
-                pSyncVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbVersionOwnerReplicaId: ?*const u8,
-                pgidItemId: ?*const u8,
-                pSyncVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbVersionOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                pSyncVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbVersionOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                pSyncVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetScopeVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetReplicaKeyMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                ppReplicaKeyMap: ?*?*IReplicaKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                ppReplicaKeyMap: ?*?*IReplicaKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                ppClonedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                ppClonedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pKnowledgeIn: ?*ISyncKnowledge,
-                pbCurrentOwnerId: ?*const u8,
-                pVersionIn: ?*const SYNC_VERSION,
-                pbNewOwnerId: ?*u8,
-                pcbIdSize: ?*u32,
-                pVersionOut: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pKnowledgeIn: ?*ISyncKnowledge,
-                pbCurrentOwnerId: ?*const u8,
-                pVersionIn: ?*const SYNC_VERSION,
-                pbNewOwnerId: ?*u8,
-                pcbIdSize: ?*u32,
-                pVersionOut: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MapRemoteToLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pRemoteKnowledge: ?*ISyncKnowledge,
-                ppMappedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pRemoteKnowledge: ?*ISyncKnowledge,
-                ppMappedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Union: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                psrngSyncRange: ?*const SYNC_RANGE,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                psrngSyncRange: ?*const SYNC_RANGE,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExcludeItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExcludeChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindMinTickCountForReplica: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbReplicaId: ?*const u8,
-                pullReplicaTickCount: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbReplicaId: ?*const u8,
-                pullReplicaTickCount: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRangeExceptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSingleItemExceptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitExceptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindClockVectorForItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindClockVectorForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge,
-                pdwVersion: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge,
-                pdwVersion: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwnerReplicaId: *const fn(
+            self: *const ISyncKnowledge,
+            pbReplicaId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const ISyncKnowledge,
+            fSerializeReplicaKeyMap: BOOL,
+            pbKnowledge: ?*u8,
+            pcbKnowledge: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLocalTickCount: *const fn(
+            self: *const ISyncKnowledge,
+            ullTickCount: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsChange: *const fn(
+            self: *const ISyncKnowledge,
+            pbVersionOwnerReplicaId: ?*const u8,
+            pgidItemId: ?*const u8,
+            pSyncVersion: ?*const SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsChangeUnit: *const fn(
+            self: *const ISyncKnowledge,
+            pbVersionOwnerReplicaId: ?*const u8,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            pSyncVersion: ?*const SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScopeVector: *const fn(
+            self: *const ISyncKnowledge,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetReplicaKeyMap: *const fn(
+            self: *const ISyncKnowledge,
+            ppReplicaKeyMap: ?*?*IReplicaKeyMap,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const ISyncKnowledge,
+            ppClonedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertVersion: *const fn(
+            self: *const ISyncKnowledge,
+            pKnowledgeIn: ?*ISyncKnowledge,
+            pbCurrentOwnerId: ?*const u8,
+            pVersionIn: ?*const SYNC_VERSION,
+            pbNewOwnerId: ?*u8,
+            pcbIdSize: ?*u32,
+            pVersionOut: ?*SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MapRemoteToLocal: *const fn(
+            self: *const ISyncKnowledge,
+            pRemoteKnowledge: ?*ISyncKnowledge,
+            ppMappedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Union: *const fn(
+            self: *const ISyncKnowledge,
+            pKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoItem: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            ppKnowledgeOut: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoChangeUnit: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            ppKnowledgeOut: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoRange: *const fn(
+            self: *const ISyncKnowledge,
+            psrngSyncRange: ?*const SYNC_RANGE,
+            ppKnowledgeOut: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExcludeItem: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExcludeChangeUnit: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsKnowledge: *const fn(
+            self: *const ISyncKnowledge,
+            pKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindMinTickCountForReplica: *const fn(
+            self: *const ISyncKnowledge,
+            pbReplicaId: ?*const u8,
+            pullReplicaTickCount: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRangeExceptions: *const fn(
+            self: *const ISyncKnowledge,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSingleItemExceptions: *const fn(
+            self: *const ISyncKnowledge,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitExceptions: *const fn(
+            self: *const ISyncKnowledge,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindClockVectorForItem: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindClockVectorForChangeUnit: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVersion: *const fn(
+            self: *const ISyncKnowledge,
+            pdwVersion: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1526,18 +1049,11 @@ pub const IID_IForgottenKnowledge = &IID_IForgottenKnowledge_Value;
 pub const IForgottenKnowledge = extern struct {
     pub const VTable = extern struct {
         base: ISyncKnowledge.VTable,
-        ForgetToVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IForgottenKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-                pVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IForgottenKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-                pVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ForgetToVersion: *const fn(
+            self: *const IForgottenKnowledge,
+            pKnowledge: ?*ISyncKnowledge,
+            pVersion: ?*const SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1556,178 +1072,78 @@ pub const IID_ISyncKnowledge2 = &IID_ISyncKnowledge2_Value;
 pub const ISyncKnowledge2 = extern struct {
     pub const VTable = extern struct {
         base: ISyncKnowledge.VTable,
-        GetIdParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoColumnSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                ppColumns: ?*const ?*u8,
-                count: u32,
-                ppiKnowledgeOut: ?*?*ISyncKnowledge2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                ppColumns: ?*const ?*u8,
-                count: u32,
-                ppiKnowledgeOut: ?*?*ISyncKnowledge2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SerializeWithOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                targetFormatVersion: SYNC_SERIALIZATION_VERSION,
-                dwFlags: u32,
-                pbBuffer: ?*u8,
-                pdwSerializedSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                targetFormatVersion: SYNC_SERIALIZATION_VERSION,
-                dwFlags: u32,
-                pbBuffer: ?*u8,
-                pdwSerializedSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLowestUncontainedId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                piSyncKnowledge: ?*ISyncKnowledge2,
-                pbItemId: ?*u8,
-                pcbItemIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                piSyncKnowledge: ?*ISyncKnowledge2,
-                pbItemId: ?*u8,
-                pcbItemIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInspector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                riid: ?*const Guid,
-                ppiInspector: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                riid: ?*const Guid,
-                ppiInspector: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMinimumSupportedVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                pVersion: ?*SYNC_SERIALIZATION_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                pVersion: ?*SYNC_SERIALIZATION_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                which: SYNC_STATISTICS,
-                pValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                which: SYNC_STATISTICS,
-                pValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsKnowledgeForItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                pKnowledge: ?*ISyncKnowledge,
-                pbItemId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                pKnowledge: ?*ISyncKnowledge,
-                pbItemId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsKnowledgeForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                pKnowledge: ?*ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                pKnowledge: ?*ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoKnowledgeWithPrerequisite: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                pPrerequisiteKnowledge: ?*ISyncKnowledge,
-                pTemplateKnowledge: ?*ISyncKnowledge,
-                ppProjectedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                pPrerequisiteKnowledge: ?*ISyncKnowledge,
-                pTemplateKnowledge: ?*ISyncKnowledge,
-                ppProjectedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Complement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppComplementedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppComplementedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IntersectsWithKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                pSyncKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                pSyncKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKnowledgeCookie: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                ppKnowledgeCookie: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                ppKnowledgeCookie: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CompareToKnowledgeCookie: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncKnowledge2,
-                pKnowledgeCookie: ?*IUnknown,
-                pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncKnowledge2,
-                pKnowledgeCookie: ?*IUnknown,
-                pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdParameters: *const fn(
+            self: *const ISyncKnowledge2,
+            pIdParameters: ?*ID_PARAMETERS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoColumnSet: *const fn(
+            self: *const ISyncKnowledge2,
+            ppColumns: ?*const ?*u8,
+            count: u32,
+            ppiKnowledgeOut: ?*?*ISyncKnowledge2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SerializeWithOptions: *const fn(
+            self: *const ISyncKnowledge2,
+            targetFormatVersion: SYNC_SERIALIZATION_VERSION,
+            dwFlags: u32,
+            pbBuffer: ?*u8,
+            pdwSerializedSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLowestUncontainedId: *const fn(
+            self: *const ISyncKnowledge2,
+            piSyncKnowledge: ?*ISyncKnowledge2,
+            pbItemId: ?*u8,
+            pcbItemIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInspector: *const fn(
+            self: *const ISyncKnowledge2,
+            riid: ?*const Guid,
+            ppiInspector: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMinimumSupportedVersion: *const fn(
+            self: *const ISyncKnowledge2,
+            pVersion: ?*SYNC_SERIALIZATION_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatistics: *const fn(
+            self: *const ISyncKnowledge2,
+            which: SYNC_STATISTICS,
+            pValue: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsKnowledgeForItem: *const fn(
+            self: *const ISyncKnowledge2,
+            pKnowledge: ?*ISyncKnowledge,
+            pbItemId: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsKnowledgeForChangeUnit: *const fn(
+            self: *const ISyncKnowledge2,
+            pKnowledge: ?*ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoKnowledgeWithPrerequisite: *const fn(
+            self: *const ISyncKnowledge2,
+            pPrerequisiteKnowledge: ?*ISyncKnowledge,
+            pTemplateKnowledge: ?*ISyncKnowledge,
+            ppProjectedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Complement: *const fn(
+            self: *const ISyncKnowledge2,
+            pSyncKnowledge: ?*ISyncKnowledge,
+            ppComplementedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IntersectsWithKnowledge: *const fn(
+            self: *const ISyncKnowledge2,
+            pSyncKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKnowledgeCookie: *const fn(
+            self: *const ISyncKnowledge2,
+            ppKnowledgeCookie: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CompareToKnowledgeCookie: *const fn(
+            self: *const ISyncKnowledge2,
+            pKnowledgeCookie: ?*IUnknown,
+            pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1798,42 +1214,21 @@ pub const IID_IRecoverableErrorData = &IID_IRecoverableErrorData_Value;
 pub const IRecoverableErrorData = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRecoverableErrorData,
-                pcszItemDisplayName: ?[*:0]const u16,
-                pcszErrorDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRecoverableErrorData,
-                pcszItemDisplayName: ?[*:0]const u16,
-                pcszErrorDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetItemDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRecoverableErrorData,
-                pszItemDisplayName: ?PWSTR,
-                pcchItemDisplayName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRecoverableErrorData,
-                pszItemDisplayName: ?PWSTR,
-                pcchItemDisplayName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetErrorDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRecoverableErrorData,
-                pszErrorDescription: ?PWSTR,
-                pcchErrorDescription: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRecoverableErrorData,
-                pszErrorDescription: ?PWSTR,
-                pcchErrorDescription: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IRecoverableErrorData,
+            pcszItemDisplayName: ?[*:0]const u16,
+            pcszErrorDescription: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetItemDisplayName: *const fn(
+            self: *const IRecoverableErrorData,
+            pszItemDisplayName: ?PWSTR,
+            pcchItemDisplayName: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorDescription: *const fn(
+            self: *const IRecoverableErrorData,
+            pszErrorDescription: ?PWSTR,
+            pcchErrorDescription: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1860,62 +1255,29 @@ pub const IID_IRecoverableError = &IID_IRecoverableError_Value;
 pub const IRecoverableError = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRecoverableError,
-                pStage: ?*SYNC_PROGRESS_STAGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRecoverableError,
-                pStage: ?*SYNC_PROGRESS_STAGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRecoverableError,
-                pProviderRole: ?*SYNC_PROVIDER_ROLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRecoverableError,
-                pProviderRole: ?*SYNC_PROVIDER_ROLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeWithRecoverableError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRecoverableError,
-                ppChangeWithRecoverableError: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRecoverableError,
-                ppChangeWithRecoverableError: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRecoverableErrorDataForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRecoverableError,
-                phrError: ?*HRESULT,
-                ppErrorData: ?*?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRecoverableError,
-                phrError: ?*HRESULT,
-                ppErrorData: ?*?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRecoverableErrorDataForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRecoverableError,
-                pChangeUnit: ?*ISyncChangeUnit,
-                phrError: ?*HRESULT,
-                ppErrorData: ?*?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRecoverableError,
-                pChangeUnit: ?*ISyncChangeUnit,
-                phrError: ?*HRESULT,
-                ppErrorData: ?*?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStage: *const fn(
+            self: *const IRecoverableError,
+            pStage: ?*SYNC_PROGRESS_STAGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProvider: *const fn(
+            self: *const IRecoverableError,
+            pProviderRole: ?*SYNC_PROVIDER_ROLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeWithRecoverableError: *const fn(
+            self: *const IRecoverableError,
+            ppChangeWithRecoverableError: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRecoverableErrorDataForChange: *const fn(
+            self: *const IRecoverableError,
+            phrError: ?*HRESULT,
+            ppErrorData: ?*?*IRecoverableErrorData,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRecoverableErrorDataForChangeUnit: *const fn(
+            self: *const IRecoverableError,
+            pChangeUnit: ?*ISyncChangeUnit,
+            phrError: ?*HRESULT,
+            ppErrorData: ?*?*IRecoverableErrorData,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1950,90 +1312,40 @@ pub const IID_IChangeConflict = &IID_IChangeConflict_Value;
 pub const IChangeConflict = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDestinationProviderConflictingChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceProviderConflictingChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestinationProviderConflictingData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceProviderConflictingData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetResolveActionForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeConflict,
-                pResolveAction: ?*SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeConflict,
-                pResolveAction: ?*SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetResolveActionForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeConflict,
-                resolveAction: SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeConflict,
-                resolveAction: SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetResolveActionForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pResolveAction: ?*SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pResolveAction: ?*SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetResolveActionForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                resolveAction: SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                resolveAction: SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDestinationProviderConflictingChange: *const fn(
+            self: *const IChangeConflict,
+            ppConflictingChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceProviderConflictingChange: *const fn(
+            self: *const IChangeConflict,
+            ppConflictingChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestinationProviderConflictingData: *const fn(
+            self: *const IChangeConflict,
+            ppConflictingData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceProviderConflictingData: *const fn(
+            self: *const IChangeConflict,
+            ppConflictingData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResolveActionForChange: *const fn(
+            self: *const IChangeConflict,
+            pResolveAction: ?*SYNC_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetResolveActionForChange: *const fn(
+            self: *const IChangeConflict,
+            resolveAction: SYNC_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResolveActionForChangeUnit: *const fn(
+            self: *const IChangeConflict,
+            pChangeUnit: ?*ISyncChangeUnit,
+            pResolveAction: ?*SYNC_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetResolveActionForChangeUnit: *const fn(
+            self: *const IChangeConflict,
+            pChangeUnit: ?*ISyncChangeUnit,
+            resolveAction: SYNC_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2079,128 +1391,55 @@ pub const IID_IConstraintConflict = &IID_IConstraintConflict_Value;
 pub const IConstraintConflict = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDestinationProviderConflictingChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceProviderConflictingChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestinationProviderOriginalChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                ppOriginalChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                ppOriginalChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestinationProviderConflictingData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceProviderConflictingData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestinationProviderOriginalData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                ppOriginalData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                ppOriginalData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConstraintResolveActionForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConstraintResolveActionForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConstraintResolveActionForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConstraintResolveActionForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConstraintConflictReason: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-                pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-                pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsTemporary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConstraintConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConstraintConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDestinationProviderConflictingChange: *const fn(
+            self: *const IConstraintConflict,
+            ppConflictingChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceProviderConflictingChange: *const fn(
+            self: *const IConstraintConflict,
+            ppConflictingChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestinationProviderOriginalChange: *const fn(
+            self: *const IConstraintConflict,
+            ppOriginalChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestinationProviderConflictingData: *const fn(
+            self: *const IConstraintConflict,
+            ppConflictingData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceProviderConflictingData: *const fn(
+            self: *const IConstraintConflict,
+            ppConflictingData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestinationProviderOriginalData: *const fn(
+            self: *const IConstraintConflict,
+            ppOriginalData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConstraintResolveActionForChange: *const fn(
+            self: *const IConstraintConflict,
+            pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConstraintResolveActionForChange: *const fn(
+            self: *const IConstraintConflict,
+            constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConstraintResolveActionForChangeUnit: *const fn(
+            self: *const IConstraintConflict,
+            pChangeUnit: ?*ISyncChangeUnit,
+            pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConstraintResolveActionForChangeUnit: *const fn(
+            self: *const IConstraintConflict,
+            pChangeUnit: ?*ISyncChangeUnit,
+            constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConstraintConflictReason: *const fn(
+            self: *const IConstraintConflict,
+            pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsTemporary: *const fn(
+            self: *const IConstraintConflict,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2263,62 +1502,29 @@ pub const IID_ISyncCallback = &IID_ISyncCallback_Value;
 pub const ISyncCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncCallback,
-                provider: SYNC_PROVIDER_ROLE,
-                syncStage: SYNC_PROGRESS_STAGE,
-                dwCompletedWork: u32,
-                dwTotalWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncCallback,
-                provider: SYNC_PROVIDER_ROLE,
-                syncStage: SYNC_PROGRESS_STAGE,
-                dwCompletedWork: u32,
-                dwTotalWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncCallback,
-                pSyncChange: ?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncCallback,
-                pSyncChange: ?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnConflict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncCallback,
-                pConflict: ?*IChangeConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncCallback,
-                pConflict: ?*IChangeConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnFullEnumerationNeeded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncCallback,
-                pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncCallback,
-                pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnRecoverableError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncCallback,
-                pRecoverableError: ?*IRecoverableError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncCallback,
-                pRecoverableError: ?*IRecoverableError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnProgress: *const fn(
+            self: *const ISyncCallback,
+            provider: SYNC_PROVIDER_ROLE,
+            syncStage: SYNC_PROGRESS_STAGE,
+            dwCompletedWork: u32,
+            dwTotalWork: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnChange: *const fn(
+            self: *const ISyncCallback,
+            pSyncChange: ?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnConflict: *const fn(
+            self: *const ISyncCallback,
+            pConflict: ?*IChangeConflict,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnFullEnumerationNeeded: *const fn(
+            self: *const ISyncCallback,
+            pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnRecoverableError: *const fn(
+            self: *const ISyncCallback,
+            pRecoverableError: ?*IRecoverableError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2353,30 +1559,16 @@ pub const IID_ISyncCallback2 = &IID_ISyncCallback2_Value;
 pub const ISyncCallback2 = extern struct {
     pub const VTable = extern struct {
         base: ISyncCallback.VTable,
-        OnChangeApplied: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncCallback2,
-                dwChangesApplied: u32,
-                dwChangesFailed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncCallback2,
-                dwChangesApplied: u32,
-                dwChangesFailed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnChangeFailed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncCallback2,
-                dwChangesApplied: u32,
-                dwChangesFailed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncCallback2,
-                dwChangesApplied: u32,
-                dwChangesFailed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnChangeApplied: *const fn(
+            self: *const ISyncCallback2,
+            dwChangesApplied: u32,
+            dwChangesFailed: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnChangeFailed: *const fn(
+            self: *const ISyncCallback2,
+            dwChangesApplied: u32,
+            dwChangesFailed: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2398,16 +1590,10 @@ pub const IID_ISyncConstraintCallback = &IID_ISyncConstraintCallback_Value;
 pub const ISyncConstraintCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnConstraintConflict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncConstraintCallback,
-                pConflict: ?*IConstraintConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncConstraintCallback,
-                pConflict: ?*IConstraintConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnConstraintConflict: *const fn(
+            self: *const ISyncConstraintCallback,
+            pConflict: ?*IConstraintConflict,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2426,16 +1612,10 @@ pub const IID_ISyncProvider = &IID_ISyncProvider_Value;
 pub const ISyncProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIdParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProvider,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProvider,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdParameters: *const fn(
+            self: *const ISyncProvider,
+            pIdParameters: ?*ID_PARAMETERS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2454,90 +1634,41 @@ pub const IID_ISyncSessionState = &IID_ISyncSessionState_Value;
 pub const ISyncSessionState = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsCanceled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionState,
-                pfIsCanceled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionState,
-                pfIsCanceled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInfoForChangeApplication: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionState,
-                pbChangeApplierInfo: ?*u8,
-                pcbChangeApplierInfo: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionState,
-                pbChangeApplierInfo: ?*u8,
-                pcbChangeApplierInfo: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadInfoFromChangeApplication: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionState,
-                pbChangeApplierInfo: ?*const u8,
-                cbChangeApplierInfo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionState,
-                pbChangeApplierInfo: ?*const u8,
-                cbChangeApplierInfo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForgottenKnowledgeRecoveryRangeStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionState,
-                pbRangeStart: ?*u8,
-                pcbRangeStart: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionState,
-                pbRangeStart: ?*u8,
-                pcbRangeStart: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForgottenKnowledgeRecoveryRangeEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionState,
-                pbRangeEnd: ?*u8,
-                pcbRangeEnd: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionState,
-                pbRangeEnd: ?*u8,
-                pcbRangeEnd: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetForgottenKnowledgeRecoveryRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionState,
-                pRange: ?*const SYNC_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionState,
-                pRange: ?*const SYNC_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionState,
-                provider: SYNC_PROVIDER_ROLE,
-                syncStage: SYNC_PROGRESS_STAGE,
-                dwCompletedWork: u32,
-                dwTotalWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionState,
-                provider: SYNC_PROVIDER_ROLE,
-                syncStage: SYNC_PROGRESS_STAGE,
-                dwCompletedWork: u32,
-                dwTotalWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsCanceled: *const fn(
+            self: *const ISyncSessionState,
+            pfIsCanceled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInfoForChangeApplication: *const fn(
+            self: *const ISyncSessionState,
+            pbChangeApplierInfo: ?*u8,
+            pcbChangeApplierInfo: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadInfoFromChangeApplication: *const fn(
+            self: *const ISyncSessionState,
+            pbChangeApplierInfo: ?*const u8,
+            cbChangeApplierInfo: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForgottenKnowledgeRecoveryRangeStart: *const fn(
+            self: *const ISyncSessionState,
+            pbRangeStart: ?*u8,
+            pcbRangeStart: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForgottenKnowledgeRecoveryRangeEnd: *const fn(
+            self: *const ISyncSessionState,
+            pbRangeEnd: ?*u8,
+            pcbRangeEnd: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetForgottenKnowledgeRecoveryRange: *const fn(
+            self: *const ISyncSessionState,
+            pRange: ?*const SYNC_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnProgress: *const fn(
+            self: *const ISyncSessionState,
+            provider: SYNC_PROVIDER_ROLE,
+            syncStage: SYNC_PROGRESS_STAGE,
+            dwCompletedWork: u32,
+            dwTotalWork: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2580,16 +1711,10 @@ pub const IID_ISyncSessionExtendedErrorInfo = &IID_ISyncSessionExtendedErrorInfo
 pub const ISyncSessionExtendedErrorInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSyncProviderWithError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionExtendedErrorInfo,
-                ppProviderWithError: ?*?*ISyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionExtendedErrorInfo,
-                ppProviderWithError: ?*?*ISyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncProviderWithError: *const fn(
+            self: *const ISyncSessionExtendedErrorInfo,
+            ppProviderWithError: ?*?*ISyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2608,26 +1733,14 @@ pub const IID_ISyncSessionState2 = &IID_ISyncSessionState2_Value;
 pub const ISyncSessionState2 = extern struct {
     pub const VTable = extern struct {
         base: ISyncSessionState.VTable,
-        SetProviderWithError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionState2,
-                fSelf: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionState2,
-                fSelf: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSessionErrorStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncSessionState2,
-                phrSessionError: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncSessionState2,
-                phrSessionError: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetProviderWithError: *const fn(
+            self: *const ISyncSessionState2,
+            fSelf: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSessionErrorStatus: *const fn(
+            self: *const ISyncSessionState2,
+            phrSessionError: ?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2650,18 +1763,11 @@ pub const IID_ISyncFilterInfo = &IID_ISyncFilterInfo_Value;
 pub const ISyncFilterInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFilterInfo,
-                pbBuffer: ?*u8,
-                pcbBuffer: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFilterInfo,
-                pbBuffer: ?*u8,
-                pcbBuffer: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Serialize: *const fn(
+            self: *const ISyncFilterInfo,
+            pbBuffer: ?*u8,
+            pcbBuffer: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2680,16 +1786,10 @@ pub const IID_ISyncFilterInfo2 = &IID_ISyncFilterInfo2_Value;
 pub const ISyncFilterInfo2 = extern struct {
     pub const VTable = extern struct {
         base: ISyncFilterInfo.VTable,
-        GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFilterInfo2,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFilterInfo2,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFlags: *const fn(
+            self: *const ISyncFilterInfo2,
+            pdwFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2708,42 +1808,21 @@ pub const IID_IChangeUnitListFilterInfo = &IID_IChangeUnitListFilterInfo_Value;
 pub const IChangeUnitListFilterInfo = extern struct {
     pub const VTable = extern struct {
         base: ISyncFilterInfo.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeUnitListFilterInfo,
-                ppbChangeUnitIds: ?*const ?*u8,
-                dwChangeUnitCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeUnitListFilterInfo,
-                ppbChangeUnitIds: ?*const ?*u8,
-                dwChangeUnitCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitIdCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeUnitListFilterInfo,
-                pdwChangeUnitIdCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeUnitListFilterInfo,
-                pdwChangeUnitIdCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IChangeUnitListFilterInfo,
-                dwChangeUnitIdIndex: u32,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IChangeUnitListFilterInfo,
-                dwChangeUnitIdIndex: u32,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IChangeUnitListFilterInfo,
+            ppbChangeUnitIds: ?*const ?*u8,
+            dwChangeUnitCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitIdCount: *const fn(
+            self: *const IChangeUnitListFilterInfo,
+            pdwChangeUnitIdCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitId: *const fn(
+            self: *const IChangeUnitListFilterInfo,
+            dwChangeUnitIdIndex: u32,
+            pbChangeUnitId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2769,28 +1848,15 @@ pub const IID_ISyncFilter = &IID_ISyncFilter_Value;
 pub const ISyncFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsIdentical: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFilter,
-                pSyncFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFilter,
-                pSyncFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFilter,
-                pbSyncFilter: ?*u8,
-                pcbSyncFilter: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFilter,
-                pbSyncFilter: ?*u8,
-                pcbSyncFilter: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsIdentical: *const fn(
+            self: *const ISyncFilter,
+            pSyncFilter: ?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const ISyncFilter,
+            pbSyncFilter: ?*u8,
+            pcbSyncFilter: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2812,20 +1878,12 @@ pub const IID_ISyncFilterDeserializer = &IID_ISyncFilterDeserializer_Value;
 pub const ISyncFilterDeserializer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DeserializeSyncFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFilterDeserializer,
-                pbSyncFilter: ?*const u8,
-                dwCbSyncFilter: u32,
-                ppISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFilterDeserializer,
-                pbSyncFilter: ?*const u8,
-                dwCbSyncFilter: u32,
-                ppISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DeserializeSyncFilter: *const fn(
+            self: *const ISyncFilterDeserializer,
+            pbSyncFilter: ?*const u8,
+            dwCbSyncFilter: u32,
+            ppISyncFilter: ?*?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2843,16 +1901,10 @@ pub const IID_ICustomFilterInfo = &IID_ICustomFilterInfo_Value;
 pub const ICustomFilterInfo = extern struct {
     pub const VTable = extern struct {
         base: ISyncFilterInfo.VTable,
-        GetSyncFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICustomFilterInfo,
-                pISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICustomFilterInfo,
-                pISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncFilter: *const fn(
+            self: *const ICustomFilterInfo,
+            pISyncFilter: ?*?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2875,38 +1927,19 @@ pub const IID_ICombinedFilterInfo = &IID_ICombinedFilterInfo_Value;
 pub const ICombinedFilterInfo = extern struct {
     pub const VTable = extern struct {
         base: ISyncFilterInfo.VTable,
-        GetFilterCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICombinedFilterInfo,
-                pdwFilterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICombinedFilterInfo,
-                pdwFilterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilterInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICombinedFilterInfo,
-                dwFilterIndex: u32,
-                ppIFilterInfo: ?*?*ISyncFilterInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICombinedFilterInfo,
-                dwFilterIndex: u32,
-                ppIFilterInfo: ?*?*ISyncFilterInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilterCombinationType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICombinedFilterInfo,
-                pFilterCombinationType: ?*FILTER_COMBINATION_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICombinedFilterInfo,
-                pFilterCombinationType: ?*FILTER_COMBINATION_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilterCount: *const fn(
+            self: *const ICombinedFilterInfo,
+            pdwFilterCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilterInfo: *const fn(
+            self: *const ICombinedFilterInfo,
+            dwFilterIndex: u32,
+            ppIFilterInfo: ?*?*ISyncFilterInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilterCombinationType: *const fn(
+            self: *const ICombinedFilterInfo,
+            pFilterCombinationType: ?*FILTER_COMBINATION_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2933,48 +1966,23 @@ pub const IID_IEnumSyncChanges = &IID_IEnumSyncChanges_Value;
 pub const IEnumSyncChanges = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncChanges,
-                cChanges: u32,
-                ppChange: ?*?*ISyncChange,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncChanges,
-                cChanges: u32,
-                ppChange: ?*?*ISyncChange,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncChanges,
-                cChanges: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncChanges,
-                cChanges: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncChanges,
-                ppEnum: ?*?*IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncChanges,
-                ppEnum: ?*?*IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSyncChanges,
+            cChanges: u32,
+            ppChange: ?*?*ISyncChange,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSyncChanges,
+            cChanges: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSyncChanges,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSyncChanges,
+            ppEnum: ?*?*IEnumSyncChanges,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3005,18 +2013,11 @@ pub const IID_ISyncChangeBuilder = &IID_ISyncChangeBuilder_Value;
 pub const ISyncChangeBuilder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddChangeUnitMetadata: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBuilder,
-                pbChangeUnitId: ?*const u8,
-                pChangeUnitVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBuilder,
-                pbChangeUnitId: ?*const u8,
-                pChangeUnitVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddChangeUnitMetadata: *const fn(
+            self: *const ISyncChangeBuilder,
+            pbChangeUnitId: ?*const u8,
+            pChangeUnitVersion: ?*const SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3034,26 +2035,14 @@ pub const IID_IFilterTrackingSyncChangeBuilder = &IID_IFilterTrackingSyncChangeB
 pub const IFilterTrackingSyncChangeBuilder = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddFilterChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterTrackingSyncChangeBuilder,
-                dwFilterKey: u32,
-                pFilterChange: ?*const SYNC_FILTER_CHANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterTrackingSyncChangeBuilder,
-                dwFilterKey: u32,
-                pFilterChange: ?*const SYNC_FILTER_CHANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAllChangeUnitsPresentFlag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterTrackingSyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterTrackingSyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddFilterChange: *const fn(
+            self: *const IFilterTrackingSyncChangeBuilder,
+            dwFilterKey: u32,
+            pFilterChange: ?*const SYNC_FILTER_CHANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllChangeUnitsPresentFlag: *const fn(
+            self: *const IFilterTrackingSyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3076,160 +2065,69 @@ pub const IID_ISyncChangeBatchBase = &IID_ISyncChangeBatchBase_Value;
 pub const ISyncChangeBatchBase = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetChangeEnumerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                ppEnum: ?*?*IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                ppEnum: ?*?*IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIsLastBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                pfLastBatch: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                pfLastBatch: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWorkEstimateForBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                pdwWorkForBatch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                pdwWorkForBatch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRemainingWorkEstimateForSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                pdwRemainingWorkForSession: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                pdwRemainingWorkForSession: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginOrderedGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                pbLowerBound: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                pbLowerBound: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndOrderedGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                pbUpperBound: ?*const u8,
-                pMadeWithKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                pbUpperBound: ?*const u8,
-                pMadeWithKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddItemMetadataToGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                pbOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwFlags: u32,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                pbOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwFlags: u32,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrerequisiteKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                ppPrerequisteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                ppPrerequisteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLastBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWorkEstimateForBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                dwWorkForBatch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                dwWorkForBatch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRemainingWorkEstimateForSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                dwRemainingWorkForSession: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                dwRemainingWorkForSession: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase,
-                pbChangeBatch: ?*u8,
-                pcbChangeBatch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase,
-                pbChangeBatch: ?*u8,
-                pcbChangeBatch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetChangeEnumerator: *const fn(
+            self: *const ISyncChangeBatchBase,
+            ppEnum: ?*?*IEnumSyncChanges,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIsLastBatch: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pfLastBatch: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWorkEstimateForBatch: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pdwWorkForBatch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRemainingWorkEstimateForSession: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pdwRemainingWorkForSession: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginOrderedGroup: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pbLowerBound: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndOrderedGroup: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pbUpperBound: ?*const u8,
+            pMadeWithKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddItemMetadataToGroup: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pbOwnerReplicaId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwFlags: u32,
+            dwWorkForChange: u32,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedKnowledge: *const fn(
+            self: *const ISyncChangeBatchBase,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrerequisiteKnowledge: *const fn(
+            self: *const ISyncChangeBatchBase,
+            ppPrerequisteKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchBase,
+            ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLastBatch: *const fn(
+            self: *const ISyncChangeBatchBase,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWorkEstimateForBatch: *const fn(
+            self: *const ISyncChangeBatchBase,
+            dwWorkForBatch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRemainingWorkEstimateForSession: *const fn(
+            self: *const ISyncChangeBatchBase,
+            dwRemainingWorkForSession: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pbChangeBatch: ?*u8,
+            pcbChangeBatch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3300,50 +2198,25 @@ pub const IID_ISyncChangeBatch = &IID_ISyncChangeBatch_Value;
 pub const ISyncChangeBatch = extern struct {
     pub const VTable = extern struct {
         base: ISyncChangeBatchBase.VTable,
-        BeginUnorderedGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndUnorderedGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatch,
-                pMadeWithKnowledge: ?*ISyncKnowledge,
-                fAllChangesForKnowledge: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatch,
-                pMadeWithKnowledge: ?*ISyncKnowledge,
-                fAllChangesForKnowledge: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddLoggedConflict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatch,
-                pbOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwFlags: u32,
-                dwWorkForChange: u32,
-                pConflictKnowledge: ?*ISyncKnowledge,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatch,
-                pbOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwFlags: u32,
-                dwWorkForChange: u32,
-                pConflictKnowledge: ?*ISyncKnowledge,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BeginUnorderedGroup: *const fn(
+            self: *const ISyncChangeBatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndUnorderedGroup: *const fn(
+            self: *const ISyncChangeBatch,
+            pMadeWithKnowledge: ?*ISyncKnowledge,
+            fAllChangesForKnowledge: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddLoggedConflict: *const fn(
+            self: *const ISyncChangeBatch,
+            pbOwnerReplicaId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwFlags: u32,
+            dwWorkForChange: u32,
+            pConflictKnowledge: ?*ISyncKnowledge,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3370,40 +2243,20 @@ pub const IID_ISyncFullEnumerationChangeBatch = &IID_ISyncFullEnumerationChangeB
 pub const ISyncFullEnumerationChangeBatch = extern struct {
     pub const VTable = extern struct {
         base: ISyncChangeBatchBase.VTable,
-        GetLearnedKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFullEnumerationChangeBatch,
-                ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFullEnumerationChangeBatch,
-                ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClosedLowerBoundItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFullEnumerationChangeBatch,
-                pbClosedLowerBoundItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFullEnumerationChangeBatch,
-                pbClosedLowerBoundItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClosedUpperBoundItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFullEnumerationChangeBatch,
-                pbClosedUpperBoundItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFullEnumerationChangeBatch,
-                pbClosedUpperBoundItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetLearnedKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncFullEnumerationChangeBatch,
+            ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClosedLowerBoundItemId: *const fn(
+            self: *const ISyncFullEnumerationChangeBatch,
+            pbClosedLowerBoundItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClosedUpperBoundItemId: *const fn(
+            self: *const ISyncFullEnumerationChangeBatch,
+            pbClosedUpperBoundItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3430,38 +2283,19 @@ pub const IID_ISyncChangeBatchWithPrerequisite = &IID_ISyncChangeBatchWithPrereq
 pub const ISyncChangeBatchWithPrerequisite = extern struct {
     pub const VTable = extern struct {
         base: ISyncChangeBatchBase.VTable,
-        SetPrerequisiteKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithPrerequisite,
-                pPrerequisiteKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithPrerequisite,
-                pPrerequisiteKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedKnowledgeWithPrerequisite: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithPrerequisite,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithPrerequisite,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithPrerequisite,
-                ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithPrerequisite,
-                ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetPrerequisiteKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithPrerequisite,
+            pPrerequisiteKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedKnowledgeWithPrerequisite: *const fn(
+            self: *const ISyncChangeBatchWithPrerequisite,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithPrerequisite,
+            ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3488,22 +2322,13 @@ pub const IID_ISyncChangeBatchBase2 = &IID_ISyncChangeBatchBase2_Value;
 pub const ISyncChangeBatchBase2 = extern struct {
     pub const VTable = extern struct {
         base: ISyncChangeBatchBase.VTable,
-        SerializeWithOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchBase2,
-                targetFormatVersion: SYNC_SERIALIZATION_VERSION,
-                dwFlags: u32,
-                pbBuffer: ?*u8,
-                pdwSerializedSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchBase2,
-                targetFormatVersion: SYNC_SERIALIZATION_VERSION,
-                dwFlags: u32,
-                pbBuffer: ?*u8,
-                pdwSerializedSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SerializeWithOptions: *const fn(
+            self: *const ISyncChangeBatchBase2,
+            targetFormatVersion: SYNC_SERIALIZATION_VERSION,
+            dwFlags: u32,
+            pbBuffer: ?*u8,
+            pdwSerializedSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3522,48 +2347,23 @@ pub const IID_ISyncChangeBatchAdvanced = &IID_ISyncChangeBatchAdvanced_Value;
 pub const ISyncChangeBatchAdvanced = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFilterInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchAdvanced,
-                ppFilterInfo: ?*?*ISyncFilterInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchAdvanced,
-                ppFilterInfo: ?*?*ISyncFilterInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertFullEnumerationChangeBatchToRegularChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchAdvanced,
-                ppChangeBatch: ?*?*ISyncChangeBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchAdvanced,
-                ppChangeBatch: ?*?*ISyncChangeBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUpperBoundItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchAdvanced,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchAdvanced,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBatchLevelKnowledgeShouldBeApplied: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchAdvanced,
-                pfBatchKnowledgeShouldBeApplied: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchAdvanced,
-                pfBatchKnowledgeShouldBeApplied: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilterInfo: *const fn(
+            self: *const ISyncChangeBatchAdvanced,
+            ppFilterInfo: ?*?*ISyncFilterInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertFullEnumerationChangeBatchToRegularChangeBatch: *const fn(
+            self: *const ISyncChangeBatchAdvanced,
+            ppChangeBatch: ?*?*ISyncChangeBatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUpperBoundItemId: *const fn(
+            self: *const ISyncChangeBatchAdvanced,
+            pbItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBatchLevelKnowledgeShouldBeApplied: *const fn(
+            self: *const ISyncChangeBatchAdvanced,
+            pfBatchKnowledgeShouldBeApplied: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3593,52 +2393,27 @@ pub const IID_ISyncChangeBatch2 = &IID_ISyncChangeBatch2_Value;
 pub const ISyncChangeBatch2 = extern struct {
     pub const VTable = extern struct {
         base: ISyncChangeBatch.VTable,
-        AddMergeTombstoneMetadataToGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddMergeTombstoneLoggedConflict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                pConflictKnowledge: ?*ISyncKnowledge,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                pConflictKnowledge: ?*ISyncKnowledge,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddMergeTombstoneMetadataToGroup: *const fn(
+            self: *const ISyncChangeBatch2,
+            pbOwnerReplicaId: ?*const u8,
+            pbWinnerItemId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwWorkForChange: u32,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddMergeTombstoneLoggedConflict: *const fn(
+            self: *const ISyncChangeBatch2,
+            pbOwnerReplicaId: ?*const u8,
+            pbWinnerItemId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwWorkForChange: u32,
+            pConflictKnowledge: ?*ISyncKnowledge,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3660,28 +2435,16 @@ pub const IID_ISyncFullEnumerationChangeBatch2 = &IID_ISyncFullEnumerationChange
 pub const ISyncFullEnumerationChangeBatch2 = extern struct {
     pub const VTable = extern struct {
         base: ISyncFullEnumerationChangeBatch.VTable,
-        AddMergeTombstoneMetadataToGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFullEnumerationChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFullEnumerationChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddMergeTombstoneMetadataToGroup: *const fn(
+            self: *const ISyncFullEnumerationChangeBatch2,
+            pbOwnerReplicaId: ?*const u8,
+            pbWinnerItemId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwWorkForChange: u32,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3700,110 +2463,51 @@ pub const IID_IKnowledgeSyncProvider = &IID_IKnowledgeSyncProvider_Value;
 pub const IKnowledgeSyncProvider = extern struct {
     pub const VTable = extern struct {
         base: ISyncProvider.VTable,
-        BeginSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKnowledgeSyncProvider,
-                role: SYNC_PROVIDER_ROLE,
-                pSessionState: ?*ISyncSessionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKnowledgeSyncProvider,
-                role: SYNC_PROVIDER_ROLE,
-                pSessionState: ?*ISyncSessionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncBatchParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKnowledgeSyncProvider,
-                ppSyncKnowledge: ?*?*ISyncKnowledge,
-                pdwRequestedBatchSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKnowledgeSyncProvider,
-                ppSyncKnowledge: ?*?*ISyncKnowledge,
-                pdwRequestedBatchSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKnowledgeSyncProvider,
-                dwBatchSize: u32,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppSyncChangeBatch: ?*?*ISyncChangeBatch,
-                ppUnkDataRetriever: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKnowledgeSyncProvider,
-                dwBatchSize: u32,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppSyncChangeBatch: ?*?*ISyncChangeBatch,
-                ppUnkDataRetriever: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFullEnumerationChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKnowledgeSyncProvider,
-                dwBatchSize: u32,
-                pbLowerEnumerationBound: ?*const u8,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch,
-                ppUnkDataRetriever: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKnowledgeSyncProvider,
-                dwBatchSize: u32,
-                pbLowerEnumerationBound: ?*const u8,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch,
-                ppUnkDataRetriever: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProcessChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKnowledgeSyncProvider,
-                resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-                pSourceChangeBatch: ?*ISyncChangeBatch,
-                pUnkDataRetriever: ?*IUnknown,
-                pCallback: ?*ISyncCallback,
-                pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKnowledgeSyncProvider,
-                resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-                pSourceChangeBatch: ?*ISyncChangeBatch,
-                pUnkDataRetriever: ?*IUnknown,
-                pCallback: ?*ISyncCallback,
-                pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProcessFullEnumerationChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKnowledgeSyncProvider,
-                resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-                pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch,
-                pUnkDataRetriever: ?*IUnknown,
-                pCallback: ?*ISyncCallback,
-                pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKnowledgeSyncProvider,
-                resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-                pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch,
-                pUnkDataRetriever: ?*IUnknown,
-                pCallback: ?*ISyncCallback,
-                pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKnowledgeSyncProvider,
-                pSessionState: ?*ISyncSessionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKnowledgeSyncProvider,
-                pSessionState: ?*ISyncSessionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BeginSession: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            role: SYNC_PROVIDER_ROLE,
+            pSessionState: ?*ISyncSessionState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncBatchParameters: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            ppSyncKnowledge: ?*?*ISyncKnowledge,
+            pdwRequestedBatchSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeBatch: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            dwBatchSize: u32,
+            pSyncKnowledge: ?*ISyncKnowledge,
+            ppSyncChangeBatch: ?*?*ISyncChangeBatch,
+            ppUnkDataRetriever: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFullEnumerationChangeBatch: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            dwBatchSize: u32,
+            pbLowerEnumerationBound: ?*const u8,
+            pSyncKnowledge: ?*ISyncKnowledge,
+            ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch,
+            ppUnkDataRetriever: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessChangeBatch: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
+            pSourceChangeBatch: ?*ISyncChangeBatch,
+            pUnkDataRetriever: ?*IUnknown,
+            pCallback: ?*ISyncCallback,
+            pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessFullEnumerationChangeBatch: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
+            pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch,
+            pUnkDataRetriever: ?*IUnknown,
+            pCallback: ?*ISyncCallback,
+            pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndSession: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            pSessionState: ?*ISyncSessionState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3846,40 +2550,20 @@ pub const IID_ISyncChangeUnit = &IID_ISyncChangeUnit_Value;
 pub const ISyncChangeUnit = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeUnit,
-                ppSyncChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeUnit,
-                ppSyncChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeUnit,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeUnit,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeUnit,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeUnit,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetItemChange: *const fn(
+            self: *const ISyncChangeUnit,
+            ppSyncChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitId: *const fn(
+            self: *const ISyncChangeUnit,
+            pbChangeUnitId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitVersion: *const fn(
+            self: *const ISyncChangeUnit,
+            pbCurrentReplicaId: ?*const u8,
+            pVersion: ?*SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3906,48 +2590,23 @@ pub const IID_IEnumSyncChangeUnits = &IID_IEnumSyncChangeUnits_Value;
 pub const IEnumSyncChangeUnits = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncChangeUnits,
-                cChanges: u32,
-                ppChangeUnit: ?*?*ISyncChangeUnit,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncChangeUnits,
-                cChanges: u32,
-                ppChangeUnit: ?*?*ISyncChangeUnit,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncChangeUnits,
-                cChanges: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncChangeUnits,
-                cChanges: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncChangeUnits,
-                ppEnum: ?*?*IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncChangeUnits,
-                ppEnum: ?*?*IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSyncChangeUnits,
+            cChanges: u32,
+            ppChangeUnit: ?*?*ISyncChangeUnit,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSyncChangeUnits,
+            cChanges: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSyncChangeUnits,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSyncChangeUnits,
+            ppEnum: ?*?*IEnumSyncChangeUnits,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3978,114 +2637,50 @@ pub const IID_ISyncChange = &IID_ISyncChange_Value;
 pub const ISyncChange = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOwnerReplicaId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRootItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                pbRootItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                pbRootItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCreationVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWorkEstimate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                pdwWork: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                pdwWork: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnits: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                ppEnum: ?*?*IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                ppEnum: ?*?*IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMadeWithKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                ppMadeWithKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                ppMadeWithKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWorkEstimate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChange,
-                dwWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChange,
-                dwWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwnerReplicaId: *const fn(
+            self: *const ISyncChange,
+            pbReplicaId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRootItemId: *const fn(
+            self: *const ISyncChange,
+            pbRootItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeVersion: *const fn(
+            self: *const ISyncChange,
+            pbCurrentReplicaId: ?*const u8,
+            pVersion: ?*SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCreationVersion: *const fn(
+            self: *const ISyncChange,
+            pbCurrentReplicaId: ?*const u8,
+            pVersion: ?*SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFlags: *const fn(
+            self: *const ISyncChange,
+            pdwFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWorkEstimate: *const fn(
+            self: *const ISyncChange,
+            pdwWork: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnits: *const fn(
+            self: *const ISyncChange,
+            ppEnum: ?*?*IEnumSyncChangeUnits,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMadeWithKnowledge: *const fn(
+            self: *const ISyncChange,
+            ppMadeWithKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedKnowledge: *const fn(
+            self: *const ISyncChange,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWorkEstimate: *const fn(
+            self: *const ISyncChange,
+            dwWork: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4140,28 +2735,15 @@ pub const IID_ISyncChangeWithPrerequisite = &IID_ISyncChangeWithPrerequisite_Val
 pub const ISyncChangeWithPrerequisite = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPrerequisiteKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithPrerequisite,
-                ppPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithPrerequisite,
-                ppPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedKnowledgeWithPrerequisite: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithPrerequisite,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithPrerequisite,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPrerequisiteKnowledge: *const fn(
+            self: *const ISyncChangeWithPrerequisite,
+            ppPrerequisiteKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedKnowledgeWithPrerequisite: *const fn(
+            self: *const ISyncChangeWithPrerequisite,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4184,26 +2766,14 @@ pub const IID_ISyncFullEnumerationChange = &IID_ISyncFullEnumerationChange_Value
 pub const ISyncFullEnumerationChange = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLearnedKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFullEnumerationChange,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFullEnumerationChange,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncFullEnumerationChange,
-                ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncFullEnumerationChange,
-                ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetLearnedKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncFullEnumerationChange,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedForgottenKnowledge: *const fn(
+            self: *const ISyncFullEnumerationChange,
+            ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4225,18 +2795,11 @@ pub const IID_ISyncMergeTombstoneChange = &IID_ISyncMergeTombstoneChange_Value;
 pub const ISyncMergeTombstoneChange = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetWinnerItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncMergeTombstoneChange,
-                pbWinnerItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncMergeTombstoneChange,
-                pbWinnerItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetWinnerItemId: *const fn(
+            self: *const ISyncMergeTombstoneChange,
+            pbWinnerItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4254,18 +2817,11 @@ pub const IID_IEnumItemIds = &IID_IEnumItemIds_Value;
 pub const IEnumItemIds = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumItemIds,
-                pbItemId: ?*u8,
-                pcbItemIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumItemIds,
-                pbItemId: ?*u8,
-                pcbItemIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumItemIds,
+            pbItemId: ?*u8,
+            pcbItemIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4283,52 +2839,25 @@ pub const IID_IFilterKeyMap = &IID_IFilterKeyMap_Value;
 pub const IFilterKeyMap = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterKeyMap,
-                pdwCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterKeyMap,
-                pdwCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterKeyMap,
-                pISyncFilter: ?*ISyncFilter,
-                pdwFilterKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterKeyMap,
-                pISyncFilter: ?*ISyncFilter,
-                pdwFilterKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterKeyMap,
-                dwFilterKey: u32,
-                ppISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterKeyMap,
-                dwFilterKey: u32,
-                ppISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterKeyMap,
-                pbFilterKeyMap: ?*u8,
-                pcbFilterKeyMap: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterKeyMap,
-                pbFilterKeyMap: ?*u8,
-                pcbFilterKeyMap: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IFilterKeyMap,
+            pdwCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFilter: *const fn(
+            self: *const IFilterKeyMap,
+            pISyncFilter: ?*ISyncFilter,
+            pdwFilterKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilter: *const fn(
+            self: *const IFilterKeyMap,
+            dwFilterKey: u32,
+            ppISyncFilter: ?*?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const IFilterKeyMap,
+            pbFilterKeyMap: ?*u8,
+            pcbFilterKeyMap: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4358,124 +2887,56 @@ pub const IID_ISyncChangeWithFilterKeyMap = &IID_ISyncChangeWithFilterKeyMap_Val
 pub const ISyncChangeWithFilterKeyMap = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFilterCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pdwFilterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pdwFilterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilterChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                dwFilterKey: u32,
-                pFilterChange: ?*SYNC_FILTER_CHANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                dwFilterKey: u32,
-                pFilterChange: ?*SYNC_FILTER_CHANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAllChangeUnitsPresentFlag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pfAllChangeUnitsPresent: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pfAllChangeUnitsPresent: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilterForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                dwFilterKey: u32,
-                ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                dwFilterKey: u32,
-                ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedFilterForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilterCount: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pdwFilterCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilterChange: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            dwFilterKey: u32,
+            pFilterChange: ?*SYNC_FILTER_CHANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAllChangeUnitsPresentFlag: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pfAllChangeUnitsPresent: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilterForgottenKnowledge: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            dwFilterKey: u32,
+            ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedKnowledge: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedFilterForgottenKnowledge: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            dwFilterKey: u32,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedForgottenKnowledge: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            dwFilterKey: u32,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4525,112 +2986,51 @@ pub const IID_ISyncChangeBatchWithFilterKeyMap = &IID_ISyncChangeBatchWithFilter
 pub const ISyncChangeBatchWithFilterKeyMap = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFilterKeyMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                ppIFilterKeyMap: ?*?*IFilterKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                ppIFilterKeyMap: ?*?*IFilterKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFilterKeyMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pIFilterKeyMap: ?*IFilterKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pIFilterKeyMap: ?*IFilterKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFilterForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                dwFilterKey: u32,
-                pFilterForgottenKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                dwFilterKey: u32,
-                pFilterForgottenKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedFilterForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilterKeyMap: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            ppIFilterKeyMap: ?*?*IFilterKeyMap,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFilterKeyMap: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pIFilterKeyMap: ?*IFilterKeyMap,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFilterForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            dwFilterKey: u32,
+            pFilterForgottenKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedFilterForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            dwFilterKey: u32,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            dwFilterKey: u32,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4677,26 +3077,14 @@ pub const IID_IDataRetrieverCallback = &IID_IDataRetrieverCallback_Value;
 pub const IDataRetrieverCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LoadChangeDataComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDataRetrieverCallback,
-                pUnkData: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDataRetrieverCallback,
-                pUnkData: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadChangeDataError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IDataRetrieverCallback,
-                hrError: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IDataRetrieverCallback,
-                hrError: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        LoadChangeDataComplete: *const fn(
+            self: *const IDataRetrieverCallback,
+            pUnkData: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadChangeDataError: *const fn(
+            self: *const IDataRetrieverCallback,
+            hrError: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4719,42 +3107,21 @@ pub const IID_ILoadChangeContext = &IID_ILoadChangeContext_Value;
 pub const ILoadChangeContext = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSyncChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ILoadChangeContext,
-                ppSyncChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ILoadChangeContext,
-                ppSyncChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRecoverableErrorOnChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ILoadChangeContext,
-                hrError: HRESULT,
-                pErrorData: ?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ILoadChangeContext,
-                hrError: HRESULT,
-                pErrorData: ?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRecoverableErrorOnChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ILoadChangeContext,
-                hrError: HRESULT,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pErrorData: ?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ILoadChangeContext,
-                hrError: HRESULT,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pErrorData: ?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncChange: *const fn(
+            self: *const ILoadChangeContext,
+            ppSyncChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRecoverableErrorOnChange: *const fn(
+            self: *const ILoadChangeContext,
+            hrError: HRESULT,
+            pErrorData: ?*IRecoverableErrorData,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRecoverableErrorOnChangeUnit: *const fn(
+            self: *const ILoadChangeContext,
+            hrError: HRESULT,
+            pChangeUnit: ?*ISyncChangeUnit,
+            pErrorData: ?*IRecoverableErrorData,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4781,28 +3148,15 @@ pub const IID_ISynchronousDataRetriever = &IID_ISynchronousDataRetriever_Value;
 pub const ISynchronousDataRetriever = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIdParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISynchronousDataRetriever,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISynchronousDataRetriever,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadChangeData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISynchronousDataRetriever,
-                pLoadChangeContext: ?*ILoadChangeContext,
-                ppUnkData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISynchronousDataRetriever,
-                pLoadChangeContext: ?*ILoadChangeContext,
-                ppUnkData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdParameters: *const fn(
+            self: *const ISynchronousDataRetriever,
+            pIdParameters: ?*ID_PARAMETERS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadChangeData: *const fn(
+            self: *const ISynchronousDataRetriever,
+            pLoadChangeContext: ?*ILoadChangeContext,
+            ppUnkData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4825,46 +3179,22 @@ pub const IID_IAsynchronousDataRetriever = &IID_IAsynchronousDataRetriever_Value
 pub const IAsynchronousDataRetriever = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIdParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAsynchronousDataRetriever,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAsynchronousDataRetriever,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAsynchronousDataRetriever,
-                pDataRetrieverCallback: ?*IDataRetrieverCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAsynchronousDataRetriever,
-                pDataRetrieverCallback: ?*IDataRetrieverCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RevokeCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAsynchronousDataRetriever,
-                pDataRetrieverCallback: ?*IDataRetrieverCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAsynchronousDataRetriever,
-                pDataRetrieverCallback: ?*IDataRetrieverCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadChangeData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAsynchronousDataRetriever,
-                pLoadChangeContext: ?*ILoadChangeContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAsynchronousDataRetriever,
-                pLoadChangeContext: ?*ILoadChangeContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdParameters: *const fn(
+            self: *const IAsynchronousDataRetriever,
+            pIdParameters: ?*ID_PARAMETERS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterCallback: *const fn(
+            self: *const IAsynchronousDataRetriever,
+            pDataRetrieverCallback: ?*IDataRetrieverCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RevokeCallback: *const fn(
+            self: *const IAsynchronousDataRetriever,
+            pDataRetrieverCallback: ?*IDataRetrieverCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadChangeData: *const fn(
+            self: *const IAsynchronousDataRetriever,
+            pLoadChangeContext: ?*ILoadChangeContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4895,18 +3225,11 @@ pub const IID_IFilterRequestCallback = &IID_IFilterRequestCallback_Value;
 pub const IFilterRequestCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RequestFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterRequestCallback,
-                pFilter: ?*IUnknown,
-                filteringType: FILTERING_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterRequestCallback,
-                pFilter: ?*IUnknown,
-                filteringType: FILTERING_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RequestFilter: *const fn(
+            self: *const IFilterRequestCallback,
+            pFilter: ?*IUnknown,
+            filteringType: FILTERING_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4925,16 +3248,10 @@ pub const IID_IRequestFilteredSync = &IID_IRequestFilteredSync_Value;
 pub const IRequestFilteredSync = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SpecifyFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRequestFilteredSync,
-                pCallback: ?*IFilterRequestCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRequestFilteredSync,
-                pCallback: ?*IFilterRequestCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SpecifyFilter: *const fn(
+            self: *const IRequestFilteredSync,
+            pCallback: ?*IFilterRequestCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4953,18 +3270,11 @@ pub const IID_ISupportFilteredSync = &IID_ISupportFilteredSync_Value;
 pub const ISupportFilteredSync = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISupportFilteredSync,
-                pFilter: ?*IUnknown,
-                filteringType: FILTERING_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISupportFilteredSync,
-                pFilter: ?*IUnknown,
-                filteringType: FILTERING_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddFilter: *const fn(
+            self: *const ISupportFilteredSync,
+            pFilter: ?*IUnknown,
+            filteringType: FILTERING_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4982,16 +3292,10 @@ pub const IID_IFilterTrackingRequestCallback = &IID_IFilterTrackingRequestCallba
 pub const IFilterTrackingRequestCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RequestTrackedFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterTrackingRequestCallback,
-                pFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterTrackingRequestCallback,
-                pFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RequestTrackedFilter: *const fn(
+            self: *const IFilterTrackingRequestCallback,
+            pFilter: ?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5009,26 +3313,14 @@ pub const IID_IFilterTrackingProvider = &IID_IFilterTrackingProvider_Value;
 pub const IFilterTrackingProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SpecifyTrackedFilters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterTrackingProvider,
-                pCallback: ?*IFilterTrackingRequestCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterTrackingProvider,
-                pCallback: ?*IFilterTrackingRequestCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddTrackedFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IFilterTrackingProvider,
-                pFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IFilterTrackingProvider,
-                pFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SpecifyTrackedFilters: *const fn(
+            self: *const IFilterTrackingProvider,
+            pCallback: ?*IFilterTrackingRequestCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddTrackedFilter: *const fn(
+            self: *const IFilterTrackingProvider,
+            pFilter: ?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5051,32 +3343,17 @@ pub const IID_ISupportLastWriteTime = &IID_ISupportLastWriteTime_Value;
 pub const ISupportLastWriteTime = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemChangeTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISupportLastWriteTime,
-                pbItemId: ?*const u8,
-                pullTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISupportLastWriteTime,
-                pbItemId: ?*const u8,
-                pullTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitChangeTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISupportLastWriteTime,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                pullTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISupportLastWriteTime,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                pullTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetItemChangeTime: *const fn(
+            self: *const ISupportLastWriteTime,
+            pbItemId: ?*const u8,
+            pullTimestamp: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitChangeTime: *const fn(
+            self: *const ISupportLastWriteTime,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            pullTimestamp: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5099,16 +3376,10 @@ pub const IID_IProviderConverter = &IID_IProviderConverter_Value;
 pub const IProviderConverter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IProviderConverter,
-                pISyncProvider: ?*ISyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IProviderConverter,
-                pISyncProvider: ?*ISyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IProviderConverter,
+            pISyncProvider: ?*ISyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5126,62 +3397,30 @@ pub const IID_ISyncDataConverter = &IID_ISyncDataConverter_Value;
 pub const ISyncDataConverter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConvertDataRetrieverFromProviderFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncDataConverter,
-                pUnkDataRetrieverIn: ?*IUnknown,
-                pEnumSyncChanges: ?*IEnumSyncChanges,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncDataConverter,
-                pUnkDataRetrieverIn: ?*IUnknown,
-                pEnumSyncChanges: ?*IEnumSyncChanges,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertDataRetrieverToProviderFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncDataConverter,
-                pUnkDataRetrieverIn: ?*IUnknown,
-                pEnumSyncChanges: ?*IEnumSyncChanges,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncDataConverter,
-                pUnkDataRetrieverIn: ?*IUnknown,
-                pEnumSyncChanges: ?*IEnumSyncChanges,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertDataFromProviderFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncDataConverter,
-                pDataContext: ?*ILoadChangeContext,
-                pUnkDataIn: ?*IUnknown,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncDataConverter,
-                pDataContext: ?*ILoadChangeContext,
-                pUnkDataIn: ?*IUnknown,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertDataToProviderFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncDataConverter,
-                pDataContext: ?*ILoadChangeContext,
-                pUnkDataOut: ?*IUnknown,
-                ppUnkDataout: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncDataConverter,
-                pDataContext: ?*ILoadChangeContext,
-                pUnkDataOut: ?*IUnknown,
-                ppUnkDataout: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ConvertDataRetrieverFromProviderFormat: *const fn(
+            self: *const ISyncDataConverter,
+            pUnkDataRetrieverIn: ?*IUnknown,
+            pEnumSyncChanges: ?*IEnumSyncChanges,
+            ppUnkDataOut: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertDataRetrieverToProviderFormat: *const fn(
+            self: *const ISyncDataConverter,
+            pUnkDataRetrieverIn: ?*IUnknown,
+            pEnumSyncChanges: ?*IEnumSyncChanges,
+            ppUnkDataOut: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertDataFromProviderFormat: *const fn(
+            self: *const ISyncDataConverter,
+            pDataContext: ?*ILoadChangeContext,
+            pUnkDataIn: ?*IUnknown,
+            ppUnkDataOut: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertDataToProviderFormat: *const fn(
+            self: *const ISyncDataConverter,
+            pDataContext: ?*ILoadChangeContext,
+            pUnkDataOut: ?*IUnknown,
+            ppUnkDataout: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5235,206 +3474,90 @@ pub const IID_ISyncProviderRegistration = &IID_ISyncProviderRegistration_Value;
 pub const ISyncProviderRegistration = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateSyncProviderConfigUIRegistrationInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration,
-                ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration,
-                ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterSyncProviderConfigUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumerateSyncProviderConfigUIs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidContentType: ?*const Guid,
-                dwSupportedArchitecture: u32,
-                ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidContentType: ?*const Guid,
-                dwSupportedArchitecture: u32,
-                ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSyncProviderRegistrationInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pProviderConfiguration: ?*const SyncProviderConfiguration,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pProviderConfiguration: ?*const SyncProviderConfiguration,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterSyncProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderConfigUIInfoforProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidProviderInstanceId: ?*const Guid,
-                ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidProviderInstanceId: ?*const Guid,
-                ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumerateSyncProviders: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidContentType: ?*const Guid,
-                dwStateFlagsToFilterMask: u32,
-                dwStateFlagsToFilter: u32,
-                refProviderClsId: ?*const Guid,
-                dwSupportedArchitecture: u32,
-                ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidContentType: ?*const Guid,
-                dwStateFlagsToFilterMask: u32,
-                dwStateFlagsToFilter: u32,
-                refProviderClsId: ?*const Guid,
-                dwSupportedArchitecture: u32,
-                ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderFromInstanceId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwClsContext: u32,
-                ppSyncProvider: ?*?*IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwClsContext: u32,
-                ppSyncProvider: ?*?*IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderConfigUIInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderConfigUIFromInstanceId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwClsContext: u32,
-                ppConfigUI: ?*?*ISyncProviderConfigUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwClsContext: u32,
-                ppConfigUI: ?*?*ISyncProviderConfigUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                pdwStateFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                pdwStateFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSyncProviderState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwStateFlagsMask: u32,
-                dwStateFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwStateFlagsMask: u32,
-                dwStateFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterForEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                phEvent: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                phEvent: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RevokeEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderRegistration,
-                hEvent: ?HANDLE,
-                ppChange: ?*?*ISyncRegistrationChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderRegistration,
-                hEvent: ?HANDLE,
-                ppChange: ?*?*ISyncRegistrationChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateSyncProviderConfigUIRegistrationInstance: *const fn(
+            self: *const ISyncProviderRegistration,
+            pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration,
+            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterSyncProviderConfigUI: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateSyncProviderConfigUIs: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidContentType: ?*const Guid,
+            dwSupportedArchitecture: u32,
+            ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSyncProviderRegistrationInstance: *const fn(
+            self: *const ISyncProviderRegistration,
+            pProviderConfiguration: ?*const SyncProviderConfiguration,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterSyncProvider: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderConfigUIInfoforProvider: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidProviderInstanceId: ?*const Guid,
+            ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateSyncProviders: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidContentType: ?*const Guid,
+            dwStateFlagsToFilterMask: u32,
+            dwStateFlagsToFilter: u32,
+            refProviderClsId: ?*const Guid,
+            dwSupportedArchitecture: u32,
+            ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderInfo: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderFromInstanceId: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            dwClsContext: u32,
+            ppSyncProvider: ?*?*IRegisteredSyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderConfigUIInfo: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderConfigUIFromInstanceId: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            dwClsContext: u32,
+            ppConfigUI: ?*?*ISyncProviderConfigUI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderState: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            pdwStateFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSyncProviderState: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            dwStateFlagsMask: u32,
+            dwStateFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterForEvent: *const fn(
+            self: *const ISyncProviderRegistration,
+            phEvent: ?*?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RevokeEvent: *const fn(
+            self: *const ISyncProviderRegistration,
+            hEvent: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChange: *const fn(
+            self: *const ISyncProviderRegistration,
+            hEvent: ?HANDLE,
+            ppChange: ?*?*ISyncRegistrationChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5513,48 +3636,23 @@ pub const IID_IEnumSyncProviderConfigUIInfos = &IID_IEnumSyncProviderConfigUIInf
 pub const IEnumSyncProviderConfigUIInfos = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncProviderConfigUIInfos,
-                cFactories: u32,
-                ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncProviderConfigUIInfos,
-                cFactories: u32,
-                ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncProviderConfigUIInfos,
-                cFactories: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncProviderConfigUIInfos,
-                cFactories: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncProviderConfigUIInfos,
-                ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncProviderConfigUIInfos,
-                ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSyncProviderConfigUIInfos,
+            cFactories: u32,
+            ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSyncProviderConfigUIInfos,
+            cFactories: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSyncProviderConfigUIInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSyncProviderConfigUIInfos,
+            ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5585,48 +3683,23 @@ pub const IID_IEnumSyncProviderInfos = &IID_IEnumSyncProviderInfos_Value;
 pub const IEnumSyncProviderInfos = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncProviderInfos,
-                cInstances: u32,
-                ppSyncProviderInfo: [*]?*ISyncProviderInfo,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncProviderInfos,
-                cInstances: u32,
-                ppSyncProviderInfo: [*]?*ISyncProviderInfo,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncProviderInfos,
-                cInstances: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncProviderInfos,
-                cInstances: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSyncProviderInfos,
-                ppEnum: ?*?*IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSyncProviderInfos,
-                ppEnum: ?*?*IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSyncProviderInfos,
+            cInstances: u32,
+            ppSyncProviderInfo: [*]?*ISyncProviderInfo,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSyncProviderInfos,
+            cInstances: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSyncProviderInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSyncProviderInfos,
+            ppEnum: ?*?*IEnumSyncProviderInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5657,18 +3730,11 @@ pub const IID_ISyncProviderInfo = &IID_ISyncProviderInfo_Value;
 pub const ISyncProviderInfo = extern struct {
     pub const VTable = extern struct {
         base: IPropertyStore.VTable,
-        GetSyncProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderInfo,
-                dwClsContext: u32,
-                ppSyncProvider: ?*?*IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderInfo,
-                dwClsContext: u32,
-                ppSyncProvider: ?*?*IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncProvider: *const fn(
+            self: *const ISyncProviderInfo,
+            dwClsContext: u32,
+            ppSyncProvider: ?*?*IRegisteredSyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5687,18 +3753,11 @@ pub const IID_ISyncProviderConfigUIInfo = &IID_ISyncProviderConfigUIInfo_Value;
 pub const ISyncProviderConfigUIInfo = extern struct {
     pub const VTable = extern struct {
         base: IPropertyStore.VTable,
-        GetSyncProviderConfigUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderConfigUIInfo,
-                dwClsContext: u32,
-                ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderConfigUIInfo,
-                dwClsContext: u32,
-                ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncProviderConfigUI: *const fn(
+            self: *const ISyncProviderConfigUIInfo,
+            dwClsContext: u32,
+            ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5717,58 +3776,28 @@ pub const IID_ISyncProviderConfigUI = &IID_ISyncProviderConfigUI_Value;
 pub const ISyncProviderConfigUI = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderConfigUI,
-                pguidInstanceId: ?*const Guid,
-                pguidContentType: ?*const Guid,
-                pConfigurationProperties: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderConfigUI,
-                pguidInstanceId: ?*const Guid,
-                pguidContentType: ?*const Guid,
-                pConfigurationProperties: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRegisteredProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderConfigUI,
-                ppConfigUIProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderConfigUI,
-                ppConfigUIProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateAndRegisterNewSyncProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderConfigUI,
-                hwndParent: ?HWND,
-                pUnkContext: ?*IUnknown,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderConfigUI,
-                hwndParent: ?HWND,
-                pUnkContext: ?*IUnknown,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ModifySyncProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncProviderConfigUI,
-                hwndParent: ?HWND,
-                pUnkContext: ?*IUnknown,
-                pProviderInfo: ?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncProviderConfigUI,
-                hwndParent: ?HWND,
-                pUnkContext: ?*IUnknown,
-                pProviderInfo: ?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Init: *const fn(
+            self: *const ISyncProviderConfigUI,
+            pguidInstanceId: ?*const Guid,
+            pguidContentType: ?*const Guid,
+            pConfigurationProperties: ?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRegisteredProperties: *const fn(
+            self: *const ISyncProviderConfigUI,
+            ppConfigUIProperties: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAndRegisterNewSyncProvider: *const fn(
+            self: *const ISyncProviderConfigUI,
+            hwndParent: ?HWND,
+            pUnkContext: ?*IUnknown,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ModifySyncProvider: *const fn(
+            self: *const ISyncProviderConfigUI,
+            hwndParent: ?HWND,
+            pUnkContext: ?*IUnknown,
+            pProviderInfo: ?*ISyncProviderInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5799,38 +3828,19 @@ pub const IID_IRegisteredSyncProvider = &IID_IRegisteredSyncProvider_Value;
 pub const IRegisteredSyncProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRegisteredSyncProvider,
-                pguidInstanceId: ?*const Guid,
-                pguidContentType: ?*const Guid,
-                pContextPropertyStore: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRegisteredSyncProvider,
-                pguidInstanceId: ?*const Guid,
-                pguidContentType: ?*const Guid,
-                pContextPropertyStore: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInstanceId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRegisteredSyncProvider,
-                pguidInstanceId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRegisteredSyncProvider,
-                pguidInstanceId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Init: *const fn(
+            self: *const IRegisteredSyncProvider,
+            pguidInstanceId: ?*const Guid,
+            pguidContentType: ?*const Guid,
+            pContextPropertyStore: ?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInstanceId: *const fn(
+            self: *const IRegisteredSyncProvider,
+            pguidInstanceId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IRegisteredSyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5874,26 +3884,14 @@ pub const IID_ISyncRegistrationChange = &IID_ISyncRegistrationChange_Value;
 pub const ISyncRegistrationChange = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncRegistrationChange,
-                psreEvent: ?*SYNC_REGISTRATION_EVENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncRegistrationChange,
-                psreEvent: ?*SYNC_REGISTRATION_EVENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInstanceId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISyncRegistrationChange,
-                pguidInstanceId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISyncRegistrationChange,
-                pguidInstanceId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetEvent: *const fn(
+            self: *const ISyncRegistrationChange,
+            psreEvent: ?*SYNC_REGISTRATION_EVENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInstanceId: *const fn(
+            self: *const ISyncRegistrationChange,
+            pguidInstanceId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

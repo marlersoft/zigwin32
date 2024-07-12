@@ -1369,23 +1369,13 @@ pub const GEOCLASS_NATION = SYSGEOCLASS.NATION;
 pub const GEOCLASS_REGION = SYSGEOCLASS.REGION;
 pub const GEOCLASS_ALL = SYSGEOCLASS.ALL;
 
-pub const LOCALE_ENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LOCALE_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LOCALE_ENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LOCALE_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const NORM_FORM = enum(i32) {
     Other = 0,
@@ -1400,227 +1390,106 @@ pub const NormalizationD = NORM_FORM.D;
 pub const NormalizationKC = NORM_FORM.KC;
 pub const NormalizationKD = NORM_FORM.KD;
 
-pub const LANGUAGEGROUP_ENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: ?PSTR,
-        param2: ?PSTR,
-        param3: u32,
-        param4: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: u32,
-        param1: ?PSTR,
-        param2: ?PSTR,
-        param3: u32,
-        param4: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LANGUAGEGROUP_ENUMPROCA = *const fn(
+    param0: u32,
+    param1: ?PSTR,
+    param2: ?PSTR,
+    param3: u32,
+    param4: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LANGGROUPLOCALE_ENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: u32,
-        param2: ?PSTR,
-        param3: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: u32,
-        param1: u32,
-        param2: ?PSTR,
-        param3: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LANGGROUPLOCALE_ENUMPROCA = *const fn(
+    param0: u32,
+    param1: u32,
+    param2: ?PSTR,
+    param3: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const UILANGUAGE_ENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-        param1: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-        param1: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const UILANGUAGE_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+    param1: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const CODEPAGE_ENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const CODEPAGE_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DATEFMT_ENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const DATEFMT_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DATEFMT_ENUMPROCEXA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const DATEFMT_ENUMPROCEXA = *const fn(
+    param0: ?PSTR,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const TIMEFMT_ENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const TIMEFMT_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const CALINFO_ENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const CALINFO_ENUMPROCA = *const fn(
+    param0: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const CALINFO_ENUMPROCEXA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PSTR,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PSTR,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const CALINFO_ENUMPROCEXA = *const fn(
+    param0: ?PSTR,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LANGUAGEGROUP_ENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: ?PWSTR,
-        param2: ?PWSTR,
-        param3: u32,
-        param4: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: u32,
-        param1: ?PWSTR,
-        param2: ?PWSTR,
-        param3: u32,
-        param4: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LANGUAGEGROUP_ENUMPROCW = *const fn(
+    param0: u32,
+    param1: ?PWSTR,
+    param2: ?PWSTR,
+    param3: u32,
+    param4: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LANGGROUPLOCALE_ENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: u32,
-        param1: u32,
-        param2: ?PWSTR,
-        param3: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: u32,
-        param1: u32,
-        param2: ?PWSTR,
-        param3: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LANGGROUPLOCALE_ENUMPROCW = *const fn(
+    param0: u32,
+    param1: u32,
+    param2: ?PWSTR,
+    param3: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const UILANGUAGE_ENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const UILANGUAGE_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+    param1: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const CODEPAGE_ENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const CODEPAGE_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DATEFMT_ENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const DATEFMT_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DATEFMT_ENUMPROCEXW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const DATEFMT_ENUMPROCEXW = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const TIMEFMT_ENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const TIMEFMT_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const CALINFO_ENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const CALINFO_ENUMPROCW = *const fn(
+    param0: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const CALINFO_ENUMPROCEXW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const CALINFO_ENUMPROCEXW = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const GEO_ENUMPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const GEO_ENUMPROC = *const fn(
+    param0: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const GEO_ENUMNAMEPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const GEO_ENUMNAMEPROC = *const fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const FILEMUIINFO = extern struct {
     dwSize: u32,
@@ -1638,72 +1507,36 @@ pub const FILEMUIINFO = extern struct {
     abBuffer: [8]u8,
 };
 
-pub const CALINFO_ENUMPROCEXEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: u32,
-        param2: ?PWSTR,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: u32,
-        param2: ?PWSTR,
-        param3: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const CALINFO_ENUMPROCEXEX = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+    param2: ?PWSTR,
+    param3: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DATEFMT_ENUMPROCEXEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: u32,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: u32,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const DATEFMT_ENUMPROCEXEX = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+    param2: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const TIMEFMT_ENUMPROCEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const TIMEFMT_ENUMPROCEX = *const fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LOCALE_ENUMPROCEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?PWSTR,
-        param1: u32,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        param0: ?PWSTR,
-        param1: u32,
-        param2: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LOCALE_ENUMPROCEX = *const fn(
+    param0: ?PWSTR,
+    param1: u32,
+    param2: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFN_MAPPINGCALLBACKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pBag: ?*MAPPING_PROPERTY_BAG,
-        data: ?*anyopaque,
-        dwDataSize: u32,
-        Result: HRESULT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pBag: ?*MAPPING_PROPERTY_BAG,
-        data: ?*anyopaque,
-        dwDataSize: u32,
-        Result: HRESULT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFN_MAPPINGCALLBACKPROC = *const fn(
+    pBag: ?*MAPPING_PROPERTY_BAG,
+    data: ?*anyopaque,
+    dwDataSize: u32,
+    Result: HRESULT,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MAPPING_SERVICE_INFO = extern struct {
     Size: usize,
@@ -1821,57 +1654,25 @@ pub const ISpellingError = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StartIndex: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellingError,
-                value: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellingError,
-                value: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_StartIndex: *const fn(
+            self: *const ISpellingError,
+            value: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Length: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellingError,
-                value: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellingError,
-                value: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Length: *const fn(
+            self: *const ISpellingError,
+            value: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CorrectiveAction: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellingError,
-                value: ?*CORRECTIVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellingError,
-                value: ?*CORRECTIVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_CorrectiveAction: *const fn(
+            self: *const ISpellingError,
+            value: ?*CORRECTIVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Replacement: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellingError,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellingError,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Replacement: *const fn(
+            self: *const ISpellingError,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1902,16 +1703,10 @@ pub const IID_IEnumSpellingError = &IID_IEnumSpellingError_Value;
 pub const IEnumSpellingError = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumSpellingError,
-                value: ?*?*ISpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumSpellingError,
-                value: ?*?*ISpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSpellingError,
+            value: ?*?*ISpellingError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1931,57 +1726,25 @@ pub const IOptionDescription = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IOptionDescription,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IOptionDescription,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IOptionDescription,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Heading: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IOptionDescription,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IOptionDescription,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Heading: *const fn(
+            self: *const IOptionDescription,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IOptionDescription,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IOptionDescription,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Description: *const fn(
+            self: *const IOptionDescription,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Labels: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IOptionDescription,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IOptionDescription,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Labels: *const fn(
+            self: *const IOptionDescription,
+            value: ?*?*IEnumString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2012,16 +1775,10 @@ pub const IID_ISpellCheckerChangedEventHandler = &IID_ISpellCheckerChangedEventH
 pub const ISpellCheckerChangedEventHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Invoke: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckerChangedEventHandler,
-                sender: ?*ISpellChecker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckerChangedEventHandler,
-                sender: ?*ISpellChecker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Invoke: *const fn(
+            self: *const ISpellCheckerChangedEventHandler,
+            sender: ?*ISpellChecker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2041,171 +1798,72 @@ pub const ISpellChecker = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LanguageTag: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellChecker,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Check: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                text: ?[*:0]const u16,
-                value: ?*?*IEnumSpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                text: ?[*:0]const u16,
-                value: ?*?*IEnumSpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Suggest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                word: ?[*:0]const u16,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                word: ?[*:0]const u16,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                word: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                word: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Ignore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                word: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                word: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AutoCorrect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                from: ?[*:0]const u16,
-                to: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                from: ?[*:0]const u16,
-                to: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOptionValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                optionId: ?[*:0]const u16,
-                value: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                optionId: ?[*:0]const u16,
-                value: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LanguageTag: *const fn(
+            self: *const ISpellChecker,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Check: *const fn(
+            self: *const ISpellChecker,
+            text: ?[*:0]const u16,
+            value: ?*?*IEnumSpellingError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Suggest: *const fn(
+            self: *const ISpellChecker,
+            word: ?[*:0]const u16,
+            value: ?*?*IEnumString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Add: *const fn(
+            self: *const ISpellChecker,
+            word: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Ignore: *const fn(
+            self: *const ISpellChecker,
+            word: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AutoCorrect: *const fn(
+            self: *const ISpellChecker,
+            from: ?[*:0]const u16,
+            to: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOptionValue: *const fn(
+            self: *const ISpellChecker,
+            optionId: ?[*:0]const u16,
+            value: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OptionIds: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellChecker,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_OptionIds: *const fn(
+            self: *const ISpellChecker,
+            value: ?*?*IEnumString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellChecker,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const ISpellChecker,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalizedName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellChecker,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        add_SpellCheckerChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                handler: ?*ISpellCheckerChangedEventHandler,
-                eventCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                handler: ?*ISpellCheckerChangedEventHandler,
-                eventCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        remove_SpellCheckerChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                eventCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                eventCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOptionDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                optionId: ?[*:0]const u16,
-                value: ?*?*IOptionDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                optionId: ?[*:0]const u16,
-                value: ?*?*IOptionDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ComprehensiveCheck: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker,
-                text: ?[*:0]const u16,
-                value: ?*?*IEnumSpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker,
-                text: ?[*:0]const u16,
-                value: ?*?*IEnumSpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LocalizedName: *const fn(
+            self: *const ISpellChecker,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        add_SpellCheckerChanged: *const fn(
+            self: *const ISpellChecker,
+            handler: ?*ISpellCheckerChangedEventHandler,
+            eventCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        remove_SpellCheckerChanged: *const fn(
+            self: *const ISpellChecker,
+            eventCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOptionDescription: *const fn(
+            self: *const ISpellChecker,
+            optionId: ?[*:0]const u16,
+            value: ?*?*IOptionDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ComprehensiveCheck: *const fn(
+            self: *const ISpellChecker,
+            text: ?[*:0]const u16,
+            value: ?*?*IEnumSpellingError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2276,16 +1934,10 @@ pub const IID_ISpellChecker2 = &IID_ISpellChecker2_Value;
 pub const ISpellChecker2 = extern struct {
     pub const VTable = extern struct {
         base: ISpellChecker.VTable,
-        Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellChecker2,
-                word: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellChecker2,
-                word: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Remove: *const fn(
+            self: *const ISpellChecker2,
+            word: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2305,42 +1957,20 @@ pub const ISpellCheckerFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportedLanguages: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellCheckerFactory,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellCheckerFactory,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckerFactory,
-                languageTag: ?[*:0]const u16,
-                value: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckerFactory,
-                languageTag: ?[*:0]const u16,
-                value: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSpellChecker: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckerFactory,
-                languageTag: ?[*:0]const u16,
-                value: ?*?*ISpellChecker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckerFactory,
-                languageTag: ?[*:0]const u16,
-                value: ?*?*ISpellChecker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SupportedLanguages: *const fn(
+            self: *const ISpellCheckerFactory,
+            value: ?*?*IEnumString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsSupported: *const fn(
+            self: *const ISpellCheckerFactory,
+            languageTag: ?[*:0]const u16,
+            value: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSpellChecker: *const fn(
+            self: *const ISpellCheckerFactory,
+            languageTag: ?[*:0]const u16,
+            value: ?*?*ISpellChecker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2367,30 +1997,16 @@ pub const IID_IUserDictionariesRegistrar = &IID_IUserDictionariesRegistrar_Value
 pub const IUserDictionariesRegistrar = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterUserDictionary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IUserDictionariesRegistrar,
-                dictionaryPath: ?[*:0]const u16,
-                languageTag: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IUserDictionariesRegistrar,
-                dictionaryPath: ?[*:0]const u16,
-                languageTag: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterUserDictionary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IUserDictionariesRegistrar,
-                dictionaryPath: ?[*:0]const u16,
-                languageTag: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IUserDictionariesRegistrar,
-                dictionaryPath: ?[*:0]const u16,
-                languageTag: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RegisterUserDictionary: *const fn(
+            self: *const IUserDictionariesRegistrar,
+            dictionaryPath: ?[*:0]const u16,
+            languageTag: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterUserDictionary: *const fn(
+            self: *const IUserDictionariesRegistrar,
+            dictionaryPath: ?[*:0]const u16,
+            languageTag: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2414,129 +2030,55 @@ pub const ISpellCheckProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LanguageTag: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Check: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                text: ?[*:0]const u16,
-                value: ?*?*IEnumSpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                text: ?[*:0]const u16,
-                value: ?*?*IEnumSpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Suggest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                word: ?[*:0]const u16,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                word: ?[*:0]const u16,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOptionValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                optionId: ?[*:0]const u16,
-                value: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                optionId: ?[*:0]const u16,
-                value: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOptionValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                optionId: ?[*:0]const u16,
-                value: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                optionId: ?[*:0]const u16,
-                value: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LanguageTag: *const fn(
+            self: *const ISpellCheckProvider,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Check: *const fn(
+            self: *const ISpellCheckProvider,
+            text: ?[*:0]const u16,
+            value: ?*?*IEnumSpellingError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Suggest: *const fn(
+            self: *const ISpellCheckProvider,
+            word: ?[*:0]const u16,
+            value: ?*?*IEnumString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOptionValue: *const fn(
+            self: *const ISpellCheckProvider,
+            optionId: ?[*:0]const u16,
+            value: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOptionValue: *const fn(
+            self: *const ISpellCheckProvider,
+            optionId: ?[*:0]const u16,
+            value: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OptionIds: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_OptionIds: *const fn(
+            self: *const ISpellCheckProvider,
+            value: ?*?*IEnumString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const ISpellCheckProvider,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalizedName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                value: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOptionDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                optionId: ?[*:0]const u16,
-                value: ?*?*IOptionDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                optionId: ?[*:0]const u16,
-                value: ?*?*IOptionDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InitializeWordlist: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckProvider,
-                wordlistType: WORDLIST_TYPE,
-                words: ?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckProvider,
-                wordlistType: WORDLIST_TYPE,
-                words: ?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LocalizedName: *const fn(
+            self: *const ISpellCheckProvider,
+            value: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOptionDescription: *const fn(
+            self: *const ISpellCheckProvider,
+            optionId: ?[*:0]const u16,
+            value: ?*?*IOptionDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InitializeWordlist: *const fn(
+            self: *const ISpellCheckProvider,
+            wordlistType: WORDLIST_TYPE,
+            words: ?*IEnumString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2590,18 +2132,11 @@ pub const IID_IComprehensiveSpellCheckProvider = &IID_IComprehensiveSpellCheckPr
 pub const IComprehensiveSpellCheckProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ComprehensiveCheck: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IComprehensiveSpellCheckProvider,
-                text: ?[*:0]const u16,
-                value: ?*?*IEnumSpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IComprehensiveSpellCheckProvider,
-                text: ?[*:0]const u16,
-                value: ?*?*IEnumSpellingError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ComprehensiveCheck: *const fn(
+            self: *const IComprehensiveSpellCheckProvider,
+            text: ?[*:0]const u16,
+            value: ?*?*IEnumSpellingError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2621,42 +2156,20 @@ pub const ISpellCheckProviderFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportedLanguages: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const ISpellCheckProviderFactory,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const ISpellCheckProviderFactory,
-                value: ?*?*IEnumString,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckProviderFactory,
-                languageTag: ?[*:0]const u16,
-                value: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckProviderFactory,
-                languageTag: ?[*:0]const u16,
-                value: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSpellCheckProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ISpellCheckProviderFactory,
-                languageTag: ?[*:0]const u16,
-                value: ?*?*ISpellCheckProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ISpellCheckProviderFactory,
-                languageTag: ?[*:0]const u16,
-                value: ?*?*ISpellCheckProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SupportedLanguages: *const fn(
+            self: *const ISpellCheckProviderFactory,
+            value: ?*?*IEnumString,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsSupported: *const fn(
+            self: *const ISpellCheckProviderFactory,
+            languageTag: ?[*:0]const u16,
+            value: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSpellCheckProvider: *const fn(
+            self: *const ISpellCheckProviderFactory,
+            languageTag: ?[*:0]const u16,
+            value: ?*?*ISpellCheckProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3168,48 +2681,25 @@ pub const UTRACE_UDATA_BUNDLE = UTraceFunctionNumber.UDATA_BUNDLE;
 pub const UTRACE_UDATA_DATA_FILE = UTraceFunctionNumber.UDATA_DATA_FILE;
 pub const UTRACE_UDATA_RES_FILE = UTraceFunctionNumber.UDATA_RES_FILE;
 
-pub const UTraceEntry = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        fnNumber: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*const anyopaque,
-        fnNumber: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const UTraceEntry = *const fn(
+    context: ?*const anyopaque,
+    fnNumber: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const UTraceExit = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        fnNumber: i32,
-        fmt: ?[*:0]const u8,
-        args: ?*i8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*const anyopaque,
-        fnNumber: i32,
-        fmt: ?[*:0]const u8,
-        args: ?*i8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const UTraceExit = *const fn(
+    context: ?*const anyopaque,
+    fnNumber: i32,
+    fmt: ?[*:0]const u8,
+    args: ?*i8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const UTraceData = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        fnNumber: i32,
-        level: i32,
-        fmt: ?[*:0]const u8,
-        args: ?*i8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*const anyopaque,
-        fnNumber: i32,
-        level: i32,
-        fmt: ?[*:0]const u8,
-        args: ?*i8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const UTraceData = *const fn(
+    context: ?*const anyopaque,
+    fnNumber: i32,
+    level: i32,
+    fmt: ?[*:0]const u8,
+    args: ?*i8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const UStringTrieResult = enum(i32) {
     NO_MATCH = 0,
@@ -3667,34 +3157,34 @@ pub const UITER_ZERO = UCharIteratorOrigin.ZERO;
 pub const UITER_LENGTH = UCharIteratorOrigin.LENGTH;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorGetIndex = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorGetIndex = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorMove = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorMove = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorHasNext = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorHasNext = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorHasPrevious = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorHasPrevious = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorCurrent = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorCurrent = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorNext = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorNext = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorPrevious = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorPrevious = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorReserved = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorReserved = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorGetState = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorGetState = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UCharIteratorSetState = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UCharIteratorSetState = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 pub const UCharIterator = extern struct {
     context: ?*const anyopaque,
@@ -3869,16 +3359,10 @@ pub const UCPMAP_RANGE_NORMAL = UCPMapRangeOption.NORMAL;
 pub const UCPMAP_RANGE_FIXED_LEAD_SURROGATES = UCPMapRangeOption.FIXED_LEAD_SURROGATES;
 pub const UCPMAP_RANGE_FIXED_ALL_SURROGATES = UCPMapRangeOption.FIXED_ALL_SURROGATES;
 
-pub const UCPMapValueFilter = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        value: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        context: ?*const anyopaque,
-        value: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const UCPMapValueFilter = *const fn(
+    context: ?*const anyopaque,
+    value: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const UCPTrieData = extern union {
     ptr0: ?*const anyopaque,
@@ -4056,45 +3540,24 @@ pub const UConverterPlatform = enum(i32) {
 pub const UCNV_UNKNOWN = UConverterPlatform.UNKNOWN;
 pub const UCNV_IBM = UConverterPlatform.IBM;
 
-pub const UConverterToUCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        args: ?*UConverterToUnicodeArgs,
-        codeUnits: ?[*:0]const u8,
-        length: i32,
-        reason: UConverterCallbackReason,
-        pErrorCode: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*const anyopaque,
-        args: ?*UConverterToUnicodeArgs,
-        codeUnits: ?[*:0]const u8,
-        length: i32,
-        reason: UConverterCallbackReason,
-        pErrorCode: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const UConverterToUCallback = *const fn(
+    context: ?*const anyopaque,
+    args: ?*UConverterToUnicodeArgs,
+    codeUnits: ?[*:0]const u8,
+    length: i32,
+    reason: UConverterCallbackReason,
+    pErrorCode: ?*UErrorCode,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const UConverterFromUCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        args: ?*UConverterFromUnicodeArgs,
-        codeUnits: ?*const u16,
-        length: i32,
-        codePoint: i32,
-        reason: UConverterCallbackReason,
-        pErrorCode: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*const anyopaque,
-        args: ?*UConverterFromUnicodeArgs,
-        codeUnits: ?*const u16,
-        length: i32,
-        codePoint: i32,
-        reason: UConverterCallbackReason,
-        pErrorCode: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const UConverterFromUCallback = *const fn(
+    context: ?*const anyopaque,
+    args: ?*UConverterFromUnicodeArgs,
+    codeUnits: ?*const u16,
+    length: i32,
+    codePoint: i32,
+    reason: UConverterCallbackReason,
+    pErrorCode: ?*UErrorCode,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const UConverterUnicodeSet = enum(i32) {
     SET = 0,
@@ -4103,40 +3566,21 @@ pub const UConverterUnicodeSet = enum(i32) {
 pub const UCNV_ROUNDTRIP_SET = UConverterUnicodeSet.SET;
 pub const UCNV_ROUNDTRIP_AND_FALLBACK_SET = UConverterUnicodeSet.AND_FALLBACK_SET;
 
-pub const UMemAllocFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        size: usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
-        context: ?*const anyopaque,
-        size: usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+pub const UMemAllocFn = *const fn(
+    context: ?*const anyopaque,
+    size: usize,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const UMemReallocFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        mem: ?*anyopaque,
-        size: usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
-        context: ?*const anyopaque,
-        mem: ?*anyopaque,
-        size: usize,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+pub const UMemReallocFn = *const fn(
+    context: ?*const anyopaque,
+    mem: ?*anyopaque,
+    size: usize,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const UMemFreeFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        mem: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        context: ?*const anyopaque,
-        mem: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const UMemFreeFn = *const fn(
+    context: ?*const anyopaque,
+    mem: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const UProperty = enum(i32) {
     ALPHABETIC = 0,
@@ -5770,37 +5214,20 @@ pub const U_VO_TRANSFORMED_ROTATED = UVerticalOrientation.TRANSFORMED_ROTATED;
 pub const U_VO_TRANSFORMED_UPRIGHT = UVerticalOrientation.TRANSFORMED_UPRIGHT;
 pub const U_VO_UPRIGHT = UVerticalOrientation.UPRIGHT;
 
-pub const UCharEnumTypeRange = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        start: i32,
-        limit: i32,
-        type: UCharCategory,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-    else => *const fn(
-        context: ?*const anyopaque,
-        start: i32,
-        limit: i32,
-        type: UCharCategory,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-} ;
+pub const UCharEnumTypeRange = *const fn(
+    context: ?*const anyopaque,
+    start: i32,
+    limit: i32,
+    type: UCharCategory,
+) callconv(@import("std").os.windows.WINAPI) i8;
 
-pub const UEnumCharNamesFn = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*anyopaque,
-        code: i32,
-        nameChoice: UCharNameChoice,
-        name: ?[*:0]const u8,
-        length: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-    else => *const fn(
-        context: ?*anyopaque,
-        code: i32,
-        nameChoice: UCharNameChoice,
-        name: ?[*:0]const u8,
-        length: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-} ;
+pub const UEnumCharNamesFn = *const fn(
+    context: ?*anyopaque,
+    code: i32,
+    nameChoice: UCharNameChoice,
+    name: ?[*:0]const u8,
+    length: i32,
+) callconv(@import("std").os.windows.WINAPI) i8;
 
 pub const UBiDiDirection = enum(i32) {
     LTR = 0,
@@ -5845,16 +5272,10 @@ pub const UBIDI_OPTION_INSERT_MARKS = UBiDiReorderingOption.INSERT_MARKS;
 pub const UBIDI_OPTION_REMOVE_CONTROLS = UBiDiReorderingOption.REMOVE_CONTROLS;
 pub const UBIDI_OPTION_STREAMING = UBiDiReorderingOption.STREAMING;
 
-pub const UBiDiClassCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        c: i32,
-    ) callconv(@import("std").os.windows.WINAPI) UCharDirection,
-    else => *const fn(
-        context: ?*const anyopaque,
-        c: i32,
-    ) callconv(@import("std").os.windows.WINAPI) UCharDirection,
-} ;
+pub const UBiDiClassCallback = *const fn(
+    context: ?*const anyopaque,
+    c: i32,
+) callconv(@import("std").os.windows.WINAPI) UCharDirection;
 
 pub const UBiDiOrder = enum(i32) {
     LOGICAL = 0,
@@ -5875,31 +5296,31 @@ pub const UBiDiTransform = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextClone = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UTextClone = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextNativeLength = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UTextNativeLength = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextAccess = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UTextAccess = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextExtract = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UTextExtract = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextReplace = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UTextReplace = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextCopy = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UTextCopy = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextMapOffsetToNative = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UTextMapOffsetToNative = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextMapNativeIndexToUTF16 = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UTextMapNativeIndexToUTF16 = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const UTextClose = switch (@import("builtin").zig_backend) { .stage1 => fn() callconv(@import("std").os.windows.WINAPI) void, else => *const fn() callconv(@import("std").os.windows.WINAPI) void};
+pub const UTextClose = *const fn() callconv(@import("std").os.windows.WINAPI) void;
 
 pub const UTextFuncs = extern struct {
     tableSize: i32,
@@ -6014,16 +5435,10 @@ pub const UBreakIterator = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const UNESCAPE_CHAR_AT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        offset: i32,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u16,
-    else => *const fn(
-        offset: i32,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u16,
-} ;
+pub const UNESCAPE_CHAR_AT = *const fn(
+    offset: i32,
+    context: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u16;
 
 pub const UCaseMap = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -7228,27 +6643,15 @@ pub const UREGEX_UNIX_LINES = URegexpFlag.UNIX_LINES;
 pub const UREGEX_UWORD = URegexpFlag.UWORD;
 pub const UREGEX_ERROR_ON_UNKNOWN_ESCAPES = URegexpFlag.ERROR_ON_UNKNOWN_ESCAPES;
 
-pub const URegexMatchCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        steps: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-    else => *const fn(
-        context: ?*const anyopaque,
-        steps: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-} ;
+pub const URegexMatchCallback = *const fn(
+    context: ?*const anyopaque,
+    steps: i32,
+) callconv(@import("std").os.windows.WINAPI) i8;
 
-pub const URegexFindProgressCallback = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        context: ?*const anyopaque,
-        matchIndex: i64,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-    else => *const fn(
-        context: ?*const anyopaque,
-        matchIndex: i64,
-    ) callconv(@import("std").os.windows.WINAPI) i8,
-} ;
+pub const URegexFindProgressCallback = *const fn(
+    context: ?*const anyopaque,
+    matchIndex: i64,
+) callconv(@import("std").os.windows.WINAPI) i8;
 
 pub const URegionType = enum(i32) {
     UNKNOWN = 0,
@@ -7467,24 +6870,14 @@ pub const UStringTrieBuildOption = enum(i32) {
 pub const USTRINGTRIE_BUILD_FAST = UStringTrieBuildOption.FAST;
 pub const USTRINGTRIE_BUILD_SMALL = UStringTrieBuildOption.SMALL;
 
-pub const UStringCaseMapper = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        csm: ?*const UCaseMap,
-        dest: ?*u16,
-        destCapacity: i32,
-        src: ?*const u16,
-        srcLength: i32,
-        pErrorCode: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        csm: ?*const UCaseMap,
-        dest: ?*u16,
-        destCapacity: i32,
-        src: ?*const u16,
-        srcLength: i32,
-        pErrorCode: ?*UErrorCode,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const UStringCaseMapper = *const fn(
+    csm: ?*const UCaseMap,
+    dest: ?*u16,
+    destCapacity: i32,
+    src: ?*const u16,
+    srcLength: i32,
+    pErrorCode: ?*UErrorCode,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const UMessagePatternApostropheMode = enum(i32) {
     OPTIONAL = 0,
@@ -7743,74 +7136,35 @@ pub const IID_IMLangStringBufW = &IID_IMLangStringBufW_Value;
 pub const IMLangStringBufW = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufW,
-                plFlags: ?*i32,
-                pcchBuf: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufW,
-                plFlags: ?*i32,
-                pcchBuf: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LockBuf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufW,
-                cchOffset: i32,
-                cchMaxLock: i32,
-                ppszBuf: ?*?*u16,
-                pcchBuf: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufW,
-                cchOffset: i32,
-                cchMaxLock: i32,
-                ppszBuf: ?*?*u16,
-                pcchBuf: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnlockBuf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufW,
-                pszBuf: ?[*:0]const u16,
-                cchOffset: i32,
-                cchWrite: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufW,
-                pszBuf: ?[*:0]const u16,
-                cchOffset: i32,
-                cchWrite: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Insert: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufW,
-                cchOffset: i32,
-                cchMaxInsert: i32,
-                pcchActual: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufW,
-                cchOffset: i32,
-                cchMaxInsert: i32,
-                pcchActual: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufW,
-                cchOffset: i32,
-                cchDelete: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufW,
-                cchOffset: i32,
-                cchDelete: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStatus: *const fn(
+            self: *const IMLangStringBufW,
+            plFlags: ?*i32,
+            pcchBuf: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LockBuf: *const fn(
+            self: *const IMLangStringBufW,
+            cchOffset: i32,
+            cchMaxLock: i32,
+            ppszBuf: ?*?*u16,
+            pcchBuf: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnlockBuf: *const fn(
+            self: *const IMLangStringBufW,
+            pszBuf: ?[*:0]const u16,
+            cchOffset: i32,
+            cchWrite: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Insert: *const fn(
+            self: *const IMLangStringBufW,
+            cchOffset: i32,
+            cchMaxInsert: i32,
+            pcchActual: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const IMLangStringBufW,
+            cchOffset: i32,
+            cchDelete: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7844,74 +7198,35 @@ pub const IID_IMLangStringBufA = &IID_IMLangStringBufA_Value;
 pub const IMLangStringBufA = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufA,
-                plFlags: ?*i32,
-                pcchBuf: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufA,
-                plFlags: ?*i32,
-                pcchBuf: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LockBuf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufA,
-                cchOffset: i32,
-                cchMaxLock: i32,
-                ppszBuf: ?*?*CHAR,
-                pcchBuf: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufA,
-                cchOffset: i32,
-                cchMaxLock: i32,
-                ppszBuf: ?*?*CHAR,
-                pcchBuf: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnlockBuf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufA,
-                pszBuf: ?[*:0]const u8,
-                cchOffset: i32,
-                cchWrite: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufA,
-                pszBuf: ?[*:0]const u8,
-                cchOffset: i32,
-                cchWrite: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Insert: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufA,
-                cchOffset: i32,
-                cchMaxInsert: i32,
-                pcchActual: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufA,
-                cchOffset: i32,
-                cchMaxInsert: i32,
-                pcchActual: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringBufA,
-                cchOffset: i32,
-                cchDelete: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringBufA,
-                cchOffset: i32,
-                cchDelete: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStatus: *const fn(
+            self: *const IMLangStringBufA,
+            plFlags: ?*i32,
+            pcchBuf: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LockBuf: *const fn(
+            self: *const IMLangStringBufA,
+            cchOffset: i32,
+            cchMaxLock: i32,
+            ppszBuf: ?*?*CHAR,
+            pcchBuf: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnlockBuf: *const fn(
+            self: *const IMLangStringBufA,
+            pszBuf: ?[*:0]const u8,
+            cchOffset: i32,
+            cchWrite: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Insert: *const fn(
+            self: *const IMLangStringBufA,
+            cchOffset: i32,
+            cchMaxInsert: i32,
+            pcchActual: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const IMLangStringBufA,
+            cchOffset: i32,
+            cchDelete: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7945,68 +7260,33 @@ pub const IID_IMLangString = &IID_IMLangString_Value;
 pub const IMLangString = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Sync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangString,
-                fNoAccess: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangString,
-                fNoAccess: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangString,
-                plLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangString,
-                plLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMLStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangString,
-                lDestPos: i32,
-                lDestLen: i32,
-                pSrcMLStr: ?*IUnknown,
-                lSrcPos: i32,
-                lSrcLen: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangString,
-                lDestPos: i32,
-                lDestLen: i32,
-                pSrcMLStr: ?*IUnknown,
-                lSrcPos: i32,
-                lSrcLen: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMLStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangString,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                pUnkOuter: ?*IUnknown,
-                dwClsContext: u32,
-                piid: ?*const Guid,
-                ppDestMLStr: ?*?*IUnknown,
-                plDestPos: ?*i32,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangString,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                pUnkOuter: ?*IUnknown,
-                dwClsContext: u32,
-                piid: ?*const Guid,
-                ppDestMLStr: ?*?*IUnknown,
-                plDestPos: ?*i32,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Sync: *const fn(
+            self: *const IMLangString,
+            fNoAccess: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLength: *const fn(
+            self: *const IMLangString,
+            plLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMLStr: *const fn(
+            self: *const IMLangString,
+            lDestPos: i32,
+            lDestLen: i32,
+            pSrcMLStr: ?*IUnknown,
+            lSrcPos: i32,
+            lSrcLen: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMLStr: *const fn(
+            self: *const IMLangString,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            pUnkOuter: ?*IUnknown,
+            dwClsContext: u32,
+            piid: ?*const Guid,
+            ppDestMLStr: ?*?*IUnknown,
+            plDestPos: ?*i32,
+            plDestLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8036,150 +7316,70 @@ pub const IID_IMLangStringWStr = &IID_IMLangStringWStr_Value;
 pub const IMLangStringWStr = extern struct {
     pub const VTable = extern struct {
         base: IMLangString.VTable,
-        SetWStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringWStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                pszSrc: [*:0]const u16,
-                cchSrc: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringWStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                pszSrc: [*:0]const u16,
-                cchSrc: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrBufW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringWStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                pSrcBuf: ?*IMLangStringBufW,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringWStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                pSrcBuf: ?*IMLangStringBufW,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringWStr,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                pszDest: ?[*:0]u16,
-                cchDest: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringWStr,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                pszDest: ?[*:0]u16,
-                cchDest: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrBufW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringWStr,
-                lSrcPos: i32,
-                lSrcMaxLen: i32,
-                ppDestBuf: ?*?*IMLangStringBufW,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringWStr,
-                lSrcPos: i32,
-                lSrcMaxLen: i32,
-                ppDestBuf: ?*?*IMLangStringBufW,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LockWStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringWStr,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                lFlags: i32,
-                cchRequest: i32,
-                ppszDest: ?*?PWSTR,
-                pcchDest: ?*i32,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringWStr,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                lFlags: i32,
-                cchRequest: i32,
-                ppszDest: ?*?PWSTR,
-                pcchDest: ?*i32,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnlockWStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringWStr,
-                pszSrc: [*:0]const u16,
-                cchSrc: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringWStr,
-                pszSrc: [*:0]const u16,
-                cchSrc: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLocale: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringWStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                locale: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringWStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                locale: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocale: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringWStr,
-                lSrcPos: i32,
-                lSrcMaxLen: i32,
-                plocale: ?*u32,
-                plLocalePos: ?*i32,
-                plLocaleLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringWStr,
-                lSrcPos: i32,
-                lSrcMaxLen: i32,
-                plocale: ?*u32,
-                plLocalePos: ?*i32,
-                plLocaleLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetWStr: *const fn(
+            self: *const IMLangStringWStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            pszSrc: [*:0]const u16,
+            cchSrc: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrBufW: *const fn(
+            self: *const IMLangStringWStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            pSrcBuf: ?*IMLangStringBufW,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWStr: *const fn(
+            self: *const IMLangStringWStr,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            pszDest: ?[*:0]u16,
+            cchDest: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrBufW: *const fn(
+            self: *const IMLangStringWStr,
+            lSrcPos: i32,
+            lSrcMaxLen: i32,
+            ppDestBuf: ?*?*IMLangStringBufW,
+            plDestLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LockWStr: *const fn(
+            self: *const IMLangStringWStr,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            lFlags: i32,
+            cchRequest: i32,
+            ppszDest: ?*?PWSTR,
+            pcchDest: ?*i32,
+            plDestLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnlockWStr: *const fn(
+            self: *const IMLangStringWStr,
+            pszSrc: [*:0]const u16,
+            cchSrc: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLocale: *const fn(
+            self: *const IMLangStringWStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            locale: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocale: *const fn(
+            self: *const IMLangStringWStr,
+            lSrcPos: i32,
+            lSrcMaxLen: i32,
+            plocale: ?*u32,
+            plLocalePos: ?*i32,
+            plLocaleLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8225,164 +7425,77 @@ pub const IID_IMLangStringAStr = &IID_IMLangStringAStr_Value;
 pub const IMLangStringAStr = extern struct {
     pub const VTable = extern struct {
         base: IMLangString.VTable,
-        SetAStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringAStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                uCodePage: u32,
-                pszSrc: [*:0]const u8,
-                cchSrc: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringAStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                uCodePage: u32,
-                pszSrc: [*:0]const u8,
-                cchSrc: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrBufA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringAStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                uCodePage: u32,
-                pSrcBuf: ?*IMLangStringBufA,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringAStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                uCodePage: u32,
-                pSrcBuf: ?*IMLangStringBufA,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringAStr,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                uCodePageIn: u32,
-                puCodePageOut: ?*u32,
-                pszDest: ?[*:0]u8,
-                cchDest: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringAStr,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                uCodePageIn: u32,
-                puCodePageOut: ?*u32,
-                pszDest: ?[*:0]u8,
-                cchDest: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrBufA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringAStr,
-                lSrcPos: i32,
-                lSrcMaxLen: i32,
-                puDestCodePage: ?*u32,
-                ppDestBuf: ?*?*IMLangStringBufA,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringAStr,
-                lSrcPos: i32,
-                lSrcMaxLen: i32,
-                puDestCodePage: ?*u32,
-                ppDestBuf: ?*?*IMLangStringBufA,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LockAStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringAStr,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                lFlags: i32,
-                uCodePageIn: u32,
-                cchRequest: i32,
-                puCodePageOut: ?*u32,
-                ppszDest: ?*?PSTR,
-                pcchDest: ?*i32,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringAStr,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                lFlags: i32,
-                uCodePageIn: u32,
-                cchRequest: i32,
-                puCodePageOut: ?*u32,
-                ppszDest: ?*?PSTR,
-                pcchDest: ?*i32,
-                plDestLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnlockAStr: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringAStr,
-                pszSrc: [*:0]const u8,
-                cchSrc: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringAStr,
-                pszSrc: [*:0]const u8,
-                cchSrc: i32,
-                pcchActual: ?*i32,
-                plActualLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLocale: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringAStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                locale: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringAStr,
-                lDestPos: i32,
-                lDestLen: i32,
-                locale: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocale: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangStringAStr,
-                lSrcPos: i32,
-                lSrcMaxLen: i32,
-                plocale: ?*u32,
-                plLocalePos: ?*i32,
-                plLocaleLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangStringAStr,
-                lSrcPos: i32,
-                lSrcMaxLen: i32,
-                plocale: ?*u32,
-                plLocalePos: ?*i32,
-                plLocaleLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetAStr: *const fn(
+            self: *const IMLangStringAStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            uCodePage: u32,
+            pszSrc: [*:0]const u8,
+            cchSrc: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrBufA: *const fn(
+            self: *const IMLangStringAStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            uCodePage: u32,
+            pSrcBuf: ?*IMLangStringBufA,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAStr: *const fn(
+            self: *const IMLangStringAStr,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            uCodePageIn: u32,
+            puCodePageOut: ?*u32,
+            pszDest: ?[*:0]u8,
+            cchDest: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrBufA: *const fn(
+            self: *const IMLangStringAStr,
+            lSrcPos: i32,
+            lSrcMaxLen: i32,
+            puDestCodePage: ?*u32,
+            ppDestBuf: ?*?*IMLangStringBufA,
+            plDestLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LockAStr: *const fn(
+            self: *const IMLangStringAStr,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            lFlags: i32,
+            uCodePageIn: u32,
+            cchRequest: i32,
+            puCodePageOut: ?*u32,
+            ppszDest: ?*?PSTR,
+            pcchDest: ?*i32,
+            plDestLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnlockAStr: *const fn(
+            self: *const IMLangStringAStr,
+            pszSrc: [*:0]const u8,
+            cchSrc: i32,
+            pcchActual: ?*i32,
+            plActualLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLocale: *const fn(
+            self: *const IMLangStringAStr,
+            lDestPos: i32,
+            lDestLen: i32,
+            locale: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocale: *const fn(
+            self: *const IMLangStringAStr,
+            lSrcPos: i32,
+            lSrcMaxLen: i32,
+            plocale: ?*u32,
+            plLocalePos: ?*i32,
+            plLocaleLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8428,70 +7541,35 @@ pub const IID_IMLangLineBreakConsole = &IID_IMLangLineBreakConsole_Value;
 pub const IMLangLineBreakConsole = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BreakLineML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangLineBreakConsole,
-                pSrcMLStr: ?*IMLangString,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                cMinColumns: i32,
-                cMaxColumns: i32,
-                plLineLen: ?*i32,
-                plSkipLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangLineBreakConsole,
-                pSrcMLStr: ?*IMLangString,
-                lSrcPos: i32,
-                lSrcLen: i32,
-                cMinColumns: i32,
-                cMaxColumns: i32,
-                plLineLen: ?*i32,
-                plSkipLen: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BreakLineW: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangLineBreakConsole,
-                locale: u32,
-                pszSrc: [*:0]const u16,
-                cchSrc: i32,
-                cMaxColumns: i32,
-                pcchLine: ?*i32,
-                pcchSkip: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangLineBreakConsole,
-                locale: u32,
-                pszSrc: [*:0]const u16,
-                cchSrc: i32,
-                cMaxColumns: i32,
-                pcchLine: ?*i32,
-                pcchSkip: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BreakLineA: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangLineBreakConsole,
-                locale: u32,
-                uCodePage: u32,
-                pszSrc: [*:0]const u8,
-                cchSrc: i32,
-                cMaxColumns: i32,
-                pcchLine: ?*i32,
-                pcchSkip: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangLineBreakConsole,
-                locale: u32,
-                uCodePage: u32,
-                pszSrc: [*:0]const u8,
-                cchSrc: i32,
-                cMaxColumns: i32,
-                pcchLine: ?*i32,
-                pcchSkip: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BreakLineML: *const fn(
+            self: *const IMLangLineBreakConsole,
+            pSrcMLStr: ?*IMLangString,
+            lSrcPos: i32,
+            lSrcLen: i32,
+            cMinColumns: i32,
+            cMaxColumns: i32,
+            plLineLen: ?*i32,
+            plSkipLen: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BreakLineW: *const fn(
+            self: *const IMLangLineBreakConsole,
+            locale: u32,
+            pszSrc: [*:0]const u16,
+            cchSrc: i32,
+            cMaxColumns: i32,
+            pcchLine: ?*i32,
+            pcchSkip: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BreakLineA: *const fn(
+            self: *const IMLangLineBreakConsole,
+            locale: u32,
+            uCodePage: u32,
+            pszSrc: [*:0]const u8,
+            cchSrc: i32,
+            cMaxColumns: i32,
+            pcchLine: ?*i32,
+            pcchSkip: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8565,48 +7643,23 @@ pub const IID_IEnumCodePage = &IID_IEnumCodePage_Value;
 pub const IEnumCodePage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumCodePage,
-                ppEnum: ?*?*IEnumCodePage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumCodePage,
-                ppEnum: ?*?*IEnumCodePage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumCodePage,
-                celt: u32,
-                rgelt: ?*MIMECPINFO,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumCodePage,
-                celt: u32,
-                rgelt: ?*MIMECPINFO,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumCodePage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumCodePage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumCodePage,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumCodePage,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Clone: *const fn(
+            self: *const IEnumCodePage,
+            ppEnum: ?*?*IEnumCodePage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: *const fn(
+            self: *const IEnumCodePage,
+            celt: u32,
+            rgelt: ?*MIMECPINFO,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumCodePage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumCodePage,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8642,48 +7695,23 @@ pub const IID_IEnumRfc1766 = &IID_IEnumRfc1766_Value;
 pub const IEnumRfc1766 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRfc1766,
-                ppEnum: ?*?*IEnumRfc1766,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRfc1766,
-                ppEnum: ?*?*IEnumRfc1766,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRfc1766,
-                celt: u32,
-                rgelt: ?*RFC1766INFO,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRfc1766,
-                celt: u32,
-                rgelt: ?*RFC1766INFO,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRfc1766,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRfc1766,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumRfc1766,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumRfc1766,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Clone: *const fn(
+            self: *const IEnumRfc1766,
+            ppEnum: ?*?*IEnumRfc1766,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: *const fn(
+            self: *const IEnumRfc1766,
+            celt: u32,
+            rgelt: ?*RFC1766INFO,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumRfc1766,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumRfc1766,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8812,48 +7840,23 @@ pub const IID_IEnumScript = &IID_IEnumScript_Value;
 pub const IEnumScript = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumScript,
-                ppEnum: ?*?*IEnumScript,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumScript,
-                ppEnum: ?*?*IEnumScript,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumScript,
-                celt: u32,
-                rgelt: ?*SCRIPTINFO,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumScript,
-                celt: u32,
-                rgelt: ?*SCRIPTINFO,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumScript,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumScript,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumScript,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumScript,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Clone: *const fn(
+            self: *const IEnumScript,
+            ppEnum: ?*?*IEnumScript,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: *const fn(
+            self: *const IEnumScript,
+            celt: u32,
+            rgelt: ?*SCRIPTINFO,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumScript,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumScript,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -8919,106 +7922,49 @@ pub const IID_IMLangConvertCharset = &IID_IMLangConvertCharset_Value;
 pub const IMLangConvertCharset = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangConvertCharset,
-                uiSrcCodePage: u32,
-                uiDstCodePage: u32,
-                dwProperty: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangConvertCharset,
-                uiSrcCodePage: u32,
-                uiDstCodePage: u32,
-                dwProperty: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceCodePage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangConvertCharset,
-                puiSrcCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangConvertCharset,
-                puiSrcCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestinationCodePage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangConvertCharset,
-                puiDstCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangConvertCharset,
-                puiDstCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangConvertCharset,
-                pdwProperty: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangConvertCharset,
-                pdwProperty: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DoConversion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangConvertCharset,
-                // TODO: what to do with BytesParamIndex 1?
-                pSrcStr: ?*u8,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pDstStr: ?*u8,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangConvertCharset,
-                // TODO: what to do with BytesParamIndex 1?
-                pSrcStr: ?*u8,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pDstStr: ?*u8,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DoConversionToUnicode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangConvertCharset,
-                // TODO: what to do with BytesParamIndex 1?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*u32,
-                pDstStr: [*:0]u16,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangConvertCharset,
-                // TODO: what to do with BytesParamIndex 1?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*u32,
-                pDstStr: [*:0]u16,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DoConversionFromUnicode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangConvertCharset,
-                pSrcStr: [*:0]u16,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pDstStr: ?PSTR,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangConvertCharset,
-                pSrcStr: [*:0]u16,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pDstStr: ?PSTR,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IMLangConvertCharset,
+            uiSrcCodePage: u32,
+            uiDstCodePage: u32,
+            dwProperty: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceCodePage: *const fn(
+            self: *const IMLangConvertCharset,
+            puiSrcCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestinationCodePage: *const fn(
+            self: *const IMLangConvertCharset,
+            puiDstCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IMLangConvertCharset,
+            pdwProperty: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DoConversion: *const fn(
+            self: *const IMLangConvertCharset,
+            // TODO: what to do with BytesParamIndex 1?
+            pSrcStr: ?*u8,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pDstStr: ?*u8,
+            pcDstSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DoConversionToUnicode: *const fn(
+            self: *const IMLangConvertCharset,
+            // TODO: what to do with BytesParamIndex 1?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*u32,
+            pDstStr: [*:0]u16,
+            pcDstSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DoConversionFromUnicode: *const fn(
+            self: *const IMLangConvertCharset,
+            pSrcStr: [*:0]u16,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pDstStr: ?PSTR,
+            pcDstSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9060,216 +8006,96 @@ pub const IID_IMultiLanguage = &IID_IMultiLanguage_Value;
 pub const IMultiLanguage = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNumberOfCodePageInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                pcCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                pcCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCodePageInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                uiCodePage: u32,
-                pCodePageInfo: ?*MIMECPINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                uiCodePage: u32,
-                pCodePageInfo: ?*MIMECPINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFamilyCodePage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                uiCodePage: u32,
-                puiFamilyCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                uiCodePage: u32,
-                puiFamilyCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumCodePages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                grfFlags: u32,
-                ppEnumCodePage: ?*?*IEnumCodePage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                grfFlags: u32,
-                ppEnumCodePage: ?*?*IEnumCodePage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCharsetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                Charset: ?BSTR,
-                pCharsetInfo: ?*MIMECSETINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                Charset: ?BSTR,
-                pCharsetInfo: ?*MIMECSETINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsConvertible: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                pdwMode: ?*u32,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-                // TODO: what to do with BytesParamIndex 4?
-                pSrcStr: ?*u8,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 6?
-                pDstStr: ?*u8,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                pdwMode: ?*u32,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-                // TODO: what to do with BytesParamIndex 4?
-                pSrcStr: ?*u8,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 6?
-                pDstStr: ?*u8,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertStringToUnicode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*u32,
-                pDstStr: ?[*:0]u16,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*u32,
-                pDstStr: ?[*:0]u16,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertStringFromUnicode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                pSrcStr: ?[*:0]u16,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 5?
-                pDstStr: ?PSTR,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                pSrcStr: ?[*:0]u16,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 5?
-                pDstStr: ?PSTR,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertStringReset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRfc1766FromLcid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                Locale: u32,
-                pbstrRfc1766: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                Locale: u32,
-                pbstrRfc1766: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLcidFromRfc1766: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                pLocale: ?*u32,
-                bstrRfc1766: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                pLocale: ?*u32,
-                bstrRfc1766: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumRfc1766: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                ppEnumRfc1766: ?*?*IEnumRfc1766,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                ppEnumRfc1766: ?*?*IEnumRfc1766,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRfc1766Info: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                Locale: u32,
-                pRfc1766Info: ?*RFC1766INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                Locale: u32,
-                pRfc1766Info: ?*RFC1766INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateConvertCharset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage,
-                uiSrcCodePage: u32,
-                uiDstCodePage: u32,
-                dwProperty: u32,
-                ppMLangConvertCharset: ?*?*IMLangConvertCharset,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage,
-                uiSrcCodePage: u32,
-                uiDstCodePage: u32,
-                dwProperty: u32,
-                ppMLangConvertCharset: ?*?*IMLangConvertCharset,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetNumberOfCodePageInfo: *const fn(
+            self: *const IMultiLanguage,
+            pcCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodePageInfo: *const fn(
+            self: *const IMultiLanguage,
+            uiCodePage: u32,
+            pCodePageInfo: ?*MIMECPINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFamilyCodePage: *const fn(
+            self: *const IMultiLanguage,
+            uiCodePage: u32,
+            puiFamilyCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumCodePages: *const fn(
+            self: *const IMultiLanguage,
+            grfFlags: u32,
+            ppEnumCodePage: ?*?*IEnumCodePage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCharsetInfo: *const fn(
+            self: *const IMultiLanguage,
+            Charset: ?BSTR,
+            pCharsetInfo: ?*MIMECSETINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsConvertible: *const fn(
+            self: *const IMultiLanguage,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertString: *const fn(
+            self: *const IMultiLanguage,
+            pdwMode: ?*u32,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+            // TODO: what to do with BytesParamIndex 4?
+            pSrcStr: ?*u8,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 6?
+            pDstStr: ?*u8,
+            pcDstSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertStringToUnicode: *const fn(
+            self: *const IMultiLanguage,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*u32,
+            pDstStr: ?[*:0]u16,
+            pcDstSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertStringFromUnicode: *const fn(
+            self: *const IMultiLanguage,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            pSrcStr: ?[*:0]u16,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 5?
+            pDstStr: ?PSTR,
+            pcDstSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertStringReset: *const fn(
+            self: *const IMultiLanguage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRfc1766FromLcid: *const fn(
+            self: *const IMultiLanguage,
+            Locale: u32,
+            pbstrRfc1766: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLcidFromRfc1766: *const fn(
+            self: *const IMultiLanguage,
+            pLocale: ?*u32,
+            bstrRfc1766: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumRfc1766: *const fn(
+            self: *const IMultiLanguage,
+            ppEnumRfc1766: ?*?*IEnumRfc1766,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRfc1766Info: *const fn(
+            self: *const IMultiLanguage,
+            Locale: u32,
+            pRfc1766Info: ?*RFC1766INFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateConvertCharset: *const fn(
+            self: *const IMultiLanguage,
+            uiSrcCodePage: u32,
+            uiDstCodePage: u32,
+            dwProperty: u32,
+            ppMLangConvertCharset: ?*?*IMLangConvertCharset,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9383,424 +8209,188 @@ pub const IID_IMultiLanguage2 = &IID_IMultiLanguage2_Value;
 pub const IMultiLanguage2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNumberOfCodePageInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                pcCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                pcCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCodePageInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                LangId: u16,
-                pCodePageInfo: ?*MIMECPINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                LangId: u16,
-                pCodePageInfo: ?*MIMECPINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFamilyCodePage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                puiFamilyCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                puiFamilyCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumCodePages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                grfFlags: u32,
-                LangId: u16,
-                ppEnumCodePage: ?*?*IEnumCodePage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                grfFlags: u32,
-                LangId: u16,
-                ppEnumCodePage: ?*?*IEnumCodePage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCharsetInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                Charset: ?BSTR,
-                pCharsetInfo: ?*MIMECSETINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                Charset: ?BSTR,
-                pCharsetInfo: ?*MIMECSETINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsConvertible: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-                // TODO: what to do with BytesParamIndex 4?
-                pSrcStr: ?*u8,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 6?
-                pDstStr: ?*u8,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-                // TODO: what to do with BytesParamIndex 4?
-                pSrcStr: ?*u8,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 6?
-                pDstStr: ?*u8,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertStringToUnicode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*u32,
-                pDstStr: ?[*:0]u16,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*u32,
-                pDstStr: ?[*:0]u16,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertStringFromUnicode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                pSrcStr: ?[*:0]u16,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 5?
-                pDstStr: ?PSTR,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                pSrcStr: ?[*:0]u16,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 5?
-                pDstStr: ?PSTR,
-                pcDstSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertStringReset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRfc1766FromLcid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                Locale: u32,
-                pbstrRfc1766: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                Locale: u32,
-                pbstrRfc1766: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLcidFromRfc1766: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                pLocale: ?*u32,
-                bstrRfc1766: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                pLocale: ?*u32,
-                bstrRfc1766: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumRfc1766: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                LangId: u16,
-                ppEnumRfc1766: ?*?*IEnumRfc1766,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                LangId: u16,
-                ppEnumRfc1766: ?*?*IEnumRfc1766,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRfc1766Info: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                Locale: u32,
-                LangId: u16,
-                pRfc1766Info: ?*RFC1766INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                Locale: u32,
-                LangId: u16,
-                pRfc1766Info: ?*RFC1766INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateConvertCharset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                uiSrcCodePage: u32,
-                uiDstCodePage: u32,
-                dwProperty: u32,
-                ppMLangConvertCharset: ?*?*IMLangConvertCharset,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                uiSrcCodePage: u32,
-                uiDstCodePage: u32,
-                dwProperty: u32,
-                ppMLangConvertCharset: ?*?*IMLangConvertCharset,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertStringInIStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwFlag: u32,
-                lpFallBack: ?PWSTR,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-                pstmIn: ?*IStream,
-                pstmOut: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwFlag: u32,
-                lpFallBack: ?PWSTR,
-                dwSrcEncoding: u32,
-                dwDstEncoding: u32,
-                pstmIn: ?*IStream,
-                pstmOut: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertStringToUnicodeEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*u32,
-                pDstStr: [*:0]u16,
-                pcDstSize: ?*u32,
-                dwFlag: u32,
-                lpFallBack: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*u32,
-                pDstStr: [*:0]u16,
-                pcDstSize: ?*u32,
-                dwFlag: u32,
-                lpFallBack: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertStringFromUnicodeEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                pSrcStr: [*:0]u16,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 5?
-                pDstStr: ?PSTR,
-                pcDstSize: ?*u32,
-                dwFlag: u32,
-                lpFallBack: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                pdwMode: ?*u32,
-                dwEncoding: u32,
-                pSrcStr: [*:0]u16,
-                pcSrcSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 5?
-                pDstStr: ?PSTR,
-                pcDstSize: ?*u32,
-                dwFlag: u32,
-                lpFallBack: ?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DetectCodepageInIStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                dwFlag: u32,
-                dwPrefWinCodePage: u32,
-                pstmIn: ?*IStream,
-                lpEncoding: ?*DetectEncodingInfo,
-                pnScores: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                dwFlag: u32,
-                dwPrefWinCodePage: u32,
-                pstmIn: ?*IStream,
-                lpEncoding: ?*DetectEncodingInfo,
-                pnScores: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DetectInputCodepage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                dwFlag: u32,
-                dwPrefWinCodePage: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*i32,
-                lpEncoding: ?*DetectEncodingInfo,
-                pnScores: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                dwFlag: u32,
-                dwPrefWinCodePage: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pSrcStr: ?PSTR,
-                pcSrcSize: ?*i32,
-                lpEncoding: ?*DetectEncodingInfo,
-                pnScores: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ValidateCodePage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                hwnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                hwnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCodePageDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                lcid: u32,
-                lpWideCharStr: [*:0]u16,
-                cchWideChar: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                lcid: u32,
-                lpWideCharStr: [*:0]u16,
-                cchWideChar: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsCodePageInstallable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMimeDBSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                dwSource: MIMECONTF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                dwSource: MIMECONTF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNumberOfScripts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                pnScripts: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                pnScripts: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumScripts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                dwFlags: u32,
-                LangId: u16,
-                ppEnumScript: ?*?*IEnumScript,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                dwFlags: u32,
-                LangId: u16,
-                ppEnumScript: ?*?*IEnumScript,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ValidateCodePageEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                hwnd: ?HWND,
-                dwfIODControl: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage2,
-                uiCodePage: u32,
-                hwnd: ?HWND,
-                dwfIODControl: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetNumberOfCodePageInfo: *const fn(
+            self: *const IMultiLanguage2,
+            pcCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodePageInfo: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            LangId: u16,
+            pCodePageInfo: ?*MIMECPINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFamilyCodePage: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            puiFamilyCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumCodePages: *const fn(
+            self: *const IMultiLanguage2,
+            grfFlags: u32,
+            LangId: u16,
+            ppEnumCodePage: ?*?*IEnumCodePage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCharsetInfo: *const fn(
+            self: *const IMultiLanguage2,
+            Charset: ?BSTR,
+            pCharsetInfo: ?*MIMECSETINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsConvertible: *const fn(
+            self: *const IMultiLanguage2,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertString: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+            // TODO: what to do with BytesParamIndex 4?
+            pSrcStr: ?*u8,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 6?
+            pDstStr: ?*u8,
+            pcDstSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertStringToUnicode: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*u32,
+            pDstStr: ?[*:0]u16,
+            pcDstSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertStringFromUnicode: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            pSrcStr: ?[*:0]u16,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 5?
+            pDstStr: ?PSTR,
+            pcDstSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertStringReset: *const fn(
+            self: *const IMultiLanguage2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRfc1766FromLcid: *const fn(
+            self: *const IMultiLanguage2,
+            Locale: u32,
+            pbstrRfc1766: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLcidFromRfc1766: *const fn(
+            self: *const IMultiLanguage2,
+            pLocale: ?*u32,
+            bstrRfc1766: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumRfc1766: *const fn(
+            self: *const IMultiLanguage2,
+            LangId: u16,
+            ppEnumRfc1766: ?*?*IEnumRfc1766,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRfc1766Info: *const fn(
+            self: *const IMultiLanguage2,
+            Locale: u32,
+            LangId: u16,
+            pRfc1766Info: ?*RFC1766INFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateConvertCharset: *const fn(
+            self: *const IMultiLanguage2,
+            uiSrcCodePage: u32,
+            uiDstCodePage: u32,
+            dwProperty: u32,
+            ppMLangConvertCharset: ?*?*IMLangConvertCharset,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertStringInIStream: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwFlag: u32,
+            lpFallBack: ?PWSTR,
+            dwSrcEncoding: u32,
+            dwDstEncoding: u32,
+            pstmIn: ?*IStream,
+            pstmOut: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertStringToUnicodeEx: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*u32,
+            pDstStr: [*:0]u16,
+            pcDstSize: ?*u32,
+            dwFlag: u32,
+            lpFallBack: ?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertStringFromUnicodeEx: *const fn(
+            self: *const IMultiLanguage2,
+            pdwMode: ?*u32,
+            dwEncoding: u32,
+            pSrcStr: [*:0]u16,
+            pcSrcSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 5?
+            pDstStr: ?PSTR,
+            pcDstSize: ?*u32,
+            dwFlag: u32,
+            lpFallBack: ?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DetectCodepageInIStream: *const fn(
+            self: *const IMultiLanguage2,
+            dwFlag: u32,
+            dwPrefWinCodePage: u32,
+            pstmIn: ?*IStream,
+            lpEncoding: ?*DetectEncodingInfo,
+            pnScores: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DetectInputCodepage: *const fn(
+            self: *const IMultiLanguage2,
+            dwFlag: u32,
+            dwPrefWinCodePage: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pSrcStr: ?PSTR,
+            pcSrcSize: ?*i32,
+            lpEncoding: ?*DetectEncodingInfo,
+            pnScores: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ValidateCodePage: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            hwnd: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCodePageDescription: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            lcid: u32,
+            lpWideCharStr: [*:0]u16,
+            cchWideChar: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsCodePageInstallable: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMimeDBSource: *const fn(
+            self: *const IMultiLanguage2,
+            dwSource: MIMECONTF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNumberOfScripts: *const fn(
+            self: *const IMultiLanguage2,
+            pnScripts: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumScripts: *const fn(
+            self: *const IMultiLanguage2,
+            dwFlags: u32,
+            LangId: u16,
+            ppEnumScript: ?*?*IEnumScript,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ValidateCodePageEx: *const fn(
+            self: *const IMultiLanguage2,
+            uiCodePage: u32,
+            hwnd: ?HWND,
+            dwfIODControl: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -9922,62 +8512,30 @@ pub const IID_IMLangCodePages = &IID_IMLangCodePages_Value;
 pub const IMLangCodePages = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCharCodePages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangCodePages,
-                chSrc: u16,
-                pdwCodePages: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangCodePages,
-                chSrc: u16,
-                pdwCodePages: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrCodePages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangCodePages,
-                pszSrc: [*:0]const u16,
-                cchSrc: i32,
-                dwPriorityCodePages: u32,
-                pdwCodePages: ?*u32,
-                pcchCodePages: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangCodePages,
-                pszSrc: [*:0]const u16,
-                cchSrc: i32,
-                dwPriorityCodePages: u32,
-                pdwCodePages: ?*u32,
-                pcchCodePages: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CodePageToCodePages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangCodePages,
-                uCodePage: u32,
-                pdwCodePages: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangCodePages,
-                uCodePage: u32,
-                pdwCodePages: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CodePagesToCodePage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangCodePages,
-                dwCodePages: u32,
-                uDefaultCodePage: u32,
-                puCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangCodePages,
-                dwCodePages: u32,
-                uDefaultCodePage: u32,
-                puCodePage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCharCodePages: *const fn(
+            self: *const IMLangCodePages,
+            chSrc: u16,
+            pdwCodePages: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrCodePages: *const fn(
+            self: *const IMLangCodePages,
+            pszSrc: [*:0]const u16,
+            cchSrc: i32,
+            dwPriorityCodePages: u32,
+            pdwCodePages: ?*u32,
+            pcchCodePages: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CodePageToCodePages: *const fn(
+            self: *const IMLangCodePages,
+            uCodePage: u32,
+            pdwCodePages: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CodePagesToCodePage: *const fn(
+            self: *const IMLangCodePages,
+            dwCodePages: u32,
+            uDefaultCodePage: u32,
+            puCodePage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10007,54 +8565,26 @@ pub const IID_IMLangFontLink = &IID_IMLangFontLink_Value;
 pub const IMLangFontLink = extern struct {
     pub const VTable = extern struct {
         base: IMLangCodePages.VTable,
-        GetFontCodePages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink,
-                hDC: ?HDC,
-                hFont: ?HFONT,
-                pdwCodePages: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink,
-                hDC: ?HDC,
-                hFont: ?HFONT,
-                pdwCodePages: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MapFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink,
-                hDC: ?HDC,
-                dwCodePages: u32,
-                hSrcFont: ?HFONT,
-                phDestFont: ?*?HFONT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink,
-                hDC: ?HDC,
-                dwCodePages: u32,
-                hSrcFont: ?HFONT,
-                phDestFont: ?*?HFONT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink,
-                hFont: ?HFONT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink,
-                hFont: ?HFONT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResetFontMapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontCodePages: *const fn(
+            self: *const IMLangFontLink,
+            hDC: ?HDC,
+            hFont: ?HFONT,
+            pdwCodePages: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MapFont: *const fn(
+            self: *const IMLangFontLink,
+            hDC: ?HDC,
+            dwCodePages: u32,
+            hSrcFont: ?HFONT,
+            phDestFont: ?*?HFONT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseFont: *const fn(
+            self: *const IMLangFontLink,
+            hFont: ?HFONT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResetFontMapping: *const fn(
+            self: *const IMLangFontLink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10089,96 +8619,44 @@ pub const IID_IMLangFontLink2 = &IID_IMLangFontLink2_Value;
 pub const IMLangFontLink2 = extern struct {
     pub const VTable = extern struct {
         base: IMLangCodePages.VTable,
-        GetFontCodePages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink2,
-                hDC: ?HDC,
-                hFont: ?HFONT,
-                pdwCodePages: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink2,
-                hDC: ?HDC,
-                hFont: ?HFONT,
-                pdwCodePages: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink2,
-                hFont: ?HFONT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink2,
-                hFont: ?HFONT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResetFontMapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MapFont: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink2,
-                hDC: ?HDC,
-                dwCodePages: u32,
-                chSrc: u16,
-                pFont: ?*?HFONT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink2,
-                hDC: ?HDC,
-                dwCodePages: u32,
-                chSrc: u16,
-                pFont: ?*?HFONT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontUnicodeRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink2,
-                hDC: ?HDC,
-                puiRanges: ?*u32,
-                pUranges: ?*UNICODERANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink2,
-                hDC: ?HDC,
-                puiRanges: ?*u32,
-                pUranges: ?*UNICODERANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetScriptFontInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink2,
-                sid: u8,
-                dwFlags: u32,
-                puiFonts: ?*u32,
-                pScriptFont: ?*tagSCRIPFONTINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink2,
-                sid: u8,
-                dwFlags: u32,
-                puiFonts: ?*u32,
-                pScriptFont: ?*tagSCRIPFONTINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CodePageToScriptID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMLangFontLink2,
-                uiCodePage: u32,
-                pSid: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMLangFontLink2,
-                uiCodePage: u32,
-                pSid: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontCodePages: *const fn(
+            self: *const IMLangFontLink2,
+            hDC: ?HDC,
+            hFont: ?HFONT,
+            pdwCodePages: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseFont: *const fn(
+            self: *const IMLangFontLink2,
+            hFont: ?HFONT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResetFontMapping: *const fn(
+            self: *const IMLangFontLink2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MapFont: *const fn(
+            self: *const IMLangFontLink2,
+            hDC: ?HDC,
+            dwCodePages: u32,
+            chSrc: u16,
+            pFont: ?*?HFONT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontUnicodeRanges: *const fn(
+            self: *const IMLangFontLink2,
+            hDC: ?HDC,
+            puiRanges: ?*u32,
+            pUranges: ?*UNICODERANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScriptFontInfo: *const fn(
+            self: *const IMLangFontLink2,
+            sid: u8,
+            dwFlags: u32,
+            puiFonts: ?*u32,
+            pScriptFont: ?*tagSCRIPFONTINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CodePageToScriptID: *const fn(
+            self: *const IMLangFontLink2,
+            uiCodePage: u32,
+            pSid: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -10220,52 +8698,27 @@ pub const IID_IMultiLanguage3 = &IID_IMultiLanguage3_Value;
 pub const IMultiLanguage3 = extern struct {
     pub const VTable = extern struct {
         base: IMultiLanguage2.VTable,
-        DetectOutboundCodePage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage3,
-                dwFlags: u32,
-                lpWideCharStr: [*:0]const u16,
-                cchWideChar: u32,
-                puiPreferredCodePages: ?[*]const u32,
-                nPreferredCodePages: u32,
-                puiDetectedCodePages: [*]u32,
-                pnDetectedCodePages: ?*u32,
-                lpSpecialChar: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage3,
-                dwFlags: u32,
-                lpWideCharStr: [*:0]const u16,
-                cchWideChar: u32,
-                puiPreferredCodePages: ?[*]const u32,
-                nPreferredCodePages: u32,
-                puiDetectedCodePages: [*]u32,
-                pnDetectedCodePages: ?*u32,
-                lpSpecialChar: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DetectOutboundCodePageInIStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMultiLanguage3,
-                dwFlags: u32,
-                pStrIn: ?*IStream,
-                puiPreferredCodePages: ?[*]const u32,
-                nPreferredCodePages: u32,
-                puiDetectedCodePages: [*]u32,
-                pnDetectedCodePages: ?*u32,
-                lpSpecialChar: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMultiLanguage3,
-                dwFlags: u32,
-                pStrIn: ?*IStream,
-                puiPreferredCodePages: ?[*]const u32,
-                nPreferredCodePages: u32,
-                puiDetectedCodePages: [*]u32,
-                pnDetectedCodePages: ?*u32,
-                lpSpecialChar: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DetectOutboundCodePage: *const fn(
+            self: *const IMultiLanguage3,
+            dwFlags: u32,
+            lpWideCharStr: [*:0]const u16,
+            cchWideChar: u32,
+            puiPreferredCodePages: ?[*]const u32,
+            nPreferredCodePages: u32,
+            puiDetectedCodePages: [*]u32,
+            pnDetectedCodePages: ?*u32,
+            lpSpecialChar: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DetectOutboundCodePageInIStream: *const fn(
+            self: *const IMultiLanguage3,
+            dwFlags: u32,
+            pStrIn: ?*IStream,
+            puiPreferredCodePages: ?[*]const u32,
+            nPreferredCodePages: u32,
+            puiDetectedCodePages: [*]u32,
+            pnDetectedCodePages: ?*u32,
+            lpSpecialChar: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

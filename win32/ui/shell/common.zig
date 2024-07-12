@@ -172,30 +172,16 @@ pub const IID_IObjectArray = &IID_IObjectArray_Value;
 pub const IObjectArray = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IObjectArray,
-                pcObjects: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IObjectArray,
-                pcObjects: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IObjectArray,
-                uiIndex: u32,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IObjectArray,
-                uiIndex: u32,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IObjectArray,
+            pcObjects: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IObjectArray,
+            uiIndex: u32,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -218,44 +204,21 @@ pub const IID_IObjectCollection = &IID_IObjectCollection_Value;
 pub const IObjectCollection = extern struct {
     pub const VTable = extern struct {
         base: IObjectArray.VTable,
-        AddObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IObjectCollection,
-                punk: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IObjectCollection,
-                punk: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFromArray: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IObjectCollection,
-                poaSource: ?*IObjectArray,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IObjectCollection,
-                poaSource: ?*IObjectArray,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveObjectAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IObjectCollection,
-                uiIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IObjectCollection,
-                uiIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IObjectCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IObjectCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddObject: *const fn(
+            self: *const IObjectCollection,
+            punk: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFromArray: *const fn(
+            self: *const IObjectCollection,
+            poaSource: ?*IObjectArray,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveObjectAt: *const fn(
+            self: *const IObjectCollection,
+            uiIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clear: *const fn(
+            self: *const IObjectCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

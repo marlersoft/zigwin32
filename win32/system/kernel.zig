@@ -167,20 +167,12 @@ pub const OBJECTID = extern struct {
     Uniquifier: u32,
 };
 
-pub const EXCEPTION_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ExceptionRecord: ?*EXCEPTION_RECORD,
-        EstablisherFrame: ?*anyopaque,
-        ContextRecord: ?*CONTEXT,
-        DispatcherContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) EXCEPTION_DISPOSITION,
-    else => *const fn(
-        ExceptionRecord: ?*EXCEPTION_RECORD,
-        EstablisherFrame: ?*anyopaque,
-        ContextRecord: ?*CONTEXT,
-        DispatcherContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) EXCEPTION_DISPOSITION,
-} ;
+pub const EXCEPTION_ROUTINE = *const fn(
+    ExceptionRecord: ?*EXCEPTION_RECORD,
+    EstablisherFrame: ?*anyopaque,
+    ContextRecord: ?*CONTEXT,
+    DispatcherContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) EXCEPTION_DISPOSITION;
 
 pub const NT_PRODUCT_TYPE = enum(i32) {
     WinNt = 1,

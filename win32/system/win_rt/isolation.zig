@@ -11,18 +11,11 @@ pub const IID_IIsolatedEnvironmentInterop = &IID_IIsolatedEnvironmentInterop_Val
 pub const IIsolatedEnvironmentInterop = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetHostHwndInterop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIsolatedEnvironmentInterop,
-                containerHwnd: ?HWND,
-                hostHwnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIsolatedEnvironmentInterop,
-                containerHwnd: ?HWND,
-                hostHwnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetHostHwndInterop: *const fn(
+            self: *const IIsolatedEnvironmentInterop,
+            containerHwnd: ?HWND,
+            hostHwnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

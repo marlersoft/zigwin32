@@ -572,156 +572,70 @@ pub const IID_IWCNDevice = &IID_IWCNDevice_Value;
 pub const IWCNDevice = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetPassword: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                Type: WCN_PASSWORD_TYPE,
-                dwPasswordLength: u32,
-                pbPassword: [*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                Type: WCN_PASSWORD_TYPE,
-                dwPasswordLength: u32,
-                pbPassword: [*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Connect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                pNotify: ?*IWCNConnectNotify,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                pNotify: ?*IWCNConnectNotify,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                AttributeType: WCN_ATTRIBUTE_TYPE,
-                dwMaxBufferSize: u32,
-                pbBuffer: [*:0]u8,
-                pdwBufferUsed: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                AttributeType: WCN_ATTRIBUTE_TYPE,
-                dwMaxBufferSize: u32,
-                pbBuffer: [*:0]u8,
-                pdwBufferUsed: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIntegerAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                AttributeType: WCN_ATTRIBUTE_TYPE,
-                puInteger: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                AttributeType: WCN_ATTRIBUTE_TYPE,
-                puInteger: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStringAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                AttributeType: WCN_ATTRIBUTE_TYPE,
-                cchMaxString: u32,
-                wszString: [*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                AttributeType: WCN_ATTRIBUTE_TYPE,
-                cchMaxString: u32,
-                wszString: [*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNetworkProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                cchMaxStringLength: u32,
-                wszProfile: [*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                cchMaxStringLength: u32,
-                wszProfile: [*:0]u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNetworkProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                pszProfileXml: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                pszProfileXml: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVendorExtension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
-                dwMaxBufferSize: u32,
-                pbBuffer: [*:0]u8,
-                pdwBufferUsed: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
-                dwMaxBufferSize: u32,
-                pbBuffer: [*:0]u8,
-                pdwBufferUsed: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetVendorExtension: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
-                cbBuffer: u32,
-                pbBuffer: [*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
-                cbBuffer: u32,
-                pbBuffer: [*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unadvise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNFCPasswordParams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNDevice,
-                Type: WCN_PASSWORD_TYPE,
-                dwOOBPasswordID: u32,
-                dwPasswordLength: u32,
-                pbPassword: ?[*:0]const u8,
-                dwRemotePublicKeyHashLength: u32,
-                pbRemotePublicKeyHash: ?[*:0]const u8,
-                dwDHKeyBlobLength: u32,
-                pbDHKeyBlob: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNDevice,
-                Type: WCN_PASSWORD_TYPE,
-                dwOOBPasswordID: u32,
-                dwPasswordLength: u32,
-                pbPassword: ?[*:0]const u8,
-                dwRemotePublicKeyHashLength: u32,
-                pbRemotePublicKeyHash: ?[*:0]const u8,
-                dwDHKeyBlobLength: u32,
-                pbDHKeyBlob: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetPassword: *const fn(
+            self: *const IWCNDevice,
+            Type: WCN_PASSWORD_TYPE,
+            dwPasswordLength: u32,
+            pbPassword: [*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Connect: *const fn(
+            self: *const IWCNDevice,
+            pNotify: ?*IWCNConnectNotify,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAttribute: *const fn(
+            self: *const IWCNDevice,
+            AttributeType: WCN_ATTRIBUTE_TYPE,
+            dwMaxBufferSize: u32,
+            pbBuffer: [*:0]u8,
+            pdwBufferUsed: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIntegerAttribute: *const fn(
+            self: *const IWCNDevice,
+            AttributeType: WCN_ATTRIBUTE_TYPE,
+            puInteger: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStringAttribute: *const fn(
+            self: *const IWCNDevice,
+            AttributeType: WCN_ATTRIBUTE_TYPE,
+            cchMaxString: u32,
+            wszString: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNetworkProfile: *const fn(
+            self: *const IWCNDevice,
+            cchMaxStringLength: u32,
+            wszProfile: [*:0]u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNetworkProfile: *const fn(
+            self: *const IWCNDevice,
+            pszProfileXml: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVendorExtension: *const fn(
+            self: *const IWCNDevice,
+            pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
+            dwMaxBufferSize: u32,
+            pbBuffer: [*:0]u8,
+            pdwBufferUsed: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetVendorExtension: *const fn(
+            self: *const IWCNDevice,
+            pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
+            cbBuffer: u32,
+            pbBuffer: [*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unadvise: *const fn(
+            self: *const IWCNDevice,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNFCPasswordParams: *const fn(
+            self: *const IWCNDevice,
+            Type: WCN_PASSWORD_TYPE,
+            dwOOBPasswordID: u32,
+            dwPasswordLength: u32,
+            pbPassword: ?[*:0]const u8,
+            dwRemotePublicKeyHashLength: u32,
+            pbRemotePublicKeyHash: ?[*:0]const u8,
+            dwDHKeyBlobLength: u32,
+            pbDHKeyBlob: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -780,24 +694,13 @@ pub const IID_IWCNConnectNotify = &IID_IWCNConnectNotify_Value;
 pub const IWCNConnectNotify = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConnectSucceeded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNConnectNotify,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNConnectNotify,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConnectFailed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IWCNConnectNotify,
-                hrFailure: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IWCNConnectNotify,
-                hrFailure: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ConnectSucceeded: *const fn(
+            self: *const IWCNConnectNotify,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConnectFailed: *const fn(
+            self: *const IWCNConnectNotify,
+            hrFailure: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

@@ -1910,43 +1910,23 @@ pub const WSAPROTOCOL_INFOW = extern struct {
     szProtocol: [256]u16,
 };
 
-pub const LPCONDITIONPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpCallerId: ?*WSABUF,
-        lpCallerData: ?*WSABUF,
-        lpSQOS: ?*QOS,
-        lpGQOS: ?*QOS,
-        lpCalleeId: ?*WSABUF,
-        lpCalleeData: ?*WSABUF,
-        g: ?*u32,
-        dwCallbackData: usize,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpCallerId: ?*WSABUF,
-        lpCallerData: ?*WSABUF,
-        lpSQOS: ?*QOS,
-        lpGQOS: ?*QOS,
-        lpCalleeId: ?*WSABUF,
-        lpCalleeData: ?*WSABUF,
-        g: ?*u32,
-        dwCallbackData: usize,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPCONDITIONPROC = *const fn(
+    lpCallerId: ?*WSABUF,
+    lpCallerData: ?*WSABUF,
+    lpSQOS: ?*QOS,
+    lpGQOS: ?*QOS,
+    lpCalleeId: ?*WSABUF,
+    lpCalleeData: ?*WSABUF,
+    g: ?*u32,
+    dwCallbackData: usize,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSAOVERLAPPED_COMPLETION_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwError: u32,
-        cbTransferred: u32,
-        lpOverlapped: ?*OVERLAPPED,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwError: u32,
-        cbTransferred: u32,
-        lpOverlapped: ?*OVERLAPPED,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPWSAOVERLAPPED_COMPLETION_ROUTINE = *const fn(
+    dwError: u32,
+    cbTransferred: u32,
+    lpOverlapped: ?*OVERLAPPED,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const WSACOMPLETIONTYPE = enum(i32) {
     IMMEDIATELY = 0,
@@ -3364,72 +3344,37 @@ pub const TRANSMIT_FILE_BUFFERS = extern struct {
     TailLength: u32,
 };
 
-pub const LPFN_TRANSMITFILE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hSocket: ?SOCKET,
-        hFile: ?HANDLE,
-        nNumberOfBytesToWrite: u32,
-        nNumberOfBytesPerSend: u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpTransmitBuffers: ?*TRANSMIT_FILE_BUFFERS,
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hSocket: ?SOCKET,
-        hFile: ?HANDLE,
-        nNumberOfBytesToWrite: u32,
-        nNumberOfBytesPerSend: u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpTransmitBuffers: ?*TRANSMIT_FILE_BUFFERS,
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_TRANSMITFILE = *const fn(
+    hSocket: ?SOCKET,
+    hFile: ?HANDLE,
+    nNumberOfBytesToWrite: u32,
+    nNumberOfBytesPerSend: u32,
+    lpOverlapped: ?*OVERLAPPED,
+    lpTransmitBuffers: ?*TRANSMIT_FILE_BUFFERS,
+    dwReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFN_ACCEPTEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        sListenSocket: ?SOCKET,
-        sAcceptSocket: ?SOCKET,
-        lpOutputBuffer: ?*anyopaque,
-        dwReceiveDataLength: u32,
-        dwLocalAddressLength: u32,
-        dwRemoteAddressLength: u32,
-        lpdwBytesReceived: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        sListenSocket: ?SOCKET,
-        sAcceptSocket: ?SOCKET,
-        lpOutputBuffer: ?*anyopaque,
-        dwReceiveDataLength: u32,
-        dwLocalAddressLength: u32,
-        dwRemoteAddressLength: u32,
-        lpdwBytesReceived: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_ACCEPTEX = *const fn(
+    sListenSocket: ?SOCKET,
+    sAcceptSocket: ?SOCKET,
+    lpOutputBuffer: ?*anyopaque,
+    dwReceiveDataLength: u32,
+    dwLocalAddressLength: u32,
+    dwRemoteAddressLength: u32,
+    lpdwBytesReceived: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFN_GETACCEPTEXSOCKADDRS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpOutputBuffer: ?*anyopaque,
-        dwReceiveDataLength: u32,
-        dwLocalAddressLength: u32,
-        dwRemoteAddressLength: u32,
-        LocalSockaddr: ?*?*SOCKADDR,
-        LocalSockaddrLength: ?*i32,
-        RemoteSockaddr: ?*?*SOCKADDR,
-        RemoteSockaddrLength: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        lpOutputBuffer: ?*anyopaque,
-        dwReceiveDataLength: u32,
-        dwLocalAddressLength: u32,
-        dwRemoteAddressLength: u32,
-        LocalSockaddr: ?*?*SOCKADDR,
-        LocalSockaddrLength: ?*i32,
-        RemoteSockaddr: ?*?*SOCKADDR,
-        RemoteSockaddrLength: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPFN_GETACCEPTEXSOCKADDRS = *const fn(
+    lpOutputBuffer: ?*anyopaque,
+    dwReceiveDataLength: u32,
+    dwLocalAddressLength: u32,
+    dwRemoteAddressLength: u32,
+    LocalSockaddr: ?*?*SOCKADDR,
+    LocalSockaddrLength: ?*i32,
+    RemoteSockaddr: ?*?*SOCKADDR,
+    RemoteSockaddrLength: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const TRANSMIT_PACKETS_ELEMENT = extern struct {
     dwElFlags: u32,
@@ -3443,64 +3388,33 @@ pub const TRANSMIT_PACKETS_ELEMENT = extern struct {
     },
 };
 
-pub const LPFN_TRANSMITPACKETS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hSocket: ?SOCKET,
-        lpPacketArray: ?*TRANSMIT_PACKETS_ELEMENT,
-        nElementCount: u32,
-        nSendSize: u32,
-        lpOverlapped: ?*OVERLAPPED,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hSocket: ?SOCKET,
-        lpPacketArray: ?*TRANSMIT_PACKETS_ELEMENT,
-        nElementCount: u32,
-        nSendSize: u32,
-        lpOverlapped: ?*OVERLAPPED,
-        dwFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_TRANSMITPACKETS = *const fn(
+    hSocket: ?SOCKET,
+    lpPacketArray: ?*TRANSMIT_PACKETS_ELEMENT,
+    nElementCount: u32,
+    nSendSize: u32,
+    lpOverlapped: ?*OVERLAPPED,
+    dwFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFN_CONNECTEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*const SOCKADDR,
-        namelen: i32,
-        // TODO: what to do with BytesParamIndex 4?
-        lpSendBuffer: ?*anyopaque,
-        dwSendDataLength: u32,
-        lpdwBytesSent: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*const SOCKADDR,
-        namelen: i32,
-        // TODO: what to do with BytesParamIndex 4?
-        lpSendBuffer: ?*anyopaque,
-        dwSendDataLength: u32,
-        lpdwBytesSent: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_CONNECTEX = *const fn(
+    s: ?SOCKET,
+    // TODO: what to do with BytesParamIndex 2?
+    name: ?*const SOCKADDR,
+    namelen: i32,
+    // TODO: what to do with BytesParamIndex 4?
+    lpSendBuffer: ?*anyopaque,
+    dwSendDataLength: u32,
+    lpdwBytesSent: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFN_DISCONNECTEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpOverlapped: ?*OVERLAPPED,
-        dwFlags: u32,
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        s: ?SOCKET,
-        lpOverlapped: ?*OVERLAPPED,
-        dwFlags: u32,
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_DISCONNECTEX = *const fn(
+    s: ?SOCKET,
+    lpOverlapped: ?*OVERLAPPED,
+    dwFlags: u32,
+    dwReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const NLA_BLOB_DATA_TYPE = enum(i32) {
     RAW_DATA = 0,
@@ -3567,22 +3481,13 @@ pub const NLA_BLOB = extern struct {
     },
 };
 
-pub const LPFN_WSARECVMSG = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpMsg: ?*WSAMSG,
-        lpdwNumberOfBytesRecvd: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpMsg: ?*WSAMSG,
-        lpdwNumberOfBytesRecvd: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPFN_WSARECVMSG = *const fn(
+    s: ?SOCKET,
+    lpMsg: ?*WSAMSG,
+    lpdwNumberOfBytesRecvd: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+    lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const WSAPOLLDATA = extern struct {
     result: i32,
@@ -3599,130 +3504,64 @@ pub const WSASENDMSG = extern struct {
     lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
 };
 
-pub const LPFN_WSASENDMSG = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpMsg: ?*WSAMSG,
-        dwFlags: u32,
-        lpNumberOfBytesSent: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpMsg: ?*WSAMSG,
-        dwFlags: u32,
-        lpNumberOfBytesSent: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPFN_WSASENDMSG = *const fn(
+    s: ?SOCKET,
+    lpMsg: ?*WSAMSG,
+    dwFlags: u32,
+    lpNumberOfBytesSent: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+    lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPFN_WSAPOLL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        fdarray: ?*WSAPOLLFD,
-        nfds: u32,
-        timeout: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        fdarray: ?*WSAPOLLFD,
-        nfds: u32,
-        timeout: i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPFN_WSAPOLL = *const fn(
+    fdarray: ?*WSAPOLLFD,
+    nfds: u32,
+    timeout: i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPFN_RIORECEIVE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        SocketQueue: ?*RIO_RQ_t,
-        pData: [*]RIO_BUF,
-        DataBufferCount: u32,
-        Flags: u32,
-        RequestContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        SocketQueue: ?*RIO_RQ_t,
-        pData: [*]RIO_BUF,
-        DataBufferCount: u32,
-        Flags: u32,
-        RequestContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_RIORECEIVE = *const fn(
+    SocketQueue: ?*RIO_RQ_t,
+    pData: [*]RIO_BUF,
+    DataBufferCount: u32,
+    Flags: u32,
+    RequestContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFN_RIORECEIVEEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        SocketQueue: ?*RIO_RQ_t,
-        pData: [*]RIO_BUF,
-        DataBufferCount: u32,
-        pLocalAddress: ?*RIO_BUF,
-        pRemoteAddress: ?*RIO_BUF,
-        pControlContext: ?*RIO_BUF,
-        pFlags: ?*RIO_BUF,
-        Flags: u32,
-        RequestContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        SocketQueue: ?*RIO_RQ_t,
-        pData: [*]RIO_BUF,
-        DataBufferCount: u32,
-        pLocalAddress: ?*RIO_BUF,
-        pRemoteAddress: ?*RIO_BUF,
-        pControlContext: ?*RIO_BUF,
-        pFlags: ?*RIO_BUF,
-        Flags: u32,
-        RequestContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPFN_RIORECEIVEEX = *const fn(
+    SocketQueue: ?*RIO_RQ_t,
+    pData: [*]RIO_BUF,
+    DataBufferCount: u32,
+    pLocalAddress: ?*RIO_BUF,
+    pRemoteAddress: ?*RIO_BUF,
+    pControlContext: ?*RIO_BUF,
+    pFlags: ?*RIO_BUF,
+    Flags: u32,
+    RequestContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPFN_RIOSEND = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        SocketQueue: ?*RIO_RQ_t,
-        pData: [*]RIO_BUF,
-        DataBufferCount: u32,
-        Flags: u32,
-        RequestContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        SocketQueue: ?*RIO_RQ_t,
-        pData: [*]RIO_BUF,
-        DataBufferCount: u32,
-        Flags: u32,
-        RequestContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_RIOSEND = *const fn(
+    SocketQueue: ?*RIO_RQ_t,
+    pData: [*]RIO_BUF,
+    DataBufferCount: u32,
+    Flags: u32,
+    RequestContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFN_RIOSENDEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        SocketQueue: ?*RIO_RQ_t,
-        pData: [*]RIO_BUF,
-        DataBufferCount: u32,
-        pLocalAddress: ?*RIO_BUF,
-        pRemoteAddress: ?*RIO_BUF,
-        pControlContext: ?*RIO_BUF,
-        pFlags: ?*RIO_BUF,
-        Flags: u32,
-        RequestContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        SocketQueue: ?*RIO_RQ_t,
-        pData: [*]RIO_BUF,
-        DataBufferCount: u32,
-        pLocalAddress: ?*RIO_BUF,
-        pRemoteAddress: ?*RIO_BUF,
-        pControlContext: ?*RIO_BUF,
-        pFlags: ?*RIO_BUF,
-        Flags: u32,
-        RequestContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_RIOSENDEX = *const fn(
+    SocketQueue: ?*RIO_RQ_t,
+    pData: [*]RIO_BUF,
+    DataBufferCount: u32,
+    pLocalAddress: ?*RIO_BUF,
+    pRemoteAddress: ?*RIO_BUF,
+    pControlContext: ?*RIO_BUF,
+    pFlags: ?*RIO_BUF,
+    Flags: u32,
+    RequestContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFN_RIOCLOSECOMPLETIONQUEUE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        CQ: ?*RIO_CQ_t,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        CQ: ?*RIO_CQ_t,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPFN_RIOCLOSECOMPLETIONQUEUE = *const fn(
+    CQ: ?*RIO_CQ_t,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const RIO_NOTIFICATION_COMPLETION_TYPE = enum(i32) {
     EVENT_COMPLETION = 1,
@@ -3746,105 +3585,51 @@ pub const RIO_NOTIFICATION_COMPLETION = extern struct {
     },
 };
 
-pub const LPFN_RIOCREATECOMPLETIONQUEUE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        QueueSize: u32,
-        NotificationCompletion: ?*RIO_NOTIFICATION_COMPLETION,
-    ) callconv(@import("std").os.windows.WINAPI) ?*RIO_CQ_t,
-    else => *const fn(
-        QueueSize: u32,
-        NotificationCompletion: ?*RIO_NOTIFICATION_COMPLETION,
-    ) callconv(@import("std").os.windows.WINAPI) ?*RIO_CQ_t,
-} ;
+pub const LPFN_RIOCREATECOMPLETIONQUEUE = *const fn(
+    QueueSize: u32,
+    NotificationCompletion: ?*RIO_NOTIFICATION_COMPLETION,
+) callconv(@import("std").os.windows.WINAPI) ?*RIO_CQ_t;
 
-pub const LPFN_RIOCREATEREQUESTQUEUE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Socket: ?SOCKET,
-        MaxOutstandingReceive: u32,
-        MaxReceiveDataBuffers: u32,
-        MaxOutstandingSend: u32,
-        MaxSendDataBuffers: u32,
-        ReceiveCQ: ?*RIO_CQ_t,
-        SendCQ: ?*RIO_CQ_t,
-        SocketContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) ?*RIO_RQ_t,
-    else => *const fn(
-        Socket: ?SOCKET,
-        MaxOutstandingReceive: u32,
-        MaxReceiveDataBuffers: u32,
-        MaxOutstandingSend: u32,
-        MaxSendDataBuffers: u32,
-        ReceiveCQ: ?*RIO_CQ_t,
-        SendCQ: ?*RIO_CQ_t,
-        SocketContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) ?*RIO_RQ_t,
-} ;
+pub const LPFN_RIOCREATEREQUESTQUEUE = *const fn(
+    Socket: ?SOCKET,
+    MaxOutstandingReceive: u32,
+    MaxReceiveDataBuffers: u32,
+    MaxOutstandingSend: u32,
+    MaxSendDataBuffers: u32,
+    ReceiveCQ: ?*RIO_CQ_t,
+    SendCQ: ?*RIO_CQ_t,
+    SocketContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) ?*RIO_RQ_t;
 
-pub const LPFN_RIODEQUEUECOMPLETION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        CQ: ?*RIO_CQ_t,
-        Array: [*]RIORESULT,
-        ArraySize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        CQ: ?*RIO_CQ_t,
-        Array: [*]RIORESULT,
-        ArraySize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPFN_RIODEQUEUECOMPLETION = *const fn(
+    CQ: ?*RIO_CQ_t,
+    Array: [*]RIORESULT,
+    ArraySize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPFN_RIODEREGISTERBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        BufferId: ?*RIO_BUFFERID_t,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        BufferId: ?*RIO_BUFFERID_t,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPFN_RIODEREGISTERBUFFER = *const fn(
+    BufferId: ?*RIO_BUFFERID_t,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPFN_RIONOTIFY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        CQ: ?*RIO_CQ_t,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        CQ: ?*RIO_CQ_t,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPFN_RIONOTIFY = *const fn(
+    CQ: ?*RIO_CQ_t,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPFN_RIOREGISTERBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        DataBuffer: ?[*]u8,
-        DataLength: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*RIO_BUFFERID_t,
-    else => *const fn(
-        DataBuffer: ?[*]u8,
-        DataLength: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*RIO_BUFFERID_t,
-} ;
+pub const LPFN_RIOREGISTERBUFFER = *const fn(
+    DataBuffer: ?[*]u8,
+    DataLength: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*RIO_BUFFERID_t;
 
-pub const LPFN_RIORESIZECOMPLETIONQUEUE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        CQ: ?*RIO_CQ_t,
-        QueueSize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        CQ: ?*RIO_CQ_t,
-        QueueSize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_RIORESIZECOMPLETIONQUEUE = *const fn(
+    CQ: ?*RIO_CQ_t,
+    QueueSize: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPFN_RIORESIZEREQUESTQUEUE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        RQ: ?*RIO_RQ_t,
-        MaxOutstandingReceive: u32,
-        MaxOutstandingSend: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        RQ: ?*RIO_RQ_t,
-        MaxOutstandingReceive: u32,
-        MaxOutstandingSend: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPFN_RIORESIZEREQUESTQUEUE = *const fn(
+    RQ: ?*RIO_RQ_t,
+    MaxOutstandingReceive: u32,
+    MaxOutstandingSend: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const RIO_EXTENSION_FUNCTION_TABLE = extern struct {
     cbSize: u32,
@@ -3874,593 +3659,283 @@ pub const WSATHREADID = extern struct {
     Reserved: usize,
 };
 
-pub const LPBLOCKINGCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwContext: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        dwContext: usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPBLOCKINGCALLBACK = *const fn(
+    dwContext: usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPWSAUSERAPC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwContext: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwContext: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPWSAUSERAPC = *const fn(
+    dwContext: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPWSPACCEPT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        addr: ?*SOCKADDR,
-        addrlen: ?*i32,
-        lpfnCondition: ?LPCONDITIONPROC,
-        dwCallbackData: usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-    else => *const fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        addr: ?*SOCKADDR,
-        addrlen: ?*i32,
-        lpfnCondition: ?LPCONDITIONPROC,
-        dwCallbackData: usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-} ;
+pub const LPWSPACCEPT = *const fn(
+    s: ?SOCKET,
+    // TODO: what to do with BytesParamIndex 2?
+    addr: ?*SOCKADDR,
+    addrlen: ?*i32,
+    lpfnCondition: ?LPCONDITIONPROC,
+    dwCallbackData: usize,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) ?SOCKET;
 
-pub const LPWSPADDRESSTOSTRING = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        // TODO: what to do with BytesParamIndex 1?
-        lpsaAddress: ?*SOCKADDR,
-        dwAddressLength: u32,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        lpszAddressString: [*:0]u16,
-        lpdwAddressStringLength: ?*u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        // TODO: what to do with BytesParamIndex 1?
-        lpsaAddress: ?*SOCKADDR,
-        dwAddressLength: u32,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        lpszAddressString: [*:0]u16,
-        lpdwAddressStringLength: ?*u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPADDRESSTOSTRING = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    lpsaAddress: ?*SOCKADDR,
+    dwAddressLength: u32,
+    lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
+    lpszAddressString: [*:0]u16,
+    lpdwAddressStringLength: ?*u32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPASYNCSELECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        hWnd: ?HWND,
-        wMsg: u32,
-        lEvent: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        hWnd: ?HWND,
-        wMsg: u32,
-        lEvent: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPASYNCSELECT = *const fn(
+    s: ?SOCKET,
+    hWnd: ?HWND,
+    wMsg: u32,
+    lEvent: i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPBIND = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*const SOCKADDR,
-        namelen: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*const SOCKADDR,
-        namelen: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPBIND = *const fn(
+    s: ?SOCKET,
+    // TODO: what to do with BytesParamIndex 2?
+    name: ?*const SOCKADDR,
+    namelen: i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPCANCELBLOCKINGCALL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPCANCELBLOCKINGCALL = *const fn(
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPCLEANUP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPCLEANUP = *const fn(
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPCLOSESOCKET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPCLOSESOCKET = *const fn(
+    s: ?SOCKET,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPCONNECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*const SOCKADDR,
-        namelen: i32,
-        lpCallerData: ?*WSABUF,
-        lpCalleeData: ?*WSABUF,
-        lpSQOS: ?*QOS,
-        lpGQOS: ?*QOS,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*const SOCKADDR,
-        namelen: i32,
-        lpCallerData: ?*WSABUF,
-        lpCalleeData: ?*WSABUF,
-        lpSQOS: ?*QOS,
-        lpGQOS: ?*QOS,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPCONNECT = *const fn(
+    s: ?SOCKET,
+    // TODO: what to do with BytesParamIndex 2?
+    name: ?*const SOCKADDR,
+    namelen: i32,
+    lpCallerData: ?*WSABUF,
+    lpCalleeData: ?*WSABUF,
+    lpSQOS: ?*QOS,
+    lpGQOS: ?*QOS,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPDUPLICATESOCKET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        dwProcessId: u32,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        dwProcessId: u32,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPDUPLICATESOCKET = *const fn(
+    s: ?SOCKET,
+    dwProcessId: u32,
+    lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPENUMNETWORKEVENTS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        hEventObject: ?HANDLE,
-        lpNetworkEvents: ?*WSANETWORKEVENTS,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        hEventObject: ?HANDLE,
-        lpNetworkEvents: ?*WSANETWORKEVENTS,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPENUMNETWORKEVENTS = *const fn(
+    s: ?SOCKET,
+    hEventObject: ?HANDLE,
+    lpNetworkEvents: ?*WSANETWORKEVENTS,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPEVENTSELECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        hEventObject: ?HANDLE,
-        lNetworkEvents: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        hEventObject: ?HANDLE,
-        lNetworkEvents: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPEVENTSELECT = *const fn(
+    s: ?SOCKET,
+    hEventObject: ?HANDLE,
+    lNetworkEvents: i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPGETOVERLAPPEDRESULT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpOverlapped: ?*OVERLAPPED,
-        lpcbTransfer: ?*u32,
-        fWait: BOOL,
-        lpdwFlags: ?*u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        s: ?SOCKET,
-        lpOverlapped: ?*OVERLAPPED,
-        lpcbTransfer: ?*u32,
-        fWait: BOOL,
-        lpdwFlags: ?*u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPWSPGETOVERLAPPEDRESULT = *const fn(
+    s: ?SOCKET,
+    lpOverlapped: ?*OVERLAPPED,
+    lpcbTransfer: ?*u32,
+    fWait: BOOL,
+    lpdwFlags: ?*u32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPWSPGETPEERNAME = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*SOCKADDR,
-        namelen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*SOCKADDR,
-        namelen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPGETPEERNAME = *const fn(
+    s: ?SOCKET,
+    // TODO: what to do with BytesParamIndex 2?
+    name: ?*SOCKADDR,
+    namelen: ?*i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPGETSOCKNAME = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*SOCKADDR,
-        namelen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*SOCKADDR,
-        namelen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPGETSOCKNAME = *const fn(
+    s: ?SOCKET,
+    // TODO: what to do with BytesParamIndex 2?
+    name: ?*SOCKADDR,
+    namelen: ?*i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPGETSOCKOPT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        level: i32,
-        optname: i32,
-        // TODO: what to do with BytesParamIndex 4?
-        optval: ?PSTR,
-        optlen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        level: i32,
-        optname: i32,
-        // TODO: what to do with BytesParamIndex 4?
-        optval: ?PSTR,
-        optlen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPGETSOCKOPT = *const fn(
+    s: ?SOCKET,
+    level: i32,
+    optname: i32,
+    // TODO: what to do with BytesParamIndex 4?
+    optval: ?PSTR,
+    optlen: ?*i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPGETQOSBYNAME = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpQOSName: ?*WSABUF,
-        lpQOS: ?*QOS,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        s: ?SOCKET,
-        lpQOSName: ?*WSABUF,
-        lpQOS: ?*QOS,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPWSPGETQOSBYNAME = *const fn(
+    s: ?SOCKET,
+    lpQOSName: ?*WSABUF,
+    lpQOS: ?*QOS,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPWSPIOCTL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        dwIoControlCode: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        lpvInBuffer: ?*anyopaque,
-        cbInBuffer: u32,
-        // TODO: what to do with BytesParamIndex 5?
-        lpvOutBuffer: ?*anyopaque,
-        cbOutBuffer: u32,
-        lpcbBytesReturned: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        dwIoControlCode: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        lpvInBuffer: ?*anyopaque,
-        cbInBuffer: u32,
-        // TODO: what to do with BytesParamIndex 5?
-        lpvOutBuffer: ?*anyopaque,
-        cbOutBuffer: u32,
-        lpcbBytesReturned: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPIOCTL = *const fn(
+    s: ?SOCKET,
+    dwIoControlCode: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpvInBuffer: ?*anyopaque,
+    cbInBuffer: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    lpvOutBuffer: ?*anyopaque,
+    cbOutBuffer: u32,
+    lpcbBytesReturned: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+    lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
+    lpThreadId: ?*WSATHREADID,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPJOINLEAF = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*const SOCKADDR,
-        namelen: i32,
-        lpCallerData: ?*WSABUF,
-        lpCalleeData: ?*WSABUF,
-        lpSQOS: ?*QOS,
-        lpGQOS: ?*QOS,
-        dwFlags: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-    else => *const fn(
-        s: ?SOCKET,
-        // TODO: what to do with BytesParamIndex 2?
-        name: ?*const SOCKADDR,
-        namelen: i32,
-        lpCallerData: ?*WSABUF,
-        lpCalleeData: ?*WSABUF,
-        lpSQOS: ?*QOS,
-        lpGQOS: ?*QOS,
-        dwFlags: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-} ;
+pub const LPWSPJOINLEAF = *const fn(
+    s: ?SOCKET,
+    // TODO: what to do with BytesParamIndex 2?
+    name: ?*const SOCKADDR,
+    namelen: i32,
+    lpCallerData: ?*WSABUF,
+    lpCalleeData: ?*WSABUF,
+    lpSQOS: ?*QOS,
+    lpGQOS: ?*QOS,
+    dwFlags: u32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) ?SOCKET;
 
-pub const LPWSPLISTEN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        backlog: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        backlog: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPLISTEN = *const fn(
+    s: ?SOCKET,
+    backlog: i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPRECV = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpBuffers: [*]WSABUF,
-        dwBufferCount: u32,
-        lpNumberOfBytesRecvd: ?*u32,
-        lpFlags: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpBuffers: [*]WSABUF,
-        dwBufferCount: u32,
-        lpNumberOfBytesRecvd: ?*u32,
-        lpFlags: ?*u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPRECV = *const fn(
+    s: ?SOCKET,
+    lpBuffers: [*]WSABUF,
+    dwBufferCount: u32,
+    lpNumberOfBytesRecvd: ?*u32,
+    lpFlags: ?*u32,
+    lpOverlapped: ?*OVERLAPPED,
+    lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
+    lpThreadId: ?*WSATHREADID,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPRECVDISCONNECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpInboundDisconnectData: ?*WSABUF,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpInboundDisconnectData: ?*WSABUF,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPRECVDISCONNECT = *const fn(
+    s: ?SOCKET,
+    lpInboundDisconnectData: ?*WSABUF,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPRECVFROM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpBuffers: [*]WSABUF,
-        dwBufferCount: u32,
-        lpNumberOfBytesRecvd: ?*u32,
-        lpFlags: ?*u32,
-        // TODO: what to do with BytesParamIndex 6?
-        lpFrom: ?*SOCKADDR,
-        lpFromlen: ?*i32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpBuffers: [*]WSABUF,
-        dwBufferCount: u32,
-        lpNumberOfBytesRecvd: ?*u32,
-        lpFlags: ?*u32,
-        // TODO: what to do with BytesParamIndex 6?
-        lpFrom: ?*SOCKADDR,
-        lpFromlen: ?*i32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPRECVFROM = *const fn(
+    s: ?SOCKET,
+    lpBuffers: [*]WSABUF,
+    dwBufferCount: u32,
+    lpNumberOfBytesRecvd: ?*u32,
+    lpFlags: ?*u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpFrom: ?*SOCKADDR,
+    lpFromlen: ?*i32,
+    lpOverlapped: ?*OVERLAPPED,
+    lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
+    lpThreadId: ?*WSATHREADID,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPSELECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        nfds: i32,
-        readfds: ?*fd_set,
-        writefds: ?*fd_set,
-        exceptfds: ?*fd_set,
-        timeout: ?*const timeval,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        nfds: i32,
-        readfds: ?*fd_set,
-        writefds: ?*fd_set,
-        exceptfds: ?*fd_set,
-        timeout: ?*const timeval,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPSELECT = *const fn(
+    nfds: i32,
+    readfds: ?*fd_set,
+    writefds: ?*fd_set,
+    exceptfds: ?*fd_set,
+    timeout: ?*const timeval,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPSEND = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpBuffers: [*]WSABUF,
-        dwBufferCount: u32,
-        lpNumberOfBytesSent: ?*u32,
-        dwFlags: u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpBuffers: [*]WSABUF,
-        dwBufferCount: u32,
-        lpNumberOfBytesSent: ?*u32,
-        dwFlags: u32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPSEND = *const fn(
+    s: ?SOCKET,
+    lpBuffers: [*]WSABUF,
+    dwBufferCount: u32,
+    lpNumberOfBytesSent: ?*u32,
+    dwFlags: u32,
+    lpOverlapped: ?*OVERLAPPED,
+    lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
+    lpThreadId: ?*WSATHREADID,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPSENDDISCONNECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpOutboundDisconnectData: ?*WSABUF,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpOutboundDisconnectData: ?*WSABUF,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPSENDDISCONNECT = *const fn(
+    s: ?SOCKET,
+    lpOutboundDisconnectData: ?*WSABUF,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPSENDTO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpBuffers: [*]WSABUF,
-        dwBufferCount: u32,
-        lpNumberOfBytesSent: ?*u32,
-        dwFlags: u32,
-        // TODO: what to do with BytesParamIndex 6?
-        lpTo: ?*const SOCKADDR,
-        iTolen: i32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpBuffers: [*]WSABUF,
-        dwBufferCount: u32,
-        lpNumberOfBytesSent: ?*u32,
-        dwFlags: u32,
-        // TODO: what to do with BytesParamIndex 6?
-        lpTo: ?*const SOCKADDR,
-        iTolen: i32,
-        lpOverlapped: ?*OVERLAPPED,
-        lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPSENDTO = *const fn(
+    s: ?SOCKET,
+    lpBuffers: [*]WSABUF,
+    dwBufferCount: u32,
+    lpNumberOfBytesSent: ?*u32,
+    dwFlags: u32,
+    // TODO: what to do with BytesParamIndex 6?
+    lpTo: ?*const SOCKADDR,
+    iTolen: i32,
+    lpOverlapped: ?*OVERLAPPED,
+    lpCompletionRoutine: ?LPWSAOVERLAPPED_COMPLETION_ROUTINE,
+    lpThreadId: ?*WSATHREADID,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPSETSOCKOPT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        level: i32,
-        optname: i32,
-        // TODO: what to do with BytesParamIndex 4?
-        optval: ?[*:0]const u8,
-        optlen: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        level: i32,
-        optname: i32,
-        // TODO: what to do with BytesParamIndex 4?
-        optval: ?[*:0]const u8,
-        optlen: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPSETSOCKOPT = *const fn(
+    s: ?SOCKET,
+    level: i32,
+    optname: i32,
+    // TODO: what to do with BytesParamIndex 4?
+    optval: ?[*:0]const u8,
+    optlen: i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPSHUTDOWN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        how: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        how: i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPSHUTDOWN = *const fn(
+    s: ?SOCKET,
+    how: i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSPSOCKET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        af: i32,
-        type: i32,
-        protocol: i32,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        g: u32,
-        dwFlags: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-    else => *const fn(
-        af: i32,
-        type: i32,
-        protocol: i32,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        g: u32,
-        dwFlags: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-} ;
+pub const LPWSPSOCKET = *const fn(
+    af: i32,
+    type: i32,
+    protocol: i32,
+    lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
+    g: u32,
+    dwFlags: u32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) ?SOCKET;
 
-pub const LPWSPSTRINGTOADDRESS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        AddressString: ?PWSTR,
-        AddressFamily: i32,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        // TODO: what to do with BytesParamIndex 4?
-        lpAddress: ?*SOCKADDR,
-        lpAddressLength: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        AddressString: ?PWSTR,
-        AddressFamily: i32,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        // TODO: what to do with BytesParamIndex 4?
-        lpAddress: ?*SOCKADDR,
-        lpAddressLength: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPSTRINGTOADDRESS = *const fn(
+    AddressString: ?PWSTR,
+    AddressFamily: i32,
+    lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
+    // TODO: what to do with BytesParamIndex 4?
+    lpAddress: ?*SOCKADDR,
+    lpAddressLength: ?*i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const WSPPROC_TABLE = extern struct {
     lpWSPAccept: ?LPWSPACCEPT,
@@ -4495,207 +3970,98 @@ pub const WSPPROC_TABLE = extern struct {
     lpWSPStringToAddress: ?LPWSPSTRINGTOADDRESS,
 };
 
-pub const LPWPUCLOSEEVENT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hEvent: ?HANDLE,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hEvent: ?HANDLE,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPWPUCLOSEEVENT = *const fn(
+    hEvent: ?HANDLE,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPWPUCLOSESOCKETHANDLE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWPUCLOSESOCKETHANDLE = *const fn(
+    s: ?SOCKET,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWPUCREATEEVENT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-    else => *const fn(
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-} ;
+pub const LPWPUCREATEEVENT = *const fn(
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
 
-pub const LPWPUCREATESOCKETHANDLE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwCatalogEntryId: u32,
-        dwContext: usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-    else => *const fn(
-        dwCatalogEntryId: u32,
-        dwContext: usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-} ;
+pub const LPWPUCREATESOCKETHANDLE = *const fn(
+    dwCatalogEntryId: u32,
+    dwContext: usize,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) ?SOCKET;
 
-pub const LPWPUFDISSET = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        fdset: ?*fd_set,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        fdset: ?*fd_set,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWPUFDISSET = *const fn(
+    s: ?SOCKET,
+    fdset: ?*fd_set,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWPUGETPROVIDERPATH = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpszProviderDllPath: [*:0]u16,
-        lpProviderDllPathLen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpszProviderDllPath: [*:0]u16,
-        lpProviderDllPathLen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWPUGETPROVIDERPATH = *const fn(
+    lpProviderId: ?*Guid,
+    lpszProviderDllPath: [*:0]u16,
+    lpProviderDllPathLen: ?*i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWPUMODIFYIFSHANDLE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwCatalogEntryId: u32,
-        ProposedHandle: ?SOCKET,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-    else => *const fn(
-        dwCatalogEntryId: u32,
-        ProposedHandle: ?SOCKET,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) ?SOCKET,
-} ;
+pub const LPWPUMODIFYIFSHANDLE = *const fn(
+    dwCatalogEntryId: u32,
+    ProposedHandle: ?SOCKET,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) ?SOCKET;
 
-pub const LPWPUPOSTMESSAGE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWnd: ?HWND,
-        Msg: u32,
-        wParam: WPARAM,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hWnd: ?HWND,
-        Msg: u32,
-        wParam: WPARAM,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPWPUPOSTMESSAGE = *const fn(
+    hWnd: ?HWND,
+    Msg: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPWPUQUERYBLOCKINGCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwCatalogEntryId: u32,
-        lplpfnCallback: ?*?LPBLOCKINGCALLBACK,
-        lpdwContext: ?*usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        dwCatalogEntryId: u32,
-        lplpfnCallback: ?*?LPBLOCKINGCALLBACK,
-        lpdwContext: ?*usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWPUQUERYBLOCKINGCALLBACK = *const fn(
+    dwCatalogEntryId: u32,
+    lplpfnCallback: ?*?LPBLOCKINGCALLBACK,
+    lpdwContext: ?*usize,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWPUQUERYSOCKETHANDLECONTEXT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpContext: ?*usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpContext: ?*usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWPUQUERYSOCKETHANDLECONTEXT = *const fn(
+    s: ?SOCKET,
+    lpContext: ?*usize,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWPUQUEUEAPC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpThreadId: ?*WSATHREADID,
-        lpfnUserApc: ?LPWSAUSERAPC,
-        dwContext: usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpThreadId: ?*WSATHREADID,
-        lpfnUserApc: ?LPWSAUSERAPC,
-        dwContext: usize,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWPUQUEUEAPC = *const fn(
+    lpThreadId: ?*WSATHREADID,
+    lpfnUserApc: ?LPWSAUSERAPC,
+    dwContext: usize,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWPURESETEVENT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hEvent: ?HANDLE,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hEvent: ?HANDLE,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPWPURESETEVENT = *const fn(
+    hEvent: ?HANDLE,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPWPUSETEVENT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hEvent: ?HANDLE,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hEvent: ?HANDLE,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const LPWPUSETEVENT = *const fn(
+    hEvent: ?HANDLE,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const LPWPUOPENCURRENTTHREAD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWPUOPENCURRENTTHREAD = *const fn(
+    lpThreadId: ?*WSATHREADID,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWPUCLOSETHREAD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpThreadId: ?*WSATHREADID,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWPUCLOSETHREAD = *const fn(
+    lpThreadId: ?*WSATHREADID,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWPUCOMPLETEOVERLAPPEDREQUEST = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        s: ?SOCKET,
-        lpOverlapped: ?*OVERLAPPED,
-        dwError: u32,
-        cbTransferred: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        s: ?SOCKET,
-        lpOverlapped: ?*OVERLAPPED,
-        dwError: u32,
-        cbTransferred: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWPUCOMPLETEOVERLAPPEDREQUEST = *const fn(
+    s: ?SOCKET,
+    lpOverlapped: ?*OVERLAPPED,
+    dwError: u32,
+    cbTransferred: u32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const WSPUPCALLTABLE = extern struct {
     lpWPUCloseEvent: ?LPWPUCLOSEEVENT,
@@ -4715,99 +4081,49 @@ pub const WSPUPCALLTABLE = extern struct {
     lpWPUCloseThread: ?LPWPUCLOSETHREAD,
 };
 
-pub const LPWSPSTARTUP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        wVersionRequested: u16,
-        lpWSPData: ?*WSPData,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        UpcallTable: WSPUPCALLTABLE,
-        lpProcTable: ?*WSPPROC_TABLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        wVersionRequested: u16,
-        lpWSPData: ?*WSPData,
-        lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
-        UpcallTable: WSPUPCALLTABLE,
-        lpProcTable: ?*WSPPROC_TABLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSPSTARTUP = *const fn(
+    wVersionRequested: u16,
+    lpWSPData: ?*WSPData,
+    lpProtocolInfo: ?*WSAPROTOCOL_INFOW,
+    UpcallTable: WSPUPCALLTABLE,
+    lpProcTable: ?*WSPPROC_TABLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSCENUMPROTOCOLS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpiProtocols: ?*i32,
-        // TODO: what to do with BytesParamIndex 2?
-        lpProtocolBuffer: ?*WSAPROTOCOL_INFOW,
-        lpdwBufferLength: ?*u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpiProtocols: ?*i32,
-        // TODO: what to do with BytesParamIndex 2?
-        lpProtocolBuffer: ?*WSAPROTOCOL_INFOW,
-        lpdwBufferLength: ?*u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCENUMPROTOCOLS = *const fn(
+    lpiProtocols: ?*i32,
+    // TODO: what to do with BytesParamIndex 2?
+    lpProtocolBuffer: ?*WSAPROTOCOL_INFOW,
+    lpdwBufferLength: ?*u32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSCDEINSTALLPROVIDER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCDEINSTALLPROVIDER = *const fn(
+    lpProviderId: ?*Guid,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSCINSTALLPROVIDER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpszProviderDllPath: ?[*:0]const u16,
-        lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
-        dwNumberOfEntries: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpszProviderDllPath: ?[*:0]const u16,
-        lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
-        dwNumberOfEntries: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCINSTALLPROVIDER = *const fn(
+    lpProviderId: ?*Guid,
+    lpszProviderDllPath: ?[*:0]const u16,
+    lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
+    dwNumberOfEntries: u32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSCGETPROVIDERPATH = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpszProviderDllPath: [*:0]u16,
-        lpProviderDllPathLen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpszProviderDllPath: [*:0]u16,
-        lpProviderDllPathLen: ?*i32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCGETPROVIDERPATH = *const fn(
+    lpProviderId: ?*Guid,
+    lpszProviderDllPath: [*:0]u16,
+    lpProviderDllPathLen: ?*i32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSCUPDATEPROVIDER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpszProviderDllPath: ?[*:0]const u16,
-        lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
-        dwNumberOfEntries: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpszProviderDllPath: ?[*:0]const u16,
-        lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
-        dwNumberOfEntries: u32,
-        lpErrno: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCUPDATEPROVIDER = *const fn(
+    lpProviderId: ?*Guid,
+    lpszProviderDllPath: ?[*:0]const u16,
+    lpProtocolInfoList: [*]const WSAPROTOCOL_INFOW,
+    dwNumberOfEntries: u32,
+    lpErrno: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const WSC_PROVIDER_INFO_TYPE = enum(i32) {
     LspCategories = 0,
@@ -4821,175 +4137,84 @@ pub const WSC_PROVIDER_AUDIT_INFO = extern struct {
     Reserved: ?*anyopaque,
 };
 
-pub const LPWSCINSTALLNAMESPACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpszIdentifier: ?PWSTR,
-        lpszPathName: ?PWSTR,
-        dwNameSpace: u32,
-        dwVersion: u32,
-        lpProviderId: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpszIdentifier: ?PWSTR,
-        lpszPathName: ?PWSTR,
-        dwNameSpace: u32,
-        dwVersion: u32,
-        lpProviderId: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCINSTALLNAMESPACE = *const fn(
+    lpszIdentifier: ?PWSTR,
+    lpszPathName: ?PWSTR,
+    dwNameSpace: u32,
+    dwVersion: u32,
+    lpProviderId: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSCUNINSTALLNAMESPACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCUNINSTALLNAMESPACE = *const fn(
+    lpProviderId: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSCENABLENSPROVIDER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        fEnable: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        fEnable: BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCENABLENSPROVIDER = *const fn(
+    lpProviderId: ?*Guid,
+    fEnable: BOOL,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPCLEANUP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPCLEANUP = *const fn(
+    lpProviderId: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPLOOKUPSERVICEBEGIN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpqsRestrictions: ?*WSAQUERYSETW,
-        lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
-        dwControlFlags: u32,
-        lphLookup: ?*?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpqsRestrictions: ?*WSAQUERYSETW,
-        lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
-        dwControlFlags: u32,
-        lphLookup: ?*?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPLOOKUPSERVICEBEGIN = *const fn(
+    lpProviderId: ?*Guid,
+    lpqsRestrictions: ?*WSAQUERYSETW,
+    lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
+    dwControlFlags: u32,
+    lphLookup: ?*?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPLOOKUPSERVICENEXT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hLookup: ?HANDLE,
-        dwControlFlags: u32,
-        lpdwBufferLength: ?*u32,
-        // TODO: what to do with BytesParamIndex 2?
-        lpqsResults: ?*WSAQUERYSETW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hLookup: ?HANDLE,
-        dwControlFlags: u32,
-        lpdwBufferLength: ?*u32,
-        // TODO: what to do with BytesParamIndex 2?
-        lpqsResults: ?*WSAQUERYSETW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPLOOKUPSERVICENEXT = *const fn(
+    hLookup: ?HANDLE,
+    dwControlFlags: u32,
+    lpdwBufferLength: ?*u32,
+    // TODO: what to do with BytesParamIndex 2?
+    lpqsResults: ?*WSAQUERYSETW,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPIOCTL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hLookup: ?HANDLE,
-        dwControlCode: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        lpvInBuffer: ?*anyopaque,
-        cbInBuffer: u32,
-        // TODO: what to do with BytesParamIndex 5?
-        lpvOutBuffer: ?*anyopaque,
-        cbOutBuffer: u32,
-        lpcbBytesReturned: ?*u32,
-        lpCompletion: ?*WSACOMPLETION,
-        lpThreadId: ?*WSATHREADID,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hLookup: ?HANDLE,
-        dwControlCode: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        lpvInBuffer: ?*anyopaque,
-        cbInBuffer: u32,
-        // TODO: what to do with BytesParamIndex 5?
-        lpvOutBuffer: ?*anyopaque,
-        cbOutBuffer: u32,
-        lpcbBytesReturned: ?*u32,
-        lpCompletion: ?*WSACOMPLETION,
-        lpThreadId: ?*WSATHREADID,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPIOCTL = *const fn(
+    hLookup: ?HANDLE,
+    dwControlCode: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    lpvInBuffer: ?*anyopaque,
+    cbInBuffer: u32,
+    // TODO: what to do with BytesParamIndex 5?
+    lpvOutBuffer: ?*anyopaque,
+    cbOutBuffer: u32,
+    lpcbBytesReturned: ?*u32,
+    lpCompletion: ?*WSACOMPLETION,
+    lpThreadId: ?*WSATHREADID,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPLOOKUPSERVICEEND = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hLookup: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hLookup: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPLOOKUPSERVICEEND = *const fn(
+    hLookup: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPSETSERVICE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
-        lpqsRegInfo: ?*WSAQUERYSETW,
-        essOperation: WSAESETSERVICEOP,
-        dwControlFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
-        lpqsRegInfo: ?*WSAQUERYSETW,
-        essOperation: WSAESETSERVICEOP,
-        dwControlFlags: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPSETSERVICE = *const fn(
+    lpProviderId: ?*Guid,
+    lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
+    lpqsRegInfo: ?*WSAQUERYSETW,
+    essOperation: WSAESETSERVICEOP,
+    dwControlFlags: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPINSTALLSERVICECLASS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPINSTALLSERVICECLASS = *const fn(
+    lpProviderId: ?*Guid,
+    lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPREMOVESERVICECLASS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpServiceClassId: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpServiceClassId: ?*Guid,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPREMOVESERVICECLASS = *const fn(
+    lpProviderId: ?*Guid,
+    lpServiceClassId: ?*Guid,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPGETSERVICECLASSINFO = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpdwBufSize: ?*u32,
-        lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpdwBufSize: ?*u32,
-        lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPGETSERVICECLASSINFO = *const fn(
+    lpProviderId: ?*Guid,
+    lpdwBufSize: ?*u32,
+    lpServiceClassInfo: ?*WSASERVICECLASSINFOW,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const NSP_ROUTINE = extern struct {
     cbSize: u32,
@@ -5006,111 +4231,54 @@ pub const NSP_ROUTINE = extern struct {
     NSPIoctl: ?LPNSPIOCTL,
 };
 
-pub const LPNSPSTARTUP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpnspRoutines: ?*NSP_ROUTINE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpnspRoutines: ?*NSP_ROUTINE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPSTARTUP = *const fn(
+    lpProviderId: ?*Guid,
+    lpnspRoutines: ?*NSP_ROUTINE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPV2STARTUP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        ppvClientSessionArg: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        ppvClientSessionArg: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPV2STARTUP = *const fn(
+    lpProviderId: ?*Guid,
+    ppvClientSessionArg: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPV2CLEANUP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        pvClientSessionArg: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        pvClientSessionArg: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPV2CLEANUP = *const fn(
+    lpProviderId: ?*Guid,
+    pvClientSessionArg: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPV2LOOKUPSERVICEBEGIN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        lpqsRestrictions: ?*WSAQUERYSET2W,
-        dwControlFlags: u32,
-        lpvClientSessionArg: ?*anyopaque,
-        lphLookup: ?*?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        lpqsRestrictions: ?*WSAQUERYSET2W,
-        dwControlFlags: u32,
-        lpvClientSessionArg: ?*anyopaque,
-        lphLookup: ?*?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPV2LOOKUPSERVICEBEGIN = *const fn(
+    lpProviderId: ?*Guid,
+    lpqsRestrictions: ?*WSAQUERYSET2W,
+    dwControlFlags: u32,
+    lpvClientSessionArg: ?*anyopaque,
+    lphLookup: ?*?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPV2LOOKUPSERVICENEXTEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hAsyncCall: ?HANDLE,
-        hLookup: ?HANDLE,
-        dwControlFlags: u32,
-        lpdwBufferLength: ?*u32,
-        lpqsResults: ?*WSAQUERYSET2W,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hAsyncCall: ?HANDLE,
-        hLookup: ?HANDLE,
-        dwControlFlags: u32,
-        lpdwBufferLength: ?*u32,
-        lpqsResults: ?*WSAQUERYSET2W,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPNSPV2LOOKUPSERVICENEXTEX = *const fn(
+    hAsyncCall: ?HANDLE,
+    hLookup: ?HANDLE,
+    dwControlFlags: u32,
+    lpdwBufferLength: ?*u32,
+    lpqsResults: ?*WSAQUERYSET2W,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPNSPV2LOOKUPSERVICEEND = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hLookup: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hLookup: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPNSPV2LOOKUPSERVICEEND = *const fn(
+    hLookup: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPNSPV2SETSERVICEEX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hAsyncCall: ?HANDLE,
-        lpProviderId: ?*Guid,
-        lpqsRegInfo: ?*WSAQUERYSET2W,
-        essOperation: WSAESETSERVICEOP,
-        dwControlFlags: u32,
-        lpvClientSessionArg: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hAsyncCall: ?HANDLE,
-        lpProviderId: ?*Guid,
-        lpqsRegInfo: ?*WSAQUERYSET2W,
-        essOperation: WSAESETSERVICEOP,
-        dwControlFlags: u32,
-        lpvClientSessionArg: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPNSPV2SETSERVICEEX = *const fn(
+    hAsyncCall: ?HANDLE,
+    lpProviderId: ?*Guid,
+    lpqsRegInfo: ?*WSAQUERYSET2W,
+    essOperation: WSAESETSERVICEOP,
+    dwControlFlags: u32,
+    lpvClientSessionArg: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPNSPV2CLIENTSESSIONRUNDOWN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        pvClientSessionArg: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        pvClientSessionArg: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPNSPV2CLIENTSESSIONRUNDOWN = *const fn(
+    lpProviderId: ?*Guid,
+    pvClientSessionArg: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const NSPV2_ROUTINE = extern struct {
     cbSize: u32,
@@ -5279,23 +4447,13 @@ pub const NETRESOURCE2W = extern struct {
     lpiProtocols: ?*i32,
 };
 
-pub const LPFN_NSPAPI = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPFN_NSPAPI = *const fn(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPSERVICE_CALLBACK_PROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lParam: LPARAM,
-        hAsyncTaskHandle: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        lParam: LPARAM,
-        hAsyncTaskHandle: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPSERVICE_CALLBACK_PROC = *const fn(
+    lParam: LPARAM,
+    hAsyncTaskHandle: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const SERVICE_ASYNC_INFO = extern struct {
     lpServiceCallbackProc: ?LPSERVICE_CALLBACK_PROC,
@@ -5303,40 +4461,21 @@ pub const SERVICE_ASYNC_INFO = extern struct {
     hAsyncTaskHandle: ?HANDLE,
 };
 
-pub const LPLOOKUPSERVICE_COMPLETION_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwError: u32,
-        dwBytes: u32,
-        lpOverlapped: ?*OVERLAPPED,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        dwError: u32,
-        dwBytes: u32,
-        lpOverlapped: ?*OVERLAPPED,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPLOOKUPSERVICE_COMPLETION_ROUTINE = *const fn(
+    dwError: u32,
+    dwBytes: u32,
+    lpOverlapped: ?*OVERLAPPED,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const LPWSCWRITEPROVIDERORDER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpwdCatalogEntryId: ?*u32,
-        dwNumberOfEntries: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpwdCatalogEntryId: ?*u32,
-        dwNumberOfEntries: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCWRITEPROVIDERORDER = *const fn(
+    lpwdCatalogEntryId: ?*u32,
+    dwNumberOfEntries: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const LPWSCWRITENAMESPACEORDER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpProviderId: ?*Guid,
-        dwNumberOfEntries: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        lpProviderId: ?*Guid,
-        dwNumberOfEntries: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const LPWSCWRITENAMESPACEORDER = *const fn(
+    lpProviderId: ?*Guid,
+    dwNumberOfEntries: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const sockaddr_un = extern struct {
     sun_family: u16,

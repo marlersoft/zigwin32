@@ -821,23 +821,13 @@ pub const RSVP_MSG_OBJS = extern struct {
     pAdspec: ?*ADSPEC,
 };
 
-pub const PALLOCMEM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Size: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-    else => *const fn(
-        Size: u32,
-    ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-} ;
+pub const PALLOCMEM = *const fn(
+    Size: u32,
+) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
 
-pub const PFREEMEM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pv: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        pv: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PFREEMEM = *const fn(
+    pv: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const policy_decision = extern struct {
     lpvResult: u32,
@@ -845,41 +835,22 @@ pub const policy_decision = extern struct {
     wPolicyErrValue: u16,
 };
 
-pub const CBADMITRESULT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        LpmHandle: LPM_HANDLE,
-        RequestHandle: RHANDLE,
-        ulPcmActionFlags: u32,
-        LpmError: i32,
-        PolicyDecisionsCount: i32,
-        pPolicyDecisions: ?*policy_decision,
-    ) callconv(@import("std").os.windows.WINAPI) ?*u32,
-    else => *const fn(
-        LpmHandle: LPM_HANDLE,
-        RequestHandle: RHANDLE,
-        ulPcmActionFlags: u32,
-        LpmError: i32,
-        PolicyDecisionsCount: i32,
-        pPolicyDecisions: ?*policy_decision,
-    ) callconv(@import("std").os.windows.WINAPI) ?*u32,
-} ;
+pub const CBADMITRESULT = *const fn(
+    LpmHandle: LPM_HANDLE,
+    RequestHandle: RHANDLE,
+    ulPcmActionFlags: u32,
+    LpmError: i32,
+    PolicyDecisionsCount: i32,
+    pPolicyDecisions: ?*policy_decision,
+) callconv(@import("std").os.windows.WINAPI) ?*u32;
 
-pub const CBGETRSVPOBJECTS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        LpmHandle: LPM_HANDLE,
-        RequestHandle: RHANDLE,
-        LpmError: i32,
-        RsvpObjectsCount: i32,
-        ppRsvpObjects: ?*?*RsvpObjHdr,
-    ) callconv(@import("std").os.windows.WINAPI) ?*u32,
-    else => *const fn(
-        LpmHandle: LPM_HANDLE,
-        RequestHandle: RHANDLE,
-        LpmError: i32,
-        RsvpObjectsCount: i32,
-        ppRsvpObjects: ?*?*RsvpObjHdr,
-    ) callconv(@import("std").os.windows.WINAPI) ?*u32,
-} ;
+pub const CBGETRSVPOBJECTS = *const fn(
+    LpmHandle: LPM_HANDLE,
+    RequestHandle: RHANDLE,
+    LpmError: i32,
+    RsvpObjectsCount: i32,
+    ppRsvpObjects: ?*?*RsvpObjHdr,
+) callconv(@import("std").os.windows.WINAPI) ?*u32;
 
 pub const LPM_INIT_INFO = extern struct {
     PcmVersionNumber: u32,
@@ -1022,59 +993,30 @@ pub const QOS_TCP_TRAFFIC = extern struct {
     ObjectHdr: QOS_OBJECT_HDR,
 };
 
-pub const TCI_NOTIFY_HANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ClRegCtx: ?HANDLE,
-        ClIfcCtx: ?HANDLE,
-        Event: u32,
-        SubCode: ?HANDLE,
-        BufSize: u32,
-        // TODO: what to do with BytesParamIndex 4?
-        Buffer: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        ClRegCtx: ?HANDLE,
-        ClIfcCtx: ?HANDLE,
-        Event: u32,
-        SubCode: ?HANDLE,
-        BufSize: u32,
-        // TODO: what to do with BytesParamIndex 4?
-        Buffer: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const TCI_NOTIFY_HANDLER = *const fn(
+    ClRegCtx: ?HANDLE,
+    ClIfcCtx: ?HANDLE,
+    Event: u32,
+    SubCode: ?HANDLE,
+    BufSize: u32,
+    // TODO: what to do with BytesParamIndex 4?
+    Buffer: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const TCI_ADD_FLOW_COMPLETE_HANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ClFlowCtx: ?HANDLE,
-        Status: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        ClFlowCtx: ?HANDLE,
-        Status: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const TCI_ADD_FLOW_COMPLETE_HANDLER = *const fn(
+    ClFlowCtx: ?HANDLE,
+    Status: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const TCI_MOD_FLOW_COMPLETE_HANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ClFlowCtx: ?HANDLE,
-        Status: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        ClFlowCtx: ?HANDLE,
-        Status: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const TCI_MOD_FLOW_COMPLETE_HANDLER = *const fn(
+    ClFlowCtx: ?HANDLE,
+    Status: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const TCI_DEL_FLOW_COMPLETE_HANDLER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ClFlowCtx: ?HANDLE,
-        Status: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        ClFlowCtx: ?HANDLE,
-        Status: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const TCI_DEL_FLOW_COMPLETE_HANDLER = *const fn(
+    ClFlowCtx: ?HANDLE,
+    Status: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const TCI_CLIENT_FUNC_LIST = extern struct {
     ClNotifyHandler: ?TCI_NOTIFY_HANDLER,

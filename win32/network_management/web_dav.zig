@@ -42,35 +42,19 @@ pub const DefaultBehavior = AUTHNEXTSTEP.DefaultBehavior;
 pub const RetryRequest = AUTHNEXTSTEP.RetryRequest;
 pub const CancelRequest = AUTHNEXTSTEP.CancelRequest;
 
-pub const PFNDAVAUTHCALLBACK_FREECRED = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pbuffer: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pbuffer: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNDAVAUTHCALLBACK_FREECRED = *const fn(
+    pbuffer: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFNDAVAUTHCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lpwzServerName: ?PWSTR,
-        lpwzRemoteName: ?PWSTR,
-        dwAuthScheme: u32,
-        dwFlags: u32,
-        pCallbackCred: ?*DAV_CALLBACK_CRED,
-        NextStep: ?*AUTHNEXTSTEP,
-        pFreeCred: ?*?PFNDAVAUTHCALLBACK_FREECRED,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lpwzServerName: ?PWSTR,
-        lpwzRemoteName: ?PWSTR,
-        dwAuthScheme: u32,
-        dwFlags: u32,
-        pCallbackCred: ?*DAV_CALLBACK_CRED,
-        NextStep: ?*AUTHNEXTSTEP,
-        pFreeCred: ?*?PFNDAVAUTHCALLBACK_FREECRED,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNDAVAUTHCALLBACK = *const fn(
+    lpwzServerName: ?PWSTR,
+    lpwzRemoteName: ?PWSTR,
+    dwAuthScheme: u32,
+    dwFlags: u32,
+    pCallbackCred: ?*DAV_CALLBACK_CRED,
+    NextStep: ?*AUTHNEXTSTEP,
+    pFreeCred: ?*?PFNDAVAUTHCALLBACK_FREECRED,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 
 //--------------------------------------------------------------------------------

@@ -52,74 +52,38 @@ pub const D3D_COMPRESS_SHADER_KEEP_ALL_PARTS = @as(u32, 1);
 //--------------------------------------------------------------------------------
 // Section: Types (6)
 //--------------------------------------------------------------------------------
-pub const pD3DCompile = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSrcData: ?*const anyopaque,
-        SrcDataSize: usize,
-        pFileName: ?[*:0]const u8,
-        pDefines: ?*const D3D_SHADER_MACRO,
-        pInclude: ?*ID3DInclude,
-        pEntrypoint: ?[*:0]const u8,
-        pTarget: ?[*:0]const u8,
-        Flags1: u32,
-        Flags2: u32,
-        ppCode: ?*?*ID3DBlob,
-        ppErrorMsgs: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        pSrcData: ?*const anyopaque,
-        SrcDataSize: usize,
-        pFileName: ?[*:0]const u8,
-        pDefines: ?*const D3D_SHADER_MACRO,
-        pInclude: ?*ID3DInclude,
-        pEntrypoint: ?[*:0]const u8,
-        pTarget: ?[*:0]const u8,
-        Flags1: u32,
-        Flags2: u32,
-        ppCode: ?*?*ID3DBlob,
-        ppErrorMsgs: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const pD3DCompile = *const fn(
+    pSrcData: ?*const anyopaque,
+    SrcDataSize: usize,
+    pFileName: ?[*:0]const u8,
+    pDefines: ?*const D3D_SHADER_MACRO,
+    pInclude: ?*ID3DInclude,
+    pEntrypoint: ?[*:0]const u8,
+    pTarget: ?[*:0]const u8,
+    Flags1: u32,
+    Flags2: u32,
+    ppCode: ?*?*ID3DBlob,
+    ppErrorMsgs: ?*?*ID3DBlob,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const pD3DPreprocess = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pSrcData: ?*const anyopaque,
-        SrcDataSize: usize,
-        pFileName: ?[*:0]const u8,
-        pDefines: ?*const D3D_SHADER_MACRO,
-        pInclude: ?*ID3DInclude,
-        ppCodeText: ?*?*ID3DBlob,
-        ppErrorMsgs: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        pSrcData: ?*const anyopaque,
-        SrcDataSize: usize,
-        pFileName: ?[*:0]const u8,
-        pDefines: ?*const D3D_SHADER_MACRO,
-        pInclude: ?*ID3DInclude,
-        ppCodeText: ?*?*ID3DBlob,
-        ppErrorMsgs: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const pD3DPreprocess = *const fn(
+    pSrcData: ?*const anyopaque,
+    SrcDataSize: usize,
+    pFileName: ?[*:0]const u8,
+    pDefines: ?*const D3D_SHADER_MACRO,
+    pInclude: ?*ID3DInclude,
+    ppCodeText: ?*?*ID3DBlob,
+    ppErrorMsgs: ?*?*ID3DBlob,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const pD3DDisassemble = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        // TODO: what to do with BytesParamIndex 1?
-        pSrcData: ?*const anyopaque,
-        SrcDataSize: usize,
-        Flags: u32,
-        szComments: ?[*:0]const u8,
-        ppDisassembly: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        // TODO: what to do with BytesParamIndex 1?
-        pSrcData: ?*const anyopaque,
-        SrcDataSize: usize,
-        Flags: u32,
-        szComments: ?[*:0]const u8,
-        ppDisassembly: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const pD3DDisassemble = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pSrcData: ?*const anyopaque,
+    SrcDataSize: usize,
+    Flags: u32,
+    szComments: ?[*:0]const u8,
+    ppDisassembly: ?*?*ID3DBlob,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const D3DCOMPILER_STRIP_FLAGS = enum(i32) {
     REFLECTION_DATA = 1,

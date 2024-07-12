@@ -50,48 +50,23 @@ pub const IID_IMILBitmapEffectConnectorInfo = &IID_IMILBitmapEffectConnectorInfo
 pub const IMILBitmapEffectConnectorInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnectorInfo,
-                puiIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnectorInfo,
-                puiIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOptimalFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnectorInfo,
-                pFormat: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnectorInfo,
-                pFormat: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNumberFormats: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnectorInfo,
-                pulNumberFormats: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnectorInfo,
-                pulNumberFormats: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnectorInfo,
-                ulIndex: u32,
-                pFormat: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnectorInfo,
-                ulIndex: u32,
-                pFormat: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIndex: *const fn(
+            self: *const IMILBitmapEffectConnectorInfo,
+            puiIndex: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOptimalFormat: *const fn(
+            self: *const IMILBitmapEffectConnectorInfo,
+            pFormat: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNumberFormats: *const fn(
+            self: *const IMILBitmapEffectConnectorInfo,
+            pulNumberFormats: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFormat: *const fn(
+            self: *const IMILBitmapEffectConnectorInfo,
+            ulIndex: u32,
+            pFormat: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -122,50 +97,24 @@ pub const IID_IMILBitmapEffectConnectionsInfo = &IID_IMILBitmapEffectConnections
 pub const IMILBitmapEffectConnectionsInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetNumberInputs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnectionsInfo,
-                puiNumInputs: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnectionsInfo,
-                puiNumInputs: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNumberOutputs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnectionsInfo,
-                puiNumOutputs: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnectionsInfo,
-                puiNumOutputs: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInputConnectorInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnectionsInfo,
-                uiIndex: u32,
-                ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnectionsInfo,
-                uiIndex: u32,
-                ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputConnectorInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnectionsInfo,
-                uiIndex: u32,
-                ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnectionsInfo,
-                uiIndex: u32,
-                ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetNumberInputs: *const fn(
+            self: *const IMILBitmapEffectConnectionsInfo,
+            puiNumInputs: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNumberOutputs: *const fn(
+            self: *const IMILBitmapEffectConnectionsInfo,
+            puiNumOutputs: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputConnectorInfo: *const fn(
+            self: *const IMILBitmapEffectConnectionsInfo,
+            uiIndex: u32,
+            ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputConnectorInfo: *const fn(
+            self: *const IMILBitmapEffectConnectionsInfo,
+            uiIndex: u32,
+            ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -196,30 +145,16 @@ pub const IID_IMILBitmapEffectConnections = &IID_IMILBitmapEffectConnections_Val
 pub const IMILBitmapEffectConnections = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInputConnector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnections,
-                uiIndex: u32,
-                ppConnector: ?*?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnections,
-                uiIndex: u32,
-                ppConnector: ?*?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputConnector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnections,
-                uiIndex: u32,
-                ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnections,
-                uiIndex: u32,
-                ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetInputConnector: *const fn(
+            self: *const IMILBitmapEffectConnections,
+            uiIndex: u32,
+            ppConnector: ?*?*IMILBitmapEffectInputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputConnector: *const fn(
+            self: *const IMILBitmapEffectConnections,
+            uiIndex: u32,
+            ppConnector: ?*?*IMILBitmapEffectOutputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -242,42 +177,21 @@ pub const IID_IMILBitmapEffect = &IID_IMILBitmapEffect_Value;
 pub const IMILBitmapEffect = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffect,
-                uiIndex: u32,
-                pContext: ?*IMILBitmapEffectRenderContext,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffect,
-                uiIndex: u32,
-                pContext: ?*IMILBitmapEffectRenderContext,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetParentEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffect,
-                ppParentEffect: ?*?*IMILBitmapEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffect,
-                ppParentEffect: ?*?*IMILBitmapEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetInputSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffect,
-                uiIndex: u32,
-                pBitmapSource: ?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffect,
-                uiIndex: u32,
-                pBitmapSource: ?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOutput: *const fn(
+            self: *const IMILBitmapEffect,
+            uiIndex: u32,
+            pContext: ?*IMILBitmapEffectRenderContext,
+            ppBitmapSource: ?*?*IWICBitmapSource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParentEffect: *const fn(
+            self: *const IMILBitmapEffect,
+            ppParentEffect: ?*?*IMILBitmapEffectGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInputSource: *const fn(
+            self: *const IMILBitmapEffect,
+            uiIndex: u32,
+            pBitmapSource: ?*IWICBitmapSource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -304,94 +218,43 @@ pub const IID_IMILBitmapEffectImpl = &IID_IMILBitmapEffectImpl_Value;
 pub const IMILBitmapEffectImpl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsInPlaceModificationAllowed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectImpl,
-                pOutputConnector: ?*IMILBitmapEffectOutputConnector,
-                pfModifyInPlace: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectImpl,
-                pOutputConnector: ?*IMILBitmapEffectOutputConnector,
-                pfModifyInPlace: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetParentEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectImpl,
-                pParentEffect: ?*IMILBitmapEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectImpl,
-                pParentEffect: ?*IMILBitmapEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInputSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectImpl,
-                uiIndex: u32,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectImpl,
-                uiIndex: u32,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInputSourceBounds: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectImpl,
-                uiIndex: u32,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectImpl,
-                uiIndex: u32,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInputBitmapSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectImpl,
-                uiIndex: u32,
-                pRenderContext: ?*IMILBitmapEffectRenderContext,
-                pfModifyInPlace: ?*i16,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectImpl,
-                uiIndex: u32,
-                pRenderContext: ?*IMILBitmapEffectRenderContext,
-                pfModifyInPlace: ?*i16,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputBitmapSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectImpl,
-                uiIndex: u32,
-                pRenderContext: ?*IMILBitmapEffectRenderContext,
-                pfModifyInPlace: ?*i16,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectImpl,
-                uiIndex: u32,
-                pRenderContext: ?*IMILBitmapEffectRenderContext,
-                pfModifyInPlace: ?*i16,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectImpl,
-                pInner: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectImpl,
-                pInner: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsInPlaceModificationAllowed: *const fn(
+            self: *const IMILBitmapEffectImpl,
+            pOutputConnector: ?*IMILBitmapEffectOutputConnector,
+            pfModifyInPlace: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetParentEffect: *const fn(
+            self: *const IMILBitmapEffectImpl,
+            pParentEffect: ?*IMILBitmapEffectGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputSource: *const fn(
+            self: *const IMILBitmapEffectImpl,
+            uiIndex: u32,
+            ppBitmapSource: ?*?*IWICBitmapSource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputSourceBounds: *const fn(
+            self: *const IMILBitmapEffectImpl,
+            uiIndex: u32,
+            pRect: ?*MilRectD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputBitmapSource: *const fn(
+            self: *const IMILBitmapEffectImpl,
+            uiIndex: u32,
+            pRenderContext: ?*IMILBitmapEffectRenderContext,
+            pfModifyInPlace: ?*i16,
+            ppBitmapSource: ?*?*IWICBitmapSource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputBitmapSource: *const fn(
+            self: *const IMILBitmapEffectImpl,
+            uiIndex: u32,
+            pRenderContext: ?*IMILBitmapEffectRenderContext,
+            pfModifyInPlace: ?*i16,
+            ppBitmapSource: ?*?*IWICBitmapSource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Initialize: *const fn(
+            self: *const IMILBitmapEffectImpl,
+            pInner: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -434,40 +297,20 @@ pub const IID_IMILBitmapEffectGroup = &IID_IMILBitmapEffectGroup_Value;
 pub const IMILBitmapEffectGroup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInteriorInputConnector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectGroup,
-                uiIndex: u32,
-                ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectGroup,
-                uiIndex: u32,
-                ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInteriorOutputConnector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectGroup,
-                uiIndex: u32,
-                ppConnector: ?*?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectGroup,
-                uiIndex: u32,
-                ppConnector: ?*?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectGroup,
-                pEffect: ?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectGroup,
-                pEffect: ?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetInteriorInputConnector: *const fn(
+            self: *const IMILBitmapEffectGroup,
+            uiIndex: u32,
+            ppConnector: ?*?*IMILBitmapEffectOutputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInteriorOutputConnector: *const fn(
+            self: *const IMILBitmapEffectGroup,
+            uiIndex: u32,
+            ppConnector: ?*?*IMILBitmapEffectInputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Add: *const fn(
+            self: *const IMILBitmapEffectGroup,
+            pEffect: ?*IMILBitmapEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -494,36 +337,18 @@ pub const IID_IMILBitmapEffectGroupImpl = &IID_IMILBitmapEffectGroupImpl_Value;
 pub const IMILBitmapEffectGroupImpl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Preprocess: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectGroupImpl,
-                pContext: ?*IMILBitmapEffectRenderContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectGroupImpl,
-                pContext: ?*IMILBitmapEffectRenderContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNumberChildren: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectGroupImpl,
-                puiNumberChildren: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectGroupImpl,
-                puiNumberChildren: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChildren: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectGroupImpl,
-                pChildren: ?*?*IMILBitmapEffects,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectGroupImpl,
-                pChildren: ?*?*IMILBitmapEffects,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Preprocess: *const fn(
+            self: *const IMILBitmapEffectGroupImpl,
+            pContext: ?*IMILBitmapEffectRenderContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNumberChildren: *const fn(
+            self: *const IMILBitmapEffectGroupImpl,
+            puiNumberChildren: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChildren: *const fn(
+            self: *const IMILBitmapEffectGroupImpl,
+            pChildren: ?*?*IMILBitmapEffects,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -550,90 +375,40 @@ pub const IID_IMILBitmapEffectRenderContext = &IID_IMILBitmapEffectRenderContext
 pub const IMILBitmapEffectRenderContext = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetOutputPixelFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContext,
-                format: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContext,
-                format: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputPixelFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pFormat: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pFormat: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUseSoftwareRenderer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContext,
-                fSoftware: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContext,
-                fSoftware: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetInitialTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pMatrix: ?*MILMatrixF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pMatrix: ?*MILMatrixF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFinalTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pMatrix: ?*MILMatrixF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pMatrix: ?*MILMatrixF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOutputDPI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContext,
-                dblDpiX: f64,
-                dblDpiY: f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContext,
-                dblDpiX: f64,
-                dblDpiY: f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputDPI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pdblDpiX: ?*f64,
-                pdblDpiY: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pdblDpiX: ?*f64,
-                pdblDpiY: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRegionOfInterest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContext,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOutputPixelFormat: *const fn(
+            self: *const IMILBitmapEffectRenderContext,
+            format: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputPixelFormat: *const fn(
+            self: *const IMILBitmapEffectRenderContext,
+            pFormat: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUseSoftwareRenderer: *const fn(
+            self: *const IMILBitmapEffectRenderContext,
+            fSoftware: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetInitialTransform: *const fn(
+            self: *const IMILBitmapEffectRenderContext,
+            pMatrix: ?*MILMatrixF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFinalTransform: *const fn(
+            self: *const IMILBitmapEffectRenderContext,
+            pMatrix: ?*MILMatrixF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOutputDPI: *const fn(
+            self: *const IMILBitmapEffectRenderContext,
+            dblDpiX: f64,
+            dblDpiY: f64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputDPI: *const fn(
+            self: *const IMILBitmapEffectRenderContext,
+            pdblDpiX: ?*f64,
+            pdblDpiY: ?*f64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRegionOfInterest: *const fn(
+            self: *const IMILBitmapEffectRenderContext,
+            pRect: ?*MilRectD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -680,56 +455,26 @@ pub const IID_IMILBitmapEffectRenderContextImpl = &IID_IMILBitmapEffectRenderCon
 pub const IMILBitmapEffectRenderContextImpl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetUseSoftwareRenderer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pfSoftware: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pfSoftware: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pMatrix: ?*MILMatrixF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pMatrix: ?*MILMatrixF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UpdateTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pMatrix: ?*MILMatrixF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pMatrix: ?*MILMatrixF,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputBounds: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UpdateOutputBounds: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectRenderContextImpl,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetUseSoftwareRenderer: *const fn(
+            self: *const IMILBitmapEffectRenderContextImpl,
+            pfSoftware: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransform: *const fn(
+            self: *const IMILBitmapEffectRenderContextImpl,
+            pMatrix: ?*MILMatrixF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateTransform: *const fn(
+            self: *const IMILBitmapEffectRenderContextImpl,
+            pMatrix: ?*MILMatrixF,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputBounds: *const fn(
+            self: *const IMILBitmapEffectRenderContextImpl,
+            pRect: ?*MilRectD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateOutputBounds: *const fn(
+            self: *const IMILBitmapEffectRenderContextImpl,
+            pRect: ?*MilRectD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -764,38 +509,19 @@ pub const IID_IMILBitmapEffectFactory = &IID_IMILBitmapEffectFactory_Value;
 pub const IMILBitmapEffectFactory = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectFactory,
-                pguidEffect: ?*const Guid,
-                ppEffect: ?*?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectFactory,
-                pguidEffect: ?*const Guid,
-                ppEffect: ?*?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectFactory,
-                ppContext: ?*?*IMILBitmapEffectRenderContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectFactory,
-                ppContext: ?*?*IMILBitmapEffectRenderContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateEffectOuter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectFactory,
-                ppEffect: ?*?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectFactory,
-                ppEffect: ?*?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateEffect: *const fn(
+            self: *const IMILBitmapEffectFactory,
+            pguidEffect: ?*const Guid,
+            ppEffect: ?*?*IMILBitmapEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateContext: *const fn(
+            self: *const IMILBitmapEffectFactory,
+            ppContext: ?*?*IMILBitmapEffectRenderContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEffectOuter: *const fn(
+            self: *const IMILBitmapEffectFactory,
+            ppEffect: ?*?*IMILBitmapEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -822,92 +548,43 @@ pub const IID_IMILBitmapEffectPrimitive = &IID_IMILBitmapEffectPrimitive_Value;
 pub const IMILBitmapEffectPrimitive = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                pContext: ?*IMILBitmapEffectRenderContext,
-                pfModifyInPlace: ?*i16,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                pContext: ?*IMILBitmapEffectRenderContext,
-                pfModifyInPlace: ?*i16,
-                ppBitmapSource: ?*?*IWICBitmapSource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TransformPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                p: ?*MilPoint2D,
-                fForwardTransform: i16,
-                pContext: ?*IMILBitmapEffectRenderContext,
-                pfPointTransformed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                p: ?*MilPoint2D,
-                fForwardTransform: i16,
-                pContext: ?*IMILBitmapEffectRenderContext,
-                pfPointTransformed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TransformRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                p: ?*MilRectD,
-                fForwardTransform: i16,
-                pContext: ?*IMILBitmapEffectRenderContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                p: ?*MilRectD,
-                fForwardTransform: i16,
-                pContext: ?*IMILBitmapEffectRenderContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasAffineTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                pfAffine: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                pfAffine: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasInverseTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                pfHasInverse: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                pfHasInverse: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAffineMatrix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                pMatrix: ?*MilMatrix3x2D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectPrimitive,
-                uiIndex: u32,
-                pMatrix: ?*MilMatrix3x2D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOutput: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            pContext: ?*IMILBitmapEffectRenderContext,
+            pfModifyInPlace: ?*i16,
+            ppBitmapSource: ?*?*IWICBitmapSource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TransformPoint: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            p: ?*MilPoint2D,
+            fForwardTransform: i16,
+            pContext: ?*IMILBitmapEffectRenderContext,
+            pfPointTransformed: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TransformRect: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            p: ?*MilRectD,
+            fForwardTransform: i16,
+            pContext: ?*IMILBitmapEffectRenderContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasAffineTransform: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            pfAffine: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasInverseTransform: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            pfHasInverse: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAffineMatrix: *const fn(
+            self: *const IMILBitmapEffectPrimitive,
+            uiIndex: u32,
+            pMatrix: ?*MilMatrix3x2D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -946,30 +623,16 @@ pub const IID_IMILBitmapEffectPrimitiveImpl = &IID_IMILBitmapEffectPrimitiveImpl
 pub const IMILBitmapEffectPrimitiveImpl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsDirty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectPrimitiveImpl,
-                uiOutputIndex: u32,
-                pfDirty: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectPrimitiveImpl,
-                uiOutputIndex: u32,
-                pfDirty: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsVolatile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectPrimitiveImpl,
-                uiOutputIndex: u32,
-                pfVolatile: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectPrimitiveImpl,
-                uiOutputIndex: u32,
-                pfVolatile: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsDirty: *const fn(
+            self: *const IMILBitmapEffectPrimitiveImpl,
+            uiOutputIndex: u32,
+            pfDirty: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsVolatile: *const fn(
+            self: *const IMILBitmapEffectPrimitiveImpl,
+            uiOutputIndex: u32,
+            pfVolatile: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -992,54 +655,25 @@ pub const IID_IMILBitmapEffects = &IID_IMILBitmapEffects_Value;
 pub const IMILBitmapEffects = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        _NewEnum: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffects,
-                ppiuReturn: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffects,
-                ppiuReturn: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        _NewEnum: *const fn(
+            self: *const IMILBitmapEffects,
+            ppiuReturn: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parent: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMILBitmapEffects,
-                ppEffect: ?*?*IMILBitmapEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMILBitmapEffects,
-                ppEffect: ?*?*IMILBitmapEffectGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Item: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffects,
-                uindex: u32,
-                ppEffect: ?*?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffects,
-                uindex: u32,
-                ppEffect: ?*?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Parent: *const fn(
+            self: *const IMILBitmapEffects,
+            ppEffect: ?*?*IMILBitmapEffectGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Item: *const fn(
+            self: *const IMILBitmapEffects,
+            uindex: u32,
+            ppEffect: ?*?*IMILBitmapEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn(
-                self: *const IMILBitmapEffects,
-                puiCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn(
-                self: *const IMILBitmapEffects,
-                puiCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IMILBitmapEffects,
+            puiCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1070,26 +704,14 @@ pub const IID_IMILBitmapEffectConnector = &IID_IMILBitmapEffectConnector_Value;
 pub const IMILBitmapEffectConnector = extern struct {
     pub const VTable = extern struct {
         base: IMILBitmapEffectConnectorInfo.VTable,
-        IsConnected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnector,
-                pfConnected: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnector,
-                pfConnected: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBitmapEffect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectConnector,
-                ppEffect: ?*?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectConnector,
-                ppEffect: ?*?*IMILBitmapEffect,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsConnected: *const fn(
+            self: *const IMILBitmapEffectConnector,
+            pfConnected: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBitmapEffect: *const fn(
+            self: *const IMILBitmapEffectConnector,
+            ppEffect: ?*?*IMILBitmapEffect,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1112,26 +734,14 @@ pub const IID_IMILBitmapEffectInputConnector = &IID_IMILBitmapEffectInputConnect
 pub const IMILBitmapEffectInputConnector = extern struct {
     pub const VTable = extern struct {
         base: IMILBitmapEffectConnector.VTable,
-        ConnectTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectInputConnector,
-                pConnector: ?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectInputConnector,
-                pConnector: ?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConnection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectInputConnector,
-                ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectInputConnector,
-                ppConnector: ?*?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ConnectTo: *const fn(
+            self: *const IMILBitmapEffectInputConnector,
+            pConnector: ?*IMILBitmapEffectOutputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConnection: *const fn(
+            self: *const IMILBitmapEffectInputConnector,
+            ppConnector: ?*?*IMILBitmapEffectOutputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1154,28 +764,15 @@ pub const IID_IMILBitmapEffectOutputConnector = &IID_IMILBitmapEffectOutputConne
 pub const IMILBitmapEffectOutputConnector = extern struct {
     pub const VTable = extern struct {
         base: IMILBitmapEffectConnector.VTable,
-        GetNumberConnections: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectOutputConnector,
-                puiNumberConnections: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectOutputConnector,
-                puiNumberConnections: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConnection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectOutputConnector,
-                uiIndex: u32,
-                ppConnection: ?*?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectOutputConnector,
-                uiIndex: u32,
-                ppConnection: ?*?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetNumberConnections: *const fn(
+            self: *const IMILBitmapEffectOutputConnector,
+            puiNumberConnections: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConnection: *const fn(
+            self: *const IMILBitmapEffectOutputConnector,
+            uiIndex: u32,
+            ppConnection: ?*?*IMILBitmapEffectInputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1198,26 +795,14 @@ pub const IID_IMILBitmapEffectOutputConnectorImpl = &IID_IMILBitmapEffectOutputC
 pub const IMILBitmapEffectOutputConnectorImpl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddBackLink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectOutputConnectorImpl,
-                pConnection: ?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectOutputConnectorImpl,
-                pConnection: ?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveBackLink: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectOutputConnectorImpl,
-                pConnection: ?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectOutputConnectorImpl,
-                pConnection: ?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddBackLink: *const fn(
+            self: *const IMILBitmapEffectOutputConnectorImpl,
+            pConnection: ?*IMILBitmapEffectInputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveBackLink: *const fn(
+            self: *const IMILBitmapEffectOutputConnectorImpl,
+            pConnection: ?*IMILBitmapEffectInputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1240,16 +825,10 @@ pub const IID_IMILBitmapEffectInteriorInputConnector = &IID_IMILBitmapEffectInte
 pub const IMILBitmapEffectInteriorInputConnector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInputConnector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectInteriorInputConnector,
-                pInputConnector: ?*?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectInteriorInputConnector,
-                pInputConnector: ?*?*IMILBitmapEffectInputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetInputConnector: *const fn(
+            self: *const IMILBitmapEffectInteriorInputConnector,
+            pInputConnector: ?*?*IMILBitmapEffectInputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1268,16 +847,10 @@ pub const IID_IMILBitmapEffectInteriorOutputConnector = &IID_IMILBitmapEffectInt
 pub const IMILBitmapEffectInteriorOutputConnector = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOutputConnector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectInteriorOutputConnector,
-                pOutputConnector: ?*?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectInteriorOutputConnector,
-                pOutputConnector: ?*?*IMILBitmapEffectOutputConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOutputConnector: *const fn(
+            self: *const IMILBitmapEffectInteriorOutputConnector,
+            pOutputConnector: ?*?*IMILBitmapEffectOutputConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1296,30 +869,16 @@ pub const IID_IMILBitmapEffectEvents = &IID_IMILBitmapEffectEvents_Value;
 pub const IMILBitmapEffectEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PropertyChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectEvents,
-                pEffect: ?*IMILBitmapEffect,
-                bstrPropertyName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectEvents,
-                pEffect: ?*IMILBitmapEffect,
-                bstrPropertyName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DirtyRegion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IMILBitmapEffectEvents,
-                pEffect: ?*IMILBitmapEffect,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IMILBitmapEffectEvents,
-                pEffect: ?*IMILBitmapEffect,
-                pRect: ?*MilRectD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        PropertyChange: *const fn(
+            self: *const IMILBitmapEffectEvents,
+            pEffect: ?*IMILBitmapEffect,
+            bstrPropertyName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DirtyRegion: *const fn(
+            self: *const IMILBitmapEffectEvents,
+            pEffect: ?*IMILBitmapEffect,
+            pRect: ?*MilRectD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

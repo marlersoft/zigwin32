@@ -97,124 +97,60 @@ pub const TOKEN_VALUE = extern struct {
     dwValue: u32,
 };
 
-pub const PGET_RESOURCE_STRING_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwMsgID: u32,
-        lpBuffer: ?PWSTR,
-        nBufferMax: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwMsgID: u32,
-        lpBuffer: ?PWSTR,
-        nBufferMax: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PGET_RESOURCE_STRING_FN = *const fn(
+    dwMsgID: u32,
+    lpBuffer: ?PWSTR,
+    nBufferMax: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_CONTEXT_COMMIT_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwAction: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwAction: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PNS_CONTEXT_COMMIT_FN = *const fn(
+    dwAction: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_CONTEXT_CONNECT_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pwszMachine: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pwszMachine: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PNS_CONTEXT_CONNECT_FN = *const fn(
+    pwszMachine: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_CONTEXT_DUMP_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pwszRouter: ?[*:0]const u16,
-        ppwcArguments: [*]?PWSTR,
-        dwArgCount: u32,
-        pvData: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pwszRouter: ?[*:0]const u16,
-        ppwcArguments: [*]?PWSTR,
-        dwArgCount: u32,
-        pvData: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PNS_CONTEXT_DUMP_FN = *const fn(
+    pwszRouter: ?[*:0]const u16,
+    ppwcArguments: [*]?PWSTR,
+    dwArgCount: u32,
+    pvData: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_DLL_STOP_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PNS_DLL_STOP_FN = *const fn(
+    dwReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_HELPER_START_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pguidParent: ?*const Guid,
-        dwVersion: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pguidParent: ?*const Guid,
-        dwVersion: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PNS_HELPER_START_FN = *const fn(
+    pguidParent: ?*const Guid,
+    dwVersion: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_HELPER_STOP_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PNS_HELPER_STOP_FN = *const fn(
+    dwReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PFN_HANDLE_CMD = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pwszMachine: ?[*:0]const u16,
-        ppwcArguments: [*]?PWSTR,
-        dwCurrentIndex: u32,
-        dwArgCount: u32,
-        dwFlags: u32,
-        pvData: ?*const anyopaque,
-        pbDone: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pwszMachine: ?[*:0]const u16,
-        ppwcArguments: [*]?PWSTR,
-        dwCurrentIndex: u32,
-        dwArgCount: u32,
-        dwFlags: u32,
-        pvData: ?*const anyopaque,
-        pbDone: ?*BOOL,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFN_HANDLE_CMD = *const fn(
+    pwszMachine: ?[*:0]const u16,
+    ppwcArguments: [*]?PWSTR,
+    dwCurrentIndex: u32,
+    dwArgCount: u32,
+    dwFlags: u32,
+    pvData: ?*const anyopaque,
+    pbDone: ?*BOOL,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PNS_OSVERSIONCHECK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        CIMOSType: u32,
-        CIMOSProductSuite: u32,
-        CIMOSVersion: ?[*:0]const u16,
-        CIMOSBuildNumber: ?[*:0]const u16,
-        CIMServicePackMajorVersion: ?[*:0]const u16,
-        CIMServicePackMinorVersion: ?[*:0]const u16,
-        uiReserved: u32,
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        CIMOSType: u32,
-        CIMOSProductSuite: u32,
-        CIMOSVersion: ?[*:0]const u16,
-        CIMOSBuildNumber: ?[*:0]const u16,
-        CIMServicePackMajorVersion: ?[*:0]const u16,
-        CIMServicePackMinorVersion: ?[*:0]const u16,
-        uiReserved: u32,
-        dwReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PNS_OSVERSIONCHECK = *const fn(
+    CIMOSType: u32,
+    CIMOSProductSuite: u32,
+    CIMOSVersion: ?[*:0]const u16,
+    CIMOSBuildNumber: ?[*:0]const u16,
+    CIMServicePackMajorVersion: ?[*:0]const u16,
+    CIMServicePackMinorVersion: ?[*:0]const u16,
+    uiReserved: u32,
+    dwReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const NS_HELPER_ATTRIBUTES = extern struct {
     Anonymous: extern union {
@@ -276,16 +212,10 @@ pub const TAG_TYPE = extern struct {
     bPresent: BOOL,
 };
 
-pub const PNS_DLL_INIT_FN = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        dwNetshVersion: u32,
-        pReserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        dwNetshVersion: u32,
-        pReserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PNS_DLL_INIT_FN = *const fn(
+    dwNetshVersion: u32,
+    pReserved: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 
 //--------------------------------------------------------------------------------

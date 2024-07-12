@@ -669,14 +669,9 @@ pub const SCSI_ADDRESS = extern struct {
     Lun: u8,
 };
 
-pub const PDUMP_DEVICE_POWERON_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PDUMP_DEVICE_POWERON_ROUTINE = *const fn(
+    Context: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
 pub const DUMP_POINTERS_VERSION = extern struct {
     Version: u32,

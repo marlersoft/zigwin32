@@ -162,346 +162,162 @@ pub const WLX_DESKTOP = extern struct {
     pszDesktopName: ?PWSTR,
 };
 
-pub const PWLX_USE_CTRL_ALT_DEL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hWlx: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PWLX_USE_CTRL_ALT_DEL = *const fn(
+    hWlx: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PWLX_SET_CONTEXT_POINTER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        pWlxContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        pWlxContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PWLX_SET_CONTEXT_POINTER = *const fn(
+    hWlx: ?HANDLE,
+    pWlxContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PWLX_SAS_NOTIFY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        dwSasType: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        dwSasType: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PWLX_SAS_NOTIFY = *const fn(
+    hWlx: ?HANDLE,
+    dwSasType: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PWLX_SET_TIMEOUT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        Timeout: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        Timeout: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_SET_TIMEOUT = *const fn(
+    hWlx: ?HANDLE,
+    Timeout: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_ASSIGN_SHELL_PROTECTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        hToken: ?HANDLE,
-        hProcess: ?HANDLE,
-        hThread: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        hToken: ?HANDLE,
-        hProcess: ?HANDLE,
-        hThread: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_ASSIGN_SHELL_PROTECTION = *const fn(
+    hWlx: ?HANDLE,
+    hToken: ?HANDLE,
+    hProcess: ?HANDLE,
+    hThread: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_MESSAGE_BOX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        hwndOwner: ?HWND,
-        lpszText: ?PWSTR,
-        lpszTitle: ?PWSTR,
-        fuStyle: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        hwndOwner: ?HWND,
-        lpszText: ?PWSTR,
-        lpszTitle: ?PWSTR,
-        fuStyle: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_MESSAGE_BOX = *const fn(
+    hWlx: ?HANDLE,
+    hwndOwner: ?HWND,
+    lpszText: ?PWSTR,
+    lpszTitle: ?PWSTR,
+    fuStyle: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_DIALOG_BOX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        hInst: ?HANDLE,
-        lpszTemplate: ?PWSTR,
-        hwndOwner: ?HWND,
-        dlgprc: ?DLGPROC,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        hInst: ?HANDLE,
-        lpszTemplate: ?PWSTR,
-        hwndOwner: ?HWND,
-        dlgprc: ?DLGPROC,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_DIALOG_BOX = *const fn(
+    hWlx: ?HANDLE,
+    hInst: ?HANDLE,
+    lpszTemplate: ?PWSTR,
+    hwndOwner: ?HWND,
+    dlgprc: ?DLGPROC,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_DIALOG_BOX_INDIRECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        hInst: ?HANDLE,
-        hDialogTemplate: ?*DLGTEMPLATE,
-        hwndOwner: ?HWND,
-        dlgprc: ?DLGPROC,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        hInst: ?HANDLE,
-        hDialogTemplate: ?*DLGTEMPLATE,
-        hwndOwner: ?HWND,
-        dlgprc: ?DLGPROC,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_DIALOG_BOX_INDIRECT = *const fn(
+    hWlx: ?HANDLE,
+    hInst: ?HANDLE,
+    hDialogTemplate: ?*DLGTEMPLATE,
+    hwndOwner: ?HWND,
+    dlgprc: ?DLGPROC,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_DIALOG_BOX_PARAM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        hInst: ?HANDLE,
-        lpszTemplate: ?PWSTR,
-        hwndOwner: ?HWND,
-        dlgprc: ?DLGPROC,
-        dwInitParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        hInst: ?HANDLE,
-        lpszTemplate: ?PWSTR,
-        hwndOwner: ?HWND,
-        dlgprc: ?DLGPROC,
-        dwInitParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_DIALOG_BOX_PARAM = *const fn(
+    hWlx: ?HANDLE,
+    hInst: ?HANDLE,
+    lpszTemplate: ?PWSTR,
+    hwndOwner: ?HWND,
+    dlgprc: ?DLGPROC,
+    dwInitParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_DIALOG_BOX_INDIRECT_PARAM = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        hInst: ?HANDLE,
-        hDialogTemplate: ?*DLGTEMPLATE,
-        hwndOwner: ?HWND,
-        dlgprc: ?DLGPROC,
-        dwInitParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        hInst: ?HANDLE,
-        hDialogTemplate: ?*DLGTEMPLATE,
-        hwndOwner: ?HWND,
-        dlgprc: ?DLGPROC,
-        dwInitParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_DIALOG_BOX_INDIRECT_PARAM = *const fn(
+    hWlx: ?HANDLE,
+    hInst: ?HANDLE,
+    hDialogTemplate: ?*DLGTEMPLATE,
+    hwndOwner: ?HWND,
+    dlgprc: ?DLGPROC,
+    dwInitParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_SWITCH_DESKTOP_TO_USER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_SWITCH_DESKTOP_TO_USER = *const fn(
+    hWlx: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_SWITCH_DESKTOP_TO_WINLOGON = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_SWITCH_DESKTOP_TO_WINLOGON = *const fn(
+    hWlx: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_CHANGE_PASSWORD_NOTIFY = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
-        dwChangeInfo: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
-        dwChangeInfo: u32,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_CHANGE_PASSWORD_NOTIFY = *const fn(
+    hWlx: ?HANDLE,
+    pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
+    dwChangeInfo: u32,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_GET_SOURCE_DESKTOP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        ppDesktop: ?*?*WLX_DESKTOP,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        ppDesktop: ?*?*WLX_DESKTOP,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_GET_SOURCE_DESKTOP = *const fn(
+    hWlx: ?HANDLE,
+    ppDesktop: ?*?*WLX_DESKTOP,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_SET_RETURN_DESKTOP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        pDesktop: ?*WLX_DESKTOP,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        pDesktop: ?*WLX_DESKTOP,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_SET_RETURN_DESKTOP = *const fn(
+    hWlx: ?HANDLE,
+    pDesktop: ?*WLX_DESKTOP,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_CREATE_USER_DESKTOP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        hToken: ?HANDLE,
-        Flags: u32,
-        pszDesktopName: ?PWSTR,
-        ppDesktop: ?*?*WLX_DESKTOP,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        hToken: ?HANDLE,
-        Flags: u32,
-        pszDesktopName: ?PWSTR,
-        ppDesktop: ?*?*WLX_DESKTOP,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_CREATE_USER_DESKTOP = *const fn(
+    hWlx: ?HANDLE,
+    hToken: ?HANDLE,
+    Flags: u32,
+    pszDesktopName: ?PWSTR,
+    ppDesktop: ?*?*WLX_DESKTOP,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_CHANGE_PASSWORD_NOTIFY_EX = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
-        dwChangeInfo: u32,
-        ProviderName: ?PWSTR,
-        Reserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
-        dwChangeInfo: u32,
-        ProviderName: ?PWSTR,
-        Reserved: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
-} ;
+pub const PWLX_CHANGE_PASSWORD_NOTIFY_EX = *const fn(
+    hWlx: ?HANDLE,
+    pMprInfo: ?*WLX_MPR_NOTIFY_INFO,
+    dwChangeInfo: u32,
+    ProviderName: ?PWSTR,
+    Reserved: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub const PWLX_CLOSE_USER_DESKTOP = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        pDesktop: ?*WLX_DESKTOP,
-        hToken: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        pDesktop: ?*WLX_DESKTOP,
-        hToken: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_CLOSE_USER_DESKTOP = *const fn(
+    hWlx: ?HANDLE,
+    pDesktop: ?*WLX_DESKTOP,
+    hToken: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_SET_OPTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        Option: u32,
-        Value: usize,
-        OldValue: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        Option: u32,
-        Value: usize,
-        OldValue: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_SET_OPTION = *const fn(
+    hWlx: ?HANDLE,
+    Option: u32,
+    Value: usize,
+    OldValue: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_GET_OPTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        Option: u32,
-        Value: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        Option: u32,
-        Value: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_GET_OPTION = *const fn(
+    hWlx: ?HANDLE,
+    Option: u32,
+    Value: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_WIN31_MIGRATE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hWlx: ?HANDLE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const PWLX_WIN31_MIGRATE = *const fn(
+    hWlx: ?HANDLE,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PWLX_QUERY_CLIENT_CREDENTIALS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_QUERY_CLIENT_CREDENTIALS = *const fn(
+    pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_QUERY_IC_CREDENTIALS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_QUERY_IC_CREDENTIALS = *const fn(
+    pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V1_0,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_QUERY_TS_LOGON_CREDENTIALS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V2_0,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V2_0,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_QUERY_TS_LOGON_CREDENTIALS = *const fn(
+    pCred: ?*WLX_CLIENT_CREDENTIALS_INFO_V2_0,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_DISCONNECT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PWLX_DISCONNECT = *const fn(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PWLX_QUERY_TERMINAL_SERVICES_DATA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hWlx: ?HANDLE,
-        pTSData: ?*WLX_TERMINAL_SERVICES_DATA,
-        UserName: ?PWSTR,
-        Domain: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hWlx: ?HANDLE,
-        pTSData: ?*WLX_TERMINAL_SERVICES_DATA,
-        UserName: ?PWSTR,
-        Domain: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PWLX_QUERY_TERMINAL_SERVICES_DATA = *const fn(
+    hWlx: ?HANDLE,
+    pTSData: ?*WLX_TERMINAL_SERVICES_DATA,
+    UserName: ?PWSTR,
+    Domain: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PWLX_QUERY_CONSOLESWITCH_CREDENTIALS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pCred: ?*WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pCred: ?*WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PWLX_QUERY_CONSOLESWITCH_CREDENTIALS = *const fn(
+    pCred: ?*WLX_CONSOLESWITCH_CREDENTIALS_INFO_V1_0,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WLX_DISPATCH_VERSION_1_0 = extern struct {
     WlxUseCtrlAltDel: ?PWLX_USE_CTRL_ALT_DEL,
@@ -618,16 +434,10 @@ pub const WLX_DISPATCH_VERSION_1_4 = extern struct {
     WlxQueryTsLogonCredentials: ?PWLX_QUERY_TS_LOGON_CREDENTIALS,
 };
 
-pub const PFNMSGECALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        bVerbose: BOOL,
-        lpMessage: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        bVerbose: BOOL,
-        lpMessage: ?PWSTR,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNMSGECALLBACK = *const fn(
+    bVerbose: BOOL,
+    lpMessage: ?PWSTR,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const WLX_NOTIFICATION_INFO = extern struct {
     Size: u32,

@@ -19,20 +19,12 @@ pub const IID_IIsolatedAppLauncher = &IID_IIsolatedAppLauncher_Value;
 pub const IIsolatedAppLauncher = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Launch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIsolatedAppLauncher,
-                appUserModelId: ?[*:0]const u16,
-                arguments: ?[*:0]const u16,
-                telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIsolatedAppLauncher,
-                appUserModelId: ?[*:0]const u16,
-                arguments: ?[*:0]const u16,
-                telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Launch: *const fn(
+            self: *const IIsolatedAppLauncher,
+            appUserModelId: ?[*:0]const u16,
+            arguments: ?[*:0]const u16,
+            telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

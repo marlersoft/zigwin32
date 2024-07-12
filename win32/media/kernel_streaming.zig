@@ -673,60 +673,30 @@ pub const IID_IKsControl = &IID_IKsControl_Value;
 pub const IKsControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        KsProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsControl,
-                Property: ?*KSIDENTIFIER,
-                PropertyLength: u32,
-                PropertyData: ?*anyopaque,
-                DataLength: u32,
-                BytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsControl,
-                Property: ?*KSIDENTIFIER,
-                PropertyLength: u32,
-                PropertyData: ?*anyopaque,
-                DataLength: u32,
-                BytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        KsMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsControl,
-                Method: ?*KSIDENTIFIER,
-                MethodLength: u32,
-                MethodData: ?*anyopaque,
-                DataLength: u32,
-                BytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsControl,
-                Method: ?*KSIDENTIFIER,
-                MethodLength: u32,
-                MethodData: ?*anyopaque,
-                DataLength: u32,
-                BytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        KsEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsControl,
-                Event: ?*KSIDENTIFIER,
-                EventLength: u32,
-                EventData: ?*anyopaque,
-                DataLength: u32,
-                BytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsControl,
-                Event: ?*KSIDENTIFIER,
-                EventLength: u32,
-                EventData: ?*anyopaque,
-                DataLength: u32,
-                BytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        KsProperty: *const fn(
+            self: *const IKsControl,
+            Property: ?*KSIDENTIFIER,
+            PropertyLength: u32,
+            PropertyData: ?*anyopaque,
+            DataLength: u32,
+            BytesReturned: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        KsMethod: *const fn(
+            self: *const IKsControl,
+            Method: ?*KSIDENTIFIER,
+            MethodLength: u32,
+            MethodData: ?*anyopaque,
+            DataLength: u32,
+            BytesReturned: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        KsEvent: *const fn(
+            self: *const IKsControl,
+            Event: ?*KSIDENTIFIER,
+            EventLength: u32,
+            EventData: ?*anyopaque,
+            DataLength: u32,
+            BytesReturned: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -753,30 +723,16 @@ pub const IID_IKsFormatSupport = &IID_IKsFormatSupport_Value;
 pub const IKsFormatSupport = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsFormatSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsFormatSupport,
-                pKsFormat: ?*KSDATAFORMAT,
-                cbFormat: u32,
-                pbSupported: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsFormatSupport,
-                pKsFormat: ?*KSDATAFORMAT,
-                cbFormat: u32,
-                pbSupported: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDevicePreferredFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsFormatSupport,
-                ppKsFormat: ?*?*KSDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsFormatSupport,
-                ppKsFormat: ?*?*KSDATAFORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsFormatSupported: *const fn(
+            self: *const IKsFormatSupport,
+            pKsFormat: ?*KSDATAFORMAT,
+            cbFormat: u32,
+            pbSupported: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDevicePreferredFormat: *const fn(
+            self: *const IKsFormatSupport,
+            ppKsFormat: ?*?*KSDATAFORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -799,28 +755,15 @@ pub const IID_IKsJackDescription = &IID_IKsJackDescription_Value;
 pub const IKsJackDescription = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetJackCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsJackDescription,
-                pcJacks: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsJackDescription,
-                pcJacks: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetJackDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsJackDescription,
-                nJack: u32,
-                pDescription: ?*KSJACK_DESCRIPTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsJackDescription,
-                nJack: u32,
-                pDescription: ?*KSJACK_DESCRIPTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetJackCount: *const fn(
+            self: *const IKsJackDescription,
+            pcJacks: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetJackDescription: *const fn(
+            self: *const IKsJackDescription,
+            nJack: u32,
+            pDescription: ?*KSJACK_DESCRIPTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -843,28 +786,15 @@ pub const IID_IKsJackDescription2 = &IID_IKsJackDescription2_Value;
 pub const IKsJackDescription2 = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetJackCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsJackDescription2,
-                pcJacks: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsJackDescription2,
-                pcJacks: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetJackDescription2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsJackDescription2,
-                nJack: u32,
-                pDescription2: ?*KSJACK_DESCRIPTION2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsJackDescription2,
-                nJack: u32,
-                pDescription2: ?*KSJACK_DESCRIPTION2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetJackCount: *const fn(
+            self: *const IKsJackDescription2,
+            pcJacks: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetJackDescription2: *const fn(
+            self: *const IKsJackDescription2,
+            nJack: u32,
+            pDescription2: ?*KSJACK_DESCRIPTION2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -887,16 +817,10 @@ pub const IID_IKsJackSinkInformation = &IID_IKsJackSinkInformation_Value;
 pub const IKsJackSinkInformation = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetJackSinkInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsJackSinkInformation,
-                pJackSinkInformation: ?*KSJACK_SINK_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsJackSinkInformation,
-                pJackSinkInformation: ?*KSJACK_SINK_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetJackSinkInformation: *const fn(
+            self: *const IKsJackSinkInformation,
+            pJackSinkInformation: ?*KSJACK_SINK_INFORMATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -914,16 +838,10 @@ pub const IID_IKsJackContainerId = &IID_IKsJackContainerId_Value;
 pub const IKsJackContainerId = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetJackContainerId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsJackContainerId,
-                pJackContainerId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsJackContainerId,
-                pJackContainerId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetJackContainerId: *const fn(
+            self: *const IKsJackContainerId,
+            pJackContainerId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7209,70 +7127,35 @@ pub const IID_IKsPropertySet = &IID_IKsPropertySet_Value;
 pub const IKsPropertySet = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Set: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsPropertySet,
-                PropSet: ?*const Guid,
-                Id: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                InstanceData: ?*anyopaque,
-                InstanceLength: u32,
-                // TODO: what to do with BytesParamIndex 5?
-                PropertyData: ?*anyopaque,
-                DataLength: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsPropertySet,
-                PropSet: ?*const Guid,
-                Id: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                InstanceData: ?*anyopaque,
-                InstanceLength: u32,
-                // TODO: what to do with BytesParamIndex 5?
-                PropertyData: ?*anyopaque,
-                DataLength: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Get: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsPropertySet,
-                PropSet: ?*const Guid,
-                Id: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                InstanceData: ?*anyopaque,
-                InstanceLength: u32,
-                // TODO: what to do with BytesParamIndex 5?
-                PropertyData: ?*anyopaque,
-                DataLength: u32,
-                BytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsPropertySet,
-                PropSet: ?*const Guid,
-                Id: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                InstanceData: ?*anyopaque,
-                InstanceLength: u32,
-                // TODO: what to do with BytesParamIndex 5?
-                PropertyData: ?*anyopaque,
-                DataLength: u32,
-                BytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QuerySupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsPropertySet,
-                PropSet: ?*const Guid,
-                Id: u32,
-                TypeSupport: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsPropertySet,
-                PropSet: ?*const Guid,
-                Id: u32,
-                TypeSupport: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Set: *const fn(
+            self: *const IKsPropertySet,
+            PropSet: ?*const Guid,
+            Id: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            InstanceData: ?*anyopaque,
+            InstanceLength: u32,
+            // TODO: what to do with BytesParamIndex 5?
+            PropertyData: ?*anyopaque,
+            DataLength: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Get: *const fn(
+            self: *const IKsPropertySet,
+            PropSet: ?*const Guid,
+            Id: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            InstanceData: ?*anyopaque,
+            InstanceLength: u32,
+            // TODO: what to do with BytesParamIndex 5?
+            PropertyData: ?*anyopaque,
+            DataLength: u32,
+            BytesReturned: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QuerySupported: *const fn(
+            self: *const IKsPropertySet,
+            PropSet: ?*const Guid,
+            Id: u32,
+            TypeSupport: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7298,26 +7181,14 @@ pub const IID_IKsAggregateControl = &IID_IKsAggregateControl_Value;
 pub const IKsAggregateControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        KsAddAggregate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsAggregateControl,
-                AggregateClass: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsAggregateControl,
-                AggregateClass: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        KsRemoveAggregate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsAggregateControl,
-                AggregateClass: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsAggregateControl,
-                AggregateClass: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        KsAddAggregate: *const fn(
+            self: *const IKsAggregateControl,
+            AggregateClass: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        KsRemoveAggregate: *const fn(
+            self: *const IKsAggregateControl,
+            AggregateClass: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -7339,26 +7210,15 @@ pub const IID_IKsTopology = &IID_IKsTopology_Value;
 pub const IKsTopology = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateNodeInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IKsTopology,
-                NodeId: u32,
-                Flags: u32,
-                DesiredAccess: u32,
-                UnkOuter: ?*IUnknown,
-                InterfaceId: ?*const Guid,
-                Interface: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IKsTopology,
-                NodeId: u32,
-                Flags: u32,
-                DesiredAccess: u32,
-                UnkOuter: ?*IUnknown,
-                InterfaceId: ?*const Guid,
-                Interface: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateNodeInstance: *const fn(
+            self: *const IKsTopology,
+            NodeId: u32,
+            Flags: u32,
+            DesiredAccess: u32,
+            UnkOuter: ?*IUnknown,
+            InterfaceId: ?*const Guid,
+            Interface: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

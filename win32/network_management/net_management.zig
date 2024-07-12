@@ -4486,48 +4486,23 @@ pub const IID_IEnumNetCfgBindingInterface = &IID_IEnumNetCfgBindingInterface_Val
 pub const IEnumNetCfgBindingInterface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgBindingInterface,
-                celt: u32,
-                rgelt: [*]?*INetCfgBindingInterface,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgBindingInterface,
-                celt: u32,
-                rgelt: [*]?*INetCfgBindingInterface,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgBindingInterface,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgBindingInterface,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgBindingInterface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgBindingInterface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgBindingInterface,
-                ppenum: ?*?*IEnumNetCfgBindingInterface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgBindingInterface,
-                ppenum: ?*?*IEnumNetCfgBindingInterface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumNetCfgBindingInterface,
+            celt: u32,
+            rgelt: [*]?*INetCfgBindingInterface,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetCfgBindingInterface,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetCfgBindingInterface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetCfgBindingInterface,
+            ppenum: ?*?*IEnumNetCfgBindingInterface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4557,48 +4532,23 @@ pub const IID_IEnumNetCfgBindingPath = &IID_IEnumNetCfgBindingPath_Value;
 pub const IEnumNetCfgBindingPath = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgBindingPath,
-                celt: u32,
-                rgelt: [*]?*INetCfgBindingPath,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgBindingPath,
-                celt: u32,
-                rgelt: [*]?*INetCfgBindingPath,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgBindingPath,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgBindingPath,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgBindingPath,
-                ppenum: ?*?*IEnumNetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgBindingPath,
-                ppenum: ?*?*IEnumNetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumNetCfgBindingPath,
+            celt: u32,
+            rgelt: [*]?*INetCfgBindingPath,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetCfgBindingPath,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetCfgBindingPath,
+            ppenum: ?*?*IEnumNetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4628,48 +4578,23 @@ pub const IID_IEnumNetCfgComponent = &IID_IEnumNetCfgComponent_Value;
 pub const IEnumNetCfgComponent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgComponent,
-                celt: u32,
-                rgelt: [*]?*INetCfgComponent,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgComponent,
-                celt: u32,
-                rgelt: [*]?*INetCfgComponent,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgComponent,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgComponent,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumNetCfgComponent,
-                ppenum: ?*?*IEnumNetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumNetCfgComponent,
-                ppenum: ?*?*IEnumNetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumNetCfgComponent,
+            celt: u32,
+            rgelt: [*]?*INetCfgComponent,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumNetCfgComponent,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumNetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumNetCfgComponent,
+            ppenum: ?*?*IEnumNetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4699,78 +4624,35 @@ pub const IID_INetCfg = &IID_INetCfg_Value;
 pub const INetCfg = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfg,
-                pvReserved: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfg,
-                pvReserved: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Uninitialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfg,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfg,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Apply: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfg,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfg,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfg,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfg,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumComponents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfg,
-                pguidClass: ?*const Guid,
-                ppenumComponent: ?*?*IEnumNetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfg,
-                pguidClass: ?*const Guid,
-                ppenumComponent: ?*?*IEnumNetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfg,
-                pszwInfId: ?[*:0]const u16,
-                pComponent: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfg,
-                pszwInfId: ?[*:0]const u16,
-                pComponent: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryNetCfgClass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfg,
-                pguidClass: ?*const Guid,
-                riid: ?*const Guid,
-                ppvObject: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfg,
-                pguidClass: ?*const Guid,
-                riid: ?*const Guid,
-                ppvObject: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const INetCfg,
+            pvReserved: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Uninitialize: *const fn(
+            self: *const INetCfg,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Apply: *const fn(
+            self: *const INetCfg,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: *const fn(
+            self: *const INetCfg,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumComponents: *const fn(
+            self: *const INetCfg,
+            pguidClass: ?*const Guid,
+            ppenumComponent: ?*?*IEnumNetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindComponent: *const fn(
+            self: *const INetCfg,
+            pszwInfId: ?[*:0]const u16,
+            pComponent: ?*?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryNetCfgClass: *const fn(
+            self: *const INetCfg,
+            pguidClass: ?*const Guid,
+            riid: ?*const Guid,
+            ppvObject: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4812,38 +4694,19 @@ pub const IID_INetCfgLock = &IID_INetCfgLock_Value;
 pub const INetCfgLock = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AcquireWriteLock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgLock,
-                cmsTimeout: u32,
-                pszwClientDescription: ?[*:0]const u16,
-                ppszwClientDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgLock,
-                cmsTimeout: u32,
-                pszwClientDescription: ?[*:0]const u16,
-                ppszwClientDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseWriteLock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgLock,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgLock,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsWriteLocked: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgLock,
-                ppszwClientDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgLock,
-                ppszwClientDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AcquireWriteLock: *const fn(
+            self: *const INetCfgLock,
+            cmsTimeout: u32,
+            pszwClientDescription: ?[*:0]const u16,
+            ppszwClientDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseWriteLock: *const fn(
+            self: *const INetCfgLock,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsWriteLocked: *const fn(
+            self: *const INetCfgLock,
+            ppszwClientDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4869,36 +4732,18 @@ pub const IID_INetCfgBindingInterface = &IID_INetCfgBindingInterface_Value;
 pub const INetCfgBindingInterface = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingInterface,
-                ppszwInterfaceName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingInterface,
-                ppszwInterfaceName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUpperComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingInterface,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingInterface,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLowerComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingInterface,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingInterface,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetName: *const fn(
+            self: *const INetCfgBindingInterface,
+            ppszwInterfaceName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUpperComponent: *const fn(
+            self: *const INetCfgBindingInterface,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLowerComponent: *const fn(
+            self: *const INetCfgBindingInterface,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -4924,84 +4769,37 @@ pub const IID_INetCfgBindingPath = &IID_INetCfgBindingPath_Value;
 pub const INetCfgBindingPath = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsSamePathAs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingPath,
-                pPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingPath,
-                pPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsSubPathOf: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingPath,
-                pPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingPath,
-                pPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Enable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingPath,
-                fEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingPath,
-                fEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPathToken: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingPath,
-                ppszwPathToken: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingPath,
-                ppszwPathToken: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingPath,
-                ppComponent: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingPath,
-                ppComponent: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDepth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingPath,
-                pcInterfaces: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingPath,
-                pcInterfaces: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumBindingInterfaces: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgBindingPath,
-                ppenumInterface: ?*?*IEnumNetCfgBindingInterface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgBindingPath,
-                ppenumInterface: ?*?*IEnumNetCfgBindingInterface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsSamePathAs: *const fn(
+            self: *const INetCfgBindingPath,
+            pPath: ?*INetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsSubPathOf: *const fn(
+            self: *const INetCfgBindingPath,
+            pPath: ?*INetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEnabled: *const fn(
+            self: *const INetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Enable: *const fn(
+            self: *const INetCfgBindingPath,
+            fEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPathToken: *const fn(
+            self: *const INetCfgBindingPath,
+            ppszwPathToken: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOwner: *const fn(
+            self: *const INetCfgBindingPath,
+            ppComponent: ?*?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDepth: *const fn(
+            self: *const INetCfgBindingPath,
+            pcInterfaces: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumBindingInterfaces: *const fn(
+            self: *const INetCfgBindingPath,
+            ppenumInterface: ?*?*IEnumNetCfgBindingInterface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5047,28 +4845,15 @@ pub const IID_INetCfgClass = &IID_INetCfgClass_Value;
 pub const INetCfgClass = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgClass,
-                pszwInfId: ?[*:0]const u16,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgClass,
-                pszwInfId: ?[*:0]const u16,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumComponents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgClass,
-                ppenumComponent: ?*?*IEnumNetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgClass,
-                ppenumComponent: ?*?*IEnumNetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindComponent: *const fn(
+            self: *const INetCfgClass,
+            pszwInfId: ?[*:0]const u16,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumComponents: *const fn(
+            self: *const INetCfgClass,
+            ppenumComponent: ?*?*IEnumNetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5108,56 +4893,28 @@ pub const IID_INetCfgClassSetup = &IID_INetCfgClassSetup_Value;
 pub const INetCfgClassSetup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SelectAndInstall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgClassSetup,
-                hwndParent: ?HWND,
-                pOboToken: ?*OBO_TOKEN,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgClassSetup,
-                hwndParent: ?HWND,
-                pOboToken: ?*OBO_TOKEN,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Install: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgClassSetup,
-                pszwInfId: ?[*:0]const u16,
-                pOboToken: ?*OBO_TOKEN,
-                dwSetupFlags: u32,
-                dwUpgradeFromBuildNo: u32,
-                pszwAnswerFile: ?[*:0]const u16,
-                pszwAnswerSections: ?[*:0]const u16,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgClassSetup,
-                pszwInfId: ?[*:0]const u16,
-                pOboToken: ?*OBO_TOKEN,
-                dwSetupFlags: u32,
-                dwUpgradeFromBuildNo: u32,
-                pszwAnswerFile: ?[*:0]const u16,
-                pszwAnswerSections: ?[*:0]const u16,
-                ppnccItem: ?*?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeInstall: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgClassSetup,
-                pComponent: ?*INetCfgComponent,
-                pOboToken: ?*OBO_TOKEN,
-                pmszwRefs: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgClassSetup,
-                pComponent: ?*INetCfgComponent,
-                pOboToken: ?*OBO_TOKEN,
-                pmszwRefs: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SelectAndInstall: *const fn(
+            self: *const INetCfgClassSetup,
+            hwndParent: ?HWND,
+            pOboToken: ?*OBO_TOKEN,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Install: *const fn(
+            self: *const INetCfgClassSetup,
+            pszwInfId: ?[*:0]const u16,
+            pOboToken: ?*OBO_TOKEN,
+            dwSetupFlags: u32,
+            dwUpgradeFromBuildNo: u32,
+            pszwAnswerFile: ?[*:0]const u16,
+            pszwAnswerSections: ?[*:0]const u16,
+            ppnccItem: ?*?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeInstall: *const fn(
+            self: *const INetCfgClassSetup,
+            pComponent: ?*INetCfgComponent,
+            pOboToken: ?*OBO_TOKEN,
+            pmszwRefs: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5183,20 +4940,12 @@ pub const IID_INetCfgClassSetup2 = &IID_INetCfgClassSetup2_Value;
 pub const INetCfgClassSetup2 = extern struct {
     pub const VTable = extern struct {
         base: INetCfgClassSetup.VTable,
-        UpdateNonEnumeratedComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgClassSetup2,
-                pIComp: ?*INetCfgComponent,
-                dwSetupFlags: u32,
-                dwUpgradeFromBuildNo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgClassSetup2,
-                pIComp: ?*INetCfgComponent,
-                dwSetupFlags: u32,
-                dwUpgradeFromBuildNo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        UpdateNonEnumeratedComponent: *const fn(
+            self: *const INetCfgClassSetup2,
+            pIComp: ?*INetCfgComponent,
+            dwSetupFlags: u32,
+            dwUpgradeFromBuildNo: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5254,130 +5003,56 @@ pub const IID_INetCfgComponent = &IID_INetCfgComponent_Value;
 pub const INetCfgComponent = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                ppszwDisplayName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                ppszwDisplayName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                pszwDisplayName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                pszwDisplayName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHelpText: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                pszwHelpText: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                pszwHelpText: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                ppszwId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                ppszwId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCharacteristics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                pdwCharacteristics: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                pdwCharacteristics: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInstanceGuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                pGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                pGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPnpDevNodeId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                ppszwDevNodeId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                ppszwDevNodeId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClassGuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                pGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                pGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBindName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                ppszwBindName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                ppszwBindName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                pulStatus: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                pulStatus: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenParamKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                phkey: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                phkey: ?*?HKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RaisePropertyUi: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponent,
-                hwndParent: ?HWND,
-                dwFlags: u32,
-                punkContext: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponent,
-                hwndParent: ?HWND,
-                dwFlags: u32,
-                punkContext: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDisplayName: *const fn(
+            self: *const INetCfgComponent,
+            ppszwDisplayName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDisplayName: *const fn(
+            self: *const INetCfgComponent,
+            pszwDisplayName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHelpText: *const fn(
+            self: *const INetCfgComponent,
+            pszwHelpText: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetId: *const fn(
+            self: *const INetCfgComponent,
+            ppszwId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCharacteristics: *const fn(
+            self: *const INetCfgComponent,
+            pdwCharacteristics: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInstanceGuid: *const fn(
+            self: *const INetCfgComponent,
+            pGuid: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPnpDevNodeId: *const fn(
+            self: *const INetCfgComponent,
+            ppszwDevNodeId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClassGuid: *const fn(
+            self: *const INetCfgComponent,
+            pGuid: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBindName: *const fn(
+            self: *const INetCfgComponent,
+            ppszwBindName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceStatus: *const fn(
+            self: *const INetCfgComponent,
+            pulStatus: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenParamKey: *const fn(
+            self: *const INetCfgComponent,
+            phkey: ?*?HKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RaisePropertyUi: *const fn(
+            self: *const INetCfgComponent,
+            hwndParent: ?HWND,
+            dwFlags: u32,
+            punkContext: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5453,94 +5128,42 @@ pub const IID_INetCfgComponentBindings = &IID_INetCfgComponentBindings_Value;
 pub const INetCfgComponentBindings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BindTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentBindings,
-                pnccItem: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentBindings,
-                pnccItem: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnbindFrom: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentBindings,
-                pnccItem: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentBindings,
-                pnccItem: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SupportsBindingInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentBindings,
-                dwFlags: u32,
-                pszwInterfaceName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentBindings,
-                dwFlags: u32,
-                pszwInterfaceName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsBoundTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentBindings,
-                pnccItem: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentBindings,
-                pnccItem: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsBindableTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentBindings,
-                pnccItem: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentBindings,
-                pnccItem: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumBindingPaths: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentBindings,
-                dwFlags: u32,
-                ppIEnum: ?*?*IEnumNetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentBindings,
-                dwFlags: u32,
-                ppIEnum: ?*?*IEnumNetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveBefore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentBindings,
-                pncbItemSrc: ?*INetCfgBindingPath,
-                pncbItemDest: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentBindings,
-                pncbItemSrc: ?*INetCfgBindingPath,
-                pncbItemDest: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveAfter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentBindings,
-                pncbItemSrc: ?*INetCfgBindingPath,
-                pncbItemDest: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentBindings,
-                pncbItemSrc: ?*INetCfgBindingPath,
-                pncbItemDest: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BindTo: *const fn(
+            self: *const INetCfgComponentBindings,
+            pnccItem: ?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnbindFrom: *const fn(
+            self: *const INetCfgComponentBindings,
+            pnccItem: ?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SupportsBindingInterface: *const fn(
+            self: *const INetCfgComponentBindings,
+            dwFlags: u32,
+            pszwInterfaceName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsBoundTo: *const fn(
+            self: *const INetCfgComponentBindings,
+            pnccItem: ?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsBindableTo: *const fn(
+            self: *const INetCfgComponentBindings,
+            pnccItem: ?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumBindingPaths: *const fn(
+            self: *const INetCfgComponentBindings,
+            dwFlags: u32,
+            ppIEnum: ?*?*IEnumNetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveBefore: *const fn(
+            self: *const INetCfgComponentBindings,
+            pncbItemSrc: ?*INetCfgBindingPath,
+            pncbItemDest: ?*INetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveAfter: *const fn(
+            self: *const INetCfgComponentBindings,
+            pncbItemSrc: ?*INetCfgBindingPath,
+            pncbItemDest: ?*INetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5586,62 +5209,30 @@ pub const IID_INetCfgSysPrep = &IID_INetCfgSysPrep_Value;
 pub const INetCfgSysPrep = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        HrSetupSetFirstDword: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgSysPrep,
-                pwszSection: ?[*:0]const u16,
-                pwszKey: ?[*:0]const u16,
-                dwValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgSysPrep,
-                pwszSection: ?[*:0]const u16,
-                pwszKey: ?[*:0]const u16,
-                dwValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HrSetupSetFirstString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgSysPrep,
-                pwszSection: ?[*:0]const u16,
-                pwszKey: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgSysPrep,
-                pwszSection: ?[*:0]const u16,
-                pwszKey: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HrSetupSetFirstStringAsBool: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgSysPrep,
-                pwszSection: ?[*:0]const u16,
-                pwszKey: ?[*:0]const u16,
-                fValue: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgSysPrep,
-                pwszSection: ?[*:0]const u16,
-                pwszKey: ?[*:0]const u16,
-                fValue: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HrSetupSetFirstMultiSzField: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgSysPrep,
-                pwszSection: ?[*:0]const u16,
-                pwszKey: ?[*:0]const u16,
-                pmszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgSysPrep,
-                pwszSection: ?[*:0]const u16,
-                pwszKey: ?[*:0]const u16,
-                pmszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        HrSetupSetFirstDword: *const fn(
+            self: *const INetCfgSysPrep,
+            pwszSection: ?[*:0]const u16,
+            pwszKey: ?[*:0]const u16,
+            dwValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HrSetupSetFirstString: *const fn(
+            self: *const INetCfgSysPrep,
+            pwszSection: ?[*:0]const u16,
+            pwszKey: ?[*:0]const u16,
+            pwszValue: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HrSetupSetFirstStringAsBool: *const fn(
+            self: *const INetCfgSysPrep,
+            pwszSection: ?[*:0]const u16,
+            pwszKey: ?[*:0]const u16,
+            fValue: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HrSetupSetFirstMultiSzField: *const fn(
+            self: *const INetCfgSysPrep,
+            pwszSection: ?[*:0]const u16,
+            pwszKey: ?[*:0]const u16,
+            pmszValue: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5678,26 +5269,15 @@ pub const IID_INetCfgPnpReconfigCallback = &IID_INetCfgPnpReconfigCallback_Value
 pub const INetCfgPnpReconfigCallback = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SendPnpReconfig: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgPnpReconfigCallback,
-                Layer: NCPNP_RECONFIG_LAYER,
-                pszwUpper: ?[*:0]const u16,
-                pszwLower: ?[*:0]const u16,
-                // TODO: what to do with BytesParamIndex 4?
-                pvData: ?*anyopaque,
-                dwSizeOfData: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgPnpReconfigCallback,
-                Layer: NCPNP_RECONFIG_LAYER,
-                pszwUpper: ?[*:0]const u16,
-                pszwLower: ?[*:0]const u16,
-                // TODO: what to do with BytesParamIndex 4?
-                pvData: ?*anyopaque,
-                dwSizeOfData: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SendPnpReconfig: *const fn(
+            self: *const INetCfgPnpReconfigCallback,
+            Layer: NCPNP_RECONFIG_LAYER,
+            pszwUpper: ?[*:0]const u16,
+            pszwLower: ?[*:0]const u16,
+            // TODO: what to do with BytesParamIndex 4?
+            pvData: ?*anyopaque,
+            dwSizeOfData: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5715,46 +5295,22 @@ pub const IID_INetCfgComponentControl = &IID_INetCfgComponentControl_Value;
 pub const INetCfgComponentControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentControl,
-                pIComp: ?*INetCfgComponent,
-                pINetCfg: ?*INetCfg,
-                fInstalling: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentControl,
-                pIComp: ?*INetCfgComponent,
-                pINetCfg: ?*INetCfg,
-                fInstalling: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ApplyRegistryChanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentControl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentControl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ApplyPnpChanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentControl,
-                pICallback: ?*INetCfgPnpReconfigCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentControl,
-                pICallback: ?*INetCfgPnpReconfigCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CancelChanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentControl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentControl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const INetCfgComponentControl,
+            pIComp: ?*INetCfgComponent,
+            pINetCfg: ?*INetCfg,
+            fInstalling: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ApplyRegistryChanges: *const fn(
+            self: *const INetCfgComponentControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ApplyPnpChanges: *const fn(
+            self: *const INetCfgComponentControl,
+            pICallback: ?*INetCfgPnpReconfigCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CancelChanges: *const fn(
+            self: *const INetCfgComponentControl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5806,48 +5362,23 @@ pub const IID_INetCfgComponentSetup = &IID_INetCfgComponentSetup_Value;
 pub const INetCfgComponentSetup = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Install: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentSetup,
-                dwSetupFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentSetup,
-                dwSetupFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Upgrade: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentSetup,
-                dwSetupFlags: u32,
-                dwUpgradeFomBuildNo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentSetup,
-                dwSetupFlags: u32,
-                dwUpgradeFomBuildNo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReadAnswerFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentSetup,
-                pszwAnswerFile: ?[*:0]const u16,
-                pszwAnswerSections: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentSetup,
-                pszwAnswerFile: ?[*:0]const u16,
-                pszwAnswerSections: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Removing: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentSetup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentSetup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Install: *const fn(
+            self: *const INetCfgComponentSetup,
+            dwSetupFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Upgrade: *const fn(
+            self: *const INetCfgComponentSetup,
+            dwSetupFlags: u32,
+            dwUpgradeFomBuildNo: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReadAnswerFile: *const fn(
+            self: *const INetCfgComponentSetup,
+            pszwAnswerFile: ?[*:0]const u16,
+            pszwAnswerSections: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Removing: *const fn(
+            self: *const INetCfgComponentSetup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -5882,70 +5413,32 @@ pub const IID_INetCfgComponentPropertyUi = &IID_INetCfgComponentPropertyUi_Value
 pub const INetCfgComponentPropertyUi = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueryPropertyUi: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentPropertyUi,
-                pUnkReserved: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentPropertyUi,
-                pUnkReserved: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentPropertyUi,
-                pUnkReserved: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentPropertyUi,
-                pUnkReserved: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MergePropPages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentPropertyUi,
-                pdwDefPages: ?*u32,
-                pahpspPrivate: ?*?*u8,
-                pcPages: ?*u32,
-                hwndParent: ?HWND,
-                pszStartPage: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentPropertyUi,
-                pdwDefPages: ?*u32,
-                pahpspPrivate: ?*?*u8,
-                pcPages: ?*u32,
-                hwndParent: ?HWND,
-                pszStartPage: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ValidateProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentPropertyUi,
-                hwndSheet: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentPropertyUi,
-                hwndSheet: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ApplyProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentPropertyUi,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentPropertyUi,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CancelProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentPropertyUi,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentPropertyUi,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        QueryPropertyUi: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+            pUnkReserved: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContext: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+            pUnkReserved: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MergePropPages: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+            pdwDefPages: ?*u32,
+            pahpspPrivate: ?*?*u8,
+            pcPages: ?*u32,
+            hwndParent: ?HWND,
+            pszStartPage: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ValidateProperties: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+            hwndSheet: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ApplyProperties: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CancelProperties: *const fn(
+            self: *const INetCfgComponentPropertyUi,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6008,30 +5501,16 @@ pub const IID_INetCfgComponentNotifyBinding = &IID_INetCfgComponentNotifyBinding
 pub const INetCfgComponentNotifyBinding = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueryBindingPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentNotifyBinding,
-                dwChangeFlag: u32,
-                pIPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentNotifyBinding,
-                dwChangeFlag: u32,
-                pIPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NotifyBindingPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentNotifyBinding,
-                dwChangeFlag: u32,
-                pIPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentNotifyBinding,
-                dwChangeFlag: u32,
-                pIPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        QueryBindingPath: *const fn(
+            self: *const INetCfgComponentNotifyBinding,
+            dwChangeFlag: u32,
+            pIPath: ?*INetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NotifyBindingPath: *const fn(
+            self: *const INetCfgComponentNotifyBinding,
+            dwChangeFlag: u32,
+            pIPath: ?*INetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6053,52 +5532,25 @@ pub const IID_INetCfgComponentNotifyGlobal = &IID_INetCfgComponentNotifyGlobal_V
 pub const INetCfgComponentNotifyGlobal = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSupportedNotifications: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentNotifyGlobal,
-                dwNotifications: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentNotifyGlobal,
-                dwNotifications: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SysQueryBindingPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentNotifyGlobal,
-                dwChangeFlag: u32,
-                pIPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentNotifyGlobal,
-                dwChangeFlag: u32,
-                pIPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SysNotifyBindingPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentNotifyGlobal,
-                dwChangeFlag: u32,
-                pIPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentNotifyGlobal,
-                dwChangeFlag: u32,
-                pIPath: ?*INetCfgBindingPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SysNotifyComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentNotifyGlobal,
-                dwChangeFlag: u32,
-                pIComp: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentNotifyGlobal,
-                dwChangeFlag: u32,
-                pIComp: ?*INetCfgComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSupportedNotifications: *const fn(
+            self: *const INetCfgComponentNotifyGlobal,
+            dwNotifications: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SysQueryBindingPath: *const fn(
+            self: *const INetCfgComponentNotifyGlobal,
+            dwChangeFlag: u32,
+            pIPath: ?*INetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SysNotifyBindingPath: *const fn(
+            self: *const INetCfgComponentNotifyGlobal,
+            dwChangeFlag: u32,
+            pIPath: ?*INetCfgBindingPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SysNotifyComponent: *const fn(
+            self: *const INetCfgComponentNotifyGlobal,
+            dwChangeFlag: u32,
+            pIComp: ?*INetCfgComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6128,46 +5580,23 @@ pub const IID_INetCfgComponentUpperEdge = &IID_INetCfgComponentUpperEdge_Value;
 pub const INetCfgComponentUpperEdge = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInterfaceIdsForAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                pdwNumInterfaces: ?*u32,
-                ppguidInterfaceIds: ?[*]?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                pdwNumInterfaces: ?*u32,
-                ppguidInterfaceIds: ?[*]?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddInterfacesToAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                dwNumInterfaces: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                dwNumInterfaces: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveInterfacesFromAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                dwNumInterfaces: u32,
-                pguidInterfaceIds: [*]const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentUpperEdge,
-                pAdapter: ?*INetCfgComponent,
-                dwNumInterfaces: u32,
-                pguidInterfaceIds: [*]const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetInterfaceIdsForAdapter: *const fn(
+            self: *const INetCfgComponentUpperEdge,
+            pAdapter: ?*INetCfgComponent,
+            pdwNumInterfaces: ?*u32,
+            ppguidInterfaceIds: ?[*]?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddInterfacesToAdapter: *const fn(
+            self: *const INetCfgComponentUpperEdge,
+            pAdapter: ?*INetCfgComponent,
+            dwNumInterfaces: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveInterfacesFromAdapter: *const fn(
+            self: *const INetCfgComponentUpperEdge,
+            pAdapter: ?*INetCfgComponent,
+            dwNumInterfaces: u32,
+            pguidInterfaceIds: [*]const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6193,16 +5622,10 @@ pub const IID_INetLanConnectionUiInfo = &IID_INetLanConnectionUiInfo_Value;
 pub const INetLanConnectionUiInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDeviceGuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetLanConnectionUiInfo,
-                pguid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetLanConnectionUiInfo,
-                pguid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDeviceGuid: *const fn(
+            self: *const INetLanConnectionUiInfo,
+            pguid: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6273,16 +5696,10 @@ pub const IID_INetRasConnectionIpUiInfo = &IID_INetRasConnectionIpUiInfo_Value;
 pub const INetRasConnectionIpUiInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetUiInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetRasConnectionIpUiInfo,
-                pInfo: ?*RASCON_IPUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetRasConnectionIpUiInfo,
-                pInfo: ?*RASCON_IPUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetUiInfo: *const fn(
+            self: *const INetRasConnectionIpUiInfo,
+            pInfo: ?*RASCON_IPUI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6300,34 +5717,18 @@ pub const IID_INetCfgComponentSysPrep = &IID_INetCfgComponentSysPrep_Value;
 pub const INetCfgComponentSysPrep = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SaveAdapterParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentSysPrep,
-                pncsp: ?*INetCfgSysPrep,
-                pszwAnswerSections: ?[*:0]const u16,
-                pAdapterInstanceGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentSysPrep,
-                pncsp: ?*INetCfgSysPrep,
-                pszwAnswerSections: ?[*:0]const u16,
-                pAdapterInstanceGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RestoreAdapterParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const INetCfgComponentSysPrep,
-                pszwAnswerFile: ?[*:0]const u16,
-                pszwAnswerSection: ?[*:0]const u16,
-                pAdapterInstanceGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const INetCfgComponentSysPrep,
-                pszwAnswerFile: ?[*:0]const u16,
-                pszwAnswerSection: ?[*:0]const u16,
-                pAdapterInstanceGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SaveAdapterParameters: *const fn(
+            self: *const INetCfgComponentSysPrep,
+            pncsp: ?*INetCfgSysPrep,
+            pszwAnswerSections: ?[*:0]const u16,
+            pAdapterInstanceGuid: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RestoreAdapterParameters: *const fn(
+            self: *const INetCfgComponentSysPrep,
+            pszwAnswerFile: ?[*:0]const u16,
+            pszwAnswerSection: ?[*:0]const u16,
+            pAdapterInstanceGuid: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6352,32 +5753,17 @@ pub const IID_IProvisioningDomain = &IID_IProvisioningDomain_Value;
 pub const IProvisioningDomain = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IProvisioningDomain,
-                pszwPathToFolder: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IProvisioningDomain,
-                pszwPathToFolder: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Query: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IProvisioningDomain,
-                pszwDomain: ?[*:0]const u16,
-                pszwLanguage: ?[*:0]const u16,
-                pszwXPathQuery: ?[*:0]const u16,
-                Nodes: ?*?*IXMLDOMNodeList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IProvisioningDomain,
-                pszwDomain: ?[*:0]const u16,
-                pszwLanguage: ?[*:0]const u16,
-                pszwXPathQuery: ?[*:0]const u16,
-                Nodes: ?*?*IXMLDOMNodeList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Add: *const fn(
+            self: *const IProvisioningDomain,
+            pszwPathToFolder: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Query: *const fn(
+            self: *const IProvisioningDomain,
+            pszwDomain: ?[*:0]const u16,
+            pszwLanguage: ?[*:0]const u16,
+            pszwXPathQuery: ?[*:0]const u16,
+            Nodes: ?*?*IXMLDOMNodeList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6399,22 +5785,13 @@ pub const IID_IProvisioningProfileWireless = &IID_IProvisioningProfileWireless_V
 pub const IProvisioningProfileWireless = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateProfile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IProvisioningProfileWireless,
-                bstrXMLWirelessConfigProfile: ?BSTR,
-                bstrXMLConnectionConfigProfile: ?BSTR,
-                pAdapterInstanceGuid: ?*Guid,
-                pulStatus: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IProvisioningProfileWireless,
-                bstrXMLWirelessConfigProfile: ?BSTR,
-                bstrXMLConnectionConfigProfile: ?BSTR,
-                pAdapterInstanceGuid: ?*Guid,
-                pulStatus: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateProfile: *const fn(
+            self: *const IProvisioningProfileWireless,
+            bstrXMLWirelessConfigProfile: ?BSTR,
+            bstrXMLConnectionConfigProfile: ?BSTR,
+            pAdapterInstanceGuid: ?*Guid,
+            pulStatus: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -6441,14 +5818,9 @@ pub const RTR_INFO_BLOCK_HEADER = extern struct {
     TocEntry: [1]RTR_TOC_ENTRY,
 };
 
-pub const WORKERFUNCTION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const WORKERFUNCTION = *const fn(
+    param0: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MPR_PROTOCOL_0 = extern struct {
     dwProtocolId: u32,

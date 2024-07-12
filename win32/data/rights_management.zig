@@ -200,20 +200,12 @@ pub const DRM_DISTRIBUTION_POINT_LICENSE_ACQUISITION = DRM_DISTRIBUTION_POINT_IN
 pub const DRM_DISTRIBUTION_POINT_PUBLISHING = DRM_DISTRIBUTION_POINT_INFO.PUBLISHING;
 pub const DRM_DISTRIBUTION_POINT_REFERRAL_INFO = DRM_DISTRIBUTION_POINT_INFO.REFERRAL_INFO;
 
-pub const DRMCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        param0: DRM_STATUS_MSG,
-        param1: HRESULT,
-        param2: ?*anyopaque,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        param0: DRM_STATUS_MSG,
-        param1: HRESULT,
-        param2: ?*anyopaque,
-        param3: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const DRMCALLBACK = *const fn(
+    param0: DRM_STATUS_MSG,
+    param1: HRESULT,
+    param2: ?*anyopaque,
+    param3: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 
 //--------------------------------------------------------------------------------

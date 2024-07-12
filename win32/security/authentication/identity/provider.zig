@@ -74,18 +74,11 @@ pub const IID_IIdentityAdvise = &IID_IIdentityAdvise_Value;
 pub const IIdentityAdvise = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IdentityUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityAdvise,
-                dwIdentityUpdateEvents: IdentityUpdateEvent,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityAdvise,
-                dwIdentityUpdateEvents: IdentityUpdateEvent,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IdentityUpdated: *const fn(
+            self: *const IIdentityAdvise,
+            dwIdentityUpdateEvents: IdentityUpdateEvent,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -103,26 +96,14 @@ pub const IID_AsyncIIdentityAdvise = &IID_AsyncIIdentityAdvise_Value;
 pub const AsyncIIdentityAdvise = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin_IdentityUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityAdvise,
-                dwIdentityUpdateEvents: u32,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityAdvise,
-                dwIdentityUpdateEvents: u32,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_IdentityUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityAdvise,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityAdvise,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin_IdentityUpdated: *const fn(
+            self: *const AsyncIIdentityAdvise,
+            dwIdentityUpdateEvents: u32,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_IdentityUpdated: *const fn(
+            self: *const AsyncIIdentityAdvise,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -145,104 +126,47 @@ pub const IID_IIdentityProvider = &IID_IIdentityProvider_Value;
 pub const IIdentityProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIdentityEnum: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityProvider,
-                eIdentityType: IDENTITY_TYPE,
-                pFilterkey: ?*const PROPERTYKEY,
-                pFilterPropVarValue: ?*const PROPVARIANT,
-                ppIdentityEnum: ?*?*IEnumUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityProvider,
-                eIdentityType: IDENTITY_TYPE,
-                pFilterkey: ?*const PROPERTYKEY,
-                pFilterPropVarValue: ?*const PROPVARIANT,
-                ppIdentityEnum: ?*?*IEnumUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Create: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityProvider,
-                lpszUserName: ?[*:0]const u16,
-                ppPropertyStore: ?*?*IPropertyStore,
-                pKeywordsToAdd: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityProvider,
-                lpszUserName: ?[*:0]const u16,
-                ppPropertyStore: ?*?*IPropertyStore,
-                pKeywordsToAdd: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Import: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityProvider,
-                pPropertyStore: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityProvider,
-                pPropertyStore: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityProvider,
-                lpszUniqueID: ?[*:0]const u16,
-                pKeywordsToDelete: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityProvider,
-                lpszUniqueID: ?[*:0]const u16,
-                pKeywordsToDelete: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindByUniqueID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityProvider,
-                lpszUniqueID: ?[*:0]const u16,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityProvider,
-                lpszUniqueID: ?[*:0]const u16,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProviderPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Advise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityProvider,
-                pIdentityAdvise: ?*IIdentityAdvise,
-                dwIdentityUpdateEvents: IdentityUpdateEvent,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityProvider,
-                pIdentityAdvise: ?*IIdentityAdvise,
-                dwIdentityUpdateEvents: IdentityUpdateEvent,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnAdvise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityProvider,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityProvider,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdentityEnum: *const fn(
+            self: *const IIdentityProvider,
+            eIdentityType: IDENTITY_TYPE,
+            pFilterkey: ?*const PROPERTYKEY,
+            pFilterPropVarValue: ?*const PROPVARIANT,
+            ppIdentityEnum: ?*?*IEnumUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Create: *const fn(
+            self: *const IIdentityProvider,
+            lpszUserName: ?[*:0]const u16,
+            ppPropertyStore: ?*?*IPropertyStore,
+            pKeywordsToAdd: ?*const PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Import: *const fn(
+            self: *const IIdentityProvider,
+            pPropertyStore: ?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const IIdentityProvider,
+            lpszUniqueID: ?[*:0]const u16,
+            pKeywordsToDelete: ?*const PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindByUniqueID: *const fn(
+            self: *const IIdentityProvider,
+            lpszUniqueID: ?[*:0]const u16,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProviderPropertyStore: *const fn(
+            self: *const IIdentityProvider,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Advise: *const fn(
+            self: *const IIdentityProvider,
+            pIdentityAdvise: ?*IIdentityAdvise,
+            dwIdentityUpdateEvents: IdentityUpdateEvent,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnAdvise: *const fn(
+            self: *const IIdentityProvider,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -288,168 +212,71 @@ pub const IID_AsyncIIdentityProvider = &IID_AsyncIIdentityProvider_Value;
 pub const AsyncIIdentityProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin_GetIdentityEnum: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                eIdentityType: IDENTITY_TYPE,
-                pFilterkey: ?*const PROPERTYKEY,
-                pFilterPropVarValue: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                eIdentityType: IDENTITY_TYPE,
-                pFilterkey: ?*const PROPERTYKEY,
-                pFilterPropVarValue: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_GetIdentityEnum: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                ppIdentityEnum: ?*?*IEnumUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                ppIdentityEnum: ?*?*IEnumUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_Create: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                lpszUserName: ?[*:0]const u16,
-                pKeywordsToAdd: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                lpszUserName: ?[*:0]const u16,
-                pKeywordsToAdd: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_Create: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_Import: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                pPropertyStore: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                pPropertyStore: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_Import: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                lpszUniqueID: ?[*:0]const u16,
-                pKeywordsToDelete: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                lpszUniqueID: ?[*:0]const u16,
-                pKeywordsToDelete: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_FindByUniqueID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_FindByUniqueID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_GetProviderPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_GetProviderPropertyStore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_Advise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                pIdentityAdvise: ?*IIdentityAdvise,
-                dwIdentityUpdateEvents: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                pIdentityAdvise: ?*IIdentityAdvise,
-                dwIdentityUpdateEvents: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_Advise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_UnAdvise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_UnAdvise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin_GetIdentityEnum: *const fn(
+            self: *const AsyncIIdentityProvider,
+            eIdentityType: IDENTITY_TYPE,
+            pFilterkey: ?*const PROPERTYKEY,
+            pFilterPropVarValue: ?*const PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_GetIdentityEnum: *const fn(
+            self: *const AsyncIIdentityProvider,
+            ppIdentityEnum: ?*?*IEnumUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_Create: *const fn(
+            self: *const AsyncIIdentityProvider,
+            lpszUserName: ?[*:0]const u16,
+            pKeywordsToAdd: ?*const PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_Create: *const fn(
+            self: *const AsyncIIdentityProvider,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_Import: *const fn(
+            self: *const AsyncIIdentityProvider,
+            pPropertyStore: ?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_Import: *const fn(
+            self: *const AsyncIIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_Delete: *const fn(
+            self: *const AsyncIIdentityProvider,
+            lpszUniqueID: ?[*:0]const u16,
+            pKeywordsToDelete: ?*const PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_Delete: *const fn(
+            self: *const AsyncIIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_FindByUniqueID: *const fn(
+            self: *const AsyncIIdentityProvider,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_FindByUniqueID: *const fn(
+            self: *const AsyncIIdentityProvider,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_GetProviderPropertyStore: *const fn(
+            self: *const AsyncIIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_GetProviderPropertyStore: *const fn(
+            self: *const AsyncIIdentityProvider,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_Advise: *const fn(
+            self: *const AsyncIIdentityProvider,
+            pIdentityAdvise: ?*IIdentityAdvise,
+            dwIdentityUpdateEvents: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_Advise: *const fn(
+            self: *const AsyncIIdentityProvider,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_UnAdvise: *const fn(
+            self: *const AsyncIIdentityProvider,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_UnAdvise: *const fn(
+            self: *const AsyncIIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -528,42 +355,21 @@ pub const IID_IAssociatedIdentityProvider = &IID_IAssociatedIdentityProvider_Val
 pub const IAssociatedIdentityProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AssociateIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisassociateIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ChangeCredential: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AssociateIdentity: *const fn(
+            self: *const IAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisassociateIdentity: *const fn(
+            self: *const IAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ChangeCredential: *const fn(
+            self: *const IAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -589,66 +395,30 @@ pub const IID_AsyncIAssociatedIdentityProvider = &IID_AsyncIAssociatedIdentityPr
 pub const AsyncIAssociatedIdentityProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin_AssociateIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_AssociateIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-                ppPropertyStore: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_DisassociateIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_DisassociateIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_ChangeCredential: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-                hwndParent: ?HWND,
-                lpszUniqueID: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_ChangeCredential: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIAssociatedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin_AssociateIdentity: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_AssociateIdentity: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+            ppPropertyStore: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_DisassociateIdentity: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_DisassociateIdentity: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_ChangeCredential: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+            hwndParent: ?HWND,
+            lpszUniqueID: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_ChangeCredential: *const fn(
+            self: *const AsyncIAssociatedIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -713,62 +483,29 @@ pub const IID_IConnectedIdentityProvider = &IID_IConnectedIdentityProvider_Value
 pub const IConnectedIdentityProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConnectIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConnectedIdentityProvider,
-                AuthBuffer: [*:0]u8,
-                AuthBufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConnectedIdentityProvider,
-                AuthBuffer: [*:0]u8,
-                AuthBufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisconnectIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsConnected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConnectedIdentityProvider,
-                Connected: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConnectedIdentityProvider,
-                Connected: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUrl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConnectedIdentityProvider,
-                Identifier: IDENTITY_URL,
-                Context: ?*IBindCtx,
-                PostData: ?*VARIANT,
-                Url: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConnectedIdentityProvider,
-                Identifier: IDENTITY_URL,
-                Context: ?*IBindCtx,
-                PostData: ?*VARIANT,
-                Url: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAccountState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IConnectedIdentityProvider,
-                pState: ?*ACCOUNT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IConnectedIdentityProvider,
-                pState: ?*ACCOUNT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ConnectIdentity: *const fn(
+            self: *const IConnectedIdentityProvider,
+            AuthBuffer: [*:0]u8,
+            AuthBufferSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisconnectIdentity: *const fn(
+            self: *const IConnectedIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsConnected: *const fn(
+            self: *const IConnectedIdentityProvider,
+            Connected: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUrl: *const fn(
+            self: *const IConnectedIdentityProvider,
+            Identifier: IDENTITY_URL,
+            Context: ?*IBindCtx,
+            PostData: ?*VARIANT,
+            Url: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAccountState: *const fn(
+            self: *const IConnectedIdentityProvider,
+            pState: ?*ACCOUNT_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -802,102 +539,44 @@ pub const IID_AsyncIConnectedIdentityProvider = &IID_AsyncIConnectedIdentityProv
 pub const AsyncIConnectedIdentityProvider = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin_ConnectIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                AuthBuffer: [*:0]u8,
-                AuthBufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                AuthBuffer: [*:0]u8,
-                AuthBufferSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_ConnectIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_DisconnectIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_DisconnectIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_IsConnected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_IsConnected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                Connected: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                Connected: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_GetUrl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                Identifier: IDENTITY_URL,
-                Context: ?*IBindCtx,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                Identifier: IDENTITY_URL,
-                Context: ?*IBindCtx,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_GetUrl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                PostData: ?*VARIANT,
-                Url: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                PostData: ?*VARIANT,
-                Url: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_GetAccountState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_GetAccountState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                pState: ?*ACCOUNT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIConnectedIdentityProvider,
-                pState: ?*ACCOUNT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin_ConnectIdentity: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            AuthBuffer: [*:0]u8,
+            AuthBufferSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_ConnectIdentity: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_DisconnectIdentity: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_DisconnectIdentity: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_IsConnected: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_IsConnected: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            Connected: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_GetUrl: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            Identifier: IDENTITY_URL,
+            Context: ?*IBindCtx,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_GetUrl: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            PostData: ?*VARIANT,
+            Url: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_GetAccountState: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_GetAccountState: *const fn(
+            self: *const AsyncIConnectedIdentityProvider,
+            pState: ?*ACCOUNT_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -951,32 +630,17 @@ pub const IID_IIdentityAuthentication = &IID_IIdentityAuthentication_Value;
 pub const IIdentityAuthentication = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetIdentityCredential: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityAuthentication,
-                CredBuffer: ?[*:0]u8,
-                CredBufferLength: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityAuthentication,
-                CredBuffer: ?[*:0]u8,
-                CredBufferLength: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ValidateIdentityCredential: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityAuthentication,
-                CredBuffer: [*:0]u8,
-                CredBufferLength: u32,
-                ppIdentityProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityAuthentication,
-                CredBuffer: [*:0]u8,
-                CredBufferLength: u32,
-                ppIdentityProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetIdentityCredential: *const fn(
+            self: *const IIdentityAuthentication,
+            CredBuffer: ?[*:0]u8,
+            CredBufferLength: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ValidateIdentityCredential: *const fn(
+            self: *const IIdentityAuthentication,
+            CredBuffer: [*:0]u8,
+            CredBufferLength: u32,
+            ppIdentityProperties: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -998,50 +662,24 @@ pub const IID_AsyncIIdentityAuthentication = &IID_AsyncIIdentityAuthentication_V
 pub const AsyncIIdentityAuthentication = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin_SetIdentityCredential: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityAuthentication,
-                CredBuffer: ?[*:0]u8,
-                CredBufferLength: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityAuthentication,
-                CredBuffer: ?[*:0]u8,
-                CredBufferLength: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_SetIdentityCredential: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityAuthentication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityAuthentication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_ValidateIdentityCredential: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityAuthentication,
-                CredBuffer: [*:0]u8,
-                CredBufferLength: u32,
-                ppIdentityProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityAuthentication,
-                CredBuffer: [*:0]u8,
-                CredBufferLength: u32,
-                ppIdentityProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_ValidateIdentityCredential: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityAuthentication,
-                ppIdentityProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityAuthentication,
-                ppIdentityProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin_SetIdentityCredential: *const fn(
+            self: *const AsyncIIdentityAuthentication,
+            CredBuffer: ?[*:0]u8,
+            CredBufferLength: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_SetIdentityCredential: *const fn(
+            self: *const AsyncIIdentityAuthentication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_ValidateIdentityCredential: *const fn(
+            self: *const AsyncIIdentityAuthentication,
+            CredBuffer: [*:0]u8,
+            CredBufferLength: u32,
+            ppIdentityProperties: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_ValidateIdentityCredential: *const fn(
+            self: *const AsyncIIdentityAuthentication,
+            ppIdentityProperties: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1078,84 +716,39 @@ pub const IID_IIdentityStore = &IID_IIdentityStore_Value;
 pub const IIdentityStore = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityStore,
-                pdwProviders: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityStore,
-                pdwProviders: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityStore,
-                dwProvider: u32,
-                pProvGuid: ?*Guid,
-                ppIdentityProvider: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityStore,
-                dwProvider: u32,
-                pProvGuid: ?*Guid,
-                ppIdentityProvider: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddToCache: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityStore,
-                lpszUniqueID: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityStore,
-                lpszUniqueID: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertToSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityStore,
-                lpszUniqueID: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-                cbSid: u16,
-                pSid: ?[*:0]u8,
-                pcbRequiredSid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityStore,
-                lpszUniqueID: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-                cbSid: u16,
-                pSid: ?[*:0]u8,
-                pcbRequiredSid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumerateIdentities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityStore,
-                eIdentityType: IDENTITY_TYPE,
-                pFilterkey: ?*const PROPERTYKEY,
-                pFilterPropVarValue: ?*const PROPVARIANT,
-                ppIdentityEnum: ?*?*IEnumUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityStore,
-                eIdentityType: IDENTITY_TYPE,
-                pFilterkey: ?*const PROPERTYKEY,
-                pFilterPropVarValue: ?*const PROPVARIANT,
-                ppIdentityEnum: ?*?*IEnumUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IIdentityStore,
+            pdwProviders: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IIdentityStore,
+            dwProvider: u32,
+            pProvGuid: ?*Guid,
+            ppIdentityProvider: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddToCache: *const fn(
+            self: *const IIdentityStore,
+            lpszUniqueID: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertToSid: *const fn(
+            self: *const IIdentityStore,
+            lpszUniqueID: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+            cbSid: u16,
+            pSid: ?[*:0]u8,
+            pcbRequiredSid: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateIdentities: *const fn(
+            self: *const IIdentityStore,
+            eIdentityType: IDENTITY_TYPE,
+            pFilterkey: ?*const PROPERTYKEY,
+            pFilterPropVarValue: ?*const PROPVARIANT,
+            ppIdentityEnum: ?*?*IEnumUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IIdentityStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1193,136 +786,59 @@ pub const IID_AsyncIIdentityStore = &IID_AsyncIIdentityStore_Value;
 pub const AsyncIIdentityStore = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin_GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-                pdwProviders: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-                pdwProviders: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-                dwProvider: u32,
-                pProvGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-                dwProvider: u32,
-                pProvGuid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-                pProvGuid: ?*Guid,
-                ppIdentityProvider: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-                pProvGuid: ?*Guid,
-                ppIdentityProvider: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_AddToCache: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-                lpszUniqueID: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-                lpszUniqueID: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_AddToCache: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_ConvertToSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-                lpszUniqueID: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-                cbSid: u16,
-                pSid: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-                lpszUniqueID: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-                cbSid: u16,
-                pSid: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_ConvertToSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-                pSid: ?*u8,
-                pcbRequiredSid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-                pSid: ?*u8,
-                pcbRequiredSid: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_EnumerateIdentities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-                eIdentityType: IDENTITY_TYPE,
-                pFilterkey: ?*const PROPERTYKEY,
-                pFilterPropVarValue: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-                eIdentityType: IDENTITY_TYPE,
-                pFilterkey: ?*const PROPERTYKEY,
-                pFilterPropVarValue: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_EnumerateIdentities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-                ppIdentityEnum: ?*?*IEnumUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-                ppIdentityEnum: ?*?*IEnumUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin_GetCount: *const fn(
+            self: *const AsyncIIdentityStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_GetCount: *const fn(
+            self: *const AsyncIIdentityStore,
+            pdwProviders: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_GetAt: *const fn(
+            self: *const AsyncIIdentityStore,
+            dwProvider: u32,
+            pProvGuid: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_GetAt: *const fn(
+            self: *const AsyncIIdentityStore,
+            pProvGuid: ?*Guid,
+            ppIdentityProvider: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_AddToCache: *const fn(
+            self: *const AsyncIIdentityStore,
+            lpszUniqueID: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_AddToCache: *const fn(
+            self: *const AsyncIIdentityStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_ConvertToSid: *const fn(
+            self: *const AsyncIIdentityStore,
+            lpszUniqueID: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+            cbSid: u16,
+            pSid: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_ConvertToSid: *const fn(
+            self: *const AsyncIIdentityStore,
+            pSid: ?*u8,
+            pcbRequiredSid: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_EnumerateIdentities: *const fn(
+            self: *const AsyncIIdentityStore,
+            eIdentityType: IDENTITY_TYPE,
+            pFilterkey: ?*const PROPERTYKEY,
+            pFilterPropVarValue: ?*const PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_EnumerateIdentities: *const fn(
+            self: *const AsyncIIdentityStore,
+            ppIdentityEnum: ?*?*IEnumUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_Reset: *const fn(
+            self: *const AsyncIIdentityStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_Reset: *const fn(
+            self: *const AsyncIIdentityStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1384,32 +900,17 @@ pub const IID_IIdentityStoreEx = &IID_IIdentityStoreEx_Value;
 pub const IIdentityStoreEx = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateConnectedIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityStoreEx,
-                LocalName: ?[*:0]const u16,
-                ConnectedName: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityStoreEx,
-                LocalName: ?[*:0]const u16,
-                ConnectedName: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteConnectedIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IIdentityStoreEx,
-                ConnectedName: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IIdentityStoreEx,
-                ConnectedName: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateConnectedIdentity: *const fn(
+            self: *const IIdentityStoreEx,
+            LocalName: ?[*:0]const u16,
+            ConnectedName: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteConnectedIdentity: *const fn(
+            self: *const IIdentityStoreEx,
+            ConnectedName: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1431,48 +932,23 @@ pub const IID_AsyncIIdentityStoreEx = &IID_AsyncIIdentityStoreEx_Value;
 pub const AsyncIIdentityStoreEx = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin_CreateConnectedIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStoreEx,
-                LocalName: ?[*:0]const u16,
-                ConnectedName: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStoreEx,
-                LocalName: ?[*:0]const u16,
-                ConnectedName: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_CreateConnectedIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStoreEx,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStoreEx,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_DeleteConnectedIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStoreEx,
-                ConnectedName: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStoreEx,
-                ConnectedName: ?[*:0]const u16,
-                ProviderGUID: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_DeleteConnectedIdentity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const AsyncIIdentityStoreEx,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const AsyncIIdentityStoreEx,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin_CreateConnectedIdentity: *const fn(
+            self: *const AsyncIIdentityStoreEx,
+            LocalName: ?[*:0]const u16,
+            ConnectedName: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_CreateConnectedIdentity: *const fn(
+            self: *const AsyncIIdentityStoreEx,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_DeleteConnectedIdentity: *const fn(
+            self: *const AsyncIIdentityStoreEx,
+            ConnectedName: ?[*:0]const u16,
+            ProviderGUID: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_DeleteConnectedIdentity: *const fn(
+            self: *const AsyncIIdentityStoreEx,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

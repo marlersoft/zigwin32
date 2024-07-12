@@ -135,240 +135,116 @@ pub const MapiMessageW = extern struct {
     lpFiles: ?*MapiFileDescW,
 };
 
-pub const LPMAPILOGON = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ulUIParam: usize,
-        lpszProfileName: ?PSTR,
-        lpszPassword: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-        lplhSession: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        ulUIParam: usize,
-        lpszProfileName: ?PSTR,
-        lpszPassword: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-        lplhSession: ?*usize,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPILOGON = *const fn(
+    ulUIParam: usize,
+    lpszProfileName: ?PSTR,
+    lpszPassword: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+    lplhSession: ?*usize,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPILOGOFF = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPILOGOFF = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPISENDMAIL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpMessage: ?*MapiMessage,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpMessage: ?*MapiMessage,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPISENDMAIL = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpMessage: ?*MapiMessage,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPISENDMAILW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpMessage: ?*MapiMessageW,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpMessage: ?*MapiMessageW,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPISENDMAILW = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpMessage: ?*MapiMessageW,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPISENDDOCUMENTS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        ulUIParam: usize,
-        lpszDelimChar: ?PSTR,
-        lpszFilePaths: ?PSTR,
-        lpszFileNames: ?PSTR,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        ulUIParam: usize,
-        lpszDelimChar: ?PSTR,
-        lpszFilePaths: ?PSTR,
-        lpszFileNames: ?PSTR,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPISENDDOCUMENTS = *const fn(
+    ulUIParam: usize,
+    lpszDelimChar: ?PSTR,
+    lpszFilePaths: ?PSTR,
+    lpszFileNames: ?PSTR,
+    ulReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPIFINDNEXT = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszMessageType: ?PSTR,
-        lpszSeedMessageID: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-        lpszMessageID: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszMessageType: ?PSTR,
-        lpszSeedMessageID: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-        lpszMessageID: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPIFINDNEXT = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszMessageType: ?PSTR,
+    lpszSeedMessageID: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+    lpszMessageID: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPIREADMAIL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszMessageID: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-        lppMessage: ?*?*MapiMessage,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszMessageID: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-        lppMessage: ?*?*MapiMessage,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPIREADMAIL = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszMessageID: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+    lppMessage: ?*?*MapiMessage,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPISAVEMAIL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpMessage: ?*MapiMessage,
-        flFlags: u32,
-        ulReserved: u32,
-        lpszMessageID: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpMessage: ?*MapiMessage,
-        flFlags: u32,
-        ulReserved: u32,
-        lpszMessageID: ?PSTR,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPISAVEMAIL = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpMessage: ?*MapiMessage,
+    flFlags: u32,
+    ulReserved: u32,
+    lpszMessageID: ?PSTR,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPIDELETEMAIL = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszMessageID: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszMessageID: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPIDELETEMAIL = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszMessageID: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPIFREEBUFFER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pv: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        pv: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPIFREEBUFFER = *const fn(
+    pv: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPIADDRESS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszCaption: ?PSTR,
-        nEditFields: u32,
-        lpszLabels: ?PSTR,
-        nRecips: u32,
-        lpRecips: ?*MapiRecipDesc,
-        flFlags: u32,
-        ulReserved: u32,
-        lpnNewRecips: ?*u32,
-        lppNewRecips: ?*?*MapiRecipDesc,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszCaption: ?PSTR,
-        nEditFields: u32,
-        lpszLabels: ?PSTR,
-        nRecips: u32,
-        lpRecips: ?*MapiRecipDesc,
-        flFlags: u32,
-        ulReserved: u32,
-        lpnNewRecips: ?*u32,
-        lppNewRecips: ?*?*MapiRecipDesc,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPIADDRESS = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszCaption: ?PSTR,
+    nEditFields: u32,
+    lpszLabels: ?PSTR,
+    nRecips: u32,
+    lpRecips: ?*MapiRecipDesc,
+    flFlags: u32,
+    ulReserved: u32,
+    lpnNewRecips: ?*u32,
+    lppNewRecips: ?*?*MapiRecipDesc,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPIDETAILS = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpRecip: ?*MapiRecipDesc,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpRecip: ?*MapiRecipDesc,
-        flFlags: u32,
-        ulReserved: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPIDETAILS = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpRecip: ?*MapiRecipDesc,
+    flFlags: u32,
+    ulReserved: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const LPMAPIRESOLVENAME = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszName: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-        lppRecip: ?*?*MapiRecipDesc,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        lhSession: usize,
-        ulUIParam: usize,
-        lpszName: ?PSTR,
-        flFlags: u32,
-        ulReserved: u32,
-        lppRecip: ?*?*MapiRecipDesc,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const LPMAPIRESOLVENAME = *const fn(
+    lhSession: usize,
+    ulUIParam: usize,
+    lpszName: ?PSTR,
+    flFlags: u32,
+    ulReserved: u32,
+    lppRecip: ?*?*MapiRecipDesc,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 
 //--------------------------------------------------------------------------------

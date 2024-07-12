@@ -370,35 +370,19 @@ pub const CTL_MODIFY_REQUEST_ADD_TRUSTED = CTL_MODIFY_REQUEST_OPERATION.ADD_TRUS
 pub const CTL_MODIFY_REQUEST_ADD_NOT_TRUSTED = CTL_MODIFY_REQUEST_OPERATION.ADD_NOT_TRUSTED;
 pub const CTL_MODIFY_REQUEST_REMOVE = CTL_MODIFY_REQUEST_OPERATION.REMOVE;
 
-pub const PFNCMFILTERPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pCertContext: ?*const CERT_CONTEXT,
-        param1: LPARAM,
-        param2: u32,
-        param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pCertContext: ?*const CERT_CONTEXT,
-        param1: LPARAM,
-        param2: u32,
-        param3: u32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFNCMFILTERPROC = *const fn(
+    pCertContext: ?*const CERT_CONTEXT,
+    param1: LPARAM,
+    param2: u32,
+    param3: u32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PFNCMHOOKPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hwndDialog: ?HWND,
-        message: u32,
-        wParam: WPARAM,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        hwndDialog: ?HWND,
-        message: u32,
-        wParam: WPARAM,
-        lParam: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PFNCMHOOKPROC = *const fn(
+    hwndDialog: ?HWND,
+    message: u32,
+    wParam: WPARAM,
+    lParam: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const CERT_SELECT_STRUCT_A = extern struct {
     dwSize: u32,
@@ -504,20 +488,12 @@ pub const CMFLTR = extern struct {
     dwCheckingFlags: u32,
 };
 
-pub const PFNTRUSTHELPER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pCertContext: ?*const CERT_CONTEXT,
-        lCustData: LPARAM,
-        fLeafCertificate: BOOL,
-        pbTrustBlob: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn(
-        pCertContext: ?*const CERT_CONTEXT,
-        lCustData: LPARAM,
-        fLeafCertificate: BOOL,
-        pbTrustBlob: ?*u8,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-} ;
+pub const PFNTRUSTHELPER = *const fn(
+    pCertContext: ?*const CERT_CONTEXT,
+    lCustData: LPARAM,
+    fLeafCertificate: BOOL,
+    pbTrustBlob: ?*u8,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const CERT_VERIFY_CERTIFICATE_TRUST = extern struct {
     cbSize: u32,
@@ -547,18 +523,11 @@ pub const CTL_MODIFY_REQUEST = extern struct {
     dwError: u32,
 };
 
-pub const PFNCFILTERPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        pCertContext: ?*const CERT_CONTEXT,
-        pfInitialSelectedCert: ?*BOOL,
-        pvCallbackData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn(
-        pCertContext: ?*const CERT_CONTEXT,
-        pfInitialSelectedCert: ?*BOOL,
-        pvCallbackData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-} ;
+pub const PFNCFILTERPROC = *const fn(
+    pCertContext: ?*const CERT_CONTEXT,
+    pfInitialSelectedCert: ?*BOOL,
+    pvCallbackData: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const CERT_SELECTUI_INPUT = extern struct {
     hStore: ?HCERTSTORE,

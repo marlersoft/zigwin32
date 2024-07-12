@@ -194,44 +194,26 @@ pub const MMTIME = extern struct {
     } align(1),
 };
 
-pub const LPDRVCALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        hdrvr: ?HDRVR,
-        uMsg: u32,
-        dwUser: usize,
-        dw1: usize,
-        dw2: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        hdrvr: ?HDRVR,
-        uMsg: u32,
-        dwUser: usize,
-        dw1: usize,
-        dw2: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPDRVCALLBACK = *const fn(
+    hdrvr: ?HDRVR,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const TIMECAPS = extern struct {
     wPeriodMin: u32,
     wPeriodMax: u32,
 };
 
-pub const LPTIMECALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        uTimerID: u32,
-        uMsg: u32,
-        dwUser: usize,
-        dw1: usize,
-        dw2: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        uTimerID: u32,
-        uMsg: u32,
-        dwUser: usize,
-        dw1: usize,
-        dw2: usize,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const LPTIMECALLBACK = *const fn(
+    uTimerID: u32,
+    uMsg: u32,
+    dwUser: usize,
+    dw1: usize,
+    dw2: usize,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IReferenceClock_Value = Guid.initString("56a86897-0ad4-11ce-b03a-0020af0ba770");
@@ -239,58 +221,28 @@ pub const IID_IReferenceClock = &IID_IReferenceClock_Value;
 pub const IReferenceClock = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IReferenceClock,
-                pTime: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IReferenceClock,
-                pTime: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AdviseTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IReferenceClock,
-                baseTime: i64,
-                streamTime: i64,
-                hEvent: ?HANDLE,
-                pdwAdviseCookie: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IReferenceClock,
-                baseTime: i64,
-                streamTime: i64,
-                hEvent: ?HANDLE,
-                pdwAdviseCookie: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AdvisePeriodic: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IReferenceClock,
-                startTime: i64,
-                periodTime: i64,
-                hSemaphore: ?HANDLE,
-                pdwAdviseCookie: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IReferenceClock,
-                startTime: i64,
-                periodTime: i64,
-                hSemaphore: ?HANDLE,
-                pdwAdviseCookie: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unadvise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IReferenceClock,
-                dwAdviseCookie: usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IReferenceClock,
-                dwAdviseCookie: usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetTime: *const fn(
+            self: *const IReferenceClock,
+            pTime: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AdviseTime: *const fn(
+            self: *const IReferenceClock,
+            baseTime: i64,
+            streamTime: i64,
+            hEvent: ?HANDLE,
+            pdwAdviseCookie: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AdvisePeriodic: *const fn(
+            self: *const IReferenceClock,
+            startTime: i64,
+            periodTime: i64,
+            hSemaphore: ?HANDLE,
+            pdwAdviseCookie: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unadvise: *const fn(
+            self: *const IReferenceClock,
+            dwAdviseCookie: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -321,26 +273,14 @@ pub const IID_IReferenceClockTimerControl = &IID_IReferenceClockTimerControl_Val
 pub const IReferenceClockTimerControl = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetDefaultTimerResolution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IReferenceClockTimerControl,
-                timerResolution: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IReferenceClockTimerControl,
-                timerResolution: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDefaultTimerResolution: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IReferenceClockTimerControl,
-                pTimerResolution: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IReferenceClockTimerControl,
-                pTimerResolution: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetDefaultTimerResolution: *const fn(
+            self: *const IReferenceClockTimerControl,
+            timerResolution: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultTimerResolution: *const fn(
+            self: *const IReferenceClockTimerControl,
+            pTimerResolution: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

@@ -11,20 +11,12 @@ pub const IID_ICoreFrameworkInputViewInterop = &IID_ICoreFrameworkInputViewInter
 pub const ICoreFrameworkInputViewInterop = extern struct {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const ICoreFrameworkInputViewInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                coreFrameworkInputView: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const ICoreFrameworkInputViewInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                coreFrameworkInputView: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetForWindow: *const fn(
+            self: *const ICoreFrameworkInputViewInterop,
+            appWindow: ?HWND,
+            riid: ?*const Guid,
+            coreFrameworkInputView: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {

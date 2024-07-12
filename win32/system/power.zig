@@ -283,16 +283,10 @@ pub const EffectivePowerModeGameMode = EFFECTIVE_POWER_MODE.GameMode;
 pub const EffectivePowerModeMixedReality = EFFECTIVE_POWER_MODE.MixedReality;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
-pub const EFFECTIVE_POWER_MODE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Mode: EFFECTIVE_POWER_MODE,
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn(
-        Mode: EFFECTIVE_POWER_MODE,
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-} ;
+pub const EFFECTIVE_POWER_MODE_CALLBACK = *const fn(
+    Mode: EFFECTIVE_POWER_MODE,
+    Context: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLOBAL_MACHINE_POWER_POLICY = extern struct {
     Revision: u32,
@@ -371,55 +365,29 @@ pub const POWER_POLICY = extern struct {
     mach: MACHINE_POWER_POLICY,
 };
 
-pub const PWRSCHEMESENUMPROC_V1 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Index: u32,
-        NameSize: u32,
-        // TODO: what to do with BytesParamIndex 1?
-        Name: ?*i8,
-        DescriptionSize: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        Description: ?*i8,
-        Policy: ?*POWER_POLICY,
-        Context: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
-        Index: u32,
-        NameSize: u32,
-        // TODO: what to do with BytesParamIndex 1?
-        Name: ?*i8,
-        DescriptionSize: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        Description: ?*i8,
-        Policy: ?*POWER_POLICY,
-        Context: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
+pub const PWRSCHEMESENUMPROC_V1 = *const fn(
+    Index: u32,
+    NameSize: u32,
+    // TODO: what to do with BytesParamIndex 1?
+    Name: ?*i8,
+    DescriptionSize: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    Description: ?*i8,
+    Policy: ?*POWER_POLICY,
+    Context: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub const PWRSCHEMESENUMPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Index: u32,
-        NameSize: u32,
-        // TODO: what to do with BytesParamIndex 1?
-        Name: ?PWSTR,
-        DescriptionSize: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        Description: ?PWSTR,
-        Policy: ?*POWER_POLICY,
-        Context: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn(
-        Index: u32,
-        NameSize: u32,
-        // TODO: what to do with BytesParamIndex 1?
-        Name: ?PWSTR,
-        DescriptionSize: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        Description: ?PWSTR,
-        Policy: ?*POWER_POLICY,
-        Context: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-} ;
+pub const PWRSCHEMESENUMPROC = *const fn(
+    Index: u32,
+    NameSize: u32,
+    // TODO: what to do with BytesParamIndex 1?
+    Name: ?PWSTR,
+    DescriptionSize: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    Description: ?PWSTR,
+    Policy: ?*POWER_POLICY,
+    Context: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const POWER_DATA_ACCESSOR = enum(i32) {
     AC_POWER_SETTING_INDEX = 0,
@@ -480,18 +448,11 @@ pub const ACCESS_PROFILE = POWER_DATA_ACCESSOR.PROFILE;
 pub const ACCESS_OVERLAY_SCHEME = POWER_DATA_ACCESSOR.OVERLAY_SCHEME;
 pub const ACCESS_ACTIVE_OVERLAY_SCHEME = POWER_DATA_ACCESSOR.ACTIVE_OVERLAY_SCHEME;
 
-pub const PDEVICE_NOTIFY_CALLBACK_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn(
-        Context: ?*anyopaque,
-        Type: u32,
-        Setting: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn(
-        Context: ?*anyopaque,
-        Type: u32,
-        Setting: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-} ;
+pub const PDEVICE_NOTIFY_CALLBACK_ROUTINE = *const fn(
+    Context: ?*anyopaque,
+    Type: u32,
+    Setting: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS = extern struct {
     Callback: ?PDEVICE_NOTIFY_CALLBACK_ROUTINE,

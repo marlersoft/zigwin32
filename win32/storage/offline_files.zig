@@ -474,296 +474,126 @@ pub const IID_IOfflineFilesEvents = &IID_IOfflineFilesEvents_Value;
 pub const IOfflineFilesEvents = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CacheMoved: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszOldPath: ?[*:0]const u16,
-                pszNewPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszOldPath: ?[*:0]const u16,
-                pszNewPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CacheIsFull: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CacheIsCorrupted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Enabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                bEnabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                bEnabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EncryptionChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                bWasEncrypted: BOOL,
-                bWasPartial: BOOL,
-                bIsEncrypted: BOOL,
-                bIsPartial: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                bWasEncrypted: BOOL,
-                bWasPartial: BOOL,
-                bIsEncrypted: BOOL,
-                bIsPartial: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SyncBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                rSyncId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                rSyncId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SyncFileResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                rSyncId: ?*const Guid,
-                pszFile: ?[*:0]const u16,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                rSyncId: ?*const Guid,
-                pszFile: ?[*:0]const u16,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SyncConflictRecAdded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszConflictPath: ?[*:0]const u16,
-                pftConflictDateTime: ?*const FILETIME,
-                ConflictSyncState: OFFLINEFILES_SYNC_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszConflictPath: ?[*:0]const u16,
-                pftConflictDateTime: ?*const FILETIME,
-                ConflictSyncState: OFFLINEFILES_SYNC_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SyncConflictRecUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszConflictPath: ?[*:0]const u16,
-                pftConflictDateTime: ?*const FILETIME,
-                ConflictSyncState: OFFLINEFILES_SYNC_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszConflictPath: ?[*:0]const u16,
-                pftConflictDateTime: ?*const FILETIME,
-                ConflictSyncState: OFFLINEFILES_SYNC_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SyncConflictRecRemoved: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszConflictPath: ?[*:0]const u16,
-                pftConflictDateTime: ?*const FILETIME,
-                ConflictSyncState: OFFLINEFILES_SYNC_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszConflictPath: ?[*:0]const u16,
-                pftConflictDateTime: ?*const FILETIME,
-                ConflictSyncState: OFFLINEFILES_SYNC_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SyncEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                rSyncId: ?*const Guid,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                rSyncId: ?*const Guid,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NetTransportArrived: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NoNetTransports: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemDisconnected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemReconnected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemAvailableOffline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemNotAvailableOffline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemPinned: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemNotPinned: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemModified: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-                bModifiedData: BOOL,
-                bModifiedAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-                bModifiedData: BOOL,
-                bModifiedAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemAddedToCache: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemDeletedFromCache: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemRenamed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-                pszOldPath: ?[*:0]const u16,
-                pszNewPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-                pszOldPath: ?[*:0]const u16,
-                pszNewPath: ?[*:0]const u16,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DataLost: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Ping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CacheMoved: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszOldPath: ?[*:0]const u16,
+            pszNewPath: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CacheIsFull: *const fn(
+            self: *const IOfflineFilesEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CacheIsCorrupted: *const fn(
+            self: *const IOfflineFilesEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Enabled: *const fn(
+            self: *const IOfflineFilesEvents,
+            bEnabled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EncryptionChanged: *const fn(
+            self: *const IOfflineFilesEvents,
+            bWasEncrypted: BOOL,
+            bWasPartial: BOOL,
+            bIsEncrypted: BOOL,
+            bIsPartial: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SyncBegin: *const fn(
+            self: *const IOfflineFilesEvents,
+            rSyncId: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SyncFileResult: *const fn(
+            self: *const IOfflineFilesEvents,
+            rSyncId: ?*const Guid,
+            pszFile: ?[*:0]const u16,
+            hrResult: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SyncConflictRecAdded: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszConflictPath: ?[*:0]const u16,
+            pftConflictDateTime: ?*const FILETIME,
+            ConflictSyncState: OFFLINEFILES_SYNC_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SyncConflictRecUpdated: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszConflictPath: ?[*:0]const u16,
+            pftConflictDateTime: ?*const FILETIME,
+            ConflictSyncState: OFFLINEFILES_SYNC_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SyncConflictRecRemoved: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszConflictPath: ?[*:0]const u16,
+            pftConflictDateTime: ?*const FILETIME,
+            ConflictSyncState: OFFLINEFILES_SYNC_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SyncEnd: *const fn(
+            self: *const IOfflineFilesEvents,
+            rSyncId: ?*const Guid,
+            hrResult: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NetTransportArrived: *const fn(
+            self: *const IOfflineFilesEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NoNetTransports: *const fn(
+            self: *const IOfflineFilesEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemDisconnected: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemReconnected: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemAvailableOffline: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemNotAvailableOffline: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemPinned: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemNotPinned: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemModified: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+            bModifiedData: BOOL,
+            bModifiedAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemAddedToCache: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemDeletedFromCache: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemRenamed: *const fn(
+            self: *const IOfflineFilesEvents,
+            pszOldPath: ?[*:0]const u16,
+            pszNewPath: ?[*:0]const u16,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DataLost: *const fn(
+            self: *const IOfflineFilesEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Ping: *const fn(
+            self: *const IOfflineFilesEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -878,82 +708,35 @@ pub const IID_IOfflineFilesEvents2 = &IID_IOfflineFilesEvents2_Value;
 pub const IOfflineFilesEvents2 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesEvents.VTable,
-        ItemReconnectBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemReconnectEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CacheEvictBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CacheEvictEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BackgroundSyncBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents2,
-                dwSyncControlFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents2,
-                dwSyncControlFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BackgroundSyncEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents2,
-                dwSyncControlFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents2,
-                dwSyncControlFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PolicyChangeDetected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PreferenceChangeDetected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SettingsChangesApplied: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ItemReconnectBegin: *const fn(
+            self: *const IOfflineFilesEvents2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemReconnectEnd: *const fn(
+            self: *const IOfflineFilesEvents2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CacheEvictBegin: *const fn(
+            self: *const IOfflineFilesEvents2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CacheEvictEnd: *const fn(
+            self: *const IOfflineFilesEvents2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BackgroundSyncBegin: *const fn(
+            self: *const IOfflineFilesEvents2,
+            dwSyncControlFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BackgroundSyncEnd: *const fn(
+            self: *const IOfflineFilesEvents2,
+            dwSyncControlFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PolicyChangeDetected: *const fn(
+            self: *const IOfflineFilesEvents2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PreferenceChangeDetected: *const fn(
+            self: *const IOfflineFilesEvents2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SettingsChangesApplied: *const fn(
+            self: *const IOfflineFilesEvents2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1004,48 +787,24 @@ pub const IID_IOfflineFilesEvents3 = &IID_IOfflineFilesEvents3_Value;
 pub const IOfflineFilesEvents3 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesEvents2.VTable,
-        TransparentCacheItemNotify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents3,
-                pszPath: ?[*:0]const u16,
-                EventType: OFFLINEFILES_EVENTS,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-                bModifiedData: BOOL,
-                bModifiedAttributes: BOOL,
-                pzsOldPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents3,
-                pszPath: ?[*:0]const u16,
-                EventType: OFFLINEFILES_EVENTS,
-                ItemType: OFFLINEFILES_ITEM_TYPE,
-                bModifiedData: BOOL,
-                bModifiedAttributes: BOOL,
-                pzsOldPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PrefetchFileBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents3,
-                pszPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents3,
-                pszPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PrefetchFileEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents3,
-                pszPath: ?[*:0]const u16,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents3,
-                pszPath: ?[*:0]const u16,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        TransparentCacheItemNotify: *const fn(
+            self: *const IOfflineFilesEvents3,
+            pszPath: ?[*:0]const u16,
+            EventType: OFFLINEFILES_EVENTS,
+            ItemType: OFFLINEFILES_ITEM_TYPE,
+            bModifiedData: BOOL,
+            bModifiedAttributes: BOOL,
+            pzsOldPath: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PrefetchFileBegin: *const fn(
+            self: *const IOfflineFilesEvents3,
+            pszPath: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PrefetchFileEnd: *const fn(
+            self: *const IOfflineFilesEvents3,
+            pszPath: ?[*:0]const u16,
+            hrResult: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1071,28 +830,15 @@ pub const IID_IOfflineFilesEvents4 = &IID_IOfflineFilesEvents4_Value;
 pub const IOfflineFilesEvents4 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesEvents3.VTable,
-        PrefetchCloseHandleBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents4,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents4,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PrefetchCloseHandleEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEvents4,
-                dwClosedHandleCount: u32,
-                dwOpenHandleCount: u32,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEvents4,
-                dwClosedHandleCount: u32,
-                dwOpenHandleCount: u32,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        PrefetchCloseHandleBegin: *const fn(
+            self: *const IOfflineFilesEvents4,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PrefetchCloseHandleEnd: *const fn(
+            self: *const IOfflineFilesEvents4,
+            dwClosedHandleCount: u32,
+            dwOpenHandleCount: u32,
+            hrResult: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1115,46 +861,23 @@ pub const IID_IOfflineFilesEventsFilter = &IID_IOfflineFilesEventsFilter_Value;
 pub const IOfflineFilesEventsFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPathFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEventsFilter,
-                ppszFilter: ?*?PWSTR,
-                pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEventsFilter,
-                ppszFilter: ?*?PWSTR,
-                pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIncludedEvents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEventsFilter,
-                cElements: u32,
-                prgEvents: [*]OFFLINEFILES_EVENTS,
-                pcEvents: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEventsFilter,
-                cElements: u32,
-                prgEvents: [*]OFFLINEFILES_EVENTS,
-                pcEvents: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetExcludedEvents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesEventsFilter,
-                cElements: u32,
-                prgEvents: [*]OFFLINEFILES_EVENTS,
-                pcEvents: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesEventsFilter,
-                cElements: u32,
-                prgEvents: [*]OFFLINEFILES_EVENTS,
-                pcEvents: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPathFilter: *const fn(
+            self: *const IOfflineFilesEventsFilter,
+            ppszFilter: ?*?PWSTR,
+            pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIncludedEvents: *const fn(
+            self: *const IOfflineFilesEventsFilter,
+            cElements: u32,
+            prgEvents: [*]OFFLINEFILES_EVENTS,
+            pcEvents: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetExcludedEvents: *const fn(
+            self: *const IOfflineFilesEventsFilter,
+            cElements: u32,
+            prgEvents: [*]OFFLINEFILES_EVENTS,
+            pcEvents: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1181,26 +904,14 @@ pub const IID_IOfflineFilesErrorInfo = &IID_IOfflineFilesErrorInfo_Value;
 pub const IOfflineFilesErrorInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRawData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesErrorInfo,
-                ppBlob: ?*?*BYTE_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesErrorInfo,
-                ppBlob: ?*?*BYTE_BLOB,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesErrorInfo,
-                ppszDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesErrorInfo,
-                ppszDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetRawData: *const fn(
+            self: *const IOfflineFilesErrorInfo,
+            ppBlob: ?*?*BYTE_BLOB,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescription: *const fn(
+            self: *const IOfflineFilesErrorInfo,
+            ppszDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1223,38 +934,19 @@ pub const IID_IOfflineFilesSyncErrorItemInfo = &IID_IOfflineFilesSyncErrorItemIn
 pub const IOfflineFilesSyncErrorItemInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFileAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorItemInfo,
-                pdwAttributes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorItemInfo,
-                pdwAttributes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileTimes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorItemInfo,
-                pftLastWrite: ?*FILETIME,
-                pftChange: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorItemInfo,
-                pftLastWrite: ?*FILETIME,
-                pftChange: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorItemInfo,
-                pSize: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorItemInfo,
-                pSize: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFileAttributes: *const fn(
+            self: *const IOfflineFilesSyncErrorItemInfo,
+            pdwAttributes: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileTimes: *const fn(
+            self: *const IOfflineFilesSyncErrorItemInfo,
+            pftLastWrite: ?*FILETIME,
+            pftChange: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileSize: *const fn(
+            self: *const IOfflineFilesSyncErrorItemInfo,
+            pSize: ?*LARGE_INTEGER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1281,84 +973,38 @@ pub const IID_IOfflineFilesSyncErrorInfo = &IID_IOfflineFilesSyncErrorInfo_Value
 pub const IOfflineFilesSyncErrorInfo = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesErrorInfo.VTable,
-        GetSyncOperation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetItemChangeFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                pdwItemChangeFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                pdwItemChangeFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InfoEnumerated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                pbLocalEnumerated: ?*BOOL,
-                pbRemoteEnumerated: ?*BOOL,
-                pbOriginalEnumerated: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                pbLocalEnumerated: ?*BOOL,
-                pbRemoteEnumerated: ?*BOOL,
-                pbOriginalEnumerated: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InfoAvailable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                pbLocalInfo: ?*BOOL,
-                pbRemoteInfo: ?*BOOL,
-                pbOriginalInfo: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                pbLocalInfo: ?*BOOL,
-                pbRemoteInfo: ?*BOOL,
-                pbOriginalInfo: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocalInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRemoteInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOriginalInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncErrorInfo,
-                ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncOperation: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetItemChangeFlags: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            pdwItemChangeFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InfoEnumerated: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            pbLocalEnumerated: ?*BOOL,
+            pbRemoteEnumerated: ?*BOOL,
+            pbOriginalEnumerated: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InfoAvailable: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            pbLocalInfo: ?*BOOL,
+            pbRemoteInfo: ?*BOOL,
+            pbOriginalInfo: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalInfo: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRemoteInfo: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOriginalInfo: *const fn(
+            self: *const IOfflineFilesSyncErrorInfo,
+            ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1401,36 +1047,18 @@ pub const IID_IOfflineFilesProgress = &IID_IOfflineFilesProgress_Value;
 pub const IOfflineFilesProgress = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesProgress,
-                pbAbort: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesProgress,
-                pbAbort: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryAbort: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesProgress,
-                pbAbort: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesProgress,
-                pbAbort: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        End: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesProgress,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesProgress,
-                hrResult: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin: *const fn(
+            self: *const IOfflineFilesProgress,
+            pbAbort: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryAbort: *const fn(
+            self: *const IOfflineFilesProgress,
+            pbAbort: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        End: *const fn(
+            self: *const IOfflineFilesProgress,
+            hrResult: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1457,32 +1085,17 @@ pub const IID_IOfflineFilesSimpleProgress = &IID_IOfflineFilesSimpleProgress_Val
 pub const IOfflineFilesSimpleProgress = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesProgress.VTable,
-        ItemBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSimpleProgress,
-                pszFile: ?[*:0]const u16,
-                pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSimpleProgress,
-                pszFile: ?[*:0]const u16,
-                pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ItemResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSimpleProgress,
-                pszFile: ?[*:0]const u16,
-                hrResult: HRESULT,
-                pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSimpleProgress,
-                pszFile: ?[*:0]const u16,
-                hrResult: HRESULT,
-                pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ItemBegin: *const fn(
+            self: *const IOfflineFilesSimpleProgress,
+            pszFile: ?[*:0]const u16,
+            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ItemResult: *const fn(
+            self: *const IOfflineFilesSimpleProgress,
+            pszFile: ?[*:0]const u16,
+            hrResult: HRESULT,
+            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1505,34 +1118,18 @@ pub const IID_IOfflineFilesSyncProgress = &IID_IOfflineFilesSyncProgress_Value;
 pub const IOfflineFilesSyncProgress = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesProgress.VTable,
-        SyncItemBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncProgress,
-                pszFile: ?[*:0]const u16,
-                pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncProgress,
-                pszFile: ?[*:0]const u16,
-                pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SyncItemResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncProgress,
-                pszFile: ?[*:0]const u16,
-                hrResult: HRESULT,
-                pErrorInfo: ?*IOfflineFilesSyncErrorInfo,
-                pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncProgress,
-                pszFile: ?[*:0]const u16,
-                hrResult: HRESULT,
-                pErrorInfo: ?*IOfflineFilesSyncErrorInfo,
-                pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SyncItemBegin: *const fn(
+            self: *const IOfflineFilesSyncProgress,
+            pszFile: ?[*:0]const u16,
+            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SyncItemResult: *const fn(
+            self: *const IOfflineFilesSyncProgress,
+            pszFile: ?[*:0]const u16,
+            hrResult: HRESULT,
+            pErrorInfo: ?*IOfflineFilesSyncErrorInfo,
+            pResponse: ?*OFFLINEFILES_OP_RESPONSE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1555,26 +1152,15 @@ pub const IID_IOfflineFilesSyncConflictHandler = &IID_IOfflineFilesSyncConflictH
 pub const IOfflineFilesSyncConflictHandler = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ResolveConflict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSyncConflictHandler,
-                pszPath: ?[*:0]const u16,
-                fStateKnown: u32,
-                state: OFFLINEFILES_SYNC_STATE,
-                fChangeDetails: u32,
-                pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE,
-                ppszNewName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSyncConflictHandler,
-                pszPath: ?[*:0]const u16,
-                fStateKnown: u32,
-                state: OFFLINEFILES_SYNC_STATE,
-                fChangeDetails: u32,
-                pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE,
-                ppszNewName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ResolveConflict: *const fn(
+            self: *const IOfflineFilesSyncConflictHandler,
+            pszPath: ?[*:0]const u16,
+            fStateKnown: u32,
+            state: OFFLINEFILES_SYNC_STATE,
+            fChangeDetails: u32,
+            pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE,
+            ppszNewName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1593,46 +1179,23 @@ pub const IID_IOfflineFilesItemFilter = &IID_IOfflineFilesItemFilter_Value;
 pub const IOfflineFilesItemFilter = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFilterFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItemFilter,
-                pullFlags: ?*u64,
-                pullMask: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItemFilter,
-                pullFlags: ?*u64,
-                pullMask: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTimeFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItemFilter,
-                pftTime: ?*FILETIME,
-                pbEvalTimeOfDay: ?*BOOL,
-                pTimeType: ?*OFFLINEFILES_ITEM_TIME,
-                pCompare: ?*OFFLINEFILES_COMPARE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItemFilter,
-                pftTime: ?*FILETIME,
-                pbEvalTimeOfDay: ?*BOOL,
-                pTimeType: ?*OFFLINEFILES_ITEM_TIME,
-                pCompare: ?*OFFLINEFILES_COMPARE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPatternFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItemFilter,
-                pszPattern: [*:0]u16,
-                cchPattern: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItemFilter,
-                pszPattern: [*:0]u16,
-                cchPattern: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilterFlags: *const fn(
+            self: *const IOfflineFilesItemFilter,
+            pullFlags: ?*u64,
+            pullMask: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTimeFilter: *const fn(
+            self: *const IOfflineFilesItemFilter,
+            pftTime: ?*FILETIME,
+            pbEvalTimeOfDay: ?*BOOL,
+            pTimeType: ?*OFFLINEFILES_ITEM_TIME,
+            pCompare: ?*OFFLINEFILES_COMPARE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPatternFilter: *const fn(
+            self: *const IOfflineFilesItemFilter,
+            pszPattern: [*:0]u16,
+            cchPattern: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1659,56 +1222,26 @@ pub const IID_IOfflineFilesItem = &IID_IOfflineFilesItem_Value;
 pub const IOfflineFilesItem = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItem,
-                pItemType: ?*OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItem,
-                pItemType: ?*OFFLINEFILES_ITEM_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItem,
-                ppszPath: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItem,
-                ppszPath: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetParentItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItem,
-                ppItem: ?*?*IOfflineFilesItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItem,
-                ppItem: ?*?*IOfflineFilesItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Refresh: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItem,
-                dwQueryFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItem,
-                dwQueryFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsMarkedForDeletion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItem,
-                pbMarkedForDeletion: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItem,
-                pbMarkedForDeletion: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetItemType: *const fn(
+            self: *const IOfflineFilesItem,
+            pItemType: ?*OFFLINEFILES_ITEM_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPath: *const fn(
+            self: *const IOfflineFilesItem,
+            ppszPath: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParentItem: *const fn(
+            self: *const IOfflineFilesItem,
+            ppItem: ?*?*IOfflineFilesItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Refresh: *const fn(
+            self: *const IOfflineFilesItem,
+            dwQueryFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsMarkedForDeletion: *const fn(
+            self: *const IOfflineFilesItem,
+            pbMarkedForDeletion: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1785,26 +1318,14 @@ pub const IID_IOfflineFilesFileItem = &IID_IOfflineFilesFileItem_Value;
 pub const IOfflineFilesFileItem = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesItem.VTable,
-        IsSparse: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesFileItem,
-                pbIsSparse: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesFileItem,
-                pbIsSparse: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEncrypted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesFileItem,
-                pbIsEncrypted: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesFileItem,
-                pbIsEncrypted: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsSparse: *const fn(
+            self: *const IOfflineFilesFileItem,
+            pbIsSparse: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEncrypted: *const fn(
+            self: *const IOfflineFilesFileItem,
+            pbIsEncrypted: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1827,48 +1348,23 @@ pub const IID_IEnumOfflineFilesItems = &IID_IEnumOfflineFilesItems_Value;
 pub const IEnumOfflineFilesItems = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumOfflineFilesItems,
-                celt: u32,
-                rgelt: [*]?*IOfflineFilesItem,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumOfflineFilesItems,
-                celt: u32,
-                rgelt: [*]?*IOfflineFilesItem,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumOfflineFilesItems,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumOfflineFilesItems,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumOfflineFilesItems,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumOfflineFilesItems,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumOfflineFilesItems,
-                ppenum: ?*?*IEnumOfflineFilesItems,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumOfflineFilesItems,
-                ppenum: ?*?*IEnumOfflineFilesItems,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumOfflineFilesItems,
+            celt: u32,
+            rgelt: [*]?*IOfflineFilesItem,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumOfflineFilesItems,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumOfflineFilesItems,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumOfflineFilesItems,
+            ppenum: ?*?*IEnumOfflineFilesItems,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1899,40 +1395,21 @@ pub const IID_IOfflineFilesItemContainer = &IID_IOfflineFilesItemContainer_Value
 pub const IOfflineFilesItemContainer = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnumItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItemContainer,
-                dwQueryFlags: u32,
-                ppenum: ?*?*IEnumOfflineFilesItems,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItemContainer,
-                dwQueryFlags: u32,
-                ppenum: ?*?*IEnumOfflineFilesItems,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumItemsEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesItemContainer,
-                pIncludeFileFilter: ?*IOfflineFilesItemFilter,
-                pIncludeDirFilter: ?*IOfflineFilesItemFilter,
-                pExcludeFileFilter: ?*IOfflineFilesItemFilter,
-                pExcludeDirFilter: ?*IOfflineFilesItemFilter,
-                dwEnumFlags: u32,
-                dwQueryFlags: u32,
-                ppenum: ?*?*IEnumOfflineFilesItems,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesItemContainer,
-                pIncludeFileFilter: ?*IOfflineFilesItemFilter,
-                pIncludeDirFilter: ?*IOfflineFilesItemFilter,
-                pExcludeFileFilter: ?*IOfflineFilesItemFilter,
-                pExcludeDirFilter: ?*IOfflineFilesItemFilter,
-                dwEnumFlags: u32,
-                dwQueryFlags: u32,
-                ppenum: ?*?*IEnumOfflineFilesItems,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnumItems: *const fn(
+            self: *const IOfflineFilesItemContainer,
+            dwQueryFlags: u32,
+            ppenum: ?*?*IEnumOfflineFilesItems,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumItemsEx: *const fn(
+            self: *const IOfflineFilesItemContainer,
+            pIncludeFileFilter: ?*IOfflineFilesItemFilter,
+            pIncludeDirFilter: ?*IOfflineFilesItemFilter,
+            pExcludeFileFilter: ?*IOfflineFilesItemFilter,
+            pExcludeDirFilter: ?*IOfflineFilesItemFilter,
+            dwEnumFlags: u32,
+            dwQueryFlags: u32,
+            ppenum: ?*?*IEnumOfflineFilesItems,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -1955,66 +1432,30 @@ pub const IID_IOfflineFilesChangeInfo = &IID_IOfflineFilesChangeInfo_Value;
 pub const IOfflineFilesChangeInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsDirty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbDirty: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbDirty: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsDeletedOffline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbDeletedOffline: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbDeletedOffline: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsCreatedOffline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbCreatedOffline: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbCreatedOffline: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsLocallyModifiedData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbLocallyModifiedData: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbLocallyModifiedData: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsLocallyModifiedAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbLocallyModifiedAttributes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbLocallyModifiedAttributes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsLocallyModifiedTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbLocallyModifiedTime: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesChangeInfo,
-                pbLocallyModifiedTime: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsDirty: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbDirty: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsDeletedOffline: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbDeletedOffline: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsCreatedOffline: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbCreatedOffline: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsLocallyModifiedData: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbLocallyModifiedData: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsLocallyModifiedAttributes: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbLocallyModifiedAttributes: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsLocallyModifiedTime: *const fn(
+            self: *const IOfflineFilesChangeInfo,
+            pbLocallyModifiedTime: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2053,26 +1494,14 @@ pub const IID_IOfflineFilesDirtyInfo = &IID_IOfflineFilesDirtyInfo_Value;
 pub const IOfflineFilesDirtyInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LocalDirtyByteCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesDirtyInfo,
-                pDirtyByteCount: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesDirtyInfo,
-                pDirtyByteCount: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoteDirtyByteCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesDirtyInfo,
-                pDirtyByteCount: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesDirtyInfo,
-                pDirtyByteCount: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        LocalDirtyByteCount: *const fn(
+            self: *const IOfflineFilesDirtyInfo,
+            pDirtyByteCount: ?*LARGE_INTEGER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoteDirtyByteCount: *const fn(
+            self: *const IOfflineFilesDirtyInfo,
+            pDirtyByteCount: ?*LARGE_INTEGER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2095,48 +1524,24 @@ pub const IID_IOfflineFilesFileSysInfo = &IID_IOfflineFilesFileSysInfo_Value;
 pub const IOfflineFilesFileSysInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesFileSysInfo,
-                copy: OFFLINEFILES_ITEM_COPY,
-                pdwAttributes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesFileSysInfo,
-                copy: OFFLINEFILES_ITEM_COPY,
-                pdwAttributes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTimes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesFileSysInfo,
-                copy: OFFLINEFILES_ITEM_COPY,
-                pftCreationTime: ?*FILETIME,
-                pftLastWriteTime: ?*FILETIME,
-                pftChangeTime: ?*FILETIME,
-                pftLastAccessTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesFileSysInfo,
-                copy: OFFLINEFILES_ITEM_COPY,
-                pftCreationTime: ?*FILETIME,
-                pftLastWriteTime: ?*FILETIME,
-                pftChangeTime: ?*FILETIME,
-                pftLastAccessTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesFileSysInfo,
-                copy: OFFLINEFILES_ITEM_COPY,
-                pSize: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesFileSysInfo,
-                copy: OFFLINEFILES_ITEM_COPY,
-                pSize: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAttributes: *const fn(
+            self: *const IOfflineFilesFileSysInfo,
+            copy: OFFLINEFILES_ITEM_COPY,
+            pdwAttributes: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTimes: *const fn(
+            self: *const IOfflineFilesFileSysInfo,
+            copy: OFFLINEFILES_ITEM_COPY,
+            pftCreationTime: ?*FILETIME,
+            pftLastWriteTime: ?*FILETIME,
+            pftChangeTime: ?*FILETIME,
+            pftLastAccessTime: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileSize: *const fn(
+            self: *const IOfflineFilesFileSysInfo,
+            copy: OFFLINEFILES_ITEM_COPY,
+            pSize: ?*LARGE_INTEGER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2163,64 +1568,30 @@ pub const IID_IOfflineFilesPinInfo = &IID_IOfflineFilesPinInfo_Value;
 pub const IOfflineFilesPinInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsPinned: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinned: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinned: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsPinnedForUser: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinnedForUser: ?*BOOL,
-                pbInherit: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinnedForUser: ?*BOOL,
-                pbInherit: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsPinnedForUserByPolicy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinnedForUser: ?*BOOL,
-                pbInherit: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinnedForUser: ?*BOOL,
-                pbInherit: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsPinnedForComputer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinnedForComputer: ?*BOOL,
-                pbInherit: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinnedForComputer: ?*BOOL,
-                pbInherit: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsPinnedForFolderRedirection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinnedForFolderRedirection: ?*BOOL,
-                pbInherit: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesPinInfo,
-                pbPinnedForFolderRedirection: ?*BOOL,
-                pbInherit: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsPinned: *const fn(
+            self: *const IOfflineFilesPinInfo,
+            pbPinned: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPinnedForUser: *const fn(
+            self: *const IOfflineFilesPinInfo,
+            pbPinnedForUser: ?*BOOL,
+            pbInherit: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPinnedForUserByPolicy: *const fn(
+            self: *const IOfflineFilesPinInfo,
+            pbPinnedForUser: ?*BOOL,
+            pbInherit: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPinnedForComputer: *const fn(
+            self: *const IOfflineFilesPinInfo,
+            pbPinnedForComputer: ?*BOOL,
+            pbInherit: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPinnedForFolderRedirection: *const fn(
+            self: *const IOfflineFilesPinInfo,
+            pbPinnedForFolderRedirection: ?*BOOL,
+            pbInherit: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2255,16 +1626,10 @@ pub const IID_IOfflineFilesPinInfo2 = &IID_IOfflineFilesPinInfo2_Value;
 pub const IOfflineFilesPinInfo2 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesPinInfo.VTable,
-        IsPartlyPinned: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesPinInfo2,
-                pbPartlyPinned: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesPinInfo2,
-                pbPartlyPinned: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsPartlyPinned: *const fn(
+            self: *const IOfflineFilesPinInfo2,
+            pbPartlyPinned: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2283,16 +1648,10 @@ pub const IID_IOfflineFilesTransparentCacheInfo = &IID_IOfflineFilesTransparentC
 pub const IOfflineFilesTransparentCacheInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsTransparentlyCached: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesTransparentCacheInfo,
-                pbTransparentlyCached: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesTransparentCacheInfo,
-                pbTransparentlyCached: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsTransparentlyCached: *const fn(
+            self: *const IOfflineFilesTransparentCacheInfo,
+            pbTransparentlyCached: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2311,16 +1670,10 @@ pub const IID_IOfflineFilesGhostInfo = &IID_IOfflineFilesGhostInfo_Value;
 pub const IOfflineFilesGhostInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsGhosted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesGhostInfo,
-                pbGhosted: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesGhostInfo,
-                pbGhosted: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsGhosted: *const fn(
+            self: *const IOfflineFilesGhostInfo,
+            pbGhosted: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2339,60 +1692,29 @@ pub const IID_IOfflineFilesConnectionInfo = &IID_IOfflineFilesConnectionInfo_Val
 pub const IOfflineFilesConnectionInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetConnectState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesConnectionInfo,
-                pConnectState: ?*OFFLINEFILES_CONNECT_STATE,
-                pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesConnectionInfo,
-                pConnectState: ?*OFFLINEFILES_CONNECT_STATE,
-                pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConnectState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesConnectionInfo,
-                hwndParent: ?HWND,
-                dwFlags: u32,
-                ConnectState: OFFLINEFILES_CONNECT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesConnectionInfo,
-                hwndParent: ?HWND,
-                dwFlags: u32,
-                ConnectState: OFFLINEFILES_CONNECT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TransitionOnline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesConnectionInfo,
-                hwndParent: ?HWND,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesConnectionInfo,
-                hwndParent: ?HWND,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TransitionOffline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesConnectionInfo,
-                hwndParent: ?HWND,
-                dwFlags: u32,
-                bForceOpenFilesClosed: BOOL,
-                pbOpenFilesPreventedTransition: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesConnectionInfo,
-                hwndParent: ?HWND,
-                dwFlags: u32,
-                bForceOpenFilesClosed: BOOL,
-                pbOpenFilesPreventedTransition: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetConnectState: *const fn(
+            self: *const IOfflineFilesConnectionInfo,
+            pConnectState: ?*OFFLINEFILES_CONNECT_STATE,
+            pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConnectState: *const fn(
+            self: *const IOfflineFilesConnectionInfo,
+            hwndParent: ?HWND,
+            dwFlags: u32,
+            ConnectState: OFFLINEFILES_CONNECT_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TransitionOnline: *const fn(
+            self: *const IOfflineFilesConnectionInfo,
+            hwndParent: ?HWND,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TransitionOffline: *const fn(
+            self: *const IOfflineFilesConnectionInfo,
+            hwndParent: ?HWND,
+            dwFlags: u32,
+            bForceOpenFilesClosed: BOOL,
+            pbOpenFilesPreventedTransition: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2423,36 +1745,18 @@ pub const IID_IOfflineFilesShareInfo = &IID_IOfflineFilesShareInfo_Value;
 pub const IOfflineFilesShareInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetShareItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesShareInfo,
-                ppShareItem: ?*?*IOfflineFilesShareItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesShareInfo,
-                ppShareItem: ?*?*IOfflineFilesShareItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetShareCachingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesShareInfo,
-                pCachingMode: ?*OFFLINEFILES_CACHING_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesShareInfo,
-                pCachingMode: ?*OFFLINEFILES_CACHING_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsShareDfsJunction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesShareInfo,
-                pbIsDfsJunction: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesShareInfo,
-                pbIsDfsJunction: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetShareItem: *const fn(
+            self: *const IOfflineFilesShareInfo,
+            ppShareItem: ?*?*IOfflineFilesShareItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetShareCachingMode: *const fn(
+            self: *const IOfflineFilesShareInfo,
+            pCachingMode: ?*OFFLINEFILES_CACHING_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsShareDfsJunction: *const fn(
+            self: *const IOfflineFilesShareInfo,
+            pbIsDfsJunction: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2479,16 +1783,10 @@ pub const IID_IOfflineFilesSuspend = &IID_IOfflineFilesSuspend_Value;
 pub const IOfflineFilesSuspend = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SuspendRoot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSuspend,
-                bSuspend: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSuspend,
-                bSuspend: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SuspendRoot: *const fn(
+            self: *const IOfflineFilesSuspend,
+            bSuspend: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2507,18 +1805,11 @@ pub const IID_IOfflineFilesSuspendInfo = &IID_IOfflineFilesSuspendInfo_Value;
 pub const IOfflineFilesSuspendInfo = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsSuspended: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSuspendInfo,
-                pbSuspended: ?*BOOL,
-                pbSuspendedRoot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSuspendInfo,
-                pbSuspended: ?*BOOL,
-                pbSuspendedRoot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsSuspended: *const fn(
+            self: *const IOfflineFilesSuspendInfo,
+            pbSuspended: ?*BOOL,
+            pbSuspendedRoot: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2537,104 +1828,46 @@ pub const IID_IOfflineFilesSetting = &IID_IOfflineFilesSetting_Value;
 pub const IOfflineFilesSetting = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSetting,
-                ppszName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSetting,
-                ppszName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetValueType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSetting,
-                pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSetting,
-                pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPreference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSetting,
-                pvarValue: ?*VARIANT,
-                dwScope: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSetting,
-                pvarValue: ?*VARIANT,
-                dwScope: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPreferenceScope: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSetting,
-                pdwScope: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSetting,
-                pdwScope: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPreference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSetting,
-                pvarValue: ?*const VARIANT,
-                dwScope: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSetting,
-                pvarValue: ?*const VARIANT,
-                dwScope: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeletePreference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSetting,
-                dwScope: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSetting,
-                dwScope: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPolicy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSetting,
-                pvarValue: ?*VARIANT,
-                dwScope: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSetting,
-                pvarValue: ?*VARIANT,
-                dwScope: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPolicyScope: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSetting,
-                pdwScope: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSetting,
-                pdwScope: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesSetting,
-                pvarValue: ?*VARIANT,
-                pbSetByPolicy: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesSetting,
-                pvarValue: ?*VARIANT,
-                pbSetByPolicy: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetName: *const fn(
+            self: *const IOfflineFilesSetting,
+            ppszName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValueType: *const fn(
+            self: *const IOfflineFilesSetting,
+            pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPreference: *const fn(
+            self: *const IOfflineFilesSetting,
+            pvarValue: ?*VARIANT,
+            dwScope: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPreferenceScope: *const fn(
+            self: *const IOfflineFilesSetting,
+            pdwScope: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPreference: *const fn(
+            self: *const IOfflineFilesSetting,
+            pvarValue: ?*const VARIANT,
+            dwScope: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeletePreference: *const fn(
+            self: *const IOfflineFilesSetting,
+            dwScope: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPolicy: *const fn(
+            self: *const IOfflineFilesSetting,
+            pvarValue: ?*VARIANT,
+            dwScope: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPolicyScope: *const fn(
+            self: *const IOfflineFilesSetting,
+            pdwScope: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValue: *const fn(
+            self: *const IOfflineFilesSetting,
+            pvarValue: ?*VARIANT,
+            pbSetByPolicy: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2685,48 +1918,23 @@ pub const IID_IEnumOfflineFilesSettings = &IID_IEnumOfflineFilesSettings_Value;
 pub const IEnumOfflineFilesSettings = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumOfflineFilesSettings,
-                celt: u32,
-                rgelt: [*]?*IOfflineFilesSetting,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumOfflineFilesSettings,
-                celt: u32,
-                rgelt: [*]?*IOfflineFilesSetting,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumOfflineFilesSettings,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumOfflineFilesSettings,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumOfflineFilesSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumOfflineFilesSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IEnumOfflineFilesSettings,
-                ppenum: ?*?*IEnumOfflineFilesSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IEnumOfflineFilesSettings,
-                ppenum: ?*?*IEnumOfflineFilesSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumOfflineFilesSettings,
+            celt: u32,
+            rgelt: [*]?*IOfflineFilesSetting,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumOfflineFilesSettings,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumOfflineFilesSettings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumOfflineFilesSettings,
+            ppenum: ?*?*IEnumOfflineFilesSettings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -2757,280 +1965,126 @@ pub const IID_IOfflineFilesCache = &IID_IOfflineFilesCache_Value;
 pub const IOfflineFilesCache = extern struct {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Synchronize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                hwndParent: ?HWND,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                bAsync: BOOL,
-                dwSyncControl: u32,
-                pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler,
-                pIProgress: ?*IOfflineFilesSyncProgress,
-                pSyncId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                hwndParent: ?HWND,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                bAsync: BOOL,
-                dwSyncControl: u32,
-                pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler,
-                pIProgress: ?*IOfflineFilesSyncProgress,
-                pSyncId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteItems: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                dwFlags: u32,
-                bAsync: BOOL,
-                pIProgress: ?*IOfflineFilesSimpleProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                dwFlags: u32,
-                bAsync: BOOL,
-                pIProgress: ?*IOfflineFilesSimpleProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteItemsForUser: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                pszUser: ?[*:0]const u16,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                dwFlags: u32,
-                bAsync: BOOL,
-                pIProgress: ?*IOfflineFilesSimpleProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                pszUser: ?[*:0]const u16,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                dwFlags: u32,
-                bAsync: BOOL,
-                pIProgress: ?*IOfflineFilesSimpleProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Pin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                hwndParent: ?HWND,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                bDeep: BOOL,
-                bAsync: BOOL,
-                dwPinControlFlags: u32,
-                pIProgress: ?*IOfflineFilesSyncProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                hwndParent: ?HWND,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                bDeep: BOOL,
-                bAsync: BOOL,
-                dwPinControlFlags: u32,
-                pIProgress: ?*IOfflineFilesSyncProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unpin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                hwndParent: ?HWND,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                bDeep: BOOL,
-                bAsync: BOOL,
-                dwPinControlFlags: u32,
-                pIProgress: ?*IOfflineFilesSyncProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                hwndParent: ?HWND,
-                rgpszPaths: [*]?PWSTR,
-                cPaths: u32,
-                bDeep: BOOL,
-                bAsync: BOOL,
-                dwPinControlFlags: u32,
-                pIProgress: ?*IOfflineFilesSyncProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEncryptionStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                pbEncrypted: ?*BOOL,
-                pbPartial: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                pbEncrypted: ?*BOOL,
-                pbPartial: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Encrypt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                hwndParent: ?HWND,
-                bEncrypt: BOOL,
-                dwEncryptionControlFlags: u32,
-                bAsync: BOOL,
-                pIProgress: ?*IOfflineFilesSyncProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                hwndParent: ?HWND,
-                bEncrypt: BOOL,
-                dwEncryptionControlFlags: u32,
-                bAsync: BOOL,
-                pIProgress: ?*IOfflineFilesSyncProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                pszPath: ?[*:0]const u16,
-                dwQueryFlags: u32,
-                ppItem: ?*?*IOfflineFilesItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                pszPath: ?[*:0]const u16,
-                dwQueryFlags: u32,
-                ppItem: ?*?*IOfflineFilesItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindItemEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                pszPath: ?[*:0]const u16,
-                pIncludeFileFilter: ?*IOfflineFilesItemFilter,
-                pIncludeDirFilter: ?*IOfflineFilesItemFilter,
-                pExcludeFileFilter: ?*IOfflineFilesItemFilter,
-                pExcludeDirFilter: ?*IOfflineFilesItemFilter,
-                dwQueryFlags: u32,
-                ppItem: ?*?*IOfflineFilesItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                pszPath: ?[*:0]const u16,
-                pIncludeFileFilter: ?*IOfflineFilesItemFilter,
-                pIncludeDirFilter: ?*IOfflineFilesItemFilter,
-                pExcludeFileFilter: ?*IOfflineFilesItemFilter,
-                pExcludeDirFilter: ?*IOfflineFilesItemFilter,
-                dwQueryFlags: u32,
-                ppItem: ?*?*IOfflineFilesItem,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RenameItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                pszPathOriginal: ?[*:0]const u16,
-                pszPathNew: ?[*:0]const u16,
-                bReplaceIfExists: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                pszPathOriginal: ?[*:0]const u16,
-                pszPathNew: ?[*:0]const u16,
-                bReplaceIfExists: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                ppszPath: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                ppszPath: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDiskSpaceInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                pcbVolumeTotal: ?*u64,
-                pcbLimit: ?*u64,
-                pcbUsed: ?*u64,
-                pcbUnpinnedLimit: ?*u64,
-                pcbUnpinnedUsed: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                pcbVolumeTotal: ?*u64,
-                pcbLimit: ?*u64,
-                pcbUsed: ?*u64,
-                pcbUnpinnedLimit: ?*u64,
-                pcbUnpinnedUsed: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDiskSpaceLimits: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                cbLimit: u64,
-                cbUnpinnedLimit: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                cbLimit: u64,
-                cbUnpinnedLimit: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProcessAdminPinPolicy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                pPinProgress: ?*IOfflineFilesSyncProgress,
-                pUnpinProgress: ?*IOfflineFilesSyncProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                pPinProgress: ?*IOfflineFilesSyncProgress,
-                pUnpinProgress: ?*IOfflineFilesSyncProgress,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSettingObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                pszSettingName: ?[*:0]const u16,
-                ppSetting: ?*?*IOfflineFilesSetting,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                pszSettingName: ?[*:0]const u16,
-                ppSetting: ?*?*IOfflineFilesSetting,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumSettingObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                ppEnum: ?*?*IEnumOfflineFilesSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                ppEnum: ?*?*IEnumOfflineFilesSettings,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsPathCacheable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache,
-                pszPath: ?[*:0]const u16,
-                pbCacheable: ?*BOOL,
-                pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache,
-                pszPath: ?[*:0]const u16,
-                pbCacheable: ?*BOOL,
-                pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Synchronize: *const fn(
+            self: *const IOfflineFilesCache,
+            hwndParent: ?HWND,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            bAsync: BOOL,
+            dwSyncControl: u32,
+            pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler,
+            pIProgress: ?*IOfflineFilesSyncProgress,
+            pSyncId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteItems: *const fn(
+            self: *const IOfflineFilesCache,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            dwFlags: u32,
+            bAsync: BOOL,
+            pIProgress: ?*IOfflineFilesSimpleProgress,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteItemsForUser: *const fn(
+            self: *const IOfflineFilesCache,
+            pszUser: ?[*:0]const u16,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            dwFlags: u32,
+            bAsync: BOOL,
+            pIProgress: ?*IOfflineFilesSimpleProgress,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Pin: *const fn(
+            self: *const IOfflineFilesCache,
+            hwndParent: ?HWND,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            bDeep: BOOL,
+            bAsync: BOOL,
+            dwPinControlFlags: u32,
+            pIProgress: ?*IOfflineFilesSyncProgress,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unpin: *const fn(
+            self: *const IOfflineFilesCache,
+            hwndParent: ?HWND,
+            rgpszPaths: [*]?PWSTR,
+            cPaths: u32,
+            bDeep: BOOL,
+            bAsync: BOOL,
+            dwPinControlFlags: u32,
+            pIProgress: ?*IOfflineFilesSyncProgress,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEncryptionStatus: *const fn(
+            self: *const IOfflineFilesCache,
+            pbEncrypted: ?*BOOL,
+            pbPartial: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Encrypt: *const fn(
+            self: *const IOfflineFilesCache,
+            hwndParent: ?HWND,
+            bEncrypt: BOOL,
+            dwEncryptionControlFlags: u32,
+            bAsync: BOOL,
+            pIProgress: ?*IOfflineFilesSyncProgress,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindItem: *const fn(
+            self: *const IOfflineFilesCache,
+            pszPath: ?[*:0]const u16,
+            dwQueryFlags: u32,
+            ppItem: ?*?*IOfflineFilesItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindItemEx: *const fn(
+            self: *const IOfflineFilesCache,
+            pszPath: ?[*:0]const u16,
+            pIncludeFileFilter: ?*IOfflineFilesItemFilter,
+            pIncludeDirFilter: ?*IOfflineFilesItemFilter,
+            pExcludeFileFilter: ?*IOfflineFilesItemFilter,
+            pExcludeDirFilter: ?*IOfflineFilesItemFilter,
+            dwQueryFlags: u32,
+            ppItem: ?*?*IOfflineFilesItem,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RenameItem: *const fn(
+            self: *const IOfflineFilesCache,
+            pszPathOriginal: ?[*:0]const u16,
+            pszPathNew: ?[*:0]const u16,
+            bReplaceIfExists: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocation: *const fn(
+            self: *const IOfflineFilesCache,
+            ppszPath: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDiskSpaceInformation: *const fn(
+            self: *const IOfflineFilesCache,
+            pcbVolumeTotal: ?*u64,
+            pcbLimit: ?*u64,
+            pcbUsed: ?*u64,
+            pcbUnpinnedLimit: ?*u64,
+            pcbUnpinnedUsed: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDiskSpaceLimits: *const fn(
+            self: *const IOfflineFilesCache,
+            cbLimit: u64,
+            cbUnpinnedLimit: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessAdminPinPolicy: *const fn(
+            self: *const IOfflineFilesCache,
+            pPinProgress: ?*IOfflineFilesSyncProgress,
+            pUnpinProgress: ?*IOfflineFilesSyncProgress,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSettingObject: *const fn(
+            self: *const IOfflineFilesCache,
+            pszSettingName: ?[*:0]const u16,
+            ppSetting: ?*?*IOfflineFilesSetting,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumSettingObjects: *const fn(
+            self: *const IOfflineFilesCache,
+            ppEnum: ?*?*IEnumOfflineFilesSettings,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPathCacheable: *const fn(
+            self: *const IOfflineFilesCache,
+            pszPath: ?[*:0]const u16,
+            pbCacheable: ?*BOOL,
+            pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
@@ -3113,20 +2167,12 @@ pub const IID_IOfflineFilesCache2 = &IID_IOfflineFilesCache2_Value;
 pub const IOfflineFilesCache2 = extern struct {
     pub const VTable = extern struct {
         base: IOfflineFilesCache.VTable,
-        RenameItemEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn(
-                self: *const IOfflineFilesCache2,
-                pszPathOriginal: ?[*:0]const u16,
-                pszPathNew: ?[*:0]const u16,
-                bReplaceIfExists: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn(
-                self: *const IOfflineFilesCache2,
-                pszPathOriginal: ?[*:0]const u16,
-                pszPathNew: ?[*:0]const u16,
-                bReplaceIfExists: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RenameItemEx: *const fn(
+            self: *const IOfflineFilesCache2,
+            pszPathOriginal: ?[*:0]const u16,
+            pszPathNew: ?[*:0]const u16,
+            bReplaceIfExists: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
     pub fn MethodMixin(comptime T: type) type { return struct {
