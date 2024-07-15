@@ -1483,7 +1483,7 @@ pub const LPCLIPPERCALLBACK = *const fn(
 
 const IID_IDirectDraw_Value = Guid.initString("6c14db80-a733-11ce-a521-0020af0be560");
 pub const IID_IDirectDraw = &IID_IDirectDraw_Value;
-pub const IDirectDraw = extern struct {
+pub const IDirectDraw = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Compact: *const fn(
@@ -1585,6 +1585,7 @@ pub const IDirectDraw = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1673,7 +1674,7 @@ pub const IDirectDraw = extern struct {
 
 const IID_IDirectDraw2_Value = Guid.initString("b3a6f3e0-2b43-11cf-a2de-00aa00b93356");
 pub const IID_IDirectDraw2 = &IID_IDirectDraw2_Value;
-pub const IDirectDraw2 = extern struct {
+pub const IDirectDraw2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Compact: *const fn(
@@ -1783,6 +1784,7 @@ pub const IDirectDraw2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1875,7 +1877,7 @@ pub const IDirectDraw2 = extern struct {
 
 const IID_IDirectDraw4_Value = Guid.initString("9c59509a-39bd-11d1-8c4a-00c04fd930c5");
 pub const IID_IDirectDraw4 = &IID_IDirectDraw4_Value;
-pub const IDirectDraw4 = extern struct {
+pub const IDirectDraw4 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Compact: *const fn(
@@ -2001,6 +2003,7 @@ pub const IDirectDraw4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2109,7 +2112,7 @@ pub const IDirectDraw4 = extern struct {
 
 const IID_IDirectDraw7_Value = Guid.initString("15e65ec0-3b9c-11d2-b92f-00609797ea5b");
 pub const IID_IDirectDraw7 = &IID_IDirectDraw7_Value;
-pub const IDirectDraw7 = extern struct {
+pub const IDirectDraw7 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Compact: *const fn(
@@ -2246,6 +2249,7 @@ pub const IDirectDraw7 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2362,7 +2366,7 @@ pub const IDirectDraw7 = extern struct {
 
 const IID_IDirectDrawPalette_Value = Guid.initString("6c14db84-a733-11ce-a521-0020af0be560");
 pub const IID_IDirectDrawPalette = &IID_IDirectDrawPalette_Value;
-pub const IDirectDrawPalette = extern struct {
+pub const IDirectDrawPalette = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCaps: *const fn(
@@ -2391,6 +2395,7 @@ pub const IDirectDrawPalette = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2415,7 +2420,7 @@ pub const IDirectDrawPalette = extern struct {
 
 const IID_IDirectDrawClipper_Value = Guid.initString("6c14db85-a733-11ce-a521-0020af0be560");
 pub const IID_IDirectDrawClipper = &IID_IDirectDrawClipper_Value;
-pub const IDirectDrawClipper = extern struct {
+pub const IDirectDrawClipper = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetClipList: *const fn(
@@ -2449,6 +2454,7 @@ pub const IDirectDrawClipper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2481,7 +2487,7 @@ pub const IDirectDrawClipper = extern struct {
 
 const IID_IDirectDrawSurface_Value = Guid.initString("6c14db81-a733-11ce-a521-0020af0be560");
 pub const IID_IDirectDrawSurface = &IID_IDirectDrawSurface_Value;
-pub const IDirectDrawSurface = extern struct {
+pub const IDirectDrawSurface = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddAttachedSurface: *const fn(
@@ -2645,6 +2651,7 @@ pub const IDirectDrawSurface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2785,7 +2792,7 @@ pub const IDirectDrawSurface = extern struct {
 
 const IID_IDirectDrawSurface2_Value = Guid.initString("57805885-6eec-11cf-9441-a82303c10e27");
 pub const IID_IDirectDrawSurface2 = &IID_IDirectDrawSurface2_Value;
-pub const IDirectDrawSurface2 = extern struct {
+pub const IDirectDrawSurface2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddAttachedSurface: *const fn(
@@ -2961,6 +2968,7 @@ pub const IDirectDrawSurface2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3113,7 +3121,7 @@ pub const IDirectDrawSurface2 = extern struct {
 
 const IID_IDirectDrawSurface3_Value = Guid.initString("da044e00-69b2-11d0-a1d5-00aa00b8dfbb");
 pub const IID_IDirectDrawSurface3 = &IID_IDirectDrawSurface3_Value;
-pub const IDirectDrawSurface3 = extern struct {
+pub const IDirectDrawSurface3 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddAttachedSurface: *const fn(
@@ -3294,6 +3302,7 @@ pub const IDirectDrawSurface3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3450,7 +3459,7 @@ pub const IDirectDrawSurface3 = extern struct {
 
 const IID_IDirectDrawSurface4_Value = Guid.initString("0b2b8630-ad35-11d0-8ea6-00609797ea5b");
 pub const IID_IDirectDrawSurface4 = &IID_IDirectDrawSurface4_Value;
-pub const IDirectDrawSurface4 = extern struct {
+pub const IDirectDrawSurface4 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddAttachedSurface: *const fn(
@@ -3655,6 +3664,7 @@ pub const IDirectDrawSurface4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3831,7 +3841,7 @@ pub const IDirectDrawSurface4 = extern struct {
 
 const IID_IDirectDrawSurface7_Value = Guid.initString("06675a80-3b9b-11d2-b92f-00609797ea5b");
 pub const IID_IDirectDrawSurface7 = &IID_IDirectDrawSurface7_Value;
-pub const IDirectDrawSurface7 = extern struct {
+pub const IDirectDrawSurface7 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddAttachedSurface: *const fn(
@@ -4052,6 +4062,7 @@ pub const IDirectDrawSurface7 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4244,7 +4255,7 @@ pub const IDirectDrawSurface7 = extern struct {
 
 const IID_IDirectDrawColorControl_Value = Guid.initString("4b9f0ee0-0d7e-11d0-9b06-00a0c903a3b8");
 pub const IID_IDirectDrawColorControl = &IID_IDirectDrawColorControl_Value;
-pub const IDirectDrawColorControl = extern struct {
+pub const IDirectDrawColorControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetColorControls: *const fn(
@@ -4257,6 +4268,7 @@ pub const IDirectDrawColorControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4273,7 +4285,7 @@ pub const IDirectDrawColorControl = extern struct {
 
 const IID_IDirectDrawGammaControl_Value = Guid.initString("69c11c3e-b46b-11d1-ad7a-00c04fc29b4e");
 pub const IID_IDirectDrawGammaControl = &IID_IDirectDrawGammaControl_Value;
-pub const IDirectDrawGammaControl = extern struct {
+pub const IDirectDrawGammaControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetGammaRamp: *const fn(
@@ -4288,6 +4300,7 @@ pub const IDirectDrawGammaControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4405,7 +4418,7 @@ pub const LPDDENUMVIDEOCALLBACK = *const fn(
 
 const IID_IDDVideoPortContainer_Value = Guid.initString("6c142760-a733-11ce-a521-0020af0be560");
 pub const IID_IDDVideoPortContainer = &IID_IDDVideoPortContainer_Value;
-pub const IDDVideoPortContainer = extern struct {
+pub const IDDVideoPortContainer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateVideoPort: *const fn(
@@ -4435,6 +4448,7 @@ pub const IDDVideoPortContainer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4459,7 +4473,7 @@ pub const IDDVideoPortContainer = extern struct {
 
 const IID_IDirectDrawVideoPort_Value = Guid.initString("b36d93e0-2b43-11cf-a2de-00aa00b93356");
 pub const IID_IDirectDrawVideoPort = &IID_IDirectDrawVideoPort_Value;
-pub const IDirectDrawVideoPort = extern struct {
+pub const IDirectDrawVideoPort = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Flip: *const fn(
@@ -4532,6 +4546,7 @@ pub const IDirectDrawVideoPort = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4596,7 +4611,7 @@ pub const IDirectDrawVideoPort = extern struct {
 
 const IID_IDirectDrawVideoPortNotify_Value = Guid.initString("a655fb94-0589-4e57-b333-567a89468c88");
 pub const IID_IDirectDrawVideoPortNotify = &IID_IDirectDrawVideoPortNotify_Value;
-pub const IDirectDrawVideoPortNotify = extern struct {
+pub const IDirectDrawVideoPortNotify = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AcquireNotification: *const fn(
@@ -4610,6 +4625,7 @@ pub const IDirectDrawVideoPortNotify = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4714,7 +4730,7 @@ pub const DDVIDEOPORTNOTIFY = extern struct {
 
 const IID_IDirectDrawKernel_Value = Guid.initString("8d56c120-6a08-11d0-9b06-00a0c903a3b8");
 pub const IID_IDirectDrawKernel = &IID_IDirectDrawKernel_Value;
-pub const IDirectDrawKernel = extern struct {
+pub const IDirectDrawKernel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCaps: *const fn(
@@ -4730,6 +4746,7 @@ pub const IDirectDrawKernel = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4750,7 +4767,7 @@ pub const IDirectDrawKernel = extern struct {
 
 const IID_IDirectDrawSurfaceKernel_Value = Guid.initString("60755da0-6a40-11d0-9b06-00a0c903a3b8");
 pub const IID_IDirectDrawSurfaceKernel = &IID_IDirectDrawSurfaceKernel_Value;
-pub const IDirectDrawSurfaceKernel = extern struct {
+pub const IDirectDrawSurfaceKernel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetKernelHandle: *const fn(
@@ -4762,6 +4779,7 @@ pub const IDirectDrawSurfaceKernel = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -67,7 +67,7 @@ pub const UI_ANIMATION_REPEAT_MODE_ALTERNATE = UI_ANIMATION_REPEAT_MODE.ALTERNAT
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationManager_Value = Guid.initString("9169896c-ac8d-4e7d-94e5-67fa4dc2f2e8");
 pub const IID_IUIAnimationManager = &IID_IUIAnimationManager_Value;
-pub const IUIAnimationManager = extern struct {
+pub const IUIAnimationManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateAnimationVariable: *const fn(
@@ -152,6 +152,7 @@ pub const IUIAnimationManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -246,7 +247,7 @@ pub const UI_ANIMATION_ROUNDING_CEILING = UI_ANIMATION_ROUNDING_MODE.CEILING;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationVariable_Value = Guid.initString("8ceeb155-2849-4ce5-9448-91ff70e1e4d9");
 pub const IID_IUIAnimationVariable = &IID_IUIAnimationVariable_Value;
-pub const IUIAnimationVariable = extern struct {
+pub const IUIAnimationVariable = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetValue: *const fn(
@@ -309,6 +310,7 @@ pub const IUIAnimationVariable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -406,7 +408,7 @@ pub const UI_ANIMATION_SCHEDULING_DEFERRED = UI_ANIMATION_SCHEDULING_RESULT.DEFE
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationStoryboard_Value = Guid.initString("a8ff128f-9bf9-4af1-9e67-e5e410defb84");
 pub const IID_IUIAnimationStoryboard = &IID_IUIAnimationStoryboard_Value;
-pub const IUIAnimationStoryboard = extern struct {
+pub const IUIAnimationStoryboard = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddTransition: *const fn(
@@ -491,6 +493,7 @@ pub const IUIAnimationStoryboard = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -568,7 +571,7 @@ pub const IUIAnimationStoryboard = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTransition_Value = Guid.initString("dc6ce252-f731-41cf-b610-614b6ca049ad");
 pub const IID_IUIAnimationTransition = &IID_IUIAnimationTransition_Value;
-pub const IUIAnimationTransition = extern struct {
+pub const IUIAnimationTransition = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetInitialValue: *const fn(
@@ -588,6 +591,7 @@ pub const IUIAnimationTransition = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -613,7 +617,7 @@ pub const IUIAnimationTransition = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationManagerEventHandler_Value = Guid.initString("783321ed-78a3-4366-b574-6af607a64788");
 pub const IID_IUIAnimationManagerEventHandler = &IID_IUIAnimationManagerEventHandler_Value;
-pub const IUIAnimationManagerEventHandler = extern struct {
+pub const IUIAnimationManagerEventHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnManagerStatusChanged: *const fn(
@@ -623,6 +627,7 @@ pub const IUIAnimationManagerEventHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -636,7 +641,7 @@ pub const IUIAnimationManagerEventHandler = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationVariableChangeHandler_Value = Guid.initString("6358b7ba-87d2-42d5-bf71-82e919dd5862");
 pub const IID_IUIAnimationVariableChangeHandler = &IID_IUIAnimationVariableChangeHandler_Value;
-pub const IUIAnimationVariableChangeHandler = extern struct {
+pub const IUIAnimationVariableChangeHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnValueChanged: *const fn(
@@ -648,6 +653,7 @@ pub const IUIAnimationVariableChangeHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -661,7 +667,7 @@ pub const IUIAnimationVariableChangeHandler = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationVariableIntegerChangeHandler_Value = Guid.initString("bb3e1550-356e-44b0-99da-85ac6017865e");
 pub const IID_IUIAnimationVariableIntegerChangeHandler = &IID_IUIAnimationVariableIntegerChangeHandler_Value;
-pub const IUIAnimationVariableIntegerChangeHandler = extern struct {
+pub const IUIAnimationVariableIntegerChangeHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnIntegerValueChanged: *const fn(
@@ -673,6 +679,7 @@ pub const IUIAnimationVariableIntegerChangeHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -686,7 +693,7 @@ pub const IUIAnimationVariableIntegerChangeHandler = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationStoryboardEventHandler_Value = Guid.initString("3d5c9008-ec7c-4364-9f8a-9af3c58cbae6");
 pub const IID_IUIAnimationStoryboardEventHandler = &IID_IUIAnimationStoryboardEventHandler_Value;
-pub const IUIAnimationStoryboardEventHandler = extern struct {
+pub const IUIAnimationStoryboardEventHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStoryboardStatusChanged: *const fn(
@@ -701,6 +708,7 @@ pub const IUIAnimationStoryboardEventHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -725,7 +733,7 @@ pub const UI_ANIMATION_PRIORITY_EFFECT_DELAY = UI_ANIMATION_PRIORITY_EFFECT.DELA
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationPriorityComparison_Value = Guid.initString("83fa9b74-5f86-4618-bc6a-a2fac19b3f44");
 pub const IID_IUIAnimationPriorityComparison = &IID_IUIAnimationPriorityComparison_Value;
-pub const IUIAnimationPriorityComparison = extern struct {
+pub const IUIAnimationPriorityComparison = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         HasPriority: *const fn(
@@ -736,6 +744,7 @@ pub const IUIAnimationPriorityComparison = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -756,7 +765,7 @@ pub const UI_ANIMATION_SLOPE_DECREASING = UI_ANIMATION_SLOPE.DECREASING;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTransitionLibrary_Value = Guid.initString("ca5a14b1-d24f-48b8-8fe4-c78169ba954e");
 pub const IID_IUIAnimationTransitionLibrary = &IID_IUIAnimationTransitionLibrary_Value;
-pub const IUIAnimationTransitionLibrary = extern struct {
+pub const IUIAnimationTransitionLibrary = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateInstantaneousTransition: *const fn(
@@ -838,6 +847,7 @@ pub const IUIAnimationTransitionLibrary = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -935,7 +945,7 @@ pub const UI_ANIMATION_DEPENDENCY_DURATION = UI_ANIMATION_DEPENDENCIES{ .DURATIO
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationInterpolator_Value = Guid.initString("7815cbba-ddf7-478c-a46c-7b6c738b7978");
 pub const IID_IUIAnimationInterpolator = &IID_IUIAnimationInterpolator_Value;
-pub const IUIAnimationInterpolator = extern struct {
+pub const IUIAnimationInterpolator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetInitialValueAndVelocity: *const fn(
@@ -973,6 +983,7 @@ pub const IUIAnimationInterpolator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1010,7 +1021,7 @@ pub const IUIAnimationInterpolator = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTransitionFactory_Value = Guid.initString("fcd91e03-3e3b-45ad-bbb1-6dfc8153743d");
 pub const IID_IUIAnimationTransitionFactory = &IID_IUIAnimationTransitionFactory_Value;
-pub const IUIAnimationTransitionFactory = extern struct {
+pub const IUIAnimationTransitionFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTransition: *const fn(
@@ -1020,6 +1031,7 @@ pub const IUIAnimationTransitionFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1040,7 +1052,7 @@ pub const UI_ANIMATION_IDLE_BEHAVIOR_DISABLE = UI_ANIMATION_IDLE_BEHAVIOR.DISABL
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTimer_Value = Guid.initString("6b0efad1-a053-41d6-9085-33a689144665");
 pub const IID_IUIAnimationTimer = &IID_IUIAnimationTimer_Value;
-pub const IUIAnimationTimer = extern struct {
+pub const IUIAnimationTimer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetTimerUpdateHandler: *const fn(
@@ -1071,6 +1083,7 @@ pub const IUIAnimationTimer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1108,7 +1121,7 @@ pub const IUIAnimationTimer = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTimerUpdateHandler_Value = Guid.initString("195509b7-5d5e-4e3e-b278-ee3759b367ad");
 pub const IID_IUIAnimationTimerUpdateHandler = &IID_IUIAnimationTimerUpdateHandler_Value;
-pub const IUIAnimationTimerUpdateHandler = extern struct {
+pub const IUIAnimationTimerUpdateHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnUpdate: *const fn(
@@ -1125,6 +1138,7 @@ pub const IUIAnimationTimerUpdateHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1153,7 +1167,7 @@ pub const UI_ANIMATION_TIMER_CLIENT_BUSY = UI_ANIMATION_TIMER_CLIENT_STATUS.BUSY
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTimerClientEventHandler_Value = Guid.initString("bedb4db6-94fa-4bfb-a47f-ef2d9e408c25");
 pub const IID_IUIAnimationTimerClientEventHandler = &IID_IUIAnimationTimerClientEventHandler_Value;
-pub const IUIAnimationTimerClientEventHandler = extern struct {
+pub const IUIAnimationTimerClientEventHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnTimerClientStatusChanged: *const fn(
@@ -1163,6 +1177,7 @@ pub const IUIAnimationTimerClientEventHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1176,7 +1191,7 @@ pub const IUIAnimationTimerClientEventHandler = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIAnimationTimerEventHandler_Value = Guid.initString("274a7dea-d771-4095-abbd-8df7abd23ce3");
 pub const IID_IUIAnimationTimerEventHandler = &IID_IUIAnimationTimerEventHandler_Value;
-pub const IUIAnimationTimerEventHandler = extern struct {
+pub const IUIAnimationTimerEventHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnPreUpdate: *const fn(
@@ -1191,6 +1206,7 @@ pub const IUIAnimationTimerEventHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1212,7 +1228,7 @@ pub const IUIAnimationTimerEventHandler = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationManager2_Value = Guid.initString("d8b6f7d4-4109-4d3f-acee-879926968cb1");
 pub const IID_IUIAnimationManager2 = &IID_IUIAnimationManager2_Value;
-pub const IUIAnimationManager2 = extern struct {
+pub const IUIAnimationManager2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateAnimationVectorVariable: *const fn(
@@ -1308,6 +1324,7 @@ pub const IUIAnimationManager2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1401,7 +1418,7 @@ pub const IUIAnimationManager2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationVariable2_Value = Guid.initString("4914b304-96ab-44d9-9e77-d5109b7e7466");
 pub const IID_IUIAnimationVariable2 = &IID_IUIAnimationVariable2_Value;
-pub const IUIAnimationVariable2 = extern struct {
+pub const IUIAnimationVariable2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDimension: *const fn(
@@ -1523,6 +1540,7 @@ pub const IUIAnimationVariable2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1636,7 +1654,7 @@ pub const IUIAnimationVariable2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationTransition2_Value = Guid.initString("62ff9123-a85a-4e9b-a218-435a93e268fd");
 pub const IID_IUIAnimationTransition2 = &IID_IUIAnimationTransition2_Value;
-pub const IUIAnimationTransition2 = extern struct {
+pub const IUIAnimationTransition2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDimension: *const fn(
@@ -1670,6 +1688,7 @@ pub const IUIAnimationTransition2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1707,7 +1726,7 @@ pub const IUIAnimationTransition2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationManagerEventHandler2_Value = Guid.initString("f6e022ba-bff3-42ec-9033-e073f33e83c3");
 pub const IID_IUIAnimationManagerEventHandler2 = &IID_IUIAnimationManagerEventHandler2_Value;
-pub const IUIAnimationManagerEventHandler2 = extern struct {
+pub const IUIAnimationManagerEventHandler2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnManagerStatusChanged: *const fn(
@@ -1717,6 +1736,7 @@ pub const IUIAnimationManagerEventHandler2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1730,7 +1750,7 @@ pub const IUIAnimationManagerEventHandler2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationVariableChangeHandler2_Value = Guid.initString("63acc8d2-6eae-4bb0-b879-586dd8cfbe42");
 pub const IID_IUIAnimationVariableChangeHandler2 = &IID_IUIAnimationVariableChangeHandler2_Value;
-pub const IUIAnimationVariableChangeHandler2 = extern struct {
+pub const IUIAnimationVariableChangeHandler2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnValueChanged: *const fn(
@@ -1743,6 +1763,7 @@ pub const IUIAnimationVariableChangeHandler2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1756,7 +1777,7 @@ pub const IUIAnimationVariableChangeHandler2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationVariableIntegerChangeHandler2_Value = Guid.initString("829b6cf1-4f3a-4412-ae09-b243eb4c6b58");
 pub const IID_IUIAnimationVariableIntegerChangeHandler2 = &IID_IUIAnimationVariableIntegerChangeHandler2_Value;
-pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
+pub const IUIAnimationVariableIntegerChangeHandler2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnIntegerValueChanged: *const fn(
@@ -1769,6 +1790,7 @@ pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1782,7 +1804,7 @@ pub const IUIAnimationVariableIntegerChangeHandler2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationVariableCurveChangeHandler2_Value = Guid.initString("72895e91-0145-4c21-9192-5aab40eddf80");
 pub const IID_IUIAnimationVariableCurveChangeHandler2 = &IID_IUIAnimationVariableCurveChangeHandler2_Value;
-pub const IUIAnimationVariableCurveChangeHandler2 = extern struct {
+pub const IUIAnimationVariableCurveChangeHandler2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnCurveChanged: *const fn(
@@ -1791,6 +1813,7 @@ pub const IUIAnimationVariableCurveChangeHandler2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1804,7 +1827,7 @@ pub const IUIAnimationVariableCurveChangeHandler2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationStoryboardEventHandler2_Value = Guid.initString("bac5f55a-ba7c-414c-b599-fbf850f553c6");
 pub const IID_IUIAnimationStoryboardEventHandler2 = &IID_IUIAnimationStoryboardEventHandler2_Value;
-pub const IUIAnimationStoryboardEventHandler2 = extern struct {
+pub const IUIAnimationStoryboardEventHandler2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStoryboardStatusChanged: *const fn(
@@ -1819,6 +1842,7 @@ pub const IUIAnimationStoryboardEventHandler2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1836,7 +1860,7 @@ pub const IUIAnimationStoryboardEventHandler2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationLoopIterationChangeHandler2_Value = Guid.initString("2d3b15a4-4762-47ab-a030-b23221df3ae0");
 pub const IID_IUIAnimationLoopIterationChangeHandler2 = &IID_IUIAnimationLoopIterationChangeHandler2_Value;
-pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
+pub const IUIAnimationLoopIterationChangeHandler2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnLoopIterationChanged: *const fn(
@@ -1848,6 +1872,7 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1861,7 +1886,7 @@ pub const IUIAnimationLoopIterationChangeHandler2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationPriorityComparison2_Value = Guid.initString("5b6d7a37-4621-467c-8b05-70131de62ddb");
 pub const IID_IUIAnimationPriorityComparison2 = &IID_IUIAnimationPriorityComparison2_Value;
-pub const IUIAnimationPriorityComparison2 = extern struct {
+pub const IUIAnimationPriorityComparison2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         HasPriority: *const fn(
@@ -1872,6 +1897,7 @@ pub const IUIAnimationPriorityComparison2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1885,7 +1911,7 @@ pub const IUIAnimationPriorityComparison2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationTransitionLibrary2_Value = Guid.initString("03cfae53-9580-4ee3-b363-2ece51b4af6a");
 pub const IID_IUIAnimationTransitionLibrary2 = &IID_IUIAnimationTransitionLibrary2_Value;
-pub const IUIAnimationTransitionLibrary2 = extern struct {
+pub const IUIAnimationTransitionLibrary2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateInstantaneousTransition: *const fn(
@@ -2024,6 +2050,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2109,7 +2136,7 @@ pub const IUIAnimationTransitionLibrary2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationPrimitiveInterpolation_Value = Guid.initString("bab20d63-4361-45da-a24f-ab8508846b5b");
 pub const IID_IUIAnimationPrimitiveInterpolation = &IID_IUIAnimationPrimitiveInterpolation_Value;
-pub const IUIAnimationPrimitiveInterpolation = extern struct {
+pub const IUIAnimationPrimitiveInterpolation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddCubic: *const fn(
@@ -2132,6 +2159,7 @@ pub const IUIAnimationPrimitiveInterpolation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2149,7 +2177,7 @@ pub const IUIAnimationPrimitiveInterpolation = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationInterpolator2_Value = Guid.initString("ea76aff8-ea22-4a23-a0ef-a6a966703518");
 pub const IID_IUIAnimationInterpolator2 = &IID_IUIAnimationInterpolator2_Value;
-pub const IUIAnimationInterpolator2 = extern struct {
+pub const IUIAnimationInterpolator2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDimension: *const fn(
@@ -2200,6 +2228,7 @@ pub const IUIAnimationInterpolator2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2245,7 +2274,7 @@ pub const IUIAnimationInterpolator2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIAnimationTransitionFactory2_Value = Guid.initString("937d4916-c1a6-42d5-88d8-30344d6efe31");
 pub const IID_IUIAnimationTransitionFactory2 = &IID_IUIAnimationTransitionFactory2_Value;
-pub const IUIAnimationTransitionFactory2 = extern struct {
+pub const IUIAnimationTransitionFactory2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTransition: *const fn(
@@ -2255,6 +2284,7 @@ pub const IUIAnimationTransitionFactory2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2267,7 +2297,7 @@ pub const IUIAnimationTransitionFactory2 = extern struct {
 
 const IID_IUIAnimationStoryboard2_Value = Guid.initString("ae289cd2-12d4-4945-9419-9e41be034df2");
 pub const IID_IUIAnimationStoryboard2 = &IID_IUIAnimationStoryboard2_Value;
-pub const IUIAnimationStoryboard2 = extern struct {
+pub const IUIAnimationStoryboard2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddTransition: *const fn(
@@ -2362,6 +2392,7 @@ pub const IUIAnimationStoryboard2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

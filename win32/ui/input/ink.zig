@@ -12,7 +12,7 @@ pub const CLSID_InkDesktopHost = &CLSID_InkDesktopHost_Value;
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IInkCommitRequestHandler_Value = Guid.initString("fabea3fc-b108-45b6-a9fc-8d08fa9f85cf");
 pub const IID_IInkCommitRequestHandler = &IID_IInkCommitRequestHandler_Value;
-pub const IInkCommitRequestHandler = extern struct {
+pub const IInkCommitRequestHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnCommitRequested: *const fn(
@@ -20,6 +20,7 @@ pub const IInkCommitRequestHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -33,7 +34,7 @@ pub const IInkCommitRequestHandler = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IInkPresenterDesktop_Value = Guid.initString("73f3c0d9-2e8b-48f3-895e-20cbd27b723b");
 pub const IID_IInkPresenterDesktop = &IID_IInkPresenterDesktop_Value;
-pub const IInkPresenterDesktop = extern struct {
+pub const IInkPresenterDesktop = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetRootVisual: *const fn(
@@ -60,6 +61,7 @@ pub const IInkPresenterDesktop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -89,7 +91,7 @@ pub const IInkPresenterDesktop = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IInkHostWorkItem_Value = Guid.initString("ccda0a9a-1b78-4632-bb96-97800662e26c");
 pub const IID_IInkHostWorkItem = &IID_IInkHostWorkItem_Value;
-pub const IInkHostWorkItem = extern struct {
+pub const IInkHostWorkItem = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Invoke: *const fn(
@@ -97,6 +99,7 @@ pub const IInkHostWorkItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -110,7 +113,7 @@ pub const IInkHostWorkItem = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IInkDesktopHost_Value = Guid.initString("4ce7d875-a981-4140-a1ff-ad93258e8d59");
 pub const IID_IInkDesktopHost = &IID_IInkDesktopHost_Value;
-pub const IInkDesktopHost = extern struct {
+pub const IInkDesktopHost = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         QueueWorkItem: *const fn(
@@ -132,6 +135,7 @@ pub const IInkDesktopHost = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -165,7 +169,7 @@ pub const USE_ORIGINAL_COLORS = INK_HIGH_CONTRAST_ADJUSTMENT.ORIGINAL_COLORS;
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IInkD2DRenderer_Value = Guid.initString("407fb1de-f85a-4150-97cf-b7fb274fb4f8");
 pub const IID_IInkD2DRenderer = &IID_IInkD2DRenderer_Value;
-pub const IInkD2DRenderer = extern struct {
+pub const IInkD2DRenderer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Draw: *const fn(
@@ -176,6 +180,7 @@ pub const IInkD2DRenderer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -188,7 +193,7 @@ pub const IInkD2DRenderer = extern struct {
 
 const IID_IInkD2DRenderer2_Value = Guid.initString("0a95dcd9-4578-4b71-b20b-bf664d4bfeee");
 pub const IID_IInkD2DRenderer2 = &IID_IInkD2DRenderer2_Value;
-pub const IInkD2DRenderer2 = extern struct {
+pub const IInkD2DRenderer2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Draw: *const fn(
@@ -199,6 +204,7 @@ pub const IInkD2DRenderer2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

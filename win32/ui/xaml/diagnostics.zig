@@ -148,7 +148,7 @@ pub const ErrorInvalidResource = VisualElementState.InvalidResource;
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IVisualTreeServiceCallback_Value = Guid.initString("aa7a8931-80e4-4fec-8f3b-553f87b4966e");
 pub const IID_IVisualTreeServiceCallback = &IID_IVisualTreeServiceCallback_Value;
-pub const IVisualTreeServiceCallback = extern struct {
+pub const IVisualTreeServiceCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnVisualTreeChange: *const fn(
@@ -159,6 +159,7 @@ pub const IVisualTreeServiceCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -172,7 +173,7 @@ pub const IVisualTreeServiceCallback = extern struct {
 // TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IVisualTreeServiceCallback2_Value = Guid.initString("bad9eb88-ae77-4397-b948-5fa2db0a19ea");
 pub const IID_IVisualTreeServiceCallback2 = &IID_IVisualTreeServiceCallback2_Value;
-pub const IVisualTreeServiceCallback2 = extern struct {
+pub const IVisualTreeServiceCallback2 = extern union {
     pub const VTable = extern struct {
         base: IVisualTreeServiceCallback.VTable,
         OnElementStateChanged: *const fn(
@@ -183,6 +184,7 @@ pub const IVisualTreeServiceCallback2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IVisualTreeServiceCallback: IVisualTreeServiceCallback,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVisualTreeServiceCallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -195,7 +197,7 @@ pub const IVisualTreeServiceCallback2 = extern struct {
 
 const IID_IVisualTreeService_Value = Guid.initString("a593b11a-d17f-48bb-8f66-83910731c8a5");
 pub const IID_IVisualTreeService = &IID_IVisualTreeService_Value;
-pub const IVisualTreeService = extern struct {
+pub const IVisualTreeService = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AdviseVisualTreeChange: *const fn(
@@ -265,6 +267,7 @@ pub const IVisualTreeService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -322,7 +325,7 @@ pub const IVisualTreeService = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IXamlDiagnostics_Value = Guid.initString("18c9e2b6-3f43-4116-9f2b-ff935d7770d2");
 pub const IID_IXamlDiagnostics = &IID_IXamlDiagnostics_Value;
-pub const IXamlDiagnostics = extern struct {
+pub const IXamlDiagnostics = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDispatcher: *const fn(
@@ -364,6 +367,7 @@ pub const IXamlDiagnostics = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -405,7 +409,7 @@ pub const IXamlDiagnostics = extern struct {
 // TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IBitmapData_Value = Guid.initString("d1a34ef2-cad8-4635-a3d2-fcda8d3f3caf");
 pub const IID_IBitmapData = &IID_IBitmapData_Value;
-pub const IBitmapData = extern struct {
+pub const IBitmapData = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CopyBytesTo: *const fn(
@@ -429,6 +433,7 @@ pub const IBitmapData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -454,7 +459,7 @@ pub const IBitmapData = extern struct {
 // TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IVisualTreeService2_Value = Guid.initString("130f5136-ec43-4f61-89c7-9801a36d2e95");
 pub const IID_IVisualTreeService2 = &IID_IVisualTreeService2_Value;
-pub const IVisualTreeService2 = extern struct {
+pub const IVisualTreeService2 = extern union {
     pub const VTable = extern struct {
         base: IVisualTreeService.VTable,
         GetPropertyIndex: *const fn(
@@ -485,6 +490,7 @@ pub const IVisualTreeService2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IVisualTreeService: IVisualTreeService,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVisualTreeService.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -510,7 +516,7 @@ pub const IVisualTreeService2 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IVisualTreeService3_Value = Guid.initString("0e79c6e0-85a0-4be8-b41a-655cf1fd19bd");
 pub const IID_IVisualTreeService3 = &IID_IVisualTreeService3_Value;
-pub const IVisualTreeService3 = extern struct {
+pub const IVisualTreeService3 = extern union {
     pub const VTable = extern struct {
         base: IVisualTreeService2.VTable,
         ResolveResource: *const fn(
@@ -540,6 +546,7 @@ pub const IVisualTreeService3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IVisualTreeService2: IVisualTreeService2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVisualTreeService2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

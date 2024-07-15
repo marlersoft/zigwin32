@@ -293,7 +293,7 @@ pub const _XmlWriterProperty_Last = XmlWriterProperty.XmlWriterProperty_CompactE
 
 const IID_IXmlReader_Value = Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlReader = &IID_IXmlReader_Value;
-pub const IXmlReader = extern struct {
+pub const IXmlReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetInput: *const fn(
@@ -395,6 +395,7 @@ pub const IXmlReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -495,7 +496,7 @@ pub const IXmlReader = extern struct {
 
 const IID_IXmlResolver_Value = Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlResolver = &IID_IXmlResolver_Value;
-pub const IXmlResolver = extern struct {
+pub const IXmlResolver = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ResolveUri: *const fn(
@@ -507,6 +508,7 @@ pub const IXmlResolver = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -519,7 +521,7 @@ pub const IXmlResolver = extern struct {
 
 const IID_IXmlWriter_Value = Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlWriter = &IID_IXmlWriter_Value;
-pub const IXmlWriter = extern struct {
+pub const IXmlWriter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetOutput: *const fn(
@@ -657,6 +659,7 @@ pub const IXmlWriter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -781,7 +784,7 @@ pub const IXmlWriter = extern struct {
 
 const IID_IXmlWriterLite_Value = Guid.initString("862494c6-1310-4aad-b3cd-2dbeebf670d3");
 pub const IID_IXmlWriterLite = &IID_IXmlWriterLite_Value;
-pub const IXmlWriterLite = extern struct {
+pub const IXmlWriterLite = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetOutput: *const fn(
@@ -916,6 +919,7 @@ pub const IXmlWriterLite = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -112,7 +112,7 @@ pub const PFN_DXCORE_NOTIFICATION_CALLBACK = *const fn(
 
 const IID_IDXCoreAdapter_Value = Guid.initString("f0db4c7f-fe5a-42a2-bd62-f2a6cf6fc83e");
 pub const IID_IDXCoreAdapter = &IID_IDXCoreAdapter_Value;
-pub const IDXCoreAdapter = extern struct {
+pub const IDXCoreAdapter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsValid: *const fn(
@@ -173,6 +173,7 @@ pub const IDXCoreAdapter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -221,7 +222,7 @@ pub const IDXCoreAdapter = extern struct {
 
 const IID_IDXCoreAdapterList_Value = Guid.initString("526c7776-40e9-459b-b711-f32ad76dfc28");
 pub const IID_IDXCoreAdapterList = &IID_IDXCoreAdapterList_Value;
-pub const IDXCoreAdapterList = extern struct {
+pub const IDXCoreAdapterList = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAdapter: *const fn(
@@ -252,6 +253,7 @@ pub const IDXCoreAdapterList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) bool,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -284,7 +286,7 @@ pub const IDXCoreAdapterList = extern struct {
 
 const IID_IDXCoreAdapterFactory_Value = Guid.initString("78ee5945-c36e-4b13-a669-005dd11c0f06");
 pub const IID_IDXCoreAdapterFactory = &IID_IDXCoreAdapterFactory_Value;
-pub const IDXCoreAdapterFactory = extern struct {
+pub const IDXCoreAdapterFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateAdapterList: *const fn(
@@ -318,6 +320,7 @@ pub const IDXCoreAdapterFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

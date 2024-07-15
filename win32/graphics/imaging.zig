@@ -929,7 +929,7 @@ pub const WICJpegScanHeader = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICPalette_Value = Guid.initString("00000040-a8f2-4877-ba0a-fd2b6645fb94");
 pub const IID_IWICPalette = &IID_IWICPalette_Value;
-pub const IWICPalette = extern struct {
+pub const IWICPalette = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitializePredefined: *const fn(
@@ -980,6 +980,7 @@ pub const IWICPalette = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1029,7 +1030,7 @@ pub const IWICPalette = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapSource_Value = Guid.initString("00000120-a8f2-4877-ba0a-fd2b6645fb94");
 pub const IID_IWICBitmapSource = &IID_IWICBitmapSource_Value;
-pub const IWICBitmapSource = extern struct {
+pub const IWICBitmapSource = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSize: *const fn(
@@ -1059,6 +1060,7 @@ pub const IWICBitmapSource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1088,7 +1090,7 @@ pub const IWICBitmapSource = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICFormatConverter_Value = Guid.initString("00000301-a8f2-4877-ba0a-fd2b6645fb94");
 pub const IID_IWICFormatConverter = &IID_IWICFormatConverter_Value;
-pub const IWICFormatConverter = extern struct {
+pub const IWICFormatConverter = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
         Initialize: *const fn(
@@ -1108,6 +1110,7 @@ pub const IWICFormatConverter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapSource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1125,7 +1128,7 @@ pub const IWICFormatConverter = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IWICPlanarFormatConverter_Value = Guid.initString("bebee9cb-83b0-4dcc-8132-b0aaa55eac96");
 pub const IID_IWICPlanarFormatConverter = &IID_IWICPlanarFormatConverter_Value;
-pub const IWICPlanarFormatConverter = extern struct {
+pub const IWICPlanarFormatConverter = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
         Initialize: *const fn(
@@ -1147,6 +1150,7 @@ pub const IWICPlanarFormatConverter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapSource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1164,7 +1168,7 @@ pub const IWICPlanarFormatConverter = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapScaler_Value = Guid.initString("00000302-a8f2-4877-ba0a-fd2b6645fb94");
 pub const IID_IWICBitmapScaler = &IID_IWICBitmapScaler_Value;
-pub const IWICBitmapScaler = extern struct {
+pub const IWICBitmapScaler = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
         Initialize: *const fn(
@@ -1176,6 +1180,7 @@ pub const IWICBitmapScaler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapSource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1189,7 +1194,7 @@ pub const IWICBitmapScaler = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapClipper_Value = Guid.initString("e4fbcf03-223d-4e81-9333-d635556dd1b5");
 pub const IID_IWICBitmapClipper = &IID_IWICBitmapClipper_Value;
-pub const IWICBitmapClipper = extern struct {
+pub const IWICBitmapClipper = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
         Initialize: *const fn(
@@ -1199,6 +1204,7 @@ pub const IWICBitmapClipper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapSource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1212,7 +1218,7 @@ pub const IWICBitmapClipper = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapFlipRotator_Value = Guid.initString("5009834f-2d6a-41ce-9e1b-17c5aff7a782");
 pub const IID_IWICBitmapFlipRotator = &IID_IWICBitmapFlipRotator_Value;
-pub const IWICBitmapFlipRotator = extern struct {
+pub const IWICBitmapFlipRotator = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
         Initialize: *const fn(
@@ -1222,6 +1228,7 @@ pub const IWICBitmapFlipRotator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapSource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1235,7 +1242,7 @@ pub const IWICBitmapFlipRotator = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapLock_Value = Guid.initString("00000123-a8f2-4877-ba0a-fd2b6645fb94");
 pub const IID_IWICBitmapLock = &IID_IWICBitmapLock_Value;
-pub const IWICBitmapLock = extern struct {
+pub const IWICBitmapLock = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSize: *const fn(
@@ -1258,6 +1265,7 @@ pub const IWICBitmapLock = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1283,7 +1291,7 @@ pub const IWICBitmapLock = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmap_Value = Guid.initString("00000121-a8f2-4877-ba0a-fd2b6645fb94");
 pub const IID_IWICBitmap = &IID_IWICBitmap_Value;
-pub const IWICBitmap = extern struct {
+pub const IWICBitmap = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
         Lock: *const fn(
@@ -1303,6 +1311,7 @@ pub const IWICBitmap = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapSource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1324,7 +1333,7 @@ pub const IWICBitmap = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICColorContext_Value = Guid.initString("3c613a02-34b2-44ea-9a7c-45aea9c6fd6d");
 pub const IID_IWICColorContext = &IID_IWICColorContext_Value;
-pub const IWICColorContext = extern struct {
+pub const IWICColorContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitializeFromFilename: *const fn(
@@ -1356,6 +1365,7 @@ pub const IWICColorContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1389,7 +1399,7 @@ pub const IWICColorContext = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICColorTransform_Value = Guid.initString("b66f034f-d0e2-40ab-b436-6de39e321a94");
 pub const IID_IWICColorTransform = &IID_IWICColorTransform_Value;
-pub const IWICColorTransform = extern struct {
+pub const IWICColorTransform = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
         Initialize: *const fn(
@@ -1401,6 +1411,7 @@ pub const IWICColorTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapSource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1414,7 +1425,7 @@ pub const IWICColorTransform = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICFastMetadataEncoder_Value = Guid.initString("b84e2c09-78c9-4ac4-8bd3-524ae1663a2f");
 pub const IID_IWICFastMetadataEncoder = &IID_IWICFastMetadataEncoder_Value;
-pub const IWICFastMetadataEncoder = extern struct {
+pub const IWICFastMetadataEncoder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Commit: *const fn(
@@ -1426,6 +1437,7 @@ pub const IWICFastMetadataEncoder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1443,7 +1455,7 @@ pub const IWICFastMetadataEncoder = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICStream_Value = Guid.initString("135ff860-22b7-4ddf-b0f6-218f4f299a43");
 pub const IID_IWICStream = &IID_IWICStream_Value;
-pub const IWICStream = extern struct {
+pub const IWICStream = extern union {
     pub const VTable = extern struct {
         base: IStream.VTable,
         InitializeFromIStream: *const fn(
@@ -1468,6 +1480,7 @@ pub const IWICStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IStream: IStream,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1493,7 +1506,7 @@ pub const IWICStream = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICEnumMetadataItem_Value = Guid.initString("dc2bb46d-3f07-481e-8625-220c4aedbb33");
 pub const IID_IWICEnumMetadataItem = &IID_IWICEnumMetadataItem_Value;
-pub const IWICEnumMetadataItem = extern struct {
+pub const IWICEnumMetadataItem = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -1517,6 +1530,7 @@ pub const IWICEnumMetadataItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1542,7 +1556,7 @@ pub const IWICEnumMetadataItem = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataQueryReader_Value = Guid.initString("30989668-e1c9-4597-b395-458eedb808df");
 pub const IID_IWICMetadataQueryReader = &IID_IWICMetadataQueryReader_Value;
-pub const IWICMetadataQueryReader = extern struct {
+pub const IWICMetadataQueryReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetContainerFormat: *const fn(
@@ -1566,6 +1580,7 @@ pub const IWICMetadataQueryReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1591,7 +1606,7 @@ pub const IWICMetadataQueryReader = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataQueryWriter_Value = Guid.initString("a721791a-0def-4d06-bd91-2118bf1db10b");
 pub const IID_IWICMetadataQueryWriter = &IID_IWICMetadataQueryWriter_Value;
-pub const IWICMetadataQueryWriter = extern struct {
+pub const IWICMetadataQueryWriter = extern union {
     pub const VTable = extern struct {
         base: IWICMetadataQueryReader.VTable,
         SetMetadataByName: *const fn(
@@ -1605,6 +1620,7 @@ pub const IWICMetadataQueryWriter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICMetadataQueryReader: IWICMetadataQueryReader,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICMetadataQueryReader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1621,7 +1637,7 @@ pub const IWICMetadataQueryWriter = extern struct {
 
 const IID_IWICBitmapEncoder_Value = Guid.initString("00000103-a8f2-4877-ba0a-fd2b6645fb94");
 pub const IID_IWICBitmapEncoder = &IID_IWICBitmapEncoder_Value;
-pub const IWICBitmapEncoder = extern struct {
+pub const IWICBitmapEncoder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -1668,6 +1684,7 @@ pub const IWICBitmapEncoder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1717,7 +1734,7 @@ pub const IWICBitmapEncoder = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapFrameEncode_Value = Guid.initString("00000105-a8f2-4877-ba0a-fd2b6645fb94");
 pub const IID_IWICBitmapFrameEncode = &IID_IWICBitmapFrameEncode_Value;
-pub const IWICBitmapFrameEncode = extern struct {
+pub const IWICBitmapFrameEncode = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -1772,6 +1789,7 @@ pub const IWICBitmapFrameEncode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1825,7 +1843,7 @@ pub const IWICBitmapFrameEncode = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IWICPlanarBitmapFrameEncode_Value = Guid.initString("f928b7b8-2221-40c1-b72e-7e82f1974d1a");
 pub const IID_IWICPlanarBitmapFrameEncode = &IID_IWICPlanarBitmapFrameEncode_Value;
-pub const IWICPlanarBitmapFrameEncode = extern struct {
+pub const IWICPlanarBitmapFrameEncode = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         WritePixels: *const fn(
@@ -1842,6 +1860,7 @@ pub const IWICPlanarBitmapFrameEncode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1859,7 +1878,7 @@ pub const IWICPlanarBitmapFrameEncode = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapDecoder_Value = Guid.initString("9edde9e7-8dee-47ea-99df-e6faf2ed44bf");
 pub const IID_IWICBitmapDecoder = &IID_IWICBitmapDecoder_Value;
-pub const IWICBitmapDecoder = extern struct {
+pub const IWICBitmapDecoder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         QueryCapability: *const fn(
@@ -1913,6 +1932,7 @@ pub const IWICBitmapDecoder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1966,7 +1986,7 @@ pub const IWICBitmapDecoder = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapSourceTransform_Value = Guid.initString("3b16811b-6a43-4ec9-b713-3d5a0c13b940");
 pub const IID_IWICBitmapSourceTransform = &IID_IWICBitmapSourceTransform_Value;
-pub const IWICBitmapSourceTransform = extern struct {
+pub const IWICBitmapSourceTransform = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CopyPixels: *const fn(
@@ -1996,6 +2016,7 @@ pub const IWICBitmapSourceTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2021,7 +2042,7 @@ pub const IWICBitmapSourceTransform = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IWICPlanarBitmapSourceTransform_Value = Guid.initString("3aff9cce-be95-4303-b927-e7d16ff4a613");
 pub const IID_IWICPlanarBitmapSourceTransform = &IID_IWICPlanarBitmapSourceTransform_Value;
-pub const IWICPlanarBitmapSourceTransform = extern struct {
+pub const IWICPlanarBitmapSourceTransform = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DoesSupportTransform: *const fn(
@@ -2047,6 +2068,7 @@ pub const IWICPlanarBitmapSourceTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2064,7 +2086,7 @@ pub const IWICPlanarBitmapSourceTransform = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapFrameDecode_Value = Guid.initString("3b16811b-6a43-4ec9-a813-3d930c13b940");
 pub const IID_IWICBitmapFrameDecode = &IID_IWICBitmapFrameDecode_Value;
-pub const IWICBitmapFrameDecode = extern struct {
+pub const IWICBitmapFrameDecode = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapSource.VTable,
         GetMetadataQueryReader: *const fn(
@@ -2083,6 +2105,7 @@ pub const IWICBitmapFrameDecode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapSource: IWICBitmapSource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapSource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2104,7 +2127,7 @@ pub const IWICBitmapFrameDecode = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWICProgressiveLevelControl_Value = Guid.initString("daac296f-7aa5-4dbf-8d15-225c5976f891");
 pub const IID_IWICProgressiveLevelControl = &IID_IWICProgressiveLevelControl_Value;
-pub const IWICProgressiveLevelControl = extern struct {
+pub const IWICProgressiveLevelControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLevelCount: *const fn(
@@ -2121,6 +2144,7 @@ pub const IWICProgressiveLevelControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2142,7 +2166,7 @@ pub const IWICProgressiveLevelControl = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWICProgressCallback_Value = Guid.initString("4776f9cd-9517-45fa-bf24-e89c5ec5c60c");
 pub const IID_IWICProgressCallback = &IID_IWICProgressCallback_Value;
-pub const IWICProgressCallback = extern struct {
+pub const IWICProgressCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Notify: *const fn(
@@ -2153,6 +2177,7 @@ pub const IWICProgressCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2173,7 +2198,7 @@ pub const PFNProgressNotification = *const fn(
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapCodecProgressNotification_Value = Guid.initString("64c1024e-c3cf-4462-8078-88c2b11c46d9");
 pub const IID_IWICBitmapCodecProgressNotification = &IID_IWICBitmapCodecProgressNotification_Value;
-pub const IWICBitmapCodecProgressNotification = extern struct {
+pub const IWICBitmapCodecProgressNotification = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterProgressNotification: *const fn(
@@ -2184,6 +2209,7 @@ pub const IWICBitmapCodecProgressNotification = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2197,7 +2223,7 @@ pub const IWICBitmapCodecProgressNotification = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICComponentInfo_Value = Guid.initString("23bc3f0a-698b-4357-886b-f24d50671334");
 pub const IID_IWICComponentInfo = &IID_IWICComponentInfo_Value;
-pub const IWICComponentInfo = extern struct {
+pub const IWICComponentInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetComponentType: *const fn(
@@ -2242,6 +2268,7 @@ pub const IWICComponentInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2283,7 +2310,7 @@ pub const IWICComponentInfo = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICFormatConverterInfo_Value = Guid.initString("9f34fb65-13f4-4f15-bc57-3726b5e53d9f");
 pub const IID_IWICFormatConverterInfo = &IID_IWICFormatConverterInfo_Value;
-pub const IWICFormatConverterInfo = extern struct {
+pub const IWICFormatConverterInfo = extern union {
     pub const VTable = extern struct {
         base: IWICComponentInfo.VTable,
         GetPixelFormats: *const fn(
@@ -2298,6 +2325,7 @@ pub const IWICFormatConverterInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICComponentInfo: IWICComponentInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICComponentInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2315,7 +2343,7 @@ pub const IWICFormatConverterInfo = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapCodecInfo_Value = Guid.initString("e87a44c4-b76e-4c47-8b09-298eb12a2714");
 pub const IID_IWICBitmapCodecInfo = &IID_IWICBitmapCodecInfo_Value;
-pub const IWICBitmapCodecInfo = extern struct {
+pub const IWICBitmapCodecInfo = extern union {
     pub const VTable = extern struct {
         base: IWICComponentInfo.VTable,
         GetContainerFormat: *const fn(
@@ -2381,6 +2409,7 @@ pub const IWICBitmapCodecInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICComponentInfo: IWICComponentInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICComponentInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2438,7 +2467,7 @@ pub const IWICBitmapCodecInfo = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapEncoderInfo_Value = Guid.initString("94c9b4ee-a09f-4f92-8a1e-4a9bce7e76fb");
 pub const IID_IWICBitmapEncoderInfo = &IID_IWICBitmapEncoderInfo_Value;
-pub const IWICBitmapEncoderInfo = extern struct {
+pub const IWICBitmapEncoderInfo = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapCodecInfo.VTable,
         CreateInstance: *const fn(
@@ -2447,6 +2476,7 @@ pub const IWICBitmapEncoderInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapCodecInfo: IWICBitmapCodecInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapCodecInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2460,7 +2490,7 @@ pub const IWICBitmapEncoderInfo = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICBitmapDecoderInfo_Value = Guid.initString("d8cd007f-d08f-4191-9bfc-236ea7f0e4b5");
 pub const IID_IWICBitmapDecoderInfo = &IID_IWICBitmapDecoderInfo_Value;
-pub const IWICBitmapDecoderInfo = extern struct {
+pub const IWICBitmapDecoderInfo = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapCodecInfo.VTable,
         GetPatterns: *const fn(
@@ -2482,6 +2512,7 @@ pub const IWICBitmapDecoderInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapCodecInfo: IWICBitmapCodecInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapCodecInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2503,7 +2534,7 @@ pub const IWICBitmapDecoderInfo = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICPixelFormatInfo_Value = Guid.initString("e8eda601-3d48-431a-ab44-69059be88bbe");
 pub const IID_IWICPixelFormatInfo = &IID_IWICPixelFormatInfo_Value;
-pub const IWICPixelFormatInfo = extern struct {
+pub const IWICPixelFormatInfo = extern union {
     pub const VTable = extern struct {
         base: IWICComponentInfo.VTable,
         GetFormatGUID: *const fn(
@@ -2531,6 +2562,7 @@ pub const IWICPixelFormatInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICComponentInfo: IWICComponentInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICComponentInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2560,7 +2592,7 @@ pub const IWICPixelFormatInfo = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWICPixelFormatInfo2_Value = Guid.initString("a9db33a2-af5f-43c7-b679-74f5984b5aa4");
 pub const IID_IWICPixelFormatInfo2 = &IID_IWICPixelFormatInfo2_Value;
-pub const IWICPixelFormatInfo2 = extern struct {
+pub const IWICPixelFormatInfo2 = extern union {
     pub const VTable = extern struct {
         base: IWICPixelFormatInfo.VTable,
         SupportsTransparency: *const fn(
@@ -2573,6 +2605,7 @@ pub const IWICPixelFormatInfo2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICPixelFormatInfo: IWICPixelFormatInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICPixelFormatInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2590,7 +2623,7 @@ pub const IWICPixelFormatInfo2 = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICImagingFactory_Value = Guid.initString("ec5ec8a9-c395-4314-9c77-54d7a935ff70");
 pub const IID_IWICImagingFactory = &IID_IWICImagingFactory_Value;
-pub const IWICImagingFactory = extern struct {
+pub const IWICImagingFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateDecoderFromFilename: *const fn(
@@ -2739,6 +2772,7 @@ pub const IWICImagingFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3007,7 +3041,7 @@ pub const WICRawToneCurve = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICDevelopRawNotificationCallback_Value = Guid.initString("95c75a6e-3e8c-4ec2-85a8-aebcc551e59b");
 pub const IID_IWICDevelopRawNotificationCallback = &IID_IWICDevelopRawNotificationCallback_Value;
-pub const IWICDevelopRawNotificationCallback = extern struct {
+pub const IWICDevelopRawNotificationCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Notify: *const fn(
@@ -3016,6 +3050,7 @@ pub const IWICDevelopRawNotificationCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3029,7 +3064,7 @@ pub const IWICDevelopRawNotificationCallback = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICDevelopRaw_Value = Guid.initString("fbec5e44-f7be-4b65-b7f8-c0c81fef026d");
 pub const IID_IWICDevelopRaw = &IID_IWICDevelopRaw_Value;
-pub const IWICDevelopRaw = extern struct {
+pub const IWICDevelopRaw = extern union {
     pub const VTable = extern struct {
         base: IWICBitmapFrameDecode.VTable,
         QueryRawCapabilitiesInfo: *const fn(
@@ -3173,6 +3208,7 @@ pub const IWICDevelopRaw = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICBitmapFrameDecode: IWICBitmapFrameDecode,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICBitmapFrameDecode.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3349,7 +3385,7 @@ pub const WICDdsParameters = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IWICDdsDecoder_Value = Guid.initString("409cd537-8532-40cb-9774-e2feb2df4e9c");
 pub const IID_IWICDdsDecoder = &IID_IWICDdsDecoder_Value;
-pub const IWICDdsDecoder = extern struct {
+pub const IWICDdsDecoder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetParameters: *const fn(
@@ -3365,6 +3401,7 @@ pub const IWICDdsDecoder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3382,7 +3419,7 @@ pub const IWICDdsDecoder = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IWICDdsEncoder_Value = Guid.initString("5cacdb4c-407e-41b3-b936-d0f010cd6732");
 pub const IID_IWICDdsEncoder = &IID_IWICDdsEncoder_Value;
-pub const IWICDdsEncoder = extern struct {
+pub const IWICDdsEncoder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetParameters: *const fn(
@@ -3402,6 +3439,7 @@ pub const IWICDdsEncoder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3430,7 +3468,7 @@ pub const WICDdsFormatInfo = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IWICDdsFrameDecode_Value = Guid.initString("3d4c0c61-18a4-41e4-bd80-481a4fc9f464");
 pub const IID_IWICDdsFrameDecode = &IID_IWICDdsFrameDecode_Value;
-pub const IWICDdsFrameDecode = extern struct {
+pub const IWICDdsFrameDecode = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSizeInBlocks: *const fn(
@@ -3451,6 +3489,7 @@ pub const IWICDdsFrameDecode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3472,7 +3511,7 @@ pub const IWICDdsFrameDecode = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IWICJpegFrameDecode_Value = Guid.initString("8939f66e-c46a-4c21-a9d1-98b327ce1679");
 pub const IID_IWICJpegFrameDecode = &IID_IWICJpegFrameDecode_Value;
-pub const IWICJpegFrameDecode = extern struct {
+pub const IWICJpegFrameDecode = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DoesSupportIndexing: *const fn(
@@ -3531,6 +3570,7 @@ pub const IWICJpegFrameDecode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3580,7 +3620,7 @@ pub const IWICJpegFrameDecode = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IWICJpegFrameEncode_Value = Guid.initString("2f0c601f-d2c6-468c-abfa-49495d983ed1");
 pub const IID_IWICJpegFrameEncode = &IID_IWICJpegFrameEncode_Value;
-pub const IWICJpegFrameEncode = extern struct {
+pub const IWICJpegFrameEncode = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAcHuffmanTable: *const fn(
@@ -3608,6 +3648,7 @@ pub const IWICJpegFrameEncode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3661,7 +3702,7 @@ pub const WICPersistOptionMask = WICPersistOptions.Mask;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataBlockReader_Value = Guid.initString("feaa2a8d-b3f3-43e4-b25c-d1de990a1ae1");
 pub const IID_IWICMetadataBlockReader = &IID_IWICMetadataBlockReader_Value;
-pub const IWICMetadataBlockReader = extern struct {
+pub const IWICMetadataBlockReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetContainerFormat: *const fn(
@@ -3683,6 +3724,7 @@ pub const IWICMetadataBlockReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3708,7 +3750,7 @@ pub const IWICMetadataBlockReader = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataBlockWriter_Value = Guid.initString("08fb9676-b444-41e8-8dbe-6a53a542bff1");
 pub const IID_IWICMetadataBlockWriter = &IID_IWICMetadataBlockWriter_Value;
-pub const IWICMetadataBlockWriter = extern struct {
+pub const IWICMetadataBlockWriter = extern union {
     pub const VTable = extern struct {
         base: IWICMetadataBlockReader.VTable,
         InitializeFromBlockReader: *const fn(
@@ -3735,6 +3777,7 @@ pub const IWICMetadataBlockWriter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICMetadataBlockReader: IWICMetadataBlockReader,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICMetadataBlockReader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3764,7 +3807,7 @@ pub const IWICMetadataBlockWriter = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataReader_Value = Guid.initString("9204fe99-d8fc-4fd5-a001-9536b067a899");
 pub const IID_IWICMetadataReader = &IID_IWICMetadataReader_Value;
-pub const IWICMetadataReader = extern struct {
+pub const IWICMetadataReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetMetadataFormat: *const fn(
@@ -3798,6 +3841,7 @@ pub const IWICMetadataReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3831,7 +3875,7 @@ pub const IWICMetadataReader = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataWriter_Value = Guid.initString("f7836e16-3be0-470b-86bb-160d0aecd7de");
 pub const IID_IWICMetadataWriter = &IID_IWICMetadataWriter_Value;
-pub const IWICMetadataWriter = extern struct {
+pub const IWICMetadataWriter = extern union {
     pub const VTable = extern struct {
         base: IWICMetadataReader.VTable,
         SetValue: *const fn(
@@ -3858,6 +3902,7 @@ pub const IWICMetadataWriter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICMetadataReader: IWICMetadataReader,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICMetadataReader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3883,7 +3928,7 @@ pub const IWICMetadataWriter = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICStreamProvider_Value = Guid.initString("449494bc-b468-4927-96d7-ba90d31ab505");
 pub const IID_IWICStreamProvider = &IID_IWICStreamProvider_Value;
-pub const IWICStreamProvider = extern struct {
+pub const IWICStreamProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStream: *const fn(
@@ -3903,6 +3948,7 @@ pub const IWICStreamProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3928,7 +3974,7 @@ pub const IWICStreamProvider = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICPersistStream_Value = Guid.initString("00675040-6908-45f8-86a3-49c7dfd6d9ad");
 pub const IID_IWICPersistStream = &IID_IWICPersistStream_Value;
-pub const IWICPersistStream = extern struct {
+pub const IWICPersistStream = extern union {
     pub const VTable = extern struct {
         base: IPersistStream.VTable,
         LoadEx: *const fn(
@@ -3945,6 +3991,7 @@ pub const IWICPersistStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IPersistStream: IPersistStream,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPersistStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3962,7 +4009,7 @@ pub const IWICPersistStream = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataHandlerInfo_Value = Guid.initString("aba958bf-c672-44d1-8d61-ce6df2e682c2");
 pub const IID_IWICMetadataHandlerInfo = &IID_IWICMetadataHandlerInfo_Value;
-pub const IWICMetadataHandlerInfo = extern struct {
+pub const IWICMetadataHandlerInfo = extern union {
     pub const VTable = extern struct {
         base: IWICComponentInfo.VTable,
         GetMetadataFormat: *const fn(
@@ -4001,6 +4048,7 @@ pub const IWICMetadataHandlerInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICComponentInfo: IWICComponentInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICComponentInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4046,7 +4094,7 @@ pub const WICMetadataPattern = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataReaderInfo_Value = Guid.initString("eebf1f5b-07c1-4447-a3ab-22acaf78a804");
 pub const IID_IWICMetadataReaderInfo = &IID_IWICMetadataReaderInfo_Value;
-pub const IWICMetadataReaderInfo = extern struct {
+pub const IWICMetadataReaderInfo = extern union {
     pub const VTable = extern struct {
         base: IWICMetadataHandlerInfo.VTable,
         GetPatterns: *const fn(
@@ -4070,6 +4118,7 @@ pub const IWICMetadataReaderInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICMetadataHandlerInfo: IWICMetadataHandlerInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICMetadataHandlerInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4098,7 +4147,7 @@ pub const WICMetadataHeader = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICMetadataWriterInfo_Value = Guid.initString("b22e3fba-3925-4323-b5c1-9ebfc430f236");
 pub const IID_IWICMetadataWriterInfo = &IID_IWICMetadataWriterInfo_Value;
-pub const IWICMetadataWriterInfo = extern struct {
+pub const IWICMetadataWriterInfo = extern union {
     pub const VTable = extern struct {
         base: IWICMetadataHandlerInfo.VTable,
         GetHeader: *const fn(
@@ -4115,6 +4164,7 @@ pub const IWICMetadataWriterInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICMetadataHandlerInfo: IWICMetadataHandlerInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICMetadataHandlerInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4132,7 +4182,7 @@ pub const IWICMetadataWriterInfo = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWICComponentFactory_Value = Guid.initString("412d0c3a-9650-44fa-af5b-dd2a06c8e8fb");
 pub const IID_IWICComponentFactory = &IID_IWICComponentFactory_Value;
-pub const IWICComponentFactory = extern struct {
+pub const IWICComponentFactory = extern union {
     pub const VTable = extern struct {
         base: IWICImagingFactory.VTable,
         CreateMetadataReader: *const fn(
@@ -4182,6 +4232,7 @@ pub const IWICComponentFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWICImagingFactory: IWICImagingFactory,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWICImagingFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

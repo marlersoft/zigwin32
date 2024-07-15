@@ -169,7 +169,7 @@ pub const SCALE_500_PERCENT = DEVICE_SCALE_FACTOR.SCALE_500_PERCENT;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IObjectArray_Value = Guid.initString("92ca9dcd-5622-4bba-a805-5e9f541bd8c9");
 pub const IID_IObjectArray = &IID_IObjectArray_Value;
-pub const IObjectArray = extern struct {
+pub const IObjectArray = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: *const fn(
@@ -184,6 +184,7 @@ pub const IObjectArray = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -201,7 +202,7 @@ pub const IObjectArray = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IObjectCollection_Value = Guid.initString("5632b1a4-e38a-400a-928a-d4cd63230295");
 pub const IID_IObjectCollection = &IID_IObjectCollection_Value;
-pub const IObjectCollection = extern struct {
+pub const IObjectCollection = extern union {
     pub const VTable = extern struct {
         base: IObjectArray.VTable,
         AddObject: *const fn(
@@ -221,6 +222,7 @@ pub const IObjectCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IObjectArray: IObjectArray,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IObjectArray.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

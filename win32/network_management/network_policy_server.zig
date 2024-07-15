@@ -1070,7 +1070,7 @@ pub const DATA_STORE_DIRECTORY = IASDATASTORE.DIRECTORY;
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_ISdoMachine_Value = Guid.initString("479f6e75-49a2-11d2-8eca-00c04fc2f519");
 pub const IID_ISdoMachine = &IID_ISdoMachine_Value;
-pub const ISdoMachine = extern struct {
+pub const ISdoMachine = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Attach: *const fn(
@@ -1115,6 +1115,7 @@ pub const ISdoMachine = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1159,7 +1160,7 @@ pub const ISdoMachine = extern struct {
 
 const IID_ISdoMachine2_Value = Guid.initString("518e5ffe-d8ce-4f7e-a5db-b40a35419d3b");
 pub const IID_ISdoMachine2 = &IID_ISdoMachine2_Value;
-pub const ISdoMachine2 = extern struct {
+pub const ISdoMachine2 = extern union {
     pub const VTable = extern struct {
         base: ISdoMachine.VTable,
         GetTemplatesSDO: *const fn(
@@ -1187,6 +1188,7 @@ pub const ISdoMachine2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ISdoMachine: ISdoMachine,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISdoMachine.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1216,7 +1218,7 @@ pub const ISdoMachine2 = extern struct {
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_ISdoServiceControl_Value = Guid.initString("479f6e74-49a2-11d2-8eca-00c04fc2f519");
 pub const IID_ISdoServiceControl = &IID_ISdoServiceControl_Value;
-pub const ISdoServiceControl = extern struct {
+pub const ISdoServiceControl = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         StartService: *const fn(
@@ -1234,6 +1236,7 @@ pub const ISdoServiceControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1259,7 +1262,7 @@ pub const ISdoServiceControl = extern struct {
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_ISdo_Value = Guid.initString("56bc53de-96db-11d1-bf3f-000000000000");
 pub const IID_ISdo = &IID_ISdo_Value;
-pub const ISdo = extern struct {
+pub const ISdo = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetPropertyInfo: *const fn(
@@ -1294,6 +1297,7 @@ pub const ISdo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1331,7 +1335,7 @@ pub const ISdo = extern struct {
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_ISdoCollection_Value = Guid.initString("56bc53e2-96db-11d1-bf3f-000000000000");
 pub const IID_ISdoCollection = &IID_ISdoCollection_Value;
-pub const ISdoCollection = extern struct {
+pub const ISdoCollection = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -1371,6 +1375,7 @@ pub const ISdoCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1411,7 +1416,7 @@ pub const ISdoCollection = extern struct {
 
 const IID_ITemplateSdo_Value = Guid.initString("8aa85302-d2e2-4e20-8b1f-a571e437d6c9");
 pub const IID_ITemplateSdo = &IID_ITemplateSdo_Value;
-pub const ITemplateSdo = extern struct {
+pub const ITemplateSdo = extern union {
     pub const VTable = extern struct {
         base: ISdo.VTable,
         AddToCollection: *const fn(
@@ -1433,6 +1438,7 @@ pub const ITemplateSdo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ISdo: ISdo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISdo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1454,7 +1460,7 @@ pub const ITemplateSdo = extern struct {
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_ISdoDictionaryOld_Value = Guid.initString("d432e5f4-53d8-11d2-9a3a-00c04fb998ac");
 pub const IID_ISdoDictionaryOld = &IID_ISdoDictionaryOld_Value;
-pub const ISdoDictionaryOld = extern struct {
+pub const ISdoDictionaryOld = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         EnumAttributes: *const fn(
@@ -1486,6 +1492,7 @@ pub const ISdoDictionaryOld = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -250,7 +250,7 @@ pub const BlackInformation = extern struct {
 
 const IID_IDeviceModelPlugIn_Value = Guid.initString("1cd63475-07c4-46fe-a903-d655316d11fd");
 pub const IID_IDeviceModelPlugIn = &IID_IDeviceModelPlugIn_Value;
-pub const IDeviceModelPlugIn = extern struct {
+pub const IDeviceModelPlugIn = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -318,6 +318,7 @@ pub const IDeviceModelPlugIn = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -370,7 +371,7 @@ pub const IDeviceModelPlugIn = extern struct {
 
 const IID_IGamutMapModelPlugIn_Value = Guid.initString("2dd80115-ad1e-41f6-a219-a4f4b583d1f9");
 pub const IID_IGamutMapModelPlugIn = &IID_IGamutMapModelPlugIn_Value;
-pub const IGamutMapModelPlugIn = extern struct {
+pub const IGamutMapModelPlugIn = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -389,6 +390,7 @@ pub const IGamutMapModelPlugIn = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

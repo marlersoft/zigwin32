@@ -5947,7 +5947,7 @@ pub const CLSID_ImageList = &CLSID_ImageList_Value;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IImageList_Value = Guid.initString("46eb5926-582e-4017-9fdf-e8998daa0950");
 pub const IID_IImageList = &IID_IImageList_Value;
-pub const IImageList = extern struct {
+pub const IImageList = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Add: *const fn(
@@ -6106,6 +6106,7 @@ pub const IImageList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6238,7 +6239,7 @@ pub const IMAGELISTSTATS = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IImageList2_Value = Guid.initString("192b9d83-50fc-457b-90a0-2b82a8b5dae1");
 pub const IID_IImageList2 = &IID_IImageList2_Value;
-pub const IImageList2 = extern struct {
+pub const IImageList2 = extern union {
     pub const VTable = extern struct {
         base: IImageList.VTable,
         Resize: *const fn(
@@ -6313,6 +6314,7 @@ pub const IImageList2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IImageList: IImageList,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IImageList.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

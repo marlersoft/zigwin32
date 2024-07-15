@@ -14,7 +14,7 @@ pub const NOTIFICATION_USER_INPUT_DATA = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_INotificationActivationCallback_Value = Guid.initString("53e31837-6600-4a81-9395-75cffe746f94");
 pub const IID_INotificationActivationCallback = &IID_INotificationActivationCallback_Value;
-pub const INotificationActivationCallback = extern struct {
+pub const INotificationActivationCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Activate: *const fn(
@@ -26,6 +26,7 @@ pub const INotificationActivationCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

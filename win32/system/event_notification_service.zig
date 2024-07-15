@@ -45,7 +45,7 @@ pub const SENS_QOCINFO = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISensNetwork_Value = Guid.initString("d597bab1-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensNetwork = &IID_ISensNetwork_Value;
-pub const ISensNetwork = extern struct {
+pub const ISensNetwork = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         ConnectionMade: *const fn(
@@ -79,6 +79,7 @@ pub const ISensNetwork = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -108,7 +109,7 @@ pub const ISensNetwork = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISensOnNow_Value = Guid.initString("d597bab2-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensOnNow = &IID_ISensOnNow_Value;
-pub const ISensOnNow = extern struct {
+pub const ISensOnNow = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         OnACPower: *const fn(
@@ -124,6 +125,7 @@ pub const ISensOnNow = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -145,7 +147,7 @@ pub const ISensOnNow = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISensLogon_Value = Guid.initString("d597bab3-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensLogon = &IID_ISensLogon_Value;
-pub const ISensLogon = extern struct {
+pub const ISensLogon = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Logon: *const fn(
@@ -178,6 +180,7 @@ pub const ISensLogon = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -215,7 +218,7 @@ pub const ISensLogon = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISensLogon2_Value = Guid.initString("d597bab4-5b9f-11d1-8dd2-00aa004abd5e");
 pub const IID_ISensLogon2 = &IID_ISensLogon2_Value;
-pub const ISensLogon2 = extern struct {
+pub const ISensLogon2 = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Logon: *const fn(
@@ -245,6 +248,7 @@ pub const ISensLogon2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

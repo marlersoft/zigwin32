@@ -69,7 +69,7 @@ pub const OSUpdateAssessment = extern struct {
 // TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IWaaSAssessor_Value = Guid.initString("2347bbef-1a3b-45a4-902d-3e09c269b45e");
 pub const IID_IWaaSAssessor = &IID_IWaaSAssessor_Value;
-pub const IWaaSAssessor = extern struct {
+pub const IWaaSAssessor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetOSUpdateAssessment: *const fn(
@@ -78,6 +78,7 @@ pub const IWaaSAssessor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

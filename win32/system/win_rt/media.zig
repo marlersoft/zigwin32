@@ -10,7 +10,7 @@ pub const CLSID_VideoFrameNativeFactory = Guid.initString("d194386a-04e3-4814-81
 //--------------------------------------------------------------------------------
 const IID_IAudioFrameNative_Value = Guid.initString("20be1e2e-930f-4746-9335-3c332f255093");
 pub const IID_IAudioFrameNative = &IID_IAudioFrameNative_Value;
-pub const IAudioFrameNative = extern struct {
+pub const IAudioFrameNative = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         GetData: *const fn(
@@ -20,6 +20,7 @@ pub const IAudioFrameNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -32,7 +33,7 @@ pub const IAudioFrameNative = extern struct {
 
 const IID_IVideoFrameNative_Value = Guid.initString("26ba702b-314a-4620-aaf6-7a51aa58fa18");
 pub const IID_IVideoFrameNative = &IID_IVideoFrameNative_Value;
-pub const IVideoFrameNative = extern struct {
+pub const IVideoFrameNative = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         GetData: *const fn(
@@ -47,6 +48,7 @@ pub const IVideoFrameNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -63,7 +65,7 @@ pub const IVideoFrameNative = extern struct {
 
 const IID_IAudioFrameNativeFactory_Value = Guid.initString("7bd67cf8-bf7d-43e6-af8d-b170ee0c0110");
 pub const IID_IAudioFrameNativeFactory = &IID_IAudioFrameNativeFactory_Value;
-pub const IAudioFrameNativeFactory = extern struct {
+pub const IAudioFrameNativeFactory = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CreateFromMFSample: *const fn(
@@ -75,6 +77,7 @@ pub const IAudioFrameNativeFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -87,7 +90,7 @@ pub const IAudioFrameNativeFactory = extern struct {
 
 const IID_IVideoFrameNativeFactory_Value = Guid.initString("69e3693e-8e1e-4e63-ac4c-7fdc21d9731d");
 pub const IID_IVideoFrameNativeFactory = &IID_IVideoFrameNativeFactory_Value;
-pub const IVideoFrameNativeFactory = extern struct {
+pub const IVideoFrameNativeFactory = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CreateFromMFSample: *const fn(
@@ -104,6 +107,7 @@ pub const IVideoFrameNativeFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

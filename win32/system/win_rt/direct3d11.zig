@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 const IID_IDirect3DDxgiInterfaceAccess_Value = Guid.initString("a9b3d012-3df2-4ee3-b8d1-8695f457d3c1");
 pub const IID_IDirect3DDxgiInterfaceAccess = &IID_IDirect3DDxgiInterfaceAccess_Value;
-pub const IDirect3DDxgiInterfaceAccess = extern struct {
+pub const IDirect3DDxgiInterfaceAccess = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInterface: *const fn(
@@ -18,6 +18,7 @@ pub const IDirect3DDxgiInterfaceAccess = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

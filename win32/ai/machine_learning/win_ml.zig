@@ -177,7 +177,7 @@ pub const WINML_MODEL_DESC = extern struct {
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLModel_Value = Guid.initString("e2eeb6a9-f31f-4055-a521-e30b5b33664a");
 pub const IID_IWinMLModel = &IID_IWinMLModel_Value;
-pub const IWinMLModel = extern struct {
+pub const IWinMLModel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDescription: *const fn(
@@ -202,6 +202,7 @@ pub const IWinMLModel = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -227,7 +228,7 @@ pub const IWinMLModel = extern struct {
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLEvaluationContext_Value = Guid.initString("95848f9e-583d-4054-af12-916387cd8426");
 pub const IID_IWinMLEvaluationContext = &IID_IWinMLEvaluationContext_Value;
-pub const IWinMLEvaluationContext = extern struct {
+pub const IWinMLEvaluationContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         BindValue: *const fn(
@@ -244,6 +245,7 @@ pub const IWinMLEvaluationContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -265,7 +267,7 @@ pub const IWinMLEvaluationContext = extern struct {
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLRuntime_Value = Guid.initString("a0425329-40ae-48d9-bce3-829ef7b8a41a");
 pub const IID_IWinMLRuntime = &IID_IWinMLRuntime_Value;
-pub const IWinMLRuntime = extern struct {
+pub const IWinMLRuntime = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         LoadModel: *const fn(
@@ -284,6 +286,7 @@ pub const IWinMLRuntime = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -310,7 +313,7 @@ pub const WINML_RUNTIME_CNTK = WINML_RUNTIME_TYPE.K;
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLRuntimeFactory_Value = Guid.initString("a807b84d-4ae5-4bc0-a76a-941aa246bd41");
 pub const IID_IWinMLRuntimeFactory = &IID_IWinMLRuntimeFactory_Value;
-pub const IWinMLRuntimeFactory = extern struct {
+pub const IWinMLRuntimeFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateRuntime: *const fn(
@@ -320,6 +323,7 @@ pub const IWinMLRuntimeFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -377,7 +381,7 @@ pub const MLOperatorEdgeDescription = extern struct {
 
 const IID_IMLOperatorAttributes_Value = Guid.initString("4b1b1759-ec40-466c-aab4-beb5347fd24c");
 pub const IID_IMLOperatorAttributes = &IID_IMLOperatorAttributes_Value;
-pub const IMLOperatorAttributes = extern struct {
+pub const IMLOperatorAttributes = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAttributeElementCount: *const fn(
@@ -409,6 +413,7 @@ pub const IMLOperatorAttributes = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -433,7 +438,7 @@ pub const IMLOperatorAttributes = extern struct {
 
 const IID_IMLOperatorTensorShapeDescription_Value = Guid.initString("f20e8cbe-3b28-4248-be95-f96fbc6e4643");
 pub const IID_IMLOperatorTensorShapeDescription = &IID_IMLOperatorTensorShapeDescription_Value;
-pub const IMLOperatorTensorShapeDescription = extern struct {
+pub const IMLOperatorTensorShapeDescription = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInputTensorDimensionCount: *const fn(
@@ -463,6 +468,7 @@ pub const IMLOperatorTensorShapeDescription = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -491,7 +497,7 @@ pub const IMLOperatorTensorShapeDescription = extern struct {
 
 const IID_IMLOperatorKernelCreationContext_Value = Guid.initString("5459b53d-a0fc-4665-addd-70171ef7e631");
 pub const IID_IMLOperatorKernelCreationContext = &IID_IMLOperatorKernelCreationContext_Value;
-pub const IMLOperatorKernelCreationContext = extern struct {
+pub const IMLOperatorKernelCreationContext = extern union {
     pub const VTable = extern struct {
         base: IMLOperatorAttributes.VTable,
         GetInputCount: *const fn(
@@ -531,6 +537,7 @@ pub const IMLOperatorKernelCreationContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IMLOperatorAttributes: IMLOperatorAttributes,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMLOperatorAttributes.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -575,7 +582,7 @@ pub const IMLOperatorKernelCreationContext = extern struct {
 
 const IID_IMLOperatorTensor_Value = Guid.initString("7fe41f41-f430-440e-aece-54416dc8b9db");
 pub const IID_IMLOperatorTensor = &IID_IMLOperatorTensor_Value;
-pub const IMLOperatorTensor = extern struct {
+pub const IMLOperatorTensor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDimensionCount: *const fn(
@@ -604,6 +611,7 @@ pub const IMLOperatorTensor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -640,7 +648,7 @@ pub const IMLOperatorTensor = extern struct {
 
 const IID_IMLOperatorKernelContext_Value = Guid.initString("82536a28-f022-4769-9d3f-8b278f84c0c3");
 pub const IID_IMLOperatorKernelContext = &IID_IMLOperatorKernelContext_Value;
-pub const IMLOperatorKernelContext = extern struct {
+pub const IMLOperatorKernelContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInputTensor: *const fn(
@@ -671,6 +679,7 @@ pub const IMLOperatorKernelContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -699,7 +708,7 @@ pub const IMLOperatorKernelContext = extern struct {
 
 const IID_IMLOperatorKernel_Value = Guid.initString("11c4b4a0-b467-4eaa-a1a6-b961d8d0ed79");
 pub const IID_IMLOperatorKernel = &IID_IMLOperatorKernel_Value;
-pub const IMLOperatorKernel = extern struct {
+pub const IMLOperatorKernel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Compute: *const fn(
@@ -708,6 +717,7 @@ pub const IMLOperatorKernel = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -778,7 +788,7 @@ pub const MLOperatorEdgeTypeConstraint = extern struct {
 
 const IID_IMLOperatorShapeInferenceContext_Value = Guid.initString("105b6b29-5408-4a68-9959-09b5955a3492");
 pub const IID_IMLOperatorShapeInferenceContext = &IID_IMLOperatorShapeInferenceContext_Value;
-pub const IMLOperatorShapeInferenceContext = extern struct {
+pub const IMLOperatorShapeInferenceContext = extern union {
     pub const VTable = extern struct {
         base: IMLOperatorAttributes.VTable,
         GetInputCount: *const fn(
@@ -819,6 +829,7 @@ pub const IMLOperatorShapeInferenceContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMLOperatorAttributes: IMLOperatorAttributes,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMLOperatorAttributes.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -859,7 +870,7 @@ pub const IMLOperatorShapeInferenceContext = extern struct {
 
 const IID_IMLOperatorTypeInferenceContext_Value = Guid.initString("ec893bb1-f938-427b-8488-c8dcf775f138");
 pub const IID_IMLOperatorTypeInferenceContext = &IID_IMLOperatorTypeInferenceContext_Value;
-pub const IMLOperatorTypeInferenceContext = extern struct {
+pub const IMLOperatorTypeInferenceContext = extern union {
     pub const VTable = extern struct {
         base: IMLOperatorAttributes.VTable,
         GetInputCount: *const fn(
@@ -888,6 +899,7 @@ pub const IMLOperatorTypeInferenceContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IMLOperatorAttributes: IMLOperatorAttributes,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMLOperatorAttributes.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -920,7 +932,7 @@ pub const IMLOperatorTypeInferenceContext = extern struct {
 
 const IID_IMLOperatorTypeInferrer_Value = Guid.initString("781aeb48-9bcb-4797-bf77-8bf455217beb");
 pub const IID_IMLOperatorTypeInferrer = &IID_IMLOperatorTypeInferrer_Value;
-pub const IMLOperatorTypeInferrer = extern struct {
+pub const IMLOperatorTypeInferrer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InferOutputTypes: *const fn(
@@ -929,6 +941,7 @@ pub const IMLOperatorTypeInferrer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -941,7 +954,7 @@ pub const IMLOperatorTypeInferrer = extern struct {
 
 const IID_IMLOperatorShapeInferrer_Value = Guid.initString("540be5be-a6c9-40ee-83f6-d2b8b40a7798");
 pub const IID_IMLOperatorShapeInferrer = &IID_IMLOperatorShapeInferrer_Value;
-pub const IMLOperatorShapeInferrer = extern struct {
+pub const IMLOperatorShapeInferrer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InferOutputShapes: *const fn(
@@ -950,6 +963,7 @@ pub const IMLOperatorShapeInferrer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1056,7 +1070,7 @@ pub const MLOperatorKernelDescription = extern struct {
 
 const IID_IMLOperatorKernelFactory_Value = Guid.initString("ef15ad6f-0dc9-4908-ab35-a575a30dfbf8");
 pub const IID_IMLOperatorKernelFactory = &IID_IMLOperatorKernelFactory_Value;
-pub const IMLOperatorKernelFactory = extern struct {
+pub const IMLOperatorKernelFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateKernel: *const fn(
@@ -1066,6 +1080,7 @@ pub const IMLOperatorKernelFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1078,7 +1093,7 @@ pub const IMLOperatorKernelFactory = extern struct {
 
 const IID_IMLOperatorRegistry_Value = Guid.initString("2af9dd2d-b516-4672-9ab5-530c208493ad");
 pub const IID_IMLOperatorRegistry = &IID_IMLOperatorRegistry_Value;
-pub const IMLOperatorRegistry = extern struct {
+pub const IMLOperatorRegistry = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterOperatorSetSchema: *const fn(
@@ -1098,6 +1113,7 @@ pub const IMLOperatorRegistry = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

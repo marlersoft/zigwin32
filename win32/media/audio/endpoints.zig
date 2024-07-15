@@ -13,7 +13,7 @@ pub const DEVPKEY_AudioEndpointPlugin2_FactoryCLSID = PROPERTYKEY { .fmtid = Gui
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioEndpointFormatControl_Value = Guid.initString("784cfd40-9f89-456e-a1a6-873b006a664e");
 pub const IID_IAudioEndpointFormatControl = &IID_IAudioEndpointFormatControl_Value;
-pub const IAudioEndpointFormatControl = extern struct {
+pub const IAudioEndpointFormatControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ResetToDefault: *const fn(
@@ -22,6 +22,7 @@ pub const IAudioEndpointFormatControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -54,7 +55,7 @@ pub const AUDIO_ENDPOINT_SHARED_CREATE_PARAMS = extern struct {
 
 const IID_IAudioEndpointOffloadStreamVolume_Value = Guid.initString("64f1dd49-71ca-4281-8672-3a9eddd1d0b6");
 pub const IID_IAudioEndpointOffloadStreamVolume = &IID_IAudioEndpointOffloadStreamVolume_Value;
-pub const IAudioEndpointOffloadStreamVolume = extern struct {
+pub const IAudioEndpointOffloadStreamVolume = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetVolumeChannelCount: *const fn(
@@ -75,6 +76,7 @@ pub const IAudioEndpointOffloadStreamVolume = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -96,7 +98,7 @@ pub const IAudioEndpointOffloadStreamVolume = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IAudioEndpointOffloadStreamMute_Value = Guid.initString("dfe21355-5ec2-40e0-8d6b-710ac3c00249");
 pub const IID_IAudioEndpointOffloadStreamMute = &IID_IAudioEndpointOffloadStreamMute_Value;
-pub const IAudioEndpointOffloadStreamMute = extern struct {
+pub const IAudioEndpointOffloadStreamMute = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetMute: *const fn(
@@ -109,6 +111,7 @@ pub const IAudioEndpointOffloadStreamMute = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -125,7 +128,7 @@ pub const IAudioEndpointOffloadStreamMute = extern struct {
 
 const IID_IAudioEndpointOffloadStreamMeter_Value = Guid.initString("e1546dce-9dd1-418b-9ab2-348ced161c86");
 pub const IID_IAudioEndpointOffloadStreamMeter = &IID_IAudioEndpointOffloadStreamMeter_Value;
-pub const IAudioEndpointOffloadStreamMeter = extern struct {
+pub const IAudioEndpointOffloadStreamMeter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetMeterChannelCount: *const fn(
@@ -139,6 +142,7 @@ pub const IAudioEndpointOffloadStreamMeter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -156,7 +160,7 @@ pub const IAudioEndpointOffloadStreamMeter = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IAudioEndpointLastBufferControl_Value = Guid.initString("f8520dd3-8f9d-4437-9861-62f584c33dd6");
 pub const IID_IAudioEndpointLastBufferControl = &IID_IAudioEndpointLastBufferControl_Value;
-pub const IAudioEndpointLastBufferControl = extern struct {
+pub const IAudioEndpointLastBufferControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsLastBufferControlSupported: *const fn(
@@ -168,6 +172,7 @@ pub const IAudioEndpointLastBufferControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -185,7 +190,7 @@ pub const IAudioEndpointLastBufferControl = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IAudioLfxControl_Value = Guid.initString("076a6922-d802-4f83-baf6-409d9ca11bfe");
 pub const IID_IAudioLfxControl = &IID_IAudioLfxControl_Value;
-pub const IAudioLfxControl = extern struct {
+pub const IAudioLfxControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetLocalEffectsState: *const fn(
@@ -198,6 +203,7 @@ pub const IAudioLfxControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -215,7 +221,7 @@ pub const IAudioLfxControl = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IHardwareAudioEngineBase_Value = Guid.initString("eddce3e4-f3c1-453a-b461-223563cbd886");
 pub const IID_IHardwareAudioEngineBase = &IID_IHardwareAudioEngineBase_Value;
-pub const IHardwareAudioEngineBase = extern struct {
+pub const IHardwareAudioEngineBase = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAvailableOffloadConnectorCount: *const fn(
@@ -247,6 +253,7 @@ pub const IHardwareAudioEngineBase = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -279,7 +286,7 @@ pub const CLSID_DEVINTERFACE_AUDIOENDPOINTPLUGIN = &CLSID_DEVINTERFACE_AUDIOENDP
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioEndpointVolumeCallback_Value = Guid.initString("657804fa-d6ad-4496-8a60-352752af4f89");
 pub const IID_IAudioEndpointVolumeCallback = &IID_IAudioEndpointVolumeCallback_Value;
-pub const IAudioEndpointVolumeCallback = extern struct {
+pub const IAudioEndpointVolumeCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnNotify: *const fn(
@@ -288,6 +295,7 @@ pub const IAudioEndpointVolumeCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -301,7 +309,7 @@ pub const IAudioEndpointVolumeCallback = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioEndpointVolume_Value = Guid.initString("5cdf2c82-841e-4546-9722-0cf74078229a");
 pub const IID_IAudioEndpointVolume = &IID_IAudioEndpointVolume_Value;
-pub const IAudioEndpointVolume = extern struct {
+pub const IAudioEndpointVolume = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterControlChangeNotify: *const fn(
@@ -390,6 +398,7 @@ pub const IAudioEndpointVolume = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -471,7 +480,7 @@ pub const IAudioEndpointVolume = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IAudioEndpointVolumeEx_Value = Guid.initString("66e11784-f695-4f28-a505-a7080081a78f");
 pub const IID_IAudioEndpointVolumeEx = &IID_IAudioEndpointVolumeEx_Value;
-pub const IAudioEndpointVolumeEx = extern struct {
+pub const IAudioEndpointVolumeEx = extern union {
     pub const VTable = extern struct {
         base: IAudioEndpointVolume.VTable,
         GetVolumeRangeChannel: *const fn(
@@ -483,6 +492,7 @@ pub const IAudioEndpointVolumeEx = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IAudioEndpointVolume: IAudioEndpointVolume,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IAudioEndpointVolume.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -496,7 +506,7 @@ pub const IAudioEndpointVolumeEx = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IAudioMeterInformation_Value = Guid.initString("c02216f6-8c67-4b5b-9d00-d008e73e0064");
 pub const IID_IAudioMeterInformation = &IID_IAudioMeterInformation_Value;
-pub const IAudioMeterInformation = extern struct {
+pub const IAudioMeterInformation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPeakValue: *const fn(
@@ -518,6 +528,7 @@ pub const IAudioMeterInformation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

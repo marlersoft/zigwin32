@@ -1466,7 +1466,7 @@ pub const CHANGENOTIFY = extern struct {
     pvCookieData: ?*anyopaque,
 };
 
-pub const ITextServices = extern struct {
+pub const ITextServices = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         TxSendMessage: *const fn(
@@ -1588,6 +1588,7 @@ pub const ITextServices = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1686,7 +1687,7 @@ pub const CARET_INFO = extern union {
     caretFlags: CARET_FLAGS,
 };
 
-pub const ITextHost = extern struct {
+pub const ITextHost = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         TxGetDC: *const fn(
@@ -1865,6 +1866,7 @@ pub const ITextHost = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2028,7 +2030,7 @@ pub const ITextHost = extern struct {
 };
 
 // TODO: this type is limited to platform 'windows8.0'
-pub const IRicheditUiaOverrides = extern struct {
+pub const IRicheditUiaOverrides = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPropertyOverrideValue: *const fn(
@@ -2038,6 +2040,7 @@ pub const IRicheditUiaOverrides = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2058,7 +2061,7 @@ pub const PShutdownTextServices = *const fn(
     pTextServices: ?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const ITextHost2 = extern struct {
+pub const ITextHost2 = extern union {
     pub const VTable = extern struct {
         base: ITextHost.VTable,
         TxIsDoubleClickPending: *const fn(
@@ -2111,6 +2114,7 @@ pub const ITextHost2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITextHost: ITextHost,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextHost.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2165,7 +2169,7 @@ pub const ITextHost2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const ITextServices2 = extern struct {
+pub const ITextServices2 = extern union {
     pub const VTable = extern struct {
         base: ITextServices.VTable,
         TxGetNaturalSize2: *const fn(
@@ -2189,6 +2193,7 @@ pub const ITextServices2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITextServices: ITextServices,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextServices.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2219,7 +2224,7 @@ pub const REOBJECT = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRichEditOle_Value = Guid.initString("00020d00-0000-0000-c000-000000000046");
 pub const IID_IRichEditOle = &IID_IRichEditOle_Value;
-pub const IRichEditOle = extern struct {
+pub const IRichEditOle = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetClientSite: *const fn(
@@ -2298,6 +2303,7 @@ pub const IRichEditOle = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2371,7 +2377,7 @@ pub const IRichEditOle = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRichEditOleCallback_Value = Guid.initString("00020d03-0000-0000-c000-000000000046");
 pub const IID_IRichEditOleCallback = &IID_IRichEditOleCallback_Value;
-pub const IRichEditOleCallback = extern struct {
+pub const IRichEditOleCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetNewStorage: *const fn(
@@ -2431,6 +2437,7 @@ pub const IRichEditOleCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3751,7 +3758,7 @@ pub const MOPENA = MANCODE.OPENA;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITextDocument_Value = Guid.initString("8cc497c0-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextDocument = &IID_ITextDocument_Value;
-pub const ITextDocument = extern struct {
+pub const ITextDocument = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetName: *const fn(
@@ -3839,6 +3846,7 @@ pub const ITextDocument = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3924,7 +3932,7 @@ pub const ITextDocument = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITextRange_Value = Guid.initString("8cc497c2-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextRange = &IID_ITextRange_Value;
-pub const ITextRange = extern struct {
+pub const ITextRange = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetText: *const fn(
@@ -4181,6 +4189,7 @@ pub const ITextRange = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4394,7 +4403,7 @@ pub const ITextRange = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITextSelection_Value = Guid.initString("8cc497c1-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextSelection = &IID_ITextSelection_Value;
-pub const ITextSelection = extern struct {
+pub const ITextSelection = extern union {
     pub const VTable = extern struct {
         base: ITextRange.VTable,
         GetFlags: *const fn(
@@ -4455,6 +4464,7 @@ pub const ITextSelection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITextRange: ITextRange,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextRange.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4504,7 +4514,7 @@ pub const ITextSelection = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITextFont_Value = Guid.initString("8cc497c3-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextFont = &IID_ITextFont_Value;
-pub const ITextFont = extern struct {
+pub const ITextFont = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetDuplicate: *const fn(
@@ -4730,6 +4740,7 @@ pub const ITextFont = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4959,7 +4970,7 @@ pub const ITextFont = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITextPara_Value = Guid.initString("8cc497c4-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextPara = &IID_ITextPara_Value;
-pub const ITextPara = extern struct {
+pub const ITextPara = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetDuplicate: *const fn(
@@ -5164,6 +5175,7 @@ pub const ITextPara = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5365,7 +5377,7 @@ pub const ITextPara = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ITextStoryRanges_Value = Guid.initString("8cc497c5-a1df-11ce-8098-00aa0047be5d");
 pub const IID_ITextStoryRanges = &IID_ITextStoryRanges_Value;
-pub const ITextStoryRanges = extern struct {
+pub const ITextStoryRanges = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         _NewEnum: *const fn(
@@ -5383,6 +5395,7 @@ pub const ITextStoryRanges = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5404,7 +5417,7 @@ pub const ITextStoryRanges = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextDocument2_Value = Guid.initString("c241f5e0-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextDocument2 = &IID_ITextDocument2_Value;
-pub const ITextDocument2 = extern struct {
+pub const ITextDocument2 = extern union {
     pub const VTable = extern struct {
         base: ITextDocument.VTable,
         GetCaretType: *const fn(
@@ -5607,6 +5620,7 @@ pub const ITextDocument2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITextDocument: ITextDocument,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextDocument.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5792,7 +5806,7 @@ pub const ITextDocument2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextRange2_Value = Guid.initString("c241f5e2-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextRange2 = &IID_ITextRange2_Value;
-pub const ITextRange2 = extern struct {
+pub const ITextRange2 = extern union {
     pub const VTable = extern struct {
         base: ITextSelection.VTable,
         GetCch: *const fn(
@@ -5999,6 +6013,7 @@ pub const ITextRange2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITextSelection: ITextSelection,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextSelection.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6168,11 +6183,12 @@ pub const ITextRange2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextSelection2_Value = Guid.initString("c241f5e1-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextSelection2 = &IID_ITextSelection2_Value;
-pub const ITextSelection2 = extern struct {
+pub const ITextSelection2 = extern union {
     pub const VTable = extern struct {
         base: ITextRange2.VTable,
     };
     vtable: *const VTable,
+    ITextRange2: ITextRange2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextRange2.MethodMixin(T);
     };}
@@ -6182,7 +6198,7 @@ pub const ITextSelection2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextFont2_Value = Guid.initString("c241f5e3-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextFont2 = &IID_ITextFont2_Value;
-pub const ITextFont2 = extern struct {
+pub const ITextFont2 = extern union {
     pub const VTable = extern struct {
         base: ITextFont.VTable,
         GetCount: *const fn(
@@ -6380,6 +6396,7 @@ pub const ITextFont2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITextFont: ITextFont,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextFont.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6573,7 +6590,7 @@ pub const ITextFont2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextPara2_Value = Guid.initString("c241f5e4-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextPara2 = &IID_ITextPara2_Value;
-pub const ITextPara2 = extern struct {
+pub const ITextPara2 = extern union {
     pub const VTable = extern struct {
         base: ITextPara.VTable,
         GetBorders: *const fn(
@@ -6647,6 +6664,7 @@ pub const ITextPara2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITextPara: ITextPara,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextPara.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6720,7 +6738,7 @@ pub const ITextPara2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextStoryRanges2_Value = Guid.initString("c241f5e5-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextStoryRanges2 = &IID_ITextStoryRanges2_Value;
-pub const ITextStoryRanges2 = extern struct {
+pub const ITextStoryRanges2 = extern union {
     pub const VTable = extern struct {
         base: ITextStoryRanges.VTable,
         Item2: *const fn(
@@ -6730,6 +6748,7 @@ pub const ITextStoryRanges2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITextStoryRanges: ITextStoryRanges,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextStoryRanges.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6743,7 +6762,7 @@ pub const ITextStoryRanges2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextStory_Value = Guid.initString("c241f5f3-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextStory = &IID_ITextStory_Value;
-pub const ITextStory = extern struct {
+pub const ITextStory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetActive: *const fn(
@@ -6802,6 +6821,7 @@ pub const ITextStory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6859,7 +6879,7 @@ pub const ITextStory = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextStrings_Value = Guid.initString("c241f5e7-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextStrings = &IID_ITextStrings_Value;
-pub const ITextStrings = extern struct {
+pub const ITextStrings = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         Item: *const fn(
@@ -6947,6 +6967,7 @@ pub const ITextStrings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7024,7 +7045,7 @@ pub const ITextStrings = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextRow_Value = Guid.initString("c241f5ef-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextRow = &IID_ITextRow_Value;
-pub const ITextRow = extern struct {
+pub const ITextRow = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetAlignment: *const fn(
@@ -7229,6 +7250,7 @@ pub const ITextRow = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7422,11 +7444,12 @@ pub const ITextRow = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITextDisplays_Value = Guid.initString("c241f5f2-7206-11d8-a2c7-00a0d1d6c6b3");
 pub const IID_ITextDisplays = &IID_ITextDisplays_Value;
-pub const ITextDisplays = extern struct {
+pub const ITextDisplays = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
@@ -7435,7 +7458,7 @@ pub const ITextDisplays = extern struct {
 
 const IID_ITextDocument2Old_Value = Guid.initString("01c25500-4268-11d1-883a-3c8b00c10000");
 pub const IID_ITextDocument2Old = &IID_ITextDocument2Old_Value;
-pub const ITextDocument2Old = extern struct {
+pub const ITextDocument2Old = extern union {
     pub const VTable = extern struct {
         base: ITextDocument.VTable,
         AttachMsgFilter: *const fn(
@@ -7548,6 +7571,7 @@ pub const ITextDocument2Old = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITextDocument: ITextDocument,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITextDocument.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

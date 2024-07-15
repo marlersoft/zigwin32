@@ -9,7 +9,7 @@
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IRandomAccessStreamFileAccessMode_Value = Guid.initString("332e5848-2e15-458e-85c4-c911c0c3d6f4");
 pub const IID_IRandomAccessStreamFileAccessMode = &IID_IRandomAccessStreamFileAccessMode_Value;
-pub const IRandomAccessStreamFileAccessMode = extern struct {
+pub const IRandomAccessStreamFileAccessMode = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetMode: *const fn(
@@ -18,6 +18,7 @@ pub const IRandomAccessStreamFileAccessMode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -31,7 +32,7 @@ pub const IRandomAccessStreamFileAccessMode = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IUnbufferedFileHandleOplockCallback_Value = Guid.initString("d1019a0e-6243-4329-8497-2e75894d7710");
 pub const IID_IUnbufferedFileHandleOplockCallback = &IID_IUnbufferedFileHandleOplockCallback_Value;
-pub const IUnbufferedFileHandleOplockCallback = extern struct {
+pub const IUnbufferedFileHandleOplockCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnBrokenCallback: *const fn(
@@ -39,6 +40,7 @@ pub const IUnbufferedFileHandleOplockCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -52,7 +54,7 @@ pub const IUnbufferedFileHandleOplockCallback = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IUnbufferedFileHandleProvider_Value = Guid.initString("a65c9109-42ab-4b94-a7b1-dd2e4e68515e");
 pub const IID_IUnbufferedFileHandleProvider = &IID_IUnbufferedFileHandleProvider_Value;
-pub const IUnbufferedFileHandleProvider = extern struct {
+pub const IUnbufferedFileHandleProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OpenUnbufferedFileHandle: *const fn(
@@ -65,6 +67,7 @@ pub const IUnbufferedFileHandleProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -230,7 +233,7 @@ pub const HCO_TRUNCATE_EXISTING = HANDLE_CREATION_OPTIONS.TRUNCATE_EXISTING;
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IOplockBreakingHandler_Value = Guid.initString("826abe3d-3acd-47d3-84f2-88aaedcf6304");
 pub const IID_IOplockBreakingHandler = &IID_IOplockBreakingHandler_Value;
-pub const IOplockBreakingHandler = extern struct {
+pub const IOplockBreakingHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OplockBreaking: *const fn(
@@ -238,6 +241,7 @@ pub const IOplockBreakingHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -251,7 +255,7 @@ pub const IOplockBreakingHandler = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IStorageItemHandleAccess_Value = Guid.initString("5ca296b2-2c25-4d22-b785-b885c8201e6a");
 pub const IID_IStorageItemHandleAccess = &IID_IStorageItemHandleAccess_Value;
-pub const IStorageItemHandleAccess = extern struct {
+pub const IStorageItemHandleAccess = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Create: *const fn(
@@ -264,6 +268,7 @@ pub const IStorageItemHandleAccess = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -277,7 +282,7 @@ pub const IStorageItemHandleAccess = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IStorageFolderHandleAccess_Value = Guid.initString("df19938f-5462-48a0-be65-d2a3271a08d6");
 pub const IID_IStorageFolderHandleAccess = &IID_IStorageFolderHandleAccess_Value;
-pub const IStorageFolderHandleAccess = extern struct {
+pub const IStorageFolderHandleAccess = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Create: *const fn(
@@ -292,6 +297,7 @@ pub const IStorageFolderHandleAccess = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

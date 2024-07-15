@@ -488,7 +488,7 @@ pub const VSS_OBJECT_PROP = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVssEnumObject_Value = Guid.initString("ae1c7110-2f60-11d3-8a39-00c04f72d8e3");
 pub const IID_IVssEnumObject = &IID_IVssEnumObject_Value;
-pub const IVssEnumObject = extern struct {
+pub const IVssEnumObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -510,6 +510,7 @@ pub const IVssEnumObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -535,7 +536,7 @@ pub const IVssEnumObject = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVssAsync_Value = Guid.initString("507c37b4-cf5b-4e95-b0af-14eb9767467e");
 pub const IID_IVssAsync = &IID_IVssAsync_Value;
-pub const IVssAsync = extern struct {
+pub const IVssAsync = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Cancel: *const fn(
@@ -552,6 +553,7 @@ pub const IVssAsync = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -696,7 +698,7 @@ pub const IVssExamineWriterMetadata = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const IVssWMFiledesc = extern struct {
+pub const IVssWMFiledesc = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPath: *const fn(
@@ -721,6 +723,7 @@ pub const IVssWMFiledesc = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -747,7 +750,7 @@ pub const IVssWMFiledesc = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IVssWMDependency = extern struct {
+pub const IVssWMDependency = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetWriterId: *const fn(
@@ -764,6 +767,7 @@ pub const IVssWMDependency = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -784,7 +788,7 @@ pub const IVssWMDependency = extern struct {
 
 const IID_IVssComponent_Value = Guid.initString("d2c72c96-c121-4518-b627-e5a93d010ead");
 pub const IID_IVssComponent = &IID_IVssComponent_Value;
-pub const IVssComponent = extern struct {
+pub const IVssComponent = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLogicalPath: *const fn(
@@ -975,6 +979,7 @@ pub const IVssComponent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1133,7 +1138,7 @@ pub const IVssComponent = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IVssWriterComponents = extern struct {
+pub const IVssWriterComponents = extern union {
     pub const VTable = extern struct {
         GetComponentCount: *const fn(
             self: *const IVssWriterComponents,
@@ -1170,7 +1175,7 @@ pub const IVssWriterComponents = extern struct {
 
 const IID_IVssComponentEx_Value = Guid.initString("156c8b5e-f131-4bd7-9c97-d1923be7e1fa");
 pub const IID_IVssComponentEx = &IID_IVssComponentEx_Value;
-pub const IVssComponentEx = extern struct {
+pub const IVssComponentEx = extern union {
     pub const VTable = extern struct {
         base: IVssComponent.VTable,
         SetPrepareForBackupFailureMsg: *const fn(
@@ -1204,6 +1209,7 @@ pub const IVssComponentEx = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IVssComponent: IVssComponent,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVssComponent.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1240,7 +1246,7 @@ pub const IVssComponentEx = extern struct {
 
 const IID_IVssComponentEx2_Value = Guid.initString("3b5be0f2-07a9-4e4b-bdd3-cfdc8e2c0d2d");
 pub const IID_IVssComponentEx2 = &IID_IVssComponentEx2_Value;
-pub const IVssComponentEx2 = extern struct {
+pub const IVssComponentEx2 = extern union {
     pub const VTable = extern struct {
         base: IVssComponentEx.VTable,
         SetFailure: *const fn(
@@ -1259,6 +1265,7 @@ pub const IVssComponentEx2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IVssComponentEx: IVssComponentEx,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVssComponentEx.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1273,7 +1280,7 @@ pub const IVssComponentEx2 = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IVssCreateWriterMetadata = extern struct {
+pub const IVssCreateWriterMetadata = extern union {
     pub const VTable = extern struct {
         AddIncludeFiles: *const fn(
             self: *const IVssCreateWriterMetadata,
@@ -1418,7 +1425,7 @@ pub const IVssCreateWriterMetadata = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IVssWriterImpl = extern struct {
+pub const IVssWriterImpl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -1512,6 +1519,7 @@ pub const IVssWriterImpl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) bool,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1608,7 +1616,7 @@ pub const IVssWriterImpl = extern struct {
 
 const IID_IVssCreateExpressWriterMetadata_Value = Guid.initString("9c772e77-b26e-427f-92dd-c996f41ea5e3");
 pub const IID_IVssCreateExpressWriterMetadata = &IID_IVssCreateExpressWriterMetadata_Value;
-pub const IVssCreateExpressWriterMetadata = extern struct {
+pub const IVssCreateExpressWriterMetadata = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddExcludeFiles: *const fn(
@@ -1667,6 +1675,7 @@ pub const IVssCreateExpressWriterMetadata = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1703,7 +1712,7 @@ pub const IVssCreateExpressWriterMetadata = extern struct {
 
 const IID_IVssExpressWriter_Value = Guid.initString("e33affdc-59c7-47b1-97d5-4266598f6235");
 pub const IID_IVssExpressWriter = &IID_IVssExpressWriter_Value;
-pub const IVssExpressWriter = extern struct {
+pub const IVssExpressWriter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateMetadata: *const fn(
@@ -1730,6 +1739,7 @@ pub const IVssExpressWriter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1853,7 +1863,7 @@ pub const VSS_VOLUME_PROTECTION_INFO = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssSnapshotMgmt_Value = Guid.initString("fa7df749-66e7-4986-a27f-e2f04ae53772");
 pub const IID_IVssSnapshotMgmt = &IID_IVssSnapshotMgmt_Value;
-pub const IVssSnapshotMgmt = extern struct {
+pub const IVssSnapshotMgmt = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProviderMgmtInterface: *const fn(
@@ -1876,6 +1886,7 @@ pub const IVssSnapshotMgmt = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1897,7 +1908,7 @@ pub const IVssSnapshotMgmt = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssSnapshotMgmt2_Value = Guid.initString("0f61ec39-fe82-45f2-a3f0-768b5d427102");
 pub const IID_IVssSnapshotMgmt2 = &IID_IVssSnapshotMgmt2_Value;
-pub const IVssSnapshotMgmt2 = extern struct {
+pub const IVssSnapshotMgmt2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetMinDiffAreaSize: *const fn(
@@ -1906,6 +1917,7 @@ pub const IVssSnapshotMgmt2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1919,7 +1931,7 @@ pub const IVssSnapshotMgmt2 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssDifferentialSoftwareSnapshotMgmt_Value = Guid.initString("214a0f28-b737-4026-b847-4f9e37d79529");
 pub const IID_IVssDifferentialSoftwareSnapshotMgmt = &IID_IVssDifferentialSoftwareSnapshotMgmt_Value;
-pub const IVssDifferentialSoftwareSnapshotMgmt = extern struct {
+pub const IVssDifferentialSoftwareSnapshotMgmt = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddDiffArea: *const fn(
@@ -1956,6 +1968,7 @@ pub const IVssDifferentialSoftwareSnapshotMgmt = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1989,7 +2002,7 @@ pub const IVssDifferentialSoftwareSnapshotMgmt = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssDifferentialSoftwareSnapshotMgmt2_Value = Guid.initString("949d7353-675f-4275-8969-f044c6277815");
 pub const IID_IVssDifferentialSoftwareSnapshotMgmt2 = &IID_IVssDifferentialSoftwareSnapshotMgmt2_Value;
-pub const IVssDifferentialSoftwareSnapshotMgmt2 = extern struct {
+pub const IVssDifferentialSoftwareSnapshotMgmt2 = extern union {
     pub const VTable = extern struct {
         base: IVssDifferentialSoftwareSnapshotMgmt.VTable,
         ChangeDiffAreaMaximumSizeEx: *const fn(
@@ -2018,6 +2031,7 @@ pub const IVssDifferentialSoftwareSnapshotMgmt2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IVssDifferentialSoftwareSnapshotMgmt: IVssDifferentialSoftwareSnapshotMgmt,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVssDifferentialSoftwareSnapshotMgmt.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2043,7 +2057,7 @@ pub const IVssDifferentialSoftwareSnapshotMgmt2 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssDifferentialSoftwareSnapshotMgmt3_Value = Guid.initString("383f7e71-a4c5-401f-b27f-f826289f8458");
 pub const IID_IVssDifferentialSoftwareSnapshotMgmt3 = &IID_IVssDifferentialSoftwareSnapshotMgmt3_Value;
-pub const IVssDifferentialSoftwareSnapshotMgmt3 = extern struct {
+pub const IVssDifferentialSoftwareSnapshotMgmt3 = extern union {
     pub const VTable = extern struct {
         base: IVssDifferentialSoftwareSnapshotMgmt2.VTable,
         SetVolumeProtectLevel: *const fn(
@@ -2074,6 +2088,7 @@ pub const IVssDifferentialSoftwareSnapshotMgmt3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IVssDifferentialSoftwareSnapshotMgmt2: IVssDifferentialSoftwareSnapshotMgmt2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVssDifferentialSoftwareSnapshotMgmt2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2103,7 +2118,7 @@ pub const IVssDifferentialSoftwareSnapshotMgmt3 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssEnumMgmtObject_Value = Guid.initString("01954e6b-9254-4e6e-808c-c9e05d007696");
 pub const IID_IVssEnumMgmtObject = &IID_IVssEnumMgmtObject_Value;
-pub const IVssEnumMgmtObject = extern struct {
+pub const IVssEnumMgmtObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -2125,6 +2140,7 @@ pub const IVssEnumMgmtObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2153,7 +2169,7 @@ pub const CLSID_VSSCoordinator = &CLSID_VSSCoordinator_Value;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssAdmin_Value = Guid.initString("77ed5996-2f63-11d3-8a39-00c04f72d8e3");
 pub const IID_IVssAdmin = &IID_IVssAdmin_Value;
-pub const IVssAdmin = extern struct {
+pub const IVssAdmin = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterProvider: *const fn(
@@ -2178,6 +2194,7 @@ pub const IVssAdmin = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2202,7 +2219,7 @@ pub const IVssAdmin = extern struct {
 
 const IID_IVssAdminEx_Value = Guid.initString("7858a9f8-b1fa-41a6-964f-b9b36b8cd8d8");
 pub const IID_IVssAdminEx = &IID_IVssAdminEx_Value;
-pub const IVssAdminEx = extern struct {
+pub const IVssAdminEx = extern union {
     pub const VTable = extern struct {
         base: IVssAdmin.VTable,
         GetProviderCapability: *const fn(
@@ -2222,6 +2239,7 @@ pub const IVssAdminEx = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IVssAdmin: IVssAdmin,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVssAdmin.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2243,7 +2261,7 @@ pub const IVssAdminEx = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssSoftwareSnapshotProvider_Value = Guid.initString("609e123e-2c5a-44d3-8f01-0b1d9a47d1ff");
 pub const IID_IVssSoftwareSnapshotProvider = &IID_IVssSoftwareSnapshotProvider_Value;
-pub const IVssSoftwareSnapshotProvider = extern struct {
+pub const IVssSoftwareSnapshotProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetContext: *const fn(
@@ -2305,6 +2323,7 @@ pub const IVssSoftwareSnapshotProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2354,7 +2373,7 @@ pub const IVssSoftwareSnapshotProvider = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssProviderCreateSnapshotSet_Value = Guid.initString("5f894e5b-1e39-4778-8e23-9abad9f0e08c");
 pub const IID_IVssProviderCreateSnapshotSet = &IID_IVssProviderCreateSnapshotSet_Value;
-pub const IVssProviderCreateSnapshotSet = extern struct {
+pub const IVssProviderCreateSnapshotSet = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         EndPrepareSnapshots: *const fn(
@@ -2388,6 +2407,7 @@ pub const IVssProviderCreateSnapshotSet = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2425,7 +2445,7 @@ pub const IVssProviderCreateSnapshotSet = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssProviderNotifications_Value = Guid.initString("e561901f-03a5-4afe-86d0-72baeece7004");
 pub const IID_IVssProviderNotifications = &IID_IVssProviderNotifications_Value;
-pub const IVssProviderNotifications = extern struct {
+pub const IVssProviderNotifications = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnLoad: *const fn(
@@ -2438,6 +2458,7 @@ pub const IVssProviderNotifications = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2455,7 +2476,7 @@ pub const IVssProviderNotifications = extern struct {
 // TODO: this type is limited to platform 'windowsServer2003'
 const IID_IVssHardwareSnapshotProvider_Value = Guid.initString("9593a157-44e9-4344-bbeb-44fbf9b06b10");
 pub const IID_IVssHardwareSnapshotProvider = &IID_IVssHardwareSnapshotProvider_Value;
-pub const IVssHardwareSnapshotProvider = extern struct {
+pub const IVssHardwareSnapshotProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AreLunsSupported: *const fn(
@@ -2500,6 +2521,7 @@ pub const IVssHardwareSnapshotProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2533,7 +2555,7 @@ pub const IVssHardwareSnapshotProvider = extern struct {
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IVssHardwareSnapshotProviderEx_Value = Guid.initString("7f5ba925-cdb1-4d11-a71f-339eb7e709fd");
 pub const IID_IVssHardwareSnapshotProviderEx = &IID_IVssHardwareSnapshotProviderEx_Value;
-pub const IVssHardwareSnapshotProviderEx = extern struct {
+pub const IVssHardwareSnapshotProviderEx = extern union {
     pub const VTable = extern struct {
         base: IVssHardwareSnapshotProvider.VTable,
         GetProviderCapabilities: *const fn(
@@ -2562,6 +2584,7 @@ pub const IVssHardwareSnapshotProviderEx = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IVssHardwareSnapshotProvider: IVssHardwareSnapshotProvider,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IVssHardwareSnapshotProvider.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2587,7 +2610,7 @@ pub const IVssHardwareSnapshotProviderEx = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IVssFileShareSnapshotProvider_Value = Guid.initString("c8636060-7c2e-11df-8c4a-0800200c9a66");
 pub const IID_IVssFileShareSnapshotProvider = &IID_IVssFileShareSnapshotProvider_Value;
-pub const IVssFileShareSnapshotProvider = extern struct {
+pub const IVssFileShareSnapshotProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetContext: *const fn(
@@ -2641,6 +2664,7 @@ pub const IVssFileShareSnapshotProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

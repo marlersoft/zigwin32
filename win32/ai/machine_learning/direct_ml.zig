@@ -1812,7 +1812,7 @@ pub const DML_CREATE_DEVICE_FLAG_DEBUG = DML_CREATE_DEVICE_FLAGS{ .DEBUG = 1 };
 
 const IID_IDMLObject_Value = Guid.initString("c8263aac-9e0c-4a2d-9b8e-007521a3317c");
 pub const IID_IDMLObject = &IID_IDMLObject_Value;
-pub const IDMLObject = extern struct {
+pub const IDMLObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPrivateData: *const fn(
@@ -1840,6 +1840,7 @@ pub const IDMLObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1864,7 +1865,7 @@ pub const IDMLObject = extern struct {
 
 const IID_IDMLDevice_Value = Guid.initString("6dbd6437-96fd-423f-a98c-ae5e7c2a573f");
 pub const IID_IDMLDevice = &IID_IDMLDevice_Value;
-pub const IDMLDevice = extern struct {
+pub const IDMLDevice = extern union {
     pub const VTable = extern struct {
         base: IDMLObject.VTable,
         CheckFeatureSupport: *const fn(
@@ -1928,6 +1929,7 @@ pub const IDMLDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDMLObject: IDMLObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1976,7 +1978,7 @@ pub const IDMLDevice = extern struct {
 
 const IID_IDMLDeviceChild_Value = Guid.initString("27e83142-8165-49e3-974e-2fd66e4cb69d");
 pub const IID_IDMLDeviceChild = &IID_IDMLDeviceChild_Value;
-pub const IDMLDeviceChild = extern struct {
+pub const IDMLDeviceChild = extern union {
     pub const VTable = extern struct {
         base: IDMLObject.VTable,
         GetDevice: *const fn(
@@ -1986,6 +1988,7 @@ pub const IDMLDeviceChild = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDMLObject: IDMLObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1998,11 +2001,12 @@ pub const IDMLDeviceChild = extern struct {
 
 const IID_IDMLPageable_Value = Guid.initString("b1ab0825-4542-4a4b-8617-6dde6e8f6201");
 pub const IID_IDMLPageable = &IID_IDMLPageable_Value;
-pub const IDMLPageable = extern struct {
+pub const IDMLPageable = extern union {
     pub const VTable = extern struct {
         base: IDMLDeviceChild.VTable,
     };
     vtable: *const VTable,
+    IDMLDeviceChild: IDMLDeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDeviceChild.MethodMixin(T);
     };}
@@ -2011,11 +2015,12 @@ pub const IDMLPageable = extern struct {
 
 const IID_IDMLOperator_Value = Guid.initString("26caae7a-3081-4633-9581-226fbe57695d");
 pub const IID_IDMLOperator = &IID_IDMLOperator_Value;
-pub const IDMLOperator = extern struct {
+pub const IDMLOperator = extern union {
     pub const VTable = extern struct {
         base: IDMLDeviceChild.VTable,
     };
     vtable: *const VTable,
+    IDMLDeviceChild: IDMLDeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDeviceChild.MethodMixin(T);
     };}
@@ -2030,7 +2035,7 @@ pub const DML_BINDING_PROPERTIES = extern struct {
 
 const IID_IDMLDispatchable_Value = Guid.initString("dcb821a8-1039-441e-9f1c-b1759c2f3cec");
 pub const IID_IDMLDispatchable = &IID_IDMLDispatchable_Value;
-pub const IDMLDispatchable = extern struct {
+pub const IDMLDispatchable = extern union {
     pub const VTable = extern struct {
         base: IDMLPageable.VTable,
         GetBindingProperties: *const fn(
@@ -2038,6 +2043,7 @@ pub const IDMLDispatchable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) DML_BINDING_PROPERTIES,
     };
     vtable: *const VTable,
+    IDMLPageable: IDMLPageable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLPageable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2050,11 +2056,12 @@ pub const IDMLDispatchable = extern struct {
 
 const IID_IDMLCompiledOperator_Value = Guid.initString("6b15e56a-bf5c-4902-92d8-da3a650afea4");
 pub const IID_IDMLCompiledOperator = &IID_IDMLCompiledOperator_Value;
-pub const IDMLCompiledOperator = extern struct {
+pub const IDMLCompiledOperator = extern union {
     pub const VTable = extern struct {
         base: IDMLDispatchable.VTable,
     };
     vtable: *const VTable,
+    IDMLDispatchable: IDMLDispatchable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDispatchable.MethodMixin(T);
     };}
@@ -2063,7 +2070,7 @@ pub const IDMLCompiledOperator = extern struct {
 
 const IID_IDMLOperatorInitializer_Value = Guid.initString("427c1113-435c-469c-8676-4d5dd072f813");
 pub const IID_IDMLOperatorInitializer = &IID_IDMLOperatorInitializer_Value;
-pub const IDMLOperatorInitializer = extern struct {
+pub const IDMLOperatorInitializer = extern union {
     pub const VTable = extern struct {
         base: IDMLDispatchable.VTable,
         Reset: *const fn(
@@ -2073,6 +2080,7 @@ pub const IDMLOperatorInitializer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDMLDispatchable: IDMLDispatchable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDispatchable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2110,7 +2118,7 @@ pub const DML_BUFFER_ARRAY_BINDING = extern struct {
 
 const IID_IDMLBindingTable_Value = Guid.initString("29c687dc-de74-4e3b-ab00-1168f2fc3cfc");
 pub const IID_IDMLBindingTable = &IID_IDMLBindingTable_Value;
-pub const IDMLBindingTable = extern struct {
+pub const IDMLBindingTable = extern union {
     pub const VTable = extern struct {
         base: IDMLDeviceChild.VTable,
         BindInputs: *const fn(
@@ -2137,6 +2145,7 @@ pub const IDMLBindingTable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDMLDeviceChild: IDMLDeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2165,7 +2174,7 @@ pub const IDMLBindingTable = extern struct {
 
 const IID_IDMLCommandRecorder_Value = Guid.initString("e6857a76-2e3e-4fdd-bff4-5d2ba10fb453");
 pub const IID_IDMLCommandRecorder = &IID_IDMLCommandRecorder_Value;
-pub const IDMLCommandRecorder = extern struct {
+pub const IDMLCommandRecorder = extern union {
     pub const VTable = extern struct {
         base: IDMLDeviceChild.VTable,
         RecordDispatch: *const fn(
@@ -2176,6 +2185,7 @@ pub const IDMLCommandRecorder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IDMLDeviceChild: IDMLDeviceChild,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDeviceChild.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2188,7 +2198,7 @@ pub const IDMLCommandRecorder = extern struct {
 
 const IID_IDMLDebugDevice_Value = Guid.initString("7d6f3ac9-394a-4ac3-92a7-390cc57a8217");
 pub const IID_IDMLDebugDevice = &IID_IDMLDebugDevice_Value;
-pub const IDMLDebugDevice = extern struct {
+pub const IDMLDebugDevice = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetMuteDebugOutput: *const fn(
@@ -2197,6 +2207,7 @@ pub const IDMLDebugDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2277,7 +2288,7 @@ pub const DML_GRAPH_DESC = extern struct {
 
 const IID_IDMLDevice1_Value = Guid.initString("a0884f9a-d2be-4355-aa5d-5901281ad1d2");
 pub const IID_IDMLDevice1 = &IID_IDMLDevice1_Value;
-pub const IDMLDevice1 = extern struct {
+pub const IDMLDevice1 = extern union {
     pub const VTable = extern struct {
         base: IDMLDevice.VTable,
         CompileGraph: *const fn(
@@ -2289,6 +2300,7 @@ pub const IDMLDevice1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDMLDevice: IDMLDevice,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDMLDevice.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

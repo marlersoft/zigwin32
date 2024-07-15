@@ -130,7 +130,7 @@ pub const PF_UpdateService = *const fn(
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISceSvcAttachmentPersistInfo_Value = Guid.initString("6d90e0d0-200d-11d1-affb-00c04fb984f9");
 pub const IID_ISceSvcAttachmentPersistInfo = &IID_ISceSvcAttachmentPersistInfo_Value;
-pub const ISceSvcAttachmentPersistInfo = extern struct {
+pub const ISceSvcAttachmentPersistInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Save: *const fn(
@@ -150,6 +150,7 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -171,7 +172,7 @@ pub const ISceSvcAttachmentPersistInfo = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISceSvcAttachmentData_Value = Guid.initString("17c35fde-200d-11d1-affb-00c04fb984f9");
 pub const IID_ISceSvcAttachmentData = &IID_ISceSvcAttachmentData_Value;
-pub const ISceSvcAttachmentData = extern struct {
+pub const ISceSvcAttachmentData = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetData: *const fn(
@@ -198,6 +199,7 @@ pub const ISceSvcAttachmentData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

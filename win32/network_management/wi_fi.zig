@@ -3996,7 +3996,7 @@ pub const DOT11_ADHOC_CONNECT_FAIL_OTHER = DOT11_ADHOC_CONNECT_FAIL_REASON.OTHER
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocManager_Value = Guid.initString("8f10cc26-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocManager = &IID_IDot11AdHocManager_Value;
-pub const IDot11AdHocManager = extern struct {
+pub const IDot11AdHocManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateNetwork: *const fn(
@@ -4031,6 +4031,7 @@ pub const IDot11AdHocManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4060,7 +4061,7 @@ pub const IDot11AdHocManager = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocManagerNotificationSink_Value = Guid.initString("8f10cc27-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocManagerNotificationSink = &IID_IDot11AdHocManagerNotificationSink_Value;
-pub const IDot11AdHocManagerNotificationSink = extern struct {
+pub const IDot11AdHocManagerNotificationSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnNetworkAdd: *const fn(
@@ -4081,6 +4082,7 @@ pub const IDot11AdHocManagerNotificationSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4106,7 +4108,7 @@ pub const IDot11AdHocManagerNotificationSink = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumDot11AdHocNetworks_Value = Guid.initString("8f10cc28-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocNetworks = &IID_IEnumDot11AdHocNetworks_Value;
-pub const IEnumDot11AdHocNetworks = extern struct {
+pub const IEnumDot11AdHocNetworks = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -4128,6 +4130,7 @@ pub const IEnumDot11AdHocNetworks = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4153,7 +4156,7 @@ pub const IEnumDot11AdHocNetworks = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocNetwork_Value = Guid.initString("8f10cc29-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocNetwork = &IID_IDot11AdHocNetwork_Value;
-pub const IDot11AdHocNetwork = extern struct {
+pub const IDot11AdHocNetwork = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStatus: *const fn(
@@ -4208,6 +4211,7 @@ pub const IDot11AdHocNetwork = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4265,7 +4269,7 @@ pub const IDot11AdHocNetwork = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocNetworkNotificationSink_Value = Guid.initString("8f10cc2a-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocNetworkNotificationSink = &IID_IDot11AdHocNetworkNotificationSink_Value;
-pub const IDot11AdHocNetworkNotificationSink = extern struct {
+pub const IDot11AdHocNetworkNotificationSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStatusChange: *const fn(
@@ -4278,6 +4282,7 @@ pub const IDot11AdHocNetworkNotificationSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4295,7 +4300,7 @@ pub const IDot11AdHocNetworkNotificationSink = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocInterface_Value = Guid.initString("8f10cc2b-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocInterface = &IID_IDot11AdHocInterface_Value;
-pub const IDot11AdHocInterface = extern struct {
+pub const IDot11AdHocInterface = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDeviceSignature: *const fn(
@@ -4337,6 +4342,7 @@ pub const IDot11AdHocInterface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4382,7 +4388,7 @@ pub const IDot11AdHocInterface = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumDot11AdHocInterfaces_Value = Guid.initString("8f10cc2c-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocInterfaces = &IID_IEnumDot11AdHocInterfaces_Value;
-pub const IEnumDot11AdHocInterfaces = extern struct {
+pub const IEnumDot11AdHocInterfaces = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -4404,6 +4410,7 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4429,7 +4436,7 @@ pub const IEnumDot11AdHocInterfaces = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumDot11AdHocSecuritySettings_Value = Guid.initString("8f10cc2d-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IEnumDot11AdHocSecuritySettings = &IID_IEnumDot11AdHocSecuritySettings_Value;
-pub const IEnumDot11AdHocSecuritySettings = extern struct {
+pub const IEnumDot11AdHocSecuritySettings = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -4451,6 +4458,7 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4476,7 +4484,7 @@ pub const IEnumDot11AdHocSecuritySettings = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocSecuritySettings_Value = Guid.initString("8f10cc2e-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocSecuritySettings = &IID_IDot11AdHocSecuritySettings_Value;
-pub const IDot11AdHocSecuritySettings = extern struct {
+pub const IDot11AdHocSecuritySettings = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDot11AuthAlgorithm: *const fn(
@@ -4489,6 +4497,7 @@ pub const IDot11AdHocSecuritySettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4506,7 +4515,7 @@ pub const IDot11AdHocSecuritySettings = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IDot11AdHocInterfaceNotificationSink_Value = Guid.initString("8f10cc2f-cf0d-42a0-acbe-e2de7007384d");
 pub const IID_IDot11AdHocInterfaceNotificationSink = &IID_IDot11AdHocInterfaceNotificationSink_Value;
-pub const IDot11AdHocInterfaceNotificationSink = extern struct {
+pub const IDot11AdHocInterfaceNotificationSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnConnectionStatusChange: *const fn(
@@ -4515,6 +4524,7 @@ pub const IDot11AdHocInterfaceNotificationSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -292,7 +292,7 @@ pub const D2D1_FILL_MODE_FORCE_DWORD = D2D1_FILL_MODE.FORCE_DWORD;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1SimplifiedGeometrySink_Value = Guid.initString("2cd9069e-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1SimplifiedGeometrySink = &IID_ID2D1SimplifiedGeometrySink_Value;
-pub const ID2D1SimplifiedGeometrySink = extern struct {
+pub const ID2D1SimplifiedGeometrySink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetFillMode: *const fn(
@@ -327,6 +327,7 @@ pub const ID2D1SimplifiedGeometrySink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

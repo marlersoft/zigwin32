@@ -117,7 +117,7 @@ pub const COMPOSITION_TARGET_STATS = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionAnimation_Value = Guid.initString("cbfd91d9-51b2-45e4-b3de-d19ccfb863c5");
 pub const IID_IDCompositionAnimation = &IID_IDCompositionAnimation_Value;
-pub const IDCompositionAnimation = extern struct {
+pub const IDCompositionAnimation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Reset: *const fn(
@@ -155,6 +155,7 @@ pub const IDCompositionAnimation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -188,7 +189,7 @@ pub const IDCompositionAnimation = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionDevice_Value = Guid.initString("c37ea93a-e7aa-450d-b16f-9746cb0407f3");
 pub const IID_IDCompositionDevice = &IID_IDCompositionDevice_Value;
-pub const IDCompositionDevice = extern struct {
+pub const IDCompositionDevice = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Commit: *const fn(
@@ -303,6 +304,7 @@ pub const IDCompositionDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -408,7 +410,7 @@ pub const IDCompositionDevice = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionTarget_Value = Guid.initString("eacdd04c-117e-4e17-88f4-d1b12b0e3d89");
 pub const IID_IDCompositionTarget = &IID_IDCompositionTarget_Value;
-pub const IDCompositionTarget = extern struct {
+pub const IDCompositionTarget = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetRoot: *const fn(
@@ -417,6 +419,7 @@ pub const IDCompositionTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -430,7 +433,7 @@ pub const IDCompositionTarget = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionVisual_Value = Guid.initString("4d93059d-097b-4651-9a60-f0f25116e2f3");
 pub const IID_IDCompositionVisual = &IID_IDCompositionVisual_Value;
-pub const IDCompositionVisual = extern struct {
+pub const IDCompositionVisual = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetOffsetX: *const fn(
@@ -504,6 +507,7 @@ pub const IDCompositionVisual = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -581,11 +585,12 @@ pub const IDCompositionVisual = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionEffect_Value = Guid.initString("ec81b08f-bfcb-4e8d-b193-a915587999e8");
 pub const IID_IDCompositionEffect = &IID_IDCompositionEffect_Value;
-pub const IDCompositionEffect = extern struct {
+pub const IDCompositionEffect = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
@@ -595,11 +600,12 @@ pub const IDCompositionEffect = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionTransform3D_Value = Guid.initString("71185722-246b-41f2-aad1-0443f7f4bfc2");
 pub const IID_IDCompositionTransform3D = &IID_IDCompositionTransform3D_Value;
-pub const IDCompositionTransform3D = extern struct {
+pub const IDCompositionTransform3D = extern union {
     pub const VTable = extern struct {
         base: IDCompositionEffect.VTable,
     };
     vtable: *const VTable,
+    IDCompositionEffect: IDCompositionEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionEffect.MethodMixin(T);
     };}
@@ -609,11 +615,12 @@ pub const IDCompositionTransform3D = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionTransform_Value = Guid.initString("fd55faa7-37e0-4c20-95d2-9be45bc33f55");
 pub const IID_IDCompositionTransform = &IID_IDCompositionTransform_Value;
-pub const IDCompositionTransform = extern struct {
+pub const IDCompositionTransform = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform3D.VTable,
     };
     vtable: *const VTable,
+    IDCompositionTransform3D: IDCompositionTransform3D,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform3D.MethodMixin(T);
     };}
@@ -623,7 +630,7 @@ pub const IDCompositionTransform = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionTranslateTransform_Value = Guid.initString("06791122-c6f0-417d-8323-269e987f5954");
 pub const IID_IDCompositionTranslateTransform = &IID_IDCompositionTranslateTransform_Value;
-pub const IDCompositionTranslateTransform = extern struct {
+pub const IDCompositionTranslateTransform = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
         SetOffsetX: *const fn(
@@ -644,6 +651,7 @@ pub const IDCompositionTranslateTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionTransform: IDCompositionTransform,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -669,7 +677,7 @@ pub const IDCompositionTranslateTransform = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionScaleTransform_Value = Guid.initString("71fde914-40ef-45ef-bd51-68b037c339f9");
 pub const IID_IDCompositionScaleTransform = &IID_IDCompositionScaleTransform_Value;
-pub const IDCompositionScaleTransform = extern struct {
+pub const IDCompositionScaleTransform = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
         SetScaleX: *const fn(
@@ -706,6 +714,7 @@ pub const IDCompositionScaleTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionTransform: IDCompositionTransform,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -747,7 +756,7 @@ pub const IDCompositionScaleTransform = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionRotateTransform_Value = Guid.initString("641ed83c-ae96-46c5-90dc-32774cc5c6d5");
 pub const IID_IDCompositionRotateTransform = &IID_IDCompositionRotateTransform_Value;
-pub const IDCompositionRotateTransform = extern struct {
+pub const IDCompositionRotateTransform = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
         SetAngle: *const fn(
@@ -776,6 +785,7 @@ pub const IDCompositionRotateTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionTransform: IDCompositionTransform,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -809,7 +819,7 @@ pub const IDCompositionRotateTransform = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionSkewTransform_Value = Guid.initString("e57aa735-dcdb-4c72-9c61-0591f58889ee");
 pub const IID_IDCompositionSkewTransform = &IID_IDCompositionSkewTransform_Value;
-pub const IDCompositionSkewTransform = extern struct {
+pub const IDCompositionSkewTransform = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
         SetAngleX: *const fn(
@@ -846,6 +856,7 @@ pub const IDCompositionSkewTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionTransform: IDCompositionTransform,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -887,7 +898,7 @@ pub const IDCompositionSkewTransform = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionMatrixTransform_Value = Guid.initString("16cdff07-c503-419c-83f2-0965c7af1fa6");
 pub const IID_IDCompositionMatrixTransform = &IID_IDCompositionMatrixTransform_Value;
-pub const IDCompositionMatrixTransform = extern struct {
+pub const IDCompositionMatrixTransform = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform.VTable,
         SetMatrix: *const fn(
@@ -908,6 +919,7 @@ pub const IDCompositionMatrixTransform = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionTransform: IDCompositionTransform,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -929,7 +941,7 @@ pub const IDCompositionMatrixTransform = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionEffectGroup_Value = Guid.initString("a7929a74-e6b2-4bd6-8b95-4040119ca34d");
 pub const IID_IDCompositionEffectGroup = &IID_IDCompositionEffectGroup_Value;
-pub const IDCompositionEffectGroup = extern struct {
+pub const IDCompositionEffectGroup = extern union {
     pub const VTable = extern struct {
         base: IDCompositionEffect.VTable,
         SetOpacity: *const fn(
@@ -946,6 +958,7 @@ pub const IDCompositionEffectGroup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionEffect: IDCompositionEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -967,7 +980,7 @@ pub const IDCompositionEffectGroup = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionTranslateTransform3D_Value = Guid.initString("91636d4b-9ba1-4532-aaf7-e3344994d788");
 pub const IID_IDCompositionTranslateTransform3D = &IID_IDCompositionTranslateTransform3D_Value;
-pub const IDCompositionTranslateTransform3D = extern struct {
+pub const IDCompositionTranslateTransform3D = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform3D.VTable,
         SetOffsetX: *const fn(
@@ -996,6 +1009,7 @@ pub const IDCompositionTranslateTransform3D = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionTransform3D: IDCompositionTransform3D,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform3D.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1029,7 +1043,7 @@ pub const IDCompositionTranslateTransform3D = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionScaleTransform3D_Value = Guid.initString("2a9e9ead-364b-4b15-a7c4-a1997f78b389");
 pub const IID_IDCompositionScaleTransform3D = &IID_IDCompositionScaleTransform3D_Value;
-pub const IDCompositionScaleTransform3D = extern struct {
+pub const IDCompositionScaleTransform3D = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform3D.VTable,
         SetScaleX: *const fn(
@@ -1082,6 +1096,7 @@ pub const IDCompositionScaleTransform3D = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionTransform3D: IDCompositionTransform3D,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform3D.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1139,7 +1154,7 @@ pub const IDCompositionScaleTransform3D = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionRotateTransform3D_Value = Guid.initString("d8f5b23f-d429-4a91-b55a-d2f45fd75b18");
 pub const IID_IDCompositionRotateTransform3D = &IID_IDCompositionRotateTransform3D_Value;
-pub const IDCompositionRotateTransform3D = extern struct {
+pub const IDCompositionRotateTransform3D = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform3D.VTable,
         SetAngle: *const fn(
@@ -1200,6 +1215,7 @@ pub const IDCompositionRotateTransform3D = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionTransform3D: IDCompositionTransform3D,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform3D.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1265,7 +1281,7 @@ pub const IDCompositionRotateTransform3D = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionMatrixTransform3D_Value = Guid.initString("4b3363f0-643b-41b7-b6e0-ccf22d34467c");
 pub const IID_IDCompositionMatrixTransform3D = &IID_IDCompositionMatrixTransform3D_Value;
-pub const IDCompositionMatrixTransform3D = extern struct {
+pub const IDCompositionMatrixTransform3D = extern union {
     pub const VTable = extern struct {
         base: IDCompositionTransform3D.VTable,
         SetMatrix: *const fn(
@@ -1286,6 +1302,7 @@ pub const IDCompositionMatrixTransform3D = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionTransform3D: IDCompositionTransform3D,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionTransform3D.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1307,11 +1324,12 @@ pub const IDCompositionMatrixTransform3D = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionClip_Value = Guid.initString("64ac3703-9d3f-45ec-a109-7cac0e7a13a7");
 pub const IID_IDCompositionClip = &IID_IDCompositionClip_Value;
-pub const IDCompositionClip = extern struct {
+pub const IDCompositionClip = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
@@ -1321,7 +1339,7 @@ pub const IDCompositionClip = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionRectangleClip_Value = Guid.initString("9842ad7d-d9cf-4908-aed7-48b51da5e7c2");
 pub const IID_IDCompositionRectangleClip = &IID_IDCompositionRectangleClip_Value;
-pub const IDCompositionRectangleClip = extern struct {
+pub const IDCompositionRectangleClip = extern union {
     pub const VTable = extern struct {
         base: IDCompositionClip.VTable,
         SetLeft: *const fn(
@@ -1422,6 +1440,7 @@ pub const IDCompositionRectangleClip = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionClip: IDCompositionClip,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionClip.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1527,7 +1546,7 @@ pub const IDCompositionRectangleClip = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionSurface_Value = Guid.initString("bb8a4953-2c99-4f5a-96f5-4819027fa3ac");
 pub const IID_IDCompositionSurface = &IID_IDCompositionSurface_Value;
-pub const IDCompositionSurface = extern struct {
+pub const IDCompositionSurface = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         BeginDraw: *const fn(
@@ -1555,6 +1574,7 @@ pub const IDCompositionSurface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1584,7 +1604,7 @@ pub const IDCompositionSurface = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionVirtualSurface_Value = Guid.initString("ae471c51-5f53-4a24-8d3e-d0c39c30b3f0");
 pub const IID_IDCompositionVirtualSurface = &IID_IDCompositionVirtualSurface_Value;
-pub const IDCompositionVirtualSurface = extern struct {
+pub const IDCompositionVirtualSurface = extern union {
     pub const VTable = extern struct {
         base: IDCompositionSurface.VTable,
         Resize: *const fn(
@@ -1599,6 +1619,7 @@ pub const IDCompositionVirtualSurface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionSurface: IDCompositionSurface,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionSurface.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1616,7 +1637,7 @@ pub const IDCompositionVirtualSurface = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDCompositionDevice2_Value = Guid.initString("75f6468d-1b8e-447c-9bc6-75fea80b5b25");
 pub const IID_IDCompositionDevice2 = &IID_IDCompositionDevice2_Value;
-pub const IDCompositionDevice2 = extern struct {
+pub const IDCompositionDevice2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Commit: *const fn(
@@ -1716,6 +1737,7 @@ pub const IDCompositionDevice2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1809,7 +1831,7 @@ pub const IDCompositionDevice2 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDCompositionDesktopDevice_Value = Guid.initString("5f4633fe-1e08-4cb8-8c75-ce24333f5602");
 pub const IID_IDCompositionDesktopDevice = &IID_IDCompositionDesktopDevice_Value;
-pub const IDCompositionDesktopDevice = extern struct {
+pub const IDCompositionDesktopDevice = extern union {
     pub const VTable = extern struct {
         base: IDCompositionDevice2.VTable,
         CreateTargetForHwnd: *const fn(
@@ -1830,6 +1852,7 @@ pub const IDCompositionDesktopDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionDevice2: IDCompositionDevice2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionDevice2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1850,7 +1873,7 @@ pub const IDCompositionDesktopDevice = extern struct {
 
 const IID_IDCompositionDeviceDebug_Value = Guid.initString("a1a3c64a-224f-4a81-9773-4f03a89d3c6c");
 pub const IID_IDCompositionDeviceDebug = &IID_IDCompositionDeviceDebug_Value;
-pub const IDCompositionDeviceDebug = extern struct {
+pub const IDCompositionDeviceDebug = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         EnableDebugCounters: *const fn(
@@ -1861,6 +1884,7 @@ pub const IDCompositionDeviceDebug = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1878,7 +1902,7 @@ pub const IDCompositionDeviceDebug = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDCompositionSurfaceFactory_Value = Guid.initString("e334bc12-3937-4e02-85eb-fcf4eb30d2c8");
 pub const IID_IDCompositionSurfaceFactory = &IID_IDCompositionSurfaceFactory_Value;
-pub const IDCompositionSurfaceFactory = extern struct {
+pub const IDCompositionSurfaceFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateSurface: *const fn(
@@ -1899,6 +1923,7 @@ pub const IDCompositionSurfaceFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1916,7 +1941,7 @@ pub const IDCompositionSurfaceFactory = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDCompositionVisual2_Value = Guid.initString("e8de1639-4331-4b26-bc5f-6a321d347a85");
 pub const IID_IDCompositionVisual2 = &IID_IDCompositionVisual2_Value;
-pub const IDCompositionVisual2 = extern struct {
+pub const IDCompositionVisual2 = extern union {
     pub const VTable = extern struct {
         base: IDCompositionVisual.VTable,
         SetOpacityMode: *const fn(
@@ -1929,6 +1954,7 @@ pub const IDCompositionVisual2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionVisual: IDCompositionVisual,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionVisual.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1946,7 +1972,7 @@ pub const IDCompositionVisual2 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDCompositionVisualDebug_Value = Guid.initString("fed2b808-5eb4-43a0-aea3-35f65280f91b");
 pub const IID_IDCompositionVisualDebug = &IID_IDCompositionVisualDebug_Value;
-pub const IDCompositionVisualDebug = extern struct {
+pub const IDCompositionVisualDebug = extern union {
     pub const VTable = extern struct {
         base: IDCompositionVisual2.VTable,
         EnableHeatMap: *const fn(
@@ -1964,6 +1990,7 @@ pub const IDCompositionVisualDebug = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionVisual2: IDCompositionVisual2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionVisual2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1989,7 +2016,7 @@ pub const IDCompositionVisualDebug = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDCompositionVisual3_Value = Guid.initString("2775f462-b6c1-4015-b0be-b3e7d6a4976d");
 pub const IID_IDCompositionVisual3 = &IID_IDCompositionVisual3_Value;
-pub const IDCompositionVisual3 = extern struct {
+pub const IDCompositionVisual3 = extern union {
     pub const VTable = extern struct {
         base: IDCompositionVisualDebug.VTable,
         SetDepthMode: *const fn(
@@ -2026,6 +2053,7 @@ pub const IDCompositionVisual3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionVisualDebug: IDCompositionVisualDebug,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionVisualDebug.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2067,7 +2095,7 @@ pub const IDCompositionVisual3 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDCompositionDevice3_Value = Guid.initString("0987cb06-f916-48bf-8d35-ce7641781bd9");
 pub const IID_IDCompositionDevice3 = &IID_IDCompositionDevice3_Value;
-pub const IDCompositionDevice3 = extern struct {
+pub const IDCompositionDevice3 = extern union {
     pub const VTable = extern struct {
         base: IDCompositionDevice2.VTable,
         CreateGaussianBlurEffect: *const fn(
@@ -2124,6 +2152,7 @@ pub const IDCompositionDevice3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionDevice2: IDCompositionDevice2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionDevice2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2185,7 +2214,7 @@ pub const IDCompositionDevice3 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDCompositionFilterEffect_Value = Guid.initString("30c421d5-8cb2-4e9f-b133-37be270d4ac2");
 pub const IID_IDCompositionFilterEffect = &IID_IDCompositionFilterEffect_Value;
-pub const IDCompositionFilterEffect = extern struct {
+pub const IDCompositionFilterEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionEffect.VTable,
         SetInput: *const fn(
@@ -2196,6 +2225,7 @@ pub const IDCompositionFilterEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionEffect: IDCompositionEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2208,7 +2238,7 @@ pub const IDCompositionFilterEffect = extern struct {
 
 const IID_IDCompositionGaussianBlurEffect_Value = Guid.initString("45d4d0b7-1bd4-454e-8894-2bfa68443033");
 pub const IID_IDCompositionGaussianBlurEffect = &IID_IDCompositionGaussianBlurEffect_Value;
-pub const IDCompositionGaussianBlurEffect = extern struct {
+pub const IDCompositionGaussianBlurEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetStandardDeviation: *const fn(
@@ -2225,6 +2255,7 @@ pub const IDCompositionGaussianBlurEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2245,7 +2276,7 @@ pub const IDCompositionGaussianBlurEffect = extern struct {
 
 const IID_IDCompositionBrightnessEffect_Value = Guid.initString("6027496e-cb3a-49ab-934f-d798da4f7da6");
 pub const IID_IDCompositionBrightnessEffect = &IID_IDCompositionBrightnessEffect_Value;
-pub const IDCompositionBrightnessEffect = extern struct {
+pub const IDCompositionBrightnessEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetWhitePoint: *const fn(
@@ -2290,6 +2321,7 @@ pub const IDCompositionBrightnessEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2338,7 +2370,7 @@ pub const IDCompositionBrightnessEffect = extern struct {
 
 const IID_IDCompositionColorMatrixEffect_Value = Guid.initString("c1170a22-3ce2-4966-90d4-55408bfc84c4");
 pub const IID_IDCompositionColorMatrixEffect = &IID_IDCompositionColorMatrixEffect_Value;
-pub const IDCompositionColorMatrixEffect = extern struct {
+pub const IDCompositionColorMatrixEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetMatrix: *const fn(
@@ -2367,6 +2399,7 @@ pub const IDCompositionColorMatrixEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2395,7 +2428,7 @@ pub const IDCompositionColorMatrixEffect = extern struct {
 
 const IID_IDCompositionShadowEffect_Value = Guid.initString("4ad18ac0-cfd2-4c2f-bb62-96e54fdb6879");
 pub const IID_IDCompositionShadowEffect = &IID_IDCompositionShadowEffect_Value;
-pub const IDCompositionShadowEffect = extern struct {
+pub const IDCompositionShadowEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetStandardDeviation: *const fn(
@@ -2444,6 +2477,7 @@ pub const IDCompositionShadowEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2496,7 +2530,7 @@ pub const IDCompositionShadowEffect = extern struct {
 
 const IID_IDCompositionHueRotationEffect_Value = Guid.initString("6db9f920-0770-4781-b0c6-381912f9d167");
 pub const IID_IDCompositionHueRotationEffect = &IID_IDCompositionHueRotationEffect_Value;
-pub const IDCompositionHueRotationEffect = extern struct {
+pub const IDCompositionHueRotationEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetAngle: *const fn(
@@ -2509,6 +2543,7 @@ pub const IDCompositionHueRotationEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2525,7 +2560,7 @@ pub const IDCompositionHueRotationEffect = extern struct {
 
 const IID_IDCompositionSaturationEffect_Value = Guid.initString("a08debda-3258-4fa4-9f16-9174d3fe93b1");
 pub const IID_IDCompositionSaturationEffect = &IID_IDCompositionSaturationEffect_Value;
-pub const IDCompositionSaturationEffect = extern struct {
+pub const IDCompositionSaturationEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetSaturation: *const fn(
@@ -2538,6 +2573,7 @@ pub const IDCompositionSaturationEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2554,7 +2590,7 @@ pub const IDCompositionSaturationEffect = extern struct {
 
 const IID_IDCompositionTurbulenceEffect_Value = Guid.initString("a6a55bda-c09c-49f3-9193-a41922c89715");
 pub const IID_IDCompositionTurbulenceEffect = &IID_IDCompositionTurbulenceEffect_Value;
-pub const IDCompositionTurbulenceEffect = extern struct {
+pub const IDCompositionTurbulenceEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetOffset: *const fn(
@@ -2587,6 +2623,7 @@ pub const IDCompositionTurbulenceEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2623,7 +2660,7 @@ pub const IDCompositionTurbulenceEffect = extern struct {
 
 const IID_IDCompositionLinearTransferEffect_Value = Guid.initString("4305ee5b-c4a0-4c88-9385-67124e017683");
 pub const IID_IDCompositionLinearTransferEffect = &IID_IDCompositionLinearTransferEffect_Value;
-pub const IDCompositionLinearTransferEffect = extern struct {
+pub const IDCompositionLinearTransferEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetRedYIntercept: *const fn(
@@ -2712,6 +2749,7 @@ pub const IDCompositionLinearTransferEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2804,7 +2842,7 @@ pub const IDCompositionLinearTransferEffect = extern struct {
 
 const IID_IDCompositionTableTransferEffect_Value = Guid.initString("9b7e82e2-69c5-4eb4-a5f5-a7033f5132cd");
 pub const IID_IDCompositionTableTransferEffect = &IID_IDCompositionTableTransferEffect_Value;
-pub const IDCompositionTableTransferEffect = extern struct {
+pub const IDCompositionTableTransferEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetRedTable: *const fn(
@@ -2889,6 +2927,7 @@ pub const IDCompositionTableTransferEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2965,7 +3004,7 @@ pub const IDCompositionTableTransferEffect = extern struct {
 
 const IID_IDCompositionCompositeEffect_Value = Guid.initString("576616c0-a231-494d-a38d-00fd5ec4db46");
 pub const IID_IDCompositionCompositeEffect = &IID_IDCompositionCompositeEffect_Value;
-pub const IDCompositionCompositeEffect = extern struct {
+pub const IDCompositionCompositeEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetMode: *const fn(
@@ -2974,6 +3013,7 @@ pub const IDCompositionCompositeEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2986,7 +3026,7 @@ pub const IDCompositionCompositeEffect = extern struct {
 
 const IID_IDCompositionBlendEffect_Value = Guid.initString("33ecdc0a-578a-4a11-9c14-0cb90517f9c5");
 pub const IID_IDCompositionBlendEffect = &IID_IDCompositionBlendEffect_Value;
-pub const IDCompositionBlendEffect = extern struct {
+pub const IDCompositionBlendEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetMode: *const fn(
@@ -2995,6 +3035,7 @@ pub const IDCompositionBlendEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3007,7 +3048,7 @@ pub const IDCompositionBlendEffect = extern struct {
 
 const IID_IDCompositionArithmeticCompositeEffect_Value = Guid.initString("3b67dfa8-e3dd-4e61-b640-46c2f3d739dc");
 pub const IID_IDCompositionArithmeticCompositeEffect = &IID_IDCompositionArithmeticCompositeEffect_Value;
-pub const IDCompositionArithmeticCompositeEffect = extern struct {
+pub const IDCompositionArithmeticCompositeEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetCoefficients: *const fn(
@@ -3052,6 +3093,7 @@ pub const IDCompositionArithmeticCompositeEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3100,7 +3142,7 @@ pub const IDCompositionArithmeticCompositeEffect = extern struct {
 
 const IID_IDCompositionAffineTransform2DEffect_Value = Guid.initString("0b74b9e8-cdd6-492f-bbbc-5ed32157026d");
 pub const IID_IDCompositionAffineTransform2DEffect = &IID_IDCompositionAffineTransform2DEffect_Value;
-pub const IDCompositionAffineTransform2DEffect = extern struct {
+pub const IDCompositionAffineTransform2DEffect = extern union {
     pub const VTable = extern struct {
         base: IDCompositionFilterEffect.VTable,
         SetInterpolationMode: *const fn(
@@ -3137,6 +3179,7 @@ pub const IDCompositionAffineTransform2DEffect = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDCompositionFilterEffect: IDCompositionFilterEffect,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDCompositionFilterEffect.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3179,7 +3222,7 @@ pub const DCompositionInkTrailPoint = extern struct {
 
 const IID_IDCompositionDelegatedInkTrail_Value = Guid.initString("c2448e9b-547d-4057-8cf5-8144ede1c2da");
 pub const IID_IDCompositionDelegatedInkTrail = &IID_IDCompositionDelegatedInkTrail_Value;
-pub const IDCompositionDelegatedInkTrail = extern struct {
+pub const IDCompositionDelegatedInkTrail = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddTrailPoints: *const fn(
@@ -3206,6 +3249,7 @@ pub const IDCompositionDelegatedInkTrail = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3230,7 +3274,7 @@ pub const IDCompositionDelegatedInkTrail = extern struct {
 
 const IID_IDCompositionInkTrailDevice_Value = Guid.initString("df0c7cec-cdeb-4d4a-b91c-721bf22f4e6c");
 pub const IID_IDCompositionInkTrailDevice = &IID_IDCompositionInkTrailDevice_Value;
-pub const IDCompositionInkTrailDevice = extern struct {
+pub const IDCompositionInkTrailDevice = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateDelegatedInkTrail: *const fn(
@@ -3244,6 +3288,7 @@ pub const IDCompositionInkTrailDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

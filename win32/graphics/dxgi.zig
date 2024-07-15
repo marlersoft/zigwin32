@@ -202,7 +202,7 @@ pub const DXGI_SWAP_CHAIN_DESC = extern struct {
 
 const IID_IDXGIObject_Value = Guid.initString("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
 pub const IID_IDXGIObject = &IID_IDXGIObject_Value;
-pub const IDXGIObject = extern struct {
+pub const IDXGIObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetPrivateData: *const fn(
@@ -231,6 +231,7 @@ pub const IDXGIObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -255,7 +256,7 @@ pub const IDXGIObject = extern struct {
 
 const IID_IDXGIDeviceSubObject_Value = Guid.initString("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
 pub const IID_IDXGIDeviceSubObject = &IID_IDXGIDeviceSubObject_Value;
-pub const IDXGIDeviceSubObject = extern struct {
+pub const IDXGIDeviceSubObject = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
         GetDevice: *const fn(
@@ -265,6 +266,7 @@ pub const IDXGIDeviceSubObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIObject: IDXGIObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -277,7 +279,7 @@ pub const IDXGIDeviceSubObject = extern struct {
 
 const IID_IDXGIResource_Value = Guid.initString("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
 pub const IID_IDXGIResource = &IID_IDXGIResource_Value;
-pub const IDXGIResource = extern struct {
+pub const IDXGIResource = extern union {
     pub const VTable = extern struct {
         base: IDXGIDeviceSubObject.VTable,
         GetSharedHandle: *const fn(
@@ -298,6 +300,7 @@ pub const IDXGIResource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -322,7 +325,7 @@ pub const IDXGIResource = extern struct {
 
 const IID_IDXGIKeyedMutex_Value = Guid.initString("9d8e1289-d7b3-465f-8126-250e349af85d");
 pub const IID_IDXGIKeyedMutex = &IID_IDXGIKeyedMutex_Value;
-pub const IDXGIKeyedMutex = extern struct {
+pub const IDXGIKeyedMutex = extern union {
     pub const VTable = extern struct {
         base: IDXGIDeviceSubObject.VTable,
         AcquireSync: *const fn(
@@ -336,6 +339,7 @@ pub const IDXGIKeyedMutex = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -352,7 +356,7 @@ pub const IDXGIKeyedMutex = extern struct {
 
 const IID_IDXGISurface_Value = Guid.initString("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
 pub const IID_IDXGISurface = &IID_IDXGISurface_Value;
-pub const IDXGISurface = extern struct {
+pub const IDXGISurface = extern union {
     pub const VTable = extern struct {
         base: IDXGIDeviceSubObject.VTable,
         GetDesc: *const fn(
@@ -369,6 +373,7 @@ pub const IDXGISurface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -390,7 +395,7 @@ pub const IDXGISurface = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGISurface1_Value = Guid.initString("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
 pub const IID_IDXGISurface1 = &IID_IDXGISurface1_Value;
-pub const IDXGISurface1 = extern struct {
+pub const IDXGISurface1 = extern union {
     pub const VTable = extern struct {
         base: IDXGISurface.VTable,
         GetDC: *const fn(
@@ -404,6 +409,7 @@ pub const IDXGISurface1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGISurface: IDXGISurface,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGISurface.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -420,7 +426,7 @@ pub const IDXGISurface1 = extern struct {
 
 const IID_IDXGIAdapter_Value = Guid.initString("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
 pub const IID_IDXGIAdapter = &IID_IDXGIAdapter_Value;
-pub const IDXGIAdapter = extern struct {
+pub const IDXGIAdapter = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
         EnumOutputs: *const fn(
@@ -439,6 +445,7 @@ pub const IDXGIAdapter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIObject: IDXGIObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -459,7 +466,7 @@ pub const IDXGIAdapter = extern struct {
 
 const IID_IDXGIOutput_Value = Guid.initString("ae02eedb-c735-4690-8d52-5a8dc20213aa");
 pub const IID_IDXGIOutput = &IID_IDXGIOutput_Value;
-pub const IDXGIOutput = extern struct {
+pub const IDXGIOutput = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
         GetDesc: *const fn(
@@ -516,6 +523,7 @@ pub const IDXGIOutput = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIObject: IDXGIObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -572,7 +580,7 @@ pub const IDXGIOutput = extern struct {
 
 const IID_IDXGISwapChain_Value = Guid.initString("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
 pub const IID_IDXGISwapChain = &IID_IDXGISwapChain_Value;
-pub const IDXGISwapChain = extern struct {
+pub const IDXGISwapChain = extern union {
     pub const VTable = extern struct {
         base: IDXGIDeviceSubObject.VTable,
         Present: *const fn(
@@ -626,6 +634,7 @@ pub const IDXGISwapChain = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -674,7 +683,7 @@ pub const IDXGISwapChain = extern struct {
 
 const IID_IDXGIFactory_Value = Guid.initString("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
 pub const IID_IDXGIFactory = &IID_IDXGIFactory_Value;
-pub const IDXGIFactory = extern struct {
+pub const IDXGIFactory = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
         EnumAdapters: *const fn(
@@ -704,6 +713,7 @@ pub const IDXGIFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIObject: IDXGIObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -732,7 +742,7 @@ pub const IDXGIFactory = extern struct {
 
 const IID_IDXGIDevice_Value = Guid.initString("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
 pub const IID_IDXGIDevice = &IID_IDXGIDevice_Value;
-pub const IDXGIDevice = extern struct {
+pub const IDXGIDevice = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
         GetAdapter: *const fn(
@@ -763,6 +773,7 @@ pub const IDXGIDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIObject: IDXGIObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -848,7 +859,7 @@ pub const DXGI_DISPLAY_COLOR_SPACE = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGIFactory1_Value = Guid.initString("770aae78-f26f-4dba-a829-253c83d1b387");
 pub const IID_IDXGIFactory1 = &IID_IDXGIFactory1_Value;
-pub const IDXGIFactory1 = extern struct {
+pub const IDXGIFactory1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory.VTable,
         EnumAdapters1: *const fn(
@@ -861,6 +872,7 @@ pub const IDXGIFactory1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IDXGIFactory: IDXGIFactory,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -878,7 +890,7 @@ pub const IDXGIFactory1 = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGIAdapter1_Value = Guid.initString("29038f61-3839-4626-91fd-086879011a05");
 pub const IID_IDXGIAdapter1 = &IID_IDXGIAdapter1_Value;
-pub const IDXGIAdapter1 = extern struct {
+pub const IDXGIAdapter1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIAdapter.VTable,
         GetDesc1: *const fn(
@@ -887,6 +899,7 @@ pub const IDXGIAdapter1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIAdapter: IDXGIAdapter,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIAdapter.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -900,7 +913,7 @@ pub const IDXGIAdapter1 = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGIDevice1_Value = Guid.initString("77db970f-6276-48ba-ba28-070143b4392c");
 pub const IID_IDXGIDevice1 = &IID_IDXGIDevice1_Value;
-pub const IDXGIDevice1 = extern struct {
+pub const IDXGIDevice1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDevice.VTable,
         SetMaximumFrameLatency: *const fn(
@@ -913,6 +926,7 @@ pub const IDXGIDevice1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIDevice: IDXGIDevice,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIDevice.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -930,7 +944,7 @@ pub const IDXGIDevice1 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDisplayControl_Value = Guid.initString("ea9dbf1a-c88e-4486-854a-98aa0138f30c");
 pub const IID_IDXGIDisplayControl = &IID_IDXGIDisplayControl_Value;
-pub const IDXGIDisplayControl = extern struct {
+pub const IDXGIDisplayControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsStereoEnabled: *const fn(
@@ -942,6 +956,7 @@ pub const IDXGIDisplayControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1003,7 +1018,7 @@ pub const DXGI_OUTDUPL_FRAME_INFO = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIOutputDuplication_Value = Guid.initString("191cfac3-a341-470d-b26e-a864f428319c");
 pub const IID_IDXGIOutputDuplication = &IID_IDXGIOutputDuplication_Value;
-pub const IDXGIOutputDuplication = extern struct {
+pub const IDXGIOutputDuplication = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
         GetDesc: *const fn(
@@ -1050,6 +1065,7 @@ pub const IDXGIOutputDuplication = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIObject: IDXGIObject,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIObject.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1091,7 +1107,7 @@ pub const IDXGIOutputDuplication = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGISurface2_Value = Guid.initString("aba496dd-b617-4cb8-a866-bc44d7eb1fa2");
 pub const IID_IDXGISurface2 = &IID_IDXGISurface2_Value;
-pub const IDXGISurface2 = extern struct {
+pub const IDXGISurface2 = extern union {
     pub const VTable = extern struct {
         base: IDXGISurface1.VTable,
         GetResource: *const fn(
@@ -1102,6 +1118,7 @@ pub const IDXGISurface2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGISurface1: IDXGISurface1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGISurface1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1115,7 +1132,7 @@ pub const IDXGISurface2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIResource1_Value = Guid.initString("30961379-4609-4a41-998e-54fe567ee0c1");
 pub const IID_IDXGIResource1 = &IID_IDXGIResource1_Value;
-pub const IDXGIResource1 = extern struct {
+pub const IDXGIResource1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIResource.VTable,
         CreateSubresourceSurface: *const fn(
@@ -1132,6 +1149,7 @@ pub const IDXGIResource1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIResource: IDXGIResource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIResource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1158,7 +1176,7 @@ pub const DXGI_OFFER_RESOURCE_PRIORITY_HIGH = DXGI_OFFER_RESOURCE_PRIORITY.HIGH;
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDevice2_Value = Guid.initString("05008617-fbfd-4051-a790-144884b4f6a9");
 pub const IID_IDXGIDevice2 = &IID_IDXGIDevice2_Value;
-pub const IDXGIDevice2 = extern struct {
+pub const IDXGIDevice2 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDevice1.VTable,
         OfferResources: *const fn(
@@ -1179,6 +1197,7 @@ pub const IDXGIDevice2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIDevice1: IDXGIDevice1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIDevice1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1247,7 +1266,7 @@ pub const DXGI_PRESENT_PARAMETERS = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGISwapChain1_Value = Guid.initString("790a45f7-0d42-4876-983a-0a55cfe6f4aa");
 pub const IID_IDXGISwapChain1 = &IID_IDXGISwapChain1_Value;
-pub const IDXGISwapChain1 = extern struct {
+pub const IDXGISwapChain1 = extern union {
     pub const VTable = extern struct {
         base: IDXGISwapChain.VTable,
         GetDesc1: *const fn(
@@ -1298,6 +1317,7 @@ pub const IDXGISwapChain1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGISwapChain: IDXGISwapChain,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGISwapChain.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1351,7 +1371,7 @@ pub const IDXGISwapChain1 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIFactory2_Value = Guid.initString("50c83a1c-e072-4c48-87b0-3630fa36a6d0");
 pub const IID_IDXGIFactory2 = &IID_IDXGIFactory2_Value;
-pub const IDXGIFactory2 = extern struct {
+pub const IDXGIFactory2 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory1.VTable,
         IsWindowedStereoEnabled: *const fn(
@@ -1418,6 +1438,7 @@ pub const IDXGIFactory2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIFactory1: IDXGIFactory1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIFactory1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1512,7 +1533,7 @@ pub const DXGI_ADAPTER_DESC2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIAdapter2_Value = Guid.initString("0aa1ae0a-fa0e-4b84-8644-e05ff8e5acb5");
 pub const IID_IDXGIAdapter2 = &IID_IDXGIAdapter2_Value;
-pub const IDXGIAdapter2 = extern struct {
+pub const IDXGIAdapter2 = extern union {
     pub const VTable = extern struct {
         base: IDXGIAdapter1.VTable,
         GetDesc2: *const fn(
@@ -1521,6 +1542,7 @@ pub const IDXGIAdapter2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIAdapter1: IDXGIAdapter1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIAdapter1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1534,7 +1556,7 @@ pub const IDXGIAdapter2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIOutput1_Value = Guid.initString("00cddea8-939b-4b83-a340-a685226666cc");
 pub const IID_IDXGIOutput1 = &IID_IDXGIOutput1_Value;
-pub const IDXGIOutput1 = extern struct {
+pub const IDXGIOutput1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput.VTable,
         GetDisplayModeList1: *const fn(
@@ -1561,6 +1583,7 @@ pub const IDXGIOutput1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIOutput: IDXGIOutput,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIOutput.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1586,7 +1609,7 @@ pub const IDXGIOutput1 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIDevice3_Value = Guid.initString("6007896c-3244-4afd-bf18-a6d3beda5023");
 pub const IID_IDXGIDevice3 = &IID_IDXGIDevice3_Value;
-pub const IDXGIDevice3 = extern struct {
+pub const IDXGIDevice3 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDevice2.VTable,
         Trim: *const fn(
@@ -1594,6 +1617,7 @@ pub const IDXGIDevice3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IDXGIDevice2: IDXGIDevice2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIDevice2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1616,7 +1640,7 @@ pub const DXGI_MATRIX_3X2_F = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGISwapChain2_Value = Guid.initString("a8be2ac4-199f-4946-b331-79599fb98de7");
 pub const IID_IDXGISwapChain2 = &IID_IDXGISwapChain2_Value;
-pub const IDXGISwapChain2 = extern struct {
+pub const IDXGISwapChain2 = extern union {
     pub const VTable = extern struct {
         base: IDXGISwapChain1.VTable,
         SetSourceSize: *const fn(
@@ -1650,6 +1674,7 @@ pub const IDXGISwapChain2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGISwapChain1: IDXGISwapChain1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGISwapChain1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1687,7 +1712,7 @@ pub const IDXGISwapChain2 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIOutput2_Value = Guid.initString("595e39d1-2724-4663-99b1-da969de28364");
 pub const IID_IDXGIOutput2 = &IID_IDXGIOutput2_Value;
-pub const IDXGIOutput2 = extern struct {
+pub const IDXGIOutput2 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput1.VTable,
         SupportsOverlays: *const fn(
@@ -1695,6 +1720,7 @@ pub const IDXGIOutput2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IDXGIOutput1: IDXGIOutput1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIOutput1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1708,7 +1734,7 @@ pub const IDXGIOutput2 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIFactory3_Value = Guid.initString("25483823-cd46-4c7d-86ca-47aa95b837bd");
 pub const IID_IDXGIFactory3 = &IID_IDXGIFactory3_Value;
-pub const IDXGIFactory3 = extern struct {
+pub const IDXGIFactory3 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory2.VTable,
         GetCreationFlags: *const fn(
@@ -1716,6 +1742,7 @@ pub const IDXGIFactory3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
+    IDXGIFactory2: IDXGIFactory2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIFactory2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1742,7 +1769,7 @@ pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC = DXGI_MULTIPLANE_OVERLAY_YCb
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIDecodeSwapChain_Value = Guid.initString("2633066b-4514-4c7a-8fd8-12ea98059d18");
 pub const IID_IDXGIDecodeSwapChain = &IID_IDXGIDecodeSwapChain_Value;
-pub const IDXGIDecodeSwapChain = extern struct {
+pub const IDXGIDecodeSwapChain = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PresentBuffer: *const fn(
@@ -1786,6 +1813,7 @@ pub const IDXGIDecodeSwapChain = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1831,7 +1859,7 @@ pub const IDXGIDecodeSwapChain = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIFactoryMedia_Value = Guid.initString("41e7d1f2-a591-4f7b-a2e5-fa9c843e1c12");
 pub const IID_IDXGIFactoryMedia = &IID_IDXGIFactoryMedia_Value;
-pub const IDXGIFactoryMedia = extern struct {
+pub const IDXGIFactoryMedia = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateSwapChainForCompositionSurfaceHandle: *const fn(
@@ -1853,6 +1881,7 @@ pub const IDXGIFactoryMedia = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1891,7 +1920,7 @@ pub const DXGI_FRAME_STATISTICS_MEDIA = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGISwapChainMedia_Value = Guid.initString("dd95b90b-f05f-4f6a-bd65-25bfb264bd84");
 pub const IID_IDXGISwapChainMedia = &IID_IDXGISwapChainMedia_Value;
-pub const IDXGISwapChainMedia = extern struct {
+pub const IDXGISwapChainMedia = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFrameStatisticsMedia: *const fn(
@@ -1910,6 +1939,7 @@ pub const IDXGISwapChainMedia = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1938,7 +1968,7 @@ pub const DXGI_OVERLAY_SUPPORT_FLAG_SCALING = DXGI_OVERLAY_SUPPORT_FLAG.SCALING;
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIOutput3_Value = Guid.initString("8a6bb301-7e7e-41f4-a8e0-5b32f7f99b18");
 pub const IID_IDXGIOutput3 = &IID_IDXGIOutput3_Value;
-pub const IDXGIOutput3 = extern struct {
+pub const IDXGIOutput3 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput2.VTable,
         CheckOverlaySupport: *const fn(
@@ -1949,6 +1979,7 @@ pub const IDXGIOutput3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIOutput2: IDXGIOutput2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIOutput2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1969,7 +2000,7 @@ pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT = DXGI_SWAP_C
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGISwapChain3_Value = Guid.initString("94d99bdb-f1f8-4ab0-b236-7da0170edab1");
 pub const IID_IDXGISwapChain3 = &IID_IDXGISwapChain3_Value;
-pub const IDXGISwapChain3 = extern struct {
+pub const IDXGISwapChain3 = extern union {
     pub const VTable = extern struct {
         base: IDXGISwapChain2.VTable,
         GetCurrentBackBufferIndex: *const fn(
@@ -1996,6 +2027,7 @@ pub const IDXGISwapChain3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGISwapChain2: IDXGISwapChain2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGISwapChain2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2026,7 +2058,7 @@ pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT = DXGI_OVERLAY_COLOR_SPA
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput4_Value = Guid.initString("dc7dca35-2196-414d-9f53-617884032a60");
 pub const IID_IDXGIOutput4 = &IID_IDXGIOutput4_Value;
-pub const IDXGIOutput4 = extern struct {
+pub const IDXGIOutput4 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput3.VTable,
         CheckOverlayColorSpaceSupport: *const fn(
@@ -2038,6 +2070,7 @@ pub const IDXGIOutput4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIOutput3: IDXGIOutput3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIOutput3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2050,7 +2083,7 @@ pub const IDXGIOutput4 = extern struct {
 
 const IID_IDXGIFactory4_Value = Guid.initString("1bc6ea02-ef36-464f-bf0c-21ca39e5168a");
 pub const IID_IDXGIFactory4 = &IID_IDXGIFactory4_Value;
-pub const IDXGIFactory4 = extern struct {
+pub const IDXGIFactory4 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory3.VTable,
         EnumAdapterByLuid: *const fn(
@@ -2066,6 +2099,7 @@ pub const IDXGIFactory4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIFactory3: IDXGIFactory3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIFactory3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2096,7 +2130,7 @@ pub const DXGI_QUERY_VIDEO_MEMORY_INFO = extern struct {
 
 const IID_IDXGIAdapter3_Value = Guid.initString("645967a4-1392-4310-a798-8053ce3e93fd");
 pub const IID_IDXGIAdapter3 = &IID_IDXGIAdapter3_Value;
-pub const IDXGIAdapter3 = extern struct {
+pub const IDXGIAdapter3 = extern union {
     pub const VTable = extern struct {
         base: IDXGIAdapter2.VTable,
         RegisterHardwareContentProtectionTeardownStatusEvent: *const fn(
@@ -2131,6 +2165,7 @@ pub const IDXGIAdapter3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IDXGIAdapter2: IDXGIAdapter2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIAdapter2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2169,7 +2204,7 @@ pub const DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY = DXGI_OUTDUPL_FLAG.Y;
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput5_Value = Guid.initString("80a07424-ab52-42eb-833c-0c42fd282d98");
 pub const IID_IDXGIOutput5 = &IID_IDXGIOutput5_Value;
-pub const IDXGIOutput5 = extern struct {
+pub const IDXGIOutput5 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput4.VTable,
         DuplicateOutput1: *const fn(
@@ -2182,6 +2217,7 @@ pub const IDXGIOutput5 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIOutput4: IDXGIOutput4,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIOutput4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2218,7 +2254,7 @@ pub const DXGI_HDR_METADATA_HDR10PLUS = extern struct {
 
 const IID_IDXGISwapChain4_Value = Guid.initString("3d585d5a-bd4a-489e-b1f4-3dbcb6452ffb");
 pub const IID_IDXGISwapChain4 = &IID_IDXGISwapChain4_Value;
-pub const IDXGISwapChain4 = extern struct {
+pub const IDXGISwapChain4 = extern union {
     pub const VTable = extern struct {
         base: IDXGISwapChain3.VTable,
         SetHDRMetaData: *const fn(
@@ -2229,6 +2265,7 @@ pub const IDXGISwapChain4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGISwapChain3: IDXGISwapChain3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGISwapChain3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2255,7 +2292,7 @@ pub const DXGI_RECLAIM_RESOURCE_RESULT_NOT_COMMITTED = DXGI_RECLAIM_RESOURCE_RES
 
 const IID_IDXGIDevice4_Value = Guid.initString("95b4f95f-d8da-4ca4-9ee6-3b76d5968a10");
 pub const IID_IDXGIDevice4 = &IID_IDXGIDevice4_Value;
-pub const IDXGIDevice4 = extern struct {
+pub const IDXGIDevice4 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDevice3.VTable,
         OfferResources1: *const fn(
@@ -2273,6 +2310,7 @@ pub const IDXGIDevice4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIDevice3: IDXGIDevice3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIDevice3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2294,7 +2332,7 @@ pub const DXGI_FEATURE_PRESENT_ALLOW_TEARING = DXGI_FEATURE.G;
 
 const IID_IDXGIFactory5_Value = Guid.initString("7632e1f5-ee65-4dca-87fd-84cd75f8838d");
 pub const IID_IDXGIFactory5 = &IID_IDXGIFactory5_Value;
-pub const IDXGIFactory5 = extern struct {
+pub const IDXGIFactory5 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory4.VTable,
         CheckFeatureSupport: *const fn(
@@ -2306,6 +2344,7 @@ pub const IDXGIFactory5 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIFactory4: IDXGIFactory4,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIFactory4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2409,7 +2448,7 @@ pub const DXGI_ADAPTER_DESC3 = extern struct {
 
 const IID_IDXGIAdapter4_Value = Guid.initString("3c8d99d1-4fbf-4181-a82c-af66bf7bd24e");
 pub const IID_IDXGIAdapter4 = &IID_IDXGIAdapter4_Value;
-pub const IDXGIAdapter4 = extern struct {
+pub const IDXGIAdapter4 = extern union {
     pub const VTable = extern struct {
         base: IDXGIAdapter3.VTable,
         GetDesc3: *const fn(
@@ -2418,6 +2457,7 @@ pub const IDXGIAdapter4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIAdapter3: IDXGIAdapter3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIAdapter3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2486,7 +2526,7 @@ pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED = DXGI_HARDWAR
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput6_Value = Guid.initString("068346e8-aaec-4b84-add7-137f513f77a1");
 pub const IID_IDXGIOutput6 = &IID_IDXGIOutput6_Value;
-pub const IDXGIOutput6 = extern struct {
+pub const IDXGIOutput6 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput5.VTable,
         GetDesc1: *const fn(
@@ -2499,6 +2539,7 @@ pub const IDXGIOutput6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIOutput5: IDXGIOutput5,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIOutput5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2525,7 +2566,7 @@ pub const DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE = DXGI_GPU_PREFERENCE.HIGH_PERFOR
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IDXGIFactory6_Value = Guid.initString("c1b6694f-ff09-44a9-b03c-77900a0a1d17");
 pub const IID_IDXGIFactory6 = &IID_IDXGIFactory6_Value;
-pub const IDXGIFactory6 = extern struct {
+pub const IDXGIFactory6 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory5.VTable,
         EnumAdapterByGpuPreference: *const fn(
@@ -2537,6 +2578,7 @@ pub const IDXGIFactory6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIFactory5: IDXGIFactory5,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIFactory5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2550,7 +2592,7 @@ pub const IDXGIFactory6 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.17763'
 const IID_IDXGIFactory7_Value = Guid.initString("a4966eed-76db-44da-84c1-ee9a7afb20a8");
 pub const IID_IDXGIFactory7 = &IID_IDXGIFactory7_Value;
-pub const IDXGIFactory7 = extern struct {
+pub const IDXGIFactory7 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory6.VTable,
         RegisterAdaptersChangedEvent: *const fn(
@@ -2564,6 +2606,7 @@ pub const IDXGIFactory7 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDXGIFactory6: IDXGIFactory6,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIFactory6.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2685,7 +2728,7 @@ pub const DXGI_INFO_QUEUE_FILTER = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIInfoQueue_Value = Guid.initString("d67441c7-672a-476f-9e82-cd55b44949ce");
 pub const IID_IDXGIInfoQueue = &IID_IDXGIInfoQueue_Value;
-pub const IDXGIInfoQueue = extern struct {
+pub const IDXGIInfoQueue = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetMessageCountLimit: *const fn(
@@ -2868,6 +2911,7 @@ pub const IDXGIInfoQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3025,7 +3069,7 @@ pub const IDXGIInfoQueue = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDebug_Value = Guid.initString("119e7452-de9e-40fe-8806-88f90c12b441");
 pub const IID_IDXGIDebug = &IID_IDXGIDebug_Value;
-pub const IDXGIDebug = extern struct {
+pub const IDXGIDebug = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReportLiveObjects: *const fn(
@@ -3035,6 +3079,7 @@ pub const IDXGIDebug = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3048,7 +3093,7 @@ pub const IDXGIDebug = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIDebug1_Value = Guid.initString("c5a05f0c-16f2-4adf-9f4d-a8c4d58ac550");
 pub const IID_IDXGIDebug1 = &IID_IDXGIDebug1_Value;
-pub const IDXGIDebug1 = extern struct {
+pub const IDXGIDebug1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDebug.VTable,
         EnableLeakTrackingForThread: *const fn(
@@ -3062,6 +3107,7 @@ pub const IDXGIDebug1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IDXGIDebug: IDXGIDebug,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDXGIDebug.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3747,7 +3793,7 @@ pub const DXGI_MSG_Phone_IDXGISwapChain_GetBackgroundColor_FlipSequentialRequire
 
 const IID_IDXGraphicsAnalysis_Value = Guid.initString("9f251514-9d4d-4902-9d60-18988ab7d4b5");
 pub const IID_IDXGraphicsAnalysis = &IID_IDXGraphicsAnalysis_Value;
-pub const IDXGraphicsAnalysis = extern struct {
+pub const IDXGraphicsAnalysis = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         BeginCapture: *const fn(
@@ -3758,6 +3804,7 @@ pub const IDXGraphicsAnalysis = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

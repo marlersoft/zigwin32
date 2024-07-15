@@ -1700,7 +1700,7 @@ pub const PFN_DIAL_HANDLER = *const fn(
 
 const IID_IDialEventSink_Value = Guid.initString("2d86f4ff-6e2d-4488-b2e9-6934afd41bea");
 pub const IID_IDialEventSink = &IID_IDialEventSink_Value;
-pub const IDialEventSink = extern struct {
+pub const IDialEventSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnEvent: *const fn(
@@ -1710,6 +1710,7 @@ pub const IDialEventSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1722,7 +1723,7 @@ pub const IDialEventSink = extern struct {
 
 const IID_IDialEngine_Value = Guid.initString("39fd782b-7905-40d5-9148-3c9b190423d5");
 pub const IID_IDialEngine = &IID_IDialEngine_Value;
-pub const IDialEngine = extern struct {
+pub const IDialEngine = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -1757,6 +1758,7 @@ pub const IDialEngine = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1793,7 +1795,7 @@ pub const IDialEngine = extern struct {
 
 const IID_IDialBranding_Value = Guid.initString("8aecafa9-4306-43cc-8c5a-765f2979cc16");
 pub const IID_IDialBranding = &IID_IDialBranding_Value;
-pub const IDialBranding = extern struct {
+pub const IDialBranding = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -1807,6 +1809,7 @@ pub const IDialBranding = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2235,7 +2238,7 @@ pub const ProofOfPossessionCookieInfo = extern struct {
 
 const IID_IProofOfPossessionCookieInfoManager_Value = Guid.initString("cdaece56-4edf-43df-b113-88e4556fa1bb");
 pub const IID_IProofOfPossessionCookieInfoManager = &IID_IProofOfPossessionCookieInfoManager_Value;
-pub const IProofOfPossessionCookieInfoManager = extern struct {
+pub const IProofOfPossessionCookieInfoManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCookieInfoForUri: *const fn(
@@ -2246,6 +2249,7 @@ pub const IProofOfPossessionCookieInfoManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2258,7 +2262,7 @@ pub const IProofOfPossessionCookieInfoManager = extern struct {
 
 const IID_IProofOfPossessionCookieInfoManager2_Value = Guid.initString("15e41407-b42f-4ae7-9966-34a087b2d713");
 pub const IID_IProofOfPossessionCookieInfoManager2 = &IID_IProofOfPossessionCookieInfoManager2_Value;
-pub const IProofOfPossessionCookieInfoManager2 = extern struct {
+pub const IProofOfPossessionCookieInfoManager2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCookieInfoWithUriForAccount: *const fn(
@@ -2270,6 +2274,7 @@ pub const IProofOfPossessionCookieInfoManager2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

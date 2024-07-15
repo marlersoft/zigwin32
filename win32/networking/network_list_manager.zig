@@ -130,7 +130,7 @@ pub const NLM_ENUM_NETWORK_ALL = NLM_ENUM_NETWORK.ALL;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetworkListManager_Value = Guid.initString("dcb00000-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkListManager = &IID_INetworkListManager_Value;
-pub const INetworkListManager = extern struct {
+pub const INetworkListManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetNetworks: *const fn(
@@ -175,6 +175,7 @@ pub const INetworkListManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -220,7 +221,7 @@ pub const INetworkListManager = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetworkListManagerEvents_Value = Guid.initString("dcb00001-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkListManagerEvents = &IID_INetworkListManagerEvents_Value;
-pub const INetworkListManagerEvents = extern struct {
+pub const INetworkListManagerEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ConnectivityChanged: *const fn(
@@ -229,6 +230,7 @@ pub const INetworkListManagerEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -251,7 +253,7 @@ pub const NLM_NETWORK_CATEGORY_DOMAIN_AUTHENTICATED = NLM_NETWORK_CATEGORY.DOMAI
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetwork_Value = Guid.initString("dcb00002-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetwork = &IID_INetwork_Value;
-pub const INetwork = extern struct {
+pub const INetwork = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetName: *const fn(
@@ -313,6 +315,7 @@ pub const INetwork = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -374,7 +377,7 @@ pub const INetwork = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumNetworks_Value = Guid.initString("dcb00003-570f-4a9b-8d69-199fdba5723b");
 pub const IID_IEnumNetworks = &IID_IEnumNetworks_Value;
-pub const IEnumNetworks = extern struct {
+pub const IEnumNetworks = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -401,6 +404,7 @@ pub const IEnumNetworks = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -443,7 +447,7 @@ pub const NLM_NETWORK_PROPERTY_CHANGE_CATEGORY_VALUE = NLM_NETWORK_PROPERTY_CHAN
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetworkEvents_Value = Guid.initString("dcb00004-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkEvents = &IID_INetworkEvents_Value;
-pub const INetworkEvents = extern struct {
+pub const INetworkEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         NetworkAdded: *const fn(
@@ -466,6 +470,7 @@ pub const INetworkEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -491,7 +496,7 @@ pub const INetworkEvents = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetworkConnection_Value = Guid.initString("dcb00005-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnection = &IID_INetworkConnection_Value;
-pub const INetworkConnection = extern struct {
+pub const INetworkConnection = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         GetNetwork: *const fn(
@@ -526,6 +531,7 @@ pub const INetworkConnection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -563,7 +569,7 @@ pub const INetworkConnection = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumNetworkConnections_Value = Guid.initString("dcb00006-570f-4a9b-8d69-199fdba5723b");
 pub const IID_IEnumNetworkConnections = &IID_IEnumNetworkConnections_Value;
-pub const IEnumNetworkConnections = extern struct {
+pub const IEnumNetworkConnections = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -590,6 +596,7 @@ pub const IEnumNetworkConnections = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -624,7 +631,7 @@ pub const NLM_CONNECTION_PROPERTY_CHANGE_AUTHENTICATION = NLM_CONNECTION_PROPERT
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_INetworkConnectionEvents_Value = Guid.initString("dcb00007-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnectionEvents = &IID_INetworkConnectionEvents_Value;
-pub const INetworkConnectionEvents = extern struct {
+pub const INetworkConnectionEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         NetworkConnectionConnectivityChanged: *const fn(
@@ -639,6 +646,7 @@ pub const INetworkConnectionEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -656,7 +664,7 @@ pub const INetworkConnectionEvents = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_INetworkCostManager_Value = Guid.initString("dcb00008-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkCostManager = &IID_INetworkCostManager_Value;
-pub const INetworkCostManager = extern struct {
+pub const INetworkCostManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCost: *const fn(
@@ -677,6 +685,7 @@ pub const INetworkCostManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -698,7 +707,7 @@ pub const INetworkCostManager = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_INetworkCostManagerEvents_Value = Guid.initString("dcb00009-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkCostManagerEvents = &IID_INetworkCostManagerEvents_Value;
-pub const INetworkCostManagerEvents = extern struct {
+pub const INetworkCostManagerEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CostChanged: *const fn(
@@ -712,6 +721,7 @@ pub const INetworkCostManagerEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -729,7 +739,7 @@ pub const INetworkCostManagerEvents = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_INetworkConnectionCost_Value = Guid.initString("dcb0000a-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnectionCost = &IID_INetworkConnectionCost_Value;
-pub const INetworkConnectionCost = extern struct {
+pub const INetworkConnectionCost = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCost: *const fn(
@@ -742,6 +752,7 @@ pub const INetworkConnectionCost = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -759,7 +770,7 @@ pub const INetworkConnectionCost = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_INetworkConnectionCostEvents_Value = Guid.initString("dcb0000b-570f-4a9b-8d69-199fdba5723b");
 pub const IID_INetworkConnectionCostEvents = &IID_INetworkConnectionCostEvents_Value;
-pub const INetworkConnectionCostEvents = extern struct {
+pub const INetworkConnectionCostEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ConnectionCostChanged: *const fn(
@@ -773,6 +784,7 @@ pub const INetworkConnectionCostEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

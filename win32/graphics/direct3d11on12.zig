@@ -29,7 +29,7 @@ pub const D3D11_RESOURCE_FLAGS = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D11On12Device_Value = Guid.initString("85611e73-70a9-490e-9614-a9e302777904");
 pub const IID_ID3D11On12Device = &IID_ID3D11On12Device_Value;
-pub const ID3D11On12Device = extern struct {
+pub const ID3D11On12Device = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateWrappedResource: *const fn(
@@ -53,6 +53,7 @@ pub const ID3D11On12Device = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -75,7 +76,7 @@ pub const ID3D11On12Device = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D11On12Device1_Value = Guid.initString("bdb64df4-ea2f-4c70-b861-aaab1258bb5d");
 pub const IID_ID3D11On12Device1 = &IID_ID3D11On12Device1_Value;
-pub const ID3D11On12Device1 = extern struct {
+pub const ID3D11On12Device1 = extern union {
     pub const VTable = extern struct {
         base: ID3D11On12Device.VTable,
         GetD3D12Device: *const fn(
@@ -85,6 +86,7 @@ pub const ID3D11On12Device1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D11On12Device: ID3D11On12Device,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11On12Device.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -99,7 +101,7 @@ pub const ID3D11On12Device1 = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3D11On12Device2_Value = Guid.initString("dc90f331-4740-43fa-866e-67f12cb58223");
 pub const IID_ID3D11On12Device2 = &IID_ID3D11On12Device2_Value;
-pub const ID3D11On12Device2 = extern struct {
+pub const ID3D11On12Device2 = extern union {
     pub const VTable = extern struct {
         base: ID3D11On12Device1.VTable,
         UnwrapUnderlyingResource: *const fn(
@@ -118,6 +120,7 @@ pub const ID3D11On12Device2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ID3D11On12Device1: ID3D11On12Device1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D11On12Device1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

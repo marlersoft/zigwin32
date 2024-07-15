@@ -364,7 +364,7 @@ pub const AM_WMT_EVENT_DATA = extern struct {
 
 const IID_INSSBuffer_Value = Guid.initString("e1cd3524-03d7-11d2-9eed-006097d2d7cf");
 pub const IID_INSSBuffer = &IID_INSSBuffer_Value;
-pub const INSSBuffer = extern struct {
+pub const INSSBuffer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLength: *const fn(
@@ -390,6 +390,7 @@ pub const INSSBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -418,7 +419,7 @@ pub const INSSBuffer = extern struct {
 
 const IID_INSSBuffer2_Value = Guid.initString("4f528693-1035-43fe-b428-757561ad3a68");
 pub const IID_INSSBuffer2 = &IID_INSSBuffer2_Value;
-pub const INSSBuffer2 = extern struct {
+pub const INSSBuffer2 = extern union {
     pub const VTable = extern struct {
         base: INSSBuffer.VTable,
         GetSampleProperties: *const fn(
@@ -433,6 +434,7 @@ pub const INSSBuffer2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    INSSBuffer: INSSBuffer,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace INSSBuffer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -449,7 +451,7 @@ pub const INSSBuffer2 = extern struct {
 
 const IID_INSSBuffer3_Value = Guid.initString("c87ceaaf-75be-4bc4-84eb-ac2798507672");
 pub const IID_INSSBuffer3 = &IID_INSSBuffer3_Value;
-pub const INSSBuffer3 = extern struct {
+pub const INSSBuffer3 = extern union {
     pub const VTable = extern struct {
         base: INSSBuffer2.VTable,
         SetProperty: *const fn(
@@ -466,6 +468,7 @@ pub const INSSBuffer3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    INSSBuffer2: INSSBuffer2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace INSSBuffer2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -482,7 +485,7 @@ pub const INSSBuffer3 = extern struct {
 
 const IID_INSSBuffer4_Value = Guid.initString("b6b8fd5a-32e2-49d4-a910-c26cc85465ed");
 pub const IID_INSSBuffer4 = &IID_INSSBuffer4_Value;
-pub const INSSBuffer4 = extern struct {
+pub const INSSBuffer4 = extern union {
     pub const VTable = extern struct {
         base: INSSBuffer3.VTable,
         GetPropertyCount: *const fn(
@@ -498,6 +501,7 @@ pub const INSSBuffer4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    INSSBuffer3: INSSBuffer3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace INSSBuffer3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -514,7 +518,7 @@ pub const INSSBuffer4 = extern struct {
 
 const IID_IWMSBufferAllocator_Value = Guid.initString("61103ca4-2033-11d2-9ef1-006097d2d7cf");
 pub const IID_IWMSBufferAllocator = &IID_IWMSBufferAllocator_Value;
-pub const IWMSBufferAllocator = extern struct {
+pub const IWMSBufferAllocator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AllocateBuffer: *const fn(
@@ -529,6 +533,7 @@ pub const IWMSBufferAllocator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1223,7 +1228,7 @@ pub const DRM_VAL16 = extern struct {
 
 const IID_IWMMediaProps_Value = Guid.initString("96406bce-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMMediaProps = &IID_IWMMediaProps_Value;
-pub const IWMMediaProps = extern struct {
+pub const IWMMediaProps = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetType: *const fn(
@@ -1241,6 +1246,7 @@ pub const IWMMediaProps = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1261,7 +1267,7 @@ pub const IWMMediaProps = extern struct {
 
 const IID_IWMVideoMediaProps_Value = Guid.initString("96406bcf-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMVideoMediaProps = &IID_IWMVideoMediaProps_Value;
-pub const IWMVideoMediaProps = extern struct {
+pub const IWMVideoMediaProps = extern union {
     pub const VTable = extern struct {
         base: IWMMediaProps.VTable,
         GetMaxKeyFrameSpacing: *const fn(
@@ -1282,6 +1288,7 @@ pub const IWMVideoMediaProps = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMMediaProps: IWMMediaProps,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMediaProps.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1306,7 +1313,7 @@ pub const IWMVideoMediaProps = extern struct {
 
 const IID_IWMWriter_Value = Guid.initString("96406bd4-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMWriter = &IID_IWMWriter_Value;
-pub const IWMWriter = extern struct {
+pub const IWMWriter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetProfileByID: *const fn(
@@ -1369,6 +1376,7 @@ pub const IWMWriter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1430,7 +1438,7 @@ pub const IWMWriter = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWMDRMWriter_Value = Guid.initString("d6ea5dd0-12a0-43f4-90ab-a3fd451e6a07");
 pub const IID_IWMDRMWriter = &IID_IWMDRMWriter_Value;
-pub const IWMDRMWriter = extern struct {
+pub const IWMDRMWriter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GenerateKeySeed: *const fn(
@@ -1460,6 +1468,7 @@ pub const IWMDRMWriter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1493,7 +1502,7 @@ pub const WMDRM_IMPORT_INIT_STRUCT = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMWriter2_Value = Guid.initString("38ee7a94-40e2-4e10-aa3f-33fd3210ed5b");
 pub const IID_IWMDRMWriter2 = &IID_IWMDRMWriter2_Value;
-pub const IWMDRMWriter2 = extern struct {
+pub const IWMDRMWriter2 = extern union {
     pub const VTable = extern struct {
         base: IWMDRMWriter.VTable,
         SetWMDRMNetEncryption: *const fn(
@@ -1504,6 +1513,7 @@ pub const IWMDRMWriter2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMDRMWriter: IWMDRMWriter,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDRMWriter.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1517,7 +1527,7 @@ pub const IWMDRMWriter2 = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMWriter3_Value = Guid.initString("a7184082-a4aa-4dde-ac9c-e75dbd1117ce");
 pub const IID_IWMDRMWriter3 = &IID_IWMDRMWriter3_Value;
-pub const IWMDRMWriter3 = extern struct {
+pub const IWMDRMWriter3 = extern union {
     pub const VTable = extern struct {
         base: IWMDRMWriter2.VTable,
         SetProtectStreamSamples: *const fn(
@@ -1526,6 +1536,7 @@ pub const IWMDRMWriter3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMDRMWriter2: IWMDRMWriter2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDRMWriter2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1538,7 +1549,7 @@ pub const IWMDRMWriter3 = extern struct {
 
 const IID_IWMInputMediaProps_Value = Guid.initString("96406bd5-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMInputMediaProps = &IID_IWMInputMediaProps_Value;
-pub const IWMInputMediaProps = extern struct {
+pub const IWMInputMediaProps = extern union {
     pub const VTable = extern struct {
         base: IWMMediaProps.VTable,
         GetConnectionName: *const fn(
@@ -1553,6 +1564,7 @@ pub const IWMInputMediaProps = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMMediaProps: IWMMediaProps,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMediaProps.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1569,7 +1581,7 @@ pub const IWMInputMediaProps = extern struct {
 
 const IID_IWMPropertyVault_Value = Guid.initString("72995a79-5090-42a4-9c8c-d9d0b6d34be5");
 pub const IID_IWMPropertyVault = &IID_IWMPropertyVault_Value;
-pub const IWMPropertyVault = extern struct {
+pub const IWMPropertyVault = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPropertyCount: *const fn(
@@ -1608,6 +1620,7 @@ pub const IWMPropertyVault = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1640,7 +1653,7 @@ pub const IWMPropertyVault = extern struct {
 
 const IID_IWMIStreamProps_Value = Guid.initString("6816dad3-2b4b-4c8e-8149-874c3483a753");
 pub const IID_IWMIStreamProps = &IID_IWMIStreamProps_Value;
-pub const IWMIStreamProps = extern struct {
+pub const IWMIStreamProps = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProperty: *const fn(
@@ -1652,6 +1665,7 @@ pub const IWMIStreamProps = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1664,7 +1678,7 @@ pub const IWMIStreamProps = extern struct {
 
 const IID_IWMReader_Value = Guid.initString("96406bd6-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMReader = &IID_IWMReader_Value;
-pub const IWMReader = extern struct {
+pub const IWMReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Open: *const fn(
@@ -1719,6 +1733,7 @@ pub const IWMReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1771,7 +1786,7 @@ pub const IWMReader = extern struct {
 
 const IID_IWMSyncReader_Value = Guid.initString("9397f121-7705-4dc9-b049-98b698188414");
 pub const IID_IWMSyncReader = &IID_IWMSyncReader_Value;
-pub const IWMSyncReader = extern struct {
+pub const IWMSyncReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Open: *const fn(
@@ -1890,6 +1905,7 @@ pub const IWMSyncReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1982,7 +1998,7 @@ pub const IWMSyncReader = extern struct {
 
 const IID_IWMSyncReader2_Value = Guid.initString("faed3d21-1b6b-4af7-8cb6-3e189bbc187b");
 pub const IID_IWMSyncReader2 = &IID_IWMSyncReader2_Value;
-pub const IWMSyncReader2 = extern struct {
+pub const IWMSyncReader2 = extern union {
     pub const VTable = extern struct {
         base: IWMSyncReader.VTable,
         SetRangeByTimecode: *const fn(
@@ -2020,6 +2036,7 @@ pub const IWMSyncReader2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMSyncReader: IWMSyncReader,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMSyncReader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2052,7 +2069,7 @@ pub const IWMSyncReader2 = extern struct {
 
 const IID_IWMOutputMediaProps_Value = Guid.initString("96406bd7-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMOutputMediaProps = &IID_IWMOutputMediaProps_Value;
-pub const IWMOutputMediaProps = extern struct {
+pub const IWMOutputMediaProps = extern union {
     pub const VTable = extern struct {
         base: IWMMediaProps.VTable,
         GetStreamGroupName: *const fn(
@@ -2067,6 +2084,7 @@ pub const IWMOutputMediaProps = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMMediaProps: IWMMediaProps,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMediaProps.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2083,7 +2101,7 @@ pub const IWMOutputMediaProps = extern struct {
 
 const IID_IWMStatusCallback_Value = Guid.initString("6d7cdc70-9888-11d3-8edc-00c04f6109cf");
 pub const IID_IWMStatusCallback = &IID_IWMStatusCallback_Value;
-pub const IWMStatusCallback = extern struct {
+pub const IWMStatusCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStatus: *const fn(
@@ -2096,6 +2114,7 @@ pub const IWMStatusCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2108,7 +2127,7 @@ pub const IWMStatusCallback = extern struct {
 
 const IID_IWMReaderCallback_Value = Guid.initString("96406bd8-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMReaderCallback = &IID_IWMReaderCallback_Value;
-pub const IWMReaderCallback = extern struct {
+pub const IWMReaderCallback = extern union {
     pub const VTable = extern struct {
         base: IWMStatusCallback.VTable,
         OnSample: *const fn(
@@ -2122,6 +2141,7 @@ pub const IWMReaderCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMStatusCallback: IWMStatusCallback,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStatusCallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2134,7 +2154,7 @@ pub const IWMReaderCallback = extern struct {
 
 const IID_IWMCredentialCallback_Value = Guid.initString("342e0eb7-e651-450c-975b-2ace2c90c48e");
 pub const IID_IWMCredentialCallback = &IID_IWMCredentialCallback_Value;
-pub const IWMCredentialCallback = extern struct {
+pub const IWMCredentialCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AcquireCredentials: *const fn(
@@ -2150,6 +2170,7 @@ pub const IWMCredentialCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2162,7 +2183,7 @@ pub const IWMCredentialCallback = extern struct {
 
 const IID_IWMMetadataEditor_Value = Guid.initString("96406bd9-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMMetadataEditor = &IID_IWMMetadataEditor_Value;
-pub const IWMMetadataEditor = extern struct {
+pub const IWMMetadataEditor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Open: *const fn(
@@ -2177,6 +2198,7 @@ pub const IWMMetadataEditor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2197,7 +2219,7 @@ pub const IWMMetadataEditor = extern struct {
 
 const IID_IWMMetadataEditor2_Value = Guid.initString("203cffe3-2e18-4fdf-b59d-6e71530534cf");
 pub const IID_IWMMetadataEditor2 = &IID_IWMMetadataEditor2_Value;
-pub const IWMMetadataEditor2 = extern struct {
+pub const IWMMetadataEditor2 = extern union {
     pub const VTable = extern struct {
         base: IWMMetadataEditor.VTable,
         OpenEx: *const fn(
@@ -2208,6 +2230,7 @@ pub const IWMMetadataEditor2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMMetadataEditor: IWMMetadataEditor,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMetadataEditor.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2221,7 +2244,7 @@ pub const IWMMetadataEditor2 = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWMDRMEditor_Value = Guid.initString("ff130ebc-a6c3-42a6-b401-c3382c3e08b3");
 pub const IID_IWMDRMEditor = &IID_IWMDRMEditor_Value;
-pub const IWMDRMEditor = extern struct {
+pub const IWMDRMEditor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDRMProperty: *const fn(
@@ -2233,6 +2256,7 @@ pub const IWMDRMEditor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2245,7 +2269,7 @@ pub const IWMDRMEditor = extern struct {
 
 const IID_IWMHeaderInfo_Value = Guid.initString("96406bda-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMHeaderInfo = &IID_IWMHeaderInfo_Value;
-pub const IWMHeaderInfo = extern struct {
+pub const IWMHeaderInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAttributeCount: *const fn(
@@ -2324,6 +2348,7 @@ pub const IWMHeaderInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2380,7 +2405,7 @@ pub const IWMHeaderInfo = extern struct {
 
 const IID_IWMHeaderInfo2_Value = Guid.initString("15cf9781-454e-482e-b393-85fae487a810");
 pub const IID_IWMHeaderInfo2 = &IID_IWMHeaderInfo2_Value;
-pub const IWMHeaderInfo2 = extern struct {
+pub const IWMHeaderInfo2 = extern union {
     pub const VTable = extern struct {
         base: IWMHeaderInfo.VTable,
         GetCodecInfoCount: *const fn(
@@ -2400,6 +2425,7 @@ pub const IWMHeaderInfo2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMHeaderInfo: IWMHeaderInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMHeaderInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2416,7 +2442,7 @@ pub const IWMHeaderInfo2 = extern struct {
 
 const IID_IWMHeaderInfo3_Value = Guid.initString("15cc68e3-27cc-4ecd-b222-3f5d02d80bd5");
 pub const IID_IWMHeaderInfo3 = &IID_IWMHeaderInfo3_Value;
-pub const IWMHeaderInfo3 = extern struct {
+pub const IWMHeaderInfo3 = extern union {
     pub const VTable = extern struct {
         base: IWMHeaderInfo2.VTable,
         GetAttributeCountEx: *const fn(
@@ -2477,6 +2503,7 @@ pub const IWMHeaderInfo3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMHeaderInfo2: IWMHeaderInfo2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMHeaderInfo2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2513,7 +2540,7 @@ pub const IWMHeaderInfo3 = extern struct {
 
 const IID_IWMProfileManager_Value = Guid.initString("d16679f2-6ca0-472d-8d31-2f5d55aee155");
 pub const IID_IWMProfileManager = &IID_IWMProfileManager_Value;
-pub const IWMProfileManager = extern struct {
+pub const IWMProfileManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateEmptyProfile: *const fn(
@@ -2548,6 +2575,7 @@ pub const IWMProfileManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2580,7 +2608,7 @@ pub const IWMProfileManager = extern struct {
 
 const IID_IWMProfileManager2_Value = Guid.initString("7a924e51-73c1-494d-8019-23d37ed9b89a");
 pub const IID_IWMProfileManager2 = &IID_IWMProfileManager2_Value;
-pub const IWMProfileManager2 = extern struct {
+pub const IWMProfileManager2 = extern union {
     pub const VTable = extern struct {
         base: IWMProfileManager.VTable,
         GetSystemProfileVersion: *const fn(
@@ -2593,6 +2621,7 @@ pub const IWMProfileManager2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMProfileManager: IWMProfileManager,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMProfileManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2609,7 +2638,7 @@ pub const IWMProfileManager2 = extern struct {
 
 const IID_IWMProfileManagerLanguage_Value = Guid.initString("ba4dcc78-7ee0-4ab8-b27a-dbce8bc51454");
 pub const IID_IWMProfileManagerLanguage = &IID_IWMProfileManagerLanguage_Value;
-pub const IWMProfileManagerLanguage = extern struct {
+pub const IWMProfileManagerLanguage = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetUserLanguageID: *const fn(
@@ -2622,6 +2651,7 @@ pub const IWMProfileManagerLanguage = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2638,7 +2668,7 @@ pub const IWMProfileManagerLanguage = extern struct {
 
 const IID_IWMProfile_Value = Guid.initString("96406bdb-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMProfile = &IID_IWMProfile_Value;
-pub const IWMProfile = extern struct {
+pub const IWMProfile = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetVersion: *const fn(
@@ -2721,6 +2751,7 @@ pub const IWMProfile = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2801,7 +2832,7 @@ pub const IWMProfile = extern struct {
 
 const IID_IWMProfile2_Value = Guid.initString("07e72d33-d94e-4be7-8843-60ae5ff7e5f5");
 pub const IID_IWMProfile2 = &IID_IWMProfile2_Value;
-pub const IWMProfile2 = extern struct {
+pub const IWMProfile2 = extern union {
     pub const VTable = extern struct {
         base: IWMProfile.VTable,
         GetProfileID: *const fn(
@@ -2810,6 +2841,7 @@ pub const IWMProfile2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMProfile: IWMProfile,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMProfile.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2822,7 +2854,7 @@ pub const IWMProfile2 = extern struct {
 
 const IID_IWMProfile3_Value = Guid.initString("00ef96cc-a461-4546-8bcd-c9a28f0e06f5");
 pub const IID_IWMProfile3 = &IID_IWMProfile3_Value;
-pub const IWMProfile3 = extern struct {
+pub const IWMProfile3 = extern union {
     pub const VTable = extern struct {
         base: IWMProfile2.VTable,
         GetStorageFormat: *const fn(
@@ -2876,6 +2908,7 @@ pub const IWMProfile3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMProfile2: IWMProfile2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMProfile2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2932,7 +2965,7 @@ pub const IWMProfile3 = extern struct {
 
 const IID_IWMStreamConfig_Value = Guid.initString("96406bdc-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMStreamConfig = &IID_IWMStreamConfig_Value;
-pub const IWMStreamConfig = extern struct {
+pub const IWMStreamConfig = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStreamType: *const fn(
@@ -2983,6 +3016,7 @@ pub const IWMStreamConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3035,7 +3069,7 @@ pub const IWMStreamConfig = extern struct {
 
 const IID_IWMStreamConfig2_Value = Guid.initString("7688d8cb-fc0d-43bd-9459-5a8dec200cfa");
 pub const IID_IWMStreamConfig2 = &IID_IWMStreamConfig2_Value;
-pub const IWMStreamConfig2 = extern struct {
+pub const IWMStreamConfig2 = extern union {
     pub const VTable = extern struct {
         base: IWMStreamConfig.VTable,
         GetTransportType: *const fn(
@@ -3070,6 +3104,7 @@ pub const IWMStreamConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMStreamConfig: IWMStreamConfig,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStreamConfig.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3102,7 +3137,7 @@ pub const IWMStreamConfig2 = extern struct {
 
 const IID_IWMStreamConfig3_Value = Guid.initString("cb164104-3aa9-45a7-9ac9-4daee131d6e1");
 pub const IID_IWMStreamConfig3 = &IID_IWMStreamConfig3_Value;
-pub const IWMStreamConfig3 = extern struct {
+pub const IWMStreamConfig3 = extern union {
     pub const VTable = extern struct {
         base: IWMStreamConfig2.VTable,
         GetLanguage: *const fn(
@@ -3116,6 +3151,7 @@ pub const IWMStreamConfig3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMStreamConfig2: IWMStreamConfig2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStreamConfig2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3132,7 +3168,7 @@ pub const IWMStreamConfig3 = extern struct {
 
 const IID_IWMPacketSize_Value = Guid.initString("cdfb97ab-188f-40b3-b643-5b7903975c59");
 pub const IID_IWMPacketSize = &IID_IWMPacketSize_Value;
-pub const IWMPacketSize = extern struct {
+pub const IWMPacketSize = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetMaxPacketSize: *const fn(
@@ -3145,6 +3181,7 @@ pub const IWMPacketSize = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3161,7 +3198,7 @@ pub const IWMPacketSize = extern struct {
 
 const IID_IWMPacketSize2_Value = Guid.initString("8bfc2b9e-b646-4233-a877-1c6a079669dc");
 pub const IID_IWMPacketSize2 = &IID_IWMPacketSize2_Value;
-pub const IWMPacketSize2 = extern struct {
+pub const IWMPacketSize2 = extern union {
     pub const VTable = extern struct {
         base: IWMPacketSize.VTable,
         GetMinPacketSize: *const fn(
@@ -3174,6 +3211,7 @@ pub const IWMPacketSize2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMPacketSize: IWMPacketSize,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMPacketSize.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3190,7 +3228,7 @@ pub const IWMPacketSize2 = extern struct {
 
 const IID_IWMStreamList_Value = Guid.initString("96406bdd-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMStreamList = &IID_IWMStreamList_Value;
-pub const IWMStreamList = extern struct {
+pub const IWMStreamList = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStreams: *const fn(
@@ -3208,6 +3246,7 @@ pub const IWMStreamList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3228,7 +3267,7 @@ pub const IWMStreamList = extern struct {
 
 const IID_IWMMutualExclusion_Value = Guid.initString("96406bde-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMMutualExclusion = &IID_IWMMutualExclusion_Value;
-pub const IWMMutualExclusion = extern struct {
+pub const IWMMutualExclusion = extern union {
     pub const VTable = extern struct {
         base: IWMStreamList.VTable,
         GetType: *const fn(
@@ -3241,6 +3280,7 @@ pub const IWMMutualExclusion = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMStreamList: IWMStreamList,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStreamList.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3257,7 +3297,7 @@ pub const IWMMutualExclusion = extern struct {
 
 const IID_IWMMutualExclusion2_Value = Guid.initString("0302b57d-89d1-4ba2-85c9-166f2c53eb91");
 pub const IID_IWMMutualExclusion2 = &IID_IWMMutualExclusion2_Value;
-pub const IWMMutualExclusion2 = extern struct {
+pub const IWMMutualExclusion2 = extern union {
     pub const VTable = extern struct {
         base: IWMMutualExclusion.VTable,
         GetName: *const fn(
@@ -3309,6 +3349,7 @@ pub const IWMMutualExclusion2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMMutualExclusion: IWMMutualExclusion,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMMutualExclusion.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3357,7 +3398,7 @@ pub const IWMMutualExclusion2 = extern struct {
 
 const IID_IWMBandwidthSharing_Value = Guid.initString("ad694af1-f8d9-42f8-bc47-70311b0c4f9e");
 pub const IID_IWMBandwidthSharing = &IID_IWMBandwidthSharing_Value;
-pub const IWMBandwidthSharing = extern struct {
+pub const IWMBandwidthSharing = extern union {
     pub const VTable = extern struct {
         base: IWMStreamList.VTable,
         GetType: *const fn(
@@ -3380,6 +3421,7 @@ pub const IWMBandwidthSharing = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMStreamList: IWMStreamList,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStreamList.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3404,7 +3446,7 @@ pub const IWMBandwidthSharing = extern struct {
 
 const IID_IWMStreamPrioritization_Value = Guid.initString("8c1c6090-f9a8-4748-8ec3-dd1108ba1e77");
 pub const IID_IWMStreamPrioritization = &IID_IWMStreamPrioritization_Value;
-pub const IWMStreamPrioritization = extern struct {
+pub const IWMStreamPrioritization = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPriorityRecords: *const fn(
@@ -3419,6 +3461,7 @@ pub const IWMStreamPrioritization = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3435,7 +3478,7 @@ pub const IWMStreamPrioritization = extern struct {
 
 const IID_IWMWriterAdvanced_Value = Guid.initString("96406be3-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMWriterAdvanced = &IID_IWMWriterAdvanced_Value;
-pub const IWMWriterAdvanced = extern struct {
+pub const IWMWriterAdvanced = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSinkCount: *const fn(
@@ -3491,6 +3534,7 @@ pub const IWMWriterAdvanced = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3543,7 +3587,7 @@ pub const IWMWriterAdvanced = extern struct {
 
 const IID_IWMWriterAdvanced2_Value = Guid.initString("962dc1ec-c046-4db8-9cc7-26ceae500817");
 pub const IID_IWMWriterAdvanced2 = &IID_IWMWriterAdvanced2_Value;
-pub const IWMWriterAdvanced2 = extern struct {
+pub const IWMWriterAdvanced2 = extern union {
     pub const VTable = extern struct {
         base: IWMWriterAdvanced.VTable,
         GetInputSetting: *const fn(
@@ -3564,6 +3608,7 @@ pub const IWMWriterAdvanced2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMWriterAdvanced: IWMWriterAdvanced,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterAdvanced.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3580,7 +3625,7 @@ pub const IWMWriterAdvanced2 = extern struct {
 
 const IID_IWMWriterAdvanced3_Value = Guid.initString("2cd6492d-7c37-4e76-9d3b-59261183a22e");
 pub const IID_IWMWriterAdvanced3 = &IID_IWMWriterAdvanced3_Value;
-pub const IWMWriterAdvanced3 = extern struct {
+pub const IWMWriterAdvanced3 = extern union {
     pub const VTable = extern struct {
         base: IWMWriterAdvanced2.VTable,
         GetStatisticsEx: *const fn(
@@ -3593,6 +3638,7 @@ pub const IWMWriterAdvanced3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMWriterAdvanced2: IWMWriterAdvanced2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterAdvanced2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3609,7 +3655,7 @@ pub const IWMWriterAdvanced3 = extern struct {
 
 const IID_IWMWriterPreprocess_Value = Guid.initString("fc54a285-38c4-45b5-aa23-85b9f7cb424b");
 pub const IID_IWMWriterPreprocess = &IID_IWMWriterPreprocess_Value;
-pub const IWMWriterPreprocess = extern struct {
+pub const IWMWriterPreprocess = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetMaxPreprocessingPasses: *const fn(
@@ -3643,6 +3689,7 @@ pub const IWMWriterPreprocess = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3671,7 +3718,7 @@ pub const IWMWriterPreprocess = extern struct {
 
 const IID_IWMWriterPostViewCallback_Value = Guid.initString("d9d6549d-a193-4f24-b308-03123d9b7f8d");
 pub const IID_IWMWriterPostViewCallback = &IID_IWMWriterPostViewCallback_Value;
-pub const IWMWriterPostViewCallback = extern struct {
+pub const IWMWriterPostViewCallback = extern union {
     pub const VTable = extern struct {
         base: IWMStatusCallback.VTable,
         OnPostViewSample: *const fn(
@@ -3692,6 +3739,7 @@ pub const IWMWriterPostViewCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMStatusCallback: IWMStatusCallback,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMStatusCallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3708,7 +3756,7 @@ pub const IWMWriterPostViewCallback = extern struct {
 
 const IID_IWMWriterPostView_Value = Guid.initString("81e20ce4-75ef-491a-8004-fc53c45bdc3e");
 pub const IID_IWMWriterPostView = &IID_IWMWriterPostView_Value;
-pub const IWMWriterPostView = extern struct {
+pub const IWMWriterPostView = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetPostViewCallback: *const fn(
@@ -3759,6 +3807,7 @@ pub const IWMWriterPostView = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3803,7 +3852,7 @@ pub const IWMWriterPostView = extern struct {
 
 const IID_IWMWriterSink_Value = Guid.initString("96406be4-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMWriterSink = &IID_IWMWriterSink_Value;
-pub const IWMWriterSink = extern struct {
+pub const IWMWriterSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnHeader: *const fn(
@@ -3828,6 +3877,7 @@ pub const IWMWriterSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3856,7 +3906,7 @@ pub const IWMWriterSink = extern struct {
 
 const IID_IWMRegisterCallback_Value = Guid.initString("cf4b1f99-4de2-4e49-a363-252740d99bc1");
 pub const IID_IWMRegisterCallback = &IID_IWMRegisterCallback_Value;
-pub const IWMRegisterCallback = extern struct {
+pub const IWMRegisterCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Advise: *const fn(
@@ -3871,6 +3921,7 @@ pub const IWMRegisterCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3887,7 +3938,7 @@ pub const IWMRegisterCallback = extern struct {
 
 const IID_IWMWriterFileSink_Value = Guid.initString("96406be5-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMWriterFileSink = &IID_IWMWriterFileSink_Value;
-pub const IWMWriterFileSink = extern struct {
+pub const IWMWriterFileSink = extern union {
     pub const VTable = extern struct {
         base: IWMWriterSink.VTable,
         Open: *const fn(
@@ -3896,6 +3947,7 @@ pub const IWMWriterFileSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMWriterSink: IWMWriterSink,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterSink.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3908,7 +3960,7 @@ pub const IWMWriterFileSink = extern struct {
 
 const IID_IWMWriterFileSink2_Value = Guid.initString("14282ba7-4aef-4205-8ce5-c229035a05bc");
 pub const IID_IWMWriterFileSink2 = &IID_IWMWriterFileSink2_Value;
-pub const IWMWriterFileSink2 = extern struct {
+pub const IWMWriterFileSink2 = extern union {
     pub const VTable = extern struct {
         base: IWMWriterFileSink.VTable,
         Start: *const fn(
@@ -3940,6 +3992,7 @@ pub const IWMWriterFileSink2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMWriterFileSink: IWMWriterFileSink,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterFileSink.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3976,7 +4029,7 @@ pub const IWMWriterFileSink2 = extern struct {
 
 const IID_IWMWriterFileSink3_Value = Guid.initString("3fea4feb-2945-47a7-a1dd-c53a8fc4c45c");
 pub const IID_IWMWriterFileSink3 = &IID_IWMWriterFileSink3_Value;
-pub const IWMWriterFileSink3 = extern struct {
+pub const IWMWriterFileSink3 = extern union {
     pub const VTable = extern struct {
         base: IWMWriterFileSink2.VTable,
         SetAutoIndexing: *const fn(
@@ -4014,6 +4067,7 @@ pub const IWMWriterFileSink3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMWriterFileSink2: IWMWriterFileSink2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterFileSink2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4054,7 +4108,7 @@ pub const IWMWriterFileSink3 = extern struct {
 
 const IID_IWMWriterNetworkSink_Value = Guid.initString("96406be7-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMWriterNetworkSink = &IID_IWMWriterNetworkSink_Value;
-pub const IWMWriterNetworkSink = extern struct {
+pub const IWMWriterNetworkSink = extern union {
     pub const VTable = extern struct {
         base: IWMWriterSink.VTable,
         SetMaximumClients: *const fn(
@@ -4090,6 +4144,7 @@ pub const IWMWriterNetworkSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMWriterSink: IWMWriterSink,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterSink.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4130,7 +4185,7 @@ pub const IWMWriterNetworkSink = extern struct {
 
 const IID_IWMClientConnections_Value = Guid.initString("73c66010-a299-41df-b1f0-ccf03b09c1c6");
 pub const IID_IWMClientConnections = &IID_IWMClientConnections_Value;
-pub const IWMClientConnections = extern struct {
+pub const IWMClientConnections = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetClientCount: *const fn(
@@ -4144,6 +4199,7 @@ pub const IWMClientConnections = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4160,7 +4216,7 @@ pub const IWMClientConnections = extern struct {
 
 const IID_IWMClientConnections2_Value = Guid.initString("4091571e-4701-4593-bb3d-d5f5f0c74246");
 pub const IID_IWMClientConnections2 = &IID_IWMClientConnections2_Value;
-pub const IWMClientConnections2 = extern struct {
+pub const IWMClientConnections2 = extern union {
     pub const VTable = extern struct {
         base: IWMClientConnections.VTable,
         GetClientInfo: *const fn(
@@ -4175,6 +4231,7 @@ pub const IWMClientConnections2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMClientConnections: IWMClientConnections,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMClientConnections.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4187,7 +4244,7 @@ pub const IWMClientConnections2 = extern struct {
 
 const IID_IWMReaderAdvanced_Value = Guid.initString("96406bea-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMReaderAdvanced = &IID_IWMReaderAdvanced_Value;
-pub const IWMReaderAdvanced = extern struct {
+pub const IWMReaderAdvanced = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetUserProvidedClock: *const fn(
@@ -4283,6 +4340,7 @@ pub const IWMReaderAdvanced = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4371,7 +4429,7 @@ pub const IWMReaderAdvanced = extern struct {
 
 const IID_IWMReaderAdvanced2_Value = Guid.initString("ae14a945-b90c-4d0d-9127-80d665f7d73e");
 pub const IID_IWMReaderAdvanced2 = &IID_IWMReaderAdvanced2_Value;
-pub const IWMReaderAdvanced2 = extern struct {
+pub const IWMReaderAdvanced2 = extern union {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced.VTable,
         SetPlayMode: *const fn(
@@ -4454,6 +4512,7 @@ pub const IWMReaderAdvanced2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMReaderAdvanced: IWMReaderAdvanced,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderAdvanced.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4522,7 +4581,7 @@ pub const IWMReaderAdvanced2 = extern struct {
 
 const IID_IWMReaderAdvanced3_Value = Guid.initString("5dc0674b-f04b-4a4e-9f2a-b1afde2c8100");
 pub const IID_IWMReaderAdvanced3 = &IID_IWMReaderAdvanced3_Value;
-pub const IWMReaderAdvanced3 = extern struct {
+pub const IWMReaderAdvanced3 = extern union {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced2.VTable,
         StopNetStreaming: *const fn(
@@ -4539,6 +4598,7 @@ pub const IWMReaderAdvanced3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMReaderAdvanced2: IWMReaderAdvanced2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderAdvanced2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4555,7 +4615,7 @@ pub const IWMReaderAdvanced3 = extern struct {
 
 const IID_IWMReaderAdvanced4_Value = Guid.initString("945a76a2-12ae-4d48-bd3c-cd1d90399b85");
 pub const IID_IWMReaderAdvanced4 = &IID_IWMReaderAdvanced4_Value;
-pub const IWMReaderAdvanced4 = extern struct {
+pub const IWMReaderAdvanced4 = extern union {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced3.VTable,
         GetLanguageCount: *const fn(
@@ -4601,6 +4661,7 @@ pub const IWMReaderAdvanced4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMReaderAdvanced3: IWMReaderAdvanced3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderAdvanced3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4645,7 +4706,7 @@ pub const IWMReaderAdvanced4 = extern struct {
 
 const IID_IWMReaderAdvanced5_Value = Guid.initString("24c44db0-55d1-49ae-a5cc-f13815e36363");
 pub const IID_IWMReaderAdvanced5 = &IID_IWMReaderAdvanced5_Value;
-pub const IWMReaderAdvanced5 = extern struct {
+pub const IWMReaderAdvanced5 = extern union {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced4.VTable,
         SetPlayerHook: *const fn(
@@ -4655,6 +4716,7 @@ pub const IWMReaderAdvanced5 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMReaderAdvanced4: IWMReaderAdvanced4,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderAdvanced4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4667,7 +4729,7 @@ pub const IWMReaderAdvanced5 = extern struct {
 
 const IID_IWMReaderAdvanced6_Value = Guid.initString("18a2e7f8-428f-4acd-8a00-e64639bc93de");
 pub const IID_IWMReaderAdvanced6 = &IID_IWMReaderAdvanced6_Value;
-pub const IWMReaderAdvanced6 = extern struct {
+pub const IWMReaderAdvanced6 = extern union {
     pub const VTable = extern struct {
         base: IWMReaderAdvanced5.VTable,
         SetProtectStreamSamples: *const fn(
@@ -4681,6 +4743,7 @@ pub const IWMReaderAdvanced6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMReaderAdvanced5: IWMReaderAdvanced5,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderAdvanced5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4693,7 +4756,7 @@ pub const IWMReaderAdvanced6 = extern struct {
 
 const IID_IWMPlayerHook_Value = Guid.initString("e5b7ca9a-0f1c-4f66-9002-74ec50d8b304");
 pub const IID_IWMPlayerHook = &IID_IWMPlayerHook_Value;
-pub const IWMPlayerHook = extern struct {
+pub const IWMPlayerHook = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PreDecode: *const fn(
@@ -4701,6 +4764,7 @@ pub const IWMPlayerHook = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4713,7 +4777,7 @@ pub const IWMPlayerHook = extern struct {
 
 const IID_IWMReaderAllocatorEx_Value = Guid.initString("9f762fa7-a22e-428d-93c9-ac82f3aafe5a");
 pub const IID_IWMReaderAllocatorEx = &IID_IWMReaderAllocatorEx_Value;
-pub const IWMReaderAllocatorEx = extern struct {
+pub const IWMReaderAllocatorEx = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AllocateForStreamEx: *const fn(
@@ -4738,6 +4802,7 @@ pub const IWMReaderAllocatorEx = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4754,7 +4819,7 @@ pub const IWMReaderAllocatorEx = extern struct {
 
 const IID_IWMReaderTypeNegotiation_Value = Guid.initString("fdbe5592-81a1-41ea-93bd-735cad1adc05");
 pub const IID_IWMReaderTypeNegotiation = &IID_IWMReaderTypeNegotiation_Value;
-pub const IWMReaderTypeNegotiation = extern struct {
+pub const IWMReaderTypeNegotiation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         TryOutputProps: *const fn(
@@ -4764,6 +4829,7 @@ pub const IWMReaderTypeNegotiation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4776,7 +4842,7 @@ pub const IWMReaderTypeNegotiation = extern struct {
 
 const IID_IWMReaderCallbackAdvanced_Value = Guid.initString("96406beb-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMReaderCallbackAdvanced = &IID_IWMReaderCallbackAdvanced_Value;
-pub const IWMReaderCallbackAdvanced = extern struct {
+pub const IWMReaderCallbackAdvanced = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnStreamSample: *const fn(
@@ -4822,6 +4888,7 @@ pub const IWMReaderCallbackAdvanced = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4855,7 +4922,7 @@ pub const IWMReaderCallbackAdvanced = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWMDRMReader_Value = Guid.initString("d2827540-3ee7-432c-b14c-dc17f085d3b3");
 pub const IID_IWMDRMReader = &IID_IWMDRMReader_Value;
-pub const IWMDRMReader = extern struct {
+pub const IWMDRMReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AcquireLicense: *const fn(
@@ -4894,6 +4961,7 @@ pub const IWMDRMReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4970,7 +5038,7 @@ pub const DRM_COPY_OPL = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMReader2_Value = Guid.initString("befe7a75-9f1d-4075-b9d9-a3c37bda49a0");
 pub const IID_IWMDRMReader2 = &IID_IWMDRMReader2_Value;
-pub const IWMDRMReader2 = extern struct {
+pub const IWMDRMReader2 = extern union {
     pub const VTable = extern struct {
         base: IWMDRMReader.VTable,
         SetEvaluateOutputLevelLicenses: *const fn(
@@ -4994,6 +5062,7 @@ pub const IWMDRMReader2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMDRMReader: IWMDRMReader,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDRMReader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5019,7 +5088,7 @@ pub const IWMDRMReader2 = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMReader3_Value = Guid.initString("e08672de-f1e7-4ff4-a0a3-fc4b08e4caf8");
 pub const IID_IWMDRMReader3 = &IID_IWMDRMReader3_Value;
-pub const IWMDRMReader3 = extern struct {
+pub const IWMDRMReader3 = extern union {
     pub const VTable = extern struct {
         base: IWMDRMReader2.VTable,
         GetInclusionList: *const fn(
@@ -5029,6 +5098,7 @@ pub const IWMDRMReader3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMDRMReader2: IWMDRMReader2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDRMReader2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5041,7 +5111,7 @@ pub const IWMDRMReader3 = extern struct {
 
 const IID_IWMReaderPlaylistBurn_Value = Guid.initString("f28c0300-9baa-4477-a846-1744d9cbf533");
 pub const IID_IWMReaderPlaylistBurn = &IID_IWMReaderPlaylistBurn_Value;
-pub const IWMReaderPlaylistBurn = extern struct {
+pub const IWMReaderPlaylistBurn = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InitPlaylistBurn: *const fn(
@@ -5065,6 +5135,7 @@ pub const IWMReaderPlaylistBurn = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5089,7 +5160,7 @@ pub const IWMReaderPlaylistBurn = extern struct {
 
 const IID_IWMReaderNetworkConfig_Value = Guid.initString("96406bec-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMReaderNetworkConfig = &IID_IWMReaderNetworkConfig_Value;
-pub const IWMReaderNetworkConfig = extern struct {
+pub const IWMReaderNetworkConfig = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBufferingTime: *const fn(
@@ -5242,6 +5313,7 @@ pub const IWMReaderNetworkConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5382,7 +5454,7 @@ pub const IWMReaderNetworkConfig = extern struct {
 
 const IID_IWMReaderNetworkConfig2_Value = Guid.initString("d979a853-042b-4050-8387-c939db22013f");
 pub const IID_IWMReaderNetworkConfig2 = &IID_IWMReaderNetworkConfig2_Value;
-pub const IWMReaderNetworkConfig2 = extern struct {
+pub const IWMReaderNetworkConfig2 = extern union {
     pub const VTable = extern struct {
         base: IWMReaderNetworkConfig.VTable,
         GetEnableContentCaching: *const fn(
@@ -5439,6 +5511,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMReaderNetworkConfig: IWMReaderNetworkConfig,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMReaderNetworkConfig.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5499,7 +5572,7 @@ pub const IWMReaderNetworkConfig2 = extern struct {
 
 const IID_IWMReaderStreamClock_Value = Guid.initString("96406bed-2b2b-11d3-b36b-00c04f6108ff");
 pub const IID_IWMReaderStreamClock = &IID_IWMReaderStreamClock_Value;
-pub const IWMReaderStreamClock = extern struct {
+pub const IWMReaderStreamClock = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetTime: *const fn(
@@ -5518,6 +5591,7 @@ pub const IWMReaderStreamClock = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5538,7 +5612,7 @@ pub const IWMReaderStreamClock = extern struct {
 
 const IID_IWMIndexer_Value = Guid.initString("6d7cdc71-9888-11d3-8edc-00c04f6109cf");
 pub const IID_IWMIndexer = &IID_IWMIndexer_Value;
-pub const IWMIndexer = extern struct {
+pub const IWMIndexer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         StartIndexing: *const fn(
@@ -5552,6 +5626,7 @@ pub const IWMIndexer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5568,7 +5643,7 @@ pub const IWMIndexer = extern struct {
 
 const IID_IWMIndexer2_Value = Guid.initString("b70f1e42-6255-4df0-a6b9-02b212d9e2bb");
 pub const IID_IWMIndexer2 = &IID_IWMIndexer2_Value;
-pub const IWMIndexer2 = extern struct {
+pub const IWMIndexer2 = extern union {
     pub const VTable = extern struct {
         base: IWMIndexer.VTable,
         Configure: *const fn(
@@ -5580,6 +5655,7 @@ pub const IWMIndexer2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMIndexer: IWMIndexer,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMIndexer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5593,7 +5669,7 @@ pub const IWMIndexer2 = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWMLicenseBackup_Value = Guid.initString("05e5ac9f-3fb6-4508-bb43-a4067ba1ebe8");
 pub const IID_IWMLicenseBackup = &IID_IWMLicenseBackup_Value;
-pub const IWMLicenseBackup = extern struct {
+pub const IWMLicenseBackup = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         BackupLicenses: *const fn(
@@ -5606,6 +5682,7 @@ pub const IWMLicenseBackup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5623,7 +5700,7 @@ pub const IWMLicenseBackup = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWMLicenseRestore_Value = Guid.initString("c70b6334-a22e-4efb-a245-15e65a004a13");
 pub const IID_IWMLicenseRestore = &IID_IWMLicenseRestore_Value;
-pub const IWMLicenseRestore = extern struct {
+pub const IWMLicenseRestore = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RestoreLicenses: *const fn(
@@ -5636,6 +5713,7 @@ pub const IWMLicenseRestore = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5653,7 +5731,7 @@ pub const IWMLicenseRestore = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWMBackupRestoreProps_Value = Guid.initString("3c8e0da6-996f-4ff3-a1af-4838f9377e2e");
 pub const IID_IWMBackupRestoreProps = &IID_IWMBackupRestoreProps_Value;
-pub const IWMBackupRestoreProps = extern struct {
+pub const IWMBackupRestoreProps = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPropCount: *const fn(
@@ -5692,6 +5770,7 @@ pub const IWMBackupRestoreProps = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5724,7 +5803,7 @@ pub const IWMBackupRestoreProps = extern struct {
 
 const IID_IWMCodecInfo_Value = Guid.initString("a970f41e-34de-4a98-b3ba-e4b3ca7528f0");
 pub const IID_IWMCodecInfo = &IID_IWMCodecInfo_Value;
-pub const IWMCodecInfo = extern struct {
+pub const IWMCodecInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCodecInfoCount: *const fn(
@@ -5747,6 +5826,7 @@ pub const IWMCodecInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5767,7 +5847,7 @@ pub const IWMCodecInfo = extern struct {
 
 const IID_IWMCodecInfo2_Value = Guid.initString("aa65e273-b686-4056-91ec-dd768d4df710");
 pub const IID_IWMCodecInfo2 = &IID_IWMCodecInfo2_Value;
-pub const IWMCodecInfo2 = extern struct {
+pub const IWMCodecInfo2 = extern union {
     pub const VTable = extern struct {
         base: IWMCodecInfo.VTable,
         GetCodecName: *const fn(
@@ -5788,6 +5868,7 @@ pub const IWMCodecInfo2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMCodecInfo: IWMCodecInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMCodecInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5804,7 +5885,7 @@ pub const IWMCodecInfo2 = extern struct {
 
 const IID_IWMCodecInfo3_Value = Guid.initString("7e51f487-4d93-4f98-8ab4-27d0565adc51");
 pub const IID_IWMCodecInfo3 = &IID_IWMCodecInfo3_Value;
-pub const IWMCodecInfo3 = extern struct {
+pub const IWMCodecInfo3 = extern union {
     pub const VTable = extern struct {
         base: IWMCodecInfo2.VTable,
         GetCodecFormatProp: *const fn(
@@ -5846,6 +5927,7 @@ pub const IWMCodecInfo3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMCodecInfo2: IWMCodecInfo2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMCodecInfo2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5870,7 +5952,7 @@ pub const IWMCodecInfo3 = extern struct {
 
 const IID_IWMLanguageList_Value = Guid.initString("df683f00-2d49-4d8e-92b7-fb19f6a0dc57");
 pub const IID_IWMLanguageList = &IID_IWMLanguageList_Value;
-pub const IWMLanguageList = extern struct {
+pub const IWMLanguageList = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLanguageCount: *const fn(
@@ -5890,6 +5972,7 @@ pub const IWMLanguageList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5910,7 +5993,7 @@ pub const IWMLanguageList = extern struct {
 
 const IID_IWMWriterPushSink_Value = Guid.initString("dc10e6a5-072c-467d-bf57-6330a9dde12a");
 pub const IID_IWMWriterPushSink = &IID_IWMWriterPushSink_Value;
-pub const IWMWriterPushSink = extern struct {
+pub const IWMWriterPushSink = extern union {
     pub const VTable = extern struct {
         base: IWMWriterSink.VTable,
         Connect: *const fn(
@@ -5927,6 +6010,7 @@ pub const IWMWriterPushSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMWriterSink: IWMWriterSink,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMWriterSink.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5948,7 +6032,7 @@ pub const IWMWriterPushSink = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDeviceRegistration_Value = Guid.initString("f6211f03-8d21-4e94-93e6-8510805f2d99");
 pub const IID_IWMDeviceRegistration = &IID_IWMDeviceRegistration_Value;
-pub const IWMDeviceRegistration = extern struct {
+pub const IWMDeviceRegistration = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterDevice: *const fn(
@@ -5990,6 +6074,7 @@ pub const IWMDeviceRegistration = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6022,7 +6107,7 @@ pub const IWMDeviceRegistration = extern struct {
 
 const IID_IWMRegisteredDevice_Value = Guid.initString("a4503bec-5508-4148-97ac-bfa75760a70d");
 pub const IID_IWMRegisteredDevice = &IID_IWMRegisteredDevice_Value;
-pub const IWMRegisteredDevice = extern struct {
+pub const IWMRegisteredDevice = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDeviceSerialNumber: *const fn(
@@ -6085,6 +6170,7 @@ pub const IWMRegisteredDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6150,7 +6236,7 @@ pub const IWMRegisteredDevice = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMProximityDetection_Value = Guid.initString("6a9fd8ee-b651-4bf0-b849-7d4ece79a2b1");
 pub const IID_IWMProximityDetection = &IID_IWMProximityDetection_Value;
-pub const IWMProximityDetection = extern struct {
+pub const IWMProximityDetection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         StartDetection: *const fn(
@@ -6166,6 +6252,7 @@ pub const IWMProximityDetection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6179,7 +6266,7 @@ pub const IWMProximityDetection = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMMessageParser_Value = Guid.initString("a73a0072-25a0-4c99-b4a5-ede8101a6c39");
 pub const IID_IWMDRMMessageParser = &IID_IWMDRMMessageParser_Value;
-pub const IWMDRMMessageParser = extern struct {
+pub const IWMDRMMessageParser = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ParseRegistrationReqMsg: *const fn(
@@ -6199,6 +6286,7 @@ pub const IWMDRMMessageParser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6216,7 +6304,7 @@ pub const IWMDRMMessageParser = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IWMDRMTranscryptor_Value = Guid.initString("69059850-6e6f-4bb2-806f-71863ddfc471");
 pub const IID_IWMDRMTranscryptor = &IID_IWMDRMTranscryptor_Value;
-pub const IWMDRMTranscryptor = extern struct {
+pub const IWMDRMTranscryptor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -6242,6 +6330,7 @@ pub const IWMDRMTranscryptor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6266,7 +6355,7 @@ pub const IWMDRMTranscryptor = extern struct {
 
 const IID_IWMDRMTranscryptor2_Value = Guid.initString("e0da439f-d331-496a-bece-18e5bac5dd23");
 pub const IID_IWMDRMTranscryptor2 = &IID_IWMDRMTranscryptor2_Value;
-pub const IWMDRMTranscryptor2 = extern struct {
+pub const IWMDRMTranscryptor2 = extern union {
     pub const VTable = extern struct {
         base: IWMDRMTranscryptor.VTable,
         SeekEx: *const fn(
@@ -6290,6 +6379,7 @@ pub const IWMDRMTranscryptor2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMDRMTranscryptor: IWMDRMTranscryptor,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMDRMTranscryptor.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6314,7 +6404,7 @@ pub const IWMDRMTranscryptor2 = extern struct {
 
 const IID_IWMDRMTranscryptionManager_Value = Guid.initString("b1a887b2-a4f0-407a-b02e-efbd23bbecdf");
 pub const IID_IWMDRMTranscryptionManager = &IID_IWMDRMTranscryptionManager_Value;
-pub const IWMDRMTranscryptionManager = extern struct {
+pub const IWMDRMTranscryptionManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTranscryptor: *const fn(
@@ -6323,6 +6413,7 @@ pub const IWMDRMTranscryptionManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6335,7 +6426,7 @@ pub const IWMDRMTranscryptionManager = extern struct {
 
 const IID_IWMWatermarkInfo_Value = Guid.initString("6f497062-f2e2-4624-8ea7-9dd40d81fc8d");
 pub const IID_IWMWatermarkInfo = &IID_IWMWatermarkInfo_Value;
-pub const IWMWatermarkInfo = extern struct {
+pub const IWMWatermarkInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetWatermarkEntryCount: *const fn(
@@ -6351,6 +6442,7 @@ pub const IWMWatermarkInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6367,7 +6459,7 @@ pub const IWMWatermarkInfo = extern struct {
 
 const IID_IWMReaderAccelerator_Value = Guid.initString("bddc4d08-944d-4d52-a612-46c3fda07dd4");
 pub const IID_IWMReaderAccelerator = &IID_IWMReaderAccelerator_Value;
-pub const IWMReaderAccelerator = extern struct {
+pub const IWMReaderAccelerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCodecInterface: *const fn(
@@ -6383,6 +6475,7 @@ pub const IWMReaderAccelerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6399,7 +6492,7 @@ pub const IWMReaderAccelerator = extern struct {
 
 const IID_IWMReaderTimecode_Value = Guid.initString("f369e2f0-e081-4fe6-8450-b810b2f410d1");
 pub const IID_IWMReaderTimecode = &IID_IWMReaderTimecode_Value;
-pub const IWMReaderTimecode = extern struct {
+pub const IWMReaderTimecode = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetTimecodeRangeCount: *const fn(
@@ -6416,6 +6509,7 @@ pub const IWMReaderTimecode = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6432,7 +6526,7 @@ pub const IWMReaderTimecode = extern struct {
 
 const IID_IWMAddressAccess_Value = Guid.initString("bb3c6389-1633-4e92-af14-9f3173ba39d0");
 pub const IID_IWMAddressAccess = &IID_IWMAddressAccess_Value;
-pub const IWMAddressAccess = extern struct {
+pub const IWMAddressAccess = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAccessEntryCount: *const fn(
@@ -6458,6 +6552,7 @@ pub const IWMAddressAccess = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6482,7 +6577,7 @@ pub const IWMAddressAccess = extern struct {
 
 const IID_IWMAddressAccess2_Value = Guid.initString("65a83fc2-3e98-4d4d-81b5-2a742886b33d");
 pub const IID_IWMAddressAccess2 = &IID_IWMAddressAccess2_Value;
-pub const IWMAddressAccess2 = extern struct {
+pub const IWMAddressAccess2 = extern union {
     pub const VTable = extern struct {
         base: IWMAddressAccess.VTable,
         GetAccessEntryEx: *const fn(
@@ -6500,6 +6595,7 @@ pub const IWMAddressAccess2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMAddressAccess: IWMAddressAccess,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMAddressAccess.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6516,7 +6612,7 @@ pub const IWMAddressAccess2 = extern struct {
 
 const IID_IWMImageInfo_Value = Guid.initString("9f0aa3b6-7267-4d89-88f2-ba915aa5c4c6");
 pub const IID_IWMImageInfo = &IID_IWMImageInfo_Value;
-pub const IWMImageInfo = extern struct {
+pub const IWMImageInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetImageCount: *const fn(
@@ -6536,6 +6632,7 @@ pub const IWMImageInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6552,7 +6649,7 @@ pub const IWMImageInfo = extern struct {
 
 const IID_IWMLicenseRevocationAgent_Value = Guid.initString("6967f2c9-4e26-4b57-8894-799880f7ac7b");
 pub const IID_IWMLicenseRevocationAgent = &IID_IWMLicenseRevocationAgent_Value;
-pub const IWMLicenseRevocationAgent = extern struct {
+pub const IWMLicenseRevocationAgent = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLRBChallenge: *const fn(
@@ -6573,6 +6670,7 @@ pub const IWMLicenseRevocationAgent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6590,7 +6688,7 @@ pub const IWMLicenseRevocationAgent = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWMAuthorizer_Value = Guid.initString("d9b67d36-a9ad-4eb4-baef-db284ef5504c");
 pub const IID_IWMAuthorizer = &IID_IWMAuthorizer_Value;
-pub const IWMAuthorizer = extern struct {
+pub const IWMAuthorizer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCertCount: *const fn(
@@ -6611,6 +6709,7 @@ pub const IWMAuthorizer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6632,7 +6731,7 @@ pub const IWMAuthorizer = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWMSecureChannel_Value = Guid.initString("2720598a-d0f2-4189-bd10-91c46ef0936f");
 pub const IID_IWMSecureChannel = &IID_IWMSecureChannel_Value;
-pub const IWMSecureChannel = extern struct {
+pub const IWMSecureChannel = extern union {
     pub const VTable = extern struct {
         base: IWMAuthorizer.VTable,
         WMSC_AddCertificate: *const fn(
@@ -6683,6 +6782,7 @@ pub const IWMSecureChannel = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMAuthorizer: IWMAuthorizer,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMAuthorizer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6736,7 +6836,7 @@ pub const IWMSecureChannel = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWMGetSecureChannel_Value = Guid.initString("94bc0598-c3d2-11d3-bedf-00c04f612986");
 pub const IID_IWMGetSecureChannel = &IID_IWMGetSecureChannel_Value;
-pub const IWMGetSecureChannel = extern struct {
+pub const IWMGetSecureChannel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPeerSecureChannelInterface: *const fn(
@@ -6745,6 +6845,7 @@ pub const IWMGetSecureChannel = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6757,7 +6858,7 @@ pub const IWMGetSecureChannel = extern struct {
 
 const IID_INSNetSourceCreator_Value = Guid.initString("0c0e4080-9081-11d2-beec-0060082f2054");
 pub const IID_INSNetSourceCreator = &IID_INSNetSourceCreator_Value;
-pub const INSNetSourceCreator = extern struct {
+pub const INSNetSourceCreator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -6801,6 +6902,7 @@ pub const INSNetSourceCreator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6841,7 +6943,7 @@ pub const INSNetSourceCreator = extern struct {
 
 const IID_IWMPlayerTimestampHook_Value = Guid.initString("28580dda-d98e-48d0-b7ae-69e473a02825");
 pub const IID_IWMPlayerTimestampHook = &IID_IWMPlayerTimestampHook_Value;
-pub const IWMPlayerTimestampHook = extern struct {
+pub const IWMPlayerTimestampHook = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         MapTimestamp: *const fn(
@@ -6851,6 +6953,7 @@ pub const IWMPlayerTimestampHook = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6872,7 +6975,7 @@ pub const NETSOURCE_URLCREDPOLICY_SETTING_ANONYMOUSONLY = NETSOURCE_URLCREDPOLIC
 
 const IID_IWMSInternalAdminNetSource_Value = Guid.initString("8bb23e5f-d127-4afb-8d02-ae5b66d54c78");
 pub const IID_IWMSInternalAdminNetSource = &IID_IWMSInternalAdminNetSource_Value;
-pub const IWMSInternalAdminNetSource = extern struct {
+pub const IWMSInternalAdminNetSource = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -6938,6 +7041,7 @@ pub const IWMSInternalAdminNetSource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6990,7 +7094,7 @@ pub const IWMSInternalAdminNetSource = extern struct {
 
 const IID_IWMSInternalAdminNetSource2_Value = Guid.initString("e74d58c3-cf77-4b51-af17-744687c43eae");
 pub const IID_IWMSInternalAdminNetSource2 = &IID_IWMSInternalAdminNetSource2_Value;
-pub const IWMSInternalAdminNetSource2 = extern struct {
+pub const IWMSInternalAdminNetSource2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetCredentialsEx: *const fn(
@@ -7031,6 +7135,7 @@ pub const IWMSInternalAdminNetSource2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7055,7 +7160,7 @@ pub const IWMSInternalAdminNetSource2 = extern struct {
 
 const IID_IWMSInternalAdminNetSource3_Value = Guid.initString("6b63d08e-4590-44af-9eb3-57ff1e73bf80");
 pub const IID_IWMSInternalAdminNetSource3 = &IID_IWMSInternalAdminNetSource3_Value;
-pub const IWMSInternalAdminNetSource3 = extern struct {
+pub const IWMSInternalAdminNetSource3 = extern union {
     pub const VTable = extern struct {
         base: IWMSInternalAdminNetSource2.VTable,
         GetNetSourceCreator2: *const fn(
@@ -7110,6 +7215,7 @@ pub const IWMSInternalAdminNetSource3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWMSInternalAdminNetSource2: IWMSInternalAdminNetSource2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWMSInternalAdminNetSource2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

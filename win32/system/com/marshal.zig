@@ -9,7 +9,7 @@
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IMarshal_Value = Guid.initString("00000003-0000-0000-c000-000000000046");
 pub const IID_IMarshal = &IID_IMarshal_Value;
-pub const IMarshal = extern struct {
+pub const IMarshal = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetUnmarshalClass: *const fn(
@@ -55,6 +55,7 @@ pub const IMarshal = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -87,11 +88,12 @@ pub const IMarshal = extern struct {
 
 const IID_IMarshal2_Value = Guid.initString("000001cf-0000-0000-c000-000000000046");
 pub const IID_IMarshal2 = &IID_IMarshal2_Value;
-pub const IMarshal2 = extern struct {
+pub const IMarshal2 = extern union {
     pub const VTable = extern struct {
         base: IMarshal.VTable,
     };
     vtable: *const VTable,
+    IMarshal: IMarshal,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IMarshal.MethodMixin(T);
     };}
@@ -101,7 +103,7 @@ pub const IMarshal2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IMarshalingStream_Value = Guid.initString("d8f2f5e6-6102-4863-9f26-389a4676efde");
 pub const IID_IMarshalingStream = &IID_IMarshalingStream_Value;
-pub const IMarshalingStream = extern struct {
+pub const IMarshalingStream = extern union {
     pub const VTable = extern struct {
         base: IStream.VTable,
         GetMarshalingContextAttribute: *const fn(
@@ -111,6 +113,7 @@ pub const IMarshalingStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IStream: IStream,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

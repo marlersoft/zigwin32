@@ -180,7 +180,7 @@ pub const DIRECTMANIPULATION_INPUT_MODE_MANUAL = DIRECTMANIPULATION_INPUT_MODE.M
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationManager_Value = Guid.initString("fbf5d3b4-70c7-4163-9322-5a6f660d6fbc");
 pub const IID_IDirectManipulationManager = &IID_IDirectManipulationManager_Value;
-pub const IDirectManipulationManager = extern struct {
+pub const IDirectManipulationManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Activate: *const fn(
@@ -223,6 +223,7 @@ pub const IDirectManipulationManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -260,7 +261,7 @@ pub const IDirectManipulationManager = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDirectManipulationManager2_Value = Guid.initString("fa1005e9-3d16-484c-bfc9-62b61e56ec4e");
 pub const IID_IDirectManipulationManager2 = &IID_IDirectManipulationManager2_Value;
-pub const IDirectManipulationManager2 = extern struct {
+pub const IDirectManipulationManager2 = extern union {
     pub const VTable = extern struct {
         base: IDirectManipulationManager.VTable,
         CreateBehavior: *const fn(
@@ -271,6 +272,7 @@ pub const IDirectManipulationManager2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectManipulationManager: IDirectManipulationManager,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectManipulationManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -284,7 +286,7 @@ pub const IDirectManipulationManager2 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDirectManipulationManager3_Value = Guid.initString("2cb6b33d-ffe8-488c-b750-fbdfe88dca8c");
 pub const IID_IDirectManipulationManager3 = &IID_IDirectManipulationManager3_Value;
-pub const IDirectManipulationManager3 = extern struct {
+pub const IDirectManipulationManager3 = extern union {
     pub const VTable = extern struct {
         base: IDirectManipulationManager2.VTable,
         GetService: *const fn(
@@ -295,6 +297,7 @@ pub const IDirectManipulationManager3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectManipulationManager2: IDirectManipulationManager2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectManipulationManager2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -308,7 +311,7 @@ pub const IDirectManipulationManager3 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationViewport_Value = Guid.initString("28b85a3d-60a0-48bd-9ba1-5ce8d9ea3a6d");
 pub const IID_IDirectManipulationViewport = &IID_IDirectManipulationViewport_Value;
-pub const IDirectManipulationViewport = extern struct {
+pub const IDirectManipulationViewport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Enable: *const fn(
@@ -432,6 +435,7 @@ pub const IDirectManipulationViewport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -553,7 +557,7 @@ pub const IDirectManipulationViewport = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDirectManipulationViewport2_Value = Guid.initString("923ccaac-61e1-4385-b726-017af189882a");
 pub const IID_IDirectManipulationViewport2 = &IID_IDirectManipulationViewport2_Value;
-pub const IDirectManipulationViewport2 = extern struct {
+pub const IDirectManipulationViewport2 = extern union {
     pub const VTable = extern struct {
         base: IDirectManipulationViewport.VTable,
         AddBehavior: *const fn(
@@ -570,6 +574,7 @@ pub const IDirectManipulationViewport2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectManipulationViewport: IDirectManipulationViewport,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectManipulationViewport.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -591,7 +596,7 @@ pub const IDirectManipulationViewport2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationViewportEventHandler_Value = Guid.initString("952121da-d69f-45f9-b0f9-f23944321a6d");
 pub const IID_IDirectManipulationViewportEventHandler = &IID_IDirectManipulationViewportEventHandler_Value;
-pub const IDirectManipulationViewportEventHandler = extern struct {
+pub const IDirectManipulationViewportEventHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnViewportStatusChanged: *const fn(
@@ -611,6 +616,7 @@ pub const IDirectManipulationViewportEventHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -632,7 +638,7 @@ pub const IDirectManipulationViewportEventHandler = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationContent_Value = Guid.initString("b89962cb-3d89-442b-bb58-5098fa0f9f16");
 pub const IID_IDirectManipulationContent = &IID_IDirectManipulationContent_Value;
-pub const IDirectManipulationContent = extern struct {
+pub const IDirectManipulationContent = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetContentRect: *const fn(
@@ -676,6 +682,7 @@ pub const IDirectManipulationContent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -717,7 +724,7 @@ pub const IDirectManipulationContent = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationPrimaryContent_Value = Guid.initString("c12851e4-1698-4625-b9b1-7ca3ec18630b");
 pub const IID_IDirectManipulationPrimaryContent = &IID_IDirectManipulationPrimaryContent_Value;
-pub const IDirectManipulationPrimaryContent = extern struct {
+pub const IDirectManipulationPrimaryContent = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetSnapInterval: *const fn(
@@ -768,6 +775,7 @@ pub const IDirectManipulationPrimaryContent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -828,7 +836,7 @@ pub const DIRECTMANIPULATION_DRAG_DROP_COMMITTED = DIRECTMANIPULATION_DRAG_DROP_
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDirectManipulationDragDropEventHandler_Value = Guid.initString("1fa11b10-701b-41ae-b5f2-49e36bd595aa");
 pub const IID_IDirectManipulationDragDropEventHandler = &IID_IDirectManipulationDragDropEventHandler_Value;
-pub const IDirectManipulationDragDropEventHandler = extern struct {
+pub const IDirectManipulationDragDropEventHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnDragDropStatusChange: *const fn(
@@ -839,6 +847,7 @@ pub const IDirectManipulationDragDropEventHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -865,7 +874,7 @@ pub const DIRECTMANIPULATION_DRAG_DROP_CONFIGURATION_HOLD_DRAG = DIRECTMANIPULAT
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDirectManipulationDragDropBehavior_Value = Guid.initString("814b5af5-c2c8-4270-a9b7-a198ce8d02fa");
 pub const IID_IDirectManipulationDragDropBehavior = &IID_IDirectManipulationDragDropBehavior_Value;
-pub const IDirectManipulationDragDropBehavior = extern struct {
+pub const IDirectManipulationDragDropBehavior = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetConfiguration: *const fn(
@@ -878,6 +887,7 @@ pub const IDirectManipulationDragDropBehavior = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -912,7 +922,7 @@ pub const DIRECTMANIPULATION_INTERACTION_END = DIRECTMANIPULATION_INTERACTION_TY
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDirectManipulationInteractionEventHandler_Value = Guid.initString("e43f45b8-42b4-403e-b1f2-273b8f510830");
 pub const IID_IDirectManipulationInteractionEventHandler = &IID_IDirectManipulationInteractionEventHandler_Value;
-pub const IDirectManipulationInteractionEventHandler = extern struct {
+pub const IDirectManipulationInteractionEventHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnInteraction: *const fn(
@@ -922,6 +932,7 @@ pub const IDirectManipulationInteractionEventHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -935,7 +946,7 @@ pub const IDirectManipulationInteractionEventHandler = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationFrameInfoProvider_Value = Guid.initString("fb759dba-6f4c-4c01-874e-19c8a05907f9");
 pub const IID_IDirectManipulationFrameInfoProvider = &IID_IDirectManipulationFrameInfoProvider_Value;
-pub const IDirectManipulationFrameInfoProvider = extern struct {
+pub const IDirectManipulationFrameInfoProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetNextFrameInfo: *const fn(
@@ -946,6 +957,7 @@ pub const IDirectManipulationFrameInfoProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -959,7 +971,7 @@ pub const IDirectManipulationFrameInfoProvider = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationCompositor_Value = Guid.initString("537a0825-0387-4efa-b62f-71eb1f085a7e");
 pub const IID_IDirectManipulationCompositor = &IID_IDirectManipulationCompositor_Value;
-pub const IDirectManipulationCompositor = extern struct {
+pub const IDirectManipulationCompositor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddContent: *const fn(
@@ -982,6 +994,7 @@ pub const IDirectManipulationCompositor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1007,7 +1020,7 @@ pub const IDirectManipulationCompositor = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDirectManipulationCompositor2_Value = Guid.initString("d38c7822-f1cb-43cb-b4b9-ac0c767a412e");
 pub const IID_IDirectManipulationCompositor2 = &IID_IDirectManipulationCompositor2_Value;
-pub const IDirectManipulationCompositor2 = extern struct {
+pub const IDirectManipulationCompositor2 = extern union {
     pub const VTable = extern struct {
         base: IDirectManipulationCompositor.VTable,
         AddContentWithCrossProcessChaining: *const fn(
@@ -1019,6 +1032,7 @@ pub const IDirectManipulationCompositor2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDirectManipulationCompositor: IDirectManipulationCompositor,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDirectManipulationCompositor.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1032,7 +1046,7 @@ pub const IDirectManipulationCompositor2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationUpdateHandler_Value = Guid.initString("790b6337-64f8-4ff5-a269-b32bc2af27a7");
 pub const IID_IDirectManipulationUpdateHandler = &IID_IDirectManipulationUpdateHandler_Value;
-pub const IDirectManipulationUpdateHandler = extern struct {
+pub const IDirectManipulationUpdateHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Update: *const fn(
@@ -1040,6 +1054,7 @@ pub const IDirectManipulationUpdateHandler = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1053,7 +1068,7 @@ pub const IDirectManipulationUpdateHandler = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDirectManipulationUpdateManager_Value = Guid.initString("b0ae62fd-be34-46e7-9caa-d361facbb9cc");
 pub const IID_IDirectManipulationUpdateManager = &IID_IDirectManipulationUpdateManager_Value;
-pub const IDirectManipulationUpdateManager = extern struct {
+pub const IDirectManipulationUpdateManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterWaitHandleCallback: *const fn(
@@ -1072,6 +1087,7 @@ pub const IDirectManipulationUpdateManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1102,7 +1118,7 @@ pub const DIRECTMANIPULATION_AUTOSCROLL_CONFIGURATION_REVERSE = DIRECTMANIPULATI
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDirectManipulationAutoScrollBehavior_Value = Guid.initString("6d5954d4-2003-4356-9b31-d051c9ff0af7");
 pub const IID_IDirectManipulationAutoScrollBehavior = &IID_IDirectManipulationAutoScrollBehavior_Value;
-pub const IDirectManipulationAutoScrollBehavior = extern struct {
+pub const IDirectManipulationAutoScrollBehavior = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetConfiguration: *const fn(
@@ -1112,6 +1128,7 @@ pub const IDirectManipulationAutoScrollBehavior = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1125,7 +1142,7 @@ pub const IDirectManipulationAutoScrollBehavior = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDirectManipulationDeferContactService_Value = Guid.initString("652d5c71-fe60-4a98-be70-e5f21291e7f1");
 pub const IID_IDirectManipulationDeferContactService = &IID_IDirectManipulationDeferContactService_Value;
-pub const IDirectManipulationDeferContactService = extern struct {
+pub const IDirectManipulationDeferContactService = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DeferContact: *const fn(
@@ -1143,6 +1160,7 @@ pub const IDirectManipulationDeferContactService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

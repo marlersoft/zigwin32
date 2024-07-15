@@ -30,7 +30,7 @@ pub const PresentStatisticsKind_IndependentFlipFrame = PresentStatisticsKind.Ind
 
 const IID_IPresentationBuffer_Value = Guid.initString("2e217d3a-5abb-4138-9a13-a775593c89ca");
 pub const IID_IPresentationBuffer = &IID_IPresentationBuffer_Value;
-pub const IPresentationBuffer = extern struct {
+pub const IPresentationBuffer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAvailableEvent: *const fn(
@@ -43,6 +43,7 @@ pub const IPresentationBuffer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -59,7 +60,7 @@ pub const IPresentationBuffer = extern struct {
 
 const IID_IPresentationContent_Value = Guid.initString("5668bb79-3d8e-415c-b215-f38020f2d252");
 pub const IID_IPresentationContent = &IID_IPresentationContent_Value;
-pub const IPresentationContent = extern struct {
+pub const IPresentationContent = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetTag: *const fn(
@@ -68,6 +69,7 @@ pub const IPresentationContent = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -80,7 +82,7 @@ pub const IPresentationContent = extern struct {
 
 const IID_IPresentationSurface_Value = Guid.initString("956710fb-ea40-4eba-a3eb-4375a0eb4edc");
 pub const IID_IPresentationSurface = &IID_IPresentationSurface_Value;
-pub const IPresentationSurface = extern struct {
+pub const IPresentationSurface = extern union {
     pub const VTable = extern struct {
         base: IPresentationContent.VTable,
         SetBuffer: *const fn(
@@ -120,6 +122,7 @@ pub const IPresentationSurface = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IPresentationContent: IPresentationContent,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPresentationContent.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -160,7 +163,7 @@ pub const IPresentationSurface = extern struct {
 
 const IID_IPresentStatistics_Value = Guid.initString("b44b8bda-7282-495d-9dd7-ceadd8b4bb86");
 pub const IID_IPresentStatistics = &IID_IPresentStatistics_Value;
-pub const IPresentStatistics = extern struct {
+pub const IPresentStatistics = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPresentId: *const fn(
@@ -171,6 +174,7 @@ pub const IPresentStatistics = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) PresentStatisticsKind,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -187,7 +191,7 @@ pub const IPresentStatistics = extern struct {
 
 const IID_IPresentationManager_Value = Guid.initString("fb562f82-6292-470a-88b1-843661e7f20c");
 pub const IID_IPresentationManager = &IID_IPresentationManager_Value;
-pub const IPresentationManager = extern struct {
+pub const IPresentationManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddBufferFromResource: *const fn(
@@ -247,6 +251,7 @@ pub const IPresentationManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -307,7 +312,7 @@ pub const IPresentationManager = extern struct {
 
 const IID_IPresentationFactory_Value = Guid.initString("8fb37b58-1d74-4f64-a49c-1f97a80a2ec0");
 pub const IID_IPresentationFactory = &IID_IPresentationFactory_Value;
-pub const IPresentationFactory = extern struct {
+pub const IPresentationFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsPresentationSupported: *const fn(
@@ -322,6 +327,7 @@ pub const IPresentationFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -351,7 +357,7 @@ pub const PresentStatus_Canceled = PresentStatus.Canceled;
 
 const IID_IPresentStatusPresentStatistics_Value = Guid.initString("c9ed2a41-79cb-435e-964e-c8553055420c");
 pub const IID_IPresentStatusPresentStatistics = &IID_IPresentStatusPresentStatistics_Value;
-pub const IPresentStatusPresentStatistics = extern struct {
+pub const IPresentStatusPresentStatistics = extern union {
     pub const VTable = extern struct {
         base: IPresentStatistics.VTable,
         GetCompositionFrameId: *const fn(
@@ -362,6 +368,7 @@ pub const IPresentStatusPresentStatistics = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) PresentStatus,
     };
     vtable: *const VTable,
+    IPresentStatistics: IPresentStatistics,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPresentStatistics.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -398,7 +405,7 @@ pub const CompositionFrameDisplayInstance = extern struct {
 
 const IID_ICompositionFramePresentStatistics_Value = Guid.initString("ab41d127-c101-4c0a-911d-f9f2e9d08e64");
 pub const IID_ICompositionFramePresentStatistics = &IID_ICompositionFramePresentStatistics_Value;
-pub const ICompositionFramePresentStatistics = extern struct {
+pub const ICompositionFramePresentStatistics = extern union {
     pub const VTable = extern struct {
         base: IPresentStatistics.VTable,
         GetContentTag: *const fn(
@@ -414,6 +421,7 @@ pub const ICompositionFramePresentStatistics = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IPresentStatistics: IPresentStatistics,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPresentStatistics.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -434,7 +442,7 @@ pub const ICompositionFramePresentStatistics = extern struct {
 
 const IID_IIndependentFlipFramePresentStatistics_Value = Guid.initString("8c93be27-ad94-4da0-8fd4-2413132d124e");
 pub const IID_IIndependentFlipFramePresentStatistics = &IID_IIndependentFlipFramePresentStatistics_Value;
-pub const IIndependentFlipFramePresentStatistics = extern struct {
+pub const IIndependentFlipFramePresentStatistics = extern union {
     pub const VTable = extern struct {
         base: IPresentStatistics.VTable,
         GetOutputAdapterLUID: *const fn(
@@ -454,6 +462,7 @@ pub const IIndependentFlipFramePresentStatistics = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) SystemInterruptTime,
     };
     vtable: *const VTable,
+    IPresentStatistics: IPresentStatistics,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPresentStatistics.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

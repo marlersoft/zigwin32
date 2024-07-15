@@ -194,7 +194,7 @@ pub const SimilarityFileId = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcGeneratorParameters_Value = Guid.initString("96236a71-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcGeneratorParameters = &IID_IRdcGeneratorParameters_Value;
-pub const IRdcGeneratorParameters = extern struct {
+pub const IRdcGeneratorParameters = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetGeneratorParametersType: *const fn(
@@ -218,6 +218,7 @@ pub const IRdcGeneratorParameters = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -243,7 +244,7 @@ pub const IRdcGeneratorParameters = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcGeneratorFilterMaxParameters_Value = Guid.initString("96236a72-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcGeneratorFilterMaxParameters = &IID_IRdcGeneratorFilterMaxParameters_Value;
-pub const IRdcGeneratorFilterMaxParameters = extern struct {
+pub const IRdcGeneratorFilterMaxParameters = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetHorizonSize: *const fn(
@@ -264,6 +265,7 @@ pub const IRdcGeneratorFilterMaxParameters = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -289,7 +291,7 @@ pub const IRdcGeneratorFilterMaxParameters = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcGenerator_Value = Guid.initString("96236a73-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcGenerator = &IID_IRdcGenerator_Value;
-pub const IRdcGenerator = extern struct {
+pub const IRdcGenerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetGeneratorParameters: *const fn(
@@ -308,6 +310,7 @@ pub const IRdcGenerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -325,7 +328,7 @@ pub const IRdcGenerator = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcFileReader_Value = Guid.initString("96236a74-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcFileReader = &IID_IRdcFileReader_Value;
-pub const IRdcFileReader = extern struct {
+pub const IRdcFileReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFileSize: *const fn(
@@ -346,6 +349,7 @@ pub const IRdcFileReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -367,7 +371,7 @@ pub const IRdcFileReader = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcFileWriter_Value = Guid.initString("96236a75-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcFileWriter = &IID_IRdcFileWriter_Value;
-pub const IRdcFileWriter = extern struct {
+pub const IRdcFileWriter = extern union {
     pub const VTable = extern struct {
         base: IRdcFileReader.VTable,
         Write: *const fn(
@@ -384,6 +388,7 @@ pub const IRdcFileWriter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IRdcFileReader: IRdcFileReader,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IRdcFileReader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -405,7 +410,7 @@ pub const IRdcFileWriter = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcSignatureReader_Value = Guid.initString("96236a76-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcSignatureReader = &IID_IRdcSignatureReader_Value;
-pub const IRdcSignatureReader = extern struct {
+pub const IRdcSignatureReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReadHeader: *const fn(
@@ -419,6 +424,7 @@ pub const IRdcSignatureReader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -436,7 +442,7 @@ pub const IRdcSignatureReader = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcComparator_Value = Guid.initString("96236a77-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcComparator = &IID_IRdcComparator_Value;
-pub const IRdcComparator = extern struct {
+pub const IRdcComparator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Process: *const fn(
@@ -449,6 +455,7 @@ pub const IRdcComparator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -462,7 +469,7 @@ pub const IRdcComparator = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcLibrary_Value = Guid.initString("96236a78-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcLibrary = &IID_IRdcLibrary_Value;
-pub const IRdcLibrary = extern struct {
+pub const IRdcLibrary = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ComputeDefaultRecursionDepth: *const fn(
@@ -506,6 +513,7 @@ pub const IRdcLibrary = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -543,7 +551,7 @@ pub const IRdcLibrary = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityReportProgress_Value = Guid.initString("96236a7a-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityReportProgress = &IID_ISimilarityReportProgress_Value;
-pub const ISimilarityReportProgress = extern struct {
+pub const ISimilarityReportProgress = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReportProgress: *const fn(
@@ -552,6 +560,7 @@ pub const ISimilarityReportProgress = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -565,7 +574,7 @@ pub const ISimilarityReportProgress = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityTableDumpState_Value = Guid.initString("96236a7b-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTableDumpState = &IID_ISimilarityTableDumpState_Value;
-pub const ISimilarityTableDumpState = extern struct {
+pub const ISimilarityTableDumpState = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetNextData: *const fn(
@@ -577,6 +586,7 @@ pub const ISimilarityTableDumpState = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -590,7 +600,7 @@ pub const ISimilarityTableDumpState = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityTraitsMappedView_Value = Guid.initString("96236a7c-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTraitsMappedView = &IID_ISimilarityTraitsMappedView_Value;
-pub const ISimilarityTraitsMappedView = extern struct {
+pub const ISimilarityTraitsMappedView = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Flush: *const fn(
@@ -613,6 +623,7 @@ pub const ISimilarityTraitsMappedView = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -638,7 +649,7 @@ pub const ISimilarityTraitsMappedView = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityTraitsMapping_Value = Guid.initString("96236a7d-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTraitsMapping = &IID_ISimilarityTraitsMapping_Value;
-pub const ISimilarityTraitsMapping = extern struct {
+pub const ISimilarityTraitsMapping = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CloseMapping: *const fn(
@@ -678,6 +689,7 @@ pub const ISimilarityTraitsMapping = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -715,7 +727,7 @@ pub const ISimilarityTraitsMapping = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityTraitsTable_Value = Guid.initString("96236a7e-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityTraitsTable = &IID_ISimilarityTraitsTable_Value;
-pub const ISimilarityTraitsTable = extern struct {
+pub const ISimilarityTraitsTable = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTable: *const fn(
@@ -758,6 +770,7 @@ pub const ISimilarityTraitsTable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -795,7 +808,7 @@ pub const ISimilarityTraitsTable = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarityFileIdTable_Value = Guid.initString("96236a7f-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarityFileIdTable = &IID_ISimilarityFileIdTable_Value;
-pub const ISimilarityFileIdTable = extern struct {
+pub const ISimilarityFileIdTable = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTable: *const fn(
@@ -837,6 +850,7 @@ pub const ISimilarityFileIdTable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -874,7 +888,7 @@ pub const ISimilarityFileIdTable = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRdcSimilarityGenerator_Value = Guid.initString("96236a80-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IRdcSimilarityGenerator = &IID_IRdcSimilarityGenerator_Value;
-pub const IRdcSimilarityGenerator = extern struct {
+pub const IRdcSimilarityGenerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         EnableSimilarity: *const fn(
@@ -886,6 +900,7 @@ pub const IRdcSimilarityGenerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -903,7 +918,7 @@ pub const IRdcSimilarityGenerator = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IFindSimilarResults_Value = Guid.initString("96236a81-9dbc-11da-9e3f-0011114ae311");
 pub const IID_IFindSimilarResults = &IID_IFindSimilarResults_Value;
-pub const IFindSimilarResults = extern struct {
+pub const IFindSimilarResults = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSize: *const fn(
@@ -917,6 +932,7 @@ pub const IFindSimilarResults = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -934,7 +950,7 @@ pub const IFindSimilarResults = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_ISimilarity_Value = Guid.initString("96236a83-9dbc-11da-9e3f-0011114ae311");
 pub const IID_ISimilarity = &IID_ISimilarity_Value;
-pub const ISimilarity = extern struct {
+pub const ISimilarity = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTable: *const fn(
@@ -980,6 +996,7 @@ pub const ISimilarity = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

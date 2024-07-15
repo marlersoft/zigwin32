@@ -9,7 +9,7 @@ pub const CLSID_SoftwareBitmapNativeFactory = Guid.initString("84e65691-8602-4a8
 //--------------------------------------------------------------------------------
 const IID_ISoftwareBitmapNative_Value = Guid.initString("94bc8415-04ea-4b2e-af13-4de95aa898eb");
 pub const IID_ISoftwareBitmapNative = &IID_ISoftwareBitmapNative_Value;
-pub const ISoftwareBitmapNative = extern struct {
+pub const ISoftwareBitmapNative = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         GetData: *const fn(
@@ -19,6 +19,7 @@ pub const ISoftwareBitmapNative = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -31,7 +32,7 @@ pub const ISoftwareBitmapNative = extern struct {
 
 const IID_ISoftwareBitmapNativeFactory_Value = Guid.initString("c3c181ec-2914-4791-af02-02d224a10b43");
 pub const IID_ISoftwareBitmapNativeFactory = &IID_ISoftwareBitmapNativeFactory_Value;
-pub const ISoftwareBitmapNativeFactory = extern struct {
+pub const ISoftwareBitmapNativeFactory = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
         CreateFromWICBitmap: *const fn(
@@ -54,6 +55,7 @@ pub const ISoftwareBitmapNativeFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IInspectable: IInspectable,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IInspectable.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

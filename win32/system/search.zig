@@ -3405,7 +3405,7 @@ pub const IRowsetExactScroll = extern struct {
 
 const IID_IWordSink_Value = Guid.initString("cc907054-c058-101a-b554-08002b33b0e6");
 pub const IID_IWordSink = &IID_IWordSink_Value;
-pub const IWordSink = extern struct {
+pub const IWordSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PutWord: *const fn(
@@ -3434,6 +3434,7 @@ pub const IWordSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3473,7 +3474,7 @@ pub const TEXT_SOURCE = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWordBreaker_Value = Guid.initString("d53552c8-77e3-101a-b552-08002b33b0e6");
 pub const IID_IWordBreaker = &IID_IWordBreaker_Value;
-pub const IWordBreaker = extern struct {
+pub const IWordBreaker = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Init: *const fn(
@@ -3504,6 +3505,7 @@ pub const IWordBreaker = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3529,7 +3531,7 @@ pub const IWordBreaker = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IWordFormSink_Value = Guid.initString("fe77c330-7f42-11ce-be57-00aa0051fe20");
 pub const IID_IWordFormSink = &IID_IWordFormSink_Value;
-pub const IWordFormSink = extern struct {
+pub const IWordFormSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PutAltWord: *const fn(
@@ -3544,6 +3546,7 @@ pub const IWordFormSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3561,7 +3564,7 @@ pub const IWordFormSink = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IStemmer_Value = Guid.initString("efbaf140-7f42-11ce-be57-00aa0051fe20");
 pub const IID_IStemmer = &IID_IStemmer_Value;
-pub const IStemmer = extern struct {
+pub const IStemmer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Init: *const fn(
@@ -3581,6 +3584,7 @@ pub const IStemmer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3601,7 +3605,7 @@ pub const IStemmer = extern struct {
 
 const IID_ISimpleCommandCreator_Value = Guid.initString("5e341ab7-02d0-11d1-900c-00a0c9063796");
 pub const IID_ISimpleCommandCreator = &IID_ISimpleCommandCreator_Value;
-pub const ISimpleCommandCreator = extern struct {
+pub const ISimpleCommandCreator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateICommand: *const fn(
@@ -3622,6 +3626,7 @@ pub const ISimpleCommandCreator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3642,7 +3647,7 @@ pub const ISimpleCommandCreator = extern struct {
 
 const IID_IColumnMapper_Value = Guid.initString("0b63e37a-9ccc-11d0-bcdb-00805fccce04");
 pub const IID_IColumnMapper = &IID_IColumnMapper_Value;
-pub const IColumnMapper = extern struct {
+pub const IColumnMapper = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetPropInfoFromName: *const fn(
@@ -3672,6 +3677,7 @@ pub const IColumnMapper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3696,7 +3702,7 @@ pub const IColumnMapper = extern struct {
 
 const IID_IColumnMapperCreator_Value = Guid.initString("0b63e37b-9ccc-11d0-bcdb-00805fccce04");
 pub const IID_IColumnMapperCreator = &IID_IColumnMapperCreator_Value;
-pub const IColumnMapperCreator = extern struct {
+pub const IColumnMapperCreator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetColumnMapper: *const fn(
@@ -3707,6 +3713,7 @@ pub const IColumnMapperCreator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3739,7 +3746,7 @@ pub const FILTERED_DATA_SOURCES = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ILoadFilter_Value = Guid.initString("c7310722-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_ILoadFilter = &IID_ILoadFilter_Value;
-pub const ILoadFilter = extern struct {
+pub const ILoadFilter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         LoadIFilter: *const fn(
@@ -3777,6 +3784,7 @@ pub const ILoadFilter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3797,7 +3805,7 @@ pub const ILoadFilter = extern struct {
 
 const IID_ILoadFilterWithPrivateComActivation_Value = Guid.initString("40bdbd34-780b-48d3-9bb6-12ebd4ad2e75");
 pub const IID_ILoadFilterWithPrivateComActivation = &IID_ILoadFilterWithPrivateComActivation_Value;
-pub const ILoadFilterWithPrivateComActivation = extern struct {
+pub const ILoadFilterWithPrivateComActivation = extern union {
     pub const VTable = extern struct {
         base: ILoadFilter.VTable,
         LoadIFilterWithPrivateComActivation: *const fn(
@@ -3810,6 +3818,7 @@ pub const ILoadFilterWithPrivateComActivation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ILoadFilter: ILoadFilter,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ILoadFilter.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3823,7 +3832,7 @@ pub const ILoadFilterWithPrivateComActivation = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRichChunk_Value = Guid.initString("4fdef69c-dbc9-454e-9910-b34f3c64b510");
 pub const IID_IRichChunk = &IID_IRichChunk_Value;
-pub const IRichChunk = extern struct {
+pub const IRichChunk = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetData: *const fn(
@@ -3835,6 +3844,7 @@ pub const IRichChunk = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3848,7 +3858,7 @@ pub const IRichChunk = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ICondition_Value = Guid.initString("0fc988d4-c935-4b97-a973-46282ea175c8");
 pub const IID_ICondition = &IID_ICondition_Value;
-pub const ICondition = extern struct {
+pub const ICondition = extern union {
     pub const VTable = extern struct {
         base: IPersistStream.VTable,
         GetConditionType: *const fn(
@@ -3886,6 +3896,7 @@ pub const ICondition = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IPersistStream: IPersistStream,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPersistStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3923,7 +3934,7 @@ pub const ICondition = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ICondition2_Value = Guid.initString("0db8851d-2e5b-47eb-9208-d28c325a01d7");
 pub const IID_ICondition2 = &IID_ICondition2_Value;
-pub const ICondition2 = extern struct {
+pub const ICondition2 = extern union {
     pub const VTable = extern struct {
         base: ICondition.VTable,
         GetLocale: *const fn(
@@ -3938,6 +3949,7 @@ pub const ICondition2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ICondition: ICondition,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ICondition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5203,7 +5215,7 @@ pub const DBBINDSTATUS_MULTIPLESTORAGE = DBBINDSTATUSENUM.MULTIPLESTORAGE;
 
 const IID_IAccessor_Value = Guid.initString("0c733a8c-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IAccessor = &IID_IAccessor_Value;
-pub const IAccessor = extern struct {
+pub const IAccessor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddRefAccessor: *const fn(
@@ -5234,6 +5246,7 @@ pub const IAccessor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5258,7 +5271,7 @@ pub const IAccessor = extern struct {
 
 const IID_IRowset_Value = Guid.initString("0c733a7c-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowset = &IID_IRowset_Value;
-pub const IRowset = extern struct {
+pub const IRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddRefRows: *const fn(
@@ -5296,6 +5309,7 @@ pub const IRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5324,7 +5338,7 @@ pub const IRowset = extern struct {
 
 const IID_IRowsetInfo_Value = Guid.initString("0c733a55-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetInfo = &IID_IRowsetInfo_Value;
-pub const IRowsetInfo = extern struct {
+pub const IRowsetInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProperties: *const fn(
@@ -5347,6 +5361,7 @@ pub const IRowsetInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5380,7 +5395,7 @@ pub const DBCOMPARE_NOTCOMPARABLE = DBCOMPAREENUM.NOTCOMPARABLE;
 
 const IID_IRowsetLocate_Value = Guid.initString("0c733a7d-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetLocate = &IID_IRowsetLocate_Value;
-pub const IRowsetLocate = extern struct {
+pub const IRowsetLocate = extern union {
     pub const VTable = extern struct {
         base: IRowset.VTable,
         Compare: *const fn(
@@ -5423,6 +5438,7 @@ pub const IRowsetLocate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IRowset: IRowset,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IRowset.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5447,7 +5463,7 @@ pub const IRowsetLocate = extern struct {
 
 const IID_IRowsetResynch_Value = Guid.initString("0c733a84-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetResynch = &IID_IRowsetResynch_Value;
-pub const IRowsetResynch = extern struct {
+pub const IRowsetResynch = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetVisibleData: *const fn(
@@ -5466,6 +5482,7 @@ pub const IRowsetResynch = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5482,7 +5499,7 @@ pub const IRowsetResynch = extern struct {
 
 const IID_IRowsetScroll_Value = Guid.initString("0c733a7e-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetScroll = &IID_IRowsetScroll_Value;
-pub const IRowsetScroll = extern struct {
+pub const IRowsetScroll = extern union {
     pub const VTable = extern struct {
         base: IRowsetLocate.VTable,
         GetApproximatePosition: *const fn(
@@ -5505,6 +5522,7 @@ pub const IRowsetScroll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IRowsetLocate: IRowsetLocate,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IRowsetLocate.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5521,7 +5539,7 @@ pub const IRowsetScroll = extern struct {
 
 const IID_IChapteredRowset_Value = Guid.initString("0c733a93-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IChapteredRowset = &IID_IChapteredRowset_Value;
-pub const IChapteredRowset = extern struct {
+pub const IChapteredRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddRefChapter: *const fn(
@@ -5536,6 +5554,7 @@ pub const IChapteredRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5552,7 +5571,7 @@ pub const IChapteredRowset = extern struct {
 
 const IID_IRowsetFind_Value = Guid.initString("0c733a9d-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetFind = &IID_IRowsetFind_Value;
-pub const IRowsetFind = extern struct {
+pub const IRowsetFind = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindNextRow: *const fn(
@@ -5570,6 +5589,7 @@ pub const IRowsetFind = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5593,7 +5613,7 @@ pub const DBPOSITION_EOF = DBPOSITIONFLAGSENUM.EOF;
 
 const IID_IRowPosition_Value = Guid.initString("0c733a94-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowPosition = &IID_IRowPosition_Value;
-pub const IRowPosition = extern struct {
+pub const IRowPosition = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ClearRowPosition: *const fn(
@@ -5622,6 +5642,7 @@ pub const IRowPosition = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5650,7 +5671,7 @@ pub const IRowPosition = extern struct {
 
 const IID_IRowPositionChange_Value = Guid.initString("0997a571-126e-11d0-9f8a-00a0c9a0631e");
 pub const IID_IRowPositionChange = &IID_IRowPositionChange_Value;
-pub const IRowPositionChange = extern struct {
+pub const IRowPositionChange = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnRowPositionChange: *const fn(
@@ -5661,6 +5682,7 @@ pub const IRowPositionChange = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5673,7 +5695,7 @@ pub const IRowPositionChange = extern struct {
 
 const IID_IViewRowset_Value = Guid.initString("0c733a97-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IViewRowset = &IID_IViewRowset_Value;
-pub const IViewRowset = extern struct {
+pub const IViewRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSpecification: *const fn(
@@ -5689,6 +5711,7 @@ pub const IViewRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5705,7 +5728,7 @@ pub const IViewRowset = extern struct {
 
 const IID_IViewChapter_Value = Guid.initString("0c733a98-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IViewChapter = &IID_IViewChapter_Value;
-pub const IViewChapter = extern struct {
+pub const IViewChapter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSpecification: *const fn(
@@ -5720,6 +5743,7 @@ pub const IViewChapter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5736,7 +5760,7 @@ pub const IViewChapter = extern struct {
 
 const IID_IViewSort_Value = Guid.initString("0c733a9a-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IViewSort = &IID_IViewSort_Value;
-pub const IViewSort = extern struct {
+pub const IViewSort = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSortOrder: *const fn(
@@ -5753,6 +5777,7 @@ pub const IViewSort = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5769,7 +5794,7 @@ pub const IViewSort = extern struct {
 
 const IID_IViewFilter_Value = Guid.initString("0c733a9b-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IViewFilter = &IID_IViewFilter_Value;
-pub const IViewFilter = extern struct {
+pub const IViewFilter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFilter: *const fn(
@@ -5793,6 +5818,7 @@ pub const IViewFilter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5813,7 +5839,7 @@ pub const IViewFilter = extern struct {
 
 const IID_IRowsetView_Value = Guid.initString("0c733a99-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetView = &IID_IRowsetView_Value;
-pub const IRowsetView = extern struct {
+pub const IRowsetView = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateView: *const fn(
@@ -5831,6 +5857,7 @@ pub const IRowsetView = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5847,7 +5874,7 @@ pub const IRowsetView = extern struct {
 
 const IID_IRowsetChange_Value = Guid.initString("0c733a05-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetChange = &IID_IRowsetChange_Value;
-pub const IRowsetChange = extern struct {
+pub const IRowsetChange = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DeleteRows: *const fn(
@@ -5872,6 +5899,7 @@ pub const IRowsetChange = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5905,7 +5933,7 @@ pub const DBPENDINGSTATUS_INVALIDROW = DBPENDINGSTATUSENUM.INVALIDROW;
 
 const IID_IRowsetUpdate_Value = Guid.initString("0c733a6d-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetUpdate = &IID_IRowsetUpdate_Value;
-pub const IRowsetUpdate = extern struct {
+pub const IRowsetUpdate = extern union {
     pub const VTable = extern struct {
         base: IRowsetChange.VTable,
         GetOriginalData: *const fn(
@@ -5949,6 +5977,7 @@ pub const IRowsetUpdate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IRowsetChange: IRowsetChange,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IRowsetChange.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5977,7 +6006,7 @@ pub const IRowsetUpdate = extern struct {
 
 const IID_IRowsetIdentity_Value = Guid.initString("0c733a09-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetIdentity = &IID_IRowsetIdentity_Value;
-pub const IRowsetIdentity = extern struct {
+pub const IRowsetIdentity = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsSameRow: *const fn(
@@ -5987,6 +6016,7 @@ pub const IRowsetIdentity = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5999,7 +6029,7 @@ pub const IRowsetIdentity = extern struct {
 
 const IID_IRowsetNotify_Value = Guid.initString("0c733a83-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetNotify = &IID_IRowsetNotify_Value;
-pub const IRowsetNotify = extern struct {
+pub const IRowsetNotify = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnFieldChange: *const fn(
@@ -6030,6 +6060,7 @@ pub const IRowsetNotify = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6091,7 +6122,7 @@ pub const DBRANGE_MATCH_N_MASK = DBRANGEENUM20.MASK;
 
 const IID_IRowsetIndex_Value = Guid.initString("0c733a82-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetIndex = &IID_IRowsetIndex_Value;
-pub const IRowsetIndex = extern struct {
+pub const IRowsetIndex = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetIndexInfo: *const fn(
@@ -6119,6 +6150,7 @@ pub const IRowsetIndex = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6139,7 +6171,7 @@ pub const IRowsetIndex = extern struct {
 
 const IID_ICommand_Value = Guid.initString("0c733a63-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommand = &IID_ICommand_Value;
-pub const ICommand = extern struct {
+pub const ICommand = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Cancel: *const fn(
@@ -6160,6 +6192,7 @@ pub const ICommand = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6189,7 +6222,7 @@ pub const DBRESULTFLAG_ROW = DBRESULTFLAGENUM.ROW;
 
 const IID_IMultipleResults_Value = Guid.initString("0c733a90-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IMultipleResults = &IID_IMultipleResults_Value;
-pub const IMultipleResults = extern struct {
+pub const IMultipleResults = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetResult: *const fn(
@@ -6202,6 +6235,7 @@ pub const IMultipleResults = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6230,7 +6264,7 @@ pub const DBCONVERTFLAGS_FROMVARIANT = DBCONVERTFLAGSENUM20.FROMVARIANT;
 
 const IID_IConvertType_Value = Guid.initString("0c733a88-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IConvertType = &IID_IConvertType_Value;
-pub const IConvertType = extern struct {
+pub const IConvertType = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CanConvert: *const fn(
@@ -6241,6 +6275,7 @@ pub const IConvertType = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6253,7 +6288,7 @@ pub const IConvertType = extern struct {
 
 const IID_ICommandPrepare_Value = Guid.initString("0c733a26-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommandPrepare = &IID_ICommandPrepare_Value;
-pub const ICommandPrepare = extern struct {
+pub const ICommandPrepare = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Prepare: *const fn(
@@ -6265,6 +6300,7 @@ pub const ICommandPrepare = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6281,7 +6317,7 @@ pub const ICommandPrepare = extern struct {
 
 const IID_ICommandProperties_Value = Guid.initString("0c733a79-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommandProperties = &IID_ICommandProperties_Value;
-pub const ICommandProperties = extern struct {
+pub const ICommandProperties = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProperties: *const fn(
@@ -6298,6 +6334,7 @@ pub const ICommandProperties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6314,7 +6351,7 @@ pub const ICommandProperties = extern struct {
 
 const IID_ICommandText_Value = Guid.initString("0c733a27-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommandText = &IID_ICommandText_Value;
-pub const ICommandText = extern struct {
+pub const ICommandText = extern union {
     pub const VTable = extern struct {
         base: ICommand.VTable,
         GetCommandText: *const fn(
@@ -6329,6 +6366,7 @@ pub const ICommandText = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ICommand: ICommand,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ICommand.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6346,7 +6384,7 @@ pub const ICommandText = extern struct {
 
 const IID_ICommandWithParameters_Value = Guid.initString("0c733a64-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommandWithParameters = &IID_ICommandWithParameters_Value;
-pub const ICommandWithParameters = extern struct {
+pub const ICommandWithParameters = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetParameterInfo: *const fn(
@@ -6369,6 +6407,7 @@ pub const ICommandWithParameters = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6389,7 +6428,7 @@ pub const ICommandWithParameters = extern struct {
 
 const IID_IColumnsRowset_Value = Guid.initString("0c733a10-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IColumnsRowset = &IID_IColumnsRowset_Value;
-pub const IColumnsRowset = extern struct {
+pub const IColumnsRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAvailableColumns: *const fn(
@@ -6409,6 +6448,7 @@ pub const IColumnsRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6425,7 +6465,7 @@ pub const IColumnsRowset = extern struct {
 
 const IID_IColumnsInfo_Value = Guid.initString("0c733a11-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IColumnsInfo = &IID_IColumnsInfo_Value;
-pub const IColumnsInfo = extern struct {
+pub const IColumnsInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetColumnInfo: *const fn(
@@ -6442,6 +6482,7 @@ pub const IColumnsInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6458,7 +6499,7 @@ pub const IColumnsInfo = extern struct {
 
 const IID_IDBCreateCommand_Value = Guid.initString("0c733a1d-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBCreateCommand = &IID_IDBCreateCommand_Value;
-pub const IDBCreateCommand = extern struct {
+pub const IDBCreateCommand = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateCommand: *const fn(
@@ -6469,6 +6510,7 @@ pub const IDBCreateCommand = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6481,7 +6523,7 @@ pub const IDBCreateCommand = extern struct {
 
 const IID_IDBCreateSession_Value = Guid.initString("0c733a5d-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBCreateSession = &IID_IDBCreateSession_Value;
-pub const IDBCreateSession = extern struct {
+pub const IDBCreateSession = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateSession: *const fn(
@@ -6492,6 +6534,7 @@ pub const IDBCreateSession = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6523,7 +6566,7 @@ pub const DBSOURCETYPE_BINDER = DBSOURCETYPEENUM25.R;
 
 const IID_ISourcesRowset_Value = Guid.initString("0c733a1e-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISourcesRowset = &IID_ISourcesRowset_Value;
-pub const ISourcesRowset = extern struct {
+pub const ISourcesRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSourcesRowset: *const fn(
@@ -6536,6 +6579,7 @@ pub const ISourcesRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6548,7 +6592,7 @@ pub const ISourcesRowset = extern struct {
 
 const IID_IDBProperties_Value = Guid.initString("0c733a8a-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBProperties = &IID_IDBProperties_Value;
-pub const IDBProperties = extern struct {
+pub const IDBProperties = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProperties: *const fn(
@@ -6573,6 +6617,7 @@ pub const IDBProperties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6593,7 +6638,7 @@ pub const IDBProperties = extern struct {
 
 const IID_IDBInitialize_Value = Guid.initString("0c733a8b-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBInitialize = &IID_IDBInitialize_Value;
-pub const IDBInitialize = extern struct {
+pub const IDBInitialize = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -6604,6 +6649,7 @@ pub const IDBInitialize = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6692,7 +6738,7 @@ pub const DBLITERAL_ESCAPE_UNDERSCORE_SUFFIX = DBLITERALENUM21.UNDERSCORE_SUFFIX
 
 const IID_IDBInfo_Value = Guid.initString("0c733a89-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBInfo = &IID_IDBInfo_Value;
-pub const IDBInfo = extern struct {
+pub const IDBInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetKeywords: *const fn(
@@ -6709,6 +6755,7 @@ pub const IDBInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6725,7 +6772,7 @@ pub const IDBInfo = extern struct {
 
 const IID_IDBDataSourceAdmin_Value = Guid.initString("0c733a7a-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBDataSourceAdmin = &IID_IDBDataSourceAdmin_Value;
-pub const IDBDataSourceAdmin = extern struct {
+pub const IDBDataSourceAdmin = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateDataSource: *const fn(
@@ -6754,6 +6801,7 @@ pub const IDBDataSourceAdmin = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6778,7 +6826,7 @@ pub const IDBDataSourceAdmin = extern struct {
 
 const IID_IDBAsynchNotify_Value = Guid.initString("0c733a96-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBAsynchNotify = &IID_IDBAsynchNotify_Value;
-pub const IDBAsynchNotify = extern struct {
+pub const IDBAsynchNotify = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnLowResource: *const fn(
@@ -6803,6 +6851,7 @@ pub const IDBAsynchNotify = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6823,7 +6872,7 @@ pub const IDBAsynchNotify = extern struct {
 
 const IID_IDBAsynchStatus_Value = Guid.initString("0c733a95-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBAsynchStatus = &IID_IDBAsynchStatus_Value;
-pub const IDBAsynchStatus = extern struct {
+pub const IDBAsynchStatus = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Abort: *const fn(
@@ -6842,6 +6891,7 @@ pub const IDBAsynchStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6858,7 +6908,7 @@ pub const IDBAsynchStatus = extern struct {
 
 const IID_ISessionProperties_Value = Guid.initString("0c733a85-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISessionProperties = &IID_ISessionProperties_Value;
-pub const ISessionProperties = extern struct {
+pub const ISessionProperties = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetProperties: *const fn(
@@ -6875,6 +6925,7 @@ pub const ISessionProperties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6891,7 +6942,7 @@ pub const ISessionProperties = extern struct {
 
 const IID_IIndexDefinition_Value = Guid.initString("0c733a68-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IIndexDefinition = &IID_IIndexDefinition_Value;
-pub const IIndexDefinition = extern struct {
+pub const IIndexDefinition = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateIndex: *const fn(
@@ -6911,6 +6962,7 @@ pub const IIndexDefinition = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6927,7 +6979,7 @@ pub const IIndexDefinition = extern struct {
 
 const IID_ITableDefinition_Value = Guid.initString("0c733a86-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ITableDefinition = &IID_ITableDefinition_Value;
-pub const ITableDefinition = extern struct {
+pub const ITableDefinition = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateTable: *const fn(
@@ -6959,6 +7011,7 @@ pub const ITableDefinition = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6983,7 +7036,7 @@ pub const ITableDefinition = extern struct {
 
 const IID_IOpenRowset_Value = Guid.initString("0c733a69-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IOpenRowset = &IID_IOpenRowset_Value;
-pub const IOpenRowset = extern struct {
+pub const IOpenRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OpenRowset: *const fn(
@@ -6998,6 +7051,7 @@ pub const IOpenRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7010,7 +7064,7 @@ pub const IOpenRowset = extern struct {
 
 const IID_IDBSchemaRowset_Value = Guid.initString("0c733a7b-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBSchemaRowset = &IID_IDBSchemaRowset_Value;
-pub const IDBSchemaRowset = extern struct {
+pub const IDBSchemaRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRowset: *const fn(
@@ -7032,6 +7086,7 @@ pub const IDBSchemaRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7048,7 +7103,7 @@ pub const IDBSchemaRowset = extern struct {
 
 const IID_IMDDataset_Value = Guid.initString("a07cccd1-8148-11d0-87bb-00c04fc33942");
 pub const IID_IMDDataset = &IID_IMDDataset_Value;
-pub const IMDDataset = extern struct {
+pub const IMDDataset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FreeAxisInfo: *const fn(
@@ -7084,6 +7139,7 @@ pub const IMDDataset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7112,7 +7168,7 @@ pub const IMDDataset = extern struct {
 
 const IID_IMDFind_Value = Guid.initString("a07cccd2-8148-11d0-87bb-00c04fc33942");
 pub const IID_IMDFind = &IID_IMDFind_Value;
-pub const IMDFind = extern struct {
+pub const IMDFind = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         FindCell: *const fn(
@@ -7132,6 +7188,7 @@ pub const IMDFind = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7148,7 +7205,7 @@ pub const IMDFind = extern struct {
 
 const IID_IMDRangeRowset_Value = Guid.initString("0c733aa0-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IMDRangeRowset = &IID_IMDRangeRowset_Value;
-pub const IMDRangeRowset = extern struct {
+pub const IMDRangeRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRangeRowset: *const fn(
@@ -7163,6 +7220,7 @@ pub const IMDRangeRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7175,7 +7233,7 @@ pub const IMDRangeRowset = extern struct {
 
 const IID_IAlterTable_Value = Guid.initString("0c733aa5-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IAlterTable = &IID_IAlterTable_Value;
-pub const IAlterTable = extern struct {
+pub const IAlterTable = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AlterColumn: *const fn(
@@ -7194,6 +7252,7 @@ pub const IAlterTable = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7210,7 +7269,7 @@ pub const IAlterTable = extern struct {
 
 const IID_IAlterIndex_Value = Guid.initString("0c733aa6-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IAlterIndex = &IID_IAlterIndex_Value;
-pub const IAlterIndex = extern struct {
+pub const IAlterIndex = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AlterIndex: *const fn(
@@ -7223,6 +7282,7 @@ pub const IAlterIndex = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7235,7 +7295,7 @@ pub const IAlterIndex = extern struct {
 
 const IID_IRowsetChapterMember_Value = Guid.initString("0c733aa8-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetChapterMember = &IID_IRowsetChapterMember_Value;
-pub const IRowsetChapterMember = extern struct {
+pub const IRowsetChapterMember = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsRowInChapter: *const fn(
@@ -7245,6 +7305,7 @@ pub const IRowsetChapterMember = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7257,7 +7318,7 @@ pub const IRowsetChapterMember = extern struct {
 
 const IID_ICommandPersist_Value = Guid.initString("0c733aa7-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommandPersist = &IID_ICommandPersist_Value;
-pub const ICommandPersist = extern struct {
+pub const ICommandPersist = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DeleteCommand: *const fn(
@@ -7280,6 +7341,7 @@ pub const ICommandPersist = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7304,7 +7366,7 @@ pub const ICommandPersist = extern struct {
 
 const IID_IRowsetRefresh_Value = Guid.initString("0c733aa9-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetRefresh = &IID_IRowsetRefresh_Value;
-pub const IRowsetRefresh = extern struct {
+pub const IRowsetRefresh = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RefreshVisibleData: *const fn(
@@ -7325,6 +7387,7 @@ pub const IRowsetRefresh = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7341,7 +7404,7 @@ pub const IRowsetRefresh = extern struct {
 
 const IID_IParentRowset_Value = Guid.initString("0c733aaa-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IParentRowset = &IID_IParentRowset_Value;
-pub const IParentRowset = extern struct {
+pub const IParentRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetChildRowset: *const fn(
@@ -7353,6 +7416,7 @@ pub const IParentRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7366,7 +7430,7 @@ pub const IParentRowset = extern struct {
 
 const IID_IErrorRecords_Value = Guid.initString("0c733a67-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IErrorRecords = &IID_IErrorRecords_Value;
-pub const IErrorRecords = extern struct {
+pub const IErrorRecords = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddErrorRecord: *const fn(
@@ -7405,6 +7469,7 @@ pub const IErrorRecords = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7437,7 +7502,7 @@ pub const IErrorRecords = extern struct {
 
 const IID_IErrorLookup_Value = Guid.initString("0c733a66-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IErrorLookup = &IID_IErrorLookup_Value;
-pub const IErrorLookup = extern struct {
+pub const IErrorLookup = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetErrorDescription: *const fn(
@@ -7463,6 +7528,7 @@ pub const IErrorLookup = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7483,7 +7549,7 @@ pub const IErrorLookup = extern struct {
 
 const IID_ISQLErrorInfo_Value = Guid.initString("0c733a74-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISQLErrorInfo = &IID_ISQLErrorInfo_Value;
-pub const ISQLErrorInfo = extern struct {
+pub const ISQLErrorInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSQLInfo: *const fn(
@@ -7493,6 +7559,7 @@ pub const ISQLErrorInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7505,7 +7572,7 @@ pub const ISQLErrorInfo = extern struct {
 
 const IID_IGetDataSource_Value = Guid.initString("0c733a75-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IGetDataSource = &IID_IGetDataSource_Value;
-pub const IGetDataSource = extern struct {
+pub const IGetDataSource = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDataSource: *const fn(
@@ -7515,6 +7582,7 @@ pub const IGetDataSource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7527,7 +7595,7 @@ pub const IGetDataSource = extern struct {
 
 const IID_ITransactionLocal_Value = Guid.initString("0c733a5f-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ITransactionLocal = &IID_ITransactionLocal_Value;
-pub const ITransactionLocal = extern struct {
+pub const ITransactionLocal = extern union {
     pub const VTable = extern struct {
         base: ITransaction.VTable,
         GetOptionsObject: *const fn(
@@ -7543,6 +7611,7 @@ pub const ITransactionLocal = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITransaction: ITransaction,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITransaction.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7559,7 +7628,7 @@ pub const ITransactionLocal = extern struct {
 
 const IID_ITransactionJoin_Value = Guid.initString("0c733a5e-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ITransactionJoin = &IID_ITransactionJoin_Value;
-pub const ITransactionJoin = extern struct {
+pub const ITransactionJoin = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetOptionsObject: *const fn(
@@ -7575,6 +7644,7 @@ pub const ITransactionJoin = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7591,7 +7661,7 @@ pub const ITransactionJoin = extern struct {
 
 const IID_ITransactionObject_Value = Guid.initString("0c733a60-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ITransactionObject = &IID_ITransactionObject_Value;
-pub const ITransactionObject = extern struct {
+pub const ITransactionObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetTransactionObject: *const fn(
@@ -7601,6 +7671,7 @@ pub const ITransactionObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7613,7 +7684,7 @@ pub const ITransactionObject = extern struct {
 
 const IID_ITrusteeAdmin_Value = Guid.initString("0c733aa1-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ITrusteeAdmin = &IID_ITrusteeAdmin_Value;
-pub const ITrusteeAdmin = extern struct {
+pub const ITrusteeAdmin = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CompareTrustees: *const fn(
@@ -7647,6 +7718,7 @@ pub const ITrusteeAdmin = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7675,7 +7747,7 @@ pub const ITrusteeAdmin = extern struct {
 
 const IID_ITrusteeGroupAdmin_Value = Guid.initString("0c733aa2-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ITrusteeGroupAdmin = &IID_ITrusteeGroupAdmin_Value;
-pub const ITrusteeGroupAdmin = extern struct {
+pub const ITrusteeGroupAdmin = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddMember: *const fn(
@@ -7708,6 +7780,7 @@ pub const ITrusteeGroupAdmin = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7736,7 +7809,7 @@ pub const ITrusteeGroupAdmin = extern struct {
 
 const IID_IObjectAccessControl_Value = Guid.initString("0c733aa3-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IObjectAccessControl = &IID_IObjectAccessControl_Value;
-pub const IObjectAccessControl = extern struct {
+pub const IObjectAccessControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetObjectAccessRights: *const fn(
@@ -7769,6 +7842,7 @@ pub const IObjectAccessControl = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7834,7 +7908,7 @@ pub const PERM_DROP = ACCESS_MASKENUM.DROP;
 
 const IID_ISecurityInfo_Value = Guid.initString("0c733aa4-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ISecurityInfo = &IID_ISecurityInfo_Value;
-pub const ISecurityInfo = extern struct {
+pub const ISecurityInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCurrentTrustee: *const fn(
@@ -7853,6 +7927,7 @@ pub const ISecurityInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7873,7 +7948,7 @@ pub const ISecurityInfo = extern struct {
 
 const IID_ITableCreation_Value = Guid.initString("0c733abc-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ITableCreation = &IID_ITableCreation_Value;
-pub const ITableCreation = extern struct {
+pub const ITableCreation = extern union {
     pub const VTable = extern struct {
         base: ITableDefinition.VTable,
         GetTableDefinition: *const fn(
@@ -7889,6 +7964,7 @@ pub const ITableCreation = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITableDefinition: ITableDefinition,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITableDefinition.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7901,7 +7977,7 @@ pub const ITableCreation = extern struct {
 
 const IID_ITableDefinitionWithConstraints_Value = Guid.initString("0c733aab-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ITableDefinitionWithConstraints = &IID_ITableDefinitionWithConstraints_Value;
-pub const ITableDefinitionWithConstraints = extern struct {
+pub const ITableDefinitionWithConstraints = extern union {
     pub const VTable = extern struct {
         base: ITableCreation.VTable,
         AddConstraint: *const fn(
@@ -7930,6 +8006,7 @@ pub const ITableDefinitionWithConstraints = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITableCreation: ITableCreation,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITableCreation.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7950,7 +8027,7 @@ pub const ITableDefinitionWithConstraints = extern struct {
 
 const IID_IRow_Value = Guid.initString("0c733ab4-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRow = &IID_IRow_Value;
-pub const IRow = extern struct {
+pub const IRow = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetColumns: *const fn(
@@ -7975,6 +8052,7 @@ pub const IRow = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7995,7 +8073,7 @@ pub const IRow = extern struct {
 
 const IID_IRowChange_Value = Guid.initString("0c733ab5-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowChange = &IID_IRowChange_Value;
-pub const IRowChange = extern struct {
+pub const IRowChange = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetColumns: *const fn(
@@ -8005,6 +8083,7 @@ pub const IRowChange = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8017,7 +8096,7 @@ pub const IRowChange = extern struct {
 
 const IID_IRowSchemaChange_Value = Guid.initString("0c733aae-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowSchemaChange = &IID_IRowSchemaChange_Value;
-pub const IRowSchemaChange = extern struct {
+pub const IRowSchemaChange = extern union {
     pub const VTable = extern struct {
         base: IRowChange.VTable,
         DeleteColumns: *const fn(
@@ -8034,6 +8113,7 @@ pub const IRowSchemaChange = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IRowChange: IRowChange,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IRowChange.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8050,7 +8130,7 @@ pub const IRowSchemaChange = extern struct {
 
 const IID_IGetRow_Value = Guid.initString("0c733aaf-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IGetRow = &IID_IGetRow_Value;
-pub const IGetRow = extern struct {
+pub const IGetRow = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetRowFromHROW: *const fn(
@@ -8067,6 +8147,7 @@ pub const IGetRow = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8083,7 +8164,7 @@ pub const IGetRow = extern struct {
 
 const IID_IBindResource_Value = Guid.initString("0c733ab1-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IBindResource = &IID_IBindResource_Value;
-pub const IBindResource = extern struct {
+pub const IBindResource = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Bind: *const fn(
@@ -8100,6 +8181,7 @@ pub const IBindResource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8145,7 +8227,7 @@ pub const DBDELETE_ATOMIC = DBDELETEFLAGSENUM.TOMIC;
 
 const IID_IScopedOperations_Value = Guid.initString("0c733ab0-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IScopedOperations = &IID_IScopedOperations_Value;
-pub const IScopedOperations = extern struct {
+pub const IScopedOperations = extern union {
     pub const VTable = extern struct {
         base: IBindResource.VTable,
         Copy: *const fn(
@@ -8189,6 +8271,7 @@ pub const IScopedOperations = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IBindResource: IBindResource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IBindResource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8213,7 +8296,7 @@ pub const IScopedOperations = extern struct {
 
 const IID_ICreateRow_Value = Guid.initString("0c733ab2-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICreateRow = &IID_ICreateRow_Value;
-pub const ICreateRow = extern struct {
+pub const ICreateRow = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateRow: *const fn(
@@ -8231,6 +8314,7 @@ pub const ICreateRow = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8243,7 +8327,7 @@ pub const ICreateRow = extern struct {
 
 const IID_IDBBinderProperties_Value = Guid.initString("0c733ab3-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBBinderProperties = &IID_IDBBinderProperties_Value;
-pub const IDBBinderProperties = extern struct {
+pub const IDBBinderProperties = extern union {
     pub const VTable = extern struct {
         base: IDBProperties.VTable,
         Reset: *const fn(
@@ -8251,6 +8335,7 @@ pub const IDBBinderProperties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDBProperties: IDBProperties,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDBProperties.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8263,7 +8348,7 @@ pub const IDBBinderProperties = extern struct {
 
 const IID_IColumnsInfo2_Value = Guid.initString("0c733ab8-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IColumnsInfo2 = &IID_IColumnsInfo2_Value;
-pub const IColumnsInfo2 = extern struct {
+pub const IColumnsInfo2 = extern union {
     pub const VTable = extern struct {
         base: IColumnsInfo.VTable,
         GetRestrictedColumnInfo: *const fn(
@@ -8278,6 +8363,7 @@ pub const IColumnsInfo2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IColumnsInfo: IColumnsInfo,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IColumnsInfo.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8290,7 +8376,7 @@ pub const IColumnsInfo2 = extern struct {
 
 const IID_IRegisterProvider_Value = Guid.initString("0c733ab9-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRegisterProvider = &IID_IRegisterProvider_Value;
-pub const IRegisterProvider = extern struct {
+pub const IRegisterProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetURLMapping: *const fn(
@@ -8313,6 +8399,7 @@ pub const IRegisterProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8333,7 +8420,7 @@ pub const IRegisterProvider = extern struct {
 
 const IID_IGetSession_Value = Guid.initString("0c733aba-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IGetSession = &IID_IGetSession_Value;
-pub const IGetSession = extern struct {
+pub const IGetSession = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSession: *const fn(
@@ -8343,6 +8430,7 @@ pub const IGetSession = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8355,7 +8443,7 @@ pub const IGetSession = extern struct {
 
 const IID_IGetSourceRow_Value = Guid.initString("0c733abb-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IGetSourceRow = &IID_IGetSourceRow_Value;
-pub const IGetSourceRow = extern struct {
+pub const IGetSourceRow = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSourceRow: *const fn(
@@ -8365,6 +8453,7 @@ pub const IGetSourceRow = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8377,7 +8466,7 @@ pub const IGetSourceRow = extern struct {
 
 const IID_IRowsetCurrentIndex_Value = Guid.initString("0c733abd-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetCurrentIndex = &IID_IRowsetCurrentIndex_Value;
-pub const IRowsetCurrentIndex = extern struct {
+pub const IRowsetCurrentIndex = extern union {
     pub const VTable = extern struct {
         base: IRowsetIndex.VTable,
         GetIndex: *const fn(
@@ -8390,6 +8479,7 @@ pub const IRowsetCurrentIndex = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IRowsetIndex: IRowsetIndex,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IRowsetIndex.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8406,7 +8496,7 @@ pub const IRowsetCurrentIndex = extern struct {
 
 const IID_ICommandStream_Value = Guid.initString("0c733abf-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommandStream = &IID_ICommandStream_Value;
-pub const ICommandStream = extern struct {
+pub const ICommandStream = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCommandStream: *const fn(
@@ -8423,6 +8513,7 @@ pub const ICommandStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8439,7 +8530,7 @@ pub const ICommandStream = extern struct {
 
 const IID_IRowsetBookmark_Value = Guid.initString("0c733ac2-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetBookmark = &IID_IRowsetBookmark_Value;
-pub const IRowsetBookmark = extern struct {
+pub const IRowsetBookmark = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PositionOnBookmark: *const fn(
@@ -8451,6 +8542,7 @@ pub const IRowsetBookmark = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8626,7 +8718,7 @@ pub const QPMO_LOCALIZER_SUPPORT = QUERY_PARSER_MANAGER_OPTION.LOCALIZER_SUPPORT
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IQueryParser_Value = Guid.initString("2ebdee67-3505-43f8-9946-ea44abc8e5b0");
 pub const IID_IQueryParser = &IID_IQueryParser_Value;
-pub const IQueryParser = extern struct {
+pub const IQueryParser = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Parse: *const fn(
@@ -8676,6 +8768,7 @@ pub const IQueryParser = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8717,7 +8810,7 @@ pub const IQueryParser = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IConditionFactory_Value = Guid.initString("a5efe073-b16f-474f-9f3e-9f8b497a3e08");
 pub const IID_IConditionFactory = &IID_IConditionFactory_Value;
-pub const IConditionFactory = extern struct {
+pub const IConditionFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         MakeNot: *const fn(
@@ -8754,6 +8847,7 @@ pub const IConditionFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8779,7 +8873,7 @@ pub const IConditionFactory = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IQuerySolution_Value = Guid.initString("d6ebc66b-8921-4193-afdd-a1789fb7ff57");
 pub const IID_IQuerySolution = &IID_IQuerySolution_Value;
-pub const IQuerySolution = extern struct {
+pub const IQuerySolution = extern union {
     pub const VTable = extern struct {
         base: IConditionFactory.VTable,
         GetQuery: *const fn(
@@ -8801,6 +8895,7 @@ pub const IQuerySolution = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IConditionFactory: IConditionFactory,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IConditionFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8864,7 +8959,7 @@ pub const CONDITION_CREATION_USE_CONTENT_LOCALE = CONDITION_CREATION_OPTIONS{ .U
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IConditionFactory2_Value = Guid.initString("71d222e1-432f-429e-8c13-b6dafde5077a");
 pub const IID_IConditionFactory2 = &IID_IConditionFactory2_Value;
-pub const IConditionFactory2 = extern struct {
+pub const IConditionFactory2 = extern union {
     pub const VTable = extern struct {
         base: IConditionFactory.VTable,
         CreateTrueFalse: *const fn(
@@ -8950,6 +9045,7 @@ pub const IConditionFactory2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IConditionFactory: IConditionFactory,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IConditionFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -8995,7 +9091,7 @@ pub const IConditionFactory2 = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IConditionGenerator_Value = Guid.initString("92d2cc58-4386-45a3-b98c-7e0ce64a4117");
 pub const IID_IConditionGenerator = &IID_IConditionGenerator_Value;
-pub const IConditionGenerator = extern struct {
+pub const IConditionGenerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -9033,6 +9129,7 @@ pub const IConditionGenerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9058,7 +9155,7 @@ pub const IConditionGenerator = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IInterval_Value = Guid.initString("6bf0a714-3c18-430b-8b5d-83b1c234d3db");
 pub const IID_IInterval = &IID_IInterval_Value;
-pub const IInterval = extern struct {
+pub const IInterval = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetLimits: *const fn(
@@ -9070,6 +9167,7 @@ pub const IInterval = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9083,7 +9181,7 @@ pub const IInterval = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IMetaData_Value = Guid.initString("780102b0-c43b-4876-bc7b-5e9ba5c88794");
 pub const IID_IMetaData = &IID_IMetaData_Value;
-pub const IMetaData = extern struct {
+pub const IMetaData = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetData: *const fn(
@@ -9093,6 +9191,7 @@ pub const IMetaData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9106,7 +9205,7 @@ pub const IMetaData = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEntity_Value = Guid.initString("24264891-e80b-4fd3-b7ce-4ff2fae8931f");
 pub const IID_IEntity = &IID_IEntity_Value;
-pub const IEntity = extern struct {
+pub const IEntity = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Name: *const fn(
@@ -9148,6 +9247,7 @@ pub const IEntity = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9189,7 +9289,7 @@ pub const IEntity = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IRelationship_Value = Guid.initString("2769280b-5108-498c-9c7f-a51239b63147");
 pub const IID_IRelationship = &IID_IRelationship_Value;
-pub const IRelationship = extern struct {
+pub const IRelationship = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Name: *const fn(
@@ -9215,6 +9315,7 @@ pub const IRelationship = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9244,7 +9345,7 @@ pub const IRelationship = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INamedEntity_Value = Guid.initString("abdbd0b1-7d54-49fb-ab5c-bff4130004cd");
 pub const IID_INamedEntity = &IID_INamedEntity_Value;
-pub const INamedEntity = extern struct {
+pub const INamedEntity = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetValue: *const fn(
@@ -9257,6 +9358,7 @@ pub const INamedEntity = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9274,7 +9376,7 @@ pub const INamedEntity = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISchemaProvider_Value = Guid.initString("8cf89bcb-394c-49b2-ae28-a59dd4ed7f68");
 pub const IID_ISchemaProvider = &IID_ISchemaProvider_Value;
-pub const ISchemaProvider = extern struct {
+pub const ISchemaProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Entities: *const fn(
@@ -9316,6 +9418,7 @@ pub const ISchemaProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9353,7 +9456,7 @@ pub const ISchemaProvider = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ITokenCollection_Value = Guid.initString("22d8b4f2-f577-4adb-a335-c2ae88416fab");
 pub const IID_ITokenCollection = &IID_ITokenCollection_Value;
-pub const ITokenCollection = extern struct {
+pub const ITokenCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         NumberOfTokens: *const fn(
@@ -9369,6 +9472,7 @@ pub const ITokenCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9395,7 +9499,7 @@ pub const NEC_HIGH = NAMED_ENTITY_CERTAINTY.HIGH;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_INamedEntityCollector_Value = Guid.initString("af2440f6-8afc-47d0-9a7f-396a0acfb43d");
 pub const IID_INamedEntityCollector = &IID_INamedEntityCollector_Value;
-pub const INamedEntityCollector = extern struct {
+pub const INamedEntityCollector = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Add: *const fn(
@@ -9410,6 +9514,7 @@ pub const INamedEntityCollector = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9423,7 +9528,7 @@ pub const INamedEntityCollector = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISchemaLocalizerSupport_Value = Guid.initString("ca3fdca2-bfbe-4eed-90d7-0caef0a1bda1");
 pub const IID_ISchemaLocalizerSupport = &IID_ISchemaLocalizerSupport_Value;
-pub const ISchemaLocalizerSupport = extern struct {
+pub const ISchemaLocalizerSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Localize: *const fn(
@@ -9433,6 +9538,7 @@ pub const ISchemaLocalizerSupport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9446,7 +9552,7 @@ pub const ISchemaLocalizerSupport = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IQueryParserManager_Value = Guid.initString("a879e3c4-af77-44fb-8f37-ebd1487cf920");
 pub const IID_IQueryParserManager = &IID_IQueryParserManager_Value;
-pub const IQueryParserManager = extern struct {
+pub const IQueryParserManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateLoadedParser: *const fn(
@@ -9469,6 +9575,7 @@ pub const IQueryParserManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9495,7 +9602,7 @@ pub const HITRANGE = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUrlAccessor_Value = Guid.initString("0b63e318-9ccc-11d0-bcdb-00805fccce04");
 pub const IID_IUrlAccessor = &IID_IUrlAccessor_Value;
-pub const IUrlAccessor = extern struct {
+pub const IUrlAccessor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddRequestParameter: *const fn(
@@ -9562,6 +9669,7 @@ pub const IUrlAccessor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9623,7 +9731,7 @@ pub const IUrlAccessor = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUrlAccessor2_Value = Guid.initString("c7310734-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_IUrlAccessor2 = &IID_IUrlAccessor2_Value;
-pub const IUrlAccessor2 = extern struct {
+pub const IUrlAccessor2 = extern union {
     pub const VTable = extern struct {
         base: IUrlAccessor.VTable,
         GetDisplayUrl: *const fn(
@@ -9643,6 +9751,7 @@ pub const IUrlAccessor2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUrlAccessor: IUrlAccessor,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUrlAccessor.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9664,7 +9773,7 @@ pub const IUrlAccessor2 = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IUrlAccessor3_Value = Guid.initString("6fbc7005-0455-4874-b8ff-7439450241a3");
 pub const IID_IUrlAccessor3 = &IID_IUrlAccessor3_Value;
-pub const IUrlAccessor3 = extern struct {
+pub const IUrlAccessor3 = extern union {
     pub const VTable = extern struct {
         base: IUrlAccessor2.VTable,
         GetImpersonationSidBlobs: *const fn(
@@ -9675,6 +9784,7 @@ pub const IUrlAccessor3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUrlAccessor2: IUrlAccessor2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUrlAccessor2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9688,7 +9798,7 @@ pub const IUrlAccessor3 = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IUrlAccessor4_Value = Guid.initString("5cc51041-c8d2-41d7-bca3-9e9e286297dc");
 pub const IID_IUrlAccessor4 = &IID_IUrlAccessor4_Value;
-pub const IUrlAccessor4 = extern struct {
+pub const IUrlAccessor4 = extern union {
     pub const VTable = extern struct {
         base: IUrlAccessor3.VTable,
         ShouldIndexItemContent: *const fn(
@@ -9702,6 +9812,7 @@ pub const IUrlAccessor4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUrlAccessor3: IUrlAccessor3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUrlAccessor3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9719,7 +9830,7 @@ pub const IUrlAccessor4 = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IOpLockStatus_Value = Guid.initString("c731065d-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_IOpLockStatus = &IID_IOpLockStatus_Value;
-pub const IOpLockStatus = extern struct {
+pub const IOpLockStatus = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsOplockValid: *const fn(
@@ -9736,6 +9847,7 @@ pub const IOpLockStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9757,7 +9869,7 @@ pub const IOpLockStatus = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchProtocolThreadContext_Value = Guid.initString("c73106e1-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_ISearchProtocolThreadContext = &IID_ISearchProtocolThreadContext_Value;
-pub const ISearchProtocolThreadContext = extern struct {
+pub const ISearchProtocolThreadContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ThreadInit: *const fn(
@@ -9772,6 +9884,7 @@ pub const ISearchProtocolThreadContext = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9847,7 +9960,7 @@ pub const ITEM_INFO = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchProtocol_Value = Guid.initString("c73106ba-ac80-11d1-8df3-00c04fb6ef4f");
 pub const IID_ISearchProtocol = &IID_ISearchProtocol_Value;
-pub const ISearchProtocol = extern struct {
+pub const ISearchProtocol = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Init: *const fn(
@@ -9873,6 +9986,7 @@ pub const ISearchProtocol = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9898,7 +10012,7 @@ pub const ISearchProtocol = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchProtocol2_Value = Guid.initString("7789f0b2-b5b2-4722-8b65-5dbd150697a9");
 pub const IID_ISearchProtocol2 = &IID_ISearchProtocol2_Value;
-pub const ISearchProtocol2 = extern struct {
+pub const ISearchProtocol2 = extern union {
     pub const VTable = extern struct {
         base: ISearchProtocol.VTable,
         CreateAccessorEx: *const fn(
@@ -9912,6 +10026,7 @@ pub const ISearchProtocol2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ISearchProtocol: ISearchProtocol,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISearchProtocol.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9925,7 +10040,7 @@ pub const ISearchProtocol2 = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IProtocolHandlerSite_Value = Guid.initString("0b63e385-9ccc-11d0-bcdb-00805fccce04");
 pub const IID_IProtocolHandlerSite = &IID_IProtocolHandlerSite_Value;
-pub const IProtocolHandlerSite = extern struct {
+pub const IProtocolHandlerSite = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFilter: *const fn(
@@ -9937,6 +10052,7 @@ pub const IProtocolHandlerSite = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -9950,7 +10066,7 @@ pub const IProtocolHandlerSite = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchRoot_Value = Guid.initString("04c18ccf-1f57-4cbd-88cc-3900f5195ce3");
 pub const IID_ISearchRoot = &IID_ISearchRoot_Value;
-pub const ISearchRoot = extern struct {
+pub const ISearchRoot = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -10065,6 +10181,7 @@ pub const ISearchRoot = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10162,7 +10279,7 @@ pub const ISearchRoot = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumSearchRoots_Value = Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef52");
 pub const IID_IEnumSearchRoots = &IID_IEnumSearchRoots_Value;
-pub const IEnumSearchRoots = extern struct {
+pub const IEnumSearchRoots = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -10184,6 +10301,7 @@ pub const IEnumSearchRoots = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10216,7 +10334,7 @@ pub const FF_SUPPRESSINDEXING = FOLLOW_FLAGS.SUPPRESSINDEXING;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchScopeRule_Value = Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef53");
 pub const IID_ISearchScopeRule = &IID_ISearchScopeRule_Value;
-pub const ISearchScopeRule = extern struct {
+pub const ISearchScopeRule = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -10241,6 +10359,7 @@ pub const ISearchScopeRule = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10266,7 +10385,7 @@ pub const ISearchScopeRule = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumSearchScopeRules_Value = Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef54");
 pub const IID_IEnumSearchScopeRules = &IID_IEnumSearchScopeRules_Value;
-pub const IEnumSearchScopeRules = extern struct {
+pub const IEnumSearchScopeRules = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -10288,6 +10407,7 @@ pub const IEnumSearchScopeRules = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10324,7 +10444,7 @@ pub const CLUSIONREASON_GROUPPOLICY = CLUSION_REASON.GROUPPOLICY;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchCrawlScopeManager_Value = Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef55");
 pub const IID_ISearchCrawlScopeManager = &IID_ISearchCrawlScopeManager_Value;
-pub const ISearchCrawlScopeManager = extern struct {
+pub const ISearchCrawlScopeManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddDefaultScopeRule: *const fn(
@@ -10405,6 +10525,7 @@ pub const ISearchCrawlScopeManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10478,7 +10599,7 @@ pub const ISearchCrawlScopeManager = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISearchCrawlScopeManager2_Value = Guid.initString("6292f7ad-4e19-4717-a534-8fc22bcd5ccd");
 pub const IID_ISearchCrawlScopeManager2 = &IID_ISearchCrawlScopeManager2_Value;
-pub const ISearchCrawlScopeManager2 = extern struct {
+pub const ISearchCrawlScopeManager2 = extern union {
     pub const VTable = extern struct {
         base: ISearchCrawlScopeManager.VTable,
         GetVersion: *const fn(
@@ -10488,6 +10609,7 @@ pub const ISearchCrawlScopeManager2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ISearchCrawlScopeManager: ISearchCrawlScopeManager,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISearchCrawlScopeManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10533,7 +10655,7 @@ pub const SEARCH_ITEM_CHANGE = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchItemsChangedSink_Value = Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef58");
 pub const IID_ISearchItemsChangedSink = &IID_ISearchItemsChangedSink_Value;
-pub const ISearchItemsChangedSink = extern struct {
+pub const ISearchItemsChangedSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         StartedMonitoringScope: *const fn(
@@ -10553,6 +10675,7 @@ pub const ISearchItemsChangedSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10581,7 +10704,7 @@ pub const SEARCH_ITEM_PERSISTENT_CHANGE = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchPersistentItemsChangedSink_Value = Guid.initString("a2ffdf9b-4758-4f84-b729-df81a1a0612f");
 pub const IID_ISearchPersistentItemsChangedSink = &IID_ISearchPersistentItemsChangedSink_Value;
-pub const ISearchPersistentItemsChangedSink = extern struct {
+pub const ISearchPersistentItemsChangedSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         StartedMonitoringScope: *const fn(
@@ -10600,6 +10723,7 @@ pub const ISearchPersistentItemsChangedSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10621,7 +10745,7 @@ pub const ISearchPersistentItemsChangedSink = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchViewChangedSink_Value = Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef65");
 pub const IID_ISearchViewChangedSink = &IID_ISearchViewChangedSink_Value;
-pub const ISearchViewChangedSink = extern struct {
+pub const ISearchViewChangedSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnChange: *const fn(
@@ -10632,6 +10756,7 @@ pub const ISearchViewChangedSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10659,7 +10784,7 @@ pub const SEARCH_ITEM_INDEXING_STATUS = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchNotifyInlineSite_Value = Guid.initString("b5702e61-e75c-4b64-82a1-6cb4f832fccf");
 pub const IID_ISearchNotifyInlineSite = &IID_ISearchNotifyInlineSite_Value;
-pub const ISearchNotifyInlineSite = extern struct {
+pub const ISearchNotifyInlineSite = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnItemIndexedStatusChange: *const fn(
@@ -10676,6 +10801,7 @@ pub const ISearchNotifyInlineSite = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10735,7 +10861,7 @@ pub const CATALOG_PAUSED_REASON_UPGRADING = CatalogPausedReason.UPGRADING;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchCatalogManager_Value = Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef50");
 pub const IID_ISearchCatalogManager = &IID_ISearchCatalogManager_Value;
-pub const ISearchCatalogManager = extern struct {
+pub const ISearchCatalogManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -10863,6 +10989,7 @@ pub const ISearchCatalogManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -10983,7 +11110,7 @@ pub const PRIORITIZE_FLAG_IGNOREFAILURECOUNT = PRIORITIZE_FLAGS.IGNOREFAILURECOU
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchCatalogManager2_Value = Guid.initString("7ac3286d-4d1d-4817-84fc-c1c85e3af0d9");
 pub const IID_ISearchCatalogManager2 = &IID_ISearchCatalogManager2_Value;
-pub const ISearchCatalogManager2 = extern struct {
+pub const ISearchCatalogManager2 = extern union {
     pub const VTable = extern struct {
         base: ISearchCatalogManager.VTable,
         PrioritizeMatchingURLs: *const fn(
@@ -10993,6 +11120,7 @@ pub const ISearchCatalogManager2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ISearchCatalogManager: ISearchCatalogManager,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISearchCatalogManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11029,7 +11157,7 @@ pub const SEARCH_COLUMN_PROPERTIES = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchQueryHelper_Value = Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef63");
 pub const IID_ISearchQueryHelper = &IID_ISearchQueryHelper_Value;
-pub const ISearchQueryHelper = extern struct {
+pub const ISearchQueryHelper = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -11142,6 +11270,7 @@ pub const ISearchQueryHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11246,7 +11375,7 @@ pub const PRIORITY_LEVEL_DEFAULT = PRIORITY_LEVEL.DEFAULT;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRowsetPrioritization_Value = Guid.initString("42811652-079d-481b-87a2-09a69ecc5f44");
 pub const IID_IRowsetPrioritization = &IID_IRowsetPrioritization_Value;
-pub const IRowsetPrioritization = extern struct {
+pub const IRowsetPrioritization = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetScopePriority: *const fn(
@@ -11267,6 +11396,7 @@ pub const IRowsetPrioritization = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11306,7 +11436,7 @@ pub const ROWSETEVENT_TYPE_SCOPESTATISTICS = ROWSETEVENT_TYPE.SCOPESTATISTICS;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRowsetEvents_Value = Guid.initString("1551aea5-5d66-4b11-86f5-d5634cb211b9");
 pub const IID_IRowsetEvents = &IID_IRowsetEvents_Value;
-pub const IRowsetEvents = extern struct {
+pub const IRowsetEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnNewItem: *const fn(
@@ -11332,6 +11462,7 @@ pub const IRowsetEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11357,7 +11488,7 @@ pub const IRowsetEvents = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchManager_Value = Guid.initString("ab310581-ac80-11d1-8df3-00c04fb6ef69");
 pub const IID_ISearchManager = &IID_ISearchManager_Value;
-pub const ISearchManager = extern struct {
+pub const ISearchManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetIndexerVersionStr: *const fn(
@@ -11429,6 +11560,7 @@ pub const ISearchManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11490,7 +11622,7 @@ pub const ISearchManager = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ISearchManager2_Value = Guid.initString("dbab3f73-db19-4a79-bfc0-a61a93886ddf");
 pub const IID_ISearchManager2 = &IID_ISearchManager2_Value;
-pub const ISearchManager2 = extern struct {
+pub const ISearchManager2 = extern union {
     pub const VTable = extern struct {
         base: ISearchManager.VTable,
         CreateCatalog: *const fn(
@@ -11504,6 +11636,7 @@ pub const ISearchManager2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ISearchManager: ISearchManager,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISearchManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11524,7 +11657,7 @@ pub const CLSID_CSearchLanguageSupport = &CLSID_CSearchLanguageSupport_Value;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_ISearchLanguageSupport_Value = Guid.initString("24c3cbaa-ebc1-491a-9ef1-9f6d8deb1b8f");
 pub const IID_ISearchLanguageSupport = &IID_ISearchLanguageSupport_Value;
-pub const ISearchLanguageSupport = extern struct {
+pub const ISearchLanguageSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetDiacriticSensitivity: *const fn(
@@ -11559,6 +11692,7 @@ pub const ISearchLanguageSupport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11595,7 +11729,7 @@ pub const ITEMPROP = extern struct {
 
 const IID_IEnumItemProperties_Value = Guid.initString("f72c8d96-6dbd-11d1-a1e8-00c04fc2fbe1");
 pub const IID_IEnumItemProperties = &IID_IEnumItemProperties_Value;
-pub const IEnumItemProperties = extern struct {
+pub const IEnumItemProperties = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -11621,6 +11755,7 @@ pub const IEnumItemProperties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11657,7 +11792,7 @@ pub const SUBSCRIPTIONITEMINFO = extern struct {
 
 const IID_ISubscriptionItem_Value = Guid.initString("a97559f8-6c4a-11d1-a1e8-00c04fc2fbe1");
 pub const IID_ISubscriptionItem = &IID_ISubscriptionItem_Value;
-pub const ISubscriptionItem = extern struct {
+pub const ISubscriptionItem = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCookie: *const fn(
@@ -11693,6 +11828,7 @@ pub const ISubscriptionItem = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11729,7 +11865,7 @@ pub const ISubscriptionItem = extern struct {
 
 const IID_IEnumSubscription_Value = Guid.initString("f72c8d97-6dbd-11d1-a1e8-00c04fc2fbe1");
 pub const IID_IEnumSubscription = &IID_IEnumSubscription_Value;
-pub const IEnumSubscription = extern struct {
+pub const IEnumSubscription = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Next: *const fn(
@@ -11755,6 +11891,7 @@ pub const IEnumSubscription = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11875,7 +12012,7 @@ pub const SUBSCRIPTIONINFO = extern struct {
 
 const IID_ISubscriptionMgr_Value = Guid.initString("085fb2c0-0df8-11d1-8f4b-00a0c905413f");
 pub const IID_ISubscriptionMgr = &IID_ISubscriptionMgr_Value;
-pub const ISubscriptionMgr = extern struct {
+pub const ISubscriptionMgr = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DeleteSubscription: *const fn(
@@ -11921,6 +12058,7 @@ pub const ISubscriptionMgr = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -11961,7 +12099,7 @@ pub const ISubscriptionMgr = extern struct {
 
 const IID_ISubscriptionMgr2_Value = Guid.initString("614bc270-aedf-11d1-a1f9-00c04fc2fbe1");
 pub const IID_ISubscriptionMgr2 = &IID_ISubscriptionMgr2_Value;
-pub const ISubscriptionMgr2 = extern struct {
+pub const ISubscriptionMgr2 = extern union {
     pub const VTable = extern struct {
         base: ISubscriptionMgr.VTable,
         GetItemFromURL: *const fn(
@@ -12001,6 +12139,7 @@ pub const ISubscriptionMgr2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ISubscriptionMgr: ISubscriptionMgr,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ISubscriptionMgr.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12089,7 +12228,7 @@ pub const DBDATACONVERT_DECIMALSCALE = DBDATACONVERTENUM.DECIMALSCALE;
 
 const IID_IDataConvert_Value = Guid.initString("0c733a8d-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDataConvert = &IID_IDataConvert_Value;
-pub const IDataConvert = extern struct {
+pub const IDataConvert = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DataConvert: *const fn(
@@ -12124,6 +12263,7 @@ pub const IDataConvert = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12154,7 +12294,7 @@ pub const DCINFO = extern struct {
 
 const IID_IDCInfo_Value = Guid.initString("0c733a9c-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDCInfo = &IID_IDCInfo_Value;
-pub const IDCInfo = extern struct {
+pub const IDCInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetInfo: *const fn(
@@ -12170,6 +12310,7 @@ pub const IDCInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12198,7 +12339,7 @@ pub const CLSID_MSDAORA8_ERROR = &CLSID_MSDAORA8_ERROR_Value;
 
 const IID_DataSourceListener_Value = Guid.initString("7c0ffab2-cd84-11d0-949a-00a0c91110ed");
 pub const IID_DataSourceListener = &IID_DataSourceListener_Value;
-pub const DataSourceListener = extern struct {
+pub const DataSourceListener = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         dataMemberChanged: *const fn(
@@ -12215,6 +12356,7 @@ pub const DataSourceListener = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12235,7 +12377,7 @@ pub const DataSourceListener = extern struct {
 
 const IID_DataSource_Value = Guid.initString("7c0ffab3-cd84-11d0-949a-00a0c91110ed");
 pub const IID_DataSource = &IID_DataSource_Value;
-pub const DataSource = extern struct {
+pub const DataSource = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         getDataMember: *const fn(
@@ -12263,6 +12405,7 @@ pub const DataSource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12350,7 +12493,7 @@ pub const OSPXFER_ERROR = OSPXFER.ERROR;
 
 const IID_OLEDBSimpleProviderListener_Value = Guid.initString("e0e270c1-c0be-11d0-8fe4-00a0c90a6341");
 pub const IID_OLEDBSimpleProviderListener = &IID_OLEDBSimpleProviderListener_Value;
-pub const OLEDBSimpleProviderListener = extern struct {
+pub const OLEDBSimpleProviderListener = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         aboutToChangeCell: *const fn(
@@ -12394,6 +12537,7 @@ pub const OLEDBSimpleProviderListener = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12434,7 +12578,7 @@ pub const OLEDBSimpleProviderListener = extern struct {
 
 const IID_OLEDBSimpleProvider_Value = Guid.initString("e0e270c0-c0be-11d0-8fe4-00a0c90a6341");
 pub const IID_OLEDBSimpleProvider = &IID_OLEDBSimpleProvider_Value;
-pub const OLEDBSimpleProvider = extern struct {
+pub const OLEDBSimpleProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         getRowCount: *const fn(
@@ -12511,6 +12655,7 @@ pub const OLEDBSimpleProvider = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12575,11 +12720,12 @@ pub const OLEDBSimpleProvider = extern struct {
 
 const IID_DataSourceObject_Value = Guid.initString("0ae9a4e4-18d4-11d1-b3b3-00aa00c1a924");
 pub const IID_DataSourceObject = &IID_DataSourceObject_Value;
-pub const DataSourceObject = extern struct {
+pub const DataSourceObject = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
     };}
@@ -12605,7 +12751,7 @@ pub const BIO_BINDER = EBindInfoOptions.R;
 
 const IID_IService_Value = Guid.initString("06210e88-01f5-11d1-b512-0080c781c384");
 pub const IID_IService = &IID_IService_Value;
-pub const IService = extern struct {
+pub const IService = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InvokeService: *const fn(
@@ -12614,6 +12760,7 @@ pub const IService = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12641,7 +12788,7 @@ pub const DBPROMPTOPTIONS_DISABLESAVEPASSWORD = DBPROMPTOPTIONSENUM.DISABLESAVEP
 
 const IID_IDBPromptInitialize_Value = Guid.initString("2206ccb0-19c1-11d1-89e0-00c04fd7a829");
 pub const IID_IDBPromptInitialize = &IID_IDBPromptInitialize_Value;
-pub const IDBPromptInitialize = extern struct {
+pub const IDBPromptInitialize = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PromptDataSource: *const fn(
@@ -12665,6 +12812,7 @@ pub const IDBPromptInitialize = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12681,7 +12829,7 @@ pub const IDBPromptInitialize = extern struct {
 
 const IID_IDataInitialize_Value = Guid.initString("2206ccb1-19c1-11d1-89e0-00c04fd7a829");
 pub const IID_IDataInitialize = &IID_IDataInitialize_Value;
-pub const IDataInitialize = extern struct {
+pub const IDataInitialize = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDataSource: *const fn(
@@ -12730,6 +12878,7 @@ pub const IDataInitialize = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12762,7 +12911,7 @@ pub const IDataInitialize = extern struct {
 
 const IID_IDataSourceLocator_Value = Guid.initString("2206ccb2-19c1-11d1-89e0-00c04fd7a829");
 pub const IID_IDataSourceLocator = &IID_IDataSourceLocator_Value;
-pub const IDataSourceLocator = extern struct {
+pub const IDataSourceLocator = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -12786,6 +12935,7 @@ pub const IDataSourceLocator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12817,7 +12967,7 @@ pub const KAGREQDIAGFLAGS_RECORD = KAGREQDIAGFLAGSENUM.RECORD;
 
 const IID_IRowsetChangeExtInfo_Value = Guid.initString("0c733a8f-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetChangeExtInfo = &IID_IRowsetChangeExtInfo_Value;
-pub const IRowsetChangeExtInfo = extern struct {
+pub const IRowsetChangeExtInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetOriginalRow: *const fn(
@@ -12836,6 +12986,7 @@ pub const IRowsetChangeExtInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12864,7 +13015,7 @@ pub const KAGGETDIAG = extern struct {
 
 const IID_ISQLRequestDiagFields_Value = Guid.initString("228972f0-b5ff-11d0-8a80-00c04fd611cd");
 pub const IID_ISQLRequestDiagFields = &IID_ISQLRequestDiagFields_Value;
-pub const ISQLRequestDiagFields = extern struct {
+pub const ISQLRequestDiagFields = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RequestDiagFields: *const fn(
@@ -12874,6 +13025,7 @@ pub const ISQLRequestDiagFields = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -12886,7 +13038,7 @@ pub const ISQLRequestDiagFields = extern struct {
 
 const IID_ISQLGetDiagField_Value = Guid.initString("228972f1-b5ff-11d0-8a80-00c04fd611cd");
 pub const IID_ISQLGetDiagField = &IID_ISQLGetDiagField_Value;
-pub const ISQLGetDiagField = extern struct {
+pub const ISQLGetDiagField = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetDiagField: *const fn(
@@ -12895,6 +13047,7 @@ pub const ISQLGetDiagField = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13102,7 +13255,7 @@ pub const DBREASON_ROWSET_POPULATIONSTOPPED = DBREASONENUM25.POPULATIONSTOPPED;
 
 const IID_IRowsetNextRowset_Value = Guid.initString("0c733a72-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetNextRowset = &IID_IRowsetNextRowset_Value;
-pub const IRowsetNextRowset = extern struct {
+pub const IRowsetNextRowset = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetNextRowset: *const fn(
@@ -13113,6 +13266,7 @@ pub const IRowsetNextRowset = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13125,7 +13279,7 @@ pub const IRowsetNextRowset = extern struct {
 
 const IID_IRowsetNewRowAfter_Value = Guid.initString("0c733a71-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetNewRowAfter = &IID_IRowsetNewRowAfter_Value;
-pub const IRowsetNewRowAfter = extern struct {
+pub const IRowsetNewRowAfter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetNewDataAfter: *const fn(
@@ -13139,6 +13293,7 @@ pub const IRowsetNewRowAfter = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13151,7 +13306,7 @@ pub const IRowsetNewRowAfter = extern struct {
 
 const IID_IRowsetWithParameters_Value = Guid.initString("0c733a6e-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetWithParameters = &IID_IRowsetWithParameters_Value;
-pub const IRowsetWithParameters = extern struct {
+pub const IRowsetWithParameters = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetParameterInfo: *const fn(
@@ -13168,6 +13323,7 @@ pub const IRowsetWithParameters = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13184,7 +13340,7 @@ pub const IRowsetWithParameters = extern struct {
 
 const IID_IRowsetAsynch_Value = Guid.initString("0c733a0f-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetAsynch = &IID_IRowsetAsynch_Value;
-pub const IRowsetAsynch = extern struct {
+pub const IRowsetAsynch = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RatioFinished: *const fn(
@@ -13199,6 +13355,7 @@ pub const IRowsetAsynch = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13215,7 +13372,7 @@ pub const IRowsetAsynch = extern struct {
 
 const IID_IRowsetKeys_Value = Guid.initString("0c733a12-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetKeys = &IID_IRowsetKeys_Value;
-pub const IRowsetKeys = extern struct {
+pub const IRowsetKeys = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ListKeys: *const fn(
@@ -13225,6 +13382,7 @@ pub const IRowsetKeys = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13237,7 +13395,7 @@ pub const IRowsetKeys = extern struct {
 
 const IID_IRowsetWatchAll_Value = Guid.initString("0c733a73-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetWatchAll = &IID_IRowsetWatchAll_Value;
-pub const IRowsetWatchAll = extern struct {
+pub const IRowsetWatchAll = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Acknowledge: *const fn(
@@ -13251,6 +13409,7 @@ pub const IRowsetWatchAll = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13280,7 +13439,7 @@ pub const DBWATCHNOTIFY_QUERYREEXECUTED = DBWATCHNOTIFYENUM.QUERYREEXECUTED;
 
 const IID_IRowsetWatchNotify_Value = Guid.initString("0c733a44-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetWatchNotify = &IID_IRowsetWatchNotify_Value;
-pub const IRowsetWatchNotify = extern struct {
+pub const IRowsetWatchNotify = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         OnChange: *const fn(
@@ -13290,6 +13449,7 @@ pub const IRowsetWatchNotify = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13325,7 +13485,7 @@ pub const DBROWCHANGEKIND_COUNT = DBROWCHANGEKINDENUM.COUNT;
 
 const IID_IRowsetWatchRegion_Value = Guid.initString("0c733a45-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetWatchRegion = &IID_IRowsetWatchRegion_Value;
-pub const IRowsetWatchRegion = extern struct {
+pub const IRowsetWatchRegion = extern union {
     pub const VTable = extern struct {
         base: IRowsetWatchAll.VTable,
         CreateWatchRegion: *const fn(
@@ -13366,6 +13526,7 @@ pub const IRowsetWatchRegion = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IRowsetWatchAll: IRowsetWatchAll,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IRowsetWatchAll.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13398,7 +13559,7 @@ pub const IRowsetWatchRegion = extern struct {
 
 const IID_IRowsetCopyRows_Value = Guid.initString("0c733a6b-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IRowsetCopyRows = &IID_IRowsetCopyRows_Value;
-pub const IRowsetCopyRows = extern struct {
+pub const IRowsetCopyRows = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CloseSource: *const fn(
@@ -13431,6 +13592,7 @@ pub const IRowsetCopyRows = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13455,7 +13617,7 @@ pub const IRowsetCopyRows = extern struct {
 
 const IID_IReadData_Value = Guid.initString("0c733a6a-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IReadData = &IID_IReadData_Value;
-pub const IReadData = extern struct {
+pub const IReadData = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReadData: *const fn(
@@ -13477,6 +13639,7 @@ pub const IReadData = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13563,7 +13726,7 @@ pub const DBEXECLIMITS_SUSPEND = DBEXECLIMITSENUM.SUSPEND;
 
 const IID_ICommandCost_Value = Guid.initString("0c733a4e-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommandCost = &IID_ICommandCost_Value;
-pub const ICommandCost = extern struct {
+pub const ICommandCost = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAccumulatedCost: *const fn(
@@ -13605,6 +13768,7 @@ pub const ICommandCost = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13637,7 +13801,7 @@ pub const ICommandCost = extern struct {
 
 const IID_ICommandValidate_Value = Guid.initString("0c733a18-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ICommandValidate = &IID_ICommandValidate_Value;
-pub const ICommandValidate = extern struct {
+pub const ICommandValidate = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ValidateCompletely: *const fn(
@@ -13648,6 +13812,7 @@ pub const ICommandValidate = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13664,7 +13829,7 @@ pub const ICommandValidate = extern struct {
 
 const IID_ITableRename_Value = Guid.initString("0c733a77-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_ITableRename = &IID_ITableRename_Value;
-pub const ITableRename = extern struct {
+pub const ITableRename = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RenameColumn: *const fn(
@@ -13682,6 +13847,7 @@ pub const ITableRename = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13698,7 +13864,7 @@ pub const ITableRename = extern struct {
 
 const IID_IDBSchemaCommand_Value = Guid.initString("0c733a50-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IDBSchemaCommand = &IID_IDBSchemaCommand_Value;
-pub const IDBSchemaCommand = extern struct {
+pub const IDBSchemaCommand = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCommand: *const fn(
@@ -13714,6 +13880,7 @@ pub const IDBSchemaCommand = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13730,7 +13897,7 @@ pub const IDBSchemaCommand = extern struct {
 
 const IID_IProvideMoniker_Value = Guid.initString("0c733a4d-2a1c-11ce-ade5-00aa0044773d");
 pub const IID_IProvideMoniker = &IID_IProvideMoniker_Value;
-pub const IProvideMoniker = extern struct {
+pub const IProvideMoniker = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetMoniker: *const fn(
@@ -13739,6 +13906,7 @@ pub const IProvideMoniker = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13842,7 +14010,7 @@ pub const CATEGORIZATIONSET = extern struct {
 
 const IID_ISearchQueryHits_Value = Guid.initString("ed8ce7e0-106c-11ce-84e2-00aa004b9986");
 pub const IID_ISearchQueryHits = &IID_ISearchQueryHits_Value;
-pub const ISearchQueryHits = extern struct {
+pub const ISearchQueryHits = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Init: *const fn(
@@ -13862,6 +14030,7 @@ pub const ISearchQueryHits = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) i32,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -13882,7 +14051,7 @@ pub const ISearchQueryHits = extern struct {
 
 const IID_IRowsetQueryStatus_Value = Guid.initString("a7ac77ed-f8d7-11ce-a798-0020f8008024");
 pub const IID_IRowsetQueryStatus = &IID_IRowsetQueryStatus_Value;
-pub const IRowsetQueryStatus = extern struct {
+pub const IRowsetQueryStatus = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetStatus: *const fn(
@@ -13903,6 +14072,7 @@ pub const IRowsetQueryStatus = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14037,7 +14207,7 @@ pub const SSVARIANT = extern struct {
 
 const IID_IUMSInitialize_Value = Guid.initString("5cf4ca14-ef21-11d0-97e7-00c04fc2ad98");
 pub const IID_IUMSInitialize = &IID_IUMSInitialize_Value;
-pub const IUMSInitialize = extern struct {
+pub const IUMSInitialize = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Initialize: *const fn(
@@ -14046,6 +14216,7 @@ pub const IUMSInitialize = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14056,7 +14227,7 @@ pub const IUMSInitialize = extern struct {
     pub usingnamespace MethodMixin(@This());
 };
 
-pub const IUMS = extern struct {
+pub const IUMS = extern union {
     pub const VTable = extern struct {
         SqlUmsSuspend: *const fn(
             self: *const IUMS,
@@ -14114,7 +14285,7 @@ pub const tagSSErrorInfo = extern struct {
 
 const IID_ISQLServerErrorInfo_Value = Guid.initString("5cf4ca12-ef21-11d0-97e7-00c04fc2ad98");
 pub const IID_ISQLServerErrorInfo = &IID_ISQLServerErrorInfo_Value;
-pub const ISQLServerErrorInfo = extern struct {
+pub const ISQLServerErrorInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetErrorInfo: *const fn(
@@ -14124,6 +14295,7 @@ pub const ISQLServerErrorInfo = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14136,7 +14308,7 @@ pub const ISQLServerErrorInfo = extern struct {
 
 const IID_IRowsetFastLoad_Value = Guid.initString("5cf4ca13-ef21-11d0-97e7-00c04fc2ad98");
 pub const IID_IRowsetFastLoad = &IID_IRowsetFastLoad_Value;
-pub const IRowsetFastLoad = extern struct {
+pub const IRowsetFastLoad = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         InsertRow: *const fn(
@@ -14150,6 +14322,7 @@ pub const IRowsetFastLoad = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -14175,7 +14348,7 @@ pub const LOCKMODE_SHARED = LOCKMODEENUM.SHARED;
 
 const IID_ISchemaLock_Value = Guid.initString("4c2389fb-2511-11d4-b258-00c04f7971ce");
 pub const IID_ISchemaLock = &IID_ISchemaLock_Value;
-pub const ISchemaLock = extern struct {
+pub const ISchemaLock = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSchemaLock: *const fn(
@@ -14191,6 +14364,7 @@ pub const ISchemaLock = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -5930,7 +5930,7 @@ pub const AVICOMPRESSOPTIONS = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IAVIStream_Value = Guid.initString("00020021-0000-0000-c000-000000000046");
 pub const IID_IAVIStream = &IID_IAVIStream_Value;
-pub const IAVIStream = extern struct {
+pub const IAVIStream = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Create: *const fn(
@@ -6011,6 +6011,7 @@ pub const IAVIStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6064,7 +6065,7 @@ pub const IAVIStream = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IAVIStreaming_Value = Guid.initString("00020022-0000-0000-c000-000000000046");
 pub const IID_IAVIStreaming = &IID_IAVIStreaming_Value;
-pub const IAVIStreaming = extern struct {
+pub const IAVIStreaming = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Begin: *const fn(
@@ -6078,6 +6079,7 @@ pub const IAVIStreaming = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6095,7 +6097,7 @@ pub const IAVIStreaming = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IAVIEditStream_Value = Guid.initString("00020024-0000-0000-c000-000000000046");
 pub const IID_IAVIEditStream = &IID_IAVIEditStream_Value;
-pub const IAVIEditStream = extern struct {
+pub const IAVIEditStream = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Cut: *const fn(
@@ -6130,6 +6132,7 @@ pub const IAVIEditStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6158,7 +6161,7 @@ pub const IAVIEditStream = extern struct {
 
 const IID_IAVIPersistFile_Value = Guid.initString("00020025-0000-0000-c000-000000000046");
 pub const IID_IAVIPersistFile = &IID_IAVIPersistFile_Value;
-pub const IAVIPersistFile = extern struct {
+pub const IAVIPersistFile = extern union {
     pub const VTable = extern struct {
         base: IPersistFile.VTable,
         Reserved1: *const fn(
@@ -6166,6 +6169,7 @@ pub const IAVIPersistFile = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IPersistFile: IPersistFile,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IPersistFile.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6179,7 +6183,7 @@ pub const IAVIPersistFile = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IAVIFile_Value = Guid.initString("00020020-0000-0000-c000-000000000046");
 pub const IID_IAVIFile = &IID_IAVIFile_Value;
-pub const IAVIFile = extern struct {
+pub const IAVIFile = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Info: *const fn(
@@ -6223,6 +6227,7 @@ pub const IAVIFile = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6260,7 +6265,7 @@ pub const IAVIFile = extern struct {
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IGetFrame_Value = Guid.initString("00020023-0000-0000-c000-000000000046");
 pub const IID_IGetFrame = &IID_IGetFrame_Value;
-pub const IGetFrame = extern struct {
+pub const IGetFrame = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFrame: *const fn(
@@ -6287,6 +6292,7 @@ pub const IGetFrame = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

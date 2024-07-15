@@ -121,7 +121,7 @@ pub const CLSID_WindowsParentalControls = &CLSID_WindowsParentalControls_Value;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWPCProviderState_Value = Guid.initString("50b6a267-c4bd-450b-adb5-759073837c9e");
 pub const IID_IWPCProviderState = &IID_IWPCProviderState_Value;
-pub const IWPCProviderState = extern struct {
+pub const IWPCProviderState = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Enable: *const fn(
@@ -132,6 +132,7 @@ pub const IWPCProviderState = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -154,7 +155,7 @@ pub const WPCFLAG_APPLICATION = WPCFLAG_OVERRIDE.N;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWPCProviderConfig_Value = Guid.initString("bef54196-2d02-4a26-b6e5-d65af295d0f1");
 pub const IID_IWPCProviderConfig = &IID_IWPCProviderConfig_Value;
-pub const IWPCProviderConfig = extern struct {
+pub const IWPCProviderConfig = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetUserSummary: *const fn(
@@ -175,6 +176,7 @@ pub const IWPCProviderConfig = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -215,7 +217,7 @@ pub const WPCFLAG_GAMES_RESTRICTED = WPCFLAG_RESTRICTION.GAMES_RESTRICTED;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWPCSettings_Value = Guid.initString("8fdf6ca1-0189-47e4-b670-1a8a4636e340");
 pub const IID_IWPCSettings = &IID_IWPCSettings_Value;
-pub const IWPCSettings = extern struct {
+pub const IWPCSettings = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsLoggingRequired: *const fn(
@@ -232,6 +234,7 @@ pub const IWPCSettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -253,7 +256,7 @@ pub const IWPCSettings = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWPCGamesSettings_Value = Guid.initString("95e87780-e158-489e-b452-bbb850790715");
 pub const IID_IWPCGamesSettings = &IID_IWPCGamesSettings_Value;
-pub const IWPCGamesSettings = extern struct {
+pub const IWPCGamesSettings = extern union {
     pub const VTable = extern struct {
         base: IWPCSettings.VTable,
         IsBlocked: *const fn(
@@ -263,6 +266,7 @@ pub const IWPCGamesSettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWPCSettings: IWPCSettings,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWPCSettings.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -283,7 +287,7 @@ pub const WPCFLAG_WEB_SETTING_DOWNLOADSBLOCKED = WPCFLAG_WEB_SETTING.DOWNLOADSBL
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWPCWebSettings_Value = Guid.initString("ffccbdb8-0992-4c30-b0f1-1cbb09c240aa");
 pub const IID_IWPCWebSettings = &IID_IWPCWebSettings_Value;
-pub const IWPCWebSettings = extern struct {
+pub const IWPCWebSettings = extern union {
     pub const VTable = extern struct {
         base: IWPCSettings.VTable,
         GetSettings: *const fn(
@@ -300,6 +304,7 @@ pub const IWPCWebSettings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWPCSettings: IWPCSettings,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWPCSettings.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -324,7 +329,7 @@ pub const WPCFLAG_WPC_HIDDEN = WPCFLAG_VISIBILITY.HIDDEN;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWindowsParentalControlsCore_Value = Guid.initString("4ff40a0f-3f3b-4d7c-a41b-4f39d7b44d05");
 pub const IID_IWindowsParentalControlsCore = &IID_IWindowsParentalControlsCore_Value;
-pub const IWindowsParentalControlsCore = extern struct {
+pub const IWindowsParentalControlsCore = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetVisibility: *const fn(
@@ -348,6 +353,7 @@ pub const IWindowsParentalControlsCore = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -373,7 +379,7 @@ pub const IWindowsParentalControlsCore = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWindowsParentalControls_Value = Guid.initString("28b4d88b-e072-49e6-804d-26edbe21a7b9");
 pub const IID_IWindowsParentalControls = &IID_IWindowsParentalControls_Value;
-pub const IWindowsParentalControls = extern struct {
+pub const IWindowsParentalControls = extern union {
     pub const VTable = extern struct {
         base: IWindowsParentalControlsCore.VTable,
         GetGamesSettings: *const fn(
@@ -383,6 +389,7 @@ pub const IWindowsParentalControls = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IWindowsParentalControlsCore: IWindowsParentalControlsCore,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IWindowsParentalControlsCore.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -396,7 +403,7 @@ pub const IWindowsParentalControls = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWPCProviderSupport_Value = Guid.initString("41eba572-23ed-4779-bec1-8df96206c44c");
 pub const IID_IWPCProviderSupport = &IID_IWPCProviderSupport_Value;
-pub const IWPCProviderSupport = extern struct {
+pub const IWPCProviderSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCurrent: *const fn(
@@ -405,6 +412,7 @@ pub const IWPCProviderSupport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

@@ -559,7 +559,7 @@ pub const D3D_SHADER_MACRO = extern struct {
 // This COM type is Agile, not sure what that means
 const IID_ID3DBlob_Value = Guid.initString("8ba5fb08-5195-40e2-ac58-0d989c3a0102");
 pub const IID_ID3DBlob = &IID_ID3DBlob_Value;
-pub const ID3DBlob = extern struct {
+pub const ID3DBlob = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetBufferPointer: *const fn(
@@ -570,6 +570,7 @@ pub const ID3DBlob = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) usize,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -592,7 +593,7 @@ pub const PFN_DESTRUCTION_CALLBACK = *const fn(
 // This COM type is Agile, not sure what that means
 const IID_ID3DDestructionNotifier_Value = Guid.initString("a06eb39a-50da-425b-8c31-4eecd6c270f3");
 pub const IID_ID3DDestructionNotifier = &IID_ID3DDestructionNotifier_Value;
-pub const ID3DDestructionNotifier = extern struct {
+pub const ID3DDestructionNotifier = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         RegisterDestructionCallback: *const fn(
@@ -607,6 +608,7 @@ pub const ID3DDestructionNotifier = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -635,7 +637,7 @@ pub const D3D10_INCLUDE_SYSTEM = D3D_INCLUDE_TYPE._INCLUDE_SYSTEM;
 pub const D3D_INCLUDE_FORCE_DWORD = D3D_INCLUDE_TYPE._INCLUDE_FORCE_DWORD;
 
 // This COM type is Agile, not sure what that means
-pub const ID3DInclude = extern struct {
+pub const ID3DInclude = extern union {
     pub const VTable = extern struct {
         Open: *const fn(
             self: *const ID3DInclude,

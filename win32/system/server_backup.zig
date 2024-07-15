@@ -12,7 +12,7 @@ pub const WSBAPP_ASYNC_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWsbApplicationBackupSupport_Value = Guid.initString("1eff3510-4a27-46ad-b9e0-08332f0f4f6d");
 pub const IID_IWsbApplicationBackupSupport = &IID_IWsbApplicationBackupSupport_Value;
-pub const IWsbApplicationBackupSupport = extern struct {
+pub const IWsbApplicationBackupSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CheckConsistency: *const fn(
@@ -27,6 +27,7 @@ pub const IWsbApplicationBackupSupport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -40,7 +41,7 @@ pub const IWsbApplicationBackupSupport = extern struct {
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWsbApplicationRestoreSupport_Value = Guid.initString("8d3bdb38-4ee8-4718-85f9-c7dbc4ab77aa");
 pub const IID_IWsbApplicationRestoreSupport = &IID_IWsbApplicationRestoreSupport_Value;
-pub const IWsbApplicationRestoreSupport = extern struct {
+pub const IWsbApplicationRestoreSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         PreRestore: *const fn(
@@ -71,6 +72,7 @@ pub const IWsbApplicationRestoreSupport = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -96,7 +98,7 @@ pub const IWsbApplicationRestoreSupport = extern struct {
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWsbApplicationAsync_Value = Guid.initString("0843f6f7-895c-44a6-b0c2-05a5022aa3a1");
 pub const IID_IWsbApplicationAsync = &IID_IWsbApplicationAsync_Value;
-pub const IWsbApplicationAsync = extern struct {
+pub const IWsbApplicationAsync = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         QueryStatus: *const fn(
@@ -108,6 +110,7 @@ pub const IWsbApplicationAsync = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

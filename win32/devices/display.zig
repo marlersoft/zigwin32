@@ -1260,7 +1260,7 @@ pub const DisplayModes = extern struct {
 
 const IID_ICloneViewHelper_Value = Guid.initString("f6a3d4c4-5632-4d83-b0a1-fb88712b1eb7");
 pub const IID_ICloneViewHelper = &IID_ICloneViewHelper_Value;
-pub const ICloneViewHelper = extern struct {
+pub const ICloneViewHelper = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetConnectedIDs: *const fn(
@@ -1290,6 +1290,7 @@ pub const ICloneViewHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1314,7 +1315,7 @@ pub const ICloneViewHelper = extern struct {
 
 const IID_IViewHelper_Value = Guid.initString("e85ccef5-aaaa-47f0-b5e3-61f7aecdc4c1");
 pub const IID_IViewHelper = &IID_IViewHelper_Value;
-pub const IViewHelper = extern struct {
+pub const IViewHelper = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetConnectedIDs: *const fn(
@@ -1351,6 +1352,7 @@ pub const IViewHelper = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

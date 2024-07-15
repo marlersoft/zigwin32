@@ -184,7 +184,7 @@ pub const MANIPULATION_ALL = MANIPULATION_PROCESSOR_MANIPULATIONS.ALL;
 // TODO: this type is limited to platform 'windows6.1'
 const IID__IManipulationEvents_Value = Guid.initString("4f62c8da-9c53-4b22-93df-927a862bbb03");
 pub const IID__IManipulationEvents = &IID__IManipulationEvents_Value;
-pub const _IManipulationEvents = extern struct {
+pub const _IManipulationEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ManipulationStarted: *const fn(
@@ -219,6 +219,7 @@ pub const _IManipulationEvents = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -240,7 +241,7 @@ pub const _IManipulationEvents = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IInertiaProcessor_Value = Guid.initString("18b00c6d-c5ee-41b1-90a9-9d4a929095ad");
 pub const IID_IInertiaProcessor = &IID_IInertiaProcessor_Value;
-pub const IInertiaProcessor = extern struct {
+pub const IInertiaProcessor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -484,6 +485,7 @@ pub const IInertiaProcessor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -689,7 +691,7 @@ pub const IInertiaProcessor = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IManipulationProcessor_Value = Guid.initString("a22ac519-8300-48a0-bef4-f1be8737dba4");
 pub const IID_IManipulationProcessor = &IID_IManipulationProcessor_Value;
-pub const IManipulationProcessor = extern struct {
+pub const IManipulationProcessor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -802,6 +804,7 @@ pub const IManipulationProcessor = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

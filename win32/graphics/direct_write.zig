@@ -328,7 +328,7 @@ pub const DWRITE_FACTORY_TYPE_ISOLATED = DWRITE_FACTORY_TYPE.ISOLATED;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFileLoader_Value = Guid.initString("727cad4e-d6af-4c9e-8a08-d695b11caa49");
 pub const IID_IDWriteFontFileLoader = &IID_IDWriteFontFileLoader_Value;
-pub const IDWriteFontFileLoader = extern struct {
+pub const IDWriteFontFileLoader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateStreamFromKey: *const fn(
@@ -340,6 +340,7 @@ pub const IDWriteFontFileLoader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -352,7 +353,7 @@ pub const IDWriteFontFileLoader = extern struct {
 
 const IID_IDWriteLocalFontFileLoader_Value = Guid.initString("b2d9f3ec-c9fe-4a11-a2ec-d86208f7c0a2");
 pub const IID_IDWriteLocalFontFileLoader = &IID_IDWriteLocalFontFileLoader_Value;
-pub const IDWriteLocalFontFileLoader = extern struct {
+pub const IDWriteLocalFontFileLoader = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFileLoader.VTable,
         GetFilePathLengthFromKey: *const fn(
@@ -379,6 +380,7 @@ pub const IDWriteLocalFontFileLoader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFileLoader: IDWriteFontFileLoader,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFileLoader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -400,7 +402,7 @@ pub const IDWriteLocalFontFileLoader = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFileStream_Value = Guid.initString("6d4865fe-0ab8-4d91-8f62-5dd6be34a3e0");
 pub const IID_IDWriteFontFileStream = &IID_IDWriteFontFileStream_Value;
-pub const IDWriteFontFileStream = extern struct {
+pub const IDWriteFontFileStream = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReadFileFragment: *const fn(
@@ -424,6 +426,7 @@ pub const IDWriteFontFileStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -449,7 +452,7 @@ pub const IDWriteFontFileStream = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFile_Value = Guid.initString("739d886a-cef5-47dc-8769-1a8b41bebbb0");
 pub const IID_IDWriteFontFile = &IID_IDWriteFontFile_Value;
-pub const IDWriteFontFile = extern struct {
+pub const IDWriteFontFile = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetReferenceKey: *const fn(
@@ -470,6 +473,7 @@ pub const IDWriteFontFile = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -534,7 +538,7 @@ pub const DWRITE_MATRIX = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteRenderingParams_Value = Guid.initString("2f0da53a-2add-47cd-82ee-d9ec34688e75");
 pub const IID_IDWriteRenderingParams = &IID_IDWriteRenderingParams_Value;
-pub const IDWriteRenderingParams = extern struct {
+pub const IDWriteRenderingParams = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetGamma: *const fn(
@@ -554,6 +558,7 @@ pub const IDWriteRenderingParams = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -583,7 +588,7 @@ pub const IDWriteRenderingParams = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFace_Value = Guid.initString("5f49804d-7024-4d43-bfa9-d25984f53849");
 pub const IID_IDWriteFontFace = &IID_IDWriteFontFace_Value;
-pub const IDWriteFontFace = extern struct {
+pub const IDWriteFontFace = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetType: *const fn(
@@ -674,6 +679,7 @@ pub const IDWriteFontFace = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -743,7 +749,7 @@ pub const IDWriteFontFace = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontCollectionLoader_Value = Guid.initString("cca920e4-52f0-492b-bfa8-29c72ee0a468");
 pub const IID_IDWriteFontCollectionLoader = &IID_IDWriteFontCollectionLoader_Value;
-pub const IDWriteFontCollectionLoader = extern struct {
+pub const IDWriteFontCollectionLoader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateEnumeratorFromKey: *const fn(
@@ -756,6 +762,7 @@ pub const IDWriteFontCollectionLoader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -769,7 +776,7 @@ pub const IDWriteFontCollectionLoader = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFileEnumerator_Value = Guid.initString("72755049-5ff7-435d-8348-4be97cfa6c7c");
 pub const IID_IDWriteFontFileEnumerator = &IID_IDWriteFontFileEnumerator_Value;
-pub const IDWriteFontFileEnumerator = extern struct {
+pub const IDWriteFontFileEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         MoveNext: *const fn(
@@ -782,6 +789,7 @@ pub const IDWriteFontFileEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -799,7 +807,7 @@ pub const IDWriteFontFileEnumerator = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteLocalizedStrings_Value = Guid.initString("08256209-099a-4b34-b86d-c22b110e7771");
 pub const IID_IDWriteLocalizedStrings = &IID_IDWriteLocalizedStrings_Value;
-pub const IDWriteLocalizedStrings = extern struct {
+pub const IDWriteLocalizedStrings = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: *const fn(
@@ -835,6 +843,7 @@ pub const IDWriteLocalizedStrings = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -868,7 +877,7 @@ pub const IDWriteLocalizedStrings = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontCollection_Value = Guid.initString("a84cee02-3eea-4eee-a827-87c1a02a0fcc");
 pub const IID_IDWriteFontCollection = &IID_IDWriteFontCollection_Value;
-pub const IDWriteFontCollection = extern struct {
+pub const IDWriteFontCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFontFamilyCount: *const fn(
@@ -892,6 +901,7 @@ pub const IDWriteFontCollection = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -917,7 +927,7 @@ pub const IDWriteFontCollection = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontList_Value = Guid.initString("1a0d8438-1d97-4ec1-aef9-a2fb86ed6acb");
 pub const IID_IDWriteFontList = &IID_IDWriteFontList_Value;
-pub const IDWriteFontList = extern struct {
+pub const IDWriteFontList = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFontCollection: *const fn(
@@ -934,6 +944,7 @@ pub const IDWriteFontList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -955,7 +966,7 @@ pub const IDWriteFontList = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontFamily_Value = Guid.initString("da20d8ef-812a-4c43-9802-62ec4abd7add");
 pub const IID_IDWriteFontFamily = &IID_IDWriteFontFamily_Value;
-pub const IDWriteFontFamily = extern struct {
+pub const IDWriteFontFamily = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontList.VTable,
         GetFamilyNames: *const fn(
@@ -978,6 +989,7 @@ pub const IDWriteFontFamily = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontList: IDWriteFontList,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontList.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -999,7 +1011,7 @@ pub const IDWriteFontFamily = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFont_Value = Guid.initString("acd16696-8c14-4f5d-877e-fe3fc1d32737");
 pub const IID_IDWriteFont = &IID_IDWriteFont_Value;
-pub const IDWriteFont = extern struct {
+pub const IDWriteFont = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFontFamily: *const fn(
@@ -1046,6 +1058,7 @@ pub const IDWriteFont = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1358,7 +1371,7 @@ pub const DWRITE_TRIMMING = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextFormat_Value = Guid.initString("9c906818-31d7-4fd3-a151-7c5e225db55a");
 pub const IID_IDWriteTextFormat = &IID_IDWriteTextFormat_Value;
-pub const IDWriteTextFormat = extern struct {
+pub const IDWriteTextFormat = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetTextAlignment: *const fn(
@@ -1459,6 +1472,7 @@ pub const IDWriteTextFormat = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1568,7 +1582,7 @@ pub const IDWriteTextFormat = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTypography_Value = Guid.initString("55f1112b-1dc2-4b3c-9541-f46894ed85b6");
 pub const IID_IDWriteTypography = &IID_IDWriteTypography_Value;
-pub const IDWriteTypography = extern struct {
+pub const IDWriteTypography = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddFontFeature: *const fn(
@@ -1585,6 +1599,7 @@ pub const IDWriteTypography = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1675,11 +1690,12 @@ pub const DWRITE_NUMBER_SUBSTITUTION_METHOD_TRADITIONAL = DWRITE_NUMBER_SUBSTITU
 
 const IID_IDWriteNumberSubstitution_Value = Guid.initString("14885cc9-bab0-4f90-b6ed-5c366a2cd03d");
 pub const IID_IDWriteNumberSubstitution = &IID_IDWriteNumberSubstitution_Value;
-pub const IDWriteNumberSubstitution = extern struct {
+pub const IDWriteNumberSubstitution = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
     };}
@@ -1697,7 +1713,7 @@ pub const DWRITE_SHAPING_GLYPH_PROPERTIES = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextAnalysisSource_Value = Guid.initString("688e1a58-5094-47c8-adc8-fbcea60ae92b");
 pub const IID_IDWriteTextAnalysisSource = &IID_IDWriteTextAnalysisSource_Value;
-pub const IDWriteTextAnalysisSource = extern struct {
+pub const IDWriteTextAnalysisSource = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetTextAtPosition: *const fn(
@@ -1729,6 +1745,7 @@ pub const IDWriteTextAnalysisSource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1758,7 +1775,7 @@ pub const IDWriteTextAnalysisSource = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextAnalysisSink_Value = Guid.initString("5810cd44-0ca0-4701-b3fa-bec5182ae4f6");
 pub const IID_IDWriteTextAnalysisSink = &IID_IDWriteTextAnalysisSink_Value;
-pub const IDWriteTextAnalysisSink = extern struct {
+pub const IDWriteTextAnalysisSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         SetScriptAnalysis: *const fn(
@@ -1788,6 +1805,7 @@ pub const IDWriteTextAnalysisSink = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -1813,7 +1831,7 @@ pub const IDWriteTextAnalysisSink = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextAnalyzer_Value = Guid.initString("b7e6163e-7f46-43b4-84b3-e4e6249c365d");
 pub const IID_IDWriteTextAnalyzer = &IID_IDWriteTextAnalyzer_Value;
-pub const IDWriteTextAnalyzer = extern struct {
+pub const IDWriteTextAnalyzer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AnalyzeScript: *const fn(
@@ -1911,6 +1929,7 @@ pub const IDWriteTextAnalyzer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2041,7 +2060,7 @@ pub const DWRITE_HIT_TEST_METRICS = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteInlineObject_Value = Guid.initString("8339fde3-106f-47ab-8373-1c6295eb10b3");
 pub const IID_IDWriteInlineObject = &IID_IDWriteInlineObject_Value;
-pub const IDWriteInlineObject = extern struct {
+pub const IDWriteInlineObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         Draw: *const fn(
@@ -2069,6 +2088,7 @@ pub const IDWriteInlineObject = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2094,7 +2114,7 @@ pub const IDWriteInlineObject = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWritePixelSnapping_Value = Guid.initString("eaf3a2da-ecf4-4d24-b644-b34f6842024b");
 pub const IID_IDWritePixelSnapping = &IID_IDWritePixelSnapping_Value;
-pub const IDWritePixelSnapping = extern struct {
+pub const IDWritePixelSnapping = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         IsPixelSnappingDisabled: *const fn(
@@ -2114,6 +2134,7 @@ pub const IDWritePixelSnapping = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2135,7 +2156,7 @@ pub const IDWritePixelSnapping = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextRenderer_Value = Guid.initString("ef8a8135-5cc6-45fe-8825-c5a0724eb819");
 pub const IID_IDWriteTextRenderer = &IID_IDWriteTextRenderer_Value;
-pub const IDWriteTextRenderer = extern struct {
+pub const IDWriteTextRenderer = extern union {
     pub const VTable = extern struct {
         base: IDWritePixelSnapping.VTable,
         DrawGlyphRun: *const fn(
@@ -2176,6 +2197,7 @@ pub const IDWriteTextRenderer = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWritePixelSnapping: IDWritePixelSnapping,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWritePixelSnapping.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2201,7 +2223,7 @@ pub const IDWriteTextRenderer = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteTextLayout_Value = Guid.initString("53737037-6d14-410b-9bfe-0b182bb70961");
 pub const IID_IDWriteTextLayout = &IID_IDWriteTextLayout_Value;
-pub const IDWriteTextLayout = extern struct {
+pub const IDWriteTextLayout = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextFormat.VTable,
         SetMaxWidth: *const fn(
@@ -2423,6 +2445,7 @@ pub const IDWriteTextLayout = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextFormat: IDWriteTextFormat,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextFormat.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2588,7 +2611,7 @@ pub const IDWriteTextLayout = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteBitmapRenderTarget_Value = Guid.initString("5e5a32a3-8dff-4773-9ff6-0696eab77267");
 pub const IID_IDWriteBitmapRenderTarget = &IID_IDWriteBitmapRenderTarget_Value;
-pub const IDWriteBitmapRenderTarget = extern struct {
+pub const IDWriteBitmapRenderTarget = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DrawGlyphRun: *const fn(
@@ -2630,6 +2653,7 @@ pub const IDWriteBitmapRenderTarget = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2671,7 +2695,7 @@ pub const IDWriteBitmapRenderTarget = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteGdiInterop_Value = Guid.initString("1edd9491-9853-4299-898f-6432983b6f3a");
 pub const IID_IDWriteGdiInterop = &IID_IDWriteGdiInterop_Value;
-pub const IDWriteGdiInterop = extern struct {
+pub const IDWriteGdiInterop = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateFontFromLOGFONT: *const fn(
@@ -2704,6 +2728,7 @@ pub const IDWriteGdiInterop = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2740,7 +2765,7 @@ pub const DWRITE_TEXTURE_CLEARTYPE_3x1 = DWRITE_TEXTURE_TYPE.CLEARTYPE_3x1;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteGlyphRunAnalysis_Value = Guid.initString("7d97dbf7-e085-42d4-81e3-6a883bded118");
 pub const IID_IDWriteGlyphRunAnalysis = &IID_IDWriteGlyphRunAnalysis_Value;
-pub const IDWriteGlyphRunAnalysis = extern struct {
+pub const IDWriteGlyphRunAnalysis = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetAlphaTextureBounds: *const fn(
@@ -2765,6 +2790,7 @@ pub const IDWriteGlyphRunAnalysis = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -2786,7 +2812,7 @@ pub const IDWriteGlyphRunAnalysis = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFactory_Value = Guid.initString("b859ee5a-d838-4b5b-a2e8-1adc7d93db48");
 pub const IID_IDWriteFactory = &IID_IDWriteFactory_Value;
-pub const IDWriteFactory = extern struct {
+pub const IDWriteFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetSystemFontCollection: *const fn(
@@ -2928,6 +2954,7 @@ pub const IDWriteFactory = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3808,7 +3835,7 @@ pub const DWRITE_JUSTIFICATION_OPPORTUNITY = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFactory1_Value = Guid.initString("30572f99-dac6-41db-a16e-0486307e606a");
 pub const IID_IDWriteFactory1 = &IID_IDWriteFactory1_Value;
-pub const IDWriteFactory1 = extern struct {
+pub const IDWriteFactory1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFactory.VTable,
         GetEudcFontCollection: *const fn(
@@ -3828,6 +3855,7 @@ pub const IDWriteFactory1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFactory: IDWriteFactory,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFactory.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3845,7 +3873,7 @@ pub const IDWriteFactory1 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFontFace1_Value = Guid.initString("a71efdb4-9fdb-4838-ad90-cfc3be8c3daf");
 pub const IID_IDWriteFontFace1 = &IID_IDWriteFontFace1_Value;
-pub const IDWriteFontFace1 = extern struct {
+pub const IDWriteFontFace1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFace.VTable,
         GetMetrics: *const fn(
@@ -3921,6 +3949,7 @@ pub const IDWriteFontFace1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IDWriteFontFace: IDWriteFontFace,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFace.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -3978,7 +4007,7 @@ pub const IDWriteFontFace1 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteFont1_Value = Guid.initString("acd16696-8c14-4f5d-877e-fe3fc1d32738");
 pub const IID_IDWriteFont1 = &IID_IDWriteFont1_Value;
-pub const IDWriteFont1 = extern struct {
+pub const IDWriteFont1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFont.VTable,
         GetMetrics: *const fn(
@@ -4000,6 +4029,7 @@ pub const IDWriteFont1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IDWriteFont: IDWriteFont,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFont.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4025,7 +4055,7 @@ pub const IDWriteFont1 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteRenderingParams1_Value = Guid.initString("94413cf4-a6fc-4248-8b50-6674348fcad3");
 pub const IID_IDWriteRenderingParams1 = &IID_IDWriteRenderingParams1_Value;
-pub const IDWriteRenderingParams1 = extern struct {
+pub const IDWriteRenderingParams1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteRenderingParams.VTable,
         GetGrayscaleEnhancedContrast: *const fn(
@@ -4033,6 +4063,7 @@ pub const IDWriteRenderingParams1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) f32,
     };
     vtable: *const VTable,
+    IDWriteRenderingParams: IDWriteRenderingParams,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteRenderingParams.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4046,7 +4077,7 @@ pub const IDWriteRenderingParams1 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextAnalyzer1_Value = Guid.initString("80dad800-e21f-4e83-96ce-bfcce500db7c");
 pub const IID_IDWriteTextAnalyzer1 = &IID_IDWriteTextAnalyzer1_Value;
-pub const IDWriteTextAnalyzer1 = extern struct {
+pub const IDWriteTextAnalyzer1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextAnalyzer.VTable,
         ApplyCharacterSpacing: *const fn(
@@ -4145,6 +4176,7 @@ pub const IDWriteTextAnalyzer1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextAnalyzer: IDWriteTextAnalyzer,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextAnalyzer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4190,7 +4222,7 @@ pub const IDWriteTextAnalyzer1 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextAnalysisSource1_Value = Guid.initString("639cfad8-0fb4-4b21-a58a-067920120009");
 pub const IID_IDWriteTextAnalysisSource1 = &IID_IDWriteTextAnalysisSource1_Value;
-pub const IDWriteTextAnalysisSource1 = extern struct {
+pub const IDWriteTextAnalysisSource1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextAnalysisSource.VTable,
         GetVerticalGlyphOrientation: *const fn(
@@ -4202,6 +4234,7 @@ pub const IDWriteTextAnalysisSource1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextAnalysisSource: IDWriteTextAnalysisSource,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextAnalysisSource.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4215,7 +4248,7 @@ pub const IDWriteTextAnalysisSource1 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextAnalysisSink1_Value = Guid.initString("b0d941a0-85e7-4d8b-9fd3-5ced9934482a");
 pub const IID_IDWriteTextAnalysisSink1 = &IID_IDWriteTextAnalysisSink1_Value;
-pub const IDWriteTextAnalysisSink1 = extern struct {
+pub const IDWriteTextAnalysisSink1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextAnalysisSink.VTable,
         SetGlyphOrientation: *const fn(
@@ -4229,6 +4262,7 @@ pub const IDWriteTextAnalysisSink1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextAnalysisSink: IDWriteTextAnalysisSink,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextAnalysisSink.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4242,7 +4276,7 @@ pub const IDWriteTextAnalysisSink1 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteTextLayout1_Value = Guid.initString("9064d822-80a7-465c-a986-df65f78b8feb");
 pub const IID_IDWriteTextLayout1 = &IID_IDWriteTextLayout1_Value;
-pub const IDWriteTextLayout1 = extern struct {
+pub const IDWriteTextLayout1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextLayout.VTable,
         SetPairKerning: *const fn(
@@ -4273,6 +4307,7 @@ pub const IDWriteTextLayout1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextLayout: IDWriteTextLayout,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextLayout.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4305,7 +4340,7 @@ pub const DWRITE_TEXT_ANTIALIAS_MODE_GRAYSCALE = DWRITE_TEXT_ANTIALIAS_MODE.GRAY
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDWriteBitmapRenderTarget1_Value = Guid.initString("791e8298-3ef3-4230-9880-c9bdecc42064");
 pub const IID_IDWriteBitmapRenderTarget1 = &IID_IDWriteBitmapRenderTarget1_Value;
-pub const IDWriteBitmapRenderTarget1 = extern struct {
+pub const IDWriteBitmapRenderTarget1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteBitmapRenderTarget.VTable,
         GetTextAntialiasMode: *const fn(
@@ -4317,6 +4352,7 @@ pub const IDWriteBitmapRenderTarget1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteBitmapRenderTarget: IDWriteBitmapRenderTarget,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteBitmapRenderTarget.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4355,7 +4391,7 @@ pub const DWRITE_TEXT_METRICS1 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteTextRenderer1_Value = Guid.initString("d3e0e934-22a0-427e-aae4-7d9574b59db1");
 pub const IID_IDWriteTextRenderer1 = &IID_IDWriteTextRenderer1_Value;
-pub const IDWriteTextRenderer1 = extern struct {
+pub const IDWriteTextRenderer1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextRenderer.VTable,
         DrawGlyphRun: *const fn(
@@ -4400,6 +4436,7 @@ pub const IDWriteTextRenderer1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextRenderer: IDWriteTextRenderer,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextRenderer.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4425,7 +4462,7 @@ pub const IDWriteTextRenderer1 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteTextFormat1_Value = Guid.initString("5f174b49-0d8b-4cfb-8bca-f1cce9d06c67");
 pub const IID_IDWriteTextFormat1 = &IID_IDWriteTextFormat1_Value;
-pub const IDWriteTextFormat1 = extern struct {
+pub const IDWriteTextFormat1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextFormat.VTable,
         SetVerticalGlyphOrientation: *const fn(
@@ -4459,6 +4496,7 @@ pub const IDWriteTextFormat1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextFormat: IDWriteTextFormat,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextFormat.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4500,7 +4538,7 @@ pub const IDWriteTextFormat1 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteTextLayout2_Value = Guid.initString("1093c18f-8d5e-43f0-b064-0917311b525e");
 pub const IID_IDWriteTextLayout2 = &IID_IDWriteTextLayout2_Value;
-pub const IDWriteTextLayout2 = extern struct {
+pub const IDWriteTextLayout2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextLayout1.VTable,
         GetMetrics: *const fn(
@@ -4538,6 +4576,7 @@ pub const IDWriteTextLayout2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextLayout1: IDWriteTextLayout1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextLayout1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4583,7 +4622,7 @@ pub const IDWriteTextLayout2 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteTextAnalyzer2_Value = Guid.initString("553a9ff3-5693-4df7-b52b-74806f7f2eb9");
 pub const IID_IDWriteTextAnalyzer2 = &IID_IDWriteTextAnalyzer2_Value;
-pub const IDWriteTextAnalyzer2 = extern struct {
+pub const IDWriteTextAnalyzer2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextAnalyzer1.VTable,
         GetGlyphOrientationTransform: *const fn(
@@ -4615,6 +4654,7 @@ pub const IDWriteTextAnalyzer2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextAnalyzer1: IDWriteTextAnalyzer1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextAnalyzer1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4636,7 +4676,7 @@ pub const IDWriteTextAnalyzer2 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteFontFallback_Value = Guid.initString("efa008f9-f7a1-48bf-b05c-f224713cc0ff");
 pub const IID_IDWriteFontFallback = &IID_IDWriteFontFallback_Value;
-pub const IDWriteFontFallback = extern struct {
+pub const IDWriteFontFallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         MapCharacters: *const fn(
@@ -4655,6 +4695,7 @@ pub const IDWriteFontFallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4668,7 +4709,7 @@ pub const IDWriteFontFallback = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteFontFallbackBuilder_Value = Guid.initString("fd882d06-8aba-4fb8-b849-8be8b73e14de");
 pub const IID_IDWriteFontFallbackBuilder = &IID_IDWriteFontFallbackBuilder_Value;
-pub const IDWriteFontFallbackBuilder = extern struct {
+pub const IDWriteFontFallbackBuilder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddMapping: *const fn(
@@ -4692,6 +4733,7 @@ pub const IDWriteFontFallbackBuilder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4713,7 +4755,7 @@ pub const IDWriteFontFallbackBuilder = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteFont2_Value = Guid.initString("29748ed6-8c9c-4a6a-be0b-d912e8538944");
 pub const IID_IDWriteFont2 = &IID_IDWriteFont2_Value;
-pub const IDWriteFont2 = extern struct {
+pub const IDWriteFont2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFont1.VTable,
         IsColorFont: *const fn(
@@ -4721,6 +4763,7 @@ pub const IDWriteFont2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IDWriteFont1: IDWriteFont1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFont1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4734,7 +4777,7 @@ pub const IDWriteFont2 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteFontFace2_Value = Guid.initString("d8b768ff-64bc-4e66-982b-ec8e87f693f7");
 pub const IID_IDWriteFontFace2 = &IID_IDWriteFontFace2_Value;
-pub const IDWriteFontFace2 = extern struct {
+pub const IDWriteFontFace2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFace1.VTable,
         IsColorFont: *const fn(
@@ -4768,6 +4811,7 @@ pub const IDWriteFontFace2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFace1: IDWriteFontFace1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFace1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4806,7 +4850,7 @@ pub const DWRITE_COLOR_GLYPH_RUN = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteColorGlyphRunEnumerator_Value = Guid.initString("d31fbe17-f157-41a2-8d24-cb779e0560e8");
 pub const IID_IDWriteColorGlyphRunEnumerator = &IID_IDWriteColorGlyphRunEnumerator_Value;
-pub const IDWriteColorGlyphRunEnumerator = extern struct {
+pub const IDWriteColorGlyphRunEnumerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         MoveNext: *const fn(
@@ -4819,6 +4863,7 @@ pub const IDWriteColorGlyphRunEnumerator = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4836,7 +4881,7 @@ pub const IDWriteColorGlyphRunEnumerator = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteRenderingParams2_Value = Guid.initString("f9d711c3-9777-40ae-87e8-3e5af9bf0948");
 pub const IID_IDWriteRenderingParams2 = &IID_IDWriteRenderingParams2_Value;
-pub const IDWriteRenderingParams2 = extern struct {
+pub const IDWriteRenderingParams2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteRenderingParams1.VTable,
         GetGridFitMode: *const fn(
@@ -4844,6 +4889,7 @@ pub const IDWriteRenderingParams2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) DWRITE_GRID_FIT_MODE,
     };
     vtable: *const VTable,
+    IDWriteRenderingParams1: IDWriteRenderingParams1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteRenderingParams1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -4857,7 +4903,7 @@ pub const IDWriteRenderingParams2 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteFactory2_Value = Guid.initString("0439fc60-ca44-4994-8dee-3a9af7b732ec");
 pub const IID_IDWriteFactory2 = &IID_IDWriteFactory2_Value;
-pub const IDWriteFactory2 = extern struct {
+pub const IDWriteFactory2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFactory1.VTable,
         GetSystemFontFallback: *const fn(
@@ -4904,6 +4950,7 @@ pub const IDWriteFactory2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFactory1: IDWriteFactory1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFactory1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5008,7 +5055,7 @@ pub const DWRITE_RENDERING_MODE1_NATURAL_SYMMETRIC_DOWNSAMPLED = DWRITE_RENDERIN
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteRenderingParams3_Value = Guid.initString("b7924baa-391b-412a-8c5c-e44cc2d867dc");
 pub const IID_IDWriteRenderingParams3 = &IID_IDWriteRenderingParams3_Value;
-pub const IDWriteRenderingParams3 = extern struct {
+pub const IDWriteRenderingParams3 = extern union {
     pub const VTable = extern struct {
         base: IDWriteRenderingParams2.VTable,
         GetRenderingMode1: *const fn(
@@ -5016,6 +5063,7 @@ pub const IDWriteRenderingParams3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) DWRITE_RENDERING_MODE1,
     };
     vtable: *const VTable,
+    IDWriteRenderingParams2: IDWriteRenderingParams2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteRenderingParams2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5029,7 +5077,7 @@ pub const IDWriteRenderingParams3 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFactory3_Value = Guid.initString("9a1b41c3-d3bb-466a-87fc-fe67556a3b65");
 pub const IID_IDWriteFactory3 = &IID_IDWriteFactory3_Value;
-pub const IDWriteFactory3 = extern struct {
+pub const IDWriteFactory3 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFactory2.VTable,
         CreateGlyphRunAnalysis: *const fn(
@@ -5095,6 +5143,7 @@ pub const IDWriteFactory3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFactory2: IDWriteFactory2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFactory2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5140,7 +5189,7 @@ pub const IDWriteFactory3 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontSet_Value = Guid.initString("53585141-d9f8-4095-8321-d73cf6bd116b");
 pub const IID_IDWriteFontSet = &IID_IDWriteFontSet_Value;
-pub const IDWriteFontSet = extern struct {
+pub const IDWriteFontSet = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFontCount: *const fn(
@@ -5202,6 +5251,7 @@ pub const IDWriteFontSet = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5250,7 +5300,7 @@ pub const IDWriteFontSet = extern struct {
 
 const IID_IDWriteFontSetBuilder_Value = Guid.initString("2f642afe-9c68-4f40-b8be-457401afcb3d");
 pub const IID_IDWriteFontSetBuilder = &IID_IDWriteFontSetBuilder_Value;
-pub const IDWriteFontSetBuilder = extern struct {
+pub const IDWriteFontSetBuilder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddFontFaceReference: *const fn(
@@ -5273,6 +5323,7 @@ pub const IDWriteFontSetBuilder = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5298,7 +5349,7 @@ pub const IDWriteFontSetBuilder = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDWriteFontCollection1_Value = Guid.initString("53585141-d9f8-4095-8321-d73cf6bd116c");
 pub const IID_IDWriteFontCollection1 = &IID_IDWriteFontCollection1_Value;
-pub const IDWriteFontCollection1 = extern struct {
+pub const IDWriteFontCollection1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontCollection.VTable,
         GetFontSet: *const fn(
@@ -5312,6 +5363,7 @@ pub const IDWriteFontCollection1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontCollection: IDWriteFontCollection,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontCollection.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5329,7 +5381,7 @@ pub const IDWriteFontCollection1 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontFamily1_Value = Guid.initString("da20d8ef-812a-4c43-9802-62ec4abd7adf");
 pub const IID_IDWriteFontFamily1 = &IID_IDWriteFontFamily1_Value;
-pub const IDWriteFontFamily1 = extern struct {
+pub const IDWriteFontFamily1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFamily.VTable,
         GetFontLocality: *const fn(
@@ -5348,6 +5400,7 @@ pub const IDWriteFontFamily1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFamily: IDWriteFontFamily,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFamily.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5369,7 +5422,7 @@ pub const IDWriteFontFamily1 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontList1_Value = Guid.initString("da20d8ef-812a-4c43-9802-62ec4abd7ade");
 pub const IID_IDWriteFontList1 = &IID_IDWriteFontList1_Value;
-pub const IDWriteFontList1 = extern struct {
+pub const IDWriteFontList1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontList.VTable,
         GetFontLocality: *const fn(
@@ -5388,6 +5441,7 @@ pub const IDWriteFontList1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontList: IDWriteFontList,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontList.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5409,7 +5463,7 @@ pub const IDWriteFontList1 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontFaceReference_Value = Guid.initString("5e7fa7ca-dde3-424c-89f0-9fcd6fed58cd");
 pub const IID_IDWriteFontFaceReference = &IID_IDWriteFontFaceReference_Value;
-pub const IDWriteFontFaceReference = extern struct {
+pub const IDWriteFontFaceReference = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateFontFace: *const fn(
@@ -5468,6 +5522,7 @@ pub const IDWriteFontFaceReference = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5533,7 +5588,7 @@ pub const IDWriteFontFaceReference = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFont3_Value = Guid.initString("29748ed6-8c9c-4a6a-be0b-d912e8538944");
 pub const IID_IDWriteFont3 = &IID_IDWriteFont3_Value;
-pub const IDWriteFont3 = extern struct {
+pub const IDWriteFont3 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFont2.VTable,
         CreateFontFace: *const fn(
@@ -5557,6 +5612,7 @@ pub const IDWriteFont3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
     };
     vtable: *const VTable,
+    IDWriteFont2: IDWriteFont2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFont2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5586,7 +5642,7 @@ pub const IDWriteFont3 = extern struct {
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDWriteFontFace3_Value = Guid.initString("d37d7598-09be-4222-a236-2081341cc1f2");
 pub const IID_IDWriteFontFace3 = &IID_IDWriteFontFace3_Value;
-pub const IDWriteFontFace3 = extern struct {
+pub const IDWriteFontFace3 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFace2.VTable,
         GetFontFaceReference: *const fn(
@@ -5661,6 +5717,7 @@ pub const IDWriteFontFace3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFace2: IDWriteFontFace2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFace2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5725,7 +5782,7 @@ pub const IDWriteFontFace3 = extern struct {
 
 const IID_IDWriteStringList_Value = Guid.initString("cfee3140-1157-47ca-8b85-31bfcf3f2d0e");
 pub const IID_IDWriteStringList = &IID_IDWriteStringList_Value;
-pub const IDWriteStringList = extern struct {
+pub const IDWriteStringList = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetCount: *const fn(
@@ -5755,6 +5812,7 @@ pub const IDWriteStringList = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5784,7 +5842,7 @@ pub const IDWriteStringList = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteFontDownloadListener_Value = Guid.initString("b06fe5b9-43ec-4393-881b-dbe4dc72fda7");
 pub const IID_IDWriteFontDownloadListener = &IID_IDWriteFontDownloadListener_Value;
-pub const IDWriteFontDownloadListener = extern struct {
+pub const IDWriteFontDownloadListener = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         DownloadCompleted: *const fn(
@@ -5795,6 +5853,7 @@ pub const IDWriteFontDownloadListener = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5808,7 +5867,7 @@ pub const IDWriteFontDownloadListener = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteFontDownloadQueue_Value = Guid.initString("b71e6052-5aea-4fa3-832e-f60d431f7e91");
 pub const IID_IDWriteFontDownloadQueue = &IID_IDWriteFontDownloadQueue_Value;
-pub const IDWriteFontDownloadQueue = extern struct {
+pub const IDWriteFontDownloadQueue = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         AddListener: *const fn(
@@ -5835,6 +5894,7 @@ pub const IDWriteFontDownloadQueue = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u64,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5867,7 +5927,7 @@ pub const IDWriteFontDownloadQueue = extern struct {
 
 const IID_IDWriteGdiInterop1_Value = Guid.initString("4556be70-3abd-4f70-90be-421780a6f515");
 pub const IID_IDWriteGdiInterop1 = &IID_IDWriteGdiInterop1_Value;
-pub const IDWriteGdiInterop1 = extern struct {
+pub const IDWriteGdiInterop1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteGdiInterop.VTable,
         CreateFontFromLOGFONT: *const fn(
@@ -5894,6 +5954,7 @@ pub const IDWriteGdiInterop1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteGdiInterop: IDWriteGdiInterop,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteGdiInterop.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5942,7 +6003,7 @@ pub const DWRITE_LINE_SPACING = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteTextFormat2_Value = Guid.initString("f67e0edd-9e3d-4ecc-8c32-4183253dfe70");
 pub const IID_IDWriteTextFormat2 = &IID_IDWriteTextFormat2_Value;
-pub const IDWriteTextFormat2 = extern struct {
+pub const IDWriteTextFormat2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextFormat1.VTable,
         SetLineSpacing: *const fn(
@@ -5955,6 +6016,7 @@ pub const IDWriteTextFormat2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextFormat1: IDWriteTextFormat1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextFormat1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -5972,7 +6034,7 @@ pub const IDWriteTextFormat2 = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDWriteTextLayout3_Value = Guid.initString("07ddcd52-020e-4de8-ac33-6c953d83f92d");
 pub const IID_IDWriteTextLayout3 = &IID_IDWriteTextLayout3_Value;
-pub const IDWriteTextLayout3 = extern struct {
+pub const IDWriteTextLayout3 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextLayout2.VTable,
         InvalidateLayout: *const fn(
@@ -5994,6 +6056,7 @@ pub const IDWriteTextLayout3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextLayout2: IDWriteTextLayout2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextLayout2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6036,7 +6099,7 @@ pub const DWRITE_GLYPH_IMAGE_DATA = extern struct {
 
 const IID_IDWriteColorGlyphRunEnumerator1_Value = Guid.initString("7c5f86da-c7a1-4f05-b8e1-55a179fe5a35");
 pub const IID_IDWriteColorGlyphRunEnumerator1 = &IID_IDWriteColorGlyphRunEnumerator1_Value;
-pub const IDWriteColorGlyphRunEnumerator1 = extern struct {
+pub const IDWriteColorGlyphRunEnumerator1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteColorGlyphRunEnumerator.VTable,
         GetCurrentRun: *const fn(
@@ -6045,6 +6108,7 @@ pub const IDWriteColorGlyphRunEnumerator1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteColorGlyphRunEnumerator: IDWriteColorGlyphRunEnumerator,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteColorGlyphRunEnumerator.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6057,7 +6121,7 @@ pub const IDWriteColorGlyphRunEnumerator1 = extern struct {
 
 const IID_IDWriteFontFace4_Value = Guid.initString("27f2a904-4eb8-441d-9678-0563f53e3e2f");
 pub const IID_IDWriteFontFace4 = &IID_IDWriteFontFace4_Value;
-pub const IDWriteFontFace4 = extern struct {
+pub const IDWriteFontFace4 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFace3.VTable,
         GetGlyphImageFormats: *const fn(
@@ -6084,6 +6148,7 @@ pub const IDWriteFontFace4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
+    IDWriteFontFace3: IDWriteFontFace3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFace3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6108,7 +6173,7 @@ pub const IDWriteFontFace4 = extern struct {
 
 const IID_IDWriteFactory4_Value = Guid.initString("4b0b5bd3-0797-4549-8ac5-fe915cc53856");
 pub const IID_IDWriteFactory4 = &IID_IDWriteFactory4_Value;
-pub const IDWriteFactory4 = extern struct {
+pub const IDWriteFactory4 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFactory3.VTable,
         TranslateColorGlyphRun: *const fn(
@@ -6138,6 +6203,7 @@ pub const IDWriteFactory4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFactory3: IDWriteFactory3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFactory3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6158,7 +6224,7 @@ pub const IDWriteFactory4 = extern struct {
 
 const IID_IDWriteFontSetBuilder1_Value = Guid.initString("3ff7715f-3cdc-4dc6-9b72-ec5621dccafd");
 pub const IID_IDWriteFontSetBuilder1 = &IID_IDWriteFontSetBuilder1_Value;
-pub const IDWriteFontSetBuilder1 = extern struct {
+pub const IDWriteFontSetBuilder1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontSetBuilder.VTable,
         AddFontFile: *const fn(
@@ -6167,6 +6233,7 @@ pub const IDWriteFontSetBuilder1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontSetBuilder: IDWriteFontSetBuilder,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontSetBuilder.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6179,7 +6246,7 @@ pub const IDWriteFontSetBuilder1 = extern struct {
 
 const IID_IDWriteAsyncResult_Value = Guid.initString("ce25f8fd-863b-4d13-9651-c1f88dc73fe2");
 pub const IID_IDWriteAsyncResult = &IID_IDWriteAsyncResult_Value;
-pub const IDWriteAsyncResult = extern struct {
+pub const IDWriteAsyncResult = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetWaitHandle: *const fn(
@@ -6190,6 +6257,7 @@ pub const IDWriteAsyncResult = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6211,7 +6279,7 @@ pub const DWRITE_FILE_FRAGMENT = extern struct {
 
 const IID_IDWriteRemoteFontFileStream_Value = Guid.initString("4db3757a-2c72-4ed9-b2b6-1ababe1aff9c");
 pub const IID_IDWriteRemoteFontFileStream = &IID_IDWriteRemoteFontFileStream_Value;
-pub const IDWriteRemoteFontFileStream = extern struct {
+pub const IDWriteRemoteFontFileStream = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFileStream.VTable,
         GetLocalFileSize: *const fn(
@@ -6237,6 +6305,7 @@ pub const IDWriteRemoteFontFileStream = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFileStream: IDWriteFontFileStream,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFileStream.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6270,7 +6339,7 @@ pub const DWRITE_CONTAINER_TYPE_WOFF2 = DWRITE_CONTAINER_TYPE.WOFF2;
 
 const IID_IDWriteRemoteFontFileLoader_Value = Guid.initString("68648c83-6ede-46c0-ab46-20083a887fde");
 pub const IID_IDWriteRemoteFontFileLoader = &IID_IDWriteRemoteFontFileLoader_Value;
-pub const IDWriteRemoteFontFileLoader = extern struct {
+pub const IDWriteRemoteFontFileLoader = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFileLoader.VTable,
         CreateRemoteStreamFromKey: *const fn(
@@ -6296,6 +6365,7 @@ pub const IDWriteRemoteFontFileLoader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFileLoader: IDWriteFontFileLoader,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFileLoader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6316,7 +6386,7 @@ pub const IDWriteRemoteFontFileLoader = extern struct {
 
 const IID_IDWriteInMemoryFontFileLoader_Value = Guid.initString("dc102f47-a12d-4b1c-822d-9e117e33043f");
 pub const IID_IDWriteInMemoryFontFileLoader = &IID_IDWriteInMemoryFontFileLoader_Value;
-pub const IDWriteInMemoryFontFileLoader = extern struct {
+pub const IDWriteInMemoryFontFileLoader = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFileLoader.VTable,
         CreateInMemoryFontFileReference: *const fn(
@@ -6333,6 +6403,7 @@ pub const IDWriteInMemoryFontFileLoader = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
+    IDWriteFontFileLoader: IDWriteFontFileLoader,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFileLoader.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6349,7 +6420,7 @@ pub const IDWriteInMemoryFontFileLoader = extern struct {
 
 const IID_IDWriteFactory5_Value = Guid.initString("958db99a-be2a-4f09-af7d-65189803d1d3");
 pub const IID_IDWriteFactory5 = &IID_IDWriteFactory5_Value;
-pub const IDWriteFactory5 = extern struct {
+pub const IDWriteFactory5 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFactory4.VTable,
         CreateFontSetBuilder: *const fn(
@@ -6382,6 +6453,7 @@ pub const IDWriteFactory5 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFactory4: IDWriteFactory4,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFactory4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6503,7 +6575,7 @@ pub const DWRITE_FONT_AXIS_ATTRIBUTES_HIDDEN = DWRITE_FONT_AXIS_ATTRIBUTES{ .HID
 
 const IID_IDWriteFactory6_Value = Guid.initString("f3744d80-21f7-42eb-b35d-995bc72fc223");
 pub const IID_IDWriteFactory6 = &IID_IDWriteFactory6_Value;
-pub const IDWriteFactory6 = extern struct {
+pub const IDWriteFactory6 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFactory5.VTable,
         CreateFontFaceReference: *const fn(
@@ -6554,6 +6626,7 @@ pub const IDWriteFactory6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFactory5: IDWriteFactory5,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFactory5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6590,7 +6663,7 @@ pub const IDWriteFactory6 = extern struct {
 
 const IID_IDWriteFontFace5_Value = Guid.initString("98eff3a5-b667-479a-b145-e2fa5b9fdc29");
 pub const IID_IDWriteFontFace5 = &IID_IDWriteFontFace5_Value;
-pub const IDWriteFontFace5 = extern struct {
+pub const IDWriteFontFace5 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFace4.VTable,
         GetFontAxisValueCount: *const fn(
@@ -6614,6 +6687,7 @@ pub const IDWriteFontFace5 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
+    IDWriteFontFace4: IDWriteFontFace4,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFace4.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6642,7 +6716,7 @@ pub const IDWriteFontFace5 = extern struct {
 
 const IID_IDWriteFontResource_Value = Guid.initString("1f803a76-6871-48e8-987f-b975551c50f2");
 pub const IID_IDWriteFontResource = &IID_IDWriteFontResource_Value;
-pub const IDWriteFontResource = extern struct {
+pub const IDWriteFontResource = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         GetFontFile: *const fn(
@@ -6704,6 +6778,7 @@ pub const IDWriteFontResource = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6760,7 +6835,7 @@ pub const IDWriteFontResource = extern struct {
 
 const IID_IDWriteFontFaceReference1_Value = Guid.initString("c081fe77-2fd1-41ac-a5a3-34983c4ba61a");
 pub const IID_IDWriteFontFaceReference1 = &IID_IDWriteFontFaceReference1_Value;
-pub const IDWriteFontFaceReference1 = extern struct {
+pub const IDWriteFontFaceReference1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFaceReference.VTable,
         CreateFontFace: *const fn(
@@ -6777,6 +6852,7 @@ pub const IDWriteFontFaceReference1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFaceReference: IDWriteFontFaceReference,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFaceReference.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6797,7 +6873,7 @@ pub const IDWriteFontFaceReference1 = extern struct {
 
 const IID_IDWriteFontSetBuilder2_Value = Guid.initString("ee5ba612-b131-463c-8f4f-3189b9401e45");
 pub const IID_IDWriteFontSetBuilder2 = &IID_IDWriteFontSetBuilder2_Value;
-pub const IDWriteFontSetBuilder2 = extern struct {
+pub const IDWriteFontSetBuilder2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontSetBuilder1.VTable,
         AddFont: *const fn(
@@ -6818,6 +6894,7 @@ pub const IDWriteFontSetBuilder2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontSetBuilder1: IDWriteFontSetBuilder1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontSetBuilder1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6834,7 +6911,7 @@ pub const IDWriteFontSetBuilder2 = extern struct {
 
 const IID_IDWriteFontSet1_Value = Guid.initString("7e9fda85-6c92-4053-bc47-7ae3530db4d3");
 pub const IID_IDWriteFontSet1 = &IID_IDWriteFontSet1_Value;
-pub const IDWriteFontSet1 = extern struct {
+pub const IDWriteFontSet1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontSet.VTable,
         GetMatchingFonts: *const fn(
@@ -6920,6 +6997,7 @@ pub const IDWriteFontSet1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) DWRITE_LOCALITY,
     };
     vtable: *const VTable,
+    IDWriteFontSet: IDWriteFontSet,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontSet.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -6980,7 +7058,7 @@ pub const IDWriteFontSet1 = extern struct {
 
 const IID_IDWriteFontList2_Value = Guid.initString("c0763a34-77af-445a-b735-08c37b0a5bf5");
 pub const IID_IDWriteFontList2 = &IID_IDWriteFontList2_Value;
-pub const IDWriteFontList2 = extern struct {
+pub const IDWriteFontList2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontList1.VTable,
         GetFontSet: *const fn(
@@ -6989,6 +7067,7 @@ pub const IDWriteFontList2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontList1: IDWriteFontList1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontList1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7001,7 +7080,7 @@ pub const IDWriteFontList2 = extern struct {
 
 const IID_IDWriteFontFamily2_Value = Guid.initString("3ed49e77-a398-4261-b9cf-c126c2131ef3");
 pub const IID_IDWriteFontFamily2 = &IID_IDWriteFontFamily2_Value;
-pub const IDWriteFontFamily2 = extern struct {
+pub const IDWriteFontFamily2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFamily1.VTable,
         GetMatchingFonts: *const fn(
@@ -7016,6 +7095,7 @@ pub const IDWriteFontFamily2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFamily1: IDWriteFontFamily1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFamily1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7032,7 +7112,7 @@ pub const IDWriteFontFamily2 = extern struct {
 
 const IID_IDWriteFontCollection2_Value = Guid.initString("514039c6-4617-4064-bf8b-92ea83e506e0");
 pub const IID_IDWriteFontCollection2 = &IID_IDWriteFontCollection2_Value;
-pub const IDWriteFontCollection2 = extern struct {
+pub const IDWriteFontCollection2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontCollection1.VTable,
         GetFontFamily: *const fn(
@@ -7056,6 +7136,7 @@ pub const IDWriteFontCollection2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontCollection1: IDWriteFontCollection1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontCollection1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7080,7 +7161,7 @@ pub const IDWriteFontCollection2 = extern struct {
 
 const IID_IDWriteTextLayout4_Value = Guid.initString("05a9bf42-223f-4441-b5fb-8263685f55e9");
 pub const IID_IDWriteTextLayout4 = &IID_IDWriteTextLayout4_Value;
-pub const IDWriteTextLayout4 = extern struct {
+pub const IDWriteTextLayout4 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextLayout3.VTable,
         SetFontAxisValues: *const fn(
@@ -7109,6 +7190,7 @@ pub const IDWriteTextLayout4 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextLayout3: IDWriteTextLayout3,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextLayout3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7137,7 +7219,7 @@ pub const IDWriteTextLayout4 = extern struct {
 
 const IID_IDWriteTextFormat3_Value = Guid.initString("6d3b5641-e550-430d-a85b-b7bf48a93427");
 pub const IID_IDWriteTextFormat3 = &IID_IDWriteTextFormat3_Value;
-pub const IDWriteTextFormat3 = extern struct {
+pub const IDWriteTextFormat3 = extern union {
     pub const VTable = extern struct {
         base: IDWriteTextFormat2.VTable,
         SetFontAxisValues: *const fn(
@@ -7162,6 +7244,7 @@ pub const IDWriteTextFormat3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteTextFormat2: IDWriteTextFormat2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteTextFormat2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7190,7 +7273,7 @@ pub const IDWriteTextFormat3 = extern struct {
 
 const IID_IDWriteFontFallback1_Value = Guid.initString("2397599d-dd0d-4681-bd6a-f4f31eaade77");
 pub const IID_IDWriteFontFallback1 = &IID_IDWriteFontFallback1_Value;
-pub const IDWriteFontFallback1 = extern struct {
+pub const IDWriteFontFallback1 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFallback.VTable,
         MapCharacters: *const fn(
@@ -7208,6 +7291,7 @@ pub const IDWriteFontFallback1 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFallback: IDWriteFontFallback,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFallback.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7220,7 +7304,7 @@ pub const IDWriteFontFallback1 = extern struct {
 
 const IID_IDWriteFontSet2_Value = Guid.initString("dc7ead19-e54c-43af-b2da-4e2b79ba3f7f");
 pub const IID_IDWriteFontSet2 = &IID_IDWriteFontSet2_Value;
-pub const IDWriteFontSet2 = extern struct {
+pub const IDWriteFontSet2 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontSet1.VTable,
         GetExpirationEvent: *const fn(
@@ -7228,6 +7312,7 @@ pub const IDWriteFontSet2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
     };
     vtable: *const VTable,
+    IDWriteFontSet1: IDWriteFontSet1,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontSet1.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7240,7 +7325,7 @@ pub const IDWriteFontSet2 = extern struct {
 
 const IID_IDWriteFontCollection3_Value = Guid.initString("a4d055a6-f9e3-4e25-93b7-9e309f3af8e9");
 pub const IID_IDWriteFontCollection3 = &IID_IDWriteFontCollection3_Value;
-pub const IDWriteFontCollection3 = extern struct {
+pub const IDWriteFontCollection3 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontCollection2.VTable,
         GetExpirationEvent: *const fn(
@@ -7248,6 +7333,7 @@ pub const IDWriteFontCollection3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
     };
     vtable: *const VTable,
+    IDWriteFontCollection2: IDWriteFontCollection2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontCollection2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7260,7 +7346,7 @@ pub const IDWriteFontCollection3 = extern struct {
 
 const IID_IDWriteFactory7_Value = Guid.initString("35d0e0b3-9076-4d2e-a016-a91b568a06b4");
 pub const IID_IDWriteFactory7 = &IID_IDWriteFactory7_Value;
-pub const IDWriteFactory7 = extern struct {
+pub const IDWriteFactory7 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFactory6.VTable,
         GetSystemFontSet: *const fn(
@@ -7276,6 +7362,7 @@ pub const IDWriteFactory7 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFactory6: IDWriteFactory6,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFactory6.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7305,7 +7392,7 @@ pub const DWRITE_FONT_SOURCE_TYPE_REMOTE_FONT_PROVIDER = DWRITE_FONT_SOURCE_TYPE
 
 const IID_IDWriteFontSet3_Value = Guid.initString("7c073ef2-a7f4-4045-8c32-8ab8ae640f90");
 pub const IID_IDWriteFontSet3 = &IID_IDWriteFontSet3_Value;
-pub const IDWriteFontSet3 = extern struct {
+pub const IDWriteFontSet3 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontSet2.VTable,
         GetFontSourceType: *const fn(
@@ -7324,6 +7411,7 @@ pub const IDWriteFontSet3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontSet2: IDWriteFontSet2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontSet2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -7344,7 +7432,7 @@ pub const IDWriteFontSet3 = extern struct {
 
 const IID_IDWriteFontFace6_Value = Guid.initString("c4b1fe1b-6e84-47d5-b54c-a597981b06ad");
 pub const IID_IDWriteFontFace6 = &IID_IDWriteFontFace6_Value;
-pub const IDWriteFontFace6 = extern struct {
+pub const IDWriteFontFace6 = extern union {
     pub const VTable = extern struct {
         base: IDWriteFontFace5.VTable,
         GetFamilyNames: *const fn(
@@ -7359,6 +7447,7 @@ pub const IDWriteFontFace6 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDWriteFontFace5: IDWriteFontFace5,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDWriteFontFace5.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

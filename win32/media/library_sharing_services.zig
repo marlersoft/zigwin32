@@ -21,7 +21,7 @@ pub const DEVICE_AUTHORIZATION_DENIED = WindowsMediaLibrarySharingDeviceAuthoriz
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWindowsMediaLibrarySharingDeviceProperty_Value = Guid.initString("81e26927-7a7d-40a7-81d4-bddc02960e3e");
 pub const IID_IWindowsMediaLibrarySharingDeviceProperty = &IID_IWindowsMediaLibrarySharingDeviceProperty_Value;
-pub const IWindowsMediaLibrarySharingDeviceProperty = extern struct {
+pub const IWindowsMediaLibrarySharingDeviceProperty = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -36,6 +36,7 @@ pub const IWindowsMediaLibrarySharingDeviceProperty = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -53,7 +54,7 @@ pub const IWindowsMediaLibrarySharingDeviceProperty = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWindowsMediaLibrarySharingDeviceProperties_Value = Guid.initString("c4623214-6b06-40c5-a623-b2ff4c076bfd");
 pub const IID_IWindowsMediaLibrarySharingDeviceProperties = &IID_IWindowsMediaLibrarySharingDeviceProperties_Value;
-pub const IWindowsMediaLibrarySharingDeviceProperties = extern struct {
+pub const IWindowsMediaLibrarySharingDeviceProperties = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Item: *const fn(
@@ -73,6 +74,7 @@ pub const IWindowsMediaLibrarySharingDeviceProperties = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -94,7 +96,7 @@ pub const IWindowsMediaLibrarySharingDeviceProperties = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWindowsMediaLibrarySharingDevice_Value = Guid.initString("3dccc293-4fd9-4191-a25b-8e57c5d27bd4");
 pub const IID_IWindowsMediaLibrarySharingDevice = &IID_IWindowsMediaLibrarySharingDevice_Value;
-pub const IWindowsMediaLibrarySharingDevice = extern struct {
+pub const IWindowsMediaLibrarySharingDevice = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
@@ -119,6 +121,7 @@ pub const IWindowsMediaLibrarySharingDevice = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -144,7 +147,7 @@ pub const IWindowsMediaLibrarySharingDevice = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWindowsMediaLibrarySharingDevices_Value = Guid.initString("1803f9d6-fe6d-4546-bf5b-992fe8ec12d1");
 pub const IID_IWindowsMediaLibrarySharingDevices = &IID_IWindowsMediaLibrarySharingDevices_Value;
-pub const IWindowsMediaLibrarySharingDevices = extern struct {
+pub const IWindowsMediaLibrarySharingDevices = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         get_Item: *const fn(
@@ -164,6 +167,7 @@ pub const IWindowsMediaLibrarySharingDevices = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -185,7 +189,7 @@ pub const IWindowsMediaLibrarySharingDevices = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IWindowsMediaLibrarySharingServices_Value = Guid.initString("01f5f85e-0a81-40da-a7c8-21ef3af8440c");
 pub const IID_IWindowsMediaLibrarySharingServices = &IID_IWindowsMediaLibrarySharingServices_Value;
-pub const IWindowsMediaLibrarySharingServices = extern struct {
+pub const IWindowsMediaLibrarySharingServices = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         showShareMediaCPL: *const fn(
@@ -284,6 +288,7 @@ pub const IWindowsMediaLibrarySharingServices = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IDispatch: IDispatch,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IDispatch.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now

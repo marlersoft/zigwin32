@@ -97,7 +97,7 @@ pub const TPMVSCMGR_ERROR_CARD_DESTROY = TPMVSCMGR_ERROR.CARD_DESTROY;
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITpmVirtualSmartCardManagerStatusCallback_Value = Guid.initString("1a1bb35f-abb8-451c-a1ae-33d98f1bef4a");
 pub const IID_ITpmVirtualSmartCardManagerStatusCallback = &IID_ITpmVirtualSmartCardManagerStatusCallback_Value;
-pub const ITpmVirtualSmartCardManagerStatusCallback = extern struct {
+pub const ITpmVirtualSmartCardManagerStatusCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         ReportProgress: *const fn(
@@ -110,6 +110,7 @@ pub const ITpmVirtualSmartCardManagerStatusCallback = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -127,7 +128,7 @@ pub const ITpmVirtualSmartCardManagerStatusCallback = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITpmVirtualSmartCardManager_Value = Guid.initString("112b1dff-d9dc-41f7-869f-d67fee7cb591");
 pub const IID_ITpmVirtualSmartCardManager = &IID_ITpmVirtualSmartCardManager_Value;
-pub const ITpmVirtualSmartCardManager = extern struct {
+pub const ITpmVirtualSmartCardManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         CreateVirtualSmartCard: *const fn(
@@ -155,6 +156,7 @@ pub const ITpmVirtualSmartCardManager = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    IUnknown: IUnknown,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -171,7 +173,7 @@ pub const ITpmVirtualSmartCardManager = extern struct {
 
 const IID_ITpmVirtualSmartCardManager2_Value = Guid.initString("fdf8a2b9-02de-47f4-bc26-aa85ab5e5267");
 pub const IID_ITpmVirtualSmartCardManager2 = &IID_ITpmVirtualSmartCardManager2_Value;
-pub const ITpmVirtualSmartCardManager2 = extern struct {
+pub const ITpmVirtualSmartCardManager2 = extern union {
     pub const VTable = extern struct {
         base: ITpmVirtualSmartCardManager.VTable,
         CreateVirtualSmartCardWithPinPolicy: *const fn(
@@ -195,6 +197,7 @@ pub const ITpmVirtualSmartCardManager2 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITpmVirtualSmartCardManager: ITpmVirtualSmartCardManager,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITpmVirtualSmartCardManager.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
@@ -207,7 +210,7 @@ pub const ITpmVirtualSmartCardManager2 = extern struct {
 
 const IID_ITpmVirtualSmartCardManager3_Value = Guid.initString("3c745a97-f375-4150-be17-5950f694c699");
 pub const IID_ITpmVirtualSmartCardManager3 = &IID_ITpmVirtualSmartCardManager3_Value;
-pub const ITpmVirtualSmartCardManager3 = extern struct {
+pub const ITpmVirtualSmartCardManager3 = extern union {
     pub const VTable = extern struct {
         base: ITpmVirtualSmartCardManager2.VTable,
         CreateVirtualSmartCardWithAttestation: *const fn(
@@ -231,6 +234,7 @@ pub const ITpmVirtualSmartCardManager3 = extern struct {
         ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
+    ITpmVirtualSmartCardManager2: ITpmVirtualSmartCardManager2,
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ITpmVirtualSmartCardManager2.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
