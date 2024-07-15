@@ -113,16 +113,16 @@ pub const IAudioMediaType = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsCompressedFormat(self: *const IAudioMediaType, pfCompressed: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAudioMediaType.VTable, @ptrCast(self.vtable)).IsCompressedFormat(@as(*const IAudioMediaType, @ptrCast(self)), pfCompressed);
+        return self.vtable.IsCompressedFormat(self, pfCompressed);
     }
     pub fn IsEqual(self: *const IAudioMediaType, pIAudioType: ?*IAudioMediaType, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioMediaType.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const IAudioMediaType, @ptrCast(self)), pIAudioType, pdwFlags);
+        return self.vtable.IsEqual(self, pIAudioType, pdwFlags);
     }
     pub fn GetAudioFormat(self: *const IAudioMediaType) callconv(.Inline) ?*WAVEFORMATEX {
-        return @as(*const IAudioMediaType.VTable, @ptrCast(self.vtable)).GetAudioFormat(@as(*const IAudioMediaType, @ptrCast(self)));
+        return self.vtable.GetAudioFormat(self);
     }
     pub fn GetUncompressedAudioFormat(self: *const IAudioMediaType, pUncompressedAudioFormat: ?*UNCOMPRESSEDAUDIOFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IAudioMediaType.VTable, @ptrCast(self.vtable)).GetUncompressedAudioFormat(@as(*const IAudioMediaType, @ptrCast(self)), pUncompressedAudioFormat);
+        return self.vtable.GetUncompressedAudioFormat(self, pUncompressedAudioFormat);
     }
 };
 
@@ -262,13 +262,13 @@ pub const IAudioProcessingObjectRT = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn APOProcess(self: *const IAudioProcessingObjectRT, u32NumInputConnections: u32, ppInputConnections: ?*?*APO_CONNECTION_PROPERTY, u32NumOutputConnections: u32, ppOutputConnections: ?*?*APO_CONNECTION_PROPERTY) callconv(.Inline) void {
-        return @as(*const IAudioProcessingObjectRT.VTable, @ptrCast(self.vtable)).APOProcess(@as(*const IAudioProcessingObjectRT, @ptrCast(self)), u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
+        return self.vtable.APOProcess(self, u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
     }
     pub fn CalcInputFrames(self: *const IAudioProcessingObjectRT, u32OutputFrameCount: u32) callconv(.Inline) u32 {
-        return @as(*const IAudioProcessingObjectRT.VTable, @ptrCast(self.vtable)).CalcInputFrames(@as(*const IAudioProcessingObjectRT, @ptrCast(self)), u32OutputFrameCount);
+        return self.vtable.CalcInputFrames(self, u32OutputFrameCount);
     }
     pub fn CalcOutputFrames(self: *const IAudioProcessingObjectRT, u32InputFrameCount: u32) callconv(.Inline) u32 {
-        return @as(*const IAudioProcessingObjectRT.VTable, @ptrCast(self.vtable)).CalcOutputFrames(@as(*const IAudioProcessingObjectRT, @ptrCast(self)), u32InputFrameCount);
+        return self.vtable.CalcOutputFrames(self, u32InputFrameCount);
     }
 };
 
@@ -303,10 +303,10 @@ pub const IAudioProcessingObjectVBR = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CalcMaxInputFrames(self: *const IAudioProcessingObjectVBR, u32MaxOutputFrameCount: u32, pu32InputFrameCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObjectVBR.VTable, @ptrCast(self.vtable)).CalcMaxInputFrames(@as(*const IAudioProcessingObjectVBR, @ptrCast(self)), u32MaxOutputFrameCount, pu32InputFrameCount);
+        return self.vtable.CalcMaxInputFrames(self, u32MaxOutputFrameCount, pu32InputFrameCount);
     }
     pub fn CalcMaxOutputFrames(self: *const IAudioProcessingObjectVBR, u32MaxInputFrameCount: u32, pu32OutputFrameCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObjectVBR.VTable, @ptrCast(self.vtable)).CalcMaxOutputFrames(@as(*const IAudioProcessingObjectVBR, @ptrCast(self)), u32MaxInputFrameCount, pu32OutputFrameCount);
+        return self.vtable.CalcMaxOutputFrames(self, u32MaxInputFrameCount, pu32OutputFrameCount);
     }
 };
 
@@ -341,10 +341,10 @@ pub const IAudioProcessingObjectConfiguration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LockForProcess(self: *const IAudioProcessingObjectConfiguration, u32NumInputConnections: u32, ppInputConnections: ?*?*APO_CONNECTION_DESCRIPTOR, u32NumOutputConnections: u32, ppOutputConnections: ?*?*APO_CONNECTION_DESCRIPTOR) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObjectConfiguration.VTable, @ptrCast(self.vtable)).LockForProcess(@as(*const IAudioProcessingObjectConfiguration, @ptrCast(self)), u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
+        return self.vtable.LockForProcess(self, u32NumInputConnections, ppInputConnections, u32NumOutputConnections, ppOutputConnections);
     }
     pub fn UnlockForProcess(self: *const IAudioProcessingObjectConfiguration) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObjectConfiguration.VTable, @ptrCast(self.vtable)).UnlockForProcess(@as(*const IAudioProcessingObjectConfiguration, @ptrCast(self)));
+        return self.vtable.UnlockForProcess(self);
     }
 };
 
@@ -421,25 +421,25 @@ pub const IAudioProcessingObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Reset(self: *const IAudioProcessingObject) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IAudioProcessingObject, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn GetLatency(self: *const IAudioProcessingObject, pTime: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObject.VTable, @ptrCast(self.vtable)).GetLatency(@as(*const IAudioProcessingObject, @ptrCast(self)), pTime);
+        return self.vtable.GetLatency(self, pTime);
     }
     pub fn GetRegistrationProperties(self: *const IAudioProcessingObject, ppRegProps: ?*?*APO_REG_PROPERTIES) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObject.VTable, @ptrCast(self.vtable)).GetRegistrationProperties(@as(*const IAudioProcessingObject, @ptrCast(self)), ppRegProps);
+        return self.vtable.GetRegistrationProperties(self, ppRegProps);
     }
     pub fn Initialize(self: *const IAudioProcessingObject, cbDataSize: u32, pbyData: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObject.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IAudioProcessingObject, @ptrCast(self)), cbDataSize, pbyData);
+        return self.vtable.Initialize(self, cbDataSize, pbyData);
     }
     pub fn IsInputFormatSupported(self: *const IAudioProcessingObject, pOppositeFormat: ?*IAudioMediaType, pRequestedInputFormat: ?*IAudioMediaType, ppSupportedInputFormat: ?*?*IAudioMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObject.VTable, @ptrCast(self.vtable)).IsInputFormatSupported(@as(*const IAudioProcessingObject, @ptrCast(self)), pOppositeFormat, pRequestedInputFormat, ppSupportedInputFormat);
+        return self.vtable.IsInputFormatSupported(self, pOppositeFormat, pRequestedInputFormat, ppSupportedInputFormat);
     }
     pub fn IsOutputFormatSupported(self: *const IAudioProcessingObject, pOppositeFormat: ?*IAudioMediaType, pRequestedOutputFormat: ?*IAudioMediaType, ppSupportedOutputFormat: ?*?*IAudioMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObject.VTable, @ptrCast(self.vtable)).IsOutputFormatSupported(@as(*const IAudioProcessingObject, @ptrCast(self)), pOppositeFormat, pRequestedOutputFormat, ppSupportedOutputFormat);
+        return self.vtable.IsOutputFormatSupported(self, pOppositeFormat, pRequestedOutputFormat, ppSupportedOutputFormat);
     }
     pub fn GetInputChannelCount(self: *const IAudioProcessingObject, pu32ChannelCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObject.VTable, @ptrCast(self.vtable)).GetInputChannelCount(@as(*const IAudioProcessingObject, @ptrCast(self)), pu32ChannelCount);
+        return self.vtable.GetInputChannelCount(self, pu32ChannelCount);
     }
 };
 
@@ -464,7 +464,7 @@ pub const IAudioDeviceModulesClient = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAudioDeviceModulesManager(self: *const IAudioDeviceModulesClient, pAudioDeviceModulesManager: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IAudioDeviceModulesClient.VTable, @ptrCast(self.vtable)).SetAudioDeviceModulesManager(@as(*const IAudioDeviceModulesClient, @ptrCast(self)), pAudioDeviceModulesManager);
+        return self.vtable.SetAudioDeviceModulesManager(self, pAudioDeviceModulesManager);
     }
 };
 
@@ -510,7 +510,7 @@ pub const IAudioSystemEffects2 = extern union {
     };}
     pub usingnamespace IAudioSystemEffects.MethodMixin(@This());
     pub fn GetEffectsList(self: *const IAudioSystemEffects2, ppEffectsIds: ?*?*Guid, pcEffects: ?*u32, Event: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IAudioSystemEffects2.VTable, @ptrCast(self.vtable)).GetEffectsList(@as(*const IAudioSystemEffects2, @ptrCast(self)), ppEffectsIds, pcEffects, Event);
+        return self.vtable.GetEffectsList(self, ppEffectsIds, pcEffects, Event);
     }
 };
 
@@ -553,13 +553,13 @@ pub const IAudioSystemEffectsCustomFormats = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFormatCount(self: *const IAudioSystemEffectsCustomFormats, pcFormats: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioSystemEffectsCustomFormats.VTable, @ptrCast(self.vtable)).GetFormatCount(@as(*const IAudioSystemEffectsCustomFormats, @ptrCast(self)), pcFormats);
+        return self.vtable.GetFormatCount(self, pcFormats);
     }
     pub fn GetFormat(self: *const IAudioSystemEffectsCustomFormats, nFormat: u32, ppFormat: ?*?*IAudioMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IAudioSystemEffectsCustomFormats.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IAudioSystemEffectsCustomFormats, @ptrCast(self)), nFormat, ppFormat);
+        return self.vtable.GetFormat(self, nFormat, ppFormat);
     }
     pub fn GetFormatRepresentation(self: *const IAudioSystemEffectsCustomFormats, nFormat: u32, ppwstrFormatRep: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IAudioSystemEffectsCustomFormats.VTable, @ptrCast(self.vtable)).GetFormatRepresentation(@as(*const IAudioSystemEffectsCustomFormats, @ptrCast(self)), nFormat, ppwstrFormatRep);
+        return self.vtable.GetFormatRepresentation(self, nFormat, ppwstrFormatRep);
     }
 };
 
@@ -604,13 +604,13 @@ pub const IApoAuxiliaryInputConfiguration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddAuxiliaryInput(self: *const IApoAuxiliaryInputConfiguration, dwInputId: u32, cbDataSize: u32, pbyData: [*:0]u8, pInputConnection: ?*APO_CONNECTION_DESCRIPTOR) callconv(.Inline) HRESULT {
-        return @as(*const IApoAuxiliaryInputConfiguration.VTable, @ptrCast(self.vtable)).AddAuxiliaryInput(@as(*const IApoAuxiliaryInputConfiguration, @ptrCast(self)), dwInputId, cbDataSize, pbyData, pInputConnection);
+        return self.vtable.AddAuxiliaryInput(self, dwInputId, cbDataSize, pbyData, pInputConnection);
     }
     pub fn RemoveAuxiliaryInput(self: *const IApoAuxiliaryInputConfiguration, dwInputId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IApoAuxiliaryInputConfiguration.VTable, @ptrCast(self.vtable)).RemoveAuxiliaryInput(@as(*const IApoAuxiliaryInputConfiguration, @ptrCast(self)), dwInputId);
+        return self.vtable.RemoveAuxiliaryInput(self, dwInputId);
     }
     pub fn IsInputFormatSupported(self: *const IApoAuxiliaryInputConfiguration, pRequestedInputFormat: ?*IAudioMediaType, ppSupportedInputFormat: ?*?*IAudioMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IApoAuxiliaryInputConfiguration.VTable, @ptrCast(self.vtable)).IsInputFormatSupported(@as(*const IApoAuxiliaryInputConfiguration, @ptrCast(self)), pRequestedInputFormat, ppSupportedInputFormat);
+        return self.vtable.IsInputFormatSupported(self, pRequestedInputFormat, ppSupportedInputFormat);
     }
 };
 
@@ -636,7 +636,7 @@ pub const IApoAuxiliaryInputRT = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AcceptInput(self: *const IApoAuxiliaryInputRT, dwInputId: u32, pInputConnection: ?*const APO_CONNECTION_PROPERTY) callconv(.Inline) void {
-        return @as(*const IApoAuxiliaryInputRT.VTable, @ptrCast(self.vtable)).AcceptInput(@as(*const IApoAuxiliaryInputRT, @ptrCast(self)), dwInputId, pInputConnection);
+        return self.vtable.AcceptInput(self, dwInputId, pInputConnection);
     }
 };
 
@@ -725,10 +725,10 @@ pub const IAudioSystemEffects3 = extern union {
     };}
     pub usingnamespace IAudioSystemEffects2.MethodMixin(@This());
     pub fn GetControllableSystemEffectsList(self: *const IAudioSystemEffects3, effects: ?*?*AUDIO_SYSTEMEFFECT, numEffects: ?*u32, event: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IAudioSystemEffects3.VTable, @ptrCast(self.vtable)).GetControllableSystemEffectsList(@as(*const IAudioSystemEffects3, @ptrCast(self)), effects, numEffects, event);
+        return self.vtable.GetControllableSystemEffectsList(self, effects, numEffects, event);
     }
     pub fn SetAudioSystemEffectState(self: *const IAudioSystemEffects3, effectId: Guid, state: AUDIO_SYSTEMEFFECT_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IAudioSystemEffects3.VTable, @ptrCast(self.vtable)).SetAudioSystemEffectState(@as(*const IAudioSystemEffects3, @ptrCast(self)), effectId, state);
+        return self.vtable.SetAudioSystemEffectState(self, effectId, state);
     }
 };
 
@@ -764,7 +764,7 @@ pub const IAudioProcessingObjectRTQueueService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRealTimeWorkQueue(self: *const IAudioProcessingObjectRTQueueService, workQueueId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObjectRTQueueService.VTable, @ptrCast(self.vtable)).GetRealTimeWorkQueue(@as(*const IAudioProcessingObjectRTQueueService, @ptrCast(self)), workQueueId);
+        return self.vtable.GetRealTimeWorkQueue(self, workQueueId);
     }
 };
 
@@ -805,7 +805,7 @@ pub const IAudioProcessingObjectLoggingService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ApoLog(self: *const IAudioProcessingObjectLoggingService, level: APO_LOG_LEVEL, format: ?[*:0]const u16) callconv(.Inline) void {
-        return @as(*const IAudioProcessingObjectLoggingService.VTable, @ptrCast(self.vtable)).ApoLog(@as(*const IAudioProcessingObjectLoggingService, @ptrCast(self)), level, format);
+        return self.vtable.ApoLog(self, level, format);
     }
 };
 
@@ -900,10 +900,10 @@ pub const IAudioProcessingObjectNotifications = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetApoNotificationRegistrationInfo(self: *const IAudioProcessingObjectNotifications, apoNotifications: [*]?*APO_NOTIFICATION_DESCRIPTOR, count: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioProcessingObjectNotifications.VTable, @ptrCast(self.vtable)).GetApoNotificationRegistrationInfo(@as(*const IAudioProcessingObjectNotifications, @ptrCast(self)), apoNotifications, count);
+        return self.vtable.GetApoNotificationRegistrationInfo(self, apoNotifications, count);
     }
     pub fn HandleNotification(self: *const IAudioProcessingObjectNotifications, apoNotification: ?*APO_NOTIFICATION) callconv(.Inline) void {
-        return @as(*const IAudioProcessingObjectNotifications.VTable, @ptrCast(self.vtable)).HandleNotification(@as(*const IAudioProcessingObjectNotifications, @ptrCast(self)), apoNotification);
+        return self.vtable.HandleNotification(self, apoNotification);
     }
 };
 

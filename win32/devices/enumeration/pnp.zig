@@ -181,19 +181,19 @@ pub const IUPnPDeviceFinder = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn FindByType(self: *const IUPnPDeviceFinder, bstrTypeURI: ?BSTR, dwFlags: u32, pDevices: ?*?*IUPnPDevices) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).FindByType(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrTypeURI, dwFlags, pDevices);
+        return self.vtable.FindByType(self, bstrTypeURI, dwFlags, pDevices);
     }
     pub fn CreateAsyncFind(self: *const IUPnPDeviceFinder, bstrTypeURI: ?BSTR, dwFlags: u32, punkDeviceFinderCallback: ?*IUnknown, plFindData: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).CreateAsyncFind(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrTypeURI, dwFlags, punkDeviceFinderCallback, plFindData);
+        return self.vtable.CreateAsyncFind(self, bstrTypeURI, dwFlags, punkDeviceFinderCallback, plFindData);
     }
     pub fn StartAsyncFind(self: *const IUPnPDeviceFinder, lFindData: i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).StartAsyncFind(@as(*const IUPnPDeviceFinder, @ptrCast(self)), lFindData);
+        return self.vtable.StartAsyncFind(self, lFindData);
     }
     pub fn CancelAsyncFind(self: *const IUPnPDeviceFinder, lFindData: i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).CancelAsyncFind(@as(*const IUPnPDeviceFinder, @ptrCast(self)), lFindData);
+        return self.vtable.CancelAsyncFind(self, lFindData);
     }
     pub fn FindByUDN(self: *const IUPnPDeviceFinder, bstrUDN: ?BSTR, pDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceFinder.VTable, @ptrCast(self.vtable)).FindByUDN(@as(*const IUPnPDeviceFinder, @ptrCast(self)), bstrUDN, pDevice);
+        return self.vtable.FindByUDN(self, bstrUDN, pDevice);
     }
 };
 
@@ -227,10 +227,10 @@ pub const IUPnPAddressFamilyControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAddressFamily(self: *const IUPnPAddressFamilyControl, dwFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPAddressFamilyControl.VTable, @ptrCast(self.vtable)).SetAddressFamily(@as(*const IUPnPAddressFamilyControl, @ptrCast(self)), dwFlags);
+        return self.vtable.SetAddressFamily(self, dwFlags);
     }
     pub fn GetAddressFamily(self: *const IUPnPAddressFamilyControl, pdwFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPAddressFamilyControl.VTable, @ptrCast(self.vtable)).GetAddressFamily(@as(*const IUPnPAddressFamilyControl, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetAddressFamily(self, pdwFlags);
     }
 };
 
@@ -256,7 +256,7 @@ pub const IUPnPHttpHeaderControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddRequestHeaders(self: *const IUPnPHttpHeaderControl, bstrHttpHeaders: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPHttpHeaderControl.VTable, @ptrCast(self.vtable)).AddRequestHeaders(@as(*const IUPnPHttpHeaderControl, @ptrCast(self)), bstrHttpHeaders);
+        return self.vtable.AddRequestHeaders(self, bstrHttpHeaders);
     }
 };
 
@@ -300,13 +300,13 @@ pub const IUPnPDeviceFinderCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DeviceAdded(self: *const IUPnPDeviceFinderCallback, lFindData: i32, pDevice: ?*IUPnPDevice) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).DeviceAdded(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData, pDevice);
+        return self.vtable.DeviceAdded(self, lFindData, pDevice);
     }
     pub fn DeviceRemoved(self: *const IUPnPDeviceFinderCallback, lFindData: i32, bstrUDN: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).DeviceRemoved(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData, bstrUDN);
+        return self.vtable.DeviceRemoved(self, lFindData, bstrUDN);
     }
     pub fn SearchComplete(self: *const IUPnPDeviceFinderCallback, lFindData: i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceFinderCallback.VTable, @ptrCast(self.vtable)).SearchComplete(@as(*const IUPnPDeviceFinderCallback, @ptrCast(self)), lFindData);
+        return self.vtable.SearchComplete(self, lFindData);
     }
 };
 
@@ -351,13 +351,13 @@ pub const IUPnPServices = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IUPnPServices, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUPnPServices, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const IUPnPServices, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUPnPServices, @ptrCast(self)), ppunk);
+        return self.vtable.get__NewEnum(self, ppunk);
     }
     pub fn get_Item(self: *const IUPnPServices, bstrServiceId: ?BSTR, ppService: ?*?*IUPnPService) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUPnPServices, @ptrCast(self)), bstrServiceId, ppService);
+        return self.vtable.get_Item(self, bstrServiceId, ppService);
     }
 };
 
@@ -430,22 +430,22 @@ pub const IUPnPService = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn QueryStateVariable(self: *const IUPnPService, bstrVariableName: ?BSTR, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).QueryStateVariable(@as(*const IUPnPService, @ptrCast(self)), bstrVariableName, pValue);
+        return self.vtable.QueryStateVariable(self, bstrVariableName, pValue);
     }
     pub fn InvokeAction(self: *const IUPnPService, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).InvokeAction(@as(*const IUPnPService, @ptrCast(self)), bstrActionName, vInActionArgs, pvOutActionArgs, pvRetVal);
+        return self.vtable.InvokeAction(self, bstrActionName, vInActionArgs, pvOutActionArgs, pvRetVal);
     }
     pub fn get_ServiceTypeIdentifier(self: *const IUPnPService, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_ServiceTypeIdentifier(@as(*const IUPnPService, @ptrCast(self)), pVal);
+        return self.vtable.get_ServiceTypeIdentifier(self, pVal);
     }
     pub fn AddCallback(self: *const IUPnPService, pUnkCallback: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).AddCallback(@as(*const IUPnPService, @ptrCast(self)), pUnkCallback);
+        return self.vtable.AddCallback(self, pUnkCallback);
     }
     pub fn get_Id(self: *const IUPnPService, pbstrId: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IUPnPService, @ptrCast(self)), pbstrId);
+        return self.vtable.get_Id(self, pbstrId);
     }
     pub fn get_LastTransportStatus(self: *const IUPnPService, plValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPService.VTable, @ptrCast(self.vtable)).get_LastTransportStatus(@as(*const IUPnPService, @ptrCast(self)), plValue);
+        return self.vtable.get_LastTransportStatus(self, plValue);
     }
 };
 
@@ -471,7 +471,7 @@ pub const IUPnPAsyncResult = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AsyncOperationComplete(self: *const IUPnPAsyncResult, ullRequestID: u64) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPAsyncResult.VTable, @ptrCast(self.vtable)).AsyncOperationComplete(@as(*const IUPnPAsyncResult, @ptrCast(self)), ullRequestID);
+        return self.vtable.AsyncOperationComplete(self, ullRequestID);
     }
 };
 
@@ -573,31 +573,31 @@ pub const IUPnPServiceAsync = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginInvokeAction(self: *const IUPnPServiceAsync, bstrActionName: ?BSTR, vInActionArgs: VARIANT, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginInvokeAction(@as(*const IUPnPServiceAsync, @ptrCast(self)), bstrActionName, vInActionArgs, pAsyncResult, pullRequestID);
+        return self.vtable.BeginInvokeAction(self, bstrActionName, vInActionArgs, pAsyncResult, pullRequestID);
     }
     pub fn EndInvokeAction(self: *const IUPnPServiceAsync, ullRequestID: u64, pvOutActionArgs: ?*VARIANT, pvRetVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndInvokeAction(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID, pvOutActionArgs, pvRetVal);
+        return self.vtable.EndInvokeAction(self, ullRequestID, pvOutActionArgs, pvRetVal);
     }
     pub fn BeginQueryStateVariable(self: *const IUPnPServiceAsync, bstrVariableName: ?BSTR, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginQueryStateVariable(@as(*const IUPnPServiceAsync, @ptrCast(self)), bstrVariableName, pAsyncResult, pullRequestID);
+        return self.vtable.BeginQueryStateVariable(self, bstrVariableName, pAsyncResult, pullRequestID);
     }
     pub fn EndQueryStateVariable(self: *const IUPnPServiceAsync, ullRequestID: u64, pValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndQueryStateVariable(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID, pValue);
+        return self.vtable.EndQueryStateVariable(self, ullRequestID, pValue);
     }
     pub fn BeginSubscribeToEvents(self: *const IUPnPServiceAsync, pUnkCallback: ?*IUnknown, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginSubscribeToEvents(@as(*const IUPnPServiceAsync, @ptrCast(self)), pUnkCallback, pAsyncResult, pullRequestID);
+        return self.vtable.BeginSubscribeToEvents(self, pUnkCallback, pAsyncResult, pullRequestID);
     }
     pub fn EndSubscribeToEvents(self: *const IUPnPServiceAsync, ullRequestID: u64) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndSubscribeToEvents(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID);
+        return self.vtable.EndSubscribeToEvents(self, ullRequestID);
     }
     pub fn BeginSCPDDownload(self: *const IUPnPServiceAsync, pAsyncResult: ?*IUPnPAsyncResult, pullRequestID: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).BeginSCPDDownload(@as(*const IUPnPServiceAsync, @ptrCast(self)), pAsyncResult, pullRequestID);
+        return self.vtable.BeginSCPDDownload(self, pAsyncResult, pullRequestID);
     }
     pub fn EndSCPDDownload(self: *const IUPnPServiceAsync, ullRequestID: u64, pbstrSCPDDoc: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).EndSCPDDownload(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID, pbstrSCPDDoc);
+        return self.vtable.EndSCPDDownload(self, ullRequestID, pbstrSCPDDoc);
     }
     pub fn CancelAsyncOperation(self: *const IUPnPServiceAsync, ullRequestID: u64) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceAsync.VTable, @ptrCast(self.vtable)).CancelAsyncOperation(@as(*const IUPnPServiceAsync, @ptrCast(self)), ullRequestID);
+        return self.vtable.CancelAsyncOperation(self, ullRequestID);
     }
 };
 
@@ -633,10 +633,10 @@ pub const IUPnPServiceCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StateVariableChanged(self: *const IUPnPServiceCallback, pus: ?*IUPnPService, pcwszStateVarName: ?[*:0]const u16, vaValue: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceCallback.VTable, @ptrCast(self.vtable)).StateVariableChanged(@as(*const IUPnPServiceCallback, @ptrCast(self)), pus, pcwszStateVarName, vaValue);
+        return self.vtable.StateVariableChanged(self, pus, pcwszStateVarName, vaValue);
     }
     pub fn ServiceInstanceDied(self: *const IUPnPServiceCallback, pus: ?*IUPnPService) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceCallback.VTable, @ptrCast(self.vtable)).ServiceInstanceDied(@as(*const IUPnPServiceCallback, @ptrCast(self)), pus);
+        return self.vtable.ServiceInstanceDied(self, pus);
     }
 };
 
@@ -662,7 +662,7 @@ pub const IUPnPServiceEnumProperty = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetServiceEnumProperty(self: *const IUPnPServiceEnumProperty, dwMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceEnumProperty.VTable, @ptrCast(self.vtable)).SetServiceEnumProperty(@as(*const IUPnPServiceEnumProperty, @ptrCast(self)), dwMask);
+        return self.vtable.SetServiceEnumProperty(self, dwMask);
     }
 };
 
@@ -696,10 +696,10 @@ pub const IUPnPServiceDocumentAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDocumentURL(self: *const IUPnPServiceDocumentAccess, pbstrDocUrl: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocumentURL(@as(*const IUPnPServiceDocumentAccess, @ptrCast(self)), pbstrDocUrl);
+        return self.vtable.GetDocumentURL(self, pbstrDocUrl);
     }
     pub fn GetDocument(self: *const IUPnPServiceDocumentAccess, pbstrDoc: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPServiceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IUPnPServiceDocumentAccess, @ptrCast(self)), pbstrDoc);
+        return self.vtable.GetDocument(self, pbstrDoc);
     }
 };
 
@@ -744,13 +744,13 @@ pub const IUPnPDevices = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const IUPnPDevices, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IUPnPDevices, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const IUPnPDevices, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IUPnPDevices, @ptrCast(self)), ppunk);
+        return self.vtable.get__NewEnum(self, ppunk);
     }
     pub fn get_Item(self: *const IUPnPDevices, bstrUDN: ?BSTR, ppDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevices.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IUPnPDevices, @ptrCast(self)), bstrUDN, ppDevice);
+        return self.vtable.get_Item(self, bstrUDN, ppDevice);
     }
 };
 
@@ -942,61 +942,61 @@ pub const IUPnPDevice = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_IsRootDevice(self: *const IUPnPDevice, pvarb: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_IsRootDevice(@as(*const IUPnPDevice, @ptrCast(self)), pvarb);
+        return self.vtable.get_IsRootDevice(self, pvarb);
     }
     pub fn get_RootDevice(self: *const IUPnPDevice, ppudRootDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_RootDevice(@as(*const IUPnPDevice, @ptrCast(self)), ppudRootDevice);
+        return self.vtable.get_RootDevice(self, ppudRootDevice);
     }
     pub fn get_ParentDevice(self: *const IUPnPDevice, ppudDeviceParent: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ParentDevice(@as(*const IUPnPDevice, @ptrCast(self)), ppudDeviceParent);
+        return self.vtable.get_ParentDevice(self, ppudDeviceParent);
     }
     pub fn get_HasChildren(self: *const IUPnPDevice, pvarb: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_HasChildren(@as(*const IUPnPDevice, @ptrCast(self)), pvarb);
+        return self.vtable.get_HasChildren(self, pvarb);
     }
     pub fn get_Children(self: *const IUPnPDevice, ppudChildren: ?*?*IUPnPDevices) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Children(@as(*const IUPnPDevice, @ptrCast(self)), ppudChildren);
+        return self.vtable.get_Children(self, ppudChildren);
     }
     pub fn get_UniqueDeviceName(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_UniqueDeviceName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_UniqueDeviceName(self, pbstr);
     }
     pub fn get_FriendlyName(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_FriendlyName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_FriendlyName(self, pbstr);
     }
     pub fn get_Type(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_Type(self, pbstr);
     }
     pub fn get_PresentationURL(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_PresentationURL(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_PresentationURL(self, pbstr);
     }
     pub fn get_ManufacturerName(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ManufacturerName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_ManufacturerName(self, pbstr);
     }
     pub fn get_ManufacturerURL(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ManufacturerURL(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_ManufacturerURL(self, pbstr);
     }
     pub fn get_ModelName(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ModelName(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_ModelName(self, pbstr);
     }
     pub fn get_ModelNumber(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ModelNumber(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_ModelNumber(self, pbstr);
     }
     pub fn get_Description(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_Description(self, pbstr);
     }
     pub fn get_ModelURL(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_ModelURL(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_ModelURL(self, pbstr);
     }
     pub fn get_UPC(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_UPC(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_UPC(self, pbstr);
     }
     pub fn get_SerialNumber(self: *const IUPnPDevice, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const IUPnPDevice, @ptrCast(self)), pbstr);
+        return self.vtable.get_SerialNumber(self, pbstr);
     }
     pub fn IconURL(self: *const IUPnPDevice, bstrEncodingFormat: ?BSTR, lSizeX: i32, lSizeY: i32, lBitDepth: i32, pbstrIconURL: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).IconURL(@as(*const IUPnPDevice, @ptrCast(self)), bstrEncodingFormat, lSizeX, lSizeY, lBitDepth, pbstrIconURL);
+        return self.vtable.IconURL(self, bstrEncodingFormat, lSizeX, lSizeY, lBitDepth, pbstrIconURL);
     }
     pub fn get_Services(self: *const IUPnPDevice, ppusServices: ?*?*IUPnPServices) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDevice.VTable, @ptrCast(self.vtable)).get_Services(@as(*const IUPnPDevice, @ptrCast(self)), ppusServices);
+        return self.vtable.get_Services(self, ppusServices);
     }
 };
 
@@ -1022,7 +1022,7 @@ pub const IUPnPDeviceDocumentAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDocumentURL(self: *const IUPnPDeviceDocumentAccess, pbstrDocument: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceDocumentAccess.VTable, @ptrCast(self.vtable)).GetDocumentURL(@as(*const IUPnPDeviceDocumentAccess, @ptrCast(self)), pbstrDocument);
+        return self.vtable.GetDocumentURL(self, pbstrDocument);
     }
 };
 
@@ -1048,7 +1048,7 @@ pub const IUPnPDeviceDocumentAccessEx = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDocument(self: *const IUPnPDeviceDocumentAccessEx, pbstrDocument: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceDocumentAccessEx.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IUPnPDeviceDocumentAccessEx, @ptrCast(self)), pbstrDocument);
+        return self.vtable.GetDocument(self, pbstrDocument);
     }
 };
 
@@ -1125,25 +1125,25 @@ pub const IUPnPDescriptionDocument = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ReadyState(self: *const IUPnPDescriptionDocument, plReadyState: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).get_ReadyState(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), plReadyState);
+        return self.vtable.get_ReadyState(self, plReadyState);
     }
     pub fn Load(self: *const IUPnPDescriptionDocument, bstrUrl: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).Load(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUrl);
+        return self.vtable.Load(self, bstrUrl);
     }
     pub fn LoadAsync(self: *const IUPnPDescriptionDocument, bstrUrl: ?BSTR, punkCallback: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).LoadAsync(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUrl, punkCallback);
+        return self.vtable.LoadAsync(self, bstrUrl, punkCallback);
     }
     pub fn get_LoadResult(self: *const IUPnPDescriptionDocument, phrError: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).get_LoadResult(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), phrError);
+        return self.vtable.get_LoadResult(self, phrError);
     }
     pub fn Abort(self: *const IUPnPDescriptionDocument) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).Abort(@as(*const IUPnPDescriptionDocument, @ptrCast(self)));
+        return self.vtable.Abort(self);
     }
     pub fn RootDevice(self: *const IUPnPDescriptionDocument, ppudRootDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).RootDevice(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), ppudRootDevice);
+        return self.vtable.RootDevice(self, ppudRootDevice);
     }
     pub fn DeviceByUDN(self: *const IUPnPDescriptionDocument, bstrUDN: ?BSTR, ppudDevice: ?*?*IUPnPDevice) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDescriptionDocument.VTable, @ptrCast(self.vtable)).DeviceByUDN(@as(*const IUPnPDescriptionDocument, @ptrCast(self)), bstrUDN, ppudDevice);
+        return self.vtable.DeviceByUDN(self, bstrUDN, ppudDevice);
     }
 };
 
@@ -1171,7 +1171,7 @@ pub const IUPnPDeviceFinderAddCallbackWithInterface = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DeviceAddedWithInterface(self: *const IUPnPDeviceFinderAddCallbackWithInterface, lFindData: i32, pDevice: ?*IUPnPDevice, pguidInterface: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceFinderAddCallbackWithInterface.VTable, @ptrCast(self.vtable)).DeviceAddedWithInterface(@as(*const IUPnPDeviceFinderAddCallbackWithInterface, @ptrCast(self)), lFindData, pDevice, pguidInterface);
+        return self.vtable.DeviceAddedWithInterface(self, lFindData, pDevice, pguidInterface);
     }
 };
 
@@ -1197,7 +1197,7 @@ pub const IUPnPDescriptionDocumentCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LoadComplete(self: *const IUPnPDescriptionDocumentCallback, hrLoadResult: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDescriptionDocumentCallback.VTable, @ptrCast(self.vtable)).LoadComplete(@as(*const IUPnPDescriptionDocumentCallback, @ptrCast(self)), hrLoadResult);
+        return self.vtable.LoadComplete(self, hrLoadResult);
     }
 };
 
@@ -1238,10 +1238,10 @@ pub const IUPnPEventSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStateChanged(self: *const IUPnPEventSink, cChanges: u32, rgdispidChanges: [*]i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPEventSink.VTable, @ptrCast(self.vtable)).OnStateChanged(@as(*const IUPnPEventSink, @ptrCast(self)), cChanges, rgdispidChanges);
+        return self.vtable.OnStateChanged(self, cChanges, rgdispidChanges);
     }
     pub fn OnStateChangedSafe(self: *const IUPnPEventSink, varsadispidChanges: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPEventSink.VTable, @ptrCast(self.vtable)).OnStateChangedSafe(@as(*const IUPnPEventSink, @ptrCast(self)), varsadispidChanges);
+        return self.vtable.OnStateChangedSafe(self, varsadispidChanges);
     }
 };
 
@@ -1275,10 +1275,10 @@ pub const IUPnPEventSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Advise(self: *const IUPnPEventSource, pesSubscriber: ?*IUPnPEventSink) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPEventSource.VTable, @ptrCast(self.vtable)).Advise(@as(*const IUPnPEventSource, @ptrCast(self)), pesSubscriber);
+        return self.vtable.Advise(self, pesSubscriber);
     }
     pub fn Unadvise(self: *const IUPnPEventSource, pesSubscriber: ?*IUPnPEventSink) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPEventSource.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IUPnPEventSource, @ptrCast(self)), pesSubscriber);
+        return self.vtable.Unadvise(self, pesSubscriber);
     }
 };
 
@@ -1361,22 +1361,22 @@ pub const IUPnPRegistrar = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterDevice(self: *const IUPnPRegistrar, bstrXMLDesc: ?BSTR, bstrProgIDDeviceControlClass: ?BSTR, bstrInitString: ?BSTR, bstrContainerId: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32, pbstrDeviceIdentifier: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).RegisterDevice(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
+        return self.vtable.RegisterDevice(self, bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
     }
     pub fn RegisterRunningDevice(self: *const IUPnPRegistrar, bstrXMLDesc: ?BSTR, punkDeviceControl: ?*IUnknown, bstrInitString: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32, pbstrDeviceIdentifier: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).RegisterRunningDevice(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
+        return self.vtable.RegisterRunningDevice(self, bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime, pbstrDeviceIdentifier);
     }
     pub fn RegisterDeviceProvider(self: *const IUPnPRegistrar, bstrProviderName: ?BSTR, bstrProgIDProviderClass: ?BSTR, bstrInitString: ?BSTR, bstrContainerId: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).RegisterDeviceProvider(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrProviderName, bstrProgIDProviderClass, bstrInitString, bstrContainerId);
+        return self.vtable.RegisterDeviceProvider(self, bstrProviderName, bstrProgIDProviderClass, bstrInitString, bstrContainerId);
     }
     pub fn GetUniqueDeviceName(self: *const IUPnPRegistrar, bstrDeviceIdentifier: ?BSTR, bstrTemplateUDN: ?BSTR, pbstrUDN: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).GetUniqueDeviceName(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrTemplateUDN, pbstrUDN);
+        return self.vtable.GetUniqueDeviceName(self, bstrDeviceIdentifier, bstrTemplateUDN, pbstrUDN);
     }
     pub fn UnregisterDevice(self: *const IUPnPRegistrar, bstrDeviceIdentifier: ?BSTR, fPermanent: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).UnregisterDevice(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrDeviceIdentifier, fPermanent);
+        return self.vtable.UnregisterDevice(self, bstrDeviceIdentifier, fPermanent);
     }
     pub fn UnregisterDeviceProvider(self: *const IUPnPRegistrar, bstrProviderName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPRegistrar.VTable, @ptrCast(self.vtable)).UnregisterDeviceProvider(@as(*const IUPnPRegistrar, @ptrCast(self)), bstrProviderName);
+        return self.vtable.UnregisterDeviceProvider(self, bstrProviderName);
     }
 };
 
@@ -1421,10 +1421,10 @@ pub const IUPnPReregistrar = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReregisterDevice(self: *const IUPnPReregistrar, bstrDeviceIdentifier: ?BSTR, bstrXMLDesc: ?BSTR, bstrProgIDDeviceControlClass: ?BSTR, bstrInitString: ?BSTR, bstrContainerId: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPReregistrar.VTable, @ptrCast(self.vtable)).ReregisterDevice(@as(*const IUPnPReregistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime);
+        return self.vtable.ReregisterDevice(self, bstrDeviceIdentifier, bstrXMLDesc, bstrProgIDDeviceControlClass, bstrInitString, bstrContainerId, bstrResourcePath, nLifeTime);
     }
     pub fn ReregisterRunningDevice(self: *const IUPnPReregistrar, bstrDeviceIdentifier: ?BSTR, bstrXMLDesc: ?BSTR, punkDeviceControl: ?*IUnknown, bstrInitString: ?BSTR, bstrResourcePath: ?BSTR, nLifeTime: i32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPReregistrar.VTable, @ptrCast(self.vtable)).ReregisterRunningDevice(@as(*const IUPnPReregistrar, @ptrCast(self)), bstrDeviceIdentifier, bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime);
+        return self.vtable.ReregisterRunningDevice(self, bstrDeviceIdentifier, bstrXMLDesc, punkDeviceControl, bstrInitString, bstrResourcePath, nLifeTime);
     }
 };
 
@@ -1462,10 +1462,10 @@ pub const IUPnPDeviceControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IUPnPDeviceControl, bstrXMLDesc: ?BSTR, bstrDeviceIdentifier: ?BSTR, bstrInitString: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IUPnPDeviceControl, @ptrCast(self)), bstrXMLDesc, bstrDeviceIdentifier, bstrInitString);
+        return self.vtable.Initialize(self, bstrXMLDesc, bstrDeviceIdentifier, bstrInitString);
     }
     pub fn GetServiceObject(self: *const IUPnPDeviceControl, bstrUDN: ?BSTR, bstrServiceId: ?BSTR, ppdispService: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceControl.VTable, @ptrCast(self.vtable)).GetServiceObject(@as(*const IUPnPDeviceControl, @ptrCast(self)), bstrUDN, bstrServiceId, ppdispService);
+        return self.vtable.GetServiceObject(self, bstrUDN, bstrServiceId, ppdispService);
     }
 };
 
@@ -1490,7 +1490,7 @@ pub const IUPnPDeviceControlHttpHeaders = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAdditionalResponseHeaders(self: *const IUPnPDeviceControlHttpHeaders, bstrHttpResponseHeaders: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceControlHttpHeaders.VTable, @ptrCast(self.vtable)).GetAdditionalResponseHeaders(@as(*const IUPnPDeviceControlHttpHeaders, @ptrCast(self)), bstrHttpResponseHeaders);
+        return self.vtable.GetAdditionalResponseHeaders(self, bstrHttpResponseHeaders);
     }
 };
 
@@ -1523,10 +1523,10 @@ pub const IUPnPDeviceProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Start(self: *const IUPnPDeviceProvider, bstrInitString: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceProvider.VTable, @ptrCast(self.vtable)).Start(@as(*const IUPnPDeviceProvider, @ptrCast(self)), bstrInitString);
+        return self.vtable.Start(self, bstrInitString);
     }
     pub fn Stop(self: *const IUPnPDeviceProvider) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPDeviceProvider.VTable, @ptrCast(self.vtable)).Stop(@as(*const IUPnPDeviceProvider, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
 };
 
@@ -1571,13 +1571,13 @@ pub const IUPnPRemoteEndpointInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDwordValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pdwValue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetDwordValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pdwValue);
+        return self.vtable.GetDwordValue(self, bstrValueName, pdwValue);
     }
     pub fn GetStringValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pbstrValue);
+        return self.vtable.GetStringValue(self, bstrValueName, pbstrValue);
     }
     pub fn GetGuidValue(self: *const IUPnPRemoteEndpointInfo, bstrValueName: ?BSTR, pguidValue: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IUPnPRemoteEndpointInfo.VTable, @ptrCast(self.vtable)).GetGuidValue(@as(*const IUPnPRemoteEndpointInfo, @ptrCast(self)), bstrValueName, pguidValue);
+        return self.vtable.GetGuidValue(self, bstrValueName, pguidValue);
     }
 };
 

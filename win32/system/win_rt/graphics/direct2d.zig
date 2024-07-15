@@ -96,22 +96,22 @@ pub const IGraphicsEffectD2D1Interop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEffectId(self: *const IGraphicsEffectD2D1Interop, id: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IGraphicsEffectD2D1Interop.VTable, @ptrCast(self.vtable)).GetEffectId(@as(*const IGraphicsEffectD2D1Interop, @ptrCast(self)), id);
+        return self.vtable.GetEffectId(self, id);
     }
     pub fn GetNamedPropertyMapping(self: *const IGraphicsEffectD2D1Interop, name: ?[*:0]const u16, index: ?*u32, mapping: ?*GRAPHICS_EFFECT_PROPERTY_MAPPING) callconv(.Inline) HRESULT {
-        return @as(*const IGraphicsEffectD2D1Interop.VTable, @ptrCast(self.vtable)).GetNamedPropertyMapping(@as(*const IGraphicsEffectD2D1Interop, @ptrCast(self)), name, index, mapping);
+        return self.vtable.GetNamedPropertyMapping(self, name, index, mapping);
     }
     pub fn GetPropertyCount(self: *const IGraphicsEffectD2D1Interop, count: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IGraphicsEffectD2D1Interop.VTable, @ptrCast(self.vtable)).GetPropertyCount(@as(*const IGraphicsEffectD2D1Interop, @ptrCast(self)), count);
+        return self.vtable.GetPropertyCount(self, count);
     }
     pub fn GetProperty(self: *const IGraphicsEffectD2D1Interop, index: u32, value: ?**struct{comment: []const u8 = "MissingClrType IPropertyValue.Windows.Foundation"}) callconv(.Inline) HRESULT {
-        return @as(*const IGraphicsEffectD2D1Interop.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IGraphicsEffectD2D1Interop, @ptrCast(self)), index, value);
+        return self.vtable.GetProperty(self, index, value);
     }
     pub fn GetSource(self: *const IGraphicsEffectD2D1Interop, index: u32, source: ?**struct{comment: []const u8 = "MissingClrType IGraphicsEffectSource.Windows.Graphics.Effects"}) callconv(.Inline) HRESULT {
-        return @as(*const IGraphicsEffectD2D1Interop.VTable, @ptrCast(self.vtable)).GetSource(@as(*const IGraphicsEffectD2D1Interop, @ptrCast(self)), index, source);
+        return self.vtable.GetSource(self, index, source);
     }
     pub fn GetSourceCount(self: *const IGraphicsEffectD2D1Interop, count: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IGraphicsEffectD2D1Interop.VTable, @ptrCast(self.vtable)).GetSourceCount(@as(*const IGraphicsEffectD2D1Interop, @ptrCast(self)), count);
+        return self.vtable.GetSourceCount(self, count);
     }
 };
 
@@ -145,10 +145,10 @@ pub const IGeometrySource2DInterop = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGeometry(self: *const IGeometrySource2DInterop, value: ?*?*ID2D1Geometry) callconv(.Inline) HRESULT {
-        return @as(*const IGeometrySource2DInterop.VTable, @ptrCast(self.vtable)).GetGeometry(@as(*const IGeometrySource2DInterop, @ptrCast(self)), value);
+        return self.vtable.GetGeometry(self, value);
     }
     pub fn TryGetGeometryUsingFactory(self: *const IGeometrySource2DInterop, factory: ?*ID2D1Factory, value: ?*?*ID2D1Geometry) callconv(.Inline) HRESULT {
-        return @as(*const IGeometrySource2DInterop.VTable, @ptrCast(self.vtable)).TryGetGeometryUsingFactory(@as(*const IGeometrySource2DInterop, @ptrCast(self)), factory, value);
+        return self.vtable.TryGetGeometryUsingFactory(self, factory, value);
     }
 };
 

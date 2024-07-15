@@ -185,22 +185,22 @@ pub const IDCompositionAnimation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Reset(self: *const IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDCompositionAnimation, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn SetAbsoluteBeginTime(self: *const IDCompositionAnimation, beginTime: LARGE_INTEGER) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).SetAbsoluteBeginTime(@as(*const IDCompositionAnimation, @ptrCast(self)), beginTime);
+        return self.vtable.SetAbsoluteBeginTime(self, beginTime);
     }
     pub fn AddCubic(self: *const IDCompositionAnimation, beginOffset: f64, constantCoefficient: f32, linearCoefficient: f32, quadraticCoefficient: f32, cubicCoefficient: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).AddCubic(@as(*const IDCompositionAnimation, @ptrCast(self)), beginOffset, constantCoefficient, linearCoefficient, quadraticCoefficient, cubicCoefficient);
+        return self.vtable.AddCubic(self, beginOffset, constantCoefficient, linearCoefficient, quadraticCoefficient, cubicCoefficient);
     }
     pub fn AddSinusoidal(self: *const IDCompositionAnimation, beginOffset: f64, bias: f32, amplitude: f32, frequency: f32, phase: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).AddSinusoidal(@as(*const IDCompositionAnimation, @ptrCast(self)), beginOffset, bias, amplitude, frequency, phase);
+        return self.vtable.AddSinusoidal(self, beginOffset, bias, amplitude, frequency, phase);
     }
     pub fn AddRepeat(self: *const IDCompositionAnimation, beginOffset: f64, durationToRepeat: f64) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).AddRepeat(@as(*const IDCompositionAnimation, @ptrCast(self)), beginOffset, durationToRepeat);
+        return self.vtable.AddRepeat(self, beginOffset, durationToRepeat);
     }
     pub fn End(self: *const IDCompositionAnimation, endOffset: f64, endValue: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAnimation.VTable, @ptrCast(self.vtable)).End(@as(*const IDCompositionAnimation, @ptrCast(self)), endOffset, endValue);
+        return self.vtable.End(self, endOffset, endValue);
     }
 };
 
@@ -424,76 +424,76 @@ pub const IDCompositionDevice = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Commit(self: *const IDCompositionDevice) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).Commit(@as(*const IDCompositionDevice, @ptrCast(self)));
+        return self.vtable.Commit(self);
     }
     pub fn WaitForCommitCompletion(self: *const IDCompositionDevice) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).WaitForCommitCompletion(@as(*const IDCompositionDevice, @ptrCast(self)));
+        return self.vtable.WaitForCommitCompletion(self);
     }
     pub fn GetFrameStatistics(self: *const IDCompositionDevice, statistics: ?*DCOMPOSITION_FRAME_STATISTICS) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).GetFrameStatistics(@as(*const IDCompositionDevice, @ptrCast(self)), statistics);
+        return self.vtable.GetFrameStatistics(self, statistics);
     }
     pub fn CreateTargetForHwnd(self: *const IDCompositionDevice, hwnd: ?HWND, topmost: BOOL, target: ?*?*IDCompositionTarget) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTargetForHwnd(@as(*const IDCompositionDevice, @ptrCast(self)), hwnd, topmost, target);
+        return self.vtable.CreateTargetForHwnd(self, hwnd, topmost, target);
     }
     pub fn CreateVisual(self: *const IDCompositionDevice, visual: ?*?*IDCompositionVisual) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateVisual(@as(*const IDCompositionDevice, @ptrCast(self)), visual);
+        return self.vtable.CreateVisual(self, visual);
     }
     pub fn CreateSurface(self: *const IDCompositionDevice, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDCompositionDevice, @ptrCast(self)), width, height, pixelFormat, alphaMode, surface);
+        return self.vtable.CreateSurface(self, width, height, pixelFormat, alphaMode, surface);
     }
     pub fn CreateVirtualSurface(self: *const IDCompositionDevice, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateVirtualSurface(@as(*const IDCompositionDevice, @ptrCast(self)), initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
+        return self.vtable.CreateVirtualSurface(self, initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
     }
     pub fn CreateSurfaceFromHandle(self: *const IDCompositionDevice, handle: ?HANDLE, surface: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateSurfaceFromHandle(@as(*const IDCompositionDevice, @ptrCast(self)), handle, surface);
+        return self.vtable.CreateSurfaceFromHandle(self, handle, surface);
     }
     pub fn CreateSurfaceFromHwnd(self: *const IDCompositionDevice, hwnd: ?HWND, surface: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateSurfaceFromHwnd(@as(*const IDCompositionDevice, @ptrCast(self)), hwnd, surface);
+        return self.vtable.CreateSurfaceFromHwnd(self, hwnd, surface);
     }
     pub fn CreateTranslateTransform(self: *const IDCompositionDevice, translateTransform: ?*?*IDCompositionTranslateTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTranslateTransform(@as(*const IDCompositionDevice, @ptrCast(self)), translateTransform);
+        return self.vtable.CreateTranslateTransform(self, translateTransform);
     }
     pub fn CreateScaleTransform(self: *const IDCompositionDevice, scaleTransform: ?*?*IDCompositionScaleTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateScaleTransform(@as(*const IDCompositionDevice, @ptrCast(self)), scaleTransform);
+        return self.vtable.CreateScaleTransform(self, scaleTransform);
     }
     pub fn CreateRotateTransform(self: *const IDCompositionDevice, rotateTransform: ?*?*IDCompositionRotateTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateRotateTransform(@as(*const IDCompositionDevice, @ptrCast(self)), rotateTransform);
+        return self.vtable.CreateRotateTransform(self, rotateTransform);
     }
     pub fn CreateSkewTransform(self: *const IDCompositionDevice, skewTransform: ?*?*IDCompositionSkewTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateSkewTransform(@as(*const IDCompositionDevice, @ptrCast(self)), skewTransform);
+        return self.vtable.CreateSkewTransform(self, skewTransform);
     }
     pub fn CreateMatrixTransform(self: *const IDCompositionDevice, matrixTransform: ?*?*IDCompositionMatrixTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateMatrixTransform(@as(*const IDCompositionDevice, @ptrCast(self)), matrixTransform);
+        return self.vtable.CreateMatrixTransform(self, matrixTransform);
     }
     pub fn CreateTransformGroup(self: *const IDCompositionDevice, transforms: [*]?*IDCompositionTransform, elements: u32, transformGroup: ?*?*IDCompositionTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTransformGroup(@as(*const IDCompositionDevice, @ptrCast(self)), transforms, elements, transformGroup);
+        return self.vtable.CreateTransformGroup(self, transforms, elements, transformGroup);
     }
     pub fn CreateTranslateTransform3D(self: *const IDCompositionDevice, translateTransform3D: ?*?*IDCompositionTranslateTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTranslateTransform3D(@as(*const IDCompositionDevice, @ptrCast(self)), translateTransform3D);
+        return self.vtable.CreateTranslateTransform3D(self, translateTransform3D);
     }
     pub fn CreateScaleTransform3D(self: *const IDCompositionDevice, scaleTransform3D: ?*?*IDCompositionScaleTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateScaleTransform3D(@as(*const IDCompositionDevice, @ptrCast(self)), scaleTransform3D);
+        return self.vtable.CreateScaleTransform3D(self, scaleTransform3D);
     }
     pub fn CreateRotateTransform3D(self: *const IDCompositionDevice, rotateTransform3D: ?*?*IDCompositionRotateTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateRotateTransform3D(@as(*const IDCompositionDevice, @ptrCast(self)), rotateTransform3D);
+        return self.vtable.CreateRotateTransform3D(self, rotateTransform3D);
     }
     pub fn CreateMatrixTransform3D(self: *const IDCompositionDevice, matrixTransform3D: ?*?*IDCompositionMatrixTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateMatrixTransform3D(@as(*const IDCompositionDevice, @ptrCast(self)), matrixTransform3D);
+        return self.vtable.CreateMatrixTransform3D(self, matrixTransform3D);
     }
     pub fn CreateTransform3DGroup(self: *const IDCompositionDevice, transforms3D: [*]?*IDCompositionTransform3D, elements: u32, transform3DGroup: ?*?*IDCompositionTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateTransform3DGroup(@as(*const IDCompositionDevice, @ptrCast(self)), transforms3D, elements, transform3DGroup);
+        return self.vtable.CreateTransform3DGroup(self, transforms3D, elements, transform3DGroup);
     }
     pub fn CreateEffectGroup(self: *const IDCompositionDevice, effectGroup: ?*?*IDCompositionEffectGroup) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateEffectGroup(@as(*const IDCompositionDevice, @ptrCast(self)), effectGroup);
+        return self.vtable.CreateEffectGroup(self, effectGroup);
     }
     pub fn CreateRectangleClip(self: *const IDCompositionDevice, clip: ?*?*IDCompositionRectangleClip) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateRectangleClip(@as(*const IDCompositionDevice, @ptrCast(self)), clip);
+        return self.vtable.CreateRectangleClip(self, clip);
     }
     pub fn CreateAnimation(self: *const IDCompositionDevice, animation: ?*?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CreateAnimation(@as(*const IDCompositionDevice, @ptrCast(self)), animation);
+        return self.vtable.CreateAnimation(self, animation);
     }
     pub fn CheckDeviceState(self: *const IDCompositionDevice, pfValid: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice.VTable, @ptrCast(self.vtable)).CheckDeviceState(@as(*const IDCompositionDevice, @ptrCast(self)), pfValid);
+        return self.vtable.CheckDeviceState(self, pfValid);
     }
 };
 
@@ -519,7 +519,7 @@ pub const IDCompositionTarget = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetRoot(self: *const IDCompositionTarget, visual: ?*IDCompositionVisual) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTarget.VTable, @ptrCast(self.vtable)).SetRoot(@as(*const IDCompositionTarget, @ptrCast(self)), visual);
+        return self.vtable.SetRoot(self, visual);
     }
 };
 
@@ -674,55 +674,55 @@ pub const IDCompositionVisual = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetOffsetX(self: *const IDCompositionVisual, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionVisual, @ptrCast(self)), animation);
+        return self.vtable.SetOffsetX(self, animation);
     }
     pub fn SetOffsetX1(self: *const IDCompositionVisual, offsetX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionVisual, @ptrCast(self)), offsetX);
+        return self.vtable.SetOffsetX(self, offsetX);
     }
     pub fn SetOffsetY(self: *const IDCompositionVisual, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionVisual, @ptrCast(self)), animation);
+        return self.vtable.SetOffsetY(self, animation);
     }
     pub fn SetOffsetY1(self: *const IDCompositionVisual, offsetY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionVisual, @ptrCast(self)), offsetY);
+        return self.vtable.SetOffsetY(self, offsetY);
     }
     pub fn SetTransform(self: *const IDCompositionVisual, transform: ?*IDCompositionTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDCompositionVisual, @ptrCast(self)), transform);
+        return self.vtable.SetTransform(self, transform);
     }
     pub fn SetTransform1(self: *const IDCompositionVisual, matrix: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDCompositionVisual, @ptrCast(self)), matrix);
+        return self.vtable.SetTransform(self, matrix);
     }
     pub fn SetTransformParent(self: *const IDCompositionVisual, visual: ?*IDCompositionVisual) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetTransformParent(@as(*const IDCompositionVisual, @ptrCast(self)), visual);
+        return self.vtable.SetTransformParent(self, visual);
     }
     pub fn SetEffect(self: *const IDCompositionVisual, effect: ?*IDCompositionEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetEffect(@as(*const IDCompositionVisual, @ptrCast(self)), effect);
+        return self.vtable.SetEffect(self, effect);
     }
     pub fn SetBitmapInterpolationMode(self: *const IDCompositionVisual, interpolationMode: DCOMPOSITION_BITMAP_INTERPOLATION_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetBitmapInterpolationMode(@as(*const IDCompositionVisual, @ptrCast(self)), interpolationMode);
+        return self.vtable.SetBitmapInterpolationMode(self, interpolationMode);
     }
     pub fn SetBorderMode(self: *const IDCompositionVisual, borderMode: DCOMPOSITION_BORDER_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetBorderMode(@as(*const IDCompositionVisual, @ptrCast(self)), borderMode);
+        return self.vtable.SetBorderMode(self, borderMode);
     }
     pub fn SetClip(self: *const IDCompositionVisual, clip: ?*IDCompositionClip) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetClip(@as(*const IDCompositionVisual, @ptrCast(self)), clip);
+        return self.vtable.SetClip(self, clip);
     }
     pub fn SetClip1(self: *const IDCompositionVisual, rect: ?*const D2D_RECT_F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetClip(@as(*const IDCompositionVisual, @ptrCast(self)), rect);
+        return self.vtable.SetClip(self, rect);
     }
     pub fn SetContent(self: *const IDCompositionVisual, content: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IDCompositionVisual, @ptrCast(self)), content);
+        return self.vtable.SetContent(self, content);
     }
     pub fn AddVisual(self: *const IDCompositionVisual, visual: ?*IDCompositionVisual, insertAbove: BOOL, referenceVisual: ?*IDCompositionVisual) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).AddVisual(@as(*const IDCompositionVisual, @ptrCast(self)), visual, insertAbove, referenceVisual);
+        return self.vtable.AddVisual(self, visual, insertAbove, referenceVisual);
     }
     pub fn RemoveVisual(self: *const IDCompositionVisual, visual: ?*IDCompositionVisual) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).RemoveVisual(@as(*const IDCompositionVisual, @ptrCast(self)), visual);
+        return self.vtable.RemoveVisual(self, visual);
     }
     pub fn RemoveAllVisuals(self: *const IDCompositionVisual) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).RemoveAllVisuals(@as(*const IDCompositionVisual, @ptrCast(self)));
+        return self.vtable.RemoveAllVisuals(self);
     }
     pub fn SetCompositeMode(self: *const IDCompositionVisual, compositeMode: DCOMPOSITION_COMPOSITE_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual.VTable, @ptrCast(self.vtable)).SetCompositeMode(@as(*const IDCompositionVisual, @ptrCast(self)), compositeMode);
+        return self.vtable.SetCompositeMode(self, compositeMode);
     }
 };
 
@@ -817,16 +817,16 @@ pub const IDCompositionTranslateTransform = extern union {
     };}
     pub usingnamespace IDCompositionTransform.MethodMixin(@This());
     pub fn SetOffsetX(self: *const IDCompositionTranslateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionTranslateTransform, @ptrCast(self)), animation);
+        return self.vtable.SetOffsetX(self, animation);
     }
     pub fn SetOffsetX1(self: *const IDCompositionTranslateTransform, offsetX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionTranslateTransform, @ptrCast(self)), offsetX);
+        return self.vtable.SetOffsetX(self, offsetX);
     }
     pub fn SetOffsetY(self: *const IDCompositionTranslateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionTranslateTransform, @ptrCast(self)), animation);
+        return self.vtable.SetOffsetY(self, animation);
     }
     pub fn SetOffsetY1(self: *const IDCompositionTranslateTransform, offsetY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionTranslateTransform, @ptrCast(self)), offsetY);
+        return self.vtable.SetOffsetY(self, offsetY);
     }
 };
 
@@ -908,28 +908,28 @@ pub const IDCompositionScaleTransform = extern union {
     };}
     pub usingnamespace IDCompositionTransform.MethodMixin(@This());
     pub fn SetScaleX(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetScaleX(@as(*const IDCompositionScaleTransform, @ptrCast(self)), animation);
+        return self.vtable.SetScaleX(self, animation);
     }
     pub fn SetScaleX1(self: *const IDCompositionScaleTransform, scaleX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetScaleX(@as(*const IDCompositionScaleTransform, @ptrCast(self)), scaleX);
+        return self.vtable.SetScaleX(self, scaleX);
     }
     pub fn SetScaleY(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetScaleY(@as(*const IDCompositionScaleTransform, @ptrCast(self)), animation);
+        return self.vtable.SetScaleY(self, animation);
     }
     pub fn SetScaleY1(self: *const IDCompositionScaleTransform, scaleY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetScaleY(@as(*const IDCompositionScaleTransform, @ptrCast(self)), scaleY);
+        return self.vtable.SetScaleY(self, scaleY);
     }
     pub fn SetCenterX(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionScaleTransform, @ptrCast(self)), animation);
+        return self.vtable.SetCenterX(self, animation);
     }
     pub fn SetCenterX1(self: *const IDCompositionScaleTransform, centerX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionScaleTransform, @ptrCast(self)), centerX);
+        return self.vtable.SetCenterX(self, centerX);
     }
     pub fn SetCenterY(self: *const IDCompositionScaleTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionScaleTransform, @ptrCast(self)), animation);
+        return self.vtable.SetCenterY(self, animation);
     }
     pub fn SetCenterY1(self: *const IDCompositionScaleTransform, centerY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionScaleTransform, @ptrCast(self)), centerY);
+        return self.vtable.SetCenterY(self, centerY);
     }
 };
 
@@ -995,22 +995,22 @@ pub const IDCompositionRotateTransform = extern union {
     };}
     pub usingnamespace IDCompositionTransform.MethodMixin(@This());
     pub fn SetAngle(self: *const IDCompositionRotateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionRotateTransform, @ptrCast(self)), animation);
+        return self.vtable.SetAngle(self, animation);
     }
     pub fn SetAngle1(self: *const IDCompositionRotateTransform, angle: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionRotateTransform, @ptrCast(self)), angle);
+        return self.vtable.SetAngle(self, angle);
     }
     pub fn SetCenterX(self: *const IDCompositionRotateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionRotateTransform, @ptrCast(self)), animation);
+        return self.vtable.SetCenterX(self, animation);
     }
     pub fn SetCenterX1(self: *const IDCompositionRotateTransform, centerX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionRotateTransform, @ptrCast(self)), centerX);
+        return self.vtable.SetCenterX(self, centerX);
     }
     pub fn SetCenterY(self: *const IDCompositionRotateTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionRotateTransform, @ptrCast(self)), animation);
+        return self.vtable.SetCenterY(self, animation);
     }
     pub fn SetCenterY1(self: *const IDCompositionRotateTransform, centerY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionRotateTransform, @ptrCast(self)), centerY);
+        return self.vtable.SetCenterY(self, centerY);
     }
 };
 
@@ -1092,28 +1092,28 @@ pub const IDCompositionSkewTransform = extern union {
     };}
     pub usingnamespace IDCompositionTransform.MethodMixin(@This());
     pub fn SetAngleX(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetAngleX(@as(*const IDCompositionSkewTransform, @ptrCast(self)), animation);
+        return self.vtable.SetAngleX(self, animation);
     }
     pub fn SetAngleX1(self: *const IDCompositionSkewTransform, angleX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetAngleX(@as(*const IDCompositionSkewTransform, @ptrCast(self)), angleX);
+        return self.vtable.SetAngleX(self, angleX);
     }
     pub fn SetAngleY(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetAngleY(@as(*const IDCompositionSkewTransform, @ptrCast(self)), animation);
+        return self.vtable.SetAngleY(self, animation);
     }
     pub fn SetAngleY1(self: *const IDCompositionSkewTransform, angleY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetAngleY(@as(*const IDCompositionSkewTransform, @ptrCast(self)), angleY);
+        return self.vtable.SetAngleY(self, angleY);
     }
     pub fn SetCenterX(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionSkewTransform, @ptrCast(self)), animation);
+        return self.vtable.SetCenterX(self, animation);
     }
     pub fn SetCenterX1(self: *const IDCompositionSkewTransform, centerX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionSkewTransform, @ptrCast(self)), centerX);
+        return self.vtable.SetCenterX(self, centerX);
     }
     pub fn SetCenterY(self: *const IDCompositionSkewTransform, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionSkewTransform, @ptrCast(self)), animation);
+        return self.vtable.SetCenterY(self, animation);
     }
     pub fn SetCenterY1(self: *const IDCompositionSkewTransform, centerY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSkewTransform.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionSkewTransform, @ptrCast(self)), centerY);
+        return self.vtable.SetCenterY(self, centerY);
     }
 };
 
@@ -1159,13 +1159,13 @@ pub const IDCompositionMatrixTransform = extern union {
     };}
     pub usingnamespace IDCompositionTransform.MethodMixin(@This());
     pub fn SetMatrix(self: *const IDCompositionMatrixTransform, matrix: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionMatrixTransform.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const IDCompositionMatrixTransform, @ptrCast(self)), matrix);
+        return self.vtable.SetMatrix(self, matrix);
     }
     pub fn SetMatrixElement(self: *const IDCompositionMatrixTransform, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionMatrixTransform.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionMatrixTransform, @ptrCast(self)), row, column, animation);
+        return self.vtable.SetMatrixElement(self, row, column, animation);
     }
     pub fn SetMatrixElement1(self: *const IDCompositionMatrixTransform, row: i32, column: i32, value: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionMatrixTransform.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionMatrixTransform, @ptrCast(self)), row, column, value);
+        return self.vtable.SetMatrixElement(self, row, column, value);
     }
 };
 
@@ -1207,13 +1207,13 @@ pub const IDCompositionEffectGroup = extern union {
     };}
     pub usingnamespace IDCompositionEffect.MethodMixin(@This());
     pub fn SetOpacity(self: *const IDCompositionEffectGroup, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionEffectGroup.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IDCompositionEffectGroup, @ptrCast(self)), animation);
+        return self.vtable.SetOpacity(self, animation);
     }
     pub fn SetOpacity1(self: *const IDCompositionEffectGroup, opacity: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionEffectGroup.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IDCompositionEffectGroup, @ptrCast(self)), opacity);
+        return self.vtable.SetOpacity(self, opacity);
     }
     pub fn SetTransform3D(self: *const IDCompositionEffectGroup, transform3D: ?*IDCompositionTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionEffectGroup.VTable, @ptrCast(self.vtable)).SetTransform3D(@as(*const IDCompositionEffectGroup, @ptrCast(self)), transform3D);
+        return self.vtable.SetTransform3D(self, transform3D);
     }
 };
 
@@ -1279,22 +1279,22 @@ pub const IDCompositionTranslateTransform3D = extern union {
     };}
     pub usingnamespace IDCompositionTransform3D.MethodMixin(@This());
     pub fn SetOffsetX(self: *const IDCompositionTranslateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetOffsetX(self, animation);
     }
     pub fn SetOffsetX1(self: *const IDCompositionTranslateTransform3D, offsetX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetX(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), offsetX);
+        return self.vtable.SetOffsetX(self, offsetX);
     }
     pub fn SetOffsetY(self: *const IDCompositionTranslateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetOffsetY(self, animation);
     }
     pub fn SetOffsetY1(self: *const IDCompositionTranslateTransform3D, offsetY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetY(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), offsetY);
+        return self.vtable.SetOffsetY(self, offsetY);
     }
     pub fn SetOffsetZ(self: *const IDCompositionTranslateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetZ(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetOffsetZ(self, animation);
     }
     pub fn SetOffsetZ1(self: *const IDCompositionTranslateTransform3D, offsetZ: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTranslateTransform3D.VTable, @ptrCast(self.vtable)).SetOffsetZ(@as(*const IDCompositionTranslateTransform3D, @ptrCast(self)), offsetZ);
+        return self.vtable.SetOffsetZ(self, offsetZ);
     }
 };
 
@@ -1408,40 +1408,40 @@ pub const IDCompositionScaleTransform3D = extern union {
     };}
     pub usingnamespace IDCompositionTransform3D.MethodMixin(@This());
     pub fn SetScaleX(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleX(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetScaleX(self, animation);
     }
     pub fn SetScaleX1(self: *const IDCompositionScaleTransform3D, scaleX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleX(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), scaleX);
+        return self.vtable.SetScaleX(self, scaleX);
     }
     pub fn SetScaleY(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleY(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetScaleY(self, animation);
     }
     pub fn SetScaleY1(self: *const IDCompositionScaleTransform3D, scaleY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleY(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), scaleY);
+        return self.vtable.SetScaleY(self, scaleY);
     }
     pub fn SetScaleZ(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleZ(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetScaleZ(self, animation);
     }
     pub fn SetScaleZ1(self: *const IDCompositionScaleTransform3D, scaleZ: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetScaleZ(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), scaleZ);
+        return self.vtable.SetScaleZ(self, scaleZ);
     }
     pub fn SetCenterX(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetCenterX(self, animation);
     }
     pub fn SetCenterX1(self: *const IDCompositionScaleTransform3D, centerX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), centerX);
+        return self.vtable.SetCenterX(self, centerX);
     }
     pub fn SetCenterY(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetCenterY(self, animation);
     }
     pub fn SetCenterY1(self: *const IDCompositionScaleTransform3D, centerY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), centerY);
+        return self.vtable.SetCenterY(self, centerY);
     }
     pub fn SetCenterZ(self: *const IDCompositionScaleTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterZ(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetCenterZ(self, animation);
     }
     pub fn SetCenterZ1(self: *const IDCompositionScaleTransform3D, centerZ: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionScaleTransform3D.VTable, @ptrCast(self.vtable)).SetCenterZ(@as(*const IDCompositionScaleTransform3D, @ptrCast(self)), centerZ);
+        return self.vtable.SetCenterZ(self, centerZ);
     }
 };
 
@@ -1571,46 +1571,46 @@ pub const IDCompositionRotateTransform3D = extern union {
     };}
     pub usingnamespace IDCompositionTransform3D.MethodMixin(@This());
     pub fn SetAngle(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetAngle(self, animation);
     }
     pub fn SetAngle1(self: *const IDCompositionRotateTransform3D, angle: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), angle);
+        return self.vtable.SetAngle(self, angle);
     }
     pub fn SetAxisX(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisX(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetAxisX(self, animation);
     }
     pub fn SetAxisX1(self: *const IDCompositionRotateTransform3D, axisX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisX(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), axisX);
+        return self.vtable.SetAxisX(self, axisX);
     }
     pub fn SetAxisY(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisY(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetAxisY(self, animation);
     }
     pub fn SetAxisY1(self: *const IDCompositionRotateTransform3D, axisY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisY(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), axisY);
+        return self.vtable.SetAxisY(self, axisY);
     }
     pub fn SetAxisZ(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisZ(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetAxisZ(self, animation);
     }
     pub fn SetAxisZ1(self: *const IDCompositionRotateTransform3D, axisZ: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetAxisZ(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), axisZ);
+        return self.vtable.SetAxisZ(self, axisZ);
     }
     pub fn SetCenterX(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetCenterX(self, animation);
     }
     pub fn SetCenterX1(self: *const IDCompositionRotateTransform3D, centerX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterX(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), centerX);
+        return self.vtable.SetCenterX(self, centerX);
     }
     pub fn SetCenterY(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetCenterY(self, animation);
     }
     pub fn SetCenterY1(self: *const IDCompositionRotateTransform3D, centerY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterY(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), centerY);
+        return self.vtable.SetCenterY(self, centerY);
     }
     pub fn SetCenterZ(self: *const IDCompositionRotateTransform3D, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterZ(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), animation);
+        return self.vtable.SetCenterZ(self, animation);
     }
     pub fn SetCenterZ1(self: *const IDCompositionRotateTransform3D, centerZ: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRotateTransform3D.VTable, @ptrCast(self.vtable)).SetCenterZ(@as(*const IDCompositionRotateTransform3D, @ptrCast(self)), centerZ);
+        return self.vtable.SetCenterZ(self, centerZ);
     }
 };
 
@@ -1656,13 +1656,13 @@ pub const IDCompositionMatrixTransform3D = extern union {
     };}
     pub usingnamespace IDCompositionTransform3D.MethodMixin(@This());
     pub fn SetMatrix(self: *const IDCompositionMatrixTransform3D, matrix: ?*const D3DMATRIX) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionMatrixTransform3D.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const IDCompositionMatrixTransform3D, @ptrCast(self)), matrix);
+        return self.vtable.SetMatrix(self, matrix);
     }
     pub fn SetMatrixElement(self: *const IDCompositionMatrixTransform3D, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionMatrixTransform3D.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionMatrixTransform3D, @ptrCast(self)), row, column, animation);
+        return self.vtable.SetMatrixElement(self, row, column, animation);
     }
     pub fn SetMatrixElement1(self: *const IDCompositionMatrixTransform3D, row: i32, column: i32, value: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionMatrixTransform3D.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionMatrixTransform3D, @ptrCast(self)), row, column, value);
+        return self.vtable.SetMatrixElement(self, row, column, value);
     }
 };
 
@@ -1887,76 +1887,76 @@ pub const IDCompositionRectangleClip = extern union {
     };}
     pub usingnamespace IDCompositionClip.MethodMixin(@This());
     pub fn SetLeft(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetLeft(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetLeft(self, animation);
     }
     pub fn SetLeft1(self: *const IDCompositionRectangleClip, left: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetLeft(@as(*const IDCompositionRectangleClip, @ptrCast(self)), left);
+        return self.vtable.SetLeft(self, left);
     }
     pub fn SetTop(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTop(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetTop(self, animation);
     }
     pub fn SetTop1(self: *const IDCompositionRectangleClip, top: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTop(@as(*const IDCompositionRectangleClip, @ptrCast(self)), top);
+        return self.vtable.SetTop(self, top);
     }
     pub fn SetRight(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetRight(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetRight(self, animation);
     }
     pub fn SetRight1(self: *const IDCompositionRectangleClip, right: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetRight(@as(*const IDCompositionRectangleClip, @ptrCast(self)), right);
+        return self.vtable.SetRight(self, right);
     }
     pub fn SetBottom(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottom(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetBottom(self, animation);
     }
     pub fn SetBottom1(self: *const IDCompositionRectangleClip, bottom: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottom(@as(*const IDCompositionRectangleClip, @ptrCast(self)), bottom);
+        return self.vtable.SetBottom(self, bottom);
     }
     pub fn SetTopLeftRadiusX(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopLeftRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetTopLeftRadiusX(self, animation);
     }
     pub fn SetTopLeftRadiusX1(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopLeftRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
+        return self.vtable.SetTopLeftRadiusX(self, radius);
     }
     pub fn SetTopLeftRadiusY(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopLeftRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetTopLeftRadiusY(self, animation);
     }
     pub fn SetTopLeftRadiusY1(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopLeftRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
+        return self.vtable.SetTopLeftRadiusY(self, radius);
     }
     pub fn SetTopRightRadiusX(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopRightRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetTopRightRadiusX(self, animation);
     }
     pub fn SetTopRightRadiusX1(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopRightRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
+        return self.vtable.SetTopRightRadiusX(self, radius);
     }
     pub fn SetTopRightRadiusY(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopRightRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetTopRightRadiusY(self, animation);
     }
     pub fn SetTopRightRadiusY1(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetTopRightRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
+        return self.vtable.SetTopRightRadiusY(self, radius);
     }
     pub fn SetBottomLeftRadiusX(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomLeftRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetBottomLeftRadiusX(self, animation);
     }
     pub fn SetBottomLeftRadiusX1(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomLeftRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
+        return self.vtable.SetBottomLeftRadiusX(self, radius);
     }
     pub fn SetBottomLeftRadiusY(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomLeftRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetBottomLeftRadiusY(self, animation);
     }
     pub fn SetBottomLeftRadiusY1(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomLeftRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
+        return self.vtable.SetBottomLeftRadiusY(self, radius);
     }
     pub fn SetBottomRightRadiusX(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomRightRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetBottomRightRadiusX(self, animation);
     }
     pub fn SetBottomRightRadiusX1(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomRightRadiusX(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
+        return self.vtable.SetBottomRightRadiusX(self, radius);
     }
     pub fn SetBottomRightRadiusY(self: *const IDCompositionRectangleClip, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomRightRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), animation);
+        return self.vtable.SetBottomRightRadiusY(self, animation);
     }
     pub fn SetBottomRightRadiusY1(self: *const IDCompositionRectangleClip, radius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionRectangleClip.VTable, @ptrCast(self.vtable)).SetBottomRightRadiusY(@as(*const IDCompositionRectangleClip, @ptrCast(self)), radius);
+        return self.vtable.SetBottomRightRadiusY(self, radius);
     }
 };
 
@@ -2017,19 +2017,19 @@ pub const IDCompositionSurface = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginDraw(self: *const IDCompositionSurface, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, updateOffset: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const IDCompositionSurface, @ptrCast(self)), updateRect, iid, updateObject, updateOffset);
+        return self.vtable.BeginDraw(self, updateRect, iid, updateObject, updateOffset);
     }
     pub fn EndDraw(self: *const IDCompositionSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const IDCompositionSurface, @ptrCast(self)));
+        return self.vtable.EndDraw(self);
     }
     pub fn SuspendDraw(self: *const IDCompositionSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).SuspendDraw(@as(*const IDCompositionSurface, @ptrCast(self)));
+        return self.vtable.SuspendDraw(self);
     }
     pub fn ResumeDraw(self: *const IDCompositionSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).ResumeDraw(@as(*const IDCompositionSurface, @ptrCast(self)));
+        return self.vtable.ResumeDraw(self);
     }
     pub fn Scroll(self: *const IDCompositionSurface, scrollRect: ?*const RECT, clipRect: ?*const RECT, offsetX: i32, offsetY: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSurface.VTable, @ptrCast(self.vtable)).Scroll(@as(*const IDCompositionSurface, @ptrCast(self)), scrollRect, clipRect, offsetX, offsetY);
+        return self.vtable.Scroll(self, scrollRect, clipRect, offsetX, offsetY);
     }
 };
 
@@ -2065,10 +2065,10 @@ pub const IDCompositionVirtualSurface = extern union {
     };}
     pub usingnamespace IDCompositionSurface.MethodMixin(@This());
     pub fn Resize(self: *const IDCompositionVirtualSurface, width: u32, height: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVirtualSurface.VTable, @ptrCast(self.vtable)).Resize(@as(*const IDCompositionVirtualSurface, @ptrCast(self)), width, height);
+        return self.vtable.Resize(self, width, height);
     }
     pub fn Trim(self: *const IDCompositionVirtualSurface, rectangles: ?[*]const RECT, count: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVirtualSurface.VTable, @ptrCast(self.vtable)).Trim(@as(*const IDCompositionVirtualSurface, @ptrCast(self)), rectangles, count);
+        return self.vtable.Trim(self, rectangles, count);
     }
 };
 
@@ -2265,67 +2265,67 @@ pub const IDCompositionDevice2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Commit(self: *const IDCompositionDevice2) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).Commit(@as(*const IDCompositionDevice2, @ptrCast(self)));
+        return self.vtable.Commit(self);
     }
     pub fn WaitForCommitCompletion(self: *const IDCompositionDevice2) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).WaitForCommitCompletion(@as(*const IDCompositionDevice2, @ptrCast(self)));
+        return self.vtable.WaitForCommitCompletion(self);
     }
     pub fn GetFrameStatistics(self: *const IDCompositionDevice2, statistics: ?*DCOMPOSITION_FRAME_STATISTICS) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).GetFrameStatistics(@as(*const IDCompositionDevice2, @ptrCast(self)), statistics);
+        return self.vtable.GetFrameStatistics(self, statistics);
     }
     pub fn CreateVisual(self: *const IDCompositionDevice2, visual: ?*?*IDCompositionVisual2) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateVisual(@as(*const IDCompositionDevice2, @ptrCast(self)), visual);
+        return self.vtable.CreateVisual(self, visual);
     }
     pub fn CreateSurfaceFactory(self: *const IDCompositionDevice2, renderingDevice: ?*IUnknown, surfaceFactory: ?*?*IDCompositionSurfaceFactory) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateSurfaceFactory(@as(*const IDCompositionDevice2, @ptrCast(self)), renderingDevice, surfaceFactory);
+        return self.vtable.CreateSurfaceFactory(self, renderingDevice, surfaceFactory);
     }
     pub fn CreateSurface(self: *const IDCompositionDevice2, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDCompositionDevice2, @ptrCast(self)), width, height, pixelFormat, alphaMode, surface);
+        return self.vtable.CreateSurface(self, width, height, pixelFormat, alphaMode, surface);
     }
     pub fn CreateVirtualSurface(self: *const IDCompositionDevice2, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateVirtualSurface(@as(*const IDCompositionDevice2, @ptrCast(self)), initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
+        return self.vtable.CreateVirtualSurface(self, initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
     }
     pub fn CreateTranslateTransform(self: *const IDCompositionDevice2, translateTransform: ?*?*IDCompositionTranslateTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateTranslateTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), translateTransform);
+        return self.vtable.CreateTranslateTransform(self, translateTransform);
     }
     pub fn CreateScaleTransform(self: *const IDCompositionDevice2, scaleTransform: ?*?*IDCompositionScaleTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateScaleTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), scaleTransform);
+        return self.vtable.CreateScaleTransform(self, scaleTransform);
     }
     pub fn CreateRotateTransform(self: *const IDCompositionDevice2, rotateTransform: ?*?*IDCompositionRotateTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateRotateTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), rotateTransform);
+        return self.vtable.CreateRotateTransform(self, rotateTransform);
     }
     pub fn CreateSkewTransform(self: *const IDCompositionDevice2, skewTransform: ?*?*IDCompositionSkewTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateSkewTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), skewTransform);
+        return self.vtable.CreateSkewTransform(self, skewTransform);
     }
     pub fn CreateMatrixTransform(self: *const IDCompositionDevice2, matrixTransform: ?*?*IDCompositionMatrixTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateMatrixTransform(@as(*const IDCompositionDevice2, @ptrCast(self)), matrixTransform);
+        return self.vtable.CreateMatrixTransform(self, matrixTransform);
     }
     pub fn CreateTransformGroup(self: *const IDCompositionDevice2, transforms: [*]?*IDCompositionTransform, elements: u32, transformGroup: ?*?*IDCompositionTransform) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateTransformGroup(@as(*const IDCompositionDevice2, @ptrCast(self)), transforms, elements, transformGroup);
+        return self.vtable.CreateTransformGroup(self, transforms, elements, transformGroup);
     }
     pub fn CreateTranslateTransform3D(self: *const IDCompositionDevice2, translateTransform3D: ?*?*IDCompositionTranslateTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateTranslateTransform3D(@as(*const IDCompositionDevice2, @ptrCast(self)), translateTransform3D);
+        return self.vtable.CreateTranslateTransform3D(self, translateTransform3D);
     }
     pub fn CreateScaleTransform3D(self: *const IDCompositionDevice2, scaleTransform3D: ?*?*IDCompositionScaleTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateScaleTransform3D(@as(*const IDCompositionDevice2, @ptrCast(self)), scaleTransform3D);
+        return self.vtable.CreateScaleTransform3D(self, scaleTransform3D);
     }
     pub fn CreateRotateTransform3D(self: *const IDCompositionDevice2, rotateTransform3D: ?*?*IDCompositionRotateTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateRotateTransform3D(@as(*const IDCompositionDevice2, @ptrCast(self)), rotateTransform3D);
+        return self.vtable.CreateRotateTransform3D(self, rotateTransform3D);
     }
     pub fn CreateMatrixTransform3D(self: *const IDCompositionDevice2, matrixTransform3D: ?*?*IDCompositionMatrixTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateMatrixTransform3D(@as(*const IDCompositionDevice2, @ptrCast(self)), matrixTransform3D);
+        return self.vtable.CreateMatrixTransform3D(self, matrixTransform3D);
     }
     pub fn CreateTransform3DGroup(self: *const IDCompositionDevice2, transforms3D: [*]?*IDCompositionTransform3D, elements: u32, transform3DGroup: ?*?*IDCompositionTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateTransform3DGroup(@as(*const IDCompositionDevice2, @ptrCast(self)), transforms3D, elements, transform3DGroup);
+        return self.vtable.CreateTransform3DGroup(self, transforms3D, elements, transform3DGroup);
     }
     pub fn CreateEffectGroup(self: *const IDCompositionDevice2, effectGroup: ?*?*IDCompositionEffectGroup) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateEffectGroup(@as(*const IDCompositionDevice2, @ptrCast(self)), effectGroup);
+        return self.vtable.CreateEffectGroup(self, effectGroup);
     }
     pub fn CreateRectangleClip(self: *const IDCompositionDevice2, clip: ?*?*IDCompositionRectangleClip) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateRectangleClip(@as(*const IDCompositionDevice2, @ptrCast(self)), clip);
+        return self.vtable.CreateRectangleClip(self, clip);
     }
     pub fn CreateAnimation(self: *const IDCompositionDevice2, animation: ?*?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice2.VTable, @ptrCast(self.vtable)).CreateAnimation(@as(*const IDCompositionDevice2, @ptrCast(self)), animation);
+        return self.vtable.CreateAnimation(self, animation);
     }
 };
 
@@ -2371,13 +2371,13 @@ pub const IDCompositionDesktopDevice = extern union {
     };}
     pub usingnamespace IDCompositionDevice2.MethodMixin(@This());
     pub fn CreateTargetForHwnd(self: *const IDCompositionDesktopDevice, hwnd: ?HWND, topmost: BOOL, target: ?*?*IDCompositionTarget) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDesktopDevice.VTable, @ptrCast(self.vtable)).CreateTargetForHwnd(@as(*const IDCompositionDesktopDevice, @ptrCast(self)), hwnd, topmost, target);
+        return self.vtable.CreateTargetForHwnd(self, hwnd, topmost, target);
     }
     pub fn CreateSurfaceFromHandle(self: *const IDCompositionDesktopDevice, handle: ?HANDLE, surface: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDesktopDevice.VTable, @ptrCast(self.vtable)).CreateSurfaceFromHandle(@as(*const IDCompositionDesktopDevice, @ptrCast(self)), handle, surface);
+        return self.vtable.CreateSurfaceFromHandle(self, handle, surface);
     }
     pub fn CreateSurfaceFromHwnd(self: *const IDCompositionDesktopDevice, hwnd: ?HWND, surface: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDesktopDevice.VTable, @ptrCast(self.vtable)).CreateSurfaceFromHwnd(@as(*const IDCompositionDesktopDevice, @ptrCast(self)), hwnd, surface);
+        return self.vtable.CreateSurfaceFromHwnd(self, hwnd, surface);
     }
 };
 
@@ -2408,10 +2408,10 @@ pub const IDCompositionDeviceDebug = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnableDebugCounters(self: *const IDCompositionDeviceDebug) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDeviceDebug.VTable, @ptrCast(self.vtable)).EnableDebugCounters(@as(*const IDCompositionDeviceDebug, @ptrCast(self)));
+        return self.vtable.EnableDebugCounters(self);
     }
     pub fn DisableDebugCounters(self: *const IDCompositionDeviceDebug) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDeviceDebug.VTable, @ptrCast(self.vtable)).DisableDebugCounters(@as(*const IDCompositionDeviceDebug, @ptrCast(self)));
+        return self.vtable.DisableDebugCounters(self);
     }
 };
 
@@ -2453,10 +2453,10 @@ pub const IDCompositionSurfaceFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateSurface(self: *const IDCompositionSurfaceFactory, width: u32, height: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, surface: ?*?*IDCompositionSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSurfaceFactory.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDCompositionSurfaceFactory, @ptrCast(self)), width, height, pixelFormat, alphaMode, surface);
+        return self.vtable.CreateSurface(self, width, height, pixelFormat, alphaMode, surface);
     }
     pub fn CreateVirtualSurface(self: *const IDCompositionSurfaceFactory, initialWidth: u32, initialHeight: u32, pixelFormat: DXGI_FORMAT, alphaMode: DXGI_ALPHA_MODE, virtualSurface: ?*?*IDCompositionVirtualSurface) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSurfaceFactory.VTable, @ptrCast(self.vtable)).CreateVirtualSurface(@as(*const IDCompositionSurfaceFactory, @ptrCast(self)), initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
+        return self.vtable.CreateVirtualSurface(self, initialWidth, initialHeight, pixelFormat, alphaMode, virtualSurface);
     }
 };
 
@@ -2490,10 +2490,10 @@ pub const IDCompositionVisual2 = extern union {
     };}
     pub usingnamespace IDCompositionVisual.MethodMixin(@This());
     pub fn SetOpacityMode(self: *const IDCompositionVisual2, mode: DCOMPOSITION_OPACITY_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual2.VTable, @ptrCast(self.vtable)).SetOpacityMode(@as(*const IDCompositionVisual2, @ptrCast(self)), mode);
+        return self.vtable.SetOpacityMode(self, mode);
     }
     pub fn SetBackFaceVisibility(self: *const IDCompositionVisual2, visibility: DCOMPOSITION_BACKFACE_VISIBILITY) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual2.VTable, @ptrCast(self.vtable)).SetBackFaceVisibility(@as(*const IDCompositionVisual2, @ptrCast(self)), visibility);
+        return self.vtable.SetBackFaceVisibility(self, visibility);
     }
 };
 
@@ -2540,16 +2540,16 @@ pub const IDCompositionVisualDebug = extern union {
     };}
     pub usingnamespace IDCompositionVisual2.MethodMixin(@This());
     pub fn EnableHeatMap(self: *const IDCompositionVisualDebug, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisualDebug.VTable, @ptrCast(self.vtable)).EnableHeatMap(@as(*const IDCompositionVisualDebug, @ptrCast(self)), color);
+        return self.vtable.EnableHeatMap(self, color);
     }
     pub fn DisableHeatMap(self: *const IDCompositionVisualDebug) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisualDebug.VTable, @ptrCast(self.vtable)).DisableHeatMap(@as(*const IDCompositionVisualDebug, @ptrCast(self)));
+        return self.vtable.DisableHeatMap(self);
     }
     pub fn EnableRedrawRegions(self: *const IDCompositionVisualDebug) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisualDebug.VTable, @ptrCast(self.vtable)).EnableRedrawRegions(@as(*const IDCompositionVisualDebug, @ptrCast(self)));
+        return self.vtable.EnableRedrawRegions(self);
     }
     pub fn DisableRedrawRegions(self: *const IDCompositionVisualDebug) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisualDebug.VTable, @ptrCast(self.vtable)).DisableRedrawRegions(@as(*const IDCompositionVisualDebug, @ptrCast(self)));
+        return self.vtable.DisableRedrawRegions(self);
     }
 };
 
@@ -2631,28 +2631,28 @@ pub const IDCompositionVisual3 = extern union {
     };}
     pub usingnamespace IDCompositionVisualDebug.MethodMixin(@This());
     pub fn SetDepthMode(self: *const IDCompositionVisual3, mode: DCOMPOSITION_DEPTH_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetDepthMode(@as(*const IDCompositionVisual3, @ptrCast(self)), mode);
+        return self.vtable.SetDepthMode(self, mode);
     }
     pub fn SetOffsetZ(self: *const IDCompositionVisual3, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetOffsetZ(@as(*const IDCompositionVisual3, @ptrCast(self)), animation);
+        return self.vtable.SetOffsetZ(self, animation);
     }
     pub fn SetOffsetZ1(self: *const IDCompositionVisual3, offsetZ: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetOffsetZ(@as(*const IDCompositionVisual3, @ptrCast(self)), offsetZ);
+        return self.vtable.SetOffsetZ(self, offsetZ);
     }
     pub fn SetOpacity(self: *const IDCompositionVisual3, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IDCompositionVisual3, @ptrCast(self)), animation);
+        return self.vtable.SetOpacity(self, animation);
     }
     pub fn SetOpacity1(self: *const IDCompositionVisual3, opacity: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IDCompositionVisual3, @ptrCast(self)), opacity);
+        return self.vtable.SetOpacity(self, opacity);
     }
     pub fn SetTransform(self: *const IDCompositionVisual3, transform: ?*IDCompositionTransform3D) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDCompositionVisual3, @ptrCast(self)), transform);
+        return self.vtable.SetTransform(self, transform);
     }
     pub fn SetTransform1(self: *const IDCompositionVisual3, matrix: ?*const D2D_MATRIX_4X4_F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetTransform(@as(*const IDCompositionVisual3, @ptrCast(self)), matrix);
+        return self.vtable.SetTransform(self, matrix);
     }
     pub fn SetVisible(self: *const IDCompositionVisual3, visible: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionVisual3.VTable, @ptrCast(self.vtable)).SetVisible(@as(*const IDCompositionVisual3, @ptrCast(self)), visible);
+        return self.vtable.SetVisible(self, visible);
     }
 };
 
@@ -2774,43 +2774,43 @@ pub const IDCompositionDevice3 = extern union {
     };}
     pub usingnamespace IDCompositionDevice2.MethodMixin(@This());
     pub fn CreateGaussianBlurEffect(self: *const IDCompositionDevice3, gaussianBlurEffect: ?*?*IDCompositionGaussianBlurEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateGaussianBlurEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), gaussianBlurEffect);
+        return self.vtable.CreateGaussianBlurEffect(self, gaussianBlurEffect);
     }
     pub fn CreateBrightnessEffect(self: *const IDCompositionDevice3, brightnessEffect: ?*?*IDCompositionBrightnessEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateBrightnessEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), brightnessEffect);
+        return self.vtable.CreateBrightnessEffect(self, brightnessEffect);
     }
     pub fn CreateColorMatrixEffect(self: *const IDCompositionDevice3, colorMatrixEffect: ?*?*IDCompositionColorMatrixEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateColorMatrixEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), colorMatrixEffect);
+        return self.vtable.CreateColorMatrixEffect(self, colorMatrixEffect);
     }
     pub fn CreateShadowEffect(self: *const IDCompositionDevice3, shadowEffect: ?*?*IDCompositionShadowEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateShadowEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), shadowEffect);
+        return self.vtable.CreateShadowEffect(self, shadowEffect);
     }
     pub fn CreateHueRotationEffect(self: *const IDCompositionDevice3, hueRotationEffect: ?*?*IDCompositionHueRotationEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateHueRotationEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), hueRotationEffect);
+        return self.vtable.CreateHueRotationEffect(self, hueRotationEffect);
     }
     pub fn CreateSaturationEffect(self: *const IDCompositionDevice3, saturationEffect: ?*?*IDCompositionSaturationEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateSaturationEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), saturationEffect);
+        return self.vtable.CreateSaturationEffect(self, saturationEffect);
     }
     pub fn CreateTurbulenceEffect(self: *const IDCompositionDevice3, turbulenceEffect: ?*?*IDCompositionTurbulenceEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateTurbulenceEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), turbulenceEffect);
+        return self.vtable.CreateTurbulenceEffect(self, turbulenceEffect);
     }
     pub fn CreateLinearTransferEffect(self: *const IDCompositionDevice3, linearTransferEffect: ?*?*IDCompositionLinearTransferEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateLinearTransferEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), linearTransferEffect);
+        return self.vtable.CreateLinearTransferEffect(self, linearTransferEffect);
     }
     pub fn CreateTableTransferEffect(self: *const IDCompositionDevice3, tableTransferEffect: ?*?*IDCompositionTableTransferEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateTableTransferEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), tableTransferEffect);
+        return self.vtable.CreateTableTransferEffect(self, tableTransferEffect);
     }
     pub fn CreateCompositeEffect(self: *const IDCompositionDevice3, compositeEffect: ?*?*IDCompositionCompositeEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateCompositeEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), compositeEffect);
+        return self.vtable.CreateCompositeEffect(self, compositeEffect);
     }
     pub fn CreateBlendEffect(self: *const IDCompositionDevice3, blendEffect: ?*?*IDCompositionBlendEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateBlendEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), blendEffect);
+        return self.vtable.CreateBlendEffect(self, blendEffect);
     }
     pub fn CreateArithmeticCompositeEffect(self: *const IDCompositionDevice3, arithmeticCompositeEffect: ?*?*IDCompositionArithmeticCompositeEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateArithmeticCompositeEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), arithmeticCompositeEffect);
+        return self.vtable.CreateArithmeticCompositeEffect(self, arithmeticCompositeEffect);
     }
     pub fn CreateAffineTransform2DEffect(self: *const IDCompositionDevice3, affineTransform2dEffect: ?*?*IDCompositionAffineTransform2DEffect) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDevice3.VTable, @ptrCast(self.vtable)).CreateAffineTransform2DEffect(@as(*const IDCompositionDevice3, @ptrCast(self)), affineTransform2dEffect);
+        return self.vtable.CreateAffineTransform2DEffect(self, affineTransform2dEffect);
     }
 };
 
@@ -2838,7 +2838,7 @@ pub const IDCompositionFilterEffect = extern union {
     };}
     pub usingnamespace IDCompositionEffect.MethodMixin(@This());
     pub fn SetInput(self: *const IDCompositionFilterEffect, index: u32, input: ?*IUnknown, flags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionFilterEffect.VTable, @ptrCast(self.vtable)).SetInput(@as(*const IDCompositionFilterEffect, @ptrCast(self)), index, input, flags);
+        return self.vtable.SetInput(self, index, input, flags);
     }
 };
 
@@ -2879,13 +2879,13 @@ pub const IDCompositionGaussianBlurEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetStandardDeviation(self: *const IDCompositionGaussianBlurEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionGaussianBlurEffect.VTable, @ptrCast(self.vtable)).SetStandardDeviation(@as(*const IDCompositionGaussianBlurEffect, @ptrCast(self)), animation);
+        return self.vtable.SetStandardDeviation(self, animation);
     }
     pub fn SetStandardDeviation1(self: *const IDCompositionGaussianBlurEffect, amount: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionGaussianBlurEffect.VTable, @ptrCast(self.vtable)).SetStandardDeviation(@as(*const IDCompositionGaussianBlurEffect, @ptrCast(self)), amount);
+        return self.vtable.SetStandardDeviation(self, amount);
     }
     pub fn SetBorderMode(self: *const IDCompositionGaussianBlurEffect, mode: D2D1_BORDER_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionGaussianBlurEffect.VTable, @ptrCast(self.vtable)).SetBorderMode(@as(*const IDCompositionGaussianBlurEffect, @ptrCast(self)), mode);
+        return self.vtable.SetBorderMode(self, mode);
     }
 };
 
@@ -2982,34 +2982,34 @@ pub const IDCompositionBrightnessEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetWhitePoint(self: *const IDCompositionBrightnessEffect, whitePoint: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePoint(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), whitePoint);
+        return self.vtable.SetWhitePoint(self, whitePoint);
     }
     pub fn SetBlackPoint(self: *const IDCompositionBrightnessEffect, blackPoint: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPoint(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), blackPoint);
+        return self.vtable.SetBlackPoint(self, blackPoint);
     }
     pub fn SetWhitePointX(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePointX(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), animation);
+        return self.vtable.SetWhitePointX(self, animation);
     }
     pub fn SetWhitePointX1(self: *const IDCompositionBrightnessEffect, whitePointX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePointX(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), whitePointX);
+        return self.vtable.SetWhitePointX(self, whitePointX);
     }
     pub fn SetWhitePointY(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePointY(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), animation);
+        return self.vtable.SetWhitePointY(self, animation);
     }
     pub fn SetWhitePointY1(self: *const IDCompositionBrightnessEffect, whitePointY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetWhitePointY(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), whitePointY);
+        return self.vtable.SetWhitePointY(self, whitePointY);
     }
     pub fn SetBlackPointX(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPointX(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), animation);
+        return self.vtable.SetBlackPointX(self, animation);
     }
     pub fn SetBlackPointX1(self: *const IDCompositionBrightnessEffect, blackPointX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPointX(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), blackPointX);
+        return self.vtable.SetBlackPointX(self, blackPointX);
     }
     pub fn SetBlackPointY(self: *const IDCompositionBrightnessEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPointY(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), animation);
+        return self.vtable.SetBlackPointY(self, animation);
     }
     pub fn SetBlackPointY1(self: *const IDCompositionBrightnessEffect, blackPointY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBrightnessEffect.VTable, @ptrCast(self.vtable)).SetBlackPointY(@as(*const IDCompositionBrightnessEffect, @ptrCast(self)), blackPointY);
+        return self.vtable.SetBlackPointY(self, blackPointY);
     }
 };
 
@@ -3070,19 +3070,19 @@ pub const IDCompositionColorMatrixEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetMatrix(self: *const IDCompositionColorMatrixEffect, matrix: ?*const D2D_MATRIX_5X4_F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), matrix);
+        return self.vtable.SetMatrix(self, matrix);
     }
     pub fn SetMatrixElement(self: *const IDCompositionColorMatrixEffect, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), row, column, animation);
+        return self.vtable.SetMatrixElement(self, row, column, animation);
     }
     pub fn SetMatrixElement1(self: *const IDCompositionColorMatrixEffect, row: i32, column: i32, value: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetMatrixElement(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), row, column, value);
+        return self.vtable.SetMatrixElement(self, row, column, value);
     }
     pub fn SetAlphaMode(self: *const IDCompositionColorMatrixEffect, mode: D2D1_COLORMATRIX_ALPHA_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetAlphaMode(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), mode);
+        return self.vtable.SetAlphaMode(self, mode);
     }
     pub fn SetClampOutput(self: *const IDCompositionColorMatrixEffect, clamp: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionColorMatrixEffect.VTable, @ptrCast(self.vtable)).SetClampOutput(@as(*const IDCompositionColorMatrixEffect, @ptrCast(self)), clamp);
+        return self.vtable.SetClampOutput(self, clamp);
     }
 };
 
@@ -3187,37 +3187,37 @@ pub const IDCompositionShadowEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetStandardDeviation(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetStandardDeviation(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
+        return self.vtable.SetStandardDeviation(self, animation);
     }
     pub fn SetStandardDeviation1(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetStandardDeviation(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
+        return self.vtable.SetStandardDeviation(self, amount);
     }
     pub fn SetColor(self: *const IDCompositionShadowEffect, color: ?*const D2D_VECTOR_4F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetColor(@as(*const IDCompositionShadowEffect, @ptrCast(self)), color);
+        return self.vtable.SetColor(self, color);
     }
     pub fn SetRed(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetRed(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
+        return self.vtable.SetRed(self, animation);
     }
     pub fn SetRed1(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetRed(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
+        return self.vtable.SetRed(self, amount);
     }
     pub fn SetGreen(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetGreen(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
+        return self.vtable.SetGreen(self, animation);
     }
     pub fn SetGreen1(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetGreen(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
+        return self.vtable.SetGreen(self, amount);
     }
     pub fn SetBlue(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetBlue(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
+        return self.vtable.SetBlue(self, animation);
     }
     pub fn SetBlue1(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetBlue(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
+        return self.vtable.SetBlue(self, amount);
     }
     pub fn SetAlpha(self: *const IDCompositionShadowEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetAlpha(@as(*const IDCompositionShadowEffect, @ptrCast(self)), animation);
+        return self.vtable.SetAlpha(self, animation);
     }
     pub fn SetAlpha1(self: *const IDCompositionShadowEffect, amount: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionShadowEffect.VTable, @ptrCast(self.vtable)).SetAlpha(@as(*const IDCompositionShadowEffect, @ptrCast(self)), amount);
+        return self.vtable.SetAlpha(self, amount);
     }
 };
 
@@ -3250,10 +3250,10 @@ pub const IDCompositionHueRotationEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetAngle(self: *const IDCompositionHueRotationEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionHueRotationEffect.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionHueRotationEffect, @ptrCast(self)), animation);
+        return self.vtable.SetAngle(self, animation);
     }
     pub fn SetAngle1(self: *const IDCompositionHueRotationEffect, amountDegrees: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionHueRotationEffect.VTable, @ptrCast(self.vtable)).SetAngle(@as(*const IDCompositionHueRotationEffect, @ptrCast(self)), amountDegrees);
+        return self.vtable.SetAngle(self, amountDegrees);
     }
 };
 
@@ -3286,10 +3286,10 @@ pub const IDCompositionSaturationEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetSaturation(self: *const IDCompositionSaturationEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSaturationEffect.VTable, @ptrCast(self.vtable)).SetSaturation(@as(*const IDCompositionSaturationEffect, @ptrCast(self)), animation);
+        return self.vtable.SetSaturation(self, animation);
     }
     pub fn SetSaturation1(self: *const IDCompositionSaturationEffect, ratio: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionSaturationEffect.VTable, @ptrCast(self.vtable)).SetSaturation(@as(*const IDCompositionSaturationEffect, @ptrCast(self)), ratio);
+        return self.vtable.SetSaturation(self, ratio);
     }
 };
 
@@ -3362,25 +3362,25 @@ pub const IDCompositionTurbulenceEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetOffset(self: *const IDCompositionTurbulenceEffect, offset: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetOffset(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), offset);
+        return self.vtable.SetOffset(self, offset);
     }
     pub fn SetBaseFrequency(self: *const IDCompositionTurbulenceEffect, frequency: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetBaseFrequency(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), frequency);
+        return self.vtable.SetBaseFrequency(self, frequency);
     }
     pub fn SetSize(self: *const IDCompositionTurbulenceEffect, size: ?*const D2D_VECTOR_2F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetSize(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), size);
+        return self.vtable.SetSize(self, size);
     }
     pub fn SetNumOctaves(self: *const IDCompositionTurbulenceEffect, numOctaves: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetNumOctaves(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), numOctaves);
+        return self.vtable.SetNumOctaves(self, numOctaves);
     }
     pub fn SetSeed(self: *const IDCompositionTurbulenceEffect, seed: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetSeed(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), seed);
+        return self.vtable.SetSeed(self, seed);
     }
     pub fn SetNoise(self: *const IDCompositionTurbulenceEffect, noise: D2D1_TURBULENCE_NOISE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetNoise(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), noise);
+        return self.vtable.SetNoise(self, noise);
     }
     pub fn SetStitchable(self: *const IDCompositionTurbulenceEffect, stitchable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTurbulenceEffect.VTable, @ptrCast(self.vtable)).SetStitchable(@as(*const IDCompositionTurbulenceEffect, @ptrCast(self)), stitchable);
+        return self.vtable.SetStitchable(self, stitchable);
     }
 };
 
@@ -3565,67 +3565,67 @@ pub const IDCompositionLinearTransferEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetRedYIntercept(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
+        return self.vtable.SetRedYIntercept(self, animation);
     }
     pub fn SetRedYIntercept1(self: *const IDCompositionLinearTransferEffect, redYIntercept: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), redYIntercept);
+        return self.vtable.SetRedYIntercept(self, redYIntercept);
     }
     pub fn SetRedSlope(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
+        return self.vtable.SetRedSlope(self, animation);
     }
     pub fn SetRedSlope1(self: *const IDCompositionLinearTransferEffect, redSlope: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), redSlope);
+        return self.vtable.SetRedSlope(self, redSlope);
     }
     pub fn SetRedDisable(self: *const IDCompositionLinearTransferEffect, redDisable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetRedDisable(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), redDisable);
+        return self.vtable.SetRedDisable(self, redDisable);
     }
     pub fn SetGreenYIntercept(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
+        return self.vtable.SetGreenYIntercept(self, animation);
     }
     pub fn SetGreenYIntercept1(self: *const IDCompositionLinearTransferEffect, greenYIntercept: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), greenYIntercept);
+        return self.vtable.SetGreenYIntercept(self, greenYIntercept);
     }
     pub fn SetGreenSlope(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
+        return self.vtable.SetGreenSlope(self, animation);
     }
     pub fn SetGreenSlope1(self: *const IDCompositionLinearTransferEffect, greenSlope: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), greenSlope);
+        return self.vtable.SetGreenSlope(self, greenSlope);
     }
     pub fn SetGreenDisable(self: *const IDCompositionLinearTransferEffect, greenDisable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenDisable(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), greenDisable);
+        return self.vtable.SetGreenDisable(self, greenDisable);
     }
     pub fn SetBlueYIntercept(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
+        return self.vtable.SetBlueYIntercept(self, animation);
     }
     pub fn SetBlueYIntercept1(self: *const IDCompositionLinearTransferEffect, blueYIntercept: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), blueYIntercept);
+        return self.vtable.SetBlueYIntercept(self, blueYIntercept);
     }
     pub fn SetBlueSlope(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
+        return self.vtable.SetBlueSlope(self, animation);
     }
     pub fn SetBlueSlope1(self: *const IDCompositionLinearTransferEffect, blueSlope: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), blueSlope);
+        return self.vtable.SetBlueSlope(self, blueSlope);
     }
     pub fn SetBlueDisable(self: *const IDCompositionLinearTransferEffect, blueDisable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueDisable(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), blueDisable);
+        return self.vtable.SetBlueDisable(self, blueDisable);
     }
     pub fn SetAlphaYIntercept(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
+        return self.vtable.SetAlphaYIntercept(self, animation);
     }
     pub fn SetAlphaYIntercept1(self: *const IDCompositionLinearTransferEffect, alphaYIntercept: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaYIntercept(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), alphaYIntercept);
+        return self.vtable.SetAlphaYIntercept(self, alphaYIntercept);
     }
     pub fn SetAlphaSlope(self: *const IDCompositionLinearTransferEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), animation);
+        return self.vtable.SetAlphaSlope(self, animation);
     }
     pub fn SetAlphaSlope1(self: *const IDCompositionLinearTransferEffect, alphaSlope: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaSlope(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), alphaSlope);
+        return self.vtable.SetAlphaSlope(self, alphaSlope);
     }
     pub fn SetAlphaDisable(self: *const IDCompositionLinearTransferEffect, alphaDisable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaDisable(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), alphaDisable);
+        return self.vtable.SetAlphaDisable(self, alphaDisable);
     }
     pub fn SetClampOutput(self: *const IDCompositionLinearTransferEffect, clampOutput: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionLinearTransferEffect.VTable, @ptrCast(self.vtable)).SetClampOutput(@as(*const IDCompositionLinearTransferEffect, @ptrCast(self)), clampOutput);
+        return self.vtable.SetClampOutput(self, clampOutput);
     }
 };
 
@@ -3790,55 +3790,55 @@ pub const IDCompositionTableTransferEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetRedTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetRedTable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), tableValues, count);
+        return self.vtable.SetRedTable(self, tableValues, count);
     }
     pub fn SetGreenTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenTable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), tableValues, count);
+        return self.vtable.SetGreenTable(self, tableValues, count);
     }
     pub fn SetBlueTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueTable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), tableValues, count);
+        return self.vtable.SetBlueTable(self, tableValues, count);
     }
     pub fn SetAlphaTable(self: *const IDCompositionTableTransferEffect, tableValues: [*]const f32, count: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaTable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), tableValues, count);
+        return self.vtable.SetAlphaTable(self, tableValues, count);
     }
     pub fn SetRedDisable(self: *const IDCompositionTableTransferEffect, redDisable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetRedDisable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), redDisable);
+        return self.vtable.SetRedDisable(self, redDisable);
     }
     pub fn SetGreenDisable(self: *const IDCompositionTableTransferEffect, greenDisable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenDisable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), greenDisable);
+        return self.vtable.SetGreenDisable(self, greenDisable);
     }
     pub fn SetBlueDisable(self: *const IDCompositionTableTransferEffect, blueDisable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueDisable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), blueDisable);
+        return self.vtable.SetBlueDisable(self, blueDisable);
     }
     pub fn SetAlphaDisable(self: *const IDCompositionTableTransferEffect, alphaDisable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaDisable(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), alphaDisable);
+        return self.vtable.SetAlphaDisable(self, alphaDisable);
     }
     pub fn SetClampOutput(self: *const IDCompositionTableTransferEffect, clampOutput: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetClampOutput(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), clampOutput);
+        return self.vtable.SetClampOutput(self, clampOutput);
     }
     pub fn SetRedTableValue(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetRedTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, animation);
+        return self.vtable.SetRedTableValue(self, index, animation);
     }
     pub fn SetRedTableValue1(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetRedTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, value);
+        return self.vtable.SetRedTableValue(self, index, value);
     }
     pub fn SetGreenTableValue(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, animation);
+        return self.vtable.SetGreenTableValue(self, index, animation);
     }
     pub fn SetGreenTableValue1(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetGreenTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, value);
+        return self.vtable.SetGreenTableValue(self, index, value);
     }
     pub fn SetBlueTableValue(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, animation);
+        return self.vtable.SetBlueTableValue(self, index, animation);
     }
     pub fn SetBlueTableValue1(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetBlueTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, value);
+        return self.vtable.SetBlueTableValue(self, index, value);
     }
     pub fn SetAlphaTableValue(self: *const IDCompositionTableTransferEffect, index: u32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, animation);
+        return self.vtable.SetAlphaTableValue(self, index, animation);
     }
     pub fn SetAlphaTableValue1(self: *const IDCompositionTableTransferEffect, index: u32, value: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionTableTransferEffect.VTable, @ptrCast(self.vtable)).SetAlphaTableValue(@as(*const IDCompositionTableTransferEffect, @ptrCast(self)), index, value);
+        return self.vtable.SetAlphaTableValue(self, index, value);
     }
 };
 
@@ -3863,7 +3863,7 @@ pub const IDCompositionCompositeEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetMode(self: *const IDCompositionCompositeEffect, mode: D2D1_COMPOSITE_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionCompositeEffect.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IDCompositionCompositeEffect, @ptrCast(self)), mode);
+        return self.vtable.SetMode(self, mode);
     }
 };
 
@@ -3888,7 +3888,7 @@ pub const IDCompositionBlendEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetMode(self: *const IDCompositionBlendEffect, mode: D2D1_BLEND_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionBlendEffect.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IDCompositionBlendEffect, @ptrCast(self)), mode);
+        return self.vtable.SetMode(self, mode);
     }
 };
 
@@ -3985,34 +3985,34 @@ pub const IDCompositionArithmeticCompositeEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetCoefficients(self: *const IDCompositionArithmeticCompositeEffect, coefficients: ?*const D2D_VECTOR_4F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficients(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), coefficients);
+        return self.vtable.SetCoefficients(self, coefficients);
     }
     pub fn SetClampOutput(self: *const IDCompositionArithmeticCompositeEffect, clampoutput: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetClampOutput(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), clampoutput);
+        return self.vtable.SetClampOutput(self, clampoutput);
     }
     pub fn SetCoefficient1(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient1(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), animation);
+        return self.vtable.SetCoefficient1(self, animation);
     }
     pub fn SetCoefficient11(self: *const IDCompositionArithmeticCompositeEffect, Coeffcient1: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient1(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), Coeffcient1);
+        return self.vtable.SetCoefficient1(self, Coeffcient1);
     }
     pub fn SetCoefficient2(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient2(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), animation);
+        return self.vtable.SetCoefficient2(self, animation);
     }
     pub fn SetCoefficient21(self: *const IDCompositionArithmeticCompositeEffect, Coefficient2: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient2(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), Coefficient2);
+        return self.vtable.SetCoefficient2(self, Coefficient2);
     }
     pub fn SetCoefficient3(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient3(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), animation);
+        return self.vtable.SetCoefficient3(self, animation);
     }
     pub fn SetCoefficient31(self: *const IDCompositionArithmeticCompositeEffect, Coefficient3: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient3(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), Coefficient3);
+        return self.vtable.SetCoefficient3(self, Coefficient3);
     }
     pub fn SetCoefficient4(self: *const IDCompositionArithmeticCompositeEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient4(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), animation);
+        return self.vtable.SetCoefficient4(self, animation);
     }
     pub fn SetCoefficient41(self: *const IDCompositionArithmeticCompositeEffect, Coefficient4: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionArithmeticCompositeEffect.VTable, @ptrCast(self.vtable)).SetCoefficient4(@as(*const IDCompositionArithmeticCompositeEffect, @ptrCast(self)), Coefficient4);
+        return self.vtable.SetCoefficient4(self, Coefficient4);
     }
 };
 
@@ -4089,25 +4089,25 @@ pub const IDCompositionAffineTransform2DEffect = extern union {
     };}
     pub usingnamespace IDCompositionFilterEffect.MethodMixin(@This());
     pub fn SetInterpolationMode(self: *const IDCompositionAffineTransform2DEffect, interpolationMode: D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetInterpolationMode(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), interpolationMode);
+        return self.vtable.SetInterpolationMode(self, interpolationMode);
     }
     pub fn SetBorderMode(self: *const IDCompositionAffineTransform2DEffect, borderMode: D2D1_BORDER_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetBorderMode(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), borderMode);
+        return self.vtable.SetBorderMode(self, borderMode);
     }
     pub fn SetTransformMatrix(self: *const IDCompositionAffineTransform2DEffect, transformMatrix: ?*const D2D_MATRIX_3X2_F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetTransformMatrix(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), transformMatrix);
+        return self.vtable.SetTransformMatrix(self, transformMatrix);
     }
     pub fn SetTransformMatrixElement(self: *const IDCompositionAffineTransform2DEffect, row: i32, column: i32, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetTransformMatrixElement(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), row, column, animation);
+        return self.vtable.SetTransformMatrixElement(self, row, column, animation);
     }
     pub fn SetTransformMatrixElement1(self: *const IDCompositionAffineTransform2DEffect, row: i32, column: i32, value: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetTransformMatrixElement(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), row, column, value);
+        return self.vtable.SetTransformMatrixElement(self, row, column, value);
     }
     pub fn SetSharpness(self: *const IDCompositionAffineTransform2DEffect, animation: ?*IDCompositionAnimation) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetSharpness(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), animation);
+        return self.vtable.SetSharpness(self, animation);
     }
     pub fn SetSharpness1(self: *const IDCompositionAffineTransform2DEffect, sharpness: f32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionAffineTransform2DEffect.VTable, @ptrCast(self.vtable)).SetSharpness(@as(*const IDCompositionAffineTransform2DEffect, @ptrCast(self)), sharpness);
+        return self.vtable.SetSharpness(self, sharpness);
     }
 };
 
@@ -4168,16 +4168,16 @@ pub const IDCompositionDelegatedInkTrail = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddTrailPoints(self: *const IDCompositionDelegatedInkTrail, inkPoints: [*]const DCompositionInkTrailPoint, inkPointsCount: u32, generationId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDelegatedInkTrail.VTable, @ptrCast(self.vtable)).AddTrailPoints(@as(*const IDCompositionDelegatedInkTrail, @ptrCast(self)), inkPoints, inkPointsCount, generationId);
+        return self.vtable.AddTrailPoints(self, inkPoints, inkPointsCount, generationId);
     }
     pub fn AddTrailPointsWithPrediction(self: *const IDCompositionDelegatedInkTrail, inkPoints: [*]const DCompositionInkTrailPoint, inkPointsCount: u32, predictedInkPoints: [*]const DCompositionInkTrailPoint, predictedInkPointsCount: u32, generationId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDelegatedInkTrail.VTable, @ptrCast(self.vtable)).AddTrailPointsWithPrediction(@as(*const IDCompositionDelegatedInkTrail, @ptrCast(self)), inkPoints, inkPointsCount, predictedInkPoints, predictedInkPointsCount, generationId);
+        return self.vtable.AddTrailPointsWithPrediction(self, inkPoints, inkPointsCount, predictedInkPoints, predictedInkPointsCount, generationId);
     }
     pub fn RemoveTrailPoints(self: *const IDCompositionDelegatedInkTrail, generationId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDelegatedInkTrail.VTable, @ptrCast(self.vtable)).RemoveTrailPoints(@as(*const IDCompositionDelegatedInkTrail, @ptrCast(self)), generationId);
+        return self.vtable.RemoveTrailPoints(self, generationId);
     }
     pub fn StartNewTrail(self: *const IDCompositionDelegatedInkTrail, color: ?*const D2D1_COLOR_F) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionDelegatedInkTrail.VTable, @ptrCast(self.vtable)).StartNewTrail(@as(*const IDCompositionDelegatedInkTrail, @ptrCast(self)), color);
+        return self.vtable.StartNewTrail(self, color);
     }
 };
 
@@ -4211,10 +4211,10 @@ pub const IDCompositionInkTrailDevice = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateDelegatedInkTrail(self: *const IDCompositionInkTrailDevice, inkTrail: ?*?*IDCompositionDelegatedInkTrail) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionInkTrailDevice.VTable, @ptrCast(self.vtable)).CreateDelegatedInkTrail(@as(*const IDCompositionInkTrailDevice, @ptrCast(self)), inkTrail);
+        return self.vtable.CreateDelegatedInkTrail(self, inkTrail);
     }
     pub fn CreateDelegatedInkTrailForSwapChain(self: *const IDCompositionInkTrailDevice, swapChain: ?*IUnknown, inkTrail: ?*?*IDCompositionDelegatedInkTrail) callconv(.Inline) HRESULT {
-        return @as(*const IDCompositionInkTrailDevice.VTable, @ptrCast(self.vtable)).CreateDelegatedInkTrailForSwapChain(@as(*const IDCompositionInkTrailDevice, @ptrCast(self)), swapChain, inkTrail);
+        return self.vtable.CreateDelegatedInkTrailForSwapChain(self, swapChain, inkTrail);
     }
 };
 

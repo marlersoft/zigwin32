@@ -790,16 +790,16 @@ pub const IDiscMaster2 = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IDiscMaster2, ppunk: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster2.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IDiscMaster2, @ptrCast(self)), ppunk);
+        return self.vtable.get__NewEnum(self, ppunk);
     }
     pub fn get_Item(self: *const IDiscMaster2, index: i32, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster2.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IDiscMaster2, @ptrCast(self)), index, value);
+        return self.vtable.get_Item(self, index, value);
     }
     pub fn get_Count(self: *const IDiscMaster2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster2.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IDiscMaster2, @ptrCast(self)), value);
+        return self.vtable.get_Count(self, value);
     }
     pub fn get_IsSupportedEnvironment(self: *const IDiscMaster2, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster2.VTable, @ptrCast(self.vtable)).get_IsSupportedEnvironment(@as(*const IDiscMaster2, @ptrCast(self)), value);
+        return self.vtable.get_IsSupportedEnvironment(self, value);
     }
 };
 
@@ -835,10 +835,10 @@ pub const DDiscMaster2Events = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn NotifyDeviceAdded(self: *const DDiscMaster2Events, object: ?*IDispatch, uniqueId: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const DDiscMaster2Events.VTable, @ptrCast(self.vtable)).NotifyDeviceAdded(@as(*const DDiscMaster2Events, @ptrCast(self)), object, uniqueId);
+        return self.vtable.NotifyDeviceAdded(self, object, uniqueId);
     }
     pub fn NotifyDeviceRemoved(self: *const DDiscMaster2Events, object: ?*IDispatch, uniqueId: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const DDiscMaster2Events.VTable, @ptrCast(self.vtable)).NotifyDeviceRemoved(@as(*const DDiscMaster2Events, @ptrCast(self)), object, uniqueId);
+        return self.vtable.NotifyDeviceRemoved(self, object, uniqueId);
     }
 };
 
@@ -1041,58 +1041,58 @@ pub const IDiscRecorder2Ex = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SendCommandNoData(self: *const IDiscRecorder2Ex, Cdb: [*:0]u8, CdbSize: u32, SenseBuffer: *[18]u8, Timeout: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendCommandNoData(@as(*const IDiscRecorder2Ex, @ptrCast(self)), Cdb, CdbSize, SenseBuffer, Timeout);
+        return self.vtable.SendCommandNoData(self, Cdb, CdbSize, SenseBuffer, Timeout);
     }
     pub fn SendCommandSendDataToDevice(self: *const IDiscRecorder2Ex, Cdb: [*:0]u8, CdbSize: u32, SenseBuffer: *[18]u8, Timeout: u32, Buffer: [*:0]u8, BufferSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendCommandSendDataToDevice(@as(*const IDiscRecorder2Ex, @ptrCast(self)), Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize);
+        return self.vtable.SendCommandSendDataToDevice(self, Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize);
     }
     pub fn SendCommandGetDataFromDevice(self: *const IDiscRecorder2Ex, Cdb: [*:0]u8, CdbSize: u32, SenseBuffer: *[18]u8, Timeout: u32, Buffer: [*:0]u8, BufferSize: u32, BufferFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendCommandGetDataFromDevice(@as(*const IDiscRecorder2Ex, @ptrCast(self)), Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize, BufferFetched);
+        return self.vtable.SendCommandGetDataFromDevice(self, Cdb, CdbSize, SenseBuffer, Timeout, Buffer, BufferSize, BufferFetched);
     }
     pub fn ReadDvdStructure(self: *const IDiscRecorder2Ex, format: u32, address: u32, layer: u32, agid: u32, data: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).ReadDvdStructure(@as(*const IDiscRecorder2Ex, @ptrCast(self)), format, address, layer, agid, data, count);
+        return self.vtable.ReadDvdStructure(self, format, address, layer, agid, data, count);
     }
     pub fn SendDvdStructure(self: *const IDiscRecorder2Ex, format: u32, data: [*:0]u8, count: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SendDvdStructure(@as(*const IDiscRecorder2Ex, @ptrCast(self)), format, data, count);
+        return self.vtable.SendDvdStructure(self, format, data, count);
     }
     pub fn GetAdapterDescriptor(self: *const IDiscRecorder2Ex, data: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetAdapterDescriptor(@as(*const IDiscRecorder2Ex, @ptrCast(self)), data, byteSize);
+        return self.vtable.GetAdapterDescriptor(self, data, byteSize);
     }
     pub fn GetDeviceDescriptor(self: *const IDiscRecorder2Ex, data: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetDeviceDescriptor(@as(*const IDiscRecorder2Ex, @ptrCast(self)), data, byteSize);
+        return self.vtable.GetDeviceDescriptor(self, data, byteSize);
     }
     pub fn GetDiscInformation(self: *const IDiscRecorder2Ex, discInformation: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetDiscInformation(@as(*const IDiscRecorder2Ex, @ptrCast(self)), discInformation, byteSize);
+        return self.vtable.GetDiscInformation(self, discInformation, byteSize);
     }
     pub fn GetTrackInformation(self: *const IDiscRecorder2Ex, address: u32, addressType: IMAPI_READ_TRACK_ADDRESS_TYPE, trackInformation: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetTrackInformation(@as(*const IDiscRecorder2Ex, @ptrCast(self)), address, addressType, trackInformation, byteSize);
+        return self.vtable.GetTrackInformation(self, address, addressType, trackInformation, byteSize);
     }
     pub fn GetFeaturePage(self: *const IDiscRecorder2Ex, requestedFeature: IMAPI_FEATURE_PAGE_TYPE, currentFeatureOnly: BOOLEAN, featureData: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetFeaturePage(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestedFeature, currentFeatureOnly, featureData, byteSize);
+        return self.vtable.GetFeaturePage(self, requestedFeature, currentFeatureOnly, featureData, byteSize);
     }
     pub fn GetModePage(self: *const IDiscRecorder2Ex, requestedModePage: IMAPI_MODE_PAGE_TYPE, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageData: [*]?*u8, byteSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetModePage(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestedModePage, requestType, modePageData, byteSize);
+        return self.vtable.GetModePage(self, requestedModePage, requestType, modePageData, byteSize);
     }
     pub fn SetModePage(self: *const IDiscRecorder2Ex, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, data: [*:0]u8, byteSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).SetModePage(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestType, data, byteSize);
+        return self.vtable.SetModePage(self, requestType, data, byteSize);
     }
     pub fn GetSupportedFeaturePages(self: *const IDiscRecorder2Ex, currentFeatureOnly: BOOLEAN, featureData: [*]?*IMAPI_FEATURE_PAGE_TYPE, byteSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetSupportedFeaturePages(@as(*const IDiscRecorder2Ex, @ptrCast(self)), currentFeatureOnly, featureData, byteSize);
+        return self.vtable.GetSupportedFeaturePages(self, currentFeatureOnly, featureData, byteSize);
     }
     pub fn GetSupportedProfiles(self: *const IDiscRecorder2Ex, currentOnly: BOOLEAN, profileTypes: [*]?*IMAPI_PROFILE_TYPE, validProfiles: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetSupportedProfiles(@as(*const IDiscRecorder2Ex, @ptrCast(self)), currentOnly, profileTypes, validProfiles);
+        return self.vtable.GetSupportedProfiles(self, currentOnly, profileTypes, validProfiles);
     }
     pub fn GetSupportedModePages(self: *const IDiscRecorder2Ex, requestType: IMAPI_MODE_PAGE_REQUEST_TYPE, modePageTypes: [*]?*IMAPI_MODE_PAGE_TYPE, validPages: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetSupportedModePages(@as(*const IDiscRecorder2Ex, @ptrCast(self)), requestType, modePageTypes, validPages);
+        return self.vtable.GetSupportedModePages(self, requestType, modePageTypes, validPages);
     }
     pub fn GetByteAlignmentMask(self: *const IDiscRecorder2Ex, value: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetByteAlignmentMask(@as(*const IDiscRecorder2Ex, @ptrCast(self)), value);
+        return self.vtable.GetByteAlignmentMask(self, value);
     }
     pub fn GetMaximumNonPageAlignedTransferSize(self: *const IDiscRecorder2Ex, value: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetMaximumNonPageAlignedTransferSize(@as(*const IDiscRecorder2Ex, @ptrCast(self)), value);
+        return self.vtable.GetMaximumNonPageAlignedTransferSize(self, value);
     }
     pub fn GetMaximumPageAlignedTransferSize(self: *const IDiscRecorder2Ex, value: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2Ex.VTable, @ptrCast(self.vtable)).GetMaximumPageAlignedTransferSize(@as(*const IDiscRecorder2Ex, @ptrCast(self)), value);
+        return self.vtable.GetMaximumPageAlignedTransferSize(self, value);
     }
 };
 
@@ -1288,67 +1288,67 @@ pub const IDiscRecorder2 = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn EjectMedia(self: *const IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).EjectMedia(@as(*const IDiscRecorder2, @ptrCast(self)));
+        return self.vtable.EjectMedia(self);
     }
     pub fn CloseTray(self: *const IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).CloseTray(@as(*const IDiscRecorder2, @ptrCast(self)));
+        return self.vtable.CloseTray(self);
     }
     pub fn AcquireExclusiveAccess(self: *const IDiscRecorder2, force: i16, __MIDL__IDiscRecorder20000: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).AcquireExclusiveAccess(@as(*const IDiscRecorder2, @ptrCast(self)), force, __MIDL__IDiscRecorder20000);
+        return self.vtable.AcquireExclusiveAccess(self, force, __MIDL__IDiscRecorder20000);
     }
     pub fn ReleaseExclusiveAccess(self: *const IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).ReleaseExclusiveAccess(@as(*const IDiscRecorder2, @ptrCast(self)));
+        return self.vtable.ReleaseExclusiveAccess(self);
     }
     pub fn DisableMcn(self: *const IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).DisableMcn(@as(*const IDiscRecorder2, @ptrCast(self)));
+        return self.vtable.DisableMcn(self);
     }
     pub fn EnableMcn(self: *const IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).EnableMcn(@as(*const IDiscRecorder2, @ptrCast(self)));
+        return self.vtable.EnableMcn(self);
     }
     pub fn InitializeDiscRecorder(self: *const IDiscRecorder2, recorderUniqueId: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).InitializeDiscRecorder(@as(*const IDiscRecorder2, @ptrCast(self)), recorderUniqueId);
+        return self.vtable.InitializeDiscRecorder(self, recorderUniqueId);
     }
     pub fn get_ActiveDiscRecorder(self: *const IDiscRecorder2, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_ActiveDiscRecorder(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_ActiveDiscRecorder(self, value);
     }
     pub fn get_VendorId(self: *const IDiscRecorder2, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_VendorId(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_VendorId(self, value);
     }
     pub fn get_ProductId(self: *const IDiscRecorder2, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_ProductId(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_ProductId(self, value);
     }
     pub fn get_ProductRevision(self: *const IDiscRecorder2, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_ProductRevision(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_ProductRevision(self, value);
     }
     pub fn get_VolumeName(self: *const IDiscRecorder2, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_VolumeName(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_VolumeName(self, value);
     }
     pub fn get_VolumePathNames(self: *const IDiscRecorder2, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_VolumePathNames(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_VolumePathNames(self, value);
     }
     pub fn get_DeviceCanLoadMedia(self: *const IDiscRecorder2, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_DeviceCanLoadMedia(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_DeviceCanLoadMedia(self, value);
     }
     pub fn get_LegacyDeviceNumber(self: *const IDiscRecorder2, legacyDeviceNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_LegacyDeviceNumber(@as(*const IDiscRecorder2, @ptrCast(self)), legacyDeviceNumber);
+        return self.vtable.get_LegacyDeviceNumber(self, legacyDeviceNumber);
     }
     pub fn get_SupportedFeaturePages(self: *const IDiscRecorder2, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_SupportedFeaturePages(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_SupportedFeaturePages(self, value);
     }
     pub fn get_CurrentFeaturePages(self: *const IDiscRecorder2, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_CurrentFeaturePages(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_CurrentFeaturePages(self, value);
     }
     pub fn get_SupportedProfiles(self: *const IDiscRecorder2, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_SupportedProfiles(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_SupportedProfiles(self, value);
     }
     pub fn get_CurrentProfiles(self: *const IDiscRecorder2, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_CurrentProfiles(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_CurrentProfiles(self, value);
     }
     pub fn get_SupportedModePages(self: *const IDiscRecorder2, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_SupportedModePages(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_SupportedModePages(self, value);
     }
     pub fn get_ExclusiveAccessOwner(self: *const IDiscRecorder2, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder2.VTable, @ptrCast(self.vtable)).get_ExclusiveAccessOwner(@as(*const IDiscRecorder2, @ptrCast(self)), value);
+        return self.vtable.get_ExclusiveAccessOwner(self, value);
     }
 };
 
@@ -1482,43 +1482,43 @@ pub const IWriteEngine2 = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn WriteSection(self: *const IWriteEngine2, data: ?*IStream, startingBlockAddress: i32, numberOfBlocks: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).WriteSection(@as(*const IWriteEngine2, @ptrCast(self)), data, startingBlockAddress, numberOfBlocks);
+        return self.vtable.WriteSection(self, data, startingBlockAddress, numberOfBlocks);
     }
     pub fn CancelWrite(self: *const IWriteEngine2) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).CancelWrite(@as(*const IWriteEngine2, @ptrCast(self)));
+        return self.vtable.CancelWrite(self);
     }
     pub fn put_Recorder(self: *const IWriteEngine2, value: ?*IDiscRecorder2Ex) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.put_Recorder(self, value);
     }
     pub fn get_Recorder(self: *const IWriteEngine2, value: ?*?*IDiscRecorder2Ex) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.get_Recorder(self, value);
     }
     pub fn put_UseStreamingWrite12(self: *const IWriteEngine2, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_UseStreamingWrite12(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.put_UseStreamingWrite12(self, value);
     }
     pub fn get_UseStreamingWrite12(self: *const IWriteEngine2, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_UseStreamingWrite12(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.get_UseStreamingWrite12(self, value);
     }
     pub fn put_StartingSectorsPerSecond(self: *const IWriteEngine2, value: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_StartingSectorsPerSecond(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.put_StartingSectorsPerSecond(self, value);
     }
     pub fn get_StartingSectorsPerSecond(self: *const IWriteEngine2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_StartingSectorsPerSecond(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.get_StartingSectorsPerSecond(self, value);
     }
     pub fn put_EndingSectorsPerSecond(self: *const IWriteEngine2, value: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_EndingSectorsPerSecond(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.put_EndingSectorsPerSecond(self, value);
     }
     pub fn get_EndingSectorsPerSecond(self: *const IWriteEngine2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_EndingSectorsPerSecond(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.get_EndingSectorsPerSecond(self, value);
     }
     pub fn put_BytesPerSector(self: *const IWriteEngine2, value: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).put_BytesPerSector(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.put_BytesPerSector(self, value);
     }
     pub fn get_BytesPerSector(self: *const IWriteEngine2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_BytesPerSector(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.get_BytesPerSector(self, value);
     }
     pub fn get_WriteInProgress(self: *const IWriteEngine2, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2.VTable, @ptrCast(self.vtable)).get_WriteInProgress(@as(*const IWriteEngine2, @ptrCast(self)), value);
+        return self.vtable.get_WriteInProgress(self, value);
     }
 };
 
@@ -1599,25 +1599,25 @@ pub const IWriteEngine2EventArgs = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_StartLba(self: *const IWriteEngine2EventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_StartLba(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
+        return self.vtable.get_StartLba(self, value);
     }
     pub fn get_SectorCount(self: *const IWriteEngine2EventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_SectorCount(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
+        return self.vtable.get_SectorCount(self, value);
     }
     pub fn get_LastReadLba(self: *const IWriteEngine2EventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_LastReadLba(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
+        return self.vtable.get_LastReadLba(self, value);
     }
     pub fn get_LastWrittenLba(self: *const IWriteEngine2EventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_LastWrittenLba(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
+        return self.vtable.get_LastWrittenLba(self, value);
     }
     pub fn get_TotalSystemBuffer(self: *const IWriteEngine2EventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_TotalSystemBuffer(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
+        return self.vtable.get_TotalSystemBuffer(self, value);
     }
     pub fn get_UsedSystemBuffer(self: *const IWriteEngine2EventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_UsedSystemBuffer(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
+        return self.vtable.get_UsedSystemBuffer(self, value);
     }
     pub fn get_FreeSystemBuffer(self: *const IWriteEngine2EventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteEngine2EventArgs.VTable, @ptrCast(self.vtable)).get_FreeSystemBuffer(@as(*const IWriteEngine2EventArgs, @ptrCast(self)), value);
+        return self.vtable.get_FreeSystemBuffer(self, value);
     }
 };
 
@@ -1644,7 +1644,7 @@ pub const DWriteEngine2Events = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Update(self: *const DWriteEngine2Events, object: ?*IDispatch, progress: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const DWriteEngine2Events.VTable, @ptrCast(self.vtable)).Update(@as(*const DWriteEngine2Events, @ptrCast(self)), object, progress);
+        return self.vtable.Update(self, object, progress);
     }
 };
 
@@ -1707,19 +1707,19 @@ pub const IDiscFormat2 = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn IsRecorderSupported(self: *const IDiscFormat2, recorder: ?*IDiscRecorder2, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).IsRecorderSupported(@as(*const IDiscFormat2, @ptrCast(self)), recorder, value);
+        return self.vtable.IsRecorderSupported(self, recorder, value);
     }
     pub fn IsCurrentMediaSupported(self: *const IDiscFormat2, recorder: ?*IDiscRecorder2, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).IsCurrentMediaSupported(@as(*const IDiscFormat2, @ptrCast(self)), recorder, value);
+        return self.vtable.IsCurrentMediaSupported(self, recorder, value);
     }
     pub fn get_MediaPhysicallyBlank(self: *const IDiscFormat2, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).get_MediaPhysicallyBlank(@as(*const IDiscFormat2, @ptrCast(self)), value);
+        return self.vtable.get_MediaPhysicallyBlank(self, value);
     }
     pub fn get_MediaHeuristicallyBlank(self: *const IDiscFormat2, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).get_MediaHeuristicallyBlank(@as(*const IDiscFormat2, @ptrCast(self)), value);
+        return self.vtable.get_MediaHeuristicallyBlank(self, value);
     }
     pub fn get_SupportedMediaTypes(self: *const IDiscFormat2, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2.VTable, @ptrCast(self.vtable)).get_SupportedMediaTypes(@as(*const IDiscFormat2, @ptrCast(self)), value);
+        return self.vtable.get_SupportedMediaTypes(self, value);
     }
 };
 
@@ -1807,28 +1807,28 @@ pub const IDiscFormat2Erase = extern union {
     };}
     pub usingnamespace IDiscFormat2.MethodMixin(@This());
     pub fn put_Recorder(self: *const IDiscFormat2Erase, value: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
+        return self.vtable.put_Recorder(self, value);
     }
     pub fn get_Recorder(self: *const IDiscFormat2Erase, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
+        return self.vtable.get_Recorder(self, value);
     }
     pub fn put_FullErase(self: *const IDiscFormat2Erase, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).put_FullErase(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
+        return self.vtable.put_FullErase(self, value);
     }
     pub fn get_FullErase(self: *const IDiscFormat2Erase, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).get_FullErase(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
+        return self.vtable.get_FullErase(self, value);
     }
     pub fn get_CurrentPhysicalMediaType(self: *const IDiscFormat2Erase, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).get_CurrentPhysicalMediaType(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
+        return self.vtable.get_CurrentPhysicalMediaType(self, value);
     }
     pub fn put_ClientName(self: *const IDiscFormat2Erase, value: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
+        return self.vtable.put_ClientName(self, value);
     }
     pub fn get_ClientName(self: *const IDiscFormat2Erase, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IDiscFormat2Erase, @ptrCast(self)), value);
+        return self.vtable.get_ClientName(self, value);
     }
     pub fn EraseMedia(self: *const IDiscFormat2Erase) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Erase.VTable, @ptrCast(self.vtable)).EraseMedia(@as(*const IDiscFormat2Erase, @ptrCast(self)));
+        return self.vtable.EraseMedia(self);
     }
 };
 
@@ -1856,7 +1856,7 @@ pub const DDiscFormat2EraseEvents = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Update(self: *const DDiscFormat2EraseEvents, object: ?*IDispatch, elapsedSeconds: i32, estimatedTotalSeconds: i32) callconv(.Inline) HRESULT {
-        return @as(*const DDiscFormat2EraseEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DDiscFormat2EraseEvents, @ptrCast(self)), object, elapsedSeconds, estimatedTotalSeconds);
+        return self.vtable.Update(self, object, elapsedSeconds, estimatedTotalSeconds);
     }
 };
 
@@ -2159,100 +2159,100 @@ pub const IDiscFormat2Data = extern union {
     };}
     pub usingnamespace IDiscFormat2.MethodMixin(@This());
     pub fn put_Recorder(self: *const IDiscFormat2Data, value: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.put_Recorder(self, value);
     }
     pub fn get_Recorder(self: *const IDiscFormat2Data, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_Recorder(self, value);
     }
     pub fn put_BufferUnderrunFreeDisabled(self: *const IDiscFormat2Data, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.put_BufferUnderrunFreeDisabled(self, value);
     }
     pub fn get_BufferUnderrunFreeDisabled(self: *const IDiscFormat2Data, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_BufferUnderrunFreeDisabled(self, value);
     }
     pub fn put_PostgapAlreadyInImage(self: *const IDiscFormat2Data, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_PostgapAlreadyInImage(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.put_PostgapAlreadyInImage(self, value);
     }
     pub fn get_PostgapAlreadyInImage(self: *const IDiscFormat2Data, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_PostgapAlreadyInImage(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_PostgapAlreadyInImage(self, value);
     }
     pub fn get_CurrentMediaStatus(self: *const IDiscFormat2Data, value: ?*IMAPI_FORMAT2_DATA_MEDIA_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_CurrentMediaStatus(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_CurrentMediaStatus(self, value);
     }
     pub fn get_WriteProtectStatus(self: *const IDiscFormat2Data, value: ?*IMAPI_MEDIA_WRITE_PROTECT_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_WriteProtectStatus(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_WriteProtectStatus(self, value);
     }
     pub fn get_TotalSectorsOnMedia(self: *const IDiscFormat2Data, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_TotalSectorsOnMedia(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_TotalSectorsOnMedia(self, value);
     }
     pub fn get_FreeSectorsOnMedia(self: *const IDiscFormat2Data, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_FreeSectorsOnMedia(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_FreeSectorsOnMedia(self, value);
     }
     pub fn get_NextWritableAddress(self: *const IDiscFormat2Data, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_NextWritableAddress(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_NextWritableAddress(self, value);
     }
     pub fn get_StartAddressOfPreviousSession(self: *const IDiscFormat2Data, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_StartAddressOfPreviousSession(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_StartAddressOfPreviousSession(self, value);
     }
     pub fn get_LastWrittenAddressOfPreviousSession(self: *const IDiscFormat2Data, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_LastWrittenAddressOfPreviousSession(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_LastWrittenAddressOfPreviousSession(self, value);
     }
     pub fn put_ForceMediaToBeClosed(self: *const IDiscFormat2Data, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_ForceMediaToBeClosed(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.put_ForceMediaToBeClosed(self, value);
     }
     pub fn get_ForceMediaToBeClosed(self: *const IDiscFormat2Data, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_ForceMediaToBeClosed(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_ForceMediaToBeClosed(self, value);
     }
     pub fn put_DisableConsumerDvdCompatibilityMode(self: *const IDiscFormat2Data, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_DisableConsumerDvdCompatibilityMode(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.put_DisableConsumerDvdCompatibilityMode(self, value);
     }
     pub fn get_DisableConsumerDvdCompatibilityMode(self: *const IDiscFormat2Data, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_DisableConsumerDvdCompatibilityMode(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_DisableConsumerDvdCompatibilityMode(self, value);
     }
     pub fn get_CurrentPhysicalMediaType(self: *const IDiscFormat2Data, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_CurrentPhysicalMediaType(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_CurrentPhysicalMediaType(self, value);
     }
     pub fn put_ClientName(self: *const IDiscFormat2Data, value: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.put_ClientName(self, value);
     }
     pub fn get_ClientName(self: *const IDiscFormat2Data, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_ClientName(self, value);
     }
     pub fn get_RequestedWriteSpeed(self: *const IDiscFormat2Data, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_RequestedWriteSpeed(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_RequestedWriteSpeed(self, value);
     }
     pub fn get_RequestedRotationTypeIsPureCAV(self: *const IDiscFormat2Data, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_RequestedRotationTypeIsPureCAV(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_RequestedRotationTypeIsPureCAV(self, value);
     }
     pub fn get_CurrentWriteSpeed(self: *const IDiscFormat2Data, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_CurrentWriteSpeed(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_CurrentWriteSpeed(self, value);
     }
     pub fn get_CurrentRotationTypeIsPureCAV(self: *const IDiscFormat2Data, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_CurrentRotationTypeIsPureCAV(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_CurrentRotationTypeIsPureCAV(self, value);
     }
     pub fn get_SupportedWriteSpeeds(self: *const IDiscFormat2Data, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeeds(@as(*const IDiscFormat2Data, @ptrCast(self)), supportedSpeeds);
+        return self.vtable.get_SupportedWriteSpeeds(self, supportedSpeeds);
     }
     pub fn get_SupportedWriteSpeedDescriptors(self: *const IDiscFormat2Data, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeedDescriptors(@as(*const IDiscFormat2Data, @ptrCast(self)), supportedSpeedDescriptors);
+        return self.vtable.get_SupportedWriteSpeedDescriptors(self, supportedSpeedDescriptors);
     }
     pub fn put_ForceOverwrite(self: *const IDiscFormat2Data, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).put_ForceOverwrite(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.put_ForceOverwrite(self, value);
     }
     pub fn get_ForceOverwrite(self: *const IDiscFormat2Data, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_ForceOverwrite(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_ForceOverwrite(self, value);
     }
     pub fn get_MultisessionInterfaces(self: *const IDiscFormat2Data, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).get_MultisessionInterfaces(@as(*const IDiscFormat2Data, @ptrCast(self)), value);
+        return self.vtable.get_MultisessionInterfaces(self, value);
     }
     pub fn Write(self: *const IDiscFormat2Data, data: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).Write(@as(*const IDiscFormat2Data, @ptrCast(self)), data);
+        return self.vtable.Write(self, data);
     }
     pub fn CancelWrite(self: *const IDiscFormat2Data) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).CancelWrite(@as(*const IDiscFormat2Data, @ptrCast(self)));
+        return self.vtable.CancelWrite(self);
     }
     pub fn SetWriteSpeed(self: *const IDiscFormat2Data, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2Data.VTable, @ptrCast(self.vtable)).SetWriteSpeed(@as(*const IDiscFormat2Data, @ptrCast(self)), RequestedSectorsPerSecond, RotationTypeIsPureCAV);
+        return self.vtable.SetWriteSpeed(self, RequestedSectorsPerSecond, RotationTypeIsPureCAV);
     }
 };
 
@@ -2279,7 +2279,7 @@ pub const DDiscFormat2DataEvents = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Update(self: *const DDiscFormat2DataEvents, object: ?*IDispatch, progress: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const DDiscFormat2DataEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DDiscFormat2DataEvents, @ptrCast(self)), object, progress);
+        return self.vtable.Update(self, object, progress);
     }
 };
 
@@ -2333,16 +2333,16 @@ pub const IDiscFormat2DataEventArgs = extern union {
     };}
     pub usingnamespace IWriteEngine2EventArgs.MethodMixin(@This());
     pub fn get_ElapsedTime(self: *const IDiscFormat2DataEventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2DataEventArgs.VTable, @ptrCast(self.vtable)).get_ElapsedTime(@as(*const IDiscFormat2DataEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_ElapsedTime(self, value);
     }
     pub fn get_RemainingTime(self: *const IDiscFormat2DataEventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2DataEventArgs.VTable, @ptrCast(self.vtable)).get_RemainingTime(@as(*const IDiscFormat2DataEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_RemainingTime(self, value);
     }
     pub fn get_TotalTime(self: *const IDiscFormat2DataEventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2DataEventArgs.VTable, @ptrCast(self.vtable)).get_TotalTime(@as(*const IDiscFormat2DataEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_TotalTime(self, value);
     }
     pub fn get_CurrentAction(self: *const IDiscFormat2DataEventArgs, value: ?*IMAPI_FORMAT2_DATA_WRITE_ACTION) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2DataEventArgs.VTable, @ptrCast(self.vtable)).get_CurrentAction(@as(*const IDiscFormat2DataEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_CurrentAction(self, value);
     }
 };
 
@@ -2578,79 +2578,79 @@ pub const IDiscFormat2TrackAtOnce = extern union {
     };}
     pub usingnamespace IDiscFormat2.MethodMixin(@This());
     pub fn PrepareMedia(self: *const IDiscFormat2TrackAtOnce) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).PrepareMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)));
+        return self.vtable.PrepareMedia(self);
     }
     pub fn AddAudioTrack(self: *const IDiscFormat2TrackAtOnce, data: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).AddAudioTrack(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), data);
+        return self.vtable.AddAudioTrack(self, data);
     }
     pub fn CancelAddTrack(self: *const IDiscFormat2TrackAtOnce) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).CancelAddTrack(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)));
+        return self.vtable.CancelAddTrack(self);
     }
     pub fn ReleaseMedia(self: *const IDiscFormat2TrackAtOnce) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).ReleaseMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)));
+        return self.vtable.ReleaseMedia(self);
     }
     pub fn SetWriteSpeed(self: *const IDiscFormat2TrackAtOnce, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).SetWriteSpeed(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), RequestedSectorsPerSecond, RotationTypeIsPureCAV);
+        return self.vtable.SetWriteSpeed(self, RequestedSectorsPerSecond, RotationTypeIsPureCAV);
     }
     pub fn put_Recorder(self: *const IDiscFormat2TrackAtOnce, value: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.put_Recorder(self, value);
     }
     pub fn get_Recorder(self: *const IDiscFormat2TrackAtOnce, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_Recorder(self, value);
     }
     pub fn put_BufferUnderrunFreeDisabled(self: *const IDiscFormat2TrackAtOnce, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).put_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.put_BufferUnderrunFreeDisabled(self, value);
     }
     pub fn get_BufferUnderrunFreeDisabled(self: *const IDiscFormat2TrackAtOnce, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_BufferUnderrunFreeDisabled(self, value);
     }
     pub fn get_NumberOfExistingTracks(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_NumberOfExistingTracks(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_NumberOfExistingTracks(self, value);
     }
     pub fn get_TotalSectorsOnMedia(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_TotalSectorsOnMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_TotalSectorsOnMedia(self, value);
     }
     pub fn get_FreeSectorsOnMedia(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_FreeSectorsOnMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_FreeSectorsOnMedia(self, value);
     }
     pub fn get_UsedSectorsOnMedia(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_UsedSectorsOnMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_UsedSectorsOnMedia(self, value);
     }
     pub fn put_DoNotFinalizeMedia(self: *const IDiscFormat2TrackAtOnce, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).put_DoNotFinalizeMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.put_DoNotFinalizeMedia(self, value);
     }
     pub fn get_DoNotFinalizeMedia(self: *const IDiscFormat2TrackAtOnce, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_DoNotFinalizeMedia(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_DoNotFinalizeMedia(self, value);
     }
     pub fn get_ExpectedTableOfContents(self: *const IDiscFormat2TrackAtOnce, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_ExpectedTableOfContents(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_ExpectedTableOfContents(self, value);
     }
     pub fn get_CurrentPhysicalMediaType(self: *const IDiscFormat2TrackAtOnce, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_CurrentPhysicalMediaType(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_CurrentPhysicalMediaType(self, value);
     }
     pub fn put_ClientName(self: *const IDiscFormat2TrackAtOnce, value: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.put_ClientName(self, value);
     }
     pub fn get_ClientName(self: *const IDiscFormat2TrackAtOnce, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_ClientName(self, value);
     }
     pub fn get_RequestedWriteSpeed(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_RequestedWriteSpeed(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_RequestedWriteSpeed(self, value);
     }
     pub fn get_RequestedRotationTypeIsPureCAV(self: *const IDiscFormat2TrackAtOnce, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_RequestedRotationTypeIsPureCAV(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_RequestedRotationTypeIsPureCAV(self, value);
     }
     pub fn get_CurrentWriteSpeed(self: *const IDiscFormat2TrackAtOnce, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_CurrentWriteSpeed(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_CurrentWriteSpeed(self, value);
     }
     pub fn get_CurrentRotationTypeIsPureCAV(self: *const IDiscFormat2TrackAtOnce, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_CurrentRotationTypeIsPureCAV(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), value);
+        return self.vtable.get_CurrentRotationTypeIsPureCAV(self, value);
     }
     pub fn get_SupportedWriteSpeeds(self: *const IDiscFormat2TrackAtOnce, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeeds(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), supportedSpeeds);
+        return self.vtable.get_SupportedWriteSpeeds(self, supportedSpeeds);
     }
     pub fn get_SupportedWriteSpeedDescriptors(self: *const IDiscFormat2TrackAtOnce, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnce.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeedDescriptors(@as(*const IDiscFormat2TrackAtOnce, @ptrCast(self)), supportedSpeedDescriptors);
+        return self.vtable.get_SupportedWriteSpeedDescriptors(self, supportedSpeedDescriptors);
     }
 };
 
@@ -2677,7 +2677,7 @@ pub const DDiscFormat2TrackAtOnceEvents = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Update(self: *const DDiscFormat2TrackAtOnceEvents, object: ?*IDispatch, progress: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const DDiscFormat2TrackAtOnceEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DDiscFormat2TrackAtOnceEvents, @ptrCast(self)), object, progress);
+        return self.vtable.Update(self, object, progress);
     }
 };
 
@@ -2731,16 +2731,16 @@ pub const IDiscFormat2TrackAtOnceEventArgs = extern union {
     };}
     pub usingnamespace IWriteEngine2EventArgs.MethodMixin(@This());
     pub fn get_CurrentTrackNumber(self: *const IDiscFormat2TrackAtOnceEventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnceEventArgs.VTable, @ptrCast(self.vtable)).get_CurrentTrackNumber(@as(*const IDiscFormat2TrackAtOnceEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_CurrentTrackNumber(self, value);
     }
     pub fn get_CurrentAction(self: *const IDiscFormat2TrackAtOnceEventArgs, value: ?*IMAPI_FORMAT2_TAO_WRITE_ACTION) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnceEventArgs.VTable, @ptrCast(self.vtable)).get_CurrentAction(@as(*const IDiscFormat2TrackAtOnceEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_CurrentAction(self, value);
     }
     pub fn get_ElapsedTime(self: *const IDiscFormat2TrackAtOnceEventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnceEventArgs.VTable, @ptrCast(self.vtable)).get_ElapsedTime(@as(*const IDiscFormat2TrackAtOnceEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_ElapsedTime(self, value);
     }
     pub fn get_RemainingTime(self: *const IDiscFormat2TrackAtOnceEventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2TrackAtOnceEventArgs.VTable, @ptrCast(self.vtable)).get_RemainingTime(@as(*const IDiscFormat2TrackAtOnceEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_RemainingTime(self, value);
     }
 };
 
@@ -2967,76 +2967,76 @@ pub const IDiscFormat2RawCD = extern union {
     };}
     pub usingnamespace IDiscFormat2.MethodMixin(@This());
     pub fn PrepareMedia(self: *const IDiscFormat2RawCD) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).PrepareMedia(@as(*const IDiscFormat2RawCD, @ptrCast(self)));
+        return self.vtable.PrepareMedia(self);
     }
     pub fn WriteMedia(self: *const IDiscFormat2RawCD, data: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).WriteMedia(@as(*const IDiscFormat2RawCD, @ptrCast(self)), data);
+        return self.vtable.WriteMedia(self, data);
     }
     pub fn WriteMedia2(self: *const IDiscFormat2RawCD, data: ?*IStream, streamLeadInSectors: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).WriteMedia2(@as(*const IDiscFormat2RawCD, @ptrCast(self)), data, streamLeadInSectors);
+        return self.vtable.WriteMedia2(self, data, streamLeadInSectors);
     }
     pub fn CancelWrite(self: *const IDiscFormat2RawCD) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).CancelWrite(@as(*const IDiscFormat2RawCD, @ptrCast(self)));
+        return self.vtable.CancelWrite(self);
     }
     pub fn ReleaseMedia(self: *const IDiscFormat2RawCD) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).ReleaseMedia(@as(*const IDiscFormat2RawCD, @ptrCast(self)));
+        return self.vtable.ReleaseMedia(self);
     }
     pub fn SetWriteSpeed(self: *const IDiscFormat2RawCD, RequestedSectorsPerSecond: i32, RotationTypeIsPureCAV: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).SetWriteSpeed(@as(*const IDiscFormat2RawCD, @ptrCast(self)), RequestedSectorsPerSecond, RotationTypeIsPureCAV);
+        return self.vtable.SetWriteSpeed(self, RequestedSectorsPerSecond, RotationTypeIsPureCAV);
     }
     pub fn put_Recorder(self: *const IDiscFormat2RawCD, value: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).put_Recorder(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.put_Recorder(self, value);
     }
     pub fn get_Recorder(self: *const IDiscFormat2RawCD, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_Recorder(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_Recorder(self, value);
     }
     pub fn put_BufferUnderrunFreeDisabled(self: *const IDiscFormat2RawCD, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).put_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.put_BufferUnderrunFreeDisabled(self, value);
     }
     pub fn get_BufferUnderrunFreeDisabled(self: *const IDiscFormat2RawCD, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_BufferUnderrunFreeDisabled(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_BufferUnderrunFreeDisabled(self, value);
     }
     pub fn get_StartOfNextSession(self: *const IDiscFormat2RawCD, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_StartOfNextSession(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_StartOfNextSession(self, value);
     }
     pub fn get_LastPossibleStartOfLeadout(self: *const IDiscFormat2RawCD, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_LastPossibleStartOfLeadout(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_LastPossibleStartOfLeadout(self, value);
     }
     pub fn get_CurrentPhysicalMediaType(self: *const IDiscFormat2RawCD, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_CurrentPhysicalMediaType(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_CurrentPhysicalMediaType(self, value);
     }
     pub fn get_SupportedSectorTypes(self: *const IDiscFormat2RawCD, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_SupportedSectorTypes(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_SupportedSectorTypes(self, value);
     }
     pub fn put_RequestedSectorType(self: *const IDiscFormat2RawCD, value: IMAPI_FORMAT2_RAW_CD_DATA_SECTOR_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).put_RequestedSectorType(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.put_RequestedSectorType(self, value);
     }
     pub fn get_RequestedSectorType(self: *const IDiscFormat2RawCD, value: ?*IMAPI_FORMAT2_RAW_CD_DATA_SECTOR_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_RequestedSectorType(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_RequestedSectorType(self, value);
     }
     pub fn put_ClientName(self: *const IDiscFormat2RawCD, value: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).put_ClientName(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.put_ClientName(self, value);
     }
     pub fn get_ClientName(self: *const IDiscFormat2RawCD, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_ClientName(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_ClientName(self, value);
     }
     pub fn get_RequestedWriteSpeed(self: *const IDiscFormat2RawCD, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_RequestedWriteSpeed(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_RequestedWriteSpeed(self, value);
     }
     pub fn get_RequestedRotationTypeIsPureCAV(self: *const IDiscFormat2RawCD, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_RequestedRotationTypeIsPureCAV(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_RequestedRotationTypeIsPureCAV(self, value);
     }
     pub fn get_CurrentWriteSpeed(self: *const IDiscFormat2RawCD, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_CurrentWriteSpeed(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_CurrentWriteSpeed(self, value);
     }
     pub fn get_CurrentRotationTypeIsPureCAV(self: *const IDiscFormat2RawCD, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_CurrentRotationTypeIsPureCAV(@as(*const IDiscFormat2RawCD, @ptrCast(self)), value);
+        return self.vtable.get_CurrentRotationTypeIsPureCAV(self, value);
     }
     pub fn get_SupportedWriteSpeeds(self: *const IDiscFormat2RawCD, supportedSpeeds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeeds(@as(*const IDiscFormat2RawCD, @ptrCast(self)), supportedSpeeds);
+        return self.vtable.get_SupportedWriteSpeeds(self, supportedSpeeds);
     }
     pub fn get_SupportedWriteSpeedDescriptors(self: *const IDiscFormat2RawCD, supportedSpeedDescriptors: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCD.VTable, @ptrCast(self.vtable)).get_SupportedWriteSpeedDescriptors(@as(*const IDiscFormat2RawCD, @ptrCast(self)), supportedSpeedDescriptors);
+        return self.vtable.get_SupportedWriteSpeedDescriptors(self, supportedSpeedDescriptors);
     }
 };
 
@@ -3063,7 +3063,7 @@ pub const DDiscFormat2RawCDEvents = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Update(self: *const DDiscFormat2RawCDEvents, object: ?*IDispatch, progress: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const DDiscFormat2RawCDEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DDiscFormat2RawCDEvents, @ptrCast(self)), object, progress);
+        return self.vtable.Update(self, object, progress);
     }
 };
 
@@ -3108,13 +3108,13 @@ pub const IDiscFormat2RawCDEventArgs = extern union {
     };}
     pub usingnamespace IWriteEngine2EventArgs.MethodMixin(@This());
     pub fn get_CurrentAction(self: *const IDiscFormat2RawCDEventArgs, value: ?*IMAPI_FORMAT2_RAW_CD_WRITE_ACTION) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCDEventArgs.VTable, @ptrCast(self.vtable)).get_CurrentAction(@as(*const IDiscFormat2RawCDEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_CurrentAction(self, value);
     }
     pub fn get_ElapsedTime(self: *const IDiscFormat2RawCDEventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCDEventArgs.VTable, @ptrCast(self.vtable)).get_ElapsedTime(@as(*const IDiscFormat2RawCDEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_ElapsedTime(self, value);
     }
     pub fn get_RemainingTime(self: *const IDiscFormat2RawCDEventArgs, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscFormat2RawCDEventArgs.VTable, @ptrCast(self.vtable)).get_RemainingTime(@as(*const IDiscFormat2RawCDEventArgs, @ptrCast(self)), value);
+        return self.vtable.get_RemainingTime(self, value);
     }
 };
 
@@ -3150,10 +3150,10 @@ pub const IBurnVerification = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn put_BurnVerificationLevel(self: *const IBurnVerification, value: IMAPI_BURN_VERIFICATION_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IBurnVerification.VTable, @ptrCast(self.vtable)).put_BurnVerificationLevel(@as(*const IBurnVerification, @ptrCast(self)), value);
+        return self.vtable.put_BurnVerificationLevel(self, value);
     }
     pub fn get_BurnVerificationLevel(self: *const IBurnVerification, value: ?*IMAPI_BURN_VERIFICATION_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IBurnVerification.VTable, @ptrCast(self.vtable)).get_BurnVerificationLevel(@as(*const IBurnVerification, @ptrCast(self)), value);
+        return self.vtable.get_BurnVerificationLevel(self, value);
     }
 };
 
@@ -3198,13 +3198,13 @@ pub const IWriteSpeedDescriptor = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_MediaType(self: *const IWriteSpeedDescriptor, value: ?*IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IWriteSpeedDescriptor.VTable, @ptrCast(self.vtable)).get_MediaType(@as(*const IWriteSpeedDescriptor, @ptrCast(self)), value);
+        return self.vtable.get_MediaType(self, value);
     }
     pub fn get_RotationTypeIsPureCAV(self: *const IWriteSpeedDescriptor, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IWriteSpeedDescriptor.VTable, @ptrCast(self.vtable)).get_RotationTypeIsPureCAV(@as(*const IWriteSpeedDescriptor, @ptrCast(self)), value);
+        return self.vtable.get_RotationTypeIsPureCAV(self, value);
     }
     pub fn get_WriteSpeed(self: *const IWriteSpeedDescriptor, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWriteSpeedDescriptor.VTable, @ptrCast(self.vtable)).get_WriteSpeed(@as(*const IWriteSpeedDescriptor, @ptrCast(self)), value);
+        return self.vtable.get_WriteSpeed(self, value);
     }
 };
 
@@ -3258,16 +3258,16 @@ pub const IMultisession = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_IsSupportedOnCurrentMediaState(self: *const IMultisession, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMultisession.VTable, @ptrCast(self.vtable)).get_IsSupportedOnCurrentMediaState(@as(*const IMultisession, @ptrCast(self)), value);
+        return self.vtable.get_IsSupportedOnCurrentMediaState(self, value);
     }
     pub fn put_InUse(self: *const IMultisession, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IMultisession.VTable, @ptrCast(self.vtable)).put_InUse(@as(*const IMultisession, @ptrCast(self)), value);
+        return self.vtable.put_InUse(self, value);
     }
     pub fn get_InUse(self: *const IMultisession, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMultisession.VTable, @ptrCast(self.vtable)).get_InUse(@as(*const IMultisession, @ptrCast(self)), value);
+        return self.vtable.get_InUse(self, value);
     }
     pub fn get_ImportRecorder(self: *const IMultisession, value: ?*?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IMultisession.VTable, @ptrCast(self.vtable)).get_ImportRecorder(@as(*const IMultisession, @ptrCast(self)), value);
+        return self.vtable.get_ImportRecorder(self, value);
     }
 };
 
@@ -3330,19 +3330,19 @@ pub const IMultisessionSequential = extern union {
     };}
     pub usingnamespace IMultisession.MethodMixin(@This());
     pub fn get_IsFirstDataSession(self: *const IMultisessionSequential, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_IsFirstDataSession(@as(*const IMultisessionSequential, @ptrCast(self)), value);
+        return self.vtable.get_IsFirstDataSession(self, value);
     }
     pub fn get_StartAddressOfPreviousSession(self: *const IMultisessionSequential, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_StartAddressOfPreviousSession(@as(*const IMultisessionSequential, @ptrCast(self)), value);
+        return self.vtable.get_StartAddressOfPreviousSession(self, value);
     }
     pub fn get_LastWrittenAddressOfPreviousSession(self: *const IMultisessionSequential, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_LastWrittenAddressOfPreviousSession(@as(*const IMultisessionSequential, @ptrCast(self)), value);
+        return self.vtable.get_LastWrittenAddressOfPreviousSession(self, value);
     }
     pub fn get_NextWritableAddress(self: *const IMultisessionSequential, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_NextWritableAddress(@as(*const IMultisessionSequential, @ptrCast(self)), value);
+        return self.vtable.get_NextWritableAddress(self, value);
     }
     pub fn get_FreeSectorsOnMedia(self: *const IMultisessionSequential, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMultisessionSequential.VTable, @ptrCast(self.vtable)).get_FreeSectorsOnMedia(@as(*const IMultisessionSequential, @ptrCast(self)), value);
+        return self.vtable.get_FreeSectorsOnMedia(self, value);
     }
 };
 
@@ -3369,7 +3369,7 @@ pub const IMultisessionSequential2 = extern union {
     };}
     pub usingnamespace IMultisessionSequential.MethodMixin(@This());
     pub fn get_WriteUnitSize(self: *const IMultisessionSequential2, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMultisessionSequential2.VTable, @ptrCast(self.vtable)).get_WriteUnitSize(@as(*const IMultisessionSequential2, @ptrCast(self)), value);
+        return self.vtable.get_WriteUnitSize(self, value);
     }
 };
 
@@ -3414,13 +3414,13 @@ pub const IMultisessionRandomWrite = extern union {
     };}
     pub usingnamespace IMultisession.MethodMixin(@This());
     pub fn get_WriteUnitSize(self: *const IMultisessionRandomWrite, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMultisessionRandomWrite.VTable, @ptrCast(self.vtable)).get_WriteUnitSize(@as(*const IMultisessionRandomWrite, @ptrCast(self)), value);
+        return self.vtable.get_WriteUnitSize(self, value);
     }
     pub fn get_LastWrittenAddress(self: *const IMultisessionRandomWrite, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMultisessionRandomWrite.VTable, @ptrCast(self.vtable)).get_LastWrittenAddress(@as(*const IMultisessionRandomWrite, @ptrCast(self)), value);
+        return self.vtable.get_LastWrittenAddress(self, value);
     }
     pub fn get_TotalSectorsOnMedia(self: *const IMultisessionRandomWrite, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMultisessionRandomWrite.VTable, @ptrCast(self.vtable)).get_TotalSectorsOnMedia(@as(*const IMultisessionRandomWrite, @ptrCast(self)), value);
+        return self.vtable.get_TotalSectorsOnMedia(self, value);
     }
 };
 
@@ -3474,16 +3474,16 @@ pub const IStreamPseudoRandomBased = extern union {
     };}
     pub usingnamespace IStream.MethodMixin(@This());
     pub fn put_Seed(self: *const IStreamPseudoRandomBased, value: u32) callconv(.Inline) HRESULT {
-        return @as(*const IStreamPseudoRandomBased.VTable, @ptrCast(self.vtable)).put_Seed(@as(*const IStreamPseudoRandomBased, @ptrCast(self)), value);
+        return self.vtable.put_Seed(self, value);
     }
     pub fn get_Seed(self: *const IStreamPseudoRandomBased, value: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IStreamPseudoRandomBased.VTable, @ptrCast(self.vtable)).get_Seed(@as(*const IStreamPseudoRandomBased, @ptrCast(self)), value);
+        return self.vtable.get_Seed(self, value);
     }
     pub fn put_ExtendedSeed(self: *const IStreamPseudoRandomBased, values: [*]u32, eCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IStreamPseudoRandomBased.VTable, @ptrCast(self.vtable)).put_ExtendedSeed(@as(*const IStreamPseudoRandomBased, @ptrCast(self)), values, eCount);
+        return self.vtable.put_ExtendedSeed(self, values, eCount);
     }
     pub fn get_ExtendedSeed(self: *const IStreamPseudoRandomBased, values: [*]?*u32, eCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IStreamPseudoRandomBased.VTable, @ptrCast(self.vtable)).get_ExtendedSeed(@as(*const IStreamPseudoRandomBased, @ptrCast(self)), values, eCount);
+        return self.vtable.get_ExtendedSeed(self, values, eCount);
     }
 };
 
@@ -3536,16 +3536,16 @@ pub const IStreamConcatenate = extern union {
     };}
     pub usingnamespace IStream.MethodMixin(@This());
     pub fn Initialize(self: *const IStreamConcatenate, stream1: ?*IStream, stream2: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IStreamConcatenate.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStreamConcatenate, @ptrCast(self)), stream1, stream2);
+        return self.vtable.Initialize(self, stream1, stream2);
     }
     pub fn Initialize2(self: *const IStreamConcatenate, streams: [*]?*IStream, streamCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IStreamConcatenate.VTable, @ptrCast(self.vtable)).Initialize2(@as(*const IStreamConcatenate, @ptrCast(self)), streams, streamCount);
+        return self.vtable.Initialize2(self, streams, streamCount);
     }
     pub fn Append(self: *const IStreamConcatenate, stream: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IStreamConcatenate.VTable, @ptrCast(self.vtable)).Append(@as(*const IStreamConcatenate, @ptrCast(self)), stream);
+        return self.vtable.Append(self, stream);
     }
     pub fn Append2(self: *const IStreamConcatenate, streams: [*]?*IStream, streamCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IStreamConcatenate.VTable, @ptrCast(self.vtable)).Append2(@as(*const IStreamConcatenate, @ptrCast(self)), streams, streamCount);
+        return self.vtable.Append2(self, streams, streamCount);
     }
 };
 
@@ -3573,7 +3573,7 @@ pub const IStreamInterleave = extern union {
     };}
     pub usingnamespace IStream.MethodMixin(@This());
     pub fn Initialize(self: *const IStreamInterleave, streams: [*]?*IStream, interleaveSizes: [*]u32, streamCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IStreamInterleave.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IStreamInterleave, @ptrCast(self)), streams, interleaveSizes, streamCount);
+        return self.vtable.Initialize(self, streams, interleaveSizes, streamCount);
     }
 };
 
@@ -3760,61 +3760,61 @@ pub const IRawCDImageCreator = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn CreateResultImage(self: *const IRawCDImageCreator, resultStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).CreateResultImage(@as(*const IRawCDImageCreator, @ptrCast(self)), resultStream);
+        return self.vtable.CreateResultImage(self, resultStream);
     }
     pub fn AddTrack(self: *const IRawCDImageCreator, dataType: IMAPI_CD_SECTOR_TYPE, data: ?*IStream, trackIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).AddTrack(@as(*const IRawCDImageCreator, @ptrCast(self)), dataType, data, trackIndex);
+        return self.vtable.AddTrack(self, dataType, data, trackIndex);
     }
     pub fn AddSpecialPregap(self: *const IRawCDImageCreator, data: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).AddSpecialPregap(@as(*const IRawCDImageCreator, @ptrCast(self)), data);
+        return self.vtable.AddSpecialPregap(self, data);
     }
     pub fn AddSubcodeRWGenerator(self: *const IRawCDImageCreator, subcode: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).AddSubcodeRWGenerator(@as(*const IRawCDImageCreator, @ptrCast(self)), subcode);
+        return self.vtable.AddSubcodeRWGenerator(self, subcode);
     }
     pub fn put_ResultingImageType(self: *const IRawCDImageCreator, value: IMAPI_FORMAT2_RAW_CD_DATA_SECTOR_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_ResultingImageType(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.put_ResultingImageType(self, value);
     }
     pub fn get_ResultingImageType(self: *const IRawCDImageCreator, value: ?*IMAPI_FORMAT2_RAW_CD_DATA_SECTOR_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_ResultingImageType(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.get_ResultingImageType(self, value);
     }
     pub fn get_StartOfLeadout(self: *const IRawCDImageCreator, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_StartOfLeadout(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.get_StartOfLeadout(self, value);
     }
     pub fn put_StartOfLeadoutLimit(self: *const IRawCDImageCreator, value: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_StartOfLeadoutLimit(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.put_StartOfLeadoutLimit(self, value);
     }
     pub fn get_StartOfLeadoutLimit(self: *const IRawCDImageCreator, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_StartOfLeadoutLimit(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.get_StartOfLeadoutLimit(self, value);
     }
     pub fn put_DisableGaplessAudio(self: *const IRawCDImageCreator, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_DisableGaplessAudio(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.put_DisableGaplessAudio(self, value);
     }
     pub fn get_DisableGaplessAudio(self: *const IRawCDImageCreator, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_DisableGaplessAudio(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.get_DisableGaplessAudio(self, value);
     }
     pub fn put_MediaCatalogNumber(self: *const IRawCDImageCreator, value: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_MediaCatalogNumber(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.put_MediaCatalogNumber(self, value);
     }
     pub fn get_MediaCatalogNumber(self: *const IRawCDImageCreator, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_MediaCatalogNumber(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.get_MediaCatalogNumber(self, value);
     }
     pub fn put_StartingTrackNumber(self: *const IRawCDImageCreator, value: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).put_StartingTrackNumber(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.put_StartingTrackNumber(self, value);
     }
     pub fn get_StartingTrackNumber(self: *const IRawCDImageCreator, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_StartingTrackNumber(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.get_StartingTrackNumber(self, value);
     }
     pub fn get_TrackInfo(self: *const IRawCDImageCreator, trackIndex: i32, value: ?*?*IRawCDImageTrackInfo) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_TrackInfo(@as(*const IRawCDImageCreator, @ptrCast(self)), trackIndex, value);
+        return self.vtable.get_TrackInfo(self, trackIndex, value);
     }
     pub fn get_NumberOfExistingTracks(self: *const IRawCDImageCreator, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_NumberOfExistingTracks(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.get_NumberOfExistingTracks(self, value);
     }
     pub fn get_LastUsedUserSectorInImage(self: *const IRawCDImageCreator, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_LastUsedUserSectorInImage(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.get_LastUsedUserSectorInImage(self, value);
     }
     pub fn get_ExpectedTableOfContents(self: *const IRawCDImageCreator, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageCreator.VTable, @ptrCast(self.vtable)).get_ExpectedTableOfContents(@as(*const IRawCDImageCreator, @ptrCast(self)), value);
+        return self.vtable.get_ExpectedTableOfContents(self, value);
     }
 };
 
@@ -3947,43 +3947,43 @@ pub const IRawCDImageTrackInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_StartingLba(self: *const IRawCDImageTrackInfo, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_StartingLba(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.get_StartingLba(self, value);
     }
     pub fn get_SectorCount(self: *const IRawCDImageTrackInfo, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_SectorCount(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.get_SectorCount(self, value);
     }
     pub fn get_TrackNumber(self: *const IRawCDImageTrackInfo, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_TrackNumber(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.get_TrackNumber(self, value);
     }
     pub fn get_SectorType(self: *const IRawCDImageTrackInfo, value: ?*IMAPI_CD_SECTOR_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_SectorType(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.get_SectorType(self, value);
     }
     pub fn get_ISRC(self: *const IRawCDImageTrackInfo, value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_ISRC(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.get_ISRC(self, value);
     }
     pub fn put_ISRC(self: *const IRawCDImageTrackInfo, value: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).put_ISRC(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.put_ISRC(self, value);
     }
     pub fn get_DigitalAudioCopySetting(self: *const IRawCDImageTrackInfo, value: ?*IMAPI_CD_TRACK_DIGITAL_COPY_SETTING) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_DigitalAudioCopySetting(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.get_DigitalAudioCopySetting(self, value);
     }
     pub fn put_DigitalAudioCopySetting(self: *const IRawCDImageTrackInfo, value: IMAPI_CD_TRACK_DIGITAL_COPY_SETTING) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).put_DigitalAudioCopySetting(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.put_DigitalAudioCopySetting(self, value);
     }
     pub fn get_AudioHasPreemphasis(self: *const IRawCDImageTrackInfo, value: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_AudioHasPreemphasis(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.get_AudioHasPreemphasis(self, value);
     }
     pub fn put_AudioHasPreemphasis(self: *const IRawCDImageTrackInfo, value: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).put_AudioHasPreemphasis(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.put_AudioHasPreemphasis(self, value);
     }
     pub fn get_TrackIndexes(self: *const IRawCDImageTrackInfo, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).get_TrackIndexes(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), value);
+        return self.vtable.get_TrackIndexes(self, value);
     }
     pub fn AddTrackIndex(self: *const IRawCDImageTrackInfo, lbaOffset: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).AddTrackIndex(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), lbaOffset);
+        return self.vtable.AddTrackIndex(self, lbaOffset);
     }
     pub fn ClearTrackIndex(self: *const IRawCDImageTrackInfo, lbaOffset: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRawCDImageTrackInfo.VTable, @ptrCast(self.vtable)).ClearTrackIndex(@as(*const IRawCDImageTrackInfo, @ptrCast(self)), lbaOffset);
+        return self.vtable.ClearTrackIndex(self, lbaOffset);
     }
 };
 
@@ -4019,10 +4019,10 @@ pub const IBlockRange = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_StartLba(self: *const IBlockRange, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IBlockRange.VTable, @ptrCast(self.vtable)).get_StartLba(@as(*const IBlockRange, @ptrCast(self)), value);
+        return self.vtable.get_StartLba(self, value);
     }
     pub fn get_EndLba(self: *const IBlockRange, value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IBlockRange.VTable, @ptrCast(self.vtable)).get_EndLba(@as(*const IBlockRange, @ptrCast(self)), value);
+        return self.vtable.get_EndLba(self, value);
     }
 };
 
@@ -4049,7 +4049,7 @@ pub const IBlockRangeList = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_BlockRanges(self: *const IBlockRangeList, value: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IBlockRangeList.VTable, @ptrCast(self.vtable)).get_BlockRanges(@as(*const IBlockRangeList, @ptrCast(self)), value);
+        return self.vtable.get_BlockRanges(self, value);
     }
 };
 
@@ -4235,31 +4235,31 @@ pub const IBootOptions = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_BootImage(self: *const IBootOptions, pVal: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_BootImage(@as(*const IBootOptions, @ptrCast(self)), pVal);
+        return self.vtable.get_BootImage(self, pVal);
     }
     pub fn get_Manufacturer(self: *const IBootOptions, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_Manufacturer(@as(*const IBootOptions, @ptrCast(self)), pVal);
+        return self.vtable.get_Manufacturer(self, pVal);
     }
     pub fn put_Manufacturer(self: *const IBootOptions, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).put_Manufacturer(@as(*const IBootOptions, @ptrCast(self)), newVal);
+        return self.vtable.put_Manufacturer(self, newVal);
     }
     pub fn get_PlatformId(self: *const IBootOptions, pVal: ?*PlatformId) callconv(.Inline) HRESULT {
-        return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_PlatformId(@as(*const IBootOptions, @ptrCast(self)), pVal);
+        return self.vtable.get_PlatformId(self, pVal);
     }
     pub fn put_PlatformId(self: *const IBootOptions, newVal: PlatformId) callconv(.Inline) HRESULT {
-        return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).put_PlatformId(@as(*const IBootOptions, @ptrCast(self)), newVal);
+        return self.vtable.put_PlatformId(self, newVal);
     }
     pub fn get_Emulation(self: *const IBootOptions, pVal: ?*EmulationType) callconv(.Inline) HRESULT {
-        return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_Emulation(@as(*const IBootOptions, @ptrCast(self)), pVal);
+        return self.vtable.get_Emulation(self, pVal);
     }
     pub fn put_Emulation(self: *const IBootOptions, newVal: EmulationType) callconv(.Inline) HRESULT {
-        return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).put_Emulation(@as(*const IBootOptions, @ptrCast(self)), newVal);
+        return self.vtable.put_Emulation(self, newVal);
     }
     pub fn get_ImageSize(self: *const IBootOptions, pVal: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).get_ImageSize(@as(*const IBootOptions, @ptrCast(self)), pVal);
+        return self.vtable.get_ImageSize(self, pVal);
     }
     pub fn AssignBootImage(self: *const IBootOptions, newVal: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IBootOptions.VTable, @ptrCast(self.vtable)).AssignBootImage(@as(*const IBootOptions, @ptrCast(self)), newVal);
+        return self.vtable.AssignBootImage(self, newVal);
     }
 };
 
@@ -4313,16 +4313,16 @@ pub const IProgressItem = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Description(self: *const IProgressItem, desc: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItem.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IProgressItem, @ptrCast(self)), desc);
+        return self.vtable.get_Description(self, desc);
     }
     pub fn get_FirstBlock(self: *const IProgressItem, block: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItem.VTable, @ptrCast(self.vtable)).get_FirstBlock(@as(*const IProgressItem, @ptrCast(self)), block);
+        return self.vtable.get_FirstBlock(self, block);
     }
     pub fn get_LastBlock(self: *const IProgressItem, block: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItem.VTable, @ptrCast(self.vtable)).get_LastBlock(@as(*const IProgressItem, @ptrCast(self)), block);
+        return self.vtable.get_LastBlock(self, block);
     }
     pub fn get_BlockCount(self: *const IProgressItem, blocks: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItem.VTable, @ptrCast(self.vtable)).get_BlockCount(@as(*const IProgressItem, @ptrCast(self)), blocks);
+        return self.vtable.get_BlockCount(self, blocks);
     }
 };
 
@@ -4373,16 +4373,16 @@ pub const IEnumProgressItems = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumProgressItems, celt: u32, rgelt: [*]?*IProgressItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumProgressItems.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumProgressItems, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumProgressItems, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumProgressItems.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumProgressItems, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumProgressItems) callconv(.Inline) HRESULT {
-        return @as(*const IEnumProgressItems.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumProgressItems, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumProgressItems, ppEnum: ?*?*IEnumProgressItems) callconv(.Inline) HRESULT {
-        return @as(*const IEnumProgressItems.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumProgressItems, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -4454,22 +4454,22 @@ pub const IProgressItems = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IProgressItems, NewEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IProgressItems, @ptrCast(self)), NewEnum);
+        return self.vtable.get__NewEnum(self, NewEnum);
     }
     pub fn get_Item(self: *const IProgressItems, Index: i32, item: ?*?*IProgressItem) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IProgressItems, @ptrCast(self)), Index, item);
+        return self.vtable.get_Item(self, Index, item);
     }
     pub fn get_Count(self: *const IProgressItems, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IProgressItems, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn ProgressItemFromBlock(self: *const IProgressItems, block: u32, item: ?*?*IProgressItem) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).ProgressItemFromBlock(@as(*const IProgressItems, @ptrCast(self)), block, item);
+        return self.vtable.ProgressItemFromBlock(self, block, item);
     }
     pub fn ProgressItemFromDescription(self: *const IProgressItems, description: ?BSTR, item: ?*?*IProgressItem) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).ProgressItemFromDescription(@as(*const IProgressItems, @ptrCast(self)), description, item);
+        return self.vtable.ProgressItemFromDescription(self, description, item);
     }
     pub fn get_EnumProgressItems(self: *const IProgressItems, NewEnum: ?*?*IEnumProgressItems) callconv(.Inline) HRESULT {
-        return @as(*const IProgressItems.VTable, @ptrCast(self.vtable)).get_EnumProgressItems(@as(*const IProgressItems, @ptrCast(self)), NewEnum);
+        return self.vtable.get_EnumProgressItems(self, NewEnum);
     }
 };
 
@@ -4532,19 +4532,19 @@ pub const IFileSystemImageResult = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ImageStream(self: *const IFileSystemImageResult, pVal: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_ImageStream(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
+        return self.vtable.get_ImageStream(self, pVal);
     }
     pub fn get_ProgressItems(self: *const IFileSystemImageResult, pVal: ?*?*IProgressItems) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_ProgressItems(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
+        return self.vtable.get_ProgressItems(self, pVal);
     }
     pub fn get_TotalBlocks(self: *const IFileSystemImageResult, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_TotalBlocks(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
+        return self.vtable.get_TotalBlocks(self, pVal);
     }
     pub fn get_BlockSize(self: *const IFileSystemImageResult, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_BlockSize(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
+        return self.vtable.get_BlockSize(self, pVal);
     }
     pub fn get_DiscId(self: *const IFileSystemImageResult, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImageResult.VTable, @ptrCast(self.vtable)).get_DiscId(@as(*const IFileSystemImageResult, @ptrCast(self)), pVal);
+        return self.vtable.get_DiscId(self, pVal);
     }
 };
 
@@ -4571,7 +4571,7 @@ pub const IFileSystemImageResult2 = extern union {
     };}
     pub usingnamespace IFileSystemImageResult.MethodMixin(@This());
     pub fn get_ModifiedBlocks(self: *const IFileSystemImageResult2, pVal: ?*?*IBlockRangeList) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImageResult2.VTable, @ptrCast(self.vtable)).get_ModifiedBlocks(@as(*const IFileSystemImageResult2, @ptrCast(self)), pVal);
+        return self.vtable.get_ModifiedBlocks(self, pVal);
     }
 };
 
@@ -4697,40 +4697,40 @@ pub const IFsiItem = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const IFsiItem, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsiItem, @ptrCast(self)), pVal);
+        return self.vtable.get_Name(self, pVal);
     }
     pub fn get_FullPath(self: *const IFsiItem, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_FullPath(@as(*const IFsiItem, @ptrCast(self)), pVal);
+        return self.vtable.get_FullPath(self, pVal);
     }
     pub fn get_CreationTime(self: *const IFsiItem, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_CreationTime(@as(*const IFsiItem, @ptrCast(self)), pVal);
+        return self.vtable.get_CreationTime(self, pVal);
     }
     pub fn put_CreationTime(self: *const IFsiItem, newVal: f64) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).put_CreationTime(@as(*const IFsiItem, @ptrCast(self)), newVal);
+        return self.vtable.put_CreationTime(self, newVal);
     }
     pub fn get_LastAccessedTime(self: *const IFsiItem, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_LastAccessedTime(@as(*const IFsiItem, @ptrCast(self)), pVal);
+        return self.vtable.get_LastAccessedTime(self, pVal);
     }
     pub fn put_LastAccessedTime(self: *const IFsiItem, newVal: f64) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).put_LastAccessedTime(@as(*const IFsiItem, @ptrCast(self)), newVal);
+        return self.vtable.put_LastAccessedTime(self, newVal);
     }
     pub fn get_LastModifiedTime(self: *const IFsiItem, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_LastModifiedTime(@as(*const IFsiItem, @ptrCast(self)), pVal);
+        return self.vtable.get_LastModifiedTime(self, pVal);
     }
     pub fn put_LastModifiedTime(self: *const IFsiItem, newVal: f64) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).put_LastModifiedTime(@as(*const IFsiItem, @ptrCast(self)), newVal);
+        return self.vtable.put_LastModifiedTime(self, newVal);
     }
     pub fn get_IsHidden(self: *const IFsiItem, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).get_IsHidden(@as(*const IFsiItem, @ptrCast(self)), pVal);
+        return self.vtable.get_IsHidden(self, pVal);
     }
     pub fn put_IsHidden(self: *const IFsiItem, newVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).put_IsHidden(@as(*const IFsiItem, @ptrCast(self)), newVal);
+        return self.vtable.put_IsHidden(self, newVal);
     }
     pub fn FileSystemName(self: *const IFsiItem, fileSystem: FsiFileSystems, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).FileSystemName(@as(*const IFsiItem, @ptrCast(self)), fileSystem, pVal);
+        return self.vtable.FileSystemName(self, fileSystem, pVal);
     }
     pub fn FileSystemPath(self: *const IFsiItem, fileSystem: FsiFileSystems, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFsiItem.VTable, @ptrCast(self.vtable)).FileSystemPath(@as(*const IFsiItem, @ptrCast(self)), fileSystem, pVal);
+        return self.vtable.FileSystemPath(self, fileSystem, pVal);
     }
 };
 
@@ -4781,16 +4781,16 @@ pub const IEnumFsiItems = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumFsiItems, celt: u32, rgelt: [*]?*IFsiItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumFsiItems.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumFsiItems, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumFsiItems, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumFsiItems.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumFsiItems, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumFsiItems) callconv(.Inline) HRESULT {
-        return @as(*const IEnumFsiItems.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumFsiItems, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumFsiItems, ppEnum: ?*?*IEnumFsiItems) callconv(.Inline) HRESULT {
-        return @as(*const IEnumFsiItems.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumFsiItems, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -4853,19 +4853,19 @@ pub const IFsiFileItem = extern union {
     };}
     pub usingnamespace IFsiItem.MethodMixin(@This());
     pub fn get_DataSize(self: *const IFsiFileItem, pVal: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).get_DataSize(@as(*const IFsiFileItem, @ptrCast(self)), pVal);
+        return self.vtable.get_DataSize(self, pVal);
     }
     pub fn get_DataSize32BitLow(self: *const IFsiFileItem, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).get_DataSize32BitLow(@as(*const IFsiFileItem, @ptrCast(self)), pVal);
+        return self.vtable.get_DataSize32BitLow(self, pVal);
     }
     pub fn get_DataSize32BitHigh(self: *const IFsiFileItem, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).get_DataSize32BitHigh(@as(*const IFsiFileItem, @ptrCast(self)), pVal);
+        return self.vtable.get_DataSize32BitHigh(self, pVal);
     }
     pub fn get_Data(self: *const IFsiFileItem, pVal: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).get_Data(@as(*const IFsiFileItem, @ptrCast(self)), pVal);
+        return self.vtable.get_Data(self, pVal);
     }
     pub fn put_Data(self: *const IFsiFileItem, newVal: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem.VTable, @ptrCast(self.vtable)).put_Data(@as(*const IFsiFileItem, @ptrCast(self)), newVal);
+        return self.vtable.put_Data(self, newVal);
     }
 };
 
@@ -4936,22 +4936,22 @@ pub const IFsiFileItem2 = extern union {
     };}
     pub usingnamespace IFsiFileItem.MethodMixin(@This());
     pub fn get_FsiNamedStreams(self: *const IFsiFileItem2, streams: ?*?*IFsiNamedStreams) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).get_FsiNamedStreams(@as(*const IFsiFileItem2, @ptrCast(self)), streams);
+        return self.vtable.get_FsiNamedStreams(self, streams);
     }
     pub fn get_IsNamedStream(self: *const IFsiFileItem2, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).get_IsNamedStream(@as(*const IFsiFileItem2, @ptrCast(self)), pVal);
+        return self.vtable.get_IsNamedStream(self, pVal);
     }
     pub fn AddStream(self: *const IFsiFileItem2, name: ?BSTR, streamData: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IFsiFileItem2, @ptrCast(self)), name, streamData);
+        return self.vtable.AddStream(self, name, streamData);
     }
     pub fn RemoveStream(self: *const IFsiFileItem2, name: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IFsiFileItem2, @ptrCast(self)), name);
+        return self.vtable.RemoveStream(self, name);
     }
     pub fn get_IsRealTime(self: *const IFsiFileItem2, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).get_IsRealTime(@as(*const IFsiFileItem2, @ptrCast(self)), pVal);
+        return self.vtable.get_IsRealTime(self, pVal);
     }
     pub fn put_IsRealTime(self: *const IFsiFileItem2, newVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IFsiFileItem2.VTable, @ptrCast(self.vtable)).put_IsRealTime(@as(*const IFsiFileItem2, @ptrCast(self)), newVal);
+        return self.vtable.put_IsRealTime(self, newVal);
     }
 };
 
@@ -5005,16 +5005,16 @@ pub const IFsiNamedStreams = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IFsiNamedStreams, NewEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IFsiNamedStreams.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFsiNamedStreams, @ptrCast(self)), NewEnum);
+        return self.vtable.get__NewEnum(self, NewEnum);
     }
     pub fn get_Item(self: *const IFsiNamedStreams, index: i32, item: ?*?*IFsiFileItem2) callconv(.Inline) HRESULT {
-        return @as(*const IFsiNamedStreams.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFsiNamedStreams, @ptrCast(self)), index, item);
+        return self.vtable.get_Item(self, index, item);
     }
     pub fn get_Count(self: *const IFsiNamedStreams, count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFsiNamedStreams.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFsiNamedStreams, @ptrCast(self)), count);
+        return self.vtable.get_Count(self, count);
     }
     pub fn get_EnumNamedStreams(self: *const IFsiNamedStreams, NewEnum: ?*?*IEnumFsiItems) callconv(.Inline) HRESULT {
-        return @as(*const IFsiNamedStreams.VTable, @ptrCast(self.vtable)).get_EnumNamedStreams(@as(*const IFsiNamedStreams, @ptrCast(self)), NewEnum);
+        return self.vtable.get_EnumNamedStreams(self, NewEnum);
     }
 };
 
@@ -5118,34 +5118,34 @@ pub const IFsiDirectoryItem = extern union {
     };}
     pub usingnamespace IFsiItem.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IFsiDirectoryItem, NewEnum: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFsiDirectoryItem, @ptrCast(self)), NewEnum);
+        return self.vtable.get__NewEnum(self, NewEnum);
     }
     pub fn get_Item(self: *const IFsiDirectoryItem, path: ?BSTR, item: ?*?*IFsiItem) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFsiDirectoryItem, @ptrCast(self)), path, item);
+        return self.vtable.get_Item(self, path, item);
     }
     pub fn get_Count(self: *const IFsiDirectoryItem, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFsiDirectoryItem, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn get_EnumFsiItems(self: *const IFsiDirectoryItem, NewEnum: ?*?*IEnumFsiItems) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).get_EnumFsiItems(@as(*const IFsiDirectoryItem, @ptrCast(self)), NewEnum);
+        return self.vtable.get_EnumFsiItems(self, NewEnum);
     }
     pub fn AddDirectory(self: *const IFsiDirectoryItem, path: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).AddDirectory(@as(*const IFsiDirectoryItem, @ptrCast(self)), path);
+        return self.vtable.AddDirectory(self, path);
     }
     pub fn AddFile(self: *const IFsiDirectoryItem, path: ?BSTR, fileData: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).AddFile(@as(*const IFsiDirectoryItem, @ptrCast(self)), path, fileData);
+        return self.vtable.AddFile(self, path, fileData);
     }
     pub fn AddTree(self: *const IFsiDirectoryItem, sourceDirectory: ?BSTR, includeBaseDirectory: i16) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).AddTree(@as(*const IFsiDirectoryItem, @ptrCast(self)), sourceDirectory, includeBaseDirectory);
+        return self.vtable.AddTree(self, sourceDirectory, includeBaseDirectory);
     }
     pub fn Add(self: *const IFsiDirectoryItem, item: ?*IFsiItem) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).Add(@as(*const IFsiDirectoryItem, @ptrCast(self)), item);
+        return self.vtable.Add(self, item);
     }
     pub fn Remove(self: *const IFsiDirectoryItem, path: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFsiDirectoryItem, @ptrCast(self)), path);
+        return self.vtable.Remove(self, path);
     }
     pub fn RemoveTree(self: *const IFsiDirectoryItem, path: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem.VTable, @ptrCast(self.vtable)).RemoveTree(@as(*const IFsiDirectoryItem, @ptrCast(self)), path);
+        return self.vtable.RemoveTree(self, path);
     }
 };
 
@@ -5172,7 +5172,7 @@ pub const IFsiDirectoryItem2 = extern union {
     };}
     pub usingnamespace IFsiDirectoryItem.MethodMixin(@This());
     pub fn AddTreeWithNamedStreams(self: *const IFsiDirectoryItem2, sourceDirectory: ?BSTR, includeBaseDirectory: i16) callconv(.Inline) HRESULT {
-        return @as(*const IFsiDirectoryItem2.VTable, @ptrCast(self.vtable)).AddTreeWithNamedStreams(@as(*const IFsiDirectoryItem2, @ptrCast(self)), sourceDirectory, includeBaseDirectory);
+        return self.vtable.AddTreeWithNamedStreams(self, sourceDirectory, includeBaseDirectory);
     }
 };
 
@@ -5630,154 +5630,154 @@ pub const IFileSystemImage = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Root(self: *const IFileSystemImage, pVal: ?*?*IFsiDirectoryItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_Root(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_Root(self, pVal);
     }
     pub fn get_SessionStartBlock(self: *const IFileSystemImage, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_SessionStartBlock(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_SessionStartBlock(self, pVal);
     }
     pub fn put_SessionStartBlock(self: *const IFileSystemImage, newVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_SessionStartBlock(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_SessionStartBlock(self, newVal);
     }
     pub fn get_FreeMediaBlocks(self: *const IFileSystemImage, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_FreeMediaBlocks(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_FreeMediaBlocks(self, pVal);
     }
     pub fn put_FreeMediaBlocks(self: *const IFileSystemImage, newVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_FreeMediaBlocks(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_FreeMediaBlocks(self, newVal);
     }
     pub fn SetMaxMediaBlocksFromDevice(self: *const IFileSystemImage, discRecorder: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).SetMaxMediaBlocksFromDevice(@as(*const IFileSystemImage, @ptrCast(self)), discRecorder);
+        return self.vtable.SetMaxMediaBlocksFromDevice(self, discRecorder);
     }
     pub fn get_UsedBlocks(self: *const IFileSystemImage, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_UsedBlocks(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_UsedBlocks(self, pVal);
     }
     pub fn get_VolumeName(self: *const IFileSystemImage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_VolumeName(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_VolumeName(self, pVal);
     }
     pub fn put_VolumeName(self: *const IFileSystemImage, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_VolumeName(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_VolumeName(self, newVal);
     }
     pub fn get_ImportedVolumeName(self: *const IFileSystemImage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_ImportedVolumeName(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_ImportedVolumeName(self, pVal);
     }
     pub fn get_BootImageOptions(self: *const IFileSystemImage, pVal: ?*?*IBootOptions) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_BootImageOptions(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_BootImageOptions(self, pVal);
     }
     pub fn put_BootImageOptions(self: *const IFileSystemImage, newVal: ?*IBootOptions) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_BootImageOptions(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_BootImageOptions(self, newVal);
     }
     pub fn get_FileCount(self: *const IFileSystemImage, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_FileCount(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_FileCount(self, pVal);
     }
     pub fn get_DirectoryCount(self: *const IFileSystemImage, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_DirectoryCount(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_DirectoryCount(self, pVal);
     }
     pub fn get_WorkingDirectory(self: *const IFileSystemImage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_WorkingDirectory(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_WorkingDirectory(self, pVal);
     }
     pub fn put_WorkingDirectory(self: *const IFileSystemImage, newVal: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_WorkingDirectory(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_WorkingDirectory(self, newVal);
     }
     pub fn get_ChangePoint(self: *const IFileSystemImage, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_ChangePoint(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_ChangePoint(self, pVal);
     }
     pub fn get_StrictFileSystemCompliance(self: *const IFileSystemImage, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_StrictFileSystemCompliance(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_StrictFileSystemCompliance(self, pVal);
     }
     pub fn put_StrictFileSystemCompliance(self: *const IFileSystemImage, newVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_StrictFileSystemCompliance(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_StrictFileSystemCompliance(self, newVal);
     }
     pub fn get_UseRestrictedCharacterSet(self: *const IFileSystemImage, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_UseRestrictedCharacterSet(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_UseRestrictedCharacterSet(self, pVal);
     }
     pub fn put_UseRestrictedCharacterSet(self: *const IFileSystemImage, newVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_UseRestrictedCharacterSet(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_UseRestrictedCharacterSet(self, newVal);
     }
     pub fn get_FileSystemsToCreate(self: *const IFileSystemImage, pVal: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_FileSystemsToCreate(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_FileSystemsToCreate(self, pVal);
     }
     pub fn put_FileSystemsToCreate(self: *const IFileSystemImage, newVal: FsiFileSystems) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_FileSystemsToCreate(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_FileSystemsToCreate(self, newVal);
     }
     pub fn get_FileSystemsSupported(self: *const IFileSystemImage, pVal: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_FileSystemsSupported(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_FileSystemsSupported(self, pVal);
     }
     pub fn put_UDFRevision(self: *const IFileSystemImage, newVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_UDFRevision(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_UDFRevision(self, newVal);
     }
     pub fn get_UDFRevision(self: *const IFileSystemImage, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_UDFRevision(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_UDFRevision(self, pVal);
     }
     pub fn get_UDFRevisionsSupported(self: *const IFileSystemImage, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_UDFRevisionsSupported(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_UDFRevisionsSupported(self, pVal);
     }
     pub fn ChooseImageDefaults(self: *const IFileSystemImage, discRecorder: ?*IDiscRecorder2) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).ChooseImageDefaults(@as(*const IFileSystemImage, @ptrCast(self)), discRecorder);
+        return self.vtable.ChooseImageDefaults(self, discRecorder);
     }
     pub fn ChooseImageDefaultsForMediaType(self: *const IFileSystemImage, value: IMAPI_MEDIA_PHYSICAL_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).ChooseImageDefaultsForMediaType(@as(*const IFileSystemImage, @ptrCast(self)), value);
+        return self.vtable.ChooseImageDefaultsForMediaType(self, value);
     }
     pub fn put_ISO9660InterchangeLevel(self: *const IFileSystemImage, newVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_ISO9660InterchangeLevel(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_ISO9660InterchangeLevel(self, newVal);
     }
     pub fn get_ISO9660InterchangeLevel(self: *const IFileSystemImage, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_ISO9660InterchangeLevel(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_ISO9660InterchangeLevel(self, pVal);
     }
     pub fn get_ISO9660InterchangeLevelsSupported(self: *const IFileSystemImage, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_ISO9660InterchangeLevelsSupported(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_ISO9660InterchangeLevelsSupported(self, pVal);
     }
     pub fn CreateResultImage(self: *const IFileSystemImage, resultStream: ?*?*IFileSystemImageResult) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).CreateResultImage(@as(*const IFileSystemImage, @ptrCast(self)), resultStream);
+        return self.vtable.CreateResultImage(self, resultStream);
     }
     pub fn Exists(self: *const IFileSystemImage, fullPath: ?BSTR, itemType: ?*FsiItemType) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).Exists(@as(*const IFileSystemImage, @ptrCast(self)), fullPath, itemType);
+        return self.vtable.Exists(self, fullPath, itemType);
     }
     pub fn CalculateDiscIdentifier(self: *const IFileSystemImage, discIdentifier: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).CalculateDiscIdentifier(@as(*const IFileSystemImage, @ptrCast(self)), discIdentifier);
+        return self.vtable.CalculateDiscIdentifier(self, discIdentifier);
     }
     pub fn IdentifyFileSystemsOnDisc(self: *const IFileSystemImage, discRecorder: ?*IDiscRecorder2, fileSystems: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).IdentifyFileSystemsOnDisc(@as(*const IFileSystemImage, @ptrCast(self)), discRecorder, fileSystems);
+        return self.vtable.IdentifyFileSystemsOnDisc(self, discRecorder, fileSystems);
     }
     pub fn GetDefaultFileSystemForImport(self: *const IFileSystemImage, fileSystems: FsiFileSystems, importDefault: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).GetDefaultFileSystemForImport(@as(*const IFileSystemImage, @ptrCast(self)), fileSystems, importDefault);
+        return self.vtable.GetDefaultFileSystemForImport(self, fileSystems, importDefault);
     }
     pub fn ImportFileSystem(self: *const IFileSystemImage, importedFileSystem: ?*FsiFileSystems) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).ImportFileSystem(@as(*const IFileSystemImage, @ptrCast(self)), importedFileSystem);
+        return self.vtable.ImportFileSystem(self, importedFileSystem);
     }
     pub fn ImportSpecificFileSystem(self: *const IFileSystemImage, fileSystemToUse: FsiFileSystems) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).ImportSpecificFileSystem(@as(*const IFileSystemImage, @ptrCast(self)), fileSystemToUse);
+        return self.vtable.ImportSpecificFileSystem(self, fileSystemToUse);
     }
     pub fn RollbackToChangePoint(self: *const IFileSystemImage, changePoint: i32) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).RollbackToChangePoint(@as(*const IFileSystemImage, @ptrCast(self)), changePoint);
+        return self.vtable.RollbackToChangePoint(self, changePoint);
     }
     pub fn LockInChangePoint(self: *const IFileSystemImage) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).LockInChangePoint(@as(*const IFileSystemImage, @ptrCast(self)));
+        return self.vtable.LockInChangePoint(self);
     }
     pub fn CreateDirectoryItem(self: *const IFileSystemImage, name: ?BSTR, newItem: ?*?*IFsiDirectoryItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).CreateDirectoryItem(@as(*const IFileSystemImage, @ptrCast(self)), name, newItem);
+        return self.vtable.CreateDirectoryItem(self, name, newItem);
     }
     pub fn CreateFileItem(self: *const IFileSystemImage, name: ?BSTR, newItem: ?*?*IFsiFileItem) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).CreateFileItem(@as(*const IFileSystemImage, @ptrCast(self)), name, newItem);
+        return self.vtable.CreateFileItem(self, name, newItem);
     }
     pub fn get_VolumeNameUDF(self: *const IFileSystemImage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_VolumeNameUDF(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_VolumeNameUDF(self, pVal);
     }
     pub fn get_VolumeNameJoliet(self: *const IFileSystemImage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_VolumeNameJoliet(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_VolumeNameJoliet(self, pVal);
     }
     pub fn get_VolumeNameISO9660(self: *const IFileSystemImage, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_VolumeNameISO9660(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_VolumeNameISO9660(self, pVal);
     }
     pub fn get_StageFiles(self: *const IFileSystemImage, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_StageFiles(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_StageFiles(self, pVal);
     }
     pub fn put_StageFiles(self: *const IFileSystemImage, newVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_StageFiles(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_StageFiles(self, newVal);
     }
     pub fn get_MultisessionInterfaces(self: *const IFileSystemImage, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).get_MultisessionInterfaces(@as(*const IFileSystemImage, @ptrCast(self)), pVal);
+        return self.vtable.get_MultisessionInterfaces(self, pVal);
     }
     pub fn put_MultisessionInterfaces(self: *const IFileSystemImage, newVal: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage.VTable, @ptrCast(self.vtable)).put_MultisessionInterfaces(@as(*const IFileSystemImage, @ptrCast(self)), newVal);
+        return self.vtable.put_MultisessionInterfaces(self, newVal);
     }
 };
 
@@ -5813,10 +5813,10 @@ pub const IFileSystemImage2 = extern union {
     };}
     pub usingnamespace IFileSystemImage.MethodMixin(@This());
     pub fn get_BootImageOptionsArray(self: *const IFileSystemImage2, pVal: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage2.VTable, @ptrCast(self.vtable)).get_BootImageOptionsArray(@as(*const IFileSystemImage2, @ptrCast(self)), pVal);
+        return self.vtable.get_BootImageOptionsArray(self, pVal);
     }
     pub fn put_BootImageOptionsArray(self: *const IFileSystemImage2, newVal: ?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage2.VTable, @ptrCast(self.vtable)).put_BootImageOptionsArray(@as(*const IFileSystemImage2, @ptrCast(self)), newVal);
+        return self.vtable.put_BootImageOptionsArray(self, newVal);
     }
 };
 
@@ -5861,13 +5861,13 @@ pub const IFileSystemImage3 = extern union {
     };}
     pub usingnamespace IFileSystemImage2.MethodMixin(@This());
     pub fn get_CreateRedundantUdfMetadataFiles(self: *const IFileSystemImage3, pVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage3.VTable, @ptrCast(self.vtable)).get_CreateRedundantUdfMetadataFiles(@as(*const IFileSystemImage3, @ptrCast(self)), pVal);
+        return self.vtable.get_CreateRedundantUdfMetadataFiles(self, pVal);
     }
     pub fn put_CreateRedundantUdfMetadataFiles(self: *const IFileSystemImage3, newVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage3.VTable, @ptrCast(self.vtable)).put_CreateRedundantUdfMetadataFiles(@as(*const IFileSystemImage3, @ptrCast(self)), newVal);
+        return self.vtable.put_CreateRedundantUdfMetadataFiles(self, newVal);
     }
     pub fn ProbeSpecificFileSystem(self: *const IFileSystemImage3, fileSystemToProbe: FsiFileSystems, isAppendable: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IFileSystemImage3.VTable, @ptrCast(self.vtable)).ProbeSpecificFileSystem(@as(*const IFileSystemImage3, @ptrCast(self)), fileSystemToProbe, isAppendable);
+        return self.vtable.ProbeSpecificFileSystem(self, fileSystemToProbe, isAppendable);
     }
 };
 
@@ -5896,7 +5896,7 @@ pub const DFileSystemImageEvents = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Update(self: *const DFileSystemImageEvents, object: ?*IDispatch, currentFile: ?BSTR, copiedSectors: i32, totalSectors: i32) callconv(.Inline) HRESULT {
-        return @as(*const DFileSystemImageEvents.VTable, @ptrCast(self.vtable)).Update(@as(*const DFileSystemImageEvents, @ptrCast(self)), object, currentFile, copiedSectors, totalSectors);
+        return self.vtable.Update(self, object, currentFile, copiedSectors, totalSectors);
     }
 };
 
@@ -5928,7 +5928,7 @@ pub const DFileSystemImageImportEvents = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn UpdateImport(self: *const DFileSystemImageImportEvents, object: ?*IDispatch, fileSystem: FsiFileSystems, currentItem: ?BSTR, importedDirectoryItems: i32, totalDirectoryItems: i32, importedFileItems: i32, totalFileItems: i32) callconv(.Inline) HRESULT {
-        return @as(*const DFileSystemImageImportEvents.VTable, @ptrCast(self.vtable)).UpdateImport(@as(*const DFileSystemImageImportEvents, @ptrCast(self)), object, fileSystem, currentItem, importedDirectoryItems, totalDirectoryItems, importedFileItems, totalFileItems);
+        return self.vtable.UpdateImport(self, object, fileSystem, currentItem, importedDirectoryItems, totalDirectoryItems, importedFileItems, totalFileItems);
     }
 };
 
@@ -5987,19 +5987,19 @@ pub const IIsoImageManager = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Path(self: *const IIsoImageManager, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IIsoImageManager, @ptrCast(self)), pVal);
+        return self.vtable.get_Path(self, pVal);
     }
     pub fn get_Stream(self: *const IIsoImageManager, data: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).get_Stream(@as(*const IIsoImageManager, @ptrCast(self)), data);
+        return self.vtable.get_Stream(self, data);
     }
     pub fn SetPath(self: *const IIsoImageManager, Val: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).SetPath(@as(*const IIsoImageManager, @ptrCast(self)), Val);
+        return self.vtable.SetPath(self, Val);
     }
     pub fn SetStream(self: *const IIsoImageManager, data: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).SetStream(@as(*const IIsoImageManager, @ptrCast(self)), data);
+        return self.vtable.SetStream(self, data);
     }
     pub fn Validate(self: *const IIsoImageManager) callconv(.Inline) HRESULT {
-        return @as(*const IIsoImageManager.VTable, @ptrCast(self.vtable)).Validate(@as(*const IIsoImageManager, @ptrCast(self)));
+        return self.vtable.Validate(self);
     }
 };
 
@@ -6187,49 +6187,49 @@ pub const IDiscRecorder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Init(self: *const IDiscRecorder, pbyUniqueID: [*:0]u8, nulIDSize: u32, nulDriveNumber: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).Init(@as(*const IDiscRecorder, @ptrCast(self)), pbyUniqueID, nulIDSize, nulDriveNumber);
+        return self.vtable.Init(self, pbyUniqueID, nulIDSize, nulDriveNumber);
     }
     pub fn GetRecorderGUID(self: *const IDiscRecorder, pbyUniqueID: ?[*:0]u8, ulBufferSize: u32, pulReturnSizeRequired: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetRecorderGUID(@as(*const IDiscRecorder, @ptrCast(self)), pbyUniqueID, ulBufferSize, pulReturnSizeRequired);
+        return self.vtable.GetRecorderGUID(self, pbyUniqueID, ulBufferSize, pulReturnSizeRequired);
     }
     pub fn GetRecorderType(self: *const IDiscRecorder, fTypeCode: ?*RECORDER_TYPES) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetRecorderType(@as(*const IDiscRecorder, @ptrCast(self)), fTypeCode);
+        return self.vtable.GetRecorderType(self, fTypeCode);
     }
     pub fn GetDisplayNames(self: *const IDiscRecorder, pbstrVendorID: ?*?BSTR, pbstrProductID: ?*?BSTR, pbstrRevision: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetDisplayNames(@as(*const IDiscRecorder, @ptrCast(self)), pbstrVendorID, pbstrProductID, pbstrRevision);
+        return self.vtable.GetDisplayNames(self, pbstrVendorID, pbstrProductID, pbstrRevision);
     }
     pub fn GetBasePnPID(self: *const IDiscRecorder, pbstrBasePnPID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetBasePnPID(@as(*const IDiscRecorder, @ptrCast(self)), pbstrBasePnPID);
+        return self.vtable.GetBasePnPID(self, pbstrBasePnPID);
     }
     pub fn GetPath(self: *const IDiscRecorder, pbstrPath: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IDiscRecorder, @ptrCast(self)), pbstrPath);
+        return self.vtable.GetPath(self, pbstrPath);
     }
     pub fn GetRecorderProperties(self: *const IDiscRecorder, ppPropStg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetRecorderProperties(@as(*const IDiscRecorder, @ptrCast(self)), ppPropStg);
+        return self.vtable.GetRecorderProperties(self, ppPropStg);
     }
     pub fn SetRecorderProperties(self: *const IDiscRecorder, pPropStg: ?*IPropertyStorage) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).SetRecorderProperties(@as(*const IDiscRecorder, @ptrCast(self)), pPropStg);
+        return self.vtable.SetRecorderProperties(self, pPropStg);
     }
     pub fn GetRecorderState(self: *const IDiscRecorder, pulDevStateFlags: ?*DISC_RECORDER_STATE_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).GetRecorderState(@as(*const IDiscRecorder, @ptrCast(self)), pulDevStateFlags);
+        return self.vtable.GetRecorderState(self, pulDevStateFlags);
     }
     pub fn OpenExclusive(self: *const IDiscRecorder) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).OpenExclusive(@as(*const IDiscRecorder, @ptrCast(self)));
+        return self.vtable.OpenExclusive(self);
     }
     pub fn QueryMediaType(self: *const IDiscRecorder, fMediaType: ?*MEDIA_TYPES, fMediaFlags: ?*MEDIA_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).QueryMediaType(@as(*const IDiscRecorder, @ptrCast(self)), fMediaType, fMediaFlags);
+        return self.vtable.QueryMediaType(self, fMediaType, fMediaFlags);
     }
     pub fn QueryMediaInfo(self: *const IDiscRecorder, pbSessions: ?*u8, pbLastTrack: ?*u8, ulStartAddress: ?*u32, ulNextWritable: ?*u32, ulFreeBlocks: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).QueryMediaInfo(@as(*const IDiscRecorder, @ptrCast(self)), pbSessions, pbLastTrack, ulStartAddress, ulNextWritable, ulFreeBlocks);
+        return self.vtable.QueryMediaInfo(self, pbSessions, pbLastTrack, ulStartAddress, ulNextWritable, ulFreeBlocks);
     }
     pub fn Eject(self: *const IDiscRecorder) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).Eject(@as(*const IDiscRecorder, @ptrCast(self)));
+        return self.vtable.Eject(self);
     }
     pub fn Erase(self: *const IDiscRecorder, bFullErase: u8) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).Erase(@as(*const IDiscRecorder, @ptrCast(self)), bFullErase);
+        return self.vtable.Erase(self, bFullErase);
     }
     pub fn Close(self: *const IDiscRecorder) callconv(.Inline) HRESULT {
-        return @as(*const IDiscRecorder.VTable, @ptrCast(self.vtable)).Close(@as(*const IDiscRecorder, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -6279,16 +6279,16 @@ pub const IEnumDiscRecorders = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumDiscRecorders, cRecorders: u32, ppRecorder: [*]?*IDiscRecorder, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDiscRecorders.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDiscRecorders, @ptrCast(self)), cRecorders, ppRecorder, pcFetched);
+        return self.vtable.Next(self, cRecorders, ppRecorder, pcFetched);
     }
     pub fn Skip(self: *const IEnumDiscRecorders, cRecorders: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDiscRecorders.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDiscRecorders, @ptrCast(self)), cRecorders);
+        return self.vtable.Skip(self, cRecorders);
     }
     pub fn Reset(self: *const IEnumDiscRecorders) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDiscRecorders.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDiscRecorders, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumDiscRecorders, ppEnum: ?*?*IEnumDiscRecorders) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDiscRecorders.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDiscRecorders, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -6338,16 +6338,16 @@ pub const IEnumDiscMasterFormats = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumDiscMasterFormats, cFormats: u32, lpiidFormatID: [*]Guid, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDiscMasterFormats.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumDiscMasterFormats, @ptrCast(self)), cFormats, lpiidFormatID, pcFetched);
+        return self.vtable.Next(self, cFormats, lpiidFormatID, pcFetched);
     }
     pub fn Skip(self: *const IEnumDiscMasterFormats, cFormats: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDiscMasterFormats.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumDiscMasterFormats, @ptrCast(self)), cFormats);
+        return self.vtable.Skip(self, cFormats);
     }
     pub fn Reset(self: *const IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDiscMasterFormats.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumDiscMasterFormats, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumDiscMasterFormats, ppEnum: ?*?*IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
-        return @as(*const IEnumDiscMasterFormats.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumDiscMasterFormats, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -6429,28 +6429,28 @@ pub const IRedbookDiscMaster = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTotalAudioTracks(self: *const IRedbookDiscMaster, pnTracks: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetTotalAudioTracks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnTracks);
+        return self.vtable.GetTotalAudioTracks(self, pnTracks);
     }
     pub fn GetTotalAudioBlocks(self: *const IRedbookDiscMaster, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetTotalAudioBlocks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnBlocks);
+        return self.vtable.GetTotalAudioBlocks(self, pnBlocks);
     }
     pub fn GetUsedAudioBlocks(self: *const IRedbookDiscMaster, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetUsedAudioBlocks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnBlocks);
+        return self.vtable.GetUsedAudioBlocks(self, pnBlocks);
     }
     pub fn GetAvailableAudioTrackBlocks(self: *const IRedbookDiscMaster, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetAvailableAudioTrackBlocks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnBlocks);
+        return self.vtable.GetAvailableAudioTrackBlocks(self, pnBlocks);
     }
     pub fn GetAudioBlockSize(self: *const IRedbookDiscMaster, pnBlockBytes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).GetAudioBlockSize(@as(*const IRedbookDiscMaster, @ptrCast(self)), pnBlockBytes);
+        return self.vtable.GetAudioBlockSize(self, pnBlockBytes);
     }
     pub fn CreateAudioTrack(self: *const IRedbookDiscMaster, nBlocks: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).CreateAudioTrack(@as(*const IRedbookDiscMaster, @ptrCast(self)), nBlocks);
+        return self.vtable.CreateAudioTrack(self, nBlocks);
     }
     pub fn AddAudioTrackBlocks(self: *const IRedbookDiscMaster, pby: [*:0]u8, cb: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).AddAudioTrackBlocks(@as(*const IRedbookDiscMaster, @ptrCast(self)), pby, cb);
+        return self.vtable.AddAudioTrackBlocks(self, pby, cb);
     }
     pub fn CloseAudioTrack(self: *const IRedbookDiscMaster) callconv(.Inline) HRESULT {
-        return @as(*const IRedbookDiscMaster.VTable, @ptrCast(self.vtable)).CloseAudioTrack(@as(*const IRedbookDiscMaster, @ptrCast(self)));
+        return self.vtable.CloseAudioTrack(self);
     }
 };
 
@@ -6517,22 +6517,22 @@ pub const IJolietDiscMaster = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTotalDataBlocks(self: *const IJolietDiscMaster, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).GetTotalDataBlocks(@as(*const IJolietDiscMaster, @ptrCast(self)), pnBlocks);
+        return self.vtable.GetTotalDataBlocks(self, pnBlocks);
     }
     pub fn GetUsedDataBlocks(self: *const IJolietDiscMaster, pnBlocks: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).GetUsedDataBlocks(@as(*const IJolietDiscMaster, @ptrCast(self)), pnBlocks);
+        return self.vtable.GetUsedDataBlocks(self, pnBlocks);
     }
     pub fn GetDataBlockSize(self: *const IJolietDiscMaster, pnBlockBytes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).GetDataBlockSize(@as(*const IJolietDiscMaster, @ptrCast(self)), pnBlockBytes);
+        return self.vtable.GetDataBlockSize(self, pnBlockBytes);
     }
     pub fn AddData(self: *const IJolietDiscMaster, pStorage: ?*IStorage, lFileOverwrite: i32) callconv(.Inline) HRESULT {
-        return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).AddData(@as(*const IJolietDiscMaster, @ptrCast(self)), pStorage, lFileOverwrite);
+        return self.vtable.AddData(self, pStorage, lFileOverwrite);
     }
     pub fn GetJolietProperties(self: *const IJolietDiscMaster, ppPropStg: ?*?*IPropertyStorage) callconv(.Inline) HRESULT {
-        return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).GetJolietProperties(@as(*const IJolietDiscMaster, @ptrCast(self)), ppPropStg);
+        return self.vtable.GetJolietProperties(self, ppPropStg);
     }
     pub fn SetJolietProperties(self: *const IJolietDiscMaster, pPropStg: ?*IPropertyStorage) callconv(.Inline) HRESULT {
-        return @as(*const IJolietDiscMaster.VTable, @ptrCast(self.vtable)).SetJolietProperties(@as(*const IJolietDiscMaster, @ptrCast(self)), pPropStg);
+        return self.vtable.SetJolietProperties(self, pPropStg);
     }
 };
 
@@ -6624,31 +6624,31 @@ pub const IDiscMasterProgressEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryCancel(self: *const IDiscMasterProgressEvents, pbCancel: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).QueryCancel(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), pbCancel);
+        return self.vtable.QueryCancel(self, pbCancel);
     }
     pub fn NotifyPnPActivity(self: *const IDiscMasterProgressEvents) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyPnPActivity(@as(*const IDiscMasterProgressEvents, @ptrCast(self)));
+        return self.vtable.NotifyPnPActivity(self);
     }
     pub fn NotifyAddProgress(self: *const IDiscMasterProgressEvents, nCompletedSteps: i32, nTotalSteps: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyAddProgress(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nCompletedSteps, nTotalSteps);
+        return self.vtable.NotifyAddProgress(self, nCompletedSteps, nTotalSteps);
     }
     pub fn NotifyBlockProgress(self: *const IDiscMasterProgressEvents, nCompleted: i32, nTotal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyBlockProgress(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nCompleted, nTotal);
+        return self.vtable.NotifyBlockProgress(self, nCompleted, nTotal);
     }
     pub fn NotifyTrackProgress(self: *const IDiscMasterProgressEvents, nCurrentTrack: i32, nTotalTracks: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyTrackProgress(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nCurrentTrack, nTotalTracks);
+        return self.vtable.NotifyTrackProgress(self, nCurrentTrack, nTotalTracks);
     }
     pub fn NotifyPreparingBurn(self: *const IDiscMasterProgressEvents, nEstimatedSeconds: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyPreparingBurn(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nEstimatedSeconds);
+        return self.vtable.NotifyPreparingBurn(self, nEstimatedSeconds);
     }
     pub fn NotifyClosingDisc(self: *const IDiscMasterProgressEvents, nEstimatedSeconds: i32) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyClosingDisc(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), nEstimatedSeconds);
+        return self.vtable.NotifyClosingDisc(self, nEstimatedSeconds);
     }
     pub fn NotifyBurnComplete(self: *const IDiscMasterProgressEvents, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyBurnComplete(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), status);
+        return self.vtable.NotifyBurnComplete(self, status);
     }
     pub fn NotifyEraseComplete(self: *const IDiscMasterProgressEvents, status: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMasterProgressEvents.VTable, @ptrCast(self.vtable)).NotifyEraseComplete(@as(*const IDiscMasterProgressEvents, @ptrCast(self)), status);
+        return self.vtable.NotifyEraseComplete(self, status);
     }
 };
 
@@ -6762,40 +6762,40 @@ pub const IDiscMaster = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IDiscMaster) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).Open(@as(*const IDiscMaster, @ptrCast(self)));
+        return self.vtable.Open(self);
     }
     pub fn EnumDiscMasterFormats(self: *const IDiscMaster, ppEnum: ?*?*IEnumDiscMasterFormats) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).EnumDiscMasterFormats(@as(*const IDiscMaster, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumDiscMasterFormats(self, ppEnum);
     }
     pub fn GetActiveDiscMasterFormat(self: *const IDiscMaster, lpiid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).GetActiveDiscMasterFormat(@as(*const IDiscMaster, @ptrCast(self)), lpiid);
+        return self.vtable.GetActiveDiscMasterFormat(self, lpiid);
     }
     pub fn SetActiveDiscMasterFormat(self: *const IDiscMaster, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).SetActiveDiscMasterFormat(@as(*const IDiscMaster, @ptrCast(self)), riid, ppUnk);
+        return self.vtable.SetActiveDiscMasterFormat(self, riid, ppUnk);
     }
     pub fn EnumDiscRecorders(self: *const IDiscMaster, ppEnum: ?*?*IEnumDiscRecorders) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).EnumDiscRecorders(@as(*const IDiscMaster, @ptrCast(self)), ppEnum);
+        return self.vtable.EnumDiscRecorders(self, ppEnum);
     }
     pub fn GetActiveDiscRecorder(self: *const IDiscMaster, ppRecorder: ?*?*IDiscRecorder) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).GetActiveDiscRecorder(@as(*const IDiscMaster, @ptrCast(self)), ppRecorder);
+        return self.vtable.GetActiveDiscRecorder(self, ppRecorder);
     }
     pub fn SetActiveDiscRecorder(self: *const IDiscMaster, pRecorder: ?*IDiscRecorder) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).SetActiveDiscRecorder(@as(*const IDiscMaster, @ptrCast(self)), pRecorder);
+        return self.vtable.SetActiveDiscRecorder(self, pRecorder);
     }
     pub fn ClearFormatContent(self: *const IDiscMaster) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).ClearFormatContent(@as(*const IDiscMaster, @ptrCast(self)));
+        return self.vtable.ClearFormatContent(self);
     }
     pub fn ProgressAdvise(self: *const IDiscMaster, pEvents: ?*IDiscMasterProgressEvents, pvCookie: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).ProgressAdvise(@as(*const IDiscMaster, @ptrCast(self)), pEvents, pvCookie);
+        return self.vtable.ProgressAdvise(self, pEvents, pvCookie);
     }
     pub fn ProgressUnadvise(self: *const IDiscMaster, vCookie: usize) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).ProgressUnadvise(@as(*const IDiscMaster, @ptrCast(self)), vCookie);
+        return self.vtable.ProgressUnadvise(self, vCookie);
     }
     pub fn RecordDisc(self: *const IDiscMaster, bSimulate: u8, bEjectAfterBurn: u8) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).RecordDisc(@as(*const IDiscMaster, @ptrCast(self)), bSimulate, bEjectAfterBurn);
+        return self.vtable.RecordDisc(self, bSimulate, bEjectAfterBurn);
     }
     pub fn Close(self: *const IDiscMaster) callconv(.Inline) HRESULT {
-        return @as(*const IDiscMaster.VTable, @ptrCast(self.vtable)).Close(@as(*const IDiscMaster, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 

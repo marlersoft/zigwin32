@@ -6447,16 +6447,16 @@ pub const IGetClusterUIInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClusterName(self: *const IGetClusterUIInfo, lpszName: ?BSTR, pcchName: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGetClusterUIInfo.VTable, @ptrCast(self.vtable)).GetClusterName(@as(*const IGetClusterUIInfo, @ptrCast(self)), lpszName, pcchName);
+        return self.vtable.GetClusterName(self, lpszName, pcchName);
     }
     pub fn GetLocale(self: *const IGetClusterUIInfo) callconv(.Inline) u32 {
-        return @as(*const IGetClusterUIInfo.VTable, @ptrCast(self.vtable)).GetLocale(@as(*const IGetClusterUIInfo, @ptrCast(self)));
+        return self.vtable.GetLocale(self);
     }
     pub fn GetFont(self: *const IGetClusterUIInfo) callconv(.Inline) ?HFONT {
-        return @as(*const IGetClusterUIInfo.VTable, @ptrCast(self.vtable)).GetFont(@as(*const IGetClusterUIInfo, @ptrCast(self)));
+        return self.vtable.GetFont(self);
     }
     pub fn GetIcon(self: *const IGetClusterUIInfo) callconv(.Inline) ?HICON {
-        return @as(*const IGetClusterUIInfo.VTable, @ptrCast(self.vtable)).GetIcon(@as(*const IGetClusterUIInfo, @ptrCast(self)));
+        return self.vtable.GetIcon(self);
     }
 };
 
@@ -6497,13 +6497,13 @@ pub const IGetClusterDataInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClusterName(self: *const IGetClusterDataInfo, lpszName: ?BSTR, pcchName: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGetClusterDataInfo.VTable, @ptrCast(self.vtable)).GetClusterName(@as(*const IGetClusterDataInfo, @ptrCast(self)), lpszName, pcchName);
+        return self.vtable.GetClusterName(self, lpszName, pcchName);
     }
     pub fn GetClusterHandle(self: *const IGetClusterDataInfo) callconv(.Inline) ?*_HCLUSTER {
-        return @as(*const IGetClusterDataInfo.VTable, @ptrCast(self.vtable)).GetClusterHandle(@as(*const IGetClusterDataInfo, @ptrCast(self)));
+        return self.vtable.GetClusterHandle(self);
     }
     pub fn GetObjectCount(self: *const IGetClusterDataInfo) callconv(.Inline) i32 {
-        return @as(*const IGetClusterDataInfo.VTable, @ptrCast(self.vtable)).GetObjectCount(@as(*const IGetClusterDataInfo, @ptrCast(self)));
+        return self.vtable.GetObjectCount(self);
     }
 };
 
@@ -6539,10 +6539,10 @@ pub const IGetClusterObjectInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetObjectName(self: *const IGetClusterObjectInfo, lObjIndex: i32, lpszName: ?BSTR, pcchName: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGetClusterObjectInfo.VTable, @ptrCast(self.vtable)).GetObjectName(@as(*const IGetClusterObjectInfo, @ptrCast(self)), lObjIndex, lpszName, pcchName);
+        return self.vtable.GetObjectName(self, lObjIndex, lpszName, pcchName);
     }
     pub fn GetObjectType(self: *const IGetClusterObjectInfo, lObjIndex: i32) callconv(.Inline) CLUADMEX_OBJECT_TYPE {
-        return @as(*const IGetClusterObjectInfo.VTable, @ptrCast(self.vtable)).GetObjectType(@as(*const IGetClusterObjectInfo, @ptrCast(self)), lObjIndex);
+        return self.vtable.GetObjectType(self, lObjIndex);
     }
 };
 
@@ -6568,7 +6568,7 @@ pub const IGetClusterNodeInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNodeHandle(self: *const IGetClusterNodeInfo, lObjIndex: i32) callconv(.Inline) ?*_HNODE {
-        return @as(*const IGetClusterNodeInfo.VTable, @ptrCast(self.vtable)).GetNodeHandle(@as(*const IGetClusterNodeInfo, @ptrCast(self)), lObjIndex);
+        return self.vtable.GetNodeHandle(self, lObjIndex);
     }
 };
 
@@ -6594,7 +6594,7 @@ pub const IGetClusterGroupInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGroupHandle(self: *const IGetClusterGroupInfo, lObjIndex: i32) callconv(.Inline) ?*_HGROUP {
-        return @as(*const IGetClusterGroupInfo.VTable, @ptrCast(self.vtable)).GetGroupHandle(@as(*const IGetClusterGroupInfo, @ptrCast(self)), lObjIndex);
+        return self.vtable.GetGroupHandle(self, lObjIndex);
     }
 };
 
@@ -6640,13 +6640,13 @@ pub const IGetClusterResourceInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetResourceHandle(self: *const IGetClusterResourceInfo, lObjIndex: i32) callconv(.Inline) ?*_HRESOURCE {
-        return @as(*const IGetClusterResourceInfo.VTable, @ptrCast(self.vtable)).GetResourceHandle(@as(*const IGetClusterResourceInfo, @ptrCast(self)), lObjIndex);
+        return self.vtable.GetResourceHandle(self, lObjIndex);
     }
     pub fn GetResourceTypeName(self: *const IGetClusterResourceInfo, lObjIndex: i32, lpszResTypeName: ?BSTR, pcchResTypeName: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IGetClusterResourceInfo.VTable, @ptrCast(self.vtable)).GetResourceTypeName(@as(*const IGetClusterResourceInfo, @ptrCast(self)), lObjIndex, lpszResTypeName, pcchResTypeName);
+        return self.vtable.GetResourceTypeName(self, lObjIndex, lpszResTypeName, pcchResTypeName);
     }
     pub fn GetResourceNetworkName(self: *const IGetClusterResourceInfo, lObjIndex: i32, lpszNetName: ?BSTR, pcchNetName: ?*u32) callconv(.Inline) BOOL {
-        return @as(*const IGetClusterResourceInfo.VTable, @ptrCast(self.vtable)).GetResourceNetworkName(@as(*const IGetClusterResourceInfo, @ptrCast(self)), lObjIndex, lpszNetName, pcchNetName);
+        return self.vtable.GetResourceNetworkName(self, lObjIndex, lpszNetName, pcchNetName);
     }
 };
 
@@ -6672,7 +6672,7 @@ pub const IGetClusterNetworkInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNetworkHandle(self: *const IGetClusterNetworkInfo, lObjIndex: i32) callconv(.Inline) ?*_HNETWORK {
-        return @as(*const IGetClusterNetworkInfo.VTable, @ptrCast(self.vtable)).GetNetworkHandle(@as(*const IGetClusterNetworkInfo, @ptrCast(self)), lObjIndex);
+        return self.vtable.GetNetworkHandle(self, lObjIndex);
     }
 };
 
@@ -6698,7 +6698,7 @@ pub const IGetClusterNetInterfaceInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNetInterfaceHandle(self: *const IGetClusterNetInterfaceInfo, lObjIndex: i32) callconv(.Inline) ?*_HNETINTERFACE {
-        return @as(*const IGetClusterNetInterfaceInfo.VTable, @ptrCast(self.vtable)).GetNetInterfaceHandle(@as(*const IGetClusterNetInterfaceInfo, @ptrCast(self)), lObjIndex);
+        return self.vtable.GetNetInterfaceHandle(self, lObjIndex);
     }
 };
 
@@ -6724,7 +6724,7 @@ pub const IWCPropertySheetCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddPropertySheetPage(self: *const IWCPropertySheetCallback, hpage: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWCPropertySheetCallback.VTable, @ptrCast(self.vtable)).AddPropertySheetPage(@as(*const IWCPropertySheetCallback, @ptrCast(self)), hpage);
+        return self.vtable.AddPropertySheetPage(self, hpage);
     }
 };
 
@@ -6751,7 +6751,7 @@ pub const IWEExtendPropertySheet = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreatePropertySheetPages(self: *const IWEExtendPropertySheet, piData: ?*IUnknown, piCallback: ?*IWCPropertySheetCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWEExtendPropertySheet.VTable, @ptrCast(self.vtable)).CreatePropertySheetPages(@as(*const IWEExtendPropertySheet, @ptrCast(self)), piData, piCallback);
+        return self.vtable.CreatePropertySheetPages(self, piData, piCallback);
     }
 };
 
@@ -6786,10 +6786,10 @@ pub const IWCWizardCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddWizardPage(self: *const IWCWizardCallback, hpage: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWCWizardCallback.VTable, @ptrCast(self.vtable)).AddWizardPage(@as(*const IWCWizardCallback, @ptrCast(self)), hpage);
+        return self.vtable.AddWizardPage(self, hpage);
     }
     pub fn EnableNext(self: *const IWCWizardCallback, hpage: ?*i32, bEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWCWizardCallback.VTable, @ptrCast(self.vtable)).EnableNext(@as(*const IWCWizardCallback, @ptrCast(self)), hpage, bEnable);
+        return self.vtable.EnableNext(self, hpage, bEnable);
     }
 };
 
@@ -6816,7 +6816,7 @@ pub const IWEExtendWizard = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateWizardPages(self: *const IWEExtendWizard, piData: ?*IUnknown, piCallback: ?*IWCWizardCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWEExtendWizard.VTable, @ptrCast(self.vtable)).CreateWizardPages(@as(*const IWEExtendWizard, @ptrCast(self)), piData, piCallback);
+        return self.vtable.CreateWizardPages(self, piData, piCallback);
     }
 };
 
@@ -6846,7 +6846,7 @@ pub const IWCContextMenuCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddExtensionMenuItem(self: *const IWCContextMenuCallback, lpszName: ?BSTR, lpszStatusBarText: ?BSTR, nCommandID: u32, nSubmenuCommandID: u32, uFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWCContextMenuCallback.VTable, @ptrCast(self.vtable)).AddExtensionMenuItem(@as(*const IWCContextMenuCallback, @ptrCast(self)), lpszName, lpszStatusBarText, nCommandID, nSubmenuCommandID, uFlags);
+        return self.vtable.AddExtensionMenuItem(self, lpszName, lpszStatusBarText, nCommandID, nSubmenuCommandID, uFlags);
     }
 };
 
@@ -6873,7 +6873,7 @@ pub const IWEExtendContextMenu = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddContextMenuItems(self: *const IWEExtendContextMenu, piData: ?*IUnknown, piCallback: ?*IWCContextMenuCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWEExtendContextMenu.VTable, @ptrCast(self.vtable)).AddContextMenuItems(@as(*const IWEExtendContextMenu, @ptrCast(self)), piData, piCallback);
+        return self.vtable.AddContextMenuItems(self, piData, piCallback);
     }
 };
 
@@ -6900,7 +6900,7 @@ pub const IWEInvokeCommand = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InvokeCommand(self: *const IWEInvokeCommand, nCommandID: u32, piData: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IWEInvokeCommand.VTable, @ptrCast(self.vtable)).InvokeCommand(@as(*const IWEInvokeCommand, @ptrCast(self)), nCommandID, piData);
+        return self.vtable.InvokeCommand(self, nCommandID, piData);
     }
 };
 
@@ -6935,10 +6935,10 @@ pub const IWCWizard97Callback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddWizard97Page(self: *const IWCWizard97Callback, hpage: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWCWizard97Callback.VTable, @ptrCast(self.vtable)).AddWizard97Page(@as(*const IWCWizard97Callback, @ptrCast(self)), hpage);
+        return self.vtable.AddWizard97Page(self, hpage);
     }
     pub fn EnableNext(self: *const IWCWizard97Callback, hpage: ?*i32, bEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWCWizard97Callback.VTable, @ptrCast(self.vtable)).EnableNext(@as(*const IWCWizard97Callback, @ptrCast(self)), hpage, bEnable);
+        return self.vtable.EnableNext(self, hpage, bEnable);
     }
 };
 
@@ -6965,7 +6965,7 @@ pub const IWEExtendWizard97 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateWizard97Pages(self: *const IWEExtendWizard97, piData: ?*IUnknown, piCallback: ?*IWCWizard97Callback) callconv(.Inline) HRESULT {
-        return @as(*const IWEExtendWizard97.VTable, @ptrCast(self.vtable)).CreateWizard97Pages(@as(*const IWEExtendWizard97, @ptrCast(self)), piData, piCallback);
+        return self.vtable.CreateWizard97Pages(self, piData, piCallback);
     }
 };
 
@@ -7129,13 +7129,13 @@ pub const ISClusApplication = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DomainNames(self: *const ISClusApplication, ppDomains: ?*?*ISDomainNames) callconv(.Inline) HRESULT {
-        return @as(*const ISClusApplication.VTable, @ptrCast(self.vtable)).get_DomainNames(@as(*const ISClusApplication, @ptrCast(self)), ppDomains);
+        return self.vtable.get_DomainNames(self, ppDomains);
     }
     pub fn get_ClusterNames(self: *const ISClusApplication, bstrDomainName: ?BSTR, ppClusters: ?*?*ISClusterNames) callconv(.Inline) HRESULT {
-        return @as(*const ISClusApplication.VTable, @ptrCast(self.vtable)).get_ClusterNames(@as(*const ISClusApplication, @ptrCast(self)), bstrDomainName, ppClusters);
+        return self.vtable.get_ClusterNames(self, bstrDomainName, ppClusters);
     }
     pub fn OpenCluster(self: *const ISClusApplication, bstrClusterName: ?BSTR, pCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-        return @as(*const ISClusApplication.VTable, @ptrCast(self.vtable)).OpenCluster(@as(*const ISClusApplication, @ptrCast(self)), bstrClusterName, pCluster);
+        return self.vtable.OpenCluster(self, bstrClusterName, pCluster);
     }
 };
 
@@ -7186,16 +7186,16 @@ pub const ISDomainNames = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISDomainNames, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISDomainNames.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISDomainNames, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISDomainNames, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISDomainNames.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISDomainNames, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISDomainNames) callconv(.Inline) HRESULT {
-        return @as(*const ISDomainNames.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISDomainNames, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISDomainNames, varIndex: VARIANT, pbstrDomainName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISDomainNames.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISDomainNames, @ptrCast(self)), varIndex, pbstrDomainName);
+        return self.vtable.get_Item(self, varIndex, pbstrDomainName);
     }
 };
 
@@ -7255,19 +7255,19 @@ pub const ISClusterNames = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusterNames, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusterNames.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusterNames, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusterNames, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusterNames.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusterNames, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusterNames) callconv(.Inline) HRESULT {
-        return @as(*const ISClusterNames.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusterNames, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusterNames, varIndex: VARIANT, pbstrClusterName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusterNames.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusterNames, @ptrCast(self)), varIndex, pbstrClusterName);
+        return self.vtable.get_Item(self, varIndex, pbstrClusterName);
     }
     pub fn get_DomainName(self: *const ISClusterNames, pbstrDomainName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusterNames.VTable, @ptrCast(self.vtable)).get_DomainName(@as(*const ISClusterNames, @ptrCast(self)), pbstrDomainName);
+        return self.vtable.get_DomainName(self, pbstrDomainName);
     }
 };
 
@@ -7293,7 +7293,7 @@ pub const ISClusRefObject = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Handle(self: *const ISClusRefObject, phandle: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const ISClusRefObject.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const ISClusRefObject, @ptrCast(self)), phandle);
+        return self.vtable.get_Handle(self, phandle);
     }
 };
 
@@ -7400,34 +7400,34 @@ pub const ISClusVersion = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const ISClusVersion, pbstrClusterName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISClusVersion, @ptrCast(self)), pbstrClusterName);
+        return self.vtable.get_Name(self, pbstrClusterName);
     }
     pub fn get_MajorVersion(self: *const ISClusVersion, pnMajorVersion: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const ISClusVersion, @ptrCast(self)), pnMajorVersion);
+        return self.vtable.get_MajorVersion(self, pnMajorVersion);
     }
     pub fn get_MinorVersion(self: *const ISClusVersion, pnMinorVersion: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const ISClusVersion, @ptrCast(self)), pnMinorVersion);
+        return self.vtable.get_MinorVersion(self, pnMinorVersion);
     }
     pub fn get_BuildNumber(self: *const ISClusVersion, pnBuildNumber: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_BuildNumber(@as(*const ISClusVersion, @ptrCast(self)), pnBuildNumber);
+        return self.vtable.get_BuildNumber(self, pnBuildNumber);
     }
     pub fn get_VendorId(self: *const ISClusVersion, pbstrVendorId: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_VendorId(@as(*const ISClusVersion, @ptrCast(self)), pbstrVendorId);
+        return self.vtable.get_VendorId(self, pbstrVendorId);
     }
     pub fn get_CSDVersion(self: *const ISClusVersion, pbstrCSDVersion: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_CSDVersion(@as(*const ISClusVersion, @ptrCast(self)), pbstrCSDVersion);
+        return self.vtable.get_CSDVersion(self, pbstrCSDVersion);
     }
     pub fn get_ClusterHighestVersion(self: *const ISClusVersion, pnClusterHighestVersion: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_ClusterHighestVersion(@as(*const ISClusVersion, @ptrCast(self)), pnClusterHighestVersion);
+        return self.vtable.get_ClusterHighestVersion(self, pnClusterHighestVersion);
     }
     pub fn get_ClusterLowestVersion(self: *const ISClusVersion, pnClusterLowestVersion: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_ClusterLowestVersion(@as(*const ISClusVersion, @ptrCast(self)), pnClusterLowestVersion);
+        return self.vtable.get_ClusterLowestVersion(self, pnClusterLowestVersion);
     }
     pub fn get_Flags(self: *const ISClusVersion, pnFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const ISClusVersion, @ptrCast(self)), pnFlags);
+        return self.vtable.get_Flags(self, pnFlags);
     }
     pub fn get_MixedVersion(self: *const ISClusVersion, pvarMixedVersion: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusVersion.VTable, @ptrCast(self.vtable)).get_MixedVersion(@as(*const ISClusVersion, @ptrCast(self)), pvarMixedVersion);
+        return self.vtable.get_MixedVersion(self, pvarMixedVersion);
     }
 };
 
@@ -7632,67 +7632,67 @@ pub const ISCluster = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_CommonProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_CommonProperties(@as(*const ISCluster, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonProperties(self, ppProperties);
     }
     pub fn get_PrivateProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_PrivateProperties(@as(*const ISCluster, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateProperties(self, ppProperties);
     }
     pub fn get_CommonROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_CommonROProperties(@as(*const ISCluster, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonROProperties(self, ppProperties);
     }
     pub fn get_PrivateROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_PrivateROProperties(@as(*const ISCluster, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
     pub fn get_Handle(self: *const ISCluster, phandle: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const ISCluster, @ptrCast(self)), phandle);
+        return self.vtable.get_Handle(self, phandle);
     }
     pub fn Open(self: *const ISCluster, bstrClusterName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).Open(@as(*const ISCluster, @ptrCast(self)), bstrClusterName);
+        return self.vtable.Open(self, bstrClusterName);
     }
     pub fn get_Name(self: *const ISCluster, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISCluster, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn put_Name(self: *const ISCluster, bstrClusterName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).put_Name(@as(*const ISCluster, @ptrCast(self)), bstrClusterName);
+        return self.vtable.put_Name(self, bstrClusterName);
     }
     pub fn get_Version(self: *const ISCluster, ppClusVersion: ?*?*ISClusVersion) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_Version(@as(*const ISCluster, @ptrCast(self)), ppClusVersion);
+        return self.vtable.get_Version(self, ppClusVersion);
     }
     pub fn put_QuorumResource(self: *const ISCluster, pClusterResource: ?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).put_QuorumResource(@as(*const ISCluster, @ptrCast(self)), pClusterResource);
+        return self.vtable.put_QuorumResource(self, pClusterResource);
     }
     pub fn get_QuorumResource(self: *const ISCluster, pClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_QuorumResource(@as(*const ISCluster, @ptrCast(self)), pClusterResource);
+        return self.vtable.get_QuorumResource(self, pClusterResource);
     }
     pub fn get_QuorumLogSize(self: *const ISCluster, pnLogSize: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_QuorumLogSize(@as(*const ISCluster, @ptrCast(self)), pnLogSize);
+        return self.vtable.get_QuorumLogSize(self, pnLogSize);
     }
     pub fn put_QuorumLogSize(self: *const ISCluster, nLogSize: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).put_QuorumLogSize(@as(*const ISCluster, @ptrCast(self)), nLogSize);
+        return self.vtable.put_QuorumLogSize(self, nLogSize);
     }
     pub fn get_QuorumPath(self: *const ISCluster, ppPath: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_QuorumPath(@as(*const ISCluster, @ptrCast(self)), ppPath);
+        return self.vtable.get_QuorumPath(self, ppPath);
     }
     pub fn put_QuorumPath(self: *const ISCluster, pPath: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).put_QuorumPath(@as(*const ISCluster, @ptrCast(self)), pPath);
+        return self.vtable.put_QuorumPath(self, pPath);
     }
     pub fn get_Nodes(self: *const ISCluster, ppNodes: ?*?*ISClusNodes) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_Nodes(@as(*const ISCluster, @ptrCast(self)), ppNodes);
+        return self.vtable.get_Nodes(self, ppNodes);
     }
     pub fn get_ResourceGroups(self: *const ISCluster, ppClusterResourceGroups: ?*?*ISClusResGroups) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_ResourceGroups(@as(*const ISCluster, @ptrCast(self)), ppClusterResourceGroups);
+        return self.vtable.get_ResourceGroups(self, ppClusterResourceGroups);
     }
     pub fn get_Resources(self: *const ISCluster, ppClusterResources: ?*?*ISClusResources) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_Resources(@as(*const ISCluster, @ptrCast(self)), ppClusterResources);
+        return self.vtable.get_Resources(self, ppClusterResources);
     }
     pub fn get_ResourceTypes(self: *const ISCluster, ppResourceTypes: ?*?*ISClusResTypes) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_ResourceTypes(@as(*const ISCluster, @ptrCast(self)), ppResourceTypes);
+        return self.vtable.get_ResourceTypes(self, ppResourceTypes);
     }
     pub fn get_Networks(self: *const ISCluster, ppNetworks: ?*?*ISClusNetworks) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_Networks(@as(*const ISCluster, @ptrCast(self)), ppNetworks);
+        return self.vtable.get_Networks(self, ppNetworks);
     }
     pub fn get_NetInterfaces(self: *const ISCluster, ppNetInterfaces: ?*?*ISClusNetInterfaces) callconv(.Inline) HRESULT {
-        return @as(*const ISCluster.VTable, @ptrCast(self.vtable)).get_NetInterfaces(@as(*const ISCluster, @ptrCast(self)), ppNetInterfaces);
+        return self.vtable.get_NetInterfaces(self, ppNetInterfaces);
     }
 };
 
@@ -7829,46 +7829,46 @@ pub const ISClusNode = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_CommonProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_CommonProperties(@as(*const ISClusNode, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonProperties(self, ppProperties);
     }
     pub fn get_PrivateProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_PrivateProperties(@as(*const ISClusNode, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateProperties(self, ppProperties);
     }
     pub fn get_CommonROProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_CommonROProperties(@as(*const ISClusNode, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonROProperties(self, ppProperties);
     }
     pub fn get_PrivateROProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_PrivateROProperties(@as(*const ISClusNode, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
     pub fn get_Name(self: *const ISClusNode, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISClusNode, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn get_Handle(self: *const ISClusNode, phandle: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const ISClusNode, @ptrCast(self)), phandle);
+        return self.vtable.get_Handle(self, phandle);
     }
     pub fn get_NodeID(self: *const ISClusNode, pbstrNodeID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_NodeID(@as(*const ISClusNode, @ptrCast(self)), pbstrNodeID);
+        return self.vtable.get_NodeID(self, pbstrNodeID);
     }
     pub fn get_State(self: *const ISClusNode, dwState: ?*CLUSTER_NODE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISClusNode, @ptrCast(self)), dwState);
+        return self.vtable.get_State(self, dwState);
     }
     pub fn Pause(self: *const ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).Pause(@as(*const ISClusNode, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn Resume(self: *const ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).Resume(@as(*const ISClusNode, @ptrCast(self)));
+        return self.vtable.Resume(self);
     }
     pub fn Evict(self: *const ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).Evict(@as(*const ISClusNode, @ptrCast(self)));
+        return self.vtable.Evict(self);
     }
     pub fn get_ResourceGroups(self: *const ISClusNode, ppResourceGroups: ?*?*ISClusResGroups) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_ResourceGroups(@as(*const ISClusNode, @ptrCast(self)), ppResourceGroups);
+        return self.vtable.get_ResourceGroups(self, ppResourceGroups);
     }
     pub fn get_Cluster(self: *const ISClusNode, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_Cluster(@as(*const ISClusNode, @ptrCast(self)), ppCluster);
+        return self.vtable.get_Cluster(self, ppCluster);
     }
     pub fn get_NetInterfaces(self: *const ISClusNode, ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNode.VTable, @ptrCast(self.vtable)).get_NetInterfaces(@as(*const ISClusNode, @ptrCast(self)), ppClusNetInterfaces);
+        return self.vtable.get_NetInterfaces(self, ppClusNetInterfaces);
     }
 };
 
@@ -7919,16 +7919,16 @@ pub const ISClusNodes = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusNodes, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNodes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusNodes, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusNodes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNodes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusNodes, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusNodes) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNodes.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusNodes, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNodes.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusNodes, @ptrCast(self)), varIndex, ppNode);
+        return self.vtable.get_Item(self, varIndex, ppNode);
     }
 };
 
@@ -8044,37 +8044,37 @@ pub const ISClusNetwork = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_CommonProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_CommonProperties(@as(*const ISClusNetwork, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonProperties(self, ppProperties);
     }
     pub fn get_PrivateProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_PrivateProperties(@as(*const ISClusNetwork, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateProperties(self, ppProperties);
     }
     pub fn get_CommonROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_CommonROProperties(@as(*const ISClusNetwork, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonROProperties(self, ppProperties);
     }
     pub fn get_PrivateROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_PrivateROProperties(@as(*const ISClusNetwork, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
     pub fn get_Handle(self: *const ISClusNetwork, phandle: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const ISClusNetwork, @ptrCast(self)), phandle);
+        return self.vtable.get_Handle(self, phandle);
     }
     pub fn get_Name(self: *const ISClusNetwork, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISClusNetwork, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn put_Name(self: *const ISClusNetwork, bstrNetworkName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).put_Name(@as(*const ISClusNetwork, @ptrCast(self)), bstrNetworkName);
+        return self.vtable.put_Name(self, bstrNetworkName);
     }
     pub fn get_NetworkID(self: *const ISClusNetwork, pbstrNetworkID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_NetworkID(@as(*const ISClusNetwork, @ptrCast(self)), pbstrNetworkID);
+        return self.vtable.get_NetworkID(self, pbstrNetworkID);
     }
     pub fn get_State(self: *const ISClusNetwork, dwState: ?*CLUSTER_NETWORK_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISClusNetwork, @ptrCast(self)), dwState);
+        return self.vtable.get_State(self, dwState);
     }
     pub fn get_NetInterfaces(self: *const ISClusNetwork, ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_NetInterfaces(@as(*const ISClusNetwork, @ptrCast(self)), ppClusNetInterfaces);
+        return self.vtable.get_NetInterfaces(self, ppClusNetInterfaces);
     }
     pub fn get_Cluster(self: *const ISClusNetwork, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetwork.VTable, @ptrCast(self.vtable)).get_Cluster(@as(*const ISClusNetwork, @ptrCast(self)), ppCluster);
+        return self.vtable.get_Cluster(self, ppCluster);
     }
 };
 
@@ -8125,16 +8125,16 @@ pub const ISClusNetworks = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusNetworks, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetworks.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusNetworks, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusNetworks, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetworks.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusNetworks, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusNetworks) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetworks.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusNetworks, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusNetworks, varIndex: VARIANT, ppClusNetwork: ?*?*ISClusNetwork) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetworks.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusNetworks, @ptrCast(self)), varIndex, ppClusNetwork);
+        return self.vtable.get_Item(self, varIndex, ppClusNetwork);
     }
 };
 
@@ -8223,28 +8223,28 @@ pub const ISClusNetInterface = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_CommonProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterface.VTable, @ptrCast(self.vtable)).get_CommonProperties(@as(*const ISClusNetInterface, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonProperties(self, ppProperties);
     }
     pub fn get_PrivateProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterface.VTable, @ptrCast(self.vtable)).get_PrivateProperties(@as(*const ISClusNetInterface, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateProperties(self, ppProperties);
     }
     pub fn get_CommonROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterface.VTable, @ptrCast(self.vtable)).get_CommonROProperties(@as(*const ISClusNetInterface, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonROProperties(self, ppProperties);
     }
     pub fn get_PrivateROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterface.VTable, @ptrCast(self.vtable)).get_PrivateROProperties(@as(*const ISClusNetInterface, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
     pub fn get_Name(self: *const ISClusNetInterface, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterface.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISClusNetInterface, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn get_Handle(self: *const ISClusNetInterface, phandle: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterface.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const ISClusNetInterface, @ptrCast(self)), phandle);
+        return self.vtable.get_Handle(self, phandle);
     }
     pub fn get_State(self: *const ISClusNetInterface, dwState: ?*CLUSTER_NETINTERFACE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterface.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISClusNetInterface, @ptrCast(self)), dwState);
+        return self.vtable.get_State(self, dwState);
     }
     pub fn get_Cluster(self: *const ISClusNetInterface, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterface.VTable, @ptrCast(self.vtable)).get_Cluster(@as(*const ISClusNetInterface, @ptrCast(self)), ppCluster);
+        return self.vtable.get_Cluster(self, ppCluster);
     }
 };
 
@@ -8295,16 +8295,16 @@ pub const ISClusNetInterfaces = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusNetInterfaces, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterfaces.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusNetInterfaces, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusNetInterfaces, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterfaces.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusNetInterfaces, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusNetInterfaces) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterfaces.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusNetInterfaces, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetInterfaces.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusNetInterfaces, @ptrCast(self)), varIndex, ppClusNetInterface);
+        return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
     }
 };
 
@@ -8355,16 +8355,16 @@ pub const ISClusNodeNetInterfaces = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusNodeNetInterfaces, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNodeNetInterfaces.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusNodeNetInterfaces, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusNodeNetInterfaces, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNodeNetInterfaces.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusNodeNetInterfaces, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusNodeNetInterfaces) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNodeNetInterfaces.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusNodeNetInterfaces, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusNodeNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNodeNetInterfaces.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusNodeNetInterfaces, @ptrCast(self)), varIndex, ppClusNetInterface);
+        return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
     }
 };
 
@@ -8415,16 +8415,16 @@ pub const ISClusNetworkNetInterfaces = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusNetworkNetInterfaces, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetworkNetInterfaces.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusNetworkNetInterfaces, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusNetworkNetInterfaces, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetworkNetInterfaces.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusNetworkNetInterfaces, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusNetworkNetInterfaces) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetworkNetInterfaces.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusNetworkNetInterfaces, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusNetworkNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.Inline) HRESULT {
-        return @as(*const ISClusNetworkNetInterfaces.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusNetworkNetInterfaces, @ptrCast(self)), varIndex, ppClusNetInterface);
+        return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
     }
 };
 
@@ -8585,52 +8585,52 @@ pub const ISClusResGroup = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_CommonProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_CommonProperties(@as(*const ISClusResGroup, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonProperties(self, ppProperties);
     }
     pub fn get_PrivateProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_PrivateProperties(@as(*const ISClusResGroup, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateProperties(self, ppProperties);
     }
     pub fn get_CommonROProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_CommonROProperties(@as(*const ISClusResGroup, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonROProperties(self, ppProperties);
     }
     pub fn get_PrivateROProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_PrivateROProperties(@as(*const ISClusResGroup, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
     pub fn get_Handle(self: *const ISClusResGroup, phandle: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const ISClusResGroup, @ptrCast(self)), phandle);
+        return self.vtable.get_Handle(self, phandle);
     }
     pub fn get_Name(self: *const ISClusResGroup, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISClusResGroup, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn put_Name(self: *const ISClusResGroup, bstrGroupName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).put_Name(@as(*const ISClusResGroup, @ptrCast(self)), bstrGroupName);
+        return self.vtable.put_Name(self, bstrGroupName);
     }
     pub fn get_State(self: *const ISClusResGroup, dwState: ?*CLUSTER_GROUP_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISClusResGroup, @ptrCast(self)), dwState);
+        return self.vtable.get_State(self, dwState);
     }
     pub fn get_OwnerNode(self: *const ISClusResGroup, ppOwnerNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_OwnerNode(@as(*const ISClusResGroup, @ptrCast(self)), ppOwnerNode);
+        return self.vtable.get_OwnerNode(self, ppOwnerNode);
     }
     pub fn get_Resources(self: *const ISClusResGroup, ppClusterGroupResources: ?*?*ISClusResGroupResources) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_Resources(@as(*const ISClusResGroup, @ptrCast(self)), ppClusterGroupResources);
+        return self.vtable.get_Resources(self, ppClusterGroupResources);
     }
     pub fn get_PreferredOwnerNodes(self: *const ISClusResGroup, ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_PreferredOwnerNodes(@as(*const ISClusResGroup, @ptrCast(self)), ppOwnerNodes);
+        return self.vtable.get_PreferredOwnerNodes(self, ppOwnerNodes);
     }
     pub fn Delete(self: *const ISClusResGroup) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).Delete(@as(*const ISClusResGroup, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn Online(self: *const ISClusResGroup, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).Online(@as(*const ISClusResGroup, @ptrCast(self)), varTimeout, varNode, pvarPending);
+        return self.vtable.Online(self, varTimeout, varNode, pvarPending);
     }
     pub fn Move(self: *const ISClusResGroup, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).Move(@as(*const ISClusResGroup, @ptrCast(self)), varTimeout, varNode, pvarPending);
+        return self.vtable.Move(self, varTimeout, varNode, pvarPending);
     }
     pub fn Offline(self: *const ISClusResGroup, varTimeout: VARIANT, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).Offline(@as(*const ISClusResGroup, @ptrCast(self)), varTimeout, pvarPending);
+        return self.vtable.Offline(self, varTimeout, pvarPending);
     }
     pub fn get_Cluster(self: *const ISClusResGroup, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroup.VTable, @ptrCast(self.vtable)).get_Cluster(@as(*const ISClusResGroup, @ptrCast(self)), ppCluster);
+        return self.vtable.get_Cluster(self, ppCluster);
     }
 };
 
@@ -8698,22 +8698,22 @@ pub const ISClusResGroups = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResGroups, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroups.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResGroups, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResGroups, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroups.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResGroups, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResGroups) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroups.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResGroups, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResGroups, varIndex: VARIANT, ppClusResGroup: ?*?*ISClusResGroup) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroups.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResGroups, @ptrCast(self)), varIndex, ppClusResGroup);
+        return self.vtable.get_Item(self, varIndex, ppClusResGroup);
     }
     pub fn CreateItem(self: *const ISClusResGroups, bstrResourceGroupName: ?BSTR, ppResourceGroup: ?*?*ISClusResGroup) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroups.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusResGroups, @ptrCast(self)), bstrResourceGroupName, ppResourceGroup);
+        return self.vtable.CreateItem(self, bstrResourceGroupName, ppResourceGroup);
     }
     pub fn DeleteItem(self: *const ISClusResGroups, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroups.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const ISClusResGroups, @ptrCast(self)), varIndex);
+        return self.vtable.DeleteItem(self, varIndex);
     }
 };
 
@@ -9011,100 +9011,100 @@ pub const ISClusResource = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_CommonProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_CommonProperties(@as(*const ISClusResource, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonProperties(self, ppProperties);
     }
     pub fn get_PrivateProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_PrivateProperties(@as(*const ISClusResource, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateProperties(self, ppProperties);
     }
     pub fn get_CommonROProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_CommonROProperties(@as(*const ISClusResource, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonROProperties(self, ppProperties);
     }
     pub fn get_PrivateROProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_PrivateROProperties(@as(*const ISClusResource, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
     pub fn get_Handle(self: *const ISClusResource, phandle: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_Handle(@as(*const ISClusResource, @ptrCast(self)), phandle);
+        return self.vtable.get_Handle(self, phandle);
     }
     pub fn get_Name(self: *const ISClusResource, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISClusResource, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn put_Name(self: *const ISClusResource, bstrResourceName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).put_Name(@as(*const ISClusResource, @ptrCast(self)), bstrResourceName);
+        return self.vtable.put_Name(self, bstrResourceName);
     }
     pub fn get_State(self: *const ISClusResource, dwState: ?*CLUSTER_RESOURCE_STATE) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISClusResource, @ptrCast(self)), dwState);
+        return self.vtable.get_State(self, dwState);
     }
     pub fn get_CoreFlag(self: *const ISClusResource, dwCoreFlag: ?*CLUS_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_CoreFlag(@as(*const ISClusResource, @ptrCast(self)), dwCoreFlag);
+        return self.vtable.get_CoreFlag(self, dwCoreFlag);
     }
     pub fn BecomeQuorumResource(self: *const ISClusResource, bstrDevicePath: ?BSTR, lMaxLogSize: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).BecomeQuorumResource(@as(*const ISClusResource, @ptrCast(self)), bstrDevicePath, lMaxLogSize);
+        return self.vtable.BecomeQuorumResource(self, bstrDevicePath, lMaxLogSize);
     }
     pub fn Delete(self: *const ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).Delete(@as(*const ISClusResource, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn Fail(self: *const ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).Fail(@as(*const ISClusResource, @ptrCast(self)));
+        return self.vtable.Fail(self);
     }
     pub fn Online(self: *const ISClusResource, nTimeout: i32, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).Online(@as(*const ISClusResource, @ptrCast(self)), nTimeout, pvarPending);
+        return self.vtable.Online(self, nTimeout, pvarPending);
     }
     pub fn Offline(self: *const ISClusResource, nTimeout: i32, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).Offline(@as(*const ISClusResource, @ptrCast(self)), nTimeout, pvarPending);
+        return self.vtable.Offline(self, nTimeout, pvarPending);
     }
     pub fn ChangeResourceGroup(self: *const ISClusResource, pResourceGroup: ?*ISClusResGroup) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).ChangeResourceGroup(@as(*const ISClusResource, @ptrCast(self)), pResourceGroup);
+        return self.vtable.ChangeResourceGroup(self, pResourceGroup);
     }
     pub fn AddResourceNode(self: *const ISClusResource, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).AddResourceNode(@as(*const ISClusResource, @ptrCast(self)), pNode);
+        return self.vtable.AddResourceNode(self, pNode);
     }
     pub fn RemoveResourceNode(self: *const ISClusResource, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).RemoveResourceNode(@as(*const ISClusResource, @ptrCast(self)), pNode);
+        return self.vtable.RemoveResourceNode(self, pNode);
     }
     pub fn CanResourceBeDependent(self: *const ISClusResource, pResource: ?*ISClusResource, pvarDependent: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).CanResourceBeDependent(@as(*const ISClusResource, @ptrCast(self)), pResource, pvarDependent);
+        return self.vtable.CanResourceBeDependent(self, pResource, pvarDependent);
     }
     pub fn get_PossibleOwnerNodes(self: *const ISClusResource, ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_PossibleOwnerNodes(@as(*const ISClusResource, @ptrCast(self)), ppOwnerNodes);
+        return self.vtable.get_PossibleOwnerNodes(self, ppOwnerNodes);
     }
     pub fn get_Dependencies(self: *const ISClusResource, ppResDependencies: ?*?*ISClusResDependencies) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_Dependencies(@as(*const ISClusResource, @ptrCast(self)), ppResDependencies);
+        return self.vtable.get_Dependencies(self, ppResDependencies);
     }
     pub fn get_Dependents(self: *const ISClusResource, ppResDependents: ?*?*ISClusResDependents) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_Dependents(@as(*const ISClusResource, @ptrCast(self)), ppResDependents);
+        return self.vtable.get_Dependents(self, ppResDependents);
     }
     pub fn get_Group(self: *const ISClusResource, ppResGroup: ?*?*ISClusResGroup) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_Group(@as(*const ISClusResource, @ptrCast(self)), ppResGroup);
+        return self.vtable.get_Group(self, ppResGroup);
     }
     pub fn get_OwnerNode(self: *const ISClusResource, ppOwnerNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_OwnerNode(@as(*const ISClusResource, @ptrCast(self)), ppOwnerNode);
+        return self.vtable.get_OwnerNode(self, ppOwnerNode);
     }
     pub fn get_Cluster(self: *const ISClusResource, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_Cluster(@as(*const ISClusResource, @ptrCast(self)), ppCluster);
+        return self.vtable.get_Cluster(self, ppCluster);
     }
     pub fn get_ClassInfo(self: *const ISClusResource, prcClassInfo: ?*CLUSTER_RESOURCE_CLASS) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_ClassInfo(@as(*const ISClusResource, @ptrCast(self)), prcClassInfo);
+        return self.vtable.get_ClassInfo(self, prcClassInfo);
     }
     pub fn get_Disk(self: *const ISClusResource, ppDisk: ?*?*ISClusDisk) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_Disk(@as(*const ISClusResource, @ptrCast(self)), ppDisk);
+        return self.vtable.get_Disk(self, ppDisk);
     }
     pub fn get_RegistryKeys(self: *const ISClusResource, ppRegistryKeys: ?*?*ISClusRegistryKeys) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_RegistryKeys(@as(*const ISClusResource, @ptrCast(self)), ppRegistryKeys);
+        return self.vtable.get_RegistryKeys(self, ppRegistryKeys);
     }
     pub fn get_CryptoKeys(self: *const ISClusResource, ppCryptoKeys: ?*?*ISClusCryptoKeys) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_CryptoKeys(@as(*const ISClusResource, @ptrCast(self)), ppCryptoKeys);
+        return self.vtable.get_CryptoKeys(self, ppCryptoKeys);
     }
     pub fn get_TypeName(self: *const ISClusResource, pbstrTypeName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_TypeName(@as(*const ISClusResource, @ptrCast(self)), pbstrTypeName);
+        return self.vtable.get_TypeName(self, pbstrTypeName);
     }
     pub fn get_Type(self: *const ISClusResource, ppResourceType: ?*?*ISClusResType) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISClusResource, @ptrCast(self)), ppResourceType);
+        return self.vtable.get_Type(self, ppResourceType);
     }
     pub fn get_MaintenanceMode(self: *const ISClusResource, pbMaintenanceMode: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).get_MaintenanceMode(@as(*const ISClusResource, @ptrCast(self)), pbMaintenanceMode);
+        return self.vtable.get_MaintenanceMode(self, pbMaintenanceMode);
     }
     pub fn put_MaintenanceMode(self: *const ISClusResource, bMaintenanceMode: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResource.VTable, @ptrCast(self.vtable)).put_MaintenanceMode(@as(*const ISClusResource, @ptrCast(self)), bMaintenanceMode);
+        return self.vtable.put_MaintenanceMode(self, bMaintenanceMode);
     }
 };
 
@@ -9190,28 +9190,28 @@ pub const ISClusResDependencies = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResDependencies, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependencies.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResDependencies, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResDependencies, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependencies.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResDependencies, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResDependencies) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependencies.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResDependencies, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResDependencies, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependencies.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResDependencies, @ptrCast(self)), varIndex, ppClusResource);
+        return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
     pub fn CreateItem(self: *const ISClusResDependencies, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependencies.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusResDependencies, @ptrCast(self)), bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
     }
     pub fn DeleteItem(self: *const ISClusResDependencies, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependencies.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const ISClusResDependencies, @ptrCast(self)), varIndex);
+        return self.vtable.DeleteItem(self, varIndex);
     }
     pub fn AddItem(self: *const ISClusResDependencies, pResource: ?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependencies.VTable, @ptrCast(self.vtable)).AddItem(@as(*const ISClusResDependencies, @ptrCast(self)), pResource);
+        return self.vtable.AddItem(self, pResource);
     }
     pub fn RemoveItem(self: *const ISClusResDependencies, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependencies.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const ISClusResDependencies, @ptrCast(self)), varIndex);
+        return self.vtable.RemoveItem(self, varIndex);
     }
 };
 
@@ -9281,22 +9281,22 @@ pub const ISClusResGroupResources = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResGroupResources, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupResources.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResGroupResources, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResGroupResources, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupResources.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResGroupResources, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResGroupResources) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupResources.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResGroupResources, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResGroupResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupResources.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResGroupResources, @ptrCast(self)), varIndex, ppClusResource);
+        return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
     pub fn CreateItem(self: *const ISClusResGroupResources, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupResources.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusResGroupResources, @ptrCast(self)), bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
     }
     pub fn DeleteItem(self: *const ISClusResGroupResources, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupResources.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const ISClusResGroupResources, @ptrCast(self)), varIndex);
+        return self.vtable.DeleteItem(self, varIndex);
     }
 };
 
@@ -9366,22 +9366,22 @@ pub const ISClusResTypeResources = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResTypeResources, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypeResources.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResTypeResources, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResTypeResources, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypeResources.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResTypeResources, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResTypeResources) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypeResources.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResTypeResources, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResTypeResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypeResources.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResTypeResources, @ptrCast(self)), varIndex, ppClusResource);
+        return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
     pub fn CreateItem(self: *const ISClusResTypeResources, bstrResourceName: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypeResources.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusResTypeResources, @ptrCast(self)), bstrResourceName, bstrGroupName, dwFlags, ppClusterResource);
+        return self.vtable.CreateItem(self, bstrResourceName, bstrGroupName, dwFlags, ppClusterResource);
     }
     pub fn DeleteItem(self: *const ISClusResTypeResources, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypeResources.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const ISClusResTypeResources, @ptrCast(self)), varIndex);
+        return self.vtable.DeleteItem(self, varIndex);
     }
 };
 
@@ -9452,22 +9452,22 @@ pub const ISClusResources = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResources, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResources.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResources, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResources, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResources.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResources, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResources) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResources.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResources, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResources.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResources, @ptrCast(self)), varIndex, ppClusResource);
+        return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
     pub fn CreateItem(self: *const ISClusResources, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResources.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusResources, @ptrCast(self)), bstrResourceName, bstrResourceType, bstrGroupName, dwFlags, ppClusterResource);
+        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, bstrGroupName, dwFlags, ppClusterResource);
     }
     pub fn DeleteItem(self: *const ISClusResources, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResources.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const ISClusResources, @ptrCast(self)), varIndex);
+        return self.vtable.DeleteItem(self, varIndex);
     }
 };
 
@@ -9559,31 +9559,31 @@ pub const ISClusResGroupPreferredOwnerNodes = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResGroupPreferredOwnerNodes, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupPreferredOwnerNodes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResGroupPreferredOwnerNodes, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResGroupPreferredOwnerNodes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupPreferredOwnerNodes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResGroupPreferredOwnerNodes, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResGroupPreferredOwnerNodes) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupPreferredOwnerNodes.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResGroupPreferredOwnerNodes, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupPreferredOwnerNodes.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResGroupPreferredOwnerNodes, @ptrCast(self)), varIndex, ppNode);
+        return self.vtable.get_Item(self, varIndex, ppNode);
     }
     pub fn InsertItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode, nPosition: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupPreferredOwnerNodes.VTable, @ptrCast(self.vtable)).InsertItem(@as(*const ISClusResGroupPreferredOwnerNodes, @ptrCast(self)), pNode, nPosition);
+        return self.vtable.InsertItem(self, pNode, nPosition);
     }
     pub fn RemoveItem(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupPreferredOwnerNodes.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const ISClusResGroupPreferredOwnerNodes, @ptrCast(self)), varIndex);
+        return self.vtable.RemoveItem(self, varIndex);
     }
     pub fn get_Modified(self: *const ISClusResGroupPreferredOwnerNodes, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupPreferredOwnerNodes.VTable, @ptrCast(self.vtable)).get_Modified(@as(*const ISClusResGroupPreferredOwnerNodes, @ptrCast(self)), pvarModified);
+        return self.vtable.get_Modified(self, pvarModified);
     }
     pub fn SaveChanges(self: *const ISClusResGroupPreferredOwnerNodes) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupPreferredOwnerNodes.VTable, @ptrCast(self.vtable)).SaveChanges(@as(*const ISClusResGroupPreferredOwnerNodes, @ptrCast(self)));
+        return self.vtable.SaveChanges(self);
     }
     pub fn AddItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResGroupPreferredOwnerNodes.VTable, @ptrCast(self.vtable)).AddItem(@as(*const ISClusResGroupPreferredOwnerNodes, @ptrCast(self)), pNode);
+        return self.vtable.AddItem(self, pNode);
     }
 };
 
@@ -9659,25 +9659,25 @@ pub const ISClusResPossibleOwnerNodes = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResPossibleOwnerNodes, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResPossibleOwnerNodes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResPossibleOwnerNodes, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResPossibleOwnerNodes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResPossibleOwnerNodes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResPossibleOwnerNodes, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResPossibleOwnerNodes) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResPossibleOwnerNodes.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResPossibleOwnerNodes, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResPossibleOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResPossibleOwnerNodes.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResPossibleOwnerNodes, @ptrCast(self)), varIndex, ppNode);
+        return self.vtable.get_Item(self, varIndex, ppNode);
     }
     pub fn AddItem(self: *const ISClusResPossibleOwnerNodes, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResPossibleOwnerNodes.VTable, @ptrCast(self.vtable)).AddItem(@as(*const ISClusResPossibleOwnerNodes, @ptrCast(self)), pNode);
+        return self.vtable.AddItem(self, pNode);
     }
     pub fn RemoveItem(self: *const ISClusResPossibleOwnerNodes, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResPossibleOwnerNodes.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const ISClusResPossibleOwnerNodes, @ptrCast(self)), varIndex);
+        return self.vtable.RemoveItem(self, varIndex);
     }
     pub fn get_Modified(self: *const ISClusResPossibleOwnerNodes, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResPossibleOwnerNodes.VTable, @ptrCast(self.vtable)).get_Modified(@as(*const ISClusResPossibleOwnerNodes, @ptrCast(self)), pvarModified);
+        return self.vtable.get_Modified(self, pvarModified);
     }
 };
 
@@ -9728,16 +9728,16 @@ pub const ISClusResTypePossibleOwnerNodes = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResTypePossibleOwnerNodes, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypePossibleOwnerNodes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResTypePossibleOwnerNodes, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResTypePossibleOwnerNodes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypePossibleOwnerNodes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResTypePossibleOwnerNodes, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResTypePossibleOwnerNodes) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypePossibleOwnerNodes.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResTypePossibleOwnerNodes, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResTypePossibleOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypePossibleOwnerNodes.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResTypePossibleOwnerNodes, @ptrCast(self)), varIndex, ppNode);
+        return self.vtable.get_Item(self, varIndex, ppNode);
     }
 };
 
@@ -9842,34 +9842,34 @@ pub const ISClusResType = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_CommonProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).get_CommonProperties(@as(*const ISClusResType, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonProperties(self, ppProperties);
     }
     pub fn get_PrivateProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).get_PrivateProperties(@as(*const ISClusResType, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateProperties(self, ppProperties);
     }
     pub fn get_CommonROProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).get_CommonROProperties(@as(*const ISClusResType, @ptrCast(self)), ppProperties);
+        return self.vtable.get_CommonROProperties(self, ppProperties);
     }
     pub fn get_PrivateROProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).get_PrivateROProperties(@as(*const ISClusResType, @ptrCast(self)), ppProperties);
+        return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
     pub fn get_Name(self: *const ISClusResType, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISClusResType, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn Delete(self: *const ISClusResType) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).Delete(@as(*const ISClusResType, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn get_Cluster(self: *const ISClusResType, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).get_Cluster(@as(*const ISClusResType, @ptrCast(self)), ppCluster);
+        return self.vtable.get_Cluster(self, ppCluster);
     }
     pub fn get_Resources(self: *const ISClusResType, ppClusterResTypeResources: ?*?*ISClusResTypeResources) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).get_Resources(@as(*const ISClusResType, @ptrCast(self)), ppClusterResTypeResources);
+        return self.vtable.get_Resources(self, ppClusterResTypeResources);
     }
     pub fn get_PossibleOwnerNodes(self: *const ISClusResType, ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).get_PossibleOwnerNodes(@as(*const ISClusResType, @ptrCast(self)), ppOwnerNodes);
+        return self.vtable.get_PossibleOwnerNodes(self, ppOwnerNodes);
     }
     pub fn get_AvailableDisks(self: *const ISClusResType, ppAvailableDisks: ?*?*ISClusDisks) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResType.VTable, @ptrCast(self.vtable)).get_AvailableDisks(@as(*const ISClusResType, @ptrCast(self)), ppAvailableDisks);
+        return self.vtable.get_AvailableDisks(self, ppAvailableDisks);
     }
 };
 
@@ -9941,22 +9941,22 @@ pub const ISClusResTypes = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResTypes, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypes.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResTypes, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResTypes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypes.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResTypes, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResTypes) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypes.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResTypes, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResTypes, varIndex: VARIANT, ppClusResType: ?*?*ISClusResType) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypes.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResTypes, @ptrCast(self)), varIndex, ppClusResType);
+        return self.vtable.get_Item(self, varIndex, ppClusResType);
     }
     pub fn CreateItem(self: *const ISClusResTypes, bstrResourceTypeName: ?BSTR, bstrDisplayName: ?BSTR, bstrResourceTypeDll: ?BSTR, dwLooksAlivePollInterval: i32, dwIsAlivePollInterval: i32, ppResourceType: ?*?*ISClusResType) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypes.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusResTypes, @ptrCast(self)), bstrResourceTypeName, bstrDisplayName, bstrResourceTypeDll, dwLooksAlivePollInterval, dwIsAlivePollInterval, ppResourceType);
+        return self.vtable.CreateItem(self, bstrResourceTypeName, bstrDisplayName, bstrResourceTypeDll, dwLooksAlivePollInterval, dwIsAlivePollInterval, ppResourceType);
     }
     pub fn DeleteItem(self: *const ISClusResTypes, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResTypes.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const ISClusResTypes, @ptrCast(self)), varIndex);
+        return self.vtable.DeleteItem(self, varIndex);
     }
 };
 
@@ -10106,49 +10106,49 @@ pub const ISClusProperty = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const ISClusProperty, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISClusProperty, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn get_Length(self: *const ISClusProperty, pLength: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_Length(@as(*const ISClusProperty, @ptrCast(self)), pLength);
+        return self.vtable.get_Length(self, pLength);
     }
     pub fn get_ValueCount(self: *const ISClusProperty, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_ValueCount(@as(*const ISClusProperty, @ptrCast(self)), pCount);
+        return self.vtable.get_ValueCount(self, pCount);
     }
     pub fn get_Values(self: *const ISClusProperty, ppClusterPropertyValues: ?*?*ISClusPropertyValues) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_Values(@as(*const ISClusProperty, @ptrCast(self)), ppClusterPropertyValues);
+        return self.vtable.get_Values(self, ppClusterPropertyValues);
     }
     pub fn get_Value(self: *const ISClusProperty, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISClusProperty, @ptrCast(self)), pvarValue);
+        return self.vtable.get_Value(self, pvarValue);
     }
     pub fn put_Value(self: *const ISClusProperty, varValue: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISClusProperty, @ptrCast(self)), varValue);
+        return self.vtable.put_Value(self, varValue);
     }
     pub fn get_Type(self: *const ISClusProperty, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISClusProperty, @ptrCast(self)), pType);
+        return self.vtable.get_Type(self, pType);
     }
     pub fn put_Type(self: *const ISClusProperty, Type: CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).put_Type(@as(*const ISClusProperty, @ptrCast(self)), Type);
+        return self.vtable.put_Type(self, Type);
     }
     pub fn get_Format(self: *const ISClusProperty, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_Format(@as(*const ISClusProperty, @ptrCast(self)), pFormat);
+        return self.vtable.get_Format(self, pFormat);
     }
     pub fn put_Format(self: *const ISClusProperty, Format: CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).put_Format(@as(*const ISClusProperty, @ptrCast(self)), Format);
+        return self.vtable.put_Format(self, Format);
     }
     pub fn get_ReadOnly(self: *const ISClusProperty, pvarReadOnly: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const ISClusProperty, @ptrCast(self)), pvarReadOnly);
+        return self.vtable.get_ReadOnly(self, pvarReadOnly);
     }
     pub fn get_Private(self: *const ISClusProperty, pvarPrivate: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_Private(@as(*const ISClusProperty, @ptrCast(self)), pvarPrivate);
+        return self.vtable.get_Private(self, pvarPrivate);
     }
     pub fn get_Common(self: *const ISClusProperty, pvarCommon: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_Common(@as(*const ISClusProperty, @ptrCast(self)), pvarCommon);
+        return self.vtable.get_Common(self, pvarCommon);
     }
     pub fn get_Modified(self: *const ISClusProperty, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).get_Modified(@as(*const ISClusProperty, @ptrCast(self)), pvarModified);
+        return self.vtable.get_Modified(self, pvarModified);
     }
     pub fn UseDefaultValue(self: *const ISClusProperty) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperty.VTable, @ptrCast(self.vtable)).UseDefaultValue(@as(*const ISClusProperty, @ptrCast(self)));
+        return self.vtable.UseDefaultValue(self);
     }
 };
 
@@ -10246,31 +10246,31 @@ pub const ISClusPropertyValue = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Value(self: *const ISClusPropertyValue, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValue.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISClusPropertyValue, @ptrCast(self)), pvarValue);
+        return self.vtable.get_Value(self, pvarValue);
     }
     pub fn put_Value(self: *const ISClusPropertyValue, varValue: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValue.VTable, @ptrCast(self.vtable)).put_Value(@as(*const ISClusPropertyValue, @ptrCast(self)), varValue);
+        return self.vtable.put_Value(self, varValue);
     }
     pub fn get_Type(self: *const ISClusPropertyValue, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValue.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISClusPropertyValue, @ptrCast(self)), pType);
+        return self.vtable.get_Type(self, pType);
     }
     pub fn put_Type(self: *const ISClusPropertyValue, Type: CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValue.VTable, @ptrCast(self.vtable)).put_Type(@as(*const ISClusPropertyValue, @ptrCast(self)), Type);
+        return self.vtable.put_Type(self, Type);
     }
     pub fn get_Format(self: *const ISClusPropertyValue, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValue.VTable, @ptrCast(self.vtable)).get_Format(@as(*const ISClusPropertyValue, @ptrCast(self)), pFormat);
+        return self.vtable.get_Format(self, pFormat);
     }
     pub fn put_Format(self: *const ISClusPropertyValue, Format: CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValue.VTable, @ptrCast(self.vtable)).put_Format(@as(*const ISClusPropertyValue, @ptrCast(self)), Format);
+        return self.vtable.put_Format(self, Format);
     }
     pub fn get_Length(self: *const ISClusPropertyValue, pLength: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValue.VTable, @ptrCast(self.vtable)).get_Length(@as(*const ISClusPropertyValue, @ptrCast(self)), pLength);
+        return self.vtable.get_Length(self, pLength);
     }
     pub fn get_DataCount(self: *const ISClusPropertyValue, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValue.VTable, @ptrCast(self.vtable)).get_DataCount(@as(*const ISClusPropertyValue, @ptrCast(self)), pCount);
+        return self.vtable.get_DataCount(self, pCount);
     }
     pub fn get_Data(self: *const ISClusPropertyValue, ppClusterPropertyValueData: ?*?*ISClusPropertyValueData) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValue.VTable, @ptrCast(self.vtable)).get_Data(@as(*const ISClusPropertyValue, @ptrCast(self)), ppClusterPropertyValueData);
+        return self.vtable.get_Data(self, ppClusterPropertyValueData);
     }
 };
 
@@ -10332,19 +10332,19 @@ pub const ISClusPropertyValues = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusPropertyValues, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValues.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusPropertyValues, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusPropertyValues, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValues.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusPropertyValues, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn get_Item(self: *const ISClusPropertyValues, varIndex: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValues.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusPropertyValues, @ptrCast(self)), varIndex, ppPropertyValue);
+        return self.vtable.get_Item(self, varIndex, ppPropertyValue);
     }
     pub fn CreateItem(self: *const ISClusPropertyValues, bstrName: ?BSTR, varValue: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValues.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusPropertyValues, @ptrCast(self)), bstrName, varValue, ppPropertyValue);
+        return self.vtable.CreateItem(self, bstrName, varValue, ppPropertyValue);
     }
     pub fn RemoveItem(self: *const ISClusPropertyValues, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValues.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const ISClusPropertyValues, @ptrCast(self)), varIndex);
+        return self.vtable.RemoveItem(self, varIndex);
     }
 };
 
@@ -10457,37 +10457,37 @@ pub const ISClusProperties = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusProperties, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusProperties, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusProperties, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusProperties, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusProperties, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusProperties, varIndex: VARIANT, ppClusProperty: ?*?*ISClusProperty) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusProperties, @ptrCast(self)), varIndex, ppClusProperty);
+        return self.vtable.get_Item(self, varIndex, ppClusProperty);
     }
     pub fn CreateItem(self: *const ISClusProperties, bstrName: ?BSTR, varValue: VARIANT, pProperty: ?*?*ISClusProperty) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusProperties, @ptrCast(self)), bstrName, varValue, pProperty);
+        return self.vtable.CreateItem(self, bstrName, varValue, pProperty);
     }
     pub fn UseDefaultValue(self: *const ISClusProperties, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).UseDefaultValue(@as(*const ISClusProperties, @ptrCast(self)), varIndex);
+        return self.vtable.UseDefaultValue(self, varIndex);
     }
     pub fn SaveChanges(self: *const ISClusProperties, pvarStatusCode: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).SaveChanges(@as(*const ISClusProperties, @ptrCast(self)), pvarStatusCode);
+        return self.vtable.SaveChanges(self, pvarStatusCode);
     }
     pub fn get_ReadOnly(self: *const ISClusProperties, pvarReadOnly: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).get_ReadOnly(@as(*const ISClusProperties, @ptrCast(self)), pvarReadOnly);
+        return self.vtable.get_ReadOnly(self, pvarReadOnly);
     }
     pub fn get_Private(self: *const ISClusProperties, pvarPrivate: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).get_Private(@as(*const ISClusProperties, @ptrCast(self)), pvarPrivate);
+        return self.vtable.get_Private(self, pvarPrivate);
     }
     pub fn get_Common(self: *const ISClusProperties, pvarCommon: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).get_Common(@as(*const ISClusProperties, @ptrCast(self)), pvarCommon);
+        return self.vtable.get_Common(self, pvarCommon);
     }
     pub fn get_Modified(self: *const ISClusProperties, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusProperties.VTable, @ptrCast(self.vtable)).get_Modified(@as(*const ISClusProperties, @ptrCast(self)), pvarModified);
+        return self.vtable.get_Modified(self, pvarModified);
     }
 };
 
@@ -10548,19 +10548,19 @@ pub const ISClusPropertyValueData = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusPropertyValueData, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValueData.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusPropertyValueData, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusPropertyValueData, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValueData.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusPropertyValueData, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn get_Item(self: *const ISClusPropertyValueData, varIndex: VARIANT, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValueData.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusPropertyValueData, @ptrCast(self)), varIndex, pvarValue);
+        return self.vtable.get_Item(self, varIndex, pvarValue);
     }
     pub fn CreateItem(self: *const ISClusPropertyValueData, varValue: VARIANT, pvarData: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValueData.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusPropertyValueData, @ptrCast(self)), varValue, pvarData);
+        return self.vtable.CreateItem(self, varValue, pvarData);
     }
     pub fn RemoveItem(self: *const ISClusPropertyValueData, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPropertyValueData.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const ISClusPropertyValueData, @ptrCast(self)), varIndex);
+        return self.vtable.RemoveItem(self, varIndex);
     }
 };
 
@@ -10640,25 +10640,25 @@ pub const ISClusPartition = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Flags(self: *const ISClusPartition, plFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartition.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const ISClusPartition, @ptrCast(self)), plFlags);
+        return self.vtable.get_Flags(self, plFlags);
     }
     pub fn get_DeviceName(self: *const ISClusPartition, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartition.VTable, @ptrCast(self.vtable)).get_DeviceName(@as(*const ISClusPartition, @ptrCast(self)), pbstrDeviceName);
+        return self.vtable.get_DeviceName(self, pbstrDeviceName);
     }
     pub fn get_VolumeLabel(self: *const ISClusPartition, pbstrVolumeLabel: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartition.VTable, @ptrCast(self.vtable)).get_VolumeLabel(@as(*const ISClusPartition, @ptrCast(self)), pbstrVolumeLabel);
+        return self.vtable.get_VolumeLabel(self, pbstrVolumeLabel);
     }
     pub fn get_SerialNumber(self: *const ISClusPartition, plSerialNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartition.VTable, @ptrCast(self.vtable)).get_SerialNumber(@as(*const ISClusPartition, @ptrCast(self)), plSerialNumber);
+        return self.vtable.get_SerialNumber(self, plSerialNumber);
     }
     pub fn get_MaximumComponentLength(self: *const ISClusPartition, plMaximumComponentLength: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartition.VTable, @ptrCast(self.vtable)).get_MaximumComponentLength(@as(*const ISClusPartition, @ptrCast(self)), plMaximumComponentLength);
+        return self.vtable.get_MaximumComponentLength(self, plMaximumComponentLength);
     }
     pub fn get_FileSystemFlags(self: *const ISClusPartition, plFileSystemFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartition.VTable, @ptrCast(self.vtable)).get_FileSystemFlags(@as(*const ISClusPartition, @ptrCast(self)), plFileSystemFlags);
+        return self.vtable.get_FileSystemFlags(self, plFileSystemFlags);
     }
     pub fn get_FileSystem(self: *const ISClusPartition, pbstrFileSystem: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartition.VTable, @ptrCast(self.vtable)).get_FileSystem(@as(*const ISClusPartition, @ptrCast(self)), pbstrFileSystem);
+        return self.vtable.get_FileSystem(self, pbstrFileSystem);
     }
 };
 
@@ -10721,19 +10721,19 @@ pub const ISClusPartitionEx = extern union {
     };}
     pub usingnamespace ISClusPartition.MethodMixin(@This());
     pub fn get_TotalSize(self: *const ISClusPartitionEx, plTotalSize: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartitionEx.VTable, @ptrCast(self.vtable)).get_TotalSize(@as(*const ISClusPartitionEx, @ptrCast(self)), plTotalSize);
+        return self.vtable.get_TotalSize(self, plTotalSize);
     }
     pub fn get_FreeSpace(self: *const ISClusPartitionEx, plFreeSpace: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartitionEx.VTable, @ptrCast(self.vtable)).get_FreeSpace(@as(*const ISClusPartitionEx, @ptrCast(self)), plFreeSpace);
+        return self.vtable.get_FreeSpace(self, plFreeSpace);
     }
     pub fn get_DeviceNumber(self: *const ISClusPartitionEx, plDeviceNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartitionEx.VTable, @ptrCast(self.vtable)).get_DeviceNumber(@as(*const ISClusPartitionEx, @ptrCast(self)), plDeviceNumber);
+        return self.vtable.get_DeviceNumber(self, plDeviceNumber);
     }
     pub fn get_PartitionNumber(self: *const ISClusPartitionEx, plPartitionNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartitionEx.VTable, @ptrCast(self.vtable)).get_PartitionNumber(@as(*const ISClusPartitionEx, @ptrCast(self)), plPartitionNumber);
+        return self.vtable.get_PartitionNumber(self, plPartitionNumber);
     }
     pub fn get_VolumeGuid(self: *const ISClusPartitionEx, pbstrVolumeGuid: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartitionEx.VTable, @ptrCast(self.vtable)).get_VolumeGuid(@as(*const ISClusPartitionEx, @ptrCast(self)), pbstrVolumeGuid);
+        return self.vtable.get_VolumeGuid(self, pbstrVolumeGuid);
     }
 };
 
@@ -10777,13 +10777,13 @@ pub const ISClusPartitions = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusPartitions, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartitions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusPartitions, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusPartitions, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartitions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusPartitions, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn get_Item(self: *const ISClusPartitions, varIndex: VARIANT, ppPartition: ?*?*ISClusPartition) callconv(.Inline) HRESULT {
-        return @as(*const ISClusPartitions.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusPartitions, @ptrCast(self)), varIndex, ppPartition);
+        return self.vtable.get_Item(self, varIndex, ppPartition);
     }
 };
 
@@ -10836,16 +10836,16 @@ pub const ISClusDisk = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Signature(self: *const ISClusDisk, plSignature: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusDisk.VTable, @ptrCast(self.vtable)).get_Signature(@as(*const ISClusDisk, @ptrCast(self)), plSignature);
+        return self.vtable.get_Signature(self, plSignature);
     }
     pub fn get_ScsiAddress(self: *const ISClusDisk, ppScsiAddress: ?*?*ISClusScsiAddress) callconv(.Inline) HRESULT {
-        return @as(*const ISClusDisk.VTable, @ptrCast(self.vtable)).get_ScsiAddress(@as(*const ISClusDisk, @ptrCast(self)), ppScsiAddress);
+        return self.vtable.get_ScsiAddress(self, ppScsiAddress);
     }
     pub fn get_DiskNumber(self: *const ISClusDisk, plDiskNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusDisk.VTable, @ptrCast(self.vtable)).get_DiskNumber(@as(*const ISClusDisk, @ptrCast(self)), plDiskNumber);
+        return self.vtable.get_DiskNumber(self, plDiskNumber);
     }
     pub fn get_Partitions(self: *const ISClusDisk, ppPartitions: ?*?*ISClusPartitions) callconv(.Inline) HRESULT {
-        return @as(*const ISClusDisk.VTable, @ptrCast(self.vtable)).get_Partitions(@as(*const ISClusDisk, @ptrCast(self)), ppPartitions);
+        return self.vtable.get_Partitions(self, ppPartitions);
     }
 };
 
@@ -10889,13 +10889,13 @@ pub const ISClusDisks = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusDisks, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusDisks.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusDisks, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusDisks, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusDisks.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusDisks, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn get_Item(self: *const ISClusDisks, varIndex: VARIANT, ppDisk: ?*?*ISClusDisk) callconv(.Inline) HRESULT {
-        return @as(*const ISClusDisks.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusDisks, @ptrCast(self)), varIndex, ppDisk);
+        return self.vtable.get_Item(self, varIndex, ppDisk);
     }
 };
 
@@ -10948,16 +10948,16 @@ pub const ISClusScsiAddress = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_PortNumber(self: *const ISClusScsiAddress, pvarPortNumber: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusScsiAddress.VTable, @ptrCast(self.vtable)).get_PortNumber(@as(*const ISClusScsiAddress, @ptrCast(self)), pvarPortNumber);
+        return self.vtable.get_PortNumber(self, pvarPortNumber);
     }
     pub fn get_PathId(self: *const ISClusScsiAddress, pvarPathId: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusScsiAddress.VTable, @ptrCast(self.vtable)).get_PathId(@as(*const ISClusScsiAddress, @ptrCast(self)), pvarPathId);
+        return self.vtable.get_PathId(self, pvarPathId);
     }
     pub fn get_TargetId(self: *const ISClusScsiAddress, pvarTargetId: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusScsiAddress.VTable, @ptrCast(self.vtable)).get_TargetId(@as(*const ISClusScsiAddress, @ptrCast(self)), pvarTargetId);
+        return self.vtable.get_TargetId(self, pvarTargetId);
     }
     pub fn get_Lun(self: *const ISClusScsiAddress, pvarLun: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusScsiAddress.VTable, @ptrCast(self.vtable)).get_Lun(@as(*const ISClusScsiAddress, @ptrCast(self)), pvarLun);
+        return self.vtable.get_Lun(self, pvarLun);
     }
 };
 
@@ -11024,22 +11024,22 @@ pub const ISClusRegistryKeys = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusRegistryKeys, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusRegistryKeys.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusRegistryKeys, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusRegistryKeys, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusRegistryKeys.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusRegistryKeys, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusRegistryKeys) callconv(.Inline) HRESULT {
-        return @as(*const ISClusRegistryKeys.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusRegistryKeys, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusRegistryKeys, varIndex: VARIANT, pbstrRegistryKey: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusRegistryKeys.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusRegistryKeys, @ptrCast(self)), varIndex, pbstrRegistryKey);
+        return self.vtable.get_Item(self, varIndex, pbstrRegistryKey);
     }
     pub fn AddItem(self: *const ISClusRegistryKeys, bstrRegistryKey: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusRegistryKeys.VTable, @ptrCast(self.vtable)).AddItem(@as(*const ISClusRegistryKeys, @ptrCast(self)), bstrRegistryKey);
+        return self.vtable.AddItem(self, bstrRegistryKey);
     }
     pub fn RemoveItem(self: *const ISClusRegistryKeys, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusRegistryKeys.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const ISClusRegistryKeys, @ptrCast(self)), varIndex);
+        return self.vtable.RemoveItem(self, varIndex);
     }
 };
 
@@ -11106,22 +11106,22 @@ pub const ISClusCryptoKeys = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusCryptoKeys, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusCryptoKeys.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusCryptoKeys, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusCryptoKeys, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusCryptoKeys.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusCryptoKeys, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusCryptoKeys) callconv(.Inline) HRESULT {
-        return @as(*const ISClusCryptoKeys.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusCryptoKeys, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusCryptoKeys, varIndex: VARIANT, pbstrCyrptoKey: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusCryptoKeys.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusCryptoKeys, @ptrCast(self)), varIndex, pbstrCyrptoKey);
+        return self.vtable.get_Item(self, varIndex, pbstrCyrptoKey);
     }
     pub fn AddItem(self: *const ISClusCryptoKeys, bstrCryptoKey: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISClusCryptoKeys.VTable, @ptrCast(self.vtable)).AddItem(@as(*const ISClusCryptoKeys, @ptrCast(self)), bstrCryptoKey);
+        return self.vtable.AddItem(self, bstrCryptoKey);
     }
     pub fn RemoveItem(self: *const ISClusCryptoKeys, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusCryptoKeys.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const ISClusCryptoKeys, @ptrCast(self)), varIndex);
+        return self.vtable.RemoveItem(self, varIndex);
     }
 };
 
@@ -11207,28 +11207,28 @@ pub const ISClusResDependents = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISClusResDependents, plCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependents.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISClusResDependents, @ptrCast(self)), plCount);
+        return self.vtable.get_Count(self, plCount);
     }
     pub fn get__NewEnum(self: *const ISClusResDependents, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependents.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISClusResDependents, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn Refresh(self: *const ISClusResDependents) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependents.VTable, @ptrCast(self.vtable)).Refresh(@as(*const ISClusResDependents, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
     pub fn get_Item(self: *const ISClusResDependents, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependents.VTable, @ptrCast(self.vtable)).get_Item(@as(*const ISClusResDependents, @ptrCast(self)), varIndex, ppClusResource);
+        return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
     pub fn CreateItem(self: *const ISClusResDependents, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependents.VTable, @ptrCast(self.vtable)).CreateItem(@as(*const ISClusResDependents, @ptrCast(self)), bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
+        return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
     }
     pub fn DeleteItem(self: *const ISClusResDependents, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependents.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const ISClusResDependents, @ptrCast(self)), varIndex);
+        return self.vtable.DeleteItem(self, varIndex);
     }
     pub fn AddItem(self: *const ISClusResDependents, pResource: ?*ISClusResource) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependents.VTable, @ptrCast(self.vtable)).AddItem(@as(*const ISClusResDependents, @ptrCast(self)), pResource);
+        return self.vtable.AddItem(self, pResource);
     }
     pub fn RemoveItem(self: *const ISClusResDependents, varIndex: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISClusResDependents.VTable, @ptrCast(self.vtable)).RemoveItem(@as(*const ISClusResDependents, @ptrCast(self)), varIndex);
+        return self.vtable.RemoveItem(self, varIndex);
     }
 };
 

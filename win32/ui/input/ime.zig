@@ -933,16 +933,16 @@ pub const IFECommon = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsDefaultIME(self: *const IFECommon, szName: [*:0]const u8, cszName: i32) callconv(.Inline) HRESULT {
-        return @as(*const IFECommon.VTable, @ptrCast(self.vtable)).IsDefaultIME(@as(*const IFECommon, @ptrCast(self)), szName, cszName);
+        return self.vtable.IsDefaultIME(self, szName, cszName);
     }
     pub fn SetDefaultIME(self: *const IFECommon) callconv(.Inline) HRESULT {
-        return @as(*const IFECommon.VTable, @ptrCast(self.vtable)).SetDefaultIME(@as(*const IFECommon, @ptrCast(self)));
+        return self.vtable.SetDefaultIME(self);
     }
     pub fn InvokeWordRegDialog(self: *const IFECommon, pimedlg: ?*IMEDLG) callconv(.Inline) HRESULT {
-        return @as(*const IFECommon.VTable, @ptrCast(self.vtable)).InvokeWordRegDialog(@as(*const IFECommon, @ptrCast(self)), pimedlg);
+        return self.vtable.InvokeWordRegDialog(self, pimedlg);
     }
     pub fn InvokeDictToolDialog(self: *const IFECommon, pimedlg: ?*IMEDLG) callconv(.Inline) HRESULT {
-        return @as(*const IFECommon.VTable, @ptrCast(self.vtable)).InvokeDictToolDialog(@as(*const IFECommon, @ptrCast(self)), pimedlg);
+        return self.vtable.InvokeDictToolDialog(self, pimedlg);
     }
 };
 
@@ -1058,22 +1058,22 @@ pub const IFELanguage = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IFELanguage) callconv(.Inline) HRESULT {
-        return @as(*const IFELanguage.VTable, @ptrCast(self.vtable)).Open(@as(*const IFELanguage, @ptrCast(self)));
+        return self.vtable.Open(self);
     }
     pub fn Close(self: *const IFELanguage) callconv(.Inline) HRESULT {
-        return @as(*const IFELanguage.VTable, @ptrCast(self.vtable)).Close(@as(*const IFELanguage, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn GetJMorphResult(self: *const IFELanguage, dwRequest: u32, dwCMode: u32, cwchInput: i32, pwchInput: ?[*:0]const u16, pfCInfo: ?*u32, ppResult: ?*?*MORRSLT) callconv(.Inline) HRESULT {
-        return @as(*const IFELanguage.VTable, @ptrCast(self.vtable)).GetJMorphResult(@as(*const IFELanguage, @ptrCast(self)), dwRequest, dwCMode, cwchInput, pwchInput, pfCInfo, ppResult);
+        return self.vtable.GetJMorphResult(self, dwRequest, dwCMode, cwchInput, pwchInput, pfCInfo, ppResult);
     }
     pub fn GetConversionModeCaps(self: *const IFELanguage, pdwCaps: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFELanguage.VTable, @ptrCast(self.vtable)).GetConversionModeCaps(@as(*const IFELanguage, @ptrCast(self)), pdwCaps);
+        return self.vtable.GetConversionModeCaps(self, pdwCaps);
     }
     pub fn GetPhonetic(self: *const IFELanguage, string: ?BSTR, start: i32, length: i32, phonetic: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFELanguage.VTable, @ptrCast(self.vtable)).GetPhonetic(@as(*const IFELanguage, @ptrCast(self)), string, start, length, phonetic);
+        return self.vtable.GetPhonetic(self, string, start, length, phonetic);
     }
     pub fn GetConversion(self: *const IFELanguage, string: ?BSTR, start: i32, length: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IFELanguage.VTable, @ptrCast(self.vtable)).GetConversion(@as(*const IFELanguage, @ptrCast(self)), string, start, length, result);
+        return self.vtable.GetConversion(self, string, start, length, result);
     }
 };
 
@@ -1428,55 +1428,55 @@ pub const IFEDictionary = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IFEDictionary, pchDictPath: ?*[260]u8, pshf: ?*IMESHF) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).Open(@as(*const IFEDictionary, @ptrCast(self)), pchDictPath, pshf);
+        return self.vtable.Open(self, pchDictPath, pshf);
     }
     pub fn Close(self: *const IFEDictionary) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).Close(@as(*const IFEDictionary, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn GetHeader(self: *const IFEDictionary, pchDictPath: ?*[260]u8, pshf: ?*IMESHF, pjfmt: ?*IMEFMT, pulType: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).GetHeader(@as(*const IFEDictionary, @ptrCast(self)), pchDictPath, pshf, pjfmt, pulType);
+        return self.vtable.GetHeader(self, pchDictPath, pshf, pjfmt, pulType);
     }
     pub fn DisplayProperty(self: *const IFEDictionary, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).DisplayProperty(@as(*const IFEDictionary, @ptrCast(self)), hwnd);
+        return self.vtable.DisplayProperty(self, hwnd);
     }
     pub fn GetPosTable(self: *const IFEDictionary, prgPosTbl: ?*?*POSTBL, pcPosTbl: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).GetPosTable(@as(*const IFEDictionary, @ptrCast(self)), prgPosTbl, pcPosTbl);
+        return self.vtable.GetPosTable(self, prgPosTbl, pcPosTbl);
     }
     pub fn GetWords(self: *const IFEDictionary, pwchFirst: ?[*:0]const u16, pwchLast: ?[*:0]const u16, pwchDisplay: ?[*:0]const u16, ulPos: u32, ulSelect: u32, ulWordSrc: u32, pchBuffer: ?*u8, cbBuffer: u32, pcWrd: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).GetWords(@as(*const IFEDictionary, @ptrCast(self)), pwchFirst, pwchLast, pwchDisplay, ulPos, ulSelect, ulWordSrc, pchBuffer, cbBuffer, pcWrd);
+        return self.vtable.GetWords(self, pwchFirst, pwchLast, pwchDisplay, ulPos, ulSelect, ulWordSrc, pchBuffer, cbBuffer, pcWrd);
     }
     pub fn NextWords(self: *const IFEDictionary, pchBuffer: ?*u8, cbBuffer: u32, pcWrd: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).NextWords(@as(*const IFEDictionary, @ptrCast(self)), pchBuffer, cbBuffer, pcWrd);
+        return self.vtable.NextWords(self, pchBuffer, cbBuffer, pcWrd);
     }
     pub fn Create(self: *const IFEDictionary, pchDictPath: ?[*:0]const u8, pshf: ?*IMESHF) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).Create(@as(*const IFEDictionary, @ptrCast(self)), pchDictPath, pshf);
+        return self.vtable.Create(self, pchDictPath, pshf);
     }
     pub fn SetHeader(self: *const IFEDictionary, pshf: ?*IMESHF) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).SetHeader(@as(*const IFEDictionary, @ptrCast(self)), pshf);
+        return self.vtable.SetHeader(self, pshf);
     }
     pub fn ExistWord(self: *const IFEDictionary, pwrd: ?*IMEWRD) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).ExistWord(@as(*const IFEDictionary, @ptrCast(self)), pwrd);
+        return self.vtable.ExistWord(self, pwrd);
     }
     pub fn ExistDependency(self: *const IFEDictionary, pdp: ?*IMEDP) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).ExistDependency(@as(*const IFEDictionary, @ptrCast(self)), pdp);
+        return self.vtable.ExistDependency(self, pdp);
     }
     pub fn RegisterWord(self: *const IFEDictionary, reg: IMEREG, pwrd: ?*IMEWRD) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).RegisterWord(@as(*const IFEDictionary, @ptrCast(self)), reg, pwrd);
+        return self.vtable.RegisterWord(self, reg, pwrd);
     }
     pub fn RegisterDependency(self: *const IFEDictionary, reg: IMEREG, pdp: ?*IMEDP) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).RegisterDependency(@as(*const IFEDictionary, @ptrCast(self)), reg, pdp);
+        return self.vtable.RegisterDependency(self, reg, pdp);
     }
     pub fn GetDependencies(self: *const IFEDictionary, pwchKakariReading: ?[*:0]const u16, pwchKakariDisplay: ?[*:0]const u16, ulKakariPos: u32, pwchUkeReading: ?[*:0]const u16, pwchUkeDisplay: ?[*:0]const u16, ulUkePos: u32, jrel: IMEREL, ulWordSrc: u32, pchBuffer: ?*u8, cbBuffer: u32, pcdp: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).GetDependencies(@as(*const IFEDictionary, @ptrCast(self)), pwchKakariReading, pwchKakariDisplay, ulKakariPos, pwchUkeReading, pwchUkeDisplay, ulUkePos, jrel, ulWordSrc, pchBuffer, cbBuffer, pcdp);
+        return self.vtable.GetDependencies(self, pwchKakariReading, pwchKakariDisplay, ulKakariPos, pwchUkeReading, pwchUkeDisplay, ulUkePos, jrel, ulWordSrc, pchBuffer, cbBuffer, pcdp);
     }
     pub fn NextDependencies(self: *const IFEDictionary, pchBuffer: ?*u8, cbBuffer: u32, pcDp: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).NextDependencies(@as(*const IFEDictionary, @ptrCast(self)), pchBuffer, cbBuffer, pcDp);
+        return self.vtable.NextDependencies(self, pchBuffer, cbBuffer, pcDp);
     }
     pub fn ConvertFromOldMSIME(self: *const IFEDictionary, pchDic: ?[*:0]const u8, pfnLog: ?PFNLOG, reg: IMEREG) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).ConvertFromOldMSIME(@as(*const IFEDictionary, @ptrCast(self)), pchDic, pfnLog, reg);
+        return self.vtable.ConvertFromOldMSIME(self, pchDic, pfnLog, reg);
     }
     pub fn ConvertFromUserToSys(self: *const IFEDictionary) callconv(.Inline) HRESULT {
-        return @as(*const IFEDictionary.VTable, @ptrCast(self.vtable)).ConvertFromUserToSys(@as(*const IFEDictionary, @ptrCast(self)));
+        return self.vtable.ConvertFromUserToSys(self);
     }
 };
 
@@ -1752,7 +1752,7 @@ pub const IImeSpecifyApplets = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAppletIIDList(self: *const IImeSpecifyApplets, refiid: ?*const Guid, lpIIDList: ?*APPLETIDLIST) callconv(.Inline) HRESULT {
-        return @as(*const IImeSpecifyApplets.VTable, @ptrCast(self.vtable)).GetAppletIIDList(@as(*const IImeSpecifyApplets, @ptrCast(self)), refiid, lpIIDList);
+        return self.vtable.GetAppletIIDList(self, refiid, lpIIDList);
     }
 };
 
@@ -1812,19 +1812,19 @@ pub const IImePadApplet = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IImePadApplet, lpIImePad: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IImePadApplet.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IImePadApplet, @ptrCast(self)), lpIImePad);
+        return self.vtable.Initialize(self, lpIImePad);
     }
     pub fn Terminate(self: *const IImePadApplet) callconv(.Inline) HRESULT {
-        return @as(*const IImePadApplet.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IImePadApplet, @ptrCast(self)));
+        return self.vtable.Terminate(self);
     }
     pub fn GetAppletConfig(self: *const IImePadApplet, lpAppletCfg: ?*IMEAPPLETCFG) callconv(.Inline) HRESULT {
-        return @as(*const IImePadApplet.VTable, @ptrCast(self.vtable)).GetAppletConfig(@as(*const IImePadApplet, @ptrCast(self)), lpAppletCfg);
+        return self.vtable.GetAppletConfig(self, lpAppletCfg);
     }
     pub fn CreateUI(self: *const IImePadApplet, hwndParent: ?HWND, lpImeAppletUI: ?*IMEAPPLETUI) callconv(.Inline) HRESULT {
-        return @as(*const IImePadApplet.VTable, @ptrCast(self.vtable)).CreateUI(@as(*const IImePadApplet, @ptrCast(self)), hwndParent, lpImeAppletUI);
+        return self.vtable.CreateUI(self, hwndParent, lpImeAppletUI);
     }
     pub fn Notify(self: *const IImePadApplet, lpImePad: ?*IUnknown, notify: i32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IImePadApplet.VTable, @ptrCast(self.vtable)).Notify(@as(*const IImePadApplet, @ptrCast(self)), lpImePad, notify, wParam, lParam);
+        return self.vtable.Notify(self, lpImePad, notify, wParam, lParam);
     }
 };
 
@@ -1852,7 +1852,7 @@ pub const IImePad = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Request(self: *const IImePad, pIImePadApplet: ?*IImePadApplet, reqId: IME_PAD_REQUEST_FLAGS, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IImePad.VTable, @ptrCast(self.vtable)).Request(@as(*const IImePad, @ptrCast(self)), pIImePadApplet, reqId, wParam, lParam);
+        return self.vtable.Request(self, pIImePadApplet, reqId, wParam, lParam);
     }
 };
 
@@ -1888,10 +1888,10 @@ pub const IImePlugInDictDictionaryList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDictionariesInUse(self: *const IImePlugInDictDictionaryList, prgDictionaryGUID: ?*?*SAFEARRAY, prgDateCreated: ?*?*SAFEARRAY, prgfEncrypted: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IImePlugInDictDictionaryList.VTable, @ptrCast(self.vtable)).GetDictionariesInUse(@as(*const IImePlugInDictDictionaryList, @ptrCast(self)), prgDictionaryGUID, prgDateCreated, prgfEncrypted);
+        return self.vtable.GetDictionariesInUse(self, prgDictionaryGUID, prgDateCreated, prgfEncrypted);
     }
     pub fn DeleteDictionary(self: *const IImePlugInDictDictionaryList, bstrDictionaryGUID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IImePlugInDictDictionaryList.VTable, @ptrCast(self.vtable)).DeleteDictionary(@as(*const IImePlugInDictDictionaryList, @ptrCast(self)), bstrDictionaryGUID);
+        return self.vtable.DeleteDictionary(self, bstrDictionaryGUID);
     }
 };
 
@@ -1944,16 +1944,16 @@ pub const IEnumRegisterWordA = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Clone(self: *const IEnumRegisterWordA, ppEnum: ?*?*IEnumRegisterWordA) callconv(.Inline) HRESULT {
-        return @as(*const IEnumRegisterWordA.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumRegisterWordA, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
     pub fn Next(self: *const IEnumRegisterWordA, ulCount: u32, rgRegisterWord: ?*REGISTERWORDA, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumRegisterWordA.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumRegisterWordA, @ptrCast(self)), ulCount, rgRegisterWord, pcFetched);
+        return self.vtable.Next(self, ulCount, rgRegisterWord, pcFetched);
     }
     pub fn Reset(self: *const IEnumRegisterWordA) callconv(.Inline) HRESULT {
-        return @as(*const IEnumRegisterWordA.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumRegisterWordA, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumRegisterWordA, ulCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumRegisterWordA.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumRegisterWordA, @ptrCast(self)), ulCount);
+        return self.vtable.Skip(self, ulCount);
     }
 };
 
@@ -2003,16 +2003,16 @@ pub const IEnumRegisterWordW = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Clone(self: *const IEnumRegisterWordW, ppEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
-        return @as(*const IEnumRegisterWordW.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumRegisterWordW, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
     pub fn Next(self: *const IEnumRegisterWordW, ulCount: u32, rgRegisterWord: ?*REGISTERWORDW, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumRegisterWordW.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumRegisterWordW, @ptrCast(self)), ulCount, rgRegisterWord, pcFetched);
+        return self.vtable.Next(self, ulCount, rgRegisterWord, pcFetched);
     }
     pub fn Reset(self: *const IEnumRegisterWordW) callconv(.Inline) HRESULT {
-        return @as(*const IEnumRegisterWordW.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumRegisterWordW, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumRegisterWordW, ulCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumRegisterWordW.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumRegisterWordW, @ptrCast(self)), ulCount);
+        return self.vtable.Skip(self, ulCount);
     }
 };
 
@@ -2062,16 +2062,16 @@ pub const IEnumInputContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Clone(self: *const IEnumInputContext, ppEnum: ?*?*IEnumInputContext) callconv(.Inline) HRESULT {
-        return @as(*const IEnumInputContext.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumInputContext, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
     pub fn Next(self: *const IEnumInputContext, ulCount: u32, rgInputContext: ?*?HIMC, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumInputContext.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumInputContext, @ptrCast(self)), ulCount, rgInputContext, pcFetched);
+        return self.vtable.Next(self, ulCount, rgInputContext, pcFetched);
     }
     pub fn Reset(self: *const IEnumInputContext) callconv(.Inline) HRESULT {
-        return @as(*const IEnumInputContext.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumInputContext, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumInputContext, ulCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumInputContext.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumInputContext, @ptrCast(self)), ulCount);
+        return self.vtable.Skip(self, ulCount);
     }
 };
 
@@ -2107,10 +2107,10 @@ pub const IActiveIMMRegistrar = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterIME(self: *const IActiveIMMRegistrar, rclsid: ?*const Guid, lgid: u16, pszIconFile: ?[*:0]const u16, pszDesc: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMRegistrar.VTable, @ptrCast(self.vtable)).RegisterIME(@as(*const IActiveIMMRegistrar, @ptrCast(self)), rclsid, lgid, pszIconFile, pszDesc);
+        return self.vtable.RegisterIME(self, rclsid, lgid, pszIconFile, pszDesc);
     }
     pub fn UnregisterIME(self: *const IActiveIMMRegistrar, rclsid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMRegistrar.VTable, @ptrCast(self.vtable)).UnregisterIME(@as(*const IActiveIMMRegistrar, @ptrCast(self)), rclsid);
+        return self.vtable.UnregisterIME(self, rclsid);
     }
 };
 
@@ -2165,19 +2165,19 @@ pub const IActiveIMMMessagePumpOwner = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Start(self: *const IActiveIMMMessagePumpOwner) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMMessagePumpOwner.VTable, @ptrCast(self.vtable)).Start(@as(*const IActiveIMMMessagePumpOwner, @ptrCast(self)));
+        return self.vtable.Start(self);
     }
     pub fn End(self: *const IActiveIMMMessagePumpOwner) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMMessagePumpOwner.VTable, @ptrCast(self.vtable)).End(@as(*const IActiveIMMMessagePumpOwner, @ptrCast(self)));
+        return self.vtable.End(self);
     }
     pub fn OnTranslateMessage(self: *const IActiveIMMMessagePumpOwner, pMsg: ?*const MSG) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMMessagePumpOwner.VTable, @ptrCast(self.vtable)).OnTranslateMessage(@as(*const IActiveIMMMessagePumpOwner, @ptrCast(self)), pMsg);
+        return self.vtable.OnTranslateMessage(self, pMsg);
     }
     pub fn Pause(self: *const IActiveIMMMessagePumpOwner, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMMessagePumpOwner.VTable, @ptrCast(self.vtable)).Pause(@as(*const IActiveIMMMessagePumpOwner, @ptrCast(self)), pdwCookie);
+        return self.vtable.Pause(self, pdwCookie);
     }
     pub fn Resume(self: *const IActiveIMMMessagePumpOwner, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMMessagePumpOwner.VTable, @ptrCast(self.vtable)).Resume(@as(*const IActiveIMMMessagePumpOwner, @ptrCast(self)), dwCookie);
+        return self.vtable.Resume(self, dwCookie);
     }
 };
 
@@ -2901,208 +2901,208 @@ pub const IActiveIMMApp = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssociateContext(self: *const IActiveIMMApp, hWnd: ?HWND, hIME: ?HIMC, phPrev: ?*?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).AssociateContext(@as(*const IActiveIMMApp, @ptrCast(self)), hWnd, hIME, phPrev);
+        return self.vtable.AssociateContext(self, hWnd, hIME, phPrev);
     }
     pub fn ConfigureIMEA(self: *const IActiveIMMApp, hKL: ?HKL, hWnd: ?HWND, dwMode: u32, pData: ?*REGISTERWORDA) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).ConfigureIMEA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, hWnd, dwMode, pData);
+        return self.vtable.ConfigureIMEA(self, hKL, hWnd, dwMode, pData);
     }
     pub fn ConfigureIMEW(self: *const IActiveIMMApp, hKL: ?HKL, hWnd: ?HWND, dwMode: u32, pData: ?*REGISTERWORDW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).ConfigureIMEW(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, hWnd, dwMode, pData);
+        return self.vtable.ConfigureIMEW(self, hKL, hWnd, dwMode, pData);
     }
     pub fn CreateContext(self: *const IActiveIMMApp, phIMC: ?*?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).CreateContext(@as(*const IActiveIMMApp, @ptrCast(self)), phIMC);
+        return self.vtable.CreateContext(self, phIMC);
     }
     pub fn DestroyContext(self: *const IActiveIMMApp, hIME: ?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).DestroyContext(@as(*const IActiveIMMApp, @ptrCast(self)), hIME);
+        return self.vtable.DestroyContext(self, hIME);
     }
     pub fn EnumRegisterWordA(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordA) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).EnumRegisterWordA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, szReading, dwStyle, szRegister, pData, pEnum);
+        return self.vtable.EnumRegisterWordA(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
     pub fn EnumRegisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).EnumRegisterWordW(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, szReading, dwStyle, szRegister, pData, pEnum);
+        return self.vtable.EnumRegisterWordW(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
     pub fn EscapeA(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).EscapeA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, hIMC, uEscape, pData, plResult);
+        return self.vtable.EscapeA(self, hKL, hIMC, uEscape, pData, plResult);
     }
     pub fn EscapeW(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).EscapeW(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, hIMC, uEscape, pData, plResult);
+        return self.vtable.EscapeW(self, hKL, hIMC, uEscape, pData, plResult);
     }
     pub fn GetCandidateListA(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, uBufLen: u32, pCandList: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCandidateListA(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwIndex, uBufLen, pCandList, puCopied);
+        return self.vtable.GetCandidateListA(self, hIMC, dwIndex, uBufLen, pCandList, puCopied);
     }
     pub fn GetCandidateListW(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, uBufLen: u32, pCandList: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCandidateListW(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwIndex, uBufLen, pCandList, puCopied);
+        return self.vtable.GetCandidateListW(self, hIMC, dwIndex, uBufLen, pCandList, puCopied);
     }
     pub fn GetCandidateListCountA(self: *const IActiveIMMApp, hIMC: ?HIMC, pdwListSize: ?*u32, pdwBufLen: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCandidateListCountA(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, pdwListSize, pdwBufLen);
+        return self.vtable.GetCandidateListCountA(self, hIMC, pdwListSize, pdwBufLen);
     }
     pub fn GetCandidateListCountW(self: *const IActiveIMMApp, hIMC: ?HIMC, pdwListSize: ?*u32, pdwBufLen: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCandidateListCountW(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, pdwListSize, pdwBufLen);
+        return self.vtable.GetCandidateListCountW(self, hIMC, pdwListSize, pdwBufLen);
     }
     pub fn GetCandidateWindow(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, pCandidate: ?*CANDIDATEFORM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCandidateWindow(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwIndex, pCandidate);
+        return self.vtable.GetCandidateWindow(self, hIMC, dwIndex, pCandidate);
     }
     pub fn GetCompositionFontA(self: *const IActiveIMMApp, hIMC: ?HIMC, plf: ?*LOGFONTA) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCompositionFontA(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, plf);
+        return self.vtable.GetCompositionFontA(self, hIMC, plf);
     }
     pub fn GetCompositionFontW(self: *const IActiveIMMApp, hIMC: ?HIMC, plf: ?*LOGFONTW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCompositionFontW(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, plf);
+        return self.vtable.GetCompositionFontW(self, hIMC, plf);
     }
     pub fn GetCompositionStringA(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCompositionStringA(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwIndex, dwBufLen, plCopied, pBuf);
+        return self.vtable.GetCompositionStringA(self, hIMC, dwIndex, dwBufLen, plCopied, pBuf);
     }
     pub fn GetCompositionStringW(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCompositionStringW(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwIndex, dwBufLen, plCopied, pBuf);
+        return self.vtable.GetCompositionStringW(self, hIMC, dwIndex, dwBufLen, plCopied, pBuf);
     }
     pub fn GetCompositionWindow(self: *const IActiveIMMApp, hIMC: ?HIMC, pCompForm: ?*COMPOSITIONFORM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCompositionWindow(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, pCompForm);
+        return self.vtable.GetCompositionWindow(self, hIMC, pCompForm);
     }
     pub fn GetContext(self: *const IActiveIMMApp, hWnd: ?HWND, phIMC: ?*?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetContext(@as(*const IActiveIMMApp, @ptrCast(self)), hWnd, phIMC);
+        return self.vtable.GetContext(self, hWnd, phIMC);
     }
     pub fn GetConversionListA(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?PSTR, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetConversionListA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
+        return self.vtable.GetConversionListA(self, hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
     }
     pub fn GetConversionListW(self: *const IActiveIMMApp, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?PWSTR, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetConversionListW(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
+        return self.vtable.GetConversionListW(self, hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
     }
     pub fn GetConversionStatus(self: *const IActiveIMMApp, hIMC: ?HIMC, pfdwConversion: ?*u32, pfdwSentence: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetConversionStatus(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, pfdwConversion, pfdwSentence);
+        return self.vtable.GetConversionStatus(self, hIMC, pfdwConversion, pfdwSentence);
     }
     pub fn GetDefaultIMEWnd(self: *const IActiveIMMApp, hWnd: ?HWND, phDefWnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetDefaultIMEWnd(@as(*const IActiveIMMApp, @ptrCast(self)), hWnd, phDefWnd);
+        return self.vtable.GetDefaultIMEWnd(self, hWnd, phDefWnd);
     }
     pub fn GetDescriptionA(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szDescription: ?PSTR, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetDescriptionA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, uBufLen, szDescription, puCopied);
+        return self.vtable.GetDescriptionA(self, hKL, uBufLen, szDescription, puCopied);
     }
     pub fn GetDescriptionW(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szDescription: ?PWSTR, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetDescriptionW(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, uBufLen, szDescription, puCopied);
+        return self.vtable.GetDescriptionW(self, hKL, uBufLen, szDescription, puCopied);
     }
     pub fn GetGuideLineA(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?PSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetGuideLineA(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
+        return self.vtable.GetGuideLineA(self, hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
     }
     pub fn GetGuideLineW(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?PWSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetGuideLineW(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
+        return self.vtable.GetGuideLineW(self, hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
     }
     pub fn GetIMEFileNameA(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szFileName: ?PSTR, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetIMEFileNameA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, uBufLen, szFileName, puCopied);
+        return self.vtable.GetIMEFileNameA(self, hKL, uBufLen, szFileName, puCopied);
     }
     pub fn GetIMEFileNameW(self: *const IActiveIMMApp, hKL: ?HKL, uBufLen: u32, szFileName: ?PWSTR, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetIMEFileNameW(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, uBufLen, szFileName, puCopied);
+        return self.vtable.GetIMEFileNameW(self, hKL, uBufLen, szFileName, puCopied);
     }
     pub fn GetOpenStatus(self: *const IActiveIMMApp, hIMC: ?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetOpenStatus(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC);
+        return self.vtable.GetOpenStatus(self, hIMC);
     }
     pub fn GetProperty(self: *const IActiveIMMApp, hKL: ?HKL, fdwIndex: u32, pdwProperty: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, fdwIndex, pdwProperty);
+        return self.vtable.GetProperty(self, hKL, fdwIndex, pdwProperty);
     }
     pub fn GetRegisterWordStyleA(self: *const IActiveIMMApp, hKL: ?HKL, nItem: u32, pStyleBuf: ?*STYLEBUFA, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetRegisterWordStyleA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, nItem, pStyleBuf, puCopied);
+        return self.vtable.GetRegisterWordStyleA(self, hKL, nItem, pStyleBuf, puCopied);
     }
     pub fn GetRegisterWordStyleW(self: *const IActiveIMMApp, hKL: ?HKL, nItem: u32, pStyleBuf: ?*STYLEBUFW, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetRegisterWordStyleW(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, nItem, pStyleBuf, puCopied);
+        return self.vtable.GetRegisterWordStyleW(self, hKL, nItem, pStyleBuf, puCopied);
     }
     pub fn GetStatusWindowPos(self: *const IActiveIMMApp, hIMC: ?HIMC, pptPos: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetStatusWindowPos(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, pptPos);
+        return self.vtable.GetStatusWindowPos(self, hIMC, pptPos);
     }
     pub fn GetVirtualKey(self: *const IActiveIMMApp, hWnd: ?HWND, puVirtualKey: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetVirtualKey(@as(*const IActiveIMMApp, @ptrCast(self)), hWnd, puVirtualKey);
+        return self.vtable.GetVirtualKey(self, hWnd, puVirtualKey);
     }
     pub fn InstallIMEA(self: *const IActiveIMMApp, szIMEFileName: ?PSTR, szLayoutText: ?PSTR, phKL: ?*?HKL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).InstallIMEA(@as(*const IActiveIMMApp, @ptrCast(self)), szIMEFileName, szLayoutText, phKL);
+        return self.vtable.InstallIMEA(self, szIMEFileName, szLayoutText, phKL);
     }
     pub fn InstallIMEW(self: *const IActiveIMMApp, szIMEFileName: ?PWSTR, szLayoutText: ?PWSTR, phKL: ?*?HKL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).InstallIMEW(@as(*const IActiveIMMApp, @ptrCast(self)), szIMEFileName, szLayoutText, phKL);
+        return self.vtable.InstallIMEW(self, szIMEFileName, szLayoutText, phKL);
     }
     pub fn IsIME(self: *const IActiveIMMApp, hKL: ?HKL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).IsIME(@as(*const IActiveIMMApp, @ptrCast(self)), hKL);
+        return self.vtable.IsIME(self, hKL);
     }
     pub fn IsUIMessageA(self: *const IActiveIMMApp, hWndIME: ?HWND, msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).IsUIMessageA(@as(*const IActiveIMMApp, @ptrCast(self)), hWndIME, msg, wParam, lParam);
+        return self.vtable.IsUIMessageA(self, hWndIME, msg, wParam, lParam);
     }
     pub fn IsUIMessageW(self: *const IActiveIMMApp, hWndIME: ?HWND, msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).IsUIMessageW(@as(*const IActiveIMMApp, @ptrCast(self)), hWndIME, msg, wParam, lParam);
+        return self.vtable.IsUIMessageW(self, hWndIME, msg, wParam, lParam);
     }
     pub fn NotifyIME(self: *const IActiveIMMApp, hIMC: ?HIMC, dwAction: u32, dwIndex: u32, dwValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).NotifyIME(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwAction, dwIndex, dwValue);
+        return self.vtable.NotifyIME(self, hIMC, dwAction, dwIndex, dwValue);
     }
     pub fn RegisterWordA(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).RegisterWordA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, szReading, dwStyle, szRegister);
+        return self.vtable.RegisterWordA(self, hKL, szReading, dwStyle, szRegister);
     }
     pub fn RegisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).RegisterWordW(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, szReading, dwStyle, szRegister);
+        return self.vtable.RegisterWordW(self, hKL, szReading, dwStyle, szRegister);
     }
     pub fn ReleaseContext(self: *const IActiveIMMApp, hWnd: ?HWND, hIMC: ?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).ReleaseContext(@as(*const IActiveIMMApp, @ptrCast(self)), hWnd, hIMC);
+        return self.vtable.ReleaseContext(self, hWnd, hIMC);
     }
     pub fn SetCandidateWindow(self: *const IActiveIMMApp, hIMC: ?HIMC, pCandidate: ?*CANDIDATEFORM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SetCandidateWindow(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, pCandidate);
+        return self.vtable.SetCandidateWindow(self, hIMC, pCandidate);
     }
     pub fn SetCompositionFontA(self: *const IActiveIMMApp, hIMC: ?HIMC, plf: ?*LOGFONTA) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SetCompositionFontA(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, plf);
+        return self.vtable.SetCompositionFontA(self, hIMC, plf);
     }
     pub fn SetCompositionFontW(self: *const IActiveIMMApp, hIMC: ?HIMC, plf: ?*LOGFONTW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SetCompositionFontW(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, plf);
+        return self.vtable.SetCompositionFontW(self, hIMC, plf);
     }
     pub fn SetCompositionStringA(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SetCompositionStringA(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
+        return self.vtable.SetCompositionStringA(self, hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
     }
     pub fn SetCompositionStringW(self: *const IActiveIMMApp, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SetCompositionStringW(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
+        return self.vtable.SetCompositionStringW(self, hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
     }
     pub fn SetCompositionWindow(self: *const IActiveIMMApp, hIMC: ?HIMC, pCompForm: ?*COMPOSITIONFORM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SetCompositionWindow(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, pCompForm);
+        return self.vtable.SetCompositionWindow(self, hIMC, pCompForm);
     }
     pub fn SetConversionStatus(self: *const IActiveIMMApp, hIMC: ?HIMC, fdwConversion: u32, fdwSentence: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SetConversionStatus(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, fdwConversion, fdwSentence);
+        return self.vtable.SetConversionStatus(self, hIMC, fdwConversion, fdwSentence);
     }
     pub fn SetOpenStatus(self: *const IActiveIMMApp, hIMC: ?HIMC, fOpen: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SetOpenStatus(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, fOpen);
+        return self.vtable.SetOpenStatus(self, hIMC, fOpen);
     }
     pub fn SetStatusWindowPos(self: *const IActiveIMMApp, hIMC: ?HIMC, pptPos: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SetStatusWindowPos(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, pptPos);
+        return self.vtable.SetStatusWindowPos(self, hIMC, pptPos);
     }
     pub fn SimulateHotKey(self: *const IActiveIMMApp, hWnd: ?HWND, dwHotKeyID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).SimulateHotKey(@as(*const IActiveIMMApp, @ptrCast(self)), hWnd, dwHotKeyID);
+        return self.vtable.SimulateHotKey(self, hWnd, dwHotKeyID);
     }
     pub fn UnregisterWordA(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szUnregister: ?PSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).UnregisterWordA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, szReading, dwStyle, szUnregister);
+        return self.vtable.UnregisterWordA(self, hKL, szReading, dwStyle, szUnregister);
     }
     pub fn UnregisterWordW(self: *const IActiveIMMApp, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szUnregister: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).UnregisterWordW(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, szReading, dwStyle, szUnregister);
+        return self.vtable.UnregisterWordW(self, hKL, szReading, dwStyle, szUnregister);
     }
     pub fn Activate(self: *const IActiveIMMApp, fRestoreLayout: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).Activate(@as(*const IActiveIMMApp, @ptrCast(self)), fRestoreLayout);
+        return self.vtable.Activate(self, fRestoreLayout);
     }
     pub fn Deactivate(self: *const IActiveIMMApp) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IActiveIMMApp, @ptrCast(self)));
+        return self.vtable.Deactivate(self);
     }
     pub fn OnDefWindowProc(self: *const IActiveIMMApp, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).OnDefWindowProc(@as(*const IActiveIMMApp, @ptrCast(self)), hWnd, Msg, wParam, lParam, plResult);
+        return self.vtable.OnDefWindowProc(self, hWnd, Msg, wParam, lParam, plResult);
     }
     pub fn FilterClientWindows(self: *const IActiveIMMApp, aaClassList: ?*u16, uSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).FilterClientWindows(@as(*const IActiveIMMApp, @ptrCast(self)), aaClassList, uSize);
+        return self.vtable.FilterClientWindows(self, aaClassList, uSize);
     }
     pub fn GetCodePageA(self: *const IActiveIMMApp, hKL: ?HKL, uCodePage: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetCodePageA(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, uCodePage);
+        return self.vtable.GetCodePageA(self, hKL, uCodePage);
     }
     pub fn GetLangId(self: *const IActiveIMMApp, hKL: ?HKL, plid: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetLangId(@as(*const IActiveIMMApp, @ptrCast(self)), hKL, plid);
+        return self.vtable.GetLangId(self, hKL, plid);
     }
     pub fn AssociateContextEx(self: *const IActiveIMMApp, hWnd: ?HWND, hIMC: ?HIMC, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).AssociateContextEx(@as(*const IActiveIMMApp, @ptrCast(self)), hWnd, hIMC, dwFlags);
+        return self.vtable.AssociateContextEx(self, hWnd, hIMC, dwFlags);
     }
     pub fn DisableIME(self: *const IActiveIMMApp, idThread: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).DisableIME(@as(*const IActiveIMMApp, @ptrCast(self)), idThread);
+        return self.vtable.DisableIME(self, idThread);
     }
     pub fn GetImeMenuItemsA(self: *const IActiveIMMApp, hIMC: ?HIMC, dwFlags: u32, dwType: u32, pImeParentMenu: ?*IMEMENUITEMINFOA, pImeMenu: ?*IMEMENUITEMINFOA, dwSize: u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetImeMenuItemsA(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwFlags, dwType, pImeParentMenu, pImeMenu, dwSize, pdwResult);
+        return self.vtable.GetImeMenuItemsA(self, hIMC, dwFlags, dwType, pImeParentMenu, pImeMenu, dwSize, pdwResult);
     }
     pub fn GetImeMenuItemsW(self: *const IActiveIMMApp, hIMC: ?HIMC, dwFlags: u32, dwType: u32, pImeParentMenu: ?*IMEMENUITEMINFOW, pImeMenu: ?*IMEMENUITEMINFOW, dwSize: u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).GetImeMenuItemsW(@as(*const IActiveIMMApp, @ptrCast(self)), hIMC, dwFlags, dwType, pImeParentMenu, pImeMenu, dwSize, pdwResult);
+        return self.vtable.GetImeMenuItemsW(self, hIMC, dwFlags, dwType, pImeParentMenu, pImeMenu, dwSize, pdwResult);
     }
     pub fn EnumInputContext(self: *const IActiveIMMApp, idThread: u32, ppEnum: ?*?*IEnumInputContext) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMApp.VTable, @ptrCast(self.vtable)).EnumInputContext(@as(*const IActiveIMMApp, @ptrCast(self)), idThread, ppEnum);
+        return self.vtable.EnumInputContext(self, idThread, ppEnum);
     }
 };
 
@@ -4016,268 +4016,268 @@ pub const IActiveIMMIME = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssociateContext(self: *const IActiveIMMIME, hWnd: ?HWND, hIME: ?HIMC, phPrev: ?*?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).AssociateContext(@as(*const IActiveIMMIME, @ptrCast(self)), hWnd, hIME, phPrev);
+        return self.vtable.AssociateContext(self, hWnd, hIME, phPrev);
     }
     pub fn ConfigureIMEA(self: *const IActiveIMMIME, hKL: ?HKL, hWnd: ?HWND, dwMode: u32, pData: ?*REGISTERWORDA) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).ConfigureIMEA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, hWnd, dwMode, pData);
+        return self.vtable.ConfigureIMEA(self, hKL, hWnd, dwMode, pData);
     }
     pub fn ConfigureIMEW(self: *const IActiveIMMIME, hKL: ?HKL, hWnd: ?HWND, dwMode: u32, pData: ?*REGISTERWORDW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).ConfigureIMEW(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, hWnd, dwMode, pData);
+        return self.vtable.ConfigureIMEW(self, hKL, hWnd, dwMode, pData);
     }
     pub fn CreateContext(self: *const IActiveIMMIME, phIMC: ?*?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).CreateContext(@as(*const IActiveIMMIME, @ptrCast(self)), phIMC);
+        return self.vtable.CreateContext(self, phIMC);
     }
     pub fn DestroyContext(self: *const IActiveIMMIME, hIME: ?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).DestroyContext(@as(*const IActiveIMMIME, @ptrCast(self)), hIME);
+        return self.vtable.DestroyContext(self, hIME);
     }
     pub fn EnumRegisterWordA(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordA) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).EnumRegisterWordA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, szReading, dwStyle, szRegister, pData, pEnum);
+        return self.vtable.EnumRegisterWordA(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
     pub fn EnumRegisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, pEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).EnumRegisterWordW(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, szReading, dwStyle, szRegister, pData, pEnum);
+        return self.vtable.EnumRegisterWordW(self, hKL, szReading, dwStyle, szRegister, pData, pEnum);
     }
     pub fn EscapeA(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).EscapeA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, hIMC, uEscape, pData, plResult);
+        return self.vtable.EscapeA(self, hKL, hIMC, uEscape, pData, plResult);
     }
     pub fn EscapeW(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).EscapeW(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, hIMC, uEscape, pData, plResult);
+        return self.vtable.EscapeW(self, hKL, hIMC, uEscape, pData, plResult);
     }
     pub fn GetCandidateListA(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, uBufLen: u32, pCandList: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCandidateListA(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwIndex, uBufLen, pCandList, puCopied);
+        return self.vtable.GetCandidateListA(self, hIMC, dwIndex, uBufLen, pCandList, puCopied);
     }
     pub fn GetCandidateListW(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, uBufLen: u32, pCandList: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCandidateListW(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwIndex, uBufLen, pCandList, puCopied);
+        return self.vtable.GetCandidateListW(self, hIMC, dwIndex, uBufLen, pCandList, puCopied);
     }
     pub fn GetCandidateListCountA(self: *const IActiveIMMIME, hIMC: ?HIMC, pdwListSize: ?*u32, pdwBufLen: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCandidateListCountA(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, pdwListSize, pdwBufLen);
+        return self.vtable.GetCandidateListCountA(self, hIMC, pdwListSize, pdwBufLen);
     }
     pub fn GetCandidateListCountW(self: *const IActiveIMMIME, hIMC: ?HIMC, pdwListSize: ?*u32, pdwBufLen: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCandidateListCountW(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, pdwListSize, pdwBufLen);
+        return self.vtable.GetCandidateListCountW(self, hIMC, pdwListSize, pdwBufLen);
     }
     pub fn GetCandidateWindow(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, pCandidate: ?*CANDIDATEFORM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCandidateWindow(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwIndex, pCandidate);
+        return self.vtable.GetCandidateWindow(self, hIMC, dwIndex, pCandidate);
     }
     pub fn GetCompositionFontA(self: *const IActiveIMMIME, hIMC: ?HIMC, plf: ?*LOGFONTA) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCompositionFontA(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, plf);
+        return self.vtable.GetCompositionFontA(self, hIMC, plf);
     }
     pub fn GetCompositionFontW(self: *const IActiveIMMIME, hIMC: ?HIMC, plf: ?*LOGFONTW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCompositionFontW(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, plf);
+        return self.vtable.GetCompositionFontW(self, hIMC, plf);
     }
     pub fn GetCompositionStringA(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCompositionStringA(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwIndex, dwBufLen, plCopied, pBuf);
+        return self.vtable.GetCompositionStringA(self, hIMC, dwIndex, dwBufLen, plCopied, pBuf);
     }
     pub fn GetCompositionStringW(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, plCopied: ?*i32, pBuf: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCompositionStringW(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwIndex, dwBufLen, plCopied, pBuf);
+        return self.vtable.GetCompositionStringW(self, hIMC, dwIndex, dwBufLen, plCopied, pBuf);
     }
     pub fn GetCompositionWindow(self: *const IActiveIMMIME, hIMC: ?HIMC, pCompForm: ?*COMPOSITIONFORM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCompositionWindow(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, pCompForm);
+        return self.vtable.GetCompositionWindow(self, hIMC, pCompForm);
     }
     pub fn GetContext(self: *const IActiveIMMIME, hWnd: ?HWND, phIMC: ?*?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetContext(@as(*const IActiveIMMIME, @ptrCast(self)), hWnd, phIMC);
+        return self.vtable.GetContext(self, hWnd, phIMC);
     }
     pub fn GetConversionListA(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?PSTR, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetConversionListA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
+        return self.vtable.GetConversionListA(self, hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
     }
     pub fn GetConversionListW(self: *const IActiveIMMIME, hKL: ?HKL, hIMC: ?HIMC, pSrc: ?PWSTR, uBufLen: u32, uFlag: u32, pDst: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetConversionListW(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
+        return self.vtable.GetConversionListW(self, hKL, hIMC, pSrc, uBufLen, uFlag, pDst, puCopied);
     }
     pub fn GetConversionStatus(self: *const IActiveIMMIME, hIMC: ?HIMC, pfdwConversion: ?*u32, pfdwSentence: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetConversionStatus(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, pfdwConversion, pfdwSentence);
+        return self.vtable.GetConversionStatus(self, hIMC, pfdwConversion, pfdwSentence);
     }
     pub fn GetDefaultIMEWnd(self: *const IActiveIMMIME, hWnd: ?HWND, phDefWnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetDefaultIMEWnd(@as(*const IActiveIMMIME, @ptrCast(self)), hWnd, phDefWnd);
+        return self.vtable.GetDefaultIMEWnd(self, hWnd, phDefWnd);
     }
     pub fn GetDescriptionA(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szDescription: ?PSTR, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetDescriptionA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, uBufLen, szDescription, puCopied);
+        return self.vtable.GetDescriptionA(self, hKL, uBufLen, szDescription, puCopied);
     }
     pub fn GetDescriptionW(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szDescription: ?PWSTR, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetDescriptionW(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, uBufLen, szDescription, puCopied);
+        return self.vtable.GetDescriptionW(self, hKL, uBufLen, szDescription, puCopied);
     }
     pub fn GetGuideLineA(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?PSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetGuideLineA(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
+        return self.vtable.GetGuideLineA(self, hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
     }
     pub fn GetGuideLineW(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, dwBufLen: u32, pBuf: ?PWSTR, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetGuideLineW(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
+        return self.vtable.GetGuideLineW(self, hIMC, dwIndex, dwBufLen, pBuf, pdwResult);
     }
     pub fn GetIMEFileNameA(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szFileName: ?PSTR, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetIMEFileNameA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, uBufLen, szFileName, puCopied);
+        return self.vtable.GetIMEFileNameA(self, hKL, uBufLen, szFileName, puCopied);
     }
     pub fn GetIMEFileNameW(self: *const IActiveIMMIME, hKL: ?HKL, uBufLen: u32, szFileName: ?PWSTR, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetIMEFileNameW(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, uBufLen, szFileName, puCopied);
+        return self.vtable.GetIMEFileNameW(self, hKL, uBufLen, szFileName, puCopied);
     }
     pub fn GetOpenStatus(self: *const IActiveIMMIME, hIMC: ?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetOpenStatus(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC);
+        return self.vtable.GetOpenStatus(self, hIMC);
     }
     pub fn GetProperty(self: *const IActiveIMMIME, hKL: ?HKL, fdwIndex: u32, pdwProperty: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, fdwIndex, pdwProperty);
+        return self.vtable.GetProperty(self, hKL, fdwIndex, pdwProperty);
     }
     pub fn GetRegisterWordStyleA(self: *const IActiveIMMIME, hKL: ?HKL, nItem: u32, pStyleBuf: ?*STYLEBUFA, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetRegisterWordStyleA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, nItem, pStyleBuf, puCopied);
+        return self.vtable.GetRegisterWordStyleA(self, hKL, nItem, pStyleBuf, puCopied);
     }
     pub fn GetRegisterWordStyleW(self: *const IActiveIMMIME, hKL: ?HKL, nItem: u32, pStyleBuf: ?*STYLEBUFW, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetRegisterWordStyleW(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, nItem, pStyleBuf, puCopied);
+        return self.vtable.GetRegisterWordStyleW(self, hKL, nItem, pStyleBuf, puCopied);
     }
     pub fn GetStatusWindowPos(self: *const IActiveIMMIME, hIMC: ?HIMC, pptPos: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetStatusWindowPos(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, pptPos);
+        return self.vtable.GetStatusWindowPos(self, hIMC, pptPos);
     }
     pub fn GetVirtualKey(self: *const IActiveIMMIME, hWnd: ?HWND, puVirtualKey: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetVirtualKey(@as(*const IActiveIMMIME, @ptrCast(self)), hWnd, puVirtualKey);
+        return self.vtable.GetVirtualKey(self, hWnd, puVirtualKey);
     }
     pub fn InstallIMEA(self: *const IActiveIMMIME, szIMEFileName: ?PSTR, szLayoutText: ?PSTR, phKL: ?*?HKL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).InstallIMEA(@as(*const IActiveIMMIME, @ptrCast(self)), szIMEFileName, szLayoutText, phKL);
+        return self.vtable.InstallIMEA(self, szIMEFileName, szLayoutText, phKL);
     }
     pub fn InstallIMEW(self: *const IActiveIMMIME, szIMEFileName: ?PWSTR, szLayoutText: ?PWSTR, phKL: ?*?HKL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).InstallIMEW(@as(*const IActiveIMMIME, @ptrCast(self)), szIMEFileName, szLayoutText, phKL);
+        return self.vtable.InstallIMEW(self, szIMEFileName, szLayoutText, phKL);
     }
     pub fn IsIME(self: *const IActiveIMMIME, hKL: ?HKL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).IsIME(@as(*const IActiveIMMIME, @ptrCast(self)), hKL);
+        return self.vtable.IsIME(self, hKL);
     }
     pub fn IsUIMessageA(self: *const IActiveIMMIME, hWndIME: ?HWND, msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).IsUIMessageA(@as(*const IActiveIMMIME, @ptrCast(self)), hWndIME, msg, wParam, lParam);
+        return self.vtable.IsUIMessageA(self, hWndIME, msg, wParam, lParam);
     }
     pub fn IsUIMessageW(self: *const IActiveIMMIME, hWndIME: ?HWND, msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).IsUIMessageW(@as(*const IActiveIMMIME, @ptrCast(self)), hWndIME, msg, wParam, lParam);
+        return self.vtable.IsUIMessageW(self, hWndIME, msg, wParam, lParam);
     }
     pub fn NotifyIME(self: *const IActiveIMMIME, hIMC: ?HIMC, dwAction: u32, dwIndex: u32, dwValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).NotifyIME(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwAction, dwIndex, dwValue);
+        return self.vtable.NotifyIME(self, hIMC, dwAction, dwIndex, dwValue);
     }
     pub fn RegisterWordA(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szRegister: ?PSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).RegisterWordA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, szReading, dwStyle, szRegister);
+        return self.vtable.RegisterWordA(self, hKL, szReading, dwStyle, szRegister);
     }
     pub fn RegisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).RegisterWordW(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, szReading, dwStyle, szRegister);
+        return self.vtable.RegisterWordW(self, hKL, szReading, dwStyle, szRegister);
     }
     pub fn ReleaseContext(self: *const IActiveIMMIME, hWnd: ?HWND, hIMC: ?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).ReleaseContext(@as(*const IActiveIMMIME, @ptrCast(self)), hWnd, hIMC);
+        return self.vtable.ReleaseContext(self, hWnd, hIMC);
     }
     pub fn SetCandidateWindow(self: *const IActiveIMMIME, hIMC: ?HIMC, pCandidate: ?*CANDIDATEFORM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetCandidateWindow(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, pCandidate);
+        return self.vtable.SetCandidateWindow(self, hIMC, pCandidate);
     }
     pub fn SetCompositionFontA(self: *const IActiveIMMIME, hIMC: ?HIMC, plf: ?*LOGFONTA) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetCompositionFontA(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, plf);
+        return self.vtable.SetCompositionFontA(self, hIMC, plf);
     }
     pub fn SetCompositionFontW(self: *const IActiveIMMIME, hIMC: ?HIMC, plf: ?*LOGFONTW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetCompositionFontW(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, plf);
+        return self.vtable.SetCompositionFontW(self, hIMC, plf);
     }
     pub fn SetCompositionStringA(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetCompositionStringA(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
+        return self.vtable.SetCompositionStringA(self, hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
     }
     pub fn SetCompositionStringW(self: *const IActiveIMMIME, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetCompositionStringW(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
+        return self.vtable.SetCompositionStringW(self, hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
     }
     pub fn SetCompositionWindow(self: *const IActiveIMMIME, hIMC: ?HIMC, pCompForm: ?*COMPOSITIONFORM) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetCompositionWindow(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, pCompForm);
+        return self.vtable.SetCompositionWindow(self, hIMC, pCompForm);
     }
     pub fn SetConversionStatus(self: *const IActiveIMMIME, hIMC: ?HIMC, fdwConversion: u32, fdwSentence: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetConversionStatus(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, fdwConversion, fdwSentence);
+        return self.vtable.SetConversionStatus(self, hIMC, fdwConversion, fdwSentence);
     }
     pub fn SetOpenStatus(self: *const IActiveIMMIME, hIMC: ?HIMC, fOpen: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetOpenStatus(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, fOpen);
+        return self.vtable.SetOpenStatus(self, hIMC, fOpen);
     }
     pub fn SetStatusWindowPos(self: *const IActiveIMMIME, hIMC: ?HIMC, pptPos: ?*POINT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetStatusWindowPos(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, pptPos);
+        return self.vtable.SetStatusWindowPos(self, hIMC, pptPos);
     }
     pub fn SimulateHotKey(self: *const IActiveIMMIME, hWnd: ?HWND, dwHotKeyID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SimulateHotKey(@as(*const IActiveIMMIME, @ptrCast(self)), hWnd, dwHotKeyID);
+        return self.vtable.SimulateHotKey(self, hWnd, dwHotKeyID);
     }
     pub fn UnregisterWordA(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PSTR, dwStyle: u32, szUnregister: ?PSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).UnregisterWordA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, szReading, dwStyle, szUnregister);
+        return self.vtable.UnregisterWordA(self, hKL, szReading, dwStyle, szUnregister);
     }
     pub fn UnregisterWordW(self: *const IActiveIMMIME, hKL: ?HKL, szReading: ?PWSTR, dwStyle: u32, szUnregister: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).UnregisterWordW(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, szReading, dwStyle, szUnregister);
+        return self.vtable.UnregisterWordW(self, hKL, szReading, dwStyle, szUnregister);
     }
     pub fn GenerateMessage(self: *const IActiveIMMIME, hIMC: ?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GenerateMessage(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC);
+        return self.vtable.GenerateMessage(self, hIMC);
     }
     pub fn LockIMC(self: *const IActiveIMMIME, hIMC: ?HIMC, ppIMC: ?*?*INPUTCONTEXT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).LockIMC(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, ppIMC);
+        return self.vtable.LockIMC(self, hIMC, ppIMC);
     }
     pub fn UnlockIMC(self: *const IActiveIMMIME, hIMC: ?HIMC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).UnlockIMC(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC);
+        return self.vtable.UnlockIMC(self, hIMC);
     }
     pub fn GetIMCLockCount(self: *const IActiveIMMIME, hIMC: ?HIMC, pdwLockCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetIMCLockCount(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, pdwLockCount);
+        return self.vtable.GetIMCLockCount(self, hIMC, pdwLockCount);
     }
     pub fn CreateIMCC(self: *const IActiveIMMIME, dwSize: u32, phIMCC: ?*?HIMCC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).CreateIMCC(@as(*const IActiveIMMIME, @ptrCast(self)), dwSize, phIMCC);
+        return self.vtable.CreateIMCC(self, dwSize, phIMCC);
     }
     pub fn DestroyIMCC(self: *const IActiveIMMIME, hIMCC: ?HIMCC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).DestroyIMCC(@as(*const IActiveIMMIME, @ptrCast(self)), hIMCC);
+        return self.vtable.DestroyIMCC(self, hIMCC);
     }
     pub fn LockIMCC(self: *const IActiveIMMIME, hIMCC: ?HIMCC, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).LockIMCC(@as(*const IActiveIMMIME, @ptrCast(self)), hIMCC, ppv);
+        return self.vtable.LockIMCC(self, hIMCC, ppv);
     }
     pub fn UnlockIMCC(self: *const IActiveIMMIME, hIMCC: ?HIMCC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).UnlockIMCC(@as(*const IActiveIMMIME, @ptrCast(self)), hIMCC);
+        return self.vtable.UnlockIMCC(self, hIMCC);
     }
     pub fn ReSizeIMCC(self: *const IActiveIMMIME, hIMCC: ?HIMCC, dwSize: u32, phIMCC: ?*?HIMCC) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).ReSizeIMCC(@as(*const IActiveIMMIME, @ptrCast(self)), hIMCC, dwSize, phIMCC);
+        return self.vtable.ReSizeIMCC(self, hIMCC, dwSize, phIMCC);
     }
     pub fn GetIMCCSize(self: *const IActiveIMMIME, hIMCC: ?HIMCC, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetIMCCSize(@as(*const IActiveIMMIME, @ptrCast(self)), hIMCC, pdwSize);
+        return self.vtable.GetIMCCSize(self, hIMCC, pdwSize);
     }
     pub fn GetIMCCLockCount(self: *const IActiveIMMIME, hIMCC: ?HIMCC, pdwLockCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetIMCCLockCount(@as(*const IActiveIMMIME, @ptrCast(self)), hIMCC, pdwLockCount);
+        return self.vtable.GetIMCCLockCount(self, hIMCC, pdwLockCount);
     }
     pub fn GetHotKey(self: *const IActiveIMMIME, dwHotKeyID: u32, puModifiers: ?*u32, puVKey: ?*u32, phKL: ?*?HKL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetHotKey(@as(*const IActiveIMMIME, @ptrCast(self)), dwHotKeyID, puModifiers, puVKey, phKL);
+        return self.vtable.GetHotKey(self, dwHotKeyID, puModifiers, puVKey, phKL);
     }
     pub fn SetHotKey(self: *const IActiveIMMIME, dwHotKeyID: u32, uModifiers: u32, uVKey: u32, hKL: ?HKL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SetHotKey(@as(*const IActiveIMMIME, @ptrCast(self)), dwHotKeyID, uModifiers, uVKey, hKL);
+        return self.vtable.SetHotKey(self, dwHotKeyID, uModifiers, uVKey, hKL);
     }
     pub fn CreateSoftKeyboard(self: *const IActiveIMMIME, uType: u32, hOwner: ?HWND, x: i32, y: i32, phSoftKbdWnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).CreateSoftKeyboard(@as(*const IActiveIMMIME, @ptrCast(self)), uType, hOwner, x, y, phSoftKbdWnd);
+        return self.vtable.CreateSoftKeyboard(self, uType, hOwner, x, y, phSoftKbdWnd);
     }
     pub fn DestroySoftKeyboard(self: *const IActiveIMMIME, hSoftKbdWnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).DestroySoftKeyboard(@as(*const IActiveIMMIME, @ptrCast(self)), hSoftKbdWnd);
+        return self.vtable.DestroySoftKeyboard(self, hSoftKbdWnd);
     }
     pub fn ShowSoftKeyboard(self: *const IActiveIMMIME, hSoftKbdWnd: ?HWND, nCmdShow: i32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).ShowSoftKeyboard(@as(*const IActiveIMMIME, @ptrCast(self)), hSoftKbdWnd, nCmdShow);
+        return self.vtable.ShowSoftKeyboard(self, hSoftKbdWnd, nCmdShow);
     }
     pub fn GetCodePageA(self: *const IActiveIMMIME, hKL: ?HKL, uCodePage: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetCodePageA(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, uCodePage);
+        return self.vtable.GetCodePageA(self, hKL, uCodePage);
     }
     pub fn GetLangId(self: *const IActiveIMMIME, hKL: ?HKL, plid: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetLangId(@as(*const IActiveIMMIME, @ptrCast(self)), hKL, plid);
+        return self.vtable.GetLangId(self, hKL, plid);
     }
     pub fn KeybdEvent(self: *const IActiveIMMIME, lgidIME: u16, bVk: u8, bScan: u8, dwFlags: u32, dwExtraInfo: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).KeybdEvent(@as(*const IActiveIMMIME, @ptrCast(self)), lgidIME, bVk, bScan, dwFlags, dwExtraInfo);
+        return self.vtable.KeybdEvent(self, lgidIME, bVk, bScan, dwFlags, dwExtraInfo);
     }
     pub fn LockModal(self: *const IActiveIMMIME) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).LockModal(@as(*const IActiveIMMIME, @ptrCast(self)));
+        return self.vtable.LockModal(self);
     }
     pub fn UnlockModal(self: *const IActiveIMMIME) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).UnlockModal(@as(*const IActiveIMMIME, @ptrCast(self)));
+        return self.vtable.UnlockModal(self);
     }
     pub fn AssociateContextEx(self: *const IActiveIMMIME, hWnd: ?HWND, hIMC: ?HIMC, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).AssociateContextEx(@as(*const IActiveIMMIME, @ptrCast(self)), hWnd, hIMC, dwFlags);
+        return self.vtable.AssociateContextEx(self, hWnd, hIMC, dwFlags);
     }
     pub fn DisableIME(self: *const IActiveIMMIME, idThread: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).DisableIME(@as(*const IActiveIMMIME, @ptrCast(self)), idThread);
+        return self.vtable.DisableIME(self, idThread);
     }
     pub fn GetImeMenuItemsA(self: *const IActiveIMMIME, hIMC: ?HIMC, dwFlags: u32, dwType: u32, pImeParentMenu: ?*IMEMENUITEMINFOA, pImeMenu: ?*IMEMENUITEMINFOA, dwSize: u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetImeMenuItemsA(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwFlags, dwType, pImeParentMenu, pImeMenu, dwSize, pdwResult);
+        return self.vtable.GetImeMenuItemsA(self, hIMC, dwFlags, dwType, pImeParentMenu, pImeMenu, dwSize, pdwResult);
     }
     pub fn GetImeMenuItemsW(self: *const IActiveIMMIME, hIMC: ?HIMC, dwFlags: u32, dwType: u32, pImeParentMenu: ?*IMEMENUITEMINFOW, pImeMenu: ?*IMEMENUITEMINFOW, dwSize: u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).GetImeMenuItemsW(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, dwFlags, dwType, pImeParentMenu, pImeMenu, dwSize, pdwResult);
+        return self.vtable.GetImeMenuItemsW(self, hIMC, dwFlags, dwType, pImeParentMenu, pImeMenu, dwSize, pdwResult);
     }
     pub fn EnumInputContext(self: *const IActiveIMMIME, idThread: u32, ppEnum: ?*?*IEnumInputContext) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).EnumInputContext(@as(*const IActiveIMMIME, @ptrCast(self)), idThread, ppEnum);
+        return self.vtable.EnumInputContext(self, idThread, ppEnum);
     }
     pub fn RequestMessageA(self: *const IActiveIMMIME, hIMC: ?HIMC, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).RequestMessageA(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, wParam, lParam, plResult);
+        return self.vtable.RequestMessageA(self, hIMC, wParam, lParam, plResult);
     }
     pub fn RequestMessageW(self: *const IActiveIMMIME, hIMC: ?HIMC, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).RequestMessageW(@as(*const IActiveIMMIME, @ptrCast(self)), hIMC, wParam, lParam, plResult);
+        return self.vtable.RequestMessageW(self, hIMC, wParam, lParam, plResult);
     }
     pub fn SendIMCA(self: *const IActiveIMMIME, hWnd: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SendIMCA(@as(*const IActiveIMMIME, @ptrCast(self)), hWnd, uMsg, wParam, lParam, plResult);
+        return self.vtable.SendIMCA(self, hWnd, uMsg, wParam, lParam, plResult);
     }
     pub fn SendIMCW(self: *const IActiveIMMIME, hWnd: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).SendIMCW(@as(*const IActiveIMMIME, @ptrCast(self)), hWnd, uMsg, wParam, lParam, plResult);
+        return self.vtable.SendIMCW(self, hWnd, uMsg, wParam, lParam, plResult);
     }
     pub fn IsSleeping(self: *const IActiveIMMIME) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIMMIME.VTable, @ptrCast(self.vtable)).IsSleeping(@as(*const IActiveIMMIME, @ptrCast(self)));
+        return self.vtable.IsSleeping(self);
     }
 };
 
@@ -4473,55 +4473,55 @@ pub const IActiveIME = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Inquire(self: *const IActiveIME, dwSystemInfoFlags: u32, pIMEInfo: ?*IMEINFO, szWndClass: ?PWSTR, pdwPrivate: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).Inquire(@as(*const IActiveIME, @ptrCast(self)), dwSystemInfoFlags, pIMEInfo, szWndClass, pdwPrivate);
+        return self.vtable.Inquire(self, dwSystemInfoFlags, pIMEInfo, szWndClass, pdwPrivate);
     }
     pub fn ConversionList(self: *const IActiveIME, hIMC: ?HIMC, szSource: ?PWSTR, uFlag: u32, uBufLen: u32, pDest: ?*CANDIDATELIST, puCopied: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).ConversionList(@as(*const IActiveIME, @ptrCast(self)), hIMC, szSource, uFlag, uBufLen, pDest, puCopied);
+        return self.vtable.ConversionList(self, hIMC, szSource, uFlag, uBufLen, pDest, puCopied);
     }
     pub fn Configure(self: *const IActiveIME, hKL: ?HKL, hWnd: ?HWND, dwMode: u32, pRegisterWord: ?*REGISTERWORDW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).Configure(@as(*const IActiveIME, @ptrCast(self)), hKL, hWnd, dwMode, pRegisterWord);
+        return self.vtable.Configure(self, hKL, hWnd, dwMode, pRegisterWord);
     }
     pub fn Destroy(self: *const IActiveIME, uReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).Destroy(@as(*const IActiveIME, @ptrCast(self)), uReserved);
+        return self.vtable.Destroy(self, uReserved);
     }
     pub fn Escape(self: *const IActiveIME, hIMC: ?HIMC, uEscape: u32, pData: ?*anyopaque, plResult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).Escape(@as(*const IActiveIME, @ptrCast(self)), hIMC, uEscape, pData, plResult);
+        return self.vtable.Escape(self, hIMC, uEscape, pData, plResult);
     }
     pub fn SetActiveContext(self: *const IActiveIME, hIMC: ?HIMC, fFlag: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).SetActiveContext(@as(*const IActiveIME, @ptrCast(self)), hIMC, fFlag);
+        return self.vtable.SetActiveContext(self, hIMC, fFlag);
     }
     pub fn ProcessKey(self: *const IActiveIME, hIMC: ?HIMC, uVirKey: u32, lParam: u32, pbKeyState: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).ProcessKey(@as(*const IActiveIME, @ptrCast(self)), hIMC, uVirKey, lParam, pbKeyState);
+        return self.vtable.ProcessKey(self, hIMC, uVirKey, lParam, pbKeyState);
     }
     pub fn Notify(self: *const IActiveIME, hIMC: ?HIMC, dwAction: u32, dwIndex: u32, dwValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).Notify(@as(*const IActiveIME, @ptrCast(self)), hIMC, dwAction, dwIndex, dwValue);
+        return self.vtable.Notify(self, hIMC, dwAction, dwIndex, dwValue);
     }
     pub fn Select(self: *const IActiveIME, hIMC: ?HIMC, fSelect: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).Select(@as(*const IActiveIME, @ptrCast(self)), hIMC, fSelect);
+        return self.vtable.Select(self, hIMC, fSelect);
     }
     pub fn SetCompositionString(self: *const IActiveIME, hIMC: ?HIMC, dwIndex: u32, pComp: ?*anyopaque, dwCompLen: u32, pRead: ?*anyopaque, dwReadLen: u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).SetCompositionString(@as(*const IActiveIME, @ptrCast(self)), hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
+        return self.vtable.SetCompositionString(self, hIMC, dwIndex, pComp, dwCompLen, pRead, dwReadLen);
     }
     pub fn ToAsciiEx(self: *const IActiveIME, uVirKey: u32, uScanCode: u32, pbKeyState: ?*u8, fuState: u32, hIMC: ?HIMC, pdwTransBuf: ?*u32, puSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).ToAsciiEx(@as(*const IActiveIME, @ptrCast(self)), uVirKey, uScanCode, pbKeyState, fuState, hIMC, pdwTransBuf, puSize);
+        return self.vtable.ToAsciiEx(self, uVirKey, uScanCode, pbKeyState, fuState, hIMC, pdwTransBuf, puSize);
     }
     pub fn RegisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szString: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).RegisterWord(@as(*const IActiveIME, @ptrCast(self)), szReading, dwStyle, szString);
+        return self.vtable.RegisterWord(self, szReading, dwStyle, szString);
     }
     pub fn UnregisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szString: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).UnregisterWord(@as(*const IActiveIME, @ptrCast(self)), szReading, dwStyle, szString);
+        return self.vtable.UnregisterWord(self, szReading, dwStyle, szString);
     }
     pub fn GetRegisterWordStyle(self: *const IActiveIME, nItem: u32, pStyleBuf: ?*STYLEBUFW, puBufSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).GetRegisterWordStyle(@as(*const IActiveIME, @ptrCast(self)), nItem, pStyleBuf, puBufSize);
+        return self.vtable.GetRegisterWordStyle(self, nItem, pStyleBuf, puBufSize);
     }
     pub fn EnumRegisterWord(self: *const IActiveIME, szReading: ?PWSTR, dwStyle: u32, szRegister: ?PWSTR, pData: ?*anyopaque, ppEnum: ?*?*IEnumRegisterWordW) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).EnumRegisterWord(@as(*const IActiveIME, @ptrCast(self)), szReading, dwStyle, szRegister, pData, ppEnum);
+        return self.vtable.EnumRegisterWord(self, szReading, dwStyle, szRegister, pData, ppEnum);
     }
     pub fn GetCodePageA(self: *const IActiveIME, uCodePage: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).GetCodePageA(@as(*const IActiveIME, @ptrCast(self)), uCodePage);
+        return self.vtable.GetCodePageA(self, uCodePage);
     }
     pub fn GetLangId(self: *const IActiveIME, plid: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME.VTable, @ptrCast(self.vtable)).GetLangId(@as(*const IActiveIME, @ptrCast(self)), plid);
+        return self.vtable.GetLangId(self, plid);
     }
 };
 
@@ -4553,10 +4553,10 @@ pub const IActiveIME2 = extern union {
     };}
     pub usingnamespace IActiveIME.MethodMixin(@This());
     pub fn Sleep(self: *const IActiveIME2) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME2.VTable, @ptrCast(self.vtable)).Sleep(@as(*const IActiveIME2, @ptrCast(self)));
+        return self.vtable.Sleep(self);
     }
     pub fn Unsleep(self: *const IActiveIME2, fDead: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IActiveIME2.VTable, @ptrCast(self.vtable)).Unsleep(@as(*const IActiveIME2, @ptrCast(self)), fDead);
+        return self.vtable.Unsleep(self, fDead);
     }
 };
 

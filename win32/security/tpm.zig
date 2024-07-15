@@ -124,10 +124,10 @@ pub const ITpmVirtualSmartCardManagerStatusCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ReportProgress(self: *const ITpmVirtualSmartCardManagerStatusCallback, Status: TPMVSCMGR_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const ITpmVirtualSmartCardManagerStatusCallback.VTable, @ptrCast(self.vtable)).ReportProgress(@as(*const ITpmVirtualSmartCardManagerStatusCallback, @ptrCast(self)), Status);
+        return self.vtable.ReportProgress(self, Status);
     }
     pub fn ReportError(self: *const ITpmVirtualSmartCardManagerStatusCallback, Error: TPMVSCMGR_ERROR) callconv(.Inline) HRESULT {
-        return @as(*const ITpmVirtualSmartCardManagerStatusCallback.VTable, @ptrCast(self.vtable)).ReportError(@as(*const ITpmVirtualSmartCardManagerStatusCallback, @ptrCast(self)), Error);
+        return self.vtable.ReportError(self, Error);
     }
 };
 
@@ -176,10 +176,10 @@ pub const ITpmVirtualSmartCardManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateVirtualSmartCard(self: *const ITpmVirtualSmartCardManager, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITpmVirtualSmartCardManager.VTable, @ptrCast(self.vtable)).CreateVirtualSmartCard(@as(*const ITpmVirtualSmartCardManager, @ptrCast(self)), pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
+        return self.vtable.CreateVirtualSmartCard(self, pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
     }
     pub fn DestroyVirtualSmartCard(self: *const ITpmVirtualSmartCardManager, pszInstanceId: ?[*:0]const u16, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, pfNeedReboot: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITpmVirtualSmartCardManager.VTable, @ptrCast(self.vtable)).DestroyVirtualSmartCard(@as(*const ITpmVirtualSmartCardManager, @ptrCast(self)), pszInstanceId, pStatusCallback, pfNeedReboot);
+        return self.vtable.DestroyVirtualSmartCard(self, pszInstanceId, pStatusCallback, pfNeedReboot);
     }
 };
 
@@ -219,7 +219,7 @@ pub const ITpmVirtualSmartCardManager2 = extern union {
     };}
     pub usingnamespace ITpmVirtualSmartCardManager.MethodMixin(@This());
     pub fn CreateVirtualSmartCardWithPinPolicy(self: *const ITpmVirtualSmartCardManager2, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITpmVirtualSmartCardManager2.VTable, @ptrCast(self.vtable)).CreateVirtualSmartCardWithPinPolicy(@as(*const ITpmVirtualSmartCardManager2, @ptrCast(self)), pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
+        return self.vtable.CreateVirtualSmartCardWithPinPolicy(self, pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
     }
 };
 
@@ -259,7 +259,7 @@ pub const ITpmVirtualSmartCardManager3 = extern union {
     };}
     pub usingnamespace ITpmVirtualSmartCardManager2.MethodMixin(@This());
     pub fn CreateVirtualSmartCardWithAttestation(self: *const ITpmVirtualSmartCardManager3, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, attestationType: TPMVSC_ATTESTATION_TYPE, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITpmVirtualSmartCardManager3.VTable, @ptrCast(self.vtable)).CreateVirtualSmartCardWithAttestation(@as(*const ITpmVirtualSmartCardManager3, @ptrCast(self)), pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, attestationType, fGenerate, pStatusCallback, ppszInstanceId);
+        return self.vtable.CreateVirtualSmartCardWithAttestation(self, pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, attestationType, fGenerate, pStatusCallback, ppszInstanceId);
     }
 };
 

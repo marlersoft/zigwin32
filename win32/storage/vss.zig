@@ -532,16 +532,16 @@ pub const IVssEnumObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IVssEnumObject, celt: u32, rgelt: [*]VSS_OBJECT_PROP, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssEnumObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IVssEnumObject, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IVssEnumObject, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssEnumObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IVssEnumObject, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IVssEnumObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssEnumObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IVssEnumObject, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IVssEnumObject, ppenum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssEnumObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IVssEnumObject, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -583,13 +583,13 @@ pub const IVssAsync = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Cancel(self: *const IVssAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVssAsync.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IVssAsync, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn Wait(self: *const IVssAsync, dwMilliseconds: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssAsync.VTable, @ptrCast(self.vtable)).Wait(@as(*const IVssAsync, @ptrCast(self)), dwMilliseconds);
+        return self.vtable.Wait(self, dwMilliseconds);
     }
     pub fn QueryStatus(self: *const IVssAsync, pHrResult: ?*HRESULT, pReserved: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVssAsync.VTable, @ptrCast(self.vtable)).QueryStatus(@as(*const IVssAsync, @ptrCast(self)), pHrResult, pReserved);
+        return self.vtable.QueryStatus(self, pHrResult, pReserved);
     }
 };
 
@@ -770,19 +770,19 @@ pub const IVssWMFiledesc = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPath(self: *const IVssWMFiledesc, pbstrPath: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IVssWMFiledesc, @ptrCast(self)), pbstrPath);
+        return self.vtable.GetPath(self, pbstrPath);
     }
     pub fn GetFilespec(self: *const IVssWMFiledesc, pbstrFilespec: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetFilespec(@as(*const IVssWMFiledesc, @ptrCast(self)), pbstrFilespec);
+        return self.vtable.GetFilespec(self, pbstrFilespec);
     }
     pub fn GetRecursive(self: *const IVssWMFiledesc, pbRecursive: ?*bool) callconv(.Inline) HRESULT {
-        return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetRecursive(@as(*const IVssWMFiledesc, @ptrCast(self)), pbRecursive);
+        return self.vtable.GetRecursive(self, pbRecursive);
     }
     pub fn GetAlternateLocation(self: *const IVssWMFiledesc, pbstrAlternateLocation: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetAlternateLocation(@as(*const IVssWMFiledesc, @ptrCast(self)), pbstrAlternateLocation);
+        return self.vtable.GetAlternateLocation(self, pbstrAlternateLocation);
     }
     pub fn GetBackupTypeMask(self: *const IVssWMFiledesc, pdwTypeMask: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetBackupTypeMask(@as(*const IVssWMFiledesc, @ptrCast(self)), pdwTypeMask);
+        return self.vtable.GetBackupTypeMask(self, pdwTypeMask);
     }
 };
 
@@ -821,13 +821,13 @@ pub const IVssWMDependency = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWriterId(self: *const IVssWMDependency, pWriterId: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssWMDependency.VTable, @ptrCast(self.vtable)).GetWriterId(@as(*const IVssWMDependency, @ptrCast(self)), pWriterId);
+        return self.vtable.GetWriterId(self, pWriterId);
     }
     pub fn GetLogicalPath(self: *const IVssWMDependency, pbstrLogicalPath: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssWMDependency.VTable, @ptrCast(self.vtable)).GetLogicalPath(@as(*const IVssWMDependency, @ptrCast(self)), pbstrLogicalPath);
+        return self.vtable.GetLogicalPath(self, pbstrLogicalPath);
     }
     pub fn GetComponentName(self: *const IVssWMDependency, pbstrComponentName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssWMDependency.VTable, @ptrCast(self.vtable)).GetComponentName(@as(*const IVssWMDependency, @ptrCast(self)), pbstrComponentName);
+        return self.vtable.GetComponentName(self, pbstrComponentName);
     }
 };
 
@@ -1182,118 +1182,118 @@ pub const IVssComponent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLogicalPath(self: *const IVssComponent, pbstrPath: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetLogicalPath(@as(*const IVssComponent, @ptrCast(self)), pbstrPath);
+        return self.vtable.GetLogicalPath(self, pbstrPath);
     }
     pub fn GetComponentType(self: *const IVssComponent, pct: ?*VSS_COMPONENT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetComponentType(@as(*const IVssComponent, @ptrCast(self)), pct);
+        return self.vtable.GetComponentType(self, pct);
     }
     pub fn GetComponentName(self: *const IVssComponent, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetComponentName(@as(*const IVssComponent, @ptrCast(self)), pbstrName);
+        return self.vtable.GetComponentName(self, pbstrName);
     }
     pub fn GetBackupSucceeded(self: *const IVssComponent, pbSucceeded: ?*bool) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetBackupSucceeded(@as(*const IVssComponent, @ptrCast(self)), pbSucceeded);
+        return self.vtable.GetBackupSucceeded(self, pbSucceeded);
     }
     pub fn GetAlternateLocationMappingCount(self: *const IVssComponent, pcMappings: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetAlternateLocationMappingCount(@as(*const IVssComponent, @ptrCast(self)), pcMappings);
+        return self.vtable.GetAlternateLocationMappingCount(self, pcMappings);
     }
     pub fn GetAlternateLocationMapping(self: *const IVssComponent, iMapping: u32, ppFiledesc: ?*?*IVssWMFiledesc) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetAlternateLocationMapping(@as(*const IVssComponent, @ptrCast(self)), iMapping, ppFiledesc);
+        return self.vtable.GetAlternateLocationMapping(self, iMapping, ppFiledesc);
     }
     pub fn SetBackupMetadata(self: *const IVssComponent, wszData: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetBackupMetadata(@as(*const IVssComponent, @ptrCast(self)), wszData);
+        return self.vtable.SetBackupMetadata(self, wszData);
     }
     pub fn GetBackupMetadata(self: *const IVssComponent, pbstrData: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetBackupMetadata(@as(*const IVssComponent, @ptrCast(self)), pbstrData);
+        return self.vtable.GetBackupMetadata(self, pbstrData);
     }
     pub fn AddPartialFile(self: *const IVssComponent, wszPath: ?[*:0]const u16, wszFilename: ?[*:0]const u16, wszRanges: ?[*:0]const u16, wszMetadata: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).AddPartialFile(@as(*const IVssComponent, @ptrCast(self)), wszPath, wszFilename, wszRanges, wszMetadata);
+        return self.vtable.AddPartialFile(self, wszPath, wszFilename, wszRanges, wszMetadata);
     }
     pub fn GetPartialFileCount(self: *const IVssComponent, pcPartialFiles: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPartialFileCount(@as(*const IVssComponent, @ptrCast(self)), pcPartialFiles);
+        return self.vtable.GetPartialFileCount(self, pcPartialFiles);
     }
     pub fn GetPartialFile(self: *const IVssComponent, iPartialFile: u32, pbstrPath: ?*?BSTR, pbstrFilename: ?*?BSTR, pbstrRange: ?*?BSTR, pbstrMetadata: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPartialFile(@as(*const IVssComponent, @ptrCast(self)), iPartialFile, pbstrPath, pbstrFilename, pbstrRange, pbstrMetadata);
+        return self.vtable.GetPartialFile(self, iPartialFile, pbstrPath, pbstrFilename, pbstrRange, pbstrMetadata);
     }
     pub fn IsSelectedForRestore(self: *const IVssComponent, pbSelectedForRestore: ?*bool) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).IsSelectedForRestore(@as(*const IVssComponent, @ptrCast(self)), pbSelectedForRestore);
+        return self.vtable.IsSelectedForRestore(self, pbSelectedForRestore);
     }
     pub fn GetAdditionalRestores(self: *const IVssComponent, pbAdditionalRestores: ?*bool) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetAdditionalRestores(@as(*const IVssComponent, @ptrCast(self)), pbAdditionalRestores);
+        return self.vtable.GetAdditionalRestores(self, pbAdditionalRestores);
     }
     pub fn GetNewTargetCount(self: *const IVssComponent, pcNewTarget: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetNewTargetCount(@as(*const IVssComponent, @ptrCast(self)), pcNewTarget);
+        return self.vtable.GetNewTargetCount(self, pcNewTarget);
     }
     pub fn GetNewTarget(self: *const IVssComponent, iNewTarget: u32, ppFiledesc: ?*?*IVssWMFiledesc) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetNewTarget(@as(*const IVssComponent, @ptrCast(self)), iNewTarget, ppFiledesc);
+        return self.vtable.GetNewTarget(self, iNewTarget, ppFiledesc);
     }
     pub fn AddDirectedTarget(self: *const IVssComponent, wszSourcePath: ?[*:0]const u16, wszSourceFilename: ?[*:0]const u16, wszSourceRangeList: ?[*:0]const u16, wszDestinationPath: ?[*:0]const u16, wszDestinationFilename: ?[*:0]const u16, wszDestinationRangeList: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).AddDirectedTarget(@as(*const IVssComponent, @ptrCast(self)), wszSourcePath, wszSourceFilename, wszSourceRangeList, wszDestinationPath, wszDestinationFilename, wszDestinationRangeList);
+        return self.vtable.AddDirectedTarget(self, wszSourcePath, wszSourceFilename, wszSourceRangeList, wszDestinationPath, wszDestinationFilename, wszDestinationRangeList);
     }
     pub fn GetDirectedTargetCount(self: *const IVssComponent, pcDirectedTarget: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetDirectedTargetCount(@as(*const IVssComponent, @ptrCast(self)), pcDirectedTarget);
+        return self.vtable.GetDirectedTargetCount(self, pcDirectedTarget);
     }
     pub fn GetDirectedTarget(self: *const IVssComponent, iDirectedTarget: u32, pbstrSourcePath: ?*?BSTR, pbstrSourceFileName: ?*?BSTR, pbstrSourceRangeList: ?*?BSTR, pbstrDestinationPath: ?*?BSTR, pbstrDestinationFilename: ?*?BSTR, pbstrDestinationRangeList: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetDirectedTarget(@as(*const IVssComponent, @ptrCast(self)), iDirectedTarget, pbstrSourcePath, pbstrSourceFileName, pbstrSourceRangeList, pbstrDestinationPath, pbstrDestinationFilename, pbstrDestinationRangeList);
+        return self.vtable.GetDirectedTarget(self, iDirectedTarget, pbstrSourcePath, pbstrSourceFileName, pbstrSourceRangeList, pbstrDestinationPath, pbstrDestinationFilename, pbstrDestinationRangeList);
     }
     pub fn SetRestoreMetadata(self: *const IVssComponent, wszRestoreMetadata: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetRestoreMetadata(@as(*const IVssComponent, @ptrCast(self)), wszRestoreMetadata);
+        return self.vtable.SetRestoreMetadata(self, wszRestoreMetadata);
     }
     pub fn GetRestoreMetadata(self: *const IVssComponent, pbstrRestoreMetadata: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreMetadata(@as(*const IVssComponent, @ptrCast(self)), pbstrRestoreMetadata);
+        return self.vtable.GetRestoreMetadata(self, pbstrRestoreMetadata);
     }
     pub fn SetRestoreTarget(self: *const IVssComponent, target: VSS_RESTORE_TARGET) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetRestoreTarget(@as(*const IVssComponent, @ptrCast(self)), target);
+        return self.vtable.SetRestoreTarget(self, target);
     }
     pub fn GetRestoreTarget(self: *const IVssComponent, pTarget: ?*VSS_RESTORE_TARGET) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreTarget(@as(*const IVssComponent, @ptrCast(self)), pTarget);
+        return self.vtable.GetRestoreTarget(self, pTarget);
     }
     pub fn SetPreRestoreFailureMsg(self: *const IVssComponent, wszPreRestoreFailureMsg: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetPreRestoreFailureMsg(@as(*const IVssComponent, @ptrCast(self)), wszPreRestoreFailureMsg);
+        return self.vtable.SetPreRestoreFailureMsg(self, wszPreRestoreFailureMsg);
     }
     pub fn GetPreRestoreFailureMsg(self: *const IVssComponent, pbstrPreRestoreFailureMsg: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPreRestoreFailureMsg(@as(*const IVssComponent, @ptrCast(self)), pbstrPreRestoreFailureMsg);
+        return self.vtable.GetPreRestoreFailureMsg(self, pbstrPreRestoreFailureMsg);
     }
     pub fn SetPostRestoreFailureMsg(self: *const IVssComponent, wszPostRestoreFailureMsg: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetPostRestoreFailureMsg(@as(*const IVssComponent, @ptrCast(self)), wszPostRestoreFailureMsg);
+        return self.vtable.SetPostRestoreFailureMsg(self, wszPostRestoreFailureMsg);
     }
     pub fn GetPostRestoreFailureMsg(self: *const IVssComponent, pbstrPostRestoreFailureMsg: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPostRestoreFailureMsg(@as(*const IVssComponent, @ptrCast(self)), pbstrPostRestoreFailureMsg);
+        return self.vtable.GetPostRestoreFailureMsg(self, pbstrPostRestoreFailureMsg);
     }
     pub fn SetBackupStamp(self: *const IVssComponent, wszBackupStamp: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetBackupStamp(@as(*const IVssComponent, @ptrCast(self)), wszBackupStamp);
+        return self.vtable.SetBackupStamp(self, wszBackupStamp);
     }
     pub fn GetBackupStamp(self: *const IVssComponent, pbstrBackupStamp: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetBackupStamp(@as(*const IVssComponent, @ptrCast(self)), pbstrBackupStamp);
+        return self.vtable.GetBackupStamp(self, pbstrBackupStamp);
     }
     pub fn GetPreviousBackupStamp(self: *const IVssComponent, pbstrBackupStamp: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPreviousBackupStamp(@as(*const IVssComponent, @ptrCast(self)), pbstrBackupStamp);
+        return self.vtable.GetPreviousBackupStamp(self, pbstrBackupStamp);
     }
     pub fn GetBackupOptions(self: *const IVssComponent, pbstrBackupOptions: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetBackupOptions(@as(*const IVssComponent, @ptrCast(self)), pbstrBackupOptions);
+        return self.vtable.GetBackupOptions(self, pbstrBackupOptions);
     }
     pub fn GetRestoreOptions(self: *const IVssComponent, pbstrRestoreOptions: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreOptions(@as(*const IVssComponent, @ptrCast(self)), pbstrRestoreOptions);
+        return self.vtable.GetRestoreOptions(self, pbstrRestoreOptions);
     }
     pub fn GetRestoreSubcomponentCount(self: *const IVssComponent, pcRestoreSubcomponent: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreSubcomponentCount(@as(*const IVssComponent, @ptrCast(self)), pcRestoreSubcomponent);
+        return self.vtable.GetRestoreSubcomponentCount(self, pcRestoreSubcomponent);
     }
     pub fn GetRestoreSubcomponent(self: *const IVssComponent, iComponent: u32, pbstrLogicalPath: ?*?BSTR, pbstrComponentName: ?*?BSTR, pbRepair: ?*bool) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreSubcomponent(@as(*const IVssComponent, @ptrCast(self)), iComponent, pbstrLogicalPath, pbstrComponentName, pbRepair);
+        return self.vtable.GetRestoreSubcomponent(self, iComponent, pbstrLogicalPath, pbstrComponentName, pbRepair);
     }
     pub fn GetFileRestoreStatus(self: *const IVssComponent, pStatus: ?*VSS_FILE_RESTORE_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetFileRestoreStatus(@as(*const IVssComponent, @ptrCast(self)), pStatus);
+        return self.vtable.GetFileRestoreStatus(self, pStatus);
     }
     pub fn AddDifferencedFilesByLastModifyTime(self: *const IVssComponent, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: BOOL, ftLastModifyTime: FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).AddDifferencedFilesByLastModifyTime(@as(*const IVssComponent, @ptrCast(self)), wszPath, wszFilespec, bRecursive, ftLastModifyTime);
+        return self.vtable.AddDifferencedFilesByLastModifyTime(self, wszPath, wszFilespec, bRecursive, ftLastModifyTime);
     }
     pub fn AddDifferencedFilesByLastModifyLSN(self: *const IVssComponent, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: BOOL, bstrLsnString: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).AddDifferencedFilesByLastModifyLSN(@as(*const IVssComponent, @ptrCast(self)), wszPath, wszFilespec, bRecursive, bstrLsnString);
+        return self.vtable.AddDifferencedFilesByLastModifyLSN(self, wszPath, wszFilespec, bRecursive, bstrLsnString);
     }
     pub fn GetDifferencedFilesCount(self: *const IVssComponent, pcDifferencedFiles: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetDifferencedFilesCount(@as(*const IVssComponent, @ptrCast(self)), pcDifferencedFiles);
+        return self.vtable.GetDifferencedFilesCount(self, pcDifferencedFiles);
     }
     pub fn GetDifferencedFile(self: *const IVssComponent, iDifferencedFile: u32, pbstrPath: ?*?BSTR, pbstrFilespec: ?*?BSTR, pbRecursive: ?*BOOL, pbstrLsnString: ?*?BSTR, pftLastModifyTime: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetDifferencedFile(@as(*const IVssComponent, @ptrCast(self)), iDifferencedFile, pbstrPath, pbstrFilespec, pbRecursive, pbstrLsnString, pftLastModifyTime);
+        return self.vtable.GetDifferencedFile(self, iDifferencedFile, pbstrPath, pbstrFilespec, pbRecursive, pbstrLsnString, pftLastModifyTime);
     }
 };
 
@@ -1330,13 +1330,13 @@ pub const IVssWriterComponents = extern union {
         }
     };}
     pub fn GetComponentCount(self: *const IVssWriterComponents, pcComponents: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterComponents.VTable, @ptrCast(self.vtable)).GetComponentCount(@as(*const IVssWriterComponents, @ptrCast(self)), pcComponents);
+        return self.vtable.GetComponentCount(self, pcComponents);
     }
     pub fn GetWriterInfo(self: *const IVssWriterComponents, pidInstance: ?*Guid, pidWriter: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterComponents.VTable, @ptrCast(self.vtable)).GetWriterInfo(@as(*const IVssWriterComponents, @ptrCast(self)), pidInstance, pidWriter);
+        return self.vtable.GetWriterInfo(self, pidInstance, pidWriter);
     }
     pub fn GetComponent(self: *const IVssWriterComponents, iComponent: u32, ppComponent: ?*?*IVssComponent) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterComponents.VTable, @ptrCast(self.vtable)).GetComponent(@as(*const IVssWriterComponents, @ptrCast(self)), iComponent, ppComponent);
+        return self.vtable.GetComponent(self, iComponent, ppComponent);
     }
 };
 
@@ -1410,25 +1410,25 @@ pub const IVssComponentEx = extern union {
     };}
     pub usingnamespace IVssComponent.MethodMixin(@This());
     pub fn SetPrepareForBackupFailureMsg(self: *const IVssComponentEx, wszFailureMsg: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).SetPrepareForBackupFailureMsg(@as(*const IVssComponentEx, @ptrCast(self)), wszFailureMsg);
+        return self.vtable.SetPrepareForBackupFailureMsg(self, wszFailureMsg);
     }
     pub fn SetPostSnapshotFailureMsg(self: *const IVssComponentEx, wszFailureMsg: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).SetPostSnapshotFailureMsg(@as(*const IVssComponentEx, @ptrCast(self)), wszFailureMsg);
+        return self.vtable.SetPostSnapshotFailureMsg(self, wszFailureMsg);
     }
     pub fn GetPrepareForBackupFailureMsg(self: *const IVssComponentEx, pbstrFailureMsg: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetPrepareForBackupFailureMsg(@as(*const IVssComponentEx, @ptrCast(self)), pbstrFailureMsg);
+        return self.vtable.GetPrepareForBackupFailureMsg(self, pbstrFailureMsg);
     }
     pub fn GetPostSnapshotFailureMsg(self: *const IVssComponentEx, pbstrFailureMsg: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetPostSnapshotFailureMsg(@as(*const IVssComponentEx, @ptrCast(self)), pbstrFailureMsg);
+        return self.vtable.GetPostSnapshotFailureMsg(self, pbstrFailureMsg);
     }
     pub fn GetAuthoritativeRestore(self: *const IVssComponentEx, pbAuth: ?*bool) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetAuthoritativeRestore(@as(*const IVssComponentEx, @ptrCast(self)), pbAuth);
+        return self.vtable.GetAuthoritativeRestore(self, pbAuth);
     }
     pub fn GetRollForward(self: *const IVssComponentEx, pRollType: ?*VSS_ROLLFORWARD_TYPE, pbstrPoint: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetRollForward(@as(*const IVssComponentEx, @ptrCast(self)), pRollType, pbstrPoint);
+        return self.vtable.GetRollForward(self, pRollType, pbstrPoint);
     }
     pub fn GetRestoreName(self: *const IVssComponentEx, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetRestoreName(@as(*const IVssComponentEx, @ptrCast(self)), pbstrName);
+        return self.vtable.GetRestoreName(self, pbstrName);
     }
 };
 
@@ -1467,10 +1467,10 @@ pub const IVssComponentEx2 = extern union {
     };}
     pub usingnamespace IVssComponentEx.MethodMixin(@This());
     pub fn SetFailure(self: *const IVssComponentEx2, hr: HRESULT, hrApplication: HRESULT, wszApplicationMessage: ?[*:0]const u16, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponentEx2.VTable, @ptrCast(self.vtable)).SetFailure(@as(*const IVssComponentEx2, @ptrCast(self)), hr, hrApplication, wszApplicationMessage, dwReserved);
+        return self.vtable.SetFailure(self, hr, hrApplication, wszApplicationMessage, dwReserved);
     }
     pub fn GetFailure(self: *const IVssComponentEx2, phr: ?*HRESULT, phrApplication: ?*HRESULT, pbstrApplicationMessage: ?*?BSTR, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssComponentEx2.VTable, @ptrCast(self.vtable)).GetFailure(@as(*const IVssComponentEx2, @ptrCast(self)), phr, phrApplication, pbstrApplicationMessage, pdwReserved);
+        return self.vtable.GetFailure(self, phr, phrApplication, pbstrApplicationMessage, pdwReserved);
     }
 };
 
@@ -1617,40 +1617,40 @@ pub const IVssCreateWriterMetadata = extern union {
         }
     };}
     pub fn AddIncludeFiles(self: *const IVssCreateWriterMetadata, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddIncludeFiles(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszPath, wszFilespec, bRecursive, wszAlternateLocation);
+        return self.vtable.AddIncludeFiles(self, wszPath, wszFilespec, bRecursive, wszAlternateLocation);
     }
     pub fn AddExcludeFiles(self: *const IVssCreateWriterMetadata, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddExcludeFiles(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszPath, wszFilespec, bRecursive);
+        return self.vtable.AddExcludeFiles(self, wszPath, wszFilespec, bRecursive);
     }
     pub fn AddComponent(self: *const IVssCreateWriterMetadata, ct: VSS_COMPONENT_TYPE, wszLogicalPath: ?[*:0]const u16, wszComponentName: ?[*:0]const u16, wszCaption: ?[*:0]const u16, pbIcon: ?*const u8, cbIcon: u32, bRestoreMetadata: u8, bNotifyOnBackupComplete: u8, bSelectable: u8, bSelectableForRestore: u8, dwComponentFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddComponent(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
+        return self.vtable.AddComponent(self, ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
     }
     pub fn AddDatabaseFiles(self: *const IVssCreateWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszDatabaseName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddDatabaseFiles(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszLogicalPath, wszDatabaseName, wszPath, wszFilespec, dwBackupTypeMask);
+        return self.vtable.AddDatabaseFiles(self, wszLogicalPath, wszDatabaseName, wszPath, wszFilespec, dwBackupTypeMask);
     }
     pub fn AddDatabaseLogFiles(self: *const IVssCreateWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszDatabaseName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddDatabaseLogFiles(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszLogicalPath, wszDatabaseName, wszPath, wszFilespec, dwBackupTypeMask);
+        return self.vtable.AddDatabaseLogFiles(self, wszLogicalPath, wszDatabaseName, wszPath, wszFilespec, dwBackupTypeMask);
     }
     pub fn AddFilesToFileGroup(self: *const IVssCreateWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszGroupName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddFilesToFileGroup(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
+        return self.vtable.AddFilesToFileGroup(self, wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
     }
     pub fn SetRestoreMethod(self: *const IVssCreateWriterMetadata, method: VSS_RESTOREMETHOD_ENUM, wszService: ?[*:0]const u16, wszUserProcedure: ?[*:0]const u16, writerRestore: VSS_WRITERRESTORE_ENUM, bRebootRequired: u8) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).SetRestoreMethod(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
+        return self.vtable.SetRestoreMethod(self, method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
     }
     pub fn AddAlternateLocationMapping(self: *const IVssCreateWriterMetadata, wszSourcePath: ?[*:0]const u16, wszSourceFilespec: ?[*:0]const u16, bRecursive: u8, wszDestination: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddAlternateLocationMapping(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszSourcePath, wszSourceFilespec, bRecursive, wszDestination);
+        return self.vtable.AddAlternateLocationMapping(self, wszSourcePath, wszSourceFilespec, bRecursive, wszDestination);
     }
     pub fn AddComponentDependency(self: *const IVssCreateWriterMetadata, wszForLogicalPath: ?[*:0]const u16, wszForComponentName: ?[*:0]const u16, onWriterId: Guid, wszOnLogicalPath: ?[*:0]const u16, wszOnComponentName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddComponentDependency(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
+        return self.vtable.AddComponentDependency(self, wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
     }
     pub fn SetBackupSchema(self: *const IVssCreateWriterMetadata, dwSchemaMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).SetBackupSchema(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), dwSchemaMask);
+        return self.vtable.SetBackupSchema(self, dwSchemaMask);
     }
     pub fn GetDocument(self: *const IVssCreateWriterMetadata, pDoc: ?*?*IXMLDOMDocument) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), pDoc);
+        return self.vtable.GetDocument(self, pDoc);
     }
     pub fn SaveAsXML(self: *const IVssCreateWriterMetadata, pbstrXML: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).SaveAsXML(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), pbstrXML);
+        return self.vtable.SaveAsXML(self, pbstrXML);
     }
 };
 
@@ -1842,70 +1842,70 @@ pub const IVssWriterImpl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IVssWriterImpl, writerId: Guid, wszWriterName: ?[*:0]const u16, wszWriterInstanceName: ?[*:0]const u16, dwMajorVersion: u32, dwMinorVersion: u32, ut: VSS_USAGE_TYPE, st: VSS_SOURCE_TYPE, nLevel: VSS_APPLICATION_LEVEL, dwTimeout: u32, aws: VSS_ALTERNATE_WRITER_STATE, bIOThrottlingOnly: u8) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IVssWriterImpl, @ptrCast(self)), writerId, wszWriterName, wszWriterInstanceName, dwMajorVersion, dwMinorVersion, ut, st, nLevel, dwTimeout, aws, bIOThrottlingOnly);
+        return self.vtable.Initialize(self, writerId, wszWriterName, wszWriterInstanceName, dwMajorVersion, dwMinorVersion, ut, st, nLevel, dwTimeout, aws, bIOThrottlingOnly);
     }
     pub fn Subscribe(self: *const IVssWriterImpl, dwSubscribeTimeout: u32, dwEventFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).Subscribe(@as(*const IVssWriterImpl, @ptrCast(self)), dwSubscribeTimeout, dwEventFlags);
+        return self.vtable.Subscribe(self, dwSubscribeTimeout, dwEventFlags);
     }
     pub fn Unsubscribe(self: *const IVssWriterImpl) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).Unsubscribe(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.Unsubscribe(self);
     }
     pub fn Uninitialize(self: *const IVssWriterImpl) callconv(.Inline) void {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.Uninitialize(self);
     }
     pub fn GetCurrentVolumeArray(self: *const IVssWriterImpl) callconv(.Inline) ?*?PWSTR {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetCurrentVolumeArray(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.GetCurrentVolumeArray(self);
     }
     pub fn GetCurrentVolumeCount(self: *const IVssWriterImpl) callconv(.Inline) u32 {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetCurrentVolumeCount(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.GetCurrentVolumeCount(self);
     }
     pub fn GetSnapshotDeviceName(self: *const IVssWriterImpl, wszOriginalVolume: ?[*:0]const u16, ppwszSnapshotDevice: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetSnapshotDeviceName(@as(*const IVssWriterImpl, @ptrCast(self)), wszOriginalVolume, ppwszSnapshotDevice);
+        return self.vtable.GetSnapshotDeviceName(self, wszOriginalVolume, ppwszSnapshotDevice);
     }
     pub fn GetCurrentSnapshotSetId(self: *const IVssWriterImpl) callconv(.Inline) Guid {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetCurrentSnapshotSetId(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.GetCurrentSnapshotSetId(self);
     }
     pub fn GetContext(self: *const IVssWriterImpl) callconv(.Inline) i32 {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetContext(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.GetContext(self);
     }
     pub fn GetCurrentLevel(self: *const IVssWriterImpl) callconv(.Inline) VSS_APPLICATION_LEVEL {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetCurrentLevel(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.GetCurrentLevel(self);
     }
     pub fn IsPathAffected(self: *const IVssWriterImpl, wszPath: ?[*:0]const u16) callconv(.Inline) bool {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).IsPathAffected(@as(*const IVssWriterImpl, @ptrCast(self)), wszPath);
+        return self.vtable.IsPathAffected(self, wszPath);
     }
     pub fn IsBootableSystemStateBackedUp(self: *const IVssWriterImpl) callconv(.Inline) bool {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).IsBootableSystemStateBackedUp(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.IsBootableSystemStateBackedUp(self);
     }
     pub fn AreComponentsSelected(self: *const IVssWriterImpl) callconv(.Inline) bool {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).AreComponentsSelected(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.AreComponentsSelected(self);
     }
     pub fn GetBackupType(self: *const IVssWriterImpl) callconv(.Inline) VSS_BACKUP_TYPE {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetBackupType(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.GetBackupType(self);
     }
     pub fn GetRestoreType(self: *const IVssWriterImpl) callconv(.Inline) VSS_RESTORE_TYPE {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetRestoreType(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.GetRestoreType(self);
     }
     pub fn SetWriterFailure(self: *const IVssWriterImpl, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).SetWriterFailure(@as(*const IVssWriterImpl, @ptrCast(self)), hr);
+        return self.vtable.SetWriterFailure(self, hr);
     }
     pub fn IsPartialFileSupportEnabled(self: *const IVssWriterImpl) callconv(.Inline) bool {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).IsPartialFileSupportEnabled(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.IsPartialFileSupportEnabled(self);
     }
     pub fn InstallAlternateWriter(self: *const IVssWriterImpl, idWriter: Guid, clsid: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).InstallAlternateWriter(@as(*const IVssWriterImpl, @ptrCast(self)), idWriter, clsid);
+        return self.vtable.InstallAlternateWriter(self, idWriter, clsid);
     }
     pub fn GetIdentityInformation(self: *const IVssWriterImpl) callconv(.Inline) ?*IVssExamineWriterMetadata {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetIdentityInformation(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.GetIdentityInformation(self);
     }
     pub fn SetWriterFailureEx(self: *const IVssWriterImpl, hr: HRESULT, hrApplication: HRESULT, wszApplicationMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).SetWriterFailureEx(@as(*const IVssWriterImpl, @ptrCast(self)), hr, hrApplication, wszApplicationMessage);
+        return self.vtable.SetWriterFailureEx(self, hr, hrApplication, wszApplicationMessage);
     }
     pub fn GetSessionId(self: *const IVssWriterImpl, idSession: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetSessionId(@as(*const IVssWriterImpl, @ptrCast(self)), idSession);
+        return self.vtable.GetSessionId(self, idSession);
     }
     pub fn IsWriterShuttingDown(self: *const IVssWriterImpl) callconv(.Inline) bool {
-        return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).IsWriterShuttingDown(@as(*const IVssWriterImpl, @ptrCast(self)));
+        return self.vtable.IsWriterShuttingDown(self);
     }
 };
 
@@ -2004,25 +2004,25 @@ pub const IVssCreateExpressWriterMetadata = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddExcludeFiles(self: *const IVssCreateExpressWriterMetadata, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).AddExcludeFiles(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), wszPath, wszFilespec, bRecursive);
+        return self.vtable.AddExcludeFiles(self, wszPath, wszFilespec, bRecursive);
     }
     pub fn AddComponent(self: *const IVssCreateExpressWriterMetadata, ct: VSS_COMPONENT_TYPE, wszLogicalPath: ?[*:0]const u16, wszComponentName: ?[*:0]const u16, wszCaption: ?[*:0]const u16, pbIcon: ?*const u8, cbIcon: u32, bRestoreMetadata: u8, bNotifyOnBackupComplete: u8, bSelectable: u8, bSelectableForRestore: u8, dwComponentFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).AddComponent(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
+        return self.vtable.AddComponent(self, ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
     }
     pub fn AddFilesToFileGroup(self: *const IVssCreateExpressWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszGroupName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).AddFilesToFileGroup(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
+        return self.vtable.AddFilesToFileGroup(self, wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
     }
     pub fn SetRestoreMethod(self: *const IVssCreateExpressWriterMetadata, method: VSS_RESTOREMETHOD_ENUM, wszService: ?[*:0]const u16, wszUserProcedure: ?[*:0]const u16, writerRestore: VSS_WRITERRESTORE_ENUM, bRebootRequired: u8) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).SetRestoreMethod(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
+        return self.vtable.SetRestoreMethod(self, method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
     }
     pub fn AddComponentDependency(self: *const IVssCreateExpressWriterMetadata, wszForLogicalPath: ?[*:0]const u16, wszForComponentName: ?[*:0]const u16, onWriterId: Guid, wszOnLogicalPath: ?[*:0]const u16, wszOnComponentName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).AddComponentDependency(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
+        return self.vtable.AddComponentDependency(self, wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
     }
     pub fn SetBackupSchema(self: *const IVssCreateExpressWriterMetadata, dwSchemaMask: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).SetBackupSchema(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), dwSchemaMask);
+        return self.vtable.SetBackupSchema(self, dwSchemaMask);
     }
     pub fn SaveAsXML(self: *const IVssCreateExpressWriterMetadata, pbstrXML: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).SaveAsXML(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), pbstrXML);
+        return self.vtable.SaveAsXML(self, pbstrXML);
     }
 };
 
@@ -2077,16 +2077,16 @@ pub const IVssExpressWriter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateMetadata(self: *const IVssExpressWriter, writerId: Guid, writerName: ?[*:0]const u16, usageType: VSS_USAGE_TYPE, versionMajor: u32, versionMinor: u32, reserved: u32, ppMetadata: ?*?*IVssCreateExpressWriterMetadata) callconv(.Inline) HRESULT {
-        return @as(*const IVssExpressWriter.VTable, @ptrCast(self.vtable)).CreateMetadata(@as(*const IVssExpressWriter, @ptrCast(self)), writerId, writerName, usageType, versionMajor, versionMinor, reserved, ppMetadata);
+        return self.vtable.CreateMetadata(self, writerId, writerName, usageType, versionMajor, versionMinor, reserved, ppMetadata);
     }
     pub fn LoadMetadata(self: *const IVssExpressWriter, metadata: ?[*:0]const u16, reserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssExpressWriter.VTable, @ptrCast(self.vtable)).LoadMetadata(@as(*const IVssExpressWriter, @ptrCast(self)), metadata, reserved);
+        return self.vtable.LoadMetadata(self, metadata, reserved);
     }
     pub fn Register(self: *const IVssExpressWriter) callconv(.Inline) HRESULT {
-        return @as(*const IVssExpressWriter.VTable, @ptrCast(self.vtable)).Register(@as(*const IVssExpressWriter, @ptrCast(self)));
+        return self.vtable.Register(self);
     }
     pub fn Unregister(self: *const IVssExpressWriter, writerId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssExpressWriter.VTable, @ptrCast(self.vtable)).Unregister(@as(*const IVssExpressWriter, @ptrCast(self)), writerId);
+        return self.vtable.Unregister(self, writerId);
     }
 };
 
@@ -2232,13 +2232,13 @@ pub const IVssSnapshotMgmt = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProviderMgmtInterface(self: *const IVssSnapshotMgmt, ProviderId: Guid, InterfaceId: ?*const Guid, ppItf: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IVssSnapshotMgmt.VTable, @ptrCast(self.vtable)).GetProviderMgmtInterface(@as(*const IVssSnapshotMgmt, @ptrCast(self)), ProviderId, InterfaceId, ppItf);
+        return self.vtable.GetProviderMgmtInterface(self, ProviderId, InterfaceId, ppItf);
     }
     pub fn QueryVolumesSupportedForSnapshots(self: *const IVssSnapshotMgmt, ProviderId: Guid, lContext: i32, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryVolumesSupportedForSnapshots(@as(*const IVssSnapshotMgmt, @ptrCast(self)), ProviderId, lContext, ppEnum);
+        return self.vtable.QueryVolumesSupportedForSnapshots(self, ProviderId, lContext, ppEnum);
     }
     pub fn QuerySnapshotsByVolume(self: *const IVssSnapshotMgmt, pwszVolumeName: ?*u16, ProviderId: Guid, ppEnum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssSnapshotMgmt.VTable, @ptrCast(self.vtable)).QuerySnapshotsByVolume(@as(*const IVssSnapshotMgmt, @ptrCast(self)), pwszVolumeName, ProviderId, ppEnum);
+        return self.vtable.QuerySnapshotsByVolume(self, pwszVolumeName, ProviderId, ppEnum);
     }
 };
 
@@ -2264,7 +2264,7 @@ pub const IVssSnapshotMgmt2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMinDiffAreaSize(self: *const IVssSnapshotMgmt2, pllMinDiffAreaSize: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IVssSnapshotMgmt2.VTable, @ptrCast(self.vtable)).GetMinDiffAreaSize(@as(*const IVssSnapshotMgmt2, @ptrCast(self)), pllMinDiffAreaSize);
+        return self.vtable.GetMinDiffAreaSize(self, pllMinDiffAreaSize);
     }
 };
 
@@ -2338,22 +2338,22 @@ pub const IVssDifferentialSoftwareSnapshotMgmt = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddDiffArea(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, llMaximumDiffSpace: i64) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).AddDiffArea(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace);
+        return self.vtable.AddDiffArea(self, pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace);
     }
     pub fn ChangeDiffAreaMaximumSize(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, llMaximumDiffSpace: i64) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).ChangeDiffAreaMaximumSize(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace);
+        return self.vtable.ChangeDiffAreaMaximumSize(self, pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace);
     }
     pub fn QueryVolumesSupportedForDiffAreas(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszOriginalVolumeName: ?*u16, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryVolumesSupportedForDiffAreas(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszOriginalVolumeName, ppEnum);
+        return self.vtable.QueryVolumesSupportedForDiffAreas(self, pwszOriginalVolumeName, ppEnum);
     }
     pub fn QueryDiffAreasForVolume(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszVolumeName: ?*u16, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryDiffAreasForVolume(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszVolumeName, ppEnum);
+        return self.vtable.QueryDiffAreasForVolume(self, pwszVolumeName, ppEnum);
     }
     pub fn QueryDiffAreasOnVolume(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszVolumeName: ?*u16, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryDiffAreasOnVolume(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszVolumeName, ppEnum);
+        return self.vtable.QueryDiffAreasOnVolume(self, pwszVolumeName, ppEnum);
     }
     pub fn QueryDiffAreasForSnapshot(self: *const IVssDifferentialSoftwareSnapshotMgmt, SnapshotId: Guid, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryDiffAreasForSnapshot(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), SnapshotId, ppEnum);
+        return self.vtable.QueryDiffAreasForSnapshot(self, SnapshotId, ppEnum);
     }
 };
 
@@ -2411,16 +2411,16 @@ pub const IVssDifferentialSoftwareSnapshotMgmt2 = extern union {
     };}
     pub usingnamespace IVssDifferentialSoftwareSnapshotMgmt.MethodMixin(@This());
     pub fn ChangeDiffAreaMaximumSizeEx(self: *const IVssDifferentialSoftwareSnapshotMgmt2, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, llMaximumDiffSpace: i64, bVolatile: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt2.VTable, @ptrCast(self.vtable)).ChangeDiffAreaMaximumSizeEx(@as(*const IVssDifferentialSoftwareSnapshotMgmt2, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace, bVolatile);
+        return self.vtable.ChangeDiffAreaMaximumSizeEx(self, pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace, bVolatile);
     }
     pub fn MigrateDiffAreas(self: *const IVssDifferentialSoftwareSnapshotMgmt2, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, pwszNewDiffAreaVolumeName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt2.VTable, @ptrCast(self.vtable)).MigrateDiffAreas(@as(*const IVssDifferentialSoftwareSnapshotMgmt2, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, pwszNewDiffAreaVolumeName);
+        return self.vtable.MigrateDiffAreas(self, pwszVolumeName, pwszDiffAreaVolumeName, pwszNewDiffAreaVolumeName);
     }
     pub fn QueryMigrationStatus(self: *const IVssDifferentialSoftwareSnapshotMgmt2, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, ppAsync: ?*?*IVssAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt2.VTable, @ptrCast(self.vtable)).QueryMigrationStatus(@as(*const IVssDifferentialSoftwareSnapshotMgmt2, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, ppAsync);
+        return self.vtable.QueryMigrationStatus(self, pwszVolumeName, pwszDiffAreaVolumeName, ppAsync);
     }
     pub fn SetSnapshotPriority(self: *const IVssDifferentialSoftwareSnapshotMgmt2, idSnapshot: Guid, priority: u8) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt2.VTable, @ptrCast(self.vtable)).SetSnapshotPriority(@as(*const IVssDifferentialSoftwareSnapshotMgmt2, @ptrCast(self)), idSnapshot, priority);
+        return self.vtable.SetSnapshotPriority(self, idSnapshot, priority);
     }
 };
 
@@ -2484,19 +2484,19 @@ pub const IVssDifferentialSoftwareSnapshotMgmt3 = extern union {
     };}
     pub usingnamespace IVssDifferentialSoftwareSnapshotMgmt2.MethodMixin(@This());
     pub fn SetVolumeProtectLevel(self: *const IVssDifferentialSoftwareSnapshotMgmt3, pwszVolumeName: ?*u16, protectionLevel: VSS_PROTECTION_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).SetVolumeProtectLevel(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), pwszVolumeName, protectionLevel);
+        return self.vtable.SetVolumeProtectLevel(self, pwszVolumeName, protectionLevel);
     }
     pub fn GetVolumeProtectLevel(self: *const IVssDifferentialSoftwareSnapshotMgmt3, pwszVolumeName: ?*u16, protectionLevel: ?*VSS_VOLUME_PROTECTION_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).GetVolumeProtectLevel(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), pwszVolumeName, protectionLevel);
+        return self.vtable.GetVolumeProtectLevel(self, pwszVolumeName, protectionLevel);
     }
     pub fn ClearVolumeProtectFault(self: *const IVssDifferentialSoftwareSnapshotMgmt3, pwszVolumeName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).ClearVolumeProtectFault(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), pwszVolumeName);
+        return self.vtable.ClearVolumeProtectFault(self, pwszVolumeName);
     }
     pub fn DeleteUnusedDiffAreas(self: *const IVssDifferentialSoftwareSnapshotMgmt3, pwszDiffAreaVolumeName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).DeleteUnusedDiffAreas(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), pwszDiffAreaVolumeName);
+        return self.vtable.DeleteUnusedDiffAreas(self, pwszDiffAreaVolumeName);
     }
     pub fn QuerySnapshotDeltaBitmap(self: *const IVssDifferentialSoftwareSnapshotMgmt3, idSnapshotOlder: Guid, idSnapshotYounger: Guid, pcBlockSizePerBit: ?*u32, pcBitmapLength: ?*u32, ppbBitmap: [*]?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).QuerySnapshotDeltaBitmap(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), idSnapshotOlder, idSnapshotYounger, pcBlockSizePerBit, pcBitmapLength, ppbBitmap);
+        return self.vtable.QuerySnapshotDeltaBitmap(self, idSnapshotOlder, idSnapshotYounger, pcBlockSizePerBit, pcBitmapLength, ppbBitmap);
     }
 };
 
@@ -2547,16 +2547,16 @@ pub const IVssEnumMgmtObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IVssEnumMgmtObject, celt: u32, rgelt: [*]VSS_MGMT_OBJECT_PROP, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssEnumMgmtObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IVssEnumMgmtObject, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IVssEnumMgmtObject, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssEnumMgmtObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IVssEnumMgmtObject, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IVssEnumMgmtObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssEnumMgmtObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IVssEnumMgmtObject, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IVssEnumMgmtObject, ppenum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssEnumMgmtObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IVssEnumMgmtObject, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -2613,16 +2613,16 @@ pub const IVssAdmin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterProvider(self: *const IVssAdmin, pProviderId: Guid, ClassId: Guid, pwszProviderName: ?*u16, eProviderType: VSS_PROVIDER_TYPE, pwszProviderVersion: ?*u16, ProviderVersionId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssAdmin.VTable, @ptrCast(self.vtable)).RegisterProvider(@as(*const IVssAdmin, @ptrCast(self)), pProviderId, ClassId, pwszProviderName, eProviderType, pwszProviderVersion, ProviderVersionId);
+        return self.vtable.RegisterProvider(self, pProviderId, ClassId, pwszProviderName, eProviderType, pwszProviderVersion, ProviderVersionId);
     }
     pub fn UnregisterProvider(self: *const IVssAdmin, ProviderId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssAdmin.VTable, @ptrCast(self.vtable)).UnregisterProvider(@as(*const IVssAdmin, @ptrCast(self)), ProviderId);
+        return self.vtable.UnregisterProvider(self, ProviderId);
     }
     pub fn QueryProviders(self: *const IVssAdmin, ppEnum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssAdmin.VTable, @ptrCast(self.vtable)).QueryProviders(@as(*const IVssAdmin, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryProviders(self, ppEnum);
     }
     pub fn AbortAllSnapshotsInProgress(self: *const IVssAdmin) callconv(.Inline) HRESULT {
-        return @as(*const IVssAdmin.VTable, @ptrCast(self.vtable)).AbortAllSnapshotsInProgress(@as(*const IVssAdmin, @ptrCast(self)));
+        return self.vtable.AbortAllSnapshotsInProgress(self);
     }
 };
 
@@ -2666,13 +2666,13 @@ pub const IVssAdminEx = extern union {
     };}
     pub usingnamespace IVssAdmin.MethodMixin(@This());
     pub fn GetProviderCapability(self: *const IVssAdminEx, pProviderId: Guid, pllOriginalCapabilityMask: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IVssAdminEx.VTable, @ptrCast(self.vtable)).GetProviderCapability(@as(*const IVssAdminEx, @ptrCast(self)), pProviderId, pllOriginalCapabilityMask);
+        return self.vtable.GetProviderCapability(self, pProviderId, pllOriginalCapabilityMask);
     }
     pub fn GetProviderContext(self: *const IVssAdminEx, ProviderId: Guid, plContext: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVssAdminEx.VTable, @ptrCast(self.vtable)).GetProviderContext(@as(*const IVssAdminEx, @ptrCast(self)), ProviderId, plContext);
+        return self.vtable.GetProviderContext(self, ProviderId, plContext);
     }
     pub fn SetProviderContext(self: *const IVssAdminEx, ProviderId: Guid, lContext: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVssAdminEx.VTable, @ptrCast(self.vtable)).SetProviderContext(@as(*const IVssAdminEx, @ptrCast(self)), ProviderId, lContext);
+        return self.vtable.SetProviderContext(self, ProviderId, lContext);
     }
 };
 
@@ -2787,34 +2787,34 @@ pub const IVssSoftwareSnapshotProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetContext(self: *const IVssSoftwareSnapshotProvider, lContext: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).SetContext(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), lContext);
+        return self.vtable.SetContext(self, lContext);
     }
     pub fn GetSnapshotProperties(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).GetSnapshotProperties(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SnapshotId, pProp);
+        return self.vtable.GetSnapshotProperties(self, SnapshotId, pProp);
     }
     pub fn Query(self: *const IVssSoftwareSnapshotProvider, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).Query(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
+        return self.vtable.Query(self, QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
     }
     pub fn DeleteSnapshots(self: *const IVssSoftwareSnapshotProvider, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).DeleteSnapshots(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
+        return self.vtable.DeleteSnapshots(self, SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
     }
     pub fn BeginPrepareSnapshot(self: *const IVssSoftwareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, pwszVolumeName: ?*u16, lNewContext: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).BeginPrepareSnapshot(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SnapshotSetId, SnapshotId, pwszVolumeName, lNewContext);
+        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, pwszVolumeName, lNewContext);
     }
     pub fn IsVolumeSupported(self: *const IVssSoftwareSnapshotProvider, pwszVolumeName: ?*u16, pbSupportedByThisProvider: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).IsVolumeSupported(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), pwszVolumeName, pbSupportedByThisProvider);
+        return self.vtable.IsVolumeSupported(self, pwszVolumeName, pbSupportedByThisProvider);
     }
     pub fn IsVolumeSnapshotted(self: *const IVssSoftwareSnapshotProvider, pwszVolumeName: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).IsVolumeSnapshotted(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), pwszVolumeName, pbSnapshotsPresent, plSnapshotCompatibility);
+        return self.vtable.IsVolumeSnapshotted(self, pwszVolumeName, pbSnapshotsPresent, plSnapshotCompatibility);
     }
     pub fn SetSnapshotProperty(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).SetSnapshotProperty(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SnapshotId, eSnapshotPropertyId, vProperty);
+        return self.vtable.SetSnapshotProperty(self, SnapshotId, eSnapshotPropertyId, vProperty);
     }
     pub fn RevertToSnapshot(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).RevertToSnapshot(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SnapshotId);
+        return self.vtable.RevertToSnapshot(self, SnapshotId);
     }
     pub fn QueryRevertStatus(self: *const IVssSoftwareSnapshotProvider, pwszVolume: ?*u16, ppAsync: ?*?*IVssAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).QueryRevertStatus(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), pwszVolume, ppAsync);
+        return self.vtable.QueryRevertStatus(self, pwszVolume, ppAsync);
     }
 };
 
@@ -2889,25 +2889,25 @@ pub const IVssProviderCreateSnapshotSet = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EndPrepareSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).EndPrepareSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
+        return self.vtable.EndPrepareSnapshots(self, SnapshotSetId);
     }
     pub fn PreCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).PreCommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
+        return self.vtable.PreCommitSnapshots(self, SnapshotSetId);
     }
     pub fn CommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).CommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
+        return self.vtable.CommitSnapshots(self, SnapshotSetId);
     }
     pub fn PostCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid, lSnapshotsCount: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).PostCommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId, lSnapshotsCount);
+        return self.vtable.PostCommitSnapshots(self, SnapshotSetId, lSnapshotsCount);
     }
     pub fn PreFinalCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).PreFinalCommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
+        return self.vtable.PreFinalCommitSnapshots(self, SnapshotSetId);
     }
     pub fn PostFinalCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).PostFinalCommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
+        return self.vtable.PostFinalCommitSnapshots(self, SnapshotSetId);
     }
     pub fn AbortSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).AbortSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
+        return self.vtable.AbortSnapshots(self, SnapshotSetId);
     }
 };
 
@@ -2941,10 +2941,10 @@ pub const IVssProviderNotifications = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnLoad(self: *const IVssProviderNotifications, pCallback: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IVssProviderNotifications.VTable, @ptrCast(self.vtable)).OnLoad(@as(*const IVssProviderNotifications, @ptrCast(self)), pCallback);
+        return self.vtable.OnLoad(self, pCallback);
     }
     pub fn OnUnload(self: *const IVssProviderNotifications, bForceUnload: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IVssProviderNotifications.VTable, @ptrCast(self.vtable)).OnUnload(@as(*const IVssProviderNotifications, @ptrCast(self)), bForceUnload);
+        return self.vtable.OnUnload(self, bForceUnload);
     }
 };
 
@@ -3026,22 +3026,22 @@ pub const IVssHardwareSnapshotProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AreLunsSupported(self: *const IVssHardwareSnapshotProvider, lLunCount: i32, lContext: i32, rgwszDevices: [*]?*u16, pLunInformation: [*]VDS_LUN_INFORMATION, pbIsSupported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).AreLunsSupported(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), lLunCount, lContext, rgwszDevices, pLunInformation, pbIsSupported);
+        return self.vtable.AreLunsSupported(self, lLunCount, lContext, rgwszDevices, pLunInformation, pbIsSupported);
     }
     pub fn FillInLunInfo(self: *const IVssHardwareSnapshotProvider, wszDeviceName: ?*u16, pLunInfo: ?*VDS_LUN_INFORMATION, pbIsSupported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).FillInLunInfo(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), wszDeviceName, pLunInfo, pbIsSupported);
+        return self.vtable.FillInLunInfo(self, wszDeviceName, pLunInfo, pbIsSupported);
     }
     pub fn BeginPrepareSnapshot(self: *const IVssHardwareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, lContext: i32, lLunCount: i32, rgDeviceNames: [*]?*u16, rgLunInformation: [*]VDS_LUN_INFORMATION) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).BeginPrepareSnapshot(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), SnapshotSetId, SnapshotId, lContext, lLunCount, rgDeviceNames, rgLunInformation);
+        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, lContext, lLunCount, rgDeviceNames, rgLunInformation);
     }
     pub fn GetTargetLuns(self: *const IVssHardwareSnapshotProvider, lLunCount: i32, rgDeviceNames: [*]?*u16, rgSourceLuns: [*]VDS_LUN_INFORMATION, rgDestinationLuns: [*]VDS_LUN_INFORMATION) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).GetTargetLuns(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), lLunCount, rgDeviceNames, rgSourceLuns, rgDestinationLuns);
+        return self.vtable.GetTargetLuns(self, lLunCount, rgDeviceNames, rgSourceLuns, rgDestinationLuns);
     }
     pub fn LocateLuns(self: *const IVssHardwareSnapshotProvider, lLunCount: i32, rgSourceLuns: [*]VDS_LUN_INFORMATION) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).LocateLuns(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), lLunCount, rgSourceLuns);
+        return self.vtable.LocateLuns(self, lLunCount, rgSourceLuns);
     }
     pub fn OnLunEmpty(self: *const IVssHardwareSnapshotProvider, wszDeviceName: ?*u16, pInformation: ?*VDS_LUN_INFORMATION) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).OnLunEmpty(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), wszDeviceName, pInformation);
+        return self.vtable.OnLunEmpty(self, wszDeviceName, pInformation);
     }
 };
 
@@ -3099,16 +3099,16 @@ pub const IVssHardwareSnapshotProviderEx = extern union {
     };}
     pub usingnamespace IVssHardwareSnapshotProvider.MethodMixin(@This());
     pub fn GetProviderCapabilities(self: *const IVssHardwareSnapshotProviderEx, pllOriginalCapabilityMask: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProviderEx.VTable, @ptrCast(self.vtable)).GetProviderCapabilities(@as(*const IVssHardwareSnapshotProviderEx, @ptrCast(self)), pllOriginalCapabilityMask);
+        return self.vtable.GetProviderCapabilities(self, pllOriginalCapabilityMask);
     }
     pub fn OnLunStateChange(self: *const IVssHardwareSnapshotProviderEx, pSnapshotLuns: [*]VDS_LUN_INFORMATION, pOriginalLuns: [*]VDS_LUN_INFORMATION, dwCount: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProviderEx.VTable, @ptrCast(self.vtable)).OnLunStateChange(@as(*const IVssHardwareSnapshotProviderEx, @ptrCast(self)), pSnapshotLuns, pOriginalLuns, dwCount, dwFlags);
+        return self.vtable.OnLunStateChange(self, pSnapshotLuns, pOriginalLuns, dwCount, dwFlags);
     }
     pub fn ResyncLuns(self: *const IVssHardwareSnapshotProviderEx, pSourceLuns: [*]VDS_LUN_INFORMATION, pTargetLuns: [*]VDS_LUN_INFORMATION, dwCount: u32, ppAsync: ?*?*IVssAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProviderEx.VTable, @ptrCast(self.vtable)).ResyncLuns(@as(*const IVssHardwareSnapshotProviderEx, @ptrCast(self)), pSourceLuns, pTargetLuns, dwCount, ppAsync);
+        return self.vtable.ResyncLuns(self, pSourceLuns, pTargetLuns, dwCount, ppAsync);
     }
     pub fn OnReuseLuns(self: *const IVssHardwareSnapshotProviderEx, pSnapshotLuns: [*]VDS_LUN_INFORMATION, pOriginalLuns: [*]VDS_LUN_INFORMATION, dwCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVssHardwareSnapshotProviderEx.VTable, @ptrCast(self.vtable)).OnReuseLuns(@as(*const IVssHardwareSnapshotProviderEx, @ptrCast(self)), pSnapshotLuns, pOriginalLuns, dwCount);
+        return self.vtable.OnReuseLuns(self, pSnapshotLuns, pOriginalLuns, dwCount);
     }
 };
 
@@ -3207,28 +3207,28 @@ pub const IVssFileShareSnapshotProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetContext(self: *const IVssFileShareSnapshotProvider, lContext: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).SetContext(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), lContext);
+        return self.vtable.SetContext(self, lContext);
     }
     pub fn GetSnapshotProperties(self: *const IVssFileShareSnapshotProvider, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).GetSnapshotProperties(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), SnapshotId, pProp);
+        return self.vtable.GetSnapshotProperties(self, SnapshotId, pProp);
     }
     pub fn Query(self: *const IVssFileShareSnapshotProvider, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
-        return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).Query(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
+        return self.vtable.Query(self, QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
     }
     pub fn DeleteSnapshots(self: *const IVssFileShareSnapshotProvider, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).DeleteSnapshots(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
+        return self.vtable.DeleteSnapshots(self, SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
     }
     pub fn BeginPrepareSnapshot(self: *const IVssFileShareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, pwszSharePath: ?*u16, lNewContext: i32, ProviderId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).BeginPrepareSnapshot(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), SnapshotSetId, SnapshotId, pwszSharePath, lNewContext, ProviderId);
+        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, pwszSharePath, lNewContext, ProviderId);
     }
     pub fn IsPathSupported(self: *const IVssFileShareSnapshotProvider, pwszSharePath: ?*u16, pbSupportedByThisProvider: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).IsPathSupported(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), pwszSharePath, pbSupportedByThisProvider);
+        return self.vtable.IsPathSupported(self, pwszSharePath, pbSupportedByThisProvider);
     }
     pub fn IsPathSnapshotted(self: *const IVssFileShareSnapshotProvider, pwszSharePath: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).IsPathSnapshotted(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), pwszSharePath, pbSnapshotsPresent, plSnapshotCompatibility);
+        return self.vtable.IsPathSnapshotted(self, pwszSharePath, pbSnapshotsPresent, plSnapshotCompatibility);
     }
     pub fn SetSnapshotProperty(self: *const IVssFileShareSnapshotProvider, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).SetSnapshotProperty(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), SnapshotId, eSnapshotPropertyId, vProperty);
+        return self.vtable.SetSnapshotProperty(self, SnapshotId, eSnapshotPropertyId, vProperty);
     }
 };
 

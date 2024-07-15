@@ -1720,7 +1720,7 @@ pub const IDialEventSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnEvent(self: *const IDialEventSink, dwEvent: u32, dwStatus: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDialEventSink.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IDialEventSink, @ptrCast(self)), dwEvent, dwStatus);
+        return self.vtable.OnEvent(self, dwEvent, dwStatus);
     }
 };
 
@@ -1795,25 +1795,25 @@ pub const IDialEngine = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IDialEngine, pwzConnectoid: ?[*:0]const u16, pIDES: ?*IDialEventSink) callconv(.Inline) HRESULT {
-        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDialEngine, @ptrCast(self)), pwzConnectoid, pIDES);
+        return self.vtable.Initialize(self, pwzConnectoid, pIDES);
     }
     pub fn GetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?PWSTR, dwBufSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IDialEngine, @ptrCast(self)), pwzProperty, pwzValue, dwBufSize);
+        return self.vtable.GetProperty(self, pwzProperty, pwzValue, dwBufSize);
     }
     pub fn SetProperty(self: *const IDialEngine, pwzProperty: ?[*:0]const u16, pwzValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IDialEngine, @ptrCast(self)), pwzProperty, pwzValue);
+        return self.vtable.SetProperty(self, pwzProperty, pwzValue);
     }
     pub fn Dial(self: *const IDialEngine) callconv(.Inline) HRESULT {
-        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).Dial(@as(*const IDialEngine, @ptrCast(self)));
+        return self.vtable.Dial(self);
     }
     pub fn HangUp(self: *const IDialEngine) callconv(.Inline) HRESULT {
-        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).HangUp(@as(*const IDialEngine, @ptrCast(self)));
+        return self.vtable.HangUp(self);
     }
     pub fn GetConnectedState(self: *const IDialEngine, pdwState: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetConnectedState(@as(*const IDialEngine, @ptrCast(self)), pdwState);
+        return self.vtable.GetConnectedState(self, pdwState);
     }
     pub fn GetConnectHandle(self: *const IDialEngine, pdwHandle: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IDialEngine.VTable, @ptrCast(self.vtable)).GetConnectHandle(@as(*const IDialEngine, @ptrCast(self)), pdwHandle);
+        return self.vtable.GetConnectHandle(self, pdwHandle);
     }
 };
 
@@ -1847,10 +1847,10 @@ pub const IDialBranding = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IDialBranding, pwzConnectoid: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IDialBranding.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IDialBranding, @ptrCast(self)), pwzConnectoid);
+        return self.vtable.Initialize(self, pwzConnectoid);
     }
     pub fn GetBitmap(self: *const IDialBranding, dwIndex: u32, phBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IDialBranding.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const IDialBranding, @ptrCast(self)), dwIndex, phBitmap);
+        return self.vtable.GetBitmap(self, dwIndex, phBitmap);
     }
 };
 
@@ -2289,7 +2289,7 @@ pub const IProofOfPossessionCookieInfoManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCookieInfoForUri(self: *const IProofOfPossessionCookieInfoManager, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
-        return @as(*const IProofOfPossessionCookieInfoManager.VTable, @ptrCast(self.vtable)).GetCookieInfoForUri(@as(*const IProofOfPossessionCookieInfoManager, @ptrCast(self)), uri, cookieInfoCount, cookieInfo);
+        return self.vtable.GetCookieInfoForUri(self, uri, cookieInfoCount, cookieInfo);
     }
 };
 
@@ -2317,7 +2317,7 @@ pub const IProofOfPossessionCookieInfoManager2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCookieInfoWithUriForAccount(self: *const IProofOfPossessionCookieInfoManager2, webAccount: ?*IInspectable, uri: ?[*:0]const u16, cookieInfoCount: ?*u32, cookieInfo: [*]?*ProofOfPossessionCookieInfo) callconv(.Inline) HRESULT {
-        return @as(*const IProofOfPossessionCookieInfoManager2.VTable, @ptrCast(self.vtable)).GetCookieInfoWithUriForAccount(@as(*const IProofOfPossessionCookieInfoManager2, @ptrCast(self)), webAccount, uri, cookieInfoCount, cookieInfo);
+        return self.vtable.GetCookieInfoWithUriForAccount(self, webAccount, uri, cookieInfoCount, cookieInfo);
     }
 };
 

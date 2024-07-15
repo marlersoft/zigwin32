@@ -76,16 +76,16 @@ pub const ICatalog = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetCollection(self: *const ICatalog, bstrCollName: ?BSTR, ppCatalogCollection: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).GetCollection(@as(*const ICatalog, @ptrCast(self)), bstrCollName, ppCatalogCollection);
+        return self.vtable.GetCollection(self, bstrCollName, ppCatalogCollection);
     }
     pub fn Connect(self: *const ICatalog, bstrConnectString: ?BSTR, ppCatalogCollection: ?*?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).Connect(@as(*const ICatalog, @ptrCast(self)), bstrConnectString, ppCatalogCollection);
+        return self.vtable.Connect(self, bstrConnectString, ppCatalogCollection);
     }
     pub fn get_MajorVersion(self: *const ICatalog, retval: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).get_MajorVersion(@as(*const ICatalog, @ptrCast(self)), retval);
+        return self.vtable.get_MajorVersion(self, retval);
     }
     pub fn get_MinorVersion(self: *const ICatalog, retval: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ICatalog.VTable, @ptrCast(self.vtable)).get_MinorVersion(@as(*const ICatalog, @ptrCast(self)), retval);
+        return self.vtable.get_MinorVersion(self, retval);
     }
 };
 
@@ -138,16 +138,16 @@ pub const IComponentUtil = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn InstallComponent(self: *const IComponentUtil, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, bstrProxyStubDLLFile: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).InstallComponent(@as(*const IComponentUtil, @ptrCast(self)), bstrDLLFile, bstrTypelibFile, bstrProxyStubDLLFile);
+        return self.vtable.InstallComponent(self, bstrDLLFile, bstrTypelibFile, bstrProxyStubDLLFile);
     }
     pub fn ImportComponent(self: *const IComponentUtil, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).ImportComponent(@as(*const IComponentUtil, @ptrCast(self)), bstrCLSID);
+        return self.vtable.ImportComponent(self, bstrCLSID);
     }
     pub fn ImportComponentByName(self: *const IComponentUtil, bstrProgID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).ImportComponentByName(@as(*const IComponentUtil, @ptrCast(self)), bstrProgID);
+        return self.vtable.ImportComponentByName(self, bstrProgID);
     }
     pub fn GetCLSIDs(self: *const IComponentUtil, bstrDLLFile: ?BSTR, bstrTypelibFile: ?BSTR, aCLSIDs: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IComponentUtil.VTable, @ptrCast(self.vtable)).GetCLSIDs(@as(*const IComponentUtil, @ptrCast(self)), bstrDLLFile, bstrTypelibFile, aCLSIDs);
+        return self.vtable.GetCLSIDs(self, bstrDLLFile, bstrTypelibFile, aCLSIDs);
     }
 };
 
@@ -192,13 +192,13 @@ pub const IPackageUtil = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn InstallPackage(self: *const IPackageUtil, bstrPackageFile: ?BSTR, bstrInstallPath: ?BSTR, lOptions: i32) callconv(.Inline) HRESULT {
-        return @as(*const IPackageUtil.VTable, @ptrCast(self.vtable)).InstallPackage(@as(*const IPackageUtil, @ptrCast(self)), bstrPackageFile, bstrInstallPath, lOptions);
+        return self.vtable.InstallPackage(self, bstrPackageFile, bstrInstallPath, lOptions);
     }
     pub fn ExportPackage(self: *const IPackageUtil, bstrPackageID: ?BSTR, bstrPackageFile: ?BSTR, lOptions: i32) callconv(.Inline) HRESULT {
-        return @as(*const IPackageUtil.VTable, @ptrCast(self.vtable)).ExportPackage(@as(*const IPackageUtil, @ptrCast(self)), bstrPackageID, bstrPackageFile, lOptions);
+        return self.vtable.ExportPackage(self, bstrPackageID, bstrPackageFile, lOptions);
     }
     pub fn ShutdownPackage(self: *const IPackageUtil, bstrPackageID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPackageUtil.VTable, @ptrCast(self.vtable)).ShutdownPackage(@as(*const IPackageUtil, @ptrCast(self)), bstrPackageID);
+        return self.vtable.ShutdownPackage(self, bstrPackageID);
     }
 };
 
@@ -235,10 +235,10 @@ pub const IRemoteComponentUtil = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn InstallRemoteComponent(self: *const IRemoteComponentUtil, bstrServer: ?BSTR, bstrPackageID: ?BSTR, bstrCLSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteComponentUtil.VTable, @ptrCast(self.vtable)).InstallRemoteComponent(@as(*const IRemoteComponentUtil, @ptrCast(self)), bstrServer, bstrPackageID, bstrCLSID);
+        return self.vtable.InstallRemoteComponent(self, bstrServer, bstrPackageID, bstrCLSID);
     }
     pub fn InstallRemoteComponentByName(self: *const IRemoteComponentUtil, bstrServer: ?BSTR, bstrPackageName: ?BSTR, bstrProgID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRemoteComponentUtil.VTable, @ptrCast(self.vtable)).InstallRemoteComponentByName(@as(*const IRemoteComponentUtil, @ptrCast(self)), bstrServer, bstrPackageName, bstrProgID);
+        return self.vtable.InstallRemoteComponentByName(self, bstrServer, bstrPackageName, bstrProgID);
     }
 };
 
@@ -271,10 +271,10 @@ pub const IRoleAssociationUtil = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn AssociateRole(self: *const IRoleAssociationUtil, bstrRoleID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRoleAssociationUtil.VTable, @ptrCast(self.vtable)).AssociateRole(@as(*const IRoleAssociationUtil, @ptrCast(self)), bstrRoleID);
+        return self.vtable.AssociateRole(self, bstrRoleID);
     }
     pub fn AssociateRoleByName(self: *const IRoleAssociationUtil, bstrRoleName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRoleAssociationUtil.VTable, @ptrCast(self.vtable)).AssociateRoleByName(@as(*const IRoleAssociationUtil, @ptrCast(self)), bstrRoleName);
+        return self.vtable.AssociateRoleByName(self, bstrRoleName);
     }
 };
 

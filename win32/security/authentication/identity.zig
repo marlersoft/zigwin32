@@ -6962,7 +6962,7 @@ pub const ICcgDomainAuthCredentials = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPasswordCredentials(self: *const ICcgDomainAuthCredentials, pluginInput: ?[*:0]const u16, domainName: ?*?PWSTR, username: ?*?PWSTR, password: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICcgDomainAuthCredentials.VTable, @ptrCast(self.vtable)).GetPasswordCredentials(@as(*const ICcgDomainAuthCredentials, @ptrCast(self)), pluginInput, domainName, username, password);
+        return self.vtable.GetPasswordCredentials(self, pluginInput, domainName, username, password);
     }
 };
 

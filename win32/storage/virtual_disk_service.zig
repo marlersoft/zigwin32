@@ -1393,16 +1393,16 @@ pub const IEnumVdsObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumVdsObject, celt: u32, ppObjectArray: [*]?*IUnknown, pcFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumVdsObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumVdsObject, @ptrCast(self)), celt, ppObjectArray, pcFetched);
+        return self.vtable.Next(self, celt, ppObjectArray, pcFetched);
     }
     pub fn Skip(self: *const IEnumVdsObject, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumVdsObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumVdsObject, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IEnumVdsObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumVdsObject, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumVdsObject, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IEnumVdsObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumVdsObject, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
 };
 
@@ -1445,13 +1445,13 @@ pub const IVdsAsync = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Cancel(self: *const IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsAsync.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IVdsAsync, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn Wait(self: *const IVdsAsync, pHrResult: ?*HRESULT, pAsyncOut: ?*VDS_ASYNC_OUTPUT) callconv(.Inline) HRESULT {
-        return @as(*const IVdsAsync.VTable, @ptrCast(self.vtable)).Wait(@as(*const IVdsAsync, @ptrCast(self)), pHrResult, pAsyncOut);
+        return self.vtable.Wait(self, pHrResult, pAsyncOut);
     }
     pub fn QueryStatus(self: *const IVdsAsync, pHrResult: ?*HRESULT, pulPercentCompleted: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsAsync.VTable, @ptrCast(self.vtable)).QueryStatus(@as(*const IVdsAsync, @ptrCast(self)), pHrResult, pulPercentCompleted);
+        return self.vtable.QueryStatus(self, pHrResult, pulPercentCompleted);
     }
 };
 
@@ -1478,7 +1478,7 @@ pub const IVdsAdviseSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnNotify(self: *const IVdsAdviseSink, lNumberOfNotifications: i32, pNotificationArray: [*]VDS_NOTIFICATION) callconv(.Inline) HRESULT {
-        return @as(*const IVdsAdviseSink.VTable, @ptrCast(self.vtable)).OnNotify(@as(*const IVdsAdviseSink, @ptrCast(self)), lNumberOfNotifications, pNotificationArray);
+        return self.vtable.OnNotify(self, lNumberOfNotifications, pNotificationArray);
     }
 };
 
@@ -1504,7 +1504,7 @@ pub const IVdsProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsProvider, pProviderProp: ?*VDS_PROVIDER_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsProvider.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsProvider, @ptrCast(self)), pProviderProp);
+        return self.vtable.GetProperties(self, pProviderProp);
     }
 };
 
@@ -1530,7 +1530,7 @@ pub const IVdsProviderSupport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetVersionSupport(self: *const IVdsProviderSupport, ulVersionSupport: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsProviderSupport.VTable, @ptrCast(self.vtable)).GetVersionSupport(@as(*const IVdsProviderSupport, @ptrCast(self)), ulVersionSupport);
+        return self.vtable.GetVersionSupport(self, ulVersionSupport);
     }
 };
 
@@ -1575,13 +1575,13 @@ pub const IVdsProviderPrivate = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetObject(self: *const IVdsProviderPrivate, ObjectId: Guid, @"type": VDS_OBJECT_TYPE, ppObjectUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IVdsProviderPrivate.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IVdsProviderPrivate, @ptrCast(self)), ObjectId, @"type", ppObjectUnk);
+        return self.vtable.GetObject(self, ObjectId, @"type", ppObjectUnk);
     }
     pub fn OnLoad(self: *const IVdsProviderPrivate, pwszMachineName: ?PWSTR, pCallbackObject: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IVdsProviderPrivate.VTable, @ptrCast(self.vtable)).OnLoad(@as(*const IVdsProviderPrivate, @ptrCast(self)), pwszMachineName, pCallbackObject);
+        return self.vtable.OnLoad(self, pwszMachineName, pCallbackObject);
     }
     pub fn OnUnload(self: *const IVdsProviderPrivate, bForceUnload: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IVdsProviderPrivate.VTable, @ptrCast(self.vtable)).OnUnload(@as(*const IVdsProviderPrivate, @ptrCast(self)), bForceUnload);
+        return self.vtable.OnUnload(self, bForceUnload);
     }
 };
 
@@ -2265,13 +2265,13 @@ pub const IVdsHwProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QuerySubSystems(self: *const IVdsHwProvider, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProvider.VTable, @ptrCast(self.vtable)).QuerySubSystems(@as(*const IVdsHwProvider, @ptrCast(self)), ppEnum);
+        return self.vtable.QuerySubSystems(self, ppEnum);
     }
     pub fn Reenumerate(self: *const IVdsHwProvider) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProvider.VTable, @ptrCast(self.vtable)).Reenumerate(@as(*const IVdsHwProvider, @ptrCast(self)));
+        return self.vtable.Reenumerate(self);
     }
     pub fn Refresh(self: *const IVdsHwProvider) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProvider.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IVdsHwProvider, @ptrCast(self)));
+        return self.vtable.Refresh(self);
     }
 };
 
@@ -2297,7 +2297,7 @@ pub const IVdsHwProviderType = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProviderType(self: *const IVdsHwProviderType, pType: ?*VDS_HWPROVIDER_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProviderType.VTable, @ptrCast(self.vtable)).GetProviderType(@as(*const IVdsHwProviderType, @ptrCast(self)), pType);
+        return self.vtable.GetProviderType(self, pType);
     }
 };
 
@@ -2323,7 +2323,7 @@ pub const IVdsHwProviderType2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProviderType2(self: *const IVdsHwProviderType2, pType: ?*VDS_HWPROVIDER_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProviderType2.VTable, @ptrCast(self.vtable)).GetProviderType2(@as(*const IVdsHwProviderType2, @ptrCast(self)), pType);
+        return self.vtable.GetProviderType2(self, pType);
     }
 };
 
@@ -2376,13 +2376,13 @@ pub const IVdsHwProviderStoragePools = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryStoragePools(self: *const IVdsHwProviderStoragePools, ulFlags: u32, ullRemainingFreeSpace: u64, pPoolAttributes: ?*VDS_POOL_ATTRIBUTES, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).QueryStoragePools(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), ulFlags, ullRemainingFreeSpace, pPoolAttributes, ppEnum);
+        return self.vtable.QueryStoragePools(self, ulFlags, ullRemainingFreeSpace, pPoolAttributes, ppEnum);
     }
     pub fn CreateLunInStoragePool(self: *const IVdsHwProviderStoragePools, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, StoragePoolId: Guid, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).CreateLunInStoragePool(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), @"type", ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
+        return self.vtable.CreateLunInStoragePool(self, @"type", ullSizeInBytes, StoragePoolId, pwszUnmaskingList, pHints2, ppAsync);
     }
     pub fn QueryMaxLunCreateSizeInStoragePool(self: *const IVdsHwProviderStoragePools, @"type": VDS_LUN_TYPE, StoragePoolId: Guid, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProviderStoragePools.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSizeInStoragePool(@as(*const IVdsHwProviderStoragePools, @ptrCast(self)), @"type", StoragePoolId, pHints2, pullMaxLunSize);
+        return self.vtable.QueryMaxLunCreateSizeInStoragePool(self, @"type", StoragePoolId, pHints2, pullMaxLunSize);
     }
 };
 
@@ -2511,40 +2511,40 @@ pub const IVdsSubSystem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsSubSystem, pSubSystemProp: ?*VDS_SUB_SYSTEM_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsSubSystem, @ptrCast(self)), pSubSystemProp);
+        return self.vtable.GetProperties(self, pSubSystemProp);
     }
     pub fn GetProvider(self: *const IVdsSubSystem, ppProvider: ?*?*IVdsProvider) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).GetProvider(@as(*const IVdsSubSystem, @ptrCast(self)), ppProvider);
+        return self.vtable.GetProvider(self, ppProvider);
     }
     pub fn QueryControllers(self: *const IVdsSubSystem, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryControllers(@as(*const IVdsSubSystem, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryControllers(self, ppEnum);
     }
     pub fn QueryLuns(self: *const IVdsSubSystem, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryLuns(@as(*const IVdsSubSystem, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryLuns(self, ppEnum);
     }
     pub fn QueryDrives(self: *const IVdsSubSystem, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryDrives(@as(*const IVdsSubSystem, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryDrives(self, ppEnum);
     }
     pub fn GetDrive(self: *const IVdsSubSystem, sBusNumber: i16, sSlotNumber: i16, ppDrive: ?*?*IVdsDrive) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).GetDrive(@as(*const IVdsSubSystem, @ptrCast(self)), sBusNumber, sSlotNumber, ppDrive);
+        return self.vtable.GetDrive(self, sBusNumber, sSlotNumber, ppDrive);
     }
     pub fn Reenumerate(self: *const IVdsSubSystem) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).Reenumerate(@as(*const IVdsSubSystem, @ptrCast(self)));
+        return self.vtable.Reenumerate(self);
     }
     pub fn SetControllerStatus(self: *const IVdsSubSystem, pOnlineControllerIdArray: [*]Guid, lNumberOfOnlineControllers: i32, pOfflineControllerIdArray: [*]Guid, lNumberOfOfflineControllers: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).SetControllerStatus(@as(*const IVdsSubSystem, @ptrCast(self)), pOnlineControllerIdArray, lNumberOfOnlineControllers, pOfflineControllerIdArray, lNumberOfOfflineControllers);
+        return self.vtable.SetControllerStatus(self, pOnlineControllerIdArray, lNumberOfOnlineControllers, pOfflineControllerIdArray, lNumberOfOfflineControllers);
     }
     pub fn CreateLun(self: *const IVdsSubSystem, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints: ?*VDS_HINTS, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).CreateLun(@as(*const IVdsSubSystem, @ptrCast(self)), @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
+        return self.vtable.CreateLun(self, @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints, ppAsync);
     }
     pub fn ReplaceDrive(self: *const IVdsSubSystem, DriveToBeReplaced: Guid, ReplacementDrive: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).ReplaceDrive(@as(*const IVdsSubSystem, @ptrCast(self)), DriveToBeReplaced, ReplacementDrive);
+        return self.vtable.ReplaceDrive(self, DriveToBeReplaced, ReplacementDrive);
     }
     pub fn SetStatus(self: *const IVdsSubSystem, status: VDS_SUB_SYSTEM_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsSubSystem, @ptrCast(self)), status);
+        return self.vtable.SetStatus(self, status);
     }
     pub fn QueryMaxLunCreateSize(self: *const IVdsSubSystem, @"type": VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints: ?*VDS_HINTS, pullMaxLunSize: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSize(@as(*const IVdsSubSystem, @ptrCast(self)), @"type", pDriveIdArray, lNumberOfDrives, pHints, pullMaxLunSize);
+        return self.vtable.QueryMaxLunCreateSize(self, @"type", pDriveIdArray, lNumberOfDrives, pHints, pullMaxLunSize);
     }
 };
 
@@ -2607,16 +2607,16 @@ pub const IVdsSubSystem2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties2(self: *const IVdsSubSystem2, pSubSystemProp2: ?*VDS_SUB_SYSTEM_PROP2) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).GetProperties2(@as(*const IVdsSubSystem2, @ptrCast(self)), pSubSystemProp2);
+        return self.vtable.GetProperties2(self, pSubSystemProp2);
     }
     pub fn GetDrive2(self: *const IVdsSubSystem2, sBusNumber: i16, sSlotNumber: i16, ulEnclosureNumber: u32, ppDrive: ?*?*IVdsDrive) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).GetDrive2(@as(*const IVdsSubSystem2, @ptrCast(self)), sBusNumber, sSlotNumber, ulEnclosureNumber, ppDrive);
+        return self.vtable.GetDrive2(self, sBusNumber, sSlotNumber, ulEnclosureNumber, ppDrive);
     }
     pub fn CreateLun2(self: *const IVdsSubSystem2, @"type": VDS_LUN_TYPE, ullSizeInBytes: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pwszUnmaskingList: ?PWSTR, pHints2: ?*VDS_HINTS2, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).CreateLun2(@as(*const IVdsSubSystem2, @ptrCast(self)), @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
+        return self.vtable.CreateLun2(self, @"type", ullSizeInBytes, pDriveIdArray, lNumberOfDrives, pwszUnmaskingList, pHints2, ppAsync);
     }
     pub fn QueryMaxLunCreateSize2(self: *const IVdsSubSystem2, @"type": VDS_LUN_TYPE, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pHints2: ?*VDS_HINTS2, pullMaxLunSize: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystem2.VTable, @ptrCast(self.vtable)).QueryMaxLunCreateSize2(@as(*const IVdsSubSystem2, @ptrCast(self)), @"type", pDriveIdArray, lNumberOfDrives, pHints2, pullMaxLunSize);
+        return self.vtable.QueryMaxLunCreateSize2(self, @"type", pDriveIdArray, lNumberOfDrives, pHints2, pullMaxLunSize);
     }
 };
 
@@ -2642,7 +2642,7 @@ pub const IVdsSubSystemNaming = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFriendlyName(self: *const IVdsSubSystemNaming, pwszFriendlyName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystemNaming.VTable, @ptrCast(self.vtable)).SetFriendlyName(@as(*const IVdsSubSystemNaming, @ptrCast(self)), pwszFriendlyName);
+        return self.vtable.SetFriendlyName(self, pwszFriendlyName);
     }
 };
 
@@ -2694,16 +2694,16 @@ pub const IVdsSubSystemIscsi = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryTargets(self: *const IVdsSubSystemIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystemIscsi.VTable, @ptrCast(self.vtable)).QueryTargets(@as(*const IVdsSubSystemIscsi, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryTargets(self, ppEnum);
     }
     pub fn QueryPortals(self: *const IVdsSubSystemIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystemIscsi.VTable, @ptrCast(self.vtable)).QueryPortals(@as(*const IVdsSubSystemIscsi, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryPortals(self, ppEnum);
     }
     pub fn CreateTarget(self: *const IVdsSubSystemIscsi, pwszIscsiName: ?PWSTR, pwszFriendlyName: ?PWSTR, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystemIscsi.VTable, @ptrCast(self.vtable)).CreateTarget(@as(*const IVdsSubSystemIscsi, @ptrCast(self)), pwszIscsiName, pwszFriendlyName, ppAsync);
+        return self.vtable.CreateTarget(self, pwszIscsiName, pwszFriendlyName, ppAsync);
     }
     pub fn SetIpsecGroupPresharedKey(self: *const IVdsSubSystemIscsi, pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystemIscsi.VTable, @ptrCast(self.vtable)).SetIpsecGroupPresharedKey(@as(*const IVdsSubSystemIscsi, @ptrCast(self)), pIpsecKey);
+        return self.vtable.SetIpsecGroupPresharedKey(self, pIpsecKey);
     }
 };
 
@@ -2729,7 +2729,7 @@ pub const IVdsSubSystemInterconnect = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSupportedInterconnects(self: *const IVdsSubSystemInterconnect, pulSupportedInterconnectsFlag: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsSubSystemInterconnect.VTable, @ptrCast(self.vtable)).GetSupportedInterconnects(@as(*const IVdsSubSystemInterconnect, @ptrCast(self)), pulSupportedInterconnectsFlag);
+        return self.vtable.GetSupportedInterconnects(self, pulSupportedInterconnectsFlag);
     }
 };
 
@@ -2786,19 +2786,19 @@ pub const IVdsControllerPort = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsControllerPort, pPortProp: ?*VDS_PORT_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsControllerPort, @ptrCast(self)), pPortProp);
+        return self.vtable.GetProperties(self, pPortProp);
     }
     pub fn GetController(self: *const IVdsControllerPort, ppController: ?*?*IVdsController) callconv(.Inline) HRESULT {
-        return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).GetController(@as(*const IVdsControllerPort, @ptrCast(self)), ppController);
+        return self.vtable.GetController(self, ppController);
     }
     pub fn QueryAssociatedLuns(self: *const IVdsControllerPort, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).QueryAssociatedLuns(@as(*const IVdsControllerPort, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryAssociatedLuns(self, ppEnum);
     }
     pub fn Reset(self: *const IVdsControllerPort) callconv(.Inline) HRESULT {
-        return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).Reset(@as(*const IVdsControllerPort, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn SetStatus(self: *const IVdsControllerPort, status: VDS_PORT_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsControllerPort.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsControllerPort, @ptrCast(self)), status);
+        return self.vtable.SetStatus(self, status);
     }
 };
 
@@ -2878,28 +2878,28 @@ pub const IVdsController = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsController, pControllerProp: ?*VDS_CONTROLLER_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsController, @ptrCast(self)), pControllerProp);
+        return self.vtable.GetProperties(self, pControllerProp);
     }
     pub fn GetSubSystem(self: *const IVdsController, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
-        return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsController, @ptrCast(self)), ppSubSystem);
+        return self.vtable.GetSubSystem(self, ppSubSystem);
     }
     pub fn GetPortProperties(self: *const IVdsController, sPortNumber: i16, pPortProp: ?*VDS_PORT_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).GetPortProperties(@as(*const IVdsController, @ptrCast(self)), sPortNumber, pPortProp);
+        return self.vtable.GetPortProperties(self, sPortNumber, pPortProp);
     }
     pub fn FlushCache(self: *const IVdsController) callconv(.Inline) HRESULT {
-        return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).FlushCache(@as(*const IVdsController, @ptrCast(self)));
+        return self.vtable.FlushCache(self);
     }
     pub fn InvalidateCache(self: *const IVdsController) callconv(.Inline) HRESULT {
-        return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).InvalidateCache(@as(*const IVdsController, @ptrCast(self)));
+        return self.vtable.InvalidateCache(self);
     }
     pub fn Reset(self: *const IVdsController) callconv(.Inline) HRESULT {
-        return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).Reset(@as(*const IVdsController, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn QueryAssociatedLuns(self: *const IVdsController, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).QueryAssociatedLuns(@as(*const IVdsController, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryAssociatedLuns(self, ppEnum);
     }
     pub fn SetStatus(self: *const IVdsController, status: VDS_CONTROLLER_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsController.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsController, @ptrCast(self)), status);
+        return self.vtable.SetStatus(self, status);
     }
 };
 
@@ -2925,7 +2925,7 @@ pub const IVdsControllerControllerPort = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryControllerPorts(self: *const IVdsControllerControllerPort, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsControllerControllerPort.VTable, @ptrCast(self.vtable)).QueryControllerPorts(@as(*const IVdsControllerControllerPort, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryControllerPorts(self, ppEnum);
     }
 };
 
@@ -2992,22 +2992,22 @@ pub const IVdsDrive = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsDrive, pDriveProp: ?*VDS_DRIVE_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsDrive, @ptrCast(self)), pDriveProp);
+        return self.vtable.GetProperties(self, pDriveProp);
     }
     pub fn GetSubSystem(self: *const IVdsDrive, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
-        return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsDrive, @ptrCast(self)), ppSubSystem);
+        return self.vtable.GetSubSystem(self, ppSubSystem);
     }
     pub fn QueryExtents(self: *const IVdsDrive, ppExtentArray: [*]?*VDS_DRIVE_EXTENT, plNumberOfExtents: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).QueryExtents(@as(*const IVdsDrive, @ptrCast(self)), ppExtentArray, plNumberOfExtents);
+        return self.vtable.QueryExtents(self, ppExtentArray, plNumberOfExtents);
     }
     pub fn SetFlags(self: *const IVdsDrive, ulFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IVdsDrive, @ptrCast(self)), ulFlags);
+        return self.vtable.SetFlags(self, ulFlags);
     }
     pub fn ClearFlags(self: *const IVdsDrive, ulFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).ClearFlags(@as(*const IVdsDrive, @ptrCast(self)), ulFlags);
+        return self.vtable.ClearFlags(self, ulFlags);
     }
     pub fn SetStatus(self: *const IVdsDrive, status: VDS_DRIVE_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsDrive.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsDrive, @ptrCast(self)), status);
+        return self.vtable.SetStatus(self, status);
     }
 };
 
@@ -3033,7 +3033,7 @@ pub const IVdsDrive2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties2(self: *const IVdsDrive2, pDriveProp2: ?*VDS_DRIVE_PROP2) callconv(.Inline) HRESULT {
-        return @as(*const IVdsDrive2.VTable, @ptrCast(self.vtable)).GetProperties2(@as(*const IVdsDrive2, @ptrCast(self)), pDriveProp2);
+        return self.vtable.GetProperties2(self, pDriveProp2);
     }
 };
 
@@ -3197,55 +3197,55 @@ pub const IVdsLun = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsLun, pLunProp: ?*VDS_LUN_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsLun, @ptrCast(self)), pLunProp);
+        return self.vtable.GetProperties(self, pLunProp);
     }
     pub fn GetSubSystem(self: *const IVdsLun, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsLun, @ptrCast(self)), ppSubSystem);
+        return self.vtable.GetSubSystem(self, ppSubSystem);
     }
     pub fn GetIdentificationData(self: *const IVdsLun, pLunInfo: ?*VDS_LUN_INFORMATION) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).GetIdentificationData(@as(*const IVdsLun, @ptrCast(self)), pLunInfo);
+        return self.vtable.GetIdentificationData(self, pLunInfo);
     }
     pub fn QueryActiveControllers(self: *const IVdsLun, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).QueryActiveControllers(@as(*const IVdsLun, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryActiveControllers(self, ppEnum);
     }
     pub fn Extend(self: *const IVdsLun, ullNumberOfBytesToAdd: u64, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).Extend(@as(*const IVdsLun, @ptrCast(self)), ullNumberOfBytesToAdd, pDriveIdArray, lNumberOfDrives, ppAsync);
+        return self.vtable.Extend(self, ullNumberOfBytesToAdd, pDriveIdArray, lNumberOfDrives, ppAsync);
     }
     pub fn Shrink(self: *const IVdsLun, ullNumberOfBytesToRemove: u64, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).Shrink(@as(*const IVdsLun, @ptrCast(self)), ullNumberOfBytesToRemove, ppAsync);
+        return self.vtable.Shrink(self, ullNumberOfBytesToRemove, ppAsync);
     }
     pub fn QueryPlexes(self: *const IVdsLun, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).QueryPlexes(@as(*const IVdsLun, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryPlexes(self, ppEnum);
     }
     pub fn AddPlex(self: *const IVdsLun, lunId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).AddPlex(@as(*const IVdsLun, @ptrCast(self)), lunId, ppAsync);
+        return self.vtable.AddPlex(self, lunId, ppAsync);
     }
     pub fn RemovePlex(self: *const IVdsLun, plexId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).RemovePlex(@as(*const IVdsLun, @ptrCast(self)), plexId, ppAsync);
+        return self.vtable.RemovePlex(self, plexId, ppAsync);
     }
     pub fn Recover(self: *const IVdsLun, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).Recover(@as(*const IVdsLun, @ptrCast(self)), ppAsync);
+        return self.vtable.Recover(self, ppAsync);
     }
     pub fn SetMask(self: *const IVdsLun, pwszUnmaskingList: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).SetMask(@as(*const IVdsLun, @ptrCast(self)), pwszUnmaskingList);
+        return self.vtable.SetMask(self, pwszUnmaskingList);
     }
     pub fn Delete(self: *const IVdsLun) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).Delete(@as(*const IVdsLun, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn AssociateControllers(self: *const IVdsLun, pActiveControllerIdArray: ?[*]Guid, lNumberOfActiveControllers: i32, pInactiveControllerIdArray: ?[*]Guid, lNumberOfInactiveControllers: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).AssociateControllers(@as(*const IVdsLun, @ptrCast(self)), pActiveControllerIdArray, lNumberOfActiveControllers, pInactiveControllerIdArray, lNumberOfInactiveControllers);
+        return self.vtable.AssociateControllers(self, pActiveControllerIdArray, lNumberOfActiveControllers, pInactiveControllerIdArray, lNumberOfInactiveControllers);
     }
     pub fn QueryHints(self: *const IVdsLun, pHints: ?*VDS_HINTS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).QueryHints(@as(*const IVdsLun, @ptrCast(self)), pHints);
+        return self.vtable.QueryHints(self, pHints);
     }
     pub fn ApplyHints(self: *const IVdsLun, pHints: ?*VDS_HINTS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).ApplyHints(@as(*const IVdsLun, @ptrCast(self)), pHints);
+        return self.vtable.ApplyHints(self, pHints);
     }
     pub fn SetStatus(self: *const IVdsLun, status: VDS_LUN_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsLun, @ptrCast(self)), status);
+        return self.vtable.SetStatus(self, status);
     }
     pub fn QueryMaxLunExtendSize(self: *const IVdsLun, pDriveIdArray: ?[*]Guid, lNumberOfDrives: i32, pullMaxBytesToBeAdded: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun.VTable, @ptrCast(self.vtable)).QueryMaxLunExtendSize(@as(*const IVdsLun, @ptrCast(self)), pDriveIdArray, lNumberOfDrives, pullMaxBytesToBeAdded);
+        return self.vtable.QueryMaxLunExtendSize(self, pDriveIdArray, lNumberOfDrives, pullMaxBytesToBeAdded);
     }
 };
 
@@ -3279,10 +3279,10 @@ pub const IVdsLun2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryHints2(self: *const IVdsLun2, pHints2: ?*VDS_HINTS2) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun2.VTable, @ptrCast(self.vtable)).QueryHints2(@as(*const IVdsLun2, @ptrCast(self)), pHints2);
+        return self.vtable.QueryHints2(self, pHints2);
     }
     pub fn ApplyHints2(self: *const IVdsLun2, pHints2: ?*VDS_HINTS2) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLun2.VTable, @ptrCast(self.vtable)).ApplyHints2(@as(*const IVdsLun2, @ptrCast(self)), pHints2);
+        return self.vtable.ApplyHints2(self, pHints2);
     }
 };
 
@@ -3308,7 +3308,7 @@ pub const IVdsLunNaming = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFriendlyName(self: *const IVdsLunNaming, pwszFriendlyName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunNaming.VTable, @ptrCast(self.vtable)).SetFriendlyName(@as(*const IVdsLunNaming, @ptrCast(self)), pwszFriendlyName);
+        return self.vtable.SetFriendlyName(self, pwszFriendlyName);
     }
 };
 
@@ -3334,7 +3334,7 @@ pub const IVdsLunNumber = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLunNumber(self: *const IVdsLunNumber, pulLunNumber: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunNumber.VTable, @ptrCast(self.vtable)).GetLunNumber(@as(*const IVdsLunNumber, @ptrCast(self)), pulLunNumber);
+        return self.vtable.GetLunNumber(self, pulLunNumber);
     }
 };
 
@@ -3371,10 +3371,10 @@ pub const IVdsLunControllerPorts = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssociateControllerPorts(self: *const IVdsLunControllerPorts, pActiveControllerPortIdArray: ?[*]Guid, lNumberOfActiveControllerPorts: i32, pInactiveControllerPortIdArray: ?[*]Guid, lNumberOfInactiveControllerPorts: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunControllerPorts.VTable, @ptrCast(self.vtable)).AssociateControllerPorts(@as(*const IVdsLunControllerPorts, @ptrCast(self)), pActiveControllerPortIdArray, lNumberOfActiveControllerPorts, pInactiveControllerPortIdArray, lNumberOfInactiveControllerPorts);
+        return self.vtable.AssociateControllerPorts(self, pActiveControllerPortIdArray, lNumberOfActiveControllerPorts, pInactiveControllerPortIdArray, lNumberOfInactiveControllerPorts);
     }
     pub fn QueryActiveControllerPorts(self: *const IVdsLunControllerPorts, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunControllerPorts.VTable, @ptrCast(self.vtable)).QueryActiveControllerPorts(@as(*const IVdsLunControllerPorts, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryActiveControllerPorts(self, ppEnum);
     }
 };
 
@@ -3429,16 +3429,16 @@ pub const IVdsLunMpio = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPathInfo(self: *const IVdsLunMpio, ppPaths: [*]?*VDS_PATH_INFO, plNumberOfPaths: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).GetPathInfo(@as(*const IVdsLunMpio, @ptrCast(self)), ppPaths, plNumberOfPaths);
+        return self.vtable.GetPathInfo(self, ppPaths, plNumberOfPaths);
     }
     pub fn GetLoadBalancePolicy(self: *const IVdsLunMpio, pPolicy: ?*VDS_LOADBALANCE_POLICY_ENUM, ppPaths: [*]?*VDS_PATH_POLICY, plNumberOfPaths: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).GetLoadBalancePolicy(@as(*const IVdsLunMpio, @ptrCast(self)), pPolicy, ppPaths, plNumberOfPaths);
+        return self.vtable.GetLoadBalancePolicy(self, pPolicy, ppPaths, plNumberOfPaths);
     }
     pub fn SetLoadBalancePolicy(self: *const IVdsLunMpio, policy: VDS_LOADBALANCE_POLICY_ENUM, pPaths: ?[*]VDS_PATH_POLICY, lNumberOfPaths: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).SetLoadBalancePolicy(@as(*const IVdsLunMpio, @ptrCast(self)), policy, pPaths, lNumberOfPaths);
+        return self.vtable.SetLoadBalancePolicy(self, policy, pPaths, lNumberOfPaths);
     }
     pub fn GetSupportedLbPolicies(self: *const IVdsLunMpio, pulLbFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunMpio.VTable, @ptrCast(self.vtable)).GetSupportedLbPolicies(@as(*const IVdsLunMpio, @ptrCast(self)), pulLbFlags);
+        return self.vtable.GetSupportedLbPolicies(self, pulLbFlags);
     }
 };
 
@@ -3473,10 +3473,10 @@ pub const IVdsLunIscsi = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssociateTargets(self: *const IVdsLunIscsi, pTargetIdArray: ?[*]Guid, lNumberOfTargets: i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunIscsi.VTable, @ptrCast(self.vtable)).AssociateTargets(@as(*const IVdsLunIscsi, @ptrCast(self)), pTargetIdArray, lNumberOfTargets);
+        return self.vtable.AssociateTargets(self, pTargetIdArray, lNumberOfTargets);
     }
     pub fn QueryAssociatedTargets(self: *const IVdsLunIscsi, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunIscsi.VTable, @ptrCast(self.vtable)).QueryAssociatedTargets(@as(*const IVdsLunIscsi, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryAssociatedTargets(self, ppEnum);
     }
 };
 
@@ -3535,19 +3535,19 @@ pub const IVdsLunPlex = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsLunPlex, pPlexProp: ?*VDS_LUN_PLEX_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsLunPlex, @ptrCast(self)), pPlexProp);
+        return self.vtable.GetProperties(self, pPlexProp);
     }
     pub fn GetLun(self: *const IVdsLunPlex, ppLun: ?*?*IVdsLun) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).GetLun(@as(*const IVdsLunPlex, @ptrCast(self)), ppLun);
+        return self.vtable.GetLun(self, ppLun);
     }
     pub fn QueryExtents(self: *const IVdsLunPlex, ppExtentArray: [*]?*VDS_DRIVE_EXTENT, plNumberOfExtents: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).QueryExtents(@as(*const IVdsLunPlex, @ptrCast(self)), ppExtentArray, plNumberOfExtents);
+        return self.vtable.QueryExtents(self, ppExtentArray, plNumberOfExtents);
     }
     pub fn QueryHints(self: *const IVdsLunPlex, pHints: ?*VDS_HINTS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).QueryHints(@as(*const IVdsLunPlex, @ptrCast(self)), pHints);
+        return self.vtable.QueryHints(self, pHints);
     }
     pub fn ApplyHints(self: *const IVdsLunPlex, pHints: ?*VDS_HINTS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsLunPlex.VTable, @ptrCast(self.vtable)).ApplyHints(@as(*const IVdsLunPlex, @ptrCast(self)), pHints);
+        return self.vtable.ApplyHints(self, pHints);
     }
 };
 
@@ -3625,25 +3625,25 @@ pub const IVdsIscsiPortal = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsIscsiPortal, pPortalProp: ?*VDS_ISCSI_PORTAL_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsIscsiPortal, @ptrCast(self)), pPortalProp);
+        return self.vtable.GetProperties(self, pPortalProp);
     }
     pub fn GetSubSystem(self: *const IVdsIscsiPortal, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsIscsiPortal, @ptrCast(self)), ppSubSystem);
+        return self.vtable.GetSubSystem(self, ppSubSystem);
     }
     pub fn QueryAssociatedPortalGroups(self: *const IVdsIscsiPortal, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).QueryAssociatedPortalGroups(@as(*const IVdsIscsiPortal, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryAssociatedPortalGroups(self, ppEnum);
     }
     pub fn SetStatus(self: *const IVdsIscsiPortal, status: VDS_ISCSI_PORTAL_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IVdsIscsiPortal, @ptrCast(self)), status);
+        return self.vtable.SetStatus(self, status);
     }
     pub fn SetIpsecTunnelAddress(self: *const IVdsIscsiPortal, pTunnelAddress: ?*VDS_IPADDRESS, pDestinationAddress: ?*VDS_IPADDRESS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).SetIpsecTunnelAddress(@as(*const IVdsIscsiPortal, @ptrCast(self)), pTunnelAddress, pDestinationAddress);
+        return self.vtable.SetIpsecTunnelAddress(self, pTunnelAddress, pDestinationAddress);
     }
     pub fn GetIpsecSecurity(self: *const IVdsIscsiPortal, pInitiatorPortalAddress: ?*VDS_IPADDRESS, pullSecurityFlags: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).GetIpsecSecurity(@as(*const IVdsIscsiPortal, @ptrCast(self)), pInitiatorPortalAddress, pullSecurityFlags);
+        return self.vtable.GetIpsecSecurity(self, pInitiatorPortalAddress, pullSecurityFlags);
     }
     pub fn SetIpsecSecurity(self: *const IVdsIscsiPortal, pInitiatorPortalAddress: ?*VDS_IPADDRESS, ullSecurityFlags: u64, pIpsecKey: ?*VDS_ISCSI_IPSEC_KEY) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortal.VTable, @ptrCast(self.vtable)).SetIpsecSecurity(@as(*const IVdsIscsiPortal, @ptrCast(self)), pInitiatorPortalAddress, ullSecurityFlags, pIpsecKey);
+        return self.vtable.SetIpsecSecurity(self, pInitiatorPortalAddress, ullSecurityFlags, pIpsecKey);
     }
 };
 
@@ -3744,34 +3744,34 @@ pub const IVdsIscsiTarget = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsIscsiTarget, pTargetProp: ?*VDS_ISCSI_TARGET_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsIscsiTarget, @ptrCast(self)), pTargetProp);
+        return self.vtable.GetProperties(self, pTargetProp);
     }
     pub fn GetSubSystem(self: *const IVdsIscsiTarget, ppSubSystem: ?*?*IVdsSubSystem) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).GetSubSystem(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppSubSystem);
+        return self.vtable.GetSubSystem(self, ppSubSystem);
     }
     pub fn QueryPortalGroups(self: *const IVdsIscsiTarget, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).QueryPortalGroups(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryPortalGroups(self, ppEnum);
     }
     pub fn QueryAssociatedLuns(self: *const IVdsIscsiTarget, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).QueryAssociatedLuns(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryAssociatedLuns(self, ppEnum);
     }
     pub fn CreatePortalGroup(self: *const IVdsIscsiTarget, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).CreatePortalGroup(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppAsync);
+        return self.vtable.CreatePortalGroup(self, ppAsync);
     }
     pub fn Delete(self: *const IVdsIscsiTarget, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).Delete(@as(*const IVdsIscsiTarget, @ptrCast(self)), ppAsync);
+        return self.vtable.Delete(self, ppAsync);
     }
     pub fn SetFriendlyName(self: *const IVdsIscsiTarget, pwszFriendlyName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).SetFriendlyName(@as(*const IVdsIscsiTarget, @ptrCast(self)), pwszFriendlyName);
+        return self.vtable.SetFriendlyName(self, pwszFriendlyName);
     }
     pub fn SetSharedSecret(self: *const IVdsIscsiTarget, pTargetSharedSecret: ?*VDS_ISCSI_SHARED_SECRET, pwszInitiatorName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).SetSharedSecret(@as(*const IVdsIscsiTarget, @ptrCast(self)), pTargetSharedSecret, pwszInitiatorName);
+        return self.vtable.SetSharedSecret(self, pTargetSharedSecret, pwszInitiatorName);
     }
     pub fn RememberInitiatorSharedSecret(self: *const IVdsIscsiTarget, pwszInitiatorName: ?PWSTR, pInitiatorSharedSecret: ?*VDS_ISCSI_SHARED_SECRET) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).RememberInitiatorSharedSecret(@as(*const IVdsIscsiTarget, @ptrCast(self)), pwszInitiatorName, pInitiatorSharedSecret);
+        return self.vtable.RememberInitiatorSharedSecret(self, pwszInitiatorName, pInitiatorSharedSecret);
     }
     pub fn GetConnectedInitiators(self: *const IVdsIscsiTarget, pppwszInitiatorList: [*]?*?PWSTR, plNumberOfInitiators: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiTarget.VTable, @ptrCast(self.vtable)).GetConnectedInitiators(@as(*const IVdsIscsiTarget, @ptrCast(self)), pppwszInitiatorList, plNumberOfInitiators);
+        return self.vtable.GetConnectedInitiators(self, pppwszInitiatorList, plNumberOfInitiators);
     }
 };
 
@@ -3839,22 +3839,22 @@ pub const IVdsIscsiPortalGroup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperties(self: *const IVdsIscsiPortalGroup, pPortalGroupProp: ?*VDS_ISCSI_PORTALGROUP_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), pPortalGroupProp);
+        return self.vtable.GetProperties(self, pPortalGroupProp);
     }
     pub fn GetTarget(self: *const IVdsIscsiPortalGroup, ppTarget: ?*?*IVdsIscsiTarget) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).GetTarget(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), ppTarget);
+        return self.vtable.GetTarget(self, ppTarget);
     }
     pub fn QueryAssociatedPortals(self: *const IVdsIscsiPortalGroup, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).QueryAssociatedPortals(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryAssociatedPortals(self, ppEnum);
     }
     pub fn AddPortal(self: *const IVdsIscsiPortalGroup, portalId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).AddPortal(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), portalId, ppAsync);
+        return self.vtable.AddPortal(self, portalId, ppAsync);
     }
     pub fn RemovePortal(self: *const IVdsIscsiPortalGroup, portalId: Guid, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).RemovePortal(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), portalId, ppAsync);
+        return self.vtable.RemovePortal(self, portalId, ppAsync);
     }
     pub fn Delete(self: *const IVdsIscsiPortalGroup, ppAsync: ?*?*IVdsAsync) callconv(.Inline) HRESULT {
-        return @as(*const IVdsIscsiPortalGroup.VTable, @ptrCast(self.vtable)).Delete(@as(*const IVdsIscsiPortalGroup, @ptrCast(self)), ppAsync);
+        return self.vtable.Delete(self, ppAsync);
     }
 };
 
@@ -3921,22 +3921,22 @@ pub const IVdsStoragePool = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProvider(self: *const IVdsStoragePool, ppProvider: ?*?*IVdsProvider) callconv(.Inline) HRESULT {
-        return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).GetProvider(@as(*const IVdsStoragePool, @ptrCast(self)), ppProvider);
+        return self.vtable.GetProvider(self, ppProvider);
     }
     pub fn GetProperties(self: *const IVdsStoragePool, pStoragePoolProp: ?*VDS_STORAGE_POOL_PROP) callconv(.Inline) HRESULT {
-        return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IVdsStoragePool, @ptrCast(self)), pStoragePoolProp);
+        return self.vtable.GetProperties(self, pStoragePoolProp);
     }
     pub fn GetAttributes(self: *const IVdsStoragePool, pStoragePoolAttributes: ?*VDS_POOL_ATTRIBUTES) callconv(.Inline) HRESULT {
-        return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IVdsStoragePool, @ptrCast(self)), pStoragePoolAttributes);
+        return self.vtable.GetAttributes(self, pStoragePoolAttributes);
     }
     pub fn QueryDriveExtents(self: *const IVdsStoragePool, ppExtentArray: [*]?*VDS_STORAGE_POOL_DRIVE_EXTENT, plNumberOfExtents: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).QueryDriveExtents(@as(*const IVdsStoragePool, @ptrCast(self)), ppExtentArray, plNumberOfExtents);
+        return self.vtable.QueryDriveExtents(self, ppExtentArray, plNumberOfExtents);
     }
     pub fn QueryAllocatedLuns(self: *const IVdsStoragePool, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).QueryAllocatedLuns(@as(*const IVdsStoragePool, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryAllocatedLuns(self, ppEnum);
     }
     pub fn QueryAllocatedStoragePools(self: *const IVdsStoragePool, ppEnum: ?*?*IEnumVdsObject) callconv(.Inline) HRESULT {
-        return @as(*const IVdsStoragePool.VTable, @ptrCast(self.vtable)).QueryAllocatedStoragePools(@as(*const IVdsStoragePool, @ptrCast(self)), ppEnum);
+        return self.vtable.QueryAllocatedStoragePools(self, ppEnum);
     }
 };
 
@@ -3979,13 +3979,13 @@ pub const IVdsMaintenance = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartMaintenance(self: *const IVdsMaintenance, operation: VDS_MAINTENANCE_OPERATION) callconv(.Inline) HRESULT {
-        return @as(*const IVdsMaintenance.VTable, @ptrCast(self.vtable)).StartMaintenance(@as(*const IVdsMaintenance, @ptrCast(self)), operation);
+        return self.vtable.StartMaintenance(self, operation);
     }
     pub fn StopMaintenance(self: *const IVdsMaintenance, operation: VDS_MAINTENANCE_OPERATION) callconv(.Inline) HRESULT {
-        return @as(*const IVdsMaintenance.VTable, @ptrCast(self.vtable)).StopMaintenance(@as(*const IVdsMaintenance, @ptrCast(self)), operation);
+        return self.vtable.StopMaintenance(self, operation);
     }
     pub fn PulseMaintenance(self: *const IVdsMaintenance, operation: VDS_MAINTENANCE_OPERATION, ulCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const IVdsMaintenance.VTable, @ptrCast(self.vtable)).PulseMaintenance(@as(*const IVdsMaintenance, @ptrCast(self)), operation, ulCount);
+        return self.vtable.PulseMaintenance(self, operation, ulCount);
     }
 };
 
@@ -4013,7 +4013,7 @@ pub const IVdsHwProviderPrivate = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryIfCreatedLun(self: *const IVdsHwProviderPrivate, pwszDevicePath: ?PWSTR, pVdsLunInformation: ?*VDS_LUN_INFORMATION, pLunId: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProviderPrivate.VTable, @ptrCast(self.vtable)).QueryIfCreatedLun(@as(*const IVdsHwProviderPrivate, @ptrCast(self)), pwszDevicePath, pVdsLunInformation, pLunId);
+        return self.vtable.QueryIfCreatedLun(self, pwszDevicePath, pVdsLunInformation, pLunId);
     }
 };
 
@@ -4040,7 +4040,7 @@ pub const IVdsHwProviderPrivateMpio = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAllPathStatusesFromHbaPort(self: *const IVdsHwProviderPrivateMpio, hbaPortProp: VDS_HBAPORT_PROP, status: VDS_PATH_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IVdsHwProviderPrivateMpio.VTable, @ptrCast(self.vtable)).SetAllPathStatusesFromHbaPort(@as(*const IVdsHwProviderPrivateMpio, @ptrCast(self)), hbaPortProp, status);
+        return self.vtable.SetAllPathStatusesFromHbaPort(self, hbaPortProp, status);
     }
 };
 
@@ -4080,10 +4080,10 @@ pub const IVdsAdmin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterProvider(self: *const IVdsAdmin, providerId: Guid, providerClsid: Guid, pwszName: ?PWSTR, @"type": VDS_PROVIDER_TYPE, pwszMachineName: ?PWSTR, pwszVersion: ?PWSTR, guidVersionId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVdsAdmin.VTable, @ptrCast(self.vtable)).RegisterProvider(@as(*const IVdsAdmin, @ptrCast(self)), providerId, providerClsid, pwszName, @"type", pwszMachineName, pwszVersion, guidVersionId);
+        return self.vtable.RegisterProvider(self, providerId, providerClsid, pwszName, @"type", pwszMachineName, pwszVersion, guidVersionId);
     }
     pub fn UnregisterProvider(self: *const IVdsAdmin, providerId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IVdsAdmin.VTable, @ptrCast(self.vtable)).UnregisterProvider(@as(*const IVdsAdmin, @ptrCast(self)), providerId);
+        return self.vtable.UnregisterProvider(self, providerId);
     }
 };
 

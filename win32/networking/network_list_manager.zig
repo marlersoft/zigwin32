@@ -217,31 +217,31 @@ pub const INetworkListManager = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetNetworks(self: *const INetworkListManager, Flags: NLM_ENUM_NETWORK, ppEnumNetwork: ?*?*IEnumNetworks) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetNetworks(@as(*const INetworkListManager, @ptrCast(self)), Flags, ppEnumNetwork);
+        return self.vtable.GetNetworks(self, Flags, ppEnumNetwork);
     }
     pub fn GetNetwork(self: *const INetworkListManager, gdNetworkId: Guid, ppNetwork: ?*?*INetwork) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetNetwork(@as(*const INetworkListManager, @ptrCast(self)), gdNetworkId, ppNetwork);
+        return self.vtable.GetNetwork(self, gdNetworkId, ppNetwork);
     }
     pub fn GetNetworkConnections(self: *const INetworkListManager, ppEnum: ?*?*IEnumNetworkConnections) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetNetworkConnections(@as(*const INetworkListManager, @ptrCast(self)), ppEnum);
+        return self.vtable.GetNetworkConnections(self, ppEnum);
     }
     pub fn GetNetworkConnection(self: *const INetworkListManager, gdNetworkConnectionId: Guid, ppNetworkConnection: ?*?*INetworkConnection) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetNetworkConnection(@as(*const INetworkListManager, @ptrCast(self)), gdNetworkConnectionId, ppNetworkConnection);
+        return self.vtable.GetNetworkConnection(self, gdNetworkConnectionId, ppNetworkConnection);
     }
     pub fn get_IsConnectedToInternet(self: *const INetworkListManager, pbIsConnected: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).get_IsConnectedToInternet(@as(*const INetworkListManager, @ptrCast(self)), pbIsConnected);
+        return self.vtable.get_IsConnectedToInternet(self, pbIsConnected);
     }
     pub fn get_IsConnected(self: *const INetworkListManager, pbIsConnected: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).get_IsConnected(@as(*const INetworkListManager, @ptrCast(self)), pbIsConnected);
+        return self.vtable.get_IsConnected(self, pbIsConnected);
     }
     pub fn GetConnectivity(self: *const INetworkListManager, pConnectivity: ?*NLM_CONNECTIVITY) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).GetConnectivity(@as(*const INetworkListManager, @ptrCast(self)), pConnectivity);
+        return self.vtable.GetConnectivity(self, pConnectivity);
     }
     pub fn SetSimulatedProfileInfo(self: *const INetworkListManager, pSimulatedInfo: ?*NLM_SIMULATED_PROFILE_INFO) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).SetSimulatedProfileInfo(@as(*const INetworkListManager, @ptrCast(self)), pSimulatedInfo);
+        return self.vtable.SetSimulatedProfileInfo(self, pSimulatedInfo);
     }
     pub fn ClearSimulatedProfileInfo(self: *const INetworkListManager) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManager.VTable, @ptrCast(self.vtable)).ClearSimulatedProfileInfo(@as(*const INetworkListManager, @ptrCast(self)));
+        return self.vtable.ClearSimulatedProfileInfo(self);
     }
 };
 
@@ -267,7 +267,7 @@ pub const INetworkListManagerEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConnectivityChanged(self: *const INetworkListManagerEvents, newConnectivity: NLM_CONNECTIVITY) callconv(.Inline) HRESULT {
-        return @as(*const INetworkListManagerEvents.VTable, @ptrCast(self.vtable)).ConnectivityChanged(@as(*const INetworkListManagerEvents, @ptrCast(self)), newConnectivity);
+        return self.vtable.ConnectivityChanged(self, newConnectivity);
     }
 };
 
@@ -403,43 +403,43 @@ pub const INetwork = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetName(self: *const INetwork, pszNetworkName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetName(@as(*const INetwork, @ptrCast(self)), pszNetworkName);
+        return self.vtable.GetName(self, pszNetworkName);
     }
     pub fn SetName(self: *const INetwork, szNetworkNewName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).SetName(@as(*const INetwork, @ptrCast(self)), szNetworkNewName);
+        return self.vtable.SetName(self, szNetworkNewName);
     }
     pub fn GetDescription(self: *const INetwork, pszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const INetwork, @ptrCast(self)), pszDescription);
+        return self.vtable.GetDescription(self, pszDescription);
     }
     pub fn SetDescription(self: *const INetwork, szDescription: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const INetwork, @ptrCast(self)), szDescription);
+        return self.vtable.SetDescription(self, szDescription);
     }
     pub fn GetNetworkId(self: *const INetwork, pgdGuidNetworkId: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetNetworkId(@as(*const INetwork, @ptrCast(self)), pgdGuidNetworkId);
+        return self.vtable.GetNetworkId(self, pgdGuidNetworkId);
     }
     pub fn GetDomainType(self: *const INetwork, pNetworkType: ?*NLM_DOMAIN_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetDomainType(@as(*const INetwork, @ptrCast(self)), pNetworkType);
+        return self.vtable.GetDomainType(self, pNetworkType);
     }
     pub fn GetNetworkConnections(self: *const INetwork, ppEnumNetworkConnection: ?*?*IEnumNetworkConnections) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetNetworkConnections(@as(*const INetwork, @ptrCast(self)), ppEnumNetworkConnection);
+        return self.vtable.GetNetworkConnections(self, ppEnumNetworkConnection);
     }
     pub fn GetTimeCreatedAndConnected(self: *const INetwork, pdwLowDateTimeCreated: ?*u32, pdwHighDateTimeCreated: ?*u32, pdwLowDateTimeConnected: ?*u32, pdwHighDateTimeConnected: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetTimeCreatedAndConnected(@as(*const INetwork, @ptrCast(self)), pdwLowDateTimeCreated, pdwHighDateTimeCreated, pdwLowDateTimeConnected, pdwHighDateTimeConnected);
+        return self.vtable.GetTimeCreatedAndConnected(self, pdwLowDateTimeCreated, pdwHighDateTimeCreated, pdwLowDateTimeConnected, pdwHighDateTimeConnected);
     }
     pub fn get_IsConnectedToInternet(self: *const INetwork, pbIsConnected: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).get_IsConnectedToInternet(@as(*const INetwork, @ptrCast(self)), pbIsConnected);
+        return self.vtable.get_IsConnectedToInternet(self, pbIsConnected);
     }
     pub fn get_IsConnected(self: *const INetwork, pbIsConnected: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).get_IsConnected(@as(*const INetwork, @ptrCast(self)), pbIsConnected);
+        return self.vtable.get_IsConnected(self, pbIsConnected);
     }
     pub fn GetConnectivity(self: *const INetwork, pConnectivity: ?*NLM_CONNECTIVITY) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetConnectivity(@as(*const INetwork, @ptrCast(self)), pConnectivity);
+        return self.vtable.GetConnectivity(self, pConnectivity);
     }
     pub fn GetCategory(self: *const INetwork, pCategory: ?*NLM_NETWORK_CATEGORY) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const INetwork, @ptrCast(self)), pCategory);
+        return self.vtable.GetCategory(self, pCategory);
     }
     pub fn SetCategory(self: *const INetwork, NewCategory: NLM_NETWORK_CATEGORY) callconv(.Inline) HRESULT {
-        return @as(*const INetwork.VTable, @ptrCast(self.vtable)).SetCategory(@as(*const INetwork, @ptrCast(self)), NewCategory);
+        return self.vtable.SetCategory(self, NewCategory);
     }
 };
 
@@ -499,19 +499,19 @@ pub const IEnumNetworks = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IEnumNetworks, ppEnumVar: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IEnumNetworks, @ptrCast(self)), ppEnumVar);
+        return self.vtable.get__NewEnum(self, ppEnumVar);
     }
     pub fn Next(self: *const IEnumNetworks, celt: u32, rgelt: [*]?*INetwork, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetworks, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumNetworks, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetworks, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumNetworks) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetworks, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumNetworks, ppEnumNetwork: ?*?*IEnumNetworks) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworks.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetworks, @ptrCast(self)), ppEnumNetwork);
+        return self.vtable.Clone(self, ppEnumNetwork);
     }
 };
 
@@ -576,16 +576,16 @@ pub const INetworkEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NetworkAdded(self: *const INetworkEvents, networkId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetworkEvents.VTable, @ptrCast(self.vtable)).NetworkAdded(@as(*const INetworkEvents, @ptrCast(self)), networkId);
+        return self.vtable.NetworkAdded(self, networkId);
     }
     pub fn NetworkDeleted(self: *const INetworkEvents, networkId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetworkEvents.VTable, @ptrCast(self.vtable)).NetworkDeleted(@as(*const INetworkEvents, @ptrCast(self)), networkId);
+        return self.vtable.NetworkDeleted(self, networkId);
     }
     pub fn NetworkConnectivityChanged(self: *const INetworkEvents, networkId: Guid, newConnectivity: NLM_CONNECTIVITY) callconv(.Inline) HRESULT {
-        return @as(*const INetworkEvents.VTable, @ptrCast(self.vtable)).NetworkConnectivityChanged(@as(*const INetworkEvents, @ptrCast(self)), networkId, newConnectivity);
+        return self.vtable.NetworkConnectivityChanged(self, networkId, newConnectivity);
     }
     pub fn NetworkPropertyChanged(self: *const INetworkEvents, networkId: Guid, flags: NLM_NETWORK_PROPERTY_CHANGE) callconv(.Inline) HRESULT {
-        return @as(*const INetworkEvents.VTable, @ptrCast(self.vtable)).NetworkPropertyChanged(@as(*const INetworkEvents, @ptrCast(self)), networkId, flags);
+        return self.vtable.NetworkPropertyChanged(self, networkId, flags);
     }
 };
 
@@ -661,25 +661,25 @@ pub const INetworkConnection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetNetwork(self: *const INetworkConnection, ppNetwork: ?*?*INetwork) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetNetwork(@as(*const INetworkConnection, @ptrCast(self)), ppNetwork);
+        return self.vtable.GetNetwork(self, ppNetwork);
     }
     pub fn get_IsConnectedToInternet(self: *const INetworkConnection, pbIsConnected: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).get_IsConnectedToInternet(@as(*const INetworkConnection, @ptrCast(self)), pbIsConnected);
+        return self.vtable.get_IsConnectedToInternet(self, pbIsConnected);
     }
     pub fn get_IsConnected(self: *const INetworkConnection, pbIsConnected: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).get_IsConnected(@as(*const INetworkConnection, @ptrCast(self)), pbIsConnected);
+        return self.vtable.get_IsConnected(self, pbIsConnected);
     }
     pub fn GetConnectivity(self: *const INetworkConnection, pConnectivity: ?*NLM_CONNECTIVITY) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetConnectivity(@as(*const INetworkConnection, @ptrCast(self)), pConnectivity);
+        return self.vtable.GetConnectivity(self, pConnectivity);
     }
     pub fn GetConnectionId(self: *const INetworkConnection, pgdConnectionId: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetConnectionId(@as(*const INetworkConnection, @ptrCast(self)), pgdConnectionId);
+        return self.vtable.GetConnectionId(self, pgdConnectionId);
     }
     pub fn GetAdapterId(self: *const INetworkConnection, pgdAdapterId: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetAdapterId(@as(*const INetworkConnection, @ptrCast(self)), pgdAdapterId);
+        return self.vtable.GetAdapterId(self, pgdAdapterId);
     }
     pub fn GetDomainType(self: *const INetworkConnection, pDomainType: ?*NLM_DOMAIN_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnection.VTable, @ptrCast(self.vtable)).GetDomainType(@as(*const INetworkConnection, @ptrCast(self)), pDomainType);
+        return self.vtable.GetDomainType(self, pDomainType);
     }
 };
 
@@ -739,19 +739,19 @@ pub const IEnumNetworkConnections = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IEnumNetworkConnections, ppEnumVar: ?*?*IEnumVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IEnumNetworkConnections, @ptrCast(self)), ppEnumVar);
+        return self.vtable.get__NewEnum(self, ppEnumVar);
     }
     pub fn Next(self: *const IEnumNetworkConnections, celt: u32, rgelt: [*]?*INetworkConnection, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetworkConnections, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumNetworkConnections, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetworkConnections, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumNetworkConnections) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetworkConnections, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumNetworkConnections, ppEnumNetwork: ?*?*IEnumNetworkConnections) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetworkConnections.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetworkConnections, @ptrCast(self)), ppEnumNetwork);
+        return self.vtable.Clone(self, ppEnumNetwork);
     }
 };
 
@@ -792,10 +792,10 @@ pub const INetworkConnectionEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NetworkConnectionConnectivityChanged(self: *const INetworkConnectionEvents, connectionId: Guid, newConnectivity: NLM_CONNECTIVITY) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnectionEvents.VTable, @ptrCast(self.vtable)).NetworkConnectionConnectivityChanged(@as(*const INetworkConnectionEvents, @ptrCast(self)), connectionId, newConnectivity);
+        return self.vtable.NetworkConnectionConnectivityChanged(self, connectionId, newConnectivity);
     }
     pub fn NetworkConnectionPropertyChanged(self: *const INetworkConnectionEvents, connectionId: Guid, flags: NLM_CONNECTION_PROPERTY_CHANGE) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnectionEvents.VTable, @ptrCast(self.vtable)).NetworkConnectionPropertyChanged(@as(*const INetworkConnectionEvents, @ptrCast(self)), connectionId, flags);
+        return self.vtable.NetworkConnectionPropertyChanged(self, connectionId, flags);
     }
 };
 
@@ -841,13 +841,13 @@ pub const INetworkCostManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCost(self: *const INetworkCostManager, pCost: ?*u32, pDestIPAddr: ?*NLM_SOCKADDR) callconv(.Inline) HRESULT {
-        return @as(*const INetworkCostManager.VTable, @ptrCast(self.vtable)).GetCost(@as(*const INetworkCostManager, @ptrCast(self)), pCost, pDestIPAddr);
+        return self.vtable.GetCost(self, pCost, pDestIPAddr);
     }
     pub fn GetDataPlanStatus(self: *const INetworkCostManager, pDataPlanStatus: ?*NLM_DATAPLAN_STATUS, pDestIPAddr: ?*NLM_SOCKADDR) callconv(.Inline) HRESULT {
-        return @as(*const INetworkCostManager.VTable, @ptrCast(self.vtable)).GetDataPlanStatus(@as(*const INetworkCostManager, @ptrCast(self)), pDataPlanStatus, pDestIPAddr);
+        return self.vtable.GetDataPlanStatus(self, pDataPlanStatus, pDestIPAddr);
     }
     pub fn SetDestinationAddresses(self: *const INetworkCostManager, length: u32, pDestIPAddrList: [*]NLM_SOCKADDR, bAppend: i16) callconv(.Inline) HRESULT {
-        return @as(*const INetworkCostManager.VTable, @ptrCast(self.vtable)).SetDestinationAddresses(@as(*const INetworkCostManager, @ptrCast(self)), length, pDestIPAddrList, bAppend);
+        return self.vtable.SetDestinationAddresses(self, length, pDestIPAddrList, bAppend);
     }
 };
 
@@ -882,10 +882,10 @@ pub const INetworkCostManagerEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CostChanged(self: *const INetworkCostManagerEvents, newCost: u32, pDestAddr: ?*NLM_SOCKADDR) callconv(.Inline) HRESULT {
-        return @as(*const INetworkCostManagerEvents.VTable, @ptrCast(self.vtable)).CostChanged(@as(*const INetworkCostManagerEvents, @ptrCast(self)), newCost, pDestAddr);
+        return self.vtable.CostChanged(self, newCost, pDestAddr);
     }
     pub fn DataPlanStatusChanged(self: *const INetworkCostManagerEvents, pDestAddr: ?*NLM_SOCKADDR) callconv(.Inline) HRESULT {
-        return @as(*const INetworkCostManagerEvents.VTable, @ptrCast(self.vtable)).DataPlanStatusChanged(@as(*const INetworkCostManagerEvents, @ptrCast(self)), pDestAddr);
+        return self.vtable.DataPlanStatusChanged(self, pDestAddr);
     }
 };
 
@@ -919,10 +919,10 @@ pub const INetworkConnectionCost = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCost(self: *const INetworkConnectionCost, pCost: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnectionCost.VTable, @ptrCast(self.vtable)).GetCost(@as(*const INetworkConnectionCost, @ptrCast(self)), pCost);
+        return self.vtable.GetCost(self, pCost);
     }
     pub fn GetDataPlanStatus(self: *const INetworkConnectionCost, pDataPlanStatus: ?*NLM_DATAPLAN_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnectionCost.VTable, @ptrCast(self.vtable)).GetDataPlanStatus(@as(*const INetworkConnectionCost, @ptrCast(self)), pDataPlanStatus);
+        return self.vtable.GetDataPlanStatus(self, pDataPlanStatus);
     }
 };
 
@@ -957,10 +957,10 @@ pub const INetworkConnectionCostEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConnectionCostChanged(self: *const INetworkConnectionCostEvents, connectionId: Guid, newCost: u32) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnectionCostEvents.VTable, @ptrCast(self.vtable)).ConnectionCostChanged(@as(*const INetworkConnectionCostEvents, @ptrCast(self)), connectionId, newCost);
+        return self.vtable.ConnectionCostChanged(self, connectionId, newCost);
     }
     pub fn ConnectionDataPlanStatusChanged(self: *const INetworkConnectionCostEvents, connectionId: Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetworkConnectionCostEvents.VTable, @ptrCast(self.vtable)).ConnectionDataPlanStatusChanged(@as(*const INetworkConnectionCostEvents, @ptrCast(self)), connectionId);
+        return self.vtable.ConnectionDataPlanStatusChanged(self, connectionId);
     }
 };
 

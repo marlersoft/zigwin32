@@ -237,13 +237,13 @@ pub const _IManipulationEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ManipulationStarted(self: *const _IManipulationEvents, x: f32, y: f32) callconv(.Inline) HRESULT {
-        return @as(*const _IManipulationEvents.VTable, @ptrCast(self.vtable)).ManipulationStarted(@as(*const _IManipulationEvents, @ptrCast(self)), x, y);
+        return self.vtable.ManipulationStarted(self, x, y);
     }
     pub fn ManipulationDelta(self: *const _IManipulationEvents, x: f32, y: f32, translationDeltaX: f32, translationDeltaY: f32, scaleDelta: f32, expansionDelta: f32, rotationDelta: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.Inline) HRESULT {
-        return @as(*const _IManipulationEvents.VTable, @ptrCast(self.vtable)).ManipulationDelta(@as(*const _IManipulationEvents, @ptrCast(self)), x, y, translationDeltaX, translationDeltaY, scaleDelta, expansionDelta, rotationDelta, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
+        return self.vtable.ManipulationDelta(self, x, y, translationDeltaX, translationDeltaY, scaleDelta, expansionDelta, rotationDelta, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
     }
     pub fn ManipulationCompleted(self: *const _IManipulationEvents, x: f32, y: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.Inline) HRESULT {
-        return @as(*const _IManipulationEvents.VTable, @ptrCast(self.vtable)).ManipulationCompleted(@as(*const _IManipulationEvents, @ptrCast(self)), x, y, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
+        return self.vtable.ManipulationCompleted(self, x, y, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
     }
 };
 
@@ -696,151 +696,151 @@ pub const IInertiaProcessor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_InitialOriginX(self: *const IInertiaProcessor, x: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialOriginX(@as(*const IInertiaProcessor, @ptrCast(self)), x);
+        return self.vtable.get_InitialOriginX(self, x);
     }
     pub fn put_InitialOriginX(self: *const IInertiaProcessor, x: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialOriginX(@as(*const IInertiaProcessor, @ptrCast(self)), x);
+        return self.vtable.put_InitialOriginX(self, x);
     }
     pub fn get_InitialOriginY(self: *const IInertiaProcessor, y: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialOriginY(@as(*const IInertiaProcessor, @ptrCast(self)), y);
+        return self.vtable.get_InitialOriginY(self, y);
     }
     pub fn put_InitialOriginY(self: *const IInertiaProcessor, y: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialOriginY(@as(*const IInertiaProcessor, @ptrCast(self)), y);
+        return self.vtable.put_InitialOriginY(self, y);
     }
     pub fn get_InitialVelocityX(self: *const IInertiaProcessor, x: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialVelocityX(@as(*const IInertiaProcessor, @ptrCast(self)), x);
+        return self.vtable.get_InitialVelocityX(self, x);
     }
     pub fn put_InitialVelocityX(self: *const IInertiaProcessor, x: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialVelocityX(@as(*const IInertiaProcessor, @ptrCast(self)), x);
+        return self.vtable.put_InitialVelocityX(self, x);
     }
     pub fn get_InitialVelocityY(self: *const IInertiaProcessor, y: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialVelocityY(@as(*const IInertiaProcessor, @ptrCast(self)), y);
+        return self.vtable.get_InitialVelocityY(self, y);
     }
     pub fn put_InitialVelocityY(self: *const IInertiaProcessor, y: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialVelocityY(@as(*const IInertiaProcessor, @ptrCast(self)), y);
+        return self.vtable.put_InitialVelocityY(self, y);
     }
     pub fn get_InitialAngularVelocity(self: *const IInertiaProcessor, velocity: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialAngularVelocity(@as(*const IInertiaProcessor, @ptrCast(self)), velocity);
+        return self.vtable.get_InitialAngularVelocity(self, velocity);
     }
     pub fn put_InitialAngularVelocity(self: *const IInertiaProcessor, velocity: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialAngularVelocity(@as(*const IInertiaProcessor, @ptrCast(self)), velocity);
+        return self.vtable.put_InitialAngularVelocity(self, velocity);
     }
     pub fn get_InitialExpansionVelocity(self: *const IInertiaProcessor, velocity: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialExpansionVelocity(@as(*const IInertiaProcessor, @ptrCast(self)), velocity);
+        return self.vtable.get_InitialExpansionVelocity(self, velocity);
     }
     pub fn put_InitialExpansionVelocity(self: *const IInertiaProcessor, velocity: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialExpansionVelocity(@as(*const IInertiaProcessor, @ptrCast(self)), velocity);
+        return self.vtable.put_InitialExpansionVelocity(self, velocity);
     }
     pub fn get_InitialRadius(self: *const IInertiaProcessor, radius: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialRadius(@as(*const IInertiaProcessor, @ptrCast(self)), radius);
+        return self.vtable.get_InitialRadius(self, radius);
     }
     pub fn put_InitialRadius(self: *const IInertiaProcessor, radius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialRadius(@as(*const IInertiaProcessor, @ptrCast(self)), radius);
+        return self.vtable.put_InitialRadius(self, radius);
     }
     pub fn get_BoundaryLeft(self: *const IInertiaProcessor, left: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_BoundaryLeft(@as(*const IInertiaProcessor, @ptrCast(self)), left);
+        return self.vtable.get_BoundaryLeft(self, left);
     }
     pub fn put_BoundaryLeft(self: *const IInertiaProcessor, left: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_BoundaryLeft(@as(*const IInertiaProcessor, @ptrCast(self)), left);
+        return self.vtable.put_BoundaryLeft(self, left);
     }
     pub fn get_BoundaryTop(self: *const IInertiaProcessor, top: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_BoundaryTop(@as(*const IInertiaProcessor, @ptrCast(self)), top);
+        return self.vtable.get_BoundaryTop(self, top);
     }
     pub fn put_BoundaryTop(self: *const IInertiaProcessor, top: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_BoundaryTop(@as(*const IInertiaProcessor, @ptrCast(self)), top);
+        return self.vtable.put_BoundaryTop(self, top);
     }
     pub fn get_BoundaryRight(self: *const IInertiaProcessor, right: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_BoundaryRight(@as(*const IInertiaProcessor, @ptrCast(self)), right);
+        return self.vtable.get_BoundaryRight(self, right);
     }
     pub fn put_BoundaryRight(self: *const IInertiaProcessor, right: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_BoundaryRight(@as(*const IInertiaProcessor, @ptrCast(self)), right);
+        return self.vtable.put_BoundaryRight(self, right);
     }
     pub fn get_BoundaryBottom(self: *const IInertiaProcessor, bottom: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_BoundaryBottom(@as(*const IInertiaProcessor, @ptrCast(self)), bottom);
+        return self.vtable.get_BoundaryBottom(self, bottom);
     }
     pub fn put_BoundaryBottom(self: *const IInertiaProcessor, bottom: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_BoundaryBottom(@as(*const IInertiaProcessor, @ptrCast(self)), bottom);
+        return self.vtable.put_BoundaryBottom(self, bottom);
     }
     pub fn get_ElasticMarginLeft(self: *const IInertiaProcessor, left: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_ElasticMarginLeft(@as(*const IInertiaProcessor, @ptrCast(self)), left);
+        return self.vtable.get_ElasticMarginLeft(self, left);
     }
     pub fn put_ElasticMarginLeft(self: *const IInertiaProcessor, left: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_ElasticMarginLeft(@as(*const IInertiaProcessor, @ptrCast(self)), left);
+        return self.vtable.put_ElasticMarginLeft(self, left);
     }
     pub fn get_ElasticMarginTop(self: *const IInertiaProcessor, top: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_ElasticMarginTop(@as(*const IInertiaProcessor, @ptrCast(self)), top);
+        return self.vtable.get_ElasticMarginTop(self, top);
     }
     pub fn put_ElasticMarginTop(self: *const IInertiaProcessor, top: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_ElasticMarginTop(@as(*const IInertiaProcessor, @ptrCast(self)), top);
+        return self.vtable.put_ElasticMarginTop(self, top);
     }
     pub fn get_ElasticMarginRight(self: *const IInertiaProcessor, right: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_ElasticMarginRight(@as(*const IInertiaProcessor, @ptrCast(self)), right);
+        return self.vtable.get_ElasticMarginRight(self, right);
     }
     pub fn put_ElasticMarginRight(self: *const IInertiaProcessor, right: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_ElasticMarginRight(@as(*const IInertiaProcessor, @ptrCast(self)), right);
+        return self.vtable.put_ElasticMarginRight(self, right);
     }
     pub fn get_ElasticMarginBottom(self: *const IInertiaProcessor, bottom: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_ElasticMarginBottom(@as(*const IInertiaProcessor, @ptrCast(self)), bottom);
+        return self.vtable.get_ElasticMarginBottom(self, bottom);
     }
     pub fn put_ElasticMarginBottom(self: *const IInertiaProcessor, bottom: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_ElasticMarginBottom(@as(*const IInertiaProcessor, @ptrCast(self)), bottom);
+        return self.vtable.put_ElasticMarginBottom(self, bottom);
     }
     pub fn get_DesiredDisplacement(self: *const IInertiaProcessor, displacement: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredDisplacement(@as(*const IInertiaProcessor, @ptrCast(self)), displacement);
+        return self.vtable.get_DesiredDisplacement(self, displacement);
     }
     pub fn put_DesiredDisplacement(self: *const IInertiaProcessor, displacement: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredDisplacement(@as(*const IInertiaProcessor, @ptrCast(self)), displacement);
+        return self.vtable.put_DesiredDisplacement(self, displacement);
     }
     pub fn get_DesiredRotation(self: *const IInertiaProcessor, rotation: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredRotation(@as(*const IInertiaProcessor, @ptrCast(self)), rotation);
+        return self.vtable.get_DesiredRotation(self, rotation);
     }
     pub fn put_DesiredRotation(self: *const IInertiaProcessor, rotation: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredRotation(@as(*const IInertiaProcessor, @ptrCast(self)), rotation);
+        return self.vtable.put_DesiredRotation(self, rotation);
     }
     pub fn get_DesiredExpansion(self: *const IInertiaProcessor, expansion: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredExpansion(@as(*const IInertiaProcessor, @ptrCast(self)), expansion);
+        return self.vtable.get_DesiredExpansion(self, expansion);
     }
     pub fn put_DesiredExpansion(self: *const IInertiaProcessor, expansion: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredExpansion(@as(*const IInertiaProcessor, @ptrCast(self)), expansion);
+        return self.vtable.put_DesiredExpansion(self, expansion);
     }
     pub fn get_DesiredDeceleration(self: *const IInertiaProcessor, deceleration: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
+        return self.vtable.get_DesiredDeceleration(self, deceleration);
     }
     pub fn put_DesiredDeceleration(self: *const IInertiaProcessor, deceleration: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
+        return self.vtable.put_DesiredDeceleration(self, deceleration);
     }
     pub fn get_DesiredAngularDeceleration(self: *const IInertiaProcessor, deceleration: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredAngularDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
+        return self.vtable.get_DesiredAngularDeceleration(self, deceleration);
     }
     pub fn put_DesiredAngularDeceleration(self: *const IInertiaProcessor, deceleration: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredAngularDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
+        return self.vtable.put_DesiredAngularDeceleration(self, deceleration);
     }
     pub fn get_DesiredExpansionDeceleration(self: *const IInertiaProcessor, deceleration: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_DesiredExpansionDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
+        return self.vtable.get_DesiredExpansionDeceleration(self, deceleration);
     }
     pub fn put_DesiredExpansionDeceleration(self: *const IInertiaProcessor, deceleration: f32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_DesiredExpansionDeceleration(@as(*const IInertiaProcessor, @ptrCast(self)), deceleration);
+        return self.vtable.put_DesiredExpansionDeceleration(self, deceleration);
     }
     pub fn get_InitialTimestamp(self: *const IInertiaProcessor, timestamp: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).get_InitialTimestamp(@as(*const IInertiaProcessor, @ptrCast(self)), timestamp);
+        return self.vtable.get_InitialTimestamp(self, timestamp);
     }
     pub fn put_InitialTimestamp(self: *const IInertiaProcessor, timestamp: u32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).put_InitialTimestamp(@as(*const IInertiaProcessor, @ptrCast(self)), timestamp);
+        return self.vtable.put_InitialTimestamp(self, timestamp);
     }
     pub fn Reset(self: *const IInertiaProcessor) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).Reset(@as(*const IInertiaProcessor, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Process(self: *const IInertiaProcessor, completed: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).Process(@as(*const IInertiaProcessor, @ptrCast(self)), completed);
+        return self.vtable.Process(self, completed);
     }
     pub fn ProcessTime(self: *const IInertiaProcessor, timestamp: u32, completed: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).ProcessTime(@as(*const IInertiaProcessor, @ptrCast(self)), timestamp, completed);
+        return self.vtable.ProcessTime(self, timestamp, completed);
     }
     pub fn Complete(self: *const IInertiaProcessor) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).Complete(@as(*const IInertiaProcessor, @ptrCast(self)));
+        return self.vtable.Complete(self);
     }
     pub fn CompleteTime(self: *const IInertiaProcessor, timestamp: u32) callconv(.Inline) HRESULT {
-        return @as(*const IInertiaProcessor.VTable, @ptrCast(self.vtable)).CompleteTime(@as(*const IInertiaProcessor, @ptrCast(self)), timestamp);
+        return self.vtable.CompleteTime(self, timestamp);
     }
 };
 
@@ -1050,67 +1050,67 @@ pub const IManipulationProcessor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_SupportedManipulations(self: *const IManipulationProcessor, manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_SupportedManipulations(@as(*const IManipulationProcessor, @ptrCast(self)), manipulations);
+        return self.vtable.get_SupportedManipulations(self, manipulations);
     }
     pub fn put_SupportedManipulations(self: *const IManipulationProcessor, manipulations: MANIPULATION_PROCESSOR_MANIPULATIONS) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_SupportedManipulations(@as(*const IManipulationProcessor, @ptrCast(self)), manipulations);
+        return self.vtable.put_SupportedManipulations(self, manipulations);
     }
     pub fn get_PivotPointX(self: *const IManipulationProcessor, pivotPointX: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_PivotPointX(@as(*const IManipulationProcessor, @ptrCast(self)), pivotPointX);
+        return self.vtable.get_PivotPointX(self, pivotPointX);
     }
     pub fn put_PivotPointX(self: *const IManipulationProcessor, pivotPointX: f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_PivotPointX(@as(*const IManipulationProcessor, @ptrCast(self)), pivotPointX);
+        return self.vtable.put_PivotPointX(self, pivotPointX);
     }
     pub fn get_PivotPointY(self: *const IManipulationProcessor, pivotPointY: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_PivotPointY(@as(*const IManipulationProcessor, @ptrCast(self)), pivotPointY);
+        return self.vtable.get_PivotPointY(self, pivotPointY);
     }
     pub fn put_PivotPointY(self: *const IManipulationProcessor, pivotPointY: f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_PivotPointY(@as(*const IManipulationProcessor, @ptrCast(self)), pivotPointY);
+        return self.vtable.put_PivotPointY(self, pivotPointY);
     }
     pub fn get_PivotRadius(self: *const IManipulationProcessor, pivotRadius: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_PivotRadius(@as(*const IManipulationProcessor, @ptrCast(self)), pivotRadius);
+        return self.vtable.get_PivotRadius(self, pivotRadius);
     }
     pub fn put_PivotRadius(self: *const IManipulationProcessor, pivotRadius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_PivotRadius(@as(*const IManipulationProcessor, @ptrCast(self)), pivotRadius);
+        return self.vtable.put_PivotRadius(self, pivotRadius);
     }
     pub fn CompleteManipulation(self: *const IManipulationProcessor) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).CompleteManipulation(@as(*const IManipulationProcessor, @ptrCast(self)));
+        return self.vtable.CompleteManipulation(self);
     }
     pub fn ProcessDown(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessDown(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y);
+        return self.vtable.ProcessDown(self, manipulatorId, x, y);
     }
     pub fn ProcessMove(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessMove(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y);
+        return self.vtable.ProcessMove(self, manipulatorId, x, y);
     }
     pub fn ProcessUp(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessUp(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y);
+        return self.vtable.ProcessUp(self, manipulatorId, x, y);
     }
     pub fn ProcessDownWithTime(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32, timestamp: u32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessDownWithTime(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y, timestamp);
+        return self.vtable.ProcessDownWithTime(self, manipulatorId, x, y, timestamp);
     }
     pub fn ProcessMoveWithTime(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32, timestamp: u32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessMoveWithTime(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y, timestamp);
+        return self.vtable.ProcessMoveWithTime(self, manipulatorId, x, y, timestamp);
     }
     pub fn ProcessUpWithTime(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32, timestamp: u32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).ProcessUpWithTime(@as(*const IManipulationProcessor, @ptrCast(self)), manipulatorId, x, y, timestamp);
+        return self.vtable.ProcessUpWithTime(self, manipulatorId, x, y, timestamp);
     }
     pub fn GetVelocityX(self: *const IManipulationProcessor, velocityX: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).GetVelocityX(@as(*const IManipulationProcessor, @ptrCast(self)), velocityX);
+        return self.vtable.GetVelocityX(self, velocityX);
     }
     pub fn GetVelocityY(self: *const IManipulationProcessor, velocityY: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).GetVelocityY(@as(*const IManipulationProcessor, @ptrCast(self)), velocityY);
+        return self.vtable.GetVelocityY(self, velocityY);
     }
     pub fn GetExpansionVelocity(self: *const IManipulationProcessor, expansionVelocity: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).GetExpansionVelocity(@as(*const IManipulationProcessor, @ptrCast(self)), expansionVelocity);
+        return self.vtable.GetExpansionVelocity(self, expansionVelocity);
     }
     pub fn GetAngularVelocity(self: *const IManipulationProcessor, angularVelocity: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).GetAngularVelocity(@as(*const IManipulationProcessor, @ptrCast(self)), angularVelocity);
+        return self.vtable.GetAngularVelocity(self, angularVelocity);
     }
     pub fn get_MinimumScaleRotateRadius(self: *const IManipulationProcessor, minRadius: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).get_MinimumScaleRotateRadius(@as(*const IManipulationProcessor, @ptrCast(self)), minRadius);
+        return self.vtable.get_MinimumScaleRotateRadius(self, minRadius);
     }
     pub fn put_MinimumScaleRotateRadius(self: *const IManipulationProcessor, minRadius: f32) callconv(.Inline) HRESULT {
-        return @as(*const IManipulationProcessor.VTable, @ptrCast(self.vtable)).put_MinimumScaleRotateRadius(@as(*const IManipulationProcessor, @ptrCast(self)), minRadius);
+        return self.vtable.put_MinimumScaleRotateRadius(self, minRadius);
     }
 };
 

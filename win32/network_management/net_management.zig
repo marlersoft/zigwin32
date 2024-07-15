@@ -4527,16 +4527,16 @@ pub const IEnumNetCfgBindingInterface = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumNetCfgBindingInterface, celt: u32, rgelt: [*]?*INetCfgBindingInterface, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgBindingInterface.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetCfgBindingInterface, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumNetCfgBindingInterface, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgBindingInterface.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetCfgBindingInterface, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumNetCfgBindingInterface) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgBindingInterface.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetCfgBindingInterface, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumNetCfgBindingInterface, ppenum: ?*?*IEnumNetCfgBindingInterface) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgBindingInterface.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetCfgBindingInterface, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -4586,16 +4586,16 @@ pub const IEnumNetCfgBindingPath = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumNetCfgBindingPath, celt: u32, rgelt: [*]?*INetCfgBindingPath, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgBindingPath.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetCfgBindingPath, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumNetCfgBindingPath, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgBindingPath.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetCfgBindingPath, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumNetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgBindingPath.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetCfgBindingPath, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumNetCfgBindingPath, ppenum: ?*?*IEnumNetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgBindingPath.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetCfgBindingPath, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -4645,16 +4645,16 @@ pub const IEnumNetCfgComponent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumNetCfgComponent, celt: u32, rgelt: [*]?*INetCfgComponent, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgComponent.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumNetCfgComponent, @ptrCast(self)), celt, rgelt, pceltFetched);
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumNetCfgComponent, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgComponent.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumNetCfgComponent, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumNetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgComponent.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumNetCfgComponent, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumNetCfgComponent, ppenum: ?*?*IEnumNetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const IEnumNetCfgComponent.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumNetCfgComponent, @ptrCast(self)), ppenum);
+        return self.vtable.Clone(self, ppenum);
     }
 };
 
@@ -4728,25 +4728,25 @@ pub const INetCfg = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const INetCfg, pvReserved: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const INetCfg.VTable, @ptrCast(self.vtable)).Initialize(@as(*const INetCfg, @ptrCast(self)), pvReserved);
+        return self.vtable.Initialize(self, pvReserved);
     }
     pub fn Uninitialize(self: *const INetCfg) callconv(.Inline) HRESULT {
-        return @as(*const INetCfg.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const INetCfg, @ptrCast(self)));
+        return self.vtable.Uninitialize(self);
     }
     pub fn Apply(self: *const INetCfg) callconv(.Inline) HRESULT {
-        return @as(*const INetCfg.VTable, @ptrCast(self.vtable)).Apply(@as(*const INetCfg, @ptrCast(self)));
+        return self.vtable.Apply(self);
     }
     pub fn Cancel(self: *const INetCfg) callconv(.Inline) HRESULT {
-        return @as(*const INetCfg.VTable, @ptrCast(self.vtable)).Cancel(@as(*const INetCfg, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn EnumComponents(self: *const INetCfg, pguidClass: ?*const Guid, ppenumComponent: ?*?*IEnumNetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfg.VTable, @ptrCast(self.vtable)).EnumComponents(@as(*const INetCfg, @ptrCast(self)), pguidClass, ppenumComponent);
+        return self.vtable.EnumComponents(self, pguidClass, ppenumComponent);
     }
     pub fn FindComponent(self: *const INetCfg, pszwInfId: ?[*:0]const u16, pComponent: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfg.VTable, @ptrCast(self.vtable)).FindComponent(@as(*const INetCfg, @ptrCast(self)), pszwInfId, pComponent);
+        return self.vtable.FindComponent(self, pszwInfId, pComponent);
     }
     pub fn QueryNetCfgClass(self: *const INetCfg, pguidClass: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const INetCfg.VTable, @ptrCast(self.vtable)).QueryNetCfgClass(@as(*const INetCfg, @ptrCast(self)), pguidClass, riid, ppvObject);
+        return self.vtable.QueryNetCfgClass(self, pguidClass, riid, ppvObject);
     }
 };
 
@@ -4788,13 +4788,13 @@ pub const INetCfgLock = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AcquireWriteLock(self: *const INetCfgLock, cmsTimeout: u32, pszwClientDescription: ?[*:0]const u16, ppszwClientDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgLock.VTable, @ptrCast(self.vtable)).AcquireWriteLock(@as(*const INetCfgLock, @ptrCast(self)), cmsTimeout, pszwClientDescription, ppszwClientDescription);
+        return self.vtable.AcquireWriteLock(self, cmsTimeout, pszwClientDescription, ppszwClientDescription);
     }
     pub fn ReleaseWriteLock(self: *const INetCfgLock) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgLock.VTable, @ptrCast(self.vtable)).ReleaseWriteLock(@as(*const INetCfgLock, @ptrCast(self)));
+        return self.vtable.ReleaseWriteLock(self);
     }
     pub fn IsWriteLocked(self: *const INetCfgLock, ppszwClientDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgLock.VTable, @ptrCast(self.vtable)).IsWriteLocked(@as(*const INetCfgLock, @ptrCast(self)), ppszwClientDescription);
+        return self.vtable.IsWriteLocked(self, ppszwClientDescription);
     }
 };
 
@@ -4835,13 +4835,13 @@ pub const INetCfgBindingInterface = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetName(self: *const INetCfgBindingInterface, ppszwInterfaceName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingInterface.VTable, @ptrCast(self.vtable)).GetName(@as(*const INetCfgBindingInterface, @ptrCast(self)), ppszwInterfaceName);
+        return self.vtable.GetName(self, ppszwInterfaceName);
     }
     pub fn GetUpperComponent(self: *const INetCfgBindingInterface, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingInterface.VTable, @ptrCast(self.vtable)).GetUpperComponent(@as(*const INetCfgBindingInterface, @ptrCast(self)), ppnccItem);
+        return self.vtable.GetUpperComponent(self, ppnccItem);
     }
     pub fn GetLowerComponent(self: *const INetCfgBindingInterface, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingInterface.VTable, @ptrCast(self.vtable)).GetLowerComponent(@as(*const INetCfgBindingInterface, @ptrCast(self)), ppnccItem);
+        return self.vtable.GetLowerComponent(self, ppnccItem);
     }
 };
 
@@ -4921,28 +4921,28 @@ pub const INetCfgBindingPath = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsSamePathAs(self: *const INetCfgBindingPath, pPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingPath.VTable, @ptrCast(self.vtable)).IsSamePathAs(@as(*const INetCfgBindingPath, @ptrCast(self)), pPath);
+        return self.vtable.IsSamePathAs(self, pPath);
     }
     pub fn IsSubPathOf(self: *const INetCfgBindingPath, pPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingPath.VTable, @ptrCast(self.vtable)).IsSubPathOf(@as(*const INetCfgBindingPath, @ptrCast(self)), pPath);
+        return self.vtable.IsSubPathOf(self, pPath);
     }
     pub fn IsEnabled(self: *const INetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingPath.VTable, @ptrCast(self.vtable)).IsEnabled(@as(*const INetCfgBindingPath, @ptrCast(self)));
+        return self.vtable.IsEnabled(self);
     }
     pub fn Enable(self: *const INetCfgBindingPath, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingPath.VTable, @ptrCast(self.vtable)).Enable(@as(*const INetCfgBindingPath, @ptrCast(self)), fEnable);
+        return self.vtable.Enable(self, fEnable);
     }
     pub fn GetPathToken(self: *const INetCfgBindingPath, ppszwPathToken: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingPath.VTable, @ptrCast(self.vtable)).GetPathToken(@as(*const INetCfgBindingPath, @ptrCast(self)), ppszwPathToken);
+        return self.vtable.GetPathToken(self, ppszwPathToken);
     }
     pub fn GetOwner(self: *const INetCfgBindingPath, ppComponent: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingPath.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const INetCfgBindingPath, @ptrCast(self)), ppComponent);
+        return self.vtable.GetOwner(self, ppComponent);
     }
     pub fn GetDepth(self: *const INetCfgBindingPath, pcInterfaces: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingPath.VTable, @ptrCast(self.vtable)).GetDepth(@as(*const INetCfgBindingPath, @ptrCast(self)), pcInterfaces);
+        return self.vtable.GetDepth(self, pcInterfaces);
     }
     pub fn EnumBindingInterfaces(self: *const INetCfgBindingPath, ppenumInterface: ?*?*IEnumNetCfgBindingInterface) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgBindingPath.VTable, @ptrCast(self.vtable)).EnumBindingInterfaces(@as(*const INetCfgBindingPath, @ptrCast(self)), ppenumInterface);
+        return self.vtable.EnumBindingInterfaces(self, ppenumInterface);
     }
 };
 
@@ -4976,10 +4976,10 @@ pub const INetCfgClass = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindComponent(self: *const INetCfgClass, pszwInfId: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgClass.VTable, @ptrCast(self.vtable)).FindComponent(@as(*const INetCfgClass, @ptrCast(self)), pszwInfId, ppnccItem);
+        return self.vtable.FindComponent(self, pszwInfId, ppnccItem);
     }
     pub fn EnumComponents(self: *const INetCfgClass, ppenumComponent: ?*?*IEnumNetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgClass.VTable, @ptrCast(self.vtable)).EnumComponents(@as(*const INetCfgClass, @ptrCast(self)), ppenumComponent);
+        return self.vtable.EnumComponents(self, ppenumComponent);
     }
 };
 
@@ -5048,13 +5048,13 @@ pub const INetCfgClassSetup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SelectAndInstall(self: *const INetCfgClassSetup, hwndParent: ?HWND, pOboToken: ?*OBO_TOKEN, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgClassSetup.VTable, @ptrCast(self.vtable)).SelectAndInstall(@as(*const INetCfgClassSetup, @ptrCast(self)), hwndParent, pOboToken, ppnccItem);
+        return self.vtable.SelectAndInstall(self, hwndParent, pOboToken, ppnccItem);
     }
     pub fn Install(self: *const INetCfgClassSetup, pszwInfId: ?[*:0]const u16, pOboToken: ?*OBO_TOKEN, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16, ppnccItem: ?*?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgClassSetup.VTable, @ptrCast(self.vtable)).Install(@as(*const INetCfgClassSetup, @ptrCast(self)), pszwInfId, pOboToken, dwSetupFlags, dwUpgradeFromBuildNo, pszwAnswerFile, pszwAnswerSections, ppnccItem);
+        return self.vtable.Install(self, pszwInfId, pOboToken, dwSetupFlags, dwUpgradeFromBuildNo, pszwAnswerFile, pszwAnswerSections, ppnccItem);
     }
     pub fn DeInstall(self: *const INetCfgClassSetup, pComponent: ?*INetCfgComponent, pOboToken: ?*OBO_TOKEN, pmszwRefs: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgClassSetup.VTable, @ptrCast(self.vtable)).DeInstall(@as(*const INetCfgClassSetup, @ptrCast(self)), pComponent, pOboToken, pmszwRefs);
+        return self.vtable.DeInstall(self, pComponent, pOboToken, pmszwRefs);
     }
 };
 
@@ -5081,7 +5081,7 @@ pub const INetCfgClassSetup2 = extern union {
     };}
     pub usingnamespace INetCfgClassSetup.MethodMixin(@This());
     pub fn UpdateNonEnumeratedComponent(self: *const INetCfgClassSetup2, pIComp: ?*INetCfgComponent, dwSetupFlags: u32, dwUpgradeFromBuildNo: u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgClassSetup2.VTable, @ptrCast(self.vtable)).UpdateNonEnumeratedComponent(@as(*const INetCfgClassSetup2, @ptrCast(self)), pIComp, dwSetupFlags, dwUpgradeFromBuildNo);
+        return self.vtable.UpdateNonEnumeratedComponent(self, pIComp, dwSetupFlags, dwUpgradeFromBuildNo);
     }
 };
 
@@ -5236,40 +5236,40 @@ pub const INetCfgComponent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDisplayName(self: *const INetCfgComponent, ppszwDisplayName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const INetCfgComponent, @ptrCast(self)), ppszwDisplayName);
+        return self.vtable.GetDisplayName(self, ppszwDisplayName);
     }
     pub fn SetDisplayName(self: *const INetCfgComponent, pszwDisplayName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const INetCfgComponent, @ptrCast(self)), pszwDisplayName);
+        return self.vtable.SetDisplayName(self, pszwDisplayName);
     }
     pub fn GetHelpText(self: *const INetCfgComponent, pszwHelpText: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).GetHelpText(@as(*const INetCfgComponent, @ptrCast(self)), pszwHelpText);
+        return self.vtable.GetHelpText(self, pszwHelpText);
     }
     pub fn GetId(self: *const INetCfgComponent, ppszwId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).GetId(@as(*const INetCfgComponent, @ptrCast(self)), ppszwId);
+        return self.vtable.GetId(self, ppszwId);
     }
     pub fn GetCharacteristics(self: *const INetCfgComponent, pdwCharacteristics: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).GetCharacteristics(@as(*const INetCfgComponent, @ptrCast(self)), pdwCharacteristics);
+        return self.vtable.GetCharacteristics(self, pdwCharacteristics);
     }
     pub fn GetInstanceGuid(self: *const INetCfgComponent, pGuid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).GetInstanceGuid(@as(*const INetCfgComponent, @ptrCast(self)), pGuid);
+        return self.vtable.GetInstanceGuid(self, pGuid);
     }
     pub fn GetPnpDevNodeId(self: *const INetCfgComponent, ppszwDevNodeId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).GetPnpDevNodeId(@as(*const INetCfgComponent, @ptrCast(self)), ppszwDevNodeId);
+        return self.vtable.GetPnpDevNodeId(self, ppszwDevNodeId);
     }
     pub fn GetClassGuid(self: *const INetCfgComponent, pGuid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).GetClassGuid(@as(*const INetCfgComponent, @ptrCast(self)), pGuid);
+        return self.vtable.GetClassGuid(self, pGuid);
     }
     pub fn GetBindName(self: *const INetCfgComponent, ppszwBindName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).GetBindName(@as(*const INetCfgComponent, @ptrCast(self)), ppszwBindName);
+        return self.vtable.GetBindName(self, ppszwBindName);
     }
     pub fn GetDeviceStatus(self: *const INetCfgComponent, pulStatus: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).GetDeviceStatus(@as(*const INetCfgComponent, @ptrCast(self)), pulStatus);
+        return self.vtable.GetDeviceStatus(self, pulStatus);
     }
     pub fn OpenParamKey(self: *const INetCfgComponent, phkey: ?*?HKEY) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).OpenParamKey(@as(*const INetCfgComponent, @ptrCast(self)), phkey);
+        return self.vtable.OpenParamKey(self, phkey);
     }
     pub fn RaisePropertyUi(self: *const INetCfgComponent, hwndParent: ?HWND, dwFlags: u32, punkContext: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponent.VTable, @ptrCast(self.vtable)).RaisePropertyUi(@as(*const INetCfgComponent, @ptrCast(self)), hwndParent, dwFlags, punkContext);
+        return self.vtable.RaisePropertyUi(self, hwndParent, dwFlags, punkContext);
     }
 };
 
@@ -5368,28 +5368,28 @@ pub const INetCfgComponentBindings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BindTo(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentBindings.VTable, @ptrCast(self.vtable)).BindTo(@as(*const INetCfgComponentBindings, @ptrCast(self)), pnccItem);
+        return self.vtable.BindTo(self, pnccItem);
     }
     pub fn UnbindFrom(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentBindings.VTable, @ptrCast(self.vtable)).UnbindFrom(@as(*const INetCfgComponentBindings, @ptrCast(self)), pnccItem);
+        return self.vtable.UnbindFrom(self, pnccItem);
     }
     pub fn SupportsBindingInterface(self: *const INetCfgComponentBindings, dwFlags: u32, pszwInterfaceName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentBindings.VTable, @ptrCast(self.vtable)).SupportsBindingInterface(@as(*const INetCfgComponentBindings, @ptrCast(self)), dwFlags, pszwInterfaceName);
+        return self.vtable.SupportsBindingInterface(self, dwFlags, pszwInterfaceName);
     }
     pub fn IsBoundTo(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentBindings.VTable, @ptrCast(self.vtable)).IsBoundTo(@as(*const INetCfgComponentBindings, @ptrCast(self)), pnccItem);
+        return self.vtable.IsBoundTo(self, pnccItem);
     }
     pub fn IsBindableTo(self: *const INetCfgComponentBindings, pnccItem: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentBindings.VTable, @ptrCast(self.vtable)).IsBindableTo(@as(*const INetCfgComponentBindings, @ptrCast(self)), pnccItem);
+        return self.vtable.IsBindableTo(self, pnccItem);
     }
     pub fn EnumBindingPaths(self: *const INetCfgComponentBindings, dwFlags: u32, ppIEnum: ?*?*IEnumNetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentBindings.VTable, @ptrCast(self.vtable)).EnumBindingPaths(@as(*const INetCfgComponentBindings, @ptrCast(self)), dwFlags, ppIEnum);
+        return self.vtable.EnumBindingPaths(self, dwFlags, ppIEnum);
     }
     pub fn MoveBefore(self: *const INetCfgComponentBindings, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentBindings.VTable, @ptrCast(self.vtable)).MoveBefore(@as(*const INetCfgComponentBindings, @ptrCast(self)), pncbItemSrc, pncbItemDest);
+        return self.vtable.MoveBefore(self, pncbItemSrc, pncbItemDest);
     }
     pub fn MoveAfter(self: *const INetCfgComponentBindings, pncbItemSrc: ?*INetCfgBindingPath, pncbItemDest: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentBindings.VTable, @ptrCast(self.vtable)).MoveAfter(@as(*const INetCfgComponentBindings, @ptrCast(self)), pncbItemSrc, pncbItemDest);
+        return self.vtable.MoveAfter(self, pncbItemSrc, pncbItemDest);
     }
 };
 
@@ -5446,16 +5446,16 @@ pub const INetCfgSysPrep = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn HrSetupSetFirstDword(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, dwValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgSysPrep.VTable, @ptrCast(self.vtable)).HrSetupSetFirstDword(@as(*const INetCfgSysPrep, @ptrCast(self)), pwszSection, pwszKey, dwValue);
+        return self.vtable.HrSetupSetFirstDword(self, pwszSection, pwszKey, dwValue);
     }
     pub fn HrSetupSetFirstString(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgSysPrep.VTable, @ptrCast(self.vtable)).HrSetupSetFirstString(@as(*const INetCfgSysPrep, @ptrCast(self)), pwszSection, pwszKey, pwszValue);
+        return self.vtable.HrSetupSetFirstString(self, pwszSection, pwszKey, pwszValue);
     }
     pub fn HrSetupSetFirstStringAsBool(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, fValue: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgSysPrep.VTable, @ptrCast(self.vtable)).HrSetupSetFirstStringAsBool(@as(*const INetCfgSysPrep, @ptrCast(self)), pwszSection, pwszKey, fValue);
+        return self.vtable.HrSetupSetFirstStringAsBool(self, pwszSection, pwszKey, fValue);
     }
     pub fn HrSetupSetFirstMultiSzField(self: *const INetCfgSysPrep, pwszSection: ?[*:0]const u16, pwszKey: ?[*:0]const u16, pmszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgSysPrep.VTable, @ptrCast(self.vtable)).HrSetupSetFirstMultiSzField(@as(*const INetCfgSysPrep, @ptrCast(self)), pwszSection, pwszKey, pmszValue);
+        return self.vtable.HrSetupSetFirstMultiSzField(self, pwszSection, pwszKey, pmszValue);
     }
 };
 
@@ -5492,7 +5492,7 @@ pub const INetCfgPnpReconfigCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SendPnpReconfig(self: *const INetCfgPnpReconfigCallback, Layer: NCPNP_RECONFIG_LAYER, pszwUpper: ?[*:0]const u16, pszwLower: ?[*:0]const u16, pvData: ?*anyopaque, dwSizeOfData: u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgPnpReconfigCallback.VTable, @ptrCast(self.vtable)).SendPnpReconfig(@as(*const INetCfgPnpReconfigCallback, @ptrCast(self)), Layer, pszwUpper, pszwLower, pvData, dwSizeOfData);
+        return self.vtable.SendPnpReconfig(self, Layer, pszwUpper, pszwLower, pvData, dwSizeOfData);
     }
 };
 
@@ -5541,16 +5541,16 @@ pub const INetCfgComponentControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const INetCfgComponentControl, pIComp: ?*INetCfgComponent, pINetCfg: ?*INetCfg, fInstalling: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentControl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const INetCfgComponentControl, @ptrCast(self)), pIComp, pINetCfg, fInstalling);
+        return self.vtable.Initialize(self, pIComp, pINetCfg, fInstalling);
     }
     pub fn ApplyRegistryChanges(self: *const INetCfgComponentControl) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentControl.VTable, @ptrCast(self.vtable)).ApplyRegistryChanges(@as(*const INetCfgComponentControl, @ptrCast(self)));
+        return self.vtable.ApplyRegistryChanges(self);
     }
     pub fn ApplyPnpChanges(self: *const INetCfgComponentControl, pICallback: ?*INetCfgPnpReconfigCallback) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentControl.VTable, @ptrCast(self.vtable)).ApplyPnpChanges(@as(*const INetCfgComponentControl, @ptrCast(self)), pICallback);
+        return self.vtable.ApplyPnpChanges(self, pICallback);
     }
     pub fn CancelChanges(self: *const INetCfgComponentControl) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentControl.VTable, @ptrCast(self.vtable)).CancelChanges(@as(*const INetCfgComponentControl, @ptrCast(self)));
+        return self.vtable.CancelChanges(self);
     }
 };
 
@@ -5622,16 +5622,16 @@ pub const INetCfgComponentSetup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Install(self: *const INetCfgComponentSetup, dwSetupFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentSetup.VTable, @ptrCast(self.vtable)).Install(@as(*const INetCfgComponentSetup, @ptrCast(self)), dwSetupFlags);
+        return self.vtable.Install(self, dwSetupFlags);
     }
     pub fn Upgrade(self: *const INetCfgComponentSetup, dwSetupFlags: u32, dwUpgradeFomBuildNo: u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentSetup.VTable, @ptrCast(self.vtable)).Upgrade(@as(*const INetCfgComponentSetup, @ptrCast(self)), dwSetupFlags, dwUpgradeFomBuildNo);
+        return self.vtable.Upgrade(self, dwSetupFlags, dwUpgradeFomBuildNo);
     }
     pub fn ReadAnswerFile(self: *const INetCfgComponentSetup, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSections: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentSetup.VTable, @ptrCast(self.vtable)).ReadAnswerFile(@as(*const INetCfgComponentSetup, @ptrCast(self)), pszwAnswerFile, pszwAnswerSections);
+        return self.vtable.ReadAnswerFile(self, pszwAnswerFile, pszwAnswerSections);
     }
     pub fn Removing(self: *const INetCfgComponentSetup) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentSetup.VTable, @ptrCast(self.vtable)).Removing(@as(*const INetCfgComponentSetup, @ptrCast(self)));
+        return self.vtable.Removing(self);
     }
 };
 
@@ -5703,22 +5703,22 @@ pub const INetCfgComponentPropertyUi = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryPropertyUi(self: *const INetCfgComponentPropertyUi, pUnkReserved: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentPropertyUi.VTable, @ptrCast(self.vtable)).QueryPropertyUi(@as(*const INetCfgComponentPropertyUi, @ptrCast(self)), pUnkReserved);
+        return self.vtable.QueryPropertyUi(self, pUnkReserved);
     }
     pub fn SetContext(self: *const INetCfgComponentPropertyUi, pUnkReserved: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentPropertyUi.VTable, @ptrCast(self.vtable)).SetContext(@as(*const INetCfgComponentPropertyUi, @ptrCast(self)), pUnkReserved);
+        return self.vtable.SetContext(self, pUnkReserved);
     }
     pub fn MergePropPages(self: *const INetCfgComponentPropertyUi, pdwDefPages: ?*u32, pahpspPrivate: ?*?*u8, pcPages: ?*u32, hwndParent: ?HWND, pszStartPage: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentPropertyUi.VTable, @ptrCast(self.vtable)).MergePropPages(@as(*const INetCfgComponentPropertyUi, @ptrCast(self)), pdwDefPages, pahpspPrivate, pcPages, hwndParent, pszStartPage);
+        return self.vtable.MergePropPages(self, pdwDefPages, pahpspPrivate, pcPages, hwndParent, pszStartPage);
     }
     pub fn ValidateProperties(self: *const INetCfgComponentPropertyUi, hwndSheet: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentPropertyUi.VTable, @ptrCast(self.vtable)).ValidateProperties(@as(*const INetCfgComponentPropertyUi, @ptrCast(self)), hwndSheet);
+        return self.vtable.ValidateProperties(self, hwndSheet);
     }
     pub fn ApplyProperties(self: *const INetCfgComponentPropertyUi) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentPropertyUi.VTable, @ptrCast(self.vtable)).ApplyProperties(@as(*const INetCfgComponentPropertyUi, @ptrCast(self)));
+        return self.vtable.ApplyProperties(self);
     }
     pub fn CancelProperties(self: *const INetCfgComponentPropertyUi) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentPropertyUi.VTable, @ptrCast(self.vtable)).CancelProperties(@as(*const INetCfgComponentPropertyUi, @ptrCast(self)));
+        return self.vtable.CancelProperties(self);
     }
 };
 
@@ -5778,10 +5778,10 @@ pub const INetCfgComponentNotifyBinding = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn QueryBindingPath(self: *const INetCfgComponentNotifyBinding, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentNotifyBinding.VTable, @ptrCast(self.vtable)).QueryBindingPath(@as(*const INetCfgComponentNotifyBinding, @ptrCast(self)), dwChangeFlag, pIPath);
+        return self.vtable.QueryBindingPath(self, dwChangeFlag, pIPath);
     }
     pub fn NotifyBindingPath(self: *const INetCfgComponentNotifyBinding, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentNotifyBinding.VTable, @ptrCast(self.vtable)).NotifyBindingPath(@as(*const INetCfgComponentNotifyBinding, @ptrCast(self)), dwChangeFlag, pIPath);
+        return self.vtable.NotifyBindingPath(self, dwChangeFlag, pIPath);
     }
 };
 
@@ -5833,16 +5833,16 @@ pub const INetCfgComponentNotifyGlobal = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSupportedNotifications(self: *const INetCfgComponentNotifyGlobal, dwNotifications: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentNotifyGlobal.VTable, @ptrCast(self.vtable)).GetSupportedNotifications(@as(*const INetCfgComponentNotifyGlobal, @ptrCast(self)), dwNotifications);
+        return self.vtable.GetSupportedNotifications(self, dwNotifications);
     }
     pub fn SysQueryBindingPath(self: *const INetCfgComponentNotifyGlobal, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentNotifyGlobal.VTable, @ptrCast(self.vtable)).SysQueryBindingPath(@as(*const INetCfgComponentNotifyGlobal, @ptrCast(self)), dwChangeFlag, pIPath);
+        return self.vtable.SysQueryBindingPath(self, dwChangeFlag, pIPath);
     }
     pub fn SysNotifyBindingPath(self: *const INetCfgComponentNotifyGlobal, dwChangeFlag: u32, pIPath: ?*INetCfgBindingPath) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentNotifyGlobal.VTable, @ptrCast(self.vtable)).SysNotifyBindingPath(@as(*const INetCfgComponentNotifyGlobal, @ptrCast(self)), dwChangeFlag, pIPath);
+        return self.vtable.SysNotifyBindingPath(self, dwChangeFlag, pIPath);
     }
     pub fn SysNotifyComponent(self: *const INetCfgComponentNotifyGlobal, dwChangeFlag: u32, pIComp: ?*INetCfgComponent) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentNotifyGlobal.VTable, @ptrCast(self.vtable)).SysNotifyComponent(@as(*const INetCfgComponentNotifyGlobal, @ptrCast(self)), dwChangeFlag, pIComp);
+        return self.vtable.SysNotifyComponent(self, dwChangeFlag, pIComp);
     }
 };
 
@@ -5888,13 +5888,13 @@ pub const INetCfgComponentUpperEdge = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInterfaceIdsForAdapter(self: *const INetCfgComponentUpperEdge, pAdapter: ?*INetCfgComponent, pdwNumInterfaces: ?*u32, ppguidInterfaceIds: ?[*]?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentUpperEdge.VTable, @ptrCast(self.vtable)).GetInterfaceIdsForAdapter(@as(*const INetCfgComponentUpperEdge, @ptrCast(self)), pAdapter, pdwNumInterfaces, ppguidInterfaceIds);
+        return self.vtable.GetInterfaceIdsForAdapter(self, pAdapter, pdwNumInterfaces, ppguidInterfaceIds);
     }
     pub fn AddInterfacesToAdapter(self: *const INetCfgComponentUpperEdge, pAdapter: ?*INetCfgComponent, dwNumInterfaces: u32) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentUpperEdge.VTable, @ptrCast(self.vtable)).AddInterfacesToAdapter(@as(*const INetCfgComponentUpperEdge, @ptrCast(self)), pAdapter, dwNumInterfaces);
+        return self.vtable.AddInterfacesToAdapter(self, pAdapter, dwNumInterfaces);
     }
     pub fn RemoveInterfacesFromAdapter(self: *const INetCfgComponentUpperEdge, pAdapter: ?*INetCfgComponent, dwNumInterfaces: u32, pguidInterfaceIds: [*]const Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentUpperEdge.VTable, @ptrCast(self.vtable)).RemoveInterfacesFromAdapter(@as(*const INetCfgComponentUpperEdge, @ptrCast(self)), pAdapter, dwNumInterfaces, pguidInterfaceIds);
+        return self.vtable.RemoveInterfacesFromAdapter(self, pAdapter, dwNumInterfaces, pguidInterfaceIds);
     }
 };
 
@@ -5919,7 +5919,7 @@ pub const INetLanConnectionUiInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDeviceGuid(self: *const INetLanConnectionUiInfo, pguid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetLanConnectionUiInfo.VTable, @ptrCast(self.vtable)).GetDeviceGuid(@as(*const INetLanConnectionUiInfo, @ptrCast(self)), pguid);
+        return self.vtable.GetDeviceGuid(self, pguid);
     }
 };
 
@@ -5997,7 +5997,7 @@ pub const INetRasConnectionIpUiInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetUiInfo(self: *const INetRasConnectionIpUiInfo, pInfo: ?*RASCON_IPUI) callconv(.Inline) HRESULT {
-        return @as(*const INetRasConnectionIpUiInfo.VTable, @ptrCast(self.vtable)).GetUiInfo(@as(*const INetRasConnectionIpUiInfo, @ptrCast(self)), pInfo);
+        return self.vtable.GetUiInfo(self, pInfo);
     }
 };
 
@@ -6034,10 +6034,10 @@ pub const INetCfgComponentSysPrep = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SaveAdapterParameters(self: *const INetCfgComponentSysPrep, pncsp: ?*INetCfgSysPrep, pszwAnswerSections: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentSysPrep.VTable, @ptrCast(self.vtable)).SaveAdapterParameters(@as(*const INetCfgComponentSysPrep, @ptrCast(self)), pncsp, pszwAnswerSections, pAdapterInstanceGuid);
+        return self.vtable.SaveAdapterParameters(self, pncsp, pszwAnswerSections, pAdapterInstanceGuid);
     }
     pub fn RestoreAdapterParameters(self: *const INetCfgComponentSysPrep, pszwAnswerFile: ?[*:0]const u16, pszwAnswerSection: ?[*:0]const u16, pAdapterInstanceGuid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const INetCfgComponentSysPrep.VTable, @ptrCast(self.vtable)).RestoreAdapterParameters(@as(*const INetCfgComponentSysPrep, @ptrCast(self)), pszwAnswerFile, pszwAnswerSection, pAdapterInstanceGuid);
+        return self.vtable.RestoreAdapterParameters(self, pszwAnswerFile, pszwAnswerSection, pAdapterInstanceGuid);
     }
 };
 
@@ -6076,10 +6076,10 @@ pub const IProvisioningDomain = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Add(self: *const IProvisioningDomain, pszwPathToFolder: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IProvisioningDomain.VTable, @ptrCast(self.vtable)).Add(@as(*const IProvisioningDomain, @ptrCast(self)), pszwPathToFolder);
+        return self.vtable.Add(self, pszwPathToFolder);
     }
     pub fn Query(self: *const IProvisioningDomain, pszwDomain: ?[*:0]const u16, pszwLanguage: ?[*:0]const u16, pszwXPathQuery: ?[*:0]const u16, Nodes: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
-        return @as(*const IProvisioningDomain.VTable, @ptrCast(self.vtable)).Query(@as(*const IProvisioningDomain, @ptrCast(self)), pszwDomain, pszwLanguage, pszwXPathQuery, Nodes);
+        return self.vtable.Query(self, pszwDomain, pszwLanguage, pszwXPathQuery, Nodes);
     }
 };
 
@@ -6107,7 +6107,7 @@ pub const IProvisioningProfileWireless = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateProfile(self: *const IProvisioningProfileWireless, bstrXMLWirelessConfigProfile: ?BSTR, bstrXMLConnectionConfigProfile: ?BSTR, pAdapterInstanceGuid: ?*Guid, pulStatus: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IProvisioningProfileWireless.VTable, @ptrCast(self.vtable)).CreateProfile(@as(*const IProvisioningProfileWireless, @ptrCast(self)), bstrXMLWirelessConfigProfile, bstrXMLConnectionConfigProfile, pAdapterInstanceGuid, pulStatus);
+        return self.vtable.CreateProfile(self, bstrXMLWirelessConfigProfile, bstrXMLConnectionConfigProfile, pAdapterInstanceGuid, pulStatus);
     }
 };
 

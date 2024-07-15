@@ -91,16 +91,16 @@ pub const IMILBitmapEffectConnectorInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIndex(self: *const IMILBitmapEffectConnectorInfo, puiIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnectorInfo.VTable, @ptrCast(self.vtable)).GetIndex(@as(*const IMILBitmapEffectConnectorInfo, @ptrCast(self)), puiIndex);
+        return self.vtable.GetIndex(self, puiIndex);
     }
     pub fn GetOptimalFormat(self: *const IMILBitmapEffectConnectorInfo, pFormat: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnectorInfo.VTable, @ptrCast(self.vtable)).GetOptimalFormat(@as(*const IMILBitmapEffectConnectorInfo, @ptrCast(self)), pFormat);
+        return self.vtable.GetOptimalFormat(self, pFormat);
     }
     pub fn GetNumberFormats(self: *const IMILBitmapEffectConnectorInfo, pulNumberFormats: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnectorInfo.VTable, @ptrCast(self.vtable)).GetNumberFormats(@as(*const IMILBitmapEffectConnectorInfo, @ptrCast(self)), pulNumberFormats);
+        return self.vtable.GetNumberFormats(self, pulNumberFormats);
     }
     pub fn GetFormat(self: *const IMILBitmapEffectConnectorInfo, ulIndex: u32, pFormat: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnectorInfo.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const IMILBitmapEffectConnectorInfo, @ptrCast(self)), ulIndex, pFormat);
+        return self.vtable.GetFormat(self, ulIndex, pFormat);
     }
 };
 
@@ -152,16 +152,16 @@ pub const IMILBitmapEffectConnectionsInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNumberInputs(self: *const IMILBitmapEffectConnectionsInfo, puiNumInputs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnectionsInfo.VTable, @ptrCast(self.vtable)).GetNumberInputs(@as(*const IMILBitmapEffectConnectionsInfo, @ptrCast(self)), puiNumInputs);
+        return self.vtable.GetNumberInputs(self, puiNumInputs);
     }
     pub fn GetNumberOutputs(self: *const IMILBitmapEffectConnectionsInfo, puiNumOutputs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnectionsInfo.VTable, @ptrCast(self.vtable)).GetNumberOutputs(@as(*const IMILBitmapEffectConnectionsInfo, @ptrCast(self)), puiNumOutputs);
+        return self.vtable.GetNumberOutputs(self, puiNumOutputs);
     }
     pub fn GetInputConnectorInfo(self: *const IMILBitmapEffectConnectionsInfo, uiIndex: u32, ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnectionsInfo.VTable, @ptrCast(self.vtable)).GetInputConnectorInfo(@as(*const IMILBitmapEffectConnectionsInfo, @ptrCast(self)), uiIndex, ppConnectorInfo);
+        return self.vtable.GetInputConnectorInfo(self, uiIndex, ppConnectorInfo);
     }
     pub fn GetOutputConnectorInfo(self: *const IMILBitmapEffectConnectionsInfo, uiIndex: u32, ppConnectorInfo: ?*?*IMILBitmapEffectConnectorInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnectionsInfo.VTable, @ptrCast(self.vtable)).GetOutputConnectorInfo(@as(*const IMILBitmapEffectConnectionsInfo, @ptrCast(self)), uiIndex, ppConnectorInfo);
+        return self.vtable.GetOutputConnectorInfo(self, uiIndex, ppConnectorInfo);
     }
 };
 
@@ -197,10 +197,10 @@ pub const IMILBitmapEffectConnections = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInputConnector(self: *const IMILBitmapEffectConnections, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectInputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnections.VTable, @ptrCast(self.vtable)).GetInputConnector(@as(*const IMILBitmapEffectConnections, @ptrCast(self)), uiIndex, ppConnector);
+        return self.vtable.GetInputConnector(self, uiIndex, ppConnector);
     }
     pub fn GetOutputConnector(self: *const IMILBitmapEffectConnections, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnections.VTable, @ptrCast(self.vtable)).GetOutputConnector(@as(*const IMILBitmapEffectConnections, @ptrCast(self)), uiIndex, ppConnector);
+        return self.vtable.GetOutputConnector(self, uiIndex, ppConnector);
     }
 };
 
@@ -245,13 +245,13 @@ pub const IMILBitmapEffect = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOutput(self: *const IMILBitmapEffect, uiIndex: u32, pContext: ?*IMILBitmapEffectRenderContext, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffect.VTable, @ptrCast(self.vtable)).GetOutput(@as(*const IMILBitmapEffect, @ptrCast(self)), uiIndex, pContext, ppBitmapSource);
+        return self.vtable.GetOutput(self, uiIndex, pContext, ppBitmapSource);
     }
     pub fn GetParentEffect(self: *const IMILBitmapEffect, ppParentEffect: ?*?*IMILBitmapEffectGroup) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffect.VTable, @ptrCast(self.vtable)).GetParentEffect(@as(*const IMILBitmapEffect, @ptrCast(self)), ppParentEffect);
+        return self.vtable.GetParentEffect(self, ppParentEffect);
     }
     pub fn SetInputSource(self: *const IMILBitmapEffect, uiIndex: u32, pBitmapSource: ?*IWICBitmapSource) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffect.VTable, @ptrCast(self.vtable)).SetInputSource(@as(*const IMILBitmapEffect, @ptrCast(self)), uiIndex, pBitmapSource);
+        return self.vtable.SetInputSource(self, uiIndex, pBitmapSource);
     }
 };
 
@@ -334,25 +334,25 @@ pub const IMILBitmapEffectImpl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsInPlaceModificationAllowed(self: *const IMILBitmapEffectImpl, pOutputConnector: ?*IMILBitmapEffectOutputConnector, pfModifyInPlace: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectImpl.VTable, @ptrCast(self.vtable)).IsInPlaceModificationAllowed(@as(*const IMILBitmapEffectImpl, @ptrCast(self)), pOutputConnector, pfModifyInPlace);
+        return self.vtable.IsInPlaceModificationAllowed(self, pOutputConnector, pfModifyInPlace);
     }
     pub fn SetParentEffect(self: *const IMILBitmapEffectImpl, pParentEffect: ?*IMILBitmapEffectGroup) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectImpl.VTable, @ptrCast(self.vtable)).SetParentEffect(@as(*const IMILBitmapEffectImpl, @ptrCast(self)), pParentEffect);
+        return self.vtable.SetParentEffect(self, pParentEffect);
     }
     pub fn GetInputSource(self: *const IMILBitmapEffectImpl, uiIndex: u32, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectImpl.VTable, @ptrCast(self.vtable)).GetInputSource(@as(*const IMILBitmapEffectImpl, @ptrCast(self)), uiIndex, ppBitmapSource);
+        return self.vtable.GetInputSource(self, uiIndex, ppBitmapSource);
     }
     pub fn GetInputSourceBounds(self: *const IMILBitmapEffectImpl, uiIndex: u32, pRect: ?*MilRectD) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectImpl.VTable, @ptrCast(self.vtable)).GetInputSourceBounds(@as(*const IMILBitmapEffectImpl, @ptrCast(self)), uiIndex, pRect);
+        return self.vtable.GetInputSourceBounds(self, uiIndex, pRect);
     }
     pub fn GetInputBitmapSource(self: *const IMILBitmapEffectImpl, uiIndex: u32, pRenderContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*i16, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectImpl.VTable, @ptrCast(self.vtable)).GetInputBitmapSource(@as(*const IMILBitmapEffectImpl, @ptrCast(self)), uiIndex, pRenderContext, pfModifyInPlace, ppBitmapSource);
+        return self.vtable.GetInputBitmapSource(self, uiIndex, pRenderContext, pfModifyInPlace, ppBitmapSource);
     }
     pub fn GetOutputBitmapSource(self: *const IMILBitmapEffectImpl, uiIndex: u32, pRenderContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*i16, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectImpl.VTable, @ptrCast(self.vtable)).GetOutputBitmapSource(@as(*const IMILBitmapEffectImpl, @ptrCast(self)), uiIndex, pRenderContext, pfModifyInPlace, ppBitmapSource);
+        return self.vtable.GetOutputBitmapSource(self, uiIndex, pRenderContext, pfModifyInPlace, ppBitmapSource);
     }
     pub fn Initialize(self: *const IMILBitmapEffectImpl, pInner: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectImpl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMILBitmapEffectImpl, @ptrCast(self)), pInner);
+        return self.vtable.Initialize(self, pInner);
     }
 };
 
@@ -396,13 +396,13 @@ pub const IMILBitmapEffectGroup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInteriorInputConnector(self: *const IMILBitmapEffectGroup, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectGroup.VTable, @ptrCast(self.vtable)).GetInteriorInputConnector(@as(*const IMILBitmapEffectGroup, @ptrCast(self)), uiIndex, ppConnector);
+        return self.vtable.GetInteriorInputConnector(self, uiIndex, ppConnector);
     }
     pub fn GetInteriorOutputConnector(self: *const IMILBitmapEffectGroup, uiIndex: u32, ppConnector: ?*?*IMILBitmapEffectInputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectGroup.VTable, @ptrCast(self.vtable)).GetInteriorOutputConnector(@as(*const IMILBitmapEffectGroup, @ptrCast(self)), uiIndex, ppConnector);
+        return self.vtable.GetInteriorOutputConnector(self, uiIndex, ppConnector);
     }
     pub fn Add(self: *const IMILBitmapEffectGroup, pEffect: ?*IMILBitmapEffect) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectGroup.VTable, @ptrCast(self.vtable)).Add(@as(*const IMILBitmapEffectGroup, @ptrCast(self)), pEffect);
+        return self.vtable.Add(self, pEffect);
     }
 };
 
@@ -444,13 +444,13 @@ pub const IMILBitmapEffectGroupImpl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Preprocess(self: *const IMILBitmapEffectGroupImpl, pContext: ?*IMILBitmapEffectRenderContext) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectGroupImpl.VTable, @ptrCast(self.vtable)).Preprocess(@as(*const IMILBitmapEffectGroupImpl, @ptrCast(self)), pContext);
+        return self.vtable.Preprocess(self, pContext);
     }
     pub fn GetNumberChildren(self: *const IMILBitmapEffectGroupImpl, puiNumberChildren: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectGroupImpl.VTable, @ptrCast(self.vtable)).GetNumberChildren(@as(*const IMILBitmapEffectGroupImpl, @ptrCast(self)), puiNumberChildren);
+        return self.vtable.GetNumberChildren(self, puiNumberChildren);
     }
     pub fn GetChildren(self: *const IMILBitmapEffectGroupImpl, pChildren: ?*?*IMILBitmapEffects) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectGroupImpl.VTable, @ptrCast(self.vtable)).GetChildren(@as(*const IMILBitmapEffectGroupImpl, @ptrCast(self)), pChildren);
+        return self.vtable.GetChildren(self, pChildren);
     }
 };
 
@@ -534,28 +534,28 @@ pub const IMILBitmapEffectRenderContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetOutputPixelFormat(self: *const IMILBitmapEffectRenderContext, format: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContext.VTable, @ptrCast(self.vtable)).SetOutputPixelFormat(@as(*const IMILBitmapEffectRenderContext, @ptrCast(self)), format);
+        return self.vtable.SetOutputPixelFormat(self, format);
     }
     pub fn GetOutputPixelFormat(self: *const IMILBitmapEffectRenderContext, pFormat: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContext.VTable, @ptrCast(self.vtable)).GetOutputPixelFormat(@as(*const IMILBitmapEffectRenderContext, @ptrCast(self)), pFormat);
+        return self.vtable.GetOutputPixelFormat(self, pFormat);
     }
     pub fn SetUseSoftwareRenderer(self: *const IMILBitmapEffectRenderContext, fSoftware: i16) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContext.VTable, @ptrCast(self.vtable)).SetUseSoftwareRenderer(@as(*const IMILBitmapEffectRenderContext, @ptrCast(self)), fSoftware);
+        return self.vtable.SetUseSoftwareRenderer(self, fSoftware);
     }
     pub fn SetInitialTransform(self: *const IMILBitmapEffectRenderContext, pMatrix: ?*MILMatrixF) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContext.VTable, @ptrCast(self.vtable)).SetInitialTransform(@as(*const IMILBitmapEffectRenderContext, @ptrCast(self)), pMatrix);
+        return self.vtable.SetInitialTransform(self, pMatrix);
     }
     pub fn GetFinalTransform(self: *const IMILBitmapEffectRenderContext, pMatrix: ?*MILMatrixF) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContext.VTable, @ptrCast(self.vtable)).GetFinalTransform(@as(*const IMILBitmapEffectRenderContext, @ptrCast(self)), pMatrix);
+        return self.vtable.GetFinalTransform(self, pMatrix);
     }
     pub fn SetOutputDPI(self: *const IMILBitmapEffectRenderContext, dblDpiX: f64, dblDpiY: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContext.VTable, @ptrCast(self.vtable)).SetOutputDPI(@as(*const IMILBitmapEffectRenderContext, @ptrCast(self)), dblDpiX, dblDpiY);
+        return self.vtable.SetOutputDPI(self, dblDpiX, dblDpiY);
     }
     pub fn GetOutputDPI(self: *const IMILBitmapEffectRenderContext, pdblDpiX: ?*f64, pdblDpiY: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContext.VTable, @ptrCast(self.vtable)).GetOutputDPI(@as(*const IMILBitmapEffectRenderContext, @ptrCast(self)), pdblDpiX, pdblDpiY);
+        return self.vtable.GetOutputDPI(self, pdblDpiX, pdblDpiY);
     }
     pub fn SetRegionOfInterest(self: *const IMILBitmapEffectRenderContext, pRect: ?*MilRectD) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContext.VTable, @ptrCast(self.vtable)).SetRegionOfInterest(@as(*const IMILBitmapEffectRenderContext, @ptrCast(self)), pRect);
+        return self.vtable.SetRegionOfInterest(self, pRect);
     }
 };
 
@@ -613,19 +613,19 @@ pub const IMILBitmapEffectRenderContextImpl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetUseSoftwareRenderer(self: *const IMILBitmapEffectRenderContextImpl, pfSoftware: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContextImpl.VTable, @ptrCast(self.vtable)).GetUseSoftwareRenderer(@as(*const IMILBitmapEffectRenderContextImpl, @ptrCast(self)), pfSoftware);
+        return self.vtable.GetUseSoftwareRenderer(self, pfSoftware);
     }
     pub fn GetTransform(self: *const IMILBitmapEffectRenderContextImpl, pMatrix: ?*MILMatrixF) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContextImpl.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IMILBitmapEffectRenderContextImpl, @ptrCast(self)), pMatrix);
+        return self.vtable.GetTransform(self, pMatrix);
     }
     pub fn UpdateTransform(self: *const IMILBitmapEffectRenderContextImpl, pMatrix: ?*MILMatrixF) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContextImpl.VTable, @ptrCast(self.vtable)).UpdateTransform(@as(*const IMILBitmapEffectRenderContextImpl, @ptrCast(self)), pMatrix);
+        return self.vtable.UpdateTransform(self, pMatrix);
     }
     pub fn GetOutputBounds(self: *const IMILBitmapEffectRenderContextImpl, pRect: ?*MilRectD) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContextImpl.VTable, @ptrCast(self.vtable)).GetOutputBounds(@as(*const IMILBitmapEffectRenderContextImpl, @ptrCast(self)), pRect);
+        return self.vtable.GetOutputBounds(self, pRect);
     }
     pub fn UpdateOutputBounds(self: *const IMILBitmapEffectRenderContextImpl, pRect: ?*MilRectD) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectRenderContextImpl.VTable, @ptrCast(self.vtable)).UpdateOutputBounds(@as(*const IMILBitmapEffectRenderContextImpl, @ptrCast(self)), pRect);
+        return self.vtable.UpdateOutputBounds(self, pRect);
     }
 };
 
@@ -668,13 +668,13 @@ pub const IMILBitmapEffectFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateEffect(self: *const IMILBitmapEffectFactory, pguidEffect: ?*const Guid, ppEffect: ?*?*IMILBitmapEffect) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectFactory.VTable, @ptrCast(self.vtable)).CreateEffect(@as(*const IMILBitmapEffectFactory, @ptrCast(self)), pguidEffect, ppEffect);
+        return self.vtable.CreateEffect(self, pguidEffect, ppEffect);
     }
     pub fn CreateContext(self: *const IMILBitmapEffectFactory, ppContext: ?*?*IMILBitmapEffectRenderContext) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectFactory.VTable, @ptrCast(self.vtable)).CreateContext(@as(*const IMILBitmapEffectFactory, @ptrCast(self)), ppContext);
+        return self.vtable.CreateContext(self, ppContext);
     }
     pub fn CreateEffectOuter(self: *const IMILBitmapEffectFactory, ppEffect: ?*?*IMILBitmapEffect) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectFactory.VTable, @ptrCast(self.vtable)).CreateEffectOuter(@as(*const IMILBitmapEffectFactory, @ptrCast(self)), ppEffect);
+        return self.vtable.CreateEffectOuter(self, ppEffect);
     }
 };
 
@@ -753,22 +753,22 @@ pub const IMILBitmapEffectPrimitive = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOutput(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pContext: ?*IMILBitmapEffectRenderContext, pfModifyInPlace: ?*i16, ppBitmapSource: ?*?*IWICBitmapSource) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectPrimitive.VTable, @ptrCast(self.vtable)).GetOutput(@as(*const IMILBitmapEffectPrimitive, @ptrCast(self)), uiIndex, pContext, pfModifyInPlace, ppBitmapSource);
+        return self.vtable.GetOutput(self, uiIndex, pContext, pfModifyInPlace, ppBitmapSource);
     }
     pub fn TransformPoint(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilPoint2D, fForwardTransform: i16, pContext: ?*IMILBitmapEffectRenderContext, pfPointTransformed: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectPrimitive.VTable, @ptrCast(self.vtable)).TransformPoint(@as(*const IMILBitmapEffectPrimitive, @ptrCast(self)), uiIndex, p, fForwardTransform, pContext, pfPointTransformed);
+        return self.vtable.TransformPoint(self, uiIndex, p, fForwardTransform, pContext, pfPointTransformed);
     }
     pub fn TransformRect(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, p: ?*MilRectD, fForwardTransform: i16, pContext: ?*IMILBitmapEffectRenderContext) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectPrimitive.VTable, @ptrCast(self.vtable)).TransformRect(@as(*const IMILBitmapEffectPrimitive, @ptrCast(self)), uiIndex, p, fForwardTransform, pContext);
+        return self.vtable.TransformRect(self, uiIndex, p, fForwardTransform, pContext);
     }
     pub fn HasAffineTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfAffine: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectPrimitive.VTable, @ptrCast(self.vtable)).HasAffineTransform(@as(*const IMILBitmapEffectPrimitive, @ptrCast(self)), uiIndex, pfAffine);
+        return self.vtable.HasAffineTransform(self, uiIndex, pfAffine);
     }
     pub fn HasInverseTransform(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pfHasInverse: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectPrimitive.VTable, @ptrCast(self.vtable)).HasInverseTransform(@as(*const IMILBitmapEffectPrimitive, @ptrCast(self)), uiIndex, pfHasInverse);
+        return self.vtable.HasInverseTransform(self, uiIndex, pfHasInverse);
     }
     pub fn GetAffineMatrix(self: *const IMILBitmapEffectPrimitive, uiIndex: u32, pMatrix: ?*MilMatrix3x2D) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectPrimitive.VTable, @ptrCast(self.vtable)).GetAffineMatrix(@as(*const IMILBitmapEffectPrimitive, @ptrCast(self)), uiIndex, pMatrix);
+        return self.vtable.GetAffineMatrix(self, uiIndex, pMatrix);
     }
 };
 
@@ -804,10 +804,10 @@ pub const IMILBitmapEffectPrimitiveImpl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsDirty(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfDirty: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectPrimitiveImpl.VTable, @ptrCast(self.vtable)).IsDirty(@as(*const IMILBitmapEffectPrimitiveImpl, @ptrCast(self)), uiOutputIndex, pfDirty);
+        return self.vtable.IsDirty(self, uiOutputIndex, pfDirty);
     }
     pub fn IsVolatile(self: *const IMILBitmapEffectPrimitiveImpl, uiOutputIndex: u32, pfVolatile: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectPrimitiveImpl.VTable, @ptrCast(self.vtable)).IsVolatile(@as(*const IMILBitmapEffectPrimitiveImpl, @ptrCast(self)), uiOutputIndex, pfVolatile);
+        return self.vtable.IsVolatile(self, uiOutputIndex, pfVolatile);
     }
 };
 
@@ -860,16 +860,16 @@ pub const IMILBitmapEffects = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn _NewEnum(self: *const IMILBitmapEffects, ppiuReturn: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffects.VTable, @ptrCast(self.vtable))._NewEnum(@as(*const IMILBitmapEffects, @ptrCast(self)), ppiuReturn);
+        return self.vtable._NewEnum(self, ppiuReturn);
     }
     pub fn get_Parent(self: *const IMILBitmapEffects, ppEffect: ?*?*IMILBitmapEffectGroup) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffects.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const IMILBitmapEffects, @ptrCast(self)), ppEffect);
+        return self.vtable.get_Parent(self, ppEffect);
     }
     pub fn Item(self: *const IMILBitmapEffects, uindex: u32, ppEffect: ?*?*IMILBitmapEffect) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffects.VTable, @ptrCast(self.vtable)).Item(@as(*const IMILBitmapEffects, @ptrCast(self)), uindex, ppEffect);
+        return self.vtable.Item(self, uindex, ppEffect);
     }
     pub fn get_Count(self: *const IMILBitmapEffects, puiCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffects.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IMILBitmapEffects, @ptrCast(self)), puiCount);
+        return self.vtable.get_Count(self, puiCount);
     }
 };
 
@@ -903,10 +903,10 @@ pub const IMILBitmapEffectConnector = extern union {
     };}
     pub usingnamespace IMILBitmapEffectConnectorInfo.MethodMixin(@This());
     pub fn IsConnected(self: *const IMILBitmapEffectConnector, pfConnected: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnector.VTable, @ptrCast(self.vtable)).IsConnected(@as(*const IMILBitmapEffectConnector, @ptrCast(self)), pfConnected);
+        return self.vtable.IsConnected(self, pfConnected);
     }
     pub fn GetBitmapEffect(self: *const IMILBitmapEffectConnector, ppEffect: ?*?*IMILBitmapEffect) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectConnector.VTable, @ptrCast(self.vtable)).GetBitmapEffect(@as(*const IMILBitmapEffectConnector, @ptrCast(self)), ppEffect);
+        return self.vtable.GetBitmapEffect(self, ppEffect);
     }
 };
 
@@ -940,10 +940,10 @@ pub const IMILBitmapEffectInputConnector = extern union {
     };}
     pub usingnamespace IMILBitmapEffectConnector.MethodMixin(@This());
     pub fn ConnectTo(self: *const IMILBitmapEffectInputConnector, pConnector: ?*IMILBitmapEffectOutputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectInputConnector.VTable, @ptrCast(self.vtable)).ConnectTo(@as(*const IMILBitmapEffectInputConnector, @ptrCast(self)), pConnector);
+        return self.vtable.ConnectTo(self, pConnector);
     }
     pub fn GetConnection(self: *const IMILBitmapEffectInputConnector, ppConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectInputConnector.VTable, @ptrCast(self.vtable)).GetConnection(@as(*const IMILBitmapEffectInputConnector, @ptrCast(self)), ppConnector);
+        return self.vtable.GetConnection(self, ppConnector);
     }
 };
 
@@ -978,10 +978,10 @@ pub const IMILBitmapEffectOutputConnector = extern union {
     };}
     pub usingnamespace IMILBitmapEffectConnector.MethodMixin(@This());
     pub fn GetNumberConnections(self: *const IMILBitmapEffectOutputConnector, puiNumberConnections: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectOutputConnector.VTable, @ptrCast(self.vtable)).GetNumberConnections(@as(*const IMILBitmapEffectOutputConnector, @ptrCast(self)), puiNumberConnections);
+        return self.vtable.GetNumberConnections(self, puiNumberConnections);
     }
     pub fn GetConnection(self: *const IMILBitmapEffectOutputConnector, uiIndex: u32, ppConnection: ?*?*IMILBitmapEffectInputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectOutputConnector.VTable, @ptrCast(self.vtable)).GetConnection(@as(*const IMILBitmapEffectOutputConnector, @ptrCast(self)), uiIndex, ppConnection);
+        return self.vtable.GetConnection(self, uiIndex, ppConnection);
     }
 };
 
@@ -1015,10 +1015,10 @@ pub const IMILBitmapEffectOutputConnectorImpl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddBackLink(self: *const IMILBitmapEffectOutputConnectorImpl, pConnection: ?*IMILBitmapEffectInputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectOutputConnectorImpl.VTable, @ptrCast(self.vtable)).AddBackLink(@as(*const IMILBitmapEffectOutputConnectorImpl, @ptrCast(self)), pConnection);
+        return self.vtable.AddBackLink(self, pConnection);
     }
     pub fn RemoveBackLink(self: *const IMILBitmapEffectOutputConnectorImpl, pConnection: ?*IMILBitmapEffectInputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectOutputConnectorImpl.VTable, @ptrCast(self.vtable)).RemoveBackLink(@as(*const IMILBitmapEffectOutputConnectorImpl, @ptrCast(self)), pConnection);
+        return self.vtable.RemoveBackLink(self, pConnection);
     }
 };
 
@@ -1044,7 +1044,7 @@ pub const IMILBitmapEffectInteriorInputConnector = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInputConnector(self: *const IMILBitmapEffectInteriorInputConnector, pInputConnector: ?*?*IMILBitmapEffectInputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectInteriorInputConnector.VTable, @ptrCast(self.vtable)).GetInputConnector(@as(*const IMILBitmapEffectInteriorInputConnector, @ptrCast(self)), pInputConnector);
+        return self.vtable.GetInputConnector(self, pInputConnector);
     }
 };
 
@@ -1070,7 +1070,7 @@ pub const IMILBitmapEffectInteriorOutputConnector = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOutputConnector(self: *const IMILBitmapEffectInteriorOutputConnector, pOutputConnector: ?*?*IMILBitmapEffectOutputConnector) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectInteriorOutputConnector.VTable, @ptrCast(self.vtable)).GetOutputConnector(@as(*const IMILBitmapEffectInteriorOutputConnector, @ptrCast(self)), pOutputConnector);
+        return self.vtable.GetOutputConnector(self, pOutputConnector);
     }
 };
 
@@ -1106,10 +1106,10 @@ pub const IMILBitmapEffectEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn PropertyChange(self: *const IMILBitmapEffectEvents, pEffect: ?*IMILBitmapEffect, bstrPropertyName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectEvents.VTable, @ptrCast(self.vtable)).PropertyChange(@as(*const IMILBitmapEffectEvents, @ptrCast(self)), pEffect, bstrPropertyName);
+        return self.vtable.PropertyChange(self, pEffect, bstrPropertyName);
     }
     pub fn DirtyRegion(self: *const IMILBitmapEffectEvents, pEffect: ?*IMILBitmapEffect, pRect: ?*MilRectD) callconv(.Inline) HRESULT {
-        return @as(*const IMILBitmapEffectEvents.VTable, @ptrCast(self.vtable)).DirtyRegion(@as(*const IMILBitmapEffectEvents, @ptrCast(self)), pEffect, pRect);
+        return self.vtable.DirtyRegion(self, pEffect, pRect);
     }
 };
 

@@ -198,10 +198,10 @@ pub const IObjectArray = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IObjectArray, pcObjects: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IObjectArray.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IObjectArray, @ptrCast(self)), pcObjects);
+        return self.vtable.GetCount(self, pcObjects);
     }
     pub fn GetAt(self: *const IObjectArray, uiIndex: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IObjectArray.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IObjectArray, @ptrCast(self)), uiIndex, riid, ppv);
+        return self.vtable.GetAt(self, uiIndex, riid, ppv);
     }
 };
 
@@ -250,16 +250,16 @@ pub const IObjectCollection = extern union {
     };}
     pub usingnamespace IObjectArray.MethodMixin(@This());
     pub fn AddObject(self: *const IObjectCollection, punk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).AddObject(@as(*const IObjectCollection, @ptrCast(self)), punk);
+        return self.vtable.AddObject(self, punk);
     }
     pub fn AddFromArray(self: *const IObjectCollection, poaSource: ?*IObjectArray) callconv(.Inline) HRESULT {
-        return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).AddFromArray(@as(*const IObjectCollection, @ptrCast(self)), poaSource);
+        return self.vtable.AddFromArray(self, poaSource);
     }
     pub fn RemoveObjectAt(self: *const IObjectCollection, uiIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).RemoveObjectAt(@as(*const IObjectCollection, @ptrCast(self)), uiIndex);
+        return self.vtable.RemoveObjectAt(self, uiIndex);
     }
     pub fn Clear(self: *const IObjectCollection) callconv(.Inline) HRESULT {
-        return @as(*const IObjectCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IObjectCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 

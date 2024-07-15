@@ -39,10 +39,10 @@ pub const IPrinting3DManagerInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const IPrinting3DManagerInterop, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPrinting3DManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IPrinting3DManagerInterop, @ptrCast(self)), appWindow, riid, printManager);
+        return self.vtable.GetForWindow(self, appWindow, riid, printManager);
     }
     pub fn ShowPrintUIForWindowAsync(self: *const IPrinting3DManagerInterop, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPrinting3DManagerInterop.VTable, @ptrCast(self.vtable)).ShowPrintUIForWindowAsync(@as(*const IPrinting3DManagerInterop, @ptrCast(self)), appWindow, riid, asyncOperation);
+        return self.vtable.ShowPrintUIForWindowAsync(self, appWindow, riid, asyncOperation);
     }
 };
 
@@ -80,10 +80,10 @@ pub const IPrintManagerInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const IPrintManagerInterop, appWindow: ?HWND, riid: ?*const Guid, printManager: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPrintManagerInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IPrintManagerInterop, @ptrCast(self)), appWindow, riid, printManager);
+        return self.vtable.GetForWindow(self, appWindow, riid, printManager);
     }
     pub fn ShowPrintUIForWindowAsync(self: *const IPrintManagerInterop, appWindow: ?HWND, riid: ?*const Guid, asyncOperation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPrintManagerInterop.VTable, @ptrCast(self.vtable)).ShowPrintUIForWindowAsync(@as(*const IPrintManagerInterop, @ptrCast(self)), appWindow, riid, asyncOperation);
+        return self.vtable.ShowPrintUIForWindowAsync(self, appWindow, riid, asyncOperation);
     }
 };
 
@@ -144,19 +144,19 @@ pub const IPrintWorkflowXpsReceiver = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDocumentSequencePrintTicket(self: *const IPrintWorkflowXpsReceiver, documentSequencePrintTicket: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).SetDocumentSequencePrintTicket(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)), documentSequencePrintTicket);
+        return self.vtable.SetDocumentSequencePrintTicket(self, documentSequencePrintTicket);
     }
     pub fn SetDocumentSequenceUri(self: *const IPrintWorkflowXpsReceiver, documentSequenceUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).SetDocumentSequenceUri(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)), documentSequenceUri);
+        return self.vtable.SetDocumentSequenceUri(self, documentSequenceUri);
     }
     pub fn AddDocumentData(self: *const IPrintWorkflowXpsReceiver, documentId: u32, documentPrintTicket: ?*IStream, documentUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).AddDocumentData(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)), documentId, documentPrintTicket, documentUri);
+        return self.vtable.AddDocumentData(self, documentId, documentPrintTicket, documentUri);
     }
     pub fn AddPage(self: *const IPrintWorkflowXpsReceiver, documentId: u32, pageId: u32, pageReference: ?*IXpsOMPageReference, pageUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).AddPage(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)), documentId, pageId, pageReference, pageUri);
+        return self.vtable.AddPage(self, documentId, pageId, pageReference, pageUri);
     }
     pub fn Close(self: *const IPrintWorkflowXpsReceiver) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowXpsReceiver.VTable, @ptrCast(self.vtable)).Close(@as(*const IPrintWorkflowXpsReceiver, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -181,7 +181,7 @@ pub const IPrintWorkflowXpsReceiver2 = extern union {
     };}
     pub usingnamespace IPrintWorkflowXpsReceiver.MethodMixin(@This());
     pub fn Failed(self: *const IPrintWorkflowXpsReceiver2, XpsError: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowXpsReceiver2.VTable, @ptrCast(self.vtable)).Failed(@as(*const IPrintWorkflowXpsReceiver2, @ptrCast(self)), XpsError);
+        return self.vtable.Failed(self, XpsError);
     }
 };
 
@@ -215,10 +215,10 @@ pub const IPrintWorkflowObjectModelSourceFileContentNative = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartXpsOMGeneration(self: *const IPrintWorkflowObjectModelSourceFileContentNative, receiver: ?*IPrintWorkflowXpsReceiver) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, @ptrCast(self.vtable)).StartXpsOMGeneration(@as(*const IPrintWorkflowObjectModelSourceFileContentNative, @ptrCast(self)), receiver);
+        return self.vtable.StartXpsOMGeneration(self, receiver);
     }
     pub fn get_ObjectFactory(self: *const IPrintWorkflowObjectModelSourceFileContentNative, value: ?*?*IXpsOMObjectFactory1) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowObjectModelSourceFileContentNative.VTable, @ptrCast(self.vtable)).get_ObjectFactory(@as(*const IPrintWorkflowObjectModelSourceFileContentNative, @ptrCast(self)), value);
+        return self.vtable.get_ObjectFactory(self, value);
     }
 };
 
@@ -244,7 +244,7 @@ pub const IPrintWorkflowXpsObjectModelTargetPackageNative = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_DocumentPackageTarget(self: *const IPrintWorkflowXpsObjectModelTargetPackageNative, value: ?*?*IXpsDocumentPackageTarget) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowXpsObjectModelTargetPackageNative.VTable, @ptrCast(self.vtable)).get_DocumentPackageTarget(@as(*const IPrintWorkflowXpsObjectModelTargetPackageNative, @ptrCast(self)), value);
+        return self.vtable.get_DocumentPackageTarget(self, value);
     }
 };
 
@@ -288,13 +288,13 @@ pub const IPrintWorkflowConfigurationNative = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_PrinterQueue(self: *const IPrintWorkflowConfigurationNative, value: ?*?*IPrinterQueue) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowConfigurationNative.VTable, @ptrCast(self.vtable)).get_PrinterQueue(@as(*const IPrintWorkflowConfigurationNative, @ptrCast(self)), value);
+        return self.vtable.get_PrinterQueue(self, value);
     }
     pub fn get_DriverProperties(self: *const IPrintWorkflowConfigurationNative, value: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowConfigurationNative.VTable, @ptrCast(self.vtable)).get_DriverProperties(@as(*const IPrintWorkflowConfigurationNative, @ptrCast(self)), value);
+        return self.vtable.get_DriverProperties(self, value);
     }
     pub fn get_UserProperties(self: *const IPrintWorkflowConfigurationNative, value: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
-        return @as(*const IPrintWorkflowConfigurationNative.VTable, @ptrCast(self.vtable)).get_UserProperties(@as(*const IPrintWorkflowConfigurationNative, @ptrCast(self)), value);
+        return self.vtable.get_UserProperties(self, value);
     }
 };
 

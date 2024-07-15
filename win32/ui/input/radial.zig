@@ -30,7 +30,7 @@ pub const IRadialControllerInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateForWindow(self: *const IRadialControllerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IRadialControllerInterop.VTable, @ptrCast(self.vtable)).CreateForWindow(@as(*const IRadialControllerInterop, @ptrCast(self)), hwnd, riid, ppv);
+        return self.vtable.CreateForWindow(self, hwnd, riid, ppv);
     }
 };
 
@@ -58,7 +58,7 @@ pub const IRadialControllerConfigurationInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn GetForWindow(self: *const IRadialControllerConfigurationInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IRadialControllerConfigurationInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const IRadialControllerConfigurationInterop, @ptrCast(self)), hwnd, riid, ppv);
+        return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
 };
 
@@ -85,7 +85,7 @@ pub const IRadialControllerIndependentInputSourceInterop = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn CreateForWindow(self: *const IRadialControllerIndependentInputSourceInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IRadialControllerIndependentInputSourceInterop.VTable, @ptrCast(self.vtable)).CreateForWindow(@as(*const IRadialControllerIndependentInputSourceInterop, @ptrCast(self)), hwnd, riid, ppv);
+        return self.vtable.CreateForWindow(self, hwnd, riid, ppv);
     }
 };
 

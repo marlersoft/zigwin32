@@ -330,7 +330,7 @@ pub const ISpNotifyCallback = extern union {
         }
     };}
     pub fn NotifyCallback(self: *const ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifyCallback.VTable, @ptrCast(self.vtable)).NotifyCallback(@as(*const ISpNotifyCallback, @ptrCast(self)), wParam, lParam);
+        return self.vtable.NotifyCallback(self, wParam, lParam);
     }
 };
 
@@ -413,25 +413,25 @@ pub const ISpNotifySource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetNotifySink(self: *const ISpNotifySource, pNotifySink: ?*ISpNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifySink(@as(*const ISpNotifySource, @ptrCast(self)), pNotifySink);
+        return self.vtable.SetNotifySink(self, pNotifySink);
     }
     pub fn SetNotifyWindowMessage(self: *const ISpNotifySource, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifyWindowMessage(@as(*const ISpNotifySource, @ptrCast(self)), hWnd, Msg, wParam, lParam);
+        return self.vtable.SetNotifyWindowMessage(self, hWnd, Msg, wParam, lParam);
     }
     pub fn SetNotifyCallbackFunction(self: *const ISpNotifySource, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifyCallbackFunction(@as(*const ISpNotifySource, @ptrCast(self)), pfnCallback, wParam, lParam);
+        return self.vtable.SetNotifyCallbackFunction(self, pfnCallback, wParam, lParam);
     }
     pub fn SetNotifyCallbackInterface(self: *const ISpNotifySource, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifyCallbackInterface(@as(*const ISpNotifySource, @ptrCast(self)), pSpCallback, wParam, lParam);
+        return self.vtable.SetNotifyCallbackInterface(self, pSpCallback, wParam, lParam);
     }
     pub fn SetNotifyWin32Event(self: *const ISpNotifySource) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).SetNotifyWin32Event(@as(*const ISpNotifySource, @ptrCast(self)));
+        return self.vtable.SetNotifyWin32Event(self);
     }
     pub fn WaitForNotifyEvent(self: *const ISpNotifySource, dwMilliseconds: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).WaitForNotifyEvent(@as(*const ISpNotifySource, @ptrCast(self)), dwMilliseconds);
+        return self.vtable.WaitForNotifyEvent(self, dwMilliseconds);
     }
     pub fn GetNotifyEventHandle(self: *const ISpNotifySource) callconv(.Inline) ?HANDLE {
-        return @as(*const ISpNotifySource.VTable, @ptrCast(self.vtable)).GetNotifyEventHandle(@as(*const ISpNotifySource, @ptrCast(self)));
+        return self.vtable.GetNotifyEventHandle(self);
     }
 };
 
@@ -455,7 +455,7 @@ pub const ISpNotifySink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Notify(self: *const ISpNotifySink) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifySink.VTable, @ptrCast(self.vtable)).Notify(@as(*const ISpNotifySink, @ptrCast(self)));
+        return self.vtable.Notify(self);
     }
 };
 
@@ -527,22 +527,22 @@ pub const ISpNotifyTranslator = extern union {
     };}
     pub usingnamespace ISpNotifySink.MethodMixin(@This());
     pub fn InitWindowMessage(self: *const ISpNotifyTranslator, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).InitWindowMessage(@as(*const ISpNotifyTranslator, @ptrCast(self)), hWnd, Msg, wParam, lParam);
+        return self.vtable.InitWindowMessage(self, hWnd, Msg, wParam, lParam);
     }
     pub fn InitCallback(self: *const ISpNotifyTranslator, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).InitCallback(@as(*const ISpNotifyTranslator, @ptrCast(self)), pfnCallback, wParam, lParam);
+        return self.vtable.InitCallback(self, pfnCallback, wParam, lParam);
     }
     pub fn InitSpNotifyCallback(self: *const ISpNotifyTranslator, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).InitSpNotifyCallback(@as(*const ISpNotifyTranslator, @ptrCast(self)), pSpCallback, wParam, lParam);
+        return self.vtable.InitSpNotifyCallback(self, pSpCallback, wParam, lParam);
     }
     pub fn InitWin32Event(self: *const ISpNotifyTranslator, hEvent: ?HANDLE, fCloseHandleOnRelease: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).InitWin32Event(@as(*const ISpNotifyTranslator, @ptrCast(self)), hEvent, fCloseHandleOnRelease);
+        return self.vtable.InitWin32Event(self, hEvent, fCloseHandleOnRelease);
     }
     pub fn Wait(self: *const ISpNotifyTranslator, dwMilliseconds: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).Wait(@as(*const ISpNotifyTranslator, @ptrCast(self)), dwMilliseconds);
+        return self.vtable.Wait(self, dwMilliseconds);
     }
     pub fn GetEventHandle(self: *const ISpNotifyTranslator) callconv(.Inline) ?HANDLE {
-        return @as(*const ISpNotifyTranslator.VTable, @ptrCast(self.vtable)).GetEventHandle(@as(*const ISpNotifyTranslator, @ptrCast(self)));
+        return self.vtable.GetEventHandle(self);
     }
 };
 
@@ -667,40 +667,40 @@ pub const ISpDataKey = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetData(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, cbData: u32, pData: ?*const u8) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).SetData(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, cbData, pData);
+        return self.vtable.SetData(self, pszValueName, cbData, pData);
     }
     pub fn GetData(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pcbData: ?*u32, pData: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, pcbData, pData);
+        return self.vtable.GetData(self, pszValueName, pcbData, pData);
     }
     pub fn SetStringValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).SetStringValue(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, pszValue);
+        return self.vtable.SetStringValue(self, pszValueName, pszValue);
     }
     pub fn GetStringValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, ppszValue: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, ppszValue);
+        return self.vtable.GetStringValue(self, pszValueName, ppszValue);
     }
     pub fn SetDWORD(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, dwValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).SetDWORD(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, dwValue);
+        return self.vtable.SetDWORD(self, pszValueName, dwValue);
     }
     pub fn GetDWORD(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pdwValue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).GetDWORD(@as(*const ISpDataKey, @ptrCast(self)), pszValueName, pdwValue);
+        return self.vtable.GetDWORD(self, pszValueName, pdwValue);
     }
     pub fn OpenKey(self: *const ISpDataKey, pszSubKeyName: ?[*:0]const u16, ppSubKey: ?*?*ISpDataKey) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).OpenKey(@as(*const ISpDataKey, @ptrCast(self)), pszSubKeyName, ppSubKey);
+        return self.vtable.OpenKey(self, pszSubKeyName, ppSubKey);
     }
     pub fn CreateKey(self: *const ISpDataKey, pszSubKey: ?[*:0]const u16, ppSubKey: ?*?*ISpDataKey) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).CreateKey(@as(*const ISpDataKey, @ptrCast(self)), pszSubKey, ppSubKey);
+        return self.vtable.CreateKey(self, pszSubKey, ppSubKey);
     }
     pub fn DeleteKey(self: *const ISpDataKey, pszSubKey: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).DeleteKey(@as(*const ISpDataKey, @ptrCast(self)), pszSubKey);
+        return self.vtable.DeleteKey(self, pszSubKey);
     }
     pub fn DeleteValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).DeleteValue(@as(*const ISpDataKey, @ptrCast(self)), pszValueName);
+        return self.vtable.DeleteValue(self, pszValueName);
     }
     pub fn EnumKeys(self: *const ISpDataKey, Index: u32, ppszSubKeyName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).EnumKeys(@as(*const ISpDataKey, @ptrCast(self)), Index, ppszSubKeyName);
+        return self.vtable.EnumKeys(self, Index, ppszSubKeyName);
     }
     pub fn EnumValues(self: *const ISpDataKey, Index: u32, ppszValueName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpDataKey.VTable, @ptrCast(self.vtable)).EnumValues(@as(*const ISpDataKey, @ptrCast(self)), Index, ppszValueName);
+        return self.vtable.EnumValues(self, Index, ppszValueName);
     }
 };
 
@@ -726,7 +726,7 @@ pub const ISpRegDataKey = extern union {
     };}
     pub usingnamespace ISpDataKey.MethodMixin(@This());
     pub fn SetKey(self: *const ISpRegDataKey, hkey: ?HKEY, fReadOnly: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpRegDataKey.VTable, @ptrCast(self.vtable)).SetKey(@as(*const ISpRegDataKey, @ptrCast(self)), hkey, fReadOnly);
+        return self.vtable.SetKey(self, hkey, fReadOnly);
     }
 };
 
@@ -795,22 +795,22 @@ pub const ISpObjectTokenCategory = extern union {
     };}
     pub usingnamespace ISpDataKey.MethodMixin(@This());
     pub fn SetId(self: *const ISpObjectTokenCategory, pszCategoryId: ?[*:0]const u16, fCreateIfNotExist: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).SetId(@as(*const ISpObjectTokenCategory, @ptrCast(self)), pszCategoryId, fCreateIfNotExist);
+        return self.vtable.SetId(self, pszCategoryId, fCreateIfNotExist);
     }
     pub fn GetId(self: *const ISpObjectTokenCategory, ppszCoMemCategoryId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).GetId(@as(*const ISpObjectTokenCategory, @ptrCast(self)), ppszCoMemCategoryId);
+        return self.vtable.GetId(self, ppszCoMemCategoryId);
     }
     pub fn GetDataKey(self: *const ISpObjectTokenCategory, spdkl: SPDATAKEYLOCATION, ppDataKey: ?*?*ISpDataKey) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).GetDataKey(@as(*const ISpObjectTokenCategory, @ptrCast(self)), spdkl, ppDataKey);
+        return self.vtable.GetDataKey(self, spdkl, ppDataKey);
     }
     pub fn EnumTokens(self: *const ISpObjectTokenCategory, pzsReqAttribs: ?[*:0]const u16, pszOptAttribs: ?[*:0]const u16, ppEnum: ?*?*IEnumSpObjectTokens) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).EnumTokens(@as(*const ISpObjectTokenCategory, @ptrCast(self)), pzsReqAttribs, pszOptAttribs, ppEnum);
+        return self.vtable.EnumTokens(self, pzsReqAttribs, pszOptAttribs, ppEnum);
     }
     pub fn SetDefaultTokenId(self: *const ISpObjectTokenCategory, pszTokenId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).SetDefaultTokenId(@as(*const ISpObjectTokenCategory, @ptrCast(self)), pszTokenId);
+        return self.vtable.SetDefaultTokenId(self, pszTokenId);
     }
     pub fn GetDefaultTokenId(self: *const ISpObjectTokenCategory, ppszCoMemTokenId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectTokenCategory.VTable, @ptrCast(self.vtable)).GetDefaultTokenId(@as(*const ISpObjectTokenCategory, @ptrCast(self)), ppszCoMemTokenId);
+        return self.vtable.GetDefaultTokenId(self, ppszCoMemTokenId);
     }
 };
 
@@ -928,34 +928,34 @@ pub const ISpObjectToken = extern union {
     };}
     pub usingnamespace ISpDataKey.MethodMixin(@This());
     pub fn SetId(self: *const ISpObjectToken, pszCategoryId: ?[*:0]const u16, pszTokenId: ?[*:0]const u16, fCreateIfNotExist: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).SetId(@as(*const ISpObjectToken, @ptrCast(self)), pszCategoryId, pszTokenId, fCreateIfNotExist);
+        return self.vtable.SetId(self, pszCategoryId, pszTokenId, fCreateIfNotExist);
     }
     pub fn GetId(self: *const ISpObjectToken, ppszCoMemTokenId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).GetId(@as(*const ISpObjectToken, @ptrCast(self)), ppszCoMemTokenId);
+        return self.vtable.GetId(self, ppszCoMemTokenId);
     }
     pub fn GetCategory(self: *const ISpObjectToken, ppTokenCategory: ?*?*ISpObjectTokenCategory) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const ISpObjectToken, @ptrCast(self)), ppTokenCategory);
+        return self.vtable.GetCategory(self, ppTokenCategory);
     }
     pub fn CreateInstance(self: *const ISpObjectToken, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ISpObjectToken, @ptrCast(self)), pUnkOuter, dwClsContext, riid, ppvObject);
+        return self.vtable.CreateInstance(self, pUnkOuter, dwClsContext, riid, ppvObject);
     }
     pub fn GetStorageFileName(self: *const ISpObjectToken, clsidCaller: ?*const Guid, pszValueName: ?[*:0]const u16, pszFileNameSpecifier: ?[*:0]const u16, nFolder: u32, ppszFilePath: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).GetStorageFileName(@as(*const ISpObjectToken, @ptrCast(self)), clsidCaller, pszValueName, pszFileNameSpecifier, nFolder, ppszFilePath);
+        return self.vtable.GetStorageFileName(self, clsidCaller, pszValueName, pszFileNameSpecifier, nFolder, ppszFilePath);
     }
     pub fn RemoveStorageFileName(self: *const ISpObjectToken, clsidCaller: ?*const Guid, pszKeyName: ?[*:0]const u16, fDeleteFile: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).RemoveStorageFileName(@as(*const ISpObjectToken, @ptrCast(self)), clsidCaller, pszKeyName, fDeleteFile);
+        return self.vtable.RemoveStorageFileName(self, clsidCaller, pszKeyName, fDeleteFile);
     }
     pub fn Remove(self: *const ISpObjectToken, pclsidCaller: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISpObjectToken, @ptrCast(self)), pclsidCaller);
+        return self.vtable.Remove(self, pclsidCaller);
     }
     pub fn IsUISupported(self: *const ISpObjectToken, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpObjectToken, @ptrCast(self)), pszTypeOfUI, pvExtraData, cbExtraData, punkObject, pfSupported);
+        return self.vtable.IsUISupported(self, pszTypeOfUI, pvExtraData, cbExtraData, punkObject, pfSupported);
     }
     pub fn DisplayUI(self: *const ISpObjectToken, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpObjectToken, @ptrCast(self)), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData, punkObject);
+        return self.vtable.DisplayUI(self, hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData, punkObject);
     }
     pub fn MatchesAttributes(self: *const ISpObjectToken, pszAttributes: ?[*:0]const u16, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectToken.VTable, @ptrCast(self.vtable)).MatchesAttributes(@as(*const ISpObjectToken, @ptrCast(self)), pszAttributes, pfMatches);
+        return self.vtable.MatchesAttributes(self, pszAttributes, pfMatches);
     }
 };
 
@@ -982,7 +982,7 @@ pub const ISpObjectTokenInit = extern union {
     };}
     pub usingnamespace ISpObjectToken.MethodMixin(@This());
     pub fn InitFromDataKey(self: *const ISpObjectTokenInit, pszCategoryId: ?[*:0]const u16, pszTokenId: ?[*:0]const u16, pDataKey: ?*ISpDataKey) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectTokenInit.VTable, @ptrCast(self.vtable)).InitFromDataKey(@as(*const ISpObjectTokenInit, @ptrCast(self)), pszCategoryId, pszTokenId, pDataKey);
+        return self.vtable.InitFromDataKey(self, pszCategoryId, pszTokenId, pDataKey);
     }
 };
 
@@ -1049,22 +1049,22 @@ pub const IEnumSpObjectTokens = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Next(self: *const IEnumSpObjectTokens, celt: u32, pelt: ?*?*ISpObjectToken, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSpObjectTokens, @ptrCast(self)), celt, pelt, pceltFetched);
+        return self.vtable.Next(self, celt, pelt, pceltFetched);
     }
     pub fn Skip(self: *const IEnumSpObjectTokens, celt: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSpObjectTokens, @ptrCast(self)), celt);
+        return self.vtable.Skip(self, celt);
     }
     pub fn Reset(self: *const IEnumSpObjectTokens) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSpObjectTokens, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Clone(self: *const IEnumSpObjectTokens, ppEnum: ?*?*IEnumSpObjectTokens) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSpObjectTokens, @ptrCast(self)), ppEnum);
+        return self.vtable.Clone(self, ppEnum);
     }
     pub fn Item(self: *const IEnumSpObjectTokens, Index: u32, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).Item(@as(*const IEnumSpObjectTokens, @ptrCast(self)), Index, ppToken);
+        return self.vtable.Item(self, Index, ppToken);
     }
     pub fn GetCount(self: *const IEnumSpObjectTokens, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumSpObjectTokens.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumSpObjectTokens, @ptrCast(self)), pCount);
+        return self.vtable.GetCount(self, pCount);
     }
 };
 
@@ -1097,10 +1097,10 @@ pub const ISpObjectWithToken = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetObjectToken(self: *const ISpObjectWithToken, pToken: ?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectWithToken.VTable, @ptrCast(self.vtable)).SetObjectToken(@as(*const ISpObjectWithToken, @ptrCast(self)), pToken);
+        return self.vtable.SetObjectToken(self, pToken);
     }
     pub fn GetObjectToken(self: *const ISpObjectWithToken, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpObjectWithToken.VTable, @ptrCast(self.vtable)).GetObjectToken(@as(*const ISpObjectWithToken, @ptrCast(self)), ppToken);
+        return self.vtable.GetObjectToken(self, ppToken);
     }
 };
 
@@ -1138,10 +1138,10 @@ pub const ISpResourceManager = extern union {
     };}
     pub usingnamespace IServiceProvider.MethodMixin(@This());
     pub fn SetObject(self: *const ISpResourceManager, guidServiceId: ?*const Guid, pUnkObject: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpResourceManager.VTable, @ptrCast(self.vtable)).SetObject(@as(*const ISpResourceManager, @ptrCast(self)), guidServiceId, pUnkObject);
+        return self.vtable.SetObject(self, guidServiceId, pUnkObject);
     }
     pub fn GetObject(self: *const ISpResourceManager, guidServiceId: ?*const Guid, ObjectCLSID: ?*const Guid, ObjectIID: ?*const Guid, fReleaseWhenLastExternalRefReleased: BOOL, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISpResourceManager.VTable, @ptrCast(self.vtable)).GetObject(@as(*const ISpResourceManager, @ptrCast(self)), guidServiceId, ObjectCLSID, ObjectIID, fReleaseWhenLastExternalRefReleased, ppObject);
+        return self.vtable.GetObject(self, guidServiceId, ObjectCLSID, ObjectIID, fReleaseWhenLastExternalRefReleased, ppObject);
     }
 };
 
@@ -1406,13 +1406,13 @@ pub const ISpEventSource = extern union {
     };}
     pub usingnamespace ISpNotifySource.MethodMixin(@This());
     pub fn SetInterest(self: *const ISpEventSource, ullEventInterest: u64, ullQueuedInterest: u64) callconv(.Inline) HRESULT {
-        return @as(*const ISpEventSource.VTable, @ptrCast(self.vtable)).SetInterest(@as(*const ISpEventSource, @ptrCast(self)), ullEventInterest, ullQueuedInterest);
+        return self.vtable.SetInterest(self, ullEventInterest, ullQueuedInterest);
     }
     pub fn GetEvents(self: *const ISpEventSource, ulCount: u32, pEventArray: ?*SPEVENT, pulFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpEventSource.VTable, @ptrCast(self.vtable)).GetEvents(@as(*const ISpEventSource, @ptrCast(self)), ulCount, pEventArray, pulFetched);
+        return self.vtable.GetEvents(self, ulCount, pEventArray, pulFetched);
     }
     pub fn GetInfo(self: *const ISpEventSource, pInfo: ?*SPEVENTSOURCEINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISpEventSource.VTable, @ptrCast(self.vtable)).GetInfo(@as(*const ISpEventSource, @ptrCast(self)), pInfo);
+        return self.vtable.GetInfo(self, pInfo);
     }
 };
 
@@ -1439,7 +1439,7 @@ pub const ISpEventSource2 = extern union {
     };}
     pub usingnamespace ISpEventSource.MethodMixin(@This());
     pub fn GetEventsEx(self: *const ISpEventSource2, ulCount: u32, pEventArray: ?*SPEVENTEX, pulFetched: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpEventSource2.VTable, @ptrCast(self.vtable)).GetEventsEx(@as(*const ISpEventSource2, @ptrCast(self)), ulCount, pEventArray, pulFetched);
+        return self.vtable.GetEventsEx(self, ulCount, pEventArray, pulFetched);
     }
 };
 
@@ -1473,10 +1473,10 @@ pub const ISpEventSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddEvents(self: *const ISpEventSink, pEventArray: ?*const SPEVENT, ulCount: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpEventSink.VTable, @ptrCast(self.vtable)).AddEvents(@as(*const ISpEventSink, @ptrCast(self)), pEventArray, ulCount);
+        return self.vtable.AddEvents(self, pEventArray, ulCount);
     }
     pub fn GetEventInterest(self: *const ISpEventSink, pullEventInterest: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ISpEventSink.VTable, @ptrCast(self.vtable)).GetEventInterest(@as(*const ISpEventSink, @ptrCast(self)), pullEventInterest);
+        return self.vtable.GetEventInterest(self, pullEventInterest);
     }
 };
 
@@ -1502,7 +1502,7 @@ pub const ISpStreamFormat = extern union {
     };}
     pub usingnamespace IStream.MethodMixin(@This());
     pub fn GetFormat(self: *const ISpStreamFormat, pguidFormatId: ?*Guid, ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const ISpStreamFormat.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const ISpStreamFormat, @ptrCast(self)), pguidFormatId, ppCoMemWaveFormatEx);
+        return self.vtable.GetFormat(self, pguidFormatId, ppCoMemWaveFormatEx);
     }
 };
 
@@ -1569,16 +1569,16 @@ pub const ISpStream = extern union {
     };}
     pub usingnamespace ISpStreamFormat.MethodMixin(@This());
     pub fn SetBaseStream(self: *const ISpStream, pStream: ?*IStream, rguidFormat: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const ISpStream.VTable, @ptrCast(self.vtable)).SetBaseStream(@as(*const ISpStream, @ptrCast(self)), pStream, rguidFormat, pWaveFormatEx);
+        return self.vtable.SetBaseStream(self, pStream, rguidFormat, pWaveFormatEx);
     }
     pub fn GetBaseStream(self: *const ISpStream, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const ISpStream.VTable, @ptrCast(self.vtable)).GetBaseStream(@as(*const ISpStream, @ptrCast(self)), ppStream);
+        return self.vtable.GetBaseStream(self, ppStream);
     }
     pub fn BindToFile(self: *const ISpStream, pszFileName: ?[*:0]const u16, eMode: SPFILEMODE, pFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX, ullEventInterest: u64) callconv(.Inline) HRESULT {
-        return @as(*const ISpStream.VTable, @ptrCast(self.vtable)).BindToFile(@as(*const ISpStream, @ptrCast(self)), pszFileName, eMode, pFormatId, pWaveFormatEx, ullEventInterest);
+        return self.vtable.BindToFile(self, pszFileName, eMode, pFormatId, pWaveFormatEx, ullEventInterest);
     }
     pub fn Close(self: *const ISpStream) callconv(.Inline) HRESULT {
-        return @as(*const ISpStream.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpStream, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -1647,22 +1647,22 @@ pub const ISpStreamFormatConverter = extern union {
     };}
     pub usingnamespace ISpStreamFormat.MethodMixin(@This());
     pub fn SetBaseStream(self: *const ISpStreamFormatConverter, pStream: ?*ISpStreamFormat, fSetFormatToBaseStreamFormat: BOOL, fWriteToBaseStream: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).SetBaseStream(@as(*const ISpStreamFormatConverter, @ptrCast(self)), pStream, fSetFormatToBaseStreamFormat, fWriteToBaseStream);
+        return self.vtable.SetBaseStream(self, pStream, fSetFormatToBaseStreamFormat, fWriteToBaseStream);
     }
     pub fn GetBaseStream(self: *const ISpStreamFormatConverter, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).GetBaseStream(@as(*const ISpStreamFormatConverter, @ptrCast(self)), ppStream);
+        return self.vtable.GetBaseStream(self, ppStream);
     }
     pub fn SetFormat(self: *const ISpStreamFormatConverter, rguidFormatIdOfConvertedStream: ?*const Guid, pWaveFormatExOfConvertedStream: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const ISpStreamFormatConverter, @ptrCast(self)), rguidFormatIdOfConvertedStream, pWaveFormatExOfConvertedStream);
+        return self.vtable.SetFormat(self, rguidFormatIdOfConvertedStream, pWaveFormatExOfConvertedStream);
     }
     pub fn ResetSeekPosition(self: *const ISpStreamFormatConverter) callconv(.Inline) HRESULT {
-        return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).ResetSeekPosition(@as(*const ISpStreamFormatConverter, @ptrCast(self)));
+        return self.vtable.ResetSeekPosition(self);
     }
     pub fn ScaleConvertedToBaseOffset(self: *const ISpStreamFormatConverter, ullOffsetConvertedStream: u64, pullOffsetBaseStream: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).ScaleConvertedToBaseOffset(@as(*const ISpStreamFormatConverter, @ptrCast(self)), ullOffsetConvertedStream, pullOffsetBaseStream);
+        return self.vtable.ScaleConvertedToBaseOffset(self, ullOffsetConvertedStream, pullOffsetBaseStream);
     }
     pub fn ScaleBaseToConvertedOffset(self: *const ISpStreamFormatConverter, ullOffsetBaseStream: u64, pullOffsetConvertedStream: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ISpStreamFormatConverter.VTable, @ptrCast(self.vtable)).ScaleBaseToConvertedOffset(@as(*const ISpStreamFormatConverter, @ptrCast(self)), ullOffsetBaseStream, pullOffsetConvertedStream);
+        return self.vtable.ScaleBaseToConvertedOffset(self, ullOffsetBaseStream, pullOffsetConvertedStream);
     }
 };
 
@@ -1796,37 +1796,37 @@ pub const ISpAudio = extern union {
     };}
     pub usingnamespace ISpStreamFormat.MethodMixin(@This());
     pub fn SetState(self: *const ISpAudio, NewState: SPAUDIOSTATE, ullReserved: u64) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetState(@as(*const ISpAudio, @ptrCast(self)), NewState, ullReserved);
+        return self.vtable.SetState(self, NewState, ullReserved);
     }
     pub fn SetFormat(self: *const ISpAudio, rguidFmtId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetFormat(@as(*const ISpAudio, @ptrCast(self)), rguidFmtId, pWaveFormatEx);
+        return self.vtable.SetFormat(self, rguidFmtId, pWaveFormatEx);
     }
     pub fn GetStatus(self: *const ISpAudio, pStatus: ?*SPAUDIOSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ISpAudio, @ptrCast(self)), pStatus);
+        return self.vtable.GetStatus(self, pStatus);
     }
     pub fn SetBufferInfo(self: *const ISpAudio, pBuffInfo: ?*const SPAUDIOBUFFERINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetBufferInfo(@as(*const ISpAudio, @ptrCast(self)), pBuffInfo);
+        return self.vtable.SetBufferInfo(self, pBuffInfo);
     }
     pub fn GetBufferInfo(self: *const ISpAudio, pBuffInfo: ?*SPAUDIOBUFFERINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetBufferInfo(@as(*const ISpAudio, @ptrCast(self)), pBuffInfo);
+        return self.vtable.GetBufferInfo(self, pBuffInfo);
     }
     pub fn GetDefaultFormat(self: *const ISpAudio, pFormatId: ?*Guid, ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetDefaultFormat(@as(*const ISpAudio, @ptrCast(self)), pFormatId, ppCoMemWaveFormatEx);
+        return self.vtable.GetDefaultFormat(self, pFormatId, ppCoMemWaveFormatEx);
     }
     pub fn EventHandle(self: *const ISpAudio) callconv(.Inline) ?HANDLE {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).EventHandle(@as(*const ISpAudio, @ptrCast(self)));
+        return self.vtable.EventHandle(self);
     }
     pub fn GetVolumeLevel(self: *const ISpAudio, pLevel: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetVolumeLevel(@as(*const ISpAudio, @ptrCast(self)), pLevel);
+        return self.vtable.GetVolumeLevel(self, pLevel);
     }
     pub fn SetVolumeLevel(self: *const ISpAudio, Level: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetVolumeLevel(@as(*const ISpAudio, @ptrCast(self)), Level);
+        return self.vtable.SetVolumeLevel(self, Level);
     }
     pub fn GetBufferNotifySize(self: *const ISpAudio, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).GetBufferNotifySize(@as(*const ISpAudio, @ptrCast(self)), pcbSize);
+        return self.vtable.GetBufferNotifySize(self, pcbSize);
     }
     pub fn SetBufferNotifySize(self: *const ISpAudio, cbSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpAudio.VTable, @ptrCast(self.vtable)).SetBufferNotifySize(@as(*const ISpAudio, @ptrCast(self)), cbSize);
+        return self.vtable.SetBufferNotifySize(self, cbSize);
     }
 };
 
@@ -1883,19 +1883,19 @@ pub const ISpMMSysAudio = extern union {
     };}
     pub usingnamespace ISpAudio.MethodMixin(@This());
     pub fn GetDeviceId(self: *const ISpMMSysAudio, puDeviceId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).GetDeviceId(@as(*const ISpMMSysAudio, @ptrCast(self)), puDeviceId);
+        return self.vtable.GetDeviceId(self, puDeviceId);
     }
     pub fn SetDeviceId(self: *const ISpMMSysAudio, uDeviceId: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).SetDeviceId(@as(*const ISpMMSysAudio, @ptrCast(self)), uDeviceId);
+        return self.vtable.SetDeviceId(self, uDeviceId);
     }
     pub fn GetMMHandle(self: *const ISpMMSysAudio, pHandle: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).GetMMHandle(@as(*const ISpMMSysAudio, @ptrCast(self)), pHandle);
+        return self.vtable.GetMMHandle(self, pHandle);
     }
     pub fn GetLineId(self: *const ISpMMSysAudio, puLineId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).GetLineId(@as(*const ISpMMSysAudio, @ptrCast(self)), puLineId);
+        return self.vtable.GetLineId(self, puLineId);
     }
     pub fn SetLineId(self: *const ISpMMSysAudio, uLineId: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpMMSysAudio.VTable, @ptrCast(self.vtable)).SetLineId(@as(*const ISpMMSysAudio, @ptrCast(self)), uLineId);
+        return self.vtable.SetLineId(self, uLineId);
     }
 };
 
@@ -1928,10 +1928,10 @@ pub const ISpTranscript = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTranscript(self: *const ISpTranscript, ppszTranscript: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpTranscript.VTable, @ptrCast(self.vtable)).GetTranscript(@as(*const ISpTranscript, @ptrCast(self)), ppszTranscript);
+        return self.vtable.GetTranscript(self, ppszTranscript);
     }
     pub fn AppendTranscript(self: *const ISpTranscript, pszTranscript: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpTranscript.VTable, @ptrCast(self.vtable)).AppendTranscript(@as(*const ISpTranscript, @ptrCast(self)), pszTranscript);
+        return self.vtable.AppendTranscript(self, pszTranscript);
     }
 };
 
@@ -2327,22 +2327,22 @@ pub const ISpLexicon = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPronunciations(self: *const ISpLexicon, pszWord: ?[*:0]const u16, LangID: u16, dwFlags: u32, pWordPronunciationList: ?*SPWORDPRONUNCIATIONLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).GetPronunciations(@as(*const ISpLexicon, @ptrCast(self)), pszWord, LangID, dwFlags, pWordPronunciationList);
+        return self.vtable.GetPronunciations(self, pszWord, LangID, dwFlags, pWordPronunciationList);
     }
     pub fn AddPronunciation(self: *const ISpLexicon, pszWord: ?[*:0]const u16, LangID: u16, ePartOfSpeech: SPPARTOFSPEECH, pszPronunciation: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).AddPronunciation(@as(*const ISpLexicon, @ptrCast(self)), pszWord, LangID, ePartOfSpeech, pszPronunciation);
+        return self.vtable.AddPronunciation(self, pszWord, LangID, ePartOfSpeech, pszPronunciation);
     }
     pub fn RemovePronunciation(self: *const ISpLexicon, pszWord: ?[*:0]const u16, LangID: u16, ePartOfSpeech: SPPARTOFSPEECH, pszPronunciation: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).RemovePronunciation(@as(*const ISpLexicon, @ptrCast(self)), pszWord, LangID, ePartOfSpeech, pszPronunciation);
+        return self.vtable.RemovePronunciation(self, pszWord, LangID, ePartOfSpeech, pszPronunciation);
     }
     pub fn GetGeneration(self: *const ISpLexicon, pdwGeneration: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).GetGeneration(@as(*const ISpLexicon, @ptrCast(self)), pdwGeneration);
+        return self.vtable.GetGeneration(self, pdwGeneration);
     }
     pub fn GetGenerationChange(self: *const ISpLexicon, dwFlags: u32, pdwGeneration: ?*u32, pWordList: ?*SPWORDLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).GetGenerationChange(@as(*const ISpLexicon, @ptrCast(self)), dwFlags, pdwGeneration, pWordList);
+        return self.vtable.GetGenerationChange(self, dwFlags, pdwGeneration, pWordList);
     }
     pub fn GetWords(self: *const ISpLexicon, dwFlags: u32, pdwGeneration: ?*u32, pdwCookie: ?*u32, pWordList: ?*SPWORDLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpLexicon.VTable, @ptrCast(self.vtable)).GetWords(@as(*const ISpLexicon, @ptrCast(self)), dwFlags, pdwGeneration, pdwCookie, pWordList);
+        return self.vtable.GetWords(self, dwFlags, pdwGeneration, pdwCookie, pWordList);
     }
 };
 
@@ -2368,7 +2368,7 @@ pub const ISpContainerLexicon = extern union {
     };}
     pub usingnamespace ISpLexicon.MethodMixin(@This());
     pub fn AddLexicon(self: *const ISpContainerLexicon, pAddLexicon: ?*ISpLexicon, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpContainerLexicon.VTable, @ptrCast(self.vtable)).AddLexicon(@as(*const ISpContainerLexicon, @ptrCast(self)), pAddLexicon, dwFlags);
+        return self.vtable.AddLexicon(self, pAddLexicon, dwFlags);
     }
 };
 
@@ -2495,28 +2495,28 @@ pub const ISpShortcut = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddShortcut(self: *const ISpShortcut, pszDisplay: ?[*:0]const u16, LangID: u16, pszSpoken: ?[*:0]const u16, shType: SPSHORTCUTTYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).AddShortcut(@as(*const ISpShortcut, @ptrCast(self)), pszDisplay, LangID, pszSpoken, shType);
+        return self.vtable.AddShortcut(self, pszDisplay, LangID, pszSpoken, shType);
     }
     pub fn RemoveShortcut(self: *const ISpShortcut, pszDisplay: ?[*:0]const u16, LangID: u16, pszSpoken: ?[*:0]const u16, shType: SPSHORTCUTTYPE) callconv(.Inline) HRESULT {
-        return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).RemoveShortcut(@as(*const ISpShortcut, @ptrCast(self)), pszDisplay, LangID, pszSpoken, shType);
+        return self.vtable.RemoveShortcut(self, pszDisplay, LangID, pszSpoken, shType);
     }
     pub fn GetShortcuts(self: *const ISpShortcut, LangID: u16, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetShortcuts(@as(*const ISpShortcut, @ptrCast(self)), LangID, pShortcutpairList);
+        return self.vtable.GetShortcuts(self, LangID, pShortcutpairList);
     }
     pub fn GetGeneration(self: *const ISpShortcut, pdwGeneration: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetGeneration(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration);
+        return self.vtable.GetGeneration(self, pdwGeneration);
     }
     pub fn GetWordsFromGenerationChange(self: *const ISpShortcut, pdwGeneration: ?*u32, pWordList: ?*SPWORDLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetWordsFromGenerationChange(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration, pWordList);
+        return self.vtable.GetWordsFromGenerationChange(self, pdwGeneration, pWordList);
     }
     pub fn GetWords(self: *const ISpShortcut, pdwGeneration: ?*u32, pdwCookie: ?*u32, pWordList: ?*SPWORDLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetWords(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration, pdwCookie, pWordList);
+        return self.vtable.GetWords(self, pdwGeneration, pdwCookie, pWordList);
     }
     pub fn GetShortcutsForGeneration(self: *const ISpShortcut, pdwGeneration: ?*u32, pdwCookie: ?*u32, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetShortcutsForGeneration(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration, pdwCookie, pShortcutpairList);
+        return self.vtable.GetShortcutsForGeneration(self, pdwGeneration, pdwCookie, pShortcutpairList);
     }
     pub fn GetGenerationChange(self: *const ISpShortcut, pdwGeneration: ?*u32, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpShortcut.VTable, @ptrCast(self.vtable)).GetGenerationChange(@as(*const ISpShortcut, @ptrCast(self)), pdwGeneration, pShortcutpairList);
+        return self.vtable.GetGenerationChange(self, pdwGeneration, pShortcutpairList);
     }
 };
 
@@ -2551,10 +2551,10 @@ pub const ISpPhoneConverter = extern union {
     };}
     pub usingnamespace ISpObjectWithToken.MethodMixin(@This());
     pub fn PhoneToId(self: *const ISpPhoneConverter, pszPhone: ?[*:0]const u16, pId: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhoneConverter.VTable, @ptrCast(self.vtable)).PhoneToId(@as(*const ISpPhoneConverter, @ptrCast(self)), pszPhone, pId);
+        return self.vtable.PhoneToId(self, pszPhone, pId);
     }
     pub fn IdToPhone(self: *const ISpPhoneConverter, pId: ?*u16, pszPhone: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhoneConverter.VTable, @ptrCast(self.vtable)).IdToPhone(@as(*const ISpPhoneConverter, @ptrCast(self)), pId, pszPhone);
+        return self.vtable.IdToPhone(self, pId, pszPhone);
     }
 };
 
@@ -2617,19 +2617,19 @@ pub const ISpPhoneticAlphabetConverter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLangId(self: *const ISpPhoneticAlphabetConverter, pLangID: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).GetLangId(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), pLangID);
+        return self.vtable.GetLangId(self, pLangID);
     }
     pub fn SetLangId(self: *const ISpPhoneticAlphabetConverter, LangID: u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).SetLangId(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), LangID);
+        return self.vtable.SetLangId(self, LangID);
     }
     pub fn SAPI2UPS(self: *const ISpPhoneticAlphabetConverter, pszSAPIId: ?*const u16, pszUPSId: [*:0]u16, cMaxLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).SAPI2UPS(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), pszSAPIId, pszUPSId, cMaxLength);
+        return self.vtable.SAPI2UPS(self, pszSAPIId, pszUPSId, cMaxLength);
     }
     pub fn UPS2SAPI(self: *const ISpPhoneticAlphabetConverter, pszUPSId: ?*const u16, pszSAPIId: [*:0]u16, cMaxLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).UPS2SAPI(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), pszUPSId, pszSAPIId, cMaxLength);
+        return self.vtable.UPS2SAPI(self, pszUPSId, pszSAPIId, cMaxLength);
     }
     pub fn GetMaxConvertLength(self: *const ISpPhoneticAlphabetConverter, cSrcLength: u32, bSAPI2UPS: BOOL, pcMaxDestLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhoneticAlphabetConverter.VTable, @ptrCast(self.vtable)).GetMaxConvertLength(@as(*const ISpPhoneticAlphabetConverter, @ptrCast(self)), cSrcLength, bSAPI2UPS, pcMaxDestLength);
+        return self.vtable.GetMaxConvertLength(self, cSrcLength, bSAPI2UPS, pcMaxDestLength);
     }
 };
 
@@ -2662,10 +2662,10 @@ pub const ISpPhoneticAlphabetSelection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsAlphabetUPS(self: *const ISpPhoneticAlphabetSelection, pfIsUPS: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhoneticAlphabetSelection.VTable, @ptrCast(self.vtable)).IsAlphabetUPS(@as(*const ISpPhoneticAlphabetSelection, @ptrCast(self)), pfIsUPS);
+        return self.vtable.IsAlphabetUPS(self, pfIsUPS);
     }
     pub fn SetAlphabetToUPS(self: *const ISpPhoneticAlphabetSelection, fForceUPS: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhoneticAlphabetSelection.VTable, @ptrCast(self.vtable)).SetAlphabetToUPS(@as(*const ISpPhoneticAlphabetSelection, @ptrCast(self)), fForceUPS);
+        return self.vtable.SetAlphabetToUPS(self, fForceUPS);
     }
 };
 
@@ -3012,79 +3012,79 @@ pub const ISpVoice = extern union {
     };}
     pub usingnamespace ISpEventSource.MethodMixin(@This());
     pub fn SetOutput(self: *const ISpVoice, pUnkOutput: ?*IUnknown, fAllowFormatChanges: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetOutput(@as(*const ISpVoice, @ptrCast(self)), pUnkOutput, fAllowFormatChanges);
+        return self.vtable.SetOutput(self, pUnkOutput, fAllowFormatChanges);
     }
     pub fn GetOutputObjectToken(self: *const ISpVoice, ppObjectToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetOutputObjectToken(@as(*const ISpVoice, @ptrCast(self)), ppObjectToken);
+        return self.vtable.GetOutputObjectToken(self, ppObjectToken);
     }
     pub fn GetOutputStream(self: *const ISpVoice, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetOutputStream(@as(*const ISpVoice, @ptrCast(self)), ppStream);
+        return self.vtable.GetOutputStream(self, ppStream);
     }
     pub fn Pause(self: *const ISpVoice) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).Pause(@as(*const ISpVoice, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn Resume(self: *const ISpVoice) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).Resume(@as(*const ISpVoice, @ptrCast(self)));
+        return self.vtable.Resume(self);
     }
     pub fn SetVoice(self: *const ISpVoice, pToken: ?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetVoice(@as(*const ISpVoice, @ptrCast(self)), pToken);
+        return self.vtable.SetVoice(self, pToken);
     }
     pub fn GetVoice(self: *const ISpVoice, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetVoice(@as(*const ISpVoice, @ptrCast(self)), ppToken);
+        return self.vtable.GetVoice(self, ppToken);
     }
     pub fn Speak(self: *const ISpVoice, pwcs: ?[*:0]const u16, dwFlags: u32, pulStreamNumber: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).Speak(@as(*const ISpVoice, @ptrCast(self)), pwcs, dwFlags, pulStreamNumber);
+        return self.vtable.Speak(self, pwcs, dwFlags, pulStreamNumber);
     }
     pub fn SpeakStream(self: *const ISpVoice, pStream: ?*IStream, dwFlags: u32, pulStreamNumber: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SpeakStream(@as(*const ISpVoice, @ptrCast(self)), pStream, dwFlags, pulStreamNumber);
+        return self.vtable.SpeakStream(self, pStream, dwFlags, pulStreamNumber);
     }
     pub fn GetStatus(self: *const ISpVoice, pStatus: ?*SPVOICESTATUS, ppszLastBookmark: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ISpVoice, @ptrCast(self)), pStatus, ppszLastBookmark);
+        return self.vtable.GetStatus(self, pStatus, ppszLastBookmark);
     }
     pub fn Skip(self: *const ISpVoice, pItemType: ?[*:0]const u16, lNumItems: i32, pulNumSkipped: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).Skip(@as(*const ISpVoice, @ptrCast(self)), pItemType, lNumItems, pulNumSkipped);
+        return self.vtable.Skip(self, pItemType, lNumItems, pulNumSkipped);
     }
     pub fn SetPriority(self: *const ISpVoice, ePriority: SPVPRIORITY) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const ISpVoice, @ptrCast(self)), ePriority);
+        return self.vtable.SetPriority(self, ePriority);
     }
     pub fn GetPriority(self: *const ISpVoice, pePriority: ?*SPVPRIORITY) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const ISpVoice, @ptrCast(self)), pePriority);
+        return self.vtable.GetPriority(self, pePriority);
     }
     pub fn SetAlertBoundary(self: *const ISpVoice, eBoundary: SPEVENTENUM) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetAlertBoundary(@as(*const ISpVoice, @ptrCast(self)), eBoundary);
+        return self.vtable.SetAlertBoundary(self, eBoundary);
     }
     pub fn GetAlertBoundary(self: *const ISpVoice, peBoundary: ?*SPEVENTENUM) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetAlertBoundary(@as(*const ISpVoice, @ptrCast(self)), peBoundary);
+        return self.vtable.GetAlertBoundary(self, peBoundary);
     }
     pub fn SetRate(self: *const ISpVoice, RateAdjust: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetRate(@as(*const ISpVoice, @ptrCast(self)), RateAdjust);
+        return self.vtable.SetRate(self, RateAdjust);
     }
     pub fn GetRate(self: *const ISpVoice, pRateAdjust: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetRate(@as(*const ISpVoice, @ptrCast(self)), pRateAdjust);
+        return self.vtable.GetRate(self, pRateAdjust);
     }
     pub fn SetVolume(self: *const ISpVoice, usVolume: u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const ISpVoice, @ptrCast(self)), usVolume);
+        return self.vtable.SetVolume(self, usVolume);
     }
     pub fn GetVolume(self: *const ISpVoice, pusVolume: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetVolume(@as(*const ISpVoice, @ptrCast(self)), pusVolume);
+        return self.vtable.GetVolume(self, pusVolume);
     }
     pub fn WaitUntilDone(self: *const ISpVoice, msTimeout: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).WaitUntilDone(@as(*const ISpVoice, @ptrCast(self)), msTimeout);
+        return self.vtable.WaitUntilDone(self, msTimeout);
     }
     pub fn SetSyncSpeakTimeout(self: *const ISpVoice, msTimeout: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SetSyncSpeakTimeout(@as(*const ISpVoice, @ptrCast(self)), msTimeout);
+        return self.vtable.SetSyncSpeakTimeout(self, msTimeout);
     }
     pub fn GetSyncSpeakTimeout(self: *const ISpVoice, pmsTimeout: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).GetSyncSpeakTimeout(@as(*const ISpVoice, @ptrCast(self)), pmsTimeout);
+        return self.vtable.GetSyncSpeakTimeout(self, pmsTimeout);
     }
     pub fn SpeakCompleteEvent(self: *const ISpVoice) callconv(.Inline) ?HANDLE {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).SpeakCompleteEvent(@as(*const ISpVoice, @ptrCast(self)));
+        return self.vtable.SpeakCompleteEvent(self);
     }
     pub fn IsUISupported(self: *const ISpVoice, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpVoice, @ptrCast(self)), pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
+        return self.vtable.IsUISupported(self, pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
     }
     pub fn DisplayUI(self: *const ISpVoice, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpVoice.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpVoice, @ptrCast(self)), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
+        return self.vtable.DisplayUI(self, hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
     }
 };
 
@@ -3137,16 +3137,16 @@ pub const ISpPhrase = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPhrase(self: *const ISpPhrase, ppCoMemPhrase: ?*?*SPPHRASE) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhrase.VTable, @ptrCast(self.vtable)).GetPhrase(@as(*const ISpPhrase, @ptrCast(self)), ppCoMemPhrase);
+        return self.vtable.GetPhrase(self, ppCoMemPhrase);
     }
     pub fn GetSerializedPhrase(self: *const ISpPhrase, ppCoMemPhrase: ?*?*SPSERIALIZEDPHRASE) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhrase.VTable, @ptrCast(self.vtable)).GetSerializedPhrase(@as(*const ISpPhrase, @ptrCast(self)), ppCoMemPhrase);
+        return self.vtable.GetSerializedPhrase(self, ppCoMemPhrase);
     }
     pub fn GetText(self: *const ISpPhrase, ulStart: u32, ulCount: u32, fUseTextReplacements: BOOL, ppszCoMemText: ?*?PWSTR, pbDisplayAttributes: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhrase.VTable, @ptrCast(self.vtable)).GetText(@as(*const ISpPhrase, @ptrCast(self)), ulStart, ulCount, fUseTextReplacements, ppszCoMemText, pbDisplayAttributes);
+        return self.vtable.GetText(self, ulStart, ulCount, fUseTextReplacements, ppszCoMemText, pbDisplayAttributes);
     }
     pub fn Discard(self: *const ISpPhrase, dwValueTypes: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhrase.VTable, @ptrCast(self.vtable)).Discard(@as(*const ISpPhrase, @ptrCast(self)), dwValueTypes);
+        return self.vtable.Discard(self, dwValueTypes);
     }
 };
 
@@ -3181,10 +3181,10 @@ pub const ISpPhraseAlt = extern union {
     };}
     pub usingnamespace ISpPhrase.MethodMixin(@This());
     pub fn GetAltInfo(self: *const ISpPhraseAlt, ppParent: ?*?*ISpPhrase, pulStartElementInParent: ?*u32, pcElementsInParent: ?*u32, pcElementsInAlt: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhraseAlt.VTable, @ptrCast(self.vtable)).GetAltInfo(@as(*const ISpPhraseAlt, @ptrCast(self)), ppParent, pulStartElementInParent, pcElementsInParent, pcElementsInAlt);
+        return self.vtable.GetAltInfo(self, ppParent, pulStartElementInParent, pcElementsInParent, pcElementsInAlt);
     }
     pub fn Commit(self: *const ISpPhraseAlt) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhraseAlt.VTable, @ptrCast(self.vtable)).Commit(@as(*const ISpPhraseAlt, @ptrCast(self)));
+        return self.vtable.Commit(self);
     }
 };
 
@@ -3235,13 +3235,13 @@ pub const ISpPhrase2 = extern union {
     };}
     pub usingnamespace ISpPhrase.MethodMixin(@This());
     pub fn GetXMLResult(self: *const ISpPhrase2, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhrase2.VTable, @ptrCast(self.vtable)).GetXMLResult(@as(*const ISpPhrase2, @ptrCast(self)), ppszCoMemXMLResult, Options);
+        return self.vtable.GetXMLResult(self, ppszCoMemXMLResult, Options);
     }
     pub fn GetXMLErrorInfo(self: *const ISpPhrase2, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhrase2.VTable, @ptrCast(self.vtable)).GetXMLErrorInfo(@as(*const ISpPhrase2, @ptrCast(self)), pSemanticErrorInfo);
+        return self.vtable.GetXMLErrorInfo(self, pSemanticErrorInfo);
     }
     pub fn GetAudio(self: *const ISpPhrase2, ulStartElement: u32, cElements: u32, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpPhrase2.VTable, @ptrCast(self.vtable)).GetAudio(@as(*const ISpPhrase2, @ptrCast(self)), ulStartElement, cElements, ppStream);
+        return self.vtable.GetAudio(self, ulStartElement, cElements, ppStream);
     }
 };
 
@@ -3335,25 +3335,25 @@ pub const ISpRecoResult = extern union {
     };}
     pub usingnamespace ISpPhrase.MethodMixin(@This());
     pub fn GetResultTimes(self: *const ISpRecoResult, pTimes: ?*SPRECORESULTTIMES) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).GetResultTimes(@as(*const ISpRecoResult, @ptrCast(self)), pTimes);
+        return self.vtable.GetResultTimes(self, pTimes);
     }
     pub fn GetAlternates(self: *const ISpRecoResult, ulStartElement: u32, cElements: u32, ulRequestCount: u32, ppPhrases: [*]?*ISpPhraseAlt, pcPhrasesReturned: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).GetAlternates(@as(*const ISpRecoResult, @ptrCast(self)), ulStartElement, cElements, ulRequestCount, ppPhrases, pcPhrasesReturned);
+        return self.vtable.GetAlternates(self, ulStartElement, cElements, ulRequestCount, ppPhrases, pcPhrasesReturned);
     }
     pub fn GetAudio(self: *const ISpRecoResult, ulStartElement: u32, cElements: u32, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).GetAudio(@as(*const ISpRecoResult, @ptrCast(self)), ulStartElement, cElements, ppStream);
+        return self.vtable.GetAudio(self, ulStartElement, cElements, ppStream);
     }
     pub fn SpeakAudio(self: *const ISpRecoResult, ulStartElement: u32, cElements: u32, dwFlags: u32, pulStreamNumber: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).SpeakAudio(@as(*const ISpRecoResult, @ptrCast(self)), ulStartElement, cElements, dwFlags, pulStreamNumber);
+        return self.vtable.SpeakAudio(self, ulStartElement, cElements, dwFlags, pulStreamNumber);
     }
     pub fn Serialize(self: *const ISpRecoResult, ppCoMemSerializedResult: ?*?*SPSERIALIZEDRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISpRecoResult, @ptrCast(self)), ppCoMemSerializedResult);
+        return self.vtable.Serialize(self, ppCoMemSerializedResult);
     }
     pub fn ScaleAudio(self: *const ISpRecoResult, pAudioFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).ScaleAudio(@as(*const ISpRecoResult, @ptrCast(self)), pAudioFormatId, pWaveFormatEx);
+        return self.vtable.ScaleAudio(self, pAudioFormatId, pWaveFormatEx);
     }
     pub fn GetRecoContext(self: *const ISpRecoResult, ppRecoContext: ?*?*ISpRecoContext) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult.VTable, @ptrCast(self.vtable)).GetRecoContext(@as(*const ISpRecoResult, @ptrCast(self)), ppRecoContext);
+        return self.vtable.GetRecoContext(self, ppRecoContext);
     }
 };
 
@@ -3408,13 +3408,13 @@ pub const ISpRecoResult2 = extern union {
     };}
     pub usingnamespace ISpRecoResult.MethodMixin(@This());
     pub fn CommitAlternate(self: *const ISpRecoResult2, pPhraseAlt: ?*ISpPhraseAlt, ppNewResult: ?*?*ISpRecoResult) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult2.VTable, @ptrCast(self.vtable)).CommitAlternate(@as(*const ISpRecoResult2, @ptrCast(self)), pPhraseAlt, ppNewResult);
+        return self.vtable.CommitAlternate(self, pPhraseAlt, ppNewResult);
     }
     pub fn CommitText(self: *const ISpRecoResult2, ulStartElement: u32, cElements: u32, pszCorrectedData: ?[*:0]const u16, eCommitFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult2.VTable, @ptrCast(self.vtable)).CommitText(@as(*const ISpRecoResult2, @ptrCast(self)), ulStartElement, cElements, pszCorrectedData, eCommitFlags);
+        return self.vtable.CommitText(self, ulStartElement, cElements, pszCorrectedData, eCommitFlags);
     }
     pub fn SetTextFeedback(self: *const ISpRecoResult2, pszFeedback: ?[*:0]const u16, fSuccessful: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoResult2.VTable, @ptrCast(self.vtable)).SetTextFeedback(@as(*const ISpRecoResult2, @ptrCast(self)), pszFeedback, fSuccessful);
+        return self.vtable.SetTextFeedback(self, pszFeedback, fSuccessful);
     }
 };
 
@@ -3448,10 +3448,10 @@ pub const ISpXMLRecoResult = extern union {
     };}
     pub usingnamespace ISpRecoResult.MethodMixin(@This());
     pub fn GetXMLResult(self: *const ISpXMLRecoResult, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ISpXMLRecoResult.VTable, @ptrCast(self.vtable)).GetXMLResult(@as(*const ISpXMLRecoResult, @ptrCast(self)), ppszCoMemXMLResult, Options);
+        return self.vtable.GetXMLResult(self, ppszCoMemXMLResult, Options);
     }
     pub fn GetXMLErrorInfo(self: *const ISpXMLRecoResult, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISpXMLRecoResult.VTable, @ptrCast(self.vtable)).GetXMLErrorInfo(@as(*const ISpXMLRecoResult, @ptrCast(self)), pSemanticErrorInfo);
+        return self.vtable.GetXMLErrorInfo(self, pSemanticErrorInfo);
     }
 };
 
@@ -3631,28 +3631,28 @@ pub const ISpGrammarBuilder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ResetGrammar(self: *const ISpGrammarBuilder, NewLanguage: u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).ResetGrammar(@as(*const ISpGrammarBuilder, @ptrCast(self)), NewLanguage);
+        return self.vtable.ResetGrammar(self, NewLanguage);
     }
     pub fn GetRule(self: *const ISpGrammarBuilder, pszRuleName: ?[*:0]const u16, dwRuleId: u32, dwAttributes: u32, fCreateIfNotExist: BOOL, phInitialState: ?*?*SPSTATEHANDLE__) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).GetRule(@as(*const ISpGrammarBuilder, @ptrCast(self)), pszRuleName, dwRuleId, dwAttributes, fCreateIfNotExist, phInitialState);
+        return self.vtable.GetRule(self, pszRuleName, dwRuleId, dwAttributes, fCreateIfNotExist, phInitialState);
     }
     pub fn ClearRule(self: *const ISpGrammarBuilder, hState: ?*SPSTATEHANDLE__) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).ClearRule(@as(*const ISpGrammarBuilder, @ptrCast(self)), hState);
+        return self.vtable.ClearRule(self, hState);
     }
     pub fn CreateNewState(self: *const ISpGrammarBuilder, hState: ?*SPSTATEHANDLE__, phState: ?*?*SPSTATEHANDLE__) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).CreateNewState(@as(*const ISpGrammarBuilder, @ptrCast(self)), hState, phState);
+        return self.vtable.CreateNewState(self, hState, phState);
     }
     pub fn AddWordTransition(self: *const ISpGrammarBuilder, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, psz: ?[*:0]const u16, pszSeparators: ?[*:0]const u16, eWordType: SPGRAMMARWORDTYPE, Weight: f32, pPropInfo: ?*const SPPROPERTYINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).AddWordTransition(@as(*const ISpGrammarBuilder, @ptrCast(self)), hFromState, hToState, psz, pszSeparators, eWordType, Weight, pPropInfo);
+        return self.vtable.AddWordTransition(self, hFromState, hToState, psz, pszSeparators, eWordType, Weight, pPropInfo);
     }
     pub fn AddRuleTransition(self: *const ISpGrammarBuilder, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, hRule: ?*SPSTATEHANDLE__, Weight: f32, pPropInfo: ?*const SPPROPERTYINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).AddRuleTransition(@as(*const ISpGrammarBuilder, @ptrCast(self)), hFromState, hToState, hRule, Weight, pPropInfo);
+        return self.vtable.AddRuleTransition(self, hFromState, hToState, hRule, Weight, pPropInfo);
     }
     pub fn AddResource(self: *const ISpGrammarBuilder, hRuleState: ?*SPSTATEHANDLE__, pszResourceName: ?[*:0]const u16, pszResourceValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).AddResource(@as(*const ISpGrammarBuilder, @ptrCast(self)), hRuleState, pszResourceName, pszResourceValue);
+        return self.vtable.AddResource(self, hRuleState, pszResourceName, pszResourceValue);
     }
     pub fn Commit(self: *const ISpGrammarBuilder, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder.VTable, @ptrCast(self.vtable)).Commit(@as(*const ISpGrammarBuilder, @ptrCast(self)), dwReserved);
+        return self.vtable.Commit(self, dwReserved);
     }
 };
 
@@ -3839,58 +3839,58 @@ pub const ISpRecoGrammar = extern union {
     };}
     pub usingnamespace ISpGrammarBuilder.MethodMixin(@This());
     pub fn GetGrammarId(self: *const ISpRecoGrammar, pullGrammarId: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).GetGrammarId(@as(*const ISpRecoGrammar, @ptrCast(self)), pullGrammarId);
+        return self.vtable.GetGrammarId(self, pullGrammarId);
     }
     pub fn GetRecoContext(self: *const ISpRecoGrammar, ppRecoCtxt: ?*?*ISpRecoContext) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).GetRecoContext(@as(*const ISpRecoGrammar, @ptrCast(self)), ppRecoCtxt);
+        return self.vtable.GetRecoContext(self, ppRecoCtxt);
     }
     pub fn LoadCmdFromFile(self: *const ISpRecoGrammar, pszFileName: ?[*:0]const u16, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromFile(@as(*const ISpRecoGrammar, @ptrCast(self)), pszFileName, Options);
+        return self.vtable.LoadCmdFromFile(self, pszFileName, Options);
     }
     pub fn LoadCmdFromObject(self: *const ISpRecoGrammar, rcid: ?*const Guid, pszGrammarName: ?[*:0]const u16, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromObject(@as(*const ISpRecoGrammar, @ptrCast(self)), rcid, pszGrammarName, Options);
+        return self.vtable.LoadCmdFromObject(self, rcid, pszGrammarName, Options);
     }
     pub fn LoadCmdFromResource(self: *const ISpRecoGrammar, hModule: ?HINSTANCE, pszResourceName: ?[*:0]const u16, pszResourceType: ?[*:0]const u16, wLanguage: u16, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromResource(@as(*const ISpRecoGrammar, @ptrCast(self)), hModule, pszResourceName, pszResourceType, wLanguage, Options);
+        return self.vtable.LoadCmdFromResource(self, hModule, pszResourceName, pszResourceType, wLanguage, Options);
     }
     pub fn LoadCmdFromMemory(self: *const ISpRecoGrammar, pGrammar: ?*const SPBINARYGRAMMAR, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromMemory(@as(*const ISpRecoGrammar, @ptrCast(self)), pGrammar, Options);
+        return self.vtable.LoadCmdFromMemory(self, pGrammar, Options);
     }
     pub fn LoadCmdFromProprietaryGrammar(self: *const ISpRecoGrammar, rguidParam: ?*const Guid, pszStringParam: ?[*:0]const u16, pvDataPrarm: ?*const anyopaque, cbDataSize: u32, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadCmdFromProprietaryGrammar(@as(*const ISpRecoGrammar, @ptrCast(self)), rguidParam, pszStringParam, pvDataPrarm, cbDataSize, Options);
+        return self.vtable.LoadCmdFromProprietaryGrammar(self, rguidParam, pszStringParam, pvDataPrarm, cbDataSize, Options);
     }
     pub fn SetRuleState(self: *const ISpRecoGrammar, pszName: ?[*:0]const u16, pReserved: ?*anyopaque, NewState: SPRULESTATE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetRuleState(@as(*const ISpRecoGrammar, @ptrCast(self)), pszName, pReserved, NewState);
+        return self.vtable.SetRuleState(self, pszName, pReserved, NewState);
     }
     pub fn SetRuleIdState(self: *const ISpRecoGrammar, ulRuleId: u32, NewState: SPRULESTATE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetRuleIdState(@as(*const ISpRecoGrammar, @ptrCast(self)), ulRuleId, NewState);
+        return self.vtable.SetRuleIdState(self, ulRuleId, NewState);
     }
     pub fn LoadDictation(self: *const ISpRecoGrammar, pszTopicName: ?[*:0]const u16, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).LoadDictation(@as(*const ISpRecoGrammar, @ptrCast(self)), pszTopicName, Options);
+        return self.vtable.LoadDictation(self, pszTopicName, Options);
     }
     pub fn UnloadDictation(self: *const ISpRecoGrammar) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).UnloadDictation(@as(*const ISpRecoGrammar, @ptrCast(self)));
+        return self.vtable.UnloadDictation(self);
     }
     pub fn SetDictationState(self: *const ISpRecoGrammar, NewState: SPRULESTATE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetDictationState(@as(*const ISpRecoGrammar, @ptrCast(self)), NewState);
+        return self.vtable.SetDictationState(self, NewState);
     }
     pub fn SetWordSequenceData(self: *const ISpRecoGrammar, pText: ?[*:0]const u16, cchText: u32, pInfo: ?*const SPTEXTSELECTIONINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetWordSequenceData(@as(*const ISpRecoGrammar, @ptrCast(self)), pText, cchText, pInfo);
+        return self.vtable.SetWordSequenceData(self, pText, cchText, pInfo);
     }
     pub fn SetTextSelection(self: *const ISpRecoGrammar, pInfo: ?*const SPTEXTSELECTIONINFO) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetTextSelection(@as(*const ISpRecoGrammar, @ptrCast(self)), pInfo);
+        return self.vtable.SetTextSelection(self, pInfo);
     }
     pub fn IsPronounceable(self: *const ISpRecoGrammar, pszWord: ?[*:0]const u16, pWordPronounceable: ?*SPWORDPRONOUNCEABLE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).IsPronounceable(@as(*const ISpRecoGrammar, @ptrCast(self)), pszWord, pWordPronounceable);
+        return self.vtable.IsPronounceable(self, pszWord, pWordPronounceable);
     }
     pub fn SetGrammarState(self: *const ISpRecoGrammar, eGrammarState: SPGRAMMARSTATE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SetGrammarState(@as(*const ISpRecoGrammar, @ptrCast(self)), eGrammarState);
+        return self.vtable.SetGrammarState(self, eGrammarState);
     }
     pub fn SaveCmd(self: *const ISpRecoGrammar, pStream: ?*IStream, ppszCoMemErrorText: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).SaveCmd(@as(*const ISpRecoGrammar, @ptrCast(self)), pStream, ppszCoMemErrorText);
+        return self.vtable.SaveCmd(self, pStream, ppszCoMemErrorText);
     }
     pub fn GetGrammarState(self: *const ISpRecoGrammar, peGrammarState: ?*SPGRAMMARSTATE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar.VTable, @ptrCast(self.vtable)).GetGrammarState(@as(*const ISpRecoGrammar, @ptrCast(self)), peGrammarState);
+        return self.vtable.GetGrammarState(self, peGrammarState);
     }
 };
 
@@ -3948,10 +3948,10 @@ pub const ISpGrammarBuilder2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddTextSubset(self: *const ISpGrammarBuilder2, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, psz: ?[*:0]const u16, eMatchMode: SPMATCHINGMODE) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder2.VTable, @ptrCast(self.vtable)).AddTextSubset(@as(*const ISpGrammarBuilder2, @ptrCast(self)), hFromState, hToState, psz, eMatchMode);
+        return self.vtable.AddTextSubset(self, hFromState, hToState, psz, eMatchMode);
     }
     pub fn SetPhoneticAlphabet(self: *const ISpGrammarBuilder2, phoneticALphabet: PHONETICALPHABET) callconv(.Inline) HRESULT {
-        return @as(*const ISpGrammarBuilder2.VTable, @ptrCast(self.vtable)).SetPhoneticAlphabet(@as(*const ISpGrammarBuilder2, @ptrCast(self)), phoneticALphabet);
+        return self.vtable.SetPhoneticAlphabet(self, phoneticALphabet);
     }
 };
 
@@ -4043,28 +4043,28 @@ pub const ISpRecoGrammar2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRules(self: *const ISpRecoGrammar2, ppCoMemRules: ?*?*SPRULE, puNumRules: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).GetRules(@as(*const ISpRecoGrammar2, @ptrCast(self)), ppCoMemRules, puNumRules);
+        return self.vtable.GetRules(self, ppCoMemRules, puNumRules);
     }
     pub fn LoadCmdFromFile2(self: *const ISpRecoGrammar2, pszFileName: ?[*:0]const u16, Options: SPLOADOPTIONS, pszSharingUri: ?[*:0]const u16, pszBaseUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).LoadCmdFromFile2(@as(*const ISpRecoGrammar2, @ptrCast(self)), pszFileName, Options, pszSharingUri, pszBaseUri);
+        return self.vtable.LoadCmdFromFile2(self, pszFileName, Options, pszSharingUri, pszBaseUri);
     }
     pub fn LoadCmdFromMemory2(self: *const ISpRecoGrammar2, pGrammar: ?*const SPBINARYGRAMMAR, Options: SPLOADOPTIONS, pszSharingUri: ?[*:0]const u16, pszBaseUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).LoadCmdFromMemory2(@as(*const ISpRecoGrammar2, @ptrCast(self)), pGrammar, Options, pszSharingUri, pszBaseUri);
+        return self.vtable.LoadCmdFromMemory2(self, pGrammar, Options, pszSharingUri, pszBaseUri);
     }
     pub fn SetRulePriority(self: *const ISpRecoGrammar2, pszRuleName: ?[*:0]const u16, ulRuleId: u32, nRulePriority: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetRulePriority(@as(*const ISpRecoGrammar2, @ptrCast(self)), pszRuleName, ulRuleId, nRulePriority);
+        return self.vtable.SetRulePriority(self, pszRuleName, ulRuleId, nRulePriority);
     }
     pub fn SetRuleWeight(self: *const ISpRecoGrammar2, pszRuleName: ?[*:0]const u16, ulRuleId: u32, flWeight: f32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetRuleWeight(@as(*const ISpRecoGrammar2, @ptrCast(self)), pszRuleName, ulRuleId, flWeight);
+        return self.vtable.SetRuleWeight(self, pszRuleName, ulRuleId, flWeight);
     }
     pub fn SetDictationWeight(self: *const ISpRecoGrammar2, flWeight: f32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetDictationWeight(@as(*const ISpRecoGrammar2, @ptrCast(self)), flWeight);
+        return self.vtable.SetDictationWeight(self, flWeight);
     }
     pub fn SetGrammarLoader(self: *const ISpRecoGrammar2, pLoader: ?*ISpeechResourceLoader) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetGrammarLoader(@as(*const ISpRecoGrammar2, @ptrCast(self)), pLoader);
+        return self.vtable.SetGrammarLoader(self, pLoader);
     }
     pub fn SetSMLSecurityManager(self: *const ISpRecoGrammar2, pSMLSecurityManager: ?*IInternetSecurityManager) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoGrammar2.VTable, @ptrCast(self.vtable)).SetSMLSecurityManager(@as(*const ISpRecoGrammar2, @ptrCast(self)), pSMLSecurityManager);
+        return self.vtable.SetSMLSecurityManager(self, pSMLSecurityManager);
     }
 };
 
@@ -4113,13 +4113,13 @@ pub const ISpeechResourceLoader = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn LoadResource(self: *const ISpeechResourceLoader, bstrResourceUri: ?BSTR, fAlwaysReload: i16, pStream: ?*?*IUnknown, pbstrMIMEType: ?*?BSTR, pfModified: ?*i16, pbstrRedirectUrl: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechResourceLoader.VTable, @ptrCast(self.vtable)).LoadResource(@as(*const ISpeechResourceLoader, @ptrCast(self)), bstrResourceUri, fAlwaysReload, pStream, pbstrMIMEType, pfModified, pbstrRedirectUrl);
+        return self.vtable.LoadResource(self, bstrResourceUri, fAlwaysReload, pStream, pbstrMIMEType, pfModified, pbstrRedirectUrl);
     }
     pub fn GetLocalCopy(self: *const ISpeechResourceLoader, bstrResourceUri: ?BSTR, pbstrLocalPath: ?*?BSTR, pbstrMIMEType: ?*?BSTR, pbstrRedirectUrl: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechResourceLoader.VTable, @ptrCast(self.vtable)).GetLocalCopy(@as(*const ISpeechResourceLoader, @ptrCast(self)), bstrResourceUri, pbstrLocalPath, pbstrMIMEType, pbstrRedirectUrl);
+        return self.vtable.GetLocalCopy(self, bstrResourceUri, pbstrLocalPath, pbstrMIMEType, pbstrRedirectUrl);
     }
     pub fn ReleaseLocalCopy(self: *const ISpeechResourceLoader, pbstrLocalPath: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechResourceLoader.VTable, @ptrCast(self.vtable)).ReleaseLocalCopy(@as(*const ISpeechResourceLoader, @ptrCast(self)), pbstrLocalPath);
+        return self.vtable.ReleaseLocalCopy(self, pbstrLocalPath);
     }
 };
 
@@ -4315,58 +4315,58 @@ pub const ISpRecoContext = extern union {
     };}
     pub usingnamespace ISpEventSource.MethodMixin(@This());
     pub fn GetRecognizer(self: *const ISpRecoContext, ppRecognizer: ?*?*ISpRecognizer) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetRecognizer(@as(*const ISpRecoContext, @ptrCast(self)), ppRecognizer);
+        return self.vtable.GetRecognizer(self, ppRecognizer);
     }
     pub fn CreateGrammar(self: *const ISpRecoContext, ullGrammarId: u64, ppGrammar: ?*?*ISpRecoGrammar) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).CreateGrammar(@as(*const ISpRecoContext, @ptrCast(self)), ullGrammarId, ppGrammar);
+        return self.vtable.CreateGrammar(self, ullGrammarId, ppGrammar);
     }
     pub fn GetStatus(self: *const ISpRecoContext, pStatus: ?*SPRECOCONTEXTSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ISpRecoContext, @ptrCast(self)), pStatus);
+        return self.vtable.GetStatus(self, pStatus);
     }
     pub fn GetMaxAlternates(self: *const ISpRecoContext, pcAlternates: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetMaxAlternates(@as(*const ISpRecoContext, @ptrCast(self)), pcAlternates);
+        return self.vtable.GetMaxAlternates(self, pcAlternates);
     }
     pub fn SetMaxAlternates(self: *const ISpRecoContext, cAlternates: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetMaxAlternates(@as(*const ISpRecoContext, @ptrCast(self)), cAlternates);
+        return self.vtable.SetMaxAlternates(self, cAlternates);
     }
     pub fn SetAudioOptions(self: *const ISpRecoContext, Options: SPAUDIOOPTIONS, pAudioFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetAudioOptions(@as(*const ISpRecoContext, @ptrCast(self)), Options, pAudioFormatId, pWaveFormatEx);
+        return self.vtable.SetAudioOptions(self, Options, pAudioFormatId, pWaveFormatEx);
     }
     pub fn GetAudioOptions(self: *const ISpRecoContext, pOptions: ?*SPAUDIOOPTIONS, pAudioFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetAudioOptions(@as(*const ISpRecoContext, @ptrCast(self)), pOptions, pAudioFormatId, ppCoMemWFEX);
+        return self.vtable.GetAudioOptions(self, pOptions, pAudioFormatId, ppCoMemWFEX);
     }
     pub fn DeserializeResult(self: *const ISpRecoContext, pSerializedResult: ?*const SPSERIALIZEDRESULT, ppResult: ?*?*ISpRecoResult) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).DeserializeResult(@as(*const ISpRecoContext, @ptrCast(self)), pSerializedResult, ppResult);
+        return self.vtable.DeserializeResult(self, pSerializedResult, ppResult);
     }
     pub fn Bookmark(self: *const ISpRecoContext, Options: SPBOOKMARKOPTIONS, ullStreamPosition: u64, lparamEvent: LPARAM) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).Bookmark(@as(*const ISpRecoContext, @ptrCast(self)), Options, ullStreamPosition, lparamEvent);
+        return self.vtable.Bookmark(self, Options, ullStreamPosition, lparamEvent);
     }
     pub fn SetAdaptationData(self: *const ISpRecoContext, pAdaptationData: ?[*:0]const u16, cch: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetAdaptationData(@as(*const ISpRecoContext, @ptrCast(self)), pAdaptationData, cch);
+        return self.vtable.SetAdaptationData(self, pAdaptationData, cch);
     }
     pub fn Pause(self: *const ISpRecoContext, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).Pause(@as(*const ISpRecoContext, @ptrCast(self)), dwReserved);
+        return self.vtable.Pause(self, dwReserved);
     }
     pub fn Resume(self: *const ISpRecoContext, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).Resume(@as(*const ISpRecoContext, @ptrCast(self)), dwReserved);
+        return self.vtable.Resume(self, dwReserved);
     }
     pub fn SetVoice(self: *const ISpRecoContext, pVoice: ?*ISpVoice, fAllowFormatChanges: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetVoice(@as(*const ISpRecoContext, @ptrCast(self)), pVoice, fAllowFormatChanges);
+        return self.vtable.SetVoice(self, pVoice, fAllowFormatChanges);
     }
     pub fn GetVoice(self: *const ISpRecoContext, ppVoice: ?*?*ISpVoice) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetVoice(@as(*const ISpRecoContext, @ptrCast(self)), ppVoice);
+        return self.vtable.GetVoice(self, ppVoice);
     }
     pub fn SetVoicePurgeEvent(self: *const ISpRecoContext, ullEventInterest: u64) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetVoicePurgeEvent(@as(*const ISpRecoContext, @ptrCast(self)), ullEventInterest);
+        return self.vtable.SetVoicePurgeEvent(self, ullEventInterest);
     }
     pub fn GetVoicePurgeEvent(self: *const ISpRecoContext, pullEventInterest: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetVoicePurgeEvent(@as(*const ISpRecoContext, @ptrCast(self)), pullEventInterest);
+        return self.vtable.GetVoicePurgeEvent(self, pullEventInterest);
     }
     pub fn SetContextState(self: *const ISpRecoContext, eContextState: SPCONTEXTSTATE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).SetContextState(@as(*const ISpRecoContext, @ptrCast(self)), eContextState);
+        return self.vtable.SetContextState(self, eContextState);
     }
     pub fn GetContextState(self: *const ISpRecoContext, peContextState: ?*SPCONTEXTSTATE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext.VTable, @ptrCast(self.vtable)).GetContextState(@as(*const ISpRecoContext, @ptrCast(self)), peContextState);
+        return self.vtable.GetContextState(self, peContextState);
     }
 };
 
@@ -4466,13 +4466,13 @@ pub const ISpRecoContext2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetGrammarOptions(self: *const ISpRecoContext2, eGrammarOptions: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext2.VTable, @ptrCast(self.vtable)).SetGrammarOptions(@as(*const ISpRecoContext2, @ptrCast(self)), eGrammarOptions);
+        return self.vtable.SetGrammarOptions(self, eGrammarOptions);
     }
     pub fn GetGrammarOptions(self: *const ISpRecoContext2, peGrammarOptions: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext2.VTable, @ptrCast(self.vtable)).GetGrammarOptions(@as(*const ISpRecoContext2, @ptrCast(self)), peGrammarOptions);
+        return self.vtable.GetGrammarOptions(self, peGrammarOptions);
     }
     pub fn SetAdaptationData2(self: *const ISpRecoContext2, pAdaptationData: ?[*:0]const u16, cch: u32, pTopicName: ?[*:0]const u16, eAdaptationSettings: u32, eRelevance: SPADAPTATIONRELEVANCE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecoContext2.VTable, @ptrCast(self.vtable)).SetAdaptationData2(@as(*const ISpRecoContext2, @ptrCast(self)), pAdaptationData, cch, pTopicName, eAdaptationSettings, eRelevance);
+        return self.vtable.SetAdaptationData2(self, pAdaptationData, cch, pTopicName, eAdaptationSettings, eRelevance);
     }
 };
 
@@ -4525,16 +4525,16 @@ pub const ISpProperties = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPropertyNum(self: *const ISpProperties, pName: ?[*:0]const u16, lValue: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpProperties.VTable, @ptrCast(self.vtable)).SetPropertyNum(@as(*const ISpProperties, @ptrCast(self)), pName, lValue);
+        return self.vtable.SetPropertyNum(self, pName, lValue);
     }
     pub fn GetPropertyNum(self: *const ISpProperties, pName: ?[*:0]const u16, plValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpProperties.VTable, @ptrCast(self.vtable)).GetPropertyNum(@as(*const ISpProperties, @ptrCast(self)), pName, plValue);
+        return self.vtable.GetPropertyNum(self, pName, plValue);
     }
     pub fn SetPropertyString(self: *const ISpProperties, pName: ?[*:0]const u16, pValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ISpProperties.VTable, @ptrCast(self.vtable)).SetPropertyString(@as(*const ISpProperties, @ptrCast(self)), pName, pValue);
+        return self.vtable.SetPropertyString(self, pName, pValue);
     }
     pub fn GetPropertyString(self: *const ISpProperties, pName: ?[*:0]const u16, ppCoMemValue: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpProperties.VTable, @ptrCast(self.vtable)).GetPropertyString(@as(*const ISpProperties, @ptrCast(self)), pName, ppCoMemValue);
+        return self.vtable.GetPropertyString(self, pName, ppCoMemValue);
     }
 };
 
@@ -4719,52 +4719,52 @@ pub const ISpRecognizer = extern union {
     };}
     pub usingnamespace ISpProperties.MethodMixin(@This());
     pub fn SetRecognizer(self: *const ISpRecognizer, pRecognizer: ?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).SetRecognizer(@as(*const ISpRecognizer, @ptrCast(self)), pRecognizer);
+        return self.vtable.SetRecognizer(self, pRecognizer);
     }
     pub fn GetRecognizer(self: *const ISpRecognizer, ppRecognizer: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetRecognizer(@as(*const ISpRecognizer, @ptrCast(self)), ppRecognizer);
+        return self.vtable.GetRecognizer(self, ppRecognizer);
     }
     pub fn SetInput(self: *const ISpRecognizer, pUnkInput: ?*IUnknown, fAllowFormatChanges: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).SetInput(@as(*const ISpRecognizer, @ptrCast(self)), pUnkInput, fAllowFormatChanges);
+        return self.vtable.SetInput(self, pUnkInput, fAllowFormatChanges);
     }
     pub fn GetInputObjectToken(self: *const ISpRecognizer, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetInputObjectToken(@as(*const ISpRecognizer, @ptrCast(self)), ppToken);
+        return self.vtable.GetInputObjectToken(self, ppToken);
     }
     pub fn GetInputStream(self: *const ISpRecognizer, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetInputStream(@as(*const ISpRecognizer, @ptrCast(self)), ppStream);
+        return self.vtable.GetInputStream(self, ppStream);
     }
     pub fn CreateRecoContext(self: *const ISpRecognizer, ppNewCtxt: ?*?*ISpRecoContext) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).CreateRecoContext(@as(*const ISpRecognizer, @ptrCast(self)), ppNewCtxt);
+        return self.vtable.CreateRecoContext(self, ppNewCtxt);
     }
     pub fn GetRecoProfile(self: *const ISpRecognizer, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetRecoProfile(@as(*const ISpRecognizer, @ptrCast(self)), ppToken);
+        return self.vtable.GetRecoProfile(self, ppToken);
     }
     pub fn SetRecoProfile(self: *const ISpRecognizer, pToken: ?*ISpObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).SetRecoProfile(@as(*const ISpRecognizer, @ptrCast(self)), pToken);
+        return self.vtable.SetRecoProfile(self, pToken);
     }
     pub fn IsSharedInstance(self: *const ISpRecognizer) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).IsSharedInstance(@as(*const ISpRecognizer, @ptrCast(self)));
+        return self.vtable.IsSharedInstance(self);
     }
     pub fn GetRecoState(self: *const ISpRecognizer, pState: ?*SPRECOSTATE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetRecoState(@as(*const ISpRecognizer, @ptrCast(self)), pState);
+        return self.vtable.GetRecoState(self, pState);
     }
     pub fn SetRecoState(self: *const ISpRecognizer, NewState: SPRECOSTATE) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).SetRecoState(@as(*const ISpRecognizer, @ptrCast(self)), NewState);
+        return self.vtable.SetRecoState(self, NewState);
     }
     pub fn GetStatus(self: *const ISpRecognizer, pStatus: ?*SPRECOGNIZERSTATUS) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const ISpRecognizer, @ptrCast(self)), pStatus);
+        return self.vtable.GetStatus(self, pStatus);
     }
     pub fn GetFormat(self: *const ISpRecognizer, WaveFormatType: SPWAVEFORMATTYPE, pFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const ISpRecognizer, @ptrCast(self)), WaveFormatType, pFormatId, ppCoMemWFEX);
+        return self.vtable.GetFormat(self, WaveFormatType, pFormatId, ppCoMemWFEX);
     }
     pub fn IsUISupported(self: *const ISpRecognizer, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpRecognizer, @ptrCast(self)), pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
+        return self.vtable.IsUISupported(self, pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
     }
     pub fn DisplayUI(self: *const ISpRecognizer, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpRecognizer, @ptrCast(self)), hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
+        return self.vtable.DisplayUI(self, hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
     }
     pub fn EmulateRecognition(self: *const ISpRecognizer, pPhrase: ?*ISpPhrase) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer.VTable, @ptrCast(self.vtable)).EmulateRecognition(@as(*const ISpRecognizer, @ptrCast(self)), pPhrase);
+        return self.vtable.EmulateRecognition(self, pPhrase);
     }
 };
 
@@ -4801,10 +4801,10 @@ pub const ISpSerializeState = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSerializedState(self: *const ISpSerializeState, ppbData: ?*?*u8, pulSize: ?*u32, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpSerializeState.VTable, @ptrCast(self.vtable)).GetSerializedState(@as(*const ISpSerializeState, @ptrCast(self)), ppbData, pulSize, dwReserved);
+        return self.vtable.GetSerializedState(self, ppbData, pulSize, dwReserved);
     }
     pub fn SetSerializedState(self: *const ISpSerializeState, pbData: ?*u8, ulSize: u32, dwReserved: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpSerializeState.VTable, @ptrCast(self.vtable)).SetSerializedState(@as(*const ISpSerializeState, @ptrCast(self)), pbData, ulSize, dwReserved);
+        return self.vtable.SetSerializedState(self, pbData, ulSize, dwReserved);
     }
 };
 
@@ -4846,13 +4846,13 @@ pub const ISpRecognizer2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EmulateRecognitionEx(self: *const ISpRecognizer2, pPhrase: ?*ISpPhrase, dwCompareFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer2.VTable, @ptrCast(self.vtable)).EmulateRecognitionEx(@as(*const ISpRecognizer2, @ptrCast(self)), pPhrase, dwCompareFlags);
+        return self.vtable.EmulateRecognitionEx(self, pPhrase, dwCompareFlags);
     }
     pub fn SetTrainingState(self: *const ISpRecognizer2, fDoingTraining: BOOL, fAdaptFromTrainingData: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer2.VTable, @ptrCast(self.vtable)).SetTrainingState(@as(*const ISpRecognizer2, @ptrCast(self)), fDoingTraining, fAdaptFromTrainingData);
+        return self.vtable.SetTrainingState(self, fDoingTraining, fAdaptFromTrainingData);
     }
     pub fn ResetAcousticModelAdaptation(self: *const ISpRecognizer2) callconv(.Inline) HRESULT {
-        return @as(*const ISpRecognizer2.VTable, @ptrCast(self.vtable)).ResetAcousticModelAdaptation(@as(*const ISpRecognizer2, @ptrCast(self)));
+        return self.vtable.ResetAcousticModelAdaptation(self);
     }
 };
 
@@ -4898,10 +4898,10 @@ pub const ISpEnginePronunciation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Normalize(self: *const ISpEnginePronunciation, pszWord: ?[*:0]const u16, pszLeftContext: ?[*:0]const u16, pszRightContext: ?[*:0]const u16, LangID: u16, pNormalizationList: ?*SPNORMALIZATIONLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpEnginePronunciation.VTable, @ptrCast(self.vtable)).Normalize(@as(*const ISpEnginePronunciation, @ptrCast(self)), pszWord, pszLeftContext, pszRightContext, LangID, pNormalizationList);
+        return self.vtable.Normalize(self, pszWord, pszLeftContext, pszRightContext, LangID, pNormalizationList);
     }
     pub fn GetPronunciations(self: *const ISpEnginePronunciation, pszWord: ?[*:0]const u16, pszLeftContext: ?[*:0]const u16, pszRightContext: ?[*:0]const u16, LangID: u16, pEnginePronunciationList: ?*SPWORDPRONUNCIATIONLIST) callconv(.Inline) HRESULT {
-        return @as(*const ISpEnginePronunciation.VTable, @ptrCast(self.vtable)).GetPronunciations(@as(*const ISpEnginePronunciation, @ptrCast(self)), pszWord, pszLeftContext, pszRightContext, LangID, pEnginePronunciationList);
+        return self.vtable.GetPronunciations(self, pszWord, pszLeftContext, pszRightContext, LangID, pEnginePronunciationList);
     }
 };
 
@@ -4948,10 +4948,10 @@ pub const ISpDisplayAlternates = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDisplayAlternates(self: *const ISpDisplayAlternates, pPhrase: ?*const SPDISPLAYPHRASE, cRequestCount: u32, ppCoMemPhrases: ?*?*SPDISPLAYPHRASE, pcPhrasesReturned: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpDisplayAlternates.VTable, @ptrCast(self.vtable)).GetDisplayAlternates(@as(*const ISpDisplayAlternates, @ptrCast(self)), pPhrase, cRequestCount, ppCoMemPhrases, pcPhrasesReturned);
+        return self.vtable.GetDisplayAlternates(self, pPhrase, cRequestCount, ppCoMemPhrases, pcPhrasesReturned);
     }
     pub fn SetFullStopTrailSpace(self: *const ISpDisplayAlternates, ulTrailSpace: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISpDisplayAlternates.VTable, @ptrCast(self.vtable)).SetFullStopTrailSpace(@as(*const ISpDisplayAlternates, @ptrCast(self)), ulTrailSpace);
+        return self.vtable.SetFullStopTrailSpace(self, ulTrailSpace);
     }
 };
 
@@ -6540,40 +6540,40 @@ pub const ISpeechDataKey = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn SetBinaryValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).SetBinaryValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
+        return self.vtable.SetBinaryValue(self, ValueName, Value);
     }
     pub fn GetBinaryValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).GetBinaryValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
+        return self.vtable.GetBinaryValue(self, ValueName, Value);
     }
     pub fn SetStringValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).SetStringValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
+        return self.vtable.SetStringValue(self, ValueName, Value);
     }
     pub fn GetStringValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).GetStringValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
+        return self.vtable.GetStringValue(self, ValueName, Value);
     }
     pub fn SetLongValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).SetLongValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
+        return self.vtable.SetLongValue(self, ValueName, Value);
     }
     pub fn GetLongValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).GetLongValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName, Value);
+        return self.vtable.GetLongValue(self, ValueName, Value);
     }
     pub fn OpenKey(self: *const ISpeechDataKey, SubKeyName: ?BSTR, SubKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).OpenKey(@as(*const ISpeechDataKey, @ptrCast(self)), SubKeyName, SubKey);
+        return self.vtable.OpenKey(self, SubKeyName, SubKey);
     }
     pub fn CreateKey(self: *const ISpeechDataKey, SubKeyName: ?BSTR, SubKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).CreateKey(@as(*const ISpeechDataKey, @ptrCast(self)), SubKeyName, SubKey);
+        return self.vtable.CreateKey(self, SubKeyName, SubKey);
     }
     pub fn DeleteKey(self: *const ISpeechDataKey, SubKeyName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).DeleteKey(@as(*const ISpeechDataKey, @ptrCast(self)), SubKeyName);
+        return self.vtable.DeleteKey(self, SubKeyName);
     }
     pub fn DeleteValue(self: *const ISpeechDataKey, ValueName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).DeleteValue(@as(*const ISpeechDataKey, @ptrCast(self)), ValueName);
+        return self.vtable.DeleteValue(self, ValueName);
     }
     pub fn EnumKeys(self: *const ISpeechDataKey, Index: i32, SubKeyName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).EnumKeys(@as(*const ISpeechDataKey, @ptrCast(self)), Index, SubKeyName);
+        return self.vtable.EnumKeys(self, Index, SubKeyName);
     }
     pub fn EnumValues(self: *const ISpeechDataKey, Index: i32, ValueName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechDataKey.VTable, @ptrCast(self.vtable)).EnumValues(@as(*const ISpeechDataKey, @ptrCast(self)), Index, ValueName);
+        return self.vtable.EnumValues(self, Index, ValueName);
     }
 };
 
@@ -6717,43 +6717,43 @@ pub const ISpeechObjectToken = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Id(self: *const ISpeechObjectToken, ObjectId: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechObjectToken, @ptrCast(self)), ObjectId);
+        return self.vtable.get_Id(self, ObjectId);
     }
     pub fn get_DataKey(self: *const ISpeechObjectToken, DataKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).get_DataKey(@as(*const ISpeechObjectToken, @ptrCast(self)), DataKey);
+        return self.vtable.get_DataKey(self, DataKey);
     }
     pub fn get_Category(self: *const ISpeechObjectToken, Category: ?*?*ISpeechObjectTokenCategory) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).get_Category(@as(*const ISpeechObjectToken, @ptrCast(self)), Category);
+        return self.vtable.get_Category(self, Category);
     }
     pub fn GetDescription(self: *const ISpeechObjectToken, Locale: i32, Description: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const ISpeechObjectToken, @ptrCast(self)), Locale, Description);
+        return self.vtable.GetDescription(self, Locale, Description);
     }
     pub fn SetId(self: *const ISpeechObjectToken, Id: ?BSTR, CategoryID: ?BSTR, CreateIfNotExist: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).SetId(@as(*const ISpeechObjectToken, @ptrCast(self)), Id, CategoryID, CreateIfNotExist);
+        return self.vtable.SetId(self, Id, CategoryID, CreateIfNotExist);
     }
     pub fn GetAttribute(self: *const ISpeechObjectToken, AttributeName: ?BSTR, AttributeValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const ISpeechObjectToken, @ptrCast(self)), AttributeName, AttributeValue);
+        return self.vtable.GetAttribute(self, AttributeName, AttributeValue);
     }
     pub fn CreateInstance(self: *const ISpeechObjectToken, pUnkOuter: ?*IUnknown, ClsContext: SpeechTokenContext, Object: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const ISpeechObjectToken, @ptrCast(self)), pUnkOuter, ClsContext, Object);
+        return self.vtable.CreateInstance(self, pUnkOuter, ClsContext, Object);
     }
     pub fn Remove(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISpeechObjectToken, @ptrCast(self)), ObjectStorageCLSID);
+        return self.vtable.Remove(self, ObjectStorageCLSID);
     }
     pub fn GetStorageFileName(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, FileName: ?BSTR, Folder: SpeechTokenShellFolder, FilePath: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).GetStorageFileName(@as(*const ISpeechObjectToken, @ptrCast(self)), ObjectStorageCLSID, KeyName, FileName, Folder, FilePath);
+        return self.vtable.GetStorageFileName(self, ObjectStorageCLSID, KeyName, FileName, Folder, FilePath);
     }
     pub fn RemoveStorageFileName(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, DeleteFileA: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).RemoveStorageFileName(@as(*const ISpeechObjectToken, @ptrCast(self)), ObjectStorageCLSID, KeyName, DeleteFileA);
+        return self.vtable.RemoveStorageFileName(self, ObjectStorageCLSID, KeyName, DeleteFileA);
     }
     pub fn IsUISupported(self: *const ISpeechObjectToken, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown, Supported: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpeechObjectToken, @ptrCast(self)), TypeOfUI, ExtraData, Object, Supported);
+        return self.vtable.IsUISupported(self, TypeOfUI, ExtraData, Object, Supported);
     }
     pub fn DisplayUI(self: *const ISpeechObjectToken, hWnd: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpeechObjectToken, @ptrCast(self)), hWnd, Title, TypeOfUI, ExtraData, Object);
+        return self.vtable.DisplayUI(self, hWnd, Title, TypeOfUI, ExtraData, Object);
     }
     pub fn MatchesAttributes(self: *const ISpeechObjectToken, Attributes: ?BSTR, Matches: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectToken.VTable, @ptrCast(self.vtable)).MatchesAttributes(@as(*const ISpeechObjectToken, @ptrCast(self)), Attributes, Matches);
+        return self.vtable.MatchesAttributes(self, Attributes, Matches);
     }
 };
 
@@ -6797,13 +6797,13 @@ pub const ISpeechObjectTokens = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechObjectTokens, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectTokens.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechObjectTokens, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const ISpeechObjectTokens, Index: i32, Token: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectTokens.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechObjectTokens, @ptrCast(self)), Index, Token);
+        return self.vtable.Item(self, Index, Token);
     }
     pub fn get__NewEnum(self: *const ISpeechObjectTokens, ppEnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectTokens.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechObjectTokens, @ptrCast(self)), ppEnumVARIANT);
+        return self.vtable.get__NewEnum(self, ppEnumVARIANT);
     }
 };
 
@@ -6875,22 +6875,22 @@ pub const ISpeechObjectTokenCategory = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Id(self: *const ISpeechObjectTokenCategory, Id: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), Id);
+        return self.vtable.get_Id(self, Id);
     }
     pub fn put_Default(self: *const ISpeechObjectTokenCategory, TokenId: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).put_Default(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), TokenId);
+        return self.vtable.put_Default(self, TokenId);
     }
     pub fn get_Default(self: *const ISpeechObjectTokenCategory, TokenId: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).get_Default(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), TokenId);
+        return self.vtable.get_Default(self, TokenId);
     }
     pub fn SetId(self: *const ISpeechObjectTokenCategory, Id: ?BSTR, CreateIfNotExist: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).SetId(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), Id, CreateIfNotExist);
+        return self.vtable.SetId(self, Id, CreateIfNotExist);
     }
     pub fn GetDataKey(self: *const ISpeechObjectTokenCategory, Location: SpeechDataKeyLocation, DataKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).GetDataKey(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), Location, DataKey);
+        return self.vtable.GetDataKey(self, Location, DataKey);
     }
     pub fn EnumerateTokens(self: *const ISpeechObjectTokenCategory, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, Tokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechObjectTokenCategory.VTable, @ptrCast(self.vtable)).EnumerateTokens(@as(*const ISpeechObjectTokenCategory, @ptrCast(self)), RequiredAttributes, OptionalAttributes, Tokens);
+        return self.vtable.EnumerateTokens(self, RequiredAttributes, OptionalAttributes, Tokens);
     }
 };
 
@@ -6961,22 +6961,22 @@ pub const ISpeechAudioBufferInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_MinNotification(self: *const ISpeechAudioBufferInfo, MinNotification: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).get_MinNotification(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), MinNotification);
+        return self.vtable.get_MinNotification(self, MinNotification);
     }
     pub fn put_MinNotification(self: *const ISpeechAudioBufferInfo, MinNotification: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).put_MinNotification(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), MinNotification);
+        return self.vtable.put_MinNotification(self, MinNotification);
     }
     pub fn get_BufferSize(self: *const ISpeechAudioBufferInfo, BufferSize: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).get_BufferSize(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), BufferSize);
+        return self.vtable.get_BufferSize(self, BufferSize);
     }
     pub fn put_BufferSize(self: *const ISpeechAudioBufferInfo, BufferSize: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).put_BufferSize(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), BufferSize);
+        return self.vtable.put_BufferSize(self, BufferSize);
     }
     pub fn get_EventBias(self: *const ISpeechAudioBufferInfo, EventBias: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).get_EventBias(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), EventBias);
+        return self.vtable.get_EventBias(self, EventBias);
     }
     pub fn put_EventBias(self: *const ISpeechAudioBufferInfo, EventBias: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioBufferInfo.VTable, @ptrCast(self.vtable)).put_EventBias(@as(*const ISpeechAudioBufferInfo, @ptrCast(self)), EventBias);
+        return self.vtable.put_EventBias(self, EventBias);
     }
 };
 
@@ -7038,19 +7038,19 @@ pub const ISpeechAudioStatus = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_FreeBufferSpace(self: *const ISpeechAudioStatus, FreeBufferSpace: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_FreeBufferSpace(@as(*const ISpeechAudioStatus, @ptrCast(self)), FreeBufferSpace);
+        return self.vtable.get_FreeBufferSpace(self, FreeBufferSpace);
     }
     pub fn get_NonBlockingIO(self: *const ISpeechAudioStatus, NonBlockingIO: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_NonBlockingIO(@as(*const ISpeechAudioStatus, @ptrCast(self)), NonBlockingIO);
+        return self.vtable.get_NonBlockingIO(self, NonBlockingIO);
     }
     pub fn get_State(self: *const ISpeechAudioStatus, State: ?*SpeechAudioState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISpeechAudioStatus, @ptrCast(self)), State);
+        return self.vtable.get_State(self, State);
     }
     pub fn get_CurrentSeekPosition(self: *const ISpeechAudioStatus, CurrentSeekPosition: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_CurrentSeekPosition(@as(*const ISpeechAudioStatus, @ptrCast(self)), CurrentSeekPosition);
+        return self.vtable.get_CurrentSeekPosition(self, CurrentSeekPosition);
     }
     pub fn get_CurrentDevicePosition(self: *const ISpeechAudioStatus, CurrentDevicePosition: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioStatus.VTable, @ptrCast(self.vtable)).get_CurrentDevicePosition(@as(*const ISpeechAudioStatus, @ptrCast(self)), CurrentDevicePosition);
+        return self.vtable.get_CurrentDevicePosition(self, CurrentDevicePosition);
     }
 };
 
@@ -7119,22 +7119,22 @@ pub const ISpeechAudioFormat = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Type(self: *const ISpeechAudioFormat, AudioFormat: ?*SpeechAudioFormatType) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISpeechAudioFormat, @ptrCast(self)), AudioFormat);
+        return self.vtable.get_Type(self, AudioFormat);
     }
     pub fn put_Type(self: *const ISpeechAudioFormat, AudioFormat: SpeechAudioFormatType) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).put_Type(@as(*const ISpeechAudioFormat, @ptrCast(self)), AudioFormat);
+        return self.vtable.put_Type(self, AudioFormat);
     }
     pub fn get_Guid(self: *const ISpeechAudioFormat, _param_Guid: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).get_Guid(@as(*const ISpeechAudioFormat, @ptrCast(self)), _param_Guid);
+        return self.vtable.get_Guid(self, _param_Guid);
     }
     pub fn put_Guid(self: *const ISpeechAudioFormat, _param_Guid: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).put_Guid(@as(*const ISpeechAudioFormat, @ptrCast(self)), _param_Guid);
+        return self.vtable.put_Guid(self, _param_Guid);
     }
     pub fn GetWaveFormatEx(self: *const ISpeechAudioFormat, SpeechWaveFormatEx: ?*?*ISpeechWaveFormatEx) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).GetWaveFormatEx(@as(*const ISpeechAudioFormat, @ptrCast(self)), SpeechWaveFormatEx);
+        return self.vtable.GetWaveFormatEx(self, SpeechWaveFormatEx);
     }
     pub fn SetWaveFormatEx(self: *const ISpeechAudioFormat, SpeechWaveFormatEx: ?*ISpeechWaveFormatEx) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudioFormat.VTable, @ptrCast(self.vtable)).SetWaveFormatEx(@as(*const ISpeechAudioFormat, @ptrCast(self)), SpeechWaveFormatEx);
+        return self.vtable.SetWaveFormatEx(self, SpeechWaveFormatEx);
     }
 };
 
@@ -7277,46 +7277,46 @@ pub const ISpeechWaveFormatEx = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_FormatTag(self: *const ISpeechWaveFormatEx, FormatTag: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_FormatTag(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), FormatTag);
+        return self.vtable.get_FormatTag(self, FormatTag);
     }
     pub fn put_FormatTag(self: *const ISpeechWaveFormatEx, FormatTag: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_FormatTag(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), FormatTag);
+        return self.vtable.put_FormatTag(self, FormatTag);
     }
     pub fn get_Channels(self: *const ISpeechWaveFormatEx, Channels: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_Channels(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), Channels);
+        return self.vtable.get_Channels(self, Channels);
     }
     pub fn put_Channels(self: *const ISpeechWaveFormatEx, Channels: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_Channels(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), Channels);
+        return self.vtable.put_Channels(self, Channels);
     }
     pub fn get_SamplesPerSec(self: *const ISpeechWaveFormatEx, SamplesPerSec: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_SamplesPerSec(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), SamplesPerSec);
+        return self.vtable.get_SamplesPerSec(self, SamplesPerSec);
     }
     pub fn put_SamplesPerSec(self: *const ISpeechWaveFormatEx, SamplesPerSec: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_SamplesPerSec(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), SamplesPerSec);
+        return self.vtable.put_SamplesPerSec(self, SamplesPerSec);
     }
     pub fn get_AvgBytesPerSec(self: *const ISpeechWaveFormatEx, AvgBytesPerSec: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_AvgBytesPerSec(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), AvgBytesPerSec);
+        return self.vtable.get_AvgBytesPerSec(self, AvgBytesPerSec);
     }
     pub fn put_AvgBytesPerSec(self: *const ISpeechWaveFormatEx, AvgBytesPerSec: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_AvgBytesPerSec(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), AvgBytesPerSec);
+        return self.vtable.put_AvgBytesPerSec(self, AvgBytesPerSec);
     }
     pub fn get_BlockAlign(self: *const ISpeechWaveFormatEx, BlockAlign: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_BlockAlign(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), BlockAlign);
+        return self.vtable.get_BlockAlign(self, BlockAlign);
     }
     pub fn put_BlockAlign(self: *const ISpeechWaveFormatEx, BlockAlign: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_BlockAlign(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), BlockAlign);
+        return self.vtable.put_BlockAlign(self, BlockAlign);
     }
     pub fn get_BitsPerSample(self: *const ISpeechWaveFormatEx, BitsPerSample: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_BitsPerSample(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), BitsPerSample);
+        return self.vtable.get_BitsPerSample(self, BitsPerSample);
     }
     pub fn put_BitsPerSample(self: *const ISpeechWaveFormatEx, BitsPerSample: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_BitsPerSample(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), BitsPerSample);
+        return self.vtable.put_BitsPerSample(self, BitsPerSample);
     }
     pub fn get_ExtraData(self: *const ISpeechWaveFormatEx, ExtraData: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).get_ExtraData(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), ExtraData);
+        return self.vtable.get_ExtraData(self, ExtraData);
     }
     pub fn put_ExtraData(self: *const ISpeechWaveFormatEx, ExtraData: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechWaveFormatEx.VTable, @ptrCast(self.vtable)).put_ExtraData(@as(*const ISpeechWaveFormatEx, @ptrCast(self)), ExtraData);
+        return self.vtable.put_ExtraData(self, ExtraData);
     }
 };
 
@@ -7379,19 +7379,19 @@ pub const ISpeechBaseStream = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Format(self: *const ISpeechBaseStream, AudioFormat: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).get_Format(@as(*const ISpeechBaseStream, @ptrCast(self)), AudioFormat);
+        return self.vtable.get_Format(self, AudioFormat);
     }
     pub fn putref_Format(self: *const ISpeechBaseStream, AudioFormat: ?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).putref_Format(@as(*const ISpeechBaseStream, @ptrCast(self)), AudioFormat);
+        return self.vtable.putref_Format(self, AudioFormat);
     }
     pub fn Read(self: *const ISpeechBaseStream, Buffer: ?*VARIANT, NumberOfBytes: i32, BytesRead: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).Read(@as(*const ISpeechBaseStream, @ptrCast(self)), Buffer, NumberOfBytes, BytesRead);
+        return self.vtable.Read(self, Buffer, NumberOfBytes, BytesRead);
     }
     pub fn Write(self: *const ISpeechBaseStream, Buffer: VARIANT, BytesWritten: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).Write(@as(*const ISpeechBaseStream, @ptrCast(self)), Buffer, BytesWritten);
+        return self.vtable.Write(self, Buffer, BytesWritten);
     }
     pub fn Seek(self: *const ISpeechBaseStream, Position: VARIANT, Origin: SpeechStreamSeekPositionType, NewPosition: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechBaseStream.VTable, @ptrCast(self.vtable)).Seek(@as(*const ISpeechBaseStream, @ptrCast(self)), Position, Origin, NewPosition);
+        return self.vtable.Seek(self, Position, Origin, NewPosition);
     }
 };
 
@@ -7425,10 +7425,10 @@ pub const ISpeechFileStream = extern union {
     };}
     pub usingnamespace ISpeechBaseStream.MethodMixin(@This());
     pub fn Open(self: *const ISpeechFileStream, FileName: ?BSTR, FileMode: SpeechStreamFileMode, DoEvents: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechFileStream.VTable, @ptrCast(self.vtable)).Open(@as(*const ISpeechFileStream, @ptrCast(self)), FileName, FileMode, DoEvents);
+        return self.vtable.Open(self, FileName, FileMode, DoEvents);
     }
     pub fn Close(self: *const ISpeechFileStream) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechFileStream.VTable, @ptrCast(self.vtable)).Close(@as(*const ISpeechFileStream, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -7461,10 +7461,10 @@ pub const ISpeechMemoryStream = extern union {
     };}
     pub usingnamespace ISpeechBaseStream.MethodMixin(@This());
     pub fn SetData(self: *const ISpeechMemoryStream, Data: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechMemoryStream.VTable, @ptrCast(self.vtable)).SetData(@as(*const ISpeechMemoryStream, @ptrCast(self)), Data);
+        return self.vtable.SetData(self, Data);
     }
     pub fn GetData(self: *const ISpeechMemoryStream, pData: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechMemoryStream.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISpeechMemoryStream, @ptrCast(self)), pData);
+        return self.vtable.GetData(self, pData);
     }
 };
 
@@ -7498,10 +7498,10 @@ pub const ISpeechCustomStream = extern union {
     };}
     pub usingnamespace ISpeechBaseStream.MethodMixin(@This());
     pub fn get_BaseStream(self: *const ISpeechCustomStream, ppUnkStream: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechCustomStream.VTable, @ptrCast(self.vtable)).get_BaseStream(@as(*const ISpeechCustomStream, @ptrCast(self)), ppUnkStream);
+        return self.vtable.get_BaseStream(self, ppUnkStream);
     }
     pub fn putref_BaseStream(self: *const ISpeechCustomStream, pUnkStream: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechCustomStream.VTable, @ptrCast(self.vtable)).putref_BaseStream(@as(*const ISpeechCustomStream, @ptrCast(self)), pUnkStream);
+        return self.vtable.putref_BaseStream(self, pUnkStream);
     }
 };
 
@@ -7598,31 +7598,31 @@ pub const ISpeechAudio = extern union {
     };}
     pub usingnamespace ISpeechBaseStream.MethodMixin(@This());
     pub fn get_Status(self: *const ISpeechAudio, Status: ?*?*ISpeechAudioStatus) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_Status(@as(*const ISpeechAudio, @ptrCast(self)), Status);
+        return self.vtable.get_Status(self, Status);
     }
     pub fn get_BufferInfo(self: *const ISpeechAudio, BufferInfo: ?*?*ISpeechAudioBufferInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_BufferInfo(@as(*const ISpeechAudio, @ptrCast(self)), BufferInfo);
+        return self.vtable.get_BufferInfo(self, BufferInfo);
     }
     pub fn get_DefaultFormat(self: *const ISpeechAudio, StreamFormat: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_DefaultFormat(@as(*const ISpeechAudio, @ptrCast(self)), StreamFormat);
+        return self.vtable.get_DefaultFormat(self, StreamFormat);
     }
     pub fn get_Volume(self: *const ISpeechAudio, Volume: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_Volume(@as(*const ISpeechAudio, @ptrCast(self)), Volume);
+        return self.vtable.get_Volume(self, Volume);
     }
     pub fn put_Volume(self: *const ISpeechAudio, Volume: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).put_Volume(@as(*const ISpeechAudio, @ptrCast(self)), Volume);
+        return self.vtable.put_Volume(self, Volume);
     }
     pub fn get_BufferNotifySize(self: *const ISpeechAudio, BufferNotifySize: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_BufferNotifySize(@as(*const ISpeechAudio, @ptrCast(self)), BufferNotifySize);
+        return self.vtable.get_BufferNotifySize(self, BufferNotifySize);
     }
     pub fn put_BufferNotifySize(self: *const ISpeechAudio, BufferNotifySize: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).put_BufferNotifySize(@as(*const ISpeechAudio, @ptrCast(self)), BufferNotifySize);
+        return self.vtable.put_BufferNotifySize(self, BufferNotifySize);
     }
     pub fn get_EventHandle(self: *const ISpeechAudio, EventHandle: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).get_EventHandle(@as(*const ISpeechAudio, @ptrCast(self)), EventHandle);
+        return self.vtable.get_EventHandle(self, EventHandle);
     }
     pub fn SetState(self: *const ISpeechAudio, State: SpeechAudioState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechAudio.VTable, @ptrCast(self.vtable)).SetState(@as(*const ISpeechAudio, @ptrCast(self)), State);
+        return self.vtable.SetState(self, State);
     }
 };
 
@@ -7684,19 +7684,19 @@ pub const ISpeechMMSysAudio = extern union {
     };}
     pub usingnamespace ISpeechAudio.MethodMixin(@This());
     pub fn get_DeviceId(self: *const ISpeechMMSysAudio, DeviceId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).get_DeviceId(@as(*const ISpeechMMSysAudio, @ptrCast(self)), DeviceId);
+        return self.vtable.get_DeviceId(self, DeviceId);
     }
     pub fn put_DeviceId(self: *const ISpeechMMSysAudio, DeviceId: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).put_DeviceId(@as(*const ISpeechMMSysAudio, @ptrCast(self)), DeviceId);
+        return self.vtable.put_DeviceId(self, DeviceId);
     }
     pub fn get_LineId(self: *const ISpeechMMSysAudio, LineId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).get_LineId(@as(*const ISpeechMMSysAudio, @ptrCast(self)), LineId);
+        return self.vtable.get_LineId(self, LineId);
     }
     pub fn put_LineId(self: *const ISpeechMMSysAudio, LineId: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).put_LineId(@as(*const ISpeechMMSysAudio, @ptrCast(self)), LineId);
+        return self.vtable.put_LineId(self, LineId);
     }
     pub fn get_MMHandle(self: *const ISpeechMMSysAudio, Handle: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechMMSysAudio.VTable, @ptrCast(self.vtable)).get_MMHandle(@as(*const ISpeechMMSysAudio, @ptrCast(self)), Handle);
+        return self.vtable.get_MMHandle(self, Handle);
     }
 };
 
@@ -8001,100 +8001,100 @@ pub const ISpeechVoice = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Status(self: *const ISpeechVoice, Status: ?*?*ISpeechVoiceStatus) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Status(@as(*const ISpeechVoice, @ptrCast(self)), Status);
+        return self.vtable.get_Status(self, Status);
     }
     pub fn get_Voice(self: *const ISpeechVoice, Voice: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Voice(@as(*const ISpeechVoice, @ptrCast(self)), Voice);
+        return self.vtable.get_Voice(self, Voice);
     }
     pub fn putref_Voice(self: *const ISpeechVoice, Voice: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).putref_Voice(@as(*const ISpeechVoice, @ptrCast(self)), Voice);
+        return self.vtable.putref_Voice(self, Voice);
     }
     pub fn get_AudioOutput(self: *const ISpeechVoice, AudioOutput: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_AudioOutput(@as(*const ISpeechVoice, @ptrCast(self)), AudioOutput);
+        return self.vtable.get_AudioOutput(self, AudioOutput);
     }
     pub fn putref_AudioOutput(self: *const ISpeechVoice, AudioOutput: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).putref_AudioOutput(@as(*const ISpeechVoice, @ptrCast(self)), AudioOutput);
+        return self.vtable.putref_AudioOutput(self, AudioOutput);
     }
     pub fn get_AudioOutputStream(self: *const ISpeechVoice, AudioOutputStream: ?*?*ISpeechBaseStream) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_AudioOutputStream(@as(*const ISpeechVoice, @ptrCast(self)), AudioOutputStream);
+        return self.vtable.get_AudioOutputStream(self, AudioOutputStream);
     }
     pub fn putref_AudioOutputStream(self: *const ISpeechVoice, AudioOutputStream: ?*ISpeechBaseStream) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).putref_AudioOutputStream(@as(*const ISpeechVoice, @ptrCast(self)), AudioOutputStream);
+        return self.vtable.putref_AudioOutputStream(self, AudioOutputStream);
     }
     pub fn get_Rate(self: *const ISpeechVoice, Rate: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Rate(@as(*const ISpeechVoice, @ptrCast(self)), Rate);
+        return self.vtable.get_Rate(self, Rate);
     }
     pub fn put_Rate(self: *const ISpeechVoice, Rate: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_Rate(@as(*const ISpeechVoice, @ptrCast(self)), Rate);
+        return self.vtable.put_Rate(self, Rate);
     }
     pub fn get_Volume(self: *const ISpeechVoice, Volume: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Volume(@as(*const ISpeechVoice, @ptrCast(self)), Volume);
+        return self.vtable.get_Volume(self, Volume);
     }
     pub fn put_Volume(self: *const ISpeechVoice, Volume: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_Volume(@as(*const ISpeechVoice, @ptrCast(self)), Volume);
+        return self.vtable.put_Volume(self, Volume);
     }
     pub fn put_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_AllowAudioOutputFormatChangesOnNextSet(@as(*const ISpeechVoice, @ptrCast(self)), Allow);
+        return self.vtable.put_AllowAudioOutputFormatChangesOnNextSet(self, Allow);
     }
     pub fn get_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_AllowAudioOutputFormatChangesOnNextSet(@as(*const ISpeechVoice, @ptrCast(self)), Allow);
+        return self.vtable.get_AllowAudioOutputFormatChangesOnNextSet(self, Allow);
     }
     pub fn get_EventInterests(self: *const ISpeechVoice, EventInterestFlags: ?*SpeechVoiceEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_EventInterests(@as(*const ISpeechVoice, @ptrCast(self)), EventInterestFlags);
+        return self.vtable.get_EventInterests(self, EventInterestFlags);
     }
     pub fn put_EventInterests(self: *const ISpeechVoice, EventInterestFlags: SpeechVoiceEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_EventInterests(@as(*const ISpeechVoice, @ptrCast(self)), EventInterestFlags);
+        return self.vtable.put_EventInterests(self, EventInterestFlags);
     }
     pub fn put_Priority(self: *const ISpeechVoice, Priority: SpeechVoicePriority) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_Priority(@as(*const ISpeechVoice, @ptrCast(self)), Priority);
+        return self.vtable.put_Priority(self, Priority);
     }
     pub fn get_Priority(self: *const ISpeechVoice, Priority: ?*SpeechVoicePriority) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const ISpeechVoice, @ptrCast(self)), Priority);
+        return self.vtable.get_Priority(self, Priority);
     }
     pub fn put_AlertBoundary(self: *const ISpeechVoice, Boundary: SpeechVoiceEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_AlertBoundary(@as(*const ISpeechVoice, @ptrCast(self)), Boundary);
+        return self.vtable.put_AlertBoundary(self, Boundary);
     }
     pub fn get_AlertBoundary(self: *const ISpeechVoice, Boundary: ?*SpeechVoiceEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_AlertBoundary(@as(*const ISpeechVoice, @ptrCast(self)), Boundary);
+        return self.vtable.get_AlertBoundary(self, Boundary);
     }
     pub fn put_SynchronousSpeakTimeout(self: *const ISpeechVoice, msTimeout: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).put_SynchronousSpeakTimeout(@as(*const ISpeechVoice, @ptrCast(self)), msTimeout);
+        return self.vtable.put_SynchronousSpeakTimeout(self, msTimeout);
     }
     pub fn get_SynchronousSpeakTimeout(self: *const ISpeechVoice, msTimeout: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).get_SynchronousSpeakTimeout(@as(*const ISpeechVoice, @ptrCast(self)), msTimeout);
+        return self.vtable.get_SynchronousSpeakTimeout(self, msTimeout);
     }
     pub fn Speak(self: *const ISpeechVoice, Text: ?BSTR, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).Speak(@as(*const ISpeechVoice, @ptrCast(self)), Text, Flags, StreamNumber);
+        return self.vtable.Speak(self, Text, Flags, StreamNumber);
     }
     pub fn SpeakStream(self: *const ISpeechVoice, Stream: ?*ISpeechBaseStream, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).SpeakStream(@as(*const ISpeechVoice, @ptrCast(self)), Stream, Flags, StreamNumber);
+        return self.vtable.SpeakStream(self, Stream, Flags, StreamNumber);
     }
     pub fn Pause(self: *const ISpeechVoice) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).Pause(@as(*const ISpeechVoice, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn Resume(self: *const ISpeechVoice) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).Resume(@as(*const ISpeechVoice, @ptrCast(self)));
+        return self.vtable.Resume(self);
     }
     pub fn Skip(self: *const ISpeechVoice, Type: ?BSTR, NumItems: i32, NumSkipped: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).Skip(@as(*const ISpeechVoice, @ptrCast(self)), Type, NumItems, NumSkipped);
+        return self.vtable.Skip(self, Type, NumItems, NumSkipped);
     }
     pub fn GetVoices(self: *const ISpeechVoice, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).GetVoices(@as(*const ISpeechVoice, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
+        return self.vtable.GetVoices(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
     pub fn GetAudioOutputs(self: *const ISpeechVoice, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).GetAudioOutputs(@as(*const ISpeechVoice, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
+        return self.vtable.GetAudioOutputs(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
     pub fn WaitUntilDone(self: *const ISpeechVoice, msTimeout: i32, Done: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).WaitUntilDone(@as(*const ISpeechVoice, @ptrCast(self)), msTimeout, Done);
+        return self.vtable.WaitUntilDone(self, msTimeout, Done);
     }
     pub fn SpeakCompleteEvent(self: *const ISpeechVoice, Handle: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).SpeakCompleteEvent(@as(*const ISpeechVoice, @ptrCast(self)), Handle);
+        return self.vtable.SpeakCompleteEvent(self, Handle);
     }
     pub fn IsUISupported(self: *const ISpeechVoice, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpeechVoice, @ptrCast(self)), TypeOfUI, ExtraData, Supported);
+        return self.vtable.IsUISupported(self, TypeOfUI, ExtraData, Supported);
     }
     pub fn DisplayUI(self: *const ISpeechVoice, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoice.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpeechVoice, @ptrCast(self)), hWndParent, Title, TypeOfUI, ExtraData);
+        return self.vtable.DisplayUI(self, hWndParent, Title, TypeOfUI, ExtraData);
     }
 };
 
@@ -8219,40 +8219,40 @@ pub const ISpeechVoiceStatus = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_CurrentStreamNumber(self: *const ISpeechVoiceStatus, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_CurrentStreamNumber(@as(*const ISpeechVoiceStatus, @ptrCast(self)), StreamNumber);
+        return self.vtable.get_CurrentStreamNumber(self, StreamNumber);
     }
     pub fn get_LastStreamNumberQueued(self: *const ISpeechVoiceStatus, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_LastStreamNumberQueued(@as(*const ISpeechVoiceStatus, @ptrCast(self)), StreamNumber);
+        return self.vtable.get_LastStreamNumberQueued(self, StreamNumber);
     }
     pub fn get_LastHResult(self: *const ISpeechVoiceStatus, HResult: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_LastHResult(@as(*const ISpeechVoiceStatus, @ptrCast(self)), HResult);
+        return self.vtable.get_LastHResult(self, HResult);
     }
     pub fn get_RunningState(self: *const ISpeechVoiceStatus, State: ?*SpeechRunState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_RunningState(@as(*const ISpeechVoiceStatus, @ptrCast(self)), State);
+        return self.vtable.get_RunningState(self, State);
     }
     pub fn get_InputWordPosition(self: *const ISpeechVoiceStatus, Position: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_InputWordPosition(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Position);
+        return self.vtable.get_InputWordPosition(self, Position);
     }
     pub fn get_InputWordLength(self: *const ISpeechVoiceStatus, Length: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_InputWordLength(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Length);
+        return self.vtable.get_InputWordLength(self, Length);
     }
     pub fn get_InputSentencePosition(self: *const ISpeechVoiceStatus, Position: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_InputSentencePosition(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Position);
+        return self.vtable.get_InputSentencePosition(self, Position);
     }
     pub fn get_InputSentenceLength(self: *const ISpeechVoiceStatus, Length: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_InputSentenceLength(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Length);
+        return self.vtable.get_InputSentenceLength(self, Length);
     }
     pub fn get_LastBookmark(self: *const ISpeechVoiceStatus, Bookmark: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_LastBookmark(@as(*const ISpeechVoiceStatus, @ptrCast(self)), Bookmark);
+        return self.vtable.get_LastBookmark(self, Bookmark);
     }
     pub fn get_LastBookmarkId(self: *const ISpeechVoiceStatus, BookmarkId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_LastBookmarkId(@as(*const ISpeechVoiceStatus, @ptrCast(self)), BookmarkId);
+        return self.vtable.get_LastBookmarkId(self, BookmarkId);
     }
     pub fn get_PhonemeId(self: *const ISpeechVoiceStatus, PhoneId: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_PhonemeId(@as(*const ISpeechVoiceStatus, @ptrCast(self)), PhoneId);
+        return self.vtable.get_PhonemeId(self, PhoneId);
     }
     pub fn get_VisemeId(self: *const ISpeechVoiceStatus, VisemeId: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechVoiceStatus.VTable, @ptrCast(self.vtable)).get_VisemeId(@as(*const ISpeechVoiceStatus, @ptrCast(self)), VisemeId);
+        return self.vtable.get_VisemeId(self, VisemeId);
     }
 };
 
@@ -8523,82 +8523,82 @@ pub const ISpeechRecognizer = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn putref_Recognizer(self: *const ISpeechRecognizer, Recognizer: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).putref_Recognizer(@as(*const ISpeechRecognizer, @ptrCast(self)), Recognizer);
+        return self.vtable.putref_Recognizer(self, Recognizer);
     }
     pub fn get_Recognizer(self: *const ISpeechRecognizer, Recognizer: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_Recognizer(@as(*const ISpeechRecognizer, @ptrCast(self)), Recognizer);
+        return self.vtable.get_Recognizer(self, Recognizer);
     }
     pub fn put_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).put_AllowAudioInputFormatChangesOnNextSet(@as(*const ISpeechRecognizer, @ptrCast(self)), Allow);
+        return self.vtable.put_AllowAudioInputFormatChangesOnNextSet(self, Allow);
     }
     pub fn get_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_AllowAudioInputFormatChangesOnNextSet(@as(*const ISpeechRecognizer, @ptrCast(self)), Allow);
+        return self.vtable.get_AllowAudioInputFormatChangesOnNextSet(self, Allow);
     }
     pub fn putref_AudioInput(self: *const ISpeechRecognizer, AudioInput: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).putref_AudioInput(@as(*const ISpeechRecognizer, @ptrCast(self)), AudioInput);
+        return self.vtable.putref_AudioInput(self, AudioInput);
     }
     pub fn get_AudioInput(self: *const ISpeechRecognizer, AudioInput: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_AudioInput(@as(*const ISpeechRecognizer, @ptrCast(self)), AudioInput);
+        return self.vtable.get_AudioInput(self, AudioInput);
     }
     pub fn putref_AudioInputStream(self: *const ISpeechRecognizer, AudioInputStream: ?*ISpeechBaseStream) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).putref_AudioInputStream(@as(*const ISpeechRecognizer, @ptrCast(self)), AudioInputStream);
+        return self.vtable.putref_AudioInputStream(self, AudioInputStream);
     }
     pub fn get_AudioInputStream(self: *const ISpeechRecognizer, AudioInputStream: ?*?*ISpeechBaseStream) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_AudioInputStream(@as(*const ISpeechRecognizer, @ptrCast(self)), AudioInputStream);
+        return self.vtable.get_AudioInputStream(self, AudioInputStream);
     }
     pub fn get_IsShared(self: *const ISpeechRecognizer, Shared: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_IsShared(@as(*const ISpeechRecognizer, @ptrCast(self)), Shared);
+        return self.vtable.get_IsShared(self, Shared);
     }
     pub fn put_State(self: *const ISpeechRecognizer, State: SpeechRecognizerState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).put_State(@as(*const ISpeechRecognizer, @ptrCast(self)), State);
+        return self.vtable.put_State(self, State);
     }
     pub fn get_State(self: *const ISpeechRecognizer, State: ?*SpeechRecognizerState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISpeechRecognizer, @ptrCast(self)), State);
+        return self.vtable.get_State(self, State);
     }
     pub fn get_Status(self: *const ISpeechRecognizer, Status: ?*?*ISpeechRecognizerStatus) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_Status(@as(*const ISpeechRecognizer, @ptrCast(self)), Status);
+        return self.vtable.get_Status(self, Status);
     }
     pub fn putref_Profile(self: *const ISpeechRecognizer, Profile: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).putref_Profile(@as(*const ISpeechRecognizer, @ptrCast(self)), Profile);
+        return self.vtable.putref_Profile(self, Profile);
     }
     pub fn get_Profile(self: *const ISpeechRecognizer, Profile: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).get_Profile(@as(*const ISpeechRecognizer, @ptrCast(self)), Profile);
+        return self.vtable.get_Profile(self, Profile);
     }
     pub fn EmulateRecognition(self: *const ISpeechRecognizer, TextElements: VARIANT, ElementDisplayAttributes: ?*VARIANT, LanguageId: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).EmulateRecognition(@as(*const ISpeechRecognizer, @ptrCast(self)), TextElements, ElementDisplayAttributes, LanguageId);
+        return self.vtable.EmulateRecognition(self, TextElements, ElementDisplayAttributes, LanguageId);
     }
     pub fn CreateRecoContext(self: *const ISpeechRecognizer, NewContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).CreateRecoContext(@as(*const ISpeechRecognizer, @ptrCast(self)), NewContext);
+        return self.vtable.CreateRecoContext(self, NewContext);
     }
     pub fn GetFormat(self: *const ISpeechRecognizer, Type: SpeechFormatType, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetFormat(@as(*const ISpeechRecognizer, @ptrCast(self)), Type, Format);
+        return self.vtable.GetFormat(self, Type, Format);
     }
     pub fn SetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: i32, Supported: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).SetPropertyNumber(@as(*const ISpeechRecognizer, @ptrCast(self)), Name, Value, Supported);
+        return self.vtable.SetPropertyNumber(self, Name, Value, Supported);
     }
     pub fn GetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*i32, Supported: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetPropertyNumber(@as(*const ISpeechRecognizer, @ptrCast(self)), Name, Value, Supported);
+        return self.vtable.GetPropertyNumber(self, Name, Value, Supported);
     }
     pub fn SetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).SetPropertyString(@as(*const ISpeechRecognizer, @ptrCast(self)), Name, Value, Supported);
+        return self.vtable.SetPropertyString(self, Name, Value, Supported);
     }
     pub fn GetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetPropertyString(@as(*const ISpeechRecognizer, @ptrCast(self)), Name, Value, Supported);
+        return self.vtable.GetPropertyString(self, Name, Value, Supported);
     }
     pub fn IsUISupported(self: *const ISpeechRecognizer, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).IsUISupported(@as(*const ISpeechRecognizer, @ptrCast(self)), TypeOfUI, ExtraData, Supported);
+        return self.vtable.IsUISupported(self, TypeOfUI, ExtraData, Supported);
     }
     pub fn DisplayUI(self: *const ISpeechRecognizer, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).DisplayUI(@as(*const ISpeechRecognizer, @ptrCast(self)), hWndParent, Title, TypeOfUI, ExtraData);
+        return self.vtable.DisplayUI(self, hWndParent, Title, TypeOfUI, ExtraData);
     }
     pub fn GetRecognizers(self: *const ISpeechRecognizer, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetRecognizers(@as(*const ISpeechRecognizer, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
+        return self.vtable.GetRecognizers(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
     pub fn GetAudioInputs(self: *const ISpeechRecognizer, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetAudioInputs(@as(*const ISpeechRecognizer, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
+        return self.vtable.GetAudioInputs(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
     pub fn GetProfiles(self: *const ISpeechRecognizer, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizer.VTable, @ptrCast(self.vtable)).GetProfiles(@as(*const ISpeechRecognizer, @ptrCast(self)), RequiredAttributes, OptionalAttributes, ObjectTokens);
+        return self.vtable.GetProfiles(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
 };
 
@@ -8669,22 +8669,22 @@ pub const ISpeechRecognizerStatus = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_AudioStatus(self: *const ISpeechRecognizerStatus, AudioStatus: ?*?*ISpeechAudioStatus) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_AudioStatus(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), AudioStatus);
+        return self.vtable.get_AudioStatus(self, AudioStatus);
     }
     pub fn get_CurrentStreamPosition(self: *const ISpeechRecognizerStatus, pCurrentStreamPos: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_CurrentStreamPosition(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), pCurrentStreamPos);
+        return self.vtable.get_CurrentStreamPosition(self, pCurrentStreamPos);
     }
     pub fn get_CurrentStreamNumber(self: *const ISpeechRecognizerStatus, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_CurrentStreamNumber(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), StreamNumber);
+        return self.vtable.get_CurrentStreamNumber(self, StreamNumber);
     }
     pub fn get_NumberOfActiveRules(self: *const ISpeechRecognizerStatus, NumberOfActiveRules: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_NumberOfActiveRules(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), NumberOfActiveRules);
+        return self.vtable.get_NumberOfActiveRules(self, NumberOfActiveRules);
     }
     pub fn get_ClsidEngine(self: *const ISpeechRecognizerStatus, ClsidEngine: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_ClsidEngine(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), ClsidEngine);
+        return self.vtable.get_ClsidEngine(self, ClsidEngine);
     }
     pub fn get_SupportedLanguages(self: *const ISpeechRecognizerStatus, SupportedLanguages: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecognizerStatus.VTable, @ptrCast(self.vtable)).get_SupportedLanguages(@as(*const ISpeechRecognizerStatus, @ptrCast(self)), SupportedLanguages);
+        return self.vtable.get_SupportedLanguages(self, SupportedLanguages);
     }
 };
 
@@ -8920,79 +8920,79 @@ pub const ISpeechRecoContext = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Recognizer(self: *const ISpeechRecoContext, Recognizer: ?*?*ISpeechRecognizer) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_Recognizer(@as(*const ISpeechRecoContext, @ptrCast(self)), Recognizer);
+        return self.vtable.get_Recognizer(self, Recognizer);
     }
     pub fn get_AudioInputInterferenceStatus(self: *const ISpeechRecoContext, Interference: ?*SpeechInterference) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_AudioInputInterferenceStatus(@as(*const ISpeechRecoContext, @ptrCast(self)), Interference);
+        return self.vtable.get_AudioInputInterferenceStatus(self, Interference);
     }
     pub fn get_RequestedUIType(self: *const ISpeechRecoContext, UIType: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_RequestedUIType(@as(*const ISpeechRecoContext, @ptrCast(self)), UIType);
+        return self.vtable.get_RequestedUIType(self, UIType);
     }
     pub fn putref_Voice(self: *const ISpeechRecoContext, Voice: ?*ISpeechVoice) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).putref_Voice(@as(*const ISpeechRecoContext, @ptrCast(self)), Voice);
+        return self.vtable.putref_Voice(self, Voice);
     }
     pub fn get_Voice(self: *const ISpeechRecoContext, Voice: ?*?*ISpeechVoice) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_Voice(@as(*const ISpeechRecoContext, @ptrCast(self)), Voice);
+        return self.vtable.get_Voice(self, Voice);
     }
     pub fn put_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, Allow: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_AllowVoiceFormatMatchingOnNextSet(@as(*const ISpeechRecoContext, @ptrCast(self)), Allow);
+        return self.vtable.put_AllowVoiceFormatMatchingOnNextSet(self, Allow);
     }
     pub fn get_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, pAllow: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_AllowVoiceFormatMatchingOnNextSet(@as(*const ISpeechRecoContext, @ptrCast(self)), pAllow);
+        return self.vtable.get_AllowVoiceFormatMatchingOnNextSet(self, pAllow);
     }
     pub fn put_VoicePurgeEvent(self: *const ISpeechRecoContext, EventInterest: SpeechRecoEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_VoicePurgeEvent(@as(*const ISpeechRecoContext, @ptrCast(self)), EventInterest);
+        return self.vtable.put_VoicePurgeEvent(self, EventInterest);
     }
     pub fn get_VoicePurgeEvent(self: *const ISpeechRecoContext, EventInterest: ?*SpeechRecoEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_VoicePurgeEvent(@as(*const ISpeechRecoContext, @ptrCast(self)), EventInterest);
+        return self.vtable.get_VoicePurgeEvent(self, EventInterest);
     }
     pub fn put_EventInterests(self: *const ISpeechRecoContext, EventInterest: SpeechRecoEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_EventInterests(@as(*const ISpeechRecoContext, @ptrCast(self)), EventInterest);
+        return self.vtable.put_EventInterests(self, EventInterest);
     }
     pub fn get_EventInterests(self: *const ISpeechRecoContext, EventInterest: ?*SpeechRecoEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_EventInterests(@as(*const ISpeechRecoContext, @ptrCast(self)), EventInterest);
+        return self.vtable.get_EventInterests(self, EventInterest);
     }
     pub fn put_CmdMaxAlternates(self: *const ISpeechRecoContext, MaxAlternates: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_CmdMaxAlternates(@as(*const ISpeechRecoContext, @ptrCast(self)), MaxAlternates);
+        return self.vtable.put_CmdMaxAlternates(self, MaxAlternates);
     }
     pub fn get_CmdMaxAlternates(self: *const ISpeechRecoContext, MaxAlternates: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_CmdMaxAlternates(@as(*const ISpeechRecoContext, @ptrCast(self)), MaxAlternates);
+        return self.vtable.get_CmdMaxAlternates(self, MaxAlternates);
     }
     pub fn put_State(self: *const ISpeechRecoContext, State: SpeechRecoContextState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_State(@as(*const ISpeechRecoContext, @ptrCast(self)), State);
+        return self.vtable.put_State(self, State);
     }
     pub fn get_State(self: *const ISpeechRecoContext, State: ?*SpeechRecoContextState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISpeechRecoContext, @ptrCast(self)), State);
+        return self.vtable.get_State(self, State);
     }
     pub fn put_RetainedAudio(self: *const ISpeechRecoContext, Option: SpeechRetainedAudioOptions) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).put_RetainedAudio(@as(*const ISpeechRecoContext, @ptrCast(self)), Option);
+        return self.vtable.put_RetainedAudio(self, Option);
     }
     pub fn get_RetainedAudio(self: *const ISpeechRecoContext, Option: ?*SpeechRetainedAudioOptions) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_RetainedAudio(@as(*const ISpeechRecoContext, @ptrCast(self)), Option);
+        return self.vtable.get_RetainedAudio(self, Option);
     }
     pub fn putref_RetainedAudioFormat(self: *const ISpeechRecoContext, Format: ?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).putref_RetainedAudioFormat(@as(*const ISpeechRecoContext, @ptrCast(self)), Format);
+        return self.vtable.putref_RetainedAudioFormat(self, Format);
     }
     pub fn get_RetainedAudioFormat(self: *const ISpeechRecoContext, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).get_RetainedAudioFormat(@as(*const ISpeechRecoContext, @ptrCast(self)), Format);
+        return self.vtable.get_RetainedAudioFormat(self, Format);
     }
     pub fn Pause(self: *const ISpeechRecoContext) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).Pause(@as(*const ISpeechRecoContext, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn Resume(self: *const ISpeechRecoContext) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).Resume(@as(*const ISpeechRecoContext, @ptrCast(self)));
+        return self.vtable.Resume(self);
     }
     pub fn CreateGrammar(self: *const ISpeechRecoContext, GrammarId: VARIANT, Grammar: ?*?*ISpeechRecoGrammar) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).CreateGrammar(@as(*const ISpeechRecoContext, @ptrCast(self)), GrammarId, Grammar);
+        return self.vtable.CreateGrammar(self, GrammarId, Grammar);
     }
     pub fn CreateResultFromMemory(self: *const ISpeechRecoContext, ResultBlock: ?*VARIANT, Result: ?*?*ISpeechRecoResult) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).CreateResultFromMemory(@as(*const ISpeechRecoContext, @ptrCast(self)), ResultBlock, Result);
+        return self.vtable.CreateResultFromMemory(self, ResultBlock, Result);
     }
     pub fn Bookmark(self: *const ISpeechRecoContext, Options: SpeechBookmarkOptions, StreamPos: VARIANT, BookmarkId: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).Bookmark(@as(*const ISpeechRecoContext, @ptrCast(self)), Options, StreamPos, BookmarkId);
+        return self.vtable.Bookmark(self, Options, StreamPos, BookmarkId);
     }
     pub fn SetAdaptationData(self: *const ISpeechRecoContext, AdaptationString: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoContext.VTable, @ptrCast(self.vtable)).SetAdaptationData(@as(*const ISpeechRecoContext, @ptrCast(self)), AdaptationString);
+        return self.vtable.SetAdaptationData(self, AdaptationString);
     }
 };
 
@@ -9182,61 +9182,61 @@ pub const ISpeechRecoGrammar = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Id(self: *const ISpeechRecoGrammar, Id: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Id);
+        return self.vtable.get_Id(self, Id);
     }
     pub fn get_RecoContext(self: *const ISpeechRecoGrammar, RecoContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).get_RecoContext(@as(*const ISpeechRecoGrammar, @ptrCast(self)), RecoContext);
+        return self.vtable.get_RecoContext(self, RecoContext);
     }
     pub fn put_State(self: *const ISpeechRecoGrammar, State: SpeechGrammarState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).put_State(@as(*const ISpeechRecoGrammar, @ptrCast(self)), State);
+        return self.vtable.put_State(self, State);
     }
     pub fn get_State(self: *const ISpeechRecoGrammar, State: ?*SpeechGrammarState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).get_State(@as(*const ISpeechRecoGrammar, @ptrCast(self)), State);
+        return self.vtable.get_State(self, State);
     }
     pub fn get_Rules(self: *const ISpeechRecoGrammar, Rules: ?*?*ISpeechGrammarRules) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).get_Rules(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Rules);
+        return self.vtable.get_Rules(self, Rules);
     }
     pub fn Reset(self: *const ISpeechRecoGrammar, NewLanguage: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).Reset(@as(*const ISpeechRecoGrammar, @ptrCast(self)), NewLanguage);
+        return self.vtable.Reset(self, NewLanguage);
     }
     pub fn CmdLoadFromFile(self: *const ISpeechRecoGrammar, FileName: ?BSTR, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromFile(@as(*const ISpeechRecoGrammar, @ptrCast(self)), FileName, LoadOption);
+        return self.vtable.CmdLoadFromFile(self, FileName, LoadOption);
     }
     pub fn CmdLoadFromObject(self: *const ISpeechRecoGrammar, ClassId: ?BSTR, GrammarName: ?BSTR, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromObject(@as(*const ISpeechRecoGrammar, @ptrCast(self)), ClassId, GrammarName, LoadOption);
+        return self.vtable.CmdLoadFromObject(self, ClassId, GrammarName, LoadOption);
     }
     pub fn CmdLoadFromResource(self: *const ISpeechRecoGrammar, hModule: i32, ResourceName: VARIANT, ResourceType: VARIANT, LanguageId: i32, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromResource(@as(*const ISpeechRecoGrammar, @ptrCast(self)), hModule, ResourceName, ResourceType, LanguageId, LoadOption);
+        return self.vtable.CmdLoadFromResource(self, hModule, ResourceName, ResourceType, LanguageId, LoadOption);
     }
     pub fn CmdLoadFromMemory(self: *const ISpeechRecoGrammar, GrammarData: VARIANT, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromMemory(@as(*const ISpeechRecoGrammar, @ptrCast(self)), GrammarData, LoadOption);
+        return self.vtable.CmdLoadFromMemory(self, GrammarData, LoadOption);
     }
     pub fn CmdLoadFromProprietaryGrammar(self: *const ISpeechRecoGrammar, ProprietaryGuid: ?BSTR, ProprietaryString: ?BSTR, ProprietaryData: VARIANT, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdLoadFromProprietaryGrammar(@as(*const ISpeechRecoGrammar, @ptrCast(self)), ProprietaryGuid, ProprietaryString, ProprietaryData, LoadOption);
+        return self.vtable.CmdLoadFromProprietaryGrammar(self, ProprietaryGuid, ProprietaryString, ProprietaryData, LoadOption);
     }
     pub fn CmdSetRuleState(self: *const ISpeechRecoGrammar, Name: ?BSTR, State: SpeechRuleState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdSetRuleState(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Name, State);
+        return self.vtable.CmdSetRuleState(self, Name, State);
     }
     pub fn CmdSetRuleIdState(self: *const ISpeechRecoGrammar, RuleId: i32, State: SpeechRuleState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).CmdSetRuleIdState(@as(*const ISpeechRecoGrammar, @ptrCast(self)), RuleId, State);
+        return self.vtable.CmdSetRuleIdState(self, RuleId, State);
     }
     pub fn DictationLoad(self: *const ISpeechRecoGrammar, TopicName: ?BSTR, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).DictationLoad(@as(*const ISpeechRecoGrammar, @ptrCast(self)), TopicName, LoadOption);
+        return self.vtable.DictationLoad(self, TopicName, LoadOption);
     }
     pub fn DictationUnload(self: *const ISpeechRecoGrammar) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).DictationUnload(@as(*const ISpeechRecoGrammar, @ptrCast(self)));
+        return self.vtable.DictationUnload(self);
     }
     pub fn DictationSetState(self: *const ISpeechRecoGrammar, State: SpeechRuleState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).DictationSetState(@as(*const ISpeechRecoGrammar, @ptrCast(self)), State);
+        return self.vtable.DictationSetState(self, State);
     }
     pub fn SetWordSequenceData(self: *const ISpeechRecoGrammar, Text: ?BSTR, TextLength: i32, Info: ?*ISpeechTextSelectionInformation) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).SetWordSequenceData(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Text, TextLength, Info);
+        return self.vtable.SetWordSequenceData(self, Text, TextLength, Info);
     }
     pub fn SetTextSelection(self: *const ISpeechRecoGrammar, Info: ?*ISpeechTextSelectionInformation) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).SetTextSelection(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Info);
+        return self.vtable.SetTextSelection(self, Info);
     }
     pub fn IsPronounceable(self: *const ISpeechRecoGrammar, Word: ?BSTR, WordPronounceable: ?*SpeechWordPronounceable) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoGrammar.VTable, @ptrCast(self.vtable)).IsPronounceable(@as(*const ISpeechRecoGrammar, @ptrCast(self)), Word, WordPronounceable);
+        return self.vtable.IsPronounceable(self, Word, WordPronounceable);
     }
 };
 
@@ -9327,25 +9327,25 @@ pub const ISpeechGrammarRule = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Attributes(self: *const ISpeechGrammarRule, Attributes: ?*SpeechRuleAttributes) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).get_Attributes(@as(*const ISpeechGrammarRule, @ptrCast(self)), Attributes);
+        return self.vtable.get_Attributes(self, Attributes);
     }
     pub fn get_InitialState(self: *const ISpeechGrammarRule, State: ?*?*ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).get_InitialState(@as(*const ISpeechGrammarRule, @ptrCast(self)), State);
+        return self.vtable.get_InitialState(self, State);
     }
     pub fn get_Name(self: *const ISpeechGrammarRule, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISpeechGrammarRule, @ptrCast(self)), Name);
+        return self.vtable.get_Name(self, Name);
     }
     pub fn get_Id(self: *const ISpeechGrammarRule, Id: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechGrammarRule, @ptrCast(self)), Id);
+        return self.vtable.get_Id(self, Id);
     }
     pub fn Clear(self: *const ISpeechGrammarRule) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISpeechGrammarRule, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn AddResource(self: *const ISpeechGrammarRule, ResourceName: ?BSTR, ResourceValue: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).AddResource(@as(*const ISpeechGrammarRule, @ptrCast(self)), ResourceName, ResourceValue);
+        return self.vtable.AddResource(self, ResourceName, ResourceValue);
     }
     pub fn AddState(self: *const ISpeechGrammarRule, State: ?*?*ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRule.VTable, @ptrCast(self.vtable)).AddState(@as(*const ISpeechGrammarRule, @ptrCast(self)), State);
+        return self.vtable.AddState(self, State);
     }
 };
 
@@ -9434,28 +9434,28 @@ pub const ISpeechGrammarRules = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechGrammarRules, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechGrammarRules, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn FindRule(self: *const ISpeechGrammarRules, RuleNameOrId: VARIANT, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).FindRule(@as(*const ISpeechGrammarRules, @ptrCast(self)), RuleNameOrId, Rule);
+        return self.vtable.FindRule(self, RuleNameOrId, Rule);
     }
     pub fn Item(self: *const ISpeechGrammarRules, Index: i32, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechGrammarRules, @ptrCast(self)), Index, Rule);
+        return self.vtable.Item(self, Index, Rule);
     }
     pub fn get__NewEnum(self: *const ISpeechGrammarRules, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechGrammarRules, @ptrCast(self)), EnumVARIANT);
+        return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
     pub fn get_Dynamic(self: *const ISpeechGrammarRules, Dynamic: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).get_Dynamic(@as(*const ISpeechGrammarRules, @ptrCast(self)), Dynamic);
+        return self.vtable.get_Dynamic(self, Dynamic);
     }
     pub fn Add(self: *const ISpeechGrammarRules, RuleName: ?BSTR, Attributes: SpeechRuleAttributes, RuleId: i32, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).Add(@as(*const ISpeechGrammarRules, @ptrCast(self)), RuleName, Attributes, RuleId, Rule);
+        return self.vtable.Add(self, RuleName, Attributes, RuleId, Rule);
     }
     pub fn Commit(self: *const ISpeechGrammarRules) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).Commit(@as(*const ISpeechGrammarRules, @ptrCast(self)));
+        return self.vtable.Commit(self);
     }
     pub fn CommitAndSave(self: *const ISpeechGrammarRules, ErrorText: ?*?BSTR, SaveStream: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRules.VTable, @ptrCast(self.vtable)).CommitAndSave(@as(*const ISpeechGrammarRules, @ptrCast(self)), ErrorText, SaveStream);
+        return self.vtable.CommitAndSave(self, ErrorText, SaveStream);
     }
 };
 
@@ -9531,19 +9531,19 @@ pub const ISpeechGrammarRuleState = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Rule(self: *const ISpeechGrammarRuleState, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).get_Rule(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), Rule);
+        return self.vtable.get_Rule(self, Rule);
     }
     pub fn get_Transitions(self: *const ISpeechGrammarRuleState, Transitions: ?*?*ISpeechGrammarRuleStateTransitions) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).get_Transitions(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), Transitions);
+        return self.vtable.get_Transitions(self, Transitions);
     }
     pub fn AddWordTransition(self: *const ISpeechGrammarRuleState, DestState: ?*ISpeechGrammarRuleState, Words: ?BSTR, Separators: ?BSTR, Type: SpeechGrammarWordType, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).AddWordTransition(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), DestState, Words, Separators, Type, PropertyName, PropertyId, PropertyValue, Weight);
+        return self.vtable.AddWordTransition(self, DestState, Words, Separators, Type, PropertyName, PropertyId, PropertyValue, Weight);
     }
     pub fn AddRuleTransition(self: *const ISpeechGrammarRuleState, DestinationState: ?*ISpeechGrammarRuleState, Rule: ?*ISpeechGrammarRule, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).AddRuleTransition(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), DestinationState, Rule, PropertyName, PropertyId, PropertyValue, Weight);
+        return self.vtable.AddRuleTransition(self, DestinationState, Rule, PropertyName, PropertyId, PropertyValue, Weight);
     }
     pub fn AddSpecialTransition(self: *const ISpeechGrammarRuleState, DestinationState: ?*ISpeechGrammarRuleState, Type: SpeechSpecialTransitionType, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleState.VTable, @ptrCast(self.vtable)).AddSpecialTransition(@as(*const ISpeechGrammarRuleState, @ptrCast(self)), DestinationState, Type, PropertyName, PropertyId, PropertyValue, Weight);
+        return self.vtable.AddSpecialTransition(self, DestinationState, Type, PropertyName, PropertyId, PropertyValue, Weight);
     }
 };
 
@@ -9632,28 +9632,28 @@ pub const ISpeechGrammarRuleStateTransition = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Type(self: *const ISpeechGrammarRuleStateTransition, Type: ?*SpeechGrammarRuleStateTransitionType) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), Type);
+        return self.vtable.get_Type(self, Type);
     }
     pub fn get_Text(self: *const ISpeechGrammarRuleStateTransition, Text: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_Text(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), Text);
+        return self.vtable.get_Text(self, Text);
     }
     pub fn get_Rule(self: *const ISpeechGrammarRuleStateTransition, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_Rule(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), Rule);
+        return self.vtable.get_Rule(self, Rule);
     }
     pub fn get_Weight(self: *const ISpeechGrammarRuleStateTransition, Weight: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_Weight(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), Weight);
+        return self.vtable.get_Weight(self, Weight);
     }
     pub fn get_PropertyName(self: *const ISpeechGrammarRuleStateTransition, PropertyName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_PropertyName(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), PropertyName);
+        return self.vtable.get_PropertyName(self, PropertyName);
     }
     pub fn get_PropertyId(self: *const ISpeechGrammarRuleStateTransition, PropertyId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_PropertyId(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), PropertyId);
+        return self.vtable.get_PropertyId(self, PropertyId);
     }
     pub fn get_PropertyValue(self: *const ISpeechGrammarRuleStateTransition, PropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_PropertyValue(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), PropertyValue);
+        return self.vtable.get_PropertyValue(self, PropertyValue);
     }
     pub fn get_NextState(self: *const ISpeechGrammarRuleStateTransition, NextState: ?*?*ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransition.VTable, @ptrCast(self.vtable)).get_NextState(@as(*const ISpeechGrammarRuleStateTransition, @ptrCast(self)), NextState);
+        return self.vtable.get_NextState(self, NextState);
     }
 };
 
@@ -9697,13 +9697,13 @@ pub const ISpeechGrammarRuleStateTransitions = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechGrammarRuleStateTransitions, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransitions.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechGrammarRuleStateTransitions, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const ISpeechGrammarRuleStateTransitions, Index: i32, Transition: ?*?*ISpeechGrammarRuleStateTransition) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransitions.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechGrammarRuleStateTransitions, @ptrCast(self)), Index, Transition);
+        return self.vtable.Item(self, Index, Transition);
     }
     pub fn get__NewEnum(self: *const ISpeechGrammarRuleStateTransitions, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechGrammarRuleStateTransitions.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechGrammarRuleStateTransitions, @ptrCast(self)), EnumVARIANT);
+        return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
 
@@ -9792,28 +9792,28 @@ pub const ISpeechTextSelectionInformation = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn put_ActiveOffset(self: *const ISpeechTextSelectionInformation, ActiveOffset: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).put_ActiveOffset(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), ActiveOffset);
+        return self.vtable.put_ActiveOffset(self, ActiveOffset);
     }
     pub fn get_ActiveOffset(self: *const ISpeechTextSelectionInformation, ActiveOffset: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).get_ActiveOffset(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), ActiveOffset);
+        return self.vtable.get_ActiveOffset(self, ActiveOffset);
     }
     pub fn put_ActiveLength(self: *const ISpeechTextSelectionInformation, ActiveLength: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).put_ActiveLength(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), ActiveLength);
+        return self.vtable.put_ActiveLength(self, ActiveLength);
     }
     pub fn get_ActiveLength(self: *const ISpeechTextSelectionInformation, ActiveLength: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).get_ActiveLength(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), ActiveLength);
+        return self.vtable.get_ActiveLength(self, ActiveLength);
     }
     pub fn put_SelectionOffset(self: *const ISpeechTextSelectionInformation, SelectionOffset: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).put_SelectionOffset(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), SelectionOffset);
+        return self.vtable.put_SelectionOffset(self, SelectionOffset);
     }
     pub fn get_SelectionOffset(self: *const ISpeechTextSelectionInformation, SelectionOffset: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).get_SelectionOffset(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), SelectionOffset);
+        return self.vtable.get_SelectionOffset(self, SelectionOffset);
     }
     pub fn put_SelectionLength(self: *const ISpeechTextSelectionInformation, SelectionLength: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).put_SelectionLength(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), SelectionLength);
+        return self.vtable.put_SelectionLength(self, SelectionLength);
     }
     pub fn get_SelectionLength(self: *const ISpeechTextSelectionInformation, SelectionLength: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechTextSelectionInformation.VTable, @ptrCast(self.vtable)).get_SelectionLength(@as(*const ISpeechTextSelectionInformation, @ptrCast(self)), SelectionLength);
+        return self.vtable.get_SelectionLength(self, SelectionLength);
     }
 };
 
@@ -9922,34 +9922,34 @@ pub const ISpeechRecoResult = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_RecoContext(self: *const ISpeechRecoResult, RecoContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).get_RecoContext(@as(*const ISpeechRecoResult, @ptrCast(self)), RecoContext);
+        return self.vtable.get_RecoContext(self, RecoContext);
     }
     pub fn get_Times(self: *const ISpeechRecoResult, Times: ?*?*ISpeechRecoResultTimes) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).get_Times(@as(*const ISpeechRecoResult, @ptrCast(self)), Times);
+        return self.vtable.get_Times(self, Times);
     }
     pub fn putref_AudioFormat(self: *const ISpeechRecoResult, Format: ?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).putref_AudioFormat(@as(*const ISpeechRecoResult, @ptrCast(self)), Format);
+        return self.vtable.putref_AudioFormat(self, Format);
     }
     pub fn get_AudioFormat(self: *const ISpeechRecoResult, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).get_AudioFormat(@as(*const ISpeechRecoResult, @ptrCast(self)), Format);
+        return self.vtable.get_AudioFormat(self, Format);
     }
     pub fn get_PhraseInfo(self: *const ISpeechRecoResult, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).get_PhraseInfo(@as(*const ISpeechRecoResult, @ptrCast(self)), PhraseInfo);
+        return self.vtable.get_PhraseInfo(self, PhraseInfo);
     }
     pub fn Alternates(self: *const ISpeechRecoResult, RequestCount: i32, StartElement: i32, Elements: i32, _param_Alternates: ?*?*ISpeechPhraseAlternates) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).Alternates(@as(*const ISpeechRecoResult, @ptrCast(self)), RequestCount, StartElement, Elements, _param_Alternates);
+        return self.vtable.Alternates(self, RequestCount, StartElement, Elements, _param_Alternates);
     }
     pub fn Audio(self: *const ISpeechRecoResult, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).Audio(@as(*const ISpeechRecoResult, @ptrCast(self)), StartElement, Elements, Stream);
+        return self.vtable.Audio(self, StartElement, Elements, Stream);
     }
     pub fn SpeakAudio(self: *const ISpeechRecoResult, StartElement: i32, Elements: i32, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).SpeakAudio(@as(*const ISpeechRecoResult, @ptrCast(self)), StartElement, Elements, Flags, StreamNumber);
+        return self.vtable.SpeakAudio(self, StartElement, Elements, Flags, StreamNumber);
     }
     pub fn SaveToMemory(self: *const ISpeechRecoResult, ResultBlock: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).SaveToMemory(@as(*const ISpeechRecoResult, @ptrCast(self)), ResultBlock);
+        return self.vtable.SaveToMemory(self, ResultBlock);
     }
     pub fn DiscardResultInfo(self: *const ISpeechRecoResult, ValueTypes: SpeechDiscardType) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult.VTable, @ptrCast(self.vtable)).DiscardResultInfo(@as(*const ISpeechRecoResult, @ptrCast(self)), ValueTypes);
+        return self.vtable.DiscardResultInfo(self, ValueTypes);
     }
 };
 
@@ -9975,7 +9975,7 @@ pub const ISpeechRecoResult2 = extern union {
     };}
     pub usingnamespace ISpeechRecoResult.MethodMixin(@This());
     pub fn SetTextFeedback(self: *const ISpeechRecoResult2, Feedback: ?BSTR, WasSuccessful: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResult2.VTable, @ptrCast(self.vtable)).SetTextFeedback(@as(*const ISpeechRecoResult2, @ptrCast(self)), Feedback, WasSuccessful);
+        return self.vtable.SetTextFeedback(self, Feedback, WasSuccessful);
     }
 };
 
@@ -10028,16 +10028,16 @@ pub const ISpeechRecoResultTimes = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_StreamTime(self: *const ISpeechRecoResultTimes, Time: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultTimes.VTable, @ptrCast(self.vtable)).get_StreamTime(@as(*const ISpeechRecoResultTimes, @ptrCast(self)), Time);
+        return self.vtable.get_StreamTime(self, Time);
     }
     pub fn get_Length(self: *const ISpeechRecoResultTimes, Length: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultTimes.VTable, @ptrCast(self.vtable)).get_Length(@as(*const ISpeechRecoResultTimes, @ptrCast(self)), Length);
+        return self.vtable.get_Length(self, Length);
     }
     pub fn get_TickCount(self: *const ISpeechRecoResultTimes, TickCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultTimes.VTable, @ptrCast(self.vtable)).get_TickCount(@as(*const ISpeechRecoResultTimes, @ptrCast(self)), TickCount);
+        return self.vtable.get_TickCount(self, TickCount);
     }
     pub fn get_OffsetFromStart(self: *const ISpeechRecoResultTimes, OffsetFromStart: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultTimes.VTable, @ptrCast(self.vtable)).get_OffsetFromStart(@as(*const ISpeechRecoResultTimes, @ptrCast(self)), OffsetFromStart);
+        return self.vtable.get_OffsetFromStart(self, OffsetFromStart);
     }
 };
 
@@ -10097,19 +10097,19 @@ pub const ISpeechPhraseAlternate = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_RecoResult(self: *const ISpeechPhraseAlternate, RecoResult: ?*?*ISpeechRecoResult) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).get_RecoResult(@as(*const ISpeechPhraseAlternate, @ptrCast(self)), RecoResult);
+        return self.vtable.get_RecoResult(self, RecoResult);
     }
     pub fn get_StartElementInResult(self: *const ISpeechPhraseAlternate, StartElement: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).get_StartElementInResult(@as(*const ISpeechPhraseAlternate, @ptrCast(self)), StartElement);
+        return self.vtable.get_StartElementInResult(self, StartElement);
     }
     pub fn get_NumberOfElementsInResult(self: *const ISpeechPhraseAlternate, NumberOfElements: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).get_NumberOfElementsInResult(@as(*const ISpeechPhraseAlternate, @ptrCast(self)), NumberOfElements);
+        return self.vtable.get_NumberOfElementsInResult(self, NumberOfElements);
     }
     pub fn get_PhraseInfo(self: *const ISpeechPhraseAlternate, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).get_PhraseInfo(@as(*const ISpeechPhraseAlternate, @ptrCast(self)), PhraseInfo);
+        return self.vtable.get_PhraseInfo(self, PhraseInfo);
     }
     pub fn Commit(self: *const ISpeechPhraseAlternate) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseAlternate.VTable, @ptrCast(self.vtable)).Commit(@as(*const ISpeechPhraseAlternate, @ptrCast(self)));
+        return self.vtable.Commit(self);
     }
 };
 
@@ -10153,13 +10153,13 @@ pub const ISpeechPhraseAlternates = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechPhraseAlternates, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseAlternates.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseAlternates, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const ISpeechPhraseAlternates, Index: i32, PhraseAlternate: ?*?*ISpeechPhraseAlternate) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseAlternates.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseAlternates, @ptrCast(self)), Index, PhraseAlternate);
+        return self.vtable.Item(self, Index, PhraseAlternate);
     }
     pub fn get__NewEnum(self: *const ISpeechPhraseAlternates, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseAlternates.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseAlternates, @ptrCast(self)), EnumVARIANT);
+        return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
 
@@ -10323,52 +10323,52 @@ pub const ISpeechPhraseInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_LanguageId(self: *const ISpeechPhraseInfo, LanguageId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_LanguageId(@as(*const ISpeechPhraseInfo, @ptrCast(self)), LanguageId);
+        return self.vtable.get_LanguageId(self, LanguageId);
     }
     pub fn get_GrammarId(self: *const ISpeechPhraseInfo, GrammarId: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_GrammarId(@as(*const ISpeechPhraseInfo, @ptrCast(self)), GrammarId);
+        return self.vtable.get_GrammarId(self, GrammarId);
     }
     pub fn get_StartTime(self: *const ISpeechPhraseInfo, StartTime: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_StartTime(@as(*const ISpeechPhraseInfo, @ptrCast(self)), StartTime);
+        return self.vtable.get_StartTime(self, StartTime);
     }
     pub fn get_AudioStreamPosition(self: *const ISpeechPhraseInfo, AudioStreamPosition: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_AudioStreamPosition(@as(*const ISpeechPhraseInfo, @ptrCast(self)), AudioStreamPosition);
+        return self.vtable.get_AudioStreamPosition(self, AudioStreamPosition);
     }
     pub fn get_AudioSizeBytes(self: *const ISpeechPhraseInfo, pAudioSizeBytes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_AudioSizeBytes(@as(*const ISpeechPhraseInfo, @ptrCast(self)), pAudioSizeBytes);
+        return self.vtable.get_AudioSizeBytes(self, pAudioSizeBytes);
     }
     pub fn get_RetainedSizeBytes(self: *const ISpeechPhraseInfo, RetainedSizeBytes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_RetainedSizeBytes(@as(*const ISpeechPhraseInfo, @ptrCast(self)), RetainedSizeBytes);
+        return self.vtable.get_RetainedSizeBytes(self, RetainedSizeBytes);
     }
     pub fn get_AudioSizeTime(self: *const ISpeechPhraseInfo, AudioSizeTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_AudioSizeTime(@as(*const ISpeechPhraseInfo, @ptrCast(self)), AudioSizeTime);
+        return self.vtable.get_AudioSizeTime(self, AudioSizeTime);
     }
     pub fn get_Rule(self: *const ISpeechPhraseInfo, Rule: ?*?*ISpeechPhraseRule) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_Rule(@as(*const ISpeechPhraseInfo, @ptrCast(self)), Rule);
+        return self.vtable.get_Rule(self, Rule);
     }
     pub fn get_Properties(self: *const ISpeechPhraseInfo, Properties: ?*?*ISpeechPhraseProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const ISpeechPhraseInfo, @ptrCast(self)), Properties);
+        return self.vtable.get_Properties(self, Properties);
     }
     pub fn get_Elements(self: *const ISpeechPhraseInfo, Elements: ?*?*ISpeechPhraseElements) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_Elements(@as(*const ISpeechPhraseInfo, @ptrCast(self)), Elements);
+        return self.vtable.get_Elements(self, Elements);
     }
     pub fn get_Replacements(self: *const ISpeechPhraseInfo, Replacements: ?*?*ISpeechPhraseReplacements) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_Replacements(@as(*const ISpeechPhraseInfo, @ptrCast(self)), Replacements);
+        return self.vtable.get_Replacements(self, Replacements);
     }
     pub fn get_EngineId(self: *const ISpeechPhraseInfo, EngineIdGuid: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_EngineId(@as(*const ISpeechPhraseInfo, @ptrCast(self)), EngineIdGuid);
+        return self.vtable.get_EngineId(self, EngineIdGuid);
     }
     pub fn get_EnginePrivateData(self: *const ISpeechPhraseInfo, PrivateData: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).get_EnginePrivateData(@as(*const ISpeechPhraseInfo, @ptrCast(self)), PrivateData);
+        return self.vtable.get_EnginePrivateData(self, PrivateData);
     }
     pub fn SaveToMemory(self: *const ISpeechPhraseInfo, PhraseBlock: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).SaveToMemory(@as(*const ISpeechPhraseInfo, @ptrCast(self)), PhraseBlock);
+        return self.vtable.SaveToMemory(self, PhraseBlock);
     }
     pub fn GetText(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: i16, Text: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).GetText(@as(*const ISpeechPhraseInfo, @ptrCast(self)), StartElement, Elements, UseReplacements, Text);
+        return self.vtable.GetText(self, StartElement, Elements, UseReplacements, Text);
     }
     pub fn GetDisplayAttributes(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: i16, DisplayAttributes: ?*SpeechDisplayAttributes) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfo.VTable, @ptrCast(self.vtable)).GetDisplayAttributes(@as(*const ISpeechPhraseInfo, @ptrCast(self)), StartElement, Elements, UseReplacements, DisplayAttributes);
+        return self.vtable.GetDisplayAttributes(self, StartElement, Elements, UseReplacements, DisplayAttributes);
     }
 };
 
@@ -10502,43 +10502,43 @@ pub const ISpeechPhraseElement = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_AudioTimeOffset(self: *const ISpeechPhraseElement, AudioTimeOffset: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_AudioTimeOffset(@as(*const ISpeechPhraseElement, @ptrCast(self)), AudioTimeOffset);
+        return self.vtable.get_AudioTimeOffset(self, AudioTimeOffset);
     }
     pub fn get_AudioSizeTime(self: *const ISpeechPhraseElement, AudioSizeTime: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_AudioSizeTime(@as(*const ISpeechPhraseElement, @ptrCast(self)), AudioSizeTime);
+        return self.vtable.get_AudioSizeTime(self, AudioSizeTime);
     }
     pub fn get_AudioStreamOffset(self: *const ISpeechPhraseElement, AudioStreamOffset: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_AudioStreamOffset(@as(*const ISpeechPhraseElement, @ptrCast(self)), AudioStreamOffset);
+        return self.vtable.get_AudioStreamOffset(self, AudioStreamOffset);
     }
     pub fn get_AudioSizeBytes(self: *const ISpeechPhraseElement, AudioSizeBytes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_AudioSizeBytes(@as(*const ISpeechPhraseElement, @ptrCast(self)), AudioSizeBytes);
+        return self.vtable.get_AudioSizeBytes(self, AudioSizeBytes);
     }
     pub fn get_RetainedStreamOffset(self: *const ISpeechPhraseElement, RetainedStreamOffset: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_RetainedStreamOffset(@as(*const ISpeechPhraseElement, @ptrCast(self)), RetainedStreamOffset);
+        return self.vtable.get_RetainedStreamOffset(self, RetainedStreamOffset);
     }
     pub fn get_RetainedSizeBytes(self: *const ISpeechPhraseElement, RetainedSizeBytes: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_RetainedSizeBytes(@as(*const ISpeechPhraseElement, @ptrCast(self)), RetainedSizeBytes);
+        return self.vtable.get_RetainedSizeBytes(self, RetainedSizeBytes);
     }
     pub fn get_DisplayText(self: *const ISpeechPhraseElement, DisplayText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_DisplayText(@as(*const ISpeechPhraseElement, @ptrCast(self)), DisplayText);
+        return self.vtable.get_DisplayText(self, DisplayText);
     }
     pub fn get_LexicalForm(self: *const ISpeechPhraseElement, LexicalForm: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_LexicalForm(@as(*const ISpeechPhraseElement, @ptrCast(self)), LexicalForm);
+        return self.vtable.get_LexicalForm(self, LexicalForm);
     }
     pub fn get_Pronunciation(self: *const ISpeechPhraseElement, Pronunciation: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_Pronunciation(@as(*const ISpeechPhraseElement, @ptrCast(self)), Pronunciation);
+        return self.vtable.get_Pronunciation(self, Pronunciation);
     }
     pub fn get_DisplayAttributes(self: *const ISpeechPhraseElement, DisplayAttributes: ?*SpeechDisplayAttributes) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_DisplayAttributes(@as(*const ISpeechPhraseElement, @ptrCast(self)), DisplayAttributes);
+        return self.vtable.get_DisplayAttributes(self, DisplayAttributes);
     }
     pub fn get_RequiredConfidence(self: *const ISpeechPhraseElement, RequiredConfidence: ?*SpeechEngineConfidence) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_RequiredConfidence(@as(*const ISpeechPhraseElement, @ptrCast(self)), RequiredConfidence);
+        return self.vtable.get_RequiredConfidence(self, RequiredConfidence);
     }
     pub fn get_ActualConfidence(self: *const ISpeechPhraseElement, ActualConfidence: ?*SpeechEngineConfidence) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_ActualConfidence(@as(*const ISpeechPhraseElement, @ptrCast(self)), ActualConfidence);
+        return self.vtable.get_ActualConfidence(self, ActualConfidence);
     }
     pub fn get_EngineConfidence(self: *const ISpeechPhraseElement, EngineConfidence: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElement.VTable, @ptrCast(self.vtable)).get_EngineConfidence(@as(*const ISpeechPhraseElement, @ptrCast(self)), EngineConfidence);
+        return self.vtable.get_EngineConfidence(self, EngineConfidence);
     }
 };
 
@@ -10582,13 +10582,13 @@ pub const ISpeechPhraseElements = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechPhraseElements, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElements.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseElements, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const ISpeechPhraseElements, Index: i32, Element: ?*?*ISpeechPhraseElement) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElements.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseElements, @ptrCast(self)), Index, Element);
+        return self.vtable.Item(self, Index, Element);
     }
     pub fn get__NewEnum(self: *const ISpeechPhraseElements, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseElements.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseElements, @ptrCast(self)), EnumVARIANT);
+        return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
 
@@ -10641,16 +10641,16 @@ pub const ISpeechPhraseReplacement = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_DisplayAttributes(self: *const ISpeechPhraseReplacement, DisplayAttributes: ?*SpeechDisplayAttributes) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseReplacement.VTable, @ptrCast(self.vtable)).get_DisplayAttributes(@as(*const ISpeechPhraseReplacement, @ptrCast(self)), DisplayAttributes);
+        return self.vtable.get_DisplayAttributes(self, DisplayAttributes);
     }
     pub fn get_Text(self: *const ISpeechPhraseReplacement, Text: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseReplacement.VTable, @ptrCast(self.vtable)).get_Text(@as(*const ISpeechPhraseReplacement, @ptrCast(self)), Text);
+        return self.vtable.get_Text(self, Text);
     }
     pub fn get_FirstElement(self: *const ISpeechPhraseReplacement, FirstElement: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseReplacement.VTable, @ptrCast(self.vtable)).get_FirstElement(@as(*const ISpeechPhraseReplacement, @ptrCast(self)), FirstElement);
+        return self.vtable.get_FirstElement(self, FirstElement);
     }
     pub fn get_NumberOfElements(self: *const ISpeechPhraseReplacement, NumberOfElements: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseReplacement.VTable, @ptrCast(self.vtable)).get_NumberOfElements(@as(*const ISpeechPhraseReplacement, @ptrCast(self)), NumberOfElements);
+        return self.vtable.get_NumberOfElements(self, NumberOfElements);
     }
 };
 
@@ -10694,13 +10694,13 @@ pub const ISpeechPhraseReplacements = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechPhraseReplacements, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseReplacements.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseReplacements, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const ISpeechPhraseReplacements, Index: i32, Reps: ?*?*ISpeechPhraseReplacement) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseReplacements.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseReplacements, @ptrCast(self)), Index, Reps);
+        return self.vtable.Item(self, Index, Reps);
     }
     pub fn get__NewEnum(self: *const ISpeechPhraseReplacements, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseReplacements.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseReplacements, @ptrCast(self)), EnumVARIANT);
+        return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
 
@@ -10798,31 +10798,31 @@ pub const ISpeechPhraseProperty = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const ISpeechPhraseProperty, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Name);
+        return self.vtable.get_Name(self, Name);
     }
     pub fn get_Id(self: *const ISpeechPhraseProperty, Id: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Id);
+        return self.vtable.get_Id(self, Id);
     }
     pub fn get_Value(self: *const ISpeechPhraseProperty, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Value);
+        return self.vtable.get_Value(self, Value);
     }
     pub fn get_FirstElement(self: *const ISpeechPhraseProperty, FirstElement: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_FirstElement(@as(*const ISpeechPhraseProperty, @ptrCast(self)), FirstElement);
+        return self.vtable.get_FirstElement(self, FirstElement);
     }
     pub fn get_NumberOfElements(self: *const ISpeechPhraseProperty, NumberOfElements: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_NumberOfElements(@as(*const ISpeechPhraseProperty, @ptrCast(self)), NumberOfElements);
+        return self.vtable.get_NumberOfElements(self, NumberOfElements);
     }
     pub fn get_EngineConfidence(self: *const ISpeechPhraseProperty, Confidence: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_EngineConfidence(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Confidence);
+        return self.vtable.get_EngineConfidence(self, Confidence);
     }
     pub fn get_Confidence(self: *const ISpeechPhraseProperty, Confidence: ?*SpeechEngineConfidence) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Confidence(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Confidence);
+        return self.vtable.get_Confidence(self, Confidence);
     }
     pub fn get_Parent(self: *const ISpeechPhraseProperty, ParentProperty: ?*?*ISpeechPhraseProperty) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const ISpeechPhraseProperty, @ptrCast(self)), ParentProperty);
+        return self.vtable.get_Parent(self, ParentProperty);
     }
     pub fn get_Children(self: *const ISpeechPhraseProperty, Children: ?*?*ISpeechPhraseProperties) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperty.VTable, @ptrCast(self.vtable)).get_Children(@as(*const ISpeechPhraseProperty, @ptrCast(self)), Children);
+        return self.vtable.get_Children(self, Children);
     }
 };
 
@@ -10866,13 +10866,13 @@ pub const ISpeechPhraseProperties = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechPhraseProperties, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperties.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseProperties, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const ISpeechPhraseProperties, Index: i32, Property: ?*?*ISpeechPhraseProperty) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperties.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseProperties, @ptrCast(self)), Index, Property);
+        return self.vtable.Item(self, Index, Property);
     }
     pub fn get__NewEnum(self: *const ISpeechPhraseProperties, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseProperties.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseProperties, @ptrCast(self)), EnumVARIANT);
+        return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
 
@@ -10961,28 +10961,28 @@ pub const ISpeechPhraseRule = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const ISpeechPhraseRule, Name: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Name(@as(*const ISpeechPhraseRule, @ptrCast(self)), Name);
+        return self.vtable.get_Name(self, Name);
     }
     pub fn get_Id(self: *const ISpeechPhraseRule, Id: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Id(@as(*const ISpeechPhraseRule, @ptrCast(self)), Id);
+        return self.vtable.get_Id(self, Id);
     }
     pub fn get_FirstElement(self: *const ISpeechPhraseRule, FirstElement: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_FirstElement(@as(*const ISpeechPhraseRule, @ptrCast(self)), FirstElement);
+        return self.vtable.get_FirstElement(self, FirstElement);
     }
     pub fn get_NumberOfElements(self: *const ISpeechPhraseRule, NumberOfElements: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_NumberOfElements(@as(*const ISpeechPhraseRule, @ptrCast(self)), NumberOfElements);
+        return self.vtable.get_NumberOfElements(self, NumberOfElements);
     }
     pub fn get_Parent(self: *const ISpeechPhraseRule, Parent: ?*?*ISpeechPhraseRule) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Parent(@as(*const ISpeechPhraseRule, @ptrCast(self)), Parent);
+        return self.vtable.get_Parent(self, Parent);
     }
     pub fn get_Children(self: *const ISpeechPhraseRule, Children: ?*?*ISpeechPhraseRules) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Children(@as(*const ISpeechPhraseRule, @ptrCast(self)), Children);
+        return self.vtable.get_Children(self, Children);
     }
     pub fn get_Confidence(self: *const ISpeechPhraseRule, ActualConfidence: ?*SpeechEngineConfidence) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_Confidence(@as(*const ISpeechPhraseRule, @ptrCast(self)), ActualConfidence);
+        return self.vtable.get_Confidence(self, ActualConfidence);
     }
     pub fn get_EngineConfidence(self: *const ISpeechPhraseRule, EngineConfidence: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRule.VTable, @ptrCast(self.vtable)).get_EngineConfidence(@as(*const ISpeechPhraseRule, @ptrCast(self)), EngineConfidence);
+        return self.vtable.get_EngineConfidence(self, EngineConfidence);
     }
 };
 
@@ -11026,13 +11026,13 @@ pub const ISpeechPhraseRules = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechPhraseRules, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRules.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechPhraseRules, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const ISpeechPhraseRules, Index: i32, Rule: ?*?*ISpeechPhraseRule) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRules.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechPhraseRules, @ptrCast(self)), Index, Rule);
+        return self.vtable.Item(self, Index, Rule);
     }
     pub fn get__NewEnum(self: *const ISpeechPhraseRules, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseRules.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechPhraseRules, @ptrCast(self)), EnumVARIANT);
+        return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
 
@@ -11132,28 +11132,28 @@ pub const ISpeechLexicon = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_GenerationId(self: *const ISpeechLexicon, GenerationId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).get_GenerationId(@as(*const ISpeechLexicon, @ptrCast(self)), GenerationId);
+        return self.vtable.get_GenerationId(self, GenerationId);
     }
     pub fn GetWords(self: *const ISpeechLexicon, Flags: SpeechLexiconType, GenerationID: ?*i32, Words: ?*?*ISpeechLexiconWords) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).GetWords(@as(*const ISpeechLexicon, @ptrCast(self)), Flags, GenerationID, Words);
+        return self.vtable.GetWords(self, Flags, GenerationID, Words);
     }
     pub fn AddPronunciation(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, bstrPronunciation: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).AddPronunciation(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, PartOfSpeech, bstrPronunciation);
+        return self.vtable.AddPronunciation(self, bstrWord, LangId, PartOfSpeech, bstrPronunciation);
     }
     pub fn AddPronunciationByPhoneIds(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, PhoneIds: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).AddPronunciationByPhoneIds(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, PartOfSpeech, PhoneIds);
+        return self.vtable.AddPronunciationByPhoneIds(self, bstrWord, LangId, PartOfSpeech, PhoneIds);
     }
     pub fn RemovePronunciation(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, bstrPronunciation: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).RemovePronunciation(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, PartOfSpeech, bstrPronunciation);
+        return self.vtable.RemovePronunciation(self, bstrWord, LangId, PartOfSpeech, bstrPronunciation);
     }
     pub fn RemovePronunciationByPhoneIds(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, PhoneIds: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).RemovePronunciationByPhoneIds(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, PartOfSpeech, PhoneIds);
+        return self.vtable.RemovePronunciationByPhoneIds(self, bstrWord, LangId, PartOfSpeech, PhoneIds);
     }
     pub fn GetPronunciations(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, TypeFlags: SpeechLexiconType, ppPronunciations: ?*?*ISpeechLexiconPronunciations) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).GetPronunciations(@as(*const ISpeechLexicon, @ptrCast(self)), bstrWord, LangId, TypeFlags, ppPronunciations);
+        return self.vtable.GetPronunciations(self, bstrWord, LangId, TypeFlags, ppPronunciations);
     }
     pub fn GetGenerationChange(self: *const ISpeechLexicon, GenerationID: ?*i32, ppWords: ?*?*ISpeechLexiconWords) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexicon.VTable, @ptrCast(self.vtable)).GetGenerationChange(@as(*const ISpeechLexicon, @ptrCast(self)), GenerationID, ppWords);
+        return self.vtable.GetGenerationChange(self, GenerationID, ppWords);
     }
 };
 
@@ -11197,13 +11197,13 @@ pub const ISpeechLexiconWords = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechLexiconWords, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconWords.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechLexiconWords, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const ISpeechLexiconWords, Index: i32, Word: ?*?*ISpeechLexiconWord) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconWords.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechLexiconWords, @ptrCast(self)), Index, Word);
+        return self.vtable.Item(self, Index, Word);
     }
     pub fn get__NewEnum(self: *const ISpeechLexiconWords, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconWords.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechLexiconWords, @ptrCast(self)), EnumVARIANT);
+        return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
 
@@ -11256,16 +11256,16 @@ pub const ISpeechLexiconWord = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_LangId(self: *const ISpeechLexiconWord, LangId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconWord.VTable, @ptrCast(self.vtable)).get_LangId(@as(*const ISpeechLexiconWord, @ptrCast(self)), LangId);
+        return self.vtable.get_LangId(self, LangId);
     }
     pub fn get_Type(self: *const ISpeechLexiconWord, WordType: ?*SpeechWordType) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconWord.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISpeechLexiconWord, @ptrCast(self)), WordType);
+        return self.vtable.get_Type(self, WordType);
     }
     pub fn get_Word(self: *const ISpeechLexiconWord, Word: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconWord.VTable, @ptrCast(self.vtable)).get_Word(@as(*const ISpeechLexiconWord, @ptrCast(self)), Word);
+        return self.vtable.get_Word(self, Word);
     }
     pub fn get_Pronunciations(self: *const ISpeechLexiconWord, Pronunciations: ?*?*ISpeechLexiconPronunciations) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconWord.VTable, @ptrCast(self.vtable)).get_Pronunciations(@as(*const ISpeechLexiconWord, @ptrCast(self)), Pronunciations);
+        return self.vtable.get_Pronunciations(self, Pronunciations);
     }
 };
 
@@ -11309,13 +11309,13 @@ pub const ISpeechLexiconPronunciations = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Count(self: *const ISpeechLexiconPronunciations, Count: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconPronunciations.VTable, @ptrCast(self.vtable)).get_Count(@as(*const ISpeechLexiconPronunciations, @ptrCast(self)), Count);
+        return self.vtable.get_Count(self, Count);
     }
     pub fn Item(self: *const ISpeechLexiconPronunciations, Index: i32, Pronunciation: ?*?*ISpeechLexiconPronunciation) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconPronunciations.VTable, @ptrCast(self.vtable)).Item(@as(*const ISpeechLexiconPronunciations, @ptrCast(self)), Index, Pronunciation);
+        return self.vtable.Item(self, Index, Pronunciation);
     }
     pub fn get__NewEnum(self: *const ISpeechLexiconPronunciations, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconPronunciations.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const ISpeechLexiconPronunciations, @ptrCast(self)), EnumVARIANT);
+        return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
 
@@ -11377,19 +11377,19 @@ pub const ISpeechLexiconPronunciation = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Type(self: *const ISpeechLexiconPronunciation, LexiconType: ?*SpeechLexiconType) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_Type(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), LexiconType);
+        return self.vtable.get_Type(self, LexiconType);
     }
     pub fn get_LangId(self: *const ISpeechLexiconPronunciation, LangId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_LangId(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), LangId);
+        return self.vtable.get_LangId(self, LangId);
     }
     pub fn get_PartOfSpeech(self: *const ISpeechLexiconPronunciation, PartOfSpeech: ?*SpeechPartOfSpeech) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_PartOfSpeech(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), PartOfSpeech);
+        return self.vtable.get_PartOfSpeech(self, PartOfSpeech);
     }
     pub fn get_PhoneIds(self: *const ISpeechLexiconPronunciation, PhoneIds: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_PhoneIds(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), PhoneIds);
+        return self.vtable.get_PhoneIds(self, PhoneIds);
     }
     pub fn get_Symbolic(self: *const ISpeechLexiconPronunciation, Symbolic: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechLexiconPronunciation.VTable, @ptrCast(self.vtable)).get_Symbolic(@as(*const ISpeechLexiconPronunciation, @ptrCast(self)), Symbolic);
+        return self.vtable.get_Symbolic(self, Symbolic);
     }
 };
 
@@ -11428,10 +11428,10 @@ pub const ISpeechXMLRecoResult = extern union {
     };}
     pub usingnamespace ISpeechRecoResult.MethodMixin(@This());
     pub fn GetXMLResult(self: *const ISpeechXMLRecoResult, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechXMLRecoResult.VTable, @ptrCast(self.vtable)).GetXMLResult(@as(*const ISpeechXMLRecoResult, @ptrCast(self)), Options, pResult);
+        return self.vtable.GetXMLResult(self, Options, pResult);
     }
     pub fn GetXMLErrorInfo(self: *const ISpeechXMLRecoResult, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*i32, IsError: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechXMLRecoResult.VTable, @ptrCast(self.vtable)).GetXMLErrorInfo(@as(*const ISpeechXMLRecoResult, @ptrCast(self)), LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
+        return self.vtable.GetXMLErrorInfo(self, LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
     }
 };
 
@@ -11571,43 +11571,43 @@ pub const ISpeechRecoResultDispatch = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_RecoContext(self: *const ISpeechRecoResultDispatch, RecoContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).get_RecoContext(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), RecoContext);
+        return self.vtable.get_RecoContext(self, RecoContext);
     }
     pub fn get_Times(self: *const ISpeechRecoResultDispatch, Times: ?*?*ISpeechRecoResultTimes) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).get_Times(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Times);
+        return self.vtable.get_Times(self, Times);
     }
     pub fn putref_AudioFormat(self: *const ISpeechRecoResultDispatch, Format: ?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).putref_AudioFormat(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Format);
+        return self.vtable.putref_AudioFormat(self, Format);
     }
     pub fn get_AudioFormat(self: *const ISpeechRecoResultDispatch, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).get_AudioFormat(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Format);
+        return self.vtable.get_AudioFormat(self, Format);
     }
     pub fn get_PhraseInfo(self: *const ISpeechRecoResultDispatch, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).get_PhraseInfo(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), PhraseInfo);
+        return self.vtable.get_PhraseInfo(self, PhraseInfo);
     }
     pub fn Alternates(self: *const ISpeechRecoResultDispatch, RequestCount: i32, StartElement: i32, Elements: i32, _param_Alternates: ?*?*ISpeechPhraseAlternates) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).Alternates(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), RequestCount, StartElement, Elements, _param_Alternates);
+        return self.vtable.Alternates(self, RequestCount, StartElement, Elements, _param_Alternates);
     }
     pub fn Audio(self: *const ISpeechRecoResultDispatch, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).Audio(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), StartElement, Elements, Stream);
+        return self.vtable.Audio(self, StartElement, Elements, Stream);
     }
     pub fn SpeakAudio(self: *const ISpeechRecoResultDispatch, StartElement: i32, Elements: i32, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).SpeakAudio(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), StartElement, Elements, Flags, StreamNumber);
+        return self.vtable.SpeakAudio(self, StartElement, Elements, Flags, StreamNumber);
     }
     pub fn SaveToMemory(self: *const ISpeechRecoResultDispatch, ResultBlock: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).SaveToMemory(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), ResultBlock);
+        return self.vtable.SaveToMemory(self, ResultBlock);
     }
     pub fn DiscardResultInfo(self: *const ISpeechRecoResultDispatch, ValueTypes: SpeechDiscardType) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).DiscardResultInfo(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), ValueTypes);
+        return self.vtable.DiscardResultInfo(self, ValueTypes);
     }
     pub fn GetXMLResult(self: *const ISpeechRecoResultDispatch, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).GetXMLResult(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Options, pResult);
+        return self.vtable.GetXMLResult(self, Options, pResult);
     }
     pub fn GetXMLErrorInfo(self: *const ISpeechRecoResultDispatch, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*HRESULT, IsError: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).GetXMLErrorInfo(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
+        return self.vtable.GetXMLErrorInfo(self, LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
     }
     pub fn SetTextFeedback(self: *const ISpeechRecoResultDispatch, Feedback: ?BSTR, WasSuccessful: i16) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechRecoResultDispatch.VTable, @ptrCast(self.vtable)).SetTextFeedback(@as(*const ISpeechRecoResultDispatch, @ptrCast(self)), Feedback, WasSuccessful);
+        return self.vtable.SetTextFeedback(self, Feedback, WasSuccessful);
     }
 };
 
@@ -11633,7 +11633,7 @@ pub const ISpeechPhraseInfoBuilder = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn RestorePhraseFromMemory(self: *const ISpeechPhraseInfoBuilder, PhraseInMemory: ?*VARIANT, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhraseInfoBuilder.VTable, @ptrCast(self.vtable)).RestorePhraseFromMemory(@as(*const ISpeechPhraseInfoBuilder, @ptrCast(self)), PhraseInMemory, PhraseInfo);
+        return self.vtable.RestorePhraseFromMemory(self, PhraseInMemory, PhraseInfo);
     }
 };
 
@@ -11686,16 +11686,16 @@ pub const ISpeechPhoneConverter = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_LanguageId(self: *const ISpeechPhoneConverter, LanguageId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhoneConverter.VTable, @ptrCast(self.vtable)).get_LanguageId(@as(*const ISpeechPhoneConverter, @ptrCast(self)), LanguageId);
+        return self.vtable.get_LanguageId(self, LanguageId);
     }
     pub fn put_LanguageId(self: *const ISpeechPhoneConverter, LanguageId: i32) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhoneConverter.VTable, @ptrCast(self.vtable)).put_LanguageId(@as(*const ISpeechPhoneConverter, @ptrCast(self)), LanguageId);
+        return self.vtable.put_LanguageId(self, LanguageId);
     }
     pub fn PhoneToId(self: *const ISpeechPhoneConverter, Phonemes: ?BSTR, IdArray: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhoneConverter.VTable, @ptrCast(self.vtable)).PhoneToId(@as(*const ISpeechPhoneConverter, @ptrCast(self)), Phonemes, IdArray);
+        return self.vtable.PhoneToId(self, Phonemes, IdArray);
     }
     pub fn IdToPhone(self: *const ISpeechPhoneConverter, IdArray: VARIANT, Phonemes: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISpeechPhoneConverter.VTable, @ptrCast(self.vtable)).IdToPhone(@as(*const ISpeechPhoneConverter, @ptrCast(self)), IdArray, Phonemes);
+        return self.vtable.IdToPhone(self, IdArray, Phonemes);
     }
 };
 

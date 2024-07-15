@@ -150,13 +150,13 @@ pub const ILocationReport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSensorID(self: *const ILocationReport, pSensorID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReport.VTable, @ptrCast(self.vtable)).GetSensorID(@as(*const ILocationReport, @ptrCast(self)), pSensorID);
+        return self.vtable.GetSensorID(self, pSensorID);
     }
     pub fn GetTimestamp(self: *const ILocationReport, pCreationTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReport.VTable, @ptrCast(self.vtable)).GetTimestamp(@as(*const ILocationReport, @ptrCast(self)), pCreationTime);
+        return self.vtable.GetTimestamp(self, pCreationTime);
     }
     pub fn GetValue(self: *const ILocationReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReport.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ILocationReport, @ptrCast(self)), pKey, pValue);
+        return self.vtable.GetValue(self, pKey, pValue);
     }
 };
 
@@ -214,19 +214,19 @@ pub const ILatLongReport = extern union {
     };}
     pub usingnamespace ILocationReport.MethodMixin(@This());
     pub fn GetLatitude(self: *const ILatLongReport, pLatitude: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetLatitude(@as(*const ILatLongReport, @ptrCast(self)), pLatitude);
+        return self.vtable.GetLatitude(self, pLatitude);
     }
     pub fn GetLongitude(self: *const ILatLongReport, pLongitude: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetLongitude(@as(*const ILatLongReport, @ptrCast(self)), pLongitude);
+        return self.vtable.GetLongitude(self, pLongitude);
     }
     pub fn GetErrorRadius(self: *const ILatLongReport, pErrorRadius: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetErrorRadius(@as(*const ILatLongReport, @ptrCast(self)), pErrorRadius);
+        return self.vtable.GetErrorRadius(self, pErrorRadius);
     }
     pub fn GetAltitude(self: *const ILatLongReport, pAltitude: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetAltitude(@as(*const ILatLongReport, @ptrCast(self)), pAltitude);
+        return self.vtable.GetAltitude(self, pAltitude);
     }
     pub fn GetAltitudeError(self: *const ILatLongReport, pAltitudeError: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const ILatLongReport.VTable, @ptrCast(self.vtable)).GetAltitudeError(@as(*const ILatLongReport, @ptrCast(self)), pAltitudeError);
+        return self.vtable.GetAltitudeError(self, pAltitudeError);
     }
 };
 
@@ -300,25 +300,25 @@ pub const ICivicAddressReport = extern union {
     };}
     pub usingnamespace ILocationReport.MethodMixin(@This());
     pub fn GetAddressLine1(self: *const ICivicAddressReport, pbstrAddress1: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetAddressLine1(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrAddress1);
+        return self.vtable.GetAddressLine1(self, pbstrAddress1);
     }
     pub fn GetAddressLine2(self: *const ICivicAddressReport, pbstrAddress2: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetAddressLine2(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrAddress2);
+        return self.vtable.GetAddressLine2(self, pbstrAddress2);
     }
     pub fn GetCity(self: *const ICivicAddressReport, pbstrCity: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetCity(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrCity);
+        return self.vtable.GetCity(self, pbstrCity);
     }
     pub fn GetStateProvince(self: *const ICivicAddressReport, pbstrStateProvince: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetStateProvince(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrStateProvince);
+        return self.vtable.GetStateProvince(self, pbstrStateProvince);
     }
     pub fn GetPostalCode(self: *const ICivicAddressReport, pbstrPostalCode: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetPostalCode(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrPostalCode);
+        return self.vtable.GetPostalCode(self, pbstrPostalCode);
     }
     pub fn GetCountryRegion(self: *const ICivicAddressReport, pbstrCountryRegion: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetCountryRegion(@as(*const ICivicAddressReport, @ptrCast(self)), pbstrCountryRegion);
+        return self.vtable.GetCountryRegion(self, pbstrCountryRegion);
     }
     pub fn GetDetailLevel(self: *const ICivicAddressReport, pDetailLevel: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICivicAddressReport.VTable, @ptrCast(self.vtable)).GetDetailLevel(@as(*const ICivicAddressReport, @ptrCast(self)), pDetailLevel);
+        return self.vtable.GetDetailLevel(self, pDetailLevel);
     }
 };
 
@@ -419,31 +419,31 @@ pub const ILocation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterForReport(self: *const ILocation, pEvents: ?*ILocationEvents, reportType: ?*const Guid, dwRequestedReportInterval: u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocation.VTable, @ptrCast(self.vtable)).RegisterForReport(@as(*const ILocation, @ptrCast(self)), pEvents, reportType, dwRequestedReportInterval);
+        return self.vtable.RegisterForReport(self, pEvents, reportType, dwRequestedReportInterval);
     }
     pub fn UnregisterForReport(self: *const ILocation, reportType: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ILocation.VTable, @ptrCast(self.vtable)).UnregisterForReport(@as(*const ILocation, @ptrCast(self)), reportType);
+        return self.vtable.UnregisterForReport(self, reportType);
     }
     pub fn GetReport(self: *const ILocation, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
-        return @as(*const ILocation.VTable, @ptrCast(self.vtable)).GetReport(@as(*const ILocation, @ptrCast(self)), reportType, ppLocationReport);
+        return self.vtable.GetReport(self, reportType, ppLocationReport);
     }
     pub fn GetReportStatus(self: *const ILocation, reportType: ?*const Guid, pStatus: ?*LOCATION_REPORT_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const ILocation.VTable, @ptrCast(self.vtable)).GetReportStatus(@as(*const ILocation, @ptrCast(self)), reportType, pStatus);
+        return self.vtable.GetReportStatus(self, reportType, pStatus);
     }
     pub fn GetReportInterval(self: *const ILocation, reportType: ?*const Guid, pMilliseconds: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocation.VTable, @ptrCast(self.vtable)).GetReportInterval(@as(*const ILocation, @ptrCast(self)), reportType, pMilliseconds);
+        return self.vtable.GetReportInterval(self, reportType, pMilliseconds);
     }
     pub fn SetReportInterval(self: *const ILocation, reportType: ?*const Guid, millisecondsRequested: u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocation.VTable, @ptrCast(self.vtable)).SetReportInterval(@as(*const ILocation, @ptrCast(self)), reportType, millisecondsRequested);
+        return self.vtable.SetReportInterval(self, reportType, millisecondsRequested);
     }
     pub fn GetDesiredAccuracy(self: *const ILocation, reportType: ?*const Guid, pDesiredAccuracy: ?*LOCATION_DESIRED_ACCURACY) callconv(.Inline) HRESULT {
-        return @as(*const ILocation.VTable, @ptrCast(self.vtable)).GetDesiredAccuracy(@as(*const ILocation, @ptrCast(self)), reportType, pDesiredAccuracy);
+        return self.vtable.GetDesiredAccuracy(self, reportType, pDesiredAccuracy);
     }
     pub fn SetDesiredAccuracy(self: *const ILocation, reportType: ?*const Guid, desiredAccuracy: LOCATION_DESIRED_ACCURACY) callconv(.Inline) HRESULT {
-        return @as(*const ILocation.VTable, @ptrCast(self.vtable)).SetDesiredAccuracy(@as(*const ILocation, @ptrCast(self)), reportType, desiredAccuracy);
+        return self.vtable.SetDesiredAccuracy(self, reportType, desiredAccuracy);
     }
     pub fn RequestPermissions(self: *const ILocation, hParent: ?HWND, pReportTypes: [*]Guid, count: u32, fModal: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ILocation.VTable, @ptrCast(self.vtable)).RequestPermissions(@as(*const ILocation, @ptrCast(self)), hParent, pReportTypes, count, fModal);
+        return self.vtable.RequestPermissions(self, hParent, pReportTypes, count, fModal);
     }
 };
 
@@ -475,10 +475,10 @@ pub const ILocationPower = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Connect(self: *const ILocationPower) callconv(.Inline) HRESULT {
-        return @as(*const ILocationPower.VTable, @ptrCast(self.vtable)).Connect(@as(*const ILocationPower, @ptrCast(self)));
+        return self.vtable.Connect(self);
     }
     pub fn Disconnect(self: *const ILocationPower) callconv(.Inline) HRESULT {
-        return @as(*const ILocationPower.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const ILocationPower, @ptrCast(self)));
+        return self.vtable.Disconnect(self);
     }
 };
 
@@ -514,10 +514,10 @@ pub const IDefaultLocation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetReport(self: *const IDefaultLocation, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultLocation.VTable, @ptrCast(self.vtable)).SetReport(@as(*const IDefaultLocation, @ptrCast(self)), reportType, pLocationReport);
+        return self.vtable.SetReport(self, reportType, pLocationReport);
     }
     pub fn GetReport(self: *const IDefaultLocation, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
-        return @as(*const IDefaultLocation.VTable, @ptrCast(self.vtable)).GetReport(@as(*const IDefaultLocation, @ptrCast(self)), reportType, ppLocationReport);
+        return self.vtable.GetReport(self, reportType, ppLocationReport);
     }
 };
 
@@ -553,10 +553,10 @@ pub const ILocationEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnLocationChanged(self: *const ILocationEvents, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) callconv(.Inline) HRESULT {
-        return @as(*const ILocationEvents.VTable, @ptrCast(self.vtable)).OnLocationChanged(@as(*const ILocationEvents, @ptrCast(self)), reportType, pLocationReport);
+        return self.vtable.OnLocationChanged(self, reportType, pLocationReport);
     }
     pub fn OnStatusChanged(self: *const ILocationEvents, reportType: ?*const Guid, newStatus: LOCATION_REPORT_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const ILocationEvents.VTable, @ptrCast(self.vtable)).OnStatusChanged(@as(*const ILocationEvents, @ptrCast(self)), reportType, newStatus);
+        return self.vtable.OnStatusChanged(self, reportType, newStatus);
     }
 };
 
@@ -627,22 +627,22 @@ pub const IDispLatLongReport = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Latitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_Latitude(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
+        return self.vtable.get_Latitude(self, pVal);
     }
     pub fn get_Longitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_Longitude(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
+        return self.vtable.get_Longitude(self, pVal);
     }
     pub fn get_ErrorRadius(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_ErrorRadius(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
+        return self.vtable.get_ErrorRadius(self, pVal);
     }
     pub fn get_Altitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_Altitude(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
+        return self.vtable.get_Altitude(self, pVal);
     }
     pub fn get_AltitudeError(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_AltitudeError(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
+        return self.vtable.get_AltitudeError(self, pVal);
     }
     pub fn get_Timestamp(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IDispLatLongReport.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IDispLatLongReport, @ptrCast(self)), pVal);
+        return self.vtable.get_Timestamp(self, pVal);
     }
 };
 
@@ -731,28 +731,28 @@ pub const IDispCivicAddressReport = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_AddressLine1(self: *const IDispCivicAddressReport, pAddress1: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_AddressLine1(@as(*const IDispCivicAddressReport, @ptrCast(self)), pAddress1);
+        return self.vtable.get_AddressLine1(self, pAddress1);
     }
     pub fn get_AddressLine2(self: *const IDispCivicAddressReport, pAddress2: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_AddressLine2(@as(*const IDispCivicAddressReport, @ptrCast(self)), pAddress2);
+        return self.vtable.get_AddressLine2(self, pAddress2);
     }
     pub fn get_City(self: *const IDispCivicAddressReport, pCity: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_City(@as(*const IDispCivicAddressReport, @ptrCast(self)), pCity);
+        return self.vtable.get_City(self, pCity);
     }
     pub fn get_StateProvince(self: *const IDispCivicAddressReport, pStateProvince: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_StateProvince(@as(*const IDispCivicAddressReport, @ptrCast(self)), pStateProvince);
+        return self.vtable.get_StateProvince(self, pStateProvince);
     }
     pub fn get_PostalCode(self: *const IDispCivicAddressReport, pPostalCode: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_PostalCode(@as(*const IDispCivicAddressReport, @ptrCast(self)), pPostalCode);
+        return self.vtable.get_PostalCode(self, pPostalCode);
     }
     pub fn get_CountryRegion(self: *const IDispCivicAddressReport, pCountryRegion: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_CountryRegion(@as(*const IDispCivicAddressReport, @ptrCast(self)), pCountryRegion);
+        return self.vtable.get_CountryRegion(self, pCountryRegion);
     }
     pub fn get_DetailLevel(self: *const IDispCivicAddressReport, pDetailLevel: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_DetailLevel(@as(*const IDispCivicAddressReport, @ptrCast(self)), pDetailLevel);
+        return self.vtable.get_DetailLevel(self, pDetailLevel);
     }
     pub fn get_Timestamp(self: *const IDispCivicAddressReport, pVal: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IDispCivicAddressReport.VTable, @ptrCast(self.vtable)).get_Timestamp(@as(*const IDispCivicAddressReport, @ptrCast(self)), pVal);
+        return self.vtable.get_Timestamp(self, pVal);
     }
 };
 
@@ -837,28 +837,28 @@ pub const ILocationReportFactory = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn ListenForReports(self: *const ILocationReportFactory, requestedReportInterval: u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).ListenForReports(@as(*const ILocationReportFactory, @ptrCast(self)), requestedReportInterval);
+        return self.vtable.ListenForReports(self, requestedReportInterval);
     }
     pub fn StopListeningForReports(self: *const ILocationReportFactory) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).StopListeningForReports(@as(*const ILocationReportFactory, @ptrCast(self)));
+        return self.vtable.StopListeningForReports(self);
     }
     pub fn get_Status(self: *const ILocationReportFactory, pVal: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).get_Status(@as(*const ILocationReportFactory, @ptrCast(self)), pVal);
+        return self.vtable.get_Status(self, pVal);
     }
     pub fn get_ReportInterval(self: *const ILocationReportFactory, pMilliseconds: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).get_ReportInterval(@as(*const ILocationReportFactory, @ptrCast(self)), pMilliseconds);
+        return self.vtable.get_ReportInterval(self, pMilliseconds);
     }
     pub fn put_ReportInterval(self: *const ILocationReportFactory, millisecondsRequested: u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).put_ReportInterval(@as(*const ILocationReportFactory, @ptrCast(self)), millisecondsRequested);
+        return self.vtable.put_ReportInterval(self, millisecondsRequested);
     }
     pub fn get_DesiredAccuracy(self: *const ILocationReportFactory, pDesiredAccuracy: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).get_DesiredAccuracy(@as(*const ILocationReportFactory, @ptrCast(self)), pDesiredAccuracy);
+        return self.vtable.get_DesiredAccuracy(self, pDesiredAccuracy);
     }
     pub fn put_DesiredAccuracy(self: *const ILocationReportFactory, desiredAccuracy: u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).put_DesiredAccuracy(@as(*const ILocationReportFactory, @ptrCast(self)), desiredAccuracy);
+        return self.vtable.put_DesiredAccuracy(self, desiredAccuracy);
     }
     pub fn RequestPermissions(self: *const ILocationReportFactory, hWnd: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocationReportFactory.VTable, @ptrCast(self.vtable)).RequestPermissions(@as(*const ILocationReportFactory, @ptrCast(self)), hWnd);
+        return self.vtable.RequestPermissions(self, hWnd);
     }
 };
 
@@ -884,7 +884,7 @@ pub const ILatLongReportFactory = extern union {
     };}
     pub usingnamespace ILocationReportFactory.MethodMixin(@This());
     pub fn get_LatLongReport(self: *const ILatLongReportFactory, pVal: ?*?*IDispLatLongReport) callconv(.Inline) HRESULT {
-        return @as(*const ILatLongReportFactory.VTable, @ptrCast(self.vtable)).get_LatLongReport(@as(*const ILatLongReportFactory, @ptrCast(self)), pVal);
+        return self.vtable.get_LatLongReport(self, pVal);
     }
 };
 
@@ -910,7 +910,7 @@ pub const ICivicAddressReportFactory = extern union {
     };}
     pub usingnamespace ILocationReportFactory.MethodMixin(@This());
     pub fn get_CivicAddressReport(self: *const ICivicAddressReportFactory, pVal: ?*?*IDispCivicAddressReport) callconv(.Inline) HRESULT {
-        return @as(*const ICivicAddressReportFactory.VTable, @ptrCast(self.vtable)).get_CivicAddressReport(@as(*const ICivicAddressReportFactory, @ptrCast(self)), pVal);
+        return self.vtable.get_CivicAddressReport(self, pVal);
     }
 };
 

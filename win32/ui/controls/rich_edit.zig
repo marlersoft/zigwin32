@@ -1666,58 +1666,58 @@ pub const ITextServices = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn TxSendMessage(self: *const ITextServices, msg: u32, wparam: WPARAM, lparam: LPARAM, plresult: ?*LRESULT) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxSendMessage(@as(*const ITextServices, @ptrCast(self)), msg, wparam, lparam, plresult);
+        return self.vtable.TxSendMessage(self, msg, wparam, lparam, plresult);
     }
     pub fn TxDraw(self: *const ITextServices, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcBounds: ?*RECTL, lprcWBounds: ?*RECTL, lprcUpdate: ?*RECT, pfnContinue: isize, dwContinue: u32, lViewId: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxDraw(@as(*const ITextServices, @ptrCast(self)), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcBounds, lprcWBounds, lprcUpdate, pfnContinue, dwContinue, lViewId);
+        return self.vtable.TxDraw(self, dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcBounds, lprcWBounds, lprcUpdate, pfnContinue, dwContinue, lViewId);
     }
     pub fn TxGetHScroll(self: *const ITextServices, plMin: ?*i32, plMax: ?*i32, plPos: ?*i32, plPage: ?*i32, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxGetHScroll(@as(*const ITextServices, @ptrCast(self)), plMin, plMax, plPos, plPage, pfEnabled);
+        return self.vtable.TxGetHScroll(self, plMin, plMax, plPos, plPage, pfEnabled);
     }
     pub fn TxGetVScroll(self: *const ITextServices, plMin: ?*i32, plMax: ?*i32, plPos: ?*i32, plPage: ?*i32, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxGetVScroll(@as(*const ITextServices, @ptrCast(self)), plMin, plMax, plPos, plPage, pfEnabled);
+        return self.vtable.TxGetVScroll(self, plMin, plMax, plPos, plPage, pfEnabled);
     }
     pub fn OnTxSetCursor(self: *const ITextServices, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).OnTxSetCursor(@as(*const ITextServices, @ptrCast(self)), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y);
+        return self.vtable.OnTxSetCursor(self, dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y);
     }
     pub fn TxQueryHitPoint(self: *const ITextServices, dwDrawAspect: DVASPECT, lindex: i32, pvAspect: ?*anyopaque, ptd: ?*DVTARGETDEVICE, hdcDraw: ?HDC, hicTargetDev: ?HDC, lprcClient: ?*RECT, x: i32, y: i32, pHitResult: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxQueryHitPoint(@as(*const ITextServices, @ptrCast(self)), dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y, pHitResult);
+        return self.vtable.TxQueryHitPoint(self, dwDrawAspect, lindex, pvAspect, ptd, hdcDraw, hicTargetDev, lprcClient, x, y, pHitResult);
     }
     pub fn OnTxInPlaceActivate(self: *const ITextServices, prcClient: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).OnTxInPlaceActivate(@as(*const ITextServices, @ptrCast(self)), prcClient);
+        return self.vtable.OnTxInPlaceActivate(self, prcClient);
     }
     pub fn OnTxInPlaceDeactivate(self: *const ITextServices) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).OnTxInPlaceDeactivate(@as(*const ITextServices, @ptrCast(self)));
+        return self.vtable.OnTxInPlaceDeactivate(self);
     }
     pub fn OnTxUIActivate(self: *const ITextServices) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).OnTxUIActivate(@as(*const ITextServices, @ptrCast(self)));
+        return self.vtable.OnTxUIActivate(self);
     }
     pub fn OnTxUIDeactivate(self: *const ITextServices) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).OnTxUIDeactivate(@as(*const ITextServices, @ptrCast(self)));
+        return self.vtable.OnTxUIDeactivate(self);
     }
     pub fn TxGetText(self: *const ITextServices, pbstrText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxGetText(@as(*const ITextServices, @ptrCast(self)), pbstrText);
+        return self.vtable.TxGetText(self, pbstrText);
     }
     pub fn TxSetText(self: *const ITextServices, pszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxSetText(@as(*const ITextServices, @ptrCast(self)), pszText);
+        return self.vtable.TxSetText(self, pszText);
     }
     pub fn TxGetCurTargetX(self: *const ITextServices, param0: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxGetCurTargetX(@as(*const ITextServices, @ptrCast(self)), param0);
+        return self.vtable.TxGetCurTargetX(self, param0);
     }
     pub fn TxGetBaseLinePos(self: *const ITextServices, param0: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxGetBaseLinePos(@as(*const ITextServices, @ptrCast(self)), param0);
+        return self.vtable.TxGetBaseLinePos(self, param0);
     }
     pub fn TxGetNaturalSize(self: *const ITextServices, dwAspect: u32, hdcDraw: ?HDC, hicTargetDev: ?HDC, ptd: ?*DVTARGETDEVICE, dwMode: u32, psizelExtent: ?*const SIZE, pwidth: ?*i32, pheight: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxGetNaturalSize(@as(*const ITextServices, @ptrCast(self)), dwAspect, hdcDraw, hicTargetDev, ptd, dwMode, psizelExtent, pwidth, pheight);
+        return self.vtable.TxGetNaturalSize(self, dwAspect, hdcDraw, hicTargetDev, ptd, dwMode, psizelExtent, pwidth, pheight);
     }
     pub fn TxGetDropTarget(self: *const ITextServices, ppDropTarget: ?*?*IDropTarget) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxGetDropTarget(@as(*const ITextServices, @ptrCast(self)), ppDropTarget);
+        return self.vtable.TxGetDropTarget(self, ppDropTarget);
     }
     pub fn OnTxPropertyBitsChange(self: *const ITextServices, dwMask: u32, dwBits: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).OnTxPropertyBitsChange(@as(*const ITextServices, @ptrCast(self)), dwMask, dwBits);
+        return self.vtable.OnTxPropertyBitsChange(self, dwMask, dwBits);
     }
     pub fn TxGetCachedSize(self: *const ITextServices, pdwWidth: ?*u32, pdwHeight: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices.VTable, @ptrCast(self.vtable)).TxGetCachedSize(@as(*const ITextServices, @ptrCast(self)), pdwWidth, pdwHeight);
+        return self.vtable.TxGetCachedSize(self, pdwWidth, pdwHeight);
     }
 };
 
@@ -2082,121 +2082,121 @@ pub const ITextHost = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn TxGetDC(self: *const ITextHost) callconv(.Inline) ?HDC {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetDC(@as(*const ITextHost, @ptrCast(self)));
+        return self.vtable.TxGetDC(self);
     }
     pub fn TxReleaseDC(self: *const ITextHost, hdc: ?HDC) callconv(.Inline) i32 {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxReleaseDC(@as(*const ITextHost, @ptrCast(self)), hdc);
+        return self.vtable.TxReleaseDC(self, hdc);
     }
     pub fn TxShowScrollBar(self: *const ITextHost, fnBar: i32, fShow: BOOL) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxShowScrollBar(@as(*const ITextHost, @ptrCast(self)), fnBar, fShow);
+        return self.vtable.TxShowScrollBar(self, fnBar, fShow);
     }
     pub fn TxEnableScrollBar(self: *const ITextHost, fuSBFlags: SCROLLBAR_CONSTANTS, fuArrowflags: ENABLE_SCROLL_BAR_ARROWS) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxEnableScrollBar(@as(*const ITextHost, @ptrCast(self)), fuSBFlags, fuArrowflags);
+        return self.vtable.TxEnableScrollBar(self, fuSBFlags, fuArrowflags);
     }
     pub fn TxSetScrollRange(self: *const ITextHost, fnBar: i32, nMinPos: i32, nMaxPos: i32, fRedraw: BOOL) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxSetScrollRange(@as(*const ITextHost, @ptrCast(self)), fnBar, nMinPos, nMaxPos, fRedraw);
+        return self.vtable.TxSetScrollRange(self, fnBar, nMinPos, nMaxPos, fRedraw);
     }
     pub fn TxSetScrollPos(self: *const ITextHost, fnBar: i32, nPos: i32, fRedraw: BOOL) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxSetScrollPos(@as(*const ITextHost, @ptrCast(self)), fnBar, nPos, fRedraw);
+        return self.vtable.TxSetScrollPos(self, fnBar, nPos, fRedraw);
     }
     pub fn TxInvalidateRect(self: *const ITextHost, prc: ?*RECT, fMode: BOOL) callconv(.Inline) void {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxInvalidateRect(@as(*const ITextHost, @ptrCast(self)), prc, fMode);
+        return self.vtable.TxInvalidateRect(self, prc, fMode);
     }
     pub fn TxViewChange(self: *const ITextHost, fUpdate: BOOL) callconv(.Inline) void {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxViewChange(@as(*const ITextHost, @ptrCast(self)), fUpdate);
+        return self.vtable.TxViewChange(self, fUpdate);
     }
     pub fn TxCreateCaret(self: *const ITextHost, hbmp: ?HBITMAP, xWidth: i32, yHeight: i32) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxCreateCaret(@as(*const ITextHost, @ptrCast(self)), hbmp, xWidth, yHeight);
+        return self.vtable.TxCreateCaret(self, hbmp, xWidth, yHeight);
     }
     pub fn TxShowCaret(self: *const ITextHost, fShow: BOOL) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxShowCaret(@as(*const ITextHost, @ptrCast(self)), fShow);
+        return self.vtable.TxShowCaret(self, fShow);
     }
     pub fn TxSetCaretPos(self: *const ITextHost, x: i32, y: i32) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxSetCaretPos(@as(*const ITextHost, @ptrCast(self)), x, y);
+        return self.vtable.TxSetCaretPos(self, x, y);
     }
     pub fn TxSetTimer(self: *const ITextHost, idTimer: u32, uTimeout: u32) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxSetTimer(@as(*const ITextHost, @ptrCast(self)), idTimer, uTimeout);
+        return self.vtable.TxSetTimer(self, idTimer, uTimeout);
     }
     pub fn TxKillTimer(self: *const ITextHost, idTimer: u32) callconv(.Inline) void {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxKillTimer(@as(*const ITextHost, @ptrCast(self)), idTimer);
+        return self.vtable.TxKillTimer(self, idTimer);
     }
     pub fn TxScrollWindowEx(self: *const ITextHost, dx: i32, dy: i32, lprcScroll: ?*RECT, lprcClip: ?*RECT, hrgnUpdate: ?HRGN, lprcUpdate: ?*RECT, fuScroll: SHOW_WINDOW_CMD) callconv(.Inline) void {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxScrollWindowEx(@as(*const ITextHost, @ptrCast(self)), dx, dy, lprcScroll, lprcClip, hrgnUpdate, lprcUpdate, fuScroll);
+        return self.vtable.TxScrollWindowEx(self, dx, dy, lprcScroll, lprcClip, hrgnUpdate, lprcUpdate, fuScroll);
     }
     pub fn TxSetCapture(self: *const ITextHost, fCapture: BOOL) callconv(.Inline) void {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxSetCapture(@as(*const ITextHost, @ptrCast(self)), fCapture);
+        return self.vtable.TxSetCapture(self, fCapture);
     }
     pub fn TxSetFocus(self: *const ITextHost) callconv(.Inline) void {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxSetFocus(@as(*const ITextHost, @ptrCast(self)));
+        return self.vtable.TxSetFocus(self);
     }
     pub fn TxSetCursor(self: *const ITextHost, hcur: ?HCURSOR, fText: BOOL) callconv(.Inline) void {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxSetCursor(@as(*const ITextHost, @ptrCast(self)), hcur, fText);
+        return self.vtable.TxSetCursor(self, hcur, fText);
     }
     pub fn TxScreenToClient(self: *const ITextHost, lppt: ?*POINT) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxScreenToClient(@as(*const ITextHost, @ptrCast(self)), lppt);
+        return self.vtable.TxScreenToClient(self, lppt);
     }
     pub fn TxClientToScreen(self: *const ITextHost, lppt: ?*POINT) callconv(.Inline) BOOL {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxClientToScreen(@as(*const ITextHost, @ptrCast(self)), lppt);
+        return self.vtable.TxClientToScreen(self, lppt);
     }
     pub fn TxActivate(self: *const ITextHost, plOldState: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxActivate(@as(*const ITextHost, @ptrCast(self)), plOldState);
+        return self.vtable.TxActivate(self, plOldState);
     }
     pub fn TxDeactivate(self: *const ITextHost, lNewState: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxDeactivate(@as(*const ITextHost, @ptrCast(self)), lNewState);
+        return self.vtable.TxDeactivate(self, lNewState);
     }
     pub fn TxGetClientRect(self: *const ITextHost, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetClientRect(@as(*const ITextHost, @ptrCast(self)), prc);
+        return self.vtable.TxGetClientRect(self, prc);
     }
     pub fn TxGetViewInset(self: *const ITextHost, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetViewInset(@as(*const ITextHost, @ptrCast(self)), prc);
+        return self.vtable.TxGetViewInset(self, prc);
     }
     pub fn TxGetCharFormat(self: *const ITextHost, ppCF: ?*const ?*CHARFORMATW) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetCharFormat(@as(*const ITextHost, @ptrCast(self)), ppCF);
+        return self.vtable.TxGetCharFormat(self, ppCF);
     }
     pub fn TxGetParaFormat(self: *const ITextHost, ppPF: ?*const ?*PARAFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetParaFormat(@as(*const ITextHost, @ptrCast(self)), ppPF);
+        return self.vtable.TxGetParaFormat(self, ppPF);
     }
     pub fn TxGetSysColor(self: *const ITextHost, nIndex: i32) callconv(.Inline) u32 {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetSysColor(@as(*const ITextHost, @ptrCast(self)), nIndex);
+        return self.vtable.TxGetSysColor(self, nIndex);
     }
     pub fn TxGetBackStyle(self: *const ITextHost, pstyle: ?*TXTBACKSTYLE) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetBackStyle(@as(*const ITextHost, @ptrCast(self)), pstyle);
+        return self.vtable.TxGetBackStyle(self, pstyle);
     }
     pub fn TxGetMaxLength(self: *const ITextHost, plength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetMaxLength(@as(*const ITextHost, @ptrCast(self)), plength);
+        return self.vtable.TxGetMaxLength(self, plength);
     }
     pub fn TxGetScrollBars(self: *const ITextHost, pdwScrollBar: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetScrollBars(@as(*const ITextHost, @ptrCast(self)), pdwScrollBar);
+        return self.vtable.TxGetScrollBars(self, pdwScrollBar);
     }
     pub fn TxGetPasswordChar(self: *const ITextHost, pch: ?*i8) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetPasswordChar(@as(*const ITextHost, @ptrCast(self)), pch);
+        return self.vtable.TxGetPasswordChar(self, pch);
     }
     pub fn TxGetAcceleratorPos(self: *const ITextHost, pcp: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetAcceleratorPos(@as(*const ITextHost, @ptrCast(self)), pcp);
+        return self.vtable.TxGetAcceleratorPos(self, pcp);
     }
     pub fn TxGetExtent(self: *const ITextHost, lpExtent: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetExtent(@as(*const ITextHost, @ptrCast(self)), lpExtent);
+        return self.vtable.TxGetExtent(self, lpExtent);
     }
     pub fn OnTxCharFormatChange(self: *const ITextHost, pCF: ?*const CHARFORMATW) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).OnTxCharFormatChange(@as(*const ITextHost, @ptrCast(self)), pCF);
+        return self.vtable.OnTxCharFormatChange(self, pCF);
     }
     pub fn OnTxParaFormatChange(self: *const ITextHost, pPF: ?*const PARAFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).OnTxParaFormatChange(@as(*const ITextHost, @ptrCast(self)), pPF);
+        return self.vtable.OnTxParaFormatChange(self, pPF);
     }
     pub fn TxGetPropertyBits(self: *const ITextHost, dwMask: u32, pdwBits: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetPropertyBits(@as(*const ITextHost, @ptrCast(self)), dwMask, pdwBits);
+        return self.vtable.TxGetPropertyBits(self, dwMask, pdwBits);
     }
     pub fn TxNotify(self: *const ITextHost, iNotify: u32, pv: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxNotify(@as(*const ITextHost, @ptrCast(self)), iNotify, pv);
+        return self.vtable.TxNotify(self, iNotify, pv);
     }
     pub fn TxImmGetContext(self: *const ITextHost) callconv(.Inline) ?HIMC {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxImmGetContext(@as(*const ITextHost, @ptrCast(self)));
+        return self.vtable.TxImmGetContext(self);
     }
     pub fn TxImmReleaseContext(self: *const ITextHost, himc: ?HIMC) callconv(.Inline) void {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxImmReleaseContext(@as(*const ITextHost, @ptrCast(self)), himc);
+        return self.vtable.TxImmReleaseContext(self, himc);
     }
     pub fn TxGetSelectionBarWidth(self: *const ITextHost, lSelBarWidth: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost.VTable, @ptrCast(self.vtable)).TxGetSelectionBarWidth(@as(*const ITextHost, @ptrCast(self)), lSelBarWidth);
+        return self.vtable.TxGetSelectionBarWidth(self, lSelBarWidth);
     }
 };
 
@@ -2221,7 +2221,7 @@ pub const IRicheditUiaOverrides = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPropertyOverrideValue(self: *const IRicheditUiaOverrides, propertyId: i32, pRetValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IRicheditUiaOverrides.VTable, @ptrCast(self.vtable)).GetPropertyOverrideValue(@as(*const IRicheditUiaOverrides, @ptrCast(self)), propertyId, pRetValue);
+        return self.vtable.GetPropertyOverrideValue(self, propertyId, pRetValue);
     }
 };
 
@@ -2342,40 +2342,40 @@ pub const ITextHost2 = extern union {
     };}
     pub usingnamespace ITextHost.MethodMixin(@This());
     pub fn TxIsDoubleClickPending(self: *const ITextHost2) callconv(.Inline) BOOL {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxIsDoubleClickPending(@as(*const ITextHost2, @ptrCast(self)));
+        return self.vtable.TxIsDoubleClickPending(self);
     }
     pub fn TxGetWindow(self: *const ITextHost2, phwnd: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxGetWindow(@as(*const ITextHost2, @ptrCast(self)), phwnd);
+        return self.vtable.TxGetWindow(self, phwnd);
     }
     pub fn TxSetForegroundWindow(self: *const ITextHost2) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxSetForegroundWindow(@as(*const ITextHost2, @ptrCast(self)));
+        return self.vtable.TxSetForegroundWindow(self);
     }
     pub fn TxGetPalette(self: *const ITextHost2) callconv(.Inline) ?HPALETTE {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxGetPalette(@as(*const ITextHost2, @ptrCast(self)));
+        return self.vtable.TxGetPalette(self);
     }
     pub fn TxGetEastAsianFlags(self: *const ITextHost2, pFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxGetEastAsianFlags(@as(*const ITextHost2, @ptrCast(self)), pFlags);
+        return self.vtable.TxGetEastAsianFlags(self, pFlags);
     }
     pub fn TxSetCursor2(self: *const ITextHost2, hcur: ?HCURSOR, bText: BOOL) callconv(.Inline) ?HCURSOR {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxSetCursor2(@as(*const ITextHost2, @ptrCast(self)), hcur, bText);
+        return self.vtable.TxSetCursor2(self, hcur, bText);
     }
     pub fn TxFreeTextServicesNotification(self: *const ITextHost2) callconv(.Inline) void {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxFreeTextServicesNotification(@as(*const ITextHost2, @ptrCast(self)));
+        return self.vtable.TxFreeTextServicesNotification(self);
     }
     pub fn TxGetEditStyle(self: *const ITextHost2, dwItem: u32, pdwData: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxGetEditStyle(@as(*const ITextHost2, @ptrCast(self)), dwItem, pdwData);
+        return self.vtable.TxGetEditStyle(self, dwItem, pdwData);
     }
     pub fn TxGetWindowStyles(self: *const ITextHost2, pdwStyle: ?*u32, pdwExStyle: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxGetWindowStyles(@as(*const ITextHost2, @ptrCast(self)), pdwStyle, pdwExStyle);
+        return self.vtable.TxGetWindowStyles(self, pdwStyle, pdwExStyle);
     }
     pub fn TxShowDropCaret(self: *const ITextHost2, fShow: BOOL, hdc: ?HDC, prc: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxShowDropCaret(@as(*const ITextHost2, @ptrCast(self)), fShow, hdc, prc);
+        return self.vtable.TxShowDropCaret(self, fShow, hdc, prc);
     }
     pub fn TxDestroyCaret(self: *const ITextHost2) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxDestroyCaret(@as(*const ITextHost2, @ptrCast(self)));
+        return self.vtable.TxDestroyCaret(self);
     }
     pub fn TxGetHorzExtent(self: *const ITextHost2, plHorzExtent: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextHost2.VTable, @ptrCast(self.vtable)).TxGetHorzExtent(@as(*const ITextHost2, @ptrCast(self)), plHorzExtent);
+        return self.vtable.TxGetHorzExtent(self, plHorzExtent);
     }
 };
 
@@ -2417,10 +2417,10 @@ pub const ITextServices2 = extern union {
     };}
     pub usingnamespace ITextServices.MethodMixin(@This());
     pub fn TxGetNaturalSize2(self: *const ITextServices2, dwAspect: u32, hdcDraw: ?HDC, hicTargetDev: ?HDC, ptd: ?*DVTARGETDEVICE, dwMode: u32, psizelExtent: ?*const SIZE, pwidth: ?*i32, pheight: ?*i32, pascent: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices2.VTable, @ptrCast(self.vtable)).TxGetNaturalSize2(@as(*const ITextServices2, @ptrCast(self)), dwAspect, hdcDraw, hicTargetDev, ptd, dwMode, psizelExtent, pwidth, pheight, pascent);
+        return self.vtable.TxGetNaturalSize2(self, dwAspect, hdcDraw, hicTargetDev, ptd, dwMode, psizelExtent, pwidth, pheight, pascent);
     }
     pub fn TxDrawD2D(self: *const ITextServices2, pRenderTarget: ?*ID2D1RenderTarget, lprcBounds: ?*RECTL, lprcUpdate: ?*RECT, lViewId: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextServices2.VTable, @ptrCast(self.vtable)).TxDrawD2D(@as(*const ITextServices2, @ptrCast(self)), pRenderTarget, lprcBounds, lprcUpdate, lViewId);
+        return self.vtable.TxDrawD2D(self, pRenderTarget, lprcBounds, lprcUpdate, lViewId);
     }
 };
 
@@ -2589,52 +2589,52 @@ pub const IRichEditOle = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClientSite(self: *const IRichEditOle, lplpolesite: ?*?*IOleClientSite) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).GetClientSite(@as(*const IRichEditOle, @ptrCast(self)), lplpolesite);
+        return self.vtable.GetClientSite(self, lplpolesite);
     }
     pub fn GetObjectCount(self: *const IRichEditOle) callconv(.Inline) i32 {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).GetObjectCount(@as(*const IRichEditOle, @ptrCast(self)));
+        return self.vtable.GetObjectCount(self);
     }
     pub fn GetLinkCount(self: *const IRichEditOle) callconv(.Inline) i32 {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).GetLinkCount(@as(*const IRichEditOle, @ptrCast(self)));
+        return self.vtable.GetLinkCount(self);
     }
     pub fn GetObject(self: *const IRichEditOle, iob: i32, lpreobject: ?*REOBJECT, dwFlags: RICH_EDIT_GET_OBJECT_FLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IRichEditOle, @ptrCast(self)), iob, lpreobject, dwFlags);
+        return self.vtable.GetObject(self, iob, lpreobject, dwFlags);
     }
     pub fn InsertObject(self: *const IRichEditOle, lpreobject: ?*REOBJECT) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).InsertObject(@as(*const IRichEditOle, @ptrCast(self)), lpreobject);
+        return self.vtable.InsertObject(self, lpreobject);
     }
     pub fn ConvertObject(self: *const IRichEditOle, iob: i32, rclsidNew: ?*const Guid, lpstrUserTypeNew: ?[*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).ConvertObject(@as(*const IRichEditOle, @ptrCast(self)), iob, rclsidNew, lpstrUserTypeNew);
+        return self.vtable.ConvertObject(self, iob, rclsidNew, lpstrUserTypeNew);
     }
     pub fn ActivateAs(self: *const IRichEditOle, rclsid: ?*const Guid, rclsidAs: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).ActivateAs(@as(*const IRichEditOle, @ptrCast(self)), rclsid, rclsidAs);
+        return self.vtable.ActivateAs(self, rclsid, rclsidAs);
     }
     pub fn SetHostNames(self: *const IRichEditOle, lpstrContainerApp: ?[*:0]const u8, lpstrContainerObj: ?[*:0]const u8) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).SetHostNames(@as(*const IRichEditOle, @ptrCast(self)), lpstrContainerApp, lpstrContainerObj);
+        return self.vtable.SetHostNames(self, lpstrContainerApp, lpstrContainerObj);
     }
     pub fn SetLinkAvailable(self: *const IRichEditOle, iob: i32, fAvailable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).SetLinkAvailable(@as(*const IRichEditOle, @ptrCast(self)), iob, fAvailable);
+        return self.vtable.SetLinkAvailable(self, iob, fAvailable);
     }
     pub fn SetDvaspect(self: *const IRichEditOle, iob: i32, dvaspect: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).SetDvaspect(@as(*const IRichEditOle, @ptrCast(self)), iob, dvaspect);
+        return self.vtable.SetDvaspect(self, iob, dvaspect);
     }
     pub fn HandsOffStorage(self: *const IRichEditOle, iob: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).HandsOffStorage(@as(*const IRichEditOle, @ptrCast(self)), iob);
+        return self.vtable.HandsOffStorage(self, iob);
     }
     pub fn SaveCompleted(self: *const IRichEditOle, iob: i32, lpstg: ?*IStorage) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).SaveCompleted(@as(*const IRichEditOle, @ptrCast(self)), iob, lpstg);
+        return self.vtable.SaveCompleted(self, iob, lpstg);
     }
     pub fn InPlaceDeactivate(self: *const IRichEditOle) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).InPlaceDeactivate(@as(*const IRichEditOle, @ptrCast(self)));
+        return self.vtable.InPlaceDeactivate(self);
     }
     pub fn ContextSensitiveHelp(self: *const IRichEditOle, fEnterMode: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).ContextSensitiveHelp(@as(*const IRichEditOle, @ptrCast(self)), fEnterMode);
+        return self.vtable.ContextSensitiveHelp(self, fEnterMode);
     }
     pub fn GetClipboardData(self: *const IRichEditOle, lpchrg: ?*CHARRANGE, reco: u32, lplpdataobj: ?*?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).GetClipboardData(@as(*const IRichEditOle, @ptrCast(self)), lpchrg, reco, lplpdataobj);
+        return self.vtable.GetClipboardData(self, lpchrg, reco, lplpdataobj);
     }
     pub fn ImportDataObject(self: *const IRichEditOle, lpdataobj: ?*IDataObject, cf: u16, hMetaPict: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOle.VTable, @ptrCast(self.vtable)).ImportDataObject(@as(*const IRichEditOle, @ptrCast(self)), lpdataobj, cf, hMetaPict);
+        return self.vtable.ImportDataObject(self, lpdataobj, cf, hMetaPict);
     }
 };
 
@@ -2747,34 +2747,34 @@ pub const IRichEditOleCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNewStorage(self: *const IRichEditOleCallback, lplpstg: ?*?*IStorage) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).GetNewStorage(@as(*const IRichEditOleCallback, @ptrCast(self)), lplpstg);
+        return self.vtable.GetNewStorage(self, lplpstg);
     }
     pub fn GetInPlaceContext(self: *const IRichEditOleCallback, lplpFrame: ?*?*IOleInPlaceFrame, lplpDoc: ?*?*IOleInPlaceUIWindow, lpFrameInfo: ?*OIFI) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).GetInPlaceContext(@as(*const IRichEditOleCallback, @ptrCast(self)), lplpFrame, lplpDoc, lpFrameInfo);
+        return self.vtable.GetInPlaceContext(self, lplpFrame, lplpDoc, lpFrameInfo);
     }
     pub fn ShowContainerUI(self: *const IRichEditOleCallback, fShow: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).ShowContainerUI(@as(*const IRichEditOleCallback, @ptrCast(self)), fShow);
+        return self.vtable.ShowContainerUI(self, fShow);
     }
     pub fn QueryInsertObject(self: *const IRichEditOleCallback, lpclsid: ?*Guid, lpstg: ?*IStorage, cp: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).QueryInsertObject(@as(*const IRichEditOleCallback, @ptrCast(self)), lpclsid, lpstg, cp);
+        return self.vtable.QueryInsertObject(self, lpclsid, lpstg, cp);
     }
     pub fn DeleteObject(self: *const IRichEditOleCallback, lpoleobj: ?*IOleObject) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).DeleteObject(@as(*const IRichEditOleCallback, @ptrCast(self)), lpoleobj);
+        return self.vtable.DeleteObject(self, lpoleobj);
     }
     pub fn QueryAcceptData(self: *const IRichEditOleCallback, lpdataobj: ?*IDataObject, lpcfFormat: ?*u16, reco: u32, fReally: BOOL, hMetaPict: isize) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).QueryAcceptData(@as(*const IRichEditOleCallback, @ptrCast(self)), lpdataobj, lpcfFormat, reco, fReally, hMetaPict);
+        return self.vtable.QueryAcceptData(self, lpdataobj, lpcfFormat, reco, fReally, hMetaPict);
     }
     pub fn ContextSensitiveHelp(self: *const IRichEditOleCallback, fEnterMode: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).ContextSensitiveHelp(@as(*const IRichEditOleCallback, @ptrCast(self)), fEnterMode);
+        return self.vtable.ContextSensitiveHelp(self, fEnterMode);
     }
     pub fn GetClipboardData(self: *const IRichEditOleCallback, lpchrg: ?*CHARRANGE, reco: u32, lplpdataobj: ?*?*IDataObject) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).GetClipboardData(@as(*const IRichEditOleCallback, @ptrCast(self)), lpchrg, reco, lplpdataobj);
+        return self.vtable.GetClipboardData(self, lpchrg, reco, lplpdataobj);
     }
     pub fn GetDragDropEffect(self: *const IRichEditOleCallback, fDrag: BOOL, grfKeyState: u32, pdwEffect: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).GetDragDropEffect(@as(*const IRichEditOleCallback, @ptrCast(self)), fDrag, grfKeyState, pdwEffect);
+        return self.vtable.GetDragDropEffect(self, fDrag, grfKeyState, pdwEffect);
     }
     pub fn GetContextMenu(self: *const IRichEditOleCallback, seltype: RICH_EDIT_GET_CONTEXT_MENU_SEL_TYPE, lpoleobj: ?*IOleObject, lpchrg: ?*CHARRANGE, lphmenu: ?*?HMENU) callconv(.Inline) HRESULT {
-        return @as(*const IRichEditOleCallback.VTable, @ptrCast(self.vtable)).GetContextMenu(@as(*const IRichEditOleCallback, @ptrCast(self)), seltype, lpoleobj, lpchrg, lphmenu);
+        return self.vtable.GetContextMenu(self, seltype, lpoleobj, lpchrg, lphmenu);
     }
 };
 
@@ -4222,61 +4222,61 @@ pub const ITextDocument = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetName(self: *const ITextDocument, pName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).GetName(@as(*const ITextDocument, @ptrCast(self)), pName);
+        return self.vtable.GetName(self, pName);
     }
     pub fn GetSelection(self: *const ITextDocument, ppSel: ?*?*ITextSelection) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).GetSelection(@as(*const ITextDocument, @ptrCast(self)), ppSel);
+        return self.vtable.GetSelection(self, ppSel);
     }
     pub fn GetStoryCount(self: *const ITextDocument, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).GetStoryCount(@as(*const ITextDocument, @ptrCast(self)), pCount);
+        return self.vtable.GetStoryCount(self, pCount);
     }
     pub fn GetStoryRanges(self: *const ITextDocument, ppStories: ?*?*ITextStoryRanges) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).GetStoryRanges(@as(*const ITextDocument, @ptrCast(self)), ppStories);
+        return self.vtable.GetStoryRanges(self, ppStories);
     }
     pub fn GetSaved(self: *const ITextDocument, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).GetSaved(@as(*const ITextDocument, @ptrCast(self)), pValue);
+        return self.vtable.GetSaved(self, pValue);
     }
     pub fn SetSaved(self: *const ITextDocument, Value: tomConstants) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).SetSaved(@as(*const ITextDocument, @ptrCast(self)), Value);
+        return self.vtable.SetSaved(self, Value);
     }
     pub fn GetDefaultTabStop(self: *const ITextDocument, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).GetDefaultTabStop(@as(*const ITextDocument, @ptrCast(self)), pValue);
+        return self.vtable.GetDefaultTabStop(self, pValue);
     }
     pub fn SetDefaultTabStop(self: *const ITextDocument, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).SetDefaultTabStop(@as(*const ITextDocument, @ptrCast(self)), Value);
+        return self.vtable.SetDefaultTabStop(self, Value);
     }
     pub fn New(self: *const ITextDocument) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).New(@as(*const ITextDocument, @ptrCast(self)));
+        return self.vtable.New(self);
     }
     pub fn Open(self: *const ITextDocument, pVar: ?*VARIANT, Flags: i32, CodePage: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).Open(@as(*const ITextDocument, @ptrCast(self)), pVar, Flags, CodePage);
+        return self.vtable.Open(self, pVar, Flags, CodePage);
     }
     pub fn Save(self: *const ITextDocument, pVar: ?*VARIANT, Flags: i32, CodePage: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).Save(@as(*const ITextDocument, @ptrCast(self)), pVar, Flags, CodePage);
+        return self.vtable.Save(self, pVar, Flags, CodePage);
     }
     pub fn Freeze(self: *const ITextDocument, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).Freeze(@as(*const ITextDocument, @ptrCast(self)), pCount);
+        return self.vtable.Freeze(self, pCount);
     }
     pub fn Unfreeze(self: *const ITextDocument, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).Unfreeze(@as(*const ITextDocument, @ptrCast(self)), pCount);
+        return self.vtable.Unfreeze(self, pCount);
     }
     pub fn BeginEditCollection(self: *const ITextDocument) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).BeginEditCollection(@as(*const ITextDocument, @ptrCast(self)));
+        return self.vtable.BeginEditCollection(self);
     }
     pub fn EndEditCollection(self: *const ITextDocument) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).EndEditCollection(@as(*const ITextDocument, @ptrCast(self)));
+        return self.vtable.EndEditCollection(self);
     }
     pub fn Undo(self: *const ITextDocument, Count: i32, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).Undo(@as(*const ITextDocument, @ptrCast(self)), Count, pCount);
+        return self.vtable.Undo(self, Count, pCount);
     }
     pub fn Redo(self: *const ITextDocument, Count: i32, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).Redo(@as(*const ITextDocument, @ptrCast(self)), Count, pCount);
+        return self.vtable.Redo(self, Count, pCount);
     }
     pub fn Range(self: *const ITextDocument, cpActive: i32, cpAnchor: i32, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).Range(@as(*const ITextDocument, @ptrCast(self)), cpActive, cpAnchor, ppRange);
+        return self.vtable.Range(self, cpActive, cpAnchor, ppRange);
     }
     pub fn RangeFromPoint(self: *const ITextDocument, x: i32, y: i32, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument.VTable, @ptrCast(self.vtable)).RangeFromPoint(@as(*const ITextDocument, @ptrCast(self)), x, y, ppRange);
+        return self.vtable.RangeFromPoint(self, x, y, ppRange);
     }
 };
 
@@ -4750,157 +4750,157 @@ pub const ITextRange = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetText(self: *const ITextRange, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetText(@as(*const ITextRange, @ptrCast(self)), pbstr);
+        return self.vtable.GetText(self, pbstr);
     }
     pub fn SetText(self: *const ITextRange, bstr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetText(@as(*const ITextRange, @ptrCast(self)), bstr);
+        return self.vtable.SetText(self, bstr);
     }
     pub fn GetChar(self: *const ITextRange, pChar: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetChar(@as(*const ITextRange, @ptrCast(self)), pChar);
+        return self.vtable.GetChar(self, pChar);
     }
     pub fn SetChar(self: *const ITextRange, Char: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetChar(@as(*const ITextRange, @ptrCast(self)), Char);
+        return self.vtable.SetChar(self, Char);
     }
     pub fn GetDuplicate(self: *const ITextRange, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetDuplicate(@as(*const ITextRange, @ptrCast(self)), ppRange);
+        return self.vtable.GetDuplicate(self, ppRange);
     }
     pub fn GetFormattedText(self: *const ITextRange, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetFormattedText(@as(*const ITextRange, @ptrCast(self)), ppRange);
+        return self.vtable.GetFormattedText(self, ppRange);
     }
     pub fn SetFormattedText(self: *const ITextRange, pRange: ?*ITextRange) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetFormattedText(@as(*const ITextRange, @ptrCast(self)), pRange);
+        return self.vtable.SetFormattedText(self, pRange);
     }
     pub fn GetStart(self: *const ITextRange, pcpFirst: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetStart(@as(*const ITextRange, @ptrCast(self)), pcpFirst);
+        return self.vtable.GetStart(self, pcpFirst);
     }
     pub fn SetStart(self: *const ITextRange, cpFirst: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetStart(@as(*const ITextRange, @ptrCast(self)), cpFirst);
+        return self.vtable.SetStart(self, cpFirst);
     }
     pub fn GetEnd(self: *const ITextRange, pcpLim: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetEnd(@as(*const ITextRange, @ptrCast(self)), pcpLim);
+        return self.vtable.GetEnd(self, pcpLim);
     }
     pub fn SetEnd(self: *const ITextRange, cpLim: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetEnd(@as(*const ITextRange, @ptrCast(self)), cpLim);
+        return self.vtable.SetEnd(self, cpLim);
     }
     pub fn GetFont(self: *const ITextRange, ppFont: ?*?*ITextFont) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetFont(@as(*const ITextRange, @ptrCast(self)), ppFont);
+        return self.vtable.GetFont(self, ppFont);
     }
     pub fn SetFont(self: *const ITextRange, pFont: ?*ITextFont) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetFont(@as(*const ITextRange, @ptrCast(self)), pFont);
+        return self.vtable.SetFont(self, pFont);
     }
     pub fn GetPara(self: *const ITextRange, ppPara: ?*?*ITextPara) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetPara(@as(*const ITextRange, @ptrCast(self)), ppPara);
+        return self.vtable.GetPara(self, ppPara);
     }
     pub fn SetPara(self: *const ITextRange, pPara: ?*ITextPara) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetPara(@as(*const ITextRange, @ptrCast(self)), pPara);
+        return self.vtable.SetPara(self, pPara);
     }
     pub fn GetStoryLength(self: *const ITextRange, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetStoryLength(@as(*const ITextRange, @ptrCast(self)), pCount);
+        return self.vtable.GetStoryLength(self, pCount);
     }
     pub fn GetStoryType(self: *const ITextRange, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetStoryType(@as(*const ITextRange, @ptrCast(self)), pValue);
+        return self.vtable.GetStoryType(self, pValue);
     }
     pub fn Collapse(self: *const ITextRange, bStart: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).Collapse(@as(*const ITextRange, @ptrCast(self)), bStart);
+        return self.vtable.Collapse(self, bStart);
     }
     pub fn Expand(self: *const ITextRange, Unit: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).Expand(@as(*const ITextRange, @ptrCast(self)), Unit, pDelta);
+        return self.vtable.Expand(self, Unit, pDelta);
     }
     pub fn GetIndex(self: *const ITextRange, Unit: i32, pIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetIndex(@as(*const ITextRange, @ptrCast(self)), Unit, pIndex);
+        return self.vtable.GetIndex(self, Unit, pIndex);
     }
     pub fn SetIndex(self: *const ITextRange, Unit: i32, Index: i32, Extend: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetIndex(@as(*const ITextRange, @ptrCast(self)), Unit, Index, Extend);
+        return self.vtable.SetIndex(self, Unit, Index, Extend);
     }
     pub fn SetRange(self: *const ITextRange, cpAnchor: i32, cpActive: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetRange(@as(*const ITextRange, @ptrCast(self)), cpAnchor, cpActive);
+        return self.vtable.SetRange(self, cpAnchor, cpActive);
     }
     pub fn InRange(self: *const ITextRange, pRange: ?*ITextRange, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).InRange(@as(*const ITextRange, @ptrCast(self)), pRange, pValue);
+        return self.vtable.InRange(self, pRange, pValue);
     }
     pub fn InStory(self: *const ITextRange, pRange: ?*ITextRange, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).InStory(@as(*const ITextRange, @ptrCast(self)), pRange, pValue);
+        return self.vtable.InStory(self, pRange, pValue);
     }
     pub fn IsEqual(self: *const ITextRange, pRange: ?*ITextRange, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const ITextRange, @ptrCast(self)), pRange, pValue);
+        return self.vtable.IsEqual(self, pRange, pValue);
     }
     pub fn Select(self: *const ITextRange) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).Select(@as(*const ITextRange, @ptrCast(self)));
+        return self.vtable.Select(self);
     }
     pub fn StartOf(self: *const ITextRange, Unit: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).StartOf(@as(*const ITextRange, @ptrCast(self)), Unit, Extend, pDelta);
+        return self.vtable.StartOf(self, Unit, Extend, pDelta);
     }
     pub fn EndOf(self: *const ITextRange, Unit: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).EndOf(@as(*const ITextRange, @ptrCast(self)), Unit, Extend, pDelta);
+        return self.vtable.EndOf(self, Unit, Extend, pDelta);
     }
     pub fn Move(self: *const ITextRange, Unit: i32, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).Move(@as(*const ITextRange, @ptrCast(self)), Unit, Count, pDelta);
+        return self.vtable.Move(self, Unit, Count, pDelta);
     }
     pub fn MoveStart(self: *const ITextRange, Unit: i32, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).MoveStart(@as(*const ITextRange, @ptrCast(self)), Unit, Count, pDelta);
+        return self.vtable.MoveStart(self, Unit, Count, pDelta);
     }
     pub fn MoveEnd(self: *const ITextRange, Unit: i32, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).MoveEnd(@as(*const ITextRange, @ptrCast(self)), Unit, Count, pDelta);
+        return self.vtable.MoveEnd(self, Unit, Count, pDelta);
     }
     pub fn MoveWhile(self: *const ITextRange, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).MoveWhile(@as(*const ITextRange, @ptrCast(self)), Cset, Count, pDelta);
+        return self.vtable.MoveWhile(self, Cset, Count, pDelta);
     }
     pub fn MoveStartWhile(self: *const ITextRange, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).MoveStartWhile(@as(*const ITextRange, @ptrCast(self)), Cset, Count, pDelta);
+        return self.vtable.MoveStartWhile(self, Cset, Count, pDelta);
     }
     pub fn MoveEndWhile(self: *const ITextRange, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).MoveEndWhile(@as(*const ITextRange, @ptrCast(self)), Cset, Count, pDelta);
+        return self.vtable.MoveEndWhile(self, Cset, Count, pDelta);
     }
     pub fn MoveUntil(self: *const ITextRange, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).MoveUntil(@as(*const ITextRange, @ptrCast(self)), Cset, Count, pDelta);
+        return self.vtable.MoveUntil(self, Cset, Count, pDelta);
     }
     pub fn MoveStartUntil(self: *const ITextRange, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).MoveStartUntil(@as(*const ITextRange, @ptrCast(self)), Cset, Count, pDelta);
+        return self.vtable.MoveStartUntil(self, Cset, Count, pDelta);
     }
     pub fn MoveEndUntil(self: *const ITextRange, Cset: ?*VARIANT, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).MoveEndUntil(@as(*const ITextRange, @ptrCast(self)), Cset, Count, pDelta);
+        return self.vtable.MoveEndUntil(self, Cset, Count, pDelta);
     }
     pub fn FindText(self: *const ITextRange, bstr: ?BSTR, Count: i32, Flags: i32, pLength: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).FindText(@as(*const ITextRange, @ptrCast(self)), bstr, Count, Flags, pLength);
+        return self.vtable.FindText(self, bstr, Count, Flags, pLength);
     }
     pub fn FindTextStart(self: *const ITextRange, bstr: ?BSTR, Count: i32, Flags: i32, pLength: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).FindTextStart(@as(*const ITextRange, @ptrCast(self)), bstr, Count, Flags, pLength);
+        return self.vtable.FindTextStart(self, bstr, Count, Flags, pLength);
     }
     pub fn FindTextEnd(self: *const ITextRange, bstr: ?BSTR, Count: i32, Flags: i32, pLength: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).FindTextEnd(@as(*const ITextRange, @ptrCast(self)), bstr, Count, Flags, pLength);
+        return self.vtable.FindTextEnd(self, bstr, Count, Flags, pLength);
     }
     pub fn Delete(self: *const ITextRange, Unit: i32, Count: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).Delete(@as(*const ITextRange, @ptrCast(self)), Unit, Count, pDelta);
+        return self.vtable.Delete(self, Unit, Count, pDelta);
     }
     pub fn Cut(self: *const ITextRange, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).Cut(@as(*const ITextRange, @ptrCast(self)), pVar);
+        return self.vtable.Cut(self, pVar);
     }
     pub fn Copy(self: *const ITextRange, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).Copy(@as(*const ITextRange, @ptrCast(self)), pVar);
+        return self.vtable.Copy(self, pVar);
     }
     pub fn Paste(self: *const ITextRange, pVar: ?*VARIANT, Format: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).Paste(@as(*const ITextRange, @ptrCast(self)), pVar, Format);
+        return self.vtable.Paste(self, pVar, Format);
     }
     pub fn CanPaste(self: *const ITextRange, pVar: ?*VARIANT, Format: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).CanPaste(@as(*const ITextRange, @ptrCast(self)), pVar, Format, pValue);
+        return self.vtable.CanPaste(self, pVar, Format, pValue);
     }
     pub fn CanEdit(self: *const ITextRange, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).CanEdit(@as(*const ITextRange, @ptrCast(self)), pValue);
+        return self.vtable.CanEdit(self, pValue);
     }
     pub fn ChangeCase(self: *const ITextRange, Type: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).ChangeCase(@as(*const ITextRange, @ptrCast(self)), Type);
+        return self.vtable.ChangeCase(self, Type);
     }
     pub fn GetPoint(self: *const ITextRange, Type: i32, px: ?*i32, py: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetPoint(@as(*const ITextRange, @ptrCast(self)), Type, px, py);
+        return self.vtable.GetPoint(self, Type, px, py);
     }
     pub fn SetPoint(self: *const ITextRange, x: i32, y: i32, Type: i32, Extend: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).SetPoint(@as(*const ITextRange, @ptrCast(self)), x, y, Type, Extend);
+        return self.vtable.SetPoint(self, x, y, Type, Extend);
     }
     pub fn ScrollIntoView(self: *const ITextRange, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).ScrollIntoView(@as(*const ITextRange, @ptrCast(self)), Value);
+        return self.vtable.ScrollIntoView(self, Value);
     }
     pub fn GetEmbeddedObject(self: *const ITextRange, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange.VTable, @ptrCast(self.vtable)).GetEmbeddedObject(@as(*const ITextRange, @ptrCast(self)), ppObject);
+        return self.vtable.GetEmbeddedObject(self, ppObject);
     }
 };
 
@@ -5014,34 +5014,34 @@ pub const ITextSelection = extern union {
     };}
     pub usingnamespace ITextRange.MethodMixin(@This());
     pub fn GetFlags(self: *const ITextSelection, pFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ITextSelection, @ptrCast(self)), pFlags);
+        return self.vtable.GetFlags(self, pFlags);
     }
     pub fn SetFlags(self: *const ITextSelection, Flags: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const ITextSelection, @ptrCast(self)), Flags);
+        return self.vtable.SetFlags(self, Flags);
     }
     pub fn GetType(self: *const ITextSelection, pType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).GetType(@as(*const ITextSelection, @ptrCast(self)), pType);
+        return self.vtable.GetType(self, pType);
     }
     pub fn MoveLeft(self: *const ITextSelection, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).MoveLeft(@as(*const ITextSelection, @ptrCast(self)), Unit, Count, Extend, pDelta);
+        return self.vtable.MoveLeft(self, Unit, Count, Extend, pDelta);
     }
     pub fn MoveRight(self: *const ITextSelection, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).MoveRight(@as(*const ITextSelection, @ptrCast(self)), Unit, Count, Extend, pDelta);
+        return self.vtable.MoveRight(self, Unit, Count, Extend, pDelta);
     }
     pub fn MoveUp(self: *const ITextSelection, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).MoveUp(@as(*const ITextSelection, @ptrCast(self)), Unit, Count, Extend, pDelta);
+        return self.vtable.MoveUp(self, Unit, Count, Extend, pDelta);
     }
     pub fn MoveDown(self: *const ITextSelection, Unit: i32, Count: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).MoveDown(@as(*const ITextSelection, @ptrCast(self)), Unit, Count, Extend, pDelta);
+        return self.vtable.MoveDown(self, Unit, Count, Extend, pDelta);
     }
     pub fn HomeKey(self: *const ITextSelection, Unit: tomConstants, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).HomeKey(@as(*const ITextSelection, @ptrCast(self)), Unit, Extend, pDelta);
+        return self.vtable.HomeKey(self, Unit, Extend, pDelta);
     }
     pub fn EndKey(self: *const ITextSelection, Unit: i32, Extend: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).EndKey(@as(*const ITextSelection, @ptrCast(self)), Unit, Extend, pDelta);
+        return self.vtable.EndKey(self, Unit, Extend, pDelta);
     }
     pub fn TypeText(self: *const ITextSelection, bstr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextSelection.VTable, @ptrCast(self.vtable)).TypeText(@as(*const ITextSelection, @ptrCast(self)), bstr);
+        return self.vtable.TypeText(self, bstr);
     }
 };
 
@@ -5500,169 +5500,169 @@ pub const ITextFont = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetDuplicate(self: *const ITextFont, ppFont: ?*?*ITextFont) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetDuplicate(@as(*const ITextFont, @ptrCast(self)), ppFont);
+        return self.vtable.GetDuplicate(self, ppFont);
     }
     pub fn SetDuplicate(self: *const ITextFont, pFont: ?*ITextFont) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetDuplicate(@as(*const ITextFont, @ptrCast(self)), pFont);
+        return self.vtable.SetDuplicate(self, pFont);
     }
     pub fn CanChange(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).CanChange(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.CanChange(self, pValue);
     }
     pub fn IsEqual(self: *const ITextFont, pFont: ?*ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const ITextFont, @ptrCast(self)), pFont, pValue);
+        return self.vtable.IsEqual(self, pFont, pValue);
     }
     pub fn Reset(self: *const ITextFont, Value: tomConstants) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).Reset(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.Reset(self, Value);
     }
     pub fn GetStyle(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetStyle(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetStyle(self, pValue);
     }
     pub fn SetStyle(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetStyle(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetStyle(self, Value);
     }
     pub fn GetAllCaps(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetAllCaps(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetAllCaps(self, pValue);
     }
     pub fn SetAllCaps(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetAllCaps(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetAllCaps(self, Value);
     }
     pub fn GetAnimation(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetAnimation(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetAnimation(self, pValue);
     }
     pub fn SetAnimation(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetAnimation(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetAnimation(self, Value);
     }
     pub fn GetBackColor(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetBackColor(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetBackColor(self, pValue);
     }
     pub fn SetBackColor(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetBackColor(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetBackColor(self, Value);
     }
     pub fn GetBold(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetBold(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetBold(self, pValue);
     }
     pub fn SetBold(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetBold(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetBold(self, Value);
     }
     pub fn GetEmboss(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetEmboss(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetEmboss(self, pValue);
     }
     pub fn SetEmboss(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetEmboss(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetEmboss(self, Value);
     }
     pub fn GetForeColor(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetForeColor(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetForeColor(self, pValue);
     }
     pub fn SetForeColor(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetForeColor(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetForeColor(self, Value);
     }
     pub fn GetHidden(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetHidden(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetHidden(self, pValue);
     }
     pub fn SetHidden(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetHidden(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetHidden(self, Value);
     }
     pub fn GetEngrave(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetEngrave(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetEngrave(self, pValue);
     }
     pub fn SetEngrave(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetEngrave(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetEngrave(self, Value);
     }
     pub fn GetItalic(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetItalic(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetItalic(self, pValue);
     }
     pub fn SetItalic(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetItalic(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetItalic(self, Value);
     }
     pub fn GetKerning(self: *const ITextFont, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetKerning(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetKerning(self, pValue);
     }
     pub fn SetKerning(self: *const ITextFont, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetKerning(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetKerning(self, Value);
     }
     pub fn GetLanguageID(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetLanguageID(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetLanguageID(self, pValue);
     }
     pub fn SetLanguageID(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetLanguageID(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetLanguageID(self, Value);
     }
     pub fn GetName(self: *const ITextFont, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetName(@as(*const ITextFont, @ptrCast(self)), pbstr);
+        return self.vtable.GetName(self, pbstr);
     }
     pub fn SetName(self: *const ITextFont, bstr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetName(@as(*const ITextFont, @ptrCast(self)), bstr);
+        return self.vtable.SetName(self, bstr);
     }
     pub fn GetOutline(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetOutline(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetOutline(self, pValue);
     }
     pub fn SetOutline(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetOutline(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetOutline(self, Value);
     }
     pub fn GetPosition(self: *const ITextFont, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetPosition(self, pValue);
     }
     pub fn SetPosition(self: *const ITextFont, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetPosition(self, Value);
     }
     pub fn GetProtected(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetProtected(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetProtected(self, pValue);
     }
     pub fn SetProtected(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetProtected(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetProtected(self, Value);
     }
     pub fn GetShadow(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetShadow(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetShadow(self, pValue);
     }
     pub fn SetShadow(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetShadow(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetShadow(self, Value);
     }
     pub fn GetSize(self: *const ITextFont, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetSize(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetSize(self, pValue);
     }
     pub fn SetSize(self: *const ITextFont, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetSize(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetSize(self, Value);
     }
     pub fn GetSmallCaps(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetSmallCaps(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetSmallCaps(self, pValue);
     }
     pub fn SetSmallCaps(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetSmallCaps(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetSmallCaps(self, Value);
     }
     pub fn GetSpacing(self: *const ITextFont, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetSpacing(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetSpacing(self, pValue);
     }
     pub fn SetSpacing(self: *const ITextFont, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetSpacing(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetSpacing(self, Value);
     }
     pub fn GetStrikeThrough(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetStrikeThrough(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetStrikeThrough(self, pValue);
     }
     pub fn SetStrikeThrough(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetStrikeThrough(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetStrikeThrough(self, Value);
     }
     pub fn GetSubscript(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetSubscript(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetSubscript(self, pValue);
     }
     pub fn SetSubscript(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetSubscript(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetSubscript(self, Value);
     }
     pub fn GetSuperscript(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetSuperscript(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetSuperscript(self, pValue);
     }
     pub fn SetSuperscript(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetSuperscript(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetSuperscript(self, Value);
     }
     pub fn GetUnderline(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetUnderline(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetUnderline(self, pValue);
     }
     pub fn SetUnderline(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetUnderline(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetUnderline(self, Value);
     }
     pub fn GetWeight(self: *const ITextFont, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).GetWeight(@as(*const ITextFont, @ptrCast(self)), pValue);
+        return self.vtable.GetWeight(self, pValue);
     }
     pub fn SetWeight(self: *const ITextFont, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont.VTable, @ptrCast(self.vtable)).SetWeight(@as(*const ITextFont, @ptrCast(self)), Value);
+        return self.vtable.SetWeight(self, Value);
     }
 };
 
@@ -6072,148 +6072,148 @@ pub const ITextPara = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetDuplicate(self: *const ITextPara, ppPara: ?*?*ITextPara) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetDuplicate(@as(*const ITextPara, @ptrCast(self)), ppPara);
+        return self.vtable.GetDuplicate(self, ppPara);
     }
     pub fn SetDuplicate(self: *const ITextPara, pPara: ?*ITextPara) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetDuplicate(@as(*const ITextPara, @ptrCast(self)), pPara);
+        return self.vtable.SetDuplicate(self, pPara);
     }
     pub fn CanChange(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).CanChange(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.CanChange(self, pValue);
     }
     pub fn IsEqual(self: *const ITextPara, pPara: ?*ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const ITextPara, @ptrCast(self)), pPara, pValue);
+        return self.vtable.IsEqual(self, pPara, pValue);
     }
     pub fn Reset(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).Reset(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.Reset(self, Value);
     }
     pub fn GetStyle(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetStyle(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetStyle(self, pValue);
     }
     pub fn SetStyle(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetStyle(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetStyle(self, Value);
     }
     pub fn GetAlignment(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetAlignment(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetAlignment(self, pValue);
     }
     pub fn SetAlignment(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetAlignment(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetAlignment(self, Value);
     }
     pub fn GetHyphenation(self: *const ITextPara, pValue: ?*tomConstants) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetHyphenation(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetHyphenation(self, pValue);
     }
     pub fn SetHyphenation(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetHyphenation(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetHyphenation(self, Value);
     }
     pub fn GetFirstLineIndent(self: *const ITextPara, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetFirstLineIndent(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetFirstLineIndent(self, pValue);
     }
     pub fn GetKeepTogether(self: *const ITextPara, pValue: ?*tomConstants) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetKeepTogether(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetKeepTogether(self, pValue);
     }
     pub fn SetKeepTogether(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetKeepTogether(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetKeepTogether(self, Value);
     }
     pub fn GetKeepWithNext(self: *const ITextPara, pValue: ?*tomConstants) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetKeepWithNext(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetKeepWithNext(self, pValue);
     }
     pub fn SetKeepWithNext(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetKeepWithNext(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetKeepWithNext(self, Value);
     }
     pub fn GetLeftIndent(self: *const ITextPara, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetLeftIndent(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetLeftIndent(self, pValue);
     }
     pub fn GetLineSpacing(self: *const ITextPara, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetLineSpacing(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetLineSpacing(self, pValue);
     }
     pub fn GetLineSpacingRule(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetLineSpacingRule(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetLineSpacingRule(self, pValue);
     }
     pub fn GetListAlignment(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetListAlignment(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetListAlignment(self, pValue);
     }
     pub fn SetListAlignment(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetListAlignment(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetListAlignment(self, Value);
     }
     pub fn GetListLevelIndex(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetListLevelIndex(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetListLevelIndex(self, pValue);
     }
     pub fn SetListLevelIndex(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetListLevelIndex(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetListLevelIndex(self, Value);
     }
     pub fn GetListStart(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetListStart(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetListStart(self, pValue);
     }
     pub fn SetListStart(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetListStart(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetListStart(self, Value);
     }
     pub fn GetListTab(self: *const ITextPara, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetListTab(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetListTab(self, pValue);
     }
     pub fn SetListTab(self: *const ITextPara, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetListTab(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetListTab(self, Value);
     }
     pub fn GetListType(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetListType(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetListType(self, pValue);
     }
     pub fn SetListType(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetListType(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetListType(self, Value);
     }
     pub fn GetNoLineNumber(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetNoLineNumber(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetNoLineNumber(self, pValue);
     }
     pub fn SetNoLineNumber(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetNoLineNumber(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetNoLineNumber(self, Value);
     }
     pub fn GetPageBreakBefore(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetPageBreakBefore(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetPageBreakBefore(self, pValue);
     }
     pub fn SetPageBreakBefore(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetPageBreakBefore(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetPageBreakBefore(self, Value);
     }
     pub fn GetRightIndent(self: *const ITextPara, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetRightIndent(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetRightIndent(self, pValue);
     }
     pub fn SetRightIndent(self: *const ITextPara, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetRightIndent(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetRightIndent(self, Value);
     }
     pub fn SetIndents(self: *const ITextPara, First: f32, Left: f32, Right: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetIndents(@as(*const ITextPara, @ptrCast(self)), First, Left, Right);
+        return self.vtable.SetIndents(self, First, Left, Right);
     }
     pub fn SetLineSpacing(self: *const ITextPara, Rule: i32, Spacing: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetLineSpacing(@as(*const ITextPara, @ptrCast(self)), Rule, Spacing);
+        return self.vtable.SetLineSpacing(self, Rule, Spacing);
     }
     pub fn GetSpaceAfter(self: *const ITextPara, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetSpaceAfter(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetSpaceAfter(self, pValue);
     }
     pub fn SetSpaceAfter(self: *const ITextPara, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetSpaceAfter(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetSpaceAfter(self, Value);
     }
     pub fn GetSpaceBefore(self: *const ITextPara, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetSpaceBefore(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetSpaceBefore(self, pValue);
     }
     pub fn SetSpaceBefore(self: *const ITextPara, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetSpaceBefore(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetSpaceBefore(self, Value);
     }
     pub fn GetWidowControl(self: *const ITextPara, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetWidowControl(@as(*const ITextPara, @ptrCast(self)), pValue);
+        return self.vtable.GetWidowControl(self, pValue);
     }
     pub fn SetWidowControl(self: *const ITextPara, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).SetWidowControl(@as(*const ITextPara, @ptrCast(self)), Value);
+        return self.vtable.SetWidowControl(self, Value);
     }
     pub fn GetTabCount(self: *const ITextPara, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetTabCount(@as(*const ITextPara, @ptrCast(self)), pCount);
+        return self.vtable.GetTabCount(self, pCount);
     }
     pub fn AddTab(self: *const ITextPara, tbPos: f32, tbAlign: i32, tbLeader: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).AddTab(@as(*const ITextPara, @ptrCast(self)), tbPos, tbAlign, tbLeader);
+        return self.vtable.AddTab(self, tbPos, tbAlign, tbLeader);
     }
     pub fn ClearAllTabs(self: *const ITextPara) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).ClearAllTabs(@as(*const ITextPara, @ptrCast(self)));
+        return self.vtable.ClearAllTabs(self);
     }
     pub fn DeleteTab(self: *const ITextPara, tbPos: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).DeleteTab(@as(*const ITextPara, @ptrCast(self)), tbPos);
+        return self.vtable.DeleteTab(self, tbPos);
     }
     pub fn GetTab(self: *const ITextPara, iTab: i32, ptbPos: ?*f32, ptbAlign: ?*i32, ptbLeader: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara.VTable, @ptrCast(self.vtable)).GetTab(@as(*const ITextPara, @ptrCast(self)), iTab, ptbPos, ptbAlign, ptbLeader);
+        return self.vtable.GetTab(self, iTab, ptbPos, ptbAlign, ptbLeader);
     }
 };
 
@@ -6256,13 +6256,13 @@ pub const ITextStoryRanges = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn _NewEnum(self: *const ITextStoryRanges, ppunkEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextStoryRanges.VTable, @ptrCast(self.vtable))._NewEnum(@as(*const ITextStoryRanges, @ptrCast(self)), ppunkEnum);
+        return self.vtable._NewEnum(self, ppunkEnum);
     }
     pub fn Item(self: *const ITextStoryRanges, Index: i32, ppRange: ?*?*ITextRange) callconv(.Inline) HRESULT {
-        return @as(*const ITextStoryRanges.VTable, @ptrCast(self.vtable)).Item(@as(*const ITextStoryRanges, @ptrCast(self)), Index, ppRange);
+        return self.vtable.Item(self, Index, ppRange);
     }
     pub fn GetCount(self: *const ITextStoryRanges, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStoryRanges.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ITextStoryRanges, @ptrCast(self)), pCount);
+        return self.vtable.GetCount(self, pCount);
     }
 };
 
@@ -6654,136 +6654,136 @@ pub const ITextDocument2 = extern union {
     };}
     pub usingnamespace ITextDocument.MethodMixin(@This());
     pub fn GetCaretType(self: *const ITextDocument2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetCaretType(@as(*const ITextDocument2, @ptrCast(self)), pValue);
+        return self.vtable.GetCaretType(self, pValue);
     }
     pub fn SetCaretType(self: *const ITextDocument2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetCaretType(@as(*const ITextDocument2, @ptrCast(self)), Value);
+        return self.vtable.SetCaretType(self, Value);
     }
     pub fn GetDisplays(self: *const ITextDocument2, ppDisplays: ?*?*ITextDisplays) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetDisplays(@as(*const ITextDocument2, @ptrCast(self)), ppDisplays);
+        return self.vtable.GetDisplays(self, ppDisplays);
     }
     pub fn GetDocumentFont(self: *const ITextDocument2, ppFont: ?*?*ITextFont2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetDocumentFont(@as(*const ITextDocument2, @ptrCast(self)), ppFont);
+        return self.vtable.GetDocumentFont(self, ppFont);
     }
     pub fn SetDocumentFont(self: *const ITextDocument2, pFont: ?*ITextFont2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetDocumentFont(@as(*const ITextDocument2, @ptrCast(self)), pFont);
+        return self.vtable.SetDocumentFont(self, pFont);
     }
     pub fn GetDocumentPara(self: *const ITextDocument2, ppPara: ?*?*ITextPara2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetDocumentPara(@as(*const ITextDocument2, @ptrCast(self)), ppPara);
+        return self.vtable.GetDocumentPara(self, ppPara);
     }
     pub fn SetDocumentPara(self: *const ITextDocument2, pPara: ?*ITextPara2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetDocumentPara(@as(*const ITextDocument2, @ptrCast(self)), pPara);
+        return self.vtable.SetDocumentPara(self, pPara);
     }
     pub fn GetEastAsianFlags(self: *const ITextDocument2, pFlags: ?*tomConstants) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetEastAsianFlags(@as(*const ITextDocument2, @ptrCast(self)), pFlags);
+        return self.vtable.GetEastAsianFlags(self, pFlags);
     }
     pub fn GetGenerator(self: *const ITextDocument2, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetGenerator(@as(*const ITextDocument2, @ptrCast(self)), pbstr);
+        return self.vtable.GetGenerator(self, pbstr);
     }
     pub fn SetIMEInProgress(self: *const ITextDocument2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetIMEInProgress(@as(*const ITextDocument2, @ptrCast(self)), Value);
+        return self.vtable.SetIMEInProgress(self, Value);
     }
     pub fn GetNotificationMode(self: *const ITextDocument2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetNotificationMode(@as(*const ITextDocument2, @ptrCast(self)), pValue);
+        return self.vtable.GetNotificationMode(self, pValue);
     }
     pub fn SetNotificationMode(self: *const ITextDocument2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetNotificationMode(@as(*const ITextDocument2, @ptrCast(self)), Value);
+        return self.vtable.SetNotificationMode(self, Value);
     }
     pub fn GetSelection2(self: *const ITextDocument2, ppSel: ?*?*ITextSelection2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetSelection2(@as(*const ITextDocument2, @ptrCast(self)), ppSel);
+        return self.vtable.GetSelection2(self, ppSel);
     }
     pub fn GetStoryRanges2(self: *const ITextDocument2, ppStories: ?*?*ITextStoryRanges2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetStoryRanges2(@as(*const ITextDocument2, @ptrCast(self)), ppStories);
+        return self.vtable.GetStoryRanges2(self, ppStories);
     }
     pub fn GetTypographyOptions(self: *const ITextDocument2, pOptions: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetTypographyOptions(@as(*const ITextDocument2, @ptrCast(self)), pOptions);
+        return self.vtable.GetTypographyOptions(self, pOptions);
     }
     pub fn GetVersion(self: *const ITextDocument2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const ITextDocument2, @ptrCast(self)), pValue);
+        return self.vtable.GetVersion(self, pValue);
     }
     pub fn GetWindow(self: *const ITextDocument2, pHwnd: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const ITextDocument2, @ptrCast(self)), pHwnd);
+        return self.vtable.GetWindow(self, pHwnd);
     }
     pub fn AttachMsgFilter(self: *const ITextDocument2, pFilter: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).AttachMsgFilter(@as(*const ITextDocument2, @ptrCast(self)), pFilter);
+        return self.vtable.AttachMsgFilter(self, pFilter);
     }
     pub fn CheckTextLimit(self: *const ITextDocument2, cch: i32, pcch: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).CheckTextLimit(@as(*const ITextDocument2, @ptrCast(self)), cch, pcch);
+        return self.vtable.CheckTextLimit(self, cch, pcch);
     }
     pub fn GetCallManager(self: *const ITextDocument2, ppVoid: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetCallManager(@as(*const ITextDocument2, @ptrCast(self)), ppVoid);
+        return self.vtable.GetCallManager(self, ppVoid);
     }
     pub fn GetClientRect(self: *const ITextDocument2, Type: tomConstants, pLeft: ?*i32, pTop: ?*i32, pRight: ?*i32, pBottom: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetClientRect(@as(*const ITextDocument2, @ptrCast(self)), Type, pLeft, pTop, pRight, pBottom);
+        return self.vtable.GetClientRect(self, Type, pLeft, pTop, pRight, pBottom);
     }
     pub fn GetEffectColor(self: *const ITextDocument2, Index: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetEffectColor(@as(*const ITextDocument2, @ptrCast(self)), Index, pValue);
+        return self.vtable.GetEffectColor(self, Index, pValue);
     }
     pub fn GetImmContext(self: *const ITextDocument2, pContext: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetImmContext(@as(*const ITextDocument2, @ptrCast(self)), pContext);
+        return self.vtable.GetImmContext(self, pContext);
     }
     pub fn GetPreferredFont(self: *const ITextDocument2, cp: i32, CharRep: i32, Options: i32, curCharRep: i32, curFontSize: i32, pbstr: ?*?BSTR, pPitchAndFamily: ?*i32, pNewFontSize: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetPreferredFont(@as(*const ITextDocument2, @ptrCast(self)), cp, CharRep, Options, curCharRep, curFontSize, pbstr, pPitchAndFamily, pNewFontSize);
+        return self.vtable.GetPreferredFont(self, cp, CharRep, Options, curCharRep, curFontSize, pbstr, pPitchAndFamily, pNewFontSize);
     }
     pub fn GetProperty(self: *const ITextDocument2, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ITextDocument2, @ptrCast(self)), Type, pValue);
+        return self.vtable.GetProperty(self, Type, pValue);
     }
     pub fn GetStrings(self: *const ITextDocument2, ppStrs: ?*?*ITextStrings) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetStrings(@as(*const ITextDocument2, @ptrCast(self)), ppStrs);
+        return self.vtable.GetStrings(self, ppStrs);
     }
     pub fn Notify(self: *const ITextDocument2, _param_Notify: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).Notify(@as(*const ITextDocument2, @ptrCast(self)), _param_Notify);
+        return self.vtable.Notify(self, _param_Notify);
     }
     pub fn Range2(self: *const ITextDocument2, cpActive: i32, cpAnchor: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).Range2(@as(*const ITextDocument2, @ptrCast(self)), cpActive, cpAnchor, ppRange);
+        return self.vtable.Range2(self, cpActive, cpAnchor, ppRange);
     }
     pub fn RangeFromPoint2(self: *const ITextDocument2, x: i32, y: i32, Type: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).RangeFromPoint2(@as(*const ITextDocument2, @ptrCast(self)), x, y, Type, ppRange);
+        return self.vtable.RangeFromPoint2(self, x, y, Type, ppRange);
     }
     pub fn ReleaseCallManager(self: *const ITextDocument2, pVoid: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).ReleaseCallManager(@as(*const ITextDocument2, @ptrCast(self)), pVoid);
+        return self.vtable.ReleaseCallManager(self, pVoid);
     }
     pub fn ReleaseImmContext(self: *const ITextDocument2, Context: i64) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).ReleaseImmContext(@as(*const ITextDocument2, @ptrCast(self)), Context);
+        return self.vtable.ReleaseImmContext(self, Context);
     }
     pub fn SetEffectColor(self: *const ITextDocument2, Index: i32, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetEffectColor(@as(*const ITextDocument2, @ptrCast(self)), Index, Value);
+        return self.vtable.SetEffectColor(self, Index, Value);
     }
     pub fn SetProperty(self: *const ITextDocument2, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ITextDocument2, @ptrCast(self)), Type, Value);
+        return self.vtable.SetProperty(self, Type, Value);
     }
     pub fn SetTypographyOptions(self: *const ITextDocument2, Options: i32, Mask: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetTypographyOptions(@as(*const ITextDocument2, @ptrCast(self)), Options, Mask);
+        return self.vtable.SetTypographyOptions(self, Options, Mask);
     }
     pub fn SysBeep(self: *const ITextDocument2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SysBeep(@as(*const ITextDocument2, @ptrCast(self)));
+        return self.vtable.SysBeep(self);
     }
     pub fn Update(self: *const ITextDocument2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).Update(@as(*const ITextDocument2, @ptrCast(self)), Value);
+        return self.vtable.Update(self, Value);
     }
     pub fn UpdateWindow(self: *const ITextDocument2) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).UpdateWindow(@as(*const ITextDocument2, @ptrCast(self)));
+        return self.vtable.UpdateWindow(self);
     }
     pub fn GetMathProperties(self: *const ITextDocument2, pOptions: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetMathProperties(@as(*const ITextDocument2, @ptrCast(self)), pOptions);
+        return self.vtable.GetMathProperties(self, pOptions);
     }
     pub fn SetMathProperties(self: *const ITextDocument2, Options: i32, Mask: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetMathProperties(@as(*const ITextDocument2, @ptrCast(self)), Options, Mask);
+        return self.vtable.SetMathProperties(self, Options, Mask);
     }
     pub fn GetActiveStory(self: *const ITextDocument2, ppStory: ?*?*ITextStory) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetActiveStory(@as(*const ITextDocument2, @ptrCast(self)), ppStory);
+        return self.vtable.GetActiveStory(self, ppStory);
     }
     pub fn SetActiveStory(self: *const ITextDocument2, pStory: ?*ITextStory) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).SetActiveStory(@as(*const ITextDocument2, @ptrCast(self)), pStory);
+        return self.vtable.SetActiveStory(self, pStory);
     }
     pub fn GetMainStory(self: *const ITextDocument2, ppStory: ?*?*ITextStory) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetMainStory(@as(*const ITextDocument2, @ptrCast(self)), ppStory);
+        return self.vtable.GetMainStory(self, ppStory);
     }
     pub fn GetNewStory(self: *const ITextDocument2, ppStory: ?*?*ITextStory) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetNewStory(@as(*const ITextDocument2, @ptrCast(self)), ppStory);
+        return self.vtable.GetNewStory(self, ppStory);
     }
     pub fn GetStory(self: *const ITextDocument2, Index: i32, ppStory: ?*?*ITextStory) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2.VTable, @ptrCast(self.vtable)).GetStory(@as(*const ITextDocument2, @ptrCast(self)), Index, ppStory);
+        return self.vtable.GetStory(self, Index, ppStory);
     }
 };
 
@@ -7163,124 +7163,124 @@ pub const ITextRange2 = extern union {
     };}
     pub usingnamespace ITextSelection.MethodMixin(@This());
     pub fn GetCch(self: *const ITextRange2, pcch: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetCch(@as(*const ITextRange2, @ptrCast(self)), pcch);
+        return self.vtable.GetCch(self, pcch);
     }
     pub fn GetCells(self: *const ITextRange2, ppCells: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetCells(@as(*const ITextRange2, @ptrCast(self)), ppCells);
+        return self.vtable.GetCells(self, ppCells);
     }
     pub fn GetColumn(self: *const ITextRange2, ppColumn: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetColumn(@as(*const ITextRange2, @ptrCast(self)), ppColumn);
+        return self.vtable.GetColumn(self, ppColumn);
     }
     pub fn GetCount(self: *const ITextRange2, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ITextRange2, @ptrCast(self)), pCount);
+        return self.vtable.GetCount(self, pCount);
     }
     pub fn GetDuplicate2(self: *const ITextRange2, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetDuplicate2(@as(*const ITextRange2, @ptrCast(self)), ppRange);
+        return self.vtable.GetDuplicate2(self, ppRange);
     }
     pub fn GetFont2(self: *const ITextRange2, ppFont: ?*?*ITextFont2) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetFont2(@as(*const ITextRange2, @ptrCast(self)), ppFont);
+        return self.vtable.GetFont2(self, ppFont);
     }
     pub fn SetFont2(self: *const ITextRange2, pFont: ?*ITextFont2) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetFont2(@as(*const ITextRange2, @ptrCast(self)), pFont);
+        return self.vtable.SetFont2(self, pFont);
     }
     pub fn GetFormattedText2(self: *const ITextRange2, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetFormattedText2(@as(*const ITextRange2, @ptrCast(self)), ppRange);
+        return self.vtable.GetFormattedText2(self, ppRange);
     }
     pub fn SetFormattedText2(self: *const ITextRange2, pRange: ?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetFormattedText2(@as(*const ITextRange2, @ptrCast(self)), pRange);
+        return self.vtable.SetFormattedText2(self, pRange);
     }
     pub fn GetGravity(self: *const ITextRange2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetGravity(@as(*const ITextRange2, @ptrCast(self)), pValue);
+        return self.vtable.GetGravity(self, pValue);
     }
     pub fn SetGravity(self: *const ITextRange2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetGravity(@as(*const ITextRange2, @ptrCast(self)), Value);
+        return self.vtable.SetGravity(self, Value);
     }
     pub fn GetPara2(self: *const ITextRange2, ppPara: ?*?*ITextPara2) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetPara2(@as(*const ITextRange2, @ptrCast(self)), ppPara);
+        return self.vtable.GetPara2(self, ppPara);
     }
     pub fn SetPara2(self: *const ITextRange2, pPara: ?*ITextPara2) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetPara2(@as(*const ITextRange2, @ptrCast(self)), pPara);
+        return self.vtable.SetPara2(self, pPara);
     }
     pub fn GetRow(self: *const ITextRange2, ppRow: ?*?*ITextRow) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetRow(@as(*const ITextRange2, @ptrCast(self)), ppRow);
+        return self.vtable.GetRow(self, ppRow);
     }
     pub fn GetStartPara(self: *const ITextRange2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetStartPara(@as(*const ITextRange2, @ptrCast(self)), pValue);
+        return self.vtable.GetStartPara(self, pValue);
     }
     pub fn GetTable(self: *const ITextRange2, ppTable: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetTable(@as(*const ITextRange2, @ptrCast(self)), ppTable);
+        return self.vtable.GetTable(self, ppTable);
     }
     pub fn GetURL(self: *const ITextRange2, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetURL(@as(*const ITextRange2, @ptrCast(self)), pbstr);
+        return self.vtable.GetURL(self, pbstr);
     }
     pub fn SetURL(self: *const ITextRange2, bstr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetURL(@as(*const ITextRange2, @ptrCast(self)), bstr);
+        return self.vtable.SetURL(self, bstr);
     }
     pub fn AddSubrange(self: *const ITextRange2, cp1: i32, cp2: i32, Activate: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).AddSubrange(@as(*const ITextRange2, @ptrCast(self)), cp1, cp2, Activate);
+        return self.vtable.AddSubrange(self, cp1, cp2, Activate);
     }
     pub fn BuildUpMath(self: *const ITextRange2, Flags: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).BuildUpMath(@as(*const ITextRange2, @ptrCast(self)), Flags);
+        return self.vtable.BuildUpMath(self, Flags);
     }
     pub fn DeleteSubrange(self: *const ITextRange2, cpFirst: i32, cpLim: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).DeleteSubrange(@as(*const ITextRange2, @ptrCast(self)), cpFirst, cpLim);
+        return self.vtable.DeleteSubrange(self, cpFirst, cpLim);
     }
     pub fn Find(self: *const ITextRange2, pRange: ?*ITextRange2, Count: i32, Flags: i32, pDelta: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).Find(@as(*const ITextRange2, @ptrCast(self)), pRange, Count, Flags, pDelta);
+        return self.vtable.Find(self, pRange, Count, Flags, pDelta);
     }
     pub fn GetChar2(self: *const ITextRange2, pChar: ?*i32, Offset: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetChar2(@as(*const ITextRange2, @ptrCast(self)), pChar, Offset);
+        return self.vtable.GetChar2(self, pChar, Offset);
     }
     pub fn GetDropCap(self: *const ITextRange2, pcLine: ?*i32, pPosition: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetDropCap(@as(*const ITextRange2, @ptrCast(self)), pcLine, pPosition);
+        return self.vtable.GetDropCap(self, pcLine, pPosition);
     }
     pub fn GetInlineObject(self: *const ITextRange2, pType: ?*i32, pAlign: ?*i32, pChar: ?*i32, pChar1: ?*i32, pChar2: ?*i32, pCount: ?*i32, pTeXStyle: ?*i32, pcCol: ?*i32, pLevel: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetInlineObject(@as(*const ITextRange2, @ptrCast(self)), pType, pAlign, pChar, pChar1, pChar2, pCount, pTeXStyle, pcCol, pLevel);
+        return self.vtable.GetInlineObject(self, pType, pAlign, pChar, pChar1, pChar2, pCount, pTeXStyle, pcCol, pLevel);
     }
     pub fn GetProperty(self: *const ITextRange2, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ITextRange2, @ptrCast(self)), Type, pValue);
+        return self.vtable.GetProperty(self, Type, pValue);
     }
     pub fn GetRect(self: *const ITextRange2, Type: i32, pLeft: ?*i32, pTop: ?*i32, pRight: ?*i32, pBottom: ?*i32, pHit: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetRect(@as(*const ITextRange2, @ptrCast(self)), Type, pLeft, pTop, pRight, pBottom, pHit);
+        return self.vtable.GetRect(self, Type, pLeft, pTop, pRight, pBottom, pHit);
     }
     pub fn GetSubrange(self: *const ITextRange2, iSubrange: i32, pcpFirst: ?*i32, pcpLim: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetSubrange(@as(*const ITextRange2, @ptrCast(self)), iSubrange, pcpFirst, pcpLim);
+        return self.vtable.GetSubrange(self, iSubrange, pcpFirst, pcpLim);
     }
     pub fn GetText2(self: *const ITextRange2, Flags: i32, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetText2(@as(*const ITextRange2, @ptrCast(self)), Flags, pbstr);
+        return self.vtable.GetText2(self, Flags, pbstr);
     }
     pub fn HexToUnicode(self: *const ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).HexToUnicode(@as(*const ITextRange2, @ptrCast(self)));
+        return self.vtable.HexToUnicode(self);
     }
     pub fn InsertTable(self: *const ITextRange2, cCol: i32, cRow: i32, AutoFit: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).InsertTable(@as(*const ITextRange2, @ptrCast(self)), cCol, cRow, AutoFit);
+        return self.vtable.InsertTable(self, cCol, cRow, AutoFit);
     }
     pub fn Linearize(self: *const ITextRange2, Flags: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).Linearize(@as(*const ITextRange2, @ptrCast(self)), Flags);
+        return self.vtable.Linearize(self, Flags);
     }
     pub fn SetActiveSubrange(self: *const ITextRange2, cpAnchor: i32, cpActive: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetActiveSubrange(@as(*const ITextRange2, @ptrCast(self)), cpAnchor, cpActive);
+        return self.vtable.SetActiveSubrange(self, cpAnchor, cpActive);
     }
     pub fn SetDropCap(self: *const ITextRange2, cLine: i32, Position: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetDropCap(@as(*const ITextRange2, @ptrCast(self)), cLine, Position);
+        return self.vtable.SetDropCap(self, cLine, Position);
     }
     pub fn SetProperty(self: *const ITextRange2, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ITextRange2, @ptrCast(self)), Type, Value);
+        return self.vtable.SetProperty(self, Type, Value);
     }
     pub fn SetText2(self: *const ITextRange2, Flags: i32, bstr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetText2(@as(*const ITextRange2, @ptrCast(self)), Flags, bstr);
+        return self.vtable.SetText2(self, Flags, bstr);
     }
     pub fn UnicodeToHex(self: *const ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).UnicodeToHex(@as(*const ITextRange2, @ptrCast(self)));
+        return self.vtable.UnicodeToHex(self);
     }
     pub fn SetInlineObject(self: *const ITextRange2, Type: i32, Align: i32, Char: i32, Char1: i32, Char2: i32, Count: i32, TeXStyle: i32, cCol: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).SetInlineObject(@as(*const ITextRange2, @ptrCast(self)), Type, Align, Char, Char1, Char2, Count, TeXStyle, cCol);
+        return self.vtable.SetInlineObject(self, Type, Align, Char, Char1, Char2, Count, TeXStyle, cCol);
     }
     pub fn GetMathFunctionType(self: *const ITextRange2, bstr: ?BSTR, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).GetMathFunctionType(@as(*const ITextRange2, @ptrCast(self)), bstr, pValue);
+        return self.vtable.GetMathFunctionType(self, bstr, pValue);
     }
     pub fn InsertImage(self: *const ITextRange2, width: i32, height: i32, ascent: i32, Type: TEXT_ALIGN_OPTIONS, bstrAltText: ?BSTR, pStream: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const ITextRange2.VTable, @ptrCast(self.vtable)).InsertImage(@as(*const ITextRange2, @ptrCast(self)), width, height, ascent, Type, bstrAltText, pStream);
+        return self.vtable.InsertImage(self, width, height, ascent, Type, bstrAltText, pStream);
     }
 };
 
@@ -7690,142 +7690,142 @@ pub const ITextFont2 = extern union {
     };}
     pub usingnamespace ITextFont.MethodMixin(@This());
     pub fn GetCount(self: *const ITextFont2, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ITextFont2, @ptrCast(self)), pCount);
+        return self.vtable.GetCount(self, pCount);
     }
     pub fn GetAutoLigatures(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetAutoLigatures(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetAutoLigatures(self, pValue);
     }
     pub fn SetAutoLigatures(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetAutoLigatures(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetAutoLigatures(self, Value);
     }
     pub fn GetAutospaceAlpha(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetAutospaceAlpha(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetAutospaceAlpha(self, pValue);
     }
     pub fn SetAutospaceAlpha(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetAutospaceAlpha(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetAutospaceAlpha(self, Value);
     }
     pub fn GetAutospaceNumeric(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetAutospaceNumeric(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetAutospaceNumeric(self, pValue);
     }
     pub fn SetAutospaceNumeric(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetAutospaceNumeric(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetAutospaceNumeric(self, Value);
     }
     pub fn GetAutospaceParens(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetAutospaceParens(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetAutospaceParens(self, pValue);
     }
     pub fn SetAutospaceParens(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetAutospaceParens(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetAutospaceParens(self, Value);
     }
     pub fn GetCharRep(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetCharRep(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetCharRep(self, pValue);
     }
     pub fn SetCharRep(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetCharRep(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetCharRep(self, Value);
     }
     pub fn GetCompressionMode(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetCompressionMode(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetCompressionMode(self, pValue);
     }
     pub fn SetCompressionMode(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetCompressionMode(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetCompressionMode(self, Value);
     }
     pub fn GetCookie(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetCookie(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetCookie(self, pValue);
     }
     pub fn SetCookie(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetCookie(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetCookie(self, Value);
     }
     pub fn GetDoubleStrike(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetDoubleStrike(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetDoubleStrike(self, pValue);
     }
     pub fn SetDoubleStrike(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetDoubleStrike(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetDoubleStrike(self, Value);
     }
     pub fn GetDuplicate2(self: *const ITextFont2, ppFont: ?*?*ITextFont2) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetDuplicate2(@as(*const ITextFont2, @ptrCast(self)), ppFont);
+        return self.vtable.GetDuplicate2(self, ppFont);
     }
     pub fn SetDuplicate2(self: *const ITextFont2, pFont: ?*ITextFont2) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetDuplicate2(@as(*const ITextFont2, @ptrCast(self)), pFont);
+        return self.vtable.SetDuplicate2(self, pFont);
     }
     pub fn GetLinkType(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetLinkType(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetLinkType(self, pValue);
     }
     pub fn GetMathZone(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetMathZone(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetMathZone(self, pValue);
     }
     pub fn SetMathZone(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetMathZone(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetMathZone(self, Value);
     }
     pub fn GetModWidthPairs(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetModWidthPairs(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetModWidthPairs(self, pValue);
     }
     pub fn SetModWidthPairs(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetModWidthPairs(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetModWidthPairs(self, Value);
     }
     pub fn GetModWidthSpace(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetModWidthSpace(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetModWidthSpace(self, pValue);
     }
     pub fn SetModWidthSpace(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetModWidthSpace(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetModWidthSpace(self, Value);
     }
     pub fn GetOldNumbers(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetOldNumbers(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetOldNumbers(self, pValue);
     }
     pub fn SetOldNumbers(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetOldNumbers(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetOldNumbers(self, Value);
     }
     pub fn GetOverlapping(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetOverlapping(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetOverlapping(self, pValue);
     }
     pub fn SetOverlapping(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetOverlapping(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetOverlapping(self, Value);
     }
     pub fn GetPositionSubSuper(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetPositionSubSuper(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetPositionSubSuper(self, pValue);
     }
     pub fn SetPositionSubSuper(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetPositionSubSuper(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetPositionSubSuper(self, Value);
     }
     pub fn GetScaling(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetScaling(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetScaling(self, pValue);
     }
     pub fn SetScaling(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetScaling(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetScaling(self, Value);
     }
     pub fn GetSpaceExtension(self: *const ITextFont2, pValue: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetSpaceExtension(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetSpaceExtension(self, pValue);
     }
     pub fn SetSpaceExtension(self: *const ITextFont2, Value: f32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetSpaceExtension(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetSpaceExtension(self, Value);
     }
     pub fn GetUnderlinePositionMode(self: *const ITextFont2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetUnderlinePositionMode(@as(*const ITextFont2, @ptrCast(self)), pValue);
+        return self.vtable.GetUnderlinePositionMode(self, pValue);
     }
     pub fn SetUnderlinePositionMode(self: *const ITextFont2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetUnderlinePositionMode(@as(*const ITextFont2, @ptrCast(self)), Value);
+        return self.vtable.SetUnderlinePositionMode(self, Value);
     }
     pub fn GetEffects(self: *const ITextFont2, pValue: ?*i32, pMask: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetEffects(@as(*const ITextFont2, @ptrCast(self)), pValue, pMask);
+        return self.vtable.GetEffects(self, pValue, pMask);
     }
     pub fn GetEffects2(self: *const ITextFont2, pValue: ?*i32, pMask: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetEffects2(@as(*const ITextFont2, @ptrCast(self)), pValue, pMask);
+        return self.vtable.GetEffects2(self, pValue, pMask);
     }
     pub fn GetProperty(self: *const ITextFont2, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ITextFont2, @ptrCast(self)), Type, pValue);
+        return self.vtable.GetProperty(self, Type, pValue);
     }
     pub fn GetPropertyInfo(self: *const ITextFont2, Index: i32, pType: ?*i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).GetPropertyInfo(@as(*const ITextFont2, @ptrCast(self)), Index, pType, pValue);
+        return self.vtable.GetPropertyInfo(self, Index, pType, pValue);
     }
     pub fn IsEqual2(self: *const ITextFont2, pFont: ?*ITextFont2, pB: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).IsEqual2(@as(*const ITextFont2, @ptrCast(self)), pFont, pB);
+        return self.vtable.IsEqual2(self, pFont, pB);
     }
     pub fn SetEffects(self: *const ITextFont2, Value: i32, Mask: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetEffects(@as(*const ITextFont2, @ptrCast(self)), Value, Mask);
+        return self.vtable.SetEffects(self, Value, Mask);
     }
     pub fn SetEffects2(self: *const ITextFont2, Value: i32, Mask: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetEffects2(@as(*const ITextFont2, @ptrCast(self)), Value, Mask);
+        return self.vtable.SetEffects2(self, Value, Mask);
     }
     pub fn SetProperty(self: *const ITextFont2, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextFont2.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ITextFont2, @ptrCast(self)), Type, Value);
+        return self.vtable.SetProperty(self, Type, Value);
     }
 };
 
@@ -7976,52 +7976,52 @@ pub const ITextPara2 = extern union {
     };}
     pub usingnamespace ITextPara.MethodMixin(@This());
     pub fn GetBorders(self: *const ITextPara2, ppBorders: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).GetBorders(@as(*const ITextPara2, @ptrCast(self)), ppBorders);
+        return self.vtable.GetBorders(self, ppBorders);
     }
     pub fn GetDuplicate2(self: *const ITextPara2, ppPara: ?*?*ITextPara2) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).GetDuplicate2(@as(*const ITextPara2, @ptrCast(self)), ppPara);
+        return self.vtable.GetDuplicate2(self, ppPara);
     }
     pub fn SetDuplicate2(self: *const ITextPara2, pPara: ?*ITextPara2) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).SetDuplicate2(@as(*const ITextPara2, @ptrCast(self)), pPara);
+        return self.vtable.SetDuplicate2(self, pPara);
     }
     pub fn GetFontAlignment(self: *const ITextPara2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).GetFontAlignment(@as(*const ITextPara2, @ptrCast(self)), pValue);
+        return self.vtable.GetFontAlignment(self, pValue);
     }
     pub fn SetFontAlignment(self: *const ITextPara2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).SetFontAlignment(@as(*const ITextPara2, @ptrCast(self)), Value);
+        return self.vtable.SetFontAlignment(self, Value);
     }
     pub fn GetHangingPunctuation(self: *const ITextPara2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).GetHangingPunctuation(@as(*const ITextPara2, @ptrCast(self)), pValue);
+        return self.vtable.GetHangingPunctuation(self, pValue);
     }
     pub fn SetHangingPunctuation(self: *const ITextPara2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).SetHangingPunctuation(@as(*const ITextPara2, @ptrCast(self)), Value);
+        return self.vtable.SetHangingPunctuation(self, Value);
     }
     pub fn GetSnapToGrid(self: *const ITextPara2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).GetSnapToGrid(@as(*const ITextPara2, @ptrCast(self)), pValue);
+        return self.vtable.GetSnapToGrid(self, pValue);
     }
     pub fn SetSnapToGrid(self: *const ITextPara2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).SetSnapToGrid(@as(*const ITextPara2, @ptrCast(self)), Value);
+        return self.vtable.SetSnapToGrid(self, Value);
     }
     pub fn GetTrimPunctuationAtStart(self: *const ITextPara2, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).GetTrimPunctuationAtStart(@as(*const ITextPara2, @ptrCast(self)), pValue);
+        return self.vtable.GetTrimPunctuationAtStart(self, pValue);
     }
     pub fn SetTrimPunctuationAtStart(self: *const ITextPara2, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).SetTrimPunctuationAtStart(@as(*const ITextPara2, @ptrCast(self)), Value);
+        return self.vtable.SetTrimPunctuationAtStart(self, Value);
     }
     pub fn GetEffects(self: *const ITextPara2, pValue: ?*i32, pMask: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).GetEffects(@as(*const ITextPara2, @ptrCast(self)), pValue, pMask);
+        return self.vtable.GetEffects(self, pValue, pMask);
     }
     pub fn GetProperty(self: *const ITextPara2, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ITextPara2, @ptrCast(self)), Type, pValue);
+        return self.vtable.GetProperty(self, Type, pValue);
     }
     pub fn IsEqual2(self: *const ITextPara2, pPara: ?*ITextPara2, pB: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).IsEqual2(@as(*const ITextPara2, @ptrCast(self)), pPara, pB);
+        return self.vtable.IsEqual2(self, pPara, pB);
     }
     pub fn SetEffects(self: *const ITextPara2, Value: i32, Mask: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).SetEffects(@as(*const ITextPara2, @ptrCast(self)), Value, Mask);
+        return self.vtable.SetEffects(self, Value, Mask);
     }
     pub fn SetProperty(self: *const ITextPara2, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextPara2.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ITextPara2, @ptrCast(self)), Type, Value);
+        return self.vtable.SetProperty(self, Type, Value);
     }
 };
 
@@ -8048,7 +8048,7 @@ pub const ITextStoryRanges2 = extern union {
     };}
     pub usingnamespace ITextStoryRanges.MethodMixin(@This());
     pub fn Item2(self: *const ITextStoryRanges2, Index: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextStoryRanges2.VTable, @ptrCast(self.vtable)).Item2(@as(*const ITextStoryRanges2, @ptrCast(self)), Index, ppRange);
+        return self.vtable.Item2(self, Index, ppRange);
     }
 };
 
@@ -8168,40 +8168,40 @@ pub const ITextStory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetActive(self: *const ITextStory, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).GetActive(@as(*const ITextStory, @ptrCast(self)), pValue);
+        return self.vtable.GetActive(self, pValue);
     }
     pub fn SetActive(self: *const ITextStory, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).SetActive(@as(*const ITextStory, @ptrCast(self)), Value);
+        return self.vtable.SetActive(self, Value);
     }
     pub fn GetDisplay(self: *const ITextStory, ppDisplay: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).GetDisplay(@as(*const ITextStory, @ptrCast(self)), ppDisplay);
+        return self.vtable.GetDisplay(self, ppDisplay);
     }
     pub fn GetIndex(self: *const ITextStory, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).GetIndex(@as(*const ITextStory, @ptrCast(self)), pValue);
+        return self.vtable.GetIndex(self, pValue);
     }
     pub fn GetType(self: *const ITextStory, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).GetType(@as(*const ITextStory, @ptrCast(self)), pValue);
+        return self.vtable.GetType(self, pValue);
     }
     pub fn SetType(self: *const ITextStory, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).SetType(@as(*const ITextStory, @ptrCast(self)), Value);
+        return self.vtable.SetType(self, Value);
     }
     pub fn GetProperty(self: *const ITextStory, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ITextStory, @ptrCast(self)), Type, pValue);
+        return self.vtable.GetProperty(self, Type, pValue);
     }
     pub fn GetRange(self: *const ITextStory, cpActive: i32, cpAnchor: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).GetRange(@as(*const ITextStory, @ptrCast(self)), cpActive, cpAnchor, ppRange);
+        return self.vtable.GetRange(self, cpActive, cpAnchor, ppRange);
     }
     pub fn GetText(self: *const ITextStory, Flags: i32, pbstr: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).GetText(@as(*const ITextStory, @ptrCast(self)), Flags, pbstr);
+        return self.vtable.GetText(self, Flags, pbstr);
     }
     pub fn SetFormattedText(self: *const ITextStory, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).SetFormattedText(@as(*const ITextStory, @ptrCast(self)), pUnk);
+        return self.vtable.SetFormattedText(self, pUnk);
     }
     pub fn SetProperty(self: *const ITextStory, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ITextStory, @ptrCast(self)), Type, Value);
+        return self.vtable.SetProperty(self, Type, Value);
     }
     pub fn SetText(self: *const ITextStory, Flags: i32, bstr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextStory.VTable, @ptrCast(self.vtable)).SetText(@as(*const ITextStory, @ptrCast(self)), Flags, bstr);
+        return self.vtable.SetText(self, Flags, bstr);
     }
 };
 
@@ -8370,55 +8370,55 @@ pub const ITextStrings = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Item(self: *const ITextStrings, Index: i32, ppRange: ?*?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).Item(@as(*const ITextStrings, @ptrCast(self)), Index, ppRange);
+        return self.vtable.Item(self, Index, ppRange);
     }
     pub fn GetCount(self: *const ITextStrings, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ITextStrings, @ptrCast(self)), pCount);
+        return self.vtable.GetCount(self, pCount);
     }
     pub fn Add(self: *const ITextStrings, bstr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).Add(@as(*const ITextStrings, @ptrCast(self)), bstr);
+        return self.vtable.Add(self, bstr);
     }
     pub fn Append(self: *const ITextStrings, pRange: ?*ITextRange2, iString: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).Append(@as(*const ITextStrings, @ptrCast(self)), pRange, iString);
+        return self.vtable.Append(self, pRange, iString);
     }
     pub fn Cat2(self: *const ITextStrings, iString: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).Cat2(@as(*const ITextStrings, @ptrCast(self)), iString);
+        return self.vtable.Cat2(self, iString);
     }
     pub fn CatTop2(self: *const ITextStrings, bstr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).CatTop2(@as(*const ITextStrings, @ptrCast(self)), bstr);
+        return self.vtable.CatTop2(self, bstr);
     }
     pub fn DeleteRange(self: *const ITextStrings, pRange: ?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).DeleteRange(@as(*const ITextStrings, @ptrCast(self)), pRange);
+        return self.vtable.DeleteRange(self, pRange);
     }
     pub fn EncodeFunction(self: *const ITextStrings, Type: i32, Align: i32, Char: i32, Char1: i32, Char2: i32, Count: i32, TeXStyle: i32, cCol: i32, pRange: ?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).EncodeFunction(@as(*const ITextStrings, @ptrCast(self)), Type, Align, Char, Char1, Char2, Count, TeXStyle, cCol, pRange);
+        return self.vtable.EncodeFunction(self, Type, Align, Char, Char1, Char2, Count, TeXStyle, cCol, pRange);
     }
     pub fn GetCch(self: *const ITextStrings, iString: i32, pcch: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).GetCch(@as(*const ITextStrings, @ptrCast(self)), iString, pcch);
+        return self.vtable.GetCch(self, iString, pcch);
     }
     pub fn InsertNullStr(self: *const ITextStrings, iString: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).InsertNullStr(@as(*const ITextStrings, @ptrCast(self)), iString);
+        return self.vtable.InsertNullStr(self, iString);
     }
     pub fn MoveBoundary(self: *const ITextStrings, iString: i32, cch: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).MoveBoundary(@as(*const ITextStrings, @ptrCast(self)), iString, cch);
+        return self.vtable.MoveBoundary(self, iString, cch);
     }
     pub fn PrefixTop(self: *const ITextStrings, bstr: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).PrefixTop(@as(*const ITextStrings, @ptrCast(self)), bstr);
+        return self.vtable.PrefixTop(self, bstr);
     }
     pub fn Remove(self: *const ITextStrings, iString: i32, cString: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).Remove(@as(*const ITextStrings, @ptrCast(self)), iString, cString);
+        return self.vtable.Remove(self, iString, cString);
     }
     pub fn SetFormattedText(self: *const ITextStrings, pRangeD: ?*ITextRange2, pRangeS: ?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).SetFormattedText(@as(*const ITextStrings, @ptrCast(self)), pRangeD, pRangeS);
+        return self.vtable.SetFormattedText(self, pRangeD, pRangeS);
     }
     pub fn SetOpCp(self: *const ITextStrings, iString: i32, cp: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).SetOpCp(@as(*const ITextStrings, @ptrCast(self)), iString, cp);
+        return self.vtable.SetOpCp(self, iString, cp);
     }
     pub fn SuffixTop(self: *const ITextStrings, bstr: ?BSTR, pRange: ?*ITextRange2) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).SuffixTop(@as(*const ITextStrings, @ptrCast(self)), bstr, pRange);
+        return self.vtable.SuffixTop(self, bstr, pRange);
     }
     pub fn Swap(self: *const ITextStrings) callconv(.Inline) HRESULT {
-        return @as(*const ITextStrings.VTable, @ptrCast(self.vtable)).Swap(@as(*const ITextStrings, @ptrCast(self)));
+        return self.vtable.Swap(self);
     }
 };
 
@@ -8820,142 +8820,142 @@ pub const ITextRow = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn GetAlignment(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetAlignment(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetAlignment(self, pValue);
     }
     pub fn SetAlignment(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetAlignment(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetAlignment(self, Value);
     }
     pub fn GetCellCount(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellCount(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellCount(self, pValue);
     }
     pub fn SetCellCount(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellCount(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellCount(self, Value);
     }
     pub fn GetCellCountCache(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellCountCache(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellCountCache(self, pValue);
     }
     pub fn SetCellCountCache(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellCountCache(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellCountCache(self, Value);
     }
     pub fn GetCellIndex(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellIndex(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellIndex(self, pValue);
     }
     pub fn SetCellIndex(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellIndex(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellIndex(self, Value);
     }
     pub fn GetCellMargin(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellMargin(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellMargin(self, pValue);
     }
     pub fn SetCellMargin(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellMargin(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellMargin(self, Value);
     }
     pub fn GetHeight(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetHeight(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetHeight(self, pValue);
     }
     pub fn SetHeight(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetHeight(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetHeight(self, Value);
     }
     pub fn GetIndent(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetIndent(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetIndent(self, pValue);
     }
     pub fn SetIndent(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetIndent(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetIndent(self, Value);
     }
     pub fn GetKeepTogether(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetKeepTogether(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetKeepTogether(self, pValue);
     }
     pub fn SetKeepTogether(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetKeepTogether(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetKeepTogether(self, Value);
     }
     pub fn GetKeepWithNext(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetKeepWithNext(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetKeepWithNext(self, pValue);
     }
     pub fn SetKeepWithNext(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetKeepWithNext(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetKeepWithNext(self, Value);
     }
     pub fn GetNestLevel(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetNestLevel(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetNestLevel(self, pValue);
     }
     pub fn GetRTL(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetRTL(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetRTL(self, pValue);
     }
     pub fn SetRTL(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetRTL(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetRTL(self, Value);
     }
     pub fn GetCellAlignment(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellAlignment(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellAlignment(self, pValue);
     }
     pub fn SetCellAlignment(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellAlignment(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellAlignment(self, Value);
     }
     pub fn GetCellColorBack(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellColorBack(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellColorBack(self, pValue);
     }
     pub fn SetCellColorBack(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellColorBack(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellColorBack(self, Value);
     }
     pub fn GetCellColorFore(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellColorFore(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellColorFore(self, pValue);
     }
     pub fn SetCellColorFore(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellColorFore(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellColorFore(self, Value);
     }
     pub fn GetCellMergeFlags(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellMergeFlags(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellMergeFlags(self, pValue);
     }
     pub fn SetCellMergeFlags(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellMergeFlags(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellMergeFlags(self, Value);
     }
     pub fn GetCellShading(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellShading(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellShading(self, pValue);
     }
     pub fn SetCellShading(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellShading(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellShading(self, Value);
     }
     pub fn GetCellVerticalText(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellVerticalText(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellVerticalText(self, pValue);
     }
     pub fn SetCellVerticalText(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellVerticalText(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellVerticalText(self, Value);
     }
     pub fn GetCellWidth(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellWidth(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.GetCellWidth(self, pValue);
     }
     pub fn SetCellWidth(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellWidth(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.SetCellWidth(self, Value);
     }
     pub fn GetCellBorderColors(self: *const ITextRow, pcrLeft: ?*i32, pcrTop: ?*i32, pcrRight: ?*i32, pcrBottom: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellBorderColors(@as(*const ITextRow, @ptrCast(self)), pcrLeft, pcrTop, pcrRight, pcrBottom);
+        return self.vtable.GetCellBorderColors(self, pcrLeft, pcrTop, pcrRight, pcrBottom);
     }
     pub fn GetCellBorderWidths(self: *const ITextRow, pduLeft: ?*i32, pduTop: ?*i32, pduRight: ?*i32, pduBottom: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetCellBorderWidths(@as(*const ITextRow, @ptrCast(self)), pduLeft, pduTop, pduRight, pduBottom);
+        return self.vtable.GetCellBorderWidths(self, pduLeft, pduTop, pduRight, pduBottom);
     }
     pub fn SetCellBorderColors(self: *const ITextRow, crLeft: i32, crTop: i32, crRight: i32, crBottom: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellBorderColors(@as(*const ITextRow, @ptrCast(self)), crLeft, crTop, crRight, crBottom);
+        return self.vtable.SetCellBorderColors(self, crLeft, crTop, crRight, crBottom);
     }
     pub fn SetCellBorderWidths(self: *const ITextRow, duLeft: i32, duTop: i32, duRight: i32, duBottom: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetCellBorderWidths(@as(*const ITextRow, @ptrCast(self)), duLeft, duTop, duRight, duBottom);
+        return self.vtable.SetCellBorderWidths(self, duLeft, duTop, duRight, duBottom);
     }
     pub fn Apply(self: *const ITextRow, cRow: i32, Flags: tomConstants) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).Apply(@as(*const ITextRow, @ptrCast(self)), cRow, Flags);
+        return self.vtable.Apply(self, cRow, Flags);
     }
     pub fn CanChange(self: *const ITextRow, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).CanChange(@as(*const ITextRow, @ptrCast(self)), pValue);
+        return self.vtable.CanChange(self, pValue);
     }
     pub fn GetProperty(self: *const ITextRow, Type: i32, pValue: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ITextRow, @ptrCast(self)), Type, pValue);
+        return self.vtable.GetProperty(self, Type, pValue);
     }
     pub fn Insert(self: *const ITextRow, cRow: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).Insert(@as(*const ITextRow, @ptrCast(self)), cRow);
+        return self.vtable.Insert(self, cRow);
     }
     pub fn IsEqual(self: *const ITextRow, pRow: ?*ITextRow, pB: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const ITextRow, @ptrCast(self)), pRow, pB);
+        return self.vtable.IsEqual(self, pRow, pB);
     }
     pub fn Reset(self: *const ITextRow, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).Reset(@as(*const ITextRow, @ptrCast(self)), Value);
+        return self.vtable.Reset(self, Value);
     }
     pub fn SetProperty(self: *const ITextRow, Type: i32, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextRow.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const ITextRow, @ptrCast(self)), Type, Value);
+        return self.vtable.SetProperty(self, Type, Value);
     }
 };
 
@@ -9191,76 +9191,76 @@ pub const ITextDocument2Old = extern union {
     };}
     pub usingnamespace ITextDocument.MethodMixin(@This());
     pub fn AttachMsgFilter(self: *const ITextDocument2Old, pFilter: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).AttachMsgFilter(@as(*const ITextDocument2Old, @ptrCast(self)), pFilter);
+        return self.vtable.AttachMsgFilter(self, pFilter);
     }
     pub fn SetEffectColor(self: *const ITextDocument2Old, Index: i32, cr: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).SetEffectColor(@as(*const ITextDocument2Old, @ptrCast(self)), Index, cr);
+        return self.vtable.SetEffectColor(self, Index, cr);
     }
     pub fn GetEffectColor(self: *const ITextDocument2Old, Index: i32, pcr: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetEffectColor(@as(*const ITextDocument2Old, @ptrCast(self)), Index, pcr);
+        return self.vtable.GetEffectColor(self, Index, pcr);
     }
     pub fn GetCaretType(self: *const ITextDocument2Old, pCaretType: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetCaretType(@as(*const ITextDocument2Old, @ptrCast(self)), pCaretType);
+        return self.vtable.GetCaretType(self, pCaretType);
     }
     pub fn SetCaretType(self: *const ITextDocument2Old, CaretType: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).SetCaretType(@as(*const ITextDocument2Old, @ptrCast(self)), CaretType);
+        return self.vtable.SetCaretType(self, CaretType);
     }
     pub fn GetImmContext(self: *const ITextDocument2Old, pContext: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetImmContext(@as(*const ITextDocument2Old, @ptrCast(self)), pContext);
+        return self.vtable.GetImmContext(self, pContext);
     }
     pub fn ReleaseImmContext(self: *const ITextDocument2Old, Context: i64) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).ReleaseImmContext(@as(*const ITextDocument2Old, @ptrCast(self)), Context);
+        return self.vtable.ReleaseImmContext(self, Context);
     }
     pub fn GetPreferredFont(self: *const ITextDocument2Old, cp: i32, CharRep: i32, Option: i32, CharRepCur: i32, curFontSize: i32, pbstr: ?*?BSTR, pPitchAndFamily: ?*i32, pNewFontSize: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetPreferredFont(@as(*const ITextDocument2Old, @ptrCast(self)), cp, CharRep, Option, CharRepCur, curFontSize, pbstr, pPitchAndFamily, pNewFontSize);
+        return self.vtable.GetPreferredFont(self, cp, CharRep, Option, CharRepCur, curFontSize, pbstr, pPitchAndFamily, pNewFontSize);
     }
     pub fn GetNotificationMode(self: *const ITextDocument2Old, pMode: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetNotificationMode(@as(*const ITextDocument2Old, @ptrCast(self)), pMode);
+        return self.vtable.GetNotificationMode(self, pMode);
     }
     pub fn SetNotificationMode(self: *const ITextDocument2Old, Mode: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).SetNotificationMode(@as(*const ITextDocument2Old, @ptrCast(self)), Mode);
+        return self.vtable.SetNotificationMode(self, Mode);
     }
     pub fn GetClientRect(self: *const ITextDocument2Old, Type: i32, pLeft: ?*i32, pTop: ?*i32, pRight: ?*i32, pBottom: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetClientRect(@as(*const ITextDocument2Old, @ptrCast(self)), Type, pLeft, pTop, pRight, pBottom);
+        return self.vtable.GetClientRect(self, Type, pLeft, pTop, pRight, pBottom);
     }
     pub fn GetSelection2(self: *const ITextDocument2Old, ppSel: ?*?*ITextSelection) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetSelection2(@as(*const ITextDocument2Old, @ptrCast(self)), ppSel);
+        return self.vtable.GetSelection2(self, ppSel);
     }
     pub fn GetWindow(self: *const ITextDocument2Old, phWnd: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const ITextDocument2Old, @ptrCast(self)), phWnd);
+        return self.vtable.GetWindow(self, phWnd);
     }
     pub fn GetFEFlags(self: *const ITextDocument2Old, pFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetFEFlags(@as(*const ITextDocument2Old, @ptrCast(self)), pFlags);
+        return self.vtable.GetFEFlags(self, pFlags);
     }
     pub fn UpdateWindow(self: *const ITextDocument2Old) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).UpdateWindow(@as(*const ITextDocument2Old, @ptrCast(self)));
+        return self.vtable.UpdateWindow(self);
     }
     pub fn CheckTextLimit(self: *const ITextDocument2Old, cch: i32, pcch: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).CheckTextLimit(@as(*const ITextDocument2Old, @ptrCast(self)), cch, pcch);
+        return self.vtable.CheckTextLimit(self, cch, pcch);
     }
     pub fn IMEInProgress(self: *const ITextDocument2Old, Value: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).IMEInProgress(@as(*const ITextDocument2Old, @ptrCast(self)), Value);
+        return self.vtable.IMEInProgress(self, Value);
     }
     pub fn SysBeep(self: *const ITextDocument2Old) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).SysBeep(@as(*const ITextDocument2Old, @ptrCast(self)));
+        return self.vtable.SysBeep(self);
     }
     pub fn Update(self: *const ITextDocument2Old, Mode: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).Update(@as(*const ITextDocument2Old, @ptrCast(self)), Mode);
+        return self.vtable.Update(self, Mode);
     }
     pub fn Notify(self: *const ITextDocument2Old, _param_Notify: i32) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).Notify(@as(*const ITextDocument2Old, @ptrCast(self)), _param_Notify);
+        return self.vtable.Notify(self, _param_Notify);
     }
     pub fn GetDocumentFont(self: *const ITextDocument2Old, ppITextFont: ?*?*ITextFont) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetDocumentFont(@as(*const ITextDocument2Old, @ptrCast(self)), ppITextFont);
+        return self.vtable.GetDocumentFont(self, ppITextFont);
     }
     pub fn GetDocumentPara(self: *const ITextDocument2Old, ppITextPara: ?*?*ITextPara) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetDocumentPara(@as(*const ITextDocument2Old, @ptrCast(self)), ppITextPara);
+        return self.vtable.GetDocumentPara(self, ppITextPara);
     }
     pub fn GetCallManager(self: *const ITextDocument2Old, ppVoid: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).GetCallManager(@as(*const ITextDocument2Old, @ptrCast(self)), ppVoid);
+        return self.vtable.GetCallManager(self, ppVoid);
     }
     pub fn ReleaseCallManager(self: *const ITextDocument2Old, pVoid: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const ITextDocument2Old.VTable, @ptrCast(self.vtable)).ReleaseCallManager(@as(*const ITextDocument2Old, @ptrCast(self)), pVoid);
+        return self.vtable.ReleaseCallManager(self, pVoid);
     }
 };
 

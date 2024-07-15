@@ -301,19 +301,19 @@ pub const IFilter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Init(self: *const IFilter, grfFlags: u32, cAttributes: u32, aAttributes: [*]const FULLPROPSPEC, pFlags: ?*u32) callconv(.Inline) i32 {
-        return @as(*const IFilter.VTable, @ptrCast(self.vtable)).Init(@as(*const IFilter, @ptrCast(self)), grfFlags, cAttributes, aAttributes, pFlags);
+        return self.vtable.Init(self, grfFlags, cAttributes, aAttributes, pFlags);
     }
     pub fn GetChunk(self: *const IFilter, pStat: ?*STAT_CHUNK) callconv(.Inline) i32 {
-        return @as(*const IFilter.VTable, @ptrCast(self.vtable)).GetChunk(@as(*const IFilter, @ptrCast(self)), pStat);
+        return self.vtable.GetChunk(self, pStat);
     }
     pub fn GetText(self: *const IFilter, pcwcBuffer: ?*u32, awcBuffer: [*:0]u16) callconv(.Inline) i32 {
-        return @as(*const IFilter.VTable, @ptrCast(self.vtable)).GetText(@as(*const IFilter, @ptrCast(self)), pcwcBuffer, awcBuffer);
+        return self.vtable.GetText(self, pcwcBuffer, awcBuffer);
     }
     pub fn GetValue(self: *const IFilter, ppPropValue: ?*?*PROPVARIANT) callconv(.Inline) i32 {
-        return @as(*const IFilter.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IFilter, @ptrCast(self)), ppPropValue);
+        return self.vtable.GetValue(self, ppPropValue);
     }
     pub fn BindRegion(self: *const IFilter, origPos: FILTERREGION, riid: ?*const Guid, ppunk: ?*?*anyopaque) callconv(.Inline) i32 {
-        return @as(*const IFilter.VTable, @ptrCast(self.vtable)).BindRegion(@as(*const IFilter, @ptrCast(self)), origPos, riid, ppunk);
+        return self.vtable.BindRegion(self, origPos, riid, ppunk);
     }
 };
 
@@ -352,10 +352,10 @@ pub const IPhraseSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn PutSmallPhrase(self: *const IPhraseSink, pwcNoun: ?[*:0]const u16, cwcNoun: u32, pwcModifier: ?[*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhraseSink.VTable, @ptrCast(self.vtable)).PutSmallPhrase(@as(*const IPhraseSink, @ptrCast(self)), pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
+        return self.vtable.PutSmallPhrase(self, pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
     }
     pub fn PutPhrase(self: *const IPhraseSink, pwcPhrase: ?[*:0]const u16, cwcPhrase: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhraseSink.VTable, @ptrCast(self.vtable)).PutPhrase(@as(*const IPhraseSink, @ptrCast(self)), pwcPhrase, cwcPhrase);
+        return self.vtable.PutPhrase(self, pwcPhrase, cwcPhrase);
     }
 };
 

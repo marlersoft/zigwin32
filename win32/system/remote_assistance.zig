@@ -105,19 +105,19 @@ pub const IRendezvousSession = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_State(self: *const IRendezvousSession, pSessionState: ?*RENDEZVOUS_SESSION_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRendezvousSession, @ptrCast(self)), pSessionState);
+        return self.vtable.get_State(self, pSessionState);
     }
     pub fn get_RemoteUser(self: *const IRendezvousSession, bstrUserName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_RemoteUser(@as(*const IRendezvousSession, @ptrCast(self)), bstrUserName);
+        return self.vtable.get_RemoteUser(self, bstrUserName);
     }
     pub fn get_Flags(self: *const IRendezvousSession, pFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRendezvousSession, @ptrCast(self)), pFlags);
+        return self.vtable.get_Flags(self, pFlags);
     }
     pub fn SendContextData(self: *const IRendezvousSession, bstrData: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).SendContextData(@as(*const IRendezvousSession, @ptrCast(self)), bstrData);
+        return self.vtable.SendContextData(self, bstrData);
     }
     pub fn Terminate(self: *const IRendezvousSession, hr: HRESULT, bstrAppData: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IRendezvousSession, @ptrCast(self)), hr, bstrAppData);
+        return self.vtable.Terminate(self, hr, bstrAppData);
     }
 };
 
@@ -158,7 +158,7 @@ pub const IRendezvousApplication = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetRendezvousSession(self: *const IRendezvousApplication, pRendezvousSession: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRendezvousApplication.VTable, @ptrCast(self.vtable)).SetRendezvousSession(@as(*const IRendezvousApplication, @ptrCast(self)), pRendezvousSession);
+        return self.vtable.SetRendezvousSession(self, pRendezvousSession);
     }
 };
 

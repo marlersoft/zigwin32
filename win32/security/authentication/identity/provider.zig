@@ -91,7 +91,7 @@ pub const IIdentityAdvise = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IdentityUpdated(self: *const IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityAdvise.VTable, @ptrCast(self.vtable)).IdentityUpdated(@as(*const IIdentityAdvise, @ptrCast(self)), dwIdentityUpdateEvents, lpszUniqueID);
+        return self.vtable.IdentityUpdated(self, dwIdentityUpdateEvents, lpszUniqueID);
     }
 };
 
@@ -124,10 +124,10 @@ pub const AsyncIIdentityAdvise = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_IdentityUpdated(self: *const AsyncIIdentityAdvise, dwIdentityUpdateEvents: u32, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityAdvise.VTable, @ptrCast(self.vtable)).Begin_IdentityUpdated(@as(*const AsyncIIdentityAdvise, @ptrCast(self)), dwIdentityUpdateEvents, lpszUniqueID);
+        return self.vtable.Begin_IdentityUpdated(self, dwIdentityUpdateEvents, lpszUniqueID);
     }
     pub fn Finish_IdentityUpdated(self: *const AsyncIIdentityAdvise) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityAdvise.VTable, @ptrCast(self.vtable)).Finish_IdentityUpdated(@as(*const AsyncIIdentityAdvise, @ptrCast(self)));
+        return self.vtable.Finish_IdentityUpdated(self);
     }
 };
 
@@ -218,28 +218,28 @@ pub const IIdentityProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIdentityEnum(self: *const IIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).GetIdentityEnum(@as(*const IIdentityProvider, @ptrCast(self)), eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
+        return self.vtable.GetIdentityEnum(self, eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
     }
     pub fn Create(self: *const IIdentityProvider, lpszUserName: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore, pKeywordsToAdd: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).Create(@as(*const IIdentityProvider, @ptrCast(self)), lpszUserName, ppPropertyStore, pKeywordsToAdd);
+        return self.vtable.Create(self, lpszUserName, ppPropertyStore, pKeywordsToAdd);
     }
     pub fn Import(self: *const IIdentityProvider, pPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).Import(@as(*const IIdentityProvider, @ptrCast(self)), pPropertyStore);
+        return self.vtable.Import(self, pPropertyStore);
     }
     pub fn Delete(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).Delete(@as(*const IIdentityProvider, @ptrCast(self)), lpszUniqueID, pKeywordsToDelete);
+        return self.vtable.Delete(self, lpszUniqueID, pKeywordsToDelete);
     }
     pub fn FindByUniqueID(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).FindByUniqueID(@as(*const IIdentityProvider, @ptrCast(self)), lpszUniqueID, ppPropertyStore);
+        return self.vtable.FindByUniqueID(self, lpszUniqueID, ppPropertyStore);
     }
     pub fn GetProviderPropertyStore(self: *const IIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).GetProviderPropertyStore(@as(*const IIdentityProvider, @ptrCast(self)), ppPropertyStore);
+        return self.vtable.GetProviderPropertyStore(self, ppPropertyStore);
     }
     pub fn Advise(self: *const IIdentityProvider, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).Advise(@as(*const IIdentityProvider, @ptrCast(self)), pIdentityAdvise, dwIdentityUpdateEvents, pdwCookie);
+        return self.vtable.Advise(self, pIdentityAdvise, dwIdentityUpdateEvents, pdwCookie);
     }
     pub fn UnAdvise(self: *const IIdentityProvider, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityProvider.VTable, @ptrCast(self.vtable)).UnAdvise(@as(*const IIdentityProvider, @ptrCast(self)), dwCookie);
+        return self.vtable.UnAdvise(self, dwCookie);
     }
 };
 
@@ -385,52 +385,52 @@ pub const AsyncIIdentityProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_GetIdentityEnum(self: *const AsyncIIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_GetIdentityEnum(@as(*const AsyncIIdentityProvider, @ptrCast(self)), eIdentityType, pFilterkey, pFilterPropVarValue);
+        return self.vtable.Begin_GetIdentityEnum(self, eIdentityType, pFilterkey, pFilterPropVarValue);
     }
     pub fn Finish_GetIdentityEnum(self: *const AsyncIIdentityProvider, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_GetIdentityEnum(@as(*const AsyncIIdentityProvider, @ptrCast(self)), ppIdentityEnum);
+        return self.vtable.Finish_GetIdentityEnum(self, ppIdentityEnum);
     }
     pub fn Begin_Create(self: *const AsyncIIdentityProvider, lpszUserName: ?[*:0]const u16, pKeywordsToAdd: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_Create(@as(*const AsyncIIdentityProvider, @ptrCast(self)), lpszUserName, pKeywordsToAdd);
+        return self.vtable.Begin_Create(self, lpszUserName, pKeywordsToAdd);
     }
     pub fn Finish_Create(self: *const AsyncIIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_Create(@as(*const AsyncIIdentityProvider, @ptrCast(self)), ppPropertyStore);
+        return self.vtable.Finish_Create(self, ppPropertyStore);
     }
     pub fn Begin_Import(self: *const AsyncIIdentityProvider, pPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_Import(@as(*const AsyncIIdentityProvider, @ptrCast(self)), pPropertyStore);
+        return self.vtable.Begin_Import(self, pPropertyStore);
     }
     pub fn Finish_Import(self: *const AsyncIIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_Import(@as(*const AsyncIIdentityProvider, @ptrCast(self)));
+        return self.vtable.Finish_Import(self);
     }
     pub fn Begin_Delete(self: *const AsyncIIdentityProvider, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_Delete(@as(*const AsyncIIdentityProvider, @ptrCast(self)), lpszUniqueID, pKeywordsToDelete);
+        return self.vtable.Begin_Delete(self, lpszUniqueID, pKeywordsToDelete);
     }
     pub fn Finish_Delete(self: *const AsyncIIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_Delete(@as(*const AsyncIIdentityProvider, @ptrCast(self)));
+        return self.vtable.Finish_Delete(self);
     }
     pub fn Begin_FindByUniqueID(self: *const AsyncIIdentityProvider, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_FindByUniqueID(@as(*const AsyncIIdentityProvider, @ptrCast(self)), lpszUniqueID);
+        return self.vtable.Begin_FindByUniqueID(self, lpszUniqueID);
     }
     pub fn Finish_FindByUniqueID(self: *const AsyncIIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_FindByUniqueID(@as(*const AsyncIIdentityProvider, @ptrCast(self)), ppPropertyStore);
+        return self.vtable.Finish_FindByUniqueID(self, ppPropertyStore);
     }
     pub fn Begin_GetProviderPropertyStore(self: *const AsyncIIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_GetProviderPropertyStore(@as(*const AsyncIIdentityProvider, @ptrCast(self)));
+        return self.vtable.Begin_GetProviderPropertyStore(self);
     }
     pub fn Finish_GetProviderPropertyStore(self: *const AsyncIIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_GetProviderPropertyStore(@as(*const AsyncIIdentityProvider, @ptrCast(self)), ppPropertyStore);
+        return self.vtable.Finish_GetProviderPropertyStore(self, ppPropertyStore);
     }
     pub fn Begin_Advise(self: *const AsyncIIdentityProvider, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: u32) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_Advise(@as(*const AsyncIIdentityProvider, @ptrCast(self)), pIdentityAdvise, dwIdentityUpdateEvents);
+        return self.vtable.Begin_Advise(self, pIdentityAdvise, dwIdentityUpdateEvents);
     }
     pub fn Finish_Advise(self: *const AsyncIIdentityProvider, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_Advise(@as(*const AsyncIIdentityProvider, @ptrCast(self)), pdwCookie);
+        return self.vtable.Finish_Advise(self, pdwCookie);
     }
     pub fn Begin_UnAdvise(self: *const AsyncIIdentityProvider, dwCookie: u32) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_UnAdvise(@as(*const AsyncIIdentityProvider, @ptrCast(self)), dwCookie);
+        return self.vtable.Begin_UnAdvise(self, dwCookie);
     }
     pub fn Finish_UnAdvise(self: *const AsyncIIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_UnAdvise(@as(*const AsyncIIdentityProvider, @ptrCast(self)));
+        return self.vtable.Finish_UnAdvise(self);
     }
 };
 
@@ -475,13 +475,13 @@ pub const IAssociatedIdentityProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AssociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).AssociateIdentity(@as(*const IAssociatedIdentityProvider, @ptrCast(self)), hwndParent, ppPropertyStore);
+        return self.vtable.AssociateIdentity(self, hwndParent, ppPropertyStore);
     }
     pub fn DisassociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).DisassociateIdentity(@as(*const IAssociatedIdentityProvider, @ptrCast(self)), hwndParent, lpszUniqueID);
+        return self.vtable.DisassociateIdentity(self, hwndParent, lpszUniqueID);
     }
     pub fn ChangeCredential(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).ChangeCredential(@as(*const IAssociatedIdentityProvider, @ptrCast(self)), hwndParent, lpszUniqueID);
+        return self.vtable.ChangeCredential(self, hwndParent, lpszUniqueID);
     }
 };
 
@@ -546,22 +546,22 @@ pub const AsyncIAssociatedIdentityProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_AssociateIdentity(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)), hwndParent);
+        return self.vtable.Begin_AssociateIdentity(self, hwndParent);
     }
     pub fn Finish_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_AssociateIdentity(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)), ppPropertyStore);
+        return self.vtable.Finish_AssociateIdentity(self, ppPropertyStore);
     }
     pub fn Begin_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_DisassociateIdentity(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)), hwndParent, lpszUniqueID);
+        return self.vtable.Begin_DisassociateIdentity(self, hwndParent, lpszUniqueID);
     }
     pub fn Finish_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_DisassociateIdentity(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)));
+        return self.vtable.Finish_DisassociateIdentity(self);
     }
     pub fn Begin_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_ChangeCredential(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)), hwndParent, lpszUniqueID);
+        return self.vtable.Begin_ChangeCredential(self, hwndParent, lpszUniqueID);
     }
     pub fn Finish_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIAssociatedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_ChangeCredential(@as(*const AsyncIAssociatedIdentityProvider, @ptrCast(self)));
+        return self.vtable.Finish_ChangeCredential(self);
     }
 };
 
@@ -648,19 +648,19 @@ pub const IConnectedIdentityProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ConnectIdentity(self: *const IConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).ConnectIdentity(@as(*const IConnectedIdentityProvider, @ptrCast(self)), AuthBuffer, AuthBufferSize);
+        return self.vtable.ConnectIdentity(self, AuthBuffer, AuthBufferSize);
     }
     pub fn DisconnectIdentity(self: *const IConnectedIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).DisconnectIdentity(@as(*const IConnectedIdentityProvider, @ptrCast(self)));
+        return self.vtable.DisconnectIdentity(self);
     }
     pub fn IsConnected(self: *const IConnectedIdentityProvider, Connected: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).IsConnected(@as(*const IConnectedIdentityProvider, @ptrCast(self)), Connected);
+        return self.vtable.IsConnected(self, Connected);
     }
     pub fn GetUrl(self: *const IConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).GetUrl(@as(*const IConnectedIdentityProvider, @ptrCast(self)), Identifier, Context, PostData, Url);
+        return self.vtable.GetUrl(self, Identifier, Context, PostData, Url);
     }
     pub fn GetAccountState(self: *const IConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).GetAccountState(@as(*const IConnectedIdentityProvider, @ptrCast(self)), pState);
+        return self.vtable.GetAccountState(self, pState);
     }
 };
 
@@ -755,34 +755,34 @@ pub const AsyncIConnectedIdentityProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_ConnectIdentity(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), AuthBuffer, AuthBufferSize);
+        return self.vtable.Begin_ConnectIdentity(self, AuthBuffer, AuthBufferSize);
     }
     pub fn Finish_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_ConnectIdentity(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
+        return self.vtable.Finish_ConnectIdentity(self);
     }
     pub fn Begin_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_DisconnectIdentity(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
+        return self.vtable.Begin_DisconnectIdentity(self);
     }
     pub fn Finish_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_DisconnectIdentity(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
+        return self.vtable.Finish_DisconnectIdentity(self);
     }
     pub fn Begin_IsConnected(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_IsConnected(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
+        return self.vtable.Begin_IsConnected(self);
     }
     pub fn Finish_IsConnected(self: *const AsyncIConnectedIdentityProvider, Connected: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_IsConnected(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), Connected);
+        return self.vtable.Finish_IsConnected(self, Connected);
     }
     pub fn Begin_GetUrl(self: *const AsyncIConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_GetUrl(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), Identifier, Context);
+        return self.vtable.Begin_GetUrl(self, Identifier, Context);
     }
     pub fn Finish_GetUrl(self: *const AsyncIConnectedIdentityProvider, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_GetUrl(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), PostData, Url);
+        return self.vtable.Finish_GetUrl(self, PostData, Url);
     }
     pub fn Begin_GetAccountState(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Begin_GetAccountState(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)));
+        return self.vtable.Begin_GetAccountState(self);
     }
     pub fn Finish_GetAccountState(self: *const AsyncIConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIConnectedIdentityProvider.VTable, @ptrCast(self.vtable)).Finish_GetAccountState(@as(*const AsyncIConnectedIdentityProvider, @ptrCast(self)), pState);
+        return self.vtable.Finish_GetAccountState(self, pState);
     }
 };
 
@@ -818,10 +818,10 @@ pub const IIdentityAuthentication = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityAuthentication.VTable, @ptrCast(self.vtable)).SetIdentityCredential(@as(*const IIdentityAuthentication, @ptrCast(self)), CredBuffer, CredBufferLength);
+        return self.vtable.SetIdentityCredential(self, CredBuffer, CredBufferLength);
     }
     pub fn ValidateIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityAuthentication.VTable, @ptrCast(self.vtable)).ValidateIdentityCredential(@as(*const IIdentityAuthentication, @ptrCast(self)), CredBuffer, CredBufferLength, ppIdentityProperties);
+        return self.vtable.ValidateIdentityCredential(self, CredBuffer, CredBufferLength, ppIdentityProperties);
     }
 };
 
@@ -872,16 +872,16 @@ pub const AsyncIIdentityAuthentication = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_SetIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityAuthentication.VTable, @ptrCast(self.vtable)).Begin_SetIdentityCredential(@as(*const AsyncIIdentityAuthentication, @ptrCast(self)), CredBuffer, CredBufferLength);
+        return self.vtable.Begin_SetIdentityCredential(self, CredBuffer, CredBufferLength);
     }
     pub fn Finish_SetIdentityCredential(self: *const AsyncIIdentityAuthentication) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityAuthentication.VTable, @ptrCast(self.vtable)).Finish_SetIdentityCredential(@as(*const AsyncIIdentityAuthentication, @ptrCast(self)));
+        return self.vtable.Finish_SetIdentityCredential(self);
     }
     pub fn Begin_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityAuthentication.VTable, @ptrCast(self.vtable)).Begin_ValidateIdentityCredential(@as(*const AsyncIIdentityAuthentication, @ptrCast(self)), CredBuffer, CredBufferLength, ppIdentityProperties);
+        return self.vtable.Begin_ValidateIdentityCredential(self, CredBuffer, CredBufferLength, ppIdentityProperties);
     }
     pub fn Finish_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityAuthentication.VTable, @ptrCast(self.vtable)).Finish_ValidateIdentityCredential(@as(*const AsyncIIdentityAuthentication, @ptrCast(self)), ppIdentityProperties);
+        return self.vtable.Finish_ValidateIdentityCredential(self, ppIdentityProperties);
     }
 };
 
@@ -962,22 +962,22 @@ pub const IIdentityStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IIdentityStore, pdwProviders: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IIdentityStore, @ptrCast(self)), pdwProviders);
+        return self.vtable.GetCount(self, pdwProviders);
     }
     pub fn GetAt(self: *const IIdentityStore, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IIdentityStore, @ptrCast(self)), dwProvider, pProvGuid, ppIdentityProvider);
+        return self.vtable.GetAt(self, dwProvider, pProvGuid, ppIdentityProvider);
     }
     pub fn AddToCache(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).AddToCache(@as(*const IIdentityStore, @ptrCast(self)), lpszUniqueID, ProviderGUID);
+        return self.vtable.AddToCache(self, lpszUniqueID, ProviderGUID);
     }
     pub fn ConvertToSid(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?[*:0]u8, pcbRequiredSid: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).ConvertToSid(@as(*const IIdentityStore, @ptrCast(self)), lpszUniqueID, ProviderGUID, cbSid, pSid, pcbRequiredSid);
+        return self.vtable.ConvertToSid(self, lpszUniqueID, ProviderGUID, cbSid, pSid, pcbRequiredSid);
     }
     pub fn EnumerateIdentities(self: *const IIdentityStore, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).EnumerateIdentities(@as(*const IIdentityStore, @ptrCast(self)), eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
+        return self.vtable.EnumerateIdentities(self, eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
     }
     pub fn Reset(self: *const IIdentityStore) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityStore.VTable, @ptrCast(self.vtable)).Reset(@as(*const IIdentityStore, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
 };
 
@@ -1095,40 +1095,40 @@ pub const AsyncIIdentityStore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_GetCount(self: *const AsyncIIdentityStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_GetCount(@as(*const AsyncIIdentityStore, @ptrCast(self)));
+        return self.vtable.Begin_GetCount(self);
     }
     pub fn Finish_GetCount(self: *const AsyncIIdentityStore, pdwProviders: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_GetCount(@as(*const AsyncIIdentityStore, @ptrCast(self)), pdwProviders);
+        return self.vtable.Finish_GetCount(self, pdwProviders);
     }
     pub fn Begin_GetAt(self: *const AsyncIIdentityStore, dwProvider: u32, pProvGuid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_GetAt(@as(*const AsyncIIdentityStore, @ptrCast(self)), dwProvider, pProvGuid);
+        return self.vtable.Begin_GetAt(self, dwProvider, pProvGuid);
     }
     pub fn Finish_GetAt(self: *const AsyncIIdentityStore, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_GetAt(@as(*const AsyncIIdentityStore, @ptrCast(self)), pProvGuid, ppIdentityProvider);
+        return self.vtable.Finish_GetAt(self, pProvGuid, ppIdentityProvider);
     }
     pub fn Begin_AddToCache(self: *const AsyncIIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_AddToCache(@as(*const AsyncIIdentityStore, @ptrCast(self)), lpszUniqueID, ProviderGUID);
+        return self.vtable.Begin_AddToCache(self, lpszUniqueID, ProviderGUID);
     }
     pub fn Finish_AddToCache(self: *const AsyncIIdentityStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_AddToCache(@as(*const AsyncIIdentityStore, @ptrCast(self)));
+        return self.vtable.Finish_AddToCache(self);
     }
     pub fn Begin_ConvertToSid(self: *const AsyncIIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_ConvertToSid(@as(*const AsyncIIdentityStore, @ptrCast(self)), lpszUniqueID, ProviderGUID, cbSid, pSid);
+        return self.vtable.Begin_ConvertToSid(self, lpszUniqueID, ProviderGUID, cbSid, pSid);
     }
     pub fn Finish_ConvertToSid(self: *const AsyncIIdentityStore, pSid: ?*u8, pcbRequiredSid: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_ConvertToSid(@as(*const AsyncIIdentityStore, @ptrCast(self)), pSid, pcbRequiredSid);
+        return self.vtable.Finish_ConvertToSid(self, pSid, pcbRequiredSid);
     }
     pub fn Begin_EnumerateIdentities(self: *const AsyncIIdentityStore, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_EnumerateIdentities(@as(*const AsyncIIdentityStore, @ptrCast(self)), eIdentityType, pFilterkey, pFilterPropVarValue);
+        return self.vtable.Begin_EnumerateIdentities(self, eIdentityType, pFilterkey, pFilterPropVarValue);
     }
     pub fn Finish_EnumerateIdentities(self: *const AsyncIIdentityStore, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_EnumerateIdentities(@as(*const AsyncIIdentityStore, @ptrCast(self)), ppIdentityEnum);
+        return self.vtable.Finish_EnumerateIdentities(self, ppIdentityEnum);
     }
     pub fn Begin_Reset(self: *const AsyncIIdentityStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Begin_Reset(@as(*const AsyncIIdentityStore, @ptrCast(self)));
+        return self.vtable.Begin_Reset(self);
     }
     pub fn Finish_Reset(self: *const AsyncIIdentityStore) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStore.VTable, @ptrCast(self.vtable)).Finish_Reset(@as(*const AsyncIIdentityStore, @ptrCast(self)));
+        return self.vtable.Finish_Reset(self);
     }
 };
 
@@ -1164,10 +1164,10 @@ pub const IIdentityStoreEx = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateConnectedIdentity(self: *const IIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityStoreEx.VTable, @ptrCast(self.vtable)).CreateConnectedIdentity(@as(*const IIdentityStoreEx, @ptrCast(self)), LocalName, ConnectedName, ProviderGUID);
+        return self.vtable.CreateConnectedIdentity(self, LocalName, ConnectedName, ProviderGUID);
     }
     pub fn DeleteConnectedIdentity(self: *const IIdentityStoreEx, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IIdentityStoreEx.VTable, @ptrCast(self.vtable)).DeleteConnectedIdentity(@as(*const IIdentityStoreEx, @ptrCast(self)), ConnectedName, ProviderGUID);
+        return self.vtable.DeleteConnectedIdentity(self, ConnectedName, ProviderGUID);
     }
 };
 
@@ -1217,16 +1217,16 @@ pub const AsyncIIdentityStoreEx = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin_CreateConnectedIdentity(self: *const AsyncIIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStoreEx.VTable, @ptrCast(self.vtable)).Begin_CreateConnectedIdentity(@as(*const AsyncIIdentityStoreEx, @ptrCast(self)), LocalName, ConnectedName, ProviderGUID);
+        return self.vtable.Begin_CreateConnectedIdentity(self, LocalName, ConnectedName, ProviderGUID);
     }
     pub fn Finish_CreateConnectedIdentity(self: *const AsyncIIdentityStoreEx) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStoreEx.VTable, @ptrCast(self.vtable)).Finish_CreateConnectedIdentity(@as(*const AsyncIIdentityStoreEx, @ptrCast(self)));
+        return self.vtable.Finish_CreateConnectedIdentity(self);
     }
     pub fn Begin_DeleteConnectedIdentity(self: *const AsyncIIdentityStoreEx, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStoreEx.VTable, @ptrCast(self.vtable)).Begin_DeleteConnectedIdentity(@as(*const AsyncIIdentityStoreEx, @ptrCast(self)), ConnectedName, ProviderGUID);
+        return self.vtable.Begin_DeleteConnectedIdentity(self, ConnectedName, ProviderGUID);
     }
     pub fn Finish_DeleteConnectedIdentity(self: *const AsyncIIdentityStoreEx) callconv(.Inline) HRESULT {
-        return @as(*const AsyncIIdentityStoreEx.VTable, @ptrCast(self.vtable)).Finish_DeleteConnectedIdentity(@as(*const AsyncIIdentityStoreEx, @ptrCast(self)));
+        return self.vtable.Finish_DeleteConnectedIdentity(self);
     }
 };
 

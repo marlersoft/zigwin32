@@ -4177,10 +4177,10 @@ pub const IContentPrefetcherTaskTrigger = extern union {
     };}
     pub usingnamespace IInspectable.MethodMixin(@This());
     pub fn TriggerContentPrefetcherTask(self: *const IContentPrefetcherTaskTrigger, packageFullName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IContentPrefetcherTaskTrigger.VTable, @ptrCast(self.vtable)).TriggerContentPrefetcherTask(@as(*const IContentPrefetcherTaskTrigger, @ptrCast(self)), packageFullName);
+        return self.vtable.TriggerContentPrefetcherTask(self, packageFullName);
     }
     pub fn IsRegisteredForContentPrefetch(self: *const IContentPrefetcherTaskTrigger, packageFullName: ?[*:0]const u16, isRegistered: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IContentPrefetcherTaskTrigger.VTable, @ptrCast(self.vtable)).IsRegisteredForContentPrefetch(@as(*const IContentPrefetcherTaskTrigger, @ptrCast(self)), packageFullName, isRegistered);
+        return self.vtable.IsRegisteredForContentPrefetch(self, packageFullName, isRegistered);
     }
 };
 

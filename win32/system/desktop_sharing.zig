@@ -317,10 +317,10 @@ pub const IRDPSRAPIDebug = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn put_CLXCmdLine(self: *const IRDPSRAPIDebug, CLXCmdLine: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIDebug.VTable, @ptrCast(self.vtable)).put_CLXCmdLine(@as(*const IRDPSRAPIDebug, @ptrCast(self)), CLXCmdLine);
+        return self.vtable.put_CLXCmdLine(self, CLXCmdLine);
     }
     pub fn get_CLXCmdLine(self: *const IRDPSRAPIDebug, pCLXCmdLine: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIDebug.VTable, @ptrCast(self.vtable)).get_CLXCmdLine(@as(*const IRDPSRAPIDebug, @ptrCast(self)), pCLXCmdLine);
+        return self.vtable.get_CLXCmdLine(self, pCLXCmdLine);
     }
 };
 
@@ -346,7 +346,7 @@ pub const IRDPSRAPIPerfCounterLogger = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LogValue(self: *const IRDPSRAPIPerfCounterLogger, lValue: i64) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIPerfCounterLogger.VTable, @ptrCast(self.vtable)).LogValue(@as(*const IRDPSRAPIPerfCounterLogger, @ptrCast(self)), lValue);
+        return self.vtable.LogValue(self, lValue);
     }
 };
 
@@ -373,7 +373,7 @@ pub const IRDPSRAPIPerfCounterLoggingManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateLogger(self: *const IRDPSRAPIPerfCounterLoggingManager, bstrCounterName: ?BSTR, ppLogger: ?*?*IRDPSRAPIPerfCounterLogger) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIPerfCounterLoggingManager.VTable, @ptrCast(self.vtable)).CreateLogger(@as(*const IRDPSRAPIPerfCounterLoggingManager, @ptrCast(self)), bstrCounterName, ppLogger);
+        return self.vtable.CreateLogger(self, bstrCounterName, ppLogger);
     }
 };
 
@@ -430,19 +430,19 @@ pub const IRDPSRAPIAudioStream = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IRDPSRAPIAudioStream, pnPeriodInHundredNsIntervals: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)), pnPeriodInHundredNsIntervals);
+        return self.vtable.Initialize(self, pnPeriodInHundredNsIntervals);
     }
     pub fn Start(self: *const IRDPSRAPIAudioStream) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).Start(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)));
+        return self.vtable.Start(self);
     }
     pub fn Stop(self: *const IRDPSRAPIAudioStream) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).Stop(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn GetBuffer(self: *const IRDPSRAPIAudioStream, ppbData: [*]?*u8, pcbData: ?*u32, pTimestamp: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)), ppbData, pcbData, pTimestamp);
+        return self.vtable.GetBuffer(self, ppbData, pcbData, pTimestamp);
     }
     pub fn FreeBuffer(self: *const IRDPSRAPIAudioStream) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)));
+        return self.vtable.FreeBuffer(self);
     }
 };
 
@@ -470,7 +470,7 @@ pub const IRDPSRAPIClipboardUseEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnPasteFromClipboard(self: *const IRDPSRAPIClipboardUseEvents, clipboardFormat: u32, pAttendee: ?*IDispatch, pRetVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIClipboardUseEvents.VTable, @ptrCast(self.vtable)).OnPasteFromClipboard(@as(*const IRDPSRAPIClipboardUseEvents, @ptrCast(self)), clipboardFormat, pAttendee, pRetVal);
+        return self.vtable.OnPasteFromClipboard(self, clipboardFormat, pAttendee, pRetVal);
     }
 };
 
@@ -549,25 +549,25 @@ pub const IRDPSRAPIWindow = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Id(self: *const IRDPSRAPIWindow, pRetVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pRetVal);
+        return self.vtable.get_Id(self, pRetVal);
     }
     pub fn get_Application(self: *const IRDPSRAPIWindow, pApplication: ?*?*IRDPSRAPIApplication) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Application(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pApplication);
+        return self.vtable.get_Application(self, pApplication);
     }
     pub fn get_Shared(self: *const IRDPSRAPIWindow, pRetVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Shared(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pRetVal);
+        return self.vtable.get_Shared(self, pRetVal);
     }
     pub fn put_Shared(self: *const IRDPSRAPIWindow, NewVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).put_Shared(@as(*const IRDPSRAPIWindow, @ptrCast(self)), NewVal);
+        return self.vtable.put_Shared(self, NewVal);
     }
     pub fn get_Name(self: *const IRDPSRAPIWindow, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pRetVal);
+        return self.vtable.get_Name(self, pRetVal);
     }
     pub fn Show(self: *const IRDPSRAPIWindow) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).Show(@as(*const IRDPSRAPIWindow, @ptrCast(self)));
+        return self.vtable.Show(self);
     }
     pub fn get_Flags(self: *const IRDPSRAPIWindow, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pdwFlags);
+        return self.vtable.get_Flags(self, pdwFlags);
     }
 };
 
@@ -603,10 +603,10 @@ pub const IRDPSRAPIWindowList = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IRDPSRAPIWindowList, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIWindowList.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIWindowList, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn get_Item(self: *const IRDPSRAPIWindowList, item: i32, pWindow: ?*?*IRDPSRAPIWindow) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIWindowList.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIWindowList, @ptrCast(self)), item, pWindow);
+        return self.vtable.get_Item(self, item, pWindow);
     }
 };
 
@@ -678,22 +678,22 @@ pub const IRDPSRAPIApplication = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Windows(self: *const IRDPSRAPIApplication, pWindowList: ?*?*IRDPSRAPIWindowList) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Windows(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pWindowList);
+        return self.vtable.get_Windows(self, pWindowList);
     }
     pub fn get_Id(self: *const IRDPSRAPIApplication, pRetVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pRetVal);
+        return self.vtable.get_Id(self, pRetVal);
     }
     pub fn get_Shared(self: *const IRDPSRAPIApplication, pRetVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Shared(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pRetVal);
+        return self.vtable.get_Shared(self, pRetVal);
     }
     pub fn put_Shared(self: *const IRDPSRAPIApplication, NewVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).put_Shared(@as(*const IRDPSRAPIApplication, @ptrCast(self)), NewVal);
+        return self.vtable.put_Shared(self, NewVal);
     }
     pub fn get_Name(self: *const IRDPSRAPIApplication, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pRetVal);
+        return self.vtable.get_Name(self, pRetVal);
     }
     pub fn get_Flags(self: *const IRDPSRAPIApplication, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pdwFlags);
+        return self.vtable.get_Flags(self, pdwFlags);
     }
 };
 
@@ -729,10 +729,10 @@ pub const IRDPSRAPIApplicationList = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IRDPSRAPIApplicationList, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplicationList.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIApplicationList, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn get_Item(self: *const IRDPSRAPIApplicationList, item: i32, pApplication: ?*?*IRDPSRAPIApplication) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplicationList.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIApplicationList, @ptrCast(self)), item, pApplication);
+        return self.vtable.get_Item(self, item, pApplication);
     }
 };
 
@@ -786,16 +786,16 @@ pub const IRDPSRAPIApplicationFilter = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Applications(self: *const IRDPSRAPIApplicationFilter, pApplications: ?*?*IRDPSRAPIApplicationList) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplicationFilter.VTable, @ptrCast(self.vtable)).get_Applications(@as(*const IRDPSRAPIApplicationFilter, @ptrCast(self)), pApplications);
+        return self.vtable.get_Applications(self, pApplications);
     }
     pub fn get_Windows(self: *const IRDPSRAPIApplicationFilter, pWindows: ?*?*IRDPSRAPIWindowList) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplicationFilter.VTable, @ptrCast(self.vtable)).get_Windows(@as(*const IRDPSRAPIApplicationFilter, @ptrCast(self)), pWindows);
+        return self.vtable.get_Windows(self, pWindows);
     }
     pub fn get_Enabled(self: *const IRDPSRAPIApplicationFilter, pRetVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplicationFilter.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IRDPSRAPIApplicationFilter, @ptrCast(self)), pRetVal);
+        return self.vtable.get_Enabled(self, pRetVal);
     }
     pub fn put_Enabled(self: *const IRDPSRAPIApplicationFilter, NewVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIApplicationFilter.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IRDPSRAPIApplicationFilter, @ptrCast(self)), NewVal);
+        return self.vtable.put_Enabled(self, NewVal);
     }
 };
 
@@ -831,10 +831,10 @@ pub const IRDPSRAPISessionProperties = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISessionProperties.VTable, @ptrCast(self.vtable)).get_Property(@as(*const IRDPSRAPISessionProperties, @ptrCast(self)), PropertyName, pVal);
+        return self.vtable.get_Property(self, PropertyName, pVal);
     }
     pub fn put_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, newVal: VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISessionProperties.VTable, @ptrCast(self.vtable)).put_Property(@as(*const IRDPSRAPISessionProperties, @ptrCast(self)), PropertyName, newVal);
+        return self.vtable.put_Property(self, PropertyName, newVal);
     }
 };
 
@@ -915,25 +915,25 @@ pub const IRDPSRAPIInvitation = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_ConnectionString(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_ConnectionString(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pbstrVal);
+        return self.vtable.get_ConnectionString(self, pbstrVal);
     }
     pub fn get_GroupName(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_GroupName(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pbstrVal);
+        return self.vtable.get_GroupName(self, pbstrVal);
     }
     pub fn get_Password(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_Password(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pbstrVal);
+        return self.vtable.get_Password(self, pbstrVal);
     }
     pub fn get_AttendeeLimit(self: *const IRDPSRAPIInvitation, pRetVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_AttendeeLimit(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pRetVal);
+        return self.vtable.get_AttendeeLimit(self, pRetVal);
     }
     pub fn put_AttendeeLimit(self: *const IRDPSRAPIInvitation, NewVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).put_AttendeeLimit(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), NewVal);
+        return self.vtable.put_AttendeeLimit(self, NewVal);
     }
     pub fn get_Revoked(self: *const IRDPSRAPIInvitation, pRetVal: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_Revoked(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pRetVal);
+        return self.vtable.get_Revoked(self, pRetVal);
     }
     pub fn put_Revoked(self: *const IRDPSRAPIInvitation, NewVal: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).put_Revoked(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), NewVal);
+        return self.vtable.put_Revoked(self, NewVal);
     }
 };
 
@@ -990,16 +990,16 @@ pub const IRDPSRAPIInvitationManager = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IRDPSRAPIInvitationManager, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitationManager.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIInvitationManager, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn get_Item(self: *const IRDPSRAPIInvitationManager, item: VARIANT, ppInvitation: ?*?*IRDPSRAPIInvitation) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitationManager.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIInvitationManager, @ptrCast(self)), item, ppInvitation);
+        return self.vtable.get_Item(self, item, ppInvitation);
     }
     pub fn get_Count(self: *const IRDPSRAPIInvitationManager, pRetVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitationManager.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IRDPSRAPIInvitationManager, @ptrCast(self)), pRetVal);
+        return self.vtable.get_Count(self, pRetVal);
     }
     pub fn CreateInvitation(self: *const IRDPSRAPIInvitationManager, bstrAuthString: ?BSTR, bstrGroupName: ?BSTR, bstrPassword: ?BSTR, AttendeeLimit: i32, ppInvitation: ?*?*IRDPSRAPIInvitation) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIInvitationManager.VTable, @ptrCast(self.vtable)).CreateInvitation(@as(*const IRDPSRAPIInvitationManager, @ptrCast(self)), bstrAuthString, bstrGroupName, bstrPassword, AttendeeLimit, ppInvitation);
+        return self.vtable.CreateInvitation(self, bstrAuthString, bstrGroupName, bstrPassword, AttendeeLimit, ppInvitation);
     }
 };
 
@@ -1062,19 +1062,19 @@ pub const IRDPSRAPITcpConnectionInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Protocol(self: *const IRDPSRAPITcpConnectionInfo, plProtocol: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_Protocol(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), plProtocol);
+        return self.vtable.get_Protocol(self, plProtocol);
     }
     pub fn get_LocalPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_LocalPort(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), plPort);
+        return self.vtable.get_LocalPort(self, plPort);
     }
     pub fn get_LocalIP(self: *const IRDPSRAPITcpConnectionInfo, pbsrLocalIP: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_LocalIP(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), pbsrLocalIP);
+        return self.vtable.get_LocalIP(self, pbsrLocalIP);
     }
     pub fn get_PeerPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_PeerPort(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), plPort);
+        return self.vtable.get_PeerPort(self, plPort);
     }
     pub fn get_PeerIP(self: *const IRDPSRAPITcpConnectionInfo, pbstrIP: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_PeerIP(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), pbstrIP);
+        return self.vtable.get_PeerIP(self, pbstrIP);
     }
 };
 
@@ -1162,28 +1162,28 @@ pub const IRDPSRAPIAttendee = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Id(self: *const IRDPSRAPIAttendee, pId: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), pId);
+        return self.vtable.get_Id(self, pId);
     }
     pub fn get_RemoteName(self: *const IRDPSRAPIAttendee, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_RemoteName(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), pVal);
+        return self.vtable.get_RemoteName(self, pVal);
     }
     pub fn get_ControlLevel(self: *const IRDPSRAPIAttendee, pVal: ?*CTRL_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_ControlLevel(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), pVal);
+        return self.vtable.get_ControlLevel(self, pVal);
     }
     pub fn put_ControlLevel(self: *const IRDPSRAPIAttendee, pNewVal: CTRL_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).put_ControlLevel(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), pNewVal);
+        return self.vtable.put_ControlLevel(self, pNewVal);
     }
     pub fn get_Invitation(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IRDPSRAPIInvitation) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_Invitation(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), ppVal);
+        return self.vtable.get_Invitation(self, ppVal);
     }
     pub fn TerminateConnection(self: *const IRDPSRAPIAttendee) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).TerminateConnection(@as(*const IRDPSRAPIAttendee, @ptrCast(self)));
+        return self.vtable.TerminateConnection(self);
     }
     pub fn get_Flags(self: *const IRDPSRAPIAttendee, plFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), plFlags);
+        return self.vtable.get_Flags(self, plFlags);
     }
     pub fn get_ConnectivityInfo(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_ConnectivityInfo(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), ppVal);
+        return self.vtable.get_ConnectivityInfo(self, ppVal);
     }
 };
 
@@ -1219,10 +1219,10 @@ pub const IRDPSRAPIAttendeeManager = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IRDPSRAPIAttendeeManager, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendeeManager.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIAttendeeManager, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn get_Item(self: *const IRDPSRAPIAttendeeManager, id: i32, ppItem: ?*?*IRDPSRAPIAttendee) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendeeManager.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIAttendeeManager, @ptrCast(self)), id, ppItem);
+        return self.vtable.get_Item(self, id, ppItem);
     }
 };
 
@@ -1267,13 +1267,13 @@ pub const IRDPSRAPIAttendeeDisconnectInfo = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Attendee(self: *const IRDPSRAPIAttendeeDisconnectInfo, retval: ?*?*IRDPSRAPIAttendee) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendeeDisconnectInfo.VTable, @ptrCast(self.vtable)).get_Attendee(@as(*const IRDPSRAPIAttendeeDisconnectInfo, @ptrCast(self)), retval);
+        return self.vtable.get_Attendee(self, retval);
     }
     pub fn get_Reason(self: *const IRDPSRAPIAttendeeDisconnectInfo, pReason: ?*ATTENDEE_DISCONNECT_REASON) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendeeDisconnectInfo.VTable, @ptrCast(self.vtable)).get_Reason(@as(*const IRDPSRAPIAttendeeDisconnectInfo, @ptrCast(self)), pReason);
+        return self.vtable.get_Reason(self, pReason);
     }
     pub fn get_Code(self: *const IRDPSRAPIAttendeeDisconnectInfo, pVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIAttendeeDisconnectInfo.VTable, @ptrCast(self.vtable)).get_Code(@as(*const IRDPSRAPIAttendeeDisconnectInfo, @ptrCast(self)), pVal);
+        return self.vtable.get_Code(self, pVal);
     }
 };
 
@@ -1337,19 +1337,19 @@ pub const IRDPSRAPIVirtualChannel = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn SendData(self: *const IRDPSRAPIVirtualChannel, bstrData: ?BSTR, lAttendeeId: i32, ChannelSendFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).SendData(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), bstrData, lAttendeeId, ChannelSendFlags);
+        return self.vtable.SendData(self, bstrData, lAttendeeId, ChannelSendFlags);
     }
     pub fn SetAccess(self: *const IRDPSRAPIVirtualChannel, lAttendeeId: i32, AccessType: CHANNEL_ACCESS_ENUM) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).SetAccess(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), lAttendeeId, AccessType);
+        return self.vtable.SetAccess(self, lAttendeeId, AccessType);
     }
     pub fn get_Name(self: *const IRDPSRAPIVirtualChannel, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), pbstrName);
+        return self.vtable.get_Name(self, pbstrName);
     }
     pub fn get_Flags(self: *const IRDPSRAPIVirtualChannel, plFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), plFlags);
+        return self.vtable.get_Flags(self, plFlags);
     }
     pub fn get_Priority(self: *const IRDPSRAPIVirtualChannel, pPriority: ?*CHANNEL_PRIORITY) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), pPriority);
+        return self.vtable.get_Priority(self, pPriority);
     }
 };
 
@@ -1396,13 +1396,13 @@ pub const IRDPSRAPIVirtualChannelManager = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IRDPSRAPIVirtualChannelManager, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIVirtualChannelManager.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIVirtualChannelManager, @ptrCast(self)), retval);
+        return self.vtable.get__NewEnum(self, retval);
     }
     pub fn get_Item(self: *const IRDPSRAPIVirtualChannelManager, item: VARIANT, pChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIVirtualChannelManager.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIVirtualChannelManager, @ptrCast(self)), item, pChannel);
+        return self.vtable.get_Item(self, item, pChannel);
     }
     pub fn CreateVirtualChannel(self: *const IRDPSRAPIVirtualChannelManager, bstrChannelName: ?BSTR, Priority: CHANNEL_PRIORITY, ChannelFlags: u32, ppChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIVirtualChannelManager.VTable, @ptrCast(self.vtable)).CreateVirtualChannel(@as(*const IRDPSRAPIVirtualChannelManager, @ptrCast(self)), bstrChannelName, Priority, ChannelFlags, ppChannel);
+        return self.vtable.CreateVirtualChannel(self, bstrChannelName, Priority, ChannelFlags, ppChannel);
     }
 };
 
@@ -1545,46 +1545,46 @@ pub const IRDPSRAPIViewer = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Connect(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrName: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).Connect(@as(*const IRDPSRAPIViewer, @ptrCast(self)), bstrConnectionString, bstrName, bstrPassword);
+        return self.vtable.Connect(self, bstrConnectionString, bstrName, bstrPassword);
     }
     pub fn Disconnect(self: *const IRDPSRAPIViewer) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IRDPSRAPIViewer, @ptrCast(self)));
+        return self.vtable.Disconnect(self);
     }
     pub fn get_Attendees(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_Attendees(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
+        return self.vtable.get_Attendees(self, ppVal);
     }
     pub fn get_Invitations(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_Invitations(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
+        return self.vtable.get_Invitations(self, ppVal);
     }
     pub fn get_ApplicationFilter(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_ApplicationFilter(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
+        return self.vtable.get_ApplicationFilter(self, ppVal);
     }
     pub fn get_VirtualChannelManager(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_VirtualChannelManager(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
+        return self.vtable.get_VirtualChannelManager(self, ppVal);
     }
     pub fn put_SmartSizing(self: *const IRDPSRAPIViewer, vbSmartSizing: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).put_SmartSizing(@as(*const IRDPSRAPIViewer, @ptrCast(self)), vbSmartSizing);
+        return self.vtable.put_SmartSizing(self, vbSmartSizing);
     }
     pub fn get_SmartSizing(self: *const IRDPSRAPIViewer, pvbSmartSizing: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_SmartSizing(@as(*const IRDPSRAPIViewer, @ptrCast(self)), pvbSmartSizing);
+        return self.vtable.get_SmartSizing(self, pvbSmartSizing);
     }
     pub fn RequestControl(self: *const IRDPSRAPIViewer, CtrlLevel: CTRL_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).RequestControl(@as(*const IRDPSRAPIViewer, @ptrCast(self)), CtrlLevel);
+        return self.vtable.RequestControl(self, CtrlLevel);
     }
     pub fn put_DisconnectedText(self: *const IRDPSRAPIViewer, bstrDisconnectedText: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).put_DisconnectedText(@as(*const IRDPSRAPIViewer, @ptrCast(self)), bstrDisconnectedText);
+        return self.vtable.put_DisconnectedText(self, bstrDisconnectedText);
     }
     pub fn get_DisconnectedText(self: *const IRDPSRAPIViewer, pbstrDisconnectedText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_DisconnectedText(@as(*const IRDPSRAPIViewer, @ptrCast(self)), pbstrDisconnectedText);
+        return self.vtable.get_DisconnectedText(self, pbstrDisconnectedText);
     }
     pub fn RequestColorDepthChange(self: *const IRDPSRAPIViewer, Bpp: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).RequestColorDepthChange(@as(*const IRDPSRAPIViewer, @ptrCast(self)), Bpp);
+        return self.vtable.RequestColorDepthChange(self, Bpp);
     }
     pub fn get_Properties(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
+        return self.vtable.get_Properties(self, ppVal);
     }
     pub fn StartReverseConnectListener(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, pbstrReverseConnectString: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).StartReverseConnectListener(@as(*const IRDPSRAPIViewer, @ptrCast(self)), bstrConnectionString, bstrUserName, bstrPassword, pbstrReverseConnectString);
+        return self.vtable.StartReverseConnectListener(self, bstrConnectionString, bstrUserName, bstrPassword, pbstrReverseConnectString);
     }
 };
 
@@ -1675,28 +1675,28 @@ pub const IRDPViewerInputSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SendMouseButtonEvent(self: *const IRDPViewerInputSink, buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE, vbButtonDown: i16, xPos: u32, yPos: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendMouseButtonEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), buttonType, vbButtonDown, xPos, yPos);
+        return self.vtable.SendMouseButtonEvent(self, buttonType, vbButtonDown, xPos, yPos);
     }
     pub fn SendMouseMoveEvent(self: *const IRDPViewerInputSink, xPos: u32, yPos: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendMouseMoveEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), xPos, yPos);
+        return self.vtable.SendMouseMoveEvent(self, xPos, yPos);
     }
     pub fn SendMouseWheelEvent(self: *const IRDPViewerInputSink, wheelRotation: u16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendMouseWheelEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), wheelRotation);
+        return self.vtable.SendMouseWheelEvent(self, wheelRotation);
     }
     pub fn SendKeyboardEvent(self: *const IRDPViewerInputSink, codeType: RDPSRAPI_KBD_CODE_TYPE, keycode: u16, vbKeyUp: i16, vbRepeat: i16, vbExtended: i16) callconv(.Inline) HRESULT {
-        return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendKeyboardEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), codeType, keycode, vbKeyUp, vbRepeat, vbExtended);
+        return self.vtable.SendKeyboardEvent(self, codeType, keycode, vbKeyUp, vbRepeat, vbExtended);
     }
     pub fn SendSyncEvent(self: *const IRDPViewerInputSink, syncFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendSyncEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), syncFlags);
+        return self.vtable.SendSyncEvent(self, syncFlags);
     }
     pub fn BeginTouchFrame(self: *const IRDPViewerInputSink) callconv(.Inline) HRESULT {
-        return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).BeginTouchFrame(@as(*const IRDPViewerInputSink, @ptrCast(self)));
+        return self.vtable.BeginTouchFrame(self);
     }
     pub fn AddTouchInput(self: *const IRDPViewerInputSink, contactId: u32, event: u32, x: i32, y: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).AddTouchInput(@as(*const IRDPViewerInputSink, @ptrCast(self)), contactId, event, x, y);
+        return self.vtable.AddTouchInput(self, contactId, event, x, y);
     }
     pub fn EndTouchFrame(self: *const IRDPViewerInputSink) callconv(.Inline) HRESULT {
-        return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).EndTouchFrame(@as(*const IRDPViewerInputSink, @ptrCast(self)));
+        return self.vtable.EndTouchFrame(self);
     }
 };
 
@@ -1753,16 +1753,16 @@ pub const IRDPSRAPIFrameBuffer = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Width(self: *const IRDPSRAPIFrameBuffer, plWidth: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIFrameBuffer.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IRDPSRAPIFrameBuffer, @ptrCast(self)), plWidth);
+        return self.vtable.get_Width(self, plWidth);
     }
     pub fn get_Height(self: *const IRDPSRAPIFrameBuffer, plHeight: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIFrameBuffer.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IRDPSRAPIFrameBuffer, @ptrCast(self)), plHeight);
+        return self.vtable.get_Height(self, plHeight);
     }
     pub fn get_Bpp(self: *const IRDPSRAPIFrameBuffer, plBpp: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIFrameBuffer.VTable, @ptrCast(self.vtable)).get_Bpp(@as(*const IRDPSRAPIFrameBuffer, @ptrCast(self)), plBpp);
+        return self.vtable.get_Bpp(self, plBpp);
     }
     pub fn GetFrameBufferBits(self: *const IRDPSRAPIFrameBuffer, x: i32, y: i32, Width: i32, Heigth: i32, ppBits: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPIFrameBuffer.VTable, @ptrCast(self.vtable)).GetFrameBufferBits(@as(*const IRDPSRAPIFrameBuffer, @ptrCast(self)), x, y, Width, Heigth, ppBits);
+        return self.vtable.GetFrameBufferBits(self, x, y, Width, Heigth, ppBits);
     }
 };
 
@@ -1870,34 +1870,34 @@ pub const IRDPSRAPITransportStreamBuffer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Storage(self: *const IRDPSRAPITransportStreamBuffer, ppbStorage: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_Storage(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), ppbStorage);
+        return self.vtable.get_Storage(self, ppbStorage);
     }
     pub fn get_StorageSize(self: *const IRDPSRAPITransportStreamBuffer, plMaxStore: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_StorageSize(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), plMaxStore);
+        return self.vtable.get_StorageSize(self, plMaxStore);
     }
     pub fn get_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_PayloadSize(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), plRetVal);
+        return self.vtable.get_PayloadSize(self, plRetVal);
     }
     pub fn put_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, lVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).put_PayloadSize(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), lVal);
+        return self.vtable.put_PayloadSize(self, lVal);
     }
     pub fn get_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_PayloadOffset(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), plRetVal);
+        return self.vtable.get_PayloadOffset(self, plRetVal);
     }
     pub fn put_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, lRetVal: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).put_PayloadOffset(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), lRetVal);
+        return self.vtable.put_PayloadOffset(self, lRetVal);
     }
     pub fn get_Flags(self: *const IRDPSRAPITransportStreamBuffer, plFlags: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), plFlags);
+        return self.vtable.get_Flags(self, plFlags);
     }
     pub fn put_Flags(self: *const IRDPSRAPITransportStreamBuffer, lFlags: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).put_Flags(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), lFlags);
+        return self.vtable.put_Flags(self, lFlags);
     }
     pub fn get_Context(self: *const IRDPSRAPITransportStreamBuffer, ppContext: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_Context(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), ppContext);
+        return self.vtable.get_Context(self, ppContext);
     }
     pub fn put_Context(self: *const IRDPSRAPITransportStreamBuffer, pContext: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).put_Context(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), pContext);
+        return self.vtable.put_Context(self, pContext);
     }
 };
 
@@ -1939,13 +1939,13 @@ pub const IRDPSRAPITransportStreamEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnWriteCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) void {
-        return @as(*const IRDPSRAPITransportStreamEvents.VTable, @ptrCast(self.vtable)).OnWriteCompleted(@as(*const IRDPSRAPITransportStreamEvents, @ptrCast(self)), pBuffer);
+        return self.vtable.OnWriteCompleted(self, pBuffer);
     }
     pub fn OnReadCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) void {
-        return @as(*const IRDPSRAPITransportStreamEvents.VTable, @ptrCast(self.vtable)).OnReadCompleted(@as(*const IRDPSRAPITransportStreamEvents, @ptrCast(self)), pBuffer);
+        return self.vtable.OnReadCompleted(self, pBuffer);
     }
     pub fn OnStreamClosed(self: *const IRDPSRAPITransportStreamEvents, hrReason: HRESULT) callconv(.Inline) void {
-        return @as(*const IRDPSRAPITransportStreamEvents.VTable, @ptrCast(self.vtable)).OnStreamClosed(@as(*const IRDPSRAPITransportStreamEvents, @ptrCast(self)), hrReason);
+        return self.vtable.OnStreamClosed(self, hrReason);
     }
 };
 
@@ -2011,22 +2011,22 @@ pub const IRDPSRAPITransportStream = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AllocBuffer(self: *const IRDPSRAPITransportStream, maxPayload: i32, ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).AllocBuffer(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), maxPayload, ppBuffer);
+        return self.vtable.AllocBuffer(self, maxPayload, ppBuffer);
     }
     pub fn FreeBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), pBuffer);
+        return self.vtable.FreeBuffer(self, pBuffer);
     }
     pub fn WriteBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).WriteBuffer(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), pBuffer);
+        return self.vtable.WriteBuffer(self, pBuffer);
     }
     pub fn ReadBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).ReadBuffer(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), pBuffer);
+        return self.vtable.ReadBuffer(self, pBuffer);
     }
     pub fn Open(self: *const IRDPSRAPITransportStream, pCallbacks: ?*IRDPSRAPITransportStreamEvents) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).Open(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), pCallbacks);
+        return self.vtable.Open(self, pCallbacks);
     }
     pub fn Close(self: *const IRDPSRAPITransportStream) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IRDPSRAPITransportStream, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -2165,46 +2165,46 @@ pub const IRDPSRAPISharingSession = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Open(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).Open(@as(*const IRDPSRAPISharingSession, @ptrCast(self)));
+        return self.vtable.Open(self);
     }
     pub fn Close(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).Close(@as(*const IRDPSRAPISharingSession, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn put_ColorDepth(self: *const IRDPSRAPISharingSession, colorDepth: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).put_ColorDepth(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), colorDepth);
+        return self.vtable.put_ColorDepth(self, colorDepth);
     }
     pub fn get_ColorDepth(self: *const IRDPSRAPISharingSession, pColorDepth: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_ColorDepth(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), pColorDepth);
+        return self.vtable.get_ColorDepth(self, pColorDepth);
     }
     pub fn get_Properties(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
+        return self.vtable.get_Properties(self, ppVal);
     }
     pub fn get_Attendees(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_Attendees(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
+        return self.vtable.get_Attendees(self, ppVal);
     }
     pub fn get_Invitations(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_Invitations(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
+        return self.vtable.get_Invitations(self, ppVal);
     }
     pub fn get_ApplicationFilter(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_ApplicationFilter(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
+        return self.vtable.get_ApplicationFilter(self, ppVal);
     }
     pub fn get_VirtualChannelManager(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_VirtualChannelManager(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
+        return self.vtable.get_VirtualChannelManager(self, ppVal);
     }
     pub fn Pause(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).Pause(@as(*const IRDPSRAPISharingSession, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn Resume(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).Resume(@as(*const IRDPSRAPISharingSession, @ptrCast(self)));
+        return self.vtable.Resume(self);
     }
     pub fn ConnectToClient(self: *const IRDPSRAPISharingSession, bstrConnectionString: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).ConnectToClient(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), bstrConnectionString);
+        return self.vtable.ConnectToClient(self, bstrConnectionString);
     }
     pub fn SetDesktopSharedRect(self: *const IRDPSRAPISharingSession, left: i32, top: i32, right: i32, bottom: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).SetDesktopSharedRect(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), left, top, right, bottom);
+        return self.vtable.SetDesktopSharedRect(self, left, top, right, bottom);
     }
     pub fn GetDesktopSharedRect(self: *const IRDPSRAPISharingSession, pleft: ?*i32, ptop: ?*i32, pright: ?*i32, pbottom: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).GetDesktopSharedRect(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), pleft, ptop, pright, pbottom);
+        return self.vtable.GetDesktopSharedRect(self, pleft, ptop, pright, pbottom);
     }
 };
 
@@ -2251,13 +2251,13 @@ pub const IRDPSRAPISharingSession2 = extern union {
     };}
     pub usingnamespace IRDPSRAPISharingSession.MethodMixin(@This());
     pub fn ConnectUsingTransportStream(self: *const IRDPSRAPISharingSession2, pStream: ?*IRDPSRAPITransportStream, bstrGroup: ?BSTR, bstrAuthenticatedAttendeeName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession2.VTable, @ptrCast(self.vtable)).ConnectUsingTransportStream(@as(*const IRDPSRAPISharingSession2, @ptrCast(self)), pStream, bstrGroup, bstrAuthenticatedAttendeeName);
+        return self.vtable.ConnectUsingTransportStream(self, pStream, bstrGroup, bstrAuthenticatedAttendeeName);
     }
     pub fn get_FrameBuffer(self: *const IRDPSRAPISharingSession2, ppVal: ?*?*IRDPSRAPIFrameBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession2.VTable, @ptrCast(self.vtable)).get_FrameBuffer(@as(*const IRDPSRAPISharingSession2, @ptrCast(self)), ppVal);
+        return self.vtable.get_FrameBuffer(self, ppVal);
     }
     pub fn SendControlLevelChangeResponse(self: *const IRDPSRAPISharingSession2, pAttendee: ?*IRDPSRAPIAttendee, RequestedLevel: CTRL_LEVEL, ReasonCode: i32) callconv(.Inline) HRESULT {
-        return @as(*const IRDPSRAPISharingSession2.VTable, @ptrCast(self.vtable)).SendControlLevelChangeResponse(@as(*const IRDPSRAPISharingSession2, @ptrCast(self)), pAttendee, RequestedLevel, ReasonCode);
+        return self.vtable.SendControlLevelChangeResponse(self, pAttendee, RequestedLevel, ReasonCode);
     }
 };
 

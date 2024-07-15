@@ -146,10 +146,10 @@ pub const IWPCProviderState = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Enable(self: *const IWPCProviderState) callconv(.Inline) HRESULT {
-        return @as(*const IWPCProviderState.VTable, @ptrCast(self.vtable)).Enable(@as(*const IWPCProviderState, @ptrCast(self)));
+        return self.vtable.Enable(self);
     }
     pub fn Disable(self: *const IWPCProviderState) callconv(.Inline) HRESULT {
-        return @as(*const IWPCProviderState.VTable, @ptrCast(self.vtable)).Disable(@as(*const IWPCProviderState, @ptrCast(self)));
+        return self.vtable.Disable(self);
     }
 };
 
@@ -200,13 +200,13 @@ pub const IWPCProviderConfig = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetUserSummary(self: *const IWPCProviderConfig, bstrSID: ?BSTR, pbstrUserSummary: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).GetUserSummary(@as(*const IWPCProviderConfig, @ptrCast(self)), bstrSID, pbstrUserSummary);
+        return self.vtable.GetUserSummary(self, bstrSID, pbstrUserSummary);
     }
     pub fn Configure(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).Configure(@as(*const IWPCProviderConfig, @ptrCast(self)), hWnd, bstrSID);
+        return self.vtable.Configure(self, hWnd, bstrSID);
     }
     pub fn RequestOverride(self: *const IWPCProviderConfig, hWnd: ?HWND, bstrPath: ?BSTR, dwFlags: WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
-        return @as(*const IWPCProviderConfig.VTable, @ptrCast(self.vtable)).RequestOverride(@as(*const IWPCProviderConfig, @ptrCast(self)), hWnd, bstrPath, dwFlags);
+        return self.vtable.RequestOverride(self, hWnd, bstrPath, dwFlags);
     }
 };
 
@@ -267,13 +267,13 @@ pub const IWPCSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsLoggingRequired(self: *const IWPCSettings, pfRequired: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).IsLoggingRequired(@as(*const IWPCSettings, @ptrCast(self)), pfRequired);
+        return self.vtable.IsLoggingRequired(self, pfRequired);
     }
     pub fn GetLastSettingsChangeTime(self: *const IWPCSettings, pTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-        return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).GetLastSettingsChangeTime(@as(*const IWPCSettings, @ptrCast(self)), pTime);
+        return self.vtable.GetLastSettingsChangeTime(self, pTime);
     }
     pub fn GetRestrictions(self: *const IWPCSettings, pdwRestrictions: ?*WPCFLAG_RESTRICTION) callconv(.Inline) HRESULT {
-        return @as(*const IWPCSettings.VTable, @ptrCast(self.vtable)).GetRestrictions(@as(*const IWPCSettings, @ptrCast(self)), pdwRestrictions);
+        return self.vtable.GetRestrictions(self, pdwRestrictions);
     }
 };
 
@@ -300,7 +300,7 @@ pub const IWPCGamesSettings = extern union {
     };}
     pub usingnamespace IWPCSettings.MethodMixin(@This());
     pub fn IsBlocked(self: *const IWPCGamesSettings, guidAppID: Guid, pdwReasons: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWPCGamesSettings.VTable, @ptrCast(self.vtable)).IsBlocked(@as(*const IWPCGamesSettings, @ptrCast(self)), guidAppID, pdwReasons);
+        return self.vtable.IsBlocked(self, guidAppID, pdwReasons);
     }
 };
 
@@ -345,10 +345,10 @@ pub const IWPCWebSettings = extern union {
     };}
     pub usingnamespace IWPCSettings.MethodMixin(@This());
     pub fn GetSettings(self: *const IWPCWebSettings, pdwSettings: ?*WPCFLAG_WEB_SETTING) callconv(.Inline) HRESULT {
-        return @as(*const IWPCWebSettings.VTable, @ptrCast(self.vtable)).GetSettings(@as(*const IWPCWebSettings, @ptrCast(self)), pdwSettings);
+        return self.vtable.GetSettings(self, pdwSettings);
     }
     pub fn RequestURLOverride(self: *const IWPCWebSettings, hWnd: ?HWND, pcszURL: ?[*:0]const u16, cURLs: u32, ppcszSubURLs: ?[*]?PWSTR, pfChanged: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWPCWebSettings.VTable, @ptrCast(self.vtable)).RequestURLOverride(@as(*const IWPCWebSettings, @ptrCast(self)), hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
+        return self.vtable.RequestURLOverride(self, hWnd, pcszURL, cURLs, ppcszSubURLs, pfChanged);
     }
 };
 
@@ -408,16 +408,16 @@ pub const IWindowsParentalControlsCore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetVisibility(self: *const IWindowsParentalControlsCore, peVisibility: ?*WPCFLAG_VISIBILITY) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetVisibility(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), peVisibility);
+        return self.vtable.GetVisibility(self, peVisibility);
     }
     pub fn GetUserSettings(self: *const IWindowsParentalControlsCore, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCSettings) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetUserSettings(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pcszSID, ppSettings);
+        return self.vtable.GetUserSettings(self, pcszSID, ppSettings);
     }
     pub fn GetWebSettings(self: *const IWindowsParentalControlsCore, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCWebSettings) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetWebSettings(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pcszSID, ppSettings);
+        return self.vtable.GetWebSettings(self, pcszSID, ppSettings);
     }
     pub fn GetWebFilterInfo(self: *const IWindowsParentalControlsCore, pguidID: ?*Guid, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsParentalControlsCore.VTable, @ptrCast(self.vtable)).GetWebFilterInfo(@as(*const IWindowsParentalControlsCore, @ptrCast(self)), pguidID, ppszName);
+        return self.vtable.GetWebFilterInfo(self, pguidID, ppszName);
     }
 };
 
@@ -444,7 +444,7 @@ pub const IWindowsParentalControls = extern union {
     };}
     pub usingnamespace IWindowsParentalControlsCore.MethodMixin(@This());
     pub fn GetGamesSettings(self: *const IWindowsParentalControls, pcszSID: ?[*:0]const u16, ppSettings: ?*?*IWPCGamesSettings) callconv(.Inline) HRESULT {
-        return @as(*const IWindowsParentalControls.VTable, @ptrCast(self.vtable)).GetGamesSettings(@as(*const IWindowsParentalControls, @ptrCast(self)), pcszSID, ppSettings);
+        return self.vtable.GetGamesSettings(self, pcszSID, ppSettings);
     }
 };
 
@@ -470,7 +470,7 @@ pub const IWPCProviderSupport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCurrent(self: *const IWPCProviderSupport, pguidProvider: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWPCProviderSupport.VTable, @ptrCast(self.vtable)).GetCurrent(@as(*const IWPCProviderSupport, @ptrCast(self)), pguidProvider);
+        return self.vtable.GetCurrent(self, pguidProvider);
     }
 };
 

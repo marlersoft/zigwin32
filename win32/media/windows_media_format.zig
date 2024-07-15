@@ -416,19 +416,19 @@ pub const INSSBuffer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLength(self: *const INSSBuffer, pdwLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer.VTable, @ptrCast(self.vtable)).GetLength(@as(*const INSSBuffer, @ptrCast(self)), pdwLength);
+        return self.vtable.GetLength(self, pdwLength);
     }
     pub fn SetLength(self: *const INSSBuffer, dwLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer.VTable, @ptrCast(self.vtable)).SetLength(@as(*const INSSBuffer, @ptrCast(self)), dwLength);
+        return self.vtable.SetLength(self, dwLength);
     }
     pub fn GetMaxLength(self: *const INSSBuffer, pdwLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer.VTable, @ptrCast(self.vtable)).GetMaxLength(@as(*const INSSBuffer, @ptrCast(self)), pdwLength);
+        return self.vtable.GetMaxLength(self, pdwLength);
     }
     pub fn GetBuffer(self: *const INSSBuffer, ppdwBuffer: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const INSSBuffer, @ptrCast(self)), ppdwBuffer);
+        return self.vtable.GetBuffer(self, ppdwBuffer);
     }
     pub fn GetBufferAndLength(self: *const INSSBuffer, ppdwBuffer: ?*?*u8, pdwLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer.VTable, @ptrCast(self.vtable)).GetBufferAndLength(@as(*const INSSBuffer, @ptrCast(self)), ppdwBuffer, pdwLength);
+        return self.vtable.GetBufferAndLength(self, ppdwBuffer, pdwLength);
     }
 };
 
@@ -463,10 +463,10 @@ pub const INSSBuffer2 = extern union {
     };}
     pub usingnamespace INSSBuffer.MethodMixin(@This());
     pub fn GetSampleProperties(self: *const INSSBuffer2, cbProperties: u32, pbProperties: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer2.VTable, @ptrCast(self.vtable)).GetSampleProperties(@as(*const INSSBuffer2, @ptrCast(self)), cbProperties, pbProperties);
+        return self.vtable.GetSampleProperties(self, cbProperties, pbProperties);
     }
     pub fn SetSampleProperties(self: *const INSSBuffer2, cbProperties: u32, pbProperties: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer2.VTable, @ptrCast(self.vtable)).SetSampleProperties(@as(*const INSSBuffer2, @ptrCast(self)), cbProperties, pbProperties);
+        return self.vtable.SetSampleProperties(self, cbProperties, pbProperties);
     }
 };
 
@@ -503,10 +503,10 @@ pub const INSSBuffer3 = extern union {
     };}
     pub usingnamespace INSSBuffer2.MethodMixin(@This());
     pub fn SetProperty(self: *const INSSBuffer3, guidBufferProperty: Guid, pvBufferProperty: ?*anyopaque, dwBufferPropertySize: u32) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer3.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const INSSBuffer3, @ptrCast(self)), guidBufferProperty, pvBufferProperty, dwBufferPropertySize);
+        return self.vtable.SetProperty(self, guidBufferProperty, pvBufferProperty, dwBufferPropertySize);
     }
     pub fn GetProperty(self: *const INSSBuffer3, guidBufferProperty: Guid, pvBufferProperty: ?*anyopaque, pdwBufferPropertySize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer3.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const INSSBuffer3, @ptrCast(self)), guidBufferProperty, pvBufferProperty, pdwBufferPropertySize);
+        return self.vtable.GetProperty(self, guidBufferProperty, pvBufferProperty, pdwBufferPropertySize);
     }
 };
 
@@ -542,10 +542,10 @@ pub const INSSBuffer4 = extern union {
     };}
     pub usingnamespace INSSBuffer3.MethodMixin(@This());
     pub fn GetPropertyCount(self: *const INSSBuffer4, pcBufferProperties: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer4.VTable, @ptrCast(self.vtable)).GetPropertyCount(@as(*const INSSBuffer4, @ptrCast(self)), pcBufferProperties);
+        return self.vtable.GetPropertyCount(self, pcBufferProperties);
     }
     pub fn GetPropertyByIndex(self: *const INSSBuffer4, dwBufferPropertyIndex: u32, pguidBufferProperty: ?*Guid, pvBufferProperty: ?*anyopaque, pdwBufferPropertySize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INSSBuffer4.VTable, @ptrCast(self.vtable)).GetPropertyByIndex(@as(*const INSSBuffer4, @ptrCast(self)), dwBufferPropertyIndex, pguidBufferProperty, pvBufferProperty, pdwBufferPropertySize);
+        return self.vtable.GetPropertyByIndex(self, dwBufferPropertyIndex, pguidBufferProperty, pvBufferProperty, pdwBufferPropertySize);
     }
 };
 
@@ -580,10 +580,10 @@ pub const IWMSBufferAllocator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AllocateBuffer(self: *const IWMSBufferAllocator, dwMaxBufferSize: u32, ppBuffer: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMSBufferAllocator.VTable, @ptrCast(self.vtable)).AllocateBuffer(@as(*const IWMSBufferAllocator, @ptrCast(self)), dwMaxBufferSize, ppBuffer);
+        return self.vtable.AllocateBuffer(self, dwMaxBufferSize, ppBuffer);
     }
     pub fn AllocatePageSizeBuffer(self: *const IWMSBufferAllocator, dwMaxBufferSize: u32, ppBuffer: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMSBufferAllocator.VTable, @ptrCast(self.vtable)).AllocatePageSizeBuffer(@as(*const IWMSBufferAllocator, @ptrCast(self)), dwMaxBufferSize, ppBuffer);
+        return self.vtable.AllocatePageSizeBuffer(self, dwMaxBufferSize, ppBuffer);
     }
 };
 
@@ -1303,13 +1303,13 @@ pub const IWMMediaProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetType(self: *const IWMMediaProps, pguidType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWMMediaProps.VTable, @ptrCast(self.vtable)).GetType(@as(*const IWMMediaProps, @ptrCast(self)), pguidType);
+        return self.vtable.GetType(self, pguidType);
     }
     pub fn GetMediaType(self: *const IWMMediaProps, pType: ?*WM_MEDIA_TYPE, pcbType: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMMediaProps.VTable, @ptrCast(self.vtable)).GetMediaType(@as(*const IWMMediaProps, @ptrCast(self)), pType, pcbType);
+        return self.vtable.GetMediaType(self, pType, pcbType);
     }
     pub fn SetMediaType(self: *const IWMMediaProps, pType: ?*WM_MEDIA_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IWMMediaProps.VTable, @ptrCast(self.vtable)).SetMediaType(@as(*const IWMMediaProps, @ptrCast(self)), pType);
+        return self.vtable.SetMediaType(self, pType);
     }
 };
 
@@ -1358,16 +1358,16 @@ pub const IWMVideoMediaProps = extern union {
     };}
     pub usingnamespace IWMMediaProps.MethodMixin(@This());
     pub fn GetMaxKeyFrameSpacing(self: *const IWMVideoMediaProps, pllTime: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoMediaProps.VTable, @ptrCast(self.vtable)).GetMaxKeyFrameSpacing(@as(*const IWMVideoMediaProps, @ptrCast(self)), pllTime);
+        return self.vtable.GetMaxKeyFrameSpacing(self, pllTime);
     }
     pub fn SetMaxKeyFrameSpacing(self: *const IWMVideoMediaProps, llTime: i64) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoMediaProps.VTable, @ptrCast(self.vtable)).SetMaxKeyFrameSpacing(@as(*const IWMVideoMediaProps, @ptrCast(self)), llTime);
+        return self.vtable.SetMaxKeyFrameSpacing(self, llTime);
     }
     pub fn GetQuality(self: *const IWMVideoMediaProps, pdwQuality: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoMediaProps.VTable, @ptrCast(self.vtable)).GetQuality(@as(*const IWMVideoMediaProps, @ptrCast(self)), pdwQuality);
+        return self.vtable.GetQuality(self, pdwQuality);
     }
     pub fn SetQuality(self: *const IWMVideoMediaProps, dwQuality: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoMediaProps.VTable, @ptrCast(self.vtable)).SetQuality(@as(*const IWMVideoMediaProps, @ptrCast(self)), dwQuality);
+        return self.vtable.SetQuality(self, dwQuality);
     }
 };
 
@@ -1494,43 +1494,43 @@ pub const IWMWriter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetProfileByID(self: *const IWMWriter, guidProfile: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).SetProfileByID(@as(*const IWMWriter, @ptrCast(self)), guidProfile);
+        return self.vtable.SetProfileByID(self, guidProfile);
     }
     pub fn SetProfile(self: *const IWMWriter, pProfile: ?*IWMProfile) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).SetProfile(@as(*const IWMWriter, @ptrCast(self)), pProfile);
+        return self.vtable.SetProfile(self, pProfile);
     }
     pub fn SetOutputFilename(self: *const IWMWriter, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).SetOutputFilename(@as(*const IWMWriter, @ptrCast(self)), pwszFilename);
+        return self.vtable.SetOutputFilename(self, pwszFilename);
     }
     pub fn GetInputCount(self: *const IWMWriter, pcInputs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const IWMWriter, @ptrCast(self)), pcInputs);
+        return self.vtable.GetInputCount(self, pcInputs);
     }
     pub fn GetInputProps(self: *const IWMWriter, dwInputNum: u32, ppInput: ?*?*IWMInputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).GetInputProps(@as(*const IWMWriter, @ptrCast(self)), dwInputNum, ppInput);
+        return self.vtable.GetInputProps(self, dwInputNum, ppInput);
     }
     pub fn SetInputProps(self: *const IWMWriter, dwInputNum: u32, pInput: ?*IWMInputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).SetInputProps(@as(*const IWMWriter, @ptrCast(self)), dwInputNum, pInput);
+        return self.vtable.SetInputProps(self, dwInputNum, pInput);
     }
     pub fn GetInputFormatCount(self: *const IWMWriter, dwInputNumber: u32, pcFormats: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).GetInputFormatCount(@as(*const IWMWriter, @ptrCast(self)), dwInputNumber, pcFormats);
+        return self.vtable.GetInputFormatCount(self, dwInputNumber, pcFormats);
     }
     pub fn GetInputFormat(self: *const IWMWriter, dwInputNumber: u32, dwFormatNumber: u32, pProps: ?*?*IWMInputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).GetInputFormat(@as(*const IWMWriter, @ptrCast(self)), dwInputNumber, dwFormatNumber, pProps);
+        return self.vtable.GetInputFormat(self, dwInputNumber, dwFormatNumber, pProps);
     }
     pub fn BeginWriting(self: *const IWMWriter) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).BeginWriting(@as(*const IWMWriter, @ptrCast(self)));
+        return self.vtable.BeginWriting(self);
     }
     pub fn EndWriting(self: *const IWMWriter) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).EndWriting(@as(*const IWMWriter, @ptrCast(self)));
+        return self.vtable.EndWriting(self);
     }
     pub fn AllocateSample(self: *const IWMWriter, dwSampleSize: u32, ppSample: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).AllocateSample(@as(*const IWMWriter, @ptrCast(self)), dwSampleSize, ppSample);
+        return self.vtable.AllocateSample(self, dwSampleSize, ppSample);
     }
     pub fn WriteSample(self: *const IWMWriter, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).WriteSample(@as(*const IWMWriter, @ptrCast(self)), dwInputNum, cnsSampleTime, dwFlags, pSample);
+        return self.vtable.WriteSample(self, dwInputNum, cnsSampleTime, dwFlags, pSample);
     }
     pub fn Flush(self: *const IWMWriter) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriter.VTable, @ptrCast(self.vtable)).Flush(@as(*const IWMWriter, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
 };
 
@@ -1589,16 +1589,16 @@ pub const IWMDRMWriter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GenerateKeySeed(self: *const IWMDRMWriter, pwszKeySeed: [*:0]u16, pcwchLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMWriter.VTable, @ptrCast(self.vtable)).GenerateKeySeed(@as(*const IWMDRMWriter, @ptrCast(self)), pwszKeySeed, pcwchLength);
+        return self.vtable.GenerateKeySeed(self, pwszKeySeed, pcwchLength);
     }
     pub fn GenerateKeyID(self: *const IWMDRMWriter, pwszKeyID: [*:0]u16, pcwchLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMWriter.VTable, @ptrCast(self.vtable)).GenerateKeyID(@as(*const IWMDRMWriter, @ptrCast(self)), pwszKeyID, pcwchLength);
+        return self.vtable.GenerateKeyID(self, pwszKeyID, pcwchLength);
     }
     pub fn GenerateSigningKeyPair(self: *const IWMDRMWriter, pwszPrivKey: [*:0]u16, pcwchPrivKeyLength: ?*u32, pwszPubKey: [*:0]u16, pcwchPubKeyLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMWriter.VTable, @ptrCast(self.vtable)).GenerateSigningKeyPair(@as(*const IWMDRMWriter, @ptrCast(self)), pwszPrivKey, pcwchPrivKeyLength, pwszPubKey, pcwchPubKeyLength);
+        return self.vtable.GenerateSigningKeyPair(self, pwszPrivKey, pcwchPrivKeyLength, pwszPubKey, pcwchPubKeyLength);
     }
     pub fn SetDRMAttribute(self: *const IWMDRMWriter, wStreamNum: u16, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMWriter.VTable, @ptrCast(self.vtable)).SetDRMAttribute(@as(*const IWMDRMWriter, @ptrCast(self)), wStreamNum, pszName, Type, pValue, cbLength);
+        return self.vtable.SetDRMAttribute(self, wStreamNum, pszName, Type, pValue, cbLength);
     }
 };
 
@@ -1634,7 +1634,7 @@ pub const IWMDRMWriter2 = extern union {
     };}
     pub usingnamespace IWMDRMWriter.MethodMixin(@This());
     pub fn SetWMDRMNetEncryption(self: *const IWMDRMWriter2, fSamplesEncrypted: BOOL, pbKeyID: ?*u8, cbKeyID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMWriter2.VTable, @ptrCast(self.vtable)).SetWMDRMNetEncryption(@as(*const IWMDRMWriter2, @ptrCast(self)), fSamplesEncrypted, pbKeyID, cbKeyID);
+        return self.vtable.SetWMDRMNetEncryption(self, fSamplesEncrypted, pbKeyID, cbKeyID);
     }
 };
 
@@ -1660,7 +1660,7 @@ pub const IWMDRMWriter3 = extern union {
     };}
     pub usingnamespace IWMDRMWriter2.MethodMixin(@This());
     pub fn SetProtectStreamSamples(self: *const IWMDRMWriter3, pImportInitStruct: ?*WMDRM_IMPORT_INIT_STRUCT) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMWriter3.VTable, @ptrCast(self.vtable)).SetProtectStreamSamples(@as(*const IWMDRMWriter3, @ptrCast(self)), pImportInitStruct);
+        return self.vtable.SetProtectStreamSamples(self, pImportInitStruct);
     }
 };
 
@@ -1695,10 +1695,10 @@ pub const IWMInputMediaProps = extern union {
     };}
     pub usingnamespace IWMMediaProps.MethodMixin(@This());
     pub fn GetConnectionName(self: *const IWMInputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMInputMediaProps.VTable, @ptrCast(self.vtable)).GetConnectionName(@as(*const IWMInputMediaProps, @ptrCast(self)), pwszName, pcchName);
+        return self.vtable.GetConnectionName(self, pwszName, pcchName);
     }
     pub fn GetGroupName(self: *const IWMInputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMInputMediaProps.VTable, @ptrCast(self.vtable)).GetGroupName(@as(*const IWMInputMediaProps, @ptrCast(self)), pwszName, pcchName);
+        return self.vtable.GetGroupName(self, pwszName, pcchName);
     }
 };
 
@@ -1773,22 +1773,22 @@ pub const IWMPropertyVault = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPropertyCount(self: *const IWMPropertyVault, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMPropertyVault.VTable, @ptrCast(self.vtable)).GetPropertyCount(@as(*const IWMPropertyVault, @ptrCast(self)), pdwCount);
+        return self.vtable.GetPropertyCount(self, pdwCount);
     }
     pub fn GetPropertyByName(self: *const IWMPropertyVault, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMPropertyVault.VTable, @ptrCast(self.vtable)).GetPropertyByName(@as(*const IWMPropertyVault, @ptrCast(self)), pszName, pType, pValue, pdwSize);
+        return self.vtable.GetPropertyByName(self, pszName, pType, pValue, pdwSize);
     }
     pub fn SetProperty(self: *const IWMPropertyVault, pszName: ?[*:0]const u16, pType: WMT_ATTR_DATATYPE, pValue: ?*u8, dwSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMPropertyVault.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IWMPropertyVault, @ptrCast(self)), pszName, pType, pValue, dwSize);
+        return self.vtable.SetProperty(self, pszName, pType, pValue, dwSize);
     }
     pub fn GetPropertyByIndex(self: *const IWMPropertyVault, dwIndex: u32, pszName: [*:0]u16, pdwNameLen: ?*u32, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMPropertyVault.VTable, @ptrCast(self.vtable)).GetPropertyByIndex(@as(*const IWMPropertyVault, @ptrCast(self)), dwIndex, pszName, pdwNameLen, pType, pValue, pdwSize);
+        return self.vtable.GetPropertyByIndex(self, dwIndex, pszName, pdwNameLen, pType, pValue, pdwSize);
     }
     pub fn CopyPropertiesFrom(self: *const IWMPropertyVault, pIWMPropertyVault: ?*IWMPropertyVault) callconv(.Inline) HRESULT {
-        return @as(*const IWMPropertyVault.VTable, @ptrCast(self.vtable)).CopyPropertiesFrom(@as(*const IWMPropertyVault, @ptrCast(self)), pIWMPropertyVault);
+        return self.vtable.CopyPropertiesFrom(self, pIWMPropertyVault);
     }
     pub fn Clear(self: *const IWMPropertyVault) callconv(.Inline) HRESULT {
-        return @as(*const IWMPropertyVault.VTable, @ptrCast(self.vtable)).Clear(@as(*const IWMPropertyVault, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 
@@ -1816,7 +1816,7 @@ pub const IWMIStreamProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProperty(self: *const IWMIStreamProps, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMIStreamProps.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IWMIStreamProps, @ptrCast(self)), pszName, pType, pValue, pdwSize);
+        return self.vtable.GetProperty(self, pszName, pType, pValue, pdwSize);
     }
 };
 
@@ -1927,37 +1927,37 @@ pub const IWMReader = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IWMReader, pwszURL: ?[*:0]const u16, pCallback: ?*IWMReaderCallback, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).Open(@as(*const IWMReader, @ptrCast(self)), pwszURL, pCallback, pvContext);
+        return self.vtable.Open(self, pwszURL, pCallback, pvContext);
     }
     pub fn Close(self: *const IWMReader) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).Close(@as(*const IWMReader, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn GetOutputCount(self: *const IWMReader, pcOutputs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IWMReader, @ptrCast(self)), pcOutputs);
+        return self.vtable.GetOutputCount(self, pcOutputs);
     }
     pub fn GetOutputProps(self: *const IWMReader, dwOutputNum: u32, ppOutput: ?*?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).GetOutputProps(@as(*const IWMReader, @ptrCast(self)), dwOutputNum, ppOutput);
+        return self.vtable.GetOutputProps(self, dwOutputNum, ppOutput);
     }
     pub fn SetOutputProps(self: *const IWMReader, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).SetOutputProps(@as(*const IWMReader, @ptrCast(self)), dwOutputNum, pOutput);
+        return self.vtable.SetOutputProps(self, dwOutputNum, pOutput);
     }
     pub fn GetOutputFormatCount(self: *const IWMReader, dwOutputNumber: u32, pcFormats: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).GetOutputFormatCount(@as(*const IWMReader, @ptrCast(self)), dwOutputNumber, pcFormats);
+        return self.vtable.GetOutputFormatCount(self, dwOutputNumber, pcFormats);
     }
     pub fn GetOutputFormat(self: *const IWMReader, dwOutputNumber: u32, dwFormatNumber: u32, ppProps: ?*?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).GetOutputFormat(@as(*const IWMReader, @ptrCast(self)), dwOutputNumber, dwFormatNumber, ppProps);
+        return self.vtable.GetOutputFormat(self, dwOutputNumber, dwFormatNumber, ppProps);
     }
     pub fn Start(self: *const IWMReader, cnsStart: u64, cnsDuration: u64, fRate: f32, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).Start(@as(*const IWMReader, @ptrCast(self)), cnsStart, cnsDuration, fRate, pvContext);
+        return self.vtable.Start(self, cnsStart, cnsDuration, fRate, pvContext);
     }
     pub fn Stop(self: *const IWMReader) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).Stop(@as(*const IWMReader, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn Pause(self: *const IWMReader) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).Pause(@as(*const IWMReader, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn Resume(self: *const IWMReader) callconv(.Inline) HRESULT {
-        return @as(*const IWMReader.VTable, @ptrCast(self.vtable)).Resume(@as(*const IWMReader, @ptrCast(self)));
+        return self.vtable.Resume(self);
     }
 };
 
@@ -2172,67 +2172,67 @@ pub const IWMSyncReader = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IWMSyncReader, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).Open(@as(*const IWMSyncReader, @ptrCast(self)), pwszFilename);
+        return self.vtable.Open(self, pwszFilename);
     }
     pub fn Close(self: *const IWMSyncReader) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).Close(@as(*const IWMSyncReader, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn SetRange(self: *const IWMSyncReader, cnsStartTime: u64, cnsDuration: i64) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).SetRange(@as(*const IWMSyncReader, @ptrCast(self)), cnsStartTime, cnsDuration);
+        return self.vtable.SetRange(self, cnsStartTime, cnsDuration);
     }
     pub fn SetRangeByFrame(self: *const IWMSyncReader, wStreamNum: u16, qwFrameNumber: u64, cFramesToRead: i64) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).SetRangeByFrame(@as(*const IWMSyncReader, @ptrCast(self)), wStreamNum, qwFrameNumber, cFramesToRead);
+        return self.vtable.SetRangeByFrame(self, wStreamNum, qwFrameNumber, cFramesToRead);
     }
     pub fn GetNextSample(self: *const IWMSyncReader, wStreamNum: u16, ppSample: ?*?*INSSBuffer, pcnsSampleTime: ?*u64, pcnsDuration: ?*u64, pdwFlags: ?*u32, pdwOutputNum: ?*u32, pwStreamNum: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetNextSample(@as(*const IWMSyncReader, @ptrCast(self)), wStreamNum, ppSample, pcnsSampleTime, pcnsDuration, pdwFlags, pdwOutputNum, pwStreamNum);
+        return self.vtable.GetNextSample(self, wStreamNum, ppSample, pcnsSampleTime, pcnsDuration, pdwFlags, pdwOutputNum, pwStreamNum);
     }
     pub fn SetStreamsSelected(self: *const IWMSyncReader, cStreamCount: u16, pwStreamNumbers: ?*u16, pSelections: ?*WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).SetStreamsSelected(@as(*const IWMSyncReader, @ptrCast(self)), cStreamCount, pwStreamNumbers, pSelections);
+        return self.vtable.SetStreamsSelected(self, cStreamCount, pwStreamNumbers, pSelections);
     }
     pub fn GetStreamSelected(self: *const IWMSyncReader, wStreamNum: u16, pSelection: ?*WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetStreamSelected(@as(*const IWMSyncReader, @ptrCast(self)), wStreamNum, pSelection);
+        return self.vtable.GetStreamSelected(self, wStreamNum, pSelection);
     }
     pub fn SetReadStreamSamples(self: *const IWMSyncReader, wStreamNum: u16, fCompressed: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).SetReadStreamSamples(@as(*const IWMSyncReader, @ptrCast(self)), wStreamNum, fCompressed);
+        return self.vtable.SetReadStreamSamples(self, wStreamNum, fCompressed);
     }
     pub fn GetReadStreamSamples(self: *const IWMSyncReader, wStreamNum: u16, pfCompressed: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetReadStreamSamples(@as(*const IWMSyncReader, @ptrCast(self)), wStreamNum, pfCompressed);
+        return self.vtable.GetReadStreamSamples(self, wStreamNum, pfCompressed);
     }
     pub fn GetOutputSetting(self: *const IWMSyncReader, dwOutputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetOutputSetting(@as(*const IWMSyncReader, @ptrCast(self)), dwOutputNum, pszName, pType, pValue, pcbLength);
+        return self.vtable.GetOutputSetting(self, dwOutputNum, pszName, pType, pValue, pcbLength);
     }
     pub fn SetOutputSetting(self: *const IWMSyncReader, dwOutputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).SetOutputSetting(@as(*const IWMSyncReader, @ptrCast(self)), dwOutputNum, pszName, Type, pValue, cbLength);
+        return self.vtable.SetOutputSetting(self, dwOutputNum, pszName, Type, pValue, cbLength);
     }
     pub fn GetOutputCount(self: *const IWMSyncReader, pcOutputs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IWMSyncReader, @ptrCast(self)), pcOutputs);
+        return self.vtable.GetOutputCount(self, pcOutputs);
     }
     pub fn GetOutputProps(self: *const IWMSyncReader, dwOutputNum: u32, ppOutput: ?*?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetOutputProps(@as(*const IWMSyncReader, @ptrCast(self)), dwOutputNum, ppOutput);
+        return self.vtable.GetOutputProps(self, dwOutputNum, ppOutput);
     }
     pub fn SetOutputProps(self: *const IWMSyncReader, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).SetOutputProps(@as(*const IWMSyncReader, @ptrCast(self)), dwOutputNum, pOutput);
+        return self.vtable.SetOutputProps(self, dwOutputNum, pOutput);
     }
     pub fn GetOutputFormatCount(self: *const IWMSyncReader, dwOutputNum: u32, pcFormats: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetOutputFormatCount(@as(*const IWMSyncReader, @ptrCast(self)), dwOutputNum, pcFormats);
+        return self.vtable.GetOutputFormatCount(self, dwOutputNum, pcFormats);
     }
     pub fn GetOutputFormat(self: *const IWMSyncReader, dwOutputNum: u32, dwFormatNum: u32, ppProps: ?*?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetOutputFormat(@as(*const IWMSyncReader, @ptrCast(self)), dwOutputNum, dwFormatNum, ppProps);
+        return self.vtable.GetOutputFormat(self, dwOutputNum, dwFormatNum, ppProps);
     }
     pub fn GetOutputNumberForStream(self: *const IWMSyncReader, wStreamNum: u16, pdwOutputNum: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetOutputNumberForStream(@as(*const IWMSyncReader, @ptrCast(self)), wStreamNum, pdwOutputNum);
+        return self.vtable.GetOutputNumberForStream(self, wStreamNum, pdwOutputNum);
     }
     pub fn GetStreamNumberForOutput(self: *const IWMSyncReader, dwOutputNum: u32, pwStreamNum: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetStreamNumberForOutput(@as(*const IWMSyncReader, @ptrCast(self)), dwOutputNum, pwStreamNum);
+        return self.vtable.GetStreamNumberForOutput(self, dwOutputNum, pwStreamNum);
     }
     pub fn GetMaxOutputSampleSize(self: *const IWMSyncReader, dwOutput: u32, pcbMax: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetMaxOutputSampleSize(@as(*const IWMSyncReader, @ptrCast(self)), dwOutput, pcbMax);
+        return self.vtable.GetMaxOutputSampleSize(self, dwOutput, pcbMax);
     }
     pub fn GetMaxStreamSampleSize(self: *const IWMSyncReader, wStream: u16, pcbMax: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).GetMaxStreamSampleSize(@as(*const IWMSyncReader, @ptrCast(self)), wStream, pcbMax);
+        return self.vtable.GetMaxStreamSampleSize(self, wStream, pcbMax);
     }
     pub fn OpenStream(self: *const IWMSyncReader, pStream: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader.VTable, @ptrCast(self.vtable)).OpenStream(@as(*const IWMSyncReader, @ptrCast(self)), pStream);
+        return self.vtable.OpenStream(self, pStream);
     }
 };
 
@@ -2306,22 +2306,22 @@ pub const IWMSyncReader2 = extern union {
     };}
     pub usingnamespace IWMSyncReader.MethodMixin(@This());
     pub fn SetRangeByTimecode(self: *const IWMSyncReader2, wStreamNum: u16, pStart: ?*WMT_TIMECODE_EXTENSION_DATA, pEnd: ?*WMT_TIMECODE_EXTENSION_DATA) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader2.VTable, @ptrCast(self.vtable)).SetRangeByTimecode(@as(*const IWMSyncReader2, @ptrCast(self)), wStreamNum, pStart, pEnd);
+        return self.vtable.SetRangeByTimecode(self, wStreamNum, pStart, pEnd);
     }
     pub fn SetRangeByFrameEx(self: *const IWMSyncReader2, wStreamNum: u16, qwFrameNumber: u64, cFramesToRead: i64, pcnsStartTime: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader2.VTable, @ptrCast(self.vtable)).SetRangeByFrameEx(@as(*const IWMSyncReader2, @ptrCast(self)), wStreamNum, qwFrameNumber, cFramesToRead, pcnsStartTime);
+        return self.vtable.SetRangeByFrameEx(self, wStreamNum, qwFrameNumber, cFramesToRead, pcnsStartTime);
     }
     pub fn SetAllocateForOutput(self: *const IWMSyncReader2, dwOutputNum: u32, pAllocator: ?*IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader2.VTable, @ptrCast(self.vtable)).SetAllocateForOutput(@as(*const IWMSyncReader2, @ptrCast(self)), dwOutputNum, pAllocator);
+        return self.vtable.SetAllocateForOutput(self, dwOutputNum, pAllocator);
     }
     pub fn GetAllocateForOutput(self: *const IWMSyncReader2, dwOutputNum: u32, ppAllocator: ?*?*IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader2.VTable, @ptrCast(self.vtable)).GetAllocateForOutput(@as(*const IWMSyncReader2, @ptrCast(self)), dwOutputNum, ppAllocator);
+        return self.vtable.GetAllocateForOutput(self, dwOutputNum, ppAllocator);
     }
     pub fn SetAllocateForStream(self: *const IWMSyncReader2, wStreamNum: u16, pAllocator: ?*IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader2.VTable, @ptrCast(self.vtable)).SetAllocateForStream(@as(*const IWMSyncReader2, @ptrCast(self)), wStreamNum, pAllocator);
+        return self.vtable.SetAllocateForStream(self, wStreamNum, pAllocator);
     }
     pub fn GetAllocateForStream(self: *const IWMSyncReader2, dwSreamNum: u16, ppAllocator: ?*?*IWMReaderAllocatorEx) callconv(.Inline) HRESULT {
-        return @as(*const IWMSyncReader2.VTable, @ptrCast(self.vtable)).GetAllocateForStream(@as(*const IWMSyncReader2, @ptrCast(self)), dwSreamNum, ppAllocator);
+        return self.vtable.GetAllocateForStream(self, dwSreamNum, ppAllocator);
     }
 };
 
@@ -2356,10 +2356,10 @@ pub const IWMOutputMediaProps = extern union {
     };}
     pub usingnamespace IWMMediaProps.MethodMixin(@This());
     pub fn GetStreamGroupName(self: *const IWMOutputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMOutputMediaProps.VTable, @ptrCast(self.vtable)).GetStreamGroupName(@as(*const IWMOutputMediaProps, @ptrCast(self)), pwszName, pcchName);
+        return self.vtable.GetStreamGroupName(self, pwszName, pcchName);
     }
     pub fn GetConnectionName(self: *const IWMOutputMediaProps, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMOutputMediaProps.VTable, @ptrCast(self.vtable)).GetConnectionName(@as(*const IWMOutputMediaProps, @ptrCast(self)), pwszName, pcchName);
+        return self.vtable.GetConnectionName(self, pwszName, pcchName);
     }
 };
 
@@ -2388,7 +2388,7 @@ pub const IWMStatusCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStatus(self: *const IWMStatusCallback, Status: WMT_STATUS, hr: HRESULT, dwType: WMT_ATTR_DATATYPE, pValue: ?*u8, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMStatusCallback.VTable, @ptrCast(self.vtable)).OnStatus(@as(*const IWMStatusCallback, @ptrCast(self)), Status, hr, dwType, pValue, pvContext);
+        return self.vtable.OnStatus(self, Status, hr, dwType, pValue, pvContext);
     }
 };
 
@@ -2418,7 +2418,7 @@ pub const IWMReaderCallback = extern union {
     };}
     pub usingnamespace IWMStatusCallback.MethodMixin(@This());
     pub fn OnSample(self: *const IWMReaderCallback, dwOutputNum: u32, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderCallback.VTable, @ptrCast(self.vtable)).OnSample(@as(*const IWMReaderCallback, @ptrCast(self)), dwOutputNum, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
+        return self.vtable.OnSample(self, dwOutputNum, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
     }
 };
 
@@ -2450,7 +2450,7 @@ pub const IWMCredentialCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AcquireCredentials(self: *const IWMCredentialCallback, pwszRealm: ?PWSTR, pwszSite: ?PWSTR, pwszUser: [*:0]u16, cchUser: u32, pwszPassword: [*:0]u16, cchPassword: u32, hrStatus: HRESULT, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCredentialCallback.VTable, @ptrCast(self.vtable)).AcquireCredentials(@as(*const IWMCredentialCallback, @ptrCast(self)), pwszRealm, pwszSite, pwszUser, cchUser, pwszPassword, cchPassword, hrStatus, pdwFlags);
+        return self.vtable.AcquireCredentials(self, pwszRealm, pwszSite, pwszUser, cchUser, pwszPassword, cchPassword, hrStatus, pdwFlags);
     }
 };
 
@@ -2489,13 +2489,13 @@ pub const IWMMetadataEditor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Open(self: *const IWMMetadataEditor, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMMetadataEditor.VTable, @ptrCast(self.vtable)).Open(@as(*const IWMMetadataEditor, @ptrCast(self)), pwszFilename);
+        return self.vtable.Open(self, pwszFilename);
     }
     pub fn Close(self: *const IWMMetadataEditor) callconv(.Inline) HRESULT {
-        return @as(*const IWMMetadataEditor.VTable, @ptrCast(self.vtable)).Close(@as(*const IWMMetadataEditor, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn Flush(self: *const IWMMetadataEditor) callconv(.Inline) HRESULT {
-        return @as(*const IWMMetadataEditor.VTable, @ptrCast(self.vtable)).Flush(@as(*const IWMMetadataEditor, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
 };
 
@@ -2522,7 +2522,7 @@ pub const IWMMetadataEditor2 = extern union {
     };}
     pub usingnamespace IWMMetadataEditor.MethodMixin(@This());
     pub fn OpenEx(self: *const IWMMetadataEditor2, pwszFilename: ?[*:0]const u16, dwDesiredAccess: u32, dwShareMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMMetadataEditor2.VTable, @ptrCast(self.vtable)).OpenEx(@as(*const IWMMetadataEditor2, @ptrCast(self)), pwszFilename, dwDesiredAccess, dwShareMode);
+        return self.vtable.OpenEx(self, pwszFilename, dwDesiredAccess, dwShareMode);
     }
 };
 
@@ -2551,7 +2551,7 @@ pub const IWMDRMEditor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDRMProperty(self: *const IWMDRMEditor, pwstrName: ?[*:0]const u16, pdwType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMEditor.VTable, @ptrCast(self.vtable)).GetDRMProperty(@as(*const IWMDRMEditor, @ptrCast(self)), pwstrName, pdwType, pValue, pcbLength);
+        return self.vtable.GetDRMProperty(self, pwstrName, pdwType, pValue, pcbLength);
     }
 };
 
@@ -2690,40 +2690,40 @@ pub const IWMHeaderInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAttributeCount(self: *const IWMHeaderInfo, wStreamNum: u16, pcAttributes: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).GetAttributeCount(@as(*const IWMHeaderInfo, @ptrCast(self)), wStreamNum, pcAttributes);
+        return self.vtable.GetAttributeCount(self, wStreamNum, pcAttributes);
     }
     pub fn GetAttributeByIndex(self: *const IWMHeaderInfo, wIndex: u16, pwStreamNum: ?*u16, pwszName: [*:0]u16, pcchNameLen: ?*u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).GetAttributeByIndex(@as(*const IWMHeaderInfo, @ptrCast(self)), wIndex, pwStreamNum, pwszName, pcchNameLen, pType, pValue, pcbLength);
+        return self.vtable.GetAttributeByIndex(self, wIndex, pwStreamNum, pwszName, pcchNameLen, pType, pValue, pcbLength);
     }
     pub fn GetAttributeByName(self: *const IWMHeaderInfo, pwStreamNum: ?*u16, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).GetAttributeByName(@as(*const IWMHeaderInfo, @ptrCast(self)), pwStreamNum, pszName, pType, pValue, pcbLength);
+        return self.vtable.GetAttributeByName(self, pwStreamNum, pszName, pType, pValue, pcbLength);
     }
     pub fn SetAttribute(self: *const IWMHeaderInfo, wStreamNum: u16, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).SetAttribute(@as(*const IWMHeaderInfo, @ptrCast(self)), wStreamNum, pszName, Type, pValue, cbLength);
+        return self.vtable.SetAttribute(self, wStreamNum, pszName, Type, pValue, cbLength);
     }
     pub fn GetMarkerCount(self: *const IWMHeaderInfo, pcMarkers: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).GetMarkerCount(@as(*const IWMHeaderInfo, @ptrCast(self)), pcMarkers);
+        return self.vtable.GetMarkerCount(self, pcMarkers);
     }
     pub fn GetMarker(self: *const IWMHeaderInfo, wIndex: u16, pwszMarkerName: [*:0]u16, pcchMarkerNameLen: ?*u16, pcnsMarkerTime: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).GetMarker(@as(*const IWMHeaderInfo, @ptrCast(self)), wIndex, pwszMarkerName, pcchMarkerNameLen, pcnsMarkerTime);
+        return self.vtable.GetMarker(self, wIndex, pwszMarkerName, pcchMarkerNameLen, pcnsMarkerTime);
     }
     pub fn AddMarker(self: *const IWMHeaderInfo, pwszMarkerName: ?PWSTR, cnsMarkerTime: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).AddMarker(@as(*const IWMHeaderInfo, @ptrCast(self)), pwszMarkerName, cnsMarkerTime);
+        return self.vtable.AddMarker(self, pwszMarkerName, cnsMarkerTime);
     }
     pub fn RemoveMarker(self: *const IWMHeaderInfo, wIndex: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).RemoveMarker(@as(*const IWMHeaderInfo, @ptrCast(self)), wIndex);
+        return self.vtable.RemoveMarker(self, wIndex);
     }
     pub fn GetScriptCount(self: *const IWMHeaderInfo, pcScripts: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).GetScriptCount(@as(*const IWMHeaderInfo, @ptrCast(self)), pcScripts);
+        return self.vtable.GetScriptCount(self, pcScripts);
     }
     pub fn GetScript(self: *const IWMHeaderInfo, wIndex: u16, pwszType: [*:0]u16, pcchTypeLen: ?*u16, pwszCommand: [*:0]u16, pcchCommandLen: ?*u16, pcnsScriptTime: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).GetScript(@as(*const IWMHeaderInfo, @ptrCast(self)), wIndex, pwszType, pcchTypeLen, pwszCommand, pcchCommandLen, pcnsScriptTime);
+        return self.vtable.GetScript(self, wIndex, pwszType, pcchTypeLen, pwszCommand, pcchCommandLen, pcnsScriptTime);
     }
     pub fn AddScript(self: *const IWMHeaderInfo, pwszType: ?PWSTR, pwszCommand: ?PWSTR, cnsScriptTime: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).AddScript(@as(*const IWMHeaderInfo, @ptrCast(self)), pwszType, pwszCommand, cnsScriptTime);
+        return self.vtable.AddScript(self, pwszType, pwszCommand, cnsScriptTime);
     }
     pub fn RemoveScript(self: *const IWMHeaderInfo, wIndex: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo.VTable, @ptrCast(self.vtable)).RemoveScript(@as(*const IWMHeaderInfo, @ptrCast(self)), wIndex);
+        return self.vtable.RemoveScript(self, wIndex);
     }
 };
 
@@ -2763,10 +2763,10 @@ pub const IWMHeaderInfo2 = extern union {
     };}
     pub usingnamespace IWMHeaderInfo.MethodMixin(@This());
     pub fn GetCodecInfoCount(self: *const IWMHeaderInfo2, pcCodecInfos: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo2.VTable, @ptrCast(self.vtable)).GetCodecInfoCount(@as(*const IWMHeaderInfo2, @ptrCast(self)), pcCodecInfos);
+        return self.vtable.GetCodecInfoCount(self, pcCodecInfos);
     }
     pub fn GetCodecInfo(self: *const IWMHeaderInfo2, wIndex: u32, pcchName: ?*u16, pwszName: [*:0]u16, pcchDescription: ?*u16, pwszDescription: [*:0]u16, pCodecType: ?*WMT_CODEC_INFO_TYPE, pcbCodecInfo: ?*u16, pbCodecInfo: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo2.VTable, @ptrCast(self.vtable)).GetCodecInfo(@as(*const IWMHeaderInfo2, @ptrCast(self)), wIndex, pcchName, pwszName, pcchDescription, pwszDescription, pCodecType, pcbCodecInfo, pbCodecInfo);
+        return self.vtable.GetCodecInfo(self, wIndex, pcchName, pwszName, pcchDescription, pwszDescription, pCodecType, pcbCodecInfo, pbCodecInfo);
     }
 };
 
@@ -2867,25 +2867,25 @@ pub const IWMHeaderInfo3 = extern union {
     };}
     pub usingnamespace IWMHeaderInfo2.MethodMixin(@This());
     pub fn GetAttributeCountEx(self: *const IWMHeaderInfo3, wStreamNum: u16, pcAttributes: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo3.VTable, @ptrCast(self.vtable)).GetAttributeCountEx(@as(*const IWMHeaderInfo3, @ptrCast(self)), wStreamNum, pcAttributes);
+        return self.vtable.GetAttributeCountEx(self, wStreamNum, pcAttributes);
     }
     pub fn GetAttributeIndices(self: *const IWMHeaderInfo3, wStreamNum: u16, pwszName: ?[*:0]const u16, pwLangIndex: ?*u16, pwIndices: [*:0]u16, pwCount: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo3.VTable, @ptrCast(self.vtable)).GetAttributeIndices(@as(*const IWMHeaderInfo3, @ptrCast(self)), wStreamNum, pwszName, pwLangIndex, pwIndices, pwCount);
+        return self.vtable.GetAttributeIndices(self, wStreamNum, pwszName, pwLangIndex, pwIndices, pwCount);
     }
     pub fn GetAttributeByIndexEx(self: *const IWMHeaderInfo3, wStreamNum: u16, wIndex: u16, pwszName: [*:0]u16, pwNameLen: ?*u16, pType: ?*WMT_ATTR_DATATYPE, pwLangIndex: ?*u16, pValue: [*:0]u8, pdwDataLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo3.VTable, @ptrCast(self.vtable)).GetAttributeByIndexEx(@as(*const IWMHeaderInfo3, @ptrCast(self)), wStreamNum, wIndex, pwszName, pwNameLen, pType, pwLangIndex, pValue, pdwDataLength);
+        return self.vtable.GetAttributeByIndexEx(self, wStreamNum, wIndex, pwszName, pwNameLen, pType, pwLangIndex, pValue, pdwDataLength);
     }
     pub fn ModifyAttribute(self: *const IWMHeaderInfo3, wStreamNum: u16, wIndex: u16, Type: WMT_ATTR_DATATYPE, wLangIndex: u16, pValue: [*:0]const u8, dwLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo3.VTable, @ptrCast(self.vtable)).ModifyAttribute(@as(*const IWMHeaderInfo3, @ptrCast(self)), wStreamNum, wIndex, Type, wLangIndex, pValue, dwLength);
+        return self.vtable.ModifyAttribute(self, wStreamNum, wIndex, Type, wLangIndex, pValue, dwLength);
     }
     pub fn AddAttribute(self: *const IWMHeaderInfo3, wStreamNum: u16, pszName: ?[*:0]const u16, pwIndex: ?*u16, Type: WMT_ATTR_DATATYPE, wLangIndex: u16, pValue: [*:0]const u8, dwLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo3.VTable, @ptrCast(self.vtable)).AddAttribute(@as(*const IWMHeaderInfo3, @ptrCast(self)), wStreamNum, pszName, pwIndex, Type, wLangIndex, pValue, dwLength);
+        return self.vtable.AddAttribute(self, wStreamNum, pszName, pwIndex, Type, wLangIndex, pValue, dwLength);
     }
     pub fn DeleteAttribute(self: *const IWMHeaderInfo3, wStreamNum: u16, wIndex: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo3.VTable, @ptrCast(self.vtable)).DeleteAttribute(@as(*const IWMHeaderInfo3, @ptrCast(self)), wStreamNum, wIndex);
+        return self.vtable.DeleteAttribute(self, wStreamNum, wIndex);
     }
     pub fn AddCodecInfo(self: *const IWMHeaderInfo3, pwszName: ?PWSTR, pwszDescription: ?PWSTR, codecType: WMT_CODEC_INFO_TYPE, cbCodecInfo: u16, pbCodecInfo: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IWMHeaderInfo3.VTable, @ptrCast(self.vtable)).AddCodecInfo(@as(*const IWMHeaderInfo3, @ptrCast(self)), pwszName, pwszDescription, codecType, cbCodecInfo, pbCodecInfo);
+        return self.vtable.AddCodecInfo(self, pwszName, pwszDescription, codecType, cbCodecInfo, pbCodecInfo);
     }
 };
 
@@ -2956,22 +2956,22 @@ pub const IWMProfileManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateEmptyProfile(self: *const IWMProfileManager, dwVersion: WMT_VERSION, ppProfile: ?*?*IWMProfile) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManager.VTable, @ptrCast(self.vtable)).CreateEmptyProfile(@as(*const IWMProfileManager, @ptrCast(self)), dwVersion, ppProfile);
+        return self.vtable.CreateEmptyProfile(self, dwVersion, ppProfile);
     }
     pub fn LoadProfileByID(self: *const IWMProfileManager, guidProfile: ?*const Guid, ppProfile: ?*?*IWMProfile) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManager.VTable, @ptrCast(self.vtable)).LoadProfileByID(@as(*const IWMProfileManager, @ptrCast(self)), guidProfile, ppProfile);
+        return self.vtable.LoadProfileByID(self, guidProfile, ppProfile);
     }
     pub fn LoadProfileByData(self: *const IWMProfileManager, pwszProfile: ?[*:0]const u16, ppProfile: ?*?*IWMProfile) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManager.VTable, @ptrCast(self.vtable)).LoadProfileByData(@as(*const IWMProfileManager, @ptrCast(self)), pwszProfile, ppProfile);
+        return self.vtable.LoadProfileByData(self, pwszProfile, ppProfile);
     }
     pub fn SaveProfile(self: *const IWMProfileManager, pIWMProfile: ?*IWMProfile, pwszProfile: ?PWSTR, pdwLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManager.VTable, @ptrCast(self.vtable)).SaveProfile(@as(*const IWMProfileManager, @ptrCast(self)), pIWMProfile, pwszProfile, pdwLength);
+        return self.vtable.SaveProfile(self, pIWMProfile, pwszProfile, pdwLength);
     }
     pub fn GetSystemProfileCount(self: *const IWMProfileManager, pcProfiles: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManager.VTable, @ptrCast(self.vtable)).GetSystemProfileCount(@as(*const IWMProfileManager, @ptrCast(self)), pcProfiles);
+        return self.vtable.GetSystemProfileCount(self, pcProfiles);
     }
     pub fn LoadSystemProfile(self: *const IWMProfileManager, dwProfileIndex: u32, ppProfile: ?*?*IWMProfile) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManager.VTable, @ptrCast(self.vtable)).LoadSystemProfile(@as(*const IWMProfileManager, @ptrCast(self)), dwProfileIndex, ppProfile);
+        return self.vtable.LoadSystemProfile(self, dwProfileIndex, ppProfile);
     }
 };
 
@@ -3004,10 +3004,10 @@ pub const IWMProfileManager2 = extern union {
     };}
     pub usingnamespace IWMProfileManager.MethodMixin(@This());
     pub fn GetSystemProfileVersion(self: *const IWMProfileManager2, pdwVersion: ?*WMT_VERSION) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManager2.VTable, @ptrCast(self.vtable)).GetSystemProfileVersion(@as(*const IWMProfileManager2, @ptrCast(self)), pdwVersion);
+        return self.vtable.GetSystemProfileVersion(self, pdwVersion);
     }
     pub fn SetSystemProfileVersion(self: *const IWMProfileManager2, dwVersion: WMT_VERSION) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManager2.VTable, @ptrCast(self.vtable)).SetSystemProfileVersion(@as(*const IWMProfileManager2, @ptrCast(self)), dwVersion);
+        return self.vtable.SetSystemProfileVersion(self, dwVersion);
     }
 };
 
@@ -3040,10 +3040,10 @@ pub const IWMProfileManagerLanguage = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetUserLanguageID(self: *const IWMProfileManagerLanguage, wLangID: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManagerLanguage.VTable, @ptrCast(self.vtable)).GetUserLanguageID(@as(*const IWMProfileManagerLanguage, @ptrCast(self)), wLangID);
+        return self.vtable.GetUserLanguageID(self, wLangID);
     }
     pub fn SetUserLanguageID(self: *const IWMProfileManagerLanguage, wLangID: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfileManagerLanguage.VTable, @ptrCast(self.vtable)).SetUserLanguageID(@as(*const IWMProfileManagerLanguage, @ptrCast(self)), wLangID);
+        return self.vtable.SetUserLanguageID(self, wLangID);
     }
 };
 
@@ -3210,58 +3210,58 @@ pub const IWMProfile = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetVersion(self: *const IWMProfile, pdwVersion: ?*WMT_VERSION) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const IWMProfile, @ptrCast(self)), pdwVersion);
+        return self.vtable.GetVersion(self, pdwVersion);
     }
     pub fn GetName(self: *const IWMProfile, pwszName: [*:0]u16, pcchName: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).GetName(@as(*const IWMProfile, @ptrCast(self)), pwszName, pcchName);
+        return self.vtable.GetName(self, pwszName, pcchName);
     }
     pub fn SetName(self: *const IWMProfile, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).SetName(@as(*const IWMProfile, @ptrCast(self)), pwszName);
+        return self.vtable.SetName(self, pwszName);
     }
     pub fn GetDescription(self: *const IWMProfile, pwszDescription: [*:0]u16, pcchDescription: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IWMProfile, @ptrCast(self)), pwszDescription, pcchDescription);
+        return self.vtable.GetDescription(self, pwszDescription, pcchDescription);
     }
     pub fn SetDescription(self: *const IWMProfile, pwszDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IWMProfile, @ptrCast(self)), pwszDescription);
+        return self.vtable.SetDescription(self, pwszDescription);
     }
     pub fn GetStreamCount(self: *const IWMProfile, pcStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IWMProfile, @ptrCast(self)), pcStreams);
+        return self.vtable.GetStreamCount(self, pcStreams);
     }
     pub fn GetStream(self: *const IWMProfile, dwStreamIndex: u32, ppConfig: ?*?*IWMStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IWMProfile, @ptrCast(self)), dwStreamIndex, ppConfig);
+        return self.vtable.GetStream(self, dwStreamIndex, ppConfig);
     }
     pub fn GetStreamByNumber(self: *const IWMProfile, wStreamNum: u16, ppConfig: ?*?*IWMStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).GetStreamByNumber(@as(*const IWMProfile, @ptrCast(self)), wStreamNum, ppConfig);
+        return self.vtable.GetStreamByNumber(self, wStreamNum, ppConfig);
     }
     pub fn RemoveStream(self: *const IWMProfile, pConfig: ?*IWMStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IWMProfile, @ptrCast(self)), pConfig);
+        return self.vtable.RemoveStream(self, pConfig);
     }
     pub fn RemoveStreamByNumber(self: *const IWMProfile, wStreamNum: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).RemoveStreamByNumber(@as(*const IWMProfile, @ptrCast(self)), wStreamNum);
+        return self.vtable.RemoveStreamByNumber(self, wStreamNum);
     }
     pub fn AddStream(self: *const IWMProfile, pConfig: ?*IWMStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IWMProfile, @ptrCast(self)), pConfig);
+        return self.vtable.AddStream(self, pConfig);
     }
     pub fn ReconfigStream(self: *const IWMProfile, pConfig: ?*IWMStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).ReconfigStream(@as(*const IWMProfile, @ptrCast(self)), pConfig);
+        return self.vtable.ReconfigStream(self, pConfig);
     }
     pub fn CreateNewStream(self: *const IWMProfile, guidStreamType: ?*const Guid, ppConfig: ?*?*IWMStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).CreateNewStream(@as(*const IWMProfile, @ptrCast(self)), guidStreamType, ppConfig);
+        return self.vtable.CreateNewStream(self, guidStreamType, ppConfig);
     }
     pub fn GetMutualExclusionCount(self: *const IWMProfile, pcME: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).GetMutualExclusionCount(@as(*const IWMProfile, @ptrCast(self)), pcME);
+        return self.vtable.GetMutualExclusionCount(self, pcME);
     }
     pub fn GetMutualExclusion(self: *const IWMProfile, dwMEIndex: u32, ppME: ?*?*IWMMutualExclusion) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).GetMutualExclusion(@as(*const IWMProfile, @ptrCast(self)), dwMEIndex, ppME);
+        return self.vtable.GetMutualExclusion(self, dwMEIndex, ppME);
     }
     pub fn RemoveMutualExclusion(self: *const IWMProfile, pME: ?*IWMMutualExclusion) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).RemoveMutualExclusion(@as(*const IWMProfile, @ptrCast(self)), pME);
+        return self.vtable.RemoveMutualExclusion(self, pME);
     }
     pub fn AddMutualExclusion(self: *const IWMProfile, pME: ?*IWMMutualExclusion) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).AddMutualExclusion(@as(*const IWMProfile, @ptrCast(self)), pME);
+        return self.vtable.AddMutualExclusion(self, pME);
     }
     pub fn CreateNewMutualExclusion(self: *const IWMProfile, ppME: ?*?*IWMMutualExclusion) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile.VTable, @ptrCast(self.vtable)).CreateNewMutualExclusion(@as(*const IWMProfile, @ptrCast(self)), ppME);
+        return self.vtable.CreateNewMutualExclusion(self, ppME);
     }
 };
 
@@ -3286,7 +3286,7 @@ pub const IWMProfile2 = extern union {
     };}
     pub usingnamespace IWMProfile.MethodMixin(@This());
     pub fn GetProfileID(self: *const IWMProfile2, pguidID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile2.VTable, @ptrCast(self.vtable)).GetProfileID(@as(*const IWMProfile2, @ptrCast(self)), pguidID);
+        return self.vtable.GetProfileID(self, pguidID);
     }
 };
 
@@ -3400,40 +3400,40 @@ pub const IWMProfile3 = extern union {
     };}
     pub usingnamespace IWMProfile2.MethodMixin(@This());
     pub fn GetStorageFormat(self: *const IWMProfile3, pnStorageFormat: ?*WMT_STORAGE_FORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).GetStorageFormat(@as(*const IWMProfile3, @ptrCast(self)), pnStorageFormat);
+        return self.vtable.GetStorageFormat(self, pnStorageFormat);
     }
     pub fn SetStorageFormat(self: *const IWMProfile3, nStorageFormat: WMT_STORAGE_FORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).SetStorageFormat(@as(*const IWMProfile3, @ptrCast(self)), nStorageFormat);
+        return self.vtable.SetStorageFormat(self, nStorageFormat);
     }
     pub fn GetBandwidthSharingCount(self: *const IWMProfile3, pcBS: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).GetBandwidthSharingCount(@as(*const IWMProfile3, @ptrCast(self)), pcBS);
+        return self.vtable.GetBandwidthSharingCount(self, pcBS);
     }
     pub fn GetBandwidthSharing(self: *const IWMProfile3, dwBSIndex: u32, ppBS: ?*?*IWMBandwidthSharing) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).GetBandwidthSharing(@as(*const IWMProfile3, @ptrCast(self)), dwBSIndex, ppBS);
+        return self.vtable.GetBandwidthSharing(self, dwBSIndex, ppBS);
     }
     pub fn RemoveBandwidthSharing(self: *const IWMProfile3, pBS: ?*IWMBandwidthSharing) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).RemoveBandwidthSharing(@as(*const IWMProfile3, @ptrCast(self)), pBS);
+        return self.vtable.RemoveBandwidthSharing(self, pBS);
     }
     pub fn AddBandwidthSharing(self: *const IWMProfile3, pBS: ?*IWMBandwidthSharing) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).AddBandwidthSharing(@as(*const IWMProfile3, @ptrCast(self)), pBS);
+        return self.vtable.AddBandwidthSharing(self, pBS);
     }
     pub fn CreateNewBandwidthSharing(self: *const IWMProfile3, ppBS: ?*?*IWMBandwidthSharing) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).CreateNewBandwidthSharing(@as(*const IWMProfile3, @ptrCast(self)), ppBS);
+        return self.vtable.CreateNewBandwidthSharing(self, ppBS);
     }
     pub fn GetStreamPrioritization(self: *const IWMProfile3, ppSP: ?*?*IWMStreamPrioritization) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).GetStreamPrioritization(@as(*const IWMProfile3, @ptrCast(self)), ppSP);
+        return self.vtable.GetStreamPrioritization(self, ppSP);
     }
     pub fn SetStreamPrioritization(self: *const IWMProfile3, pSP: ?*IWMStreamPrioritization) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).SetStreamPrioritization(@as(*const IWMProfile3, @ptrCast(self)), pSP);
+        return self.vtable.SetStreamPrioritization(self, pSP);
     }
     pub fn RemoveStreamPrioritization(self: *const IWMProfile3) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).RemoveStreamPrioritization(@as(*const IWMProfile3, @ptrCast(self)));
+        return self.vtable.RemoveStreamPrioritization(self);
     }
     pub fn CreateNewStreamPrioritization(self: *const IWMProfile3, ppSP: ?*?*IWMStreamPrioritization) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).CreateNewStreamPrioritization(@as(*const IWMProfile3, @ptrCast(self)), ppSP);
+        return self.vtable.CreateNewStreamPrioritization(self, ppSP);
     }
     pub fn GetExpectedPacketCount(self: *const IWMProfile3, msDuration: u64, pcPackets: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMProfile3.VTable, @ptrCast(self.vtable)).GetExpectedPacketCount(@as(*const IWMProfile3, @ptrCast(self)), msDuration, pcPackets);
+        return self.vtable.GetExpectedPacketCount(self, msDuration, pcPackets);
     }
 };
 
@@ -3540,37 +3540,37 @@ pub const IWMStreamConfig = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStreamType(self: *const IWMStreamConfig, pguidStreamType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).GetStreamType(@as(*const IWMStreamConfig, @ptrCast(self)), pguidStreamType);
+        return self.vtable.GetStreamType(self, pguidStreamType);
     }
     pub fn GetStreamNumber(self: *const IWMStreamConfig, pwStreamNum: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).GetStreamNumber(@as(*const IWMStreamConfig, @ptrCast(self)), pwStreamNum);
+        return self.vtable.GetStreamNumber(self, pwStreamNum);
     }
     pub fn SetStreamNumber(self: *const IWMStreamConfig, wStreamNum: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).SetStreamNumber(@as(*const IWMStreamConfig, @ptrCast(self)), wStreamNum);
+        return self.vtable.SetStreamNumber(self, wStreamNum);
     }
     pub fn GetStreamName(self: *const IWMStreamConfig, pwszStreamName: [*:0]u16, pcchStreamName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).GetStreamName(@as(*const IWMStreamConfig, @ptrCast(self)), pwszStreamName, pcchStreamName);
+        return self.vtable.GetStreamName(self, pwszStreamName, pcchStreamName);
     }
     pub fn SetStreamName(self: *const IWMStreamConfig, pwszStreamName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).SetStreamName(@as(*const IWMStreamConfig, @ptrCast(self)), pwszStreamName);
+        return self.vtable.SetStreamName(self, pwszStreamName);
     }
     pub fn GetConnectionName(self: *const IWMStreamConfig, pwszInputName: [*:0]u16, pcchInputName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).GetConnectionName(@as(*const IWMStreamConfig, @ptrCast(self)), pwszInputName, pcchInputName);
+        return self.vtable.GetConnectionName(self, pwszInputName, pcchInputName);
     }
     pub fn SetConnectionName(self: *const IWMStreamConfig, pwszInputName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).SetConnectionName(@as(*const IWMStreamConfig, @ptrCast(self)), pwszInputName);
+        return self.vtable.SetConnectionName(self, pwszInputName);
     }
     pub fn GetBitrate(self: *const IWMStreamConfig, pdwBitrate: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).GetBitrate(@as(*const IWMStreamConfig, @ptrCast(self)), pdwBitrate);
+        return self.vtable.GetBitrate(self, pdwBitrate);
     }
     pub fn SetBitrate(self: *const IWMStreamConfig, pdwBitrate: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).SetBitrate(@as(*const IWMStreamConfig, @ptrCast(self)), pdwBitrate);
+        return self.vtable.SetBitrate(self, pdwBitrate);
     }
     pub fn GetBufferWindow(self: *const IWMStreamConfig, pmsBufferWindow: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).GetBufferWindow(@as(*const IWMStreamConfig, @ptrCast(self)), pmsBufferWindow);
+        return self.vtable.GetBufferWindow(self, pmsBufferWindow);
     }
     pub fn SetBufferWindow(self: *const IWMStreamConfig, msBufferWindow: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig.VTable, @ptrCast(self.vtable)).SetBufferWindow(@as(*const IWMStreamConfig, @ptrCast(self)), msBufferWindow);
+        return self.vtable.SetBufferWindow(self, msBufferWindow);
     }
 };
 
@@ -3641,22 +3641,22 @@ pub const IWMStreamConfig2 = extern union {
     };}
     pub usingnamespace IWMStreamConfig.MethodMixin(@This());
     pub fn GetTransportType(self: *const IWMStreamConfig2, pnTransportType: ?*WMT_TRANSPORT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig2.VTable, @ptrCast(self.vtable)).GetTransportType(@as(*const IWMStreamConfig2, @ptrCast(self)), pnTransportType);
+        return self.vtable.GetTransportType(self, pnTransportType);
     }
     pub fn SetTransportType(self: *const IWMStreamConfig2, nTransportType: WMT_TRANSPORT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig2.VTable, @ptrCast(self.vtable)).SetTransportType(@as(*const IWMStreamConfig2, @ptrCast(self)), nTransportType);
+        return self.vtable.SetTransportType(self, nTransportType);
     }
     pub fn AddDataUnitExtension(self: *const IWMStreamConfig2, guidExtensionSystemID: Guid, cbExtensionDataSize: u16, pbExtensionSystemInfo: [*:0]u8, cbExtensionSystemInfo: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig2.VTable, @ptrCast(self.vtable)).AddDataUnitExtension(@as(*const IWMStreamConfig2, @ptrCast(self)), guidExtensionSystemID, cbExtensionDataSize, pbExtensionSystemInfo, cbExtensionSystemInfo);
+        return self.vtable.AddDataUnitExtension(self, guidExtensionSystemID, cbExtensionDataSize, pbExtensionSystemInfo, cbExtensionSystemInfo);
     }
     pub fn GetDataUnitExtensionCount(self: *const IWMStreamConfig2, pcDataUnitExtensions: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig2.VTable, @ptrCast(self.vtable)).GetDataUnitExtensionCount(@as(*const IWMStreamConfig2, @ptrCast(self)), pcDataUnitExtensions);
+        return self.vtable.GetDataUnitExtensionCount(self, pcDataUnitExtensions);
     }
     pub fn GetDataUnitExtension(self: *const IWMStreamConfig2, wDataUnitExtensionNumber: u16, pguidExtensionSystemID: ?*Guid, pcbExtensionDataSize: ?*u16, pbExtensionSystemInfo: [*:0]u8, pcbExtensionSystemInfo: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig2.VTable, @ptrCast(self.vtable)).GetDataUnitExtension(@as(*const IWMStreamConfig2, @ptrCast(self)), wDataUnitExtensionNumber, pguidExtensionSystemID, pcbExtensionDataSize, pbExtensionSystemInfo, pcbExtensionSystemInfo);
+        return self.vtable.GetDataUnitExtension(self, wDataUnitExtensionNumber, pguidExtensionSystemID, pcbExtensionDataSize, pbExtensionSystemInfo, pcbExtensionSystemInfo);
     }
     pub fn RemoveAllDataUnitExtensions(self: *const IWMStreamConfig2) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig2.VTable, @ptrCast(self.vtable)).RemoveAllDataUnitExtensions(@as(*const IWMStreamConfig2, @ptrCast(self)));
+        return self.vtable.RemoveAllDataUnitExtensions(self);
     }
 };
 
@@ -3690,10 +3690,10 @@ pub const IWMStreamConfig3 = extern union {
     };}
     pub usingnamespace IWMStreamConfig2.MethodMixin(@This());
     pub fn GetLanguage(self: *const IWMStreamConfig3, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig3.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IWMStreamConfig3, @ptrCast(self)), pwszLanguageString, pcchLanguageStringLength);
+        return self.vtable.GetLanguage(self, pwszLanguageString, pcchLanguageStringLength);
     }
     pub fn SetLanguage(self: *const IWMStreamConfig3, pwszLanguageString: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamConfig3.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IWMStreamConfig3, @ptrCast(self)), pwszLanguageString);
+        return self.vtable.SetLanguage(self, pwszLanguageString);
     }
 };
 
@@ -3726,10 +3726,10 @@ pub const IWMPacketSize = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMaxPacketSize(self: *const IWMPacketSize, pdwMaxPacketSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMPacketSize.VTable, @ptrCast(self.vtable)).GetMaxPacketSize(@as(*const IWMPacketSize, @ptrCast(self)), pdwMaxPacketSize);
+        return self.vtable.GetMaxPacketSize(self, pdwMaxPacketSize);
     }
     pub fn SetMaxPacketSize(self: *const IWMPacketSize, dwMaxPacketSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMPacketSize.VTable, @ptrCast(self.vtable)).SetMaxPacketSize(@as(*const IWMPacketSize, @ptrCast(self)), dwMaxPacketSize);
+        return self.vtable.SetMaxPacketSize(self, dwMaxPacketSize);
     }
 };
 
@@ -3762,10 +3762,10 @@ pub const IWMPacketSize2 = extern union {
     };}
     pub usingnamespace IWMPacketSize.MethodMixin(@This());
     pub fn GetMinPacketSize(self: *const IWMPacketSize2, pdwMinPacketSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMPacketSize2.VTable, @ptrCast(self.vtable)).GetMinPacketSize(@as(*const IWMPacketSize2, @ptrCast(self)), pdwMinPacketSize);
+        return self.vtable.GetMinPacketSize(self, pdwMinPacketSize);
     }
     pub fn SetMinPacketSize(self: *const IWMPacketSize2, dwMinPacketSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMPacketSize2.VTable, @ptrCast(self.vtable)).SetMinPacketSize(@as(*const IWMPacketSize2, @ptrCast(self)), dwMinPacketSize);
+        return self.vtable.SetMinPacketSize(self, dwMinPacketSize);
     }
 };
 
@@ -3807,13 +3807,13 @@ pub const IWMStreamList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStreams(self: *const IWMStreamList, pwStreamNumArray: [*:0]u16, pcStreams: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamList.VTable, @ptrCast(self.vtable)).GetStreams(@as(*const IWMStreamList, @ptrCast(self)), pwStreamNumArray, pcStreams);
+        return self.vtable.GetStreams(self, pwStreamNumArray, pcStreams);
     }
     pub fn AddStream(self: *const IWMStreamList, wStreamNum: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamList.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IWMStreamList, @ptrCast(self)), wStreamNum);
+        return self.vtable.AddStream(self, wStreamNum);
     }
     pub fn RemoveStream(self: *const IWMStreamList, wStreamNum: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamList.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IWMStreamList, @ptrCast(self)), wStreamNum);
+        return self.vtable.RemoveStream(self, wStreamNum);
     }
 };
 
@@ -3846,10 +3846,10 @@ pub const IWMMutualExclusion = extern union {
     };}
     pub usingnamespace IWMStreamList.MethodMixin(@This());
     pub fn GetType(self: *const IWMMutualExclusion, pguidType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion.VTable, @ptrCast(self.vtable)).GetType(@as(*const IWMMutualExclusion, @ptrCast(self)), pguidType);
+        return self.vtable.GetType(self, pguidType);
     }
     pub fn SetType(self: *const IWMMutualExclusion, guidType: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion.VTable, @ptrCast(self.vtable)).SetType(@as(*const IWMMutualExclusion, @ptrCast(self)), guidType);
+        return self.vtable.SetType(self, guidType);
     }
 };
 
@@ -3953,34 +3953,34 @@ pub const IWMMutualExclusion2 = extern union {
     };}
     pub usingnamespace IWMMutualExclusion.MethodMixin(@This());
     pub fn GetName(self: *const IWMMutualExclusion2, pwszName: [*:0]u16, pcchName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).GetName(@as(*const IWMMutualExclusion2, @ptrCast(self)), pwszName, pcchName);
+        return self.vtable.GetName(self, pwszName, pcchName);
     }
     pub fn SetName(self: *const IWMMutualExclusion2, pwszName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).SetName(@as(*const IWMMutualExclusion2, @ptrCast(self)), pwszName);
+        return self.vtable.SetName(self, pwszName);
     }
     pub fn GetRecordCount(self: *const IWMMutualExclusion2, pwRecordCount: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).GetRecordCount(@as(*const IWMMutualExclusion2, @ptrCast(self)), pwRecordCount);
+        return self.vtable.GetRecordCount(self, pwRecordCount);
     }
     pub fn AddRecord(self: *const IWMMutualExclusion2) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).AddRecord(@as(*const IWMMutualExclusion2, @ptrCast(self)));
+        return self.vtable.AddRecord(self);
     }
     pub fn RemoveRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).RemoveRecord(@as(*const IWMMutualExclusion2, @ptrCast(self)), wRecordNumber);
+        return self.vtable.RemoveRecord(self, wRecordNumber);
     }
     pub fn GetRecordName(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwszRecordName: [*:0]u16, pcchRecordName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).GetRecordName(@as(*const IWMMutualExclusion2, @ptrCast(self)), wRecordNumber, pwszRecordName, pcchRecordName);
+        return self.vtable.GetRecordName(self, wRecordNumber, pwszRecordName, pcchRecordName);
     }
     pub fn SetRecordName(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwszRecordName: ?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).SetRecordName(@as(*const IWMMutualExclusion2, @ptrCast(self)), wRecordNumber, pwszRecordName);
+        return self.vtable.SetRecordName(self, wRecordNumber, pwszRecordName);
     }
     pub fn GetStreamsForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, pwStreamNumArray: [*:0]u16, pcStreams: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).GetStreamsForRecord(@as(*const IWMMutualExclusion2, @ptrCast(self)), wRecordNumber, pwStreamNumArray, pcStreams);
+        return self.vtable.GetStreamsForRecord(self, wRecordNumber, pwStreamNumArray, pcStreams);
     }
     pub fn AddStreamForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, wStreamNumber: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).AddStreamForRecord(@as(*const IWMMutualExclusion2, @ptrCast(self)), wRecordNumber, wStreamNumber);
+        return self.vtable.AddStreamForRecord(self, wRecordNumber, wStreamNumber);
     }
     pub fn RemoveStreamForRecord(self: *const IWMMutualExclusion2, wRecordNumber: u16, wStreamNumber: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMMutualExclusion2.VTable, @ptrCast(self.vtable)).RemoveStreamForRecord(@as(*const IWMMutualExclusion2, @ptrCast(self)), wRecordNumber, wStreamNumber);
+        return self.vtable.RemoveStreamForRecord(self, wRecordNumber, wStreamNumber);
     }
 };
 
@@ -4031,16 +4031,16 @@ pub const IWMBandwidthSharing = extern union {
     };}
     pub usingnamespace IWMStreamList.MethodMixin(@This());
     pub fn GetType(self: *const IWMBandwidthSharing, pguidType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWMBandwidthSharing.VTable, @ptrCast(self.vtable)).GetType(@as(*const IWMBandwidthSharing, @ptrCast(self)), pguidType);
+        return self.vtable.GetType(self, pguidType);
     }
     pub fn SetType(self: *const IWMBandwidthSharing, guidType: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWMBandwidthSharing.VTable, @ptrCast(self.vtable)).SetType(@as(*const IWMBandwidthSharing, @ptrCast(self)), guidType);
+        return self.vtable.SetType(self, guidType);
     }
     pub fn GetBandwidth(self: *const IWMBandwidthSharing, pdwBitrate: ?*u32, pmsBufferWindow: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMBandwidthSharing.VTable, @ptrCast(self.vtable)).GetBandwidth(@as(*const IWMBandwidthSharing, @ptrCast(self)), pdwBitrate, pmsBufferWindow);
+        return self.vtable.GetBandwidth(self, pdwBitrate, pmsBufferWindow);
     }
     pub fn SetBandwidth(self: *const IWMBandwidthSharing, dwBitrate: u32, msBufferWindow: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMBandwidthSharing.VTable, @ptrCast(self.vtable)).SetBandwidth(@as(*const IWMBandwidthSharing, @ptrCast(self)), dwBitrate, msBufferWindow);
+        return self.vtable.SetBandwidth(self, dwBitrate, msBufferWindow);
     }
 };
 
@@ -4075,10 +4075,10 @@ pub const IWMStreamPrioritization = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPriorityRecords(self: *const IWMStreamPrioritization, pRecordArray: [*]WM_STREAM_PRIORITY_RECORD, pcRecords: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamPrioritization.VTable, @ptrCast(self.vtable)).GetPriorityRecords(@as(*const IWMStreamPrioritization, @ptrCast(self)), pRecordArray, pcRecords);
+        return self.vtable.GetPriorityRecords(self, pRecordArray, pcRecords);
     }
     pub fn SetPriorityRecords(self: *const IWMStreamPrioritization, pRecordArray: ?*WM_STREAM_PRIORITY_RECORD, cRecords: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMStreamPrioritization.VTable, @ptrCast(self.vtable)).SetPriorityRecords(@as(*const IWMStreamPrioritization, @ptrCast(self)), pRecordArray, cRecords);
+        return self.vtable.SetPriorityRecords(self, pRecordArray, cRecords);
     }
 };
 
@@ -4190,37 +4190,37 @@ pub const IWMWriterAdvanced = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSinkCount(self: *const IWMWriterAdvanced, pcSinks: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).GetSinkCount(@as(*const IWMWriterAdvanced, @ptrCast(self)), pcSinks);
+        return self.vtable.GetSinkCount(self, pcSinks);
     }
     pub fn GetSink(self: *const IWMWriterAdvanced, dwSinkNum: u32, ppSink: ?*?*IWMWriterSink) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).GetSink(@as(*const IWMWriterAdvanced, @ptrCast(self)), dwSinkNum, ppSink);
+        return self.vtable.GetSink(self, dwSinkNum, ppSink);
     }
     pub fn AddSink(self: *const IWMWriterAdvanced, pSink: ?*IWMWriterSink) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).AddSink(@as(*const IWMWriterAdvanced, @ptrCast(self)), pSink);
+        return self.vtable.AddSink(self, pSink);
     }
     pub fn RemoveSink(self: *const IWMWriterAdvanced, pSink: ?*IWMWriterSink) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).RemoveSink(@as(*const IWMWriterAdvanced, @ptrCast(self)), pSink);
+        return self.vtable.RemoveSink(self, pSink);
     }
     pub fn WriteStreamSample(self: *const IWMWriterAdvanced, wStreamNum: u16, cnsSampleTime: u64, msSampleSendTime: u32, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).WriteStreamSample(@as(*const IWMWriterAdvanced, @ptrCast(self)), wStreamNum, cnsSampleTime, msSampleSendTime, cnsSampleDuration, dwFlags, pSample);
+        return self.vtable.WriteStreamSample(self, wStreamNum, cnsSampleTime, msSampleSendTime, cnsSampleDuration, dwFlags, pSample);
     }
     pub fn SetLiveSource(self: *const IWMWriterAdvanced, fIsLiveSource: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).SetLiveSource(@as(*const IWMWriterAdvanced, @ptrCast(self)), fIsLiveSource);
+        return self.vtable.SetLiveSource(self, fIsLiveSource);
     }
     pub fn IsRealTime(self: *const IWMWriterAdvanced, pfRealTime: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).IsRealTime(@as(*const IWMWriterAdvanced, @ptrCast(self)), pfRealTime);
+        return self.vtable.IsRealTime(self, pfRealTime);
     }
     pub fn GetWriterTime(self: *const IWMWriterAdvanced, pcnsCurrentTime: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).GetWriterTime(@as(*const IWMWriterAdvanced, @ptrCast(self)), pcnsCurrentTime);
+        return self.vtable.GetWriterTime(self, pcnsCurrentTime);
     }
     pub fn GetStatistics(self: *const IWMWriterAdvanced, wStreamNum: u16, pStats: ?*WM_WRITER_STATISTICS) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IWMWriterAdvanced, @ptrCast(self)), wStreamNum, pStats);
+        return self.vtable.GetStatistics(self, wStreamNum, pStats);
     }
     pub fn SetSyncTolerance(self: *const IWMWriterAdvanced, msWindow: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).SetSyncTolerance(@as(*const IWMWriterAdvanced, @ptrCast(self)), msWindow);
+        return self.vtable.SetSyncTolerance(self, msWindow);
     }
     pub fn GetSyncTolerance(self: *const IWMWriterAdvanced, pmsWindow: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced.VTable, @ptrCast(self.vtable)).GetSyncTolerance(@as(*const IWMWriterAdvanced, @ptrCast(self)), pmsWindow);
+        return self.vtable.GetSyncTolerance(self, pmsWindow);
     }
 };
 
@@ -4261,10 +4261,10 @@ pub const IWMWriterAdvanced2 = extern union {
     };}
     pub usingnamespace IWMWriterAdvanced.MethodMixin(@This());
     pub fn GetInputSetting(self: *const IWMWriterAdvanced2, dwInputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced2.VTable, @ptrCast(self.vtable)).GetInputSetting(@as(*const IWMWriterAdvanced2, @ptrCast(self)), dwInputNum, pszName, pType, pValue, pcbLength);
+        return self.vtable.GetInputSetting(self, dwInputNum, pszName, pType, pValue, pcbLength);
     }
     pub fn SetInputSetting(self: *const IWMWriterAdvanced2, dwInputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced2.VTable, @ptrCast(self.vtable)).SetInputSetting(@as(*const IWMWriterAdvanced2, @ptrCast(self)), dwInputNum, pszName, Type, pValue, cbLength);
+        return self.vtable.SetInputSetting(self, dwInputNum, pszName, Type, pValue, cbLength);
     }
 };
 
@@ -4297,10 +4297,10 @@ pub const IWMWriterAdvanced3 = extern union {
     };}
     pub usingnamespace IWMWriterAdvanced2.MethodMixin(@This());
     pub fn GetStatisticsEx(self: *const IWMWriterAdvanced3, wStreamNum: u16, pStats: ?*WM_WRITER_STATISTICS_EX) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced3.VTable, @ptrCast(self.vtable)).GetStatisticsEx(@as(*const IWMWriterAdvanced3, @ptrCast(self)), wStreamNum, pStats);
+        return self.vtable.GetStatisticsEx(self, wStreamNum, pStats);
     }
     pub fn SetNonBlocking(self: *const IWMWriterAdvanced3) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterAdvanced3.VTable, @ptrCast(self.vtable)).SetNonBlocking(@as(*const IWMWriterAdvanced3, @ptrCast(self)));
+        return self.vtable.SetNonBlocking(self);
     }
 };
 
@@ -4366,19 +4366,19 @@ pub const IWMWriterPreprocess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMaxPreprocessingPasses(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32, pdwMaxNumPasses: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPreprocess.VTable, @ptrCast(self.vtable)).GetMaxPreprocessingPasses(@as(*const IWMWriterPreprocess, @ptrCast(self)), dwInputNum, dwFlags, pdwMaxNumPasses);
+        return self.vtable.GetMaxPreprocessingPasses(self, dwInputNum, dwFlags, pdwMaxNumPasses);
     }
     pub fn SetNumPreprocessingPasses(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32, dwNumPasses: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPreprocess.VTable, @ptrCast(self.vtable)).SetNumPreprocessingPasses(@as(*const IWMWriterPreprocess, @ptrCast(self)), dwInputNum, dwFlags, dwNumPasses);
+        return self.vtable.SetNumPreprocessingPasses(self, dwInputNum, dwFlags, dwNumPasses);
     }
     pub fn BeginPreprocessingPass(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPreprocess.VTable, @ptrCast(self.vtable)).BeginPreprocessingPass(@as(*const IWMWriterPreprocess, @ptrCast(self)), dwInputNum, dwFlags);
+        return self.vtable.BeginPreprocessingPass(self, dwInputNum, dwFlags);
     }
     pub fn PreprocessSample(self: *const IWMWriterPreprocess, dwInputNum: u32, cnsSampleTime: u64, dwFlags: u32, pSample: ?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPreprocess.VTable, @ptrCast(self.vtable)).PreprocessSample(@as(*const IWMWriterPreprocess, @ptrCast(self)), dwInputNum, cnsSampleTime, dwFlags, pSample);
+        return self.vtable.PreprocessSample(self, dwInputNum, cnsSampleTime, dwFlags, pSample);
     }
     pub fn EndPreprocessingPass(self: *const IWMWriterPreprocess, dwInputNum: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPreprocess.VTable, @ptrCast(self.vtable)).EndPreprocessingPass(@as(*const IWMWriterPreprocess, @ptrCast(self)), dwInputNum, dwFlags);
+        return self.vtable.EndPreprocessingPass(self, dwInputNum, dwFlags);
     }
 };
 
@@ -4419,10 +4419,10 @@ pub const IWMWriterPostViewCallback = extern union {
     };}
     pub usingnamespace IWMStatusCallback.MethodMixin(@This());
     pub fn OnPostViewSample(self: *const IWMWriterPostViewCallback, wStreamNumber: u16, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostViewCallback.VTable, @ptrCast(self.vtable)).OnPostViewSample(@as(*const IWMWriterPostViewCallback, @ptrCast(self)), wStreamNumber, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
+        return self.vtable.OnPostViewSample(self, wStreamNumber, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
     }
     pub fn AllocateForPostView(self: *const IWMWriterPostViewCallback, wStreamNum: u16, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostViewCallback.VTable, @ptrCast(self.vtable)).AllocateForPostView(@as(*const IWMWriterPostViewCallback, @ptrCast(self)), wStreamNum, cbBuffer, ppBuffer, pvContext);
+        return self.vtable.AllocateForPostView(self, wStreamNum, cbBuffer, ppBuffer, pvContext);
     }
 };
 
@@ -4521,31 +4521,31 @@ pub const IWMWriterPostView = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPostViewCallback(self: *const IWMWriterPostView, pCallback: ?*IWMWriterPostViewCallback, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostView.VTable, @ptrCast(self.vtable)).SetPostViewCallback(@as(*const IWMWriterPostView, @ptrCast(self)), pCallback, pvContext);
+        return self.vtable.SetPostViewCallback(self, pCallback, pvContext);
     }
     pub fn SetReceivePostViewSamples(self: *const IWMWriterPostView, wStreamNum: u16, fReceivePostViewSamples: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostView.VTable, @ptrCast(self.vtable)).SetReceivePostViewSamples(@as(*const IWMWriterPostView, @ptrCast(self)), wStreamNum, fReceivePostViewSamples);
+        return self.vtable.SetReceivePostViewSamples(self, wStreamNum, fReceivePostViewSamples);
     }
     pub fn GetReceivePostViewSamples(self: *const IWMWriterPostView, wStreamNum: u16, pfReceivePostViewSamples: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostView.VTable, @ptrCast(self.vtable)).GetReceivePostViewSamples(@as(*const IWMWriterPostView, @ptrCast(self)), wStreamNum, pfReceivePostViewSamples);
+        return self.vtable.GetReceivePostViewSamples(self, wStreamNum, pfReceivePostViewSamples);
     }
     pub fn GetPostViewProps(self: *const IWMWriterPostView, wStreamNumber: u16, ppOutput: ?*?*IWMMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostView.VTable, @ptrCast(self.vtable)).GetPostViewProps(@as(*const IWMWriterPostView, @ptrCast(self)), wStreamNumber, ppOutput);
+        return self.vtable.GetPostViewProps(self, wStreamNumber, ppOutput);
     }
     pub fn SetPostViewProps(self: *const IWMWriterPostView, wStreamNumber: u16, pOutput: ?*IWMMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostView.VTable, @ptrCast(self.vtable)).SetPostViewProps(@as(*const IWMWriterPostView, @ptrCast(self)), wStreamNumber, pOutput);
+        return self.vtable.SetPostViewProps(self, wStreamNumber, pOutput);
     }
     pub fn GetPostViewFormatCount(self: *const IWMWriterPostView, wStreamNumber: u16, pcFormats: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostView.VTable, @ptrCast(self.vtable)).GetPostViewFormatCount(@as(*const IWMWriterPostView, @ptrCast(self)), wStreamNumber, pcFormats);
+        return self.vtable.GetPostViewFormatCount(self, wStreamNumber, pcFormats);
     }
     pub fn GetPostViewFormat(self: *const IWMWriterPostView, wStreamNumber: u16, dwFormatNumber: u32, ppProps: ?*?*IWMMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostView.VTable, @ptrCast(self.vtable)).GetPostViewFormat(@as(*const IWMWriterPostView, @ptrCast(self)), wStreamNumber, dwFormatNumber, ppProps);
+        return self.vtable.GetPostViewFormat(self, wStreamNumber, dwFormatNumber, ppProps);
     }
     pub fn SetAllocateForPostView(self: *const IWMWriterPostView, wStreamNumber: u16, fAllocate: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostView.VTable, @ptrCast(self.vtable)).SetAllocateForPostView(@as(*const IWMWriterPostView, @ptrCast(self)), wStreamNumber, fAllocate);
+        return self.vtable.SetAllocateForPostView(self, wStreamNumber, fAllocate);
     }
     pub fn GetAllocateForPostView(self: *const IWMWriterPostView, wStreamNumber: u16, pfAllocate: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPostView.VTable, @ptrCast(self.vtable)).GetAllocateForPostView(@as(*const IWMWriterPostView, @ptrCast(self)), wStreamNumber, pfAllocate);
+        return self.vtable.GetAllocateForPostView(self, wStreamNumber, pfAllocate);
     }
 };
 
@@ -4602,19 +4602,19 @@ pub const IWMWriterSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnHeader(self: *const IWMWriterSink, pHeader: ?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterSink.VTable, @ptrCast(self.vtable)).OnHeader(@as(*const IWMWriterSink, @ptrCast(self)), pHeader);
+        return self.vtable.OnHeader(self, pHeader);
     }
     pub fn IsRealTime(self: *const IWMWriterSink, pfRealTime: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterSink.VTable, @ptrCast(self.vtable)).IsRealTime(@as(*const IWMWriterSink, @ptrCast(self)), pfRealTime);
+        return self.vtable.IsRealTime(self, pfRealTime);
     }
     pub fn AllocateDataUnit(self: *const IWMWriterSink, cbDataUnit: u32, ppDataUnit: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterSink.VTable, @ptrCast(self.vtable)).AllocateDataUnit(@as(*const IWMWriterSink, @ptrCast(self)), cbDataUnit, ppDataUnit);
+        return self.vtable.AllocateDataUnit(self, cbDataUnit, ppDataUnit);
     }
     pub fn OnDataUnit(self: *const IWMWriterSink, pDataUnit: ?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterSink.VTable, @ptrCast(self.vtable)).OnDataUnit(@as(*const IWMWriterSink, @ptrCast(self)), pDataUnit);
+        return self.vtable.OnDataUnit(self, pDataUnit);
     }
     pub fn OnEndWriting(self: *const IWMWriterSink) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterSink.VTable, @ptrCast(self.vtable)).OnEndWriting(@as(*const IWMWriterSink, @ptrCast(self)));
+        return self.vtable.OnEndWriting(self);
     }
 };
 
@@ -4649,10 +4649,10 @@ pub const IWMRegisterCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Advise(self: *const IWMRegisterCallback, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisterCallback.VTable, @ptrCast(self.vtable)).Advise(@as(*const IWMRegisterCallback, @ptrCast(self)), pCallback, pvContext);
+        return self.vtable.Advise(self, pCallback, pvContext);
     }
     pub fn Unadvise(self: *const IWMRegisterCallback, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisterCallback.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IWMRegisterCallback, @ptrCast(self)), pCallback, pvContext);
+        return self.vtable.Unadvise(self, pCallback, pvContext);
     }
 };
 
@@ -4677,7 +4677,7 @@ pub const IWMWriterFileSink = extern union {
     };}
     pub usingnamespace IWMWriterSink.MethodMixin(@This());
     pub fn Open(self: *const IWMWriterFileSink, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink.VTable, @ptrCast(self.vtable)).Open(@as(*const IWMWriterFileSink, @ptrCast(self)), pwszFilename);
+        return self.vtable.Open(self, pwszFilename);
     }
 };
 
@@ -4749,25 +4749,25 @@ pub const IWMWriterFileSink2 = extern union {
     };}
     pub usingnamespace IWMWriterFileSink.MethodMixin(@This());
     pub fn Start(self: *const IWMWriterFileSink2, cnsStartTime: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink2.VTable, @ptrCast(self.vtable)).Start(@as(*const IWMWriterFileSink2, @ptrCast(self)), cnsStartTime);
+        return self.vtable.Start(self, cnsStartTime);
     }
     pub fn Stop(self: *const IWMWriterFileSink2, cnsStopTime: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink2.VTable, @ptrCast(self.vtable)).Stop(@as(*const IWMWriterFileSink2, @ptrCast(self)), cnsStopTime);
+        return self.vtable.Stop(self, cnsStopTime);
     }
     pub fn IsStopped(self: *const IWMWriterFileSink2, pfStopped: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink2.VTable, @ptrCast(self.vtable)).IsStopped(@as(*const IWMWriterFileSink2, @ptrCast(self)), pfStopped);
+        return self.vtable.IsStopped(self, pfStopped);
     }
     pub fn GetFileDuration(self: *const IWMWriterFileSink2, pcnsDuration: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink2.VTable, @ptrCast(self.vtable)).GetFileDuration(@as(*const IWMWriterFileSink2, @ptrCast(self)), pcnsDuration);
+        return self.vtable.GetFileDuration(self, pcnsDuration);
     }
     pub fn GetFileSize(self: *const IWMWriterFileSink2, pcbFile: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink2.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IWMWriterFileSink2, @ptrCast(self)), pcbFile);
+        return self.vtable.GetFileSize(self, pcbFile);
     }
     pub fn Close(self: *const IWMWriterFileSink2) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink2.VTable, @ptrCast(self.vtable)).Close(@as(*const IWMWriterFileSink2, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn IsClosed(self: *const IWMWriterFileSink2, pfClosed: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink2.VTable, @ptrCast(self.vtable)).IsClosed(@as(*const IWMWriterFileSink2, @ptrCast(self)), pfClosed);
+        return self.vtable.IsClosed(self, pfClosed);
     }
 };
 
@@ -4849,28 +4849,28 @@ pub const IWMWriterFileSink3 = extern union {
     };}
     pub usingnamespace IWMWriterFileSink2.MethodMixin(@This());
     pub fn SetAutoIndexing(self: *const IWMWriterFileSink3, fDoAutoIndexing: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink3.VTable, @ptrCast(self.vtable)).SetAutoIndexing(@as(*const IWMWriterFileSink3, @ptrCast(self)), fDoAutoIndexing);
+        return self.vtable.SetAutoIndexing(self, fDoAutoIndexing);
     }
     pub fn GetAutoIndexing(self: *const IWMWriterFileSink3, pfAutoIndexing: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink3.VTable, @ptrCast(self.vtable)).GetAutoIndexing(@as(*const IWMWriterFileSink3, @ptrCast(self)), pfAutoIndexing);
+        return self.vtable.GetAutoIndexing(self, pfAutoIndexing);
     }
     pub fn SetControlStream(self: *const IWMWriterFileSink3, wStreamNumber: u16, fShouldControlStartAndStop: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink3.VTable, @ptrCast(self.vtable)).SetControlStream(@as(*const IWMWriterFileSink3, @ptrCast(self)), wStreamNumber, fShouldControlStartAndStop);
+        return self.vtable.SetControlStream(self, wStreamNumber, fShouldControlStartAndStop);
     }
     pub fn GetMode(self: *const IWMWriterFileSink3, pdwFileSinkMode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink3.VTable, @ptrCast(self.vtable)).GetMode(@as(*const IWMWriterFileSink3, @ptrCast(self)), pdwFileSinkMode);
+        return self.vtable.GetMode(self, pdwFileSinkMode);
     }
     pub fn OnDataUnitEx(self: *const IWMWriterFileSink3, pFileSinkDataUnit: ?*WMT_FILESINK_DATA_UNIT) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink3.VTable, @ptrCast(self.vtable)).OnDataUnitEx(@as(*const IWMWriterFileSink3, @ptrCast(self)), pFileSinkDataUnit);
+        return self.vtable.OnDataUnitEx(self, pFileSinkDataUnit);
     }
     pub fn SetUnbufferedIO(self: *const IWMWriterFileSink3, fUnbufferedIO: BOOL, fRestrictMemUsage: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink3.VTable, @ptrCast(self.vtable)).SetUnbufferedIO(@as(*const IWMWriterFileSink3, @ptrCast(self)), fUnbufferedIO, fRestrictMemUsage);
+        return self.vtable.SetUnbufferedIO(self, fUnbufferedIO, fRestrictMemUsage);
     }
     pub fn GetUnbufferedIO(self: *const IWMWriterFileSink3, pfUnbufferedIO: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink3.VTable, @ptrCast(self.vtable)).GetUnbufferedIO(@as(*const IWMWriterFileSink3, @ptrCast(self)), pfUnbufferedIO);
+        return self.vtable.GetUnbufferedIO(self, pfUnbufferedIO);
     }
     pub fn CompleteOperations(self: *const IWMWriterFileSink3) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterFileSink3.VTable, @ptrCast(self.vtable)).CompleteOperations(@as(*const IWMWriterFileSink3, @ptrCast(self)));
+        return self.vtable.CompleteOperations(self);
     }
 };
 
@@ -4950,28 +4950,28 @@ pub const IWMWriterNetworkSink = extern union {
     };}
     pub usingnamespace IWMWriterSink.MethodMixin(@This());
     pub fn SetMaximumClients(self: *const IWMWriterNetworkSink, dwMaxClients: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterNetworkSink.VTable, @ptrCast(self.vtable)).SetMaximumClients(@as(*const IWMWriterNetworkSink, @ptrCast(self)), dwMaxClients);
+        return self.vtable.SetMaximumClients(self, dwMaxClients);
     }
     pub fn GetMaximumClients(self: *const IWMWriterNetworkSink, pdwMaxClients: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterNetworkSink.VTable, @ptrCast(self.vtable)).GetMaximumClients(@as(*const IWMWriterNetworkSink, @ptrCast(self)), pdwMaxClients);
+        return self.vtable.GetMaximumClients(self, pdwMaxClients);
     }
     pub fn SetNetworkProtocol(self: *const IWMWriterNetworkSink, protocol: WMT_NET_PROTOCOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterNetworkSink.VTable, @ptrCast(self.vtable)).SetNetworkProtocol(@as(*const IWMWriterNetworkSink, @ptrCast(self)), protocol);
+        return self.vtable.SetNetworkProtocol(self, protocol);
     }
     pub fn GetNetworkProtocol(self: *const IWMWriterNetworkSink, pProtocol: ?*WMT_NET_PROTOCOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterNetworkSink.VTable, @ptrCast(self.vtable)).GetNetworkProtocol(@as(*const IWMWriterNetworkSink, @ptrCast(self)), pProtocol);
+        return self.vtable.GetNetworkProtocol(self, pProtocol);
     }
     pub fn GetHostURL(self: *const IWMWriterNetworkSink, pwszURL: ?PWSTR, pcchURL: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterNetworkSink.VTable, @ptrCast(self.vtable)).GetHostURL(@as(*const IWMWriterNetworkSink, @ptrCast(self)), pwszURL, pcchURL);
+        return self.vtable.GetHostURL(self, pwszURL, pcchURL);
     }
     pub fn Open(self: *const IWMWriterNetworkSink, pdwPortNum: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterNetworkSink.VTable, @ptrCast(self.vtable)).Open(@as(*const IWMWriterNetworkSink, @ptrCast(self)), pdwPortNum);
+        return self.vtable.Open(self, pdwPortNum);
     }
     pub fn Disconnect(self: *const IWMWriterNetworkSink) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterNetworkSink.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IWMWriterNetworkSink, @ptrCast(self)));
+        return self.vtable.Disconnect(self);
     }
     pub fn Close(self: *const IWMWriterNetworkSink) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterNetworkSink.VTable, @ptrCast(self.vtable)).Close(@as(*const IWMWriterNetworkSink, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -5005,10 +5005,10 @@ pub const IWMClientConnections = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClientCount(self: *const IWMClientConnections, pcClients: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMClientConnections.VTable, @ptrCast(self.vtable)).GetClientCount(@as(*const IWMClientConnections, @ptrCast(self)), pcClients);
+        return self.vtable.GetClientCount(self, pcClients);
     }
     pub fn GetClientProperties(self: *const IWMClientConnections, dwClientNum: u32, pClientProperties: ?*WM_CLIENT_PROPERTIES) callconv(.Inline) HRESULT {
-        return @as(*const IWMClientConnections.VTable, @ptrCast(self.vtable)).GetClientProperties(@as(*const IWMClientConnections, @ptrCast(self)), dwClientNum, pClientProperties);
+        return self.vtable.GetClientProperties(self, dwClientNum, pClientProperties);
     }
 };
 
@@ -5039,7 +5039,7 @@ pub const IWMClientConnections2 = extern union {
     };}
     pub usingnamespace IWMClientConnections.MethodMixin(@This());
     pub fn GetClientInfo(self: *const IWMClientConnections2, dwClientNum: u32, pwszNetworkAddress: [*:0]u16, pcchNetworkAddress: ?*u32, pwszPort: [*:0]u16, pcchPort: ?*u32, pwszDNSName: [*:0]u16, pcchDNSName: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMClientConnections2.VTable, @ptrCast(self.vtable)).GetClientInfo(@as(*const IWMClientConnections2, @ptrCast(self)), dwClientNum, pwszNetworkAddress, pcchNetworkAddress, pwszPort, pcchPort, pwszDNSName, pcchDNSName);
+        return self.vtable.GetClientInfo(self, dwClientNum, pwszNetworkAddress, pcchNetworkAddress, pwszPort, pcchPort, pwszDNSName, pcchDNSName);
     }
 };
 
@@ -5227,64 +5227,64 @@ pub const IWMReaderAdvanced = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetUserProvidedClock(self: *const IWMReaderAdvanced, fUserClock: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).SetUserProvidedClock(@as(*const IWMReaderAdvanced, @ptrCast(self)), fUserClock);
+        return self.vtable.SetUserProvidedClock(self, fUserClock);
     }
     pub fn GetUserProvidedClock(self: *const IWMReaderAdvanced, pfUserClock: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetUserProvidedClock(@as(*const IWMReaderAdvanced, @ptrCast(self)), pfUserClock);
+        return self.vtable.GetUserProvidedClock(self, pfUserClock);
     }
     pub fn DeliverTime(self: *const IWMReaderAdvanced, cnsTime: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).DeliverTime(@as(*const IWMReaderAdvanced, @ptrCast(self)), cnsTime);
+        return self.vtable.DeliverTime(self, cnsTime);
     }
     pub fn SetManualStreamSelection(self: *const IWMReaderAdvanced, fSelection: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).SetManualStreamSelection(@as(*const IWMReaderAdvanced, @ptrCast(self)), fSelection);
+        return self.vtable.SetManualStreamSelection(self, fSelection);
     }
     pub fn GetManualStreamSelection(self: *const IWMReaderAdvanced, pfSelection: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetManualStreamSelection(@as(*const IWMReaderAdvanced, @ptrCast(self)), pfSelection);
+        return self.vtable.GetManualStreamSelection(self, pfSelection);
     }
     pub fn SetStreamsSelected(self: *const IWMReaderAdvanced, cStreamCount: u16, pwStreamNumbers: ?*u16, pSelections: ?*WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).SetStreamsSelected(@as(*const IWMReaderAdvanced, @ptrCast(self)), cStreamCount, pwStreamNumbers, pSelections);
+        return self.vtable.SetStreamsSelected(self, cStreamCount, pwStreamNumbers, pSelections);
     }
     pub fn GetStreamSelected(self: *const IWMReaderAdvanced, wStreamNum: u16, pSelection: ?*WMT_STREAM_SELECTION) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetStreamSelected(@as(*const IWMReaderAdvanced, @ptrCast(self)), wStreamNum, pSelection);
+        return self.vtable.GetStreamSelected(self, wStreamNum, pSelection);
     }
     pub fn SetReceiveSelectionCallbacks(self: *const IWMReaderAdvanced, fGetCallbacks: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).SetReceiveSelectionCallbacks(@as(*const IWMReaderAdvanced, @ptrCast(self)), fGetCallbacks);
+        return self.vtable.SetReceiveSelectionCallbacks(self, fGetCallbacks);
     }
     pub fn GetReceiveSelectionCallbacks(self: *const IWMReaderAdvanced, pfGetCallbacks: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetReceiveSelectionCallbacks(@as(*const IWMReaderAdvanced, @ptrCast(self)), pfGetCallbacks);
+        return self.vtable.GetReceiveSelectionCallbacks(self, pfGetCallbacks);
     }
     pub fn SetReceiveStreamSamples(self: *const IWMReaderAdvanced, wStreamNum: u16, fReceiveStreamSamples: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).SetReceiveStreamSamples(@as(*const IWMReaderAdvanced, @ptrCast(self)), wStreamNum, fReceiveStreamSamples);
+        return self.vtable.SetReceiveStreamSamples(self, wStreamNum, fReceiveStreamSamples);
     }
     pub fn GetReceiveStreamSamples(self: *const IWMReaderAdvanced, wStreamNum: u16, pfReceiveStreamSamples: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetReceiveStreamSamples(@as(*const IWMReaderAdvanced, @ptrCast(self)), wStreamNum, pfReceiveStreamSamples);
+        return self.vtable.GetReceiveStreamSamples(self, wStreamNum, pfReceiveStreamSamples);
     }
     pub fn SetAllocateForOutput(self: *const IWMReaderAdvanced, dwOutputNum: u32, fAllocate: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).SetAllocateForOutput(@as(*const IWMReaderAdvanced, @ptrCast(self)), dwOutputNum, fAllocate);
+        return self.vtable.SetAllocateForOutput(self, dwOutputNum, fAllocate);
     }
     pub fn GetAllocateForOutput(self: *const IWMReaderAdvanced, dwOutputNum: u32, pfAllocate: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetAllocateForOutput(@as(*const IWMReaderAdvanced, @ptrCast(self)), dwOutputNum, pfAllocate);
+        return self.vtable.GetAllocateForOutput(self, dwOutputNum, pfAllocate);
     }
     pub fn SetAllocateForStream(self: *const IWMReaderAdvanced, wStreamNum: u16, fAllocate: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).SetAllocateForStream(@as(*const IWMReaderAdvanced, @ptrCast(self)), wStreamNum, fAllocate);
+        return self.vtable.SetAllocateForStream(self, wStreamNum, fAllocate);
     }
     pub fn GetAllocateForStream(self: *const IWMReaderAdvanced, dwSreamNum: u16, pfAllocate: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetAllocateForStream(@as(*const IWMReaderAdvanced, @ptrCast(self)), dwSreamNum, pfAllocate);
+        return self.vtable.GetAllocateForStream(self, dwSreamNum, pfAllocate);
     }
     pub fn GetStatistics(self: *const IWMReaderAdvanced, pStatistics: ?*WM_READER_STATISTICS) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IWMReaderAdvanced, @ptrCast(self)), pStatistics);
+        return self.vtable.GetStatistics(self, pStatistics);
     }
     pub fn SetClientInfo(self: *const IWMReaderAdvanced, pClientInfo: ?*WM_READER_CLIENTINFO) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).SetClientInfo(@as(*const IWMReaderAdvanced, @ptrCast(self)), pClientInfo);
+        return self.vtable.SetClientInfo(self, pClientInfo);
     }
     pub fn GetMaxOutputSampleSize(self: *const IWMReaderAdvanced, dwOutput: u32, pcbMax: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetMaxOutputSampleSize(@as(*const IWMReaderAdvanced, @ptrCast(self)), dwOutput, pcbMax);
+        return self.vtable.GetMaxOutputSampleSize(self, dwOutput, pcbMax);
     }
     pub fn GetMaxStreamSampleSize(self: *const IWMReaderAdvanced, wStream: u16, pcbMax: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).GetMaxStreamSampleSize(@as(*const IWMReaderAdvanced, @ptrCast(self)), wStream, pcbMax);
+        return self.vtable.GetMaxStreamSampleSize(self, wStream, pcbMax);
     }
     pub fn NotifyLateDelivery(self: *const IWMReaderAdvanced, cnsLateness: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced.VTable, @ptrCast(self.vtable)).NotifyLateDelivery(@as(*const IWMReaderAdvanced, @ptrCast(self)), cnsLateness);
+        return self.vtable.NotifyLateDelivery(self, cnsLateness);
     }
 };
 
@@ -5439,49 +5439,49 @@ pub const IWMReaderAdvanced2 = extern union {
     };}
     pub usingnamespace IWMReaderAdvanced.MethodMixin(@This());
     pub fn SetPlayMode(self: *const IWMReaderAdvanced2, Mode: WMT_PLAY_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).SetPlayMode(@as(*const IWMReaderAdvanced2, @ptrCast(self)), Mode);
+        return self.vtable.SetPlayMode(self, Mode);
     }
     pub fn GetPlayMode(self: *const IWMReaderAdvanced2, pMode: ?*WMT_PLAY_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).GetPlayMode(@as(*const IWMReaderAdvanced2, @ptrCast(self)), pMode);
+        return self.vtable.GetPlayMode(self, pMode);
     }
     pub fn GetBufferProgress(self: *const IWMReaderAdvanced2, pdwPercent: ?*u32, pcnsBuffering: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).GetBufferProgress(@as(*const IWMReaderAdvanced2, @ptrCast(self)), pdwPercent, pcnsBuffering);
+        return self.vtable.GetBufferProgress(self, pdwPercent, pcnsBuffering);
     }
     pub fn GetDownloadProgress(self: *const IWMReaderAdvanced2, pdwPercent: ?*u32, pqwBytesDownloaded: ?*u64, pcnsDownload: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).GetDownloadProgress(@as(*const IWMReaderAdvanced2, @ptrCast(self)), pdwPercent, pqwBytesDownloaded, pcnsDownload);
+        return self.vtable.GetDownloadProgress(self, pdwPercent, pqwBytesDownloaded, pcnsDownload);
     }
     pub fn GetSaveAsProgress(self: *const IWMReaderAdvanced2, pdwPercent: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).GetSaveAsProgress(@as(*const IWMReaderAdvanced2, @ptrCast(self)), pdwPercent);
+        return self.vtable.GetSaveAsProgress(self, pdwPercent);
     }
     pub fn SaveFileAs(self: *const IWMReaderAdvanced2, pwszFilename: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).SaveFileAs(@as(*const IWMReaderAdvanced2, @ptrCast(self)), pwszFilename);
+        return self.vtable.SaveFileAs(self, pwszFilename);
     }
     pub fn GetProtocolName(self: *const IWMReaderAdvanced2, pwszProtocol: [*:0]u16, pcchProtocol: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).GetProtocolName(@as(*const IWMReaderAdvanced2, @ptrCast(self)), pwszProtocol, pcchProtocol);
+        return self.vtable.GetProtocolName(self, pwszProtocol, pcchProtocol);
     }
     pub fn StartAtMarker(self: *const IWMReaderAdvanced2, wMarkerIndex: u16, cnsDuration: u64, fRate: f32, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).StartAtMarker(@as(*const IWMReaderAdvanced2, @ptrCast(self)), wMarkerIndex, cnsDuration, fRate, pvContext);
+        return self.vtable.StartAtMarker(self, wMarkerIndex, cnsDuration, fRate, pvContext);
     }
     pub fn GetOutputSetting(self: *const IWMReaderAdvanced2, dwOutputNum: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).GetOutputSetting(@as(*const IWMReaderAdvanced2, @ptrCast(self)), dwOutputNum, pszName, pType, pValue, pcbLength);
+        return self.vtable.GetOutputSetting(self, dwOutputNum, pszName, pType, pValue, pcbLength);
     }
     pub fn SetOutputSetting(self: *const IWMReaderAdvanced2, dwOutputNum: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).SetOutputSetting(@as(*const IWMReaderAdvanced2, @ptrCast(self)), dwOutputNum, pszName, Type, pValue, cbLength);
+        return self.vtable.SetOutputSetting(self, dwOutputNum, pszName, Type, pValue, cbLength);
     }
     pub fn Preroll(self: *const IWMReaderAdvanced2, cnsStart: u64, cnsDuration: u64, fRate: f32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).Preroll(@as(*const IWMReaderAdvanced2, @ptrCast(self)), cnsStart, cnsDuration, fRate);
+        return self.vtable.Preroll(self, cnsStart, cnsDuration, fRate);
     }
     pub fn SetLogClientID(self: *const IWMReaderAdvanced2, fLogClientID: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).SetLogClientID(@as(*const IWMReaderAdvanced2, @ptrCast(self)), fLogClientID);
+        return self.vtable.SetLogClientID(self, fLogClientID);
     }
     pub fn GetLogClientID(self: *const IWMReaderAdvanced2, pfLogClientID: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).GetLogClientID(@as(*const IWMReaderAdvanced2, @ptrCast(self)), pfLogClientID);
+        return self.vtable.GetLogClientID(self, pfLogClientID);
     }
     pub fn StopBuffering(self: *const IWMReaderAdvanced2) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).StopBuffering(@as(*const IWMReaderAdvanced2, @ptrCast(self)));
+        return self.vtable.StopBuffering(self);
     }
     pub fn OpenStream(self: *const IWMReaderAdvanced2, pStream: ?*IStream, pCallback: ?*IWMReaderCallback, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced2.VTable, @ptrCast(self.vtable)).OpenStream(@as(*const IWMReaderAdvanced2, @ptrCast(self)), pStream, pCallback, pvContext);
+        return self.vtable.OpenStream(self, pStream, pCallback, pvContext);
     }
 };
 
@@ -5518,10 +5518,10 @@ pub const IWMReaderAdvanced3 = extern union {
     };}
     pub usingnamespace IWMReaderAdvanced2.MethodMixin(@This());
     pub fn StopNetStreaming(self: *const IWMReaderAdvanced3) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced3.VTable, @ptrCast(self.vtable)).StopNetStreaming(@as(*const IWMReaderAdvanced3, @ptrCast(self)));
+        return self.vtable.StopNetStreaming(self);
     }
     pub fn StartAtPosition(self: *const IWMReaderAdvanced3, wStreamNum: u16, pvOffsetStart: ?*anyopaque, pvDuration: ?*anyopaque, dwOffsetFormat: WMT_OFFSET_FORMAT, fRate: f32, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced3.VTable, @ptrCast(self.vtable)).StartAtPosition(@as(*const IWMReaderAdvanced3, @ptrCast(self)), wStreamNum, pvOffsetStart, pvDuration, dwOffsetFormat, fRate, pvContext);
+        return self.vtable.StartAtPosition(self, wStreamNum, pvOffsetStart, pvDuration, dwOffsetFormat, fRate, pvContext);
     }
 };
 
@@ -5615,31 +5615,31 @@ pub const IWMReaderAdvanced4 = extern union {
     };}
     pub usingnamespace IWMReaderAdvanced3.MethodMixin(@This());
     pub fn GetLanguageCount(self: *const IWMReaderAdvanced4, dwOutputNum: u32, pwLanguageCount: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced4.VTable, @ptrCast(self.vtable)).GetLanguageCount(@as(*const IWMReaderAdvanced4, @ptrCast(self)), dwOutputNum, pwLanguageCount);
+        return self.vtable.GetLanguageCount(self, dwOutputNum, pwLanguageCount);
     }
     pub fn GetLanguage(self: *const IWMReaderAdvanced4, dwOutputNum: u32, wLanguage: u16, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced4.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IWMReaderAdvanced4, @ptrCast(self)), dwOutputNum, wLanguage, pwszLanguageString, pcchLanguageStringLength);
+        return self.vtable.GetLanguage(self, dwOutputNum, wLanguage, pwszLanguageString, pcchLanguageStringLength);
     }
     pub fn GetMaxSpeedFactor(self: *const IWMReaderAdvanced4, pdblFactor: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced4.VTable, @ptrCast(self.vtable)).GetMaxSpeedFactor(@as(*const IWMReaderAdvanced4, @ptrCast(self)), pdblFactor);
+        return self.vtable.GetMaxSpeedFactor(self, pdblFactor);
     }
     pub fn IsUsingFastCache(self: *const IWMReaderAdvanced4, pfUsingFastCache: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced4.VTable, @ptrCast(self.vtable)).IsUsingFastCache(@as(*const IWMReaderAdvanced4, @ptrCast(self)), pfUsingFastCache);
+        return self.vtable.IsUsingFastCache(self, pfUsingFastCache);
     }
     pub fn AddLogParam(self: *const IWMReaderAdvanced4, wszNameSpace: ?[*:0]const u16, wszName: ?[*:0]const u16, wszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced4.VTable, @ptrCast(self.vtable)).AddLogParam(@as(*const IWMReaderAdvanced4, @ptrCast(self)), wszNameSpace, wszName, wszValue);
+        return self.vtable.AddLogParam(self, wszNameSpace, wszName, wszValue);
     }
     pub fn SendLogParams(self: *const IWMReaderAdvanced4) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced4.VTable, @ptrCast(self.vtable)).SendLogParams(@as(*const IWMReaderAdvanced4, @ptrCast(self)));
+        return self.vtable.SendLogParams(self);
     }
     pub fn CanSaveFileAs(self: *const IWMReaderAdvanced4, pfCanSave: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced4.VTable, @ptrCast(self.vtable)).CanSaveFileAs(@as(*const IWMReaderAdvanced4, @ptrCast(self)), pfCanSave);
+        return self.vtable.CanSaveFileAs(self, pfCanSave);
     }
     pub fn CancelSaveFileAs(self: *const IWMReaderAdvanced4) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced4.VTable, @ptrCast(self.vtable)).CancelSaveFileAs(@as(*const IWMReaderAdvanced4, @ptrCast(self)));
+        return self.vtable.CancelSaveFileAs(self);
     }
     pub fn GetURL(self: *const IWMReaderAdvanced4, pwszURL: [*:0]u16, pcchURL: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced4.VTable, @ptrCast(self.vtable)).GetURL(@as(*const IWMReaderAdvanced4, @ptrCast(self)), pwszURL, pcchURL);
+        return self.vtable.GetURL(self, pwszURL, pcchURL);
     }
 };
 
@@ -5665,7 +5665,7 @@ pub const IWMReaderAdvanced5 = extern union {
     };}
     pub usingnamespace IWMReaderAdvanced4.MethodMixin(@This());
     pub fn SetPlayerHook(self: *const IWMReaderAdvanced5, dwOutputNum: u32, pHook: ?*IWMPlayerHook) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced5.VTable, @ptrCast(self.vtable)).SetPlayerHook(@as(*const IWMReaderAdvanced5, @ptrCast(self)), dwOutputNum, pHook);
+        return self.vtable.SetPlayerHook(self, dwOutputNum, pHook);
     }
 };
 
@@ -5695,7 +5695,7 @@ pub const IWMReaderAdvanced6 = extern union {
     };}
     pub usingnamespace IWMReaderAdvanced5.MethodMixin(@This());
     pub fn SetProtectStreamSamples(self: *const IWMReaderAdvanced6, pbCertificate: [*:0]u8, cbCertificate: u32, dwCertificateType: u32, dwFlags: u32, pbInitializationVector: [*:0]u8, pcbInitializationVector: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAdvanced6.VTable, @ptrCast(self.vtable)).SetProtectStreamSamples(@as(*const IWMReaderAdvanced6, @ptrCast(self)), pbCertificate, cbCertificate, dwCertificateType, dwFlags, pbInitializationVector, pcbInitializationVector);
+        return self.vtable.SetProtectStreamSamples(self, pbCertificate, cbCertificate, dwCertificateType, dwFlags, pbInitializationVector, pcbInitializationVector);
     }
 };
 
@@ -5719,7 +5719,7 @@ pub const IWMPlayerHook = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn PreDecode(self: *const IWMPlayerHook) callconv(.Inline) HRESULT {
-        return @as(*const IWMPlayerHook.VTable, @ptrCast(self.vtable)).PreDecode(@as(*const IWMPlayerHook, @ptrCast(self)));
+        return self.vtable.PreDecode(self);
     }
 };
 
@@ -5764,10 +5764,10 @@ pub const IWMReaderAllocatorEx = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AllocateForStreamEx(self: *const IWMReaderAllocatorEx, wStreamNum: u16, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, dwFlags: u32, cnsSampleTime: u64, cnsSampleDuration: u64, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAllocatorEx.VTable, @ptrCast(self.vtable)).AllocateForStreamEx(@as(*const IWMReaderAllocatorEx, @ptrCast(self)), wStreamNum, cbBuffer, ppBuffer, dwFlags, cnsSampleTime, cnsSampleDuration, pvContext);
+        return self.vtable.AllocateForStreamEx(self, wStreamNum, cbBuffer, ppBuffer, dwFlags, cnsSampleTime, cnsSampleDuration, pvContext);
     }
     pub fn AllocateForOutputEx(self: *const IWMReaderAllocatorEx, dwOutputNum: u32, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, dwFlags: u32, cnsSampleTime: u64, cnsSampleDuration: u64, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAllocatorEx.VTable, @ptrCast(self.vtable)).AllocateForOutputEx(@as(*const IWMReaderAllocatorEx, @ptrCast(self)), dwOutputNum, cbBuffer, ppBuffer, dwFlags, cnsSampleTime, cnsSampleDuration, pvContext);
+        return self.vtable.AllocateForOutputEx(self, dwOutputNum, cbBuffer, ppBuffer, dwFlags, cnsSampleTime, cnsSampleDuration, pvContext);
     }
 };
 
@@ -5793,7 +5793,7 @@ pub const IWMReaderTypeNegotiation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn TryOutputProps(self: *const IWMReaderTypeNegotiation, dwOutputNum: u32, pOutput: ?*IWMOutputMediaProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderTypeNegotiation.VTable, @ptrCast(self.vtable)).TryOutputProps(@as(*const IWMReaderTypeNegotiation, @ptrCast(self)), dwOutputNum, pOutput);
+        return self.vtable.TryOutputProps(self, dwOutputNum, pOutput);
     }
 };
 
@@ -5875,22 +5875,22 @@ pub const IWMReaderCallbackAdvanced = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStreamSample(self: *const IWMReaderCallbackAdvanced, wStreamNum: u16, cnsSampleTime: u64, cnsSampleDuration: u64, dwFlags: u32, pSample: ?*INSSBuffer, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderCallbackAdvanced.VTable, @ptrCast(self.vtable)).OnStreamSample(@as(*const IWMReaderCallbackAdvanced, @ptrCast(self)), wStreamNum, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
+        return self.vtable.OnStreamSample(self, wStreamNum, cnsSampleTime, cnsSampleDuration, dwFlags, pSample, pvContext);
     }
     pub fn OnTime(self: *const IWMReaderCallbackAdvanced, cnsCurrentTime: u64, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderCallbackAdvanced.VTable, @ptrCast(self.vtable)).OnTime(@as(*const IWMReaderCallbackAdvanced, @ptrCast(self)), cnsCurrentTime, pvContext);
+        return self.vtable.OnTime(self, cnsCurrentTime, pvContext);
     }
     pub fn OnStreamSelection(self: *const IWMReaderCallbackAdvanced, wStreamCount: u16, pStreamNumbers: ?*u16, pSelections: ?*WMT_STREAM_SELECTION, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderCallbackAdvanced.VTable, @ptrCast(self.vtable)).OnStreamSelection(@as(*const IWMReaderCallbackAdvanced, @ptrCast(self)), wStreamCount, pStreamNumbers, pSelections, pvContext);
+        return self.vtable.OnStreamSelection(self, wStreamCount, pStreamNumbers, pSelections, pvContext);
     }
     pub fn OnOutputPropsChanged(self: *const IWMReaderCallbackAdvanced, dwOutputNum: u32, pMediaType: ?*WM_MEDIA_TYPE, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderCallbackAdvanced.VTable, @ptrCast(self.vtable)).OnOutputPropsChanged(@as(*const IWMReaderCallbackAdvanced, @ptrCast(self)), dwOutputNum, pMediaType, pvContext);
+        return self.vtable.OnOutputPropsChanged(self, dwOutputNum, pMediaType, pvContext);
     }
     pub fn AllocateForStream(self: *const IWMReaderCallbackAdvanced, wStreamNum: u16, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderCallbackAdvanced.VTable, @ptrCast(self.vtable)).AllocateForStream(@as(*const IWMReaderCallbackAdvanced, @ptrCast(self)), wStreamNum, cbBuffer, ppBuffer, pvContext);
+        return self.vtable.AllocateForStream(self, wStreamNum, cbBuffer, ppBuffer, pvContext);
     }
     pub fn AllocateForOutput(self: *const IWMReaderCallbackAdvanced, dwOutputNum: u32, cbBuffer: u32, ppBuffer: ?*?*INSSBuffer, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderCallbackAdvanced.VTable, @ptrCast(self.vtable)).AllocateForOutput(@as(*const IWMReaderCallbackAdvanced, @ptrCast(self)), dwOutputNum, cbBuffer, ppBuffer, pvContext);
+        return self.vtable.AllocateForOutput(self, dwOutputNum, cbBuffer, ppBuffer, pvContext);
     }
 };
 
@@ -5974,28 +5974,28 @@ pub const IWMDRMReader = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AcquireLicense(self: *const IWMDRMReader, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader.VTable, @ptrCast(self.vtable)).AcquireLicense(@as(*const IWMDRMReader, @ptrCast(self)), dwFlags);
+        return self.vtable.AcquireLicense(self, dwFlags);
     }
     pub fn CancelLicenseAcquisition(self: *const IWMDRMReader) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader.VTable, @ptrCast(self.vtable)).CancelLicenseAcquisition(@as(*const IWMDRMReader, @ptrCast(self)));
+        return self.vtable.CancelLicenseAcquisition(self);
     }
     pub fn Individualize(self: *const IWMDRMReader, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader.VTable, @ptrCast(self.vtable)).Individualize(@as(*const IWMDRMReader, @ptrCast(self)), dwFlags);
+        return self.vtable.Individualize(self, dwFlags);
     }
     pub fn CancelIndividualization(self: *const IWMDRMReader) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader.VTable, @ptrCast(self.vtable)).CancelIndividualization(@as(*const IWMDRMReader, @ptrCast(self)));
+        return self.vtable.CancelIndividualization(self);
     }
     pub fn MonitorLicenseAcquisition(self: *const IWMDRMReader) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader.VTable, @ptrCast(self.vtable)).MonitorLicenseAcquisition(@as(*const IWMDRMReader, @ptrCast(self)));
+        return self.vtable.MonitorLicenseAcquisition(self);
     }
     pub fn CancelMonitorLicenseAcquisition(self: *const IWMDRMReader) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader.VTable, @ptrCast(self.vtable)).CancelMonitorLicenseAcquisition(@as(*const IWMDRMReader, @ptrCast(self)));
+        return self.vtable.CancelMonitorLicenseAcquisition(self);
     }
     pub fn SetDRMProperty(self: *const IWMDRMReader, pwstrName: ?[*:0]const u16, dwType: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader.VTable, @ptrCast(self.vtable)).SetDRMProperty(@as(*const IWMDRMReader, @ptrCast(self)), pwstrName, dwType, pValue, cbLength);
+        return self.vtable.SetDRMProperty(self, pwstrName, dwType, pValue, cbLength);
     }
     pub fn GetDRMProperty(self: *const IWMDRMReader, pwstrName: ?[*:0]const u16, pdwType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader.VTable, @ptrCast(self.vtable)).GetDRMProperty(@as(*const IWMDRMReader, @ptrCast(self)), pwstrName, pdwType, pValue, pcbLength);
+        return self.vtable.GetDRMProperty(self, pwstrName, pdwType, pValue, pcbLength);
     }
 };
 
@@ -6083,16 +6083,16 @@ pub const IWMDRMReader2 = extern union {
     };}
     pub usingnamespace IWMDRMReader.MethodMixin(@This());
     pub fn SetEvaluateOutputLevelLicenses(self: *const IWMDRMReader2, fEvaluate: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader2.VTable, @ptrCast(self.vtable)).SetEvaluateOutputLevelLicenses(@as(*const IWMDRMReader2, @ptrCast(self)), fEvaluate);
+        return self.vtable.SetEvaluateOutputLevelLicenses(self, fEvaluate);
     }
     pub fn GetPlayOutputLevels(self: *const IWMDRMReader2, pPlayOPL: [*]DRM_PLAY_OPL, pcbLength: ?*u32, pdwMinAppComplianceLevel: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader2.VTable, @ptrCast(self.vtable)).GetPlayOutputLevels(@as(*const IWMDRMReader2, @ptrCast(self)), pPlayOPL, pcbLength, pdwMinAppComplianceLevel);
+        return self.vtable.GetPlayOutputLevels(self, pPlayOPL, pcbLength, pdwMinAppComplianceLevel);
     }
     pub fn GetCopyOutputLevels(self: *const IWMDRMReader2, pCopyOPL: [*]DRM_COPY_OPL, pcbLength: ?*u32, pdwMinAppComplianceLevel: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader2.VTable, @ptrCast(self.vtable)).GetCopyOutputLevels(@as(*const IWMDRMReader2, @ptrCast(self)), pCopyOPL, pcbLength, pdwMinAppComplianceLevel);
+        return self.vtable.GetCopyOutputLevels(self, pCopyOPL, pcbLength, pdwMinAppComplianceLevel);
     }
     pub fn TryNextLicense(self: *const IWMDRMReader2) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader2.VTable, @ptrCast(self.vtable)).TryNextLicense(@as(*const IWMDRMReader2, @ptrCast(self)));
+        return self.vtable.TryNextLicense(self);
     }
 };
 
@@ -6119,7 +6119,7 @@ pub const IWMDRMReader3 = extern union {
     };}
     pub usingnamespace IWMDRMReader2.MethodMixin(@This());
     pub fn GetInclusionList(self: *const IWMDRMReader3, ppGuids: ?*?*Guid, pcGuids: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMReader3.VTable, @ptrCast(self.vtable)).GetInclusionList(@as(*const IWMDRMReader3, @ptrCast(self)), ppGuids, pcGuids);
+        return self.vtable.GetInclusionList(self, ppGuids, pcGuids);
     }
 };
 
@@ -6171,16 +6171,16 @@ pub const IWMReaderPlaylistBurn = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitPlaylistBurn(self: *const IWMReaderPlaylistBurn, cFiles: u32, ppwszFilenames: ?*?PWSTR, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderPlaylistBurn.VTable, @ptrCast(self.vtable)).InitPlaylistBurn(@as(*const IWMReaderPlaylistBurn, @ptrCast(self)), cFiles, ppwszFilenames, pCallback, pvContext);
+        return self.vtable.InitPlaylistBurn(self, cFiles, ppwszFilenames, pCallback, pvContext);
     }
     pub fn GetInitResults(self: *const IWMReaderPlaylistBurn, cFiles: u32, phrStati: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderPlaylistBurn.VTable, @ptrCast(self.vtable)).GetInitResults(@as(*const IWMReaderPlaylistBurn, @ptrCast(self)), cFiles, phrStati);
+        return self.vtable.GetInitResults(self, cFiles, phrStati);
     }
     pub fn Cancel(self: *const IWMReaderPlaylistBurn) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderPlaylistBurn.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IWMReaderPlaylistBurn, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
     pub fn EndPlaylistBurn(self: *const IWMReaderPlaylistBurn, hrBurnResult: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderPlaylistBurn.VTable, @ptrCast(self.vtable)).EndPlaylistBurn(@as(*const IWMReaderPlaylistBurn, @ptrCast(self)), hrBurnResult);
+        return self.vtable.EndPlaylistBurn(self, hrBurnResult);
     }
 };
 
@@ -6477,103 +6477,103 @@ pub const IWMReaderNetworkConfig = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBufferingTime(self: *const IWMReaderNetworkConfig, pcnsBufferingTime: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetBufferingTime(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pcnsBufferingTime);
+        return self.vtable.GetBufferingTime(self, pcnsBufferingTime);
     }
     pub fn SetBufferingTime(self: *const IWMReaderNetworkConfig, cnsBufferingTime: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetBufferingTime(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), cnsBufferingTime);
+        return self.vtable.SetBufferingTime(self, cnsBufferingTime);
     }
     pub fn GetUDPPortRanges(self: *const IWMReaderNetworkConfig, pRangeArray: [*]WM_PORT_NUMBER_RANGE, pcRanges: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetUDPPortRanges(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pRangeArray, pcRanges);
+        return self.vtable.GetUDPPortRanges(self, pRangeArray, pcRanges);
     }
     pub fn SetUDPPortRanges(self: *const IWMReaderNetworkConfig, pRangeArray: [*]WM_PORT_NUMBER_RANGE, cRanges: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetUDPPortRanges(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pRangeArray, cRanges);
+        return self.vtable.SetUDPPortRanges(self, pRangeArray, cRanges);
     }
     pub fn GetProxySettings(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, pProxySetting: ?*WMT_PROXY_SETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetProxySettings(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, pProxySetting);
+        return self.vtable.GetProxySettings(self, pwszProtocol, pProxySetting);
     }
     pub fn SetProxySettings(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, ProxySetting: WMT_PROXY_SETTINGS) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetProxySettings(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, ProxySetting);
+        return self.vtable.SetProxySettings(self, pwszProtocol, ProxySetting);
     }
     pub fn GetProxyHostName(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, pwszHostName: [*:0]u16, pcchHostName: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetProxyHostName(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, pwszHostName, pcchHostName);
+        return self.vtable.GetProxyHostName(self, pwszProtocol, pwszHostName, pcchHostName);
     }
     pub fn SetProxyHostName(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, pwszHostName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetProxyHostName(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, pwszHostName);
+        return self.vtable.SetProxyHostName(self, pwszProtocol, pwszHostName);
     }
     pub fn GetProxyPort(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, pdwPort: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetProxyPort(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, pdwPort);
+        return self.vtable.GetProxyPort(self, pwszProtocol, pdwPort);
     }
     pub fn SetProxyPort(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, dwPort: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetProxyPort(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, dwPort);
+        return self.vtable.SetProxyPort(self, pwszProtocol, dwPort);
     }
     pub fn GetProxyExceptionList(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, pwszExceptionList: [*:0]u16, pcchExceptionList: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetProxyExceptionList(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, pwszExceptionList, pcchExceptionList);
+        return self.vtable.GetProxyExceptionList(self, pwszProtocol, pwszExceptionList, pcchExceptionList);
     }
     pub fn SetProxyExceptionList(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, pwszExceptionList: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetProxyExceptionList(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, pwszExceptionList);
+        return self.vtable.SetProxyExceptionList(self, pwszProtocol, pwszExceptionList);
     }
     pub fn GetProxyBypassForLocal(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, pfBypassForLocal: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetProxyBypassForLocal(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, pfBypassForLocal);
+        return self.vtable.GetProxyBypassForLocal(self, pwszProtocol, pfBypassForLocal);
     }
     pub fn SetProxyBypassForLocal(self: *const IWMReaderNetworkConfig, pwszProtocol: ?[*:0]const u16, fBypassForLocal: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetProxyBypassForLocal(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszProtocol, fBypassForLocal);
+        return self.vtable.SetProxyBypassForLocal(self, pwszProtocol, fBypassForLocal);
     }
     pub fn GetForceRerunAutoProxyDetection(self: *const IWMReaderNetworkConfig, pfForceRerunDetection: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetForceRerunAutoProxyDetection(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pfForceRerunDetection);
+        return self.vtable.GetForceRerunAutoProxyDetection(self, pfForceRerunDetection);
     }
     pub fn SetForceRerunAutoProxyDetection(self: *const IWMReaderNetworkConfig, fForceRerunDetection: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetForceRerunAutoProxyDetection(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), fForceRerunDetection);
+        return self.vtable.SetForceRerunAutoProxyDetection(self, fForceRerunDetection);
     }
     pub fn GetEnableMulticast(self: *const IWMReaderNetworkConfig, pfEnableMulticast: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetEnableMulticast(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pfEnableMulticast);
+        return self.vtable.GetEnableMulticast(self, pfEnableMulticast);
     }
     pub fn SetEnableMulticast(self: *const IWMReaderNetworkConfig, fEnableMulticast: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetEnableMulticast(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), fEnableMulticast);
+        return self.vtable.SetEnableMulticast(self, fEnableMulticast);
     }
     pub fn GetEnableHTTP(self: *const IWMReaderNetworkConfig, pfEnableHTTP: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetEnableHTTP(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pfEnableHTTP);
+        return self.vtable.GetEnableHTTP(self, pfEnableHTTP);
     }
     pub fn SetEnableHTTP(self: *const IWMReaderNetworkConfig, fEnableHTTP: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetEnableHTTP(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), fEnableHTTP);
+        return self.vtable.SetEnableHTTP(self, fEnableHTTP);
     }
     pub fn GetEnableUDP(self: *const IWMReaderNetworkConfig, pfEnableUDP: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetEnableUDP(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pfEnableUDP);
+        return self.vtable.GetEnableUDP(self, pfEnableUDP);
     }
     pub fn SetEnableUDP(self: *const IWMReaderNetworkConfig, fEnableUDP: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetEnableUDP(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), fEnableUDP);
+        return self.vtable.SetEnableUDP(self, fEnableUDP);
     }
     pub fn GetEnableTCP(self: *const IWMReaderNetworkConfig, pfEnableTCP: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetEnableTCP(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pfEnableTCP);
+        return self.vtable.GetEnableTCP(self, pfEnableTCP);
     }
     pub fn SetEnableTCP(self: *const IWMReaderNetworkConfig, fEnableTCP: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetEnableTCP(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), fEnableTCP);
+        return self.vtable.SetEnableTCP(self, fEnableTCP);
     }
     pub fn ResetProtocolRollover(self: *const IWMReaderNetworkConfig) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).ResetProtocolRollover(@as(*const IWMReaderNetworkConfig, @ptrCast(self)));
+        return self.vtable.ResetProtocolRollover(self);
     }
     pub fn GetConnectionBandwidth(self: *const IWMReaderNetworkConfig, pdwConnectionBandwidth: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetConnectionBandwidth(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pdwConnectionBandwidth);
+        return self.vtable.GetConnectionBandwidth(self, pdwConnectionBandwidth);
     }
     pub fn SetConnectionBandwidth(self: *const IWMReaderNetworkConfig, dwConnectionBandwidth: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).SetConnectionBandwidth(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), dwConnectionBandwidth);
+        return self.vtable.SetConnectionBandwidth(self, dwConnectionBandwidth);
     }
     pub fn GetNumProtocolsSupported(self: *const IWMReaderNetworkConfig, pcProtocols: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetNumProtocolsSupported(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pcProtocols);
+        return self.vtable.GetNumProtocolsSupported(self, pcProtocols);
     }
     pub fn GetSupportedProtocolName(self: *const IWMReaderNetworkConfig, dwProtocolNum: u32, pwszProtocolName: [*:0]u16, pcchProtocolName: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetSupportedProtocolName(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), dwProtocolNum, pwszProtocolName, pcchProtocolName);
+        return self.vtable.GetSupportedProtocolName(self, dwProtocolNum, pwszProtocolName, pcchProtocolName);
     }
     pub fn AddLoggingUrl(self: *const IWMReaderNetworkConfig, pwszUrl: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).AddLoggingUrl(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pwszUrl);
+        return self.vtable.AddLoggingUrl(self, pwszUrl);
     }
     pub fn GetLoggingUrl(self: *const IWMReaderNetworkConfig, dwIndex: u32, pwszUrl: [*:0]u16, pcchUrl: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetLoggingUrl(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), dwIndex, pwszUrl, pcchUrl);
+        return self.vtable.GetLoggingUrl(self, dwIndex, pwszUrl, pcchUrl);
     }
     pub fn GetLoggingUrlCount(self: *const IWMReaderNetworkConfig, pdwUrlCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).GetLoggingUrlCount(@as(*const IWMReaderNetworkConfig, @ptrCast(self)), pdwUrlCount);
+        return self.vtable.GetLoggingUrlCount(self, pdwUrlCount);
     }
     pub fn ResetLoggingUrlList(self: *const IWMReaderNetworkConfig) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig.VTable, @ptrCast(self.vtable)).ResetLoggingUrlList(@as(*const IWMReaderNetworkConfig, @ptrCast(self)));
+        return self.vtable.ResetLoggingUrlList(self);
     }
 };
 
@@ -6694,43 +6694,43 @@ pub const IWMReaderNetworkConfig2 = extern union {
     };}
     pub usingnamespace IWMReaderNetworkConfig.MethodMixin(@This());
     pub fn GetEnableContentCaching(self: *const IWMReaderNetworkConfig2, pfEnableContentCaching: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).GetEnableContentCaching(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), pfEnableContentCaching);
+        return self.vtable.GetEnableContentCaching(self, pfEnableContentCaching);
     }
     pub fn SetEnableContentCaching(self: *const IWMReaderNetworkConfig2, fEnableContentCaching: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).SetEnableContentCaching(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), fEnableContentCaching);
+        return self.vtable.SetEnableContentCaching(self, fEnableContentCaching);
     }
     pub fn GetEnableFastCache(self: *const IWMReaderNetworkConfig2, pfEnableFastCache: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).GetEnableFastCache(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), pfEnableFastCache);
+        return self.vtable.GetEnableFastCache(self, pfEnableFastCache);
     }
     pub fn SetEnableFastCache(self: *const IWMReaderNetworkConfig2, fEnableFastCache: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).SetEnableFastCache(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), fEnableFastCache);
+        return self.vtable.SetEnableFastCache(self, fEnableFastCache);
     }
     pub fn GetAcceleratedStreamingDuration(self: *const IWMReaderNetworkConfig2, pcnsAccelDuration: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).GetAcceleratedStreamingDuration(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), pcnsAccelDuration);
+        return self.vtable.GetAcceleratedStreamingDuration(self, pcnsAccelDuration);
     }
     pub fn SetAcceleratedStreamingDuration(self: *const IWMReaderNetworkConfig2, cnsAccelDuration: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).SetAcceleratedStreamingDuration(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), cnsAccelDuration);
+        return self.vtable.SetAcceleratedStreamingDuration(self, cnsAccelDuration);
     }
     pub fn GetAutoReconnectLimit(self: *const IWMReaderNetworkConfig2, pdwAutoReconnectLimit: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).GetAutoReconnectLimit(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), pdwAutoReconnectLimit);
+        return self.vtable.GetAutoReconnectLimit(self, pdwAutoReconnectLimit);
     }
     pub fn SetAutoReconnectLimit(self: *const IWMReaderNetworkConfig2, dwAutoReconnectLimit: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).SetAutoReconnectLimit(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), dwAutoReconnectLimit);
+        return self.vtable.SetAutoReconnectLimit(self, dwAutoReconnectLimit);
     }
     pub fn GetEnableResends(self: *const IWMReaderNetworkConfig2, pfEnableResends: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).GetEnableResends(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), pfEnableResends);
+        return self.vtable.GetEnableResends(self, pfEnableResends);
     }
     pub fn SetEnableResends(self: *const IWMReaderNetworkConfig2, fEnableResends: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).SetEnableResends(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), fEnableResends);
+        return self.vtable.SetEnableResends(self, fEnableResends);
     }
     pub fn GetEnableThinning(self: *const IWMReaderNetworkConfig2, pfEnableThinning: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).GetEnableThinning(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), pfEnableThinning);
+        return self.vtable.GetEnableThinning(self, pfEnableThinning);
     }
     pub fn SetEnableThinning(self: *const IWMReaderNetworkConfig2, fEnableThinning: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).SetEnableThinning(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), fEnableThinning);
+        return self.vtable.SetEnableThinning(self, fEnableThinning);
     }
     pub fn GetMaxNetPacketSize(self: *const IWMReaderNetworkConfig2, pdwMaxNetPacketSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderNetworkConfig2.VTable, @ptrCast(self.vtable)).GetMaxNetPacketSize(@as(*const IWMReaderNetworkConfig2, @ptrCast(self)), pdwMaxNetPacketSize);
+        return self.vtable.GetMaxNetPacketSize(self, pdwMaxNetPacketSize);
     }
 };
 
@@ -6773,13 +6773,13 @@ pub const IWMReaderStreamClock = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTime(self: *const IWMReaderStreamClock, pcnsNow: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderStreamClock.VTable, @ptrCast(self.vtable)).GetTime(@as(*const IWMReaderStreamClock, @ptrCast(self)), pcnsNow);
+        return self.vtable.GetTime(self, pcnsNow);
     }
     pub fn SetTimer(self: *const IWMReaderStreamClock, cnsWhen: u64, pvParam: ?*anyopaque, pdwTimerId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderStreamClock.VTable, @ptrCast(self.vtable)).SetTimer(@as(*const IWMReaderStreamClock, @ptrCast(self)), cnsWhen, pvParam, pdwTimerId);
+        return self.vtable.SetTimer(self, cnsWhen, pvParam, pdwTimerId);
     }
     pub fn KillTimer(self: *const IWMReaderStreamClock, dwTimerId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderStreamClock.VTable, @ptrCast(self.vtable)).KillTimer(@as(*const IWMReaderStreamClock, @ptrCast(self)), dwTimerId);
+        return self.vtable.KillTimer(self, dwTimerId);
     }
 };
 
@@ -6813,10 +6813,10 @@ pub const IWMIndexer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartIndexing(self: *const IWMIndexer, pwszURL: ?[*:0]const u16, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMIndexer.VTable, @ptrCast(self.vtable)).StartIndexing(@as(*const IWMIndexer, @ptrCast(self)), pwszURL, pCallback, pvContext);
+        return self.vtable.StartIndexing(self, pwszURL, pCallback, pvContext);
     }
     pub fn Cancel(self: *const IWMIndexer) callconv(.Inline) HRESULT {
-        return @as(*const IWMIndexer.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IWMIndexer, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
 };
 
@@ -6844,7 +6844,7 @@ pub const IWMIndexer2 = extern union {
     };}
     pub usingnamespace IWMIndexer.MethodMixin(@This());
     pub fn Configure(self: *const IWMIndexer2, wStreamNum: u16, nIndexerType: WMT_INDEXER_TYPE, pvInterval: ?*anyopaque, pvIndexType: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMIndexer2.VTable, @ptrCast(self.vtable)).Configure(@as(*const IWMIndexer2, @ptrCast(self)), wStreamNum, nIndexerType, pvInterval, pvIndexType);
+        return self.vtable.Configure(self, wStreamNum, nIndexerType, pvInterval, pvIndexType);
     }
 };
 
@@ -6878,10 +6878,10 @@ pub const IWMLicenseBackup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BackupLicenses(self: *const IWMLicenseBackup, dwFlags: u32, pCallback: ?*IWMStatusCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWMLicenseBackup.VTable, @ptrCast(self.vtable)).BackupLicenses(@as(*const IWMLicenseBackup, @ptrCast(self)), dwFlags, pCallback);
+        return self.vtable.BackupLicenses(self, dwFlags, pCallback);
     }
     pub fn CancelLicenseBackup(self: *const IWMLicenseBackup) callconv(.Inline) HRESULT {
-        return @as(*const IWMLicenseBackup.VTable, @ptrCast(self.vtable)).CancelLicenseBackup(@as(*const IWMLicenseBackup, @ptrCast(self)));
+        return self.vtable.CancelLicenseBackup(self);
     }
 };
 
@@ -6915,10 +6915,10 @@ pub const IWMLicenseRestore = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RestoreLicenses(self: *const IWMLicenseRestore, dwFlags: u32, pCallback: ?*IWMStatusCallback) callconv(.Inline) HRESULT {
-        return @as(*const IWMLicenseRestore.VTable, @ptrCast(self.vtable)).RestoreLicenses(@as(*const IWMLicenseRestore, @ptrCast(self)), dwFlags, pCallback);
+        return self.vtable.RestoreLicenses(self, dwFlags, pCallback);
     }
     pub fn CancelLicenseRestore(self: *const IWMLicenseRestore) callconv(.Inline) HRESULT {
-        return @as(*const IWMLicenseRestore.VTable, @ptrCast(self.vtable)).CancelLicenseRestore(@as(*const IWMLicenseRestore, @ptrCast(self)));
+        return self.vtable.CancelLicenseRestore(self);
     }
 };
 
@@ -6994,22 +6994,22 @@ pub const IWMBackupRestoreProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPropCount(self: *const IWMBackupRestoreProps, pcProps: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMBackupRestoreProps.VTable, @ptrCast(self.vtable)).GetPropCount(@as(*const IWMBackupRestoreProps, @ptrCast(self)), pcProps);
+        return self.vtable.GetPropCount(self, pcProps);
     }
     pub fn GetPropByIndex(self: *const IWMBackupRestoreProps, wIndex: u16, pwszName: [*:0]u16, pcchNameLen: ?*u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMBackupRestoreProps.VTable, @ptrCast(self.vtable)).GetPropByIndex(@as(*const IWMBackupRestoreProps, @ptrCast(self)), wIndex, pwszName, pcchNameLen, pType, pValue, pcbLength);
+        return self.vtable.GetPropByIndex(self, wIndex, pwszName, pcchNameLen, pType, pValue, pcbLength);
     }
     pub fn GetPropByName(self: *const IWMBackupRestoreProps, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pcbLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMBackupRestoreProps.VTable, @ptrCast(self.vtable)).GetPropByName(@as(*const IWMBackupRestoreProps, @ptrCast(self)), pszName, pType, pValue, pcbLength);
+        return self.vtable.GetPropByName(self, pszName, pType, pValue, pcbLength);
     }
     pub fn SetProp(self: *const IWMBackupRestoreProps, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, cbLength: u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMBackupRestoreProps.VTable, @ptrCast(self.vtable)).SetProp(@as(*const IWMBackupRestoreProps, @ptrCast(self)), pszName, Type, pValue, cbLength);
+        return self.vtable.SetProp(self, pszName, Type, pValue, cbLength);
     }
     pub fn RemoveProp(self: *const IWMBackupRestoreProps, pcwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMBackupRestoreProps.VTable, @ptrCast(self.vtable)).RemoveProp(@as(*const IWMBackupRestoreProps, @ptrCast(self)), pcwszName);
+        return self.vtable.RemoveProp(self, pcwszName);
     }
     pub fn RemoveAllProps(self: *const IWMBackupRestoreProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMBackupRestoreProps.VTable, @ptrCast(self.vtable)).RemoveAllProps(@as(*const IWMBackupRestoreProps, @ptrCast(self)));
+        return self.vtable.RemoveAllProps(self);
     }
 };
 
@@ -7056,13 +7056,13 @@ pub const IWMCodecInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCodecInfoCount(self: *const IWMCodecInfo, guidType: ?*const Guid, pcCodecs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecInfo.VTable, @ptrCast(self.vtable)).GetCodecInfoCount(@as(*const IWMCodecInfo, @ptrCast(self)), guidType, pcCodecs);
+        return self.vtable.GetCodecInfoCount(self, guidType, pcCodecs);
     }
     pub fn GetCodecFormatCount(self: *const IWMCodecInfo, guidType: ?*const Guid, dwCodecIndex: u32, pcFormat: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecInfo.VTable, @ptrCast(self.vtable)).GetCodecFormatCount(@as(*const IWMCodecInfo, @ptrCast(self)), guidType, dwCodecIndex, pcFormat);
+        return self.vtable.GetCodecFormatCount(self, guidType, dwCodecIndex, pcFormat);
     }
     pub fn GetCodecFormat(self: *const IWMCodecInfo, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: ?*?*IWMStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecInfo.VTable, @ptrCast(self.vtable)).GetCodecFormat(@as(*const IWMCodecInfo, @ptrCast(self)), guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig);
+        return self.vtable.GetCodecFormat(self, guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig);
     }
 };
 
@@ -7103,10 +7103,10 @@ pub const IWMCodecInfo2 = extern union {
     };}
     pub usingnamespace IWMCodecInfo.MethodMixin(@This());
     pub fn GetCodecName(self: *const IWMCodecInfo2, guidType: ?*const Guid, dwCodecIndex: u32, wszName: [*:0]u16, pcchName: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecInfo2.VTable, @ptrCast(self.vtable)).GetCodecName(@as(*const IWMCodecInfo2, @ptrCast(self)), guidType, dwCodecIndex, wszName, pcchName);
+        return self.vtable.GetCodecName(self, guidType, dwCodecIndex, wszName, pcchName);
     }
     pub fn GetCodecFormatDesc(self: *const IWMCodecInfo2, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, ppIStreamConfig: ?*?*IWMStreamConfig, wszDesc: [*:0]u16, pcchDesc: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecInfo2.VTable, @ptrCast(self.vtable)).GetCodecFormatDesc(@as(*const IWMCodecInfo2, @ptrCast(self)), guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig, wszDesc, pcchDesc);
+        return self.vtable.GetCodecFormatDesc(self, guidType, dwCodecIndex, dwFormatIndex, ppIStreamConfig, wszDesc, pcchDesc);
     }
 };
 
@@ -7176,16 +7176,16 @@ pub const IWMCodecInfo3 = extern union {
     };}
     pub usingnamespace IWMCodecInfo2.MethodMixin(@This());
     pub fn GetCodecFormatProp(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, dwFormatIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecInfo3.VTable, @ptrCast(self.vtable)).GetCodecFormatProp(@as(*const IWMCodecInfo3, @ptrCast(self)), guidType, dwCodecIndex, dwFormatIndex, pszName, pType, pValue, pdwSize);
+        return self.vtable.GetCodecFormatProp(self, guidType, dwCodecIndex, dwFormatIndex, pszName, pType, pValue, pdwSize);
     }
     pub fn GetCodecProp(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecInfo3.VTable, @ptrCast(self.vtable)).GetCodecProp(@as(*const IWMCodecInfo3, @ptrCast(self)), guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
+        return self.vtable.GetCodecProp(self, guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
     }
     pub fn SetCodecEnumerationSetting(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, Type: WMT_ATTR_DATATYPE, pValue: [*:0]const u8, dwSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecInfo3.VTable, @ptrCast(self.vtable)).SetCodecEnumerationSetting(@as(*const IWMCodecInfo3, @ptrCast(self)), guidType, dwCodecIndex, pszName, Type, pValue, dwSize);
+        return self.vtable.SetCodecEnumerationSetting(self, guidType, dwCodecIndex, pszName, Type, pValue, dwSize);
     }
     pub fn GetCodecEnumerationSetting(self: *const IWMCodecInfo3, guidType: ?*const Guid, dwCodecIndex: u32, pszName: ?[*:0]const u16, pType: ?*WMT_ATTR_DATATYPE, pValue: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecInfo3.VTable, @ptrCast(self.vtable)).GetCodecEnumerationSetting(@as(*const IWMCodecInfo3, @ptrCast(self)), guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
+        return self.vtable.GetCodecEnumerationSetting(self, guidType, dwCodecIndex, pszName, pType, pValue, pdwSize);
     }
 };
 
@@ -7229,13 +7229,13 @@ pub const IWMLanguageList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLanguageCount(self: *const IWMLanguageList, pwCount: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMLanguageList.VTable, @ptrCast(self.vtable)).GetLanguageCount(@as(*const IWMLanguageList, @ptrCast(self)), pwCount);
+        return self.vtable.GetLanguageCount(self, pwCount);
     }
     pub fn GetLanguageDetails(self: *const IWMLanguageList, wIndex: u16, pwszLanguageString: [*:0]u16, pcchLanguageStringLength: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMLanguageList.VTable, @ptrCast(self.vtable)).GetLanguageDetails(@as(*const IWMLanguageList, @ptrCast(self)), wIndex, pwszLanguageString, pcchLanguageStringLength);
+        return self.vtable.GetLanguageDetails(self, wIndex, pwszLanguageString, pcchLanguageStringLength);
     }
     pub fn AddLanguageByRFC1766String(self: *const IWMLanguageList, pwszLanguageString: ?PWSTR, pwIndex: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMLanguageList.VTable, @ptrCast(self.vtable)).AddLanguageByRFC1766String(@as(*const IWMLanguageList, @ptrCast(self)), pwszLanguageString, pwIndex);
+        return self.vtable.AddLanguageByRFC1766String(self, pwszLanguageString, pwIndex);
     }
 };
 
@@ -7276,13 +7276,13 @@ pub const IWMWriterPushSink = extern union {
     };}
     pub usingnamespace IWMWriterSink.MethodMixin(@This());
     pub fn Connect(self: *const IWMWriterPushSink, pwszURL: ?[*:0]const u16, pwszTemplateURL: ?[*:0]const u16, fAutoDestroy: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPushSink.VTable, @ptrCast(self.vtable)).Connect(@as(*const IWMWriterPushSink, @ptrCast(self)), pwszURL, pwszTemplateURL, fAutoDestroy);
+        return self.vtable.Connect(self, pwszURL, pwszTemplateURL, fAutoDestroy);
     }
     pub fn Disconnect(self: *const IWMWriterPushSink) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPushSink.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IWMWriterPushSink, @ptrCast(self)));
+        return self.vtable.Disconnect(self);
     }
     pub fn EndSession(self: *const IWMWriterPushSink) callconv(.Inline) HRESULT {
-        return @as(*const IWMWriterPushSink.VTable, @ptrCast(self.vtable)).EndSession(@as(*const IWMWriterPushSink, @ptrCast(self)));
+        return self.vtable.EndSession(self);
     }
 };
 
@@ -7361,22 +7361,22 @@ pub const IWMDeviceRegistration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterDevice(self: *const IWMDeviceRegistration, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: ?*?*IWMRegisteredDevice) callconv(.Inline) HRESULT {
-        return @as(*const IWMDeviceRegistration.VTable, @ptrCast(self.vtable)).RegisterDevice(@as(*const IWMDeviceRegistration, @ptrCast(self)), dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
+        return self.vtable.RegisterDevice(self, dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
     }
     pub fn UnregisterDevice(self: *const IWMDeviceRegistration, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16) callconv(.Inline) HRESULT {
-        return @as(*const IWMDeviceRegistration.VTable, @ptrCast(self.vtable)).UnregisterDevice(@as(*const IWMDeviceRegistration, @ptrCast(self)), dwRegisterType, pbCertificate, cbCertificate, SerialNumber);
+        return self.vtable.UnregisterDevice(self, dwRegisterType, pbCertificate, cbCertificate, SerialNumber);
     }
     pub fn GetRegistrationStats(self: *const IWMDeviceRegistration, dwRegisterType: u32, pcRegisteredDevices: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDeviceRegistration.VTable, @ptrCast(self.vtable)).GetRegistrationStats(@as(*const IWMDeviceRegistration, @ptrCast(self)), dwRegisterType, pcRegisteredDevices);
+        return self.vtable.GetRegistrationStats(self, dwRegisterType, pcRegisteredDevices);
     }
     pub fn GetFirstRegisteredDevice(self: *const IWMDeviceRegistration, dwRegisterType: u32, ppDevice: ?*?*IWMRegisteredDevice) callconv(.Inline) HRESULT {
-        return @as(*const IWMDeviceRegistration.VTable, @ptrCast(self.vtable)).GetFirstRegisteredDevice(@as(*const IWMDeviceRegistration, @ptrCast(self)), dwRegisterType, ppDevice);
+        return self.vtable.GetFirstRegisteredDevice(self, dwRegisterType, ppDevice);
     }
     pub fn GetNextRegisteredDevice(self: *const IWMDeviceRegistration, ppDevice: ?*?*IWMRegisteredDevice) callconv(.Inline) HRESULT {
-        return @as(*const IWMDeviceRegistration.VTable, @ptrCast(self.vtable)).GetNextRegisteredDevice(@as(*const IWMDeviceRegistration, @ptrCast(self)), ppDevice);
+        return self.vtable.GetNextRegisteredDevice(self, ppDevice);
     }
     pub fn GetRegisteredDeviceByID(self: *const IWMDeviceRegistration, dwRegisterType: u32, pbCertificate: [*:0]u8, cbCertificate: u32, SerialNumber: DRM_VAL16, ppDevice: ?*?*IWMRegisteredDevice) callconv(.Inline) HRESULT {
-        return @as(*const IWMDeviceRegistration.VTable, @ptrCast(self.vtable)).GetRegisteredDeviceByID(@as(*const IWMDeviceRegistration, @ptrCast(self)), dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
+        return self.vtable.GetRegisteredDeviceByID(self, dwRegisterType, pbCertificate, cbCertificate, SerialNumber, ppDevice);
     }
 };
 
@@ -7507,46 +7507,46 @@ pub const IWMRegisteredDevice = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDeviceSerialNumber(self: *const IWMRegisteredDevice, pSerialNumber: ?*DRM_VAL16) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).GetDeviceSerialNumber(@as(*const IWMRegisteredDevice, @ptrCast(self)), pSerialNumber);
+        return self.vtable.GetDeviceSerialNumber(self, pSerialNumber);
     }
     pub fn GetDeviceCertificate(self: *const IWMRegisteredDevice, ppCertificate: ?*?*INSSBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).GetDeviceCertificate(@as(*const IWMRegisteredDevice, @ptrCast(self)), ppCertificate);
+        return self.vtable.GetDeviceCertificate(self, ppCertificate);
     }
     pub fn GetDeviceType(self: *const IWMRegisteredDevice, pdwType: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).GetDeviceType(@as(*const IWMRegisteredDevice, @ptrCast(self)), pdwType);
+        return self.vtable.GetDeviceType(self, pdwType);
     }
     pub fn GetAttributeCount(self: *const IWMRegisteredDevice, pcAttributes: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).GetAttributeCount(@as(*const IWMRegisteredDevice, @ptrCast(self)), pcAttributes);
+        return self.vtable.GetAttributeCount(self, pcAttributes);
     }
     pub fn GetAttributeByIndex(self: *const IWMRegisteredDevice, dwIndex: u32, pbstrName: ?*?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).GetAttributeByIndex(@as(*const IWMRegisteredDevice, @ptrCast(self)), dwIndex, pbstrName, pbstrValue);
+        return self.vtable.GetAttributeByIndex(self, dwIndex, pbstrName, pbstrValue);
     }
     pub fn GetAttributeByName(self: *const IWMRegisteredDevice, bstrName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).GetAttributeByName(@as(*const IWMRegisteredDevice, @ptrCast(self)), bstrName, pbstrValue);
+        return self.vtable.GetAttributeByName(self, bstrName, pbstrValue);
     }
     pub fn SetAttributeByName(self: *const IWMRegisteredDevice, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).SetAttributeByName(@as(*const IWMRegisteredDevice, @ptrCast(self)), bstrName, bstrValue);
+        return self.vtable.SetAttributeByName(self, bstrName, bstrValue);
     }
     pub fn Approve(self: *const IWMRegisteredDevice, fApprove: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).Approve(@as(*const IWMRegisteredDevice, @ptrCast(self)), fApprove);
+        return self.vtable.Approve(self, fApprove);
     }
     pub fn IsValid(self: *const IWMRegisteredDevice, pfValid: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).IsValid(@as(*const IWMRegisteredDevice, @ptrCast(self)), pfValid);
+        return self.vtable.IsValid(self, pfValid);
     }
     pub fn IsApproved(self: *const IWMRegisteredDevice, pfApproved: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).IsApproved(@as(*const IWMRegisteredDevice, @ptrCast(self)), pfApproved);
+        return self.vtable.IsApproved(self, pfApproved);
     }
     pub fn IsWmdrmCompliant(self: *const IWMRegisteredDevice, pfCompliant: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).IsWmdrmCompliant(@as(*const IWMRegisteredDevice, @ptrCast(self)), pfCompliant);
+        return self.vtable.IsWmdrmCompliant(self, pfCompliant);
     }
     pub fn IsOpened(self: *const IWMRegisteredDevice, pfOpened: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).IsOpened(@as(*const IWMRegisteredDevice, @ptrCast(self)), pfOpened);
+        return self.vtable.IsOpened(self, pfOpened);
     }
     pub fn Open(self: *const IWMRegisteredDevice) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).Open(@as(*const IWMRegisteredDevice, @ptrCast(self)));
+        return self.vtable.Open(self);
     }
     pub fn Close(self: *const IWMRegisteredDevice) callconv(.Inline) HRESULT {
-        return @as(*const IWMRegisteredDevice.VTable, @ptrCast(self.vtable)).Close(@as(*const IWMRegisteredDevice, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -7579,7 +7579,7 @@ pub const IWMProximityDetection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartDetection(self: *const IWMProximityDetection, pbRegistrationMsg: [*:0]u8, cbRegistrationMsg: u32, pbLocalAddress: [*:0]u8, cbLocalAddress: u32, dwExtraPortsAllowed: u32, ppRegistrationResponseMsg: ?*?*INSSBuffer, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMProximityDetection.VTable, @ptrCast(self.vtable)).StartDetection(@as(*const IWMProximityDetection, @ptrCast(self)), pbRegistrationMsg, cbRegistrationMsg, pbLocalAddress, cbLocalAddress, dwExtraPortsAllowed, ppRegistrationResponseMsg, pCallback, pvContext);
+        return self.vtable.StartDetection(self, pbRegistrationMsg, cbRegistrationMsg, pbLocalAddress, cbLocalAddress, dwExtraPortsAllowed, ppRegistrationResponseMsg, pCallback, pvContext);
     }
 };
 
@@ -7620,10 +7620,10 @@ pub const IWMDRMMessageParser = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ParseRegistrationReqMsg(self: *const IWMDRMMessageParser, pbRegistrationReqMsg: [*:0]u8, cbRegistrationReqMsg: u32, ppDeviceCert: ?*?*INSSBuffer, pDeviceSerialNumber: ?*DRM_VAL16) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMMessageParser.VTable, @ptrCast(self.vtable)).ParseRegistrationReqMsg(@as(*const IWMDRMMessageParser, @ptrCast(self)), pbRegistrationReqMsg, cbRegistrationReqMsg, ppDeviceCert, pDeviceSerialNumber);
+        return self.vtable.ParseRegistrationReqMsg(self, pbRegistrationReqMsg, cbRegistrationReqMsg, ppDeviceCert, pDeviceSerialNumber);
     }
     pub fn ParseLicenseRequestMsg(self: *const IWMDRMMessageParser, pbLicenseRequestMsg: [*:0]u8, cbLicenseRequestMsg: u32, ppDeviceCert: ?*?*INSSBuffer, pDeviceSerialNumber: ?*DRM_VAL16, pbstrAction: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMMessageParser.VTable, @ptrCast(self.vtable)).ParseLicenseRequestMsg(@as(*const IWMDRMMessageParser, @ptrCast(self)), pbLicenseRequestMsg, cbLicenseRequestMsg, ppDeviceCert, pDeviceSerialNumber, pbstrAction);
+        return self.vtable.ParseLicenseRequestMsg(self, pbLicenseRequestMsg, cbLicenseRequestMsg, ppDeviceCert, pDeviceSerialNumber, pbstrAction);
     }
 };
 
@@ -7678,16 +7678,16 @@ pub const IWMDRMTranscryptor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IWMDRMTranscryptor, bstrFileName: ?BSTR, pbLicenseRequestMsg: ?*u8, cbLicenseRequestMsg: u32, ppLicenseResponseMsg: ?*?*INSSBuffer, pCallback: ?*IWMStatusCallback, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMTranscryptor.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWMDRMTranscryptor, @ptrCast(self)), bstrFileName, pbLicenseRequestMsg, cbLicenseRequestMsg, ppLicenseResponseMsg, pCallback, pvContext);
+        return self.vtable.Initialize(self, bstrFileName, pbLicenseRequestMsg, cbLicenseRequestMsg, ppLicenseResponseMsg, pCallback, pvContext);
     }
     pub fn Seek(self: *const IWMDRMTranscryptor, hnsTime: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMTranscryptor.VTable, @ptrCast(self.vtable)).Seek(@as(*const IWMDRMTranscryptor, @ptrCast(self)), hnsTime);
+        return self.vtable.Seek(self, hnsTime);
     }
     pub fn Read(self: *const IWMDRMTranscryptor, pbData: ?*u8, pcbData: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMTranscryptor.VTable, @ptrCast(self.vtable)).Read(@as(*const IWMDRMTranscryptor, @ptrCast(self)), pbData, pcbData);
+        return self.vtable.Read(self, pbData, pcbData);
     }
     pub fn Close(self: *const IWMDRMTranscryptor) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMTranscryptor.VTable, @ptrCast(self.vtable)).Close(@as(*const IWMDRMTranscryptor, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -7739,16 +7739,16 @@ pub const IWMDRMTranscryptor2 = extern union {
     };}
     pub usingnamespace IWMDRMTranscryptor.MethodMixin(@This());
     pub fn SeekEx(self: *const IWMDRMTranscryptor2, cnsStartTime: u64, cnsDuration: u64, flRate: f32, fIncludeFileHeader: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMTranscryptor2.VTable, @ptrCast(self.vtable)).SeekEx(@as(*const IWMDRMTranscryptor2, @ptrCast(self)), cnsStartTime, cnsDuration, flRate, fIncludeFileHeader);
+        return self.vtable.SeekEx(self, cnsStartTime, cnsDuration, flRate, fIncludeFileHeader);
     }
     pub fn ZeroAdjustTimestamps(self: *const IWMDRMTranscryptor2, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMTranscryptor2.VTable, @ptrCast(self.vtable)).ZeroAdjustTimestamps(@as(*const IWMDRMTranscryptor2, @ptrCast(self)), fEnable);
+        return self.vtable.ZeroAdjustTimestamps(self, fEnable);
     }
     pub fn GetSeekStartTime(self: *const IWMDRMTranscryptor2, pcnsTime: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMTranscryptor2.VTable, @ptrCast(self.vtable)).GetSeekStartTime(@as(*const IWMDRMTranscryptor2, @ptrCast(self)), pcnsTime);
+        return self.vtable.GetSeekStartTime(self, pcnsTime);
     }
     pub fn GetDuration(self: *const IWMDRMTranscryptor2, pcnsDuration: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMTranscryptor2.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IWMDRMTranscryptor2, @ptrCast(self)), pcnsDuration);
+        return self.vtable.GetDuration(self, pcnsDuration);
     }
 };
 
@@ -7773,7 +7773,7 @@ pub const IWMDRMTranscryptionManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateTranscryptor(self: *const IWMDRMTranscryptionManager, ppTranscryptor: ?*?*IWMDRMTranscryptor) callconv(.Inline) HRESULT {
-        return @as(*const IWMDRMTranscryptionManager.VTable, @ptrCast(self.vtable)).CreateTranscryptor(@as(*const IWMDRMTranscryptionManager, @ptrCast(self)), ppTranscryptor);
+        return self.vtable.CreateTranscryptor(self, ppTranscryptor);
     }
 };
 
@@ -7809,10 +7809,10 @@ pub const IWMWatermarkInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetWatermarkEntryCount(self: *const IWMWatermarkInfo, wmetType: WMT_WATERMARK_ENTRY_TYPE, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMWatermarkInfo.VTable, @ptrCast(self.vtable)).GetWatermarkEntryCount(@as(*const IWMWatermarkInfo, @ptrCast(self)), wmetType, pdwCount);
+        return self.vtable.GetWatermarkEntryCount(self, wmetType, pdwCount);
     }
     pub fn GetWatermarkEntry(self: *const IWMWatermarkInfo, wmetType: WMT_WATERMARK_ENTRY_TYPE, dwEntryNum: u32, pEntry: ?*WMT_WATERMARK_ENTRY) callconv(.Inline) HRESULT {
-        return @as(*const IWMWatermarkInfo.VTable, @ptrCast(self.vtable)).GetWatermarkEntry(@as(*const IWMWatermarkInfo, @ptrCast(self)), wmetType, dwEntryNum, pEntry);
+        return self.vtable.GetWatermarkEntry(self, wmetType, dwEntryNum, pEntry);
     }
 };
 
@@ -7848,10 +7848,10 @@ pub const IWMReaderAccelerator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCodecInterface(self: *const IWMReaderAccelerator, dwOutputNum: u32, riid: ?*const Guid, ppvCodecInterface: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAccelerator.VTable, @ptrCast(self.vtable)).GetCodecInterface(@as(*const IWMReaderAccelerator, @ptrCast(self)), dwOutputNum, riid, ppvCodecInterface);
+        return self.vtable.GetCodecInterface(self, dwOutputNum, riid, ppvCodecInterface);
     }
     pub fn Notify(self: *const IWMReaderAccelerator, dwOutputNum: u32, pSubtype: ?*WM_MEDIA_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderAccelerator.VTable, @ptrCast(self.vtable)).Notify(@as(*const IWMReaderAccelerator, @ptrCast(self)), dwOutputNum, pSubtype);
+        return self.vtable.Notify(self, dwOutputNum, pSubtype);
     }
 };
 
@@ -7888,10 +7888,10 @@ pub const IWMReaderTimecode = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTimecodeRangeCount(self: *const IWMReaderTimecode, wStreamNum: u16, pwRangeCount: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderTimecode.VTable, @ptrCast(self.vtable)).GetTimecodeRangeCount(@as(*const IWMReaderTimecode, @ptrCast(self)), wStreamNum, pwRangeCount);
+        return self.vtable.GetTimecodeRangeCount(self, wStreamNum, pwRangeCount);
     }
     pub fn GetTimecodeRangeBounds(self: *const IWMReaderTimecode, wStreamNum: u16, wRangeNum: u16, pStartTimecode: ?*u32, pEndTimecode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMReaderTimecode.VTable, @ptrCast(self.vtable)).GetTimecodeRangeBounds(@as(*const IWMReaderTimecode, @ptrCast(self)), wStreamNum, wRangeNum, pStartTimecode, pEndTimecode);
+        return self.vtable.GetTimecodeRangeBounds(self, wStreamNum, wRangeNum, pStartTimecode, pEndTimecode);
     }
 };
 
@@ -7945,16 +7945,16 @@ pub const IWMAddressAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAccessEntryCount(self: *const IWMAddressAccess, aeType: WM_AETYPE, pcEntries: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMAddressAccess.VTable, @ptrCast(self.vtable)).GetAccessEntryCount(@as(*const IWMAddressAccess, @ptrCast(self)), aeType, pcEntries);
+        return self.vtable.GetAccessEntryCount(self, aeType, pcEntries);
     }
     pub fn GetAccessEntry(self: *const IWMAddressAccess, aeType: WM_AETYPE, dwEntryNum: u32, pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY) callconv(.Inline) HRESULT {
-        return @as(*const IWMAddressAccess.VTable, @ptrCast(self.vtable)).GetAccessEntry(@as(*const IWMAddressAccess, @ptrCast(self)), aeType, dwEntryNum, pAddrAccessEntry);
+        return self.vtable.GetAccessEntry(self, aeType, dwEntryNum, pAddrAccessEntry);
     }
     pub fn AddAccessEntry(self: *const IWMAddressAccess, aeType: WM_AETYPE, pAddrAccessEntry: ?*WM_ADDRESS_ACCESSENTRY) callconv(.Inline) HRESULT {
-        return @as(*const IWMAddressAccess.VTable, @ptrCast(self.vtable)).AddAccessEntry(@as(*const IWMAddressAccess, @ptrCast(self)), aeType, pAddrAccessEntry);
+        return self.vtable.AddAccessEntry(self, aeType, pAddrAccessEntry);
     }
     pub fn RemoveAccessEntry(self: *const IWMAddressAccess, aeType: WM_AETYPE, dwEntryNum: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMAddressAccess.VTable, @ptrCast(self.vtable)).RemoveAccessEntry(@as(*const IWMAddressAccess, @ptrCast(self)), aeType, dwEntryNum);
+        return self.vtable.RemoveAccessEntry(self, aeType, dwEntryNum);
     }
 };
 
@@ -7992,10 +7992,10 @@ pub const IWMAddressAccess2 = extern union {
     };}
     pub usingnamespace IWMAddressAccess.MethodMixin(@This());
     pub fn GetAccessEntryEx(self: *const IWMAddressAccess2, aeType: WM_AETYPE, dwEntryNum: u32, pbstrAddress: ?*?BSTR, pbstrMask: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMAddressAccess2.VTable, @ptrCast(self.vtable)).GetAccessEntryEx(@as(*const IWMAddressAccess2, @ptrCast(self)), aeType, dwEntryNum, pbstrAddress, pbstrMask);
+        return self.vtable.GetAccessEntryEx(self, aeType, dwEntryNum, pbstrAddress, pbstrMask);
     }
     pub fn AddAccessEntryEx(self: *const IWMAddressAccess2, aeType: WM_AETYPE, bstrAddress: ?BSTR, bstrMask: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMAddressAccess2.VTable, @ptrCast(self.vtable)).AddAccessEntryEx(@as(*const IWMAddressAccess2, @ptrCast(self)), aeType, bstrAddress, bstrMask);
+        return self.vtable.AddAccessEntryEx(self, aeType, bstrAddress, bstrMask);
     }
 };
 
@@ -8035,10 +8035,10 @@ pub const IWMImageInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetImageCount(self: *const IWMImageInfo, pcImages: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMImageInfo.VTable, @ptrCast(self.vtable)).GetImageCount(@as(*const IWMImageInfo, @ptrCast(self)), pcImages);
+        return self.vtable.GetImageCount(self, pcImages);
     }
     pub fn GetImage(self: *const IWMImageInfo, wIndex: u32, pcchMIMEType: ?*u16, pwszMIMEType: [*:0]u16, pcchDescription: ?*u16, pwszDescription: [*:0]u16, pImageType: ?*u16, pcbImageData: ?*u32, pbImageData: [*:0]u8) callconv(.Inline) HRESULT {
-        return @as(*const IWMImageInfo.VTable, @ptrCast(self.vtable)).GetImage(@as(*const IWMImageInfo, @ptrCast(self)), wIndex, pcchMIMEType, pwszMIMEType, pcchDescription, pwszDescription, pImageType, pcbImageData, pbImageData);
+        return self.vtable.GetImage(self, wIndex, pcchMIMEType, pwszMIMEType, pcchDescription, pwszDescription, pImageType, pcbImageData, pbImageData);
     }
 };
 
@@ -8079,10 +8079,10 @@ pub const IWMLicenseRevocationAgent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLRBChallenge(self: *const IWMLicenseRevocationAgent, pMachineID: ?*u8, dwMachineIDLength: u32, pChallenge: ?*u8, dwChallengeLength: u32, pChallengeOutput: ?*u8, pdwChallengeOutputLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMLicenseRevocationAgent.VTable, @ptrCast(self.vtable)).GetLRBChallenge(@as(*const IWMLicenseRevocationAgent, @ptrCast(self)), pMachineID, dwMachineIDLength, pChallenge, dwChallengeLength, pChallengeOutput, pdwChallengeOutputLength);
+        return self.vtable.GetLRBChallenge(self, pMachineID, dwMachineIDLength, pChallenge, dwChallengeLength, pChallengeOutput, pdwChallengeOutputLength);
     }
     pub fn ProcessLRB(self: *const IWMLicenseRevocationAgent, pSignedLRB: ?*u8, dwSignedLRBLength: u32, pSignedACK: ?*u8, pdwSignedACKLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMLicenseRevocationAgent.VTable, @ptrCast(self.vtable)).ProcessLRB(@as(*const IWMLicenseRevocationAgent, @ptrCast(self)), pSignedLRB, dwSignedLRBLength, pSignedACK, pdwSignedACKLength);
+        return self.vtable.ProcessLRB(self, pSignedLRB, dwSignedLRBLength, pSignedACK, pdwSignedACKLength);
     }
 };
 
@@ -8128,13 +8128,13 @@ pub const IWMAuthorizer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCertCount(self: *const IWMAuthorizer, pcCerts: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMAuthorizer.VTable, @ptrCast(self.vtable)).GetCertCount(@as(*const IWMAuthorizer, @ptrCast(self)), pcCerts);
+        return self.vtable.GetCertCount(self, pcCerts);
     }
     pub fn GetCert(self: *const IWMAuthorizer, dwIndex: u32, ppbCertData: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IWMAuthorizer.VTable, @ptrCast(self.vtable)).GetCert(@as(*const IWMAuthorizer, @ptrCast(self)), dwIndex, ppbCertData);
+        return self.vtable.GetCert(self, dwIndex, ppbCertData);
     }
     pub fn GetSharedData(self: *const IWMAuthorizer, dwCertIndex: u32, pbSharedData: ?*const u8, pbCert: ?*u8, ppbSharedData: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IWMAuthorizer.VTable, @ptrCast(self.vtable)).GetSharedData(@as(*const IWMAuthorizer, @ptrCast(self)), dwCertIndex, pbSharedData, pbCert, ppbSharedData);
+        return self.vtable.GetSharedData(self, dwCertIndex, pbSharedData, pbCert, ppbSharedData);
     }
 };
 
@@ -8242,37 +8242,37 @@ pub const IWMSecureChannel = extern union {
     };}
     pub usingnamespace IWMAuthorizer.MethodMixin(@This());
     pub fn WMSC_AddCertificate(self: *const IWMSecureChannel, pCert: ?*IWMAuthorizer) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_AddCertificate(@as(*const IWMSecureChannel, @ptrCast(self)), pCert);
+        return self.vtable.WMSC_AddCertificate(self, pCert);
     }
     pub fn WMSC_AddSignature(self: *const IWMSecureChannel, pbCertSig: ?*u8, cbCertSig: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_AddSignature(@as(*const IWMSecureChannel, @ptrCast(self)), pbCertSig, cbCertSig);
+        return self.vtable.WMSC_AddSignature(self, pbCertSig, cbCertSig);
     }
     pub fn WMSC_Connect(self: *const IWMSecureChannel, pOtherSide: ?*IWMSecureChannel) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_Connect(@as(*const IWMSecureChannel, @ptrCast(self)), pOtherSide);
+        return self.vtable.WMSC_Connect(self, pOtherSide);
     }
     pub fn WMSC_IsConnected(self: *const IWMSecureChannel, pfIsConnected: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_IsConnected(@as(*const IWMSecureChannel, @ptrCast(self)), pfIsConnected);
+        return self.vtable.WMSC_IsConnected(self, pfIsConnected);
     }
     pub fn WMSC_Disconnect(self: *const IWMSecureChannel) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_Disconnect(@as(*const IWMSecureChannel, @ptrCast(self)));
+        return self.vtable.WMSC_Disconnect(self);
     }
     pub fn WMSC_GetValidCertificate(self: *const IWMSecureChannel, ppbCertificate: ?*?*u8, pdwSignature: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_GetValidCertificate(@as(*const IWMSecureChannel, @ptrCast(self)), ppbCertificate, pdwSignature);
+        return self.vtable.WMSC_GetValidCertificate(self, ppbCertificate, pdwSignature);
     }
     pub fn WMSC_Encrypt(self: *const IWMSecureChannel, pbData: ?*u8, cbData: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_Encrypt(@as(*const IWMSecureChannel, @ptrCast(self)), pbData, cbData);
+        return self.vtable.WMSC_Encrypt(self, pbData, cbData);
     }
     pub fn WMSC_Decrypt(self: *const IWMSecureChannel, pbData: ?*u8, cbData: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_Decrypt(@as(*const IWMSecureChannel, @ptrCast(self)), pbData, cbData);
+        return self.vtable.WMSC_Decrypt(self, pbData, cbData);
     }
     pub fn WMSC_Lock(self: *const IWMSecureChannel) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_Lock(@as(*const IWMSecureChannel, @ptrCast(self)));
+        return self.vtable.WMSC_Lock(self);
     }
     pub fn WMSC_Unlock(self: *const IWMSecureChannel) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_Unlock(@as(*const IWMSecureChannel, @ptrCast(self)));
+        return self.vtable.WMSC_Unlock(self);
     }
     pub fn WMSC_SetSharedData(self: *const IWMSecureChannel, dwCertIndex: u32, pbSharedData: ?*const u8) callconv(.Inline) HRESULT {
-        return @as(*const IWMSecureChannel.VTable, @ptrCast(self.vtable)).WMSC_SetSharedData(@as(*const IWMSecureChannel, @ptrCast(self)), dwCertIndex, pbSharedData);
+        return self.vtable.WMSC_SetSharedData(self, dwCertIndex, pbSharedData);
     }
 };
 
@@ -8298,7 +8298,7 @@ pub const IWMGetSecureChannel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPeerSecureChannelInterface(self: *const IWMGetSecureChannel, ppPeer: ?*?*IWMSecureChannel) callconv(.Inline) HRESULT {
-        return @as(*const IWMGetSecureChannel.VTable, @ptrCast(self.vtable)).GetPeerSecureChannelInterface(@as(*const IWMGetSecureChannel, @ptrCast(self)), ppPeer);
+        return self.vtable.GetPeerSecureChannelInterface(self, ppPeer);
     }
 };
 
@@ -8386,28 +8386,28 @@ pub const INSNetSourceCreator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const INSNetSourceCreator) callconv(.Inline) HRESULT {
-        return @as(*const INSNetSourceCreator.VTable, @ptrCast(self.vtable)).Initialize(@as(*const INSNetSourceCreator, @ptrCast(self)));
+        return self.vtable.Initialize(self);
     }
     pub fn CreateNetSource(self: *const INSNetSourceCreator, pszStreamName: ?[*:0]const u16, pMonitor: ?*IUnknown, pData: ?*u8, pUserContext: ?*IUnknown, pCallback: ?*IUnknown, qwContext: u64) callconv(.Inline) HRESULT {
-        return @as(*const INSNetSourceCreator.VTable, @ptrCast(self.vtable)).CreateNetSource(@as(*const INSNetSourceCreator, @ptrCast(self)), pszStreamName, pMonitor, pData, pUserContext, pCallback, qwContext);
+        return self.vtable.CreateNetSource(self, pszStreamName, pMonitor, pData, pUserContext, pCallback, qwContext);
     }
     pub fn GetNetSourceProperties(self: *const INSNetSourceCreator, pszStreamName: ?[*:0]const u16, ppPropertiesNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const INSNetSourceCreator.VTable, @ptrCast(self.vtable)).GetNetSourceProperties(@as(*const INSNetSourceCreator, @ptrCast(self)), pszStreamName, ppPropertiesNode);
+        return self.vtable.GetNetSourceProperties(self, pszStreamName, ppPropertiesNode);
     }
     pub fn GetNetSourceSharedNamespace(self: *const INSNetSourceCreator, ppSharedNamespace: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const INSNetSourceCreator.VTable, @ptrCast(self.vtable)).GetNetSourceSharedNamespace(@as(*const INSNetSourceCreator, @ptrCast(self)), ppSharedNamespace);
+        return self.vtable.GetNetSourceSharedNamespace(self, ppSharedNamespace);
     }
     pub fn GetNetSourceAdminInterface(self: *const INSNetSourceCreator, pszStreamName: ?[*:0]const u16, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const INSNetSourceCreator.VTable, @ptrCast(self.vtable)).GetNetSourceAdminInterface(@as(*const INSNetSourceCreator, @ptrCast(self)), pszStreamName, pVal);
+        return self.vtable.GetNetSourceAdminInterface(self, pszStreamName, pVal);
     }
     pub fn GetNumProtocolsSupported(self: *const INSNetSourceCreator, pcProtocols: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const INSNetSourceCreator.VTable, @ptrCast(self.vtable)).GetNumProtocolsSupported(@as(*const INSNetSourceCreator, @ptrCast(self)), pcProtocols);
+        return self.vtable.GetNumProtocolsSupported(self, pcProtocols);
     }
     pub fn GetProtocolName(self: *const INSNetSourceCreator, dwProtocolNum: u32, pwszProtocolName: ?PWSTR, pcchProtocolName: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const INSNetSourceCreator.VTable, @ptrCast(self.vtable)).GetProtocolName(@as(*const INSNetSourceCreator, @ptrCast(self)), dwProtocolNum, pwszProtocolName, pcchProtocolName);
+        return self.vtable.GetProtocolName(self, dwProtocolNum, pwszProtocolName, pcchProtocolName);
     }
     pub fn Shutdown(self: *const INSNetSourceCreator) callconv(.Inline) HRESULT {
-        return @as(*const INSNetSourceCreator.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const INSNetSourceCreator, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
@@ -8433,7 +8433,7 @@ pub const IWMPlayerTimestampHook = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn MapTimestamp(self: *const IWMPlayerTimestampHook, rtIn: i64, prtOut: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IWMPlayerTimestampHook.VTable, @ptrCast(self.vtable)).MapTimestamp(@as(*const IWMPlayerTimestampHook, @ptrCast(self)), rtIn, prtOut);
+        return self.vtable.MapTimestamp(self, rtIn, prtOut);
     }
 };
 
@@ -8564,37 +8564,37 @@ pub const IWMSInternalAdminNetSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IWMSInternalAdminNetSource, pSharedNamespace: ?*IUnknown, pNamespaceNode: ?*IUnknown, pNetSourceCreator: ?*INSNetSourceCreator, fEmbeddedInServer: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), pSharedNamespace, pNamespaceNode, pNetSourceCreator, fEmbeddedInServer);
+        return self.vtable.Initialize(self, pSharedNamespace, pNamespaceNode, pNetSourceCreator, fEmbeddedInServer);
     }
     pub fn GetNetSourceCreator(self: *const IWMSInternalAdminNetSource, ppNetSourceCreator: ?*?*INSNetSourceCreator) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).GetNetSourceCreator(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), ppNetSourceCreator);
+        return self.vtable.GetNetSourceCreator(self, ppNetSourceCreator);
     }
     pub fn SetCredentials(self: *const IWMSInternalAdminNetSource, bstrRealm: ?BSTR, bstrName: ?BSTR, bstrPassword: ?BSTR, fPersist: BOOL, fConfirmedGood: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), bstrRealm, bstrName, bstrPassword, fPersist, fConfirmedGood);
+        return self.vtable.SetCredentials(self, bstrRealm, bstrName, bstrPassword, fPersist, fConfirmedGood);
     }
     pub fn GetCredentials(self: *const IWMSInternalAdminNetSource, bstrRealm: ?BSTR, pbstrName: ?*?BSTR, pbstrPassword: ?*?BSTR, pfConfirmedGood: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).GetCredentials(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), bstrRealm, pbstrName, pbstrPassword, pfConfirmedGood);
+        return self.vtable.GetCredentials(self, bstrRealm, pbstrName, pbstrPassword, pfConfirmedGood);
     }
     pub fn DeleteCredentials(self: *const IWMSInternalAdminNetSource, bstrRealm: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).DeleteCredentials(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), bstrRealm);
+        return self.vtable.DeleteCredentials(self, bstrRealm);
     }
     pub fn GetCredentialFlags(self: *const IWMSInternalAdminNetSource, lpdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).GetCredentialFlags(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), lpdwFlags);
+        return self.vtable.GetCredentialFlags(self, lpdwFlags);
     }
     pub fn SetCredentialFlags(self: *const IWMSInternalAdminNetSource, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).SetCredentialFlags(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), dwFlags);
+        return self.vtable.SetCredentialFlags(self, dwFlags);
     }
     pub fn FindProxyForURL(self: *const IWMSInternalAdminNetSource, bstrProtocol: ?BSTR, bstrHost: ?BSTR, pfProxyEnabled: ?*BOOL, pbstrProxyServer: ?*?BSTR, pdwProxyPort: ?*u32, pdwProxyContext: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).FindProxyForURL(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), bstrProtocol, bstrHost, pfProxyEnabled, pbstrProxyServer, pdwProxyPort, pdwProxyContext);
+        return self.vtable.FindProxyForURL(self, bstrProtocol, bstrHost, pfProxyEnabled, pbstrProxyServer, pdwProxyPort, pdwProxyContext);
     }
     pub fn RegisterProxyFailure(self: *const IWMSInternalAdminNetSource, hrParam: HRESULT, dwProxyContext: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).RegisterProxyFailure(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), hrParam, dwProxyContext);
+        return self.vtable.RegisterProxyFailure(self, hrParam, dwProxyContext);
     }
     pub fn ShutdownProxyContext(self: *const IWMSInternalAdminNetSource, dwProxyContext: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).ShutdownProxyContext(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), dwProxyContext);
+        return self.vtable.ShutdownProxyContext(self, dwProxyContext);
     }
     pub fn IsUsingIE(self: *const IWMSInternalAdminNetSource, dwProxyContext: u32, pfIsUsingIE: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource.VTable, @ptrCast(self.vtable)).IsUsingIE(@as(*const IWMSInternalAdminNetSource, @ptrCast(self)), dwProxyContext, pfIsUsingIE);
+        return self.vtable.IsUsingIE(self, dwProxyContext, pfIsUsingIE);
     }
 };
 
@@ -8663,16 +8663,16 @@ pub const IWMSInternalAdminNetSource2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetCredentialsEx(self: *const IWMSInternalAdminNetSource2, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL, bstrName: ?BSTR, bstrPassword: ?BSTR, fPersist: BOOL, fConfirmedGood: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource2.VTable, @ptrCast(self.vtable)).SetCredentialsEx(@as(*const IWMSInternalAdminNetSource2, @ptrCast(self)), bstrRealm, bstrUrl, fProxy, bstrName, bstrPassword, fPersist, fConfirmedGood);
+        return self.vtable.SetCredentialsEx(self, bstrRealm, bstrUrl, fProxy, bstrName, bstrPassword, fPersist, fConfirmedGood);
     }
     pub fn GetCredentialsEx(self: *const IWMSInternalAdminNetSource2, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL, pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS, pbstrName: ?*?BSTR, pbstrPassword: ?*?BSTR, pfConfirmedGood: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource2.VTable, @ptrCast(self.vtable)).GetCredentialsEx(@as(*const IWMSInternalAdminNetSource2, @ptrCast(self)), bstrRealm, bstrUrl, fProxy, pdwUrlPolicy, pbstrName, pbstrPassword, pfConfirmedGood);
+        return self.vtable.GetCredentialsEx(self, bstrRealm, bstrUrl, fProxy, pdwUrlPolicy, pbstrName, pbstrPassword, pfConfirmedGood);
     }
     pub fn DeleteCredentialsEx(self: *const IWMSInternalAdminNetSource2, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource2.VTable, @ptrCast(self.vtable)).DeleteCredentialsEx(@as(*const IWMSInternalAdminNetSource2, @ptrCast(self)), bstrRealm, bstrUrl, fProxy);
+        return self.vtable.DeleteCredentialsEx(self, bstrRealm, bstrUrl, fProxy);
     }
     pub fn FindProxyForURLEx(self: *const IWMSInternalAdminNetSource2, bstrProtocol: ?BSTR, bstrHost: ?BSTR, bstrUrl: ?BSTR, pfProxyEnabled: ?*BOOL, pbstrProxyServer: ?*?BSTR, pdwProxyPort: ?*u32, pdwProxyContext: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource2.VTable, @ptrCast(self.vtable)).FindProxyForURLEx(@as(*const IWMSInternalAdminNetSource2, @ptrCast(self)), bstrProtocol, bstrHost, bstrUrl, pfProxyEnabled, pbstrProxyServer, pdwProxyPort, pdwProxyContext);
+        return self.vtable.FindProxyForURLEx(self, bstrProtocol, bstrHost, bstrUrl, pfProxyEnabled, pbstrProxyServer, pdwProxyPort, pdwProxyContext);
     }
 };
 
@@ -8767,25 +8767,25 @@ pub const IWMSInternalAdminNetSource3 = extern union {
     };}
     pub usingnamespace IWMSInternalAdminNetSource2.MethodMixin(@This());
     pub fn GetNetSourceCreator2(self: *const IWMSInternalAdminNetSource3, ppNetSourceCreator: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource3.VTable, @ptrCast(self.vtable)).GetNetSourceCreator2(@as(*const IWMSInternalAdminNetSource3, @ptrCast(self)), ppNetSourceCreator);
+        return self.vtable.GetNetSourceCreator2(self, ppNetSourceCreator);
     }
     pub fn FindProxyForURLEx2(self: *const IWMSInternalAdminNetSource3, bstrProtocol: ?BSTR, bstrHost: ?BSTR, bstrUrl: ?BSTR, pfProxyEnabled: ?*BOOL, pbstrProxyServer: ?*?BSTR, pdwProxyPort: ?*u32, pqwProxyContext: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource3.VTable, @ptrCast(self.vtable)).FindProxyForURLEx2(@as(*const IWMSInternalAdminNetSource3, @ptrCast(self)), bstrProtocol, bstrHost, bstrUrl, pfProxyEnabled, pbstrProxyServer, pdwProxyPort, pqwProxyContext);
+        return self.vtable.FindProxyForURLEx2(self, bstrProtocol, bstrHost, bstrUrl, pfProxyEnabled, pbstrProxyServer, pdwProxyPort, pqwProxyContext);
     }
     pub fn RegisterProxyFailure2(self: *const IWMSInternalAdminNetSource3, hrParam: HRESULT, qwProxyContext: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource3.VTable, @ptrCast(self.vtable)).RegisterProxyFailure2(@as(*const IWMSInternalAdminNetSource3, @ptrCast(self)), hrParam, qwProxyContext);
+        return self.vtable.RegisterProxyFailure2(self, hrParam, qwProxyContext);
     }
     pub fn ShutdownProxyContext2(self: *const IWMSInternalAdminNetSource3, qwProxyContext: u64) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource3.VTable, @ptrCast(self.vtable)).ShutdownProxyContext2(@as(*const IWMSInternalAdminNetSource3, @ptrCast(self)), qwProxyContext);
+        return self.vtable.ShutdownProxyContext2(self, qwProxyContext);
     }
     pub fn IsUsingIE2(self: *const IWMSInternalAdminNetSource3, qwProxyContext: u64, pfIsUsingIE: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource3.VTable, @ptrCast(self.vtable)).IsUsingIE2(@as(*const IWMSInternalAdminNetSource3, @ptrCast(self)), qwProxyContext, pfIsUsingIE);
+        return self.vtable.IsUsingIE2(self, qwProxyContext, pfIsUsingIE);
     }
     pub fn SetCredentialsEx2(self: *const IWMSInternalAdminNetSource3, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL, bstrName: ?BSTR, bstrPassword: ?BSTR, fPersist: BOOL, fConfirmedGood: BOOL, fClearTextAuthentication: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource3.VTable, @ptrCast(self.vtable)).SetCredentialsEx2(@as(*const IWMSInternalAdminNetSource3, @ptrCast(self)), bstrRealm, bstrUrl, fProxy, bstrName, bstrPassword, fPersist, fConfirmedGood, fClearTextAuthentication);
+        return self.vtable.SetCredentialsEx2(self, bstrRealm, bstrUrl, fProxy, bstrName, bstrPassword, fPersist, fConfirmedGood, fClearTextAuthentication);
     }
     pub fn GetCredentialsEx2(self: *const IWMSInternalAdminNetSource3, bstrRealm: ?BSTR, bstrUrl: ?BSTR, fProxy: BOOL, fClearTextAuthentication: BOOL, pdwUrlPolicy: ?*NETSOURCE_URLCREDPOLICY_SETTINGS, pbstrName: ?*?BSTR, pbstrPassword: ?*?BSTR, pfConfirmedGood: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSInternalAdminNetSource3.VTable, @ptrCast(self.vtable)).GetCredentialsEx2(@as(*const IWMSInternalAdminNetSource3, @ptrCast(self)), bstrRealm, bstrUrl, fProxy, fClearTextAuthentication, pdwUrlPolicy, pbstrName, pbstrPassword, pfConfirmedGood);
+        return self.vtable.GetCredentialsEx2(self, bstrRealm, bstrUrl, fProxy, fClearTextAuthentication, pdwUrlPolicy, pbstrName, pbstrPassword, pfConfirmedGood);
     }
 };
 

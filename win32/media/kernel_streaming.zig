@@ -717,13 +717,13 @@ pub const IKsControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn KsProperty(self: *const IKsControl, Property: ?*KSIDENTIFIER, PropertyLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsProperty(@as(*const IKsControl, @ptrCast(self)), Property, PropertyLength, PropertyData, DataLength, BytesReturned);
+        return self.vtable.KsProperty(self, Property, PropertyLength, PropertyData, DataLength, BytesReturned);
     }
     pub fn KsMethod(self: *const IKsControl, Method: ?*KSIDENTIFIER, MethodLength: u32, MethodData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsMethod(@as(*const IKsControl, @ptrCast(self)), Method, MethodLength, MethodData, DataLength, BytesReturned);
+        return self.vtable.KsMethod(self, Method, MethodLength, MethodData, DataLength, BytesReturned);
     }
     pub fn KsEvent(self: *const IKsControl, Event: ?*KSIDENTIFIER, EventLength: u32, EventData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IKsControl.VTable, @ptrCast(self.vtable)).KsEvent(@as(*const IKsControl, @ptrCast(self)), Event, EventLength, EventData, DataLength, BytesReturned);
+        return self.vtable.KsEvent(self, Event, EventLength, EventData, DataLength, BytesReturned);
     }
 };
 
@@ -759,10 +759,10 @@ pub const IKsFormatSupport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsFormatSupported(self: *const IKsFormatSupport, pKsFormat: ?*KSDATAFORMAT, cbFormat: u32, pbSupported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IKsFormatSupport.VTable, @ptrCast(self.vtable)).IsFormatSupported(@as(*const IKsFormatSupport, @ptrCast(self)), pKsFormat, cbFormat, pbSupported);
+        return self.vtable.IsFormatSupported(self, pKsFormat, cbFormat, pbSupported);
     }
     pub fn GetDevicePreferredFormat(self: *const IKsFormatSupport, ppKsFormat: ?*?*KSDATAFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IKsFormatSupport.VTable, @ptrCast(self.vtable)).GetDevicePreferredFormat(@as(*const IKsFormatSupport, @ptrCast(self)), ppKsFormat);
+        return self.vtable.GetDevicePreferredFormat(self, ppKsFormat);
     }
 };
 
@@ -797,10 +797,10 @@ pub const IKsJackDescription = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetJackCount(self: *const IKsJackDescription, pcJacks: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IKsJackDescription.VTable, @ptrCast(self.vtable)).GetJackCount(@as(*const IKsJackDescription, @ptrCast(self)), pcJacks);
+        return self.vtable.GetJackCount(self, pcJacks);
     }
     pub fn GetJackDescription(self: *const IKsJackDescription, nJack: u32, pDescription: ?*KSJACK_DESCRIPTION) callconv(.Inline) HRESULT {
-        return @as(*const IKsJackDescription.VTable, @ptrCast(self.vtable)).GetJackDescription(@as(*const IKsJackDescription, @ptrCast(self)), nJack, pDescription);
+        return self.vtable.GetJackDescription(self, nJack, pDescription);
     }
 };
 
@@ -835,10 +835,10 @@ pub const IKsJackDescription2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetJackCount(self: *const IKsJackDescription2, pcJacks: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IKsJackDescription2.VTable, @ptrCast(self.vtable)).GetJackCount(@as(*const IKsJackDescription2, @ptrCast(self)), pcJacks);
+        return self.vtable.GetJackCount(self, pcJacks);
     }
     pub fn GetJackDescription2(self: *const IKsJackDescription2, nJack: u32, pDescription2: ?*KSJACK_DESCRIPTION2) callconv(.Inline) HRESULT {
-        return @as(*const IKsJackDescription2.VTable, @ptrCast(self.vtable)).GetJackDescription2(@as(*const IKsJackDescription2, @ptrCast(self)), nJack, pDescription2);
+        return self.vtable.GetJackDescription2(self, nJack, pDescription2);
     }
 };
 
@@ -864,7 +864,7 @@ pub const IKsJackSinkInformation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetJackSinkInformation(self: *const IKsJackSinkInformation, pJackSinkInformation: ?*KSJACK_SINK_INFORMATION) callconv(.Inline) HRESULT {
-        return @as(*const IKsJackSinkInformation.VTable, @ptrCast(self.vtable)).GetJackSinkInformation(@as(*const IKsJackSinkInformation, @ptrCast(self)), pJackSinkInformation);
+        return self.vtable.GetJackSinkInformation(self, pJackSinkInformation);
     }
 };
 
@@ -889,7 +889,7 @@ pub const IKsJackContainerId = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetJackContainerId(self: *const IKsJackContainerId, pJackContainerId: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IKsJackContainerId.VTable, @ptrCast(self.vtable)).GetJackContainerId(@as(*const IKsJackContainerId, @ptrCast(self)), pJackContainerId);
+        return self.vtable.GetJackContainerId(self, pJackContainerId);
     }
 };
 
@@ -7215,13 +7215,13 @@ pub const IKsPropertySet = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Set(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).Set(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength);
+        return self.vtable.Set(self, PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength);
     }
     pub fn Get(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, InstanceData: ?*anyopaque, InstanceLength: u32, PropertyData: ?*anyopaque, DataLength: u32, BytesReturned: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).Get(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength, BytesReturned);
+        return self.vtable.Get(self, PropSet, Id, InstanceData, InstanceLength, PropertyData, DataLength, BytesReturned);
     }
     pub fn QuerySupported(self: *const IKsPropertySet, PropSet: ?*const Guid, Id: u32, TypeSupport: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IKsPropertySet.VTable, @ptrCast(self.vtable)).QuerySupported(@as(*const IKsPropertySet, @ptrCast(self)), PropSet, Id, TypeSupport);
+        return self.vtable.QuerySupported(self, PropSet, Id, TypeSupport);
     }
 };
 
@@ -7254,10 +7254,10 @@ pub const IKsAggregateControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn KsAddAggregate(self: *const IKsAggregateControl, AggregateClass: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IKsAggregateControl.VTable, @ptrCast(self.vtable)).KsAddAggregate(@as(*const IKsAggregateControl, @ptrCast(self)), AggregateClass);
+        return self.vtable.KsAddAggregate(self, AggregateClass);
     }
     pub fn KsRemoveAggregate(self: *const IKsAggregateControl, AggregateClass: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IKsAggregateControl.VTable, @ptrCast(self.vtable)).KsRemoveAggregate(@as(*const IKsAggregateControl, @ptrCast(self)), AggregateClass);
+        return self.vtable.KsRemoveAggregate(self, AggregateClass);
     }
 };
 
@@ -7287,7 +7287,7 @@ pub const IKsTopology = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateNodeInstance(self: *const IKsTopology, NodeId: u32, Flags: u32, DesiredAccess: u32, UnkOuter: ?*IUnknown, InterfaceId: ?*const Guid, Interface: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IKsTopology.VTable, @ptrCast(self.vtable)).CreateNodeInstance(@as(*const IKsTopology, @ptrCast(self)), NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
+        return self.vtable.CreateNodeInstance(self, NodeId, Flags, DesiredAccess, UnkOuter, InterfaceId, Interface);
     }
 };
 

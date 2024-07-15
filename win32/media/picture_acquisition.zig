@@ -150,31 +150,31 @@ pub const IPhotoAcquireItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItemName(self: *const IPhotoAcquireItem, pbstrItemName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireItem.VTable, @ptrCast(self.vtable)).GetItemName(@as(*const IPhotoAcquireItem, @ptrCast(self)), pbstrItemName);
+        return self.vtable.GetItemName(self, pbstrItemName);
     }
     pub fn GetThumbnail(self: *const IPhotoAcquireItem, sizeThumbnail: SIZE, phbmpThumbnail: ?*?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireItem.VTable, @ptrCast(self.vtable)).GetThumbnail(@as(*const IPhotoAcquireItem, @ptrCast(self)), sizeThumbnail, phbmpThumbnail);
+        return self.vtable.GetThumbnail(self, sizeThumbnail, phbmpThumbnail);
     }
     pub fn GetProperty(self: *const IPhotoAcquireItem, key: ?*const PROPERTYKEY, pv: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireItem.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IPhotoAcquireItem, @ptrCast(self)), key, pv);
+        return self.vtable.GetProperty(self, key, pv);
     }
     pub fn SetProperty(self: *const IPhotoAcquireItem, key: ?*const PROPERTYKEY, pv: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireItem.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IPhotoAcquireItem, @ptrCast(self)), key, pv);
+        return self.vtable.SetProperty(self, key, pv);
     }
     pub fn GetStream(self: *const IPhotoAcquireItem, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireItem.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IPhotoAcquireItem, @ptrCast(self)), ppStream);
+        return self.vtable.GetStream(self, ppStream);
     }
     pub fn CanDelete(self: *const IPhotoAcquireItem, pfCanDelete: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireItem.VTable, @ptrCast(self.vtable)).CanDelete(@as(*const IPhotoAcquireItem, @ptrCast(self)), pfCanDelete);
+        return self.vtable.CanDelete(self, pfCanDelete);
     }
     pub fn Delete(self: *const IPhotoAcquireItem) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireItem.VTable, @ptrCast(self.vtable)).Delete(@as(*const IPhotoAcquireItem, @ptrCast(self)));
+        return self.vtable.Delete(self);
     }
     pub fn GetSubItemCount(self: *const IPhotoAcquireItem, pnCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireItem.VTable, @ptrCast(self.vtable)).GetSubItemCount(@as(*const IPhotoAcquireItem, @ptrCast(self)), pnCount);
+        return self.vtable.GetSubItemCount(self, pnCount);
     }
     pub fn GetSubItemAt(self: *const IPhotoAcquireItem, nItemIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireItem.VTable, @ptrCast(self.vtable)).GetSubItemAt(@as(*const IPhotoAcquireItem, @ptrCast(self)), nItemIndex, ppPhotoAcquireItem);
+        return self.vtable.GetSubItemAt(self, nItemIndex, ppPhotoAcquireItem);
     }
 };
 
@@ -281,34 +281,34 @@ pub const IUserInputString = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSubmitButtonText(self: *const IUserInputString, pbstrSubmitButtonText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetSubmitButtonText(@as(*const IUserInputString, @ptrCast(self)), pbstrSubmitButtonText);
+        return self.vtable.GetSubmitButtonText(self, pbstrSubmitButtonText);
     }
     pub fn GetPrompt(self: *const IUserInputString, pbstrPromptTitle: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetPrompt(@as(*const IUserInputString, @ptrCast(self)), pbstrPromptTitle);
+        return self.vtable.GetPrompt(self, pbstrPromptTitle);
     }
     pub fn GetStringId(self: *const IUserInputString, pbstrStringId: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetStringId(@as(*const IUserInputString, @ptrCast(self)), pbstrStringId);
+        return self.vtable.GetStringId(self, pbstrStringId);
     }
     pub fn GetStringType(self: *const IUserInputString, pnStringType: ?*USER_INPUT_STRING_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetStringType(@as(*const IUserInputString, @ptrCast(self)), pnStringType);
+        return self.vtable.GetStringType(self, pnStringType);
     }
     pub fn GetTooltipText(self: *const IUserInputString, pbstrTooltipText: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetTooltipText(@as(*const IUserInputString, @ptrCast(self)), pbstrTooltipText);
+        return self.vtable.GetTooltipText(self, pbstrTooltipText);
     }
     pub fn GetMaxLength(self: *const IUserInputString, pcchMaxLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetMaxLength(@as(*const IUserInputString, @ptrCast(self)), pcchMaxLength);
+        return self.vtable.GetMaxLength(self, pcchMaxLength);
     }
     pub fn GetDefault(self: *const IUserInputString, pbstrDefault: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetDefault(@as(*const IUserInputString, @ptrCast(self)), pbstrDefault);
+        return self.vtable.GetDefault(self, pbstrDefault);
     }
     pub fn GetMruCount(self: *const IUserInputString, pnMruCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetMruCount(@as(*const IUserInputString, @ptrCast(self)), pnMruCount);
+        return self.vtable.GetMruCount(self, pnMruCount);
     }
     pub fn GetMruEntryAt(self: *const IUserInputString, nIndex: u32, pbstrMruEntry: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetMruEntryAt(@as(*const IUserInputString, @ptrCast(self)), nIndex, pbstrMruEntry);
+        return self.vtable.GetMruEntryAt(self, nIndex, pbstrMruEntry);
     }
     pub fn GetImage(self: *const IUserInputString, nSize: u32, phBitmap: ?*?HBITMAP, phIcon: ?*?HICON) callconv(.Inline) HRESULT {
-        return @as(*const IUserInputString.VTable, @ptrCast(self.vtable)).GetImage(@as(*const IUserInputString, @ptrCast(self)), nSize, phBitmap, phIcon);
+        return self.vtable.GetImage(self, nSize, phBitmap, phIcon);
     }
 };
 
@@ -518,61 +518,61 @@ pub const IPhotoAcquireProgressCB = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Cancelled(self: *const IPhotoAcquireProgressCB, pfCancelled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).Cancelled(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), pfCancelled);
+        return self.vtable.Cancelled(self, pfCancelled);
     }
     pub fn StartEnumeration(self: *const IPhotoAcquireProgressCB, pPhotoAcquireSource: ?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).StartEnumeration(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), pPhotoAcquireSource);
+        return self.vtable.StartEnumeration(self, pPhotoAcquireSource);
     }
     pub fn FoundItem(self: *const IPhotoAcquireProgressCB, pPhotoAcquireItem: ?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).FoundItem(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), pPhotoAcquireItem);
+        return self.vtable.FoundItem(self, pPhotoAcquireItem);
     }
     pub fn EndEnumeration(self: *const IPhotoAcquireProgressCB, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).EndEnumeration(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), hr);
+        return self.vtable.EndEnumeration(self, hr);
     }
     pub fn StartTransfer(self: *const IPhotoAcquireProgressCB, pPhotoAcquireSource: ?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).StartTransfer(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), pPhotoAcquireSource);
+        return self.vtable.StartTransfer(self, pPhotoAcquireSource);
     }
     pub fn StartItemTransfer(self: *const IPhotoAcquireProgressCB, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).StartItemTransfer(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), nItemIndex, pPhotoAcquireItem);
+        return self.vtable.StartItemTransfer(self, nItemIndex, pPhotoAcquireItem);
     }
     pub fn DirectoryCreated(self: *const IPhotoAcquireProgressCB, pszDirectory: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).DirectoryCreated(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), pszDirectory);
+        return self.vtable.DirectoryCreated(self, pszDirectory);
     }
     pub fn UpdateTransferPercent(self: *const IPhotoAcquireProgressCB, fOverall: BOOL, nPercent: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).UpdateTransferPercent(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), fOverall, nPercent);
+        return self.vtable.UpdateTransferPercent(self, fOverall, nPercent);
     }
     pub fn EndItemTransfer(self: *const IPhotoAcquireProgressCB, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).EndItemTransfer(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), nItemIndex, pPhotoAcquireItem, hr);
+        return self.vtable.EndItemTransfer(self, nItemIndex, pPhotoAcquireItem, hr);
     }
     pub fn EndTransfer(self: *const IPhotoAcquireProgressCB, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).EndTransfer(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), hr);
+        return self.vtable.EndTransfer(self, hr);
     }
     pub fn StartDelete(self: *const IPhotoAcquireProgressCB, pPhotoAcquireSource: ?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).StartDelete(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), pPhotoAcquireSource);
+        return self.vtable.StartDelete(self, pPhotoAcquireSource);
     }
     pub fn StartItemDelete(self: *const IPhotoAcquireProgressCB, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).StartItemDelete(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), nItemIndex, pPhotoAcquireItem);
+        return self.vtable.StartItemDelete(self, nItemIndex, pPhotoAcquireItem);
     }
     pub fn UpdateDeletePercent(self: *const IPhotoAcquireProgressCB, nPercent: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).UpdateDeletePercent(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), nPercent);
+        return self.vtable.UpdateDeletePercent(self, nPercent);
     }
     pub fn EndItemDelete(self: *const IPhotoAcquireProgressCB, nItemIndex: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).EndItemDelete(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), nItemIndex, pPhotoAcquireItem, hr);
+        return self.vtable.EndItemDelete(self, nItemIndex, pPhotoAcquireItem, hr);
     }
     pub fn EndDelete(self: *const IPhotoAcquireProgressCB, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).EndDelete(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), hr);
+        return self.vtable.EndDelete(self, hr);
     }
     pub fn EndSession(self: *const IPhotoAcquireProgressCB, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).EndSession(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), hr);
+        return self.vtable.EndSession(self, hr);
     }
     pub fn GetDeleteAfterAcquire(self: *const IPhotoAcquireProgressCB, pfDeleteAfterAcquire: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).GetDeleteAfterAcquire(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), pfDeleteAfterAcquire);
+        return self.vtable.GetDeleteAfterAcquire(self, pfDeleteAfterAcquire);
     }
     pub fn ErrorAdvise(self: *const IPhotoAcquireProgressCB, hr: HRESULT, pszErrorMessage: ?[*:0]const u16, nMessageType: ERROR_ADVISE_MESSAGE_TYPE, pnErrorAdviseResult: ?*ERROR_ADVISE_RESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).ErrorAdvise(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), hr, pszErrorMessage, nMessageType, pnErrorAdviseResult);
+        return self.vtable.ErrorAdvise(self, hr, pszErrorMessage, nMessageType, pnErrorAdviseResult);
     }
     pub fn GetUserInput(self: *const IPhotoAcquireProgressCB, riidType: ?*const Guid, pUnknown: ?*IUnknown, pPropVarResult: ?*PROPVARIANT, pPropVarDefault: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireProgressCB.VTable, @ptrCast(self.vtable)).GetUserInput(@as(*const IPhotoAcquireProgressCB, @ptrCast(self)), riidType, pUnknown, pPropVarResult, pPropVarDefault);
+        return self.vtable.GetUserInput(self, riidType, pUnknown, pPropVarResult, pPropVarDefault);
     }
 };
 
@@ -597,7 +597,7 @@ pub const IPhotoProgressActionCB = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn DoAction(self: *const IPhotoProgressActionCB, hWndParent: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressActionCB.VTable, @ptrCast(self.vtable)).DoAction(@as(*const IPhotoProgressActionCB, @ptrCast(self)), hWndParent);
+        return self.vtable.DoAction(self, hWndParent);
     }
 };
 
@@ -783,58 +783,58 @@ pub const IPhotoProgressDialog = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Create(self: *const IPhotoProgressDialog, hwndParent: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).Create(@as(*const IPhotoProgressDialog, @ptrCast(self)), hwndParent);
+        return self.vtable.Create(self, hwndParent);
     }
     pub fn GetWindow(self: *const IPhotoProgressDialog, phwndProgressDialog: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).GetWindow(@as(*const IPhotoProgressDialog, @ptrCast(self)), phwndProgressDialog);
+        return self.vtable.GetWindow(self, phwndProgressDialog);
     }
     pub fn Destroy(self: *const IPhotoProgressDialog) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).Destroy(@as(*const IPhotoProgressDialog, @ptrCast(self)));
+        return self.vtable.Destroy(self);
     }
     pub fn SetTitle(self: *const IPhotoProgressDialog, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const IPhotoProgressDialog, @ptrCast(self)), pszTitle);
+        return self.vtable.SetTitle(self, pszTitle);
     }
     pub fn ShowCheckbox(self: *const IPhotoProgressDialog, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, fShow: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).ShowCheckbox(@as(*const IPhotoProgressDialog, @ptrCast(self)), nCheckboxId, fShow);
+        return self.vtable.ShowCheckbox(self, nCheckboxId, fShow);
     }
     pub fn SetCheckboxText(self: *const IPhotoProgressDialog, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, pszCheckboxText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetCheckboxText(@as(*const IPhotoProgressDialog, @ptrCast(self)), nCheckboxId, pszCheckboxText);
+        return self.vtable.SetCheckboxText(self, nCheckboxId, pszCheckboxText);
     }
     pub fn SetCheckboxCheck(self: *const IPhotoProgressDialog, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, fChecked: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetCheckboxCheck(@as(*const IPhotoProgressDialog, @ptrCast(self)), nCheckboxId, fChecked);
+        return self.vtable.SetCheckboxCheck(self, nCheckboxId, fChecked);
     }
     pub fn SetCheckboxTooltip(self: *const IPhotoProgressDialog, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, pszCheckboxTooltipText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetCheckboxTooltip(@as(*const IPhotoProgressDialog, @ptrCast(self)), nCheckboxId, pszCheckboxTooltipText);
+        return self.vtable.SetCheckboxTooltip(self, nCheckboxId, pszCheckboxTooltipText);
     }
     pub fn IsCheckboxChecked(self: *const IPhotoProgressDialog, nCheckboxId: PROGRESS_DIALOG_CHECKBOX_ID, pfChecked: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).IsCheckboxChecked(@as(*const IPhotoProgressDialog, @ptrCast(self)), nCheckboxId, pfChecked);
+        return self.vtable.IsCheckboxChecked(self, nCheckboxId, pfChecked);
     }
     pub fn SetCaption(self: *const IPhotoProgressDialog, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetCaption(@as(*const IPhotoProgressDialog, @ptrCast(self)), pszTitle);
+        return self.vtable.SetCaption(self, pszTitle);
     }
     pub fn SetImage(self: *const IPhotoProgressDialog, nImageType: PROGRESS_DIALOG_IMAGE_TYPE, hIcon: ?HICON, hBitmap: ?HBITMAP) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetImage(@as(*const IPhotoProgressDialog, @ptrCast(self)), nImageType, hIcon, hBitmap);
+        return self.vtable.SetImage(self, nImageType, hIcon, hBitmap);
     }
     pub fn SetPercentComplete(self: *const IPhotoProgressDialog, nPercent: i32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetPercentComplete(@as(*const IPhotoProgressDialog, @ptrCast(self)), nPercent);
+        return self.vtable.SetPercentComplete(self, nPercent);
     }
     pub fn SetProgressText(self: *const IPhotoProgressDialog, pszProgressText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetProgressText(@as(*const IPhotoProgressDialog, @ptrCast(self)), pszProgressText);
+        return self.vtable.SetProgressText(self, pszProgressText);
     }
     pub fn SetActionLinkCallback(self: *const IPhotoProgressDialog, pPhotoProgressActionCB: ?*IPhotoProgressActionCB) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetActionLinkCallback(@as(*const IPhotoProgressDialog, @ptrCast(self)), pPhotoProgressActionCB);
+        return self.vtable.SetActionLinkCallback(self, pPhotoProgressActionCB);
     }
     pub fn SetActionLinkText(self: *const IPhotoProgressDialog, pszCaption: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).SetActionLinkText(@as(*const IPhotoProgressDialog, @ptrCast(self)), pszCaption);
+        return self.vtable.SetActionLinkText(self, pszCaption);
     }
     pub fn ShowActionLink(self: *const IPhotoProgressDialog, fShow: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).ShowActionLink(@as(*const IPhotoProgressDialog, @ptrCast(self)), fShow);
+        return self.vtable.ShowActionLink(self, fShow);
     }
     pub fn IsCancelled(self: *const IPhotoProgressDialog, pfCancelled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).IsCancelled(@as(*const IPhotoProgressDialog, @ptrCast(self)), pfCancelled);
+        return self.vtable.IsCancelled(self, pfCancelled);
     }
     pub fn GetUserInput(self: *const IPhotoProgressDialog, riidType: ?*const Guid, pUnknown: ?*IUnknown, pPropVarResult: ?*PROPVARIANT, pPropVarDefault: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoProgressDialog.VTable, @ptrCast(self.vtable)).GetUserInput(@as(*const IPhotoProgressDialog, @ptrCast(self)), riidType, pUnknown, pPropVarResult, pPropVarDefault);
+        return self.vtable.GetUserInput(self, riidType, pUnknown, pPropVarResult, pPropVarDefault);
     }
 };
 
@@ -921,28 +921,28 @@ pub const IPhotoAcquireSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFriendlyName(self: *const IPhotoAcquireSource, pbstrFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSource.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IPhotoAcquireSource, @ptrCast(self)), pbstrFriendlyName);
+        return self.vtable.GetFriendlyName(self, pbstrFriendlyName);
     }
     pub fn GetDeviceIcons(self: *const IPhotoAcquireSource, nSize: u32, phLargeIcon: ?*?HICON, phSmallIcon: ?*?HICON) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSource.VTable, @ptrCast(self.vtable)).GetDeviceIcons(@as(*const IPhotoAcquireSource, @ptrCast(self)), nSize, phLargeIcon, phSmallIcon);
+        return self.vtable.GetDeviceIcons(self, nSize, phLargeIcon, phSmallIcon);
     }
     pub fn InitializeItemList(self: *const IPhotoAcquireSource, fForceEnumeration: BOOL, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB, pnItemCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSource.VTable, @ptrCast(self.vtable)).InitializeItemList(@as(*const IPhotoAcquireSource, @ptrCast(self)), fForceEnumeration, pPhotoAcquireProgressCB, pnItemCount);
+        return self.vtable.InitializeItemList(self, fForceEnumeration, pPhotoAcquireProgressCB, pnItemCount);
     }
     pub fn GetItemCount(self: *const IPhotoAcquireSource, pnItemCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSource.VTable, @ptrCast(self.vtable)).GetItemCount(@as(*const IPhotoAcquireSource, @ptrCast(self)), pnItemCount);
+        return self.vtable.GetItemCount(self, pnItemCount);
     }
     pub fn GetItemAt(self: *const IPhotoAcquireSource, nIndex: u32, ppPhotoAcquireItem: ?*?*IPhotoAcquireItem) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSource.VTable, @ptrCast(self.vtable)).GetItemAt(@as(*const IPhotoAcquireSource, @ptrCast(self)), nIndex, ppPhotoAcquireItem);
+        return self.vtable.GetItemAt(self, nIndex, ppPhotoAcquireItem);
     }
     pub fn GetPhotoAcquireSettings(self: *const IPhotoAcquireSource, ppPhotoAcquireSettings: ?*?*IPhotoAcquireSettings) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSource.VTable, @ptrCast(self.vtable)).GetPhotoAcquireSettings(@as(*const IPhotoAcquireSource, @ptrCast(self)), ppPhotoAcquireSettings);
+        return self.vtable.GetPhotoAcquireSettings(self, ppPhotoAcquireSettings);
     }
     pub fn GetDeviceId(self: *const IPhotoAcquireSource, pbstrDeviceId: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSource.VTable, @ptrCast(self.vtable)).GetDeviceId(@as(*const IPhotoAcquireSource, @ptrCast(self)), pbstrDeviceId);
+        return self.vtable.GetDeviceId(self, pbstrDeviceId);
     }
     pub fn BindToObject(self: *const IPhotoAcquireSource, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSource.VTable, @ptrCast(self.vtable)).BindToObject(@as(*const IPhotoAcquireSource, @ptrCast(self)), riid, ppv);
+        return self.vtable.BindToObject(self, riid, ppv);
     }
 };
 
@@ -988,13 +988,13 @@ pub const IPhotoAcquire = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreatePhotoSource(self: *const IPhotoAcquire, pszDevice: ?[*:0]const u16, ppPhotoAcquireSource: ?*?*IPhotoAcquireSource) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquire.VTable, @ptrCast(self.vtable)).CreatePhotoSource(@as(*const IPhotoAcquire, @ptrCast(self)), pszDevice, ppPhotoAcquireSource);
+        return self.vtable.CreatePhotoSource(self, pszDevice, ppPhotoAcquireSource);
     }
     pub fn Acquire(self: *const IPhotoAcquire, pPhotoAcquireSource: ?*IPhotoAcquireSource, fShowProgress: BOOL, hWndParent: ?HWND, pszApplicationName: ?[*:0]const u16, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquire.VTable, @ptrCast(self.vtable)).Acquire(@as(*const IPhotoAcquire, @ptrCast(self)), pPhotoAcquireSource, fShowProgress, hWndParent, pszApplicationName, pPhotoAcquireProgressCB);
+        return self.vtable.Acquire(self, pPhotoAcquireSource, fShowProgress, hWndParent, pszApplicationName, pPhotoAcquireProgressCB);
     }
     pub fn EnumResults(self: *const IPhotoAcquire, ppEnumFilePaths: ?*?*IEnumString) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquire.VTable, @ptrCast(self.vtable)).EnumResults(@as(*const IPhotoAcquire, @ptrCast(self)), ppEnumFilePaths);
+        return self.vtable.EnumResults(self, ppEnumFilePaths);
     }
 };
 
@@ -1115,43 +1115,43 @@ pub const IPhotoAcquireSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeFromRegistry(self: *const IPhotoAcquireSettings, pszRegistryKey: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).InitializeFromRegistry(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pszRegistryKey);
+        return self.vtable.InitializeFromRegistry(self, pszRegistryKey);
     }
     pub fn SetFlags(self: *const IPhotoAcquireSettings, dwPhotoAcquireFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IPhotoAcquireSettings, @ptrCast(self)), dwPhotoAcquireFlags);
+        return self.vtable.SetFlags(self, dwPhotoAcquireFlags);
     }
     pub fn SetOutputFilenameTemplate(self: *const IPhotoAcquireSettings, pszTemplate: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).SetOutputFilenameTemplate(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pszTemplate);
+        return self.vtable.SetOutputFilenameTemplate(self, pszTemplate);
     }
     pub fn SetSequencePaddingWidth(self: *const IPhotoAcquireSettings, dwWidth: u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).SetSequencePaddingWidth(@as(*const IPhotoAcquireSettings, @ptrCast(self)), dwWidth);
+        return self.vtable.SetSequencePaddingWidth(self, dwWidth);
     }
     pub fn SetSequenceZeroPadding(self: *const IPhotoAcquireSettings, fZeroPad: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).SetSequenceZeroPadding(@as(*const IPhotoAcquireSettings, @ptrCast(self)), fZeroPad);
+        return self.vtable.SetSequenceZeroPadding(self, fZeroPad);
     }
     pub fn SetGroupTag(self: *const IPhotoAcquireSettings, pszGroupTag: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).SetGroupTag(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pszGroupTag);
+        return self.vtable.SetGroupTag(self, pszGroupTag);
     }
     pub fn SetAcquisitionTime(self: *const IPhotoAcquireSettings, pftAcquisitionTime: ?*const FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).SetAcquisitionTime(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pftAcquisitionTime);
+        return self.vtable.SetAcquisitionTime(self, pftAcquisitionTime);
     }
     pub fn GetFlags(self: *const IPhotoAcquireSettings, pdwPhotoAcquireFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pdwPhotoAcquireFlags);
+        return self.vtable.GetFlags(self, pdwPhotoAcquireFlags);
     }
     pub fn GetOutputFilenameTemplate(self: *const IPhotoAcquireSettings, pbstrTemplate: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).GetOutputFilenameTemplate(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pbstrTemplate);
+        return self.vtable.GetOutputFilenameTemplate(self, pbstrTemplate);
     }
     pub fn GetSequencePaddingWidth(self: *const IPhotoAcquireSettings, pdwWidth: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).GetSequencePaddingWidth(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pdwWidth);
+        return self.vtable.GetSequencePaddingWidth(self, pdwWidth);
     }
     pub fn GetSequenceZeroPadding(self: *const IPhotoAcquireSettings, pfZeroPad: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).GetSequenceZeroPadding(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pfZeroPad);
+        return self.vtable.GetSequenceZeroPadding(self, pfZeroPad);
     }
     pub fn GetGroupTag(self: *const IPhotoAcquireSettings, pbstrGroupTag: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).GetGroupTag(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pbstrGroupTag);
+        return self.vtable.GetGroupTag(self, pbstrGroupTag);
     }
     pub fn GetAcquisitionTime(self: *const IPhotoAcquireSettings, pftAcquisitionTime: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireSettings.VTable, @ptrCast(self.vtable)).GetAcquisitionTime(@as(*const IPhotoAcquireSettings, @ptrCast(self)), pftAcquisitionTime);
+        return self.vtable.GetAcquisitionTime(self, pftAcquisitionTime);
     }
 };
 
@@ -1208,19 +1208,19 @@ pub const IPhotoAcquireOptionsDialog = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IPhotoAcquireOptionsDialog, pszRegistryRoot: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireOptionsDialog.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IPhotoAcquireOptionsDialog, @ptrCast(self)), pszRegistryRoot);
+        return self.vtable.Initialize(self, pszRegistryRoot);
     }
     pub fn Create(self: *const IPhotoAcquireOptionsDialog, hWndParent: ?HWND, phWndDialog: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireOptionsDialog.VTable, @ptrCast(self.vtable)).Create(@as(*const IPhotoAcquireOptionsDialog, @ptrCast(self)), hWndParent, phWndDialog);
+        return self.vtable.Create(self, hWndParent, phWndDialog);
     }
     pub fn Destroy(self: *const IPhotoAcquireOptionsDialog) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireOptionsDialog.VTable, @ptrCast(self.vtable)).Destroy(@as(*const IPhotoAcquireOptionsDialog, @ptrCast(self)));
+        return self.vtable.Destroy(self);
     }
     pub fn DoModal(self: *const IPhotoAcquireOptionsDialog, hWndParent: ?HWND, ppnReturnCode: ?*isize) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireOptionsDialog.VTable, @ptrCast(self.vtable)).DoModal(@as(*const IPhotoAcquireOptionsDialog, @ptrCast(self)), hWndParent, ppnReturnCode);
+        return self.vtable.DoModal(self, hWndParent, ppnReturnCode);
     }
     pub fn SaveData(self: *const IPhotoAcquireOptionsDialog) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireOptionsDialog.VTable, @ptrCast(self.vtable)).SaveData(@as(*const IPhotoAcquireOptionsDialog, @ptrCast(self)));
+        return self.vtable.SaveData(self);
     }
 };
 
@@ -1281,13 +1281,13 @@ pub const IPhotoAcquireDeviceSelectionDialog = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetTitle(self: *const IPhotoAcquireDeviceSelectionDialog, pszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireDeviceSelectionDialog.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const IPhotoAcquireDeviceSelectionDialog, @ptrCast(self)), pszTitle);
+        return self.vtable.SetTitle(self, pszTitle);
     }
     pub fn SetSubmitButtonText(self: *const IPhotoAcquireDeviceSelectionDialog, pszSubmitButtonText: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireDeviceSelectionDialog.VTable, @ptrCast(self.vtable)).SetSubmitButtonText(@as(*const IPhotoAcquireDeviceSelectionDialog, @ptrCast(self)), pszSubmitButtonText);
+        return self.vtable.SetSubmitButtonText(self, pszSubmitButtonText);
     }
     pub fn DoModal(self: *const IPhotoAcquireDeviceSelectionDialog, hWndParent: ?HWND, dwDeviceFlags: u32, pbstrDeviceId: ?*?BSTR, pnDeviceType: ?*DEVICE_SELECTION_DEVICE_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquireDeviceSelectionDialog.VTable, @ptrCast(self.vtable)).DoModal(@as(*const IPhotoAcquireDeviceSelectionDialog, @ptrCast(self)), hWndParent, dwDeviceFlags, pbstrDeviceId, pnDeviceType);
+        return self.vtable.DoModal(self, hWndParent, dwDeviceFlags, pbstrDeviceId, pnDeviceType);
     }
 };
 
@@ -1341,16 +1341,16 @@ pub const IPhotoAcquirePlugin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IPhotoAcquirePlugin, pPhotoAcquireSource: ?*IPhotoAcquireSource, pPhotoAcquireProgressCB: ?*IPhotoAcquireProgressCB) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquirePlugin.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IPhotoAcquirePlugin, @ptrCast(self)), pPhotoAcquireSource, pPhotoAcquireProgressCB);
+        return self.vtable.Initialize(self, pPhotoAcquireSource, pPhotoAcquireProgressCB);
     }
     pub fn ProcessItem(self: *const IPhotoAcquirePlugin, dwAcquireStage: u32, pPhotoAcquireItem: ?*IPhotoAcquireItem, pOriginalItemStream: ?*IStream, pszFinalFilename: ?[*:0]const u16, pPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquirePlugin.VTable, @ptrCast(self.vtable)).ProcessItem(@as(*const IPhotoAcquirePlugin, @ptrCast(self)), dwAcquireStage, pPhotoAcquireItem, pOriginalItemStream, pszFinalFilename, pPropertyStore);
+        return self.vtable.ProcessItem(self, dwAcquireStage, pPhotoAcquireItem, pOriginalItemStream, pszFinalFilename, pPropertyStore);
     }
     pub fn TransferComplete(self: *const IPhotoAcquirePlugin, hr: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquirePlugin.VTable, @ptrCast(self.vtable)).TransferComplete(@as(*const IPhotoAcquirePlugin, @ptrCast(self)), hr);
+        return self.vtable.TransferComplete(self, hr);
     }
     pub fn DisplayConfigureDialog(self: *const IPhotoAcquirePlugin, hWndParent: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IPhotoAcquirePlugin.VTable, @ptrCast(self.vtable)).DisplayConfigureDialog(@as(*const IPhotoAcquirePlugin, @ptrCast(self)), hWndParent);
+        return self.vtable.DisplayConfigureDialog(self, hWndParent);
     }
 };
 

@@ -429,19 +429,19 @@ pub const ISensorManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSensorsByCategory(self: *const ISensorManager, sensorCategory: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).GetSensorsByCategory(@as(*const ISensorManager, @ptrCast(self)), sensorCategory, ppSensorsFound);
+        return self.vtable.GetSensorsByCategory(self, sensorCategory, ppSensorsFound);
     }
     pub fn GetSensorsByType(self: *const ISensorManager, sensorType: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).GetSensorsByType(@as(*const ISensorManager, @ptrCast(self)), sensorType, ppSensorsFound);
+        return self.vtable.GetSensorsByType(self, sensorType, ppSensorsFound);
     }
     pub fn GetSensorByID(self: *const ISensorManager, sensorID: ?*Guid, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
-        return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).GetSensorByID(@as(*const ISensorManager, @ptrCast(self)), sensorID, ppSensor);
+        return self.vtable.GetSensorByID(self, sensorID, ppSensor);
     }
     pub fn SetEventSink(self: *const ISensorManager, pEvents: ?*ISensorManagerEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).SetEventSink(@as(*const ISensorManager, @ptrCast(self)), pEvents);
+        return self.vtable.SetEventSink(self, pEvents);
     }
     pub fn RequestPermissions(self: *const ISensorManager, hParent: ?HWND, pSensors: ?*ISensorCollection, fModal: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ISensorManager.VTable, @ptrCast(self.vtable)).RequestPermissions(@as(*const ISensorManager, @ptrCast(self)), hParent, pSensors, fModal);
+        return self.vtable.RequestPermissions(self, hParent, pSensors, fModal);
     }
 };
 
@@ -475,10 +475,10 @@ pub const ILocationPermissions = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetGlobalLocationPermission(self: *const ILocationPermissions, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const ILocationPermissions.VTable, @ptrCast(self.vtable)).GetGlobalLocationPermission(@as(*const ILocationPermissions, @ptrCast(self)), pfEnabled);
+        return self.vtable.GetGlobalLocationPermission(self, pfEnabled);
     }
     pub fn CheckLocationCapability(self: *const ILocationPermissions, dwClientThreadId: u32) callconv(.Inline) HRESULT {
-        return @as(*const ILocationPermissions.VTable, @ptrCast(self.vtable)).CheckLocationCapability(@as(*const ILocationPermissions, @ptrCast(self)), dwClientThreadId);
+        return self.vtable.CheckLocationCapability(self, dwClientThreadId);
     }
 };
 
@@ -544,22 +544,22 @@ pub const ISensorCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAt(self: *const ISensorCollection, ulIndex: u32, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
-        return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const ISensorCollection, @ptrCast(self)), ulIndex, ppSensor);
+        return self.vtable.GetAt(self, ulIndex, ppSensor);
     }
     pub fn GetCount(self: *const ISensorCollection, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const ISensorCollection, @ptrCast(self)), pCount);
+        return self.vtable.GetCount(self, pCount);
     }
     pub fn Add(self: *const ISensorCollection, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
-        return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const ISensorCollection, @ptrCast(self)), pSensor);
+        return self.vtable.Add(self, pSensor);
     }
     pub fn Remove(self: *const ISensorCollection, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
-        return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const ISensorCollection, @ptrCast(self)), pSensor);
+        return self.vtable.Remove(self, pSensor);
     }
     pub fn RemoveByID(self: *const ISensorCollection, sensorID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).RemoveByID(@as(*const ISensorCollection, @ptrCast(self)), sensorID);
+        return self.vtable.RemoveByID(self, sensorID);
     }
     pub fn Clear(self: *const ISensorCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISensorCollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const ISensorCollection, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 
@@ -704,49 +704,49 @@ pub const ISensor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetID(self: *const ISensor, pID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetID(@as(*const ISensor, @ptrCast(self)), pID);
+        return self.vtable.GetID(self, pID);
     }
     pub fn GetCategory(self: *const ISensor, pSensorCategory: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const ISensor, @ptrCast(self)), pSensorCategory);
+        return self.vtable.GetCategory(self, pSensorCategory);
     }
     pub fn GetType(self: *const ISensor, pSensorType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetType(@as(*const ISensor, @ptrCast(self)), pSensorType);
+        return self.vtable.GetType(self, pSensorType);
     }
     pub fn GetFriendlyName(self: *const ISensor, pFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const ISensor, @ptrCast(self)), pFriendlyName);
+        return self.vtable.GetFriendlyName(self, pFriendlyName);
     }
     pub fn GetProperty(self: *const ISensor, key: ?*const PROPERTYKEY, pProperty: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const ISensor, @ptrCast(self)), key, pProperty);
+        return self.vtable.GetProperty(self, key, pProperty);
     }
     pub fn GetProperties(self: *const ISensor, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const ISensor, @ptrCast(self)), pKeys, ppProperties);
+        return self.vtable.GetProperties(self, pKeys, ppProperties);
     }
     pub fn GetSupportedDataFields(self: *const ISensor, ppDataFields: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetSupportedDataFields(@as(*const ISensor, @ptrCast(self)), ppDataFields);
+        return self.vtable.GetSupportedDataFields(self, ppDataFields);
     }
     pub fn SetProperties(self: *const ISensor, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SetProperties(@as(*const ISensor, @ptrCast(self)), pProperties, ppResults);
+        return self.vtable.SetProperties(self, pProperties, ppResults);
     }
     pub fn SupportsDataField(self: *const ISensor, key: ?*const PROPERTYKEY, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SupportsDataField(@as(*const ISensor, @ptrCast(self)), key, pIsSupported);
+        return self.vtable.SupportsDataField(self, key, pIsSupported);
     }
     pub fn GetState(self: *const ISensor, pState: ?*SensorState) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetState(@as(*const ISensor, @ptrCast(self)), pState);
+        return self.vtable.GetState(self, pState);
     }
     pub fn GetData(self: *const ISensor, ppDataReport: ?*?*ISensorDataReport) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISensor, @ptrCast(self)), ppDataReport);
+        return self.vtable.GetData(self, ppDataReport);
     }
     pub fn SupportsEvent(self: *const ISensor, eventGuid: ?*const Guid, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SupportsEvent(@as(*const ISensor, @ptrCast(self)), eventGuid, pIsSupported);
+        return self.vtable.SupportsEvent(self, eventGuid, pIsSupported);
     }
     pub fn GetEventInterest(self: *const ISensor, ppValues: [*]?*Guid, pCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).GetEventInterest(@as(*const ISensor, @ptrCast(self)), ppValues, pCount);
+        return self.vtable.GetEventInterest(self, ppValues, pCount);
     }
     pub fn SetEventInterest(self: *const ISensor, pValues: ?[*]Guid, count: u32) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SetEventInterest(@as(*const ISensor, @ptrCast(self)), pValues, count);
+        return self.vtable.SetEventInterest(self, pValues, count);
     }
     pub fn SetEventSink(self: *const ISensor, pEvents: ?*ISensorEvents) callconv(.Inline) HRESULT {
-        return @as(*const ISensor.VTable, @ptrCast(self.vtable)).SetEventSink(@as(*const ISensor, @ptrCast(self)), pEvents);
+        return self.vtable.SetEventSink(self, pEvents);
     }
 };
 
@@ -790,13 +790,13 @@ pub const ISensorDataReport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetTimestamp(self: *const ISensorDataReport, pTimeStamp: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
-        return @as(*const ISensorDataReport.VTable, @ptrCast(self.vtable)).GetTimestamp(@as(*const ISensorDataReport, @ptrCast(self)), pTimeStamp);
+        return self.vtable.GetTimestamp(self, pTimeStamp);
     }
     pub fn GetSensorValue(self: *const ISensorDataReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ISensorDataReport.VTable, @ptrCast(self.vtable)).GetSensorValue(@as(*const ISensorDataReport, @ptrCast(self)), pKey, pValue);
+        return self.vtable.GetSensorValue(self, pKey, pValue);
     }
     pub fn GetSensorValues(self: *const ISensorDataReport, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const ISensorDataReport.VTable, @ptrCast(self.vtable)).GetSensorValues(@as(*const ISensorDataReport, @ptrCast(self)), pKeys, ppValues);
+        return self.vtable.GetSensorValues(self, pKeys, ppValues);
     }
 };
 
@@ -823,7 +823,7 @@ pub const ISensorManagerEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSensorEnter(self: *const ISensorManagerEvents, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
-        return @as(*const ISensorManagerEvents.VTable, @ptrCast(self.vtable)).OnSensorEnter(@as(*const ISensorManagerEvents, @ptrCast(self)), pSensor, state);
+        return self.vtable.OnSensorEnter(self, pSensor, state);
     }
 };
 
@@ -877,16 +877,16 @@ pub const ISensorEvents = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnStateChanged(self: *const ISensorEvents, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
-        return @as(*const ISensorEvents.VTable, @ptrCast(self.vtable)).OnStateChanged(@as(*const ISensorEvents, @ptrCast(self)), pSensor, state);
+        return self.vtable.OnStateChanged(self, pSensor, state);
     }
     pub fn OnDataUpdated(self: *const ISensorEvents, pSensor: ?*ISensor, pNewData: ?*ISensorDataReport) callconv(.Inline) HRESULT {
-        return @as(*const ISensorEvents.VTable, @ptrCast(self.vtable)).OnDataUpdated(@as(*const ISensorEvents, @ptrCast(self)), pSensor, pNewData);
+        return self.vtable.OnDataUpdated(self, pSensor, pNewData);
     }
     pub fn OnEvent(self: *const ISensorEvents, pSensor: ?*ISensor, eventID: ?*const Guid, pEventData: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
-        return @as(*const ISensorEvents.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const ISensorEvents, @ptrCast(self)), pSensor, eventID, pEventData);
+        return self.vtable.OnEvent(self, pSensor, eventID, pEventData);
     }
     pub fn OnLeave(self: *const ISensorEvents, ID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ISensorEvents.VTable, @ptrCast(self.vtable)).OnLeave(@as(*const ISensorEvents, @ptrCast(self)), ID);
+        return self.vtable.OnLeave(self, ID);
     }
 };
 

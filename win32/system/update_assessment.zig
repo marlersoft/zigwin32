@@ -88,7 +88,7 @@ pub const IWaaSAssessor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOSUpdateAssessment(self: *const IWaaSAssessor, result: ?*OSUpdateAssessment) callconv(.Inline) HRESULT {
-        return @as(*const IWaaSAssessor.VTable, @ptrCast(self.vtable)).GetOSUpdateAssessment(@as(*const IWaaSAssessor, @ptrCast(self)), result);
+        return self.vtable.GetOSUpdateAssessment(self, result);
     }
 };
 

@@ -96,22 +96,22 @@ pub const IEventSystem = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn Query(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32, ppInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).Query(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria, errorIndex, ppInterface);
+        return self.vtable.Query(self, progID, queryCriteria, errorIndex, ppInterface);
     }
     pub fn Store(self: *const IEventSystem, ProgID: ?BSTR, pInterface: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).Store(@as(*const IEventSystem, @ptrCast(self)), ProgID, pInterface);
+        return self.vtable.Store(self, ProgID, pInterface);
     }
     pub fn Remove(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, errorIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).Remove(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria, errorIndex);
+        return self.vtable.Remove(self, progID, queryCriteria, errorIndex);
     }
     pub fn get_EventObjectChangeEventClassID(self: *const IEventSystem, pbstrEventClassID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).get_EventObjectChangeEventClassID(@as(*const IEventSystem, @ptrCast(self)), pbstrEventClassID);
+        return self.vtable.get_EventObjectChangeEventClassID(self, pbstrEventClassID);
     }
     pub fn QueryS(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR, ppInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).QueryS(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria, ppInterface);
+        return self.vtable.QueryS(self, progID, queryCriteria, ppInterface);
     }
     pub fn RemoveS(self: *const IEventSystem, progID: ?BSTR, queryCriteria: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSystem.VTable, @ptrCast(self.vtable)).RemoveS(@as(*const IEventSystem, @ptrCast(self)), progID, queryCriteria);
+        return self.vtable.RemoveS(self, progID, queryCriteria);
     }
 };
 
@@ -253,46 +253,46 @@ pub const IEventPublisher = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_PublisherID(self: *const IEventPublisher, pbstrPublisherID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IEventPublisher, @ptrCast(self)), pbstrPublisherID);
+        return self.vtable.get_PublisherID(self, pbstrPublisherID);
     }
     pub fn put_PublisherID(self: *const IEventPublisher, bstrPublisherID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_PublisherID(@as(*const IEventPublisher, @ptrCast(self)), bstrPublisherID);
+        return self.vtable.put_PublisherID(self, bstrPublisherID);
     }
     pub fn get_PublisherName(self: *const IEventPublisher, pbstrPublisherName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_PublisherName(@as(*const IEventPublisher, @ptrCast(self)), pbstrPublisherName);
+        return self.vtable.get_PublisherName(self, pbstrPublisherName);
     }
     pub fn put_PublisherName(self: *const IEventPublisher, bstrPublisherName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_PublisherName(@as(*const IEventPublisher, @ptrCast(self)), bstrPublisherName);
+        return self.vtable.put_PublisherName(self, bstrPublisherName);
     }
     pub fn get_PublisherType(self: *const IEventPublisher, pbstrPublisherType: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_PublisherType(@as(*const IEventPublisher, @ptrCast(self)), pbstrPublisherType);
+        return self.vtable.get_PublisherType(self, pbstrPublisherType);
     }
     pub fn put_PublisherType(self: *const IEventPublisher, bstrPublisherType: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_PublisherType(@as(*const IEventPublisher, @ptrCast(self)), bstrPublisherType);
+        return self.vtable.put_PublisherType(self, bstrPublisherType);
     }
     pub fn get_OwnerSID(self: *const IEventPublisher, pbstrOwnerSID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_OwnerSID(@as(*const IEventPublisher, @ptrCast(self)), pbstrOwnerSID);
+        return self.vtable.get_OwnerSID(self, pbstrOwnerSID);
     }
     pub fn put_OwnerSID(self: *const IEventPublisher, bstrOwnerSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_OwnerSID(@as(*const IEventPublisher, @ptrCast(self)), bstrOwnerSID);
+        return self.vtable.put_OwnerSID(self, bstrOwnerSID);
     }
     pub fn get_Description(self: *const IEventPublisher, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IEventPublisher, @ptrCast(self)), pbstrDescription);
+        return self.vtable.get_Description(self, pbstrDescription);
     }
     pub fn put_Description(self: *const IEventPublisher, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IEventPublisher, @ptrCast(self)), bstrDescription);
+        return self.vtable.put_Description(self, bstrDescription);
     }
     pub fn GetDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).GetDefaultProperty(@as(*const IEventPublisher, @ptrCast(self)), bstrPropertyName, propertyValue);
+        return self.vtable.GetDefaultProperty(self, bstrPropertyName, propertyValue);
     }
     pub fn PutDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).PutDefaultProperty(@as(*const IEventPublisher, @ptrCast(self)), bstrPropertyName, propertyValue);
+        return self.vtable.PutDefaultProperty(self, bstrPropertyName, propertyValue);
     }
     pub fn RemoveDefaultProperty(self: *const IEventPublisher, bstrPropertyName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).RemoveDefaultProperty(@as(*const IEventPublisher, @ptrCast(self)), bstrPropertyName);
+        return self.vtable.RemoveDefaultProperty(self, bstrPropertyName);
     }
     pub fn GetDefaultPropertyCollection(self: *const IEventPublisher, collection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
-        return @as(*const IEventPublisher.VTable, @ptrCast(self.vtable)).GetDefaultPropertyCollection(@as(*const IEventPublisher, @ptrCast(self)), collection);
+        return self.vtable.GetDefaultPropertyCollection(self, collection);
     }
 };
 
@@ -436,46 +436,46 @@ pub const IEventClass = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_EventClassID(self: *const IEventClass, pbstrEventClassID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_EventClassID(@as(*const IEventClass, @ptrCast(self)), pbstrEventClassID);
+        return self.vtable.get_EventClassID(self, pbstrEventClassID);
     }
     pub fn put_EventClassID(self: *const IEventClass, bstrEventClassID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_EventClassID(@as(*const IEventClass, @ptrCast(self)), bstrEventClassID);
+        return self.vtable.put_EventClassID(self, bstrEventClassID);
     }
     pub fn get_EventClassName(self: *const IEventClass, pbstrEventClassName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_EventClassName(@as(*const IEventClass, @ptrCast(self)), pbstrEventClassName);
+        return self.vtable.get_EventClassName(self, pbstrEventClassName);
     }
     pub fn put_EventClassName(self: *const IEventClass, bstrEventClassName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_EventClassName(@as(*const IEventClass, @ptrCast(self)), bstrEventClassName);
+        return self.vtable.put_EventClassName(self, bstrEventClassName);
     }
     pub fn get_OwnerSID(self: *const IEventClass, pbstrOwnerSID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_OwnerSID(@as(*const IEventClass, @ptrCast(self)), pbstrOwnerSID);
+        return self.vtable.get_OwnerSID(self, pbstrOwnerSID);
     }
     pub fn put_OwnerSID(self: *const IEventClass, bstrOwnerSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_OwnerSID(@as(*const IEventClass, @ptrCast(self)), bstrOwnerSID);
+        return self.vtable.put_OwnerSID(self, bstrOwnerSID);
     }
     pub fn get_FiringInterfaceID(self: *const IEventClass, pbstrFiringInterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_FiringInterfaceID(@as(*const IEventClass, @ptrCast(self)), pbstrFiringInterfaceID);
+        return self.vtable.get_FiringInterfaceID(self, pbstrFiringInterfaceID);
     }
     pub fn put_FiringInterfaceID(self: *const IEventClass, bstrFiringInterfaceID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_FiringInterfaceID(@as(*const IEventClass, @ptrCast(self)), bstrFiringInterfaceID);
+        return self.vtable.put_FiringInterfaceID(self, bstrFiringInterfaceID);
     }
     pub fn get_Description(self: *const IEventClass, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IEventClass, @ptrCast(self)), pbstrDescription);
+        return self.vtable.get_Description(self, pbstrDescription);
     }
     pub fn put_Description(self: *const IEventClass, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IEventClass, @ptrCast(self)), bstrDescription);
+        return self.vtable.put_Description(self, bstrDescription);
     }
     pub fn get_CustomConfigCLSID(self: *const IEventClass, pbstrCustomConfigCLSID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_CustomConfigCLSID(@as(*const IEventClass, @ptrCast(self)), pbstrCustomConfigCLSID);
+        return self.vtable.get_CustomConfigCLSID(self, pbstrCustomConfigCLSID);
     }
     pub fn put_CustomConfigCLSID(self: *const IEventClass, bstrCustomConfigCLSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_CustomConfigCLSID(@as(*const IEventClass, @ptrCast(self)), bstrCustomConfigCLSID);
+        return self.vtable.put_CustomConfigCLSID(self, bstrCustomConfigCLSID);
     }
     pub fn get_TypeLib(self: *const IEventClass, pbstrTypeLib: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).get_TypeLib(@as(*const IEventClass, @ptrCast(self)), pbstrTypeLib);
+        return self.vtable.get_TypeLib(self, pbstrTypeLib);
     }
     pub fn put_TypeLib(self: *const IEventClass, bstrTypeLib: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass.VTable, @ptrCast(self.vtable)).put_TypeLib(@as(*const IEventClass, @ptrCast(self)), bstrTypeLib);
+        return self.vtable.put_TypeLib(self, bstrTypeLib);
     }
 };
 
@@ -565,28 +565,28 @@ pub const IEventClass2 = extern union {
     };}
     pub usingnamespace IEventClass.MethodMixin(@This());
     pub fn get_PublisherID(self: *const IEventClass2, pbstrPublisherID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IEventClass2, @ptrCast(self)), pbstrPublisherID);
+        return self.vtable.get_PublisherID(self, pbstrPublisherID);
     }
     pub fn put_PublisherID(self: *const IEventClass2, bstrPublisherID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_PublisherID(@as(*const IEventClass2, @ptrCast(self)), bstrPublisherID);
+        return self.vtable.put_PublisherID(self, bstrPublisherID);
     }
     pub fn get_MultiInterfacePublisherFilterCLSID(self: *const IEventClass2, pbstrPubFilCLSID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_MultiInterfacePublisherFilterCLSID(@as(*const IEventClass2, @ptrCast(self)), pbstrPubFilCLSID);
+        return self.vtable.get_MultiInterfacePublisherFilterCLSID(self, pbstrPubFilCLSID);
     }
     pub fn put_MultiInterfacePublisherFilterCLSID(self: *const IEventClass2, bstrPubFilCLSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_MultiInterfacePublisherFilterCLSID(@as(*const IEventClass2, @ptrCast(self)), bstrPubFilCLSID);
+        return self.vtable.put_MultiInterfacePublisherFilterCLSID(self, bstrPubFilCLSID);
     }
     pub fn get_AllowInprocActivation(self: *const IEventClass2, pfAllowInprocActivation: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_AllowInprocActivation(@as(*const IEventClass2, @ptrCast(self)), pfAllowInprocActivation);
+        return self.vtable.get_AllowInprocActivation(self, pfAllowInprocActivation);
     }
     pub fn put_AllowInprocActivation(self: *const IEventClass2, fAllowInprocActivation: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_AllowInprocActivation(@as(*const IEventClass2, @ptrCast(self)), fAllowInprocActivation);
+        return self.vtable.put_AllowInprocActivation(self, fAllowInprocActivation);
     }
     pub fn get_FireInParallel(self: *const IEventClass2, pfFireInParallel: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).get_FireInParallel(@as(*const IEventClass2, @ptrCast(self)), pfFireInParallel);
+        return self.vtable.get_FireInParallel(self, pfFireInParallel);
     }
     pub fn put_FireInParallel(self: *const IEventClass2, fFireInParallel: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventClass2.VTable, @ptrCast(self.vtable)).put_FireInParallel(@as(*const IEventClass2, @ptrCast(self)), fFireInParallel);
+        return self.vtable.put_FireInParallel(self, fFireInParallel);
     }
 };
 
@@ -906,106 +906,106 @@ pub const IEventSubscription = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_SubscriptionID(self: *const IEventSubscription, pbstrSubscriptionID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriptionID(@as(*const IEventSubscription, @ptrCast(self)), pbstrSubscriptionID);
+        return self.vtable.get_SubscriptionID(self, pbstrSubscriptionID);
     }
     pub fn put_SubscriptionID(self: *const IEventSubscription, bstrSubscriptionID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriptionID(@as(*const IEventSubscription, @ptrCast(self)), bstrSubscriptionID);
+        return self.vtable.put_SubscriptionID(self, bstrSubscriptionID);
     }
     pub fn get_SubscriptionName(self: *const IEventSubscription, pbstrSubscriptionName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriptionName(@as(*const IEventSubscription, @ptrCast(self)), pbstrSubscriptionName);
+        return self.vtable.get_SubscriptionName(self, pbstrSubscriptionName);
     }
     pub fn put_SubscriptionName(self: *const IEventSubscription, bstrSubscriptionName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriptionName(@as(*const IEventSubscription, @ptrCast(self)), bstrSubscriptionName);
+        return self.vtable.put_SubscriptionName(self, bstrSubscriptionName);
     }
     pub fn get_PublisherID(self: *const IEventSubscription, pbstrPublisherID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_PublisherID(@as(*const IEventSubscription, @ptrCast(self)), pbstrPublisherID);
+        return self.vtable.get_PublisherID(self, pbstrPublisherID);
     }
     pub fn put_PublisherID(self: *const IEventSubscription, bstrPublisherID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_PublisherID(@as(*const IEventSubscription, @ptrCast(self)), bstrPublisherID);
+        return self.vtable.put_PublisherID(self, bstrPublisherID);
     }
     pub fn get_EventClassID(self: *const IEventSubscription, pbstrEventClassID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_EventClassID(@as(*const IEventSubscription, @ptrCast(self)), pbstrEventClassID);
+        return self.vtable.get_EventClassID(self, pbstrEventClassID);
     }
     pub fn put_EventClassID(self: *const IEventSubscription, bstrEventClassID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_EventClassID(@as(*const IEventSubscription, @ptrCast(self)), bstrEventClassID);
+        return self.vtable.put_EventClassID(self, bstrEventClassID);
     }
     pub fn get_MethodName(self: *const IEventSubscription, pbstrMethodName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_MethodName(@as(*const IEventSubscription, @ptrCast(self)), pbstrMethodName);
+        return self.vtable.get_MethodName(self, pbstrMethodName);
     }
     pub fn put_MethodName(self: *const IEventSubscription, bstrMethodName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_MethodName(@as(*const IEventSubscription, @ptrCast(self)), bstrMethodName);
+        return self.vtable.put_MethodName(self, bstrMethodName);
     }
     pub fn get_SubscriberCLSID(self: *const IEventSubscription, pbstrSubscriberCLSID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriberCLSID(@as(*const IEventSubscription, @ptrCast(self)), pbstrSubscriberCLSID);
+        return self.vtable.get_SubscriberCLSID(self, pbstrSubscriberCLSID);
     }
     pub fn put_SubscriberCLSID(self: *const IEventSubscription, bstrSubscriberCLSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriberCLSID(@as(*const IEventSubscription, @ptrCast(self)), bstrSubscriberCLSID);
+        return self.vtable.put_SubscriberCLSID(self, bstrSubscriberCLSID);
     }
     pub fn get_SubscriberInterface(self: *const IEventSubscription, ppSubscriberInterface: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_SubscriberInterface(@as(*const IEventSubscription, @ptrCast(self)), ppSubscriberInterface);
+        return self.vtable.get_SubscriberInterface(self, ppSubscriberInterface);
     }
     pub fn put_SubscriberInterface(self: *const IEventSubscription, pSubscriberInterface: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_SubscriberInterface(@as(*const IEventSubscription, @ptrCast(self)), pSubscriberInterface);
+        return self.vtable.put_SubscriberInterface(self, pSubscriberInterface);
     }
     pub fn get_PerUser(self: *const IEventSubscription, pfPerUser: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_PerUser(@as(*const IEventSubscription, @ptrCast(self)), pfPerUser);
+        return self.vtable.get_PerUser(self, pfPerUser);
     }
     pub fn put_PerUser(self: *const IEventSubscription, fPerUser: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_PerUser(@as(*const IEventSubscription, @ptrCast(self)), fPerUser);
+        return self.vtable.put_PerUser(self, fPerUser);
     }
     pub fn get_OwnerSID(self: *const IEventSubscription, pbstrOwnerSID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_OwnerSID(@as(*const IEventSubscription, @ptrCast(self)), pbstrOwnerSID);
+        return self.vtable.get_OwnerSID(self, pbstrOwnerSID);
     }
     pub fn put_OwnerSID(self: *const IEventSubscription, bstrOwnerSID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_OwnerSID(@as(*const IEventSubscription, @ptrCast(self)), bstrOwnerSID);
+        return self.vtable.put_OwnerSID(self, bstrOwnerSID);
     }
     pub fn get_Enabled(self: *const IEventSubscription, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IEventSubscription, @ptrCast(self)), pfEnabled);
+        return self.vtable.get_Enabled(self, pfEnabled);
     }
     pub fn put_Enabled(self: *const IEventSubscription, fEnabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IEventSubscription, @ptrCast(self)), fEnabled);
+        return self.vtable.put_Enabled(self, fEnabled);
     }
     pub fn get_Description(self: *const IEventSubscription, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IEventSubscription, @ptrCast(self)), pbstrDescription);
+        return self.vtable.get_Description(self, pbstrDescription);
     }
     pub fn put_Description(self: *const IEventSubscription, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IEventSubscription, @ptrCast(self)), bstrDescription);
+        return self.vtable.put_Description(self, bstrDescription);
     }
     pub fn get_MachineName(self: *const IEventSubscription, pbstrMachineName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_MachineName(@as(*const IEventSubscription, @ptrCast(self)), pbstrMachineName);
+        return self.vtable.get_MachineName(self, pbstrMachineName);
     }
     pub fn put_MachineName(self: *const IEventSubscription, bstrMachineName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_MachineName(@as(*const IEventSubscription, @ptrCast(self)), bstrMachineName);
+        return self.vtable.put_MachineName(self, bstrMachineName);
     }
     pub fn GetPublisherProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetPublisherProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
+        return self.vtable.GetPublisherProperty(self, bstrPropertyName, propertyValue);
     }
     pub fn PutPublisherProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).PutPublisherProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
+        return self.vtable.PutPublisherProperty(self, bstrPropertyName, propertyValue);
     }
     pub fn RemovePublisherProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).RemovePublisherProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName);
+        return self.vtable.RemovePublisherProperty(self, bstrPropertyName);
     }
     pub fn GetPublisherPropertyCollection(self: *const IEventSubscription, collection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetPublisherPropertyCollection(@as(*const IEventSubscription, @ptrCast(self)), collection);
+        return self.vtable.GetPublisherPropertyCollection(self, collection);
     }
     pub fn GetSubscriberProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetSubscriberProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
+        return self.vtable.GetSubscriberProperty(self, bstrPropertyName, propertyValue);
     }
     pub fn PutSubscriberProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).PutSubscriberProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName, propertyValue);
+        return self.vtable.PutSubscriberProperty(self, bstrPropertyName, propertyValue);
     }
     pub fn RemoveSubscriberProperty(self: *const IEventSubscription, bstrPropertyName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).RemoveSubscriberProperty(@as(*const IEventSubscription, @ptrCast(self)), bstrPropertyName);
+        return self.vtable.RemoveSubscriberProperty(self, bstrPropertyName);
     }
     pub fn GetSubscriberPropertyCollection(self: *const IEventSubscription, collection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).GetSubscriberPropertyCollection(@as(*const IEventSubscription, @ptrCast(self)), collection);
+        return self.vtable.GetSubscriberPropertyCollection(self, collection);
     }
     pub fn get_InterfaceID(self: *const IEventSubscription, pbstrInterfaceID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).get_InterfaceID(@as(*const IEventSubscription, @ptrCast(self)), pbstrInterfaceID);
+        return self.vtable.get_InterfaceID(self, pbstrInterfaceID);
     }
     pub fn put_InterfaceID(self: *const IEventSubscription, bstrInterfaceID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventSubscription.VTable, @ptrCast(self.vtable)).put_InterfaceID(@as(*const IEventSubscription, @ptrCast(self)), bstrInterfaceID);
+        return self.vtable.put_InterfaceID(self, bstrInterfaceID);
     }
 };
 
@@ -1031,7 +1031,7 @@ pub const IFiringControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn FireSubscription(self: *const IFiringControl, subscription: ?*IEventSubscription) callconv(.Inline) HRESULT {
-        return @as(*const IFiringControl.VTable, @ptrCast(self.vtable)).FireSubscription(@as(*const IFiringControl, @ptrCast(self)), subscription);
+        return self.vtable.FireSubscription(self, subscription);
     }
 };
 
@@ -1067,10 +1067,10 @@ pub const IPublisherFilter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IPublisherFilter, methodName: ?BSTR, dispUserDefined: ?*IDispatch) callconv(.Inline) HRESULT {
-        return @as(*const IPublisherFilter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IPublisherFilter, @ptrCast(self)), methodName, dispUserDefined);
+        return self.vtable.Initialize(self, methodName, dispUserDefined);
     }
     pub fn PrepareToFire(self: *const IPublisherFilter, methodName: ?BSTR, firingControl: ?*IFiringControl) callconv(.Inline) HRESULT {
-        return @as(*const IPublisherFilter.VTable, @ptrCast(self.vtable)).PrepareToFire(@as(*const IPublisherFilter, @ptrCast(self)), methodName, firingControl);
+        return self.vtable.PrepareToFire(self, methodName, firingControl);
     }
 };
 
@@ -1106,10 +1106,10 @@ pub const IMultiInterfacePublisherFilter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IMultiInterfacePublisherFilter, pEIC: ?*IMultiInterfaceEventControl) callconv(.Inline) HRESULT {
-        return @as(*const IMultiInterfacePublisherFilter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMultiInterfacePublisherFilter, @ptrCast(self)), pEIC);
+        return self.vtable.Initialize(self, pEIC);
     }
     pub fn PrepareToFire(self: *const IMultiInterfacePublisherFilter, iid: ?*const Guid, methodName: ?BSTR, firingControl: ?*IFiringControl) callconv(.Inline) HRESULT {
-        return @as(*const IMultiInterfacePublisherFilter.VTable, @ptrCast(self.vtable)).PrepareToFire(@as(*const IMultiInterfacePublisherFilter, @ptrCast(self)), iid, methodName, firingControl);
+        return self.vtable.PrepareToFire(self, iid, methodName, firingControl);
     }
 };
 
@@ -1163,13 +1163,13 @@ pub const IEventObjectChange = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ChangedSubscription(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrSubscriptionID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedSubscription(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrSubscriptionID);
+        return self.vtable.ChangedSubscription(self, changeType, bstrSubscriptionID);
     }
     pub fn ChangedEventClass(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrEventClassID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedEventClass(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrEventClassID);
+        return self.vtable.ChangedEventClass(self, changeType, bstrEventClassID);
     }
     pub fn ChangedPublisher(self: *const IEventObjectChange, changeType: EOC_ChangeType, bstrPublisherID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectChange.VTable, @ptrCast(self.vtable)).ChangedPublisher(@as(*const IEventObjectChange, @ptrCast(self)), changeType, bstrPublisherID);
+        return self.vtable.ChangedPublisher(self, changeType, bstrPublisherID);
     }
 };
 
@@ -1212,10 +1212,10 @@ pub const IEventObjectChange2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ChangedSubscription(self: *const IEventObjectChange2, pInfo: ?*COMEVENTSYSCHANGEINFO) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectChange2.VTable, @ptrCast(self.vtable)).ChangedSubscription(@as(*const IEventObjectChange2, @ptrCast(self)), pInfo);
+        return self.vtable.ChangedSubscription(self, pInfo);
     }
     pub fn ChangedEventClass(self: *const IEventObjectChange2, pInfo: ?*COMEVENTSYSCHANGEINFO) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectChange2.VTable, @ptrCast(self.vtable)).ChangedEventClass(@as(*const IEventObjectChange2, @ptrCast(self)), pInfo);
+        return self.vtable.ChangedEventClass(self, pInfo);
     }
 };
 
@@ -1266,16 +1266,16 @@ pub const IEnumEventObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Clone(self: *const IEnumEventObject, ppInterface: ?*?*IEnumEventObject) callconv(.Inline) HRESULT {
-        return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumEventObject, @ptrCast(self)), ppInterface);
+        return self.vtable.Clone(self, ppInterface);
     }
     pub fn Next(self: *const IEnumEventObject, cReqElem: u32, ppInterface: [*]?*IUnknown, cRetElem: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumEventObject, @ptrCast(self)), cReqElem, ppInterface, cRetElem);
+        return self.vtable.Next(self, cReqElem, ppInterface, cRetElem);
     }
     pub fn Reset(self: *const IEnumEventObject) callconv(.Inline) HRESULT {
-        return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumEventObject, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
     pub fn Skip(self: *const IEnumEventObject, cSkipElem: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEnumEventObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumEventObject, @ptrCast(self)), cSkipElem);
+        return self.vtable.Skip(self, cSkipElem);
     }
 };
 
@@ -1346,22 +1346,22 @@ pub const IEventObjectCollection = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get__NewEnum(self: *const IEventObjectCollection, ppUnkEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IEventObjectCollection, @ptrCast(self)), ppUnkEnum);
+        return self.vtable.get__NewEnum(self, ppUnkEnum);
     }
     pub fn get_Item(self: *const IEventObjectCollection, objectID: ?BSTR, pItem: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IEventObjectCollection, @ptrCast(self)), objectID, pItem);
+        return self.vtable.get_Item(self, objectID, pItem);
     }
     pub fn get_NewEnum(self: *const IEventObjectCollection, ppEnum: ?*?*IEnumEventObject) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get_NewEnum(@as(*const IEventObjectCollection, @ptrCast(self)), ppEnum);
+        return self.vtable.get_NewEnum(self, ppEnum);
     }
     pub fn get_Count(self: *const IEventObjectCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IEventObjectCollection, @ptrCast(self)), pCount);
+        return self.vtable.get_Count(self, pCount);
     }
     pub fn Add(self: *const IEventObjectCollection, item: ?*VARIANT, objectID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IEventObjectCollection, @ptrCast(self)), item, objectID);
+        return self.vtable.Add(self, item, objectID);
     }
     pub fn Remove(self: *const IEventObjectCollection, objectID: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventObjectCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IEventObjectCollection, @ptrCast(self)), objectID);
+        return self.vtable.Remove(self, objectID);
     }
 };
 
@@ -1415,16 +1415,16 @@ pub const IEventProperty = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn get_Name(self: *const IEventProperty, propertyName: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IEventProperty, @ptrCast(self)), propertyName);
+        return self.vtable.get_Name(self, propertyName);
     }
     pub fn put_Name(self: *const IEventProperty, propertyName: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IEventProperty, @ptrCast(self)), propertyName);
+        return self.vtable.put_Name(self, propertyName);
     }
     pub fn get_Value(self: *const IEventProperty, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IEventProperty, @ptrCast(self)), propertyValue);
+        return self.vtable.get_Value(self, propertyValue);
     }
     pub fn put_Value(self: *const IEventProperty, propertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IEventProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IEventProperty, @ptrCast(self)), propertyValue);
+        return self.vtable.put_Value(self, propertyValue);
     }
 };
 
@@ -1490,19 +1490,19 @@ pub const IEventControl = extern union {
     };}
     pub usingnamespace IDispatch.MethodMixin(@This());
     pub fn SetPublisherFilter(self: *const IEventControl, methodName: ?BSTR, pPublisherFilter: ?*IPublisherFilter) callconv(.Inline) HRESULT {
-        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).SetPublisherFilter(@as(*const IEventControl, @ptrCast(self)), methodName, pPublisherFilter);
+        return self.vtable.SetPublisherFilter(self, methodName, pPublisherFilter);
     }
     pub fn get_AllowInprocActivation(self: *const IEventControl, pfAllowInprocActivation: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).get_AllowInprocActivation(@as(*const IEventControl, @ptrCast(self)), pfAllowInprocActivation);
+        return self.vtable.get_AllowInprocActivation(self, pfAllowInprocActivation);
     }
     pub fn put_AllowInprocActivation(self: *const IEventControl, fAllowInprocActivation: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).put_AllowInprocActivation(@as(*const IEventControl, @ptrCast(self)), fAllowInprocActivation);
+        return self.vtable.put_AllowInprocActivation(self, fAllowInprocActivation);
     }
     pub fn GetSubscriptions(self: *const IEventControl, methodName: ?BSTR, optionalCriteria: ?BSTR, optionalErrorIndex: ?*i32, ppCollection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
-        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).GetSubscriptions(@as(*const IEventControl, @ptrCast(self)), methodName, optionalCriteria, optionalErrorIndex, ppCollection);
+        return self.vtable.GetSubscriptions(self, methodName, optionalCriteria, optionalErrorIndex, ppCollection);
     }
     pub fn SetDefaultQuery(self: *const IEventControl, methodName: ?BSTR, criteria: ?BSTR, errorIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IEventControl.VTable, @ptrCast(self.vtable)).SetDefaultQuery(@as(*const IEventControl, @ptrCast(self)), methodName, criteria, errorIndex);
+        return self.vtable.SetDefaultQuery(self, methodName, criteria, errorIndex);
     }
 };
 
@@ -1587,25 +1587,25 @@ pub const IMultiInterfaceEventControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetMultiInterfacePublisherFilter(self: *const IMultiInterfaceEventControl, classFilter: ?*IMultiInterfacePublisherFilter) callconv(.Inline) HRESULT {
-        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).SetMultiInterfacePublisherFilter(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), classFilter);
+        return self.vtable.SetMultiInterfacePublisherFilter(self, classFilter);
     }
     pub fn GetSubscriptions(self: *const IMultiInterfaceEventControl, eventIID: ?*const Guid, bstrMethodName: ?BSTR, optionalCriteria: ?BSTR, optionalErrorIndex: ?*i32, ppCollection: ?*?*IEventObjectCollection) callconv(.Inline) HRESULT {
-        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).GetSubscriptions(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), eventIID, bstrMethodName, optionalCriteria, optionalErrorIndex, ppCollection);
+        return self.vtable.GetSubscriptions(self, eventIID, bstrMethodName, optionalCriteria, optionalErrorIndex, ppCollection);
     }
     pub fn SetDefaultQuery(self: *const IMultiInterfaceEventControl, eventIID: ?*const Guid, bstrMethodName: ?BSTR, bstrCriteria: ?BSTR, errorIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).SetDefaultQuery(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), eventIID, bstrMethodName, bstrCriteria, errorIndex);
+        return self.vtable.SetDefaultQuery(self, eventIID, bstrMethodName, bstrCriteria, errorIndex);
     }
     pub fn get_AllowInprocActivation(self: *const IMultiInterfaceEventControl, pfAllowInprocActivation: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).get_AllowInprocActivation(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), pfAllowInprocActivation);
+        return self.vtable.get_AllowInprocActivation(self, pfAllowInprocActivation);
     }
     pub fn put_AllowInprocActivation(self: *const IMultiInterfaceEventControl, fAllowInprocActivation: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).put_AllowInprocActivation(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), fAllowInprocActivation);
+        return self.vtable.put_AllowInprocActivation(self, fAllowInprocActivation);
     }
     pub fn get_FireInParallel(self: *const IMultiInterfaceEventControl, pfFireInParallel: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).get_FireInParallel(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), pfFireInParallel);
+        return self.vtable.get_FireInParallel(self, pfFireInParallel);
     }
     pub fn put_FireInParallel(self: *const IMultiInterfaceEventControl, fFireInParallel: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMultiInterfaceEventControl.VTable, @ptrCast(self.vtable)).put_FireInParallel(@as(*const IMultiInterfaceEventControl, @ptrCast(self)), fFireInParallel);
+        return self.vtable.put_FireInParallel(self, fFireInParallel);
     }
 };
 

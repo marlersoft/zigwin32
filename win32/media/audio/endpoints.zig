@@ -32,7 +32,7 @@ pub const IAudioEndpointFormatControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ResetToDefault(self: *const IAudioEndpointFormatControl, ResetFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointFormatControl.VTable, @ptrCast(self.vtable)).ResetToDefault(@as(*const IAudioEndpointFormatControl, @ptrCast(self)), ResetFlags);
+        return self.vtable.ResetToDefault(self, ResetFlags);
     }
 };
 
@@ -97,13 +97,13 @@ pub const IAudioEndpointOffloadStreamVolume = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetVolumeChannelCount(self: *const IAudioEndpointOffloadStreamVolume, pu32ChannelCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointOffloadStreamVolume.VTable, @ptrCast(self.vtable)).GetVolumeChannelCount(@as(*const IAudioEndpointOffloadStreamVolume, @ptrCast(self)), pu32ChannelCount);
+        return self.vtable.GetVolumeChannelCount(self, pu32ChannelCount);
     }
     pub fn SetChannelVolumes(self: *const IAudioEndpointOffloadStreamVolume, u32ChannelCount: u32, pf32Volumes: ?*f32, u32CurveType: AUDIO_CURVE_TYPE, pCurveDuration: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointOffloadStreamVolume.VTable, @ptrCast(self.vtable)).SetChannelVolumes(@as(*const IAudioEndpointOffloadStreamVolume, @ptrCast(self)), u32ChannelCount, pf32Volumes, u32CurveType, pCurveDuration);
+        return self.vtable.SetChannelVolumes(self, u32ChannelCount, pf32Volumes, u32CurveType, pCurveDuration);
     }
     pub fn GetChannelVolumes(self: *const IAudioEndpointOffloadStreamVolume, u32ChannelCount: u32, pf32Volumes: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointOffloadStreamVolume.VTable, @ptrCast(self.vtable)).GetChannelVolumes(@as(*const IAudioEndpointOffloadStreamVolume, @ptrCast(self)), u32ChannelCount, pf32Volumes);
+        return self.vtable.GetChannelVolumes(self, u32ChannelCount, pf32Volumes);
     }
 };
 
@@ -137,10 +137,10 @@ pub const IAudioEndpointOffloadStreamMute = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetMute(self: *const IAudioEndpointOffloadStreamMute, bMuted: u8) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointOffloadStreamMute.VTable, @ptrCast(self.vtable)).SetMute(@as(*const IAudioEndpointOffloadStreamMute, @ptrCast(self)), bMuted);
+        return self.vtable.SetMute(self, bMuted);
     }
     pub fn GetMute(self: *const IAudioEndpointOffloadStreamMute, pbMuted: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointOffloadStreamMute.VTable, @ptrCast(self.vtable)).GetMute(@as(*const IAudioEndpointOffloadStreamMute, @ptrCast(self)), pbMuted);
+        return self.vtable.GetMute(self, pbMuted);
     }
 };
 
@@ -174,10 +174,10 @@ pub const IAudioEndpointOffloadStreamMeter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMeterChannelCount(self: *const IAudioEndpointOffloadStreamMeter, pu32ChannelCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointOffloadStreamMeter.VTable, @ptrCast(self.vtable)).GetMeterChannelCount(@as(*const IAudioEndpointOffloadStreamMeter, @ptrCast(self)), pu32ChannelCount);
+        return self.vtable.GetMeterChannelCount(self, pu32ChannelCount);
     }
     pub fn GetMeteringData(self: *const IAudioEndpointOffloadStreamMeter, u32ChannelCount: u32, pf32PeakValues: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointOffloadStreamMeter.VTable, @ptrCast(self.vtable)).GetMeteringData(@as(*const IAudioEndpointOffloadStreamMeter, @ptrCast(self)), u32ChannelCount, pf32PeakValues);
+        return self.vtable.GetMeteringData(self, u32ChannelCount, pf32PeakValues);
     }
 };
 
@@ -210,10 +210,10 @@ pub const IAudioEndpointLastBufferControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsLastBufferControlSupported(self: *const IAudioEndpointLastBufferControl) callconv(.Inline) BOOL {
-        return @as(*const IAudioEndpointLastBufferControl.VTable, @ptrCast(self.vtable)).IsLastBufferControlSupported(@as(*const IAudioEndpointLastBufferControl, @ptrCast(self)));
+        return self.vtable.IsLastBufferControlSupported(self);
     }
     pub fn ReleaseOutputDataPointerForLastBuffer(self: *const IAudioEndpointLastBufferControl, pConnectionProperty: ?*const APO_CONNECTION_PROPERTY) callconv(.Inline) void {
-        return @as(*const IAudioEndpointLastBufferControl.VTable, @ptrCast(self.vtable)).ReleaseOutputDataPointerForLastBuffer(@as(*const IAudioEndpointLastBufferControl, @ptrCast(self)), pConnectionProperty);
+        return self.vtable.ReleaseOutputDataPointerForLastBuffer(self, pConnectionProperty);
     }
 };
 
@@ -247,10 +247,10 @@ pub const IAudioLfxControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetLocalEffectsState(self: *const IAudioLfxControl, bEnabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAudioLfxControl.VTable, @ptrCast(self.vtable)).SetLocalEffectsState(@as(*const IAudioLfxControl, @ptrCast(self)), bEnabled);
+        return self.vtable.SetLocalEffectsState(self, bEnabled);
     }
     pub fn GetLocalEffectsState(self: *const IAudioLfxControl, pbEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAudioLfxControl.VTable, @ptrCast(self.vtable)).GetLocalEffectsState(@as(*const IAudioLfxControl, @ptrCast(self)), pbEnabled);
+        return self.vtable.GetLocalEffectsState(self, pbEnabled);
     }
 };
 
@@ -315,19 +315,19 @@ pub const IHardwareAudioEngineBase = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAvailableOffloadConnectorCount(self: *const IHardwareAudioEngineBase, _pwstrDeviceId: ?PWSTR, _uConnectorId: u32, _pAvailableConnectorInstanceCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IHardwareAudioEngineBase.VTable, @ptrCast(self.vtable)).GetAvailableOffloadConnectorCount(@as(*const IHardwareAudioEngineBase, @ptrCast(self)), _pwstrDeviceId, _uConnectorId, _pAvailableConnectorInstanceCount);
+        return self.vtable.GetAvailableOffloadConnectorCount(self, _pwstrDeviceId, _uConnectorId, _pAvailableConnectorInstanceCount);
     }
     pub fn GetEngineFormat(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _bRequestDeviceFormat: BOOL, _ppwfxFormat: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const IHardwareAudioEngineBase.VTable, @ptrCast(self.vtable)).GetEngineFormat(@as(*const IHardwareAudioEngineBase, @ptrCast(self)), pDevice, _bRequestDeviceFormat, _ppwfxFormat);
+        return self.vtable.GetEngineFormat(self, pDevice, _bRequestDeviceFormat, _ppwfxFormat);
     }
     pub fn SetEngineDeviceFormat(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _pwfxFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
-        return @as(*const IHardwareAudioEngineBase.VTable, @ptrCast(self.vtable)).SetEngineDeviceFormat(@as(*const IHardwareAudioEngineBase, @ptrCast(self)), pDevice, _pwfxFormat);
+        return self.vtable.SetEngineDeviceFormat(self, pDevice, _pwfxFormat);
     }
     pub fn SetGfxState(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _bEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IHardwareAudioEngineBase.VTable, @ptrCast(self.vtable)).SetGfxState(@as(*const IHardwareAudioEngineBase, @ptrCast(self)), pDevice, _bEnable);
+        return self.vtable.SetGfxState(self, pDevice, _bEnable);
     }
     pub fn GetGfxState(self: *const IHardwareAudioEngineBase, pDevice: ?*IMMDevice, _pbEnable: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IHardwareAudioEngineBase.VTable, @ptrCast(self.vtable)).GetGfxState(@as(*const IHardwareAudioEngineBase, @ptrCast(self)), pDevice, _pbEnable);
+        return self.vtable.GetGfxState(self, pDevice, _pbEnable);
     }
 };
 
@@ -356,7 +356,7 @@ pub const IAudioEndpointVolumeCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnNotify(self: *const IAudioEndpointVolumeCallback, pNotify: ?*AUDIO_VOLUME_NOTIFICATION_DATA) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolumeCallback.VTable, @ptrCast(self.vtable)).OnNotify(@as(*const IAudioEndpointVolumeCallback, @ptrCast(self)), pNotify);
+        return self.vtable.OnNotify(self, pNotify);
     }
 };
 
@@ -530,58 +530,58 @@ pub const IAudioEndpointVolume = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterControlChangeNotify(self: *const IAudioEndpointVolume, pNotify: ?*IAudioEndpointVolumeCallback) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).RegisterControlChangeNotify(@as(*const IAudioEndpointVolume, @ptrCast(self)), pNotify);
+        return self.vtable.RegisterControlChangeNotify(self, pNotify);
     }
     pub fn UnregisterControlChangeNotify(self: *const IAudioEndpointVolume, pNotify: ?*IAudioEndpointVolumeCallback) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).UnregisterControlChangeNotify(@as(*const IAudioEndpointVolume, @ptrCast(self)), pNotify);
+        return self.vtable.UnregisterControlChangeNotify(self, pNotify);
     }
     pub fn GetChannelCount(self: *const IAudioEndpointVolume, pnChannelCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).GetChannelCount(@as(*const IAudioEndpointVolume, @ptrCast(self)), pnChannelCount);
+        return self.vtable.GetChannelCount(self, pnChannelCount);
     }
     pub fn SetMasterVolumeLevel(self: *const IAudioEndpointVolume, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).SetMasterVolumeLevel(@as(*const IAudioEndpointVolume, @ptrCast(self)), fLevelDB, pguidEventContext);
+        return self.vtable.SetMasterVolumeLevel(self, fLevelDB, pguidEventContext);
     }
     pub fn SetMasterVolumeLevelScalar(self: *const IAudioEndpointVolume, fLevel: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).SetMasterVolumeLevelScalar(@as(*const IAudioEndpointVolume, @ptrCast(self)), fLevel, pguidEventContext);
+        return self.vtable.SetMasterVolumeLevelScalar(self, fLevel, pguidEventContext);
     }
     pub fn GetMasterVolumeLevel(self: *const IAudioEndpointVolume, pfLevelDB: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).GetMasterVolumeLevel(@as(*const IAudioEndpointVolume, @ptrCast(self)), pfLevelDB);
+        return self.vtable.GetMasterVolumeLevel(self, pfLevelDB);
     }
     pub fn GetMasterVolumeLevelScalar(self: *const IAudioEndpointVolume, pfLevel: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).GetMasterVolumeLevelScalar(@as(*const IAudioEndpointVolume, @ptrCast(self)), pfLevel);
+        return self.vtable.GetMasterVolumeLevelScalar(self, pfLevel);
     }
     pub fn SetChannelVolumeLevel(self: *const IAudioEndpointVolume, nChannel: u32, fLevelDB: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).SetChannelVolumeLevel(@as(*const IAudioEndpointVolume, @ptrCast(self)), nChannel, fLevelDB, pguidEventContext);
+        return self.vtable.SetChannelVolumeLevel(self, nChannel, fLevelDB, pguidEventContext);
     }
     pub fn SetChannelVolumeLevelScalar(self: *const IAudioEndpointVolume, nChannel: u32, fLevel: f32, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).SetChannelVolumeLevelScalar(@as(*const IAudioEndpointVolume, @ptrCast(self)), nChannel, fLevel, pguidEventContext);
+        return self.vtable.SetChannelVolumeLevelScalar(self, nChannel, fLevel, pguidEventContext);
     }
     pub fn GetChannelVolumeLevel(self: *const IAudioEndpointVolume, nChannel: u32, pfLevelDB: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).GetChannelVolumeLevel(@as(*const IAudioEndpointVolume, @ptrCast(self)), nChannel, pfLevelDB);
+        return self.vtable.GetChannelVolumeLevel(self, nChannel, pfLevelDB);
     }
     pub fn GetChannelVolumeLevelScalar(self: *const IAudioEndpointVolume, nChannel: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).GetChannelVolumeLevelScalar(@as(*const IAudioEndpointVolume, @ptrCast(self)), nChannel, pfLevel);
+        return self.vtable.GetChannelVolumeLevelScalar(self, nChannel, pfLevel);
     }
     pub fn SetMute(self: *const IAudioEndpointVolume, bMute: BOOL, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).SetMute(@as(*const IAudioEndpointVolume, @ptrCast(self)), bMute, pguidEventContext);
+        return self.vtable.SetMute(self, bMute, pguidEventContext);
     }
     pub fn GetMute(self: *const IAudioEndpointVolume, pbMute: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).GetMute(@as(*const IAudioEndpointVolume, @ptrCast(self)), pbMute);
+        return self.vtable.GetMute(self, pbMute);
     }
     pub fn GetVolumeStepInfo(self: *const IAudioEndpointVolume, pnStep: ?*u32, pnStepCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).GetVolumeStepInfo(@as(*const IAudioEndpointVolume, @ptrCast(self)), pnStep, pnStepCount);
+        return self.vtable.GetVolumeStepInfo(self, pnStep, pnStepCount);
     }
     pub fn VolumeStepUp(self: *const IAudioEndpointVolume, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).VolumeStepUp(@as(*const IAudioEndpointVolume, @ptrCast(self)), pguidEventContext);
+        return self.vtable.VolumeStepUp(self, pguidEventContext);
     }
     pub fn VolumeStepDown(self: *const IAudioEndpointVolume, pguidEventContext: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).VolumeStepDown(@as(*const IAudioEndpointVolume, @ptrCast(self)), pguidEventContext);
+        return self.vtable.VolumeStepDown(self, pguidEventContext);
     }
     pub fn QueryHardwareSupport(self: *const IAudioEndpointVolume, pdwHardwareSupportMask: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).QueryHardwareSupport(@as(*const IAudioEndpointVolume, @ptrCast(self)), pdwHardwareSupportMask);
+        return self.vtable.QueryHardwareSupport(self, pdwHardwareSupportMask);
     }
     pub fn GetVolumeRange(self: *const IAudioEndpointVolume, pflVolumeMindB: ?*f32, pflVolumeMaxdB: ?*f32, pflVolumeIncrementdB: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolume.VTable, @ptrCast(self.vtable)).GetVolumeRange(@as(*const IAudioEndpointVolume, @ptrCast(self)), pflVolumeMindB, pflVolumeMaxdB, pflVolumeIncrementdB);
+        return self.vtable.GetVolumeRange(self, pflVolumeMindB, pflVolumeMaxdB, pflVolumeIncrementdB);
     }
 };
 
@@ -610,7 +610,7 @@ pub const IAudioEndpointVolumeEx = extern union {
     };}
     pub usingnamespace IAudioEndpointVolume.MethodMixin(@This());
     pub fn GetVolumeRangeChannel(self: *const IAudioEndpointVolumeEx, iChannel: u32, pflVolumeMindB: ?*f32, pflVolumeMaxdB: ?*f32, pflVolumeIncrementdB: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioEndpointVolumeEx.VTable, @ptrCast(self.vtable)).GetVolumeRangeChannel(@as(*const IAudioEndpointVolumeEx, @ptrCast(self)), iChannel, pflVolumeMindB, pflVolumeMaxdB, pflVolumeIncrementdB);
+        return self.vtable.GetVolumeRangeChannel(self, iChannel, pflVolumeMindB, pflVolumeMaxdB, pflVolumeIncrementdB);
     }
 };
 
@@ -661,16 +661,16 @@ pub const IAudioMeterInformation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPeakValue(self: *const IAudioMeterInformation, pfPeak: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioMeterInformation.VTable, @ptrCast(self.vtable)).GetPeakValue(@as(*const IAudioMeterInformation, @ptrCast(self)), pfPeak);
+        return self.vtable.GetPeakValue(self, pfPeak);
     }
     pub fn GetMeteringChannelCount(self: *const IAudioMeterInformation, pnChannelCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioMeterInformation.VTable, @ptrCast(self.vtable)).GetMeteringChannelCount(@as(*const IAudioMeterInformation, @ptrCast(self)), pnChannelCount);
+        return self.vtable.GetMeteringChannelCount(self, pnChannelCount);
     }
     pub fn GetChannelsPeakValues(self: *const IAudioMeterInformation, u32ChannelCount: u32, afPeakValues: [*]f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioMeterInformation.VTable, @ptrCast(self.vtable)).GetChannelsPeakValues(@as(*const IAudioMeterInformation, @ptrCast(self)), u32ChannelCount, afPeakValues);
+        return self.vtable.GetChannelsPeakValues(self, u32ChannelCount, afPeakValues);
     }
     pub fn QueryHardwareSupport(self: *const IAudioMeterInformation, pdwHardwareSupportMask: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioMeterInformation.VTable, @ptrCast(self.vtable)).QueryHardwareSupport(@as(*const IAudioMeterInformation, @ptrCast(self)), pdwHardwareSupportMask);
+        return self.vtable.QueryHardwareSupport(self, pdwHardwareSupportMask);
     }
 };
 

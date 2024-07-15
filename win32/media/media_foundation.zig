@@ -2288,49 +2288,49 @@ pub const ICodecAPI = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsSupported(self: *const ICodecAPI, Api: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).IsSupported(@as(*const ICodecAPI, @ptrCast(self)), Api);
+        return self.vtable.IsSupported(self, Api);
     }
     pub fn IsModifiable(self: *const ICodecAPI, Api: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).IsModifiable(@as(*const ICodecAPI, @ptrCast(self)), Api);
+        return self.vtable.IsModifiable(self, Api);
     }
     pub fn GetParameterRange(self: *const ICodecAPI, Api: ?*const Guid, ValueMin: ?*VARIANT, ValueMax: ?*VARIANT, SteppingDelta: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetParameterRange(@as(*const ICodecAPI, @ptrCast(self)), Api, ValueMin, ValueMax, SteppingDelta);
+        return self.vtable.GetParameterRange(self, Api, ValueMin, ValueMax, SteppingDelta);
     }
     pub fn GetParameterValues(self: *const ICodecAPI, Api: ?*const Guid, Values: [*]?*VARIANT, ValuesCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetParameterValues(@as(*const ICodecAPI, @ptrCast(self)), Api, Values, ValuesCount);
+        return self.vtable.GetParameterValues(self, Api, Values, ValuesCount);
     }
     pub fn GetDefaultValue(self: *const ICodecAPI, Api: ?*const Guid, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetDefaultValue(@as(*const ICodecAPI, @ptrCast(self)), Api, Value);
+        return self.vtable.GetDefaultValue(self, Api, Value);
     }
     pub fn GetValue(self: *const ICodecAPI, Api: ?*const Guid, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetValue(@as(*const ICodecAPI, @ptrCast(self)), Api, Value);
+        return self.vtable.GetValue(self, Api, Value);
     }
     pub fn SetValue(self: *const ICodecAPI, Api: ?*const Guid, Value: ?*VARIANT) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetValue(@as(*const ICodecAPI, @ptrCast(self)), Api, Value);
+        return self.vtable.SetValue(self, Api, Value);
     }
     pub fn RegisterForEvent(self: *const ICodecAPI, Api: ?*const Guid, userData: isize) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).RegisterForEvent(@as(*const ICodecAPI, @ptrCast(self)), Api, userData);
+        return self.vtable.RegisterForEvent(self, Api, userData);
     }
     pub fn UnregisterForEvent(self: *const ICodecAPI, Api: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).UnregisterForEvent(@as(*const ICodecAPI, @ptrCast(self)), Api);
+        return self.vtable.UnregisterForEvent(self, Api);
     }
     pub fn SetAllDefaults(self: *const ICodecAPI) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetAllDefaults(@as(*const ICodecAPI, @ptrCast(self)));
+        return self.vtable.SetAllDefaults(self);
     }
     pub fn SetValueWithNotify(self: *const ICodecAPI, Api: ?*const Guid, Value: ?*VARIANT, ChangedParam: [*]?*Guid, ChangedParamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetValueWithNotify(@as(*const ICodecAPI, @ptrCast(self)), Api, Value, ChangedParam, ChangedParamCount);
+        return self.vtable.SetValueWithNotify(self, Api, Value, ChangedParam, ChangedParamCount);
     }
     pub fn SetAllDefaultsWithNotify(self: *const ICodecAPI, ChangedParam: [*]?*Guid, ChangedParamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetAllDefaultsWithNotify(@as(*const ICodecAPI, @ptrCast(self)), ChangedParam, ChangedParamCount);
+        return self.vtable.SetAllDefaultsWithNotify(self, ChangedParam, ChangedParamCount);
     }
     pub fn GetAllSettings(self: *const ICodecAPI, __MIDL__ICodecAPI0000: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).GetAllSettings(@as(*const ICodecAPI, @ptrCast(self)), __MIDL__ICodecAPI0000);
+        return self.vtable.GetAllSettings(self, __MIDL__ICodecAPI0000);
     }
     pub fn SetAllSettings(self: *const ICodecAPI, __MIDL__ICodecAPI0001: ?*IStream) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetAllSettings(@as(*const ICodecAPI, @ptrCast(self)), __MIDL__ICodecAPI0001);
+        return self.vtable.SetAllSettings(self, __MIDL__ICodecAPI0001);
     }
     pub fn SetAllSettingsWithNotify(self: *const ICodecAPI, __MIDL__ICodecAPI0002: ?*IStream, ChangedParam: [*]?*Guid, ChangedParamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ICodecAPI.VTable, @ptrCast(self.vtable)).SetAllSettingsWithNotify(@as(*const ICodecAPI, @ptrCast(self)), __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
+        return self.vtable.SetAllSettingsWithNotify(self, __MIDL__ICodecAPI0002, ChangedParam, ChangedParamCount);
     }
 };
 
@@ -2414,7 +2414,7 @@ pub const IDirect3D9ExOverlayExtension = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CheckDeviceOverlayType(self: *const IDirect3D9ExOverlayExtension, Adapter: u32, DevType: D3DDEVTYPE, OverlayWidth: u32, OverlayHeight: u32, OverlayFormat: D3DFORMAT, pDisplayMode: ?*D3DDISPLAYMODEEX, DisplayRotation: D3DDISPLAYROTATION, pOverlayCaps: ?*D3DOVERLAYCAPS) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3D9ExOverlayExtension.VTable, @ptrCast(self.vtable)).CheckDeviceOverlayType(@as(*const IDirect3D9ExOverlayExtension, @ptrCast(self)), Adapter, DevType, OverlayWidth, OverlayHeight, OverlayFormat, pDisplayMode, DisplayRotation, pOverlayCaps);
+        return self.vtable.CheckDeviceOverlayType(self, Adapter, DevType, OverlayWidth, OverlayHeight, OverlayFormat, pDisplayMode, DisplayRotation, pOverlayCaps);
     }
 };
 
@@ -2463,13 +2463,13 @@ pub const IDirect3DDevice9Video = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetContentProtectionCaps(self: *const IDirect3DDevice9Video, pCryptoType: ?*const Guid, pDecodeProfile: ?*const Guid, pCaps: ?*D3DCONTENTPROTECTIONCAPS) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDevice9Video.VTable, @ptrCast(self.vtable)).GetContentProtectionCaps(@as(*const IDirect3DDevice9Video, @ptrCast(self)), pCryptoType, pDecodeProfile, pCaps);
+        return self.vtable.GetContentProtectionCaps(self, pCryptoType, pDecodeProfile, pCaps);
     }
     pub fn CreateAuthenticatedChannel(self: *const IDirect3DDevice9Video, ChannelType: D3DAUTHENTICATEDCHANNELTYPE, ppAuthenticatedChannel: ?*?*IDirect3DAuthenticatedChannel9, pChannelHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDevice9Video.VTable, @ptrCast(self.vtable)).CreateAuthenticatedChannel(@as(*const IDirect3DDevice9Video, @ptrCast(self)), ChannelType, ppAuthenticatedChannel, pChannelHandle);
+        return self.vtable.CreateAuthenticatedChannel(self, ChannelType, ppAuthenticatedChannel, pChannelHandle);
     }
     pub fn CreateCryptoSession(self: *const IDirect3DDevice9Video, pCryptoType: ?*const Guid, pDecodeProfile: ?*const Guid, ppCryptoSession: ?*?*IDirect3DCryptoSession9, pCryptoHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDevice9Video.VTable, @ptrCast(self.vtable)).CreateCryptoSession(@as(*const IDirect3DDevice9Video, @ptrCast(self)), pCryptoType, pDecodeProfile, ppCryptoSession, pCryptoHandle);
+        return self.vtable.CreateCryptoSession(self, pCryptoType, pDecodeProfile, ppCryptoSession, pCryptoHandle);
     }
 };
 
@@ -2534,19 +2534,19 @@ pub const IDirect3DAuthenticatedChannel9 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCertificateSize(self: *const IDirect3DAuthenticatedChannel9, pCertificateSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).GetCertificateSize(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), pCertificateSize);
+        return self.vtable.GetCertificateSize(self, pCertificateSize);
     }
     pub fn GetCertificate(self: *const IDirect3DAuthenticatedChannel9, CertifacteSize: u32, ppCertificate: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), CertifacteSize, ppCertificate);
+        return self.vtable.GetCertificate(self, CertifacteSize, ppCertificate);
     }
     pub fn NegotiateKeyExchange(self: *const IDirect3DAuthenticatedChannel9, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).NegotiateKeyExchange(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), DataSize, pData);
+        return self.vtable.NegotiateKeyExchange(self, DataSize, pData);
     }
     pub fn Query(self: *const IDirect3DAuthenticatedChannel9, InputSize: u32, pInput: ?*const anyopaque, OutputSize: u32, pOutput: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).Query(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), InputSize, pInput, OutputSize, pOutput);
+        return self.vtable.Query(self, InputSize, pInput, OutputSize, pOutput);
     }
     pub fn Configure(self: *const IDirect3DAuthenticatedChannel9, InputSize: u32, pInput: ?*const anyopaque, pOutput: ?*D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DAuthenticatedChannel9.VTable, @ptrCast(self.vtable)).Configure(@as(*const IDirect3DAuthenticatedChannel9, @ptrCast(self)), InputSize, pInput, pOutput);
+        return self.vtable.Configure(self, InputSize, pInput, pOutput);
     }
 };
 
@@ -2648,31 +2648,31 @@ pub const IDirect3DCryptoSession9 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCertificateSize(self: *const IDirect3DCryptoSession9, pCertificateSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).GetCertificateSize(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pCertificateSize);
+        return self.vtable.GetCertificateSize(self, pCertificateSize);
     }
     pub fn GetCertificate(self: *const IDirect3DCryptoSession9, CertifacteSize: u32, ppCertificate: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), CertifacteSize, ppCertificate);
+        return self.vtable.GetCertificate(self, CertifacteSize, ppCertificate);
     }
     pub fn NegotiateKeyExchange(self: *const IDirect3DCryptoSession9, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).NegotiateKeyExchange(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), DataSize, pData);
+        return self.vtable.NegotiateKeyExchange(self, DataSize, pData);
     }
     pub fn EncryptionBlt(self: *const IDirect3DCryptoSession9, pSrcSurface: ?*IDirect3DSurface9, pDstSurface: ?*IDirect3DSurface9, DstSurfaceSize: u32, pIV: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).EncryptionBlt(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pSrcSurface, pDstSurface, DstSurfaceSize, pIV);
+        return self.vtable.EncryptionBlt(self, pSrcSurface, pDstSurface, DstSurfaceSize, pIV);
     }
     pub fn DecryptionBlt(self: *const IDirect3DCryptoSession9, pSrcSurface: ?*IDirect3DSurface9, pDstSurface: ?*IDirect3DSurface9, SrcSurfaceSize: u32, pEncryptedBlockInfo: ?*D3DENCRYPTED_BLOCK_INFO, pContentKey: ?*anyopaque, pIV: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).DecryptionBlt(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pSrcSurface, pDstSurface, SrcSurfaceSize, pEncryptedBlockInfo, pContentKey, pIV);
+        return self.vtable.DecryptionBlt(self, pSrcSurface, pDstSurface, SrcSurfaceSize, pEncryptedBlockInfo, pContentKey, pIV);
     }
     pub fn GetSurfacePitch(self: *const IDirect3DCryptoSession9, pSrcSurface: ?*IDirect3DSurface9, pSurfacePitch: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).GetSurfacePitch(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pSrcSurface, pSurfacePitch);
+        return self.vtable.GetSurfacePitch(self, pSrcSurface, pSurfacePitch);
     }
     pub fn StartSessionKeyRefresh(self: *const IDirect3DCryptoSession9, pRandomNumber: ?*anyopaque, RandomNumberSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).StartSessionKeyRefresh(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pRandomNumber, RandomNumberSize);
+        return self.vtable.StartSessionKeyRefresh(self, pRandomNumber, RandomNumberSize);
     }
     pub fn FinishSessionKeyRefresh(self: *const IDirect3DCryptoSession9) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).FinishSessionKeyRefresh(@as(*const IDirect3DCryptoSession9, @ptrCast(self)));
+        return self.vtable.FinishSessionKeyRefresh(self);
     }
     pub fn GetEncryptionBltKey(self: *const IDirect3DCryptoSession9, pReadbackKey: ?*anyopaque, KeySize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DCryptoSession9.VTable, @ptrCast(self.vtable)).GetEncryptionBltKey(@as(*const IDirect3DCryptoSession9, @ptrCast(self)), pReadbackKey, KeySize);
+        return self.vtable.GetEncryptionBltKey(self, pReadbackKey, KeySize);
     }
 };
 
@@ -2981,7 +2981,7 @@ pub const ID3D12VideoDecoderHeap = extern union {
     };}
     pub usingnamespace ID3D12Pageable.MethodMixin(@This());
     pub fn GetDesc(self: *const ID3D12VideoDecoderHeap) callconv(.Inline) D3D12_VIDEO_DECODER_HEAP_DESC {
-        return @as(*const ID3D12VideoDecoderHeap.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoDecoderHeap, @ptrCast(self)));
+        return self.vtable.GetDesc(self);
     }
 };
 
@@ -3043,16 +3043,16 @@ pub const ID3D12VideoDevice = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CheckFeatureSupport(self: *const ID3D12VideoDevice, FeatureVideo: D3D12_FEATURE_VIDEO, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const ID3D12VideoDevice, @ptrCast(self)), FeatureVideo, pFeatureSupportData, FeatureSupportDataSize);
+        return self.vtable.CheckFeatureSupport(self, FeatureVideo, pFeatureSupportData, FeatureSupportDataSize);
     }
     pub fn CreateVideoDecoder(self: *const ID3D12VideoDevice, pDesc: ?*const D3D12_VIDEO_DECODER_DESC, riid: ?*const Guid, ppVideoDecoder: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoDecoder(@as(*const ID3D12VideoDevice, @ptrCast(self)), pDesc, riid, ppVideoDecoder);
+        return self.vtable.CreateVideoDecoder(self, pDesc, riid, ppVideoDecoder);
     }
     pub fn CreateVideoDecoderHeap(self: *const ID3D12VideoDevice, pVideoDecoderHeapDesc: ?*const D3D12_VIDEO_DECODER_HEAP_DESC, riid: ?*const Guid, ppVideoDecoderHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoDecoderHeap(@as(*const ID3D12VideoDevice, @ptrCast(self)), pVideoDecoderHeapDesc, riid, ppVideoDecoderHeap);
+        return self.vtable.CreateVideoDecoderHeap(self, pVideoDecoderHeapDesc, riid, ppVideoDecoderHeap);
     }
     pub fn CreateVideoProcessor(self: *const ID3D12VideoDevice, NodeMask: u32, pOutputStreamDesc: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC, NumInputStreamDescs: u32, pInputStreamDescs: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_DESC, riid: ?*const Guid, ppVideoProcessor: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice.VTable, @ptrCast(self.vtable)).CreateVideoProcessor(@as(*const ID3D12VideoDevice, @ptrCast(self)), NodeMask, pOutputStreamDesc, NumInputStreamDescs, pInputStreamDescs, riid, ppVideoProcessor);
+        return self.vtable.CreateVideoProcessor(self, NodeMask, pOutputStreamDesc, NumInputStreamDescs, pInputStreamDescs, riid, ppVideoProcessor);
     }
 };
 
@@ -3077,7 +3077,7 @@ pub const ID3D12VideoDecoder = extern union {
     };}
     pub usingnamespace ID3D12Pageable.MethodMixin(@This());
     pub fn GetDesc(self: *const ID3D12VideoDecoder) callconv(.Inline) D3D12_VIDEO_DECODER_DESC {
-        return @as(*const ID3D12VideoDecoder.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoDecoder, @ptrCast(self)));
+        return self.vtable.GetDesc(self);
     }
 };
 
@@ -3506,16 +3506,16 @@ pub const ID3D12VideoProcessor = extern union {
     };}
     pub usingnamespace ID3D12Pageable.MethodMixin(@This());
     pub fn GetNodeMask(self: *const ID3D12VideoProcessor) callconv(.Inline) u32 {
-        return @as(*const ID3D12VideoProcessor.VTable, @ptrCast(self.vtable)).GetNodeMask(@as(*const ID3D12VideoProcessor, @ptrCast(self)));
+        return self.vtable.GetNodeMask(self);
     }
     pub fn GetNumInputStreamDescs(self: *const ID3D12VideoProcessor) callconv(.Inline) u32 {
-        return @as(*const ID3D12VideoProcessor.VTable, @ptrCast(self.vtable)).GetNumInputStreamDescs(@as(*const ID3D12VideoProcessor, @ptrCast(self)));
+        return self.vtable.GetNumInputStreamDescs(self);
     }
     pub fn GetInputStreamDescs(self: *const ID3D12VideoProcessor, NumInputStreamDescs: u32, pInputStreamDescs: [*]D3D12_VIDEO_PROCESS_INPUT_STREAM_DESC) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoProcessor.VTable, @ptrCast(self.vtable)).GetInputStreamDescs(@as(*const ID3D12VideoProcessor, @ptrCast(self)), NumInputStreamDescs, pInputStreamDescs);
+        return self.vtable.GetInputStreamDescs(self, NumInputStreamDescs, pInputStreamDescs);
     }
     pub fn GetOutputStreamDesc(self: *const ID3D12VideoProcessor) callconv(.Inline) D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC {
-        return @as(*const ID3D12VideoProcessor.VTable, @ptrCast(self.vtable)).GetOutputStreamDesc(@as(*const ID3D12VideoProcessor, @ptrCast(self)));
+        return self.vtable.GetOutputStreamDesc(self);
     }
 };
 
@@ -3934,46 +3934,46 @@ pub const ID3D12VideoDecodeCommandList = extern union {
     };}
     pub usingnamespace ID3D12CommandList.MethodMixin(@This());
     pub fn Close(self: *const ID3D12VideoDecodeCommandList) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn Reset(self: *const ID3D12VideoDecodeCommandList, pAllocator: ?*ID3D12CommandAllocator) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pAllocator);
+        return self.vtable.Reset(self, pAllocator);
     }
     pub fn ClearState(self: *const ID3D12VideoDecodeCommandList) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)));
+        return self.vtable.ClearState(self);
     }
     pub fn ResourceBarrier(self: *const ID3D12VideoDecodeCommandList, NumBarriers: u32, pBarriers: [*]const D3D12_RESOURCE_BARRIER) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).ResourceBarrier(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), NumBarriers, pBarriers);
+        return self.vtable.ResourceBarrier(self, NumBarriers, pBarriers);
     }
     pub fn DiscardResource(self: *const ID3D12VideoDecodeCommandList, pResource: ?*ID3D12Resource, pRegion: ?*const D3D12_DISCARD_REGION) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).DiscardResource(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pResource, pRegion);
+        return self.vtable.DiscardResource(self, pResource, pRegion);
     }
     pub fn BeginQuery(self: *const ID3D12VideoDecodeCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).BeginQuery(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
+        return self.vtable.BeginQuery(self, pQueryHeap, Type, Index);
     }
     pub fn EndQuery(self: *const ID3D12VideoDecodeCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).EndQuery(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
+        return self.vtable.EndQuery(self, pQueryHeap, Type, Index);
     }
     pub fn ResolveQueryData(self: *const ID3D12VideoDecodeCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, StartIndex: u32, NumQueries: u32, pDestinationBuffer: ?*ID3D12Resource, AlignedDestinationBufferOffset: u64) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).ResolveQueryData(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
+        return self.vtable.ResolveQueryData(self, pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
     }
     pub fn SetPredication(self: *const ID3D12VideoDecodeCommandList, pBuffer: ?*ID3D12Resource, AlignedBufferOffset: u64, Operation: D3D12_PREDICATION_OP) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pBuffer, AlignedBufferOffset, Operation);
+        return self.vtable.SetPredication(self, pBuffer, AlignedBufferOffset, Operation);
     }
     pub fn SetMarker(self: *const ID3D12VideoDecodeCommandList, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), Metadata, pData, Size);
+        return self.vtable.SetMarker(self, Metadata, pData, Size);
     }
     pub fn BeginEvent(self: *const ID3D12VideoDecodeCommandList, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), Metadata, pData, Size);
+        return self.vtable.BeginEvent(self, Metadata, pData, Size);
     }
     pub fn EndEvent(self: *const ID3D12VideoDecodeCommandList) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)));
+        return self.vtable.EndEvent(self);
     }
     pub fn DecodeFrame(self: *const ID3D12VideoDecodeCommandList, pDecoder: ?*ID3D12VideoDecoder, pOutputArguments: ?*const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS, pInputArguments: ?*const D3D12_VIDEO_DECODE_INPUT_STREAM_ARGUMENTS) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).DecodeFrame(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), pDecoder, pOutputArguments, pInputArguments);
+        return self.vtable.DecodeFrame(self, pDecoder, pOutputArguments, pInputArguments);
     }
     pub fn WriteBufferImmediate(self: *const ID3D12VideoDecodeCommandList, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList.VTable, @ptrCast(self.vtable)).WriteBufferImmediate(@as(*const ID3D12VideoDecodeCommandList, @ptrCast(self)), Count, pParams, pModes);
+        return self.vtable.WriteBufferImmediate(self, Count, pParams, pModes);
     }
 };
 
@@ -4124,46 +4124,46 @@ pub const ID3D12VideoProcessCommandList = extern union {
     };}
     pub usingnamespace ID3D12CommandList.MethodMixin(@This());
     pub fn Close(self: *const ID3D12VideoProcessCommandList) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn Reset(self: *const ID3D12VideoProcessCommandList, pAllocator: ?*ID3D12CommandAllocator) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pAllocator);
+        return self.vtable.Reset(self, pAllocator);
     }
     pub fn ClearState(self: *const ID3D12VideoProcessCommandList) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)));
+        return self.vtable.ClearState(self);
     }
     pub fn ResourceBarrier(self: *const ID3D12VideoProcessCommandList, NumBarriers: u32, pBarriers: [*]const D3D12_RESOURCE_BARRIER) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).ResourceBarrier(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), NumBarriers, pBarriers);
+        return self.vtable.ResourceBarrier(self, NumBarriers, pBarriers);
     }
     pub fn DiscardResource(self: *const ID3D12VideoProcessCommandList, pResource: ?*ID3D12Resource, pRegion: ?*const D3D12_DISCARD_REGION) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).DiscardResource(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pResource, pRegion);
+        return self.vtable.DiscardResource(self, pResource, pRegion);
     }
     pub fn BeginQuery(self: *const ID3D12VideoProcessCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).BeginQuery(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
+        return self.vtable.BeginQuery(self, pQueryHeap, Type, Index);
     }
     pub fn EndQuery(self: *const ID3D12VideoProcessCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).EndQuery(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
+        return self.vtable.EndQuery(self, pQueryHeap, Type, Index);
     }
     pub fn ResolveQueryData(self: *const ID3D12VideoProcessCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, StartIndex: u32, NumQueries: u32, pDestinationBuffer: ?*ID3D12Resource, AlignedDestinationBufferOffset: u64) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).ResolveQueryData(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
+        return self.vtable.ResolveQueryData(self, pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
     }
     pub fn SetPredication(self: *const ID3D12VideoProcessCommandList, pBuffer: ?*ID3D12Resource, AlignedBufferOffset: u64, Operation: D3D12_PREDICATION_OP) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pBuffer, AlignedBufferOffset, Operation);
+        return self.vtable.SetPredication(self, pBuffer, AlignedBufferOffset, Operation);
     }
     pub fn SetMarker(self: *const ID3D12VideoProcessCommandList, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), Metadata, pData, Size);
+        return self.vtable.SetMarker(self, Metadata, pData, Size);
     }
     pub fn BeginEvent(self: *const ID3D12VideoProcessCommandList, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), Metadata, pData, Size);
+        return self.vtable.BeginEvent(self, Metadata, pData, Size);
     }
     pub fn EndEvent(self: *const ID3D12VideoProcessCommandList) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)));
+        return self.vtable.EndEvent(self);
     }
     pub fn ProcessFrames(self: *const ID3D12VideoProcessCommandList, pVideoProcessor: ?*ID3D12VideoProcessor, pOutputArguments: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_ARGUMENTS, NumInputStreams: u32, pInputArguments: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_ARGUMENTS) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).ProcessFrames(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), pVideoProcessor, pOutputArguments, NumInputStreams, pInputArguments);
+        return self.vtable.ProcessFrames(self, pVideoProcessor, pOutputArguments, NumInputStreams, pInputArguments);
     }
     pub fn WriteBufferImmediate(self: *const ID3D12VideoProcessCommandList, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList.VTable, @ptrCast(self.vtable)).WriteBufferImmediate(@as(*const ID3D12VideoProcessCommandList, @ptrCast(self)), Count, pParams, pModes);
+        return self.vtable.WriteBufferImmediate(self, Count, pParams, pModes);
     }
 };
 
@@ -4213,7 +4213,7 @@ pub const ID3D12VideoDecodeCommandList1 = extern union {
     };}
     pub usingnamespace ID3D12VideoDecodeCommandList.MethodMixin(@This());
     pub fn DecodeFrame1(self: *const ID3D12VideoDecodeCommandList1, pDecoder: ?*ID3D12VideoDecoder, pOutputArguments: ?*const D3D12_VIDEO_DECODE_OUTPUT_STREAM_ARGUMENTS1, pInputArguments: ?*const D3D12_VIDEO_DECODE_INPUT_STREAM_ARGUMENTS) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList1.VTable, @ptrCast(self.vtable)).DecodeFrame1(@as(*const ID3D12VideoDecodeCommandList1, @ptrCast(self)), pDecoder, pOutputArguments, pInputArguments);
+        return self.vtable.DecodeFrame1(self, pDecoder, pOutputArguments, pInputArguments);
     }
 };
 
@@ -4252,7 +4252,7 @@ pub const ID3D12VideoProcessCommandList1 = extern union {
     };}
     pub usingnamespace ID3D12VideoProcessCommandList.MethodMixin(@This());
     pub fn ProcessFrames1(self: *const ID3D12VideoProcessCommandList1, pVideoProcessor: ?*ID3D12VideoProcessor, pOutputArguments: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_ARGUMENTS, NumInputStreams: u32, pInputArguments: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_ARGUMENTS1) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList1.VTable, @ptrCast(self.vtable)).ProcessFrames1(@as(*const ID3D12VideoProcessCommandList1, @ptrCast(self)), pVideoProcessor, pOutputArguments, NumInputStreams, pInputArguments);
+        return self.vtable.ProcessFrames1(self, pVideoProcessor, pOutputArguments, NumInputStreams, pInputArguments);
     }
 };
 
@@ -4410,10 +4410,10 @@ pub const ID3D12VideoMotionEstimator = extern union {
     };}
     pub usingnamespace ID3D12Pageable.MethodMixin(@This());
     pub fn GetDesc(self: *const ID3D12VideoMotionEstimator) callconv(.Inline) D3D12_VIDEO_MOTION_ESTIMATOR_DESC {
-        return @as(*const ID3D12VideoMotionEstimator.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoMotionEstimator, @ptrCast(self)));
+        return self.vtable.GetDesc(self);
     }
     pub fn GetProtectedResourceSession(self: *const ID3D12VideoMotionEstimator, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoMotionEstimator.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoMotionEstimator, @ptrCast(self)), riid, ppProtectedSession);
+        return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
 };
 
@@ -4456,10 +4456,10 @@ pub const ID3D12VideoMotionVectorHeap = extern union {
     };}
     pub usingnamespace ID3D12Pageable.MethodMixin(@This());
     pub fn GetDesc(self: *const ID3D12VideoMotionVectorHeap) callconv(.Inline) D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC {
-        return @as(*const ID3D12VideoMotionVectorHeap.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoMotionVectorHeap, @ptrCast(self)));
+        return self.vtable.GetDesc(self);
     }
     pub fn GetProtectedResourceSession(self: *const ID3D12VideoMotionVectorHeap, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoMotionVectorHeap.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoMotionVectorHeap, @ptrCast(self)), riid, ppProtectedSession);
+        return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
 };
 
@@ -4499,10 +4499,10 @@ pub const ID3D12VideoDevice1 = extern union {
     };}
     pub usingnamespace ID3D12VideoDevice.MethodMixin(@This());
     pub fn CreateVideoMotionEstimator(self: *const ID3D12VideoDevice1, pDesc: ?*const D3D12_VIDEO_MOTION_ESTIMATOR_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoMotionEstimator: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice1.VTable, @ptrCast(self.vtable)).CreateVideoMotionEstimator(@as(*const ID3D12VideoDevice1, @ptrCast(self)), pDesc, pProtectedResourceSession, riid, ppVideoMotionEstimator);
+        return self.vtable.CreateVideoMotionEstimator(self, pDesc, pProtectedResourceSession, riid, ppVideoMotionEstimator);
     }
     pub fn CreateVideoMotionVectorHeap(self: *const ID3D12VideoDevice1, pDesc: ?*const D3D12_VIDEO_MOTION_VECTOR_HEAP_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoMotionVectorHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice1.VTable, @ptrCast(self.vtable)).CreateVideoMotionVectorHeap(@as(*const ID3D12VideoDevice1, @ptrCast(self)), pDesc, pProtectedResourceSession, riid, ppVideoMotionVectorHeap);
+        return self.vtable.CreateVideoMotionVectorHeap(self, pDesc, pProtectedResourceSession, riid, ppVideoMotionVectorHeap);
     }
 };
 
@@ -4700,52 +4700,52 @@ pub const ID3D12VideoEncodeCommandList = extern union {
     };}
     pub usingnamespace ID3D12CommandList.MethodMixin(@This());
     pub fn Close(self: *const ID3D12VideoEncodeCommandList) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn Reset(self: *const ID3D12VideoEncodeCommandList, pAllocator: ?*ID3D12CommandAllocator) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pAllocator);
+        return self.vtable.Reset(self, pAllocator);
     }
     pub fn ClearState(self: *const ID3D12VideoEncodeCommandList) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)));
+        return self.vtable.ClearState(self);
     }
     pub fn ResourceBarrier(self: *const ID3D12VideoEncodeCommandList, NumBarriers: u32, pBarriers: [*]const D3D12_RESOURCE_BARRIER) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).ResourceBarrier(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), NumBarriers, pBarriers);
+        return self.vtable.ResourceBarrier(self, NumBarriers, pBarriers);
     }
     pub fn DiscardResource(self: *const ID3D12VideoEncodeCommandList, pResource: ?*ID3D12Resource, pRegion: ?*const D3D12_DISCARD_REGION) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).DiscardResource(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pResource, pRegion);
+        return self.vtable.DiscardResource(self, pResource, pRegion);
     }
     pub fn BeginQuery(self: *const ID3D12VideoEncodeCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).BeginQuery(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
+        return self.vtable.BeginQuery(self, pQueryHeap, Type, Index);
     }
     pub fn EndQuery(self: *const ID3D12VideoEncodeCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).EndQuery(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
+        return self.vtable.EndQuery(self, pQueryHeap, Type, Index);
     }
     pub fn ResolveQueryData(self: *const ID3D12VideoEncodeCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, StartIndex: u32, NumQueries: u32, pDestinationBuffer: ?*ID3D12Resource, AlignedDestinationBufferOffset: u64) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).ResolveQueryData(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
+        return self.vtable.ResolveQueryData(self, pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
     }
     pub fn SetPredication(self: *const ID3D12VideoEncodeCommandList, pBuffer: ?*ID3D12Resource, AlignedBufferOffset: u64, Operation: D3D12_PREDICATION_OP) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pBuffer, AlignedBufferOffset, Operation);
+        return self.vtable.SetPredication(self, pBuffer, AlignedBufferOffset, Operation);
     }
     pub fn SetMarker(self: *const ID3D12VideoEncodeCommandList, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), Metadata, pData, Size);
+        return self.vtable.SetMarker(self, Metadata, pData, Size);
     }
     pub fn BeginEvent(self: *const ID3D12VideoEncodeCommandList, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), Metadata, pData, Size);
+        return self.vtable.BeginEvent(self, Metadata, pData, Size);
     }
     pub fn EndEvent(self: *const ID3D12VideoEncodeCommandList) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)));
+        return self.vtable.EndEvent(self);
     }
     pub fn EstimateMotion(self: *const ID3D12VideoEncodeCommandList, pMotionEstimator: ?*ID3D12VideoMotionEstimator, pOutputArguments: ?*const D3D12_VIDEO_MOTION_ESTIMATOR_OUTPUT, pInputArguments: ?*const D3D12_VIDEO_MOTION_ESTIMATOR_INPUT) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).EstimateMotion(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pMotionEstimator, pOutputArguments, pInputArguments);
+        return self.vtable.EstimateMotion(self, pMotionEstimator, pOutputArguments, pInputArguments);
     }
     pub fn ResolveMotionVectorHeap(self: *const ID3D12VideoEncodeCommandList, pOutputArguments: ?*const D3D12_RESOLVE_VIDEO_MOTION_VECTOR_HEAP_OUTPUT, pInputArguments: ?*const D3D12_RESOLVE_VIDEO_MOTION_VECTOR_HEAP_INPUT) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).ResolveMotionVectorHeap(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pOutputArguments, pInputArguments);
+        return self.vtable.ResolveMotionVectorHeap(self, pOutputArguments, pInputArguments);
     }
     pub fn WriteBufferImmediate(self: *const ID3D12VideoEncodeCommandList, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).WriteBufferImmediate(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), Count, pParams, pModes);
+        return self.vtable.WriteBufferImmediate(self, Count, pParams, pModes);
     }
     pub fn SetProtectedResourceSession(self: *const ID3D12VideoEncodeCommandList, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList.VTable, @ptrCast(self.vtable)).SetProtectedResourceSession(@as(*const ID3D12VideoEncodeCommandList, @ptrCast(self)), pProtectedResourceSession);
+        return self.vtable.SetProtectedResourceSession(self, pProtectedResourceSession);
     }
 };
 
@@ -4983,7 +4983,7 @@ pub const ID3D12VideoDecoder1 = extern union {
     };}
     pub usingnamespace ID3D12VideoDecoder.MethodMixin(@This());
     pub fn GetProtectedResourceSession(self: *const ID3D12VideoDecoder1, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDecoder1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoDecoder1, @ptrCast(self)), riid, ppProtectedSession);
+        return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
 };
 
@@ -5010,7 +5010,7 @@ pub const ID3D12VideoDecoderHeap1 = extern union {
     };}
     pub usingnamespace ID3D12VideoDecoderHeap.MethodMixin(@This());
     pub fn GetProtectedResourceSession(self: *const ID3D12VideoDecoderHeap1, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDecoderHeap1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoDecoderHeap1, @ptrCast(self)), riid, ppProtectedSession);
+        return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
 };
 
@@ -5037,7 +5037,7 @@ pub const ID3D12VideoProcessor1 = extern union {
     };}
     pub usingnamespace ID3D12VideoProcessor.MethodMixin(@This());
     pub fn GetProtectedResourceSession(self: *const ID3D12VideoProcessor1, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoProcessor1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoProcessor1, @ptrCast(self)), riid, ppProtectedSession);
+        return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
 };
 
@@ -5072,10 +5072,10 @@ pub const ID3D12VideoExtensionCommand = extern union {
     };}
     pub usingnamespace ID3D12Pageable.MethodMixin(@This());
     pub fn GetDesc(self: *const ID3D12VideoExtensionCommand) callconv(.Inline) D3D12_VIDEO_EXTENSION_COMMAND_DESC {
-        return @as(*const ID3D12VideoExtensionCommand.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12VideoExtensionCommand, @ptrCast(self)));
+        return self.vtable.GetDesc(self);
     }
     pub fn GetProtectedResourceSession(self: *const ID3D12VideoExtensionCommand, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoExtensionCommand.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12VideoExtensionCommand, @ptrCast(self)), riid, ppProtectedSession);
+        return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
 };
 
@@ -5157,19 +5157,19 @@ pub const ID3D12VideoDevice2 = extern union {
     };}
     pub usingnamespace ID3D12VideoDevice1.MethodMixin(@This());
     pub fn CreateVideoDecoder1(self: *const ID3D12VideoDevice2, pDesc: ?*const D3D12_VIDEO_DECODER_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoDecoder: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).CreateVideoDecoder1(@as(*const ID3D12VideoDevice2, @ptrCast(self)), pDesc, pProtectedResourceSession, riid, ppVideoDecoder);
+        return self.vtable.CreateVideoDecoder1(self, pDesc, pProtectedResourceSession, riid, ppVideoDecoder);
     }
     pub fn CreateVideoDecoderHeap1(self: *const ID3D12VideoDevice2, pVideoDecoderHeapDesc: ?*const D3D12_VIDEO_DECODER_HEAP_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoDecoderHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).CreateVideoDecoderHeap1(@as(*const ID3D12VideoDevice2, @ptrCast(self)), pVideoDecoderHeapDesc, pProtectedResourceSession, riid, ppVideoDecoderHeap);
+        return self.vtable.CreateVideoDecoderHeap1(self, pVideoDecoderHeapDesc, pProtectedResourceSession, riid, ppVideoDecoderHeap);
     }
     pub fn CreateVideoProcessor1(self: *const ID3D12VideoDevice2, NodeMask: u32, pOutputStreamDesc: ?*const D3D12_VIDEO_PROCESS_OUTPUT_STREAM_DESC, NumInputStreamDescs: u32, pInputStreamDescs: [*]const D3D12_VIDEO_PROCESS_INPUT_STREAM_DESC, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoProcessor: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).CreateVideoProcessor1(@as(*const ID3D12VideoDevice2, @ptrCast(self)), NodeMask, pOutputStreamDesc, NumInputStreamDescs, pInputStreamDescs, pProtectedResourceSession, riid, ppVideoProcessor);
+        return self.vtable.CreateVideoProcessor1(self, NodeMask, pOutputStreamDesc, NumInputStreamDescs, pInputStreamDescs, pProtectedResourceSession, riid, ppVideoProcessor);
     }
     pub fn CreateVideoExtensionCommand(self: *const ID3D12VideoDevice2, pDesc: ?*const D3D12_VIDEO_EXTENSION_COMMAND_DESC, pCreationParameters: ?*const anyopaque, CreationParametersDataSizeInBytes: usize, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppVideoExtensionCommand: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).CreateVideoExtensionCommand(@as(*const ID3D12VideoDevice2, @ptrCast(self)), pDesc, pCreationParameters, CreationParametersDataSizeInBytes, pProtectedResourceSession, riid, ppVideoExtensionCommand);
+        return self.vtable.CreateVideoExtensionCommand(self, pDesc, pCreationParameters, CreationParametersDataSizeInBytes, pProtectedResourceSession, riid, ppVideoExtensionCommand);
     }
     pub fn ExecuteExtensionCommand(self: *const ID3D12VideoDevice2, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pExecutionParameters: ?*const anyopaque, ExecutionParametersSizeInBytes: usize, pOutputData: ?*anyopaque, OutputDataSizeInBytes: usize) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice2.VTable, @ptrCast(self.vtable)).ExecuteExtensionCommand(@as(*const ID3D12VideoDevice2, @ptrCast(self)), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes, pOutputData, OutputDataSizeInBytes);
+        return self.vtable.ExecuteExtensionCommand(self, pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes, pOutputData, OutputDataSizeInBytes);
     }
 };
 
@@ -5217,13 +5217,13 @@ pub const ID3D12VideoDecodeCommandList2 = extern union {
     };}
     pub usingnamespace ID3D12VideoDecodeCommandList1.MethodMixin(@This());
     pub fn SetProtectedResourceSession(self: *const ID3D12VideoDecodeCommandList2, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList2.VTable, @ptrCast(self.vtable)).SetProtectedResourceSession(@as(*const ID3D12VideoDecodeCommandList2, @ptrCast(self)), pProtectedResourceSession);
+        return self.vtable.SetProtectedResourceSession(self, pProtectedResourceSession);
     }
     pub fn InitializeExtensionCommand(self: *const ID3D12VideoDecodeCommandList2, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pInitializationParameters: ?*const anyopaque, InitializationParametersSizeInBytes: usize) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList2.VTable, @ptrCast(self.vtable)).InitializeExtensionCommand(@as(*const ID3D12VideoDecodeCommandList2, @ptrCast(self)), pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
+        return self.vtable.InitializeExtensionCommand(self, pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
     }
     pub fn ExecuteExtensionCommand(self: *const ID3D12VideoDecodeCommandList2, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pExecutionParameters: ?*const anyopaque, ExecutionParametersSizeInBytes: usize) callconv(.Inline) void {
-        return @as(*const ID3D12VideoDecodeCommandList2.VTable, @ptrCast(self.vtable)).ExecuteExtensionCommand(@as(*const ID3D12VideoDecodeCommandList2, @ptrCast(self)), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
+        return self.vtable.ExecuteExtensionCommand(self, pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
     }
 };
 
@@ -5271,13 +5271,13 @@ pub const ID3D12VideoProcessCommandList2 = extern union {
     };}
     pub usingnamespace ID3D12VideoProcessCommandList1.MethodMixin(@This());
     pub fn SetProtectedResourceSession(self: *const ID3D12VideoProcessCommandList2, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList2.VTable, @ptrCast(self.vtable)).SetProtectedResourceSession(@as(*const ID3D12VideoProcessCommandList2, @ptrCast(self)), pProtectedResourceSession);
+        return self.vtable.SetProtectedResourceSession(self, pProtectedResourceSession);
     }
     pub fn InitializeExtensionCommand(self: *const ID3D12VideoProcessCommandList2, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pInitializationParameters: ?*const anyopaque, InitializationParametersSizeInBytes: usize) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList2.VTable, @ptrCast(self.vtable)).InitializeExtensionCommand(@as(*const ID3D12VideoProcessCommandList2, @ptrCast(self)), pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
+        return self.vtable.InitializeExtensionCommand(self, pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
     }
     pub fn ExecuteExtensionCommand(self: *const ID3D12VideoProcessCommandList2, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pExecutionParameters: ?*const anyopaque, ExecutionParametersSizeInBytes: usize) callconv(.Inline) void {
-        return @as(*const ID3D12VideoProcessCommandList2.VTable, @ptrCast(self.vtable)).ExecuteExtensionCommand(@as(*const ID3D12VideoProcessCommandList2, @ptrCast(self)), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
+        return self.vtable.ExecuteExtensionCommand(self, pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
     }
 };
 
@@ -5317,10 +5317,10 @@ pub const ID3D12VideoEncodeCommandList1 = extern union {
     };}
     pub usingnamespace ID3D12VideoEncodeCommandList.MethodMixin(@This());
     pub fn InitializeExtensionCommand(self: *const ID3D12VideoEncodeCommandList1, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pInitializationParameters: ?*const anyopaque, InitializationParametersSizeInBytes: usize) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList1.VTable, @ptrCast(self.vtable)).InitializeExtensionCommand(@as(*const ID3D12VideoEncodeCommandList1, @ptrCast(self)), pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
+        return self.vtable.InitializeExtensionCommand(self, pExtensionCommand, pInitializationParameters, InitializationParametersSizeInBytes);
     }
     pub fn ExecuteExtensionCommand(self: *const ID3D12VideoEncodeCommandList1, pExtensionCommand: ?*ID3D12VideoExtensionCommand, pExecutionParameters: ?*const anyopaque, ExecutionParametersSizeInBytes: usize) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList1.VTable, @ptrCast(self.vtable)).ExecuteExtensionCommand(@as(*const ID3D12VideoEncodeCommandList1, @ptrCast(self)), pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
+        return self.vtable.ExecuteExtensionCommand(self, pExtensionCommand, pExecutionParameters, ExecutionParametersSizeInBytes);
     }
 };
 
@@ -6335,25 +6335,25 @@ pub const ID3D12VideoEncoder = extern union {
     };}
     pub usingnamespace ID3D12Pageable.MethodMixin(@This());
     pub fn GetNodeMask(self: *const ID3D12VideoEncoder) callconv(.Inline) u32 {
-        return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetNodeMask(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
+        return self.vtable.GetNodeMask(self);
     }
     pub fn GetEncoderFlags(self: *const ID3D12VideoEncoder) callconv(.Inline) D3D12_VIDEO_ENCODER_FLAGS {
-        return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetEncoderFlags(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
+        return self.vtable.GetEncoderFlags(self);
     }
     pub fn GetCodec(self: *const ID3D12VideoEncoder) callconv(.Inline) D3D12_VIDEO_ENCODER_CODEC {
-        return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetCodec(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
+        return self.vtable.GetCodec(self);
     }
     pub fn GetCodecProfile(self: *const ID3D12VideoEncoder, dstProfile: D3D12_VIDEO_ENCODER_PROFILE_DESC) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetCodecProfile(@as(*const ID3D12VideoEncoder, @ptrCast(self)), dstProfile);
+        return self.vtable.GetCodecProfile(self, dstProfile);
     }
     pub fn GetCodecConfiguration(self: *const ID3D12VideoEncoder, dstCodecConfig: D3D12_VIDEO_ENCODER_CODEC_CONFIGURATION) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetCodecConfiguration(@as(*const ID3D12VideoEncoder, @ptrCast(self)), dstCodecConfig);
+        return self.vtable.GetCodecConfiguration(self, dstCodecConfig);
     }
     pub fn GetInputFormat(self: *const ID3D12VideoEncoder) callconv(.Inline) DXGI_FORMAT {
-        return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetInputFormat(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
+        return self.vtable.GetInputFormat(self);
     }
     pub fn GetMaxMotionEstimationPrecision(self: *const ID3D12VideoEncoder) callconv(.Inline) D3D12_VIDEO_ENCODER_MOTION_ESTIMATION_PRECISION_MODE {
-        return @as(*const ID3D12VideoEncoder.VTable, @ptrCast(self.vtable)).GetMaxMotionEstimationPrecision(@as(*const ID3D12VideoEncoder, @ptrCast(self)));
+        return self.vtable.GetMaxMotionEstimationPrecision(self);
     }
 };
 
@@ -6424,25 +6424,25 @@ pub const ID3D12VideoEncoderHeap = extern union {
     };}
     pub usingnamespace ID3D12Pageable.MethodMixin(@This());
     pub fn GetNodeMask(self: *const ID3D12VideoEncoderHeap) callconv(.Inline) u32 {
-        return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetNodeMask(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)));
+        return self.vtable.GetNodeMask(self);
     }
     pub fn GetEncoderHeapFlags(self: *const ID3D12VideoEncoderHeap) callconv(.Inline) D3D12_VIDEO_ENCODER_HEAP_FLAGS {
-        return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetEncoderHeapFlags(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)));
+        return self.vtable.GetEncoderHeapFlags(self);
     }
     pub fn GetCodec(self: *const ID3D12VideoEncoderHeap) callconv(.Inline) D3D12_VIDEO_ENCODER_CODEC {
-        return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetCodec(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)));
+        return self.vtable.GetCodec(self);
     }
     pub fn GetCodecProfile(self: *const ID3D12VideoEncoderHeap, dstProfile: D3D12_VIDEO_ENCODER_PROFILE_DESC) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetCodecProfile(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)), dstProfile);
+        return self.vtable.GetCodecProfile(self, dstProfile);
     }
     pub fn GetCodecLevel(self: *const ID3D12VideoEncoderHeap, dstLevel: D3D12_VIDEO_ENCODER_LEVEL_SETTING) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetCodecLevel(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)), dstLevel);
+        return self.vtable.GetCodecLevel(self, dstLevel);
     }
     pub fn GetResolutionListCount(self: *const ID3D12VideoEncoderHeap) callconv(.Inline) u32 {
-        return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetResolutionListCount(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)));
+        return self.vtable.GetResolutionListCount(self);
     }
     pub fn GetResolutionList(self: *const ID3D12VideoEncoderHeap, ResolutionsListCount: u32, pResolutionList: [*]D3D12_VIDEO_ENCODER_PICTURE_RESOLUTION_DESC) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoEncoderHeap.VTable, @ptrCast(self.vtable)).GetResolutionList(@as(*const ID3D12VideoEncoderHeap, @ptrCast(self)), ResolutionsListCount, pResolutionList);
+        return self.vtable.GetResolutionList(self, ResolutionsListCount, pResolutionList);
     }
 };
 
@@ -6480,10 +6480,10 @@ pub const ID3D12VideoDevice3 = extern union {
     };}
     pub usingnamespace ID3D12VideoDevice2.MethodMixin(@This());
     pub fn CreateVideoEncoder(self: *const ID3D12VideoDevice3, pDesc: ?*const D3D12_VIDEO_ENCODER_DESC, riid: ?*const Guid, ppVideoEncoder: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice3.VTable, @ptrCast(self.vtable)).CreateVideoEncoder(@as(*const ID3D12VideoDevice3, @ptrCast(self)), pDesc, riid, ppVideoEncoder);
+        return self.vtable.CreateVideoEncoder(self, pDesc, riid, ppVideoEncoder);
     }
     pub fn CreateVideoEncoderHeap(self: *const ID3D12VideoDevice3, pDesc: ?*const D3D12_VIDEO_ENCODER_HEAP_DESC, riid: ?*const Guid, ppVideoEncoderHeap: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const ID3D12VideoDevice3.VTable, @ptrCast(self.vtable)).CreateVideoEncoderHeap(@as(*const ID3D12VideoDevice3, @ptrCast(self)), pDesc, riid, ppVideoEncoderHeap);
+        return self.vtable.CreateVideoEncoderHeap(self, pDesc, riid, ppVideoEncoderHeap);
     }
 };
 
@@ -6923,10 +6923,10 @@ pub const ID3D12VideoEncodeCommandList2 = extern union {
     };}
     pub usingnamespace ID3D12VideoEncodeCommandList1.MethodMixin(@This());
     pub fn EncodeFrame(self: *const ID3D12VideoEncodeCommandList2, pEncoder: ?*ID3D12VideoEncoder, pHeap: ?*ID3D12VideoEncoderHeap, pInputArguments: ?*const D3D12_VIDEO_ENCODER_ENCODEFRAME_INPUT_ARGUMENTS, pOutputArguments: ?*const D3D12_VIDEO_ENCODER_ENCODEFRAME_OUTPUT_ARGUMENTS) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList2.VTable, @ptrCast(self.vtable)).EncodeFrame(@as(*const ID3D12VideoEncodeCommandList2, @ptrCast(self)), pEncoder, pHeap, pInputArguments, pOutputArguments);
+        return self.vtable.EncodeFrame(self, pEncoder, pHeap, pInputArguments, pOutputArguments);
     }
     pub fn ResolveEncoderOutputMetadata(self: *const ID3D12VideoEncodeCommandList2, pInputArguments: ?*const D3D12_VIDEO_ENCODER_RESOLVE_METADATA_INPUT_ARGUMENTS, pOutputArguments: ?*const D3D12_VIDEO_ENCODER_RESOLVE_METADATA_OUTPUT_ARGUMENTS) callconv(.Inline) void {
-        return @as(*const ID3D12VideoEncodeCommandList2.VTable, @ptrCast(self.vtable)).ResolveEncoderOutputMetadata(@as(*const ID3D12VideoEncodeCommandList2, @ptrCast(self)), pInputArguments, pOutputArguments);
+        return self.vtable.ResolveEncoderOutputMetadata(self, pInputArguments, pOutputArguments);
     }
 };
 
@@ -7256,7 +7256,7 @@ pub const IWMValidate = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetIdentifier(self: *const IWMValidate, guidValidationID: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IWMValidate.VTable, @ptrCast(self.vtable)).SetIdentifier(@as(*const IWMValidate, @ptrCast(self)), guidValidationID);
+        return self.vtable.SetIdentifier(self, guidValidationID);
     }
 };
 
@@ -7285,7 +7285,7 @@ pub const IValidateBinding = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIdentifier(self: *const IValidateBinding, guidLicensorID: Guid, pbEphemeron: [*:0]u8, cbEphemeron: u32, ppbBlobValidationID: [*]?*u8, pcbBlobSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IValidateBinding.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IValidateBinding, @ptrCast(self)), guidLicensorID, pbEphemeron, cbEphemeron, ppbBlobValidationID, pcbBlobSize);
+        return self.vtable.GetIdentifier(self, guidLicensorID, pbEphemeron, cbEphemeron, ppbBlobValidationID, pcbBlobSize);
     }
 };
 
@@ -7319,10 +7319,10 @@ pub const IWMVideoDecoderHurryup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetHurryup(self: *const IWMVideoDecoderHurryup, lHurryup: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoDecoderHurryup.VTable, @ptrCast(self.vtable)).SetHurryup(@as(*const IWMVideoDecoderHurryup, @ptrCast(self)), lHurryup);
+        return self.vtable.SetHurryup(self, lHurryup);
     }
     pub fn GetHurryup(self: *const IWMVideoDecoderHurryup, plHurryup: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoDecoderHurryup.VTable, @ptrCast(self.vtable)).GetHurryup(@as(*const IWMVideoDecoderHurryup, @ptrCast(self)), plHurryup);
+        return self.vtable.GetHurryup(self, plHurryup);
     }
 };
 
@@ -7347,7 +7347,7 @@ pub const IWMVideoForceKeyFrame = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetKeyFrame(self: *const IWMVideoForceKeyFrame) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoForceKeyFrame.VTable, @ptrCast(self.vtable)).SetKeyFrame(@as(*const IWMVideoForceKeyFrame, @ptrCast(self)));
+        return self.vtable.SetKeyFrame(self);
     }
 };
 
@@ -7387,10 +7387,10 @@ pub const IWMCodecStrings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetName(self: *const IWMCodecStrings, pmt: ?*DMO_MEDIA_TYPE, cchLength: u32, szName: ?[*:0]u16, pcchLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecStrings.VTable, @ptrCast(self.vtable)).GetName(@as(*const IWMCodecStrings, @ptrCast(self)), pmt, cchLength, szName, pcchLength);
+        return self.vtable.GetName(self, pmt, cchLength, szName, pcchLength);
     }
     pub fn GetDescription(self: *const IWMCodecStrings, pmt: ?*DMO_MEDIA_TYPE, cchLength: u32, szDescription: ?[*:0]u16, pcchLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecStrings.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IWMCodecStrings, @ptrCast(self)), pmt, cchLength, szDescription, pcchLength);
+        return self.vtable.GetDescription(self, pmt, cchLength, szDescription, pcchLength);
     }
 };
 
@@ -7432,10 +7432,10 @@ pub const IWMCodecProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFormatProp(self: *const IWMCodecProps, pmt: ?*DMO_MEDIA_TYPE, pszName: ?[*:0]const u16, pType: ?*WMT_PROP_DATATYPE, pValue: ?*u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecProps.VTable, @ptrCast(self.vtable)).GetFormatProp(@as(*const IWMCodecProps, @ptrCast(self)), pmt, pszName, pType, pValue, pdwSize);
+        return self.vtable.GetFormatProp(self, pmt, pszName, pType, pValue, pdwSize);
     }
     pub fn GetCodecProp(self: *const IWMCodecProps, dwFormat: u32, pszName: ?[*:0]const u16, pType: ?*WMT_PROP_DATATYPE, pValue: ?*u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecProps.VTable, @ptrCast(self.vtable)).GetCodecProp(@as(*const IWMCodecProps, @ptrCast(self)), dwFormat, pszName, pType, pValue, pdwSize);
+        return self.vtable.GetCodecProp(self, dwFormat, pszName, pType, pValue, pdwSize);
     }
 };
 
@@ -7485,16 +7485,16 @@ pub const IWMCodecLeakyBucket = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBufferSizeBits(self: *const IWMCodecLeakyBucket, ulBufferSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecLeakyBucket.VTable, @ptrCast(self.vtable)).SetBufferSizeBits(@as(*const IWMCodecLeakyBucket, @ptrCast(self)), ulBufferSize);
+        return self.vtable.SetBufferSizeBits(self, ulBufferSize);
     }
     pub fn GetBufferSizeBits(self: *const IWMCodecLeakyBucket, pulBufferSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecLeakyBucket.VTable, @ptrCast(self.vtable)).GetBufferSizeBits(@as(*const IWMCodecLeakyBucket, @ptrCast(self)), pulBufferSize);
+        return self.vtable.GetBufferSizeBits(self, pulBufferSize);
     }
     pub fn SetBufferFullnessBits(self: *const IWMCodecLeakyBucket, ulBufferFullness: u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecLeakyBucket.VTable, @ptrCast(self.vtable)).SetBufferFullnessBits(@as(*const IWMCodecLeakyBucket, @ptrCast(self)), ulBufferFullness);
+        return self.vtable.SetBufferFullnessBits(self, ulBufferFullness);
     }
     pub fn GetBufferFullnessBits(self: *const IWMCodecLeakyBucket, pulBufferFullness: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecLeakyBucket.VTable, @ptrCast(self.vtable)).GetBufferFullnessBits(@as(*const IWMCodecLeakyBucket, @ptrCast(self)), pulBufferFullness);
+        return self.vtable.GetBufferFullnessBits(self, pulBufferFullness);
     }
 };
 
@@ -7520,7 +7520,7 @@ pub const IWMCodecOutputTimestamp = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNextOutputTime(self: *const IWMCodecOutputTimestamp, prtTime: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecOutputTimestamp.VTable, @ptrCast(self.vtable)).GetNextOutputTime(@as(*const IWMCodecOutputTimestamp, @ptrCast(self)), prtTime);
+        return self.vtable.GetNextOutputTime(self, prtTime);
     }
 };
 
@@ -7562,13 +7562,13 @@ pub const IWMVideoDecoderReconBuffer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetReconstructedVideoFrameSize(self: *const IWMVideoDecoderReconBuffer, pdwSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoDecoderReconBuffer.VTable, @ptrCast(self.vtable)).GetReconstructedVideoFrameSize(@as(*const IWMVideoDecoderReconBuffer, @ptrCast(self)), pdwSize);
+        return self.vtable.GetReconstructedVideoFrameSize(self, pdwSize);
     }
     pub fn GetReconstructedVideoFrame(self: *const IWMVideoDecoderReconBuffer, pBuf: ?*IMediaBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoDecoderReconBuffer.VTable, @ptrCast(self.vtable)).GetReconstructedVideoFrame(@as(*const IWMVideoDecoderReconBuffer, @ptrCast(self)), pBuf);
+        return self.vtable.GetReconstructedVideoFrame(self, pBuf);
     }
     pub fn SetReconstructedVideoFrame(self: *const IWMVideoDecoderReconBuffer, pBuf: ?*IMediaBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IWMVideoDecoderReconBuffer.VTable, @ptrCast(self.vtable)).SetReconstructedVideoFrame(@as(*const IWMVideoDecoderReconBuffer, @ptrCast(self)), pBuf);
+        return self.vtable.SetReconstructedVideoFrame(self, pBuf);
     }
 };
 
@@ -7603,10 +7603,10 @@ pub const IWMCodecPrivateData = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPartialOutputType(self: *const IWMCodecPrivateData, pmt: ?*DMO_MEDIA_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecPrivateData.VTable, @ptrCast(self.vtable)).SetPartialOutputType(@as(*const IWMCodecPrivateData, @ptrCast(self)), pmt);
+        return self.vtable.SetPartialOutputType(self, pmt);
     }
     pub fn GetPrivateData(self: *const IWMCodecPrivateData, pbData: ?*u8, pcbData: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IWMCodecPrivateData.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IWMCodecPrivateData, @ptrCast(self)), pbData, pcbData);
+        return self.vtable.GetPrivateData(self, pbData, pcbData);
     }
 };
 
@@ -7632,7 +7632,7 @@ pub const IWMSampleExtensionSupport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetUseSampleExtensions(self: *const IWMSampleExtensionSupport, fUseExtensions: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMSampleExtensionSupport.VTable, @ptrCast(self.vtable)).SetUseSampleExtensions(@as(*const IWMSampleExtensionSupport, @ptrCast(self)), fUseExtensions);
+        return self.vtable.SetUseSampleExtensions(self, fUseExtensions);
     }
 };
 
@@ -7666,10 +7666,10 @@ pub const IWMResamplerProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetHalfFilterLength(self: *const IWMResamplerProps, lhalfFilterLen: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMResamplerProps.VTable, @ptrCast(self.vtable)).SetHalfFilterLength(@as(*const IWMResamplerProps, @ptrCast(self)), lhalfFilterLen);
+        return self.vtable.SetHalfFilterLength(self, lhalfFilterLen);
     }
     pub fn SetUserChannelMtx(self: *const IWMResamplerProps, userChannelMtx: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IWMResamplerProps.VTable, @ptrCast(self.vtable)).SetUserChannelMtx(@as(*const IWMResamplerProps, @ptrCast(self)), userChannelMtx);
+        return self.vtable.SetUserChannelMtx(self, userChannelMtx);
     }
 };
 
@@ -7744,19 +7744,19 @@ pub const IWMResizerProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetResizerQuality(self: *const IWMResizerProps, lquality: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).SetResizerQuality(@as(*const IWMResizerProps, @ptrCast(self)), lquality);
+        return self.vtable.SetResizerQuality(self, lquality);
     }
     pub fn SetInterlaceMode(self: *const IWMResizerProps, lmode: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).SetInterlaceMode(@as(*const IWMResizerProps, @ptrCast(self)), lmode);
+        return self.vtable.SetInterlaceMode(self, lmode);
     }
     pub fn SetClipRegion(self: *const IWMResizerProps, lClipOriXSrc: i32, lClipOriYSrc: i32, lClipWidthSrc: i32, lClipHeightSrc: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).SetClipRegion(@as(*const IWMResizerProps, @ptrCast(self)), lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc);
+        return self.vtable.SetClipRegion(self, lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc);
     }
     pub fn SetFullCropRegion(self: *const IWMResizerProps, lClipOriXSrc: i32, lClipOriYSrc: i32, lClipWidthSrc: i32, lClipHeightSrc: i32, lClipOriXDst: i32, lClipOriYDst: i32, lClipWidthDst: i32, lClipHeightDst: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).SetFullCropRegion(@as(*const IWMResizerProps, @ptrCast(self)), lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc, lClipOriXDst, lClipOriYDst, lClipWidthDst, lClipHeightDst);
+        return self.vtable.SetFullCropRegion(self, lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc, lClipOriXDst, lClipOriYDst, lClipWidthDst, lClipHeightDst);
     }
     pub fn GetFullCropRegion(self: *const IWMResizerProps, lClipOriXSrc: ?*i32, lClipOriYSrc: ?*i32, lClipWidthSrc: ?*i32, lClipHeightSrc: ?*i32, lClipOriXDst: ?*i32, lClipOriYDst: ?*i32, lClipWidthDst: ?*i32, lClipHeightDst: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMResizerProps.VTable, @ptrCast(self.vtable)).GetFullCropRegion(@as(*const IWMResizerProps, @ptrCast(self)), lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc, lClipOriXDst, lClipOriYDst, lClipWidthDst, lClipHeightDst);
+        return self.vtable.GetFullCropRegion(self, lClipOriXSrc, lClipOriYSrc, lClipWidthSrc, lClipHeightSrc, lClipOriXDst, lClipOriYDst, lClipWidthDst, lClipHeightDst);
     }
 };
 
@@ -7781,7 +7781,7 @@ pub const IWMColorLegalizerProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetColorLegalizerQuality(self: *const IWMColorLegalizerProps, lquality: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMColorLegalizerProps.VTable, @ptrCast(self.vtable)).SetColorLegalizerQuality(@as(*const IWMColorLegalizerProps, @ptrCast(self)), lquality);
+        return self.vtable.SetColorLegalizerQuality(self, lquality);
     }
 };
 
@@ -7821,13 +7821,13 @@ pub const IWMInterlaceProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetProcessType(self: *const IWMInterlaceProps, iProcessType: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMInterlaceProps.VTable, @ptrCast(self.vtable)).SetProcessType(@as(*const IWMInterlaceProps, @ptrCast(self)), iProcessType);
+        return self.vtable.SetProcessType(self, iProcessType);
     }
     pub fn SetInitInverseTeleCinePattern(self: *const IWMInterlaceProps, iInitPattern: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMInterlaceProps.VTable, @ptrCast(self.vtable)).SetInitInverseTeleCinePattern(@as(*const IWMInterlaceProps, @ptrCast(self)), iInitPattern);
+        return self.vtable.SetInitInverseTeleCinePattern(self, iInitPattern);
     }
     pub fn SetLastFrame(self: *const IWMInterlaceProps) callconv(.Inline) HRESULT {
-        return @as(*const IWMInterlaceProps.VTable, @ptrCast(self.vtable)).SetLastFrame(@as(*const IWMInterlaceProps, @ptrCast(self)));
+        return self.vtable.SetLastFrame(self);
     }
 };
 
@@ -7878,16 +7878,16 @@ pub const IWMFrameInterpProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFrameRateIn(self: *const IWMFrameInterpProps, lFrameRate: i32, lScale: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMFrameInterpProps.VTable, @ptrCast(self.vtable)).SetFrameRateIn(@as(*const IWMFrameInterpProps, @ptrCast(self)), lFrameRate, lScale);
+        return self.vtable.SetFrameRateIn(self, lFrameRate, lScale);
     }
     pub fn SetFrameRateOut(self: *const IWMFrameInterpProps, lFrameRate: i32, lScale: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMFrameInterpProps.VTable, @ptrCast(self.vtable)).SetFrameRateOut(@as(*const IWMFrameInterpProps, @ptrCast(self)), lFrameRate, lScale);
+        return self.vtable.SetFrameRateOut(self, lFrameRate, lScale);
     }
     pub fn SetFrameInterpEnabled(self: *const IWMFrameInterpProps, bFIEnabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IWMFrameInterpProps.VTable, @ptrCast(self.vtable)).SetFrameInterpEnabled(@as(*const IWMFrameInterpProps, @ptrCast(self)), bFIEnabled);
+        return self.vtable.SetFrameInterpEnabled(self, bFIEnabled);
     }
     pub fn SetComplexityLevel(self: *const IWMFrameInterpProps, iComplexity: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMFrameInterpProps.VTable, @ptrCast(self.vtable)).SetComplexityLevel(@as(*const IWMFrameInterpProps, @ptrCast(self)), iComplexity);
+        return self.vtable.SetComplexityLevel(self, iComplexity);
     }
 };
 
@@ -7926,10 +7926,10 @@ pub const IWMColorConvProps = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetMode(self: *const IWMColorConvProps, lMode: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMColorConvProps.VTable, @ptrCast(self.vtable)).SetMode(@as(*const IWMColorConvProps, @ptrCast(self)), lMode);
+        return self.vtable.SetMode(self, lMode);
     }
     pub fn SetFullCroppingParam(self: *const IWMColorConvProps, lSrcCropLeft: i32, lSrcCropTop: i32, lDstCropLeft: i32, lDstCropTop: i32, lCropWidth: i32, lCropHeight: i32) callconv(.Inline) HRESULT {
-        return @as(*const IWMColorConvProps.VTable, @ptrCast(self.vtable)).SetFullCroppingParam(@as(*const IWMColorConvProps, @ptrCast(self)), lSrcCropLeft, lSrcCropTop, lDstCropLeft, lDstCropTop, lCropWidth, lCropHeight);
+        return self.vtable.SetFullCroppingParam(self, lSrcCropLeft, lSrcCropTop, lDstCropLeft, lDstCropTop, lCropWidth, lCropHeight);
     }
 };
 
@@ -8137,28 +8137,28 @@ pub const ITocEntry = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetTitle(self: *const ITocEntry, pwszTitle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const ITocEntry, @ptrCast(self)), pwszTitle);
+        return self.vtable.SetTitle(self, pwszTitle);
     }
     pub fn GetTitle(self: *const ITocEntry, pwTitleSize: ?*u16, pwszTitle: ?[*:0]u16) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).GetTitle(@as(*const ITocEntry, @ptrCast(self)), pwTitleSize, pwszTitle);
+        return self.vtable.GetTitle(self, pwTitleSize, pwszTitle);
     }
     pub fn SetDescriptor(self: *const ITocEntry, pDescriptor: ?*TOC_ENTRY_DESCRIPTOR) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).SetDescriptor(@as(*const ITocEntry, @ptrCast(self)), pDescriptor);
+        return self.vtable.SetDescriptor(self, pDescriptor);
     }
     pub fn GetDescriptor(self: *const ITocEntry, pDescriptor: ?*TOC_ENTRY_DESCRIPTOR) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).GetDescriptor(@as(*const ITocEntry, @ptrCast(self)), pDescriptor);
+        return self.vtable.GetDescriptor(self, pDescriptor);
     }
     pub fn SetSubEntries(self: *const ITocEntry, dwNumSubEntries: u32, pwSubEntryIndices: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).SetSubEntries(@as(*const ITocEntry, @ptrCast(self)), dwNumSubEntries, pwSubEntryIndices);
+        return self.vtable.SetSubEntries(self, dwNumSubEntries, pwSubEntryIndices);
     }
     pub fn GetSubEntries(self: *const ITocEntry, pdwNumSubEntries: ?*u32, pwSubEntryIndices: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).GetSubEntries(@as(*const ITocEntry, @ptrCast(self)), pdwNumSubEntries, pwSubEntryIndices);
+        return self.vtable.GetSubEntries(self, pdwNumSubEntries, pwSubEntryIndices);
     }
     pub fn SetDescriptionData(self: *const ITocEntry, dwDescriptionDataSize: u32, pbtDescriptionData: ?*u8, pguidType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).SetDescriptionData(@as(*const ITocEntry, @ptrCast(self)), dwDescriptionDataSize, pbtDescriptionData, pguidType);
+        return self.vtable.SetDescriptionData(self, dwDescriptionDataSize, pbtDescriptionData, pguidType);
     }
     pub fn GetDescriptionData(self: *const ITocEntry, pdwDescriptionDataSize: ?*u32, pbtDescriptionData: ?*u8, pGuidType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntry.VTable, @ptrCast(self.vtable)).GetDescriptionData(@as(*const ITocEntry, @ptrCast(self)), pdwDescriptionDataSize, pbtDescriptionData, pGuidType);
+        return self.vtable.GetDescriptionData(self, pdwDescriptionDataSize, pbtDescriptionData, pGuidType);
     }
 };
 
@@ -8219,19 +8219,19 @@ pub const ITocEntryList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEntryCount(self: *const ITocEntryList, pdwEntryCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).GetEntryCount(@as(*const ITocEntryList, @ptrCast(self)), pdwEntryCount);
+        return self.vtable.GetEntryCount(self, pdwEntryCount);
     }
     pub fn GetEntryByIndex(self: *const ITocEntryList, dwEntryIndex: u32, ppEntry: ?*?*ITocEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).GetEntryByIndex(@as(*const ITocEntryList, @ptrCast(self)), dwEntryIndex, ppEntry);
+        return self.vtable.GetEntryByIndex(self, dwEntryIndex, ppEntry);
     }
     pub fn AddEntry(self: *const ITocEntryList, pEntry: ?*ITocEntry, pdwEntryIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).AddEntry(@as(*const ITocEntryList, @ptrCast(self)), pEntry, pdwEntryIndex);
+        return self.vtable.AddEntry(self, pEntry, pdwEntryIndex);
     }
     pub fn AddEntryByIndex(self: *const ITocEntryList, dwEntryIndex: u32, pEntry: ?*ITocEntry) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).AddEntryByIndex(@as(*const ITocEntryList, @ptrCast(self)), dwEntryIndex, pEntry);
+        return self.vtable.AddEntryByIndex(self, dwEntryIndex, pEntry);
     }
     pub fn RemoveEntryByIndex(self: *const ITocEntryList, dwEntryIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITocEntryList.VTable, @ptrCast(self.vtable)).RemoveEntryByIndex(@as(*const ITocEntryList, @ptrCast(self)), dwEntryIndex);
+        return self.vtable.RemoveEntryByIndex(self, dwEntryIndex);
     }
 };
 
@@ -8343,37 +8343,37 @@ pub const IToc = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDescriptor(self: *const IToc, pDescriptor: ?*TOC_DESCRIPTOR) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).SetDescriptor(@as(*const IToc, @ptrCast(self)), pDescriptor);
+        return self.vtable.SetDescriptor(self, pDescriptor);
     }
     pub fn GetDescriptor(self: *const IToc, pDescriptor: ?*TOC_DESCRIPTOR) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetDescriptor(@as(*const IToc, @ptrCast(self)), pDescriptor);
+        return self.vtable.GetDescriptor(self, pDescriptor);
     }
     pub fn SetDescription(self: *const IToc, pwszDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IToc, @ptrCast(self)), pwszDescription);
+        return self.vtable.SetDescription(self, pwszDescription);
     }
     pub fn GetDescription(self: *const IToc, pwDescriptionSize: ?*u16, pwszDescription: ?[*:0]u16) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IToc, @ptrCast(self)), pwDescriptionSize, pwszDescription);
+        return self.vtable.GetDescription(self, pwDescriptionSize, pwszDescription);
     }
     pub fn SetContext(self: *const IToc, dwContextSize: u32, pbtContext: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).SetContext(@as(*const IToc, @ptrCast(self)), dwContextSize, pbtContext);
+        return self.vtable.SetContext(self, dwContextSize, pbtContext);
     }
     pub fn GetContext(self: *const IToc, pdwContextSize: ?*u32, pbtContext: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetContext(@as(*const IToc, @ptrCast(self)), pdwContextSize, pbtContext);
+        return self.vtable.GetContext(self, pdwContextSize, pbtContext);
     }
     pub fn GetEntryListCount(self: *const IToc, pwCount: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetEntryListCount(@as(*const IToc, @ptrCast(self)), pwCount);
+        return self.vtable.GetEntryListCount(self, pwCount);
     }
     pub fn GetEntryListByIndex(self: *const IToc, wEntryListIndex: u16, ppEntryList: ?*?*ITocEntryList) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).GetEntryListByIndex(@as(*const IToc, @ptrCast(self)), wEntryListIndex, ppEntryList);
+        return self.vtable.GetEntryListByIndex(self, wEntryListIndex, ppEntryList);
     }
     pub fn AddEntryList(self: *const IToc, pEntryList: ?*ITocEntryList, pwEntryListIndex: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).AddEntryList(@as(*const IToc, @ptrCast(self)), pEntryList, pwEntryListIndex);
+        return self.vtable.AddEntryList(self, pEntryList, pwEntryListIndex);
     }
     pub fn AddEntryListByIndex(self: *const IToc, wEntryListIndex: u16, pEntryList: ?*ITocEntryList) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).AddEntryListByIndex(@as(*const IToc, @ptrCast(self)), wEntryListIndex, pEntryList);
+        return self.vtable.AddEntryListByIndex(self, wEntryListIndex, pEntryList);
     }
     pub fn RemoveEntryListByIndex(self: *const IToc, wEntryListIndex: u16) callconv(.Inline) HRESULT {
-        return @as(*const IToc.VTable, @ptrCast(self.vtable)).RemoveEntryListByIndex(@as(*const IToc, @ptrCast(self)), wEntryListIndex);
+        return self.vtable.RemoveEntryListByIndex(self, wEntryListIndex);
     }
 };
 
@@ -8434,19 +8434,19 @@ pub const ITocCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEntryCount(self: *const ITocCollection, pdwEntryCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).GetEntryCount(@as(*const ITocCollection, @ptrCast(self)), pdwEntryCount);
+        return self.vtable.GetEntryCount(self, pdwEntryCount);
     }
     pub fn GetEntryByIndex(self: *const ITocCollection, dwEntryIndex: u32, ppToc: ?*?*IToc) callconv(.Inline) HRESULT {
-        return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).GetEntryByIndex(@as(*const ITocCollection, @ptrCast(self)), dwEntryIndex, ppToc);
+        return self.vtable.GetEntryByIndex(self, dwEntryIndex, ppToc);
     }
     pub fn AddEntry(self: *const ITocCollection, pToc: ?*IToc, pdwEntryIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).AddEntry(@as(*const ITocCollection, @ptrCast(self)), pToc, pdwEntryIndex);
+        return self.vtable.AddEntry(self, pToc, pdwEntryIndex);
     }
     pub fn AddEntryByIndex(self: *const ITocCollection, dwEntryIndex: u32, pToc: ?*IToc) callconv(.Inline) HRESULT {
-        return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).AddEntryByIndex(@as(*const ITocCollection, @ptrCast(self)), dwEntryIndex, pToc);
+        return self.vtable.AddEntryByIndex(self, dwEntryIndex, pToc);
     }
     pub fn RemoveEntryByIndex(self: *const ITocCollection, dwEntryIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITocCollection.VTable, @ptrCast(self.vtable)).RemoveEntryByIndex(@as(*const ITocCollection, @ptrCast(self)), dwEntryIndex);
+        return self.vtable.RemoveEntryByIndex(self, dwEntryIndex);
     }
 };
 
@@ -8536,28 +8536,28 @@ pub const ITocParser = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Init(self: *const ITocParser, pwszFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).Init(@as(*const ITocParser, @ptrCast(self)), pwszFileName);
+        return self.vtable.Init(self, pwszFileName);
     }
     pub fn GetTocCount(self: *const ITocParser, enumTocPosType: TOC_POS_TYPE, pdwTocCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).GetTocCount(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, pdwTocCount);
+        return self.vtable.GetTocCount(self, enumTocPosType, pdwTocCount);
     }
     pub fn GetTocByIndex(self: *const ITocParser, enumTocPosType: TOC_POS_TYPE, dwTocIndex: u32, ppToc: ?*?*IToc) callconv(.Inline) HRESULT {
-        return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).GetTocByIndex(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, dwTocIndex, ppToc);
+        return self.vtable.GetTocByIndex(self, enumTocPosType, dwTocIndex, ppToc);
     }
     pub fn GetTocByType(self: *const ITocParser, enumTocPosType: TOC_POS_TYPE, guidTocType: Guid, ppTocs: ?*?*ITocCollection) callconv(.Inline) HRESULT {
-        return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).GetTocByType(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, guidTocType, ppTocs);
+        return self.vtable.GetTocByType(self, enumTocPosType, guidTocType, ppTocs);
     }
     pub fn AddToc(self: *const ITocParser, enumTocPosType: TOC_POS_TYPE, pToc: ?*IToc, pdwTocIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).AddToc(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, pToc, pdwTocIndex);
+        return self.vtable.AddToc(self, enumTocPosType, pToc, pdwTocIndex);
     }
     pub fn RemoveTocByIndex(self: *const ITocParser, enumTocPosType: TOC_POS_TYPE, dwTocIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).RemoveTocByIndex(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, dwTocIndex);
+        return self.vtable.RemoveTocByIndex(self, enumTocPosType, dwTocIndex);
     }
     pub fn RemoveTocByType(self: *const ITocParser, enumTocPosType: TOC_POS_TYPE, guidTocType: Guid) callconv(.Inline) HRESULT {
-        return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).RemoveTocByType(@as(*const ITocParser, @ptrCast(self)), enumTocPosType, guidTocType);
+        return self.vtable.RemoveTocByType(self, enumTocPosType, guidTocType);
     }
     pub fn Commit(self: *const ITocParser) callconv(.Inline) HRESULT {
-        return @as(*const ITocParser.VTable, @ptrCast(self.vtable)).Commit(@as(*const ITocParser, @ptrCast(self)));
+        return self.vtable.Commit(self);
     }
 };
 
@@ -8693,34 +8693,34 @@ pub const IFileIo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IFileIo, eAccessMode: FILE_ACCESSMODE, eOpenMode: FILE_OPENMODE, pwszFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IFileIo, @ptrCast(self)), eAccessMode, eOpenMode, pwszFileName);
+        return self.vtable.Initialize(self, eAccessMode, eOpenMode, pwszFileName);
     }
     pub fn GetLength(self: *const IFileIo, pqwLength: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IFileIo, @ptrCast(self)), pqwLength);
+        return self.vtable.GetLength(self, pqwLength);
     }
     pub fn SetLength(self: *const IFileIo, qwLength: u64) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).SetLength(@as(*const IFileIo, @ptrCast(self)), qwLength);
+        return self.vtable.SetLength(self, qwLength);
     }
     pub fn GetCurrentPosition(self: *const IFileIo, pqwPosition: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).GetCurrentPosition(@as(*const IFileIo, @ptrCast(self)), pqwPosition);
+        return self.vtable.GetCurrentPosition(self, pqwPosition);
     }
     pub fn SetCurrentPosition(self: *const IFileIo, qwPosition: u64) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).SetCurrentPosition(@as(*const IFileIo, @ptrCast(self)), qwPosition);
+        return self.vtable.SetCurrentPosition(self, qwPosition);
     }
     pub fn IsEndOfStream(self: *const IFileIo, pbEndOfStream: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).IsEndOfStream(@as(*const IFileIo, @ptrCast(self)), pbEndOfStream);
+        return self.vtable.IsEndOfStream(self, pbEndOfStream);
     }
     pub fn Read(self: *const IFileIo, pbt: ?*u8, ul: u32, pulRead: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Read(@as(*const IFileIo, @ptrCast(self)), pbt, ul, pulRead);
+        return self.vtable.Read(self, pbt, ul, pulRead);
     }
     pub fn Write(self: *const IFileIo, pbt: ?*u8, ul: u32, pulWritten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Write(@as(*const IFileIo, @ptrCast(self)), pbt, ul, pulWritten);
+        return self.vtable.Write(self, pbt, ul, pulWritten);
     }
     pub fn Seek(self: *const IFileIo, eSeekOrigin: SEEK_ORIGIN, qwSeekOffset: u64, dwSeekFlags: u32, pqwCurrentPosition: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Seek(@as(*const IFileIo, @ptrCast(self)), eSeekOrigin, qwSeekOffset, dwSeekFlags, pqwCurrentPosition);
+        return self.vtable.Seek(self, eSeekOrigin, qwSeekOffset, dwSeekFlags, pqwCurrentPosition);
     }
     pub fn Close(self: *const IFileIo) callconv(.Inline) HRESULT {
-        return @as(*const IFileIo.VTable, @ptrCast(self.vtable)).Close(@as(*const IFileIo, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -8761,13 +8761,13 @@ pub const IFileClient = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetObjectDiskSize(self: *const IFileClient, pqwSize: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IFileClient.VTable, @ptrCast(self.vtable)).GetObjectDiskSize(@as(*const IFileClient, @ptrCast(self)), pqwSize);
+        return self.vtable.GetObjectDiskSize(self, pqwSize);
     }
     pub fn Write(self: *const IFileClient, pFio: ?*IFileIo) callconv(.Inline) HRESULT {
-        return @as(*const IFileClient.VTable, @ptrCast(self.vtable)).Write(@as(*const IFileClient, @ptrCast(self)), pFio);
+        return self.vtable.Write(self, pFio);
     }
     pub fn Read(self: *const IFileClient, pFio: ?*IFileIo) callconv(.Inline) HRESULT {
-        return @as(*const IFileClient.VTable, @ptrCast(self.vtable)).Read(@as(*const IFileClient, @ptrCast(self)), pFio);
+        return self.vtable.Read(self, pFio);
     }
 };
 
@@ -8805,10 +8805,10 @@ pub const IClusterDetector = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IClusterDetector, wBaseEntryLevel: u16, wClusterEntryLevel: u16) callconv(.Inline) HRESULT {
-        return @as(*const IClusterDetector.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IClusterDetector, @ptrCast(self)), wBaseEntryLevel, wClusterEntryLevel);
+        return self.vtable.Initialize(self, wBaseEntryLevel, wClusterEntryLevel);
     }
     pub fn Detect(self: *const IClusterDetector, dwMaxNumClusters: u32, fMinClusterDuration: f32, fMaxClusterDuration: f32, pSrcToc: ?*IToc, ppDstToc: ?*?*IToc) callconv(.Inline) HRESULT {
-        return @as(*const IClusterDetector.VTable, @ptrCast(self.vtable)).Detect(@as(*const IClusterDetector, @ptrCast(self)), dwMaxNumClusters, fMinClusterDuration, fMaxClusterDuration, pSrcToc, ppDstToc);
+        return self.vtable.Detect(self, dwMaxNumClusters, fMinClusterDuration, fMaxClusterDuration, pSrcToc, ppDstToc);
     }
 };
 
@@ -11598,28 +11598,28 @@ pub const IDXVAHD_Device = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateVideoSurface(self: *const IDXVAHD_Device, Width: u32, Height: u32, Format: D3DFORMAT, Pool: D3DPOOL, Usage: u32, Type: DXVAHD_SURFACE_TYPE, NumSurfaces: u32, ppSurfaces: [*]?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).CreateVideoSurface(@as(*const IDXVAHD_Device, @ptrCast(self)), Width, Height, Format, Pool, Usage, Type, NumSurfaces, ppSurfaces, pSharedHandle);
+        return self.vtable.CreateVideoSurface(self, Width, Height, Format, Pool, Usage, Type, NumSurfaces, ppSurfaces, pSharedHandle);
     }
     pub fn GetVideoProcessorDeviceCaps(self: *const IDXVAHD_Device, pCaps: ?*DXVAHD_VPDEVCAPS) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorDeviceCaps(@as(*const IDXVAHD_Device, @ptrCast(self)), pCaps);
+        return self.vtable.GetVideoProcessorDeviceCaps(self, pCaps);
     }
     pub fn GetVideoProcessorOutputFormats(self: *const IDXVAHD_Device, Count: u32, pFormats: [*]D3DFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorOutputFormats(@as(*const IDXVAHD_Device, @ptrCast(self)), Count, pFormats);
+        return self.vtable.GetVideoProcessorOutputFormats(self, Count, pFormats);
     }
     pub fn GetVideoProcessorInputFormats(self: *const IDXVAHD_Device, Count: u32, pFormats: [*]D3DFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorInputFormats(@as(*const IDXVAHD_Device, @ptrCast(self)), Count, pFormats);
+        return self.vtable.GetVideoProcessorInputFormats(self, Count, pFormats);
     }
     pub fn GetVideoProcessorCaps(self: *const IDXVAHD_Device, Count: u32, pCaps: [*]DXVAHD_VPCAPS) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorCaps(@as(*const IDXVAHD_Device, @ptrCast(self)), Count, pCaps);
+        return self.vtable.GetVideoProcessorCaps(self, Count, pCaps);
     }
     pub fn GetVideoProcessorCustomRates(self: *const IDXVAHD_Device, pVPGuid: ?*const Guid, Count: u32, pRates: [*]DXVAHD_CUSTOM_RATE_DATA) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorCustomRates(@as(*const IDXVAHD_Device, @ptrCast(self)), pVPGuid, Count, pRates);
+        return self.vtable.GetVideoProcessorCustomRates(self, pVPGuid, Count, pRates);
     }
     pub fn GetVideoProcessorFilterRange(self: *const IDXVAHD_Device, Filter: DXVAHD_FILTER, pRange: ?*DXVAHD_FILTER_RANGE_DATA) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).GetVideoProcessorFilterRange(@as(*const IDXVAHD_Device, @ptrCast(self)), Filter, pRange);
+        return self.vtable.GetVideoProcessorFilterRange(self, Filter, pRange);
     }
     pub fn CreateVideoProcessor(self: *const IDXVAHD_Device, pVPGuid: ?*const Guid, ppVideoProcessor: ?*?*IDXVAHD_VideoProcessor) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_Device.VTable, @ptrCast(self.vtable)).CreateVideoProcessor(@as(*const IDXVAHD_Device, @ptrCast(self)), pVPGuid, ppVideoProcessor);
+        return self.vtable.CreateVideoProcessor(self, pVPGuid, ppVideoProcessor);
     }
 };
 
@@ -11694,19 +11694,19 @@ pub const IDXVAHD_VideoProcessor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetVideoProcessBltState(self: *const IDXVAHD_VideoProcessor, State: DXVAHD_BLT_STATE, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).SetVideoProcessBltState(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), State, DataSize, pData);
+        return self.vtable.SetVideoProcessBltState(self, State, DataSize, pData);
     }
     pub fn GetVideoProcessBltState(self: *const IDXVAHD_VideoProcessor, State: DXVAHD_BLT_STATE, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessBltState(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), State, DataSize, pData);
+        return self.vtable.GetVideoProcessBltState(self, State, DataSize, pData);
     }
     pub fn SetVideoProcessStreamState(self: *const IDXVAHD_VideoProcessor, StreamNumber: u32, State: DXVAHD_STREAM_STATE, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).SetVideoProcessStreamState(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), StreamNumber, State, DataSize, pData);
+        return self.vtable.SetVideoProcessStreamState(self, StreamNumber, State, DataSize, pData);
     }
     pub fn GetVideoProcessStreamState(self: *const IDXVAHD_VideoProcessor, StreamNumber: u32, State: DXVAHD_STREAM_STATE, DataSize: u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessStreamState(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), StreamNumber, State, DataSize, pData);
+        return self.vtable.GetVideoProcessStreamState(self, StreamNumber, State, DataSize, pData);
     }
     pub fn VideoProcessBltHD(self: *const IDXVAHD_VideoProcessor, pOutputSurface: ?*IDirect3DSurface9, OutputFrame: u32, StreamCount: u32, pStreams: [*]const DXVAHD_STREAM_DATA) callconv(.Inline) HRESULT {
-        return @as(*const IDXVAHD_VideoProcessor.VTable, @ptrCast(self.vtable)).VideoProcessBltHD(@as(*const IDXVAHD_VideoProcessor, @ptrCast(self)), pOutputSurface, OutputFrame, StreamCount, pStreams);
+        return self.vtable.VideoProcessBltHD(self, pOutputSurface, OutputFrame, StreamCount, pStreams);
     }
 };
 
@@ -12469,25 +12469,25 @@ pub const IDirect3DDeviceManager9 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ResetDevice(self: *const IDirect3DDeviceManager9, pDevice: ?*IDirect3DDevice9, resetToken: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).ResetDevice(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), pDevice, resetToken);
+        return self.vtable.ResetDevice(self, pDevice, resetToken);
     }
     pub fn OpenDeviceHandle(self: *const IDirect3DDeviceManager9, phDevice: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).OpenDeviceHandle(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), phDevice);
+        return self.vtable.OpenDeviceHandle(self, phDevice);
     }
     pub fn CloseDeviceHandle(self: *const IDirect3DDeviceManager9, hDevice: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).CloseDeviceHandle(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice);
+        return self.vtable.CloseDeviceHandle(self, hDevice);
     }
     pub fn TestDevice(self: *const IDirect3DDeviceManager9, hDevice: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).TestDevice(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice);
+        return self.vtable.TestDevice(self, hDevice);
     }
     pub fn LockDevice(self: *const IDirect3DDeviceManager9, hDevice: ?HANDLE, ppDevice: ?*?*IDirect3DDevice9, fBlock: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).LockDevice(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice, ppDevice, fBlock);
+        return self.vtable.LockDevice(self, hDevice, ppDevice, fBlock);
     }
     pub fn UnlockDevice(self: *const IDirect3DDeviceManager9, hDevice: ?HANDLE, fSaveState: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).UnlockDevice(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice, fSaveState);
+        return self.vtable.UnlockDevice(self, hDevice, fSaveState);
     }
     pub fn GetVideoService(self: *const IDirect3DDeviceManager9, hDevice: ?HANDLE, riid: ?*const Guid, ppService: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirect3DDeviceManager9.VTable, @ptrCast(self.vtable)).GetVideoService(@as(*const IDirect3DDeviceManager9, @ptrCast(self)), hDevice, riid, ppService);
+        return self.vtable.GetVideoService(self, hDevice, riid, ppService);
     }
 };
 
@@ -12521,7 +12521,7 @@ pub const IDirectXVideoAccelerationService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateSurface(self: *const IDirectXVideoAccelerationService, Width: u32, Height: u32, BackBuffers: u32, Format: D3DFORMAT, Pool: D3DPOOL, Usage: u32, DxvaType: DXVA2_VideoRenderTargetType, ppSurface: ?*?*IDirect3DSurface9, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoAccelerationService.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDirectXVideoAccelerationService, @ptrCast(self)), Width, Height, BackBuffers, Format, Pool, Usage, DxvaType, ppSurface, pSharedHandle);
+        return self.vtable.CreateSurface(self, Width, Height, BackBuffers, Format, Pool, Usage, DxvaType, ppSurface, pSharedHandle);
     }
 };
 
@@ -12583,16 +12583,16 @@ pub const IDirectXVideoDecoderService = extern union {
     };}
     pub usingnamespace IDirectXVideoAccelerationService.MethodMixin(@This());
     pub fn GetDecoderDeviceGuids(self: *const IDirectXVideoDecoderService, pCount: ?*u32, pGuids: ?*?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoderService.VTable, @ptrCast(self.vtable)).GetDecoderDeviceGuids(@as(*const IDirectXVideoDecoderService, @ptrCast(self)), pCount, pGuids);
+        return self.vtable.GetDecoderDeviceGuids(self, pCount, pGuids);
     }
     pub fn GetDecoderRenderTargets(self: *const IDirectXVideoDecoderService, _param_Guid: ?*const Guid, pCount: ?*u32, pFormats: ?*?*D3DFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoderService.VTable, @ptrCast(self.vtable)).GetDecoderRenderTargets(@as(*const IDirectXVideoDecoderService, @ptrCast(self)), _param_Guid, pCount, pFormats);
+        return self.vtable.GetDecoderRenderTargets(self, _param_Guid, pCount, pFormats);
     }
     pub fn GetDecoderConfigurations(self: *const IDirectXVideoDecoderService, _param_Guid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pReserved: ?*anyopaque, pCount: ?*u32, ppConfigs: ?*?*DXVA2_ConfigPictureDecode) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoderService.VTable, @ptrCast(self.vtable)).GetDecoderConfigurations(@as(*const IDirectXVideoDecoderService, @ptrCast(self)), _param_Guid, pVideoDesc, pReserved, pCount, ppConfigs);
+        return self.vtable.GetDecoderConfigurations(self, _param_Guid, pVideoDesc, pReserved, pCount, ppConfigs);
     }
     pub fn CreateVideoDecoder(self: *const IDirectXVideoDecoderService, _param_Guid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pConfig: ?*const DXVA2_ConfigPictureDecode, ppDecoderRenderTargets: [*]?*IDirect3DSurface9, NumRenderTargets: u32, ppDecode: ?*?*IDirectXVideoDecoder) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoderService.VTable, @ptrCast(self.vtable)).CreateVideoDecoder(@as(*const IDirectXVideoDecoderService, @ptrCast(self)), _param_Guid, pVideoDesc, pConfig, ppDecoderRenderTargets, NumRenderTargets, ppDecode);
+        return self.vtable.CreateVideoDecoder(self, _param_Guid, pVideoDesc, pConfig, ppDecoderRenderTargets, NumRenderTargets, ppDecode);
     }
 };
 
@@ -12698,28 +12698,28 @@ pub const IDirectXVideoProcessorService = extern union {
     };}
     pub usingnamespace IDirectXVideoAccelerationService.MethodMixin(@This());
     pub fn RegisterVideoProcessorSoftwareDevice(self: *const IDirectXVideoProcessorService, pCallbacks: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).RegisterVideoProcessorSoftwareDevice(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), pCallbacks);
+        return self.vtable.RegisterVideoProcessorSoftwareDevice(self, pCallbacks);
     }
     pub fn GetVideoProcessorDeviceGuids(self: *const IDirectXVideoProcessorService, pVideoDesc: ?*const DXVA2_VideoDesc, pCount: ?*u32, pGuids: ?*?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetVideoProcessorDeviceGuids(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), pVideoDesc, pCount, pGuids);
+        return self.vtable.GetVideoProcessorDeviceGuids(self, pVideoDesc, pCount, pGuids);
     }
     pub fn GetVideoProcessorRenderTargets(self: *const IDirectXVideoProcessorService, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, pCount: ?*u32, pFormats: ?*?*D3DFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetVideoProcessorRenderTargets(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, pCount, pFormats);
+        return self.vtable.GetVideoProcessorRenderTargets(self, VideoProcDeviceGuid, pVideoDesc, pCount, pFormats);
     }
     pub fn GetVideoProcessorSubStreamFormats(self: *const IDirectXVideoProcessorService, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, pCount: ?*u32, pFormats: ?*?*D3DFORMAT) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetVideoProcessorSubStreamFormats(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, pCount, pFormats);
+        return self.vtable.GetVideoProcessorSubStreamFormats(self, VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, pCount, pFormats);
     }
     pub fn GetVideoProcessorCaps(self: *const IDirectXVideoProcessorService, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, pCaps: ?*DXVA2_VideoProcessorCaps) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetVideoProcessorCaps(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, pCaps);
+        return self.vtable.GetVideoProcessorCaps(self, VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, pCaps);
     }
     pub fn GetProcAmpRange(self: *const IDirectXVideoProcessorService, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, ProcAmpCap: u32, pRange: ?*DXVA2_ValueRange) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetProcAmpRange(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, ProcAmpCap, pRange);
+        return self.vtable.GetProcAmpRange(self, VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, ProcAmpCap, pRange);
     }
     pub fn GetFilterPropertyRange(self: *const IDirectXVideoProcessorService, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, FilterSetting: u32, pRange: ?*DXVA2_ValueRange) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).GetFilterPropertyRange(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, FilterSetting, pRange);
+        return self.vtable.GetFilterPropertyRange(self, VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, FilterSetting, pRange);
     }
     pub fn CreateVideoProcessor(self: *const IDirectXVideoProcessorService, VideoProcDeviceGuid: ?*const Guid, pVideoDesc: ?*const DXVA2_VideoDesc, RenderTargetFormat: D3DFORMAT, MaxNumSubStreams: u32, ppVidProcess: ?*?*IDirectXVideoProcessor) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessorService.VTable, @ptrCast(self.vtable)).CreateVideoProcessor(@as(*const IDirectXVideoProcessorService, @ptrCast(self)), VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, MaxNumSubStreams, ppVidProcess);
+        return self.vtable.CreateVideoProcessor(self, VideoProcDeviceGuid, pVideoDesc, RenderTargetFormat, MaxNumSubStreams, ppVidProcess);
     }
 };
 
@@ -12800,25 +12800,25 @@ pub const IDirectXVideoDecoder = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetVideoDecoderService(self: *const IDirectXVideoDecoder, ppService: ?*?*IDirectXVideoDecoderService) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).GetVideoDecoderService(@as(*const IDirectXVideoDecoder, @ptrCast(self)), ppService);
+        return self.vtable.GetVideoDecoderService(self, ppService);
     }
     pub fn GetCreationParameters(self: *const IDirectXVideoDecoder, pDeviceGuid: ?*Guid, pVideoDesc: ?*DXVA2_VideoDesc, pConfig: ?*DXVA2_ConfigPictureDecode, pDecoderRenderTargets: [*]?*?*IDirect3DSurface9, pNumSurfaces: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).GetCreationParameters(@as(*const IDirectXVideoDecoder, @ptrCast(self)), pDeviceGuid, pVideoDesc, pConfig, pDecoderRenderTargets, pNumSurfaces);
+        return self.vtable.GetCreationParameters(self, pDeviceGuid, pVideoDesc, pConfig, pDecoderRenderTargets, pNumSurfaces);
     }
     pub fn GetBuffer(self: *const IDirectXVideoDecoder, BufferType: DXVA2_BufferfType, ppBuffer: ?*?*anyopaque, pBufferSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IDirectXVideoDecoder, @ptrCast(self)), BufferType, ppBuffer, pBufferSize);
+        return self.vtable.GetBuffer(self, BufferType, ppBuffer, pBufferSize);
     }
     pub fn ReleaseBuffer(self: *const IDirectXVideoDecoder, BufferType: u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).ReleaseBuffer(@as(*const IDirectXVideoDecoder, @ptrCast(self)), BufferType);
+        return self.vtable.ReleaseBuffer(self, BufferType);
     }
     pub fn BeginFrame(self: *const IDirectXVideoDecoder, pRenderTarget: ?*IDirect3DSurface9, pvPVPData: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).BeginFrame(@as(*const IDirectXVideoDecoder, @ptrCast(self)), pRenderTarget, pvPVPData);
+        return self.vtable.BeginFrame(self, pRenderTarget, pvPVPData);
     }
     pub fn EndFrame(self: *const IDirectXVideoDecoder, pHandleComplete: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).EndFrame(@as(*const IDirectXVideoDecoder, @ptrCast(self)), pHandleComplete);
+        return self.vtable.EndFrame(self, pHandleComplete);
     }
     pub fn Execute(self: *const IDirectXVideoDecoder, pExecuteParams: ?*const DXVA2_DecodeExecuteParams) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoDecoder.VTable, @ptrCast(self.vtable)).Execute(@as(*const IDirectXVideoDecoder, @ptrCast(self)), pExecuteParams);
+        return self.vtable.Execute(self, pExecuteParams);
     }
 };
 
@@ -12893,22 +12893,22 @@ pub const IDirectXVideoProcessor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetVideoProcessorService(self: *const IDirectXVideoProcessor, ppService: ?*?*IDirectXVideoProcessorService) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessorService(@as(*const IDirectXVideoProcessor, @ptrCast(self)), ppService);
+        return self.vtable.GetVideoProcessorService(self, ppService);
     }
     pub fn GetCreationParameters(self: *const IDirectXVideoProcessor, pDeviceGuid: ?*Guid, pVideoDesc: ?*DXVA2_VideoDesc, pRenderTargetFormat: ?*D3DFORMAT, pMaxNumSubStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetCreationParameters(@as(*const IDirectXVideoProcessor, @ptrCast(self)), pDeviceGuid, pVideoDesc, pRenderTargetFormat, pMaxNumSubStreams);
+        return self.vtable.GetCreationParameters(self, pDeviceGuid, pVideoDesc, pRenderTargetFormat, pMaxNumSubStreams);
     }
     pub fn GetVideoProcessorCaps(self: *const IDirectXVideoProcessor, pCaps: ?*DXVA2_VideoProcessorCaps) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessorCaps(@as(*const IDirectXVideoProcessor, @ptrCast(self)), pCaps);
+        return self.vtable.GetVideoProcessorCaps(self, pCaps);
     }
     pub fn GetProcAmpRange(self: *const IDirectXVideoProcessor, ProcAmpCap: u32, pRange: ?*DXVA2_ValueRange) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetProcAmpRange(@as(*const IDirectXVideoProcessor, @ptrCast(self)), ProcAmpCap, pRange);
+        return self.vtable.GetProcAmpRange(self, ProcAmpCap, pRange);
     }
     pub fn GetFilterPropertyRange(self: *const IDirectXVideoProcessor, FilterSetting: u32, pRange: ?*DXVA2_ValueRange) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).GetFilterPropertyRange(@as(*const IDirectXVideoProcessor, @ptrCast(self)), FilterSetting, pRange);
+        return self.vtable.GetFilterPropertyRange(self, FilterSetting, pRange);
     }
     pub fn VideoProcessBlt(self: *const IDirectXVideoProcessor, pRenderTarget: ?*IDirect3DSurface9, pBltParams: ?*const DXVA2_VideoProcessBltParams, pSamples: [*]const DXVA2_VideoSample, NumSamples: u32, pHandleComplete: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoProcessor.VTable, @ptrCast(self.vtable)).VideoProcessBlt(@as(*const IDirectXVideoProcessor, @ptrCast(self)), pRenderTarget, pBltParams, pSamples, NumSamples, pHandleComplete);
+        return self.vtable.VideoProcessBlt(self, pRenderTarget, pBltParams, pSamples, NumSamples, pHandleComplete);
     }
 };
 
@@ -12952,10 +12952,10 @@ pub const IDirectXVideoMemoryConfiguration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAvailableSurfaceTypeByIndex(self: *const IDirectXVideoMemoryConfiguration, dwTypeIndex: u32, pdwType: ?*DXVA2_SurfaceType) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoMemoryConfiguration.VTable, @ptrCast(self.vtable)).GetAvailableSurfaceTypeByIndex(@as(*const IDirectXVideoMemoryConfiguration, @ptrCast(self)), dwTypeIndex, pdwType);
+        return self.vtable.GetAvailableSurfaceTypeByIndex(self, dwTypeIndex, pdwType);
     }
     pub fn SetSurfaceType(self: *const IDirectXVideoMemoryConfiguration, dwType: DXVA2_SurfaceType) callconv(.Inline) HRESULT {
-        return @as(*const IDirectXVideoMemoryConfiguration.VTable, @ptrCast(self.vtable)).SetSurfaceType(@as(*const IDirectXVideoMemoryConfiguration, @ptrCast(self)), dwType);
+        return self.vtable.SetSurfaceType(self, dwType);
     }
 };
 
@@ -13450,19 +13450,19 @@ pub const IOPMVideoOutput = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartInitialization(self: *const IOPMVideoOutput, prnRandomNumber: ?*OPM_RANDOM_NUMBER, ppbCertificate: ?*?*u8, pulCertificateLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).StartInitialization(@as(*const IOPMVideoOutput, @ptrCast(self)), prnRandomNumber, ppbCertificate, pulCertificateLength);
+        return self.vtable.StartInitialization(self, prnRandomNumber, ppbCertificate, pulCertificateLength);
     }
     pub fn FinishInitialization(self: *const IOPMVideoOutput, pParameters: ?*const OPM_ENCRYPTED_INITIALIZATION_PARAMETERS) callconv(.Inline) HRESULT {
-        return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).FinishInitialization(@as(*const IOPMVideoOutput, @ptrCast(self)), pParameters);
+        return self.vtable.FinishInitialization(self, pParameters);
     }
     pub fn GetInformation(self: *const IOPMVideoOutput, pParameters: ?*const OPM_GET_INFO_PARAMETERS, pRequestedInformation: ?*OPM_REQUESTED_INFORMATION) callconv(.Inline) HRESULT {
-        return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).GetInformation(@as(*const IOPMVideoOutput, @ptrCast(self)), pParameters, pRequestedInformation);
+        return self.vtable.GetInformation(self, pParameters, pRequestedInformation);
     }
     pub fn COPPCompatibleGetInformation(self: *const IOPMVideoOutput, pParameters: ?*const OPM_COPP_COMPATIBLE_GET_INFO_PARAMETERS, pRequestedInformation: ?*OPM_REQUESTED_INFORMATION) callconv(.Inline) HRESULT {
-        return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).COPPCompatibleGetInformation(@as(*const IOPMVideoOutput, @ptrCast(self)), pParameters, pRequestedInformation);
+        return self.vtable.COPPCompatibleGetInformation(self, pParameters, pRequestedInformation);
     }
     pub fn Configure(self: *const IOPMVideoOutput, pParameters: ?*const OPM_CONFIGURE_PARAMETERS, ulAdditionalParametersSize: u32, pbAdditionalParameters: ?*const u8) callconv(.Inline) HRESULT {
-        return @as(*const IOPMVideoOutput.VTable, @ptrCast(self.vtable)).Configure(@as(*const IOPMVideoOutput, @ptrCast(self)), pParameters, ulAdditionalParametersSize, pbAdditionalParameters);
+        return self.vtable.Configure(self, pParameters, ulAdditionalParametersSize, pbAdditionalParameters);
     }
 };
 
@@ -13794,94 +13794,94 @@ pub const IMFAttributes = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetItem(self: *const IMFAttributes, guidKey: ?*const Guid, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pValue);
+        return self.vtable.GetItem(self, guidKey, pValue);
     }
     pub fn GetItemType(self: *const IMFAttributes, guidKey: ?*const Guid, pType: ?*MF_ATTRIBUTE_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetItemType(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pType);
+        return self.vtable.GetItemType(self, guidKey, pType);
     }
     pub fn CompareItem(self: *const IMFAttributes, guidKey: ?*const Guid, Value: ?*const PROPVARIANT, pbResult: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).CompareItem(@as(*const IMFAttributes, @ptrCast(self)), guidKey, Value, pbResult);
+        return self.vtable.CompareItem(self, guidKey, Value, pbResult);
     }
     pub fn Compare(self: *const IMFAttributes, pTheirs: ?*IMFAttributes, MatchType: MF_ATTRIBUTES_MATCH_TYPE, pbResult: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).Compare(@as(*const IMFAttributes, @ptrCast(self)), pTheirs, MatchType, pbResult);
+        return self.vtable.Compare(self, pTheirs, MatchType, pbResult);
     }
     pub fn GetUINT32(self: *const IMFAttributes, guidKey: ?*const Guid, punValue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetUINT32(@as(*const IMFAttributes, @ptrCast(self)), guidKey, punValue);
+        return self.vtable.GetUINT32(self, guidKey, punValue);
     }
     pub fn GetUINT64(self: *const IMFAttributes, guidKey: ?*const Guid, punValue: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetUINT64(@as(*const IMFAttributes, @ptrCast(self)), guidKey, punValue);
+        return self.vtable.GetUINT64(self, guidKey, punValue);
     }
     pub fn GetDouble(self: *const IMFAttributes, guidKey: ?*const Guid, pfValue: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetDouble(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pfValue);
+        return self.vtable.GetDouble(self, guidKey, pfValue);
     }
     pub fn GetGUID(self: *const IMFAttributes, guidKey: ?*const Guid, pguidValue: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetGUID(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pguidValue);
+        return self.vtable.GetGUID(self, guidKey, pguidValue);
     }
     pub fn GetStringLength(self: *const IMFAttributes, guidKey: ?*const Guid, pcchLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetStringLength(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pcchLength);
+        return self.vtable.GetStringLength(self, guidKey, pcchLength);
     }
     pub fn GetString(self: *const IMFAttributes, guidKey: ?*const Guid, pwszValue: [*:0]u16, cchBufSize: u32, pcchLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetString(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pwszValue, cchBufSize, pcchLength);
+        return self.vtable.GetString(self, guidKey, pwszValue, cchBufSize, pcchLength);
     }
     pub fn GetAllocatedString(self: *const IMFAttributes, guidKey: ?*const Guid, ppwszValue: ?*?PWSTR, pcchLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetAllocatedString(@as(*const IMFAttributes, @ptrCast(self)), guidKey, ppwszValue, pcchLength);
+        return self.vtable.GetAllocatedString(self, guidKey, ppwszValue, pcchLength);
     }
     pub fn GetBlobSize(self: *const IMFAttributes, guidKey: ?*const Guid, pcbBlobSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetBlobSize(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pcbBlobSize);
+        return self.vtable.GetBlobSize(self, guidKey, pcbBlobSize);
     }
     pub fn GetBlob(self: *const IMFAttributes, guidKey: ?*const Guid, pBuf: [*:0]u8, cbBufSize: u32, pcbBlobSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetBlob(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pBuf, cbBufSize, pcbBlobSize);
+        return self.vtable.GetBlob(self, guidKey, pBuf, cbBufSize, pcbBlobSize);
     }
     pub fn GetAllocatedBlob(self: *const IMFAttributes, guidKey: ?*const Guid, ppBuf: [*]?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetAllocatedBlob(@as(*const IMFAttributes, @ptrCast(self)), guidKey, ppBuf, pcbSize);
+        return self.vtable.GetAllocatedBlob(self, guidKey, ppBuf, pcbSize);
     }
     pub fn GetUnknown(self: *const IMFAttributes, guidKey: ?*const Guid, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetUnknown(@as(*const IMFAttributes, @ptrCast(self)), guidKey, riid, ppv);
+        return self.vtable.GetUnknown(self, guidKey, riid, ppv);
     }
     pub fn SetItem(self: *const IMFAttributes, guidKey: ?*const Guid, Value: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetItem(@as(*const IMFAttributes, @ptrCast(self)), guidKey, Value);
+        return self.vtable.SetItem(self, guidKey, Value);
     }
     pub fn DeleteItem(self: *const IMFAttributes, guidKey: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).DeleteItem(@as(*const IMFAttributes, @ptrCast(self)), guidKey);
+        return self.vtable.DeleteItem(self, guidKey);
     }
     pub fn DeleteAllItems(self: *const IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).DeleteAllItems(@as(*const IMFAttributes, @ptrCast(self)));
+        return self.vtable.DeleteAllItems(self);
     }
     pub fn SetUINT32(self: *const IMFAttributes, guidKey: ?*const Guid, unValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetUINT32(@as(*const IMFAttributes, @ptrCast(self)), guidKey, unValue);
+        return self.vtable.SetUINT32(self, guidKey, unValue);
     }
     pub fn SetUINT64(self: *const IMFAttributes, guidKey: ?*const Guid, unValue: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetUINT64(@as(*const IMFAttributes, @ptrCast(self)), guidKey, unValue);
+        return self.vtable.SetUINT64(self, guidKey, unValue);
     }
     pub fn SetDouble(self: *const IMFAttributes, guidKey: ?*const Guid, fValue: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetDouble(@as(*const IMFAttributes, @ptrCast(self)), guidKey, fValue);
+        return self.vtable.SetDouble(self, guidKey, fValue);
     }
     pub fn SetGUID(self: *const IMFAttributes, guidKey: ?*const Guid, guidValue: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetGUID(@as(*const IMFAttributes, @ptrCast(self)), guidKey, guidValue);
+        return self.vtable.SetGUID(self, guidKey, guidValue);
     }
     pub fn SetString(self: *const IMFAttributes, guidKey: ?*const Guid, wszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetString(@as(*const IMFAttributes, @ptrCast(self)), guidKey, wszValue);
+        return self.vtable.SetString(self, guidKey, wszValue);
     }
     pub fn SetBlob(self: *const IMFAttributes, guidKey: ?*const Guid, pBuf: [*:0]const u8, cbBufSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetBlob(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pBuf, cbBufSize);
+        return self.vtable.SetBlob(self, guidKey, pBuf, cbBufSize);
     }
     pub fn SetUnknown(self: *const IMFAttributes, guidKey: ?*const Guid, pUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).SetUnknown(@as(*const IMFAttributes, @ptrCast(self)), guidKey, pUnknown);
+        return self.vtable.SetUnknown(self, guidKey, pUnknown);
     }
     pub fn LockStore(self: *const IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).LockStore(@as(*const IMFAttributes, @ptrCast(self)));
+        return self.vtable.LockStore(self);
     }
     pub fn UnlockStore(self: *const IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).UnlockStore(@as(*const IMFAttributes, @ptrCast(self)));
+        return self.vtable.UnlockStore(self);
     }
     pub fn GetCount(self: *const IMFAttributes, pcItems: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IMFAttributes, @ptrCast(self)), pcItems);
+        return self.vtable.GetCount(self, pcItems);
     }
     pub fn GetItemByIndex(self: *const IMFAttributes, unIndex: u32, pguidKey: ?*Guid, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).GetItemByIndex(@as(*const IMFAttributes, @ptrCast(self)), unIndex, pguidKey, pValue);
+        return self.vtable.GetItemByIndex(self, unIndex, pguidKey, pValue);
     }
     pub fn CopyAllItems(self: *const IMFAttributes, pDest: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFAttributes.VTable, @ptrCast(self.vtable)).CopyAllItems(@as(*const IMFAttributes, @ptrCast(self)), pDest);
+        return self.vtable.CopyAllItems(self, pDest);
     }
 };
 
@@ -13946,19 +13946,19 @@ pub const IMFMediaBuffer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Lock(self: *const IMFMediaBuffer, ppbBuffer: ?*?*u8, pcbMaxLength: ?*u32, pcbCurrentLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).Lock(@as(*const IMFMediaBuffer, @ptrCast(self)), ppbBuffer, pcbMaxLength, pcbCurrentLength);
+        return self.vtable.Lock(self, ppbBuffer, pcbMaxLength, pcbCurrentLength);
     }
     pub fn Unlock(self: *const IMFMediaBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IMFMediaBuffer, @ptrCast(self)));
+        return self.vtable.Unlock(self);
     }
     pub fn GetCurrentLength(self: *const IMFMediaBuffer, pcbCurrentLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).GetCurrentLength(@as(*const IMFMediaBuffer, @ptrCast(self)), pcbCurrentLength);
+        return self.vtable.GetCurrentLength(self, pcbCurrentLength);
     }
     pub fn SetCurrentLength(self: *const IMFMediaBuffer, cbCurrentLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).SetCurrentLength(@as(*const IMFMediaBuffer, @ptrCast(self)), cbCurrentLength);
+        return self.vtable.SetCurrentLength(self, cbCurrentLength);
     }
     pub fn GetMaxLength(self: *const IMFMediaBuffer, pcbMaxLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaBuffer.VTable, @ptrCast(self.vtable)).GetMaxLength(@as(*const IMFMediaBuffer, @ptrCast(self)), pcbMaxLength);
+        return self.vtable.GetMaxLength(self, pcbMaxLength);
     }
 };
 
@@ -14088,46 +14088,46 @@ pub const IMFSample = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetSampleFlags(self: *const IMFSample, pdwSampleFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetSampleFlags(@as(*const IMFSample, @ptrCast(self)), pdwSampleFlags);
+        return self.vtable.GetSampleFlags(self, pdwSampleFlags);
     }
     pub fn SetSampleFlags(self: *const IMFSample, dwSampleFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).SetSampleFlags(@as(*const IMFSample, @ptrCast(self)), dwSampleFlags);
+        return self.vtable.SetSampleFlags(self, dwSampleFlags);
     }
     pub fn GetSampleTime(self: *const IMFSample, phnsSampleTime: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetSampleTime(@as(*const IMFSample, @ptrCast(self)), phnsSampleTime);
+        return self.vtable.GetSampleTime(self, phnsSampleTime);
     }
     pub fn SetSampleTime(self: *const IMFSample, hnsSampleTime: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).SetSampleTime(@as(*const IMFSample, @ptrCast(self)), hnsSampleTime);
+        return self.vtable.SetSampleTime(self, hnsSampleTime);
     }
     pub fn GetSampleDuration(self: *const IMFSample, phnsSampleDuration: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetSampleDuration(@as(*const IMFSample, @ptrCast(self)), phnsSampleDuration);
+        return self.vtable.GetSampleDuration(self, phnsSampleDuration);
     }
     pub fn SetSampleDuration(self: *const IMFSample, hnsSampleDuration: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).SetSampleDuration(@as(*const IMFSample, @ptrCast(self)), hnsSampleDuration);
+        return self.vtable.SetSampleDuration(self, hnsSampleDuration);
     }
     pub fn GetBufferCount(self: *const IMFSample, pdwBufferCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetBufferCount(@as(*const IMFSample, @ptrCast(self)), pdwBufferCount);
+        return self.vtable.GetBufferCount(self, pdwBufferCount);
     }
     pub fn GetBufferByIndex(self: *const IMFSample, dwIndex: u32, ppBuffer: ?*?*IMFMediaBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetBufferByIndex(@as(*const IMFSample, @ptrCast(self)), dwIndex, ppBuffer);
+        return self.vtable.GetBufferByIndex(self, dwIndex, ppBuffer);
     }
     pub fn ConvertToContiguousBuffer(self: *const IMFSample, ppBuffer: ?*?*IMFMediaBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).ConvertToContiguousBuffer(@as(*const IMFSample, @ptrCast(self)), ppBuffer);
+        return self.vtable.ConvertToContiguousBuffer(self, ppBuffer);
     }
     pub fn AddBuffer(self: *const IMFSample, pBuffer: ?*IMFMediaBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).AddBuffer(@as(*const IMFSample, @ptrCast(self)), pBuffer);
+        return self.vtable.AddBuffer(self, pBuffer);
     }
     pub fn RemoveBufferByIndex(self: *const IMFSample, dwIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).RemoveBufferByIndex(@as(*const IMFSample, @ptrCast(self)), dwIndex);
+        return self.vtable.RemoveBufferByIndex(self, dwIndex);
     }
     pub fn RemoveAllBuffers(self: *const IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).RemoveAllBuffers(@as(*const IMFSample, @ptrCast(self)));
+        return self.vtable.RemoveAllBuffers(self);
     }
     pub fn GetTotalLength(self: *const IMFSample, pcbTotalLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).GetTotalLength(@as(*const IMFSample, @ptrCast(self)), pcbTotalLength);
+        return self.vtable.GetTotalLength(self, pcbTotalLength);
     }
     pub fn CopyToBuffer(self: *const IMFSample, pBuffer: ?*IMFMediaBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFSample.VTable, @ptrCast(self.vtable)).CopyToBuffer(@as(*const IMFSample, @ptrCast(self)), pBuffer);
+        return self.vtable.CopyToBuffer(self, pBuffer);
     }
 };
 
@@ -14206,25 +14206,25 @@ pub const IMF2DBuffer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Lock2D(self: *const IMF2DBuffer, ppbScanline0: ?*?*u8, plPitch: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).Lock2D(@as(*const IMF2DBuffer, @ptrCast(self)), ppbScanline0, plPitch);
+        return self.vtable.Lock2D(self, ppbScanline0, plPitch);
     }
     pub fn Unlock2D(self: *const IMF2DBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).Unlock2D(@as(*const IMF2DBuffer, @ptrCast(self)));
+        return self.vtable.Unlock2D(self);
     }
     pub fn GetScanline0AndPitch(self: *const IMF2DBuffer, pbScanline0: ?*?*u8, plPitch: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).GetScanline0AndPitch(@as(*const IMF2DBuffer, @ptrCast(self)), pbScanline0, plPitch);
+        return self.vtable.GetScanline0AndPitch(self, pbScanline0, plPitch);
     }
     pub fn IsContiguousFormat(self: *const IMF2DBuffer, pfIsContiguous: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).IsContiguousFormat(@as(*const IMF2DBuffer, @ptrCast(self)), pfIsContiguous);
+        return self.vtable.IsContiguousFormat(self, pfIsContiguous);
     }
     pub fn GetContiguousLength(self: *const IMF2DBuffer, pcbLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).GetContiguousLength(@as(*const IMF2DBuffer, @ptrCast(self)), pcbLength);
+        return self.vtable.GetContiguousLength(self, pcbLength);
     }
     pub fn ContiguousCopyTo(self: *const IMF2DBuffer, pbDestBuffer: ?*u8, cbDestBuffer: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).ContiguousCopyTo(@as(*const IMF2DBuffer, @ptrCast(self)), pbDestBuffer, cbDestBuffer);
+        return self.vtable.ContiguousCopyTo(self, pbDestBuffer, cbDestBuffer);
     }
     pub fn ContiguousCopyFrom(self: *const IMF2DBuffer, pbSrcBuffer: ?*const u8, cbSrcBuffer: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMF2DBuffer.VTable, @ptrCast(self.vtable)).ContiguousCopyFrom(@as(*const IMF2DBuffer, @ptrCast(self)), pbSrcBuffer, cbSrcBuffer);
+        return self.vtable.ContiguousCopyFrom(self, pbSrcBuffer, cbSrcBuffer);
     }
 };
 
@@ -14275,10 +14275,10 @@ pub const IMF2DBuffer2 = extern union {
     };}
     pub usingnamespace IMF2DBuffer.MethodMixin(@This());
     pub fn Lock2DSize(self: *const IMF2DBuffer2, lockFlags: MF2DBuffer_LockFlags, ppbScanline0: ?*?*u8, plPitch: ?*i32, ppbBufferStart: ?*?*u8, pcbBufferLength: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMF2DBuffer2.VTable, @ptrCast(self.vtable)).Lock2DSize(@as(*const IMF2DBuffer2, @ptrCast(self)), lockFlags, ppbScanline0, plPitch, ppbBufferStart, pcbBufferLength);
+        return self.vtable.Lock2DSize(self, lockFlags, ppbScanline0, plPitch, ppbBufferStart, pcbBufferLength);
     }
     pub fn Copy2DTo(self: *const IMF2DBuffer2, pDestBuffer: ?*IMF2DBuffer2) callconv(.Inline) HRESULT {
-        return @as(*const IMF2DBuffer2.VTable, @ptrCast(self.vtable)).Copy2DTo(@as(*const IMF2DBuffer2, @ptrCast(self)), pDestBuffer);
+        return self.vtable.Copy2DTo(self, pDestBuffer);
     }
 };
 
@@ -14332,16 +14332,16 @@ pub const IMFDXGIBuffer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetResource(self: *const IMFDXGIBuffer, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIBuffer.VTable, @ptrCast(self.vtable)).GetResource(@as(*const IMFDXGIBuffer, @ptrCast(self)), riid, ppvObject);
+        return self.vtable.GetResource(self, riid, ppvObject);
     }
     pub fn GetSubresourceIndex(self: *const IMFDXGIBuffer, puSubresource: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIBuffer.VTable, @ptrCast(self.vtable)).GetSubresourceIndex(@as(*const IMFDXGIBuffer, @ptrCast(self)), puSubresource);
+        return self.vtable.GetSubresourceIndex(self, puSubresource);
     }
     pub fn GetUnknown(self: *const IMFDXGIBuffer, guid: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIBuffer.VTable, @ptrCast(self.vtable)).GetUnknown(@as(*const IMFDXGIBuffer, @ptrCast(self)), guid, riid, ppvObject);
+        return self.vtable.GetUnknown(self, guid, riid, ppvObject);
     }
     pub fn SetUnknown(self: *const IMFDXGIBuffer, guid: ?*const Guid, pUnkData: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIBuffer.VTable, @ptrCast(self.vtable)).SetUnknown(@as(*const IMFDXGIBuffer, @ptrCast(self)), guid, pUnkData);
+        return self.vtable.SetUnknown(self, guid, pUnkData);
     }
 };
 
@@ -14402,19 +14402,19 @@ pub const IMFMediaType = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetMajorType(self: *const IMFMediaType, pguidMajorType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).GetMajorType(@as(*const IMFMediaType, @ptrCast(self)), pguidMajorType);
+        return self.vtable.GetMajorType(self, pguidMajorType);
     }
     pub fn IsCompressedFormat(self: *const IMFMediaType, pfCompressed: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).IsCompressedFormat(@as(*const IMFMediaType, @ptrCast(self)), pfCompressed);
+        return self.vtable.IsCompressedFormat(self, pfCompressed);
     }
     pub fn IsEqual(self: *const IMFMediaType, pIMediaType: ?*IMFMediaType, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const IMFMediaType, @ptrCast(self)), pIMediaType, pdwFlags);
+        return self.vtable.IsEqual(self, pIMediaType, pdwFlags);
     }
     pub fn GetRepresentation(self: *const IMFMediaType, guidRepresentation: Guid, ppvRepresentation: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).GetRepresentation(@as(*const IMFMediaType, @ptrCast(self)), guidRepresentation, ppvRepresentation);
+        return self.vtable.GetRepresentation(self, guidRepresentation, ppvRepresentation);
     }
     pub fn FreeRepresentation(self: *const IMFMediaType, guidRepresentation: Guid, pvRepresentation: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaType.VTable, @ptrCast(self.vtable)).FreeRepresentation(@as(*const IMFMediaType, @ptrCast(self)), guidRepresentation, pvRepresentation);
+        return self.vtable.FreeRepresentation(self, guidRepresentation, pvRepresentation);
     }
 };
 
@@ -14439,7 +14439,7 @@ pub const IMFAudioMediaType = extern union {
     };}
     pub usingnamespace IMFMediaType.MethodMixin(@This());
     pub fn GetAudioFormat(self: *const IMFAudioMediaType) callconv(.Inline) ?*WAVEFORMATEX {
-        return @as(*const IMFAudioMediaType.VTable, @ptrCast(self.vtable)).GetAudioFormat(@as(*const IMFAudioMediaType, @ptrCast(self)));
+        return self.vtable.GetAudioFormat(self);
     }
 };
 
@@ -14797,10 +14797,10 @@ pub const IMFVideoMediaType = extern union {
     };}
     pub usingnamespace IMFMediaType.MethodMixin(@This());
     pub fn GetVideoFormat(self: *const IMFVideoMediaType) callconv(.Inline) ?*MFVIDEOFORMAT {
-        return @as(*const IMFVideoMediaType.VTable, @ptrCast(self.vtable)).GetVideoFormat(@as(*const IMFVideoMediaType, @ptrCast(self)));
+        return self.vtable.GetVideoFormat(self);
     }
     pub fn GetVideoRepresentation(self: *const IMFVideoMediaType, guidRepresentation: Guid, ppvRepresentation: ?*?*anyopaque, lStride: i32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMediaType.VTable, @ptrCast(self.vtable)).GetVideoRepresentation(@as(*const IMFVideoMediaType, @ptrCast(self)), guidRepresentation, ppvRepresentation, lStride);
+        return self.vtable.GetVideoRepresentation(self, guidRepresentation, ppvRepresentation, lStride);
     }
 };
 
@@ -14856,19 +14856,19 @@ pub const IMFAsyncResult = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetState(self: *const IMFAsyncResult, ppunkState: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMFAsyncResult, @ptrCast(self)), ppunkState);
+        return self.vtable.GetState(self, ppunkState);
     }
     pub fn GetStatus(self: *const IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IMFAsyncResult, @ptrCast(self)));
+        return self.vtable.GetStatus(self);
     }
     pub fn SetStatus(self: *const IMFAsyncResult, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).SetStatus(@as(*const IMFAsyncResult, @ptrCast(self)), hrStatus);
+        return self.vtable.SetStatus(self, hrStatus);
     }
     pub fn GetObject(self: *const IMFAsyncResult, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IMFAsyncResult, @ptrCast(self)), ppObject);
+        return self.vtable.GetObject(self, ppObject);
     }
     pub fn GetStateNoAddRef(self: *const IMFAsyncResult) callconv(.Inline) ?*IUnknown {
-        return @as(*const IMFAsyncResult.VTable, @ptrCast(self.vtable)).GetStateNoAddRef(@as(*const IMFAsyncResult, @ptrCast(self)));
+        return self.vtable.GetStateNoAddRef(self);
     }
 };
 
@@ -14903,10 +14903,10 @@ pub const IMFAsyncCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetParameters(self: *const IMFAsyncCallback, pdwFlags: ?*u32, pdwQueue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAsyncCallback.VTable, @ptrCast(self.vtable)).GetParameters(@as(*const IMFAsyncCallback, @ptrCast(self)), pdwFlags, pdwQueue);
+        return self.vtable.GetParameters(self, pdwFlags, pdwQueue);
     }
     pub fn Invoke(self: *const IMFAsyncCallback, pAsyncResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFAsyncCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IMFAsyncCallback, @ptrCast(self)), pAsyncResult);
+        return self.vtable.Invoke(self, pAsyncResult);
     }
 };
 
@@ -14938,10 +14938,10 @@ pub const IMFAsyncCallbackLogging = extern union {
     };}
     pub usingnamespace IMFAsyncCallback.MethodMixin(@This());
     pub fn GetObjectPointer(self: *const IMFAsyncCallbackLogging) callconv(.Inline) ?*anyopaque {
-        return @as(*const IMFAsyncCallbackLogging.VTable, @ptrCast(self.vtable)).GetObjectPointer(@as(*const IMFAsyncCallbackLogging, @ptrCast(self)));
+        return self.vtable.GetObjectPointer(self);
     }
     pub fn GetObjectTag(self: *const IMFAsyncCallbackLogging) callconv(.Inline) u32 {
-        return @as(*const IMFAsyncCallbackLogging.VTable, @ptrCast(self.vtable)).GetObjectTag(@as(*const IMFAsyncCallbackLogging, @ptrCast(self)));
+        return self.vtable.GetObjectTag(self);
     }
 };
 
@@ -15234,16 +15234,16 @@ pub const IMFMediaEvent = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetType(self: *const IMFMediaEvent, pmet: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEvent.VTable, @ptrCast(self.vtable)).GetType(@as(*const IMFMediaEvent, @ptrCast(self)), pmet);
+        return self.vtable.GetType(self, pmet);
     }
     pub fn GetExtendedType(self: *const IMFMediaEvent, pguidExtendedType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEvent.VTable, @ptrCast(self.vtable)).GetExtendedType(@as(*const IMFMediaEvent, @ptrCast(self)), pguidExtendedType);
+        return self.vtable.GetExtendedType(self, pguidExtendedType);
     }
     pub fn GetStatus(self: *const IMFMediaEvent, phrStatus: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEvent.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IMFMediaEvent, @ptrCast(self)), phrStatus);
+        return self.vtable.GetStatus(self, phrStatus);
     }
     pub fn GetValue(self: *const IMFMediaEvent, pvValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEvent.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IMFMediaEvent, @ptrCast(self)), pvValue);
+        return self.vtable.GetValue(self, pvValue);
     }
 };
 
@@ -15299,16 +15299,16 @@ pub const IMFMediaEventGenerator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEvent(self: *const IMFMediaEventGenerator, dwFlags: MEDIA_EVENT_GENERATOR_GET_EVENT_FLAGS, ppEvent: ?*?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventGenerator.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const IMFMediaEventGenerator, @ptrCast(self)), dwFlags, ppEvent);
+        return self.vtable.GetEvent(self, dwFlags, ppEvent);
     }
     pub fn BeginGetEvent(self: *const IMFMediaEventGenerator, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventGenerator.VTable, @ptrCast(self.vtable)).BeginGetEvent(@as(*const IMFMediaEventGenerator, @ptrCast(self)), pCallback, punkState);
+        return self.vtable.BeginGetEvent(self, pCallback, punkState);
     }
     pub fn EndGetEvent(self: *const IMFMediaEventGenerator, pResult: ?*IMFAsyncResult, ppEvent: ?*?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventGenerator.VTable, @ptrCast(self.vtable)).EndGetEvent(@as(*const IMFMediaEventGenerator, @ptrCast(self)), pResult, ppEvent);
+        return self.vtable.EndGetEvent(self, pResult, ppEvent);
     }
     pub fn QueueEvent(self: *const IMFMediaEventGenerator, met: u32, guidExtendedType: ?*const Guid, hrStatus: HRESULT, pvValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventGenerator.VTable, @ptrCast(self.vtable)).QueueEvent(@as(*const IMFMediaEventGenerator, @ptrCast(self)), met, guidExtendedType, hrStatus, pvValue);
+        return self.vtable.QueueEvent(self, met, guidExtendedType, hrStatus, pvValue);
     }
 };
 
@@ -15335,7 +15335,7 @@ pub const IMFRemoteAsyncCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Invoke(self: *const IMFRemoteAsyncCallback, hr: HRESULT, pRemoteResult: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFRemoteAsyncCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IMFRemoteAsyncCallback, @ptrCast(self)), hr, pRemoteResult);
+        return self.vtable.Invoke(self, hr, pRemoteResult);
     }
 };
 
@@ -15495,49 +15495,49 @@ pub const IMFByteStream = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCapabilities(self: *const IMFByteStream, pdwCapabilities: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IMFByteStream, @ptrCast(self)), pdwCapabilities);
+        return self.vtable.GetCapabilities(self, pdwCapabilities);
     }
     pub fn GetLength(self: *const IMFByteStream, pqwLength: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFByteStream, @ptrCast(self)), pqwLength);
+        return self.vtable.GetLength(self, pqwLength);
     }
     pub fn SetLength(self: *const IMFByteStream, qwLength: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).SetLength(@as(*const IMFByteStream, @ptrCast(self)), qwLength);
+        return self.vtable.SetLength(self, qwLength);
     }
     pub fn GetCurrentPosition(self: *const IMFByteStream, pqwPosition: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).GetCurrentPosition(@as(*const IMFByteStream, @ptrCast(self)), pqwPosition);
+        return self.vtable.GetCurrentPosition(self, pqwPosition);
     }
     pub fn SetCurrentPosition(self: *const IMFByteStream, qwPosition: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).SetCurrentPosition(@as(*const IMFByteStream, @ptrCast(self)), qwPosition);
+        return self.vtable.SetCurrentPosition(self, qwPosition);
     }
     pub fn IsEndOfStream(self: *const IMFByteStream, pfEndOfStream: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).IsEndOfStream(@as(*const IMFByteStream, @ptrCast(self)), pfEndOfStream);
+        return self.vtable.IsEndOfStream(self, pfEndOfStream);
     }
     pub fn Read(self: *const IMFByteStream, pb: [*:0]u8, cb: u32, pcbRead: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Read(@as(*const IMFByteStream, @ptrCast(self)), pb, cb, pcbRead);
+        return self.vtable.Read(self, pb, cb, pcbRead);
     }
     pub fn BeginRead(self: *const IMFByteStream, pb: ?*u8, cb: u32, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).BeginRead(@as(*const IMFByteStream, @ptrCast(self)), pb, cb, pCallback, punkState);
+        return self.vtable.BeginRead(self, pb, cb, pCallback, punkState);
     }
     pub fn EndRead(self: *const IMFByteStream, pResult: ?*IMFAsyncResult, pcbRead: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).EndRead(@as(*const IMFByteStream, @ptrCast(self)), pResult, pcbRead);
+        return self.vtable.EndRead(self, pResult, pcbRead);
     }
     pub fn Write(self: *const IMFByteStream, pb: [*:0]const u8, cb: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Write(@as(*const IMFByteStream, @ptrCast(self)), pb, cb, pcbWritten);
+        return self.vtable.Write(self, pb, cb, pcbWritten);
     }
     pub fn BeginWrite(self: *const IMFByteStream, pb: ?*const u8, cb: u32, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).BeginWrite(@as(*const IMFByteStream, @ptrCast(self)), pb, cb, pCallback, punkState);
+        return self.vtable.BeginWrite(self, pb, cb, pCallback, punkState);
     }
     pub fn EndWrite(self: *const IMFByteStream, pResult: ?*IMFAsyncResult, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).EndWrite(@as(*const IMFByteStream, @ptrCast(self)), pResult, pcbWritten);
+        return self.vtable.EndWrite(self, pResult, pcbWritten);
     }
     pub fn Seek(self: *const IMFByteStream, SeekOrigin: MFBYTESTREAM_SEEK_ORIGIN, llSeekOffset: i64, dwSeekFlags: u32, pqwCurrentPosition: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Seek(@as(*const IMFByteStream, @ptrCast(self)), SeekOrigin, llSeekOffset, dwSeekFlags, pqwCurrentPosition);
+        return self.vtable.Seek(self, SeekOrigin, llSeekOffset, dwSeekFlags, pqwCurrentPosition);
     }
     pub fn Flush(self: *const IMFByteStream) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFByteStream, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
     pub fn Close(self: *const IMFByteStream) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFByteStream, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -15566,7 +15566,7 @@ pub const IMFByteStreamProxyClassFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateByteStreamProxy(self: *const IMFByteStreamProxyClassFactory, pByteStream: ?*IMFByteStream, pAttributes: ?*IMFAttributes, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamProxyClassFactory.VTable, @ptrCast(self.vtable)).CreateByteStreamProxy(@as(*const IMFByteStreamProxyClassFactory, @ptrCast(self)), pByteStream, pAttributes, riid, ppvObject);
+        return self.vtable.CreateByteStreamProxy(self, pByteStream, pAttributes, riid, ppvObject);
     }
 };
 
@@ -15640,13 +15640,13 @@ pub const IMFSampleOutputStream = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginWriteSample(self: *const IMFSampleOutputStream, pSample: ?*IMFSample, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleOutputStream.VTable, @ptrCast(self.vtable)).BeginWriteSample(@as(*const IMFSampleOutputStream, @ptrCast(self)), pSample, pCallback, punkState);
+        return self.vtable.BeginWriteSample(self, pSample, pCallback, punkState);
     }
     pub fn EndWriteSample(self: *const IMFSampleOutputStream, pResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleOutputStream.VTable, @ptrCast(self.vtable)).EndWriteSample(@as(*const IMFSampleOutputStream, @ptrCast(self)), pResult);
+        return self.vtable.EndWriteSample(self, pResult);
     }
     pub fn Close(self: *const IMFSampleOutputStream) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleOutputStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFSampleOutputStream, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -15714,22 +15714,22 @@ pub const IMFCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetElementCount(self: *const IMFCollection, pcElements: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).GetElementCount(@as(*const IMFCollection, @ptrCast(self)), pcElements);
+        return self.vtable.GetElementCount(self, pcElements);
     }
     pub fn GetElement(self: *const IMFCollection, dwElementIndex: u32, ppUnkElement: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).GetElement(@as(*const IMFCollection, @ptrCast(self)), dwElementIndex, ppUnkElement);
+        return self.vtable.GetElement(self, dwElementIndex, ppUnkElement);
     }
     pub fn AddElement(self: *const IMFCollection, pUnkElement: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).AddElement(@as(*const IMFCollection, @ptrCast(self)), pUnkElement);
+        return self.vtable.AddElement(self, pUnkElement);
     }
     pub fn RemoveElement(self: *const IMFCollection, dwElementIndex: u32, ppUnkElement: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).RemoveElement(@as(*const IMFCollection, @ptrCast(self)), dwElementIndex, ppUnkElement);
+        return self.vtable.RemoveElement(self, dwElementIndex, ppUnkElement);
     }
     pub fn InsertElementAt(self: *const IMFCollection, dwIndex: u32, pUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).InsertElementAt(@as(*const IMFCollection, @ptrCast(self)), dwIndex, pUnknown);
+        return self.vtable.InsertElementAt(self, dwIndex, pUnknown);
     }
     pub fn RemoveAllElements(self: *const IMFCollection) callconv(.Inline) HRESULT {
-        return @as(*const IMFCollection.VTable, @ptrCast(self.vtable)).RemoveAllElements(@as(*const IMFCollection, @ptrCast(self)));
+        return self.vtable.RemoveAllElements(self);
     }
 };
 
@@ -15811,25 +15811,25 @@ pub const IMFMediaEventQueue = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEvent(self: *const IMFMediaEventQueue, dwFlags: u32, ppEvent: ?*?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const IMFMediaEventQueue, @ptrCast(self)), dwFlags, ppEvent);
+        return self.vtable.GetEvent(self, dwFlags, ppEvent);
     }
     pub fn BeginGetEvent(self: *const IMFMediaEventQueue, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).BeginGetEvent(@as(*const IMFMediaEventQueue, @ptrCast(self)), pCallback, punkState);
+        return self.vtable.BeginGetEvent(self, pCallback, punkState);
     }
     pub fn EndGetEvent(self: *const IMFMediaEventQueue, pResult: ?*IMFAsyncResult, ppEvent: ?*?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).EndGetEvent(@as(*const IMFMediaEventQueue, @ptrCast(self)), pResult, ppEvent);
+        return self.vtable.EndGetEvent(self, pResult, ppEvent);
     }
     pub fn QueueEvent(self: *const IMFMediaEventQueue, pEvent: ?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).QueueEvent(@as(*const IMFMediaEventQueue, @ptrCast(self)), pEvent);
+        return self.vtable.QueueEvent(self, pEvent);
     }
     pub fn QueueEventParamVar(self: *const IMFMediaEventQueue, met: u32, guidExtendedType: ?*const Guid, hrStatus: HRESULT, pvValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).QueueEventParamVar(@as(*const IMFMediaEventQueue, @ptrCast(self)), met, guidExtendedType, hrStatus, pvValue);
+        return self.vtable.QueueEventParamVar(self, met, guidExtendedType, hrStatus, pvValue);
     }
     pub fn QueueEventParamUnk(self: *const IMFMediaEventQueue, met: u32, guidExtendedType: ?*const Guid, hrStatus: HRESULT, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).QueueEventParamUnk(@as(*const IMFMediaEventQueue, @ptrCast(self)), met, guidExtendedType, hrStatus, pUnk);
+        return self.vtable.QueueEventParamUnk(self, met, guidExtendedType, hrStatus, pUnk);
     }
     pub fn Shutdown(self: *const IMFMediaEventQueue) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEventQueue.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaEventQueue, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
@@ -15870,13 +15870,13 @@ pub const IMFActivate = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn ActivateObject(self: *const IMFActivate, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFActivate.VTable, @ptrCast(self.vtable)).ActivateObject(@as(*const IMFActivate, @ptrCast(self)), riid, ppv);
+        return self.vtable.ActivateObject(self, riid, ppv);
     }
     pub fn ShutdownObject(self: *const IMFActivate) callconv(.Inline) HRESULT {
-        return @as(*const IMFActivate.VTable, @ptrCast(self.vtable)).ShutdownObject(@as(*const IMFActivate, @ptrCast(self)));
+        return self.vtable.ShutdownObject(self);
     }
     pub fn DetachObject(self: *const IMFActivate) callconv(.Inline) HRESULT {
-        return @as(*const IMFActivate.VTable, @ptrCast(self.vtable)).DetachObject(@as(*const IMFActivate, @ptrCast(self)));
+        return self.vtable.DetachObject(self);
     }
 };
 
@@ -15954,22 +15954,22 @@ pub const IMFPluginControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetPreferredClsid(self: *const IMFPluginControl, pluginType: u32, selector: ?[*:0]const u16, clsid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).GetPreferredClsid(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, selector, clsid);
+        return self.vtable.GetPreferredClsid(self, pluginType, selector, clsid);
     }
     pub fn GetPreferredClsidByIndex(self: *const IMFPluginControl, pluginType: u32, index: u32, selector: ?*?PWSTR, clsid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).GetPreferredClsidByIndex(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, index, selector, clsid);
+        return self.vtable.GetPreferredClsidByIndex(self, pluginType, index, selector, clsid);
     }
     pub fn SetPreferredClsid(self: *const IMFPluginControl, pluginType: u32, selector: ?[*:0]const u16, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).SetPreferredClsid(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, selector, clsid);
+        return self.vtable.SetPreferredClsid(self, pluginType, selector, clsid);
     }
     pub fn IsDisabled(self: *const IMFPluginControl, pluginType: u32, clsid: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).IsDisabled(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, clsid);
+        return self.vtable.IsDisabled(self, pluginType, clsid);
     }
     pub fn GetDisabledByIndex(self: *const IMFPluginControl, pluginType: u32, index: u32, clsid: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).GetDisabledByIndex(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, index, clsid);
+        return self.vtable.GetDisabledByIndex(self, pluginType, index, clsid);
     }
     pub fn SetDisabled(self: *const IMFPluginControl, pluginType: u32, clsid: ?*const Guid, disabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFPluginControl.VTable, @ptrCast(self.vtable)).SetDisabled(@as(*const IMFPluginControl, @ptrCast(self)), pluginType, clsid, disabled);
+        return self.vtable.SetDisabled(self, pluginType, clsid, disabled);
     }
 };
 
@@ -16006,7 +16006,7 @@ pub const IMFPluginControl2 = extern union {
     };}
     pub usingnamespace IMFPluginControl.MethodMixin(@This());
     pub fn SetPolicy(self: *const IMFPluginControl2, policy: MF_PLUGIN_CONTROL_POLICY) callconv(.Inline) HRESULT {
-        return @as(*const IMFPluginControl2.VTable, @ptrCast(self.vtable)).SetPolicy(@as(*const IMFPluginControl2, @ptrCast(self)), policy);
+        return self.vtable.SetPolicy(self, policy);
     }
 };
 
@@ -16087,25 +16087,25 @@ pub const IMFDXGIDeviceManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CloseDeviceHandle(self: *const IMFDXGIDeviceManager, hDevice: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).CloseDeviceHandle(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice);
+        return self.vtable.CloseDeviceHandle(self, hDevice);
     }
     pub fn GetVideoService(self: *const IMFDXGIDeviceManager, hDevice: ?HANDLE, riid: ?*const Guid, ppService: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).GetVideoService(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice, riid, ppService);
+        return self.vtable.GetVideoService(self, hDevice, riid, ppService);
     }
     pub fn LockDevice(self: *const IMFDXGIDeviceManager, hDevice: ?HANDLE, riid: ?*const Guid, ppUnkDevice: ?*?*anyopaque, fBlock: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).LockDevice(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice, riid, ppUnkDevice, fBlock);
+        return self.vtable.LockDevice(self, hDevice, riid, ppUnkDevice, fBlock);
     }
     pub fn OpenDeviceHandle(self: *const IMFDXGIDeviceManager, phDevice: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).OpenDeviceHandle(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), phDevice);
+        return self.vtable.OpenDeviceHandle(self, phDevice);
     }
     pub fn ResetDevice(self: *const IMFDXGIDeviceManager, pUnkDevice: ?*IUnknown, resetToken: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).ResetDevice(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), pUnkDevice, resetToken);
+        return self.vtable.ResetDevice(self, pUnkDevice, resetToken);
     }
     pub fn TestDevice(self: *const IMFDXGIDeviceManager, hDevice: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).TestDevice(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice);
+        return self.vtable.TestDevice(self, hDevice);
     }
     pub fn UnlockDevice(self: *const IMFDXGIDeviceManager, hDevice: ?HANDLE, fSaveState: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIDeviceManager.VTable, @ptrCast(self.vtable)).UnlockDevice(@as(*const IMFDXGIDeviceManager, @ptrCast(self)), hDevice, fSaveState);
+        return self.vtable.UnlockDevice(self, hDevice, fSaveState);
     }
 };
 
@@ -16149,10 +16149,10 @@ pub const IMFMuxStreamAttributesManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStreamCount(self: *const IMFMuxStreamAttributesManager, pdwMuxStreamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamAttributesManager.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFMuxStreamAttributesManager, @ptrCast(self)), pdwMuxStreamCount);
+        return self.vtable.GetStreamCount(self, pdwMuxStreamCount);
     }
     pub fn GetAttributes(self: *const IMFMuxStreamAttributesManager, dwMuxStreamIndex: u32, ppStreamAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamAttributesManager.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IMFMuxStreamAttributesManager, @ptrCast(self)), dwMuxStreamIndex, ppStreamAttributes);
+        return self.vtable.GetAttributes(self, dwMuxStreamIndex, ppStreamAttributes);
     }
 };
 
@@ -16220,22 +16220,22 @@ pub const IMFMuxStreamMediaTypeManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStreamCount(self: *const IMFMuxStreamMediaTypeManager, pdwMuxStreamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), pdwMuxStreamCount);
+        return self.vtable.GetStreamCount(self, pdwMuxStreamCount);
     }
     pub fn GetMediaType(self: *const IMFMuxStreamMediaTypeManager, dwMuxStreamIndex: u32, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).GetMediaType(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), dwMuxStreamIndex, ppMediaType);
+        return self.vtable.GetMediaType(self, dwMuxStreamIndex, ppMediaType);
     }
     pub fn GetStreamConfigurationCount(self: *const IMFMuxStreamMediaTypeManager, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).GetStreamConfigurationCount(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), pdwCount);
+        return self.vtable.GetStreamConfigurationCount(self, pdwCount);
     }
     pub fn AddStreamConfiguration(self: *const IMFMuxStreamMediaTypeManager, ullStreamMask: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).AddStreamConfiguration(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), ullStreamMask);
+        return self.vtable.AddStreamConfiguration(self, ullStreamMask);
     }
     pub fn RemoveStreamConfiguration(self: *const IMFMuxStreamMediaTypeManager, ullStreamMask: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).RemoveStreamConfiguration(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), ullStreamMask);
+        return self.vtable.RemoveStreamConfiguration(self, ullStreamMask);
     }
     pub fn GetStreamConfiguration(self: *const IMFMuxStreamMediaTypeManager, ulIndex: u32, pullStreamMask: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamMediaTypeManager.VTable, @ptrCast(self.vtable)).GetStreamConfiguration(@as(*const IMFMuxStreamMediaTypeManager, @ptrCast(self)), ulIndex, pullStreamMask);
+        return self.vtable.GetStreamConfiguration(self, ulIndex, pullStreamMask);
     }
 };
 
@@ -16277,13 +16277,13 @@ pub const IMFMuxStreamSampleManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStreamCount(self: *const IMFMuxStreamSampleManager, pdwMuxStreamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamSampleManager.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFMuxStreamSampleManager, @ptrCast(self)), pdwMuxStreamCount);
+        return self.vtable.GetStreamCount(self, pdwMuxStreamCount);
     }
     pub fn GetSample(self: *const IMFMuxStreamSampleManager, dwMuxStreamIndex: u32, ppSample: ?*?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFMuxStreamSampleManager.VTable, @ptrCast(self.vtable)).GetSample(@as(*const IMFMuxStreamSampleManager, @ptrCast(self)), dwMuxStreamIndex, ppSample);
+        return self.vtable.GetSample(self, dwMuxStreamIndex, ppSample);
     }
     pub fn GetStreamConfiguration(self: *const IMFMuxStreamSampleManager) callconv(.Inline) u64 {
-        return @as(*const IMFMuxStreamSampleManager.VTable, @ptrCast(self.vtable)).GetStreamConfiguration(@as(*const IMFMuxStreamSampleManager, @ptrCast(self)));
+        return self.vtable.GetStreamConfiguration(self);
     }
 };
 
@@ -16308,7 +16308,7 @@ pub const IMFSecureBuffer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetIdentifier(self: *const IMFSecureBuffer, pGuidIdentifier: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFSecureBuffer.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IMFSecureBuffer, @ptrCast(self)), pGuidIdentifier);
+        return self.vtable.GetIdentifier(self, pGuidIdentifier);
     }
 };
 
@@ -16685,73 +16685,73 @@ pub const IMFTransform = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStreamLimits(self: *const IMFTransform, pdwInputMinimum: ?*u32, pdwInputMaximum: ?*u32, pdwOutputMinimum: ?*u32, pdwOutputMaximum: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetStreamLimits(@as(*const IMFTransform, @ptrCast(self)), pdwInputMinimum, pdwInputMaximum, pdwOutputMinimum, pdwOutputMaximum);
+        return self.vtable.GetStreamLimits(self, pdwInputMinimum, pdwInputMaximum, pdwOutputMinimum, pdwOutputMaximum);
     }
     pub fn GetStreamCount(self: *const IMFTransform, pcInputStreams: ?*u32, pcOutputStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFTransform, @ptrCast(self)), pcInputStreams, pcOutputStreams);
+        return self.vtable.GetStreamCount(self, pcInputStreams, pcOutputStreams);
     }
     pub fn GetStreamIDs(self: *const IMFTransform, dwInputIDArraySize: u32, pdwInputIDs: [*]u32, dwOutputIDArraySize: u32, pdwOutputIDs: [*]u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetStreamIDs(@as(*const IMFTransform, @ptrCast(self)), dwInputIDArraySize, pdwInputIDs, dwOutputIDArraySize, pdwOutputIDs);
+        return self.vtable.GetStreamIDs(self, dwInputIDArraySize, pdwInputIDs, dwOutputIDArraySize, pdwOutputIDs);
     }
     pub fn GetInputStreamInfo(self: *const IMFTransform, dwInputStreamID: u32, pStreamInfo: ?*MFT_INPUT_STREAM_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputStreamInfo(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pStreamInfo);
+        return self.vtable.GetInputStreamInfo(self, dwInputStreamID, pStreamInfo);
     }
     pub fn GetOutputStreamInfo(self: *const IMFTransform, dwOutputStreamID: u32, pStreamInfo: ?*MFT_OUTPUT_STREAM_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputStreamInfo(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, pStreamInfo);
+        return self.vtable.GetOutputStreamInfo(self, dwOutputStreamID, pStreamInfo);
     }
     pub fn GetAttributes(self: *const IMFTransform, pAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetAttributes(@as(*const IMFTransform, @ptrCast(self)), pAttributes);
+        return self.vtable.GetAttributes(self, pAttributes);
     }
     pub fn GetInputStreamAttributes(self: *const IMFTransform, dwInputStreamID: u32, pAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputStreamAttributes(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pAttributes);
+        return self.vtable.GetInputStreamAttributes(self, dwInputStreamID, pAttributes);
     }
     pub fn GetOutputStreamAttributes(self: *const IMFTransform, dwOutputStreamID: u32, pAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputStreamAttributes(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, pAttributes);
+        return self.vtable.GetOutputStreamAttributes(self, dwOutputStreamID, pAttributes);
     }
     pub fn DeleteInputStream(self: *const IMFTransform, dwStreamID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).DeleteInputStream(@as(*const IMFTransform, @ptrCast(self)), dwStreamID);
+        return self.vtable.DeleteInputStream(self, dwStreamID);
     }
     pub fn AddInputStreams(self: *const IMFTransform, cStreams: u32, adwStreamIDs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).AddInputStreams(@as(*const IMFTransform, @ptrCast(self)), cStreams, adwStreamIDs);
+        return self.vtable.AddInputStreams(self, cStreams, adwStreamIDs);
     }
     pub fn GetInputAvailableType(self: *const IMFTransform, dwInputStreamID: u32, dwTypeIndex: u32, ppType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputAvailableType(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, dwTypeIndex, ppType);
+        return self.vtable.GetInputAvailableType(self, dwInputStreamID, dwTypeIndex, ppType);
     }
     pub fn GetOutputAvailableType(self: *const IMFTransform, dwOutputStreamID: u32, dwTypeIndex: u32, ppType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputAvailableType(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, dwTypeIndex, ppType);
+        return self.vtable.GetOutputAvailableType(self, dwOutputStreamID, dwTypeIndex, ppType);
     }
     pub fn SetInputType(self: *const IMFTransform, dwInputStreamID: u32, pType: ?*IMFMediaType, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).SetInputType(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pType, dwFlags);
+        return self.vtable.SetInputType(self, dwInputStreamID, pType, dwFlags);
     }
     pub fn SetOutputType(self: *const IMFTransform, dwOutputStreamID: u32, pType: ?*IMFMediaType, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).SetOutputType(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, pType, dwFlags);
+        return self.vtable.SetOutputType(self, dwOutputStreamID, pType, dwFlags);
     }
     pub fn GetInputCurrentType(self: *const IMFTransform, dwInputStreamID: u32, ppType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputCurrentType(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, ppType);
+        return self.vtable.GetInputCurrentType(self, dwInputStreamID, ppType);
     }
     pub fn GetOutputCurrentType(self: *const IMFTransform, dwOutputStreamID: u32, ppType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputCurrentType(@as(*const IMFTransform, @ptrCast(self)), dwOutputStreamID, ppType);
+        return self.vtable.GetOutputCurrentType(self, dwOutputStreamID, ppType);
     }
     pub fn GetInputStatus(self: *const IMFTransform, dwInputStreamID: u32, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetInputStatus(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pdwFlags);
+        return self.vtable.GetInputStatus(self, dwInputStreamID, pdwFlags);
     }
     pub fn GetOutputStatus(self: *const IMFTransform, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).GetOutputStatus(@as(*const IMFTransform, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetOutputStatus(self, pdwFlags);
     }
     pub fn SetOutputBounds(self: *const IMFTransform, hnsLowerBound: i64, hnsUpperBound: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).SetOutputBounds(@as(*const IMFTransform, @ptrCast(self)), hnsLowerBound, hnsUpperBound);
+        return self.vtable.SetOutputBounds(self, hnsLowerBound, hnsUpperBound);
     }
     pub fn ProcessEvent(self: *const IMFTransform, dwInputStreamID: u32, pEvent: ?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).ProcessEvent(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pEvent);
+        return self.vtable.ProcessEvent(self, dwInputStreamID, pEvent);
     }
     pub fn ProcessMessage(self: *const IMFTransform, eMessage: MFT_MESSAGE_TYPE, ulParam: usize) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).ProcessMessage(@as(*const IMFTransform, @ptrCast(self)), eMessage, ulParam);
+        return self.vtable.ProcessMessage(self, eMessage, ulParam);
     }
     pub fn ProcessInput(self: *const IMFTransform, dwInputStreamID: u32, pSample: ?*IMFSample, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).ProcessInput(@as(*const IMFTransform, @ptrCast(self)), dwInputStreamID, pSample, dwFlags);
+        return self.vtable.ProcessInput(self, dwInputStreamID, pSample, dwFlags);
     }
     pub fn ProcessOutput(self: *const IMFTransform, dwFlags: u32, cOutputBufferCount: u32, pOutputSamples: [*]MFT_OUTPUT_DATA_BUFFER, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTransform.VTable, @ptrCast(self.vtable)).ProcessOutput(@as(*const IMFTransform, @ptrCast(self)), dwFlags, cOutputBufferCount, pOutputSamples, pdwStatus);
+        return self.vtable.ProcessOutput(self, dwFlags, cOutputBufferCount, pOutputSamples, pdwStatus);
     }
 };
 
@@ -16976,64 +16976,64 @@ pub const IMFDeviceTransform = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeTransform(self: *const IMFDeviceTransform, pAttributes: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).InitializeTransform(@as(*const IMFDeviceTransform, @ptrCast(self)), pAttributes);
+        return self.vtable.InitializeTransform(self, pAttributes);
     }
     pub fn GetInputAvailableType(self: *const IMFDeviceTransform, dwInputStreamID: u32, dwTypeIndex: u32, pMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputAvailableType(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, dwTypeIndex, pMediaType);
+        return self.vtable.GetInputAvailableType(self, dwInputStreamID, dwTypeIndex, pMediaType);
     }
     pub fn GetInputCurrentType(self: *const IMFDeviceTransform, dwInputStreamID: u32, pMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputCurrentType(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, pMediaType);
+        return self.vtable.GetInputCurrentType(self, dwInputStreamID, pMediaType);
     }
     pub fn GetInputStreamAttributes(self: *const IMFDeviceTransform, dwInputStreamID: u32, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputStreamAttributes(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, ppAttributes);
+        return self.vtable.GetInputStreamAttributes(self, dwInputStreamID, ppAttributes);
     }
     pub fn GetOutputAvailableType(self: *const IMFDeviceTransform, dwOutputStreamID: u32, dwTypeIndex: u32, pMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetOutputAvailableType(@as(*const IMFDeviceTransform, @ptrCast(self)), dwOutputStreamID, dwTypeIndex, pMediaType);
+        return self.vtable.GetOutputAvailableType(self, dwOutputStreamID, dwTypeIndex, pMediaType);
     }
     pub fn GetOutputCurrentType(self: *const IMFDeviceTransform, dwOutputStreamID: u32, pMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetOutputCurrentType(@as(*const IMFDeviceTransform, @ptrCast(self)), dwOutputStreamID, pMediaType);
+        return self.vtable.GetOutputCurrentType(self, dwOutputStreamID, pMediaType);
     }
     pub fn GetOutputStreamAttributes(self: *const IMFDeviceTransform, dwOutputStreamID: u32, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetOutputStreamAttributes(@as(*const IMFDeviceTransform, @ptrCast(self)), dwOutputStreamID, ppAttributes);
+        return self.vtable.GetOutputStreamAttributes(self, dwOutputStreamID, ppAttributes);
     }
     pub fn GetStreamCount(self: *const IMFDeviceTransform, pcInputStreams: ?*u32, pcOutputStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFDeviceTransform, @ptrCast(self)), pcInputStreams, pcOutputStreams);
+        return self.vtable.GetStreamCount(self, pcInputStreams, pcOutputStreams);
     }
     pub fn GetStreamIDs(self: *const IMFDeviceTransform, dwInputIDArraySize: u32, pdwInputStreamIds: ?*u32, dwOutputIDArraySize: u32, pdwOutputStreamIds: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetStreamIDs(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputIDArraySize, pdwInputStreamIds, dwOutputIDArraySize, pdwOutputStreamIds);
+        return self.vtable.GetStreamIDs(self, dwInputIDArraySize, pdwInputStreamIds, dwOutputIDArraySize, pdwOutputStreamIds);
     }
     pub fn ProcessEvent(self: *const IMFDeviceTransform, dwInputStreamID: u32, pEvent: ?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).ProcessEvent(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, pEvent);
+        return self.vtable.ProcessEvent(self, dwInputStreamID, pEvent);
     }
     pub fn ProcessInput(self: *const IMFDeviceTransform, dwInputStreamID: u32, pSample: ?*IMFSample, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).ProcessInput(@as(*const IMFDeviceTransform, @ptrCast(self)), dwInputStreamID, pSample, dwFlags);
+        return self.vtable.ProcessInput(self, dwInputStreamID, pSample, dwFlags);
     }
     pub fn ProcessMessage(self: *const IMFDeviceTransform, eMessage: MFT_MESSAGE_TYPE, ulParam: usize) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).ProcessMessage(@as(*const IMFDeviceTransform, @ptrCast(self)), eMessage, ulParam);
+        return self.vtable.ProcessMessage(self, eMessage, ulParam);
     }
     pub fn ProcessOutput(self: *const IMFDeviceTransform, dwFlags: u32, cOutputBufferCount: u32, pOutputSample: ?*MFT_OUTPUT_DATA_BUFFER, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).ProcessOutput(@as(*const IMFDeviceTransform, @ptrCast(self)), dwFlags, cOutputBufferCount, pOutputSample, pdwStatus);
+        return self.vtable.ProcessOutput(self, dwFlags, cOutputBufferCount, pOutputSample, pdwStatus);
     }
     pub fn SetInputStreamState(self: *const IMFDeviceTransform, dwStreamID: u32, pMediaType: ?*IMFMediaType, value: DeviceStreamState, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).SetInputStreamState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, pMediaType, value, dwFlags);
+        return self.vtable.SetInputStreamState(self, dwStreamID, pMediaType, value, dwFlags);
     }
     pub fn GetInputStreamState(self: *const IMFDeviceTransform, dwStreamID: u32, value: ?*DeviceStreamState) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputStreamState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, value);
+        return self.vtable.GetInputStreamState(self, dwStreamID, value);
     }
     pub fn SetOutputStreamState(self: *const IMFDeviceTransform, dwStreamID: u32, pMediaType: ?*IMFMediaType, value: DeviceStreamState, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).SetOutputStreamState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, pMediaType, value, dwFlags);
+        return self.vtable.SetOutputStreamState(self, dwStreamID, pMediaType, value, dwFlags);
     }
     pub fn GetOutputStreamState(self: *const IMFDeviceTransform, dwStreamID: u32, value: ?*DeviceStreamState) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetOutputStreamState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, value);
+        return self.vtable.GetOutputStreamState(self, dwStreamID, value);
     }
     pub fn GetInputStreamPreferredState(self: *const IMFDeviceTransform, dwStreamID: u32, value: ?*DeviceStreamState, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).GetInputStreamPreferredState(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamID, value, ppMediaType);
+        return self.vtable.GetInputStreamPreferredState(self, dwStreamID, value, ppMediaType);
     }
     pub fn FlushInputStream(self: *const IMFDeviceTransform, dwStreamIndex: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).FlushInputStream(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamIndex, dwFlags);
+        return self.vtable.FlushInputStream(self, dwStreamIndex, dwFlags);
     }
     pub fn FlushOutputStream(self: *const IMFDeviceTransform, dwStreamIndex: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransform.VTable, @ptrCast(self.vtable)).FlushOutputStream(@as(*const IMFDeviceTransform, @ptrCast(self)), dwStreamIndex, dwFlags);
+        return self.vtable.FlushOutputStream(self, dwStreamIndex, dwFlags);
     }
 };
 
@@ -17060,7 +17060,7 @@ pub const IMFDeviceTransformCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnBufferSent(self: *const IMFDeviceTransformCallback, pCallbackAttributes: ?*IMFAttributes, pinId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDeviceTransformCallback.VTable, @ptrCast(self.vtable)).OnBufferSent(@as(*const IMFDeviceTransformCallback, @ptrCast(self)), pCallbackAttributes, pinId);
+        return self.vtable.OnBufferSent(self, pCallbackAttributes, pinId);
     }
 };
 
@@ -17213,34 +17213,34 @@ pub const IMFMediaSession = extern union {
     };}
     pub usingnamespace IMFMediaEventGenerator.MethodMixin(@This());
     pub fn SetTopology(self: *const IMFMediaSession, dwSetTopologyFlags: u32, pTopology: ?*IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).SetTopology(@as(*const IMFMediaSession, @ptrCast(self)), dwSetTopologyFlags, pTopology);
+        return self.vtable.SetTopology(self, dwSetTopologyFlags, pTopology);
     }
     pub fn ClearTopologies(self: *const IMFMediaSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).ClearTopologies(@as(*const IMFMediaSession, @ptrCast(self)));
+        return self.vtable.ClearTopologies(self);
     }
     pub fn Start(self: *const IMFMediaSession, pguidTimeFormat: ?*const Guid, pvarStartPosition: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFMediaSession, @ptrCast(self)), pguidTimeFormat, pvarStartPosition);
+        return self.vtable.Start(self, pguidTimeFormat, pvarStartPosition);
     }
     pub fn Pause(self: *const IMFMediaSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFMediaSession, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn Stop(self: *const IMFMediaSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFMediaSession, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn Close(self: *const IMFMediaSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFMediaSession, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn Shutdown(self: *const IMFMediaSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaSession, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
     pub fn GetClock(self: *const IMFMediaSession, ppClock: ?*?*IMFClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).GetClock(@as(*const IMFMediaSession, @ptrCast(self)), ppClock);
+        return self.vtable.GetClock(self, ppClock);
     }
     pub fn GetSessionCapabilities(self: *const IMFMediaSession, pdwCaps: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).GetSessionCapabilities(@as(*const IMFMediaSession, @ptrCast(self)), pdwCaps);
+        return self.vtable.GetSessionCapabilities(self, pdwCaps);
     }
     pub fn GetFullTopology(self: *const IMFMediaSession, dwGetFullTopologyFlags: u32, TopoId: u64, ppFullTopology: ?*?*IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSession.VTable, @ptrCast(self.vtable)).GetFullTopology(@as(*const IMFMediaSession, @ptrCast(self)), dwGetFullTopologyFlags, TopoId, ppFullTopology);
+        return self.vtable.GetFullTopology(self, dwGetFullTopologyFlags, TopoId, ppFullTopology);
     }
 };
 
@@ -17417,25 +17417,25 @@ pub const IMFSourceResolver = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateObjectFromURL(self: *const IMFSourceResolver, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).CreateObjectFromURL(@as(*const IMFSourceResolver, @ptrCast(self)), pwszURL, dwFlags, pProps, pObjectType, ppObject);
+        return self.vtable.CreateObjectFromURL(self, pwszURL, dwFlags, pProps, pObjectType, ppObject);
     }
     pub fn CreateObjectFromByteStream(self: *const IMFSourceResolver, pByteStream: ?*IMFByteStream, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).CreateObjectFromByteStream(@as(*const IMFSourceResolver, @ptrCast(self)), pByteStream, pwszURL, dwFlags, pProps, pObjectType, ppObject);
+        return self.vtable.CreateObjectFromByteStream(self, pByteStream, pwszURL, dwFlags, pProps, pObjectType, ppObject);
     }
     pub fn BeginCreateObjectFromURL(self: *const IMFSourceResolver, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).BeginCreateObjectFromURL(@as(*const IMFSourceResolver, @ptrCast(self)), pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
+        return self.vtable.BeginCreateObjectFromURL(self, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
     }
     pub fn EndCreateObjectFromURL(self: *const IMFSourceResolver, pResult: ?*IMFAsyncResult, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).EndCreateObjectFromURL(@as(*const IMFSourceResolver, @ptrCast(self)), pResult, pObjectType, ppObject);
+        return self.vtable.EndCreateObjectFromURL(self, pResult, pObjectType, ppObject);
     }
     pub fn BeginCreateObjectFromByteStream(self: *const IMFSourceResolver, pByteStream: ?*IMFByteStream, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).BeginCreateObjectFromByteStream(@as(*const IMFSourceResolver, @ptrCast(self)), pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
+        return self.vtable.BeginCreateObjectFromByteStream(self, pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
     }
     pub fn EndCreateObjectFromByteStream(self: *const IMFSourceResolver, pResult: ?*IMFAsyncResult, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).EndCreateObjectFromByteStream(@as(*const IMFSourceResolver, @ptrCast(self)), pResult, pObjectType, ppObject);
+        return self.vtable.EndCreateObjectFromByteStream(self, pResult, pObjectType, ppObject);
     }
     pub fn CancelObjectCreation(self: *const IMFSourceResolver, pIUnknownCancelCookie: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceResolver.VTable, @ptrCast(self.vtable)).CancelObjectCreation(@as(*const IMFSourceResolver, @ptrCast(self)), pIUnknownCancelCookie);
+        return self.vtable.CancelObjectCreation(self, pIUnknownCancelCookie);
     }
 };
 
@@ -17519,22 +17519,22 @@ pub const IMFMediaSource = extern union {
     };}
     pub usingnamespace IMFMediaEventGenerator.MethodMixin(@This());
     pub fn GetCharacteristics(self: *const IMFMediaSource, pdwCharacteristics: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).GetCharacteristics(@as(*const IMFMediaSource, @ptrCast(self)), pdwCharacteristics);
+        return self.vtable.GetCharacteristics(self, pdwCharacteristics);
     }
     pub fn CreatePresentationDescriptor(self: *const IMFMediaSource, ppPresentationDescriptor: ?*?*IMFPresentationDescriptor) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).CreatePresentationDescriptor(@as(*const IMFMediaSource, @ptrCast(self)), ppPresentationDescriptor);
+        return self.vtable.CreatePresentationDescriptor(self, ppPresentationDescriptor);
     }
     pub fn Start(self: *const IMFMediaSource, pPresentationDescriptor: ?*IMFPresentationDescriptor, pguidTimeFormat: ?*const Guid, pvarStartPosition: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFMediaSource, @ptrCast(self)), pPresentationDescriptor, pguidTimeFormat, pvarStartPosition);
+        return self.vtable.Start(self, pPresentationDescriptor, pguidTimeFormat, pvarStartPosition);
     }
     pub fn Stop(self: *const IMFMediaSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFMediaSource, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn Pause(self: *const IMFMediaSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFMediaSource, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn Shutdown(self: *const IMFMediaSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSource.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaSource, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
@@ -17577,13 +17577,13 @@ pub const IMFMediaSourceEx = extern union {
     };}
     pub usingnamespace IMFMediaSource.MethodMixin(@This());
     pub fn GetSourceAttributes(self: *const IMFMediaSourceEx, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceEx.VTable, @ptrCast(self.vtable)).GetSourceAttributes(@as(*const IMFMediaSourceEx, @ptrCast(self)), ppAttributes);
+        return self.vtable.GetSourceAttributes(self, ppAttributes);
     }
     pub fn GetStreamAttributes(self: *const IMFMediaSourceEx, dwStreamIdentifier: u32, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceEx.VTable, @ptrCast(self.vtable)).GetStreamAttributes(@as(*const IMFMediaSourceEx, @ptrCast(self)), dwStreamIdentifier, ppAttributes);
+        return self.vtable.GetStreamAttributes(self, dwStreamIdentifier, ppAttributes);
     }
     pub fn SetD3DManager(self: *const IMFMediaSourceEx, pManager: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceEx.VTable, @ptrCast(self.vtable)).SetD3DManager(@as(*const IMFMediaSourceEx, @ptrCast(self)), pManager);
+        return self.vtable.SetD3DManager(self, pManager);
     }
 };
 
@@ -17617,10 +17617,10 @@ pub const IMFClockConsumer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPresentationClock(self: *const IMFClockConsumer, pPresentationClock: ?*IMFPresentationClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFClockConsumer.VTable, @ptrCast(self.vtable)).SetPresentationClock(@as(*const IMFClockConsumer, @ptrCast(self)), pPresentationClock);
+        return self.vtable.SetPresentationClock(self, pPresentationClock);
     }
     pub fn GetPresentationClock(self: *const IMFClockConsumer, ppPresentationClock: ?*?*IMFPresentationClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFClockConsumer.VTable, @ptrCast(self.vtable)).GetPresentationClock(@as(*const IMFClockConsumer, @ptrCast(self)), ppPresentationClock);
+        return self.vtable.GetPresentationClock(self, ppPresentationClock);
     }
 };
 
@@ -17662,13 +17662,13 @@ pub const IMFMediaStream = extern union {
     };}
     pub usingnamespace IMFMediaEventGenerator.MethodMixin(@This());
     pub fn GetMediaSource(self: *const IMFMediaStream, ppMediaSource: ?*?*IMFMediaSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaStream.VTable, @ptrCast(self.vtable)).GetMediaSource(@as(*const IMFMediaStream, @ptrCast(self)), ppMediaSource);
+        return self.vtable.GetMediaSource(self, ppMediaSource);
     }
     pub fn GetStreamDescriptor(self: *const IMFMediaStream, ppStreamDescriptor: ?*?*IMFStreamDescriptor) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaStream.VTable, @ptrCast(self.vtable)).GetStreamDescriptor(@as(*const IMFMediaStream, @ptrCast(self)), ppStreamDescriptor);
+        return self.vtable.GetStreamDescriptor(self, ppStreamDescriptor);
     }
     pub fn RequestSample(self: *const IMFMediaStream, pToken: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaStream.VTable, @ptrCast(self.vtable)).RequestSample(@as(*const IMFMediaStream, @ptrCast(self)), pToken);
+        return self.vtable.RequestSample(self, pToken);
     }
 };
 
@@ -17761,31 +17761,31 @@ pub const IMFMediaSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCharacteristics(self: *const IMFMediaSink, pdwCharacteristics: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetCharacteristics(@as(*const IMFMediaSink, @ptrCast(self)), pdwCharacteristics);
+        return self.vtable.GetCharacteristics(self, pdwCharacteristics);
     }
     pub fn AddStreamSink(self: *const IMFMediaSink, dwStreamSinkIdentifier: u32, pMediaType: ?*IMFMediaType, ppStreamSink: ?*?*IMFStreamSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).AddStreamSink(@as(*const IMFMediaSink, @ptrCast(self)), dwStreamSinkIdentifier, pMediaType, ppStreamSink);
+        return self.vtable.AddStreamSink(self, dwStreamSinkIdentifier, pMediaType, ppStreamSink);
     }
     pub fn RemoveStreamSink(self: *const IMFMediaSink, dwStreamSinkIdentifier: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).RemoveStreamSink(@as(*const IMFMediaSink, @ptrCast(self)), dwStreamSinkIdentifier);
+        return self.vtable.RemoveStreamSink(self, dwStreamSinkIdentifier);
     }
     pub fn GetStreamSinkCount(self: *const IMFMediaSink, pcStreamSinkCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetStreamSinkCount(@as(*const IMFMediaSink, @ptrCast(self)), pcStreamSinkCount);
+        return self.vtable.GetStreamSinkCount(self, pcStreamSinkCount);
     }
     pub fn GetStreamSinkByIndex(self: *const IMFMediaSink, dwIndex: u32, ppStreamSink: ?*?*IMFStreamSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetStreamSinkByIndex(@as(*const IMFMediaSink, @ptrCast(self)), dwIndex, ppStreamSink);
+        return self.vtable.GetStreamSinkByIndex(self, dwIndex, ppStreamSink);
     }
     pub fn GetStreamSinkById(self: *const IMFMediaSink, dwStreamSinkIdentifier: u32, ppStreamSink: ?*?*IMFStreamSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetStreamSinkById(@as(*const IMFMediaSink, @ptrCast(self)), dwStreamSinkIdentifier, ppStreamSink);
+        return self.vtable.GetStreamSinkById(self, dwStreamSinkIdentifier, ppStreamSink);
     }
     pub fn SetPresentationClock(self: *const IMFMediaSink, pPresentationClock: ?*IMFPresentationClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).SetPresentationClock(@as(*const IMFMediaSink, @ptrCast(self)), pPresentationClock);
+        return self.vtable.SetPresentationClock(self, pPresentationClock);
     }
     pub fn GetPresentationClock(self: *const IMFMediaSink, ppPresentationClock: ?*?*IMFPresentationClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).GetPresentationClock(@as(*const IMFMediaSink, @ptrCast(self)), ppPresentationClock);
+        return self.vtable.GetPresentationClock(self, ppPresentationClock);
     }
     pub fn Shutdown(self: *const IMFMediaSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSink.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaSink, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
@@ -17863,22 +17863,22 @@ pub const IMFStreamSink = extern union {
     };}
     pub usingnamespace IMFMediaEventGenerator.MethodMixin(@This());
     pub fn GetMediaSink(self: *const IMFStreamSink, ppMediaSink: ?*?*IMFMediaSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).GetMediaSink(@as(*const IMFStreamSink, @ptrCast(self)), ppMediaSink);
+        return self.vtable.GetMediaSink(self, ppMediaSink);
     }
     pub fn GetIdentifier(self: *const IMFStreamSink, pdwIdentifier: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IMFStreamSink, @ptrCast(self)), pdwIdentifier);
+        return self.vtable.GetIdentifier(self, pdwIdentifier);
     }
     pub fn GetMediaTypeHandler(self: *const IMFStreamSink, ppHandler: ?*?*IMFMediaTypeHandler) callconv(.Inline) HRESULT {
-        return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).GetMediaTypeHandler(@as(*const IMFStreamSink, @ptrCast(self)), ppHandler);
+        return self.vtable.GetMediaTypeHandler(self, ppHandler);
     }
     pub fn ProcessSample(self: *const IMFStreamSink, pSample: ?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).ProcessSample(@as(*const IMFStreamSink, @ptrCast(self)), pSample);
+        return self.vtable.ProcessSample(self, pSample);
     }
     pub fn PlaceMarker(self: *const IMFStreamSink, eMarkerType: MFSTREAMSINK_MARKER_TYPE, pvarMarkerValue: ?*const PROPVARIANT, pvarContextValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).PlaceMarker(@as(*const IMFStreamSink, @ptrCast(self)), eMarkerType, pvarMarkerValue, pvarContextValue);
+        return self.vtable.PlaceMarker(self, eMarkerType, pvarMarkerValue, pvarContextValue);
     }
     pub fn Flush(self: *const IMFStreamSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFStreamSink.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFStreamSink, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
 };
 
@@ -17928,16 +17928,16 @@ pub const IMFVideoSampleAllocator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDirectXManager(self: *const IMFVideoSampleAllocator, pManager: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoSampleAllocator.VTable, @ptrCast(self.vtable)).SetDirectXManager(@as(*const IMFVideoSampleAllocator, @ptrCast(self)), pManager);
+        return self.vtable.SetDirectXManager(self, pManager);
     }
     pub fn UninitializeSampleAllocator(self: *const IMFVideoSampleAllocator) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoSampleAllocator.VTable, @ptrCast(self.vtable)).UninitializeSampleAllocator(@as(*const IMFVideoSampleAllocator, @ptrCast(self)));
+        return self.vtable.UninitializeSampleAllocator(self);
     }
     pub fn InitializeSampleAllocator(self: *const IMFVideoSampleAllocator, cRequestedFrames: u32, pMediaType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoSampleAllocator.VTable, @ptrCast(self.vtable)).InitializeSampleAllocator(@as(*const IMFVideoSampleAllocator, @ptrCast(self)), cRequestedFrames, pMediaType);
+        return self.vtable.InitializeSampleAllocator(self, cRequestedFrames, pMediaType);
     }
     pub fn AllocateSample(self: *const IMFVideoSampleAllocator, ppSample: ?*?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoSampleAllocator.VTable, @ptrCast(self.vtable)).AllocateSample(@as(*const IMFVideoSampleAllocator, @ptrCast(self)), ppSample);
+        return self.vtable.AllocateSample(self, ppSample);
     }
 };
 
@@ -17962,7 +17962,7 @@ pub const IMFVideoSampleAllocatorNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NotifyRelease(self: *const IMFVideoSampleAllocatorNotify) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoSampleAllocatorNotify.VTable, @ptrCast(self.vtable)).NotifyRelease(@as(*const IMFVideoSampleAllocatorNotify, @ptrCast(self)));
+        return self.vtable.NotifyRelease(self);
     }
 };
 
@@ -17988,7 +17988,7 @@ pub const IMFVideoSampleAllocatorNotifyEx = extern union {
     };}
     pub usingnamespace IMFVideoSampleAllocatorNotify.MethodMixin(@This());
     pub fn NotifyPrune(self: *const IMFVideoSampleAllocatorNotifyEx, __MIDL__IMFVideoSampleAllocatorNotifyEx0000: ?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoSampleAllocatorNotifyEx.VTable, @ptrCast(self.vtable)).NotifyPrune(@as(*const IMFVideoSampleAllocatorNotifyEx, @ptrCast(self)), __MIDL__IMFVideoSampleAllocatorNotifyEx0000);
+        return self.vtable.NotifyPrune(self, __MIDL__IMFVideoSampleAllocatorNotifyEx0000);
     }
 };
 
@@ -18022,10 +18022,10 @@ pub const IMFVideoSampleAllocatorCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetCallback(self: *const IMFVideoSampleAllocatorCallback, pNotify: ?*IMFVideoSampleAllocatorNotify) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoSampleAllocatorCallback.VTable, @ptrCast(self.vtable)).SetCallback(@as(*const IMFVideoSampleAllocatorCallback, @ptrCast(self)), pNotify);
+        return self.vtable.SetCallback(self, pNotify);
     }
     pub fn GetFreeSampleCount(self: *const IMFVideoSampleAllocatorCallback, plSamples: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoSampleAllocatorCallback.VTable, @ptrCast(self.vtable)).GetFreeSampleCount(@as(*const IMFVideoSampleAllocatorCallback, @ptrCast(self)), plSamples);
+        return self.vtable.GetFreeSampleCount(self, plSamples);
     }
 };
 
@@ -18054,7 +18054,7 @@ pub const IMFVideoSampleAllocatorEx = extern union {
     };}
     pub usingnamespace IMFVideoSampleAllocator.MethodMixin(@This());
     pub fn InitializeSampleAllocatorEx(self: *const IMFVideoSampleAllocatorEx, cInitialSamples: u32, cMaximumSamples: u32, pAttributes: ?*IMFAttributes, pMediaType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoSampleAllocatorEx.VTable, @ptrCast(self.vtable)).InitializeSampleAllocatorEx(@as(*const IMFVideoSampleAllocatorEx, @ptrCast(self)), cInitialSamples, cMaximumSamples, pAttributes, pMediaType);
+        return self.vtable.InitializeSampleAllocatorEx(self, cInitialSamples, cMaximumSamples, pAttributes, pMediaType);
     }
 };
 
@@ -18080,7 +18080,7 @@ pub const IMFDXGIDeviceManagerSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetManager(self: *const IMFDXGIDeviceManagerSource, ppManager: ?*?*IMFDXGIDeviceManager) callconv(.Inline) HRESULT {
-        return @as(*const IMFDXGIDeviceManagerSource.VTable, @ptrCast(self.vtable)).GetManager(@as(*const IMFDXGIDeviceManagerSource, @ptrCast(self)), ppManager);
+        return self.vtable.GetManager(self, ppManager);
     }
 };
 
@@ -18162,22 +18162,22 @@ pub const IMFVideoProcessorControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBorderColor(self: *const IMFVideoProcessorControl, pBorderColor: ?*MFARGB) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetBorderColor(@as(*const IMFVideoProcessorControl, @ptrCast(self)), pBorderColor);
+        return self.vtable.SetBorderColor(self, pBorderColor);
     }
     pub fn SetSourceRectangle(self: *const IMFVideoProcessorControl, pSrcRect: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetSourceRectangle(@as(*const IMFVideoProcessorControl, @ptrCast(self)), pSrcRect);
+        return self.vtable.SetSourceRectangle(self, pSrcRect);
     }
     pub fn SetDestinationRectangle(self: *const IMFVideoProcessorControl, pDstRect: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetDestinationRectangle(@as(*const IMFVideoProcessorControl, @ptrCast(self)), pDstRect);
+        return self.vtable.SetDestinationRectangle(self, pDstRect);
     }
     pub fn SetMirror(self: *const IMFVideoProcessorControl, eMirror: MF_VIDEO_PROCESSOR_MIRROR) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetMirror(@as(*const IMFVideoProcessorControl, @ptrCast(self)), eMirror);
+        return self.vtable.SetMirror(self, eMirror);
     }
     pub fn SetRotation(self: *const IMFVideoProcessorControl, eRotation: MF_VIDEO_PROCESSOR_ROTATION) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IMFVideoProcessorControl, @ptrCast(self)), eRotation);
+        return self.vtable.SetRotation(self, eRotation);
     }
     pub fn SetConstrictionSize(self: *const IMFVideoProcessorControl, pConstrictionSize: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl.VTable, @ptrCast(self.vtable)).SetConstrictionSize(@as(*const IMFVideoProcessorControl, @ptrCast(self)), pConstrictionSize);
+        return self.vtable.SetConstrictionSize(self, pConstrictionSize);
     }
 };
 
@@ -18219,13 +18219,13 @@ pub const IMFVideoProcessorControl2 = extern union {
     };}
     pub usingnamespace IMFVideoProcessorControl.MethodMixin(@This());
     pub fn SetRotationOverride(self: *const IMFVideoProcessorControl2, uiRotation: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl2.VTable, @ptrCast(self.vtable)).SetRotationOverride(@as(*const IMFVideoProcessorControl2, @ptrCast(self)), uiRotation);
+        return self.vtable.SetRotationOverride(self, uiRotation);
     }
     pub fn EnableHardwareEffects(self: *const IMFVideoProcessorControl2, fEnabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl2.VTable, @ptrCast(self.vtable)).EnableHardwareEffects(@as(*const IMFVideoProcessorControl2, @ptrCast(self)), fEnabled);
+        return self.vtable.EnableHardwareEffects(self, fEnabled);
     }
     pub fn GetSupportedHardwareEffects(self: *const IMFVideoProcessorControl2, puiSupport: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl2.VTable, @ptrCast(self.vtable)).GetSupportedHardwareEffects(@as(*const IMFVideoProcessorControl2, @ptrCast(self)), puiSupport);
+        return self.vtable.GetSupportedHardwareEffects(self, puiSupport);
     }
 };
 
@@ -18298,16 +18298,16 @@ pub const IMFVideoProcessorControl3 = extern union {
     };}
     pub usingnamespace IMFVideoProcessorControl2.MethodMixin(@This());
     pub fn GetNaturalOutputType(self: *const IMFVideoProcessorControl3, ppType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl3.VTable, @ptrCast(self.vtable)).GetNaturalOutputType(@as(*const IMFVideoProcessorControl3, @ptrCast(self)), ppType);
+        return self.vtable.GetNaturalOutputType(self, ppType);
     }
     pub fn EnableSphericalVideoProcessing(self: *const IMFVideoProcessorControl3, fEnable: BOOL, eFormat: MFVideoSphericalFormat, eProjectionMode: MFVideoSphericalProjectionMode) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl3.VTable, @ptrCast(self.vtable)).EnableSphericalVideoProcessing(@as(*const IMFVideoProcessorControl3, @ptrCast(self)), fEnable, eFormat, eProjectionMode);
+        return self.vtable.EnableSphericalVideoProcessing(self, fEnable, eFormat, eProjectionMode);
     }
     pub fn SetSphericalVideoProperties(self: *const IMFVideoProcessorControl3, X: f32, Y: f32, Z: f32, W: f32, fieldOfView: f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl3.VTable, @ptrCast(self.vtable)).SetSphericalVideoProperties(@as(*const IMFVideoProcessorControl3, @ptrCast(self)), X, Y, Z, W, fieldOfView);
+        return self.vtable.SetSphericalVideoProperties(self, X, Y, Z, W, fieldOfView);
     }
     pub fn SetOutputDevice(self: *const IMFVideoProcessorControl3, pOutputDevice: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessorControl3.VTable, @ptrCast(self.vtable)).SetOutputDevice(@as(*const IMFVideoProcessorControl3, @ptrCast(self)), pOutputDevice);
+        return self.vtable.SetOutputDevice(self, pOutputDevice);
     }
 };
 
@@ -18332,7 +18332,7 @@ pub const IMFVideoRendererEffectControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnAppServiceConnectionEstablished(self: *const IMFVideoRendererEffectControl, pAppServiceConnection: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoRendererEffectControl.VTable, @ptrCast(self.vtable)).OnAppServiceConnectionEstablished(@as(*const IMFVideoRendererEffectControl, @ptrCast(self)), pAppServiceConnection);
+        return self.vtable.OnAppServiceConnectionEstablished(self, pAppServiceConnection);
     }
 };
 
@@ -18431,34 +18431,34 @@ pub const IMFTopology = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetTopologyID(self: *const IMFTopology, pID: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetTopologyID(@as(*const IMFTopology, @ptrCast(self)), pID);
+        return self.vtable.GetTopologyID(self, pID);
     }
     pub fn AddNode(self: *const IMFTopology, pNode: ?*IMFTopologyNode) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).AddNode(@as(*const IMFTopology, @ptrCast(self)), pNode);
+        return self.vtable.AddNode(self, pNode);
     }
     pub fn RemoveNode(self: *const IMFTopology, pNode: ?*IMFTopologyNode) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).RemoveNode(@as(*const IMFTopology, @ptrCast(self)), pNode);
+        return self.vtable.RemoveNode(self, pNode);
     }
     pub fn GetNodeCount(self: *const IMFTopology, pwNodes: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetNodeCount(@as(*const IMFTopology, @ptrCast(self)), pwNodes);
+        return self.vtable.GetNodeCount(self, pwNodes);
     }
     pub fn GetNode(self: *const IMFTopology, wIndex: u16, ppNode: ?*?*IMFTopologyNode) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetNode(@as(*const IMFTopology, @ptrCast(self)), wIndex, ppNode);
+        return self.vtable.GetNode(self, wIndex, ppNode);
     }
     pub fn Clear(self: *const IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).Clear(@as(*const IMFTopology, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
     pub fn CloneFrom(self: *const IMFTopology, pTopology: ?*IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).CloneFrom(@as(*const IMFTopology, @ptrCast(self)), pTopology);
+        return self.vtable.CloneFrom(self, pTopology);
     }
     pub fn GetNodeByID(self: *const IMFTopology, qwTopoNodeID: u64, ppNode: ?*?*IMFTopologyNode) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetNodeByID(@as(*const IMFTopology, @ptrCast(self)), qwTopoNodeID, ppNode);
+        return self.vtable.GetNodeByID(self, qwTopoNodeID, ppNode);
     }
     pub fn GetSourceNodeCollection(self: *const IMFTopology, ppCollection: ?*?*IMFCollection) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetSourceNodeCollection(@as(*const IMFTopology, @ptrCast(self)), ppCollection);
+        return self.vtable.GetSourceNodeCollection(self, ppCollection);
     }
     pub fn GetOutputNodeCollection(self: *const IMFTopology, ppCollection: ?*?*IMFCollection) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopology.VTable, @ptrCast(self.vtable)).GetOutputNodeCollection(@as(*const IMFTopology, @ptrCast(self)), ppCollection);
+        return self.vtable.GetOutputNodeCollection(self, ppCollection);
     }
 };
 
@@ -18645,52 +18645,52 @@ pub const IMFTopologyNode = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn SetObject(self: *const IMFTopologyNode, pObject: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).SetObject(@as(*const IMFTopologyNode, @ptrCast(self)), pObject);
+        return self.vtable.SetObject(self, pObject);
     }
     pub fn GetObject(self: *const IMFTopologyNode, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IMFTopologyNode, @ptrCast(self)), ppObject);
+        return self.vtable.GetObject(self, ppObject);
     }
     pub fn GetNodeType(self: *const IMFTopologyNode, pType: ?*MF_TOPOLOGY_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetNodeType(@as(*const IMFTopologyNode, @ptrCast(self)), pType);
+        return self.vtable.GetNodeType(self, pType);
     }
     pub fn GetTopoNodeID(self: *const IMFTopologyNode, pID: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetTopoNodeID(@as(*const IMFTopologyNode, @ptrCast(self)), pID);
+        return self.vtable.GetTopoNodeID(self, pID);
     }
     pub fn SetTopoNodeID(self: *const IMFTopologyNode, ullTopoID: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).SetTopoNodeID(@as(*const IMFTopologyNode, @ptrCast(self)), ullTopoID);
+        return self.vtable.SetTopoNodeID(self, ullTopoID);
     }
     pub fn GetInputCount(self: *const IMFTopologyNode, pcInputs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const IMFTopologyNode, @ptrCast(self)), pcInputs);
+        return self.vtable.GetInputCount(self, pcInputs);
     }
     pub fn GetOutputCount(self: *const IMFTopologyNode, pcOutputs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMFTopologyNode, @ptrCast(self)), pcOutputs);
+        return self.vtable.GetOutputCount(self, pcOutputs);
     }
     pub fn ConnectOutput(self: *const IMFTopologyNode, dwOutputIndex: u32, pDownstreamNode: ?*IMFTopologyNode, dwInputIndexOnDownstreamNode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).ConnectOutput(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex, pDownstreamNode, dwInputIndexOnDownstreamNode);
+        return self.vtable.ConnectOutput(self, dwOutputIndex, pDownstreamNode, dwInputIndexOnDownstreamNode);
     }
     pub fn DisconnectOutput(self: *const IMFTopologyNode, dwOutputIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).DisconnectOutput(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex);
+        return self.vtable.DisconnectOutput(self, dwOutputIndex);
     }
     pub fn GetInput(self: *const IMFTopologyNode, dwInputIndex: u32, ppUpstreamNode: ?*?*IMFTopologyNode, pdwOutputIndexOnUpstreamNode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetInput(@as(*const IMFTopologyNode, @ptrCast(self)), dwInputIndex, ppUpstreamNode, pdwOutputIndexOnUpstreamNode);
+        return self.vtable.GetInput(self, dwInputIndex, ppUpstreamNode, pdwOutputIndexOnUpstreamNode);
     }
     pub fn GetOutput(self: *const IMFTopologyNode, dwOutputIndex: u32, ppDownstreamNode: ?*?*IMFTopologyNode, pdwInputIndexOnDownstreamNode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetOutput(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex, ppDownstreamNode, pdwInputIndexOnDownstreamNode);
+        return self.vtable.GetOutput(self, dwOutputIndex, ppDownstreamNode, pdwInputIndexOnDownstreamNode);
     }
     pub fn SetOutputPrefType(self: *const IMFTopologyNode, dwOutputIndex: u32, pType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).SetOutputPrefType(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex, pType);
+        return self.vtable.SetOutputPrefType(self, dwOutputIndex, pType);
     }
     pub fn GetOutputPrefType(self: *const IMFTopologyNode, dwOutputIndex: u32, ppType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetOutputPrefType(@as(*const IMFTopologyNode, @ptrCast(self)), dwOutputIndex, ppType);
+        return self.vtable.GetOutputPrefType(self, dwOutputIndex, ppType);
     }
     pub fn SetInputPrefType(self: *const IMFTopologyNode, dwInputIndex: u32, pType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).SetInputPrefType(@as(*const IMFTopologyNode, @ptrCast(self)), dwInputIndex, pType);
+        return self.vtable.SetInputPrefType(self, dwInputIndex, pType);
     }
     pub fn GetInputPrefType(self: *const IMFTopologyNode, dwInputIndex: u32, ppType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).GetInputPrefType(@as(*const IMFTopologyNode, @ptrCast(self)), dwInputIndex, ppType);
+        return self.vtable.GetInputPrefType(self, dwInputIndex, ppType);
     }
     pub fn CloneFrom(self: *const IMFTopologyNode, pNode: ?*IMFTopologyNode) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNode.VTable, @ptrCast(self.vtable)).CloneFrom(@as(*const IMFTopologyNode, @ptrCast(self)), pNode);
+        return self.vtable.CloneFrom(self, pNode);
     }
 };
 
@@ -18736,7 +18736,7 @@ pub const IMFGetService = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetService(self: *const IMFGetService, guidService: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFGetService.VTable, @ptrCast(self.vtable)).GetService(@as(*const IMFGetService, @ptrCast(self)), guidService, riid, ppvObject);
+        return self.vtable.GetService(self, guidService, riid, ppvObject);
     }
 };
 
@@ -18831,19 +18831,19 @@ pub const IMFClock = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClockCharacteristics(self: *const IMFClock, pdwCharacteristics: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetClockCharacteristics(@as(*const IMFClock, @ptrCast(self)), pdwCharacteristics);
+        return self.vtable.GetClockCharacteristics(self, pdwCharacteristics);
     }
     pub fn GetCorrelatedTime(self: *const IMFClock, dwReserved: u32, pllClockTime: ?*i64, phnsSystemTime: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetCorrelatedTime(@as(*const IMFClock, @ptrCast(self)), dwReserved, pllClockTime, phnsSystemTime);
+        return self.vtable.GetCorrelatedTime(self, dwReserved, pllClockTime, phnsSystemTime);
     }
     pub fn GetContinuityKey(self: *const IMFClock, pdwContinuityKey: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetContinuityKey(@as(*const IMFClock, @ptrCast(self)), pdwContinuityKey);
+        return self.vtable.GetContinuityKey(self, pdwContinuityKey);
     }
     pub fn GetState(self: *const IMFClock, dwReserved: u32, peClockState: ?*MFCLOCK_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMFClock, @ptrCast(self)), dwReserved, peClockState);
+        return self.vtable.GetState(self, dwReserved, peClockState);
     }
     pub fn GetProperties(self: *const IMFClock, pClockProperties: ?*MFCLOCK_PROPERTIES) callconv(.Inline) HRESULT {
-        return @as(*const IMFClock.VTable, @ptrCast(self.vtable)).GetProperties(@as(*const IMFClock, @ptrCast(self)), pClockProperties);
+        return self.vtable.GetProperties(self, pClockProperties);
     }
 };
 
@@ -18923,28 +18923,28 @@ pub const IMFPresentationClock = extern union {
     };}
     pub usingnamespace IMFClock.MethodMixin(@This());
     pub fn SetTimeSource(self: *const IMFPresentationClock, pTimeSource: ?*IMFPresentationTimeSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).SetTimeSource(@as(*const IMFPresentationClock, @ptrCast(self)), pTimeSource);
+        return self.vtable.SetTimeSource(self, pTimeSource);
     }
     pub fn GetTimeSource(self: *const IMFPresentationClock, ppTimeSource: ?*?*IMFPresentationTimeSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).GetTimeSource(@as(*const IMFPresentationClock, @ptrCast(self)), ppTimeSource);
+        return self.vtable.GetTimeSource(self, ppTimeSource);
     }
     pub fn GetTime(self: *const IMFPresentationClock, phnsClockTime: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).GetTime(@as(*const IMFPresentationClock, @ptrCast(self)), phnsClockTime);
+        return self.vtable.GetTime(self, phnsClockTime);
     }
     pub fn AddClockStateSink(self: *const IMFPresentationClock, pStateSink: ?*IMFClockStateSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).AddClockStateSink(@as(*const IMFPresentationClock, @ptrCast(self)), pStateSink);
+        return self.vtable.AddClockStateSink(self, pStateSink);
     }
     pub fn RemoveClockStateSink(self: *const IMFPresentationClock, pStateSink: ?*IMFClockStateSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).RemoveClockStateSink(@as(*const IMFPresentationClock, @ptrCast(self)), pStateSink);
+        return self.vtable.RemoveClockStateSink(self, pStateSink);
     }
     pub fn Start(self: *const IMFPresentationClock, llClockStartOffset: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFPresentationClock, @ptrCast(self)), llClockStartOffset);
+        return self.vtable.Start(self, llClockStartOffset);
     }
     pub fn Stop(self: *const IMFPresentationClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFPresentationClock, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn Pause(self: *const IMFPresentationClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationClock.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFPresentationClock, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
 };
 
@@ -18970,7 +18970,7 @@ pub const IMFPresentationTimeSource = extern union {
     };}
     pub usingnamespace IMFClock.MethodMixin(@This());
     pub fn GetUnderlyingClock(self: *const IMFPresentationTimeSource, ppClock: ?*?*IMFClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationTimeSource.VTable, @ptrCast(self.vtable)).GetUnderlyingClock(@as(*const IMFPresentationTimeSource, @ptrCast(self)), ppClock);
+        return self.vtable.GetUnderlyingClock(self, ppClock);
     }
 };
 
@@ -19030,19 +19030,19 @@ pub const IMFClockStateSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnClockStart(self: *const IMFClockStateSink, hnsSystemTime: i64, llClockStartOffset: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockStart(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime, llClockStartOffset);
+        return self.vtable.OnClockStart(self, hnsSystemTime, llClockStartOffset);
     }
     pub fn OnClockStop(self: *const IMFClockStateSink, hnsSystemTime: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockStop(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime);
+        return self.vtable.OnClockStop(self, hnsSystemTime);
     }
     pub fn OnClockPause(self: *const IMFClockStateSink, hnsSystemTime: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockPause(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime);
+        return self.vtable.OnClockPause(self, hnsSystemTime);
     }
     pub fn OnClockRestart(self: *const IMFClockStateSink, hnsSystemTime: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockRestart(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime);
+        return self.vtable.OnClockRestart(self, hnsSystemTime);
     }
     pub fn OnClockSetRate(self: *const IMFClockStateSink, hnsSystemTime: i64, flRate: f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFClockStateSink.VTable, @ptrCast(self.vtable)).OnClockSetRate(@as(*const IMFClockStateSink, @ptrCast(self)), hnsSystemTime, flRate);
+        return self.vtable.OnClockSetRate(self, hnsSystemTime, flRate);
     }
 };
 
@@ -19102,19 +19102,19 @@ pub const IMFPresentationDescriptor = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetStreamDescriptorCount(self: *const IMFPresentationDescriptor, pdwDescriptorCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).GetStreamDescriptorCount(@as(*const IMFPresentationDescriptor, @ptrCast(self)), pdwDescriptorCount);
+        return self.vtable.GetStreamDescriptorCount(self, pdwDescriptorCount);
     }
     pub fn GetStreamDescriptorByIndex(self: *const IMFPresentationDescriptor, dwIndex: u32, pfSelected: ?*BOOL, ppDescriptor: ?*?*IMFStreamDescriptor) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).GetStreamDescriptorByIndex(@as(*const IMFPresentationDescriptor, @ptrCast(self)), dwIndex, pfSelected, ppDescriptor);
+        return self.vtable.GetStreamDescriptorByIndex(self, dwIndex, pfSelected, ppDescriptor);
     }
     pub fn SelectStream(self: *const IMFPresentationDescriptor, dwDescriptorIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).SelectStream(@as(*const IMFPresentationDescriptor, @ptrCast(self)), dwDescriptorIndex);
+        return self.vtable.SelectStream(self, dwDescriptorIndex);
     }
     pub fn DeselectStream(self: *const IMFPresentationDescriptor, dwDescriptorIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).DeselectStream(@as(*const IMFPresentationDescriptor, @ptrCast(self)), dwDescriptorIndex);
+        return self.vtable.DeselectStream(self, dwDescriptorIndex);
     }
     pub fn Clone(self: *const IMFPresentationDescriptor, ppPresentationDescriptor: ?*?*IMFPresentationDescriptor) callconv(.Inline) HRESULT {
-        return @as(*const IMFPresentationDescriptor.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFPresentationDescriptor, @ptrCast(self)), ppPresentationDescriptor);
+        return self.vtable.Clone(self, ppPresentationDescriptor);
     }
 };
 
@@ -19148,10 +19148,10 @@ pub const IMFStreamDescriptor = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetStreamIdentifier(self: *const IMFStreamDescriptor, pdwStreamIdentifier: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFStreamDescriptor.VTable, @ptrCast(self.vtable)).GetStreamIdentifier(@as(*const IMFStreamDescriptor, @ptrCast(self)), pdwStreamIdentifier);
+        return self.vtable.GetStreamIdentifier(self, pdwStreamIdentifier);
     }
     pub fn GetMediaTypeHandler(self: *const IMFStreamDescriptor, ppMediaTypeHandler: ?*?*IMFMediaTypeHandler) callconv(.Inline) HRESULT {
-        return @as(*const IMFStreamDescriptor.VTable, @ptrCast(self.vtable)).GetMediaTypeHandler(@as(*const IMFStreamDescriptor, @ptrCast(self)), ppMediaTypeHandler);
+        return self.vtable.GetMediaTypeHandler(self, ppMediaTypeHandler);
     }
 };
 
@@ -19219,22 +19219,22 @@ pub const IMFMediaTypeHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsMediaTypeSupported(self: *const IMFMediaTypeHandler, pMediaType: ?*IMFMediaType, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).IsMediaTypeSupported(@as(*const IMFMediaTypeHandler, @ptrCast(self)), pMediaType, ppMediaType);
+        return self.vtable.IsMediaTypeSupported(self, pMediaType, ppMediaType);
     }
     pub fn GetMediaTypeCount(self: *const IMFMediaTypeHandler, pdwTypeCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).GetMediaTypeCount(@as(*const IMFMediaTypeHandler, @ptrCast(self)), pdwTypeCount);
+        return self.vtable.GetMediaTypeCount(self, pdwTypeCount);
     }
     pub fn GetMediaTypeByIndex(self: *const IMFMediaTypeHandler, dwIndex: u32, ppType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).GetMediaTypeByIndex(@as(*const IMFMediaTypeHandler, @ptrCast(self)), dwIndex, ppType);
+        return self.vtable.GetMediaTypeByIndex(self, dwIndex, ppType);
     }
     pub fn SetCurrentMediaType(self: *const IMFMediaTypeHandler, pMediaType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).SetCurrentMediaType(@as(*const IMFMediaTypeHandler, @ptrCast(self)), pMediaType);
+        return self.vtable.SetCurrentMediaType(self, pMediaType);
     }
     pub fn GetCurrentMediaType(self: *const IMFMediaTypeHandler, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).GetCurrentMediaType(@as(*const IMFMediaTypeHandler, @ptrCast(self)), ppMediaType);
+        return self.vtable.GetCurrentMediaType(self, ppMediaType);
     }
     pub fn GetMajorType(self: *const IMFMediaTypeHandler, pguidMajorType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTypeHandler.VTable, @ptrCast(self.vtable)).GetMajorType(@as(*const IMFMediaTypeHandler, @ptrCast(self)), pguidMajorType);
+        return self.vtable.GetMajorType(self, pguidMajorType);
     }
 };
 
@@ -19277,10 +19277,10 @@ pub const IMFTimer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetTimer(self: *const IMFTimer, dwFlags: u32, llClockTime: i64, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown, ppunkKey: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimer.VTable, @ptrCast(self.vtable)).SetTimer(@as(*const IMFTimer, @ptrCast(self)), dwFlags, llClockTime, pCallback, punkState, ppunkKey);
+        return self.vtable.SetTimer(self, dwFlags, llClockTime, pCallback, punkState, ppunkKey);
     }
     pub fn CancelTimer(self: *const IMFTimer, punkKey: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimer.VTable, @ptrCast(self.vtable)).CancelTimer(@as(*const IMFTimer, @ptrCast(self)), punkKey);
+        return self.vtable.CancelTimer(self, punkKey);
     }
 };
 
@@ -19330,10 +19330,10 @@ pub const IMFShutdown = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Shutdown(self: *const IMFShutdown) callconv(.Inline) HRESULT {
-        return @as(*const IMFShutdown.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFShutdown, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
     pub fn GetShutdownStatus(self: *const IMFShutdown, pStatus: ?*MFSHUTDOWN_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IMFShutdown.VTable, @ptrCast(self.vtable)).GetShutdownStatus(@as(*const IMFShutdown, @ptrCast(self)), pStatus);
+        return self.vtable.GetShutdownStatus(self, pStatus);
     }
 };
 
@@ -19361,7 +19361,7 @@ pub const IMFTopoLoader = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Load(self: *const IMFTopoLoader, pInputTopo: ?*IMFTopology, ppOutputTopo: ?*?*IMFTopology, pCurrentTopo: ?*IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopoLoader.VTable, @ptrCast(self.vtable)).Load(@as(*const IMFTopoLoader, @ptrCast(self)), pInputTopo, ppOutputTopo, pCurrentTopo);
+        return self.vtable.Load(self, pInputTopo, ppOutputTopo, pCurrentTopo);
     }
 };
 
@@ -19398,10 +19398,10 @@ pub const IMFContentProtectionManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginEnableContent(self: *const IMFContentProtectionManager, pEnablerActivate: ?*IMFActivate, pTopo: ?*IMFTopology, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentProtectionManager.VTable, @ptrCast(self.vtable)).BeginEnableContent(@as(*const IMFContentProtectionManager, @ptrCast(self)), pEnablerActivate, pTopo, pCallback, punkState);
+        return self.vtable.BeginEnableContent(self, pEnablerActivate, pTopo, pCallback, punkState);
     }
     pub fn EndEnableContent(self: *const IMFContentProtectionManager, pResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentProtectionManager.VTable, @ptrCast(self.vtable)).EndEnableContent(@as(*const IMFContentProtectionManager, @ptrCast(self)), pResult);
+        return self.vtable.EndEnableContent(self, pResult);
     }
 };
 
@@ -19484,25 +19484,25 @@ pub const IMFContentEnabler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetEnableType(self: *const IMFContentEnabler, pType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).GetEnableType(@as(*const IMFContentEnabler, @ptrCast(self)), pType);
+        return self.vtable.GetEnableType(self, pType);
     }
     pub fn GetEnableURL(self: *const IMFContentEnabler, ppwszURL: [*]?PWSTR, pcchURL: ?*u32, pTrustStatus: ?*MF_URL_TRUST_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).GetEnableURL(@as(*const IMFContentEnabler, @ptrCast(self)), ppwszURL, pcchURL, pTrustStatus);
+        return self.vtable.GetEnableURL(self, ppwszURL, pcchURL, pTrustStatus);
     }
     pub fn GetEnableData(self: *const IMFContentEnabler, ppbData: [*]?*u8, pcbData: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).GetEnableData(@as(*const IMFContentEnabler, @ptrCast(self)), ppbData, pcbData);
+        return self.vtable.GetEnableData(self, ppbData, pcbData);
     }
     pub fn IsAutomaticSupported(self: *const IMFContentEnabler, pfAutomatic: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).IsAutomaticSupported(@as(*const IMFContentEnabler, @ptrCast(self)), pfAutomatic);
+        return self.vtable.IsAutomaticSupported(self, pfAutomatic);
     }
     pub fn AutomaticEnable(self: *const IMFContentEnabler) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).AutomaticEnable(@as(*const IMFContentEnabler, @ptrCast(self)));
+        return self.vtable.AutomaticEnable(self);
     }
     pub fn MonitorEnable(self: *const IMFContentEnabler) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).MonitorEnable(@as(*const IMFContentEnabler, @ptrCast(self)));
+        return self.vtable.MonitorEnable(self);
     }
     pub fn Cancel(self: *const IMFContentEnabler) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentEnabler.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IMFContentEnabler, @ptrCast(self)));
+        return self.vtable.Cancel(self);
     }
 };
 
@@ -19602,25 +19602,25 @@ pub const IMFMetadata = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetLanguage(self: *const IMFMetadata, pwszRFC1766: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IMFMetadata, @ptrCast(self)), pwszRFC1766);
+        return self.vtable.SetLanguage(self, pwszRFC1766);
     }
     pub fn GetLanguage(self: *const IMFMetadata, ppwszRFC1766: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IMFMetadata, @ptrCast(self)), ppwszRFC1766);
+        return self.vtable.GetLanguage(self, ppwszRFC1766);
     }
     pub fn GetAllLanguages(self: *const IMFMetadata, ppvLanguages: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).GetAllLanguages(@as(*const IMFMetadata, @ptrCast(self)), ppvLanguages);
+        return self.vtable.GetAllLanguages(self, ppvLanguages);
     }
     pub fn SetProperty(self: *const IMFMetadata, pwszName: ?[*:0]const u16, ppvValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IMFMetadata, @ptrCast(self)), pwszName, ppvValue);
+        return self.vtable.SetProperty(self, pwszName, ppvValue);
     }
     pub fn GetProperty(self: *const IMFMetadata, pwszName: ?[*:0]const u16, ppvValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IMFMetadata, @ptrCast(self)), pwszName, ppvValue);
+        return self.vtable.GetProperty(self, pwszName, ppvValue);
     }
     pub fn DeleteProperty(self: *const IMFMetadata, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).DeleteProperty(@as(*const IMFMetadata, @ptrCast(self)), pwszName);
+        return self.vtable.DeleteProperty(self, pwszName);
     }
     pub fn GetAllPropertyNames(self: *const IMFMetadata, ppvNames: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMetadata.VTable, @ptrCast(self.vtable)).GetAllPropertyNames(@as(*const IMFMetadata, @ptrCast(self)), ppvNames);
+        return self.vtable.GetAllPropertyNames(self, ppvNames);
     }
 };
 
@@ -19649,7 +19649,7 @@ pub const IMFMetadataProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMFMetadata(self: *const IMFMetadataProvider, pPresentationDescriptor: ?*IMFPresentationDescriptor, dwStreamIdentifier: u32, dwFlags: u32, ppMFMetadata: ?*?*IMFMetadata) callconv(.Inline) HRESULT {
-        return @as(*const IMFMetadataProvider.VTable, @ptrCast(self.vtable)).GetMFMetadata(@as(*const IMFMetadataProvider, @ptrCast(self)), pPresentationDescriptor, dwStreamIdentifier, dwFlags, ppMFMetadata);
+        return self.vtable.GetMFMetadata(self, pPresentationDescriptor, dwStreamIdentifier, dwFlags, ppMFMetadata);
     }
 };
 
@@ -19704,13 +19704,13 @@ pub const IMFRateSupport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSlowestRate(self: *const IMFRateSupport, eDirection: MFRATE_DIRECTION, fThin: BOOL, pflRate: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFRateSupport.VTable, @ptrCast(self.vtable)).GetSlowestRate(@as(*const IMFRateSupport, @ptrCast(self)), eDirection, fThin, pflRate);
+        return self.vtable.GetSlowestRate(self, eDirection, fThin, pflRate);
     }
     pub fn GetFastestRate(self: *const IMFRateSupport, eDirection: MFRATE_DIRECTION, fThin: BOOL, pflRate: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFRateSupport.VTable, @ptrCast(self.vtable)).GetFastestRate(@as(*const IMFRateSupport, @ptrCast(self)), eDirection, fThin, pflRate);
+        return self.vtable.GetFastestRate(self, eDirection, fThin, pflRate);
     }
     pub fn IsRateSupported(self: *const IMFRateSupport, fThin: BOOL, flRate: f32, pflNearestSupportedRate: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFRateSupport.VTable, @ptrCast(self.vtable)).IsRateSupported(@as(*const IMFRateSupport, @ptrCast(self)), fThin, flRate, pflNearestSupportedRate);
+        return self.vtable.IsRateSupported(self, fThin, flRate, pflNearestSupportedRate);
     }
 };
 
@@ -19746,10 +19746,10 @@ pub const IMFRateControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetRate(self: *const IMFRateControl, fThin: BOOL, flRate: f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFRateControl.VTable, @ptrCast(self.vtable)).SetRate(@as(*const IMFRateControl, @ptrCast(self)), fThin, flRate);
+        return self.vtable.SetRate(self, fThin, flRate);
     }
     pub fn GetRate(self: *const IMFRateControl, pfThin: ?*BOOL, pflRate: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFRateControl.VTable, @ptrCast(self.vtable)).GetRate(@as(*const IMFRateControl, @ptrCast(self)), pfThin, pflRate);
+        return self.vtable.GetRate(self, pfThin, pflRate);
     }
 };
 
@@ -19805,16 +19805,16 @@ pub const IMFTimecodeTranslate = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginConvertTimecodeToHNS(self: *const IMFTimecodeTranslate, pPropVarTimecode: ?*const PROPVARIANT, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimecodeTranslate.VTable, @ptrCast(self.vtable)).BeginConvertTimecodeToHNS(@as(*const IMFTimecodeTranslate, @ptrCast(self)), pPropVarTimecode, pCallback, punkState);
+        return self.vtable.BeginConvertTimecodeToHNS(self, pPropVarTimecode, pCallback, punkState);
     }
     pub fn EndConvertTimecodeToHNS(self: *const IMFTimecodeTranslate, pResult: ?*IMFAsyncResult, phnsTime: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimecodeTranslate.VTable, @ptrCast(self.vtable)).EndConvertTimecodeToHNS(@as(*const IMFTimecodeTranslate, @ptrCast(self)), pResult, phnsTime);
+        return self.vtable.EndConvertTimecodeToHNS(self, pResult, phnsTime);
     }
     pub fn BeginConvertHNSToTimecode(self: *const IMFTimecodeTranslate, hnsTime: i64, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimecodeTranslate.VTable, @ptrCast(self.vtable)).BeginConvertHNSToTimecode(@as(*const IMFTimecodeTranslate, @ptrCast(self)), hnsTime, pCallback, punkState);
+        return self.vtable.BeginConvertHNSToTimecode(self, hnsTime, pCallback, punkState);
     }
     pub fn EndConvertHNSToTimecode(self: *const IMFTimecodeTranslate, pResult: ?*IMFAsyncResult, pPropVarTimecode: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimecodeTranslate.VTable, @ptrCast(self.vtable)).EndConvertHNSToTimecode(@as(*const IMFTimecodeTranslate, @ptrCast(self)), pResult, pPropVarTimecode);
+        return self.vtable.EndConvertHNSToTimecode(self, pResult, pPropVarTimecode);
     }
 };
 
@@ -19843,7 +19843,7 @@ pub const IMFSeekInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNearestKeyFrames(self: *const IMFSeekInfo, pguidTimeFormat: ?*const Guid, pvarStartPosition: ?*const PROPVARIANT, pvarPreviousKeyFrame: ?*PROPVARIANT, pvarNextKeyFrame: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFSeekInfo.VTable, @ptrCast(self.vtable)).GetNearestKeyFrames(@as(*const IMFSeekInfo, @ptrCast(self)), pguidTimeFormat, pvarStartPosition, pvarPreviousKeyFrame, pvarNextKeyFrame);
+        return self.vtable.GetNearestKeyFrames(self, pguidTimeFormat, pvarStartPosition, pvarPreviousKeyFrame, pvarNextKeyFrame);
     }
 };
 
@@ -19893,16 +19893,16 @@ pub const IMFSimpleAudioVolume = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetMasterVolume(self: *const IMFSimpleAudioVolume, fLevel: f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSimpleAudioVolume.VTable, @ptrCast(self.vtable)).SetMasterVolume(@as(*const IMFSimpleAudioVolume, @ptrCast(self)), fLevel);
+        return self.vtable.SetMasterVolume(self, fLevel);
     }
     pub fn GetMasterVolume(self: *const IMFSimpleAudioVolume, pfLevel: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSimpleAudioVolume.VTable, @ptrCast(self.vtable)).GetMasterVolume(@as(*const IMFSimpleAudioVolume, @ptrCast(self)), pfLevel);
+        return self.vtable.GetMasterVolume(self, pfLevel);
     }
     pub fn SetMute(self: *const IMFSimpleAudioVolume, bMute: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFSimpleAudioVolume.VTable, @ptrCast(self.vtable)).SetMute(@as(*const IMFSimpleAudioVolume, @ptrCast(self)), bMute);
+        return self.vtable.SetMute(self, bMute);
     }
     pub fn GetMute(self: *const IMFSimpleAudioVolume, pbMute: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFSimpleAudioVolume.VTable, @ptrCast(self.vtable)).GetMute(@as(*const IMFSimpleAudioVolume, @ptrCast(self)), pbMute);
+        return self.vtable.GetMute(self, pbMute);
     }
 };
 
@@ -19964,19 +19964,19 @@ pub const IMFAudioStreamVolume = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetChannelCount(self: *const IMFAudioStreamVolume, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetChannelCount(@as(*const IMFAudioStreamVolume, @ptrCast(self)), pdwCount);
+        return self.vtable.GetChannelCount(self, pdwCount);
     }
     pub fn SetChannelVolume(self: *const IMFAudioStreamVolume, dwIndex: u32, fLevel: f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).SetChannelVolume(@as(*const IMFAudioStreamVolume, @ptrCast(self)), dwIndex, fLevel);
+        return self.vtable.SetChannelVolume(self, dwIndex, fLevel);
     }
     pub fn GetChannelVolume(self: *const IMFAudioStreamVolume, dwIndex: u32, pfLevel: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetChannelVolume(@as(*const IMFAudioStreamVolume, @ptrCast(self)), dwIndex, pfLevel);
+        return self.vtable.GetChannelVolume(self, dwIndex, pfLevel);
     }
     pub fn SetAllVolumes(self: *const IMFAudioStreamVolume, dwCount: u32, pfVolumes: [*]const f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).SetAllVolumes(@as(*const IMFAudioStreamVolume, @ptrCast(self)), dwCount, pfVolumes);
+        return self.vtable.SetAllVolumes(self, dwCount, pfVolumes);
     }
     pub fn GetAllVolumes(self: *const IMFAudioStreamVolume, dwCount: u32, pfVolumes: [*]f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioStreamVolume.VTable, @ptrCast(self.vtable)).GetAllVolumes(@as(*const IMFAudioStreamVolume, @ptrCast(self)), dwCount, pfVolumes);
+        return self.vtable.GetAllVolumes(self, dwCount, pfVolumes);
     }
 };
 
@@ -20042,22 +20042,22 @@ pub const IMFAudioPolicy = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetGroupingParam(self: *const IMFAudioPolicy, rguidClass: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).SetGroupingParam(@as(*const IMFAudioPolicy, @ptrCast(self)), rguidClass);
+        return self.vtable.SetGroupingParam(self, rguidClass);
     }
     pub fn GetGroupingParam(self: *const IMFAudioPolicy, pguidClass: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).GetGroupingParam(@as(*const IMFAudioPolicy, @ptrCast(self)), pguidClass);
+        return self.vtable.GetGroupingParam(self, pguidClass);
     }
     pub fn SetDisplayName(self: *const IMFAudioPolicy, pszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const IMFAudioPolicy, @ptrCast(self)), pszName);
+        return self.vtable.SetDisplayName(self, pszName);
     }
     pub fn GetDisplayName(self: *const IMFAudioPolicy, pszName: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IMFAudioPolicy, @ptrCast(self)), pszName);
+        return self.vtable.GetDisplayName(self, pszName);
     }
     pub fn SetIconPath(self: *const IMFAudioPolicy, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).SetIconPath(@as(*const IMFAudioPolicy, @ptrCast(self)), pszPath);
+        return self.vtable.SetIconPath(self, pszPath);
     }
     pub fn GetIconPath(self: *const IMFAudioPolicy, pszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFAudioPolicy.VTable, @ptrCast(self.vtable)).GetIconPath(@as(*const IMFAudioPolicy, @ptrCast(self)), pszPath);
+        return self.vtable.GetIconPath(self, pszPath);
     }
 };
 
@@ -20104,13 +20104,13 @@ pub const IMFSampleGrabberSinkCallback = extern union {
     };}
     pub usingnamespace IMFClockStateSink.MethodMixin(@This());
     pub fn OnSetPresentationClock(self: *const IMFSampleGrabberSinkCallback, pPresentationClock: ?*IMFPresentationClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleGrabberSinkCallback.VTable, @ptrCast(self.vtable)).OnSetPresentationClock(@as(*const IMFSampleGrabberSinkCallback, @ptrCast(self)), pPresentationClock);
+        return self.vtable.OnSetPresentationClock(self, pPresentationClock);
     }
     pub fn OnProcessSample(self: *const IMFSampleGrabberSinkCallback, guidMajorMediaType: ?*const Guid, dwSampleFlags: u32, llSampleTime: i64, llSampleDuration: i64, pSampleBuffer: ?*const u8, dwSampleSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleGrabberSinkCallback.VTable, @ptrCast(self.vtable)).OnProcessSample(@as(*const IMFSampleGrabberSinkCallback, @ptrCast(self)), guidMajorMediaType, dwSampleFlags, llSampleTime, llSampleDuration, pSampleBuffer, dwSampleSize);
+        return self.vtable.OnProcessSample(self, guidMajorMediaType, dwSampleFlags, llSampleTime, llSampleDuration, pSampleBuffer, dwSampleSize);
     }
     pub fn OnShutdown(self: *const IMFSampleGrabberSinkCallback) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleGrabberSinkCallback.VTable, @ptrCast(self.vtable)).OnShutdown(@as(*const IMFSampleGrabberSinkCallback, @ptrCast(self)));
+        return self.vtable.OnShutdown(self);
     }
 };
 
@@ -20143,7 +20143,7 @@ pub const IMFSampleGrabberSinkCallback2 = extern union {
     };}
     pub usingnamespace IMFSampleGrabberSinkCallback.MethodMixin(@This());
     pub fn OnProcessSampleEx(self: *const IMFSampleGrabberSinkCallback2, guidMajorMediaType: ?*const Guid, dwSampleFlags: u32, llSampleTime: i64, llSampleDuration: i64, pSampleBuffer: ?*const u8, dwSampleSize: u32, pAttributes: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleGrabberSinkCallback2.VTable, @ptrCast(self.vtable)).OnProcessSampleEx(@as(*const IMFSampleGrabberSinkCallback2, @ptrCast(self)), guidMajorMediaType, dwSampleFlags, llSampleTime, llSampleDuration, pSampleBuffer, dwSampleSize, pAttributes);
+        return self.vtable.OnProcessSampleEx(self, guidMajorMediaType, dwSampleFlags, llSampleTime, llSampleDuration, pSampleBuffer, dwSampleSize, pAttributes);
     }
 };
 
@@ -20272,40 +20272,40 @@ pub const IMFWorkQueueServices = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginRegisterTopologyWorkQueuesWithMMCSS(self: *const IMFWorkQueueServices, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).BeginRegisterTopologyWorkQueuesWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pCallback, pState);
+        return self.vtable.BeginRegisterTopologyWorkQueuesWithMMCSS(self, pCallback, pState);
     }
     pub fn EndRegisterTopologyWorkQueuesWithMMCSS(self: *const IMFWorkQueueServices, pResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).EndRegisterTopologyWorkQueuesWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pResult);
+        return self.vtable.EndRegisterTopologyWorkQueuesWithMMCSS(self, pResult);
     }
     pub fn BeginUnregisterTopologyWorkQueuesWithMMCSS(self: *const IMFWorkQueueServices, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).BeginUnregisterTopologyWorkQueuesWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pCallback, pState);
+        return self.vtable.BeginUnregisterTopologyWorkQueuesWithMMCSS(self, pCallback, pState);
     }
     pub fn EndUnregisterTopologyWorkQueuesWithMMCSS(self: *const IMFWorkQueueServices, pResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).EndUnregisterTopologyWorkQueuesWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pResult);
+        return self.vtable.EndUnregisterTopologyWorkQueuesWithMMCSS(self, pResult);
     }
     pub fn GetTopologyWorkQueueMMCSSClass(self: *const IMFWorkQueueServices, dwTopologyWorkQueueId: u32, pwszClass: [*:0]u16, pcchClass: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).GetTopologyWorkQueueMMCSSClass(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwTopologyWorkQueueId, pwszClass, pcchClass);
+        return self.vtable.GetTopologyWorkQueueMMCSSClass(self, dwTopologyWorkQueueId, pwszClass, pcchClass);
     }
     pub fn GetTopologyWorkQueueMMCSSTaskId(self: *const IMFWorkQueueServices, dwTopologyWorkQueueId: u32, pdwTaskId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).GetTopologyWorkQueueMMCSSTaskId(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwTopologyWorkQueueId, pdwTaskId);
+        return self.vtable.GetTopologyWorkQueueMMCSSTaskId(self, dwTopologyWorkQueueId, pdwTaskId);
     }
     pub fn BeginRegisterPlatformWorkQueueWithMMCSS(self: *const IMFWorkQueueServices, dwPlatformWorkQueue: u32, wszClass: ?[*:0]const u16, dwTaskId: u32, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).BeginRegisterPlatformWorkQueueWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwPlatformWorkQueue, wszClass, dwTaskId, pCallback, pState);
+        return self.vtable.BeginRegisterPlatformWorkQueueWithMMCSS(self, dwPlatformWorkQueue, wszClass, dwTaskId, pCallback, pState);
     }
     pub fn EndRegisterPlatformWorkQueueWithMMCSS(self: *const IMFWorkQueueServices, pResult: ?*IMFAsyncResult, pdwTaskId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).EndRegisterPlatformWorkQueueWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pResult, pdwTaskId);
+        return self.vtable.EndRegisterPlatformWorkQueueWithMMCSS(self, pResult, pdwTaskId);
     }
     pub fn BeginUnregisterPlatformWorkQueueWithMMCSS(self: *const IMFWorkQueueServices, dwPlatformWorkQueue: u32, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).BeginUnregisterPlatformWorkQueueWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwPlatformWorkQueue, pCallback, pState);
+        return self.vtable.BeginUnregisterPlatformWorkQueueWithMMCSS(self, dwPlatformWorkQueue, pCallback, pState);
     }
     pub fn EndUnregisterPlatformWorkQueueWithMMCSS(self: *const IMFWorkQueueServices, pResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).EndUnregisterPlatformWorkQueueWithMMCSS(@as(*const IMFWorkQueueServices, @ptrCast(self)), pResult);
+        return self.vtable.EndUnregisterPlatformWorkQueueWithMMCSS(self, pResult);
     }
     pub fn GetPlaftormWorkQueueMMCSSClass(self: *const IMFWorkQueueServices, dwPlatformWorkQueueId: u32, pwszClass: [*:0]u16, pcchClass: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).GetPlaftormWorkQueueMMCSSClass(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwPlatformWorkQueueId, pwszClass, pcchClass);
+        return self.vtable.GetPlaftormWorkQueueMMCSSClass(self, dwPlatformWorkQueueId, pwszClass, pcchClass);
     }
     pub fn GetPlatformWorkQueueMMCSSTaskId(self: *const IMFWorkQueueServices, dwPlatformWorkQueueId: u32, pdwTaskId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServices.VTable, @ptrCast(self.vtable)).GetPlatformWorkQueueMMCSSTaskId(@as(*const IMFWorkQueueServices, @ptrCast(self)), dwPlatformWorkQueueId, pdwTaskId);
+        return self.vtable.GetPlatformWorkQueueMMCSSTaskId(self, dwPlatformWorkQueueId, pdwTaskId);
     }
 };
 
@@ -20354,13 +20354,13 @@ pub const IMFWorkQueueServicesEx = extern union {
     };}
     pub usingnamespace IMFWorkQueueServices.MethodMixin(@This());
     pub fn GetTopologyWorkQueueMMCSSPriority(self: *const IMFWorkQueueServicesEx, dwTopologyWorkQueueId: u32, plPriority: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServicesEx.VTable, @ptrCast(self.vtable)).GetTopologyWorkQueueMMCSSPriority(@as(*const IMFWorkQueueServicesEx, @ptrCast(self)), dwTopologyWorkQueueId, plPriority);
+        return self.vtable.GetTopologyWorkQueueMMCSSPriority(self, dwTopologyWorkQueueId, plPriority);
     }
     pub fn BeginRegisterPlatformWorkQueueWithMMCSSEx(self: *const IMFWorkQueueServicesEx, dwPlatformWorkQueue: u32, wszClass: ?[*:0]const u16, dwTaskId: u32, lPriority: i32, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServicesEx.VTable, @ptrCast(self.vtable)).BeginRegisterPlatformWorkQueueWithMMCSSEx(@as(*const IMFWorkQueueServicesEx, @ptrCast(self)), dwPlatformWorkQueue, wszClass, dwTaskId, lPriority, pCallback, pState);
+        return self.vtable.BeginRegisterPlatformWorkQueueWithMMCSSEx(self, dwPlatformWorkQueue, wszClass, dwTaskId, lPriority, pCallback, pState);
     }
     pub fn GetPlatformWorkQueueMMCSSPriority(self: *const IMFWorkQueueServicesEx, dwPlatformWorkQueueId: u32, plPriority: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMFWorkQueueServicesEx.VTable, @ptrCast(self.vtable)).GetPlatformWorkQueueMMCSSPriority(@as(*const IMFWorkQueueServicesEx, @ptrCast(self)), dwPlatformWorkQueueId, plPriority);
+        return self.vtable.GetPlatformWorkQueueMMCSSPriority(self, dwPlatformWorkQueueId, plPriority);
     }
 };
 
@@ -20469,22 +20469,22 @@ pub const IMFQualityManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NotifyTopology(self: *const IMFQualityManager, pTopology: ?*IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyTopology(@as(*const IMFQualityManager, @ptrCast(self)), pTopology);
+        return self.vtable.NotifyTopology(self, pTopology);
     }
     pub fn NotifyPresentationClock(self: *const IMFQualityManager, pClock: ?*IMFPresentationClock) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyPresentationClock(@as(*const IMFQualityManager, @ptrCast(self)), pClock);
+        return self.vtable.NotifyPresentationClock(self, pClock);
     }
     pub fn NotifyProcessInput(self: *const IMFQualityManager, pNode: ?*IMFTopologyNode, lInputIndex: i32, pSample: ?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyProcessInput(@as(*const IMFQualityManager, @ptrCast(self)), pNode, lInputIndex, pSample);
+        return self.vtable.NotifyProcessInput(self, pNode, lInputIndex, pSample);
     }
     pub fn NotifyProcessOutput(self: *const IMFQualityManager, pNode: ?*IMFTopologyNode, lOutputIndex: i32, pSample: ?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyProcessOutput(@as(*const IMFQualityManager, @ptrCast(self)), pNode, lOutputIndex, pSample);
+        return self.vtable.NotifyProcessOutput(self, pNode, lOutputIndex, pSample);
     }
     pub fn NotifyQualityEvent(self: *const IMFQualityManager, pObject: ?*IUnknown, pEvent: ?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).NotifyQualityEvent(@as(*const IMFQualityManager, @ptrCast(self)), pObject, pEvent);
+        return self.vtable.NotifyQualityEvent(self, pObject, pEvent);
     }
     pub fn Shutdown(self: *const IMFQualityManager) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityManager.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFQualityManager, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
@@ -20542,19 +20542,19 @@ pub const IMFQualityAdvise = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDropMode(self: *const IMFQualityAdvise, eDropMode: MF_QUALITY_DROP_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).SetDropMode(@as(*const IMFQualityAdvise, @ptrCast(self)), eDropMode);
+        return self.vtable.SetDropMode(self, eDropMode);
     }
     pub fn SetQualityLevel(self: *const IMFQualityAdvise, eQualityLevel: MF_QUALITY_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).SetQualityLevel(@as(*const IMFQualityAdvise, @ptrCast(self)), eQualityLevel);
+        return self.vtable.SetQualityLevel(self, eQualityLevel);
     }
     pub fn GetDropMode(self: *const IMFQualityAdvise, peDropMode: ?*MF_QUALITY_DROP_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).GetDropMode(@as(*const IMFQualityAdvise, @ptrCast(self)), peDropMode);
+        return self.vtable.GetDropMode(self, peDropMode);
     }
     pub fn GetQualityLevel(self: *const IMFQualityAdvise, peQualityLevel: ?*MF_QUALITY_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).GetQualityLevel(@as(*const IMFQualityAdvise, @ptrCast(self)), peQualityLevel);
+        return self.vtable.GetQualityLevel(self, peQualityLevel);
     }
     pub fn DropTime(self: *const IMFQualityAdvise, hnsAmountToDrop: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityAdvise.VTable, @ptrCast(self.vtable)).DropTime(@as(*const IMFQualityAdvise, @ptrCast(self)), hnsAmountToDrop);
+        return self.vtable.DropTime(self, hnsAmountToDrop);
     }
 };
 
@@ -20581,7 +20581,7 @@ pub const IMFQualityAdvise2 = extern union {
     };}
     pub usingnamespace IMFQualityAdvise.MethodMixin(@This());
     pub fn NotifyQualityEvent(self: *const IMFQualityAdvise2, pEvent: ?*IMFMediaEvent, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityAdvise2.VTable, @ptrCast(self.vtable)).NotifyQualityEvent(@as(*const IMFQualityAdvise2, @ptrCast(self)), pEvent, pdwFlags);
+        return self.vtable.NotifyQualityEvent(self, pEvent, pdwFlags);
     }
 };
 
@@ -20615,10 +20615,10 @@ pub const IMFQualityAdviseLimits = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMaximumDropMode(self: *const IMFQualityAdviseLimits, peDropMode: ?*MF_QUALITY_DROP_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityAdviseLimits.VTable, @ptrCast(self.vtable)).GetMaximumDropMode(@as(*const IMFQualityAdviseLimits, @ptrCast(self)), peDropMode);
+        return self.vtable.GetMaximumDropMode(self, peDropMode);
     }
     pub fn GetMinimumQualityLevel(self: *const IMFQualityAdviseLimits, peQualityLevel: ?*MF_QUALITY_LEVEL) callconv(.Inline) HRESULT {
-        return @as(*const IMFQualityAdviseLimits.VTable, @ptrCast(self.vtable)).GetMinimumQualityLevel(@as(*const IMFQualityAdviseLimits, @ptrCast(self)), peQualityLevel);
+        return self.vtable.GetMinimumQualityLevel(self, peQualityLevel);
     }
 };
 
@@ -20660,13 +20660,13 @@ pub const IMFRealTimeClient = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterThreads(self: *const IMFRealTimeClient, dwTaskIndex: u32, wszClass: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFRealTimeClient.VTable, @ptrCast(self.vtable)).RegisterThreads(@as(*const IMFRealTimeClient, @ptrCast(self)), dwTaskIndex, wszClass);
+        return self.vtable.RegisterThreads(self, dwTaskIndex, wszClass);
     }
     pub fn UnregisterThreads(self: *const IMFRealTimeClient) callconv(.Inline) HRESULT {
-        return @as(*const IMFRealTimeClient.VTable, @ptrCast(self.vtable)).UnregisterThreads(@as(*const IMFRealTimeClient, @ptrCast(self)));
+        return self.vtable.UnregisterThreads(self);
     }
     pub fn SetWorkQueue(self: *const IMFRealTimeClient, dwWorkQueueId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFRealTimeClient.VTable, @ptrCast(self.vtable)).SetWorkQueue(@as(*const IMFRealTimeClient, @ptrCast(self)), dwWorkQueueId);
+        return self.vtable.SetWorkQueue(self, dwWorkQueueId);
     }
 };
 
@@ -20710,13 +20710,13 @@ pub const IMFRealTimeClientEx = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterThreadsEx(self: *const IMFRealTimeClientEx, pdwTaskIndex: ?*u32, wszClassName: ?[*:0]const u16, lBasePriority: i32) callconv(.Inline) HRESULT {
-        return @as(*const IMFRealTimeClientEx.VTable, @ptrCast(self.vtable)).RegisterThreadsEx(@as(*const IMFRealTimeClientEx, @ptrCast(self)), pdwTaskIndex, wszClassName, lBasePriority);
+        return self.vtable.RegisterThreadsEx(self, pdwTaskIndex, wszClassName, lBasePriority);
     }
     pub fn UnregisterThreads(self: *const IMFRealTimeClientEx) callconv(.Inline) HRESULT {
-        return @as(*const IMFRealTimeClientEx.VTable, @ptrCast(self.vtable)).UnregisterThreads(@as(*const IMFRealTimeClientEx, @ptrCast(self)));
+        return self.vtable.UnregisterThreads(self);
     }
     pub fn SetWorkQueueEx(self: *const IMFRealTimeClientEx, dwMultithreadedWorkQueueId: u32, lWorkItemBasePriority: i32) callconv(.Inline) HRESULT {
-        return @as(*const IMFRealTimeClientEx.VTable, @ptrCast(self.vtable)).SetWorkQueueEx(@as(*const IMFRealTimeClientEx, @ptrCast(self)), dwMultithreadedWorkQueueId, lWorkItemBasePriority);
+        return self.vtable.SetWorkQueueEx(self, dwMultithreadedWorkQueueId, lWorkItemBasePriority);
     }
 };
 
@@ -20785,19 +20785,19 @@ pub const IMFSequencerSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AppendTopology(self: *const IMFSequencerSource, pTopology: ?*IMFTopology, dwFlags: u32, pdwId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).AppendTopology(@as(*const IMFSequencerSource, @ptrCast(self)), pTopology, dwFlags, pdwId);
+        return self.vtable.AppendTopology(self, pTopology, dwFlags, pdwId);
     }
     pub fn DeleteTopology(self: *const IMFSequencerSource, dwId: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).DeleteTopology(@as(*const IMFSequencerSource, @ptrCast(self)), dwId);
+        return self.vtable.DeleteTopology(self, dwId);
     }
     pub fn GetPresentationContext(self: *const IMFSequencerSource, pPD: ?*IMFPresentationDescriptor, pId: ?*u32, ppTopology: ?*?*IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).GetPresentationContext(@as(*const IMFSequencerSource, @ptrCast(self)), pPD, pId, ppTopology);
+        return self.vtable.GetPresentationContext(self, pPD, pId, ppTopology);
     }
     pub fn UpdateTopology(self: *const IMFSequencerSource, dwId: u32, pTopology: ?*IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).UpdateTopology(@as(*const IMFSequencerSource, @ptrCast(self)), dwId, pTopology);
+        return self.vtable.UpdateTopology(self, dwId, pTopology);
     }
     pub fn UpdateTopologyFlags(self: *const IMFSequencerSource, dwId: u32, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSequencerSource.VTable, @ptrCast(self.vtable)).UpdateTopologyFlags(@as(*const IMFSequencerSource, @ptrCast(self)), dwId, dwFlags);
+        return self.vtable.UpdateTopologyFlags(self, dwId, dwFlags);
     }
 };
 
@@ -20824,7 +20824,7 @@ pub const IMFMediaSourceTopologyProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMediaSourceTopology(self: *const IMFMediaSourceTopologyProvider, pPresentationDescriptor: ?*IMFPresentationDescriptor, ppTopology: ?*?*IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceTopologyProvider.VTable, @ptrCast(self.vtable)).GetMediaSourceTopology(@as(*const IMFMediaSourceTopologyProvider, @ptrCast(self)), pPresentationDescriptor, ppTopology);
+        return self.vtable.GetMediaSourceTopology(self, pPresentationDescriptor, ppTopology);
     }
 };
 
@@ -20850,7 +20850,7 @@ pub const IMFMediaSourcePresentationProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ForceEndOfPresentation(self: *const IMFMediaSourcePresentationProvider, pPresentationDescriptor: ?*IMFPresentationDescriptor) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourcePresentationProvider.VTable, @ptrCast(self.vtable)).ForceEndOfPresentation(@as(*const IMFMediaSourcePresentationProvider, @ptrCast(self)), pPresentationDescriptor);
+        return self.vtable.ForceEndOfPresentation(self, pPresentationDescriptor);
     }
 };
 
@@ -20889,7 +20889,7 @@ pub const IMFTopologyNodeAttributeEditor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn UpdateNodeAttributes(self: *const IMFTopologyNodeAttributeEditor, TopoId: u64, cUpdates: u32, pUpdates: [*]MFTOPONODE_ATTRIBUTE_UPDATE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyNodeAttributeEditor.VTable, @ptrCast(self.vtable)).UpdateNodeAttributes(@as(*const IMFTopologyNodeAttributeEditor, @ptrCast(self)), TopoId, cUpdates, pUpdates);
+        return self.vtable.UpdateNodeAttributes(self, TopoId, cUpdates, pUpdates);
     }
 };
 
@@ -20946,13 +20946,13 @@ pub const IMFByteStreamBuffering = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetBufferingParams(self: *const IMFByteStreamBuffering, pParams: ?*MFBYTESTREAM_BUFFERING_PARAMS) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamBuffering.VTable, @ptrCast(self.vtable)).SetBufferingParams(@as(*const IMFByteStreamBuffering, @ptrCast(self)), pParams);
+        return self.vtable.SetBufferingParams(self, pParams);
     }
     pub fn EnableBuffering(self: *const IMFByteStreamBuffering, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamBuffering.VTable, @ptrCast(self.vtable)).EnableBuffering(@as(*const IMFByteStreamBuffering, @ptrCast(self)), fEnable);
+        return self.vtable.EnableBuffering(self, fEnable);
     }
     pub fn StopBuffering(self: *const IMFByteStreamBuffering) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamBuffering.VTable, @ptrCast(self.vtable)).StopBuffering(@as(*const IMFByteStreamBuffering, @ptrCast(self)));
+        return self.vtable.StopBuffering(self);
     }
 };
 
@@ -20977,7 +20977,7 @@ pub const IMFByteStreamCacheControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StopBackgroundTransfer(self: *const IMFByteStreamCacheControl) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamCacheControl.VTable, @ptrCast(self.vtable)).StopBackgroundTransfer(@as(*const IMFByteStreamCacheControl, @ptrCast(self)));
+        return self.vtable.StopBackgroundTransfer(self);
     }
 };
 
@@ -21021,13 +21021,13 @@ pub const IMFByteStreamTimeSeek = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsTimeSeekSupported(self: *const IMFByteStreamTimeSeek, pfTimeSeekIsSupported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamTimeSeek.VTable, @ptrCast(self.vtable)).IsTimeSeekSupported(@as(*const IMFByteStreamTimeSeek, @ptrCast(self)), pfTimeSeekIsSupported);
+        return self.vtable.IsTimeSeekSupported(self, pfTimeSeekIsSupported);
     }
     pub fn TimeSeek(self: *const IMFByteStreamTimeSeek, qwTimePosition: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamTimeSeek.VTable, @ptrCast(self.vtable)).TimeSeek(@as(*const IMFByteStreamTimeSeek, @ptrCast(self)), qwTimePosition);
+        return self.vtable.TimeSeek(self, qwTimePosition);
     }
     pub fn GetTimeSeekResult(self: *const IMFByteStreamTimeSeek, pqwStartTime: ?*u64, pqwStopTime: ?*u64, pqwDuration: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamTimeSeek.VTable, @ptrCast(self.vtable)).GetTimeSeekResult(@as(*const IMFByteStreamTimeSeek, @ptrCast(self)), pqwStartTime, pqwStopTime, pqwDuration);
+        return self.vtable.GetTimeSeekResult(self, pqwStartTime, pqwStopTime, pqwDuration);
     }
 };
 
@@ -21075,13 +21075,13 @@ pub const IMFByteStreamCacheControl2 = extern union {
     };}
     pub usingnamespace IMFByteStreamCacheControl.MethodMixin(@This());
     pub fn GetByteRanges(self: *const IMFByteStreamCacheControl2, pcRanges: ?*u32, ppRanges: [*]?*MF_BYTE_STREAM_CACHE_RANGE) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamCacheControl2.VTable, @ptrCast(self.vtable)).GetByteRanges(@as(*const IMFByteStreamCacheControl2, @ptrCast(self)), pcRanges, ppRanges);
+        return self.vtable.GetByteRanges(self, pcRanges, ppRanges);
     }
     pub fn SetCacheLimit(self: *const IMFByteStreamCacheControl2, qwBytes: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamCacheControl2.VTable, @ptrCast(self.vtable)).SetCacheLimit(@as(*const IMFByteStreamCacheControl2, @ptrCast(self)), qwBytes);
+        return self.vtable.SetCacheLimit(self, qwBytes);
     }
     pub fn IsBackgroundTransferActive(self: *const IMFByteStreamCacheControl2, pfActive: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamCacheControl2.VTable, @ptrCast(self.vtable)).IsBackgroundTransferActive(@as(*const IMFByteStreamCacheControl2, @ptrCast(self)), pfActive);
+        return self.vtable.IsBackgroundTransferActive(self, pfActive);
     }
 };
 
@@ -21149,19 +21149,19 @@ pub const IMFNetCredential = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetUser(self: *const IMFNetCredential, pbData: ?*u8, cbData: u32, fDataIsEncrypted: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).SetUser(@as(*const IMFNetCredential, @ptrCast(self)), pbData, cbData, fDataIsEncrypted);
+        return self.vtable.SetUser(self, pbData, cbData, fDataIsEncrypted);
     }
     pub fn SetPassword(self: *const IMFNetCredential, pbData: ?*u8, cbData: u32, fDataIsEncrypted: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).SetPassword(@as(*const IMFNetCredential, @ptrCast(self)), pbData, cbData, fDataIsEncrypted);
+        return self.vtable.SetPassword(self, pbData, cbData, fDataIsEncrypted);
     }
     pub fn GetUser(self: *const IMFNetCredential, pbData: ?[*:0]u8, pcbData: ?*u32, fEncryptData: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).GetUser(@as(*const IMFNetCredential, @ptrCast(self)), pbData, pcbData, fEncryptData);
+        return self.vtable.GetUser(self, pbData, pcbData, fEncryptData);
     }
     pub fn GetPassword(self: *const IMFNetCredential, pbData: ?[*:0]u8, pcbData: ?*u32, fEncryptData: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).GetPassword(@as(*const IMFNetCredential, @ptrCast(self)), pbData, pcbData, fEncryptData);
+        return self.vtable.GetPassword(self, pbData, pcbData, fEncryptData);
     }
     pub fn LoggedOnUser(self: *const IMFNetCredential, pfLoggedOnUser: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredential.VTable, @ptrCast(self.vtable)).LoggedOnUser(@as(*const IMFNetCredential, @ptrCast(self)), pfLoggedOnUser);
+        return self.vtable.LoggedOnUser(self, pfLoggedOnUser);
     }
 };
 
@@ -21218,13 +21218,13 @@ pub const IMFNetCredentialManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginGetCredentials(self: *const IMFNetCredentialManager, pParam: ?*MFNetCredentialManagerGetParam, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredentialManager.VTable, @ptrCast(self.vtable)).BeginGetCredentials(@as(*const IMFNetCredentialManager, @ptrCast(self)), pParam, pCallback, pState);
+        return self.vtable.BeginGetCredentials(self, pParam, pCallback, pState);
     }
     pub fn EndGetCredentials(self: *const IMFNetCredentialManager, pResult: ?*IMFAsyncResult, ppCred: ?*?*IMFNetCredential) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredentialManager.VTable, @ptrCast(self.vtable)).EndGetCredentials(@as(*const IMFNetCredentialManager, @ptrCast(self)), pResult, ppCred);
+        return self.vtable.EndGetCredentials(self, pResult, ppCred);
     }
     pub fn SetGood(self: *const IMFNetCredentialManager, pCred: ?*IMFNetCredential, fGood: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredentialManager.VTable, @ptrCast(self.vtable)).SetGood(@as(*const IMFNetCredentialManager, @ptrCast(self)), pCred, fGood);
+        return self.vtable.SetGood(self, pCred, fGood);
     }
 };
 
@@ -21297,13 +21297,13 @@ pub const IMFNetCredentialCache = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCredential(self: *const IMFNetCredentialCache, pszUrl: ?[*:0]const u16, pszRealm: ?[*:0]const u16, dwAuthenticationFlags: u32, ppCred: ?*?*IMFNetCredential, pdwRequirementsFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredentialCache.VTable, @ptrCast(self.vtable)).GetCredential(@as(*const IMFNetCredentialCache, @ptrCast(self)), pszUrl, pszRealm, dwAuthenticationFlags, ppCred, pdwRequirementsFlags);
+        return self.vtable.GetCredential(self, pszUrl, pszRealm, dwAuthenticationFlags, ppCred, pdwRequirementsFlags);
     }
     pub fn SetGood(self: *const IMFNetCredentialCache, pCred: ?*IMFNetCredential, fGood: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredentialCache.VTable, @ptrCast(self.vtable)).SetGood(@as(*const IMFNetCredentialCache, @ptrCast(self)), pCred, fGood);
+        return self.vtable.SetGood(self, pCred, fGood);
     }
     pub fn SetUserOptions(self: *const IMFNetCredentialCache, pCred: ?*IMFNetCredential, dwOptionsFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCredentialCache.VTable, @ptrCast(self.vtable)).SetUserOptions(@as(*const IMFNetCredentialCache, @ptrCast(self)), pCred, dwOptionsFlags);
+        return self.vtable.SetUserOptions(self, pCred, dwOptionsFlags);
     }
 };
 
@@ -21373,19 +21373,19 @@ pub const IMFSSLCertificateManager = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetClientCertificate(self: *const IMFSSLCertificateManager, pszURL: ?[*:0]const u16, ppbData: ?*?*u8, pcbData: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).GetClientCertificate(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pszURL, ppbData, pcbData);
+        return self.vtable.GetClientCertificate(self, pszURL, ppbData, pcbData);
     }
     pub fn BeginGetClientCertificate(self: *const IMFSSLCertificateManager, pszURL: ?[*:0]const u16, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).BeginGetClientCertificate(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pszURL, pCallback, pState);
+        return self.vtable.BeginGetClientCertificate(self, pszURL, pCallback, pState);
     }
     pub fn EndGetClientCertificate(self: *const IMFSSLCertificateManager, pResult: ?*IMFAsyncResult, ppbData: ?*?*u8, pcbData: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).EndGetClientCertificate(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pResult, ppbData, pcbData);
+        return self.vtable.EndGetClientCertificate(self, pResult, ppbData, pcbData);
     }
     pub fn GetCertificatePolicy(self: *const IMFSSLCertificateManager, pszURL: ?[*:0]const u16, pfOverrideAutomaticCheck: ?*BOOL, pfClientCertificateAvailable: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).GetCertificatePolicy(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pszURL, pfOverrideAutomaticCheck, pfClientCertificateAvailable);
+        return self.vtable.GetCertificatePolicy(self, pszURL, pfOverrideAutomaticCheck, pfClientCertificateAvailable);
     }
     pub fn OnServerCertificate(self: *const IMFSSLCertificateManager, pszURL: ?[*:0]const u16, pbData: ?*u8, cbData: u32, pfIsGood: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFSSLCertificateManager.VTable, @ptrCast(self.vtable)).OnServerCertificate(@as(*const IMFSSLCertificateManager, @ptrCast(self)), pszURL, pbData, cbData, pfIsGood);
+        return self.vtable.OnServerCertificate(self, pszURL, pbData, cbData, pfIsGood);
     }
 };
 
@@ -21420,10 +21420,10 @@ pub const IMFNetResourceFilter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnRedirect(self: *const IMFNetResourceFilter, pszUrl: ?[*:0]const u16, pvbCancel: ?*i16) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetResourceFilter.VTable, @ptrCast(self.vtable)).OnRedirect(@as(*const IMFNetResourceFilter, @ptrCast(self)), pszUrl, pvbCancel);
+        return self.vtable.OnRedirect(self, pszUrl, pvbCancel);
     }
     pub fn OnSendingRequest(self: *const IMFNetResourceFilter, pszUrl: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetResourceFilter.VTable, @ptrCast(self.vtable)).OnSendingRequest(@as(*const IMFNetResourceFilter, @ptrCast(self)), pszUrl);
+        return self.vtable.OnSendingRequest(self, pszUrl);
     }
 };
 
@@ -21449,7 +21449,7 @@ pub const IMFSourceOpenMonitor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSourceEvent(self: *const IMFSourceOpenMonitor, pEvent: ?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceOpenMonitor.VTable, @ptrCast(self.vtable)).OnSourceEvent(@as(*const IMFSourceOpenMonitor, @ptrCast(self)), pEvent);
+        return self.vtable.OnSourceEvent(self, pEvent);
     }
 };
 
@@ -21509,19 +21509,19 @@ pub const IMFNetProxyLocator = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn FindFirstProxy(self: *const IMFNetProxyLocator, pszHost: ?[*:0]const u16, pszUrl: ?[*:0]const u16, fReserved: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).FindFirstProxy(@as(*const IMFNetProxyLocator, @ptrCast(self)), pszHost, pszUrl, fReserved);
+        return self.vtable.FindFirstProxy(self, pszHost, pszUrl, fReserved);
     }
     pub fn FindNextProxy(self: *const IMFNetProxyLocator) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).FindNextProxy(@as(*const IMFNetProxyLocator, @ptrCast(self)));
+        return self.vtable.FindNextProxy(self);
     }
     pub fn RegisterProxyResult(self: *const IMFNetProxyLocator, hrOp: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).RegisterProxyResult(@as(*const IMFNetProxyLocator, @ptrCast(self)), hrOp);
+        return self.vtable.RegisterProxyResult(self, hrOp);
     }
     pub fn GetCurrentProxy(self: *const IMFNetProxyLocator, pszStr: ?[*:0]u16, pcchStr: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).GetCurrentProxy(@as(*const IMFNetProxyLocator, @ptrCast(self)), pszStr, pcchStr);
+        return self.vtable.GetCurrentProxy(self, pszStr, pcchStr);
     }
     pub fn Clone(self: *const IMFNetProxyLocator, ppProxyLocator: ?*?*IMFNetProxyLocator) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetProxyLocator.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFNetProxyLocator, @ptrCast(self)), ppProxyLocator);
+        return self.vtable.Clone(self, ppProxyLocator);
     }
 };
 
@@ -21548,7 +21548,7 @@ pub const IMFNetProxyLocatorFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateProxyLocator(self: *const IMFNetProxyLocatorFactory, pszProtocol: ?[*:0]const u16, ppProxyLocator: ?*?*IMFNetProxyLocator) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetProxyLocatorFactory.VTable, @ptrCast(self.vtable)).CreateProxyLocator(@as(*const IMFNetProxyLocatorFactory, @ptrCast(self)), pszProtocol, ppProxyLocator);
+        return self.vtable.CreateProxyLocator(self, pszProtocol, ppProxyLocator);
     }
 };
 
@@ -21599,16 +21599,16 @@ pub const IMFSaveJob = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginSave(self: *const IMFSaveJob, pStream: ?*IMFByteStream, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSaveJob.VTable, @ptrCast(self.vtable)).BeginSave(@as(*const IMFSaveJob, @ptrCast(self)), pStream, pCallback, pState);
+        return self.vtable.BeginSave(self, pStream, pCallback, pState);
     }
     pub fn EndSave(self: *const IMFSaveJob, pResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFSaveJob.VTable, @ptrCast(self.vtable)).EndSave(@as(*const IMFSaveJob, @ptrCast(self)), pResult);
+        return self.vtable.EndSave(self, pResult);
     }
     pub fn CancelSave(self: *const IMFSaveJob) callconv(.Inline) HRESULT {
-        return @as(*const IMFSaveJob.VTable, @ptrCast(self.vtable)).CancelSave(@as(*const IMFSaveJob, @ptrCast(self)));
+        return self.vtable.CancelSave(self);
     }
     pub fn GetProgress(self: *const IMFSaveJob, pdwPercentComplete: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSaveJob.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IMFSaveJob, @ptrCast(self)), pdwPercentComplete);
+        return self.vtable.GetProgress(self, pdwPercentComplete);
     }
 };
 
@@ -21663,13 +21663,13 @@ pub const IMFNetSchemeHandlerConfig = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNumberOfSupportedProtocols(self: *const IMFNetSchemeHandlerConfig, pcProtocols: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetSchemeHandlerConfig.VTable, @ptrCast(self.vtable)).GetNumberOfSupportedProtocols(@as(*const IMFNetSchemeHandlerConfig, @ptrCast(self)), pcProtocols);
+        return self.vtable.GetNumberOfSupportedProtocols(self, pcProtocols);
     }
     pub fn GetSupportedProtocolType(self: *const IMFNetSchemeHandlerConfig, nProtocolIndex: u32, pnProtocolType: ?*MFNETSOURCE_PROTOCOL_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetSchemeHandlerConfig.VTable, @ptrCast(self.vtable)).GetSupportedProtocolType(@as(*const IMFNetSchemeHandlerConfig, @ptrCast(self)), nProtocolIndex, pnProtocolType);
+        return self.vtable.GetSupportedProtocolType(self, nProtocolIndex, pnProtocolType);
     }
     pub fn ResetProtocolRolloverSettings(self: *const IMFNetSchemeHandlerConfig) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetSchemeHandlerConfig.VTable, @ptrCast(self.vtable)).ResetProtocolRolloverSettings(@as(*const IMFNetSchemeHandlerConfig, @ptrCast(self)));
+        return self.vtable.ResetProtocolRolloverSettings(self);
     }
 };
 
@@ -21808,13 +21808,13 @@ pub const IMFSchemeHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginCreateObject(self: *const IMFSchemeHandler, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSchemeHandler.VTable, @ptrCast(self.vtable)).BeginCreateObject(@as(*const IMFSchemeHandler, @ptrCast(self)), pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
+        return self.vtable.BeginCreateObject(self, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
     }
     pub fn EndCreateObject(self: *const IMFSchemeHandler, pResult: ?*IMFAsyncResult, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSchemeHandler.VTable, @ptrCast(self.vtable)).EndCreateObject(@as(*const IMFSchemeHandler, @ptrCast(self)), pResult, pObjectType, ppObject);
+        return self.vtable.EndCreateObject(self, pResult, pObjectType, ppObject);
     }
     pub fn CancelObjectCreation(self: *const IMFSchemeHandler, pIUnknownCancelCookie: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSchemeHandler.VTable, @ptrCast(self.vtable)).CancelObjectCreation(@as(*const IMFSchemeHandler, @ptrCast(self)), pIUnknownCancelCookie);
+        return self.vtable.CancelObjectCreation(self, pIUnknownCancelCookie);
     }
 };
 
@@ -21872,16 +21872,16 @@ pub const IMFByteStreamHandler = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn BeginCreateObject(self: *const IMFByteStreamHandler, pByteStream: ?*IMFByteStream, pwszURL: ?[*:0]const u16, dwFlags: u32, pProps: ?*IPropertyStore, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamHandler.VTable, @ptrCast(self.vtable)).BeginCreateObject(@as(*const IMFByteStreamHandler, @ptrCast(self)), pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
+        return self.vtable.BeginCreateObject(self, pByteStream, pwszURL, dwFlags, pProps, ppIUnknownCancelCookie, pCallback, punkState);
     }
     pub fn EndCreateObject(self: *const IMFByteStreamHandler, pResult: ?*IMFAsyncResult, pObjectType: ?*MF_OBJECT_TYPE, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamHandler.VTable, @ptrCast(self.vtable)).EndCreateObject(@as(*const IMFByteStreamHandler, @ptrCast(self)), pResult, pObjectType, ppObject);
+        return self.vtable.EndCreateObject(self, pResult, pObjectType, ppObject);
     }
     pub fn CancelObjectCreation(self: *const IMFByteStreamHandler, pIUnknownCancelCookie: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamHandler.VTable, @ptrCast(self.vtable)).CancelObjectCreation(@as(*const IMFByteStreamHandler, @ptrCast(self)), pIUnknownCancelCookie);
+        return self.vtable.CancelObjectCreation(self, pIUnknownCancelCookie);
     }
     pub fn GetMaxNumberOfBytesRequiredForResolution(self: *const IMFByteStreamHandler, pqwBytes: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFByteStreamHandler.VTable, @ptrCast(self.vtable)).GetMaxNumberOfBytesRequiredForResolution(@as(*const IMFByteStreamHandler, @ptrCast(self)), pqwBytes);
+        return self.vtable.GetMaxNumberOfBytesRequiredForResolution(self, pqwBytes);
     }
 };
 
@@ -21909,7 +21909,7 @@ pub const IMFTrustedInput = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInputTrustAuthority(self: *const IMFTrustedInput, dwStreamID: u32, riid: ?*const Guid, ppunkObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFTrustedInput.VTable, @ptrCast(self.vtable)).GetInputTrustAuthority(@as(*const IMFTrustedInput, @ptrCast(self)), dwStreamID, riid, ppunkObject);
+        return self.vtable.GetInputTrustAuthority(self, dwStreamID, riid, ppunkObject);
     }
 };
 
@@ -22015,22 +22015,22 @@ pub const IMFInputTrustAuthority = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDecrypter(self: *const IMFInputTrustAuthority, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).GetDecrypter(@as(*const IMFInputTrustAuthority, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetDecrypter(self, riid, ppv);
     }
     pub fn RequestAccess(self: *const IMFInputTrustAuthority, Action: MFPOLICYMANAGER_ACTION, ppContentEnablerActivate: ?*?*IMFActivate) callconv(.Inline) HRESULT {
-        return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).RequestAccess(@as(*const IMFInputTrustAuthority, @ptrCast(self)), Action, ppContentEnablerActivate);
+        return self.vtable.RequestAccess(self, Action, ppContentEnablerActivate);
     }
     pub fn GetPolicy(self: *const IMFInputTrustAuthority, Action: MFPOLICYMANAGER_ACTION, ppPolicy: ?*?*IMFOutputPolicy) callconv(.Inline) HRESULT {
-        return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).GetPolicy(@as(*const IMFInputTrustAuthority, @ptrCast(self)), Action, ppPolicy);
+        return self.vtable.GetPolicy(self, Action, ppPolicy);
     }
     pub fn BindAccess(self: *const IMFInputTrustAuthority, pParam: ?*MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS) callconv(.Inline) HRESULT {
-        return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).BindAccess(@as(*const IMFInputTrustAuthority, @ptrCast(self)), pParam);
+        return self.vtable.BindAccess(self, pParam);
     }
     pub fn UpdateAccess(self: *const IMFInputTrustAuthority, pParam: ?*MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS) callconv(.Inline) HRESULT {
-        return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).UpdateAccess(@as(*const IMFInputTrustAuthority, @ptrCast(self)), pParam);
+        return self.vtable.UpdateAccess(self, pParam);
     }
     pub fn Reset(self: *const IMFInputTrustAuthority) callconv(.Inline) HRESULT {
-        return @as(*const IMFInputTrustAuthority.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMFInputTrustAuthority, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
 };
 
@@ -22073,13 +22073,13 @@ pub const IMFTrustedOutput = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOutputTrustAuthorityCount(self: *const IMFTrustedOutput, pcOutputTrustAuthorities: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTrustedOutput.VTable, @ptrCast(self.vtable)).GetOutputTrustAuthorityCount(@as(*const IMFTrustedOutput, @ptrCast(self)), pcOutputTrustAuthorities);
+        return self.vtable.GetOutputTrustAuthorityCount(self, pcOutputTrustAuthorities);
     }
     pub fn GetOutputTrustAuthorityByIndex(self: *const IMFTrustedOutput, dwIndex: u32, ppauthority: ?*?*IMFOutputTrustAuthority) callconv(.Inline) HRESULT {
-        return @as(*const IMFTrustedOutput.VTable, @ptrCast(self.vtable)).GetOutputTrustAuthorityByIndex(@as(*const IMFTrustedOutput, @ptrCast(self)), dwIndex, ppauthority);
+        return self.vtable.GetOutputTrustAuthorityByIndex(self, dwIndex, ppauthority);
     }
     pub fn IsFinal(self: *const IMFTrustedOutput, pfIsFinal: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFTrustedOutput.VTable, @ptrCast(self.vtable)).IsFinal(@as(*const IMFTrustedOutput, @ptrCast(self)), pfIsFinal);
+        return self.vtable.IsFinal(self, pfIsFinal);
     }
 };
 
@@ -22116,10 +22116,10 @@ pub const IMFOutputTrustAuthority = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAction(self: *const IMFOutputTrustAuthority, pAction: ?*MFPOLICYMANAGER_ACTION) callconv(.Inline) HRESULT {
-        return @as(*const IMFOutputTrustAuthority.VTable, @ptrCast(self.vtable)).GetAction(@as(*const IMFOutputTrustAuthority, @ptrCast(self)), pAction);
+        return self.vtable.GetAction(self, pAction);
     }
     pub fn SetPolicy(self: *const IMFOutputTrustAuthority, ppPolicy: ?[*]?*IMFOutputPolicy, nPolicy: u32, ppbTicket: ?*?*u8, pcbTicket: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFOutputTrustAuthority.VTable, @ptrCast(self.vtable)).SetPolicy(@as(*const IMFOutputTrustAuthority, @ptrCast(self)), ppPolicy, nPolicy, ppbTicket, pcbTicket);
+        return self.vtable.SetPolicy(self, ppPolicy, nPolicy, ppbTicket, pcbTicket);
     }
 };
 
@@ -22165,13 +22165,13 @@ pub const IMFOutputPolicy = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GenerateRequiredSchemas(self: *const IMFOutputPolicy, dwAttributes: u32, guidOutputSubType: Guid, rgGuidProtectionSchemasSupported: ?*Guid, cProtectionSchemasSupported: u32, ppRequiredProtectionSchemas: ?*?*IMFCollection) callconv(.Inline) HRESULT {
-        return @as(*const IMFOutputPolicy.VTable, @ptrCast(self.vtable)).GenerateRequiredSchemas(@as(*const IMFOutputPolicy, @ptrCast(self)), dwAttributes, guidOutputSubType, rgGuidProtectionSchemasSupported, cProtectionSchemasSupported, ppRequiredProtectionSchemas);
+        return self.vtable.GenerateRequiredSchemas(self, dwAttributes, guidOutputSubType, rgGuidProtectionSchemasSupported, cProtectionSchemasSupported, ppRequiredProtectionSchemas);
     }
     pub fn GetOriginatorID(self: *const IMFOutputPolicy, pguidOriginatorID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFOutputPolicy.VTable, @ptrCast(self.vtable)).GetOriginatorID(@as(*const IMFOutputPolicy, @ptrCast(self)), pguidOriginatorID);
+        return self.vtable.GetOriginatorID(self, pguidOriginatorID);
     }
     pub fn GetMinimumGRLVersion(self: *const IMFOutputPolicy, pdwMinimumGRLVersion: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFOutputPolicy.VTable, @ptrCast(self.vtable)).GetMinimumGRLVersion(@as(*const IMFOutputPolicy, @ptrCast(self)), pdwMinimumGRLVersion);
+        return self.vtable.GetMinimumGRLVersion(self, pdwMinimumGRLVersion);
     }
 };
 
@@ -22213,13 +22213,13 @@ pub const IMFOutputSchema = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetSchemaType(self: *const IMFOutputSchema, pguidSchemaType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFOutputSchema.VTable, @ptrCast(self.vtable)).GetSchemaType(@as(*const IMFOutputSchema, @ptrCast(self)), pguidSchemaType);
+        return self.vtable.GetSchemaType(self, pguidSchemaType);
     }
     pub fn GetConfigurationData(self: *const IMFOutputSchema, pdwVal: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFOutputSchema.VTable, @ptrCast(self.vtable)).GetConfigurationData(@as(*const IMFOutputSchema, @ptrCast(self)), pdwVal);
+        return self.vtable.GetConfigurationData(self, pdwVal);
     }
     pub fn GetOriginatorID(self: *const IMFOutputSchema, pguidOriginatorID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFOutputSchema.VTable, @ptrCast(self.vtable)).GetOriginatorID(@as(*const IMFOutputSchema, @ptrCast(self)), pguidOriginatorID);
+        return self.vtable.GetOriginatorID(self, pguidOriginatorID);
     }
 };
 
@@ -22297,10 +22297,10 @@ pub const IMFSecureChannel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCertificate(self: *const IMFSecureChannel, ppCert: ?*?*u8, pcbCert: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSecureChannel.VTable, @ptrCast(self.vtable)).GetCertificate(@as(*const IMFSecureChannel, @ptrCast(self)), ppCert, pcbCert);
+        return self.vtable.GetCertificate(self, ppCert, pcbCert);
     }
     pub fn SetupSession(self: *const IMFSecureChannel, pbEncryptedSessionKey: ?*u8, cbSessionKey: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSecureChannel.VTable, @ptrCast(self.vtable)).SetupSession(@as(*const IMFSecureChannel, @ptrCast(self)), pbEncryptedSessionKey, cbSessionKey);
+        return self.vtable.SetupSession(self, pbEncryptedSessionKey, cbSessionKey);
     }
 };
 
@@ -22381,19 +22381,19 @@ pub const IMFSampleProtection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetInputProtectionVersion(self: *const IMFSampleProtection, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).GetInputProtectionVersion(@as(*const IMFSampleProtection, @ptrCast(self)), pdwVersion);
+        return self.vtable.GetInputProtectionVersion(self, pdwVersion);
     }
     pub fn GetOutputProtectionVersion(self: *const IMFSampleProtection, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).GetOutputProtectionVersion(@as(*const IMFSampleProtection, @ptrCast(self)), pdwVersion);
+        return self.vtable.GetOutputProtectionVersion(self, pdwVersion);
     }
     pub fn GetProtectionCertificate(self: *const IMFSampleProtection, dwVersion: u32, ppCert: ?*?*u8, pcbCert: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).GetProtectionCertificate(@as(*const IMFSampleProtection, @ptrCast(self)), dwVersion, ppCert, pcbCert);
+        return self.vtable.GetProtectionCertificate(self, dwVersion, ppCert, pcbCert);
     }
     pub fn InitOutputProtection(self: *const IMFSampleProtection, dwVersion: u32, dwOutputId: u32, pbCert: ?*u8, cbCert: u32, ppbSeed: ?*?*u8, pcbSeed: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).InitOutputProtection(@as(*const IMFSampleProtection, @ptrCast(self)), dwVersion, dwOutputId, pbCert, cbCert, ppbSeed, pcbSeed);
+        return self.vtable.InitOutputProtection(self, dwVersion, dwOutputId, pbCert, cbCert, ppbSeed, pcbSeed);
     }
     pub fn InitInputProtection(self: *const IMFSampleProtection, dwVersion: u32, dwInputId: u32, pbSeed: ?*u8, cbSeed: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleProtection.VTable, @ptrCast(self.vtable)).InitInputProtection(@as(*const IMFSampleProtection, @ptrCast(self)), dwVersion, dwInputId, pbSeed, cbSeed);
+        return self.vtable.InitInputProtection(self, dwVersion, dwInputId, pbSeed, cbSeed);
     }
 };
 
@@ -22419,7 +22419,7 @@ pub const IMFMediaSinkPreroll = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NotifyPreroll(self: *const IMFMediaSinkPreroll, hnsUpcomingStartTime: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSinkPreroll.VTable, @ptrCast(self.vtable)).NotifyPreroll(@as(*const IMFMediaSinkPreroll, @ptrCast(self)), hnsUpcomingStartTime);
+        return self.vtable.NotifyPreroll(self, hnsUpcomingStartTime);
     }
 };
 
@@ -22454,10 +22454,10 @@ pub const IMFFinalizableMediaSink = extern union {
     };}
     pub usingnamespace IMFMediaSink.MethodMixin(@This());
     pub fn BeginFinalize(self: *const IMFFinalizableMediaSink, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFFinalizableMediaSink.VTable, @ptrCast(self.vtable)).BeginFinalize(@as(*const IMFFinalizableMediaSink, @ptrCast(self)), pCallback, punkState);
+        return self.vtable.BeginFinalize(self, pCallback, punkState);
     }
     pub fn EndFinalize(self: *const IMFFinalizableMediaSink, pResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFFinalizableMediaSink.VTable, @ptrCast(self.vtable)).EndFinalize(@as(*const IMFFinalizableMediaSink, @ptrCast(self)), pResult);
+        return self.vtable.EndFinalize(self, pResult);
     }
 };
 
@@ -22484,7 +22484,7 @@ pub const IMFStreamingSinkConfig = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn StartStreaming(self: *const IMFStreamingSinkConfig, fSeekOffsetIsByteOffset: BOOL, qwSeekOffset: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFStreamingSinkConfig.VTable, @ptrCast(self.vtable)).StartStreaming(@as(*const IMFStreamingSinkConfig, @ptrCast(self)), fSeekOffsetIsByteOffset, qwSeekOffset);
+        return self.vtable.StartStreaming(self, fSeekOffsetIsByteOffset, qwSeekOffset);
     }
 };
 
@@ -22520,10 +22520,10 @@ pub const IMFRemoteProxy = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRemoteObject(self: *const IMFRemoteProxy, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFRemoteProxy.VTable, @ptrCast(self.vtable)).GetRemoteObject(@as(*const IMFRemoteProxy, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetRemoteObject(self, riid, ppv);
     }
     pub fn GetRemoteHost(self: *const IMFRemoteProxy, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFRemoteProxy.VTable, @ptrCast(self.vtable)).GetRemoteHost(@as(*const IMFRemoteProxy, @ptrCast(self)), riid, ppv);
+        return self.vtable.GetRemoteHost(self, riid, ppv);
     }
 };
 
@@ -22559,10 +22559,10 @@ pub const IMFObjectReferenceStream = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SaveReference(self: *const IMFObjectReferenceStream, riid: ?*const Guid, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFObjectReferenceStream.VTable, @ptrCast(self.vtable)).SaveReference(@as(*const IMFObjectReferenceStream, @ptrCast(self)), riid, pUnk);
+        return self.vtable.SaveReference(self, riid, pUnk);
     }
     pub fn LoadReference(self: *const IMFObjectReferenceStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFObjectReferenceStream.VTable, @ptrCast(self.vtable)).LoadReference(@as(*const IMFObjectReferenceStream, @ptrCast(self)), riid, ppv);
+        return self.vtable.LoadReference(self, riid, ppv);
     }
 };
 
@@ -22605,13 +22605,13 @@ pub const IMFPMPHost = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LockProcess(self: *const IMFPMPHost) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPHost.VTable, @ptrCast(self.vtable)).LockProcess(@as(*const IMFPMPHost, @ptrCast(self)));
+        return self.vtable.LockProcess(self);
     }
     pub fn UnlockProcess(self: *const IMFPMPHost) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPHost.VTable, @ptrCast(self.vtable)).UnlockProcess(@as(*const IMFPMPHost, @ptrCast(self)));
+        return self.vtable.UnlockProcess(self);
     }
     pub fn CreateObjectByCLSID(self: *const IMFPMPHost, clsid: ?*const Guid, pStream: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPHost.VTable, @ptrCast(self.vtable)).CreateObjectByCLSID(@as(*const IMFPMPHost, @ptrCast(self)), clsid, pStream, riid, ppv);
+        return self.vtable.CreateObjectByCLSID(self, clsid, pStream, riid, ppv);
     }
 };
 
@@ -22637,7 +22637,7 @@ pub const IMFPMPClient = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPMPHost(self: *const IMFPMPClient, pPMPHost: ?*IMFPMPHost) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPClient.VTable, @ptrCast(self.vtable)).SetPMPHost(@as(*const IMFPMPClient, @ptrCast(self)), pPMPHost);
+        return self.vtable.SetPMPHost(self, pPMPHost);
     }
 };
 
@@ -22679,13 +22679,13 @@ pub const IMFPMPServer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LockProcess(self: *const IMFPMPServer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPServer.VTable, @ptrCast(self.vtable)).LockProcess(@as(*const IMFPMPServer, @ptrCast(self)));
+        return self.vtable.LockProcess(self);
     }
     pub fn UnlockProcess(self: *const IMFPMPServer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPServer.VTable, @ptrCast(self.vtable)).UnlockProcess(@as(*const IMFPMPServer, @ptrCast(self)));
+        return self.vtable.UnlockProcess(self);
     }
     pub fn CreateObjectByCLSID(self: *const IMFPMPServer, clsid: ?*const Guid, riid: ?*const Guid, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPServer.VTable, @ptrCast(self.vtable)).CreateObjectByCLSID(@as(*const IMFPMPServer, @ptrCast(self)), clsid, riid, ppObject);
+        return self.vtable.CreateObjectByCLSID(self, clsid, riid, ppObject);
     }
 };
 
@@ -22711,7 +22711,7 @@ pub const IMFRemoteDesktopPlugin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn UpdateTopology(self: *const IMFRemoteDesktopPlugin, pTopology: ?*IMFTopology) callconv(.Inline) HRESULT {
-        return @as(*const IMFRemoteDesktopPlugin.VTable, @ptrCast(self.vtable)).UpdateTopology(@as(*const IMFRemoteDesktopPlugin, @ptrCast(self)), pTopology);
+        return self.vtable.UpdateTopology(self, pTopology);
     }
 };
 
@@ -22761,16 +22761,16 @@ pub const IMFSAMIStyle = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStyleCount(self: *const IMFSAMIStyle, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSAMIStyle.VTable, @ptrCast(self.vtable)).GetStyleCount(@as(*const IMFSAMIStyle, @ptrCast(self)), pdwCount);
+        return self.vtable.GetStyleCount(self, pdwCount);
     }
     pub fn GetStyles(self: *const IMFSAMIStyle, pPropVarStyleArray: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFSAMIStyle.VTable, @ptrCast(self.vtable)).GetStyles(@as(*const IMFSAMIStyle, @ptrCast(self)), pPropVarStyleArray);
+        return self.vtable.GetStyles(self, pPropVarStyleArray);
     }
     pub fn SetSelectedStyle(self: *const IMFSAMIStyle, pwszStyle: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFSAMIStyle.VTable, @ptrCast(self.vtable)).SetSelectedStyle(@as(*const IMFSAMIStyle, @ptrCast(self)), pwszStyle);
+        return self.vtable.SetSelectedStyle(self, pwszStyle);
     }
     pub fn GetSelectedStyle(self: *const IMFSAMIStyle, ppwszStyle: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFSAMIStyle.VTable, @ptrCast(self.vtable)).GetSelectedStyle(@as(*const IMFSAMIStyle, @ptrCast(self)), ppwszStyle);
+        return self.vtable.GetSelectedStyle(self, ppwszStyle);
     }
 };
 
@@ -22836,22 +22836,22 @@ pub const IMFTranscodeProfile = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAudioAttributes(self: *const IMFTranscodeProfile, pAttrs: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).SetAudioAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), pAttrs);
+        return self.vtable.SetAudioAttributes(self, pAttrs);
     }
     pub fn GetAudioAttributes(self: *const IMFTranscodeProfile, ppAttrs: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).GetAudioAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), ppAttrs);
+        return self.vtable.GetAudioAttributes(self, ppAttrs);
     }
     pub fn SetVideoAttributes(self: *const IMFTranscodeProfile, pAttrs: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).SetVideoAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), pAttrs);
+        return self.vtable.SetVideoAttributes(self, pAttrs);
     }
     pub fn GetVideoAttributes(self: *const IMFTranscodeProfile, ppAttrs: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).GetVideoAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), ppAttrs);
+        return self.vtable.GetVideoAttributes(self, ppAttrs);
     }
     pub fn SetContainerAttributes(self: *const IMFTranscodeProfile, pAttrs: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).SetContainerAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), pAttrs);
+        return self.vtable.SetContainerAttributes(self, pAttrs);
     }
     pub fn GetContainerAttributes(self: *const IMFTranscodeProfile, ppAttrs: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeProfile.VTable, @ptrCast(self.vtable)).GetContainerAttributes(@as(*const IMFTranscodeProfile, @ptrCast(self)), ppAttrs);
+        return self.vtable.GetContainerAttributes(self, ppAttrs);
     }
 };
 
@@ -22929,16 +22929,16 @@ pub const IMFTranscodeSinkInfoProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetOutputFile(self: *const IMFTranscodeSinkInfoProvider, pwszFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeSinkInfoProvider.VTable, @ptrCast(self.vtable)).SetOutputFile(@as(*const IMFTranscodeSinkInfoProvider, @ptrCast(self)), pwszFileName);
+        return self.vtable.SetOutputFile(self, pwszFileName);
     }
     pub fn SetOutputByteStream(self: *const IMFTranscodeSinkInfoProvider, pByteStreamActivate: ?*IMFActivate) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeSinkInfoProvider.VTable, @ptrCast(self.vtable)).SetOutputByteStream(@as(*const IMFTranscodeSinkInfoProvider, @ptrCast(self)), pByteStreamActivate);
+        return self.vtable.SetOutputByteStream(self, pByteStreamActivate);
     }
     pub fn SetProfile(self: *const IMFTranscodeSinkInfoProvider, pProfile: ?*IMFTranscodeProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeSinkInfoProvider.VTable, @ptrCast(self.vtable)).SetProfile(@as(*const IMFTranscodeSinkInfoProvider, @ptrCast(self)), pProfile);
+        return self.vtable.SetProfile(self, pProfile);
     }
     pub fn GetSinkInfo(self: *const IMFTranscodeSinkInfoProvider, pSinkInfo: ?*MF_TRANSCODE_SINK_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IMFTranscodeSinkInfoProvider.VTable, @ptrCast(self.vtable)).GetSinkInfo(@as(*const IMFTranscodeSinkInfoProvider, @ptrCast(self)), pSinkInfo);
+        return self.vtable.GetSinkInfo(self, pSinkInfo);
     }
 };
 
@@ -22964,7 +22964,7 @@ pub const IMFFieldOfUseMFTUnlock = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Unlock(self: *const IMFFieldOfUseMFTUnlock, pUnkMFT: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFFieldOfUseMFTUnlock.VTable, @ptrCast(self.vtable)).Unlock(@as(*const IMFFieldOfUseMFTUnlock, @ptrCast(self)), pUnkMFT);
+        return self.vtable.Unlock(self, pUnkMFT);
     }
 };
 
@@ -23002,7 +23002,7 @@ pub const IMFLocalMFTRegistration = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterMFTs(self: *const IMFLocalMFTRegistration, pMFTs: [*]MFT_REGISTRATION_INFO, cMFTs: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFLocalMFTRegistration.VTable, @ptrCast(self.vtable)).RegisterMFTs(@as(*const IMFLocalMFTRegistration, @ptrCast(self)), pMFTs, cMFTs);
+        return self.vtable.RegisterMFTs(self, pMFTs, cMFTs);
     }
 };
 
@@ -23043,13 +23043,13 @@ pub const IMFCapturePhotoConfirmation = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPhotoConfirmationCallback(self: *const IMFCapturePhotoConfirmation, pNotificationCallback: ?*IMFAsyncCallback) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePhotoConfirmation.VTable, @ptrCast(self.vtable)).SetPhotoConfirmationCallback(@as(*const IMFCapturePhotoConfirmation, @ptrCast(self)), pNotificationCallback);
+        return self.vtable.SetPhotoConfirmationCallback(self, pNotificationCallback);
     }
     pub fn SetPixelFormat(self: *const IMFCapturePhotoConfirmation, subtype: Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePhotoConfirmation.VTable, @ptrCast(self.vtable)).SetPixelFormat(@as(*const IMFCapturePhotoConfirmation, @ptrCast(self)), subtype);
+        return self.vtable.SetPixelFormat(self, subtype);
     }
     pub fn GetPixelFormat(self: *const IMFCapturePhotoConfirmation, subtype: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePhotoConfirmation.VTable, @ptrCast(self.vtable)).GetPixelFormat(@as(*const IMFCapturePhotoConfirmation, @ptrCast(self)), subtype);
+        return self.vtable.GetPixelFormat(self, subtype);
     }
 };
 
@@ -23092,13 +23092,13 @@ pub const IMFPMPHostApp = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LockProcess(self: *const IMFPMPHostApp) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPHostApp.VTable, @ptrCast(self.vtable)).LockProcess(@as(*const IMFPMPHostApp, @ptrCast(self)));
+        return self.vtable.LockProcess(self);
     }
     pub fn UnlockProcess(self: *const IMFPMPHostApp) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPHostApp.VTable, @ptrCast(self.vtable)).UnlockProcess(@as(*const IMFPMPHostApp, @ptrCast(self)));
+        return self.vtable.UnlockProcess(self);
     }
     pub fn ActivateClassById(self: *const IMFPMPHostApp, id: ?[*:0]const u16, pStream: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPHostApp.VTable, @ptrCast(self.vtable)).ActivateClassById(@as(*const IMFPMPHostApp, @ptrCast(self)), id, pStream, riid, ppv);
+        return self.vtable.ActivateClassById(self, id, pStream, riid, ppv);
     }
 };
 
@@ -23124,7 +23124,7 @@ pub const IMFPMPClientApp = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetPMPHost(self: *const IMFPMPClientApp, pPMPHost: ?*IMFPMPHostApp) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMPClientApp.VTable, @ptrCast(self.vtable)).SetPMPHost(@as(*const IMFPMPClientApp, @ptrCast(self)), pPMPHost);
+        return self.vtable.SetPMPHost(self, pPMPHost);
     }
 };
 
@@ -23150,7 +23150,7 @@ pub const IMFMediaStreamSourceSampleRequest = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSample(self: *const IMFMediaStreamSourceSampleRequest, value: ?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaStreamSourceSampleRequest.VTable, @ptrCast(self.vtable)).SetSample(@as(*const IMFMediaStreamSourceSampleRequest, @ptrCast(self)), value);
+        return self.vtable.SetSample(self, value);
     }
 };
 
@@ -23177,7 +23177,7 @@ pub const IMFTrackedSample = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAllocator(self: *const IMFTrackedSample, pSampleAllocator: ?*IMFAsyncCallback, pUnkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFTrackedSample.VTable, @ptrCast(self.vtable)).SetAllocator(@as(*const IMFTrackedSample, @ptrCast(self)), pSampleAllocator, pUnkState);
+        return self.vtable.SetAllocator(self, pSampleAllocator, pUnkState);
     }
 };
 
@@ -23217,10 +23217,10 @@ pub const IMFProtectedEnvironmentAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Call(self: *const IMFProtectedEnvironmentAccess, inputLength: u32, input: ?*const u8, outputLength: u32, output: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IMFProtectedEnvironmentAccess.VTable, @ptrCast(self.vtable)).Call(@as(*const IMFProtectedEnvironmentAccess, @ptrCast(self)), inputLength, input, outputLength, output);
+        return self.vtable.Call(self, inputLength, input, outputLength, output);
     }
     pub fn ReadGRL(self: *const IMFProtectedEnvironmentAccess, outputLength: ?*u32, output: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IMFProtectedEnvironmentAccess.VTable, @ptrCast(self.vtable)).ReadGRL(@as(*const IMFProtectedEnvironmentAccess, @ptrCast(self)), outputLength, output);
+        return self.vtable.ReadGRL(self, outputLength, output);
     }
 };
 
@@ -23247,7 +23247,7 @@ pub const IMFSignedLibrary = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProcedureAddress(self: *const IMFSignedLibrary, name: ?[*:0]const u8, address: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFSignedLibrary.VTable, @ptrCast(self.vtable)).GetProcedureAddress(@as(*const IMFSignedLibrary, @ptrCast(self)), name, address);
+        return self.vtable.GetProcedureAddress(self, name, address);
     }
 };
 
@@ -23287,10 +23287,10 @@ pub const IMFSystemId = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetData(self: *const IMFSystemId, size: ?*u32, data: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IMFSystemId.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMFSystemId, @ptrCast(self)), size, data);
+        return self.vtable.GetData(self, size, data);
     }
     pub fn Setup(self: *const IMFSystemId, stage: u32, cbIn: u32, pbIn: ?*const u8, pcbOut: ?*u32, ppbOut: ?*?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IMFSystemId.VTable, @ptrCast(self.vtable)).Setup(@as(*const IMFSystemId, @ptrCast(self)), stage, cbIn, pbIn, pcbOut, ppbOut);
+        return self.vtable.Setup(self, stage, cbIn, pbIn, pcbOut, ppbOut);
     }
 };
 
@@ -23355,10 +23355,10 @@ pub const IMFContentProtectionDevice = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InvokeFunction(self: *const IMFContentProtectionDevice, FunctionId: u32, InputBufferByteCount: u32, InputBuffer: ?*const u8, OutputBufferByteCount: ?*u32, OutputBuffer: ?*u8) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentProtectionDevice.VTable, @ptrCast(self.vtable)).InvokeFunction(@as(*const IMFContentProtectionDevice, @ptrCast(self)), FunctionId, InputBufferByteCount, InputBuffer, OutputBufferByteCount, OutputBuffer);
+        return self.vtable.InvokeFunction(self, FunctionId, InputBufferByteCount, InputBuffer, OutputBufferByteCount, OutputBuffer);
     }
     pub fn GetPrivateDataByteCount(self: *const IMFContentProtectionDevice, PrivateInputByteCount: ?*u32, PrivateOutputByteCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentProtectionDevice.VTable, @ptrCast(self.vtable)).GetPrivateDataByteCount(@as(*const IMFContentProtectionDevice, @ptrCast(self)), PrivateInputByteCount, PrivateOutputByteCount);
+        return self.vtable.GetPrivateDataByteCount(self, PrivateInputByteCount, PrivateOutputByteCount);
     }
 };
 
@@ -23386,7 +23386,7 @@ pub const IMFContentDecryptorContext = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeHardwareKey(self: *const IMFContentDecryptorContext, InputPrivateDataByteCount: u32, InputPrivateData: ?[*]const u8, OutputPrivateData: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptorContext.VTable, @ptrCast(self.vtable)).InitializeHardwareKey(@as(*const IMFContentDecryptorContext, @ptrCast(self)), InputPrivateDataByteCount, InputPrivateData, OutputPrivateData);
+        return self.vtable.InitializeHardwareKey(self, InputPrivateDataByteCount, InputPrivateData, OutputPrivateData);
     }
 };
 
@@ -23485,13 +23485,13 @@ pub const IMFNetCrossOriginSupport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCrossOriginPolicy(self: *const IMFNetCrossOriginSupport, pPolicy: ?*MF_CROSS_ORIGIN_POLICY) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCrossOriginSupport.VTable, @ptrCast(self.vtable)).GetCrossOriginPolicy(@as(*const IMFNetCrossOriginSupport, @ptrCast(self)), pPolicy);
+        return self.vtable.GetCrossOriginPolicy(self, pPolicy);
     }
     pub fn GetSourceOrigin(self: *const IMFNetCrossOriginSupport, wszSourceOrigin: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCrossOriginSupport.VTable, @ptrCast(self.vtable)).GetSourceOrigin(@as(*const IMFNetCrossOriginSupport, @ptrCast(self)), wszSourceOrigin);
+        return self.vtable.GetSourceOrigin(self, wszSourceOrigin);
     }
     pub fn IsSameOrigin(self: *const IMFNetCrossOriginSupport, wszURL: ?[*:0]const u16, pfIsSameOrigin: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFNetCrossOriginSupport.VTable, @ptrCast(self.vtable)).IsSameOrigin(@as(*const IMFNetCrossOriginSupport, @ptrCast(self)), wszURL, pfIsSameOrigin);
+        return self.vtable.IsSameOrigin(self, wszURL, pfIsSameOrigin);
     }
 };
 
@@ -23649,52 +23649,52 @@ pub const IMFHttpDownloadRequest = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddHeader(self: *const IMFHttpDownloadRequest, szHeader: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).AddHeader(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), szHeader);
+        return self.vtable.AddHeader(self, szHeader);
     }
     pub fn BeginSendRequest(self: *const IMFHttpDownloadRequest, pbPayload: ?[*:0]const u8, cbPayload: u32, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).BeginSendRequest(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pbPayload, cbPayload, pCallback, punkState);
+        return self.vtable.BeginSendRequest(self, pbPayload, cbPayload, pCallback, punkState);
     }
     pub fn EndSendRequest(self: *const IMFHttpDownloadRequest, pResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).EndSendRequest(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pResult);
+        return self.vtable.EndSendRequest(self, pResult);
     }
     pub fn BeginReceiveResponse(self: *const IMFHttpDownloadRequest, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).BeginReceiveResponse(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pCallback, punkState);
+        return self.vtable.BeginReceiveResponse(self, pCallback, punkState);
     }
     pub fn EndReceiveResponse(self: *const IMFHttpDownloadRequest, pResult: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).EndReceiveResponse(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pResult);
+        return self.vtable.EndReceiveResponse(self, pResult);
     }
     pub fn BeginReadPayload(self: *const IMFHttpDownloadRequest, pb: [*:0]u8, cb: u32, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).BeginReadPayload(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pb, cb, pCallback, punkState);
+        return self.vtable.BeginReadPayload(self, pb, cb, pCallback, punkState);
     }
     pub fn EndReadPayload(self: *const IMFHttpDownloadRequest, pResult: ?*IMFAsyncResult, pqwOffset: ?*u64, pcbRead: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).EndReadPayload(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pResult, pqwOffset, pcbRead);
+        return self.vtable.EndReadPayload(self, pResult, pqwOffset, pcbRead);
     }
     pub fn QueryHeader(self: *const IMFHttpDownloadRequest, szHeaderName: ?[*:0]const u16, dwIndex: u32, ppszHeaderValue: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).QueryHeader(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), szHeaderName, dwIndex, ppszHeaderValue);
+        return self.vtable.QueryHeader(self, szHeaderName, dwIndex, ppszHeaderValue);
     }
     pub fn GetURL(self: *const IMFHttpDownloadRequest, ppszURL: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetURL(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), ppszURL);
+        return self.vtable.GetURL(self, ppszURL);
     }
     pub fn HasNullSourceOrigin(self: *const IMFHttpDownloadRequest, pfNullSourceOrigin: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).HasNullSourceOrigin(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pfNullSourceOrigin);
+        return self.vtable.HasNullSourceOrigin(self, pfNullSourceOrigin);
     }
     pub fn GetTimeSeekResult(self: *const IMFHttpDownloadRequest, pqwStartTime: ?*u64, pqwStopTime: ?*u64, pqwDuration: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetTimeSeekResult(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pqwStartTime, pqwStopTime, pqwDuration);
+        return self.vtable.GetTimeSeekResult(self, pqwStartTime, pqwStopTime, pqwDuration);
     }
     pub fn GetHttpStatus(self: *const IMFHttpDownloadRequest, pdwHttpStatus: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetHttpStatus(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pdwHttpStatus);
+        return self.vtable.GetHttpStatus(self, pdwHttpStatus);
     }
     pub fn GetAtEndOfPayload(self: *const IMFHttpDownloadRequest, pfAtEndOfPayload: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetAtEndOfPayload(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pfAtEndOfPayload);
+        return self.vtable.GetAtEndOfPayload(self, pfAtEndOfPayload);
     }
     pub fn GetTotalLength(self: *const IMFHttpDownloadRequest, pqwTotalLength: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetTotalLength(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pqwTotalLength);
+        return self.vtable.GetTotalLength(self, pqwTotalLength);
     }
     pub fn GetRangeEndOffset(self: *const IMFHttpDownloadRequest, pqwRangeEnd: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).GetRangeEndOffset(@as(*const IMFHttpDownloadRequest, @ptrCast(self)), pqwRangeEnd);
+        return self.vtable.GetRangeEndOffset(self, pqwRangeEnd);
     }
     pub fn Close(self: *const IMFHttpDownloadRequest) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadRequest.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFHttpDownloadRequest, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -23741,13 +23741,13 @@ pub const IMFHttpDownloadSession = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetServer(self: *const IMFHttpDownloadSession, szServerName: ?[*:0]const u16, nPort: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadSession.VTable, @ptrCast(self.vtable)).SetServer(@as(*const IMFHttpDownloadSession, @ptrCast(self)), szServerName, nPort);
+        return self.vtable.SetServer(self, szServerName, nPort);
     }
     pub fn CreateRequest(self: *const IMFHttpDownloadSession, szObjectName: ?[*:0]const u16, fBypassProxyCache: BOOL, fSecure: BOOL, szVerb: ?[*:0]const u16, szReferrer: ?[*:0]const u16, ppRequest: ?*?*IMFHttpDownloadRequest) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadSession.VTable, @ptrCast(self.vtable)).CreateRequest(@as(*const IMFHttpDownloadSession, @ptrCast(self)), szObjectName, fBypassProxyCache, fSecure, szVerb, szReferrer, ppRequest);
+        return self.vtable.CreateRequest(self, szObjectName, fBypassProxyCache, fSecure, szVerb, szReferrer, ppRequest);
     }
     pub fn Close(self: *const IMFHttpDownloadSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadSession.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFHttpDownloadSession, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -23774,7 +23774,7 @@ pub const IMFHttpDownloadSessionProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateHttpDownloadSession(self: *const IMFHttpDownloadSessionProvider, wszScheme: ?[*:0]const u16, ppDownloadSession: ?*?*IMFHttpDownloadSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFHttpDownloadSessionProvider.VTable, @ptrCast(self.vtable)).CreateHttpDownloadSession(@as(*const IMFHttpDownloadSessionProvider, @ptrCast(self)), wszScheme, ppDownloadSession);
+        return self.vtable.CreateHttpDownloadSession(self, wszScheme, ppDownloadSession);
     }
 };
 
@@ -23806,7 +23806,7 @@ pub const IMFMediaSource2 = extern union {
     };}
     pub usingnamespace IMFMediaSourceEx.MethodMixin(@This());
     pub fn SetMediaType(self: *const IMFMediaSource2, dwStreamID: u32, pMediaType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSource2.VTable, @ptrCast(self.vtable)).SetMediaType(@as(*const IMFMediaSource2, @ptrCast(self)), dwStreamID, pMediaType);
+        return self.vtable.SetMediaType(self, dwStreamID, pMediaType);
     }
 };
 
@@ -23839,10 +23839,10 @@ pub const IMFMediaStream2 = extern union {
     };}
     pub usingnamespace IMFMediaStream.MethodMixin(@This());
     pub fn SetStreamState(self: *const IMFMediaStream2, value: MF_STREAM_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaStream2.VTable, @ptrCast(self.vtable)).SetStreamState(@as(*const IMFMediaStream2, @ptrCast(self)), value);
+        return self.vtable.SetStreamState(self, value);
     }
     pub fn GetStreamState(self: *const IMFMediaStream2, value: ?*MF_STREAM_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaStream2.VTable, @ptrCast(self.vtable)).GetStreamState(@as(*const IMFMediaStream2, @ptrCast(self)), value);
+        return self.vtable.GetStreamState(self, value);
     }
 };
 
@@ -23966,31 +23966,31 @@ pub const IMFSensorDevice = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDeviceId(self: *const IMFSensorDevice, pDeviceId: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetDeviceId(@as(*const IMFSensorDevice, @ptrCast(self)), pDeviceId);
+        return self.vtable.GetDeviceId(self, pDeviceId);
     }
     pub fn GetDeviceType(self: *const IMFSensorDevice, pType: ?*MFSensorDeviceType) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetDeviceType(@as(*const IMFSensorDevice, @ptrCast(self)), pType);
+        return self.vtable.GetDeviceType(self, pType);
     }
     pub fn GetFlags(self: *const IMFSensorDevice, pFlags: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFSensorDevice, @ptrCast(self)), pFlags);
+        return self.vtable.GetFlags(self, pFlags);
     }
     pub fn GetSymbolicLink(self: *const IMFSensorDevice, SymbolicLink: [*:0]u16, cchSymbolicLink: i32, pcchWritten: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetSymbolicLink(@as(*const IMFSensorDevice, @ptrCast(self)), SymbolicLink, cchSymbolicLink, pcchWritten);
+        return self.vtable.GetSymbolicLink(self, SymbolicLink, cchSymbolicLink, pcchWritten);
     }
     pub fn GetDeviceAttributes(self: *const IMFSensorDevice, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetDeviceAttributes(@as(*const IMFSensorDevice, @ptrCast(self)), ppAttributes);
+        return self.vtable.GetDeviceAttributes(self, ppAttributes);
     }
     pub fn GetStreamAttributesCount(self: *const IMFSensorDevice, eType: MFSensorStreamType, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetStreamAttributesCount(@as(*const IMFSensorDevice, @ptrCast(self)), eType, pdwCount);
+        return self.vtable.GetStreamAttributesCount(self, eType, pdwCount);
     }
     pub fn GetStreamAttributes(self: *const IMFSensorDevice, eType: MFSensorStreamType, dwIndex: u32, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetStreamAttributes(@as(*const IMFSensorDevice, @ptrCast(self)), eType, dwIndex, ppAttributes);
+        return self.vtable.GetStreamAttributes(self, eType, dwIndex, ppAttributes);
     }
     pub fn SetSensorDeviceMode(self: *const IMFSensorDevice, eMode: MFSensorDeviceMode) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).SetSensorDeviceMode(@as(*const IMFSensorDevice, @ptrCast(self)), eMode);
+        return self.vtable.SetSensorDeviceMode(self, eMode);
     }
     pub fn GetSensorDeviceMode(self: *const IMFSensorDevice, peMode: ?*MFSensorDeviceMode) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorDevice.VTable, @ptrCast(self.vtable)).GetSensorDeviceMode(@as(*const IMFSensorDevice, @ptrCast(self)), peMode);
+        return self.vtable.GetSensorDeviceMode(self, peMode);
     }
 };
 
@@ -24075,28 +24075,28 @@ pub const IMFSensorGroup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSymbolicLink(self: *const IMFSensorGroup, SymbolicLink: [*:0]u16, cchSymbolicLink: i32, pcchWritten: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetSymbolicLink(@as(*const IMFSensorGroup, @ptrCast(self)), SymbolicLink, cchSymbolicLink, pcchWritten);
+        return self.vtable.GetSymbolicLink(self, SymbolicLink, cchSymbolicLink, pcchWritten);
     }
     pub fn GetFlags(self: *const IMFSensorGroup, pFlags: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFSensorGroup, @ptrCast(self)), pFlags);
+        return self.vtable.GetFlags(self, pFlags);
     }
     pub fn GetSensorGroupAttributes(self: *const IMFSensorGroup, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetSensorGroupAttributes(@as(*const IMFSensorGroup, @ptrCast(self)), ppAttributes);
+        return self.vtable.GetSensorGroupAttributes(self, ppAttributes);
     }
     pub fn GetSensorDeviceCount(self: *const IMFSensorGroup, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetSensorDeviceCount(@as(*const IMFSensorGroup, @ptrCast(self)), pdwCount);
+        return self.vtable.GetSensorDeviceCount(self, pdwCount);
     }
     pub fn GetSensorDevice(self: *const IMFSensorGroup, dwIndex: u32, ppDevice: ?*?*IMFSensorDevice) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetSensorDevice(@as(*const IMFSensorGroup, @ptrCast(self)), dwIndex, ppDevice);
+        return self.vtable.GetSensorDevice(self, dwIndex, ppDevice);
     }
     pub fn SetDefaultSensorDeviceIndex(self: *const IMFSensorGroup, dwIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).SetDefaultSensorDeviceIndex(@as(*const IMFSensorGroup, @ptrCast(self)), dwIndex);
+        return self.vtable.SetDefaultSensorDeviceIndex(self, dwIndex);
     }
     pub fn GetDefaultSensorDeviceIndex(self: *const IMFSensorGroup, pdwIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).GetDefaultSensorDeviceIndex(@as(*const IMFSensorGroup, @ptrCast(self)), pdwIndex);
+        return self.vtable.GetDefaultSensorDeviceIndex(self, pdwIndex);
     }
     pub fn CreateMediaSource(self: *const IMFSensorGroup, ppSource: ?*?*IMFMediaSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorGroup.VTable, @ptrCast(self.vtable)).CreateMediaSource(@as(*const IMFSensorGroup, @ptrCast(self)), ppSource);
+        return self.vtable.CreateMediaSource(self, ppSource);
     }
 };
 
@@ -24139,13 +24139,13 @@ pub const IMFSensorStream = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetMediaTypeCount(self: *const IMFSensorStream, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorStream.VTable, @ptrCast(self.vtable)).GetMediaTypeCount(@as(*const IMFSensorStream, @ptrCast(self)), pdwCount);
+        return self.vtable.GetMediaTypeCount(self, pdwCount);
     }
     pub fn GetMediaType(self: *const IMFSensorStream, dwIndex: u32, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorStream.VTable, @ptrCast(self.vtable)).GetMediaType(@as(*const IMFSensorStream, @ptrCast(self)), dwIndex, ppMediaType);
+        return self.vtable.GetMediaType(self, dwIndex, ppMediaType);
     }
     pub fn CloneSensorStream(self: *const IMFSensorStream, ppStream: ?*?*IMFSensorStream) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorStream.VTable, @ptrCast(self.vtable)).CloneSensorStream(@as(*const IMFSensorStream, @ptrCast(self)), ppStream);
+        return self.vtable.CloneSensorStream(self, ppStream);
     }
 };
 
@@ -24210,19 +24210,19 @@ pub const IMFSensorTransformFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFactoryAttributes(self: *const IMFSensorTransformFactory, ppAttributes: ?*?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).GetFactoryAttributes(@as(*const IMFSensorTransformFactory, @ptrCast(self)), ppAttributes);
+        return self.vtable.GetFactoryAttributes(self, ppAttributes);
     }
     pub fn InitializeFactory(self: *const IMFSensorTransformFactory, dwMaxTransformCount: u32, pSensorDevices: ?*IMFCollection, pAttributes: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).InitializeFactory(@as(*const IMFSensorTransformFactory, @ptrCast(self)), dwMaxTransformCount, pSensorDevices, pAttributes);
+        return self.vtable.InitializeFactory(self, dwMaxTransformCount, pSensorDevices, pAttributes);
     }
     pub fn GetTransformCount(self: *const IMFSensorTransformFactory, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).GetTransformCount(@as(*const IMFSensorTransformFactory, @ptrCast(self)), pdwCount);
+        return self.vtable.GetTransformCount(self, pdwCount);
     }
     pub fn GetTransformInformation(self: *const IMFSensorTransformFactory, TransformIndex: u32, pguidTransformId: ?*Guid, ppAttributes: ?*?*IMFAttributes, ppStreamInformation: ?*?*IMFCollection) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).GetTransformInformation(@as(*const IMFSensorTransformFactory, @ptrCast(self)), TransformIndex, pguidTransformId, ppAttributes, ppStreamInformation);
+        return self.vtable.GetTransformInformation(self, TransformIndex, pguidTransformId, ppAttributes, ppStreamInformation);
     }
     pub fn CreateTransform(self: *const IMFSensorTransformFactory, guidSensorTransformID: ?*const Guid, pAttributes: ?*IMFAttributes, ppDeviceMFT: ?*?*IMFDeviceTransform) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorTransformFactory.VTable, @ptrCast(self.vtable)).CreateTransform(@as(*const IMFSensorTransformFactory, @ptrCast(self)), guidSensorTransformID, pAttributes, ppDeviceMFT);
+        return self.vtable.CreateTransform(self, guidSensorTransformID, pAttributes, ppDeviceMFT);
     }
 };
 
@@ -24281,16 +24281,16 @@ pub const IMFSensorProfile = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProfileId(self: *const IMFSensorProfile, pId: ?*SENSORPROFILEID) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProfile.VTable, @ptrCast(self.vtable)).GetProfileId(@as(*const IMFSensorProfile, @ptrCast(self)), pId);
+        return self.vtable.GetProfileId(self, pId);
     }
     pub fn AddProfileFilter(self: *const IMFSensorProfile, StreamId: u32, wzFilterSetString: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProfile.VTable, @ptrCast(self.vtable)).AddProfileFilter(@as(*const IMFSensorProfile, @ptrCast(self)), StreamId, wzFilterSetString);
+        return self.vtable.AddProfileFilter(self, StreamId, wzFilterSetString);
     }
     pub fn IsMediaTypeSupported(self: *const IMFSensorProfile, StreamId: u32, pMediaType: ?*IMFMediaType, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProfile.VTable, @ptrCast(self.vtable)).IsMediaTypeSupported(@as(*const IMFSensorProfile, @ptrCast(self)), StreamId, pMediaType, pfSupported);
+        return self.vtable.IsMediaTypeSupported(self, StreamId, pMediaType, pfSupported);
     }
     pub fn AddBlockedControl(self: *const IMFSensorProfile, wzBlockedControl: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProfile.VTable, @ptrCast(self.vtable)).AddBlockedControl(@as(*const IMFSensorProfile, @ptrCast(self)), wzBlockedControl);
+        return self.vtable.AddBlockedControl(self, wzBlockedControl);
     }
 };
 
@@ -24357,22 +24357,22 @@ pub const IMFSensorProfileCollection = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProfileCount(self: *const IMFSensorProfileCollection) callconv(.Inline) u32 {
-        return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).GetProfileCount(@as(*const IMFSensorProfileCollection, @ptrCast(self)));
+        return self.vtable.GetProfileCount(self);
     }
     pub fn GetProfile(self: *const IMFSensorProfileCollection, Index: u32, ppProfile: ?*?*IMFSensorProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).GetProfile(@as(*const IMFSensorProfileCollection, @ptrCast(self)), Index, ppProfile);
+        return self.vtable.GetProfile(self, Index, ppProfile);
     }
     pub fn AddProfile(self: *const IMFSensorProfileCollection, pProfile: ?*IMFSensorProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).AddProfile(@as(*const IMFSensorProfileCollection, @ptrCast(self)), pProfile);
+        return self.vtable.AddProfile(self, pProfile);
     }
     pub fn FindProfile(self: *const IMFSensorProfileCollection, ProfileId: ?*SENSORPROFILEID, ppProfile: ?*?*IMFSensorProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).FindProfile(@as(*const IMFSensorProfileCollection, @ptrCast(self)), ProfileId, ppProfile);
+        return self.vtable.FindProfile(self, ProfileId, ppProfile);
     }
     pub fn RemoveProfileByIndex(self: *const IMFSensorProfileCollection, Index: u32) callconv(.Inline) void {
-        return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).RemoveProfileByIndex(@as(*const IMFSensorProfileCollection, @ptrCast(self)), Index);
+        return self.vtable.RemoveProfileByIndex(self, Index);
     }
     pub fn RemoveProfile(self: *const IMFSensorProfileCollection, ProfileId: ?*SENSORPROFILEID) callconv(.Inline) void {
-        return @as(*const IMFSensorProfileCollection.VTable, @ptrCast(self.vtable)).RemoveProfile(@as(*const IMFSensorProfileCollection, @ptrCast(self)), ProfileId);
+        return self.vtable.RemoveProfile(self, ProfileId);
     }
 };
 
@@ -24422,16 +24422,16 @@ pub const IMFSensorProcessActivity = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetProcessId(self: *const IMFSensorProcessActivity, pPID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProcessActivity.VTable, @ptrCast(self.vtable)).GetProcessId(@as(*const IMFSensorProcessActivity, @ptrCast(self)), pPID);
+        return self.vtable.GetProcessId(self, pPID);
     }
     pub fn GetStreamingState(self: *const IMFSensorProcessActivity, pfStreaming: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProcessActivity.VTable, @ptrCast(self.vtable)).GetStreamingState(@as(*const IMFSensorProcessActivity, @ptrCast(self)), pfStreaming);
+        return self.vtable.GetStreamingState(self, pfStreaming);
     }
     pub fn GetStreamingMode(self: *const IMFSensorProcessActivity, pMode: ?*MFSensorDeviceMode) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProcessActivity.VTable, @ptrCast(self.vtable)).GetStreamingMode(@as(*const IMFSensorProcessActivity, @ptrCast(self)), pMode);
+        return self.vtable.GetStreamingMode(self, pMode);
     }
     pub fn GetReportTime(self: *const IMFSensorProcessActivity, pft: ?*FILETIME) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorProcessActivity.VTable, @ptrCast(self.vtable)).GetReportTime(@as(*const IMFSensorProcessActivity, @ptrCast(self)), pft);
+        return self.vtable.GetReportTime(self, pft);
     }
 };
 
@@ -24486,16 +24486,16 @@ pub const IMFSensorActivityReport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetFriendlyName(self: *const IMFSensorActivityReport, FriendlyName: [*:0]u16, cchFriendlyName: u32, pcchWritten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivityReport.VTable, @ptrCast(self.vtable)).GetFriendlyName(@as(*const IMFSensorActivityReport, @ptrCast(self)), FriendlyName, cchFriendlyName, pcchWritten);
+        return self.vtable.GetFriendlyName(self, FriendlyName, cchFriendlyName, pcchWritten);
     }
     pub fn GetSymbolicLink(self: *const IMFSensorActivityReport, SymbolicLink: [*:0]u16, cchSymbolicLink: u32, pcchWritten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivityReport.VTable, @ptrCast(self.vtable)).GetSymbolicLink(@as(*const IMFSensorActivityReport, @ptrCast(self)), SymbolicLink, cchSymbolicLink, pcchWritten);
+        return self.vtable.GetSymbolicLink(self, SymbolicLink, cchSymbolicLink, pcchWritten);
     }
     pub fn GetProcessCount(self: *const IMFSensorActivityReport, pcCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivityReport.VTable, @ptrCast(self.vtable)).GetProcessCount(@as(*const IMFSensorActivityReport, @ptrCast(self)), pcCount);
+        return self.vtable.GetProcessCount(self, pcCount);
     }
     pub fn GetProcessActivity(self: *const IMFSensorActivityReport, Index: u32, ppProcessActivity: ?*?*IMFSensorProcessActivity) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivityReport.VTable, @ptrCast(self.vtable)).GetProcessActivity(@as(*const IMFSensorActivityReport, @ptrCast(self)), Index, ppProcessActivity);
+        return self.vtable.GetProcessActivity(self, Index, ppProcessActivity);
     }
 };
 
@@ -24539,13 +24539,13 @@ pub const IMFSensorActivitiesReport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCount(self: *const IMFSensorActivitiesReport, pcCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivitiesReport.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IMFSensorActivitiesReport, @ptrCast(self)), pcCount);
+        return self.vtable.GetCount(self, pcCount);
     }
     pub fn GetActivityReport(self: *const IMFSensorActivitiesReport, Index: u32, sensorActivityReport: ?*?*IMFSensorActivityReport) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivitiesReport.VTable, @ptrCast(self.vtable)).GetActivityReport(@as(*const IMFSensorActivitiesReport, @ptrCast(self)), Index, sensorActivityReport);
+        return self.vtable.GetActivityReport(self, Index, sensorActivityReport);
     }
     pub fn GetActivityReportByDeviceName(self: *const IMFSensorActivitiesReport, SymbolicName: ?[*:0]const u16, sensorActivityReport: ?*?*IMFSensorActivityReport) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivitiesReport.VTable, @ptrCast(self.vtable)).GetActivityReportByDeviceName(@as(*const IMFSensorActivitiesReport, @ptrCast(self)), SymbolicName, sensorActivityReport);
+        return self.vtable.GetActivityReportByDeviceName(self, SymbolicName, sensorActivityReport);
     }
 };
 
@@ -24571,7 +24571,7 @@ pub const IMFSensorActivitiesReportCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnActivitiesReport(self: *const IMFSensorActivitiesReportCallback, sensorActivitiesReport: ?*IMFSensorActivitiesReport) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivitiesReportCallback.VTable, @ptrCast(self.vtable)).OnActivitiesReport(@as(*const IMFSensorActivitiesReportCallback, @ptrCast(self)), sensorActivitiesReport);
+        return self.vtable.OnActivitiesReport(self, sensorActivitiesReport);
     }
 };
 
@@ -24603,10 +24603,10 @@ pub const IMFSensorActivityMonitor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Start(self: *const IMFSensorActivityMonitor) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivityMonitor.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFSensorActivityMonitor, @ptrCast(self)));
+        return self.vtable.Start(self);
     }
     pub fn Stop(self: *const IMFSensorActivityMonitor) callconv(.Inline) HRESULT {
-        return @as(*const IMFSensorActivityMonitor.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFSensorActivityMonitor, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
 };
 
@@ -24687,13 +24687,13 @@ pub const IMFExtendedCameraIntrinsicModel = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetModel(self: *const IMFExtendedCameraIntrinsicModel, pIntrinsicModel: ?*MFExtendedCameraIntrinsic_IntrinsicModel) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsicModel.VTable, @ptrCast(self.vtable)).GetModel(@as(*const IMFExtendedCameraIntrinsicModel, @ptrCast(self)), pIntrinsicModel);
+        return self.vtable.GetModel(self, pIntrinsicModel);
     }
     pub fn SetModel(self: *const IMFExtendedCameraIntrinsicModel, pIntrinsicModel: ?*const MFExtendedCameraIntrinsic_IntrinsicModel) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsicModel.VTable, @ptrCast(self.vtable)).SetModel(@as(*const IMFExtendedCameraIntrinsicModel, @ptrCast(self)), pIntrinsicModel);
+        return self.vtable.SetModel(self, pIntrinsicModel);
     }
     pub fn GetDistortionModelType(self: *const IMFExtendedCameraIntrinsicModel, pDistortionModelType: ?*MFCameraIntrinsic_DistortionModelType) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsicModel.VTable, @ptrCast(self.vtable)).GetDistortionModelType(@as(*const IMFExtendedCameraIntrinsicModel, @ptrCast(self)), pDistortionModelType);
+        return self.vtable.GetDistortionModelType(self, pDistortionModelType);
     }
 };
 
@@ -24726,10 +24726,10 @@ pub const IMFExtendedCameraIntrinsicsDistortionModel6KT = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDistortionModel(self: *const IMFExtendedCameraIntrinsicsDistortionModel6KT, pDistortionModel: ?*MFCameraIntrinsic_DistortionModel6KT) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsicsDistortionModel6KT.VTable, @ptrCast(self.vtable)).GetDistortionModel(@as(*const IMFExtendedCameraIntrinsicsDistortionModel6KT, @ptrCast(self)), pDistortionModel);
+        return self.vtable.GetDistortionModel(self, pDistortionModel);
     }
     pub fn SetDistortionModel(self: *const IMFExtendedCameraIntrinsicsDistortionModel6KT, pDistortionModel: ?*const MFCameraIntrinsic_DistortionModel6KT) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsicsDistortionModel6KT.VTable, @ptrCast(self.vtable)).SetDistortionModel(@as(*const IMFExtendedCameraIntrinsicsDistortionModel6KT, @ptrCast(self)), pDistortionModel);
+        return self.vtable.SetDistortionModel(self, pDistortionModel);
     }
 };
 
@@ -24762,10 +24762,10 @@ pub const IMFExtendedCameraIntrinsicsDistortionModelArcTan = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDistortionModel(self: *const IMFExtendedCameraIntrinsicsDistortionModelArcTan, pDistortionModel: ?*MFCameraIntrinsic_DistortionModelArcTan) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan.VTable, @ptrCast(self.vtable)).GetDistortionModel(@as(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan, @ptrCast(self)), pDistortionModel);
+        return self.vtable.GetDistortionModel(self, pDistortionModel);
     }
     pub fn SetDistortionModel(self: *const IMFExtendedCameraIntrinsicsDistortionModelArcTan, pDistortionModel: ?*const MFCameraIntrinsic_DistortionModelArcTan) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan.VTable, @ptrCast(self.vtable)).SetDistortionModel(@as(*const IMFExtendedCameraIntrinsicsDistortionModelArcTan, @ptrCast(self)), pDistortionModel);
+        return self.vtable.SetDistortionModel(self, pDistortionModel);
     }
 };
 
@@ -24835,22 +24835,22 @@ pub const IMFExtendedCameraIntrinsics = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeFromBuffer(self: *const IMFExtendedCameraIntrinsics, pbBuffer: ?*u8, dwBufferSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).InitializeFromBuffer(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pbBuffer, dwBufferSize);
+        return self.vtable.InitializeFromBuffer(self, pbBuffer, dwBufferSize);
     }
     pub fn GetBufferSize(self: *const IMFExtendedCameraIntrinsics, pdwBufferSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).GetBufferSize(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pdwBufferSize);
+        return self.vtable.GetBufferSize(self, pdwBufferSize);
     }
     pub fn SerializeToBuffer(self: *const IMFExtendedCameraIntrinsics, pbBuffer: ?*u8, pdwBufferSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).SerializeToBuffer(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pbBuffer, pdwBufferSize);
+        return self.vtable.SerializeToBuffer(self, pbBuffer, pdwBufferSize);
     }
     pub fn GetIntrinsicModelCount(self: *const IMFExtendedCameraIntrinsics, pdwCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).GetIntrinsicModelCount(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pdwCount);
+        return self.vtable.GetIntrinsicModelCount(self, pdwCount);
     }
     pub fn GetIntrinsicModelByIndex(self: *const IMFExtendedCameraIntrinsics, dwIndex: u32, ppIntrinsicModel: ?*?*IMFExtendedCameraIntrinsicModel) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).GetIntrinsicModelByIndex(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), dwIndex, ppIntrinsicModel);
+        return self.vtable.GetIntrinsicModelByIndex(self, dwIndex, ppIntrinsicModel);
     }
     pub fn AddIntrinsicModel(self: *const IMFExtendedCameraIntrinsics, pIntrinsicModel: ?*IMFExtendedCameraIntrinsicModel) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraIntrinsics.VTable, @ptrCast(self.vtable)).AddIntrinsicModel(@as(*const IMFExtendedCameraIntrinsics, @ptrCast(self)), pIntrinsicModel);
+        return self.vtable.AddIntrinsicModel(self, pIntrinsicModel);
     }
 };
 
@@ -24912,22 +24912,22 @@ pub const IMFExtendedCameraControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCapabilities(self: *const IMFExtendedCameraControl) callconv(.Inline) u64 {
-        return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IMFExtendedCameraControl, @ptrCast(self)));
+        return self.vtable.GetCapabilities(self);
     }
     pub fn SetFlags(self: *const IMFExtendedCameraControl, ulFlags: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IMFExtendedCameraControl, @ptrCast(self)), ulFlags);
+        return self.vtable.SetFlags(self, ulFlags);
     }
     pub fn GetFlags(self: *const IMFExtendedCameraControl) callconv(.Inline) u64 {
-        return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFExtendedCameraControl, @ptrCast(self)));
+        return self.vtable.GetFlags(self);
     }
     pub fn LockPayload(self: *const IMFExtendedCameraControl, ppPayload: ?*?*u8, pulPayload: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).LockPayload(@as(*const IMFExtendedCameraControl, @ptrCast(self)), ppPayload, pulPayload);
+        return self.vtable.LockPayload(self, ppPayload, pulPayload);
     }
     pub fn UnlockPayload(self: *const IMFExtendedCameraControl) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).UnlockPayload(@as(*const IMFExtendedCameraControl, @ptrCast(self)));
+        return self.vtable.UnlockPayload(self);
     }
     pub fn CommitSettings(self: *const IMFExtendedCameraControl) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraControl.VTable, @ptrCast(self.vtable)).CommitSettings(@as(*const IMFExtendedCameraControl, @ptrCast(self)));
+        return self.vtable.CommitSettings(self);
     }
 };
 
@@ -24954,7 +24954,7 @@ pub const IMFExtendedCameraController = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetExtendedCameraControl(self: *const IMFExtendedCameraController, dwStreamIndex: u32, ulPropertyId: u32, ppControl: ?*?*IMFExtendedCameraControl) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedCameraController.VTable, @ptrCast(self.vtable)).GetExtendedCameraControl(@as(*const IMFExtendedCameraController, @ptrCast(self)), dwStreamIndex, ulPropertyId, ppControl);
+        return self.vtable.GetExtendedCameraControl(self, dwStreamIndex, ulPropertyId, ppControl);
     }
 };
 
@@ -24980,7 +24980,7 @@ pub const IMFRelativePanelReport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRelativePanel(self: *const IMFRelativePanelReport, panel: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFRelativePanelReport.VTable, @ptrCast(self.vtable)).GetRelativePanel(@as(*const IMFRelativePanelReport, @ptrCast(self)), panel);
+        return self.vtable.GetRelativePanel(self, panel);
     }
 };
 
@@ -25024,13 +25024,13 @@ pub const IMFRelativePanelWatcher = extern union {
     };}
     pub usingnamespace IMFShutdown.MethodMixin(@This());
     pub fn BeginGetReport(self: *const IMFRelativePanelWatcher, pCallback: ?*IMFAsyncCallback, pState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFRelativePanelWatcher.VTable, @ptrCast(self.vtable)).BeginGetReport(@as(*const IMFRelativePanelWatcher, @ptrCast(self)), pCallback, pState);
+        return self.vtable.BeginGetReport(self, pCallback, pState);
     }
     pub fn EndGetReport(self: *const IMFRelativePanelWatcher, pResult: ?*IMFAsyncResult, ppRelativePanelReport: ?*?*IMFRelativePanelReport) callconv(.Inline) HRESULT {
-        return @as(*const IMFRelativePanelWatcher.VTable, @ptrCast(self.vtable)).EndGetReport(@as(*const IMFRelativePanelWatcher, @ptrCast(self)), pResult, ppRelativePanelReport);
+        return self.vtable.EndGetReport(self, pResult, ppRelativePanelReport);
     }
     pub fn GetReport(self: *const IMFRelativePanelWatcher, ppRelativePanelReport: ?*?*IMFRelativePanelReport) callconv(.Inline) HRESULT {
-        return @as(*const IMFRelativePanelWatcher.VTable, @ptrCast(self.vtable)).GetReport(@as(*const IMFRelativePanelWatcher, @ptrCast(self)), ppRelativePanelReport);
+        return self.vtable.GetReport(self, ppRelativePanelReport);
     }
 };
 
@@ -25064,7 +25064,7 @@ pub const IMFCameraOcclusionStateReport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOcclusionState(self: *const IMFCameraOcclusionStateReport, occlusionState: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCameraOcclusionStateReport.VTable, @ptrCast(self.vtable)).GetOcclusionState(@as(*const IMFCameraOcclusionStateReport, @ptrCast(self)), occlusionState);
+        return self.vtable.GetOcclusionState(self, occlusionState);
     }
 };
 
@@ -25089,7 +25089,7 @@ pub const IMFCameraOcclusionStateReportCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnOcclusionStateReport(self: *const IMFCameraOcclusionStateReportCallback, occlusionStateReport: ?*IMFCameraOcclusionStateReport) callconv(.Inline) HRESULT {
-        return @as(*const IMFCameraOcclusionStateReportCallback.VTable, @ptrCast(self.vtable)).OnOcclusionStateReport(@as(*const IMFCameraOcclusionStateReportCallback, @ptrCast(self)), occlusionStateReport);
+        return self.vtable.OnOcclusionStateReport(self, occlusionStateReport);
     }
 };
 
@@ -25127,13 +25127,13 @@ pub const IMFCameraOcclusionStateMonitor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Start(self: *const IMFCameraOcclusionStateMonitor) callconv(.Inline) HRESULT {
-        return @as(*const IMFCameraOcclusionStateMonitor.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFCameraOcclusionStateMonitor, @ptrCast(self)));
+        return self.vtable.Start(self);
     }
     pub fn Stop(self: *const IMFCameraOcclusionStateMonitor) callconv(.Inline) HRESULT {
-        return @as(*const IMFCameraOcclusionStateMonitor.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFCameraOcclusionStateMonitor, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn GetSupportedStates(self: *const IMFCameraOcclusionStateMonitor) callconv(.Inline) u32 {
-        return @as(*const IMFCameraOcclusionStateMonitor.VTable, @ptrCast(self.vtable)).GetSupportedStates(@as(*const IMFCameraOcclusionStateMonitor, @ptrCast(self)));
+        return self.vtable.GetSupportedStates(self);
     }
 };
 
@@ -25164,7 +25164,7 @@ pub const IMFVideoCaptureSampleAllocator = extern union {
     };}
     pub usingnamespace IMFVideoSampleAllocator.MethodMixin(@This());
     pub fn InitializeCaptureSampleAllocator(self: *const IMFVideoCaptureSampleAllocator, cbSampleSize: u32, cbCaptureMetadataSize: u32, cbAlignment: u32, cMinimumSamples: u32, pAttributes: ?*IMFAttributes, pMediaType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoCaptureSampleAllocator.VTable, @ptrCast(self.vtable)).InitializeCaptureSampleAllocator(@as(*const IMFVideoCaptureSampleAllocator, @ptrCast(self)), cbSampleSize, cbCaptureMetadataSize, cbAlignment, cMinimumSamples, pAttributes, pMediaType);
+        return self.vtable.InitializeCaptureSampleAllocator(self, cbSampleSize, cbCaptureMetadataSize, cbAlignment, cMinimumSamples, pAttributes, pMediaType);
     }
 };
 
@@ -25210,10 +25210,10 @@ pub const IMFSampleAllocatorControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDefaultAllocator(self: *const IMFSampleAllocatorControl, dwOutputStreamID: u32, pAllocator: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleAllocatorControl.VTable, @ptrCast(self.vtable)).SetDefaultAllocator(@as(*const IMFSampleAllocatorControl, @ptrCast(self)), dwOutputStreamID, pAllocator);
+        return self.vtable.SetDefaultAllocator(self, dwOutputStreamID, pAllocator);
     }
     pub fn GetAllocatorUsage(self: *const IMFSampleAllocatorControl, dwOutputStreamID: u32, pdwInputStreamID: ?*u32, peUsage: ?*MFSampleAllocatorUsage) callconv(.Inline) HRESULT {
-        return @as(*const IMFSampleAllocatorControl.VTable, @ptrCast(self.vtable)).GetAllocatorUsage(@as(*const IMFSampleAllocatorControl, @ptrCast(self)), dwOutputStreamID, pdwInputStreamID, peUsage);
+        return self.vtable.GetAllocatorUsage(self, dwOutputStreamID, pdwInputStreamID, peUsage);
     }
 };
 
@@ -25291,25 +25291,25 @@ pub const IMFASFContentInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetHeaderSize(self: *const IMFASFContentInfo, pIStartOfContent: ?*IMFMediaBuffer, cbHeaderSize: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GetHeaderSize(@as(*const IMFASFContentInfo, @ptrCast(self)), pIStartOfContent, cbHeaderSize);
+        return self.vtable.GetHeaderSize(self, pIStartOfContent, cbHeaderSize);
     }
     pub fn ParseHeader(self: *const IMFASFContentInfo, pIHeaderBuffer: ?*IMFMediaBuffer, cbOffsetWithinHeader: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).ParseHeader(@as(*const IMFASFContentInfo, @ptrCast(self)), pIHeaderBuffer, cbOffsetWithinHeader);
+        return self.vtable.ParseHeader(self, pIHeaderBuffer, cbOffsetWithinHeader);
     }
     pub fn GenerateHeader(self: *const IMFASFContentInfo, pIHeader: ?*IMFMediaBuffer, pcbHeader: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GenerateHeader(@as(*const IMFASFContentInfo, @ptrCast(self)), pIHeader, pcbHeader);
+        return self.vtable.GenerateHeader(self, pIHeader, pcbHeader);
     }
     pub fn GetProfile(self: *const IMFASFContentInfo, ppIProfile: ?*?*IMFASFProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GetProfile(@as(*const IMFASFContentInfo, @ptrCast(self)), ppIProfile);
+        return self.vtable.GetProfile(self, ppIProfile);
     }
     pub fn SetProfile(self: *const IMFASFContentInfo, pIProfile: ?*IMFASFProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).SetProfile(@as(*const IMFASFContentInfo, @ptrCast(self)), pIProfile);
+        return self.vtable.SetProfile(self, pIProfile);
     }
     pub fn GeneratePresentationDescriptor(self: *const IMFASFContentInfo, ppIPresentationDescriptor: ?*?*IMFPresentationDescriptor) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GeneratePresentationDescriptor(@as(*const IMFASFContentInfo, @ptrCast(self)), ppIPresentationDescriptor);
+        return self.vtable.GeneratePresentationDescriptor(self, ppIPresentationDescriptor);
     }
     pub fn GetEncodingConfigurationPropertyStore(self: *const IMFASFContentInfo, wStreamNumber: u16, ppIStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFContentInfo.VTable, @ptrCast(self.vtable)).GetEncodingConfigurationPropertyStore(@as(*const IMFASFContentInfo, @ptrCast(self)), wStreamNumber, ppIStore);
+        return self.vtable.GetEncodingConfigurationPropertyStore(self, wStreamNumber, ppIStore);
     }
 };
 
@@ -25459,52 +25459,52 @@ pub const IMFASFProfile = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetStreamCount(self: *const IMFASFProfile, pcStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFASFProfile, @ptrCast(self)), pcStreams);
+        return self.vtable.GetStreamCount(self, pcStreams);
     }
     pub fn GetStream(self: *const IMFASFProfile, dwStreamIndex: u32, pwStreamNumber: ?*u16, ppIStream: ?*?*IMFASFStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IMFASFProfile, @ptrCast(self)), dwStreamIndex, pwStreamNumber, ppIStream);
+        return self.vtable.GetStream(self, dwStreamIndex, pwStreamNumber, ppIStream);
     }
     pub fn GetStreamByNumber(self: *const IMFASFProfile, wStreamNumber: u16, ppIStream: ?*?*IMFASFStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetStreamByNumber(@as(*const IMFASFProfile, @ptrCast(self)), wStreamNumber, ppIStream);
+        return self.vtable.GetStreamByNumber(self, wStreamNumber, ppIStream);
     }
     pub fn SetStream(self: *const IMFASFProfile, pIStream: ?*IMFASFStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).SetStream(@as(*const IMFASFProfile, @ptrCast(self)), pIStream);
+        return self.vtable.SetStream(self, pIStream);
     }
     pub fn RemoveStream(self: *const IMFASFProfile, wStreamNumber: u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IMFASFProfile, @ptrCast(self)), wStreamNumber);
+        return self.vtable.RemoveStream(self, wStreamNumber);
     }
     pub fn CreateStream(self: *const IMFASFProfile, pIMediaType: ?*IMFMediaType, ppIStream: ?*?*IMFASFStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).CreateStream(@as(*const IMFASFProfile, @ptrCast(self)), pIMediaType, ppIStream);
+        return self.vtable.CreateStream(self, pIMediaType, ppIStream);
     }
     pub fn GetMutualExclusionCount(self: *const IMFASFProfile, pcMutexs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetMutualExclusionCount(@as(*const IMFASFProfile, @ptrCast(self)), pcMutexs);
+        return self.vtable.GetMutualExclusionCount(self, pcMutexs);
     }
     pub fn GetMutualExclusion(self: *const IMFASFProfile, dwMutexIndex: u32, ppIMutex: ?*?*IMFASFMutualExclusion) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetMutualExclusion(@as(*const IMFASFProfile, @ptrCast(self)), dwMutexIndex, ppIMutex);
+        return self.vtable.GetMutualExclusion(self, dwMutexIndex, ppIMutex);
     }
     pub fn AddMutualExclusion(self: *const IMFASFProfile, pIMutex: ?*IMFASFMutualExclusion) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).AddMutualExclusion(@as(*const IMFASFProfile, @ptrCast(self)), pIMutex);
+        return self.vtable.AddMutualExclusion(self, pIMutex);
     }
     pub fn RemoveMutualExclusion(self: *const IMFASFProfile, dwMutexIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).RemoveMutualExclusion(@as(*const IMFASFProfile, @ptrCast(self)), dwMutexIndex);
+        return self.vtable.RemoveMutualExclusion(self, dwMutexIndex);
     }
     pub fn CreateMutualExclusion(self: *const IMFASFProfile, ppIMutex: ?*?*IMFASFMutualExclusion) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).CreateMutualExclusion(@as(*const IMFASFProfile, @ptrCast(self)), ppIMutex);
+        return self.vtable.CreateMutualExclusion(self, ppIMutex);
     }
     pub fn GetStreamPrioritization(self: *const IMFASFProfile, ppIStreamPrioritization: ?*?*IMFASFStreamPrioritization) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).GetStreamPrioritization(@as(*const IMFASFProfile, @ptrCast(self)), ppIStreamPrioritization);
+        return self.vtable.GetStreamPrioritization(self, ppIStreamPrioritization);
     }
     pub fn AddStreamPrioritization(self: *const IMFASFProfile, pIStreamPrioritization: ?*IMFASFStreamPrioritization) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).AddStreamPrioritization(@as(*const IMFASFProfile, @ptrCast(self)), pIStreamPrioritization);
+        return self.vtable.AddStreamPrioritization(self, pIStreamPrioritization);
     }
     pub fn RemoveStreamPrioritization(self: *const IMFASFProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).RemoveStreamPrioritization(@as(*const IMFASFProfile, @ptrCast(self)));
+        return self.vtable.RemoveStreamPrioritization(self);
     }
     pub fn CreateStreamPrioritization(self: *const IMFASFProfile, ppIStreamPrioritization: ?*?*IMFASFStreamPrioritization) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).CreateStreamPrioritization(@as(*const IMFASFProfile, @ptrCast(self)), ppIStreamPrioritization);
+        return self.vtable.CreateStreamPrioritization(self, ppIStreamPrioritization);
     }
     pub fn Clone(self: *const IMFASFProfile, ppIProfile: ?*?*IMFASFProfile) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFProfile.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFASFProfile, @ptrCast(self)), ppIProfile);
+        return self.vtable.Clone(self, ppIProfile);
     }
 };
 
@@ -25607,34 +25607,34 @@ pub const IMFASFStreamConfig = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn GetStreamType(self: *const IMFASFStreamConfig, pguidStreamType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetStreamType(@as(*const IMFASFStreamConfig, @ptrCast(self)), pguidStreamType);
+        return self.vtable.GetStreamType(self, pguidStreamType);
     }
     pub fn GetStreamNumber(self: *const IMFASFStreamConfig) callconv(.Inline) u16 {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetStreamNumber(@as(*const IMFASFStreamConfig, @ptrCast(self)));
+        return self.vtable.GetStreamNumber(self);
     }
     pub fn SetStreamNumber(self: *const IMFASFStreamConfig, wStreamNum: u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).SetStreamNumber(@as(*const IMFASFStreamConfig, @ptrCast(self)), wStreamNum);
+        return self.vtable.SetStreamNumber(self, wStreamNum);
     }
     pub fn GetMediaType(self: *const IMFASFStreamConfig, ppIMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetMediaType(@as(*const IMFASFStreamConfig, @ptrCast(self)), ppIMediaType);
+        return self.vtable.GetMediaType(self, ppIMediaType);
     }
     pub fn SetMediaType(self: *const IMFASFStreamConfig, pIMediaType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).SetMediaType(@as(*const IMFASFStreamConfig, @ptrCast(self)), pIMediaType);
+        return self.vtable.SetMediaType(self, pIMediaType);
     }
     pub fn GetPayloadExtensionCount(self: *const IMFASFStreamConfig, pcPayloadExtensions: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetPayloadExtensionCount(@as(*const IMFASFStreamConfig, @ptrCast(self)), pcPayloadExtensions);
+        return self.vtable.GetPayloadExtensionCount(self, pcPayloadExtensions);
     }
     pub fn GetPayloadExtension(self: *const IMFASFStreamConfig, wPayloadExtensionNumber: u16, pguidExtensionSystemID: ?*Guid, pcbExtensionDataSize: ?*u16, pbExtensionSystemInfo: ?*u8, pcbExtensionSystemInfo: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).GetPayloadExtension(@as(*const IMFASFStreamConfig, @ptrCast(self)), wPayloadExtensionNumber, pguidExtensionSystemID, pcbExtensionDataSize, pbExtensionSystemInfo, pcbExtensionSystemInfo);
+        return self.vtable.GetPayloadExtension(self, wPayloadExtensionNumber, pguidExtensionSystemID, pcbExtensionDataSize, pbExtensionSystemInfo, pcbExtensionSystemInfo);
     }
     pub fn AddPayloadExtension(self: *const IMFASFStreamConfig, guidExtensionSystemID: Guid, cbExtensionDataSize: u16, pbExtensionSystemInfo: [*:0]u8, cbExtensionSystemInfo: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).AddPayloadExtension(@as(*const IMFASFStreamConfig, @ptrCast(self)), guidExtensionSystemID, cbExtensionDataSize, pbExtensionSystemInfo, cbExtensionSystemInfo);
+        return self.vtable.AddPayloadExtension(self, guidExtensionSystemID, cbExtensionDataSize, pbExtensionSystemInfo, cbExtensionSystemInfo);
     }
     pub fn RemoveAllPayloadExtensions(self: *const IMFASFStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).RemoveAllPayloadExtensions(@as(*const IMFASFStreamConfig, @ptrCast(self)));
+        return self.vtable.RemoveAllPayloadExtensions(self);
     }
     pub fn Clone(self: *const IMFASFStreamConfig, ppIStreamConfig: ?*?*IMFASFStreamConfig) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamConfig.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFASFStreamConfig, @ptrCast(self)), ppIStreamConfig);
+        return self.vtable.Clone(self, ppIStreamConfig);
     }
 };
 
@@ -25728,31 +25728,31 @@ pub const IMFASFMutualExclusion = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetType(self: *const IMFASFMutualExclusion, pguidType: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).GetType(@as(*const IMFASFMutualExclusion, @ptrCast(self)), pguidType);
+        return self.vtable.GetType(self, pguidType);
     }
     pub fn SetType(self: *const IMFASFMutualExclusion, guidType: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).SetType(@as(*const IMFASFMutualExclusion, @ptrCast(self)), guidType);
+        return self.vtable.SetType(self, guidType);
     }
     pub fn GetRecordCount(self: *const IMFASFMutualExclusion, pdwRecordCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).GetRecordCount(@as(*const IMFASFMutualExclusion, @ptrCast(self)), pdwRecordCount);
+        return self.vtable.GetRecordCount(self, pdwRecordCount);
     }
     pub fn GetStreamsForRecord(self: *const IMFASFMutualExclusion, dwRecordNumber: u32, pwStreamNumArray: ?*u16, pcStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).GetStreamsForRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), dwRecordNumber, pwStreamNumArray, pcStreams);
+        return self.vtable.GetStreamsForRecord(self, dwRecordNumber, pwStreamNumArray, pcStreams);
     }
     pub fn AddStreamForRecord(self: *const IMFASFMutualExclusion, dwRecordNumber: u32, wStreamNumber: u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).AddStreamForRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), dwRecordNumber, wStreamNumber);
+        return self.vtable.AddStreamForRecord(self, dwRecordNumber, wStreamNumber);
     }
     pub fn RemoveStreamFromRecord(self: *const IMFASFMutualExclusion, dwRecordNumber: u32, wStreamNumber: u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).RemoveStreamFromRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), dwRecordNumber, wStreamNumber);
+        return self.vtable.RemoveStreamFromRecord(self, dwRecordNumber, wStreamNumber);
     }
     pub fn RemoveRecord(self: *const IMFASFMutualExclusion, dwRecordNumber: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).RemoveRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), dwRecordNumber);
+        return self.vtable.RemoveRecord(self, dwRecordNumber);
     }
     pub fn AddRecord(self: *const IMFASFMutualExclusion, pdwRecordNumber: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).AddRecord(@as(*const IMFASFMutualExclusion, @ptrCast(self)), pdwRecordNumber);
+        return self.vtable.AddRecord(self, pdwRecordNumber);
     }
     pub fn Clone(self: *const IMFASFMutualExclusion, ppIMutex: ?*?*IMFASFMutualExclusion) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMutualExclusion.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFASFMutualExclusion, @ptrCast(self)), ppIMutex);
+        return self.vtable.Clone(self, ppIMutex);
     }
 };
 
@@ -25813,19 +25813,19 @@ pub const IMFASFStreamPrioritization = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStreamCount(self: *const IMFASFStreamPrioritization, pdwStreamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), pdwStreamCount);
+        return self.vtable.GetStreamCount(self, pdwStreamCount);
     }
     pub fn GetStream(self: *const IMFASFStreamPrioritization, dwStreamIndex: u32, pwStreamNumber: ?*u16, pwStreamFlags: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), dwStreamIndex, pwStreamNumber, pwStreamFlags);
+        return self.vtable.GetStream(self, dwStreamIndex, pwStreamNumber, pwStreamFlags);
     }
     pub fn AddStream(self: *const IMFASFStreamPrioritization, wStreamNumber: u16, wStreamFlags: u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), wStreamNumber, wStreamFlags);
+        return self.vtable.AddStream(self, wStreamNumber, wStreamFlags);
     }
     pub fn RemoveStream(self: *const IMFASFStreamPrioritization, dwStreamIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).RemoveStream(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), dwStreamIndex);
+        return self.vtable.RemoveStream(self, dwStreamIndex);
     }
     pub fn Clone(self: *const IMFASFStreamPrioritization, ppIStreamPrioritization: ?*?*IMFASFStreamPrioritization) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamPrioritization.VTable, @ptrCast(self.vtable)).Clone(@as(*const IMFASFStreamPrioritization, @ptrCast(self)), ppIStreamPrioritization);
+        return self.vtable.Clone(self, ppIStreamPrioritization);
     }
 };
 
@@ -25980,43 +25980,43 @@ pub const IMFASFIndexer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetFlags(self: *const IMFASFIndexer, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IMFASFIndexer, @ptrCast(self)), dwFlags);
+        return self.vtable.SetFlags(self, dwFlags);
     }
     pub fn GetFlags(self: *const IMFASFIndexer, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFASFIndexer, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetFlags(self, pdwFlags);
     }
     pub fn Initialize(self: *const IMFASFIndexer, pIContentInfo: ?*IMFASFContentInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFASFIndexer, @ptrCast(self)), pIContentInfo);
+        return self.vtable.Initialize(self, pIContentInfo);
     }
     pub fn GetIndexPosition(self: *const IMFASFIndexer, pIContentInfo: ?*IMFASFContentInfo, pcbIndexOffset: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetIndexPosition(@as(*const IMFASFIndexer, @ptrCast(self)), pIContentInfo, pcbIndexOffset);
+        return self.vtable.GetIndexPosition(self, pIContentInfo, pcbIndexOffset);
     }
     pub fn SetIndexByteStreams(self: *const IMFASFIndexer, ppIByteStreams: ?*?*IMFByteStream, cByteStreams: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).SetIndexByteStreams(@as(*const IMFASFIndexer, @ptrCast(self)), ppIByteStreams, cByteStreams);
+        return self.vtable.SetIndexByteStreams(self, ppIByteStreams, cByteStreams);
     }
     pub fn GetIndexByteStreamCount(self: *const IMFASFIndexer, pcByteStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetIndexByteStreamCount(@as(*const IMFASFIndexer, @ptrCast(self)), pcByteStreams);
+        return self.vtable.GetIndexByteStreamCount(self, pcByteStreams);
     }
     pub fn GetIndexStatus(self: *const IMFASFIndexer, pIndexIdentifier: ?*ASF_INDEX_IDENTIFIER, pfIsIndexed: ?*BOOL, pbIndexDescriptor: ?*u8, pcbIndexDescriptor: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetIndexStatus(@as(*const IMFASFIndexer, @ptrCast(self)), pIndexIdentifier, pfIsIndexed, pbIndexDescriptor, pcbIndexDescriptor);
+        return self.vtable.GetIndexStatus(self, pIndexIdentifier, pfIsIndexed, pbIndexDescriptor, pcbIndexDescriptor);
     }
     pub fn SetIndexStatus(self: *const IMFASFIndexer, pbIndexDescriptor: ?*u8, cbIndexDescriptor: u32, fGenerateIndex: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).SetIndexStatus(@as(*const IMFASFIndexer, @ptrCast(self)), pbIndexDescriptor, cbIndexDescriptor, fGenerateIndex);
+        return self.vtable.SetIndexStatus(self, pbIndexDescriptor, cbIndexDescriptor, fGenerateIndex);
     }
     pub fn GetSeekPositionForValue(self: *const IMFASFIndexer, pvarValue: ?*const PROPVARIANT, pIndexIdentifier: ?*ASF_INDEX_IDENTIFIER, pcbOffsetWithinData: ?*u64, phnsApproxTime: ?*i64, pdwPayloadNumberOfStreamWithinPacket: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetSeekPositionForValue(@as(*const IMFASFIndexer, @ptrCast(self)), pvarValue, pIndexIdentifier, pcbOffsetWithinData, phnsApproxTime, pdwPayloadNumberOfStreamWithinPacket);
+        return self.vtable.GetSeekPositionForValue(self, pvarValue, pIndexIdentifier, pcbOffsetWithinData, phnsApproxTime, pdwPayloadNumberOfStreamWithinPacket);
     }
     pub fn GenerateIndexEntries(self: *const IMFASFIndexer, pIASFPacketSample: ?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GenerateIndexEntries(@as(*const IMFASFIndexer, @ptrCast(self)), pIASFPacketSample);
+        return self.vtable.GenerateIndexEntries(self, pIASFPacketSample);
     }
     pub fn CommitIndex(self: *const IMFASFIndexer, pIContentInfo: ?*IMFASFContentInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).CommitIndex(@as(*const IMFASFIndexer, @ptrCast(self)), pIContentInfo);
+        return self.vtable.CommitIndex(self, pIContentInfo);
     }
     pub fn GetIndexWriteSpace(self: *const IMFASFIndexer, pcbIndexWriteSpace: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetIndexWriteSpace(@as(*const IMFASFIndexer, @ptrCast(self)), pcbIndexWriteSpace);
+        return self.vtable.GetIndexWriteSpace(self, pcbIndexWriteSpace);
     }
     pub fn GetCompletedIndex(self: *const IMFASFIndexer, pIIndexBuffer: ?*IMFMediaBuffer, cbOffsetWithinIndex: u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFIndexer.VTable, @ptrCast(self.vtable)).GetCompletedIndex(@as(*const IMFASFIndexer, @ptrCast(self)), pIIndexBuffer, cbOffsetWithinIndex);
+        return self.vtable.GetCompletedIndex(self, pIIndexBuffer, cbOffsetWithinIndex);
     }
 };
 
@@ -26111,31 +26111,31 @@ pub const IMFASFSplitter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IMFASFSplitter, pIContentInfo: ?*IMFASFContentInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFASFSplitter, @ptrCast(self)), pIContentInfo);
+        return self.vtable.Initialize(self, pIContentInfo);
     }
     pub fn SetFlags(self: *const IMFASFSplitter, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IMFASFSplitter, @ptrCast(self)), dwFlags);
+        return self.vtable.SetFlags(self, dwFlags);
     }
     pub fn GetFlags(self: *const IMFASFSplitter, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFASFSplitter, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetFlags(self, pdwFlags);
     }
     pub fn SelectStreams(self: *const IMFASFSplitter, pwStreamNumbers: ?*u16, wNumStreams: u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).SelectStreams(@as(*const IMFASFSplitter, @ptrCast(self)), pwStreamNumbers, wNumStreams);
+        return self.vtable.SelectStreams(self, pwStreamNumbers, wNumStreams);
     }
     pub fn GetSelectedStreams(self: *const IMFASFSplitter, pwStreamNumbers: ?*u16, pwNumStreams: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).GetSelectedStreams(@as(*const IMFASFSplitter, @ptrCast(self)), pwStreamNumbers, pwNumStreams);
+        return self.vtable.GetSelectedStreams(self, pwStreamNumbers, pwNumStreams);
     }
     pub fn ParseData(self: *const IMFASFSplitter, pIBuffer: ?*IMFMediaBuffer, cbBufferOffset: u32, cbLength: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).ParseData(@as(*const IMFASFSplitter, @ptrCast(self)), pIBuffer, cbBufferOffset, cbLength);
+        return self.vtable.ParseData(self, pIBuffer, cbBufferOffset, cbLength);
     }
     pub fn GetNextSample(self: *const IMFASFSplitter, pdwStatusFlags: ?*ASF_STATUSFLAGS, pwStreamNumber: ?*u16, ppISample: ?*?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).GetNextSample(@as(*const IMFASFSplitter, @ptrCast(self)), pdwStatusFlags, pwStreamNumber, ppISample);
+        return self.vtable.GetNextSample(self, pdwStatusFlags, pwStreamNumber, ppISample);
     }
     pub fn Flush(self: *const IMFASFSplitter) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFASFSplitter, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
     pub fn GetLastSendTime(self: *const IMFASFSplitter, pdwLastSendTime: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFSplitter.VTable, @ptrCast(self.vtable)).GetLastSendTime(@as(*const IMFASFSplitter, @ptrCast(self)), pdwLastSendTime);
+        return self.vtable.GetLastSendTime(self, pdwLastSendTime);
     }
 };
 
@@ -26252,31 +26252,31 @@ pub const IMFASFMultiplexer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IMFASFMultiplexer, pIContentInfo: ?*IMFASFContentInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFASFMultiplexer, @ptrCast(self)), pIContentInfo);
+        return self.vtable.Initialize(self, pIContentInfo);
     }
     pub fn SetFlags(self: *const IMFASFMultiplexer, dwFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IMFASFMultiplexer, @ptrCast(self)), dwFlags);
+        return self.vtable.SetFlags(self, dwFlags);
     }
     pub fn GetFlags(self: *const IMFASFMultiplexer, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IMFASFMultiplexer, @ptrCast(self)), pdwFlags);
+        return self.vtable.GetFlags(self, pdwFlags);
     }
     pub fn ProcessSample(self: *const IMFASFMultiplexer, wStreamNumber: u16, pISample: ?*IMFSample, hnsTimestampAdjust: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).ProcessSample(@as(*const IMFASFMultiplexer, @ptrCast(self)), wStreamNumber, pISample, hnsTimestampAdjust);
+        return self.vtable.ProcessSample(self, wStreamNumber, pISample, hnsTimestampAdjust);
     }
     pub fn GetNextPacket(self: *const IMFASFMultiplexer, pdwStatusFlags: ?*u32, ppIPacket: ?*?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).GetNextPacket(@as(*const IMFASFMultiplexer, @ptrCast(self)), pdwStatusFlags, ppIPacket);
+        return self.vtable.GetNextPacket(self, pdwStatusFlags, ppIPacket);
     }
     pub fn Flush(self: *const IMFASFMultiplexer) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFASFMultiplexer, @ptrCast(self)));
+        return self.vtable.Flush(self);
     }
     pub fn End(self: *const IMFASFMultiplexer, pIContentInfo: ?*IMFASFContentInfo) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).End(@as(*const IMFASFMultiplexer, @ptrCast(self)), pIContentInfo);
+        return self.vtable.End(self, pIContentInfo);
     }
     pub fn GetStatistics(self: *const IMFASFMultiplexer, wStreamNumber: u16, pMuxStats: ?*ASF_MUX_STATISTICS) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IMFASFMultiplexer, @ptrCast(self)), wStreamNumber, pMuxStats);
+        return self.vtable.GetStatistics(self, wStreamNumber, pMuxStats);
     }
     pub fn SetSyncTolerance(self: *const IMFASFMultiplexer, msSyncTolerance: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFMultiplexer.VTable, @ptrCast(self.vtable)).SetSyncTolerance(@as(*const IMFASFMultiplexer, @ptrCast(self)), msSyncTolerance);
+        return self.vtable.SetSyncTolerance(self, msSyncTolerance);
     }
 };
 
@@ -26436,46 +26436,46 @@ pub const IMFASFStreamSelector = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStreamCount(self: *const IMFASFStreamSelector, pcStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetStreamCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), pcStreams);
+        return self.vtable.GetStreamCount(self, pcStreams);
     }
     pub fn GetOutputCount(self: *const IMFASFStreamSelector, pcOutputs: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), pcOutputs);
+        return self.vtable.GetOutputCount(self, pcOutputs);
     }
     pub fn GetOutputStreamCount(self: *const IMFASFStreamSelector, dwOutputNum: u32, pcStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputStreamCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, pcStreams);
+        return self.vtable.GetOutputStreamCount(self, dwOutputNum, pcStreams);
     }
     pub fn GetOutputStreamNumbers(self: *const IMFASFStreamSelector, dwOutputNum: u32, rgwStreamNumbers: ?*u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputStreamNumbers(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, rgwStreamNumbers);
+        return self.vtable.GetOutputStreamNumbers(self, dwOutputNum, rgwStreamNumbers);
     }
     pub fn GetOutputFromStream(self: *const IMFASFStreamSelector, wStreamNum: u16, pdwOutput: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputFromStream(@as(*const IMFASFStreamSelector, @ptrCast(self)), wStreamNum, pdwOutput);
+        return self.vtable.GetOutputFromStream(self, wStreamNum, pdwOutput);
     }
     pub fn GetOutputOverride(self: *const IMFASFStreamSelector, dwOutputNum: u32, pSelection: ?*ASF_SELECTION_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputOverride(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, pSelection);
+        return self.vtable.GetOutputOverride(self, dwOutputNum, pSelection);
     }
     pub fn SetOutputOverride(self: *const IMFASFStreamSelector, dwOutputNum: u32, Selection: ASF_SELECTION_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).SetOutputOverride(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, Selection);
+        return self.vtable.SetOutputOverride(self, dwOutputNum, Selection);
     }
     pub fn GetOutputMutexCount(self: *const IMFASFStreamSelector, dwOutputNum: u32, pcMutexes: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputMutexCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, pcMutexes);
+        return self.vtable.GetOutputMutexCount(self, dwOutputNum, pcMutexes);
     }
     pub fn GetOutputMutex(self: *const IMFASFStreamSelector, dwOutputNum: u32, dwMutexNum: u32, ppMutex: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetOutputMutex(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, dwMutexNum, ppMutex);
+        return self.vtable.GetOutputMutex(self, dwOutputNum, dwMutexNum, ppMutex);
     }
     pub fn SetOutputMutexSelection(self: *const IMFASFStreamSelector, dwOutputNum: u32, dwMutexNum: u32, wSelectedRecord: u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).SetOutputMutexSelection(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwOutputNum, dwMutexNum, wSelectedRecord);
+        return self.vtable.SetOutputMutexSelection(self, dwOutputNum, dwMutexNum, wSelectedRecord);
     }
     pub fn GetBandwidthStepCount(self: *const IMFASFStreamSelector, pcStepCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetBandwidthStepCount(@as(*const IMFASFStreamSelector, @ptrCast(self)), pcStepCount);
+        return self.vtable.GetBandwidthStepCount(self, pcStepCount);
     }
     pub fn GetBandwidthStep(self: *const IMFASFStreamSelector, dwStepNum: u32, pdwBitrate: ?*u32, rgwStreamNumbers: ?*u16, rgSelections: ?*ASF_SELECTION_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).GetBandwidthStep(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwStepNum, pdwBitrate, rgwStreamNumbers, rgSelections);
+        return self.vtable.GetBandwidthStep(self, dwStepNum, pdwBitrate, rgwStreamNumbers, rgSelections);
     }
     pub fn BitrateToStepNumber(self: *const IMFASFStreamSelector, dwBitrate: u32, pdwStepNum: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).BitrateToStepNumber(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwBitrate, pdwStepNum);
+        return self.vtable.BitrateToStepNumber(self, dwBitrate, pdwStepNum);
     }
     pub fn SetStreamSelectorFlags(self: *const IMFASFStreamSelector, dwStreamSelectorFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFASFStreamSelector.VTable, @ptrCast(self.vtable)).SetStreamSelectorFlags(@as(*const IMFASFStreamSelector, @ptrCast(self)), dwStreamSelectorFlags);
+        return self.vtable.SetStreamSelectorFlags(self, dwStreamSelectorFlags);
     }
 };
 
@@ -26527,10 +26527,10 @@ pub const IMFDRMNetHelper = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ProcessLicenseRequest(self: *const IMFDRMNetHelper, pLicenseRequest: [*:0]u8, cbLicenseRequest: u32, ppLicenseResponse: [*]?*u8, pcbLicenseResponse: ?*u32, pbstrKID: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFDRMNetHelper.VTable, @ptrCast(self.vtable)).ProcessLicenseRequest(@as(*const IMFDRMNetHelper, @ptrCast(self)), pLicenseRequest, cbLicenseRequest, ppLicenseResponse, pcbLicenseResponse, pbstrKID);
+        return self.vtable.ProcessLicenseRequest(self, pLicenseRequest, cbLicenseRequest, ppLicenseResponse, pcbLicenseResponse, pbstrKID);
     }
     pub fn GetChainedLicenseResponse(self: *const IMFDRMNetHelper, ppLicenseResponse: [*]?*u8, pcbLicenseResponse: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFDRMNetHelper.VTable, @ptrCast(self.vtable)).GetChainedLicenseResponse(@as(*const IMFDRMNetHelper, @ptrCast(self)), ppLicenseResponse, pcbLicenseResponse);
+        return self.vtable.GetChainedLicenseResponse(self, ppLicenseResponse, pcbLicenseResponse);
     }
 };
 
@@ -26637,7 +26637,7 @@ pub const IMFCaptureEngineOnEventCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnEvent(self: *const IMFCaptureEngineOnEventCallback, pEvent: ?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngineOnEventCallback.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IMFCaptureEngineOnEventCallback, @ptrCast(self)), pEvent);
+        return self.vtable.OnEvent(self, pEvent);
     }
 };
 
@@ -26663,7 +26663,7 @@ pub const IMFCaptureEngineOnSampleCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSample(self: *const IMFCaptureEngineOnSampleCallback, pSample: ?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngineOnSampleCallback.VTable, @ptrCast(self.vtable)).OnSample(@as(*const IMFCaptureEngineOnSampleCallback, @ptrCast(self)), pSample);
+        return self.vtable.OnSample(self, pSample);
     }
 };
 
@@ -26726,19 +26726,19 @@ pub const IMFCaptureSink = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOutputMediaType(self: *const IMFCaptureSink, dwSinkStreamIndex: u32, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).GetOutputMediaType(@as(*const IMFCaptureSink, @ptrCast(self)), dwSinkStreamIndex, ppMediaType);
+        return self.vtable.GetOutputMediaType(self, dwSinkStreamIndex, ppMediaType);
     }
     pub fn GetService(self: *const IMFCaptureSink, dwSinkStreamIndex: u32, rguidService: ?*const Guid, riid: ?*const Guid, ppUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).GetService(@as(*const IMFCaptureSink, @ptrCast(self)), dwSinkStreamIndex, rguidService, riid, ppUnknown);
+        return self.vtable.GetService(self, dwSinkStreamIndex, rguidService, riid, ppUnknown);
     }
     pub fn AddStream(self: *const IMFCaptureSink, dwSourceStreamIndex: u32, pMediaType: ?*IMFMediaType, pAttributes: ?*IMFAttributes, pdwSinkStreamIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IMFCaptureSink, @ptrCast(self)), dwSourceStreamIndex, pMediaType, pAttributes, pdwSinkStreamIndex);
+        return self.vtable.AddStream(self, dwSourceStreamIndex, pMediaType, pAttributes, pdwSinkStreamIndex);
     }
     pub fn Prepare(self: *const IMFCaptureSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).Prepare(@as(*const IMFCaptureSink, @ptrCast(self)));
+        return self.vtable.Prepare(self);
     }
     pub fn RemoveAllStreams(self: *const IMFCaptureSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSink.VTable, @ptrCast(self.vtable)).RemoveAllStreams(@as(*const IMFCaptureSink, @ptrCast(self)));
+        return self.vtable.RemoveAllStreams(self);
     }
 };
 
@@ -26808,22 +26808,22 @@ pub const IMFCaptureRecordSink = extern union {
     };}
     pub usingnamespace IMFCaptureSink.MethodMixin(@This());
     pub fn SetOutputByteStream(self: *const IMFCaptureRecordSink, pByteStream: ?*IMFByteStream, guidContainerType: ?*const Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetOutputByteStream(@as(*const IMFCaptureRecordSink, @ptrCast(self)), pByteStream, guidContainerType);
+        return self.vtable.SetOutputByteStream(self, pByteStream, guidContainerType);
     }
     pub fn SetOutputFileName(self: *const IMFCaptureRecordSink, fileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetOutputFileName(@as(*const IMFCaptureRecordSink, @ptrCast(self)), fileName);
+        return self.vtable.SetOutputFileName(self, fileName);
     }
     pub fn SetSampleCallback(self: *const IMFCaptureRecordSink, dwStreamSinkIndex: u32, pCallback: ?*IMFCaptureEngineOnSampleCallback) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetSampleCallback(@as(*const IMFCaptureRecordSink, @ptrCast(self)), dwStreamSinkIndex, pCallback);
+        return self.vtable.SetSampleCallback(self, dwStreamSinkIndex, pCallback);
     }
     pub fn SetCustomSink(self: *const IMFCaptureRecordSink, pMediaSink: ?*IMFMediaSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetCustomSink(@as(*const IMFCaptureRecordSink, @ptrCast(self)), pMediaSink);
+        return self.vtable.SetCustomSink(self, pMediaSink);
     }
     pub fn GetRotation(self: *const IMFCaptureRecordSink, dwStreamIndex: u32, pdwRotationValue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).GetRotation(@as(*const IMFCaptureRecordSink, @ptrCast(self)), dwStreamIndex, pdwRotationValue);
+        return self.vtable.GetRotation(self, dwStreamIndex, pdwRotationValue);
     }
     pub fn SetRotation(self: *const IMFCaptureRecordSink, dwStreamIndex: u32, dwRotationValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureRecordSink.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IMFCaptureRecordSink, @ptrCast(self)), dwStreamIndex, dwRotationValue);
+        return self.vtable.SetRotation(self, dwStreamIndex, dwRotationValue);
     }
 };
 
@@ -26918,31 +26918,31 @@ pub const IMFCapturePreviewSink = extern union {
     };}
     pub usingnamespace IMFCaptureSink.MethodMixin(@This());
     pub fn SetRenderHandle(self: *const IMFCapturePreviewSink, handle: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetRenderHandle(@as(*const IMFCapturePreviewSink, @ptrCast(self)), handle);
+        return self.vtable.SetRenderHandle(self, handle);
     }
     pub fn SetRenderSurface(self: *const IMFCapturePreviewSink, pSurface: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetRenderSurface(@as(*const IMFCapturePreviewSink, @ptrCast(self)), pSurface);
+        return self.vtable.SetRenderSurface(self, pSurface);
     }
     pub fn UpdateVideo(self: *const IMFCapturePreviewSink, pSrc: ?*const MFVideoNormalizedRect, pDst: ?*const RECT, pBorderClr: ?*const u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).UpdateVideo(@as(*const IMFCapturePreviewSink, @ptrCast(self)), pSrc, pDst, pBorderClr);
+        return self.vtable.UpdateVideo(self, pSrc, pDst, pBorderClr);
     }
     pub fn SetSampleCallback(self: *const IMFCapturePreviewSink, dwStreamSinkIndex: u32, pCallback: ?*IMFCaptureEngineOnSampleCallback) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetSampleCallback(@as(*const IMFCapturePreviewSink, @ptrCast(self)), dwStreamSinkIndex, pCallback);
+        return self.vtable.SetSampleCallback(self, dwStreamSinkIndex, pCallback);
     }
     pub fn GetMirrorState(self: *const IMFCapturePreviewSink, pfMirrorState: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).GetMirrorState(@as(*const IMFCapturePreviewSink, @ptrCast(self)), pfMirrorState);
+        return self.vtable.GetMirrorState(self, pfMirrorState);
     }
     pub fn SetMirrorState(self: *const IMFCapturePreviewSink, fMirrorState: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetMirrorState(@as(*const IMFCapturePreviewSink, @ptrCast(self)), fMirrorState);
+        return self.vtable.SetMirrorState(self, fMirrorState);
     }
     pub fn GetRotation(self: *const IMFCapturePreviewSink, dwStreamIndex: u32, pdwRotationValue: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).GetRotation(@as(*const IMFCapturePreviewSink, @ptrCast(self)), dwStreamIndex, pdwRotationValue);
+        return self.vtable.GetRotation(self, dwStreamIndex, pdwRotationValue);
     }
     pub fn SetRotation(self: *const IMFCapturePreviewSink, dwStreamIndex: u32, dwRotationValue: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IMFCapturePreviewSink, @ptrCast(self)), dwStreamIndex, dwRotationValue);
+        return self.vtable.SetRotation(self, dwStreamIndex, dwRotationValue);
     }
     pub fn SetCustomSink(self: *const IMFCapturePreviewSink, pMediaSink: ?*IMFMediaSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePreviewSink.VTable, @ptrCast(self.vtable)).SetCustomSink(@as(*const IMFCapturePreviewSink, @ptrCast(self)), pMediaSink);
+        return self.vtable.SetCustomSink(self, pMediaSink);
     }
 };
 
@@ -26984,13 +26984,13 @@ pub const IMFCapturePhotoSink = extern union {
     };}
     pub usingnamespace IMFCaptureSink.MethodMixin(@This());
     pub fn SetOutputFileName(self: *const IMFCapturePhotoSink, fileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePhotoSink.VTable, @ptrCast(self.vtable)).SetOutputFileName(@as(*const IMFCapturePhotoSink, @ptrCast(self)), fileName);
+        return self.vtable.SetOutputFileName(self, fileName);
     }
     pub fn SetSampleCallback(self: *const IMFCapturePhotoSink, pCallback: ?*IMFCaptureEngineOnSampleCallback) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePhotoSink.VTable, @ptrCast(self.vtable)).SetSampleCallback(@as(*const IMFCapturePhotoSink, @ptrCast(self)), pCallback);
+        return self.vtable.SetSampleCallback(self, pCallback);
     }
     pub fn SetOutputByteStream(self: *const IMFCapturePhotoSink, pByteStream: ?*IMFByteStream) callconv(.Inline) HRESULT {
-        return @as(*const IMFCapturePhotoSink.VTable, @ptrCast(self.vtable)).SetOutputByteStream(@as(*const IMFCapturePhotoSink, @ptrCast(self)), pByteStream);
+        return self.vtable.SetOutputByteStream(self, pByteStream);
     }
 };
 
@@ -27134,46 +27134,46 @@ pub const IMFCaptureSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetCaptureDeviceSource(self: *const IMFCaptureSource, mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE, ppMediaSource: ?*?*IMFMediaSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetCaptureDeviceSource(@as(*const IMFCaptureSource, @ptrCast(self)), mfCaptureEngineDeviceType, ppMediaSource);
+        return self.vtable.GetCaptureDeviceSource(self, mfCaptureEngineDeviceType, ppMediaSource);
     }
     pub fn GetCaptureDeviceActivate(self: *const IMFCaptureSource, mfCaptureEngineDeviceType: MF_CAPTURE_ENGINE_DEVICE_TYPE, ppActivate: ?*?*IMFActivate) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetCaptureDeviceActivate(@as(*const IMFCaptureSource, @ptrCast(self)), mfCaptureEngineDeviceType, ppActivate);
+        return self.vtable.GetCaptureDeviceActivate(self, mfCaptureEngineDeviceType, ppActivate);
     }
     pub fn GetService(self: *const IMFCaptureSource, rguidService: ?*const Guid, riid: ?*const Guid, ppUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetService(@as(*const IMFCaptureSource, @ptrCast(self)), rguidService, riid, ppUnknown);
+        return self.vtable.GetService(self, rguidService, riid, ppUnknown);
     }
     pub fn AddEffect(self: *const IMFCaptureSource, dwSourceStreamIndex: u32, pUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).AddEffect(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, pUnknown);
+        return self.vtable.AddEffect(self, dwSourceStreamIndex, pUnknown);
     }
     pub fn RemoveEffect(self: *const IMFCaptureSource, dwSourceStreamIndex: u32, pUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).RemoveEffect(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, pUnknown);
+        return self.vtable.RemoveEffect(self, dwSourceStreamIndex, pUnknown);
     }
     pub fn RemoveAllEffects(self: *const IMFCaptureSource, dwSourceStreamIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).RemoveAllEffects(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex);
+        return self.vtable.RemoveAllEffects(self, dwSourceStreamIndex);
     }
     pub fn GetAvailableDeviceMediaType(self: *const IMFCaptureSource, dwSourceStreamIndex: u32, dwMediaTypeIndex: u32, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetAvailableDeviceMediaType(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, dwMediaTypeIndex, ppMediaType);
+        return self.vtable.GetAvailableDeviceMediaType(self, dwSourceStreamIndex, dwMediaTypeIndex, ppMediaType);
     }
     pub fn SetCurrentDeviceMediaType(self: *const IMFCaptureSource, dwSourceStreamIndex: u32, pMediaType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).SetCurrentDeviceMediaType(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, pMediaType);
+        return self.vtable.SetCurrentDeviceMediaType(self, dwSourceStreamIndex, pMediaType);
     }
     pub fn GetCurrentDeviceMediaType(self: *const IMFCaptureSource, dwSourceStreamIndex: u32, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetCurrentDeviceMediaType(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, ppMediaType);
+        return self.vtable.GetCurrentDeviceMediaType(self, dwSourceStreamIndex, ppMediaType);
     }
     pub fn GetDeviceStreamCount(self: *const IMFCaptureSource, pdwStreamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetDeviceStreamCount(@as(*const IMFCaptureSource, @ptrCast(self)), pdwStreamCount);
+        return self.vtable.GetDeviceStreamCount(self, pdwStreamCount);
     }
     pub fn GetDeviceStreamCategory(self: *const IMFCaptureSource, dwSourceStreamIndex: u32, pStreamCategory: ?*MF_CAPTURE_ENGINE_STREAM_CATEGORY) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetDeviceStreamCategory(@as(*const IMFCaptureSource, @ptrCast(self)), dwSourceStreamIndex, pStreamCategory);
+        return self.vtable.GetDeviceStreamCategory(self, dwSourceStreamIndex, pStreamCategory);
     }
     pub fn GetMirrorState(self: *const IMFCaptureSource, dwStreamIndex: u32, pfMirrorState: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetMirrorState(@as(*const IMFCaptureSource, @ptrCast(self)), dwStreamIndex, pfMirrorState);
+        return self.vtable.GetMirrorState(self, dwStreamIndex, pfMirrorState);
     }
     pub fn SetMirrorState(self: *const IMFCaptureSource, dwStreamIndex: u32, fMirrorState: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).SetMirrorState(@as(*const IMFCaptureSource, @ptrCast(self)), dwStreamIndex, fMirrorState);
+        return self.vtable.SetMirrorState(self, dwStreamIndex, fMirrorState);
     }
     pub fn GetStreamIndexFromFriendlyName(self: *const IMFCaptureSource, uifriendlyName: u32, pdwActualStreamIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSource.VTable, @ptrCast(self.vtable)).GetStreamIndexFromFriendlyName(@as(*const IMFCaptureSource, @ptrCast(self)), uifriendlyName, pdwActualStreamIndex);
+        return self.vtable.GetStreamIndexFromFriendlyName(self, uifriendlyName, pdwActualStreamIndex);
     }
 };
 
@@ -27256,28 +27256,28 @@ pub const IMFCaptureEngine = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IMFCaptureEngine, pEventCallback: ?*IMFCaptureEngineOnEventCallback, pAttributes: ?*IMFAttributes, pAudioSource: ?*IUnknown, pVideoSource: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFCaptureEngine, @ptrCast(self)), pEventCallback, pAttributes, pAudioSource, pVideoSource);
+        return self.vtable.Initialize(self, pEventCallback, pAttributes, pAudioSource, pVideoSource);
     }
     pub fn StartPreview(self: *const IMFCaptureEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).StartPreview(@as(*const IMFCaptureEngine, @ptrCast(self)));
+        return self.vtable.StartPreview(self);
     }
     pub fn StopPreview(self: *const IMFCaptureEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).StopPreview(@as(*const IMFCaptureEngine, @ptrCast(self)));
+        return self.vtable.StopPreview(self);
     }
     pub fn StartRecord(self: *const IMFCaptureEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).StartRecord(@as(*const IMFCaptureEngine, @ptrCast(self)));
+        return self.vtable.StartRecord(self);
     }
     pub fn StopRecord(self: *const IMFCaptureEngine, bFinalize: BOOL, bFlushUnprocessedSamples: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).StopRecord(@as(*const IMFCaptureEngine, @ptrCast(self)), bFinalize, bFlushUnprocessedSamples);
+        return self.vtable.StopRecord(self, bFinalize, bFlushUnprocessedSamples);
     }
     pub fn TakePhoto(self: *const IMFCaptureEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).TakePhoto(@as(*const IMFCaptureEngine, @ptrCast(self)));
+        return self.vtable.TakePhoto(self);
     }
     pub fn GetSink(self: *const IMFCaptureEngine, mfCaptureEngineSinkType: MF_CAPTURE_ENGINE_SINK_TYPE, ppSink: ?*?*IMFCaptureSink) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).GetSink(@as(*const IMFCaptureEngine, @ptrCast(self)), mfCaptureEngineSinkType, ppSink);
+        return self.vtable.GetSink(self, mfCaptureEngineSinkType, ppSink);
     }
     pub fn GetSource(self: *const IMFCaptureEngine, ppSource: ?*?*IMFCaptureSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngine.VTable, @ptrCast(self.vtable)).GetSource(@as(*const IMFCaptureEngine, @ptrCast(self)), ppSource);
+        return self.vtable.GetSource(self, ppSource);
     }
 };
 
@@ -27305,7 +27305,7 @@ pub const IMFCaptureEngineClassFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateInstance(self: *const IMFCaptureEngineClassFactory, clsid: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IMFCaptureEngineClassFactory, @ptrCast(self)), clsid, riid, ppvObject);
+        return self.vtable.CreateInstance(self, clsid, riid, ppvObject);
     }
 };
 
@@ -27331,7 +27331,7 @@ pub const IMFCaptureEngineOnSampleCallback2 = extern union {
     };}
     pub usingnamespace IMFCaptureEngineOnSampleCallback.MethodMixin(@This());
     pub fn OnSynchronizedEvent(self: *const IMFCaptureEngineOnSampleCallback2, pEvent: ?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureEngineOnSampleCallback2.VTable, @ptrCast(self.vtable)).OnSynchronizedEvent(@as(*const IMFCaptureEngineOnSampleCallback2, @ptrCast(self)), pEvent);
+        return self.vtable.OnSynchronizedEvent(self, pEvent);
     }
 };
 
@@ -27359,7 +27359,7 @@ pub const IMFCaptureSink2 = extern union {
     };}
     pub usingnamespace IMFCaptureSink.MethodMixin(@This());
     pub fn SetOutputMediaType(self: *const IMFCaptureSink2, dwStreamIndex: u32, pMediaType: ?*IMFMediaType, pEncodingAttributes: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFCaptureSink2.VTable, @ptrCast(self.vtable)).SetOutputMediaType(@as(*const IMFCaptureSink2, @ptrCast(self)), dwStreamIndex, pMediaType, pEncodingAttributes);
+        return self.vtable.SetOutputMediaType(self, dwStreamIndex, pMediaType, pEncodingAttributes);
     }
 };
 
@@ -27408,16 +27408,16 @@ pub const IMFD3D12SynchronizationObjectCommands = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EnqueueResourceReady(self: *const IMFD3D12SynchronizationObjectCommands, pProducerCommandQueue: ?*ID3D12CommandQueue) callconv(.Inline) HRESULT {
-        return @as(*const IMFD3D12SynchronizationObjectCommands.VTable, @ptrCast(self.vtable)).EnqueueResourceReady(@as(*const IMFD3D12SynchronizationObjectCommands, @ptrCast(self)), pProducerCommandQueue);
+        return self.vtable.EnqueueResourceReady(self, pProducerCommandQueue);
     }
     pub fn EnqueueResourceReadyWait(self: *const IMFD3D12SynchronizationObjectCommands, pConsumerCommandQueue: ?*ID3D12CommandQueue) callconv(.Inline) HRESULT {
-        return @as(*const IMFD3D12SynchronizationObjectCommands.VTable, @ptrCast(self.vtable)).EnqueueResourceReadyWait(@as(*const IMFD3D12SynchronizationObjectCommands, @ptrCast(self)), pConsumerCommandQueue);
+        return self.vtable.EnqueueResourceReadyWait(self, pConsumerCommandQueue);
     }
     pub fn SignalEventOnResourceReady(self: *const IMFD3D12SynchronizationObjectCommands, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IMFD3D12SynchronizationObjectCommands.VTable, @ptrCast(self.vtable)).SignalEventOnResourceReady(@as(*const IMFD3D12SynchronizationObjectCommands, @ptrCast(self)), hEvent);
+        return self.vtable.SignalEventOnResourceReady(self, hEvent);
     }
     pub fn EnqueueResourceRelease(self: *const IMFD3D12SynchronizationObjectCommands, pConsumerCommandQueue: ?*ID3D12CommandQueue) callconv(.Inline) HRESULT {
-        return @as(*const IMFD3D12SynchronizationObjectCommands.VTable, @ptrCast(self.vtable)).EnqueueResourceRelease(@as(*const IMFD3D12SynchronizationObjectCommands, @ptrCast(self)), pConsumerCommandQueue);
+        return self.vtable.EnqueueResourceRelease(self, pConsumerCommandQueue);
     }
 };
 
@@ -27449,10 +27449,10 @@ pub const IMFD3D12SynchronizationObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SignalEventOnFinalResourceRelease(self: *const IMFD3D12SynchronizationObject, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IMFD3D12SynchronizationObject.VTable, @ptrCast(self.vtable)).SignalEventOnFinalResourceRelease(@as(*const IMFD3D12SynchronizationObject, @ptrCast(self)), hEvent);
+        return self.vtable.SignalEventOnFinalResourceRelease(self, hEvent);
     }
     pub fn Reset(self: *const IMFD3D12SynchronizationObject) callconv(.Inline) HRESULT {
-        return @as(*const IMFD3D12SynchronizationObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMFD3D12SynchronizationObject, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
 };
 
@@ -27852,16 +27852,16 @@ pub const IMFMediaError = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetErrorCode(self: *const IMFMediaError) callconv(.Inline) u16 {
-        return @as(*const IMFMediaError.VTable, @ptrCast(self.vtable)).GetErrorCode(@as(*const IMFMediaError, @ptrCast(self)));
+        return self.vtable.GetErrorCode(self);
     }
     pub fn GetExtendedErrorCode(self: *const IMFMediaError) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaError.VTable, @ptrCast(self.vtable)).GetExtendedErrorCode(@as(*const IMFMediaError, @ptrCast(self)));
+        return self.vtable.GetExtendedErrorCode(self);
     }
     pub fn SetErrorCode(self: *const IMFMediaError, @"error": MF_MEDIA_ENGINE_ERR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaError.VTable, @ptrCast(self.vtable)).SetErrorCode(@as(*const IMFMediaError, @ptrCast(self)), @"error");
+        return self.vtable.SetErrorCode(self, @"error");
     }
     pub fn SetExtendedErrorCode(self: *const IMFMediaError, @"error": HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaError.VTable, @ptrCast(self.vtable)).SetExtendedErrorCode(@as(*const IMFMediaError, @ptrCast(self)), @"error");
+        return self.vtable.SetExtendedErrorCode(self, @"error");
     }
 };
 
@@ -27928,22 +27928,22 @@ pub const IMFMediaTimeRange = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLength(self: *const IMFMediaTimeRange) callconv(.Inline) u32 {
-        return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFMediaTimeRange, @ptrCast(self)));
+        return self.vtable.GetLength(self);
     }
     pub fn GetStart(self: *const IMFMediaTimeRange, index: u32, pStart: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).GetStart(@as(*const IMFMediaTimeRange, @ptrCast(self)), index, pStart);
+        return self.vtable.GetStart(self, index, pStart);
     }
     pub fn GetEnd(self: *const IMFMediaTimeRange, index: u32, pEnd: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).GetEnd(@as(*const IMFMediaTimeRange, @ptrCast(self)), index, pEnd);
+        return self.vtable.GetEnd(self, index, pEnd);
     }
     pub fn ContainsTime(self: *const IMFMediaTimeRange, time: f64) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).ContainsTime(@as(*const IMFMediaTimeRange, @ptrCast(self)), time);
+        return self.vtable.ContainsTime(self, time);
     }
     pub fn AddRange(self: *const IMFMediaTimeRange, startTime: f64, endTime: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).AddRange(@as(*const IMFMediaTimeRange, @ptrCast(self)), startTime, endTime);
+        return self.vtable.AddRange(self, startTime, endTime);
     }
     pub fn Clear(self: *const IMFMediaTimeRange) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaTimeRange.VTable, @ptrCast(self.vtable)).Clear(@as(*const IMFMediaTimeRange, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 
@@ -28052,7 +28052,7 @@ pub const IMFMediaEngineNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn EventNotify(self: *const IMFMediaEngineNotify, event: u32, param1: usize, param2: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineNotify.VTable, @ptrCast(self.vtable)).EventNotify(@as(*const IMFMediaEngineNotify, @ptrCast(self)), event, param1, param2);
+        return self.vtable.EventNotify(self, event, param1, param2);
     }
 };
 
@@ -28121,22 +28121,22 @@ pub const IMFMediaEngineSrcElements = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLength(self: *const IMFMediaEngineSrcElements) callconv(.Inline) u32 {
-        return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)));
+        return self.vtable.GetLength(self);
     }
     pub fn GetURL(self: *const IMFMediaEngineSrcElements, index: u32, pURL: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).GetURL(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)), index, pURL);
+        return self.vtable.GetURL(self, index, pURL);
     }
     pub fn GetType(self: *const IMFMediaEngineSrcElements, index: u32, pType: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).GetType(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)), index, pType);
+        return self.vtable.GetType(self, index, pType);
     }
     pub fn GetMedia(self: *const IMFMediaEngineSrcElements, index: u32, pMedia: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).GetMedia(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)), index, pMedia);
+        return self.vtable.GetMedia(self, index, pMedia);
     }
     pub fn AddElement(self: *const IMFMediaEngineSrcElements, pURL: ?BSTR, pType: ?BSTR, pMedia: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).AddElement(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)), pURL, pType, pMedia);
+        return self.vtable.AddElement(self, pURL, pType, pMedia);
     }
     pub fn RemoveAllElements(self: *const IMFMediaEngineSrcElements) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSrcElements.VTable, @ptrCast(self.vtable)).RemoveAllElements(@as(*const IMFMediaEngineSrcElements, @ptrCast(self)));
+        return self.vtable.RemoveAllElements(self);
     }
 };
 
@@ -28521,130 +28521,130 @@ pub const IMFMediaEngine = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetError(self: *const IMFMediaEngine, ppError: ?*?*IMFMediaError) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetError(@as(*const IMFMediaEngine, @ptrCast(self)), ppError);
+        return self.vtable.GetError(self, ppError);
     }
     pub fn SetErrorCode(self: *const IMFMediaEngine, @"error": MF_MEDIA_ENGINE_ERR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetErrorCode(@as(*const IMFMediaEngine, @ptrCast(self)), @"error");
+        return self.vtable.SetErrorCode(self, @"error");
     }
     pub fn SetSourceElements(self: *const IMFMediaEngine, pSrcElements: ?*IMFMediaEngineSrcElements) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetSourceElements(@as(*const IMFMediaEngine, @ptrCast(self)), pSrcElements);
+        return self.vtable.SetSourceElements(self, pSrcElements);
     }
     pub fn SetSource(self: *const IMFMediaEngine, pUrl: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetSource(@as(*const IMFMediaEngine, @ptrCast(self)), pUrl);
+        return self.vtable.SetSource(self, pUrl);
     }
     pub fn GetCurrentSource(self: *const IMFMediaEngine, ppUrl: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetCurrentSource(@as(*const IMFMediaEngine, @ptrCast(self)), ppUrl);
+        return self.vtable.GetCurrentSource(self, ppUrl);
     }
     pub fn GetNetworkState(self: *const IMFMediaEngine) callconv(.Inline) u16 {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetNetworkState(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetNetworkState(self);
     }
     pub fn GetPreload(self: *const IMFMediaEngine) callconv(.Inline) MF_MEDIA_ENGINE_PRELOAD {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetPreload(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetPreload(self);
     }
     pub fn SetPreload(self: *const IMFMediaEngine, Preload: MF_MEDIA_ENGINE_PRELOAD) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetPreload(@as(*const IMFMediaEngine, @ptrCast(self)), Preload);
+        return self.vtable.SetPreload(self, Preload);
     }
     pub fn GetBuffered(self: *const IMFMediaEngine, ppBuffered: ?*?*IMFMediaTimeRange) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetBuffered(@as(*const IMFMediaEngine, @ptrCast(self)), ppBuffered);
+        return self.vtable.GetBuffered(self, ppBuffered);
     }
     pub fn Load(self: *const IMFMediaEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).Load(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.Load(self);
     }
     pub fn CanPlayType(self: *const IMFMediaEngine, @"type": ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).CanPlayType(@as(*const IMFMediaEngine, @ptrCast(self)), @"type", pAnswer);
+        return self.vtable.CanPlayType(self, @"type", pAnswer);
     }
     pub fn GetReadyState(self: *const IMFMediaEngine) callconv(.Inline) u16 {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetReadyState(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetReadyState(self);
     }
     pub fn IsSeeking(self: *const IMFMediaEngine) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).IsSeeking(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.IsSeeking(self);
     }
     pub fn GetCurrentTime(self: *const IMFMediaEngine) callconv(.Inline) f64 {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetCurrentTime(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetCurrentTime(self);
     }
     pub fn SetCurrentTime(self: *const IMFMediaEngine, seekTime: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetCurrentTime(@as(*const IMFMediaEngine, @ptrCast(self)), seekTime);
+        return self.vtable.SetCurrentTime(self, seekTime);
     }
     pub fn GetStartTime(self: *const IMFMediaEngine) callconv(.Inline) f64 {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetStartTime(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetStartTime(self);
     }
     pub fn GetDuration(self: *const IMFMediaEngine) callconv(.Inline) f64 {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetDuration(self);
     }
     pub fn IsPaused(self: *const IMFMediaEngine) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).IsPaused(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.IsPaused(self);
     }
     pub fn GetDefaultPlaybackRate(self: *const IMFMediaEngine) callconv(.Inline) f64 {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetDefaultPlaybackRate(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetDefaultPlaybackRate(self);
     }
     pub fn SetDefaultPlaybackRate(self: *const IMFMediaEngine, Rate: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetDefaultPlaybackRate(@as(*const IMFMediaEngine, @ptrCast(self)), Rate);
+        return self.vtable.SetDefaultPlaybackRate(self, Rate);
     }
     pub fn GetPlaybackRate(self: *const IMFMediaEngine) callconv(.Inline) f64 {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetPlaybackRate(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetPlaybackRate(self);
     }
     pub fn SetPlaybackRate(self: *const IMFMediaEngine, Rate: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetPlaybackRate(@as(*const IMFMediaEngine, @ptrCast(self)), Rate);
+        return self.vtable.SetPlaybackRate(self, Rate);
     }
     pub fn GetPlayed(self: *const IMFMediaEngine, ppPlayed: ?*?*IMFMediaTimeRange) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetPlayed(@as(*const IMFMediaEngine, @ptrCast(self)), ppPlayed);
+        return self.vtable.GetPlayed(self, ppPlayed);
     }
     pub fn GetSeekable(self: *const IMFMediaEngine, ppSeekable: ?*?*IMFMediaTimeRange) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetSeekable(@as(*const IMFMediaEngine, @ptrCast(self)), ppSeekable);
+        return self.vtable.GetSeekable(self, ppSeekable);
     }
     pub fn IsEnded(self: *const IMFMediaEngine) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).IsEnded(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.IsEnded(self);
     }
     pub fn GetAutoPlay(self: *const IMFMediaEngine) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetAutoPlay(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetAutoPlay(self);
     }
     pub fn SetAutoPlay(self: *const IMFMediaEngine, AutoPlay: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetAutoPlay(@as(*const IMFMediaEngine, @ptrCast(self)), AutoPlay);
+        return self.vtable.SetAutoPlay(self, AutoPlay);
     }
     pub fn GetLoop(self: *const IMFMediaEngine) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetLoop(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetLoop(self);
     }
     pub fn SetLoop(self: *const IMFMediaEngine, Loop: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetLoop(@as(*const IMFMediaEngine, @ptrCast(self)), Loop);
+        return self.vtable.SetLoop(self, Loop);
     }
     pub fn Play(self: *const IMFMediaEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).Play(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.Play(self);
     }
     pub fn Pause(self: *const IMFMediaEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn GetMuted(self: *const IMFMediaEngine) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetMuted(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetMuted(self);
     }
     pub fn SetMuted(self: *const IMFMediaEngine, Muted: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetMuted(@as(*const IMFMediaEngine, @ptrCast(self)), Muted);
+        return self.vtable.SetMuted(self, Muted);
     }
     pub fn GetVolume(self: *const IMFMediaEngine) callconv(.Inline) f64 {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetVolume(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.GetVolume(self);
     }
     pub fn SetVolume(self: *const IMFMediaEngine, Volume: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const IMFMediaEngine, @ptrCast(self)), Volume);
+        return self.vtable.SetVolume(self, Volume);
     }
     pub fn HasVideo(self: *const IMFMediaEngine) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).HasVideo(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.HasVideo(self);
     }
     pub fn HasAudio(self: *const IMFMediaEngine) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).HasAudio(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.HasAudio(self);
     }
     pub fn GetNativeVideoSize(self: *const IMFMediaEngine, cx: ?*u32, cy: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetNativeVideoSize(@as(*const IMFMediaEngine, @ptrCast(self)), cx, cy);
+        return self.vtable.GetNativeVideoSize(self, cx, cy);
     }
     pub fn GetVideoAspectRatio(self: *const IMFMediaEngine, cx: ?*u32, cy: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).GetVideoAspectRatio(@as(*const IMFMediaEngine, @ptrCast(self)), cx, cy);
+        return self.vtable.GetVideoAspectRatio(self, cx, cy);
     }
     pub fn Shutdown(self: *const IMFMediaEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaEngine, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
     pub fn TransferVideoFrame(self: *const IMFMediaEngine, pDstSurf: ?*IUnknown, pSrc: ?*const MFVideoNormalizedRect, pDst: ?*const RECT, pBorderClr: ?*const MFARGB) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).TransferVideoFrame(@as(*const IMFMediaEngine, @ptrCast(self)), pDstSurf, pSrc, pDst, pBorderClr);
+        return self.vtable.TransferVideoFrame(self, pDstSurf, pSrc, pDst, pBorderClr);
     }
     pub fn OnVideoStreamTick(self: *const IMFMediaEngine, pPts: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngine.VTable, @ptrCast(self.vtable)).OnVideoStreamTick(@as(*const IMFMediaEngine, @ptrCast(self)), pPts);
+        return self.vtable.OnVideoStreamTick(self, pPts);
     }
 };
 
@@ -29000,115 +29000,115 @@ pub const IMFMediaEngineEx = extern union {
     };}
     pub usingnamespace IMFMediaEngine.MethodMixin(@This());
     pub fn SetSourceFromByteStream(self: *const IMFMediaEngineEx, pByteStream: ?*IMFByteStream, pURL: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetSourceFromByteStream(@as(*const IMFMediaEngineEx, @ptrCast(self)), pByteStream, pURL);
+        return self.vtable.SetSourceFromByteStream(self, pByteStream, pURL);
     }
     pub fn GetStatistics(self: *const IMFMediaEngineEx, StatisticID: MF_MEDIA_ENGINE_STATISTIC, pStatistic: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IMFMediaEngineEx, @ptrCast(self)), StatisticID, pStatistic);
+        return self.vtable.GetStatistics(self, StatisticID, pStatistic);
     }
     pub fn UpdateVideoStream(self: *const IMFMediaEngineEx, pSrc: ?*const MFVideoNormalizedRect, pDst: ?*const RECT, pBorderClr: ?*const MFARGB) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).UpdateVideoStream(@as(*const IMFMediaEngineEx, @ptrCast(self)), pSrc, pDst, pBorderClr);
+        return self.vtable.UpdateVideoStream(self, pSrc, pDst, pBorderClr);
     }
     pub fn GetBalance(self: *const IMFMediaEngineEx) callconv(.Inline) f64 {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetBalance(@as(*const IMFMediaEngineEx, @ptrCast(self)));
+        return self.vtable.GetBalance(self);
     }
     pub fn SetBalance(self: *const IMFMediaEngineEx, balance: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetBalance(@as(*const IMFMediaEngineEx, @ptrCast(self)), balance);
+        return self.vtable.SetBalance(self, balance);
     }
     pub fn IsPlaybackRateSupported(self: *const IMFMediaEngineEx, rate: f64) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).IsPlaybackRateSupported(@as(*const IMFMediaEngineEx, @ptrCast(self)), rate);
+        return self.vtable.IsPlaybackRateSupported(self, rate);
     }
     pub fn FrameStep(self: *const IMFMediaEngineEx, Forward: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).FrameStep(@as(*const IMFMediaEngineEx, @ptrCast(self)), Forward);
+        return self.vtable.FrameStep(self, Forward);
     }
     pub fn GetResourceCharacteristics(self: *const IMFMediaEngineEx, pCharacteristics: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetResourceCharacteristics(@as(*const IMFMediaEngineEx, @ptrCast(self)), pCharacteristics);
+        return self.vtable.GetResourceCharacteristics(self, pCharacteristics);
     }
     pub fn GetPresentationAttribute(self: *const IMFMediaEngineEx, guidMFAttribute: ?*const Guid, pvValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetPresentationAttribute(@as(*const IMFMediaEngineEx, @ptrCast(self)), guidMFAttribute, pvValue);
+        return self.vtable.GetPresentationAttribute(self, guidMFAttribute, pvValue);
     }
     pub fn GetNumberOfStreams(self: *const IMFMediaEngineEx, pdwStreamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetNumberOfStreams(@as(*const IMFMediaEngineEx, @ptrCast(self)), pdwStreamCount);
+        return self.vtable.GetNumberOfStreams(self, pdwStreamCount);
     }
     pub fn GetStreamAttribute(self: *const IMFMediaEngineEx, dwStreamIndex: u32, guidMFAttribute: ?*const Guid, pvValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStreamAttribute(@as(*const IMFMediaEngineEx, @ptrCast(self)), dwStreamIndex, guidMFAttribute, pvValue);
+        return self.vtable.GetStreamAttribute(self, dwStreamIndex, guidMFAttribute, pvValue);
     }
     pub fn GetStreamSelection(self: *const IMFMediaEngineEx, dwStreamIndex: u32, pEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStreamSelection(@as(*const IMFMediaEngineEx, @ptrCast(self)), dwStreamIndex, pEnabled);
+        return self.vtable.GetStreamSelection(self, dwStreamIndex, pEnabled);
     }
     pub fn SetStreamSelection(self: *const IMFMediaEngineEx, dwStreamIndex: u32, Enabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetStreamSelection(@as(*const IMFMediaEngineEx, @ptrCast(self)), dwStreamIndex, Enabled);
+        return self.vtable.SetStreamSelection(self, dwStreamIndex, Enabled);
     }
     pub fn ApplyStreamSelections(self: *const IMFMediaEngineEx) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).ApplyStreamSelections(@as(*const IMFMediaEngineEx, @ptrCast(self)));
+        return self.vtable.ApplyStreamSelections(self);
     }
     pub fn IsProtected(self: *const IMFMediaEngineEx, pProtected: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).IsProtected(@as(*const IMFMediaEngineEx, @ptrCast(self)), pProtected);
+        return self.vtable.IsProtected(self, pProtected);
     }
     pub fn InsertVideoEffect(self: *const IMFMediaEngineEx, pEffect: ?*IUnknown, fOptional: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).InsertVideoEffect(@as(*const IMFMediaEngineEx, @ptrCast(self)), pEffect, fOptional);
+        return self.vtable.InsertVideoEffect(self, pEffect, fOptional);
     }
     pub fn InsertAudioEffect(self: *const IMFMediaEngineEx, pEffect: ?*IUnknown, fOptional: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).InsertAudioEffect(@as(*const IMFMediaEngineEx, @ptrCast(self)), pEffect, fOptional);
+        return self.vtable.InsertAudioEffect(self, pEffect, fOptional);
     }
     pub fn RemoveAllEffects(self: *const IMFMediaEngineEx) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).RemoveAllEffects(@as(*const IMFMediaEngineEx, @ptrCast(self)));
+        return self.vtable.RemoveAllEffects(self);
     }
     pub fn SetTimelineMarkerTimer(self: *const IMFMediaEngineEx, timeToFire: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetTimelineMarkerTimer(@as(*const IMFMediaEngineEx, @ptrCast(self)), timeToFire);
+        return self.vtable.SetTimelineMarkerTimer(self, timeToFire);
     }
     pub fn GetTimelineMarkerTimer(self: *const IMFMediaEngineEx, pTimeToFire: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetTimelineMarkerTimer(@as(*const IMFMediaEngineEx, @ptrCast(self)), pTimeToFire);
+        return self.vtable.GetTimelineMarkerTimer(self, pTimeToFire);
     }
     pub fn CancelTimelineMarkerTimer(self: *const IMFMediaEngineEx) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).CancelTimelineMarkerTimer(@as(*const IMFMediaEngineEx, @ptrCast(self)));
+        return self.vtable.CancelTimelineMarkerTimer(self);
     }
     pub fn IsStereo3D(self: *const IMFMediaEngineEx) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).IsStereo3D(@as(*const IMFMediaEngineEx, @ptrCast(self)));
+        return self.vtable.IsStereo3D(self);
     }
     pub fn GetStereo3DFramePackingMode(self: *const IMFMediaEngineEx, packMode: ?*MF_MEDIA_ENGINE_S3D_PACKING_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStereo3DFramePackingMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), packMode);
+        return self.vtable.GetStereo3DFramePackingMode(self, packMode);
     }
     pub fn SetStereo3DFramePackingMode(self: *const IMFMediaEngineEx, packMode: MF_MEDIA_ENGINE_S3D_PACKING_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetStereo3DFramePackingMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), packMode);
+        return self.vtable.SetStereo3DFramePackingMode(self, packMode);
     }
     pub fn GetStereo3DRenderMode(self: *const IMFMediaEngineEx, outputType: ?*MF3DVideoOutputType) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetStereo3DRenderMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), outputType);
+        return self.vtable.GetStereo3DRenderMode(self, outputType);
     }
     pub fn SetStereo3DRenderMode(self: *const IMFMediaEngineEx, outputType: MF3DVideoOutputType) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetStereo3DRenderMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), outputType);
+        return self.vtable.SetStereo3DRenderMode(self, outputType);
     }
     pub fn EnableWindowlessSwapchainMode(self: *const IMFMediaEngineEx, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).EnableWindowlessSwapchainMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), fEnable);
+        return self.vtable.EnableWindowlessSwapchainMode(self, fEnable);
     }
     pub fn GetVideoSwapchainHandle(self: *const IMFMediaEngineEx, phSwapchain: ?*?HANDLE) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetVideoSwapchainHandle(@as(*const IMFMediaEngineEx, @ptrCast(self)), phSwapchain);
+        return self.vtable.GetVideoSwapchainHandle(self, phSwapchain);
     }
     pub fn EnableHorizontalMirrorMode(self: *const IMFMediaEngineEx, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).EnableHorizontalMirrorMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), fEnable);
+        return self.vtable.EnableHorizontalMirrorMode(self, fEnable);
     }
     pub fn GetAudioStreamCategory(self: *const IMFMediaEngineEx, pCategory: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetAudioStreamCategory(@as(*const IMFMediaEngineEx, @ptrCast(self)), pCategory);
+        return self.vtable.GetAudioStreamCategory(self, pCategory);
     }
     pub fn SetAudioStreamCategory(self: *const IMFMediaEngineEx, category: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetAudioStreamCategory(@as(*const IMFMediaEngineEx, @ptrCast(self)), category);
+        return self.vtable.SetAudioStreamCategory(self, category);
     }
     pub fn GetAudioEndpointRole(self: *const IMFMediaEngineEx, pRole: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetAudioEndpointRole(@as(*const IMFMediaEngineEx, @ptrCast(self)), pRole);
+        return self.vtable.GetAudioEndpointRole(self, pRole);
     }
     pub fn SetAudioEndpointRole(self: *const IMFMediaEngineEx, role: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetAudioEndpointRole(@as(*const IMFMediaEngineEx, @ptrCast(self)), role);
+        return self.vtable.SetAudioEndpointRole(self, role);
     }
     pub fn GetRealTimeMode(self: *const IMFMediaEngineEx, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).GetRealTimeMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), pfEnabled);
+        return self.vtable.GetRealTimeMode(self, pfEnabled);
     }
     pub fn SetRealTimeMode(self: *const IMFMediaEngineEx, fEnable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetRealTimeMode(@as(*const IMFMediaEngineEx, @ptrCast(self)), fEnable);
+        return self.vtable.SetRealTimeMode(self, fEnable);
     }
     pub fn SetCurrentTimeEx(self: *const IMFMediaEngineEx, seekTime: f64, seekMode: MF_MEDIA_ENGINE_SEEK_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).SetCurrentTimeEx(@as(*const IMFMediaEngineEx, @ptrCast(self)), seekTime, seekMode);
+        return self.vtable.SetCurrentTimeEx(self, seekTime, seekMode);
     }
     pub fn EnableTimeUpdateTimer(self: *const IMFMediaEngineEx, fEnableTimer: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEx.VTable, @ptrCast(self.vtable)).EnableTimeUpdateTimer(@as(*const IMFMediaEngineEx, @ptrCast(self)), fEnableTimer);
+        return self.vtable.EnableTimeUpdateTimer(self, fEnableTimer);
     }
 };
 
@@ -29141,10 +29141,10 @@ pub const IMFMediaEngineAudioEndpointId = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAudioEndpointId(self: *const IMFMediaEngineAudioEndpointId, pszEndpointId: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineAudioEndpointId.VTable, @ptrCast(self.vtable)).SetAudioEndpointId(@as(*const IMFMediaEngineAudioEndpointId, @ptrCast(self)), pszEndpointId);
+        return self.vtable.SetAudioEndpointId(self, pszEndpointId);
     }
     pub fn GetAudioEndpointId(self: *const IMFMediaEngineAudioEndpointId, ppszEndpointId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineAudioEndpointId.VTable, @ptrCast(self.vtable)).GetAudioEndpointId(@as(*const IMFMediaEngineAudioEndpointId, @ptrCast(self)), ppszEndpointId);
+        return self.vtable.GetAudioEndpointId(self, ppszEndpointId);
     }
 };
 
@@ -29209,16 +29209,16 @@ pub const IMFMediaEngineExtension = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CanPlayType(self: *const IMFMediaEngineExtension, AudioOnly: BOOL, MimeType: ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).CanPlayType(@as(*const IMFMediaEngineExtension, @ptrCast(self)), AudioOnly, MimeType, pAnswer);
+        return self.vtable.CanPlayType(self, AudioOnly, MimeType, pAnswer);
     }
     pub fn BeginCreateObject(self: *const IMFMediaEngineExtension, bstrURL: ?BSTR, pByteStream: ?*IMFByteStream, @"type": MF_OBJECT_TYPE, ppIUnknownCancelCookie: ?*?*IUnknown, pCallback: ?*IMFAsyncCallback, punkState: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).BeginCreateObject(@as(*const IMFMediaEngineExtension, @ptrCast(self)), bstrURL, pByteStream, @"type", ppIUnknownCancelCookie, pCallback, punkState);
+        return self.vtable.BeginCreateObject(self, bstrURL, pByteStream, @"type", ppIUnknownCancelCookie, pCallback, punkState);
     }
     pub fn CancelObjectCreation(self: *const IMFMediaEngineExtension, pIUnknownCancelCookie: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).CancelObjectCreation(@as(*const IMFMediaEngineExtension, @ptrCast(self)), pIUnknownCancelCookie);
+        return self.vtable.CancelObjectCreation(self, pIUnknownCancelCookie);
     }
     pub fn EndCreateObject(self: *const IMFMediaEngineExtension, pResult: ?*IMFAsyncResult, ppObject: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineExtension.VTable, @ptrCast(self.vtable)).EndCreateObject(@as(*const IMFMediaEngineExtension, @ptrCast(self)), pResult, ppObject);
+        return self.vtable.EndCreateObject(self, pResult, ppObject);
     }
 };
 
@@ -29299,22 +29299,22 @@ pub const IMFMediaEngineProtectedContent = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ShareResources(self: *const IMFMediaEngineProtectedContent, pUnkDeviceContext: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).ShareResources(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pUnkDeviceContext);
+        return self.vtable.ShareResources(self, pUnkDeviceContext);
     }
     pub fn GetRequiredProtections(self: *const IMFMediaEngineProtectedContent, pFrameProtectionFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).GetRequiredProtections(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pFrameProtectionFlags);
+        return self.vtable.GetRequiredProtections(self, pFrameProtectionFlags);
     }
     pub fn SetOPMWindow(self: *const IMFMediaEngineProtectedContent, hwnd: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).SetOPMWindow(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), hwnd);
+        return self.vtable.SetOPMWindow(self, hwnd);
     }
     pub fn TransferVideoFrame(self: *const IMFMediaEngineProtectedContent, pDstSurf: ?*IUnknown, pSrc: ?*const MFVideoNormalizedRect, pDst: ?*const RECT, pBorderClr: ?*const MFARGB, pFrameProtectionFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).TransferVideoFrame(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pDstSurf, pSrc, pDst, pBorderClr, pFrameProtectionFlags);
+        return self.vtable.TransferVideoFrame(self, pDstSurf, pSrc, pDst, pBorderClr, pFrameProtectionFlags);
     }
     pub fn SetContentProtectionManager(self: *const IMFMediaEngineProtectedContent, pCPM: ?*IMFContentProtectionManager) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).SetContentProtectionManager(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pCPM);
+        return self.vtable.SetContentProtectionManager(self, pCPM);
     }
     pub fn SetApplicationCertificate(self: *const IMFMediaEngineProtectedContent, pbBlob: ?*const u8, cbBlob: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineProtectedContent.VTable, @ptrCast(self.vtable)).SetApplicationCertificate(@as(*const IMFMediaEngineProtectedContent, @ptrCast(self)), pbBlob, cbBlob);
+        return self.vtable.SetApplicationCertificate(self, pbBlob, cbBlob);
     }
 };
 
@@ -29341,7 +29341,7 @@ pub const IAudioSourceProvider = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ProvideInput(self: *const IAudioSourceProvider, dwSampleCount: u32, pdwChannelCount: ?*u32, pInterleavedAudioData: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IAudioSourceProvider.VTable, @ptrCast(self.vtable)).ProvideInput(@as(*const IAudioSourceProvider, @ptrCast(self)), dwSampleCount, pdwChannelCount, pInterleavedAudioData);
+        return self.vtable.ProvideInput(self, dwSampleCount, pdwChannelCount, pInterleavedAudioData);
     }
 };
 
@@ -29381,13 +29381,13 @@ pub const IMFMediaEngineWebSupport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ShouldDelayTheLoadEvent(self: *const IMFMediaEngineWebSupport) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaEngineWebSupport.VTable, @ptrCast(self.vtable)).ShouldDelayTheLoadEvent(@as(*const IMFMediaEngineWebSupport, @ptrCast(self)));
+        return self.vtable.ShouldDelayTheLoadEvent(self);
     }
     pub fn ConnectWebAudio(self: *const IMFMediaEngineWebSupport, dwSampleRate: u32, ppSourceProvider: ?*?*IAudioSourceProvider) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineWebSupport.VTable, @ptrCast(self.vtable)).ConnectWebAudio(@as(*const IMFMediaEngineWebSupport, @ptrCast(self)), dwSampleRate, ppSourceProvider);
+        return self.vtable.ConnectWebAudio(self, dwSampleRate, ppSourceProvider);
     }
     pub fn DisconnectWebAudio(self: *const IMFMediaEngineWebSupport) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineWebSupport.VTable, @ptrCast(self.vtable)).DisconnectWebAudio(@as(*const IMFMediaEngineWebSupport, @ptrCast(self)));
+        return self.vtable.DisconnectWebAudio(self);
     }
 };
 
@@ -29442,13 +29442,13 @@ pub const IMFMediaSourceExtensionNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnSourceOpen(self: *const IMFMediaSourceExtensionNotify) callconv(.Inline) void {
-        return @as(*const IMFMediaSourceExtensionNotify.VTable, @ptrCast(self.vtable)).OnSourceOpen(@as(*const IMFMediaSourceExtensionNotify, @ptrCast(self)));
+        return self.vtable.OnSourceOpen(self);
     }
     pub fn OnSourceEnded(self: *const IMFMediaSourceExtensionNotify) callconv(.Inline) void {
-        return @as(*const IMFMediaSourceExtensionNotify.VTable, @ptrCast(self.vtable)).OnSourceEnded(@as(*const IMFMediaSourceExtensionNotify, @ptrCast(self)));
+        return self.vtable.OnSourceEnded(self);
     }
     pub fn OnSourceClose(self: *const IMFMediaSourceExtensionNotify) callconv(.Inline) void {
-        return @as(*const IMFMediaSourceExtensionNotify.VTable, @ptrCast(self.vtable)).OnSourceClose(@as(*const IMFMediaSourceExtensionNotify, @ptrCast(self)));
+        return self.vtable.OnSourceClose(self);
     }
 };
 
@@ -29480,10 +29480,10 @@ pub const IMFBufferListNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnAddSourceBuffer(self: *const IMFBufferListNotify) callconv(.Inline) void {
-        return @as(*const IMFBufferListNotify.VTable, @ptrCast(self.vtable)).OnAddSourceBuffer(@as(*const IMFBufferListNotify, @ptrCast(self)));
+        return self.vtable.OnAddSourceBuffer(self);
     }
     pub fn OnRemoveSourceBuffer(self: *const IMFBufferListNotify) callconv(.Inline) void {
-        return @as(*const IMFBufferListNotify.VTable, @ptrCast(self.vtable)).OnRemoveSourceBuffer(@as(*const IMFBufferListNotify, @ptrCast(self)));
+        return self.vtable.OnRemoveSourceBuffer(self);
     }
 };
 
@@ -29537,19 +29537,19 @@ pub const IMFSourceBufferNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnUpdateStart(self: *const IMFSourceBufferNotify) callconv(.Inline) void {
-        return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnUpdateStart(@as(*const IMFSourceBufferNotify, @ptrCast(self)));
+        return self.vtable.OnUpdateStart(self);
     }
     pub fn OnAbort(self: *const IMFSourceBufferNotify) callconv(.Inline) void {
-        return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnAbort(@as(*const IMFSourceBufferNotify, @ptrCast(self)));
+        return self.vtable.OnAbort(self);
     }
     pub fn OnError(self: *const IMFSourceBufferNotify, hr: HRESULT) callconv(.Inline) void {
-        return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnError(@as(*const IMFSourceBufferNotify, @ptrCast(self)), hr);
+        return self.vtable.OnError(self, hr);
     }
     pub fn OnUpdate(self: *const IMFSourceBufferNotify) callconv(.Inline) void {
-        return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnUpdate(@as(*const IMFSourceBufferNotify, @ptrCast(self)));
+        return self.vtable.OnUpdate(self);
     }
     pub fn OnUpdateEnd(self: *const IMFSourceBufferNotify) callconv(.Inline) void {
-        return @as(*const IMFSourceBufferNotify.VTable, @ptrCast(self.vtable)).OnUpdateEnd(@as(*const IMFSourceBufferNotify, @ptrCast(self)));
+        return self.vtable.OnUpdateEnd(self);
     }
 };
 
@@ -29662,40 +29662,40 @@ pub const IMFSourceBuffer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetUpdating(self: *const IMFSourceBuffer) callconv(.Inline) BOOL {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetUpdating(@as(*const IMFSourceBuffer, @ptrCast(self)));
+        return self.vtable.GetUpdating(self);
     }
     pub fn GetBuffered(self: *const IMFSourceBuffer, ppBuffered: ?*?*IMFMediaTimeRange) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetBuffered(@as(*const IMFSourceBuffer, @ptrCast(self)), ppBuffered);
+        return self.vtable.GetBuffered(self, ppBuffered);
     }
     pub fn GetTimeStampOffset(self: *const IMFSourceBuffer) callconv(.Inline) f64 {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetTimeStampOffset(@as(*const IMFSourceBuffer, @ptrCast(self)));
+        return self.vtable.GetTimeStampOffset(self);
     }
     pub fn SetTimeStampOffset(self: *const IMFSourceBuffer, offset: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).SetTimeStampOffset(@as(*const IMFSourceBuffer, @ptrCast(self)), offset);
+        return self.vtable.SetTimeStampOffset(self, offset);
     }
     pub fn GetAppendWindowStart(self: *const IMFSourceBuffer) callconv(.Inline) f64 {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetAppendWindowStart(@as(*const IMFSourceBuffer, @ptrCast(self)));
+        return self.vtable.GetAppendWindowStart(self);
     }
     pub fn SetAppendWindowStart(self: *const IMFSourceBuffer, time: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).SetAppendWindowStart(@as(*const IMFSourceBuffer, @ptrCast(self)), time);
+        return self.vtable.SetAppendWindowStart(self, time);
     }
     pub fn GetAppendWindowEnd(self: *const IMFSourceBuffer) callconv(.Inline) f64 {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).GetAppendWindowEnd(@as(*const IMFSourceBuffer, @ptrCast(self)));
+        return self.vtable.GetAppendWindowEnd(self);
     }
     pub fn SetAppendWindowEnd(self: *const IMFSourceBuffer, time: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).SetAppendWindowEnd(@as(*const IMFSourceBuffer, @ptrCast(self)), time);
+        return self.vtable.SetAppendWindowEnd(self, time);
     }
     pub fn Append(self: *const IMFSourceBuffer, pData: ?*const u8, len: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).Append(@as(*const IMFSourceBuffer, @ptrCast(self)), pData, len);
+        return self.vtable.Append(self, pData, len);
     }
     pub fn AppendByteStream(self: *const IMFSourceBuffer, pStream: ?*IMFByteStream, pMaxLen: ?*u64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).AppendByteStream(@as(*const IMFSourceBuffer, @ptrCast(self)), pStream, pMaxLen);
+        return self.vtable.AppendByteStream(self, pStream, pMaxLen);
     }
     pub fn Abort(self: *const IMFSourceBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).Abort(@as(*const IMFSourceBuffer, @ptrCast(self)));
+        return self.vtable.Abort(self);
     }
     pub fn Remove(self: *const IMFSourceBuffer, start: f64, end: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceBuffer.VTable, @ptrCast(self.vtable)).Remove(@as(*const IMFSourceBuffer, @ptrCast(self)), start, end);
+        return self.vtable.Remove(self, start, end);
     }
 };
 
@@ -29734,10 +29734,10 @@ pub const IMFSourceBufferAppendMode = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAppendMode(self: *const IMFSourceBufferAppendMode) callconv(.Inline) MF_MSE_APPEND_MODE {
-        return @as(*const IMFSourceBufferAppendMode.VTable, @ptrCast(self.vtable)).GetAppendMode(@as(*const IMFSourceBufferAppendMode, @ptrCast(self)));
+        return self.vtable.GetAppendMode(self);
     }
     pub fn SetAppendMode(self: *const IMFSourceBufferAppendMode, mode: MF_MSE_APPEND_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceBufferAppendMode.VTable, @ptrCast(self.vtable)).SetAppendMode(@as(*const IMFSourceBufferAppendMode, @ptrCast(self)), mode);
+        return self.vtable.SetAppendMode(self, mode);
     }
 };
 
@@ -29770,10 +29770,10 @@ pub const IMFSourceBufferList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLength(self: *const IMFSourceBufferList) callconv(.Inline) u32 {
-        return @as(*const IMFSourceBufferList.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFSourceBufferList, @ptrCast(self)));
+        return self.vtable.GetLength(self);
     }
     pub fn GetSourceBuffer(self: *const IMFSourceBufferList, index: u32) callconv(.Inline) ?*IMFSourceBuffer {
-        return @as(*const IMFSourceBufferList.VTable, @ptrCast(self.vtable)).GetSourceBuffer(@as(*const IMFSourceBufferList, @ptrCast(self)), index);
+        return self.vtable.GetSourceBuffer(self, index);
     }
 };
 
@@ -29889,34 +29889,34 @@ pub const IMFMediaSourceExtension = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSourceBuffers(self: *const IMFMediaSourceExtension) callconv(.Inline) ?*IMFSourceBufferList {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetSourceBuffers(@as(*const IMFMediaSourceExtension, @ptrCast(self)));
+        return self.vtable.GetSourceBuffers(self);
     }
     pub fn GetActiveSourceBuffers(self: *const IMFMediaSourceExtension) callconv(.Inline) ?*IMFSourceBufferList {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetActiveSourceBuffers(@as(*const IMFMediaSourceExtension, @ptrCast(self)));
+        return self.vtable.GetActiveSourceBuffers(self);
     }
     pub fn GetReadyState(self: *const IMFMediaSourceExtension) callconv(.Inline) MF_MSE_READY {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetReadyState(@as(*const IMFMediaSourceExtension, @ptrCast(self)));
+        return self.vtable.GetReadyState(self);
     }
     pub fn GetDuration(self: *const IMFMediaSourceExtension) callconv(.Inline) f64 {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFMediaSourceExtension, @ptrCast(self)));
+        return self.vtable.GetDuration(self);
     }
     pub fn SetDuration(self: *const IMFMediaSourceExtension, duration: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).SetDuration(@as(*const IMFMediaSourceExtension, @ptrCast(self)), duration);
+        return self.vtable.SetDuration(self, duration);
     }
     pub fn AddSourceBuffer(self: *const IMFMediaSourceExtension, @"type": ?BSTR, pNotify: ?*IMFSourceBufferNotify, ppSourceBuffer: ?*?*IMFSourceBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).AddSourceBuffer(@as(*const IMFMediaSourceExtension, @ptrCast(self)), @"type", pNotify, ppSourceBuffer);
+        return self.vtable.AddSourceBuffer(self, @"type", pNotify, ppSourceBuffer);
     }
     pub fn RemoveSourceBuffer(self: *const IMFMediaSourceExtension, pSourceBuffer: ?*IMFSourceBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).RemoveSourceBuffer(@as(*const IMFMediaSourceExtension, @ptrCast(self)), pSourceBuffer);
+        return self.vtable.RemoveSourceBuffer(self, pSourceBuffer);
     }
     pub fn SetEndOfStream(self: *const IMFMediaSourceExtension, @"error": MF_MSE_ERROR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).SetEndOfStream(@as(*const IMFMediaSourceExtension, @ptrCast(self)), @"error");
+        return self.vtable.SetEndOfStream(self, @"error");
     }
     pub fn IsTypeSupported(self: *const IMFMediaSourceExtension, @"type": ?BSTR) callconv(.Inline) BOOL {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFMediaSourceExtension, @ptrCast(self)), @"type");
+        return self.vtable.IsTypeSupported(self, @"type");
     }
     pub fn GetSourceBuffer(self: *const IMFMediaSourceExtension, dwStreamIndex: u32) callconv(.Inline) ?*IMFSourceBuffer {
-        return @as(*const IMFMediaSourceExtension.VTable, @ptrCast(self.vtable)).GetSourceBuffer(@as(*const IMFMediaSourceExtension, @ptrCast(self)), dwStreamIndex);
+        return self.vtable.GetSourceBuffer(self, dwStreamIndex);
     }
 };
 
@@ -29949,10 +29949,10 @@ pub const IMFMediaSourceExtensionLiveSeekableRange = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetLiveSeekableRange(self: *const IMFMediaSourceExtensionLiveSeekableRange, start: f64, end: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceExtensionLiveSeekableRange.VTable, @ptrCast(self.vtable)).SetLiveSeekableRange(@as(*const IMFMediaSourceExtensionLiveSeekableRange, @ptrCast(self)), start, end);
+        return self.vtable.SetLiveSeekableRange(self, start, end);
     }
     pub fn ClearLiveSeekableRange(self: *const IMFMediaSourceExtensionLiveSeekableRange) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSourceExtensionLiveSeekableRange.VTable, @ptrCast(self.vtable)).ClearLiveSeekableRange(@as(*const IMFMediaSourceExtensionLiveSeekableRange, @ptrCast(self)));
+        return self.vtable.ClearLiveSeekableRange(self);
     }
 };
 
@@ -29987,10 +29987,10 @@ pub const IMFMediaEngineEME = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn get_Keys(self: *const IMFMediaEngineEME, keys: ?*?*IMFMediaKeys) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEME.VTable, @ptrCast(self.vtable)).get_Keys(@as(*const IMFMediaEngineEME, @ptrCast(self)), keys);
+        return self.vtable.get_Keys(self, keys);
     }
     pub fn SetMediaKeys(self: *const IMFMediaEngineEME, keys: ?*IMFMediaKeys) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineEME.VTable, @ptrCast(self.vtable)).SetMediaKeys(@as(*const IMFMediaEngineEME, @ptrCast(self)), keys);
+        return self.vtable.SetMediaKeys(self, keys);
     }
 };
 
@@ -30028,10 +30028,10 @@ pub const IMFMediaEngineSrcElementsEx = extern union {
     };}
     pub usingnamespace IMFMediaEngineSrcElements.MethodMixin(@This());
     pub fn AddElementEx(self: *const IMFMediaEngineSrcElementsEx, pURL: ?BSTR, pType: ?BSTR, pMedia: ?BSTR, keySystem: ?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSrcElementsEx.VTable, @ptrCast(self.vtable)).AddElementEx(@as(*const IMFMediaEngineSrcElementsEx, @ptrCast(self)), pURL, pType, pMedia, keySystem);
+        return self.vtable.AddElementEx(self, pURL, pType, pMedia, keySystem);
     }
     pub fn GetKeySystem(self: *const IMFMediaEngineSrcElementsEx, index: u32, pType: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSrcElementsEx.VTable, @ptrCast(self.vtable)).GetKeySystem(@as(*const IMFMediaEngineSrcElementsEx, @ptrCast(self)), index, pType);
+        return self.vtable.GetKeySystem(self, index, pType);
     }
 };
 
@@ -30059,7 +30059,7 @@ pub const IMFMediaEngineNeedKeyNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn NeedKey(self: *const IMFMediaEngineNeedKeyNotify, initData: ?*const u8, cb: u32) callconv(.Inline) void {
-        return @as(*const IMFMediaEngineNeedKeyNotify.VTable, @ptrCast(self.vtable)).NeedKey(@as(*const IMFMediaEngineNeedKeyNotify, @ptrCast(self)), initData, cb);
+        return self.vtable.NeedKey(self, initData, cb);
     }
 };
 
@@ -30117,16 +30117,16 @@ pub const IMFMediaKeys = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateSession(self: *const IMFMediaKeys, mimeType: ?BSTR, initData: ?*const u8, cb: u32, customData: ?*const u8, cbCustomData: u32, notify: ?*IMFMediaKeySessionNotify, ppSession: ?*?*IMFMediaKeySession) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeys.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const IMFMediaKeys, @ptrCast(self)), mimeType, initData, cb, customData, cbCustomData, notify, ppSession);
+        return self.vtable.CreateSession(self, mimeType, initData, cb, customData, cbCustomData, notify, ppSession);
     }
     pub fn get_KeySystem(self: *const IMFMediaKeys, keySystem: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeys.VTable, @ptrCast(self.vtable)).get_KeySystem(@as(*const IMFMediaKeys, @ptrCast(self)), keySystem);
+        return self.vtable.get_KeySystem(self, keySystem);
     }
     pub fn Shutdown(self: *const IMFMediaKeys) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeys.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaKeys, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
     pub fn GetSuspendNotify(self: *const IMFMediaKeys, notify: ?*?*IMFCdmSuspendNotify) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeys.VTable, @ptrCast(self.vtable)).GetSuspendNotify(@as(*const IMFMediaKeys, @ptrCast(self)), notify);
+        return self.vtable.GetSuspendNotify(self, notify);
     }
 };
 
@@ -30203,19 +30203,19 @@ pub const IMFMediaKeySession = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetError(self: *const IMFMediaKeySession, code: ?*u16, systemCode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).GetError(@as(*const IMFMediaKeySession, @ptrCast(self)), code, systemCode);
+        return self.vtable.GetError(self, code, systemCode);
     }
     pub fn get_KeySystem(self: *const IMFMediaKeySession, keySystem: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).get_KeySystem(@as(*const IMFMediaKeySession, @ptrCast(self)), keySystem);
+        return self.vtable.get_KeySystem(self, keySystem);
     }
     pub fn get_SessionId(self: *const IMFMediaKeySession, sessionId: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).get_SessionId(@as(*const IMFMediaKeySession, @ptrCast(self)), sessionId);
+        return self.vtable.get_SessionId(self, sessionId);
     }
     pub fn Update(self: *const IMFMediaKeySession, key: ?*const u8, cb: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).Update(@as(*const IMFMediaKeySession, @ptrCast(self)), key, cb);
+        return self.vtable.Update(self, key, cb);
     }
     pub fn Close(self: *const IMFMediaKeySession) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFMediaKeySession, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
 };
 
@@ -30260,13 +30260,13 @@ pub const IMFMediaKeySessionNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn KeyMessage(self: *const IMFMediaKeySessionNotify, destinationURL: ?BSTR, message: ?*const u8, cb: u32) callconv(.Inline) void {
-        return @as(*const IMFMediaKeySessionNotify.VTable, @ptrCast(self.vtable)).KeyMessage(@as(*const IMFMediaKeySessionNotify, @ptrCast(self)), destinationURL, message, cb);
+        return self.vtable.KeyMessage(self, destinationURL, message, cb);
     }
     pub fn KeyAdded(self: *const IMFMediaKeySessionNotify) callconv(.Inline) void {
-        return @as(*const IMFMediaKeySessionNotify.VTable, @ptrCast(self.vtable)).KeyAdded(@as(*const IMFMediaKeySessionNotify, @ptrCast(self)));
+        return self.vtable.KeyAdded(self);
     }
     pub fn KeyError(self: *const IMFMediaKeySessionNotify, code: u16, systemCode: u32) callconv(.Inline) void {
-        return @as(*const IMFMediaKeySessionNotify.VTable, @ptrCast(self.vtable)).KeyError(@as(*const IMFMediaKeySessionNotify, @ptrCast(self)), code, systemCode);
+        return self.vtable.KeyError(self, code, systemCode);
     }
 };
 
@@ -30298,10 +30298,10 @@ pub const IMFCdmSuspendNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Begin(self: *const IMFCdmSuspendNotify) callconv(.Inline) HRESULT {
-        return @as(*const IMFCdmSuspendNotify.VTable, @ptrCast(self.vtable)).Begin(@as(*const IMFCdmSuspendNotify, @ptrCast(self)));
+        return self.vtable.Begin(self);
     }
     pub fn End(self: *const IMFCdmSuspendNotify) callconv(.Inline) HRESULT {
-        return @as(*const IMFCdmSuspendNotify.VTable, @ptrCast(self.vtable)).End(@as(*const IMFCdmSuspendNotify, @ptrCast(self)));
+        return self.vtable.End(self);
     }
 };
 
@@ -30344,10 +30344,10 @@ pub const IMFHDCPStatus = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Query(self: *const IMFHDCPStatus, pStatus: ?*MF_HDCP_STATUS, pfStatus: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFHDCPStatus.VTable, @ptrCast(self.vtable)).Query(@as(*const IMFHDCPStatus, @ptrCast(self)), pStatus, pfStatus);
+        return self.vtable.Query(self, pStatus, pfStatus);
     }
     pub fn Set(self: *const IMFHDCPStatus, status: MF_HDCP_STATUS) callconv(.Inline) HRESULT {
-        return @as(*const IMFHDCPStatus.VTable, @ptrCast(self.vtable)).Set(@as(*const IMFHDCPStatus, @ptrCast(self)), status);
+        return self.vtable.Set(self, status);
     }
 };
 
@@ -30389,7 +30389,7 @@ pub const IMFMediaEngineOPMInfo = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetOPMInfo(self: *const IMFMediaEngineOPMInfo, pStatus: ?*MF_MEDIA_ENGINE_OPM_STATUS, pConstricted: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineOPMInfo.VTable, @ptrCast(self.vtable)).GetOPMInfo(@as(*const IMFMediaEngineOPMInfo, @ptrCast(self)), pStatus, pConstricted);
+        return self.vtable.GetOPMInfo(self, pStatus, pConstricted);
     }
 };
 
@@ -30457,13 +30457,13 @@ pub const IMFMediaEngineClassFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateInstance(self: *const IMFMediaEngineClassFactory, dwFlags: u32, pAttr: ?*IMFAttributes, ppPlayer: ?*?*IMFMediaEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IMFMediaEngineClassFactory, @ptrCast(self)), dwFlags, pAttr, ppPlayer);
+        return self.vtable.CreateInstance(self, dwFlags, pAttr, ppPlayer);
     }
     pub fn CreateTimeRange(self: *const IMFMediaEngineClassFactory, ppTimeRange: ?*?*IMFMediaTimeRange) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateTimeRange(@as(*const IMFMediaEngineClassFactory, @ptrCast(self)), ppTimeRange);
+        return self.vtable.CreateTimeRange(self, ppTimeRange);
     }
     pub fn CreateError(self: *const IMFMediaEngineClassFactory, ppError: ?*?*IMFMediaError) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateError(@as(*const IMFMediaEngineClassFactory, @ptrCast(self)), ppError);
+        return self.vtable.CreateError(self, ppError);
     }
 };
 
@@ -30511,13 +30511,13 @@ pub const IMFMediaEngineClassFactoryEx = extern union {
     };}
     pub usingnamespace IMFMediaEngineClassFactory.MethodMixin(@This());
     pub fn CreateMediaSourceExtension(self: *const IMFMediaEngineClassFactoryEx, dwFlags: u32, pAttr: ?*IMFAttributes, ppMSE: ?*?*IMFMediaSourceExtension) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineClassFactoryEx.VTable, @ptrCast(self.vtable)).CreateMediaSourceExtension(@as(*const IMFMediaEngineClassFactoryEx, @ptrCast(self)), dwFlags, pAttr, ppMSE);
+        return self.vtable.CreateMediaSourceExtension(self, dwFlags, pAttr, ppMSE);
     }
     pub fn CreateMediaKeys(self: *const IMFMediaEngineClassFactoryEx, keySystem: ?BSTR, cdmStorePath: ?BSTR, ppKeys: ?*?*IMFMediaKeys) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineClassFactoryEx.VTable, @ptrCast(self.vtable)).CreateMediaKeys(@as(*const IMFMediaEngineClassFactoryEx, @ptrCast(self)), keySystem, cdmStorePath, ppKeys);
+        return self.vtable.CreateMediaKeys(self, keySystem, cdmStorePath, ppKeys);
     }
     pub fn IsTypeSupported(self: *const IMFMediaEngineClassFactoryEx, @"type": ?BSTR, keySystem: ?BSTR, isSupported: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineClassFactoryEx.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFMediaEngineClassFactoryEx, @ptrCast(self)), @"type", keySystem, isSupported);
+        return self.vtable.IsTypeSupported(self, @"type", keySystem, isSupported);
     }
 };
 
@@ -30546,7 +30546,7 @@ pub const IMFMediaEngineClassFactory2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateMediaKeys2(self: *const IMFMediaEngineClassFactory2, keySystem: ?BSTR, defaultCdmStorePath: ?BSTR, inprivateCdmStorePath: ?BSTR, ppKeys: ?*?*IMFMediaKeys) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineClassFactory2.VTable, @ptrCast(self.vtable)).CreateMediaKeys2(@as(*const IMFMediaEngineClassFactory2, @ptrCast(self)), keySystem, defaultCdmStorePath, inprivateCdmStorePath, ppKeys);
+        return self.vtable.CreateMediaKeys2(self, keySystem, defaultCdmStorePath, inprivateCdmStorePath, ppKeys);
     }
 };
 
@@ -30573,7 +30573,7 @@ pub const IMFExtendedDRMTypeSupport = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsTypeSupportedEx(self: *const IMFExtendedDRMTypeSupport, @"type": ?BSTR, keySystem: ?BSTR, pAnswer: ?*MF_MEDIA_ENGINE_CANPLAY) callconv(.Inline) HRESULT {
-        return @as(*const IMFExtendedDRMTypeSupport.VTable, @ptrCast(self.vtable)).IsTypeSupportedEx(@as(*const IMFExtendedDRMTypeSupport, @ptrCast(self)), @"type", keySystem, pAnswer);
+        return self.vtable.IsTypeSupportedEx(self, @"type", keySystem, pAnswer);
     }
 };
 
@@ -30619,13 +30619,13 @@ pub const IMFMediaEngineSupportsSourceTransfer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn ShouldTransferSource(self: *const IMFMediaEngineSupportsSourceTransfer, pfShouldTransfer: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSupportsSourceTransfer.VTable, @ptrCast(self.vtable)).ShouldTransferSource(@as(*const IMFMediaEngineSupportsSourceTransfer, @ptrCast(self)), pfShouldTransfer);
+        return self.vtable.ShouldTransferSource(self, pfShouldTransfer);
     }
     pub fn DetachMediaSource(self: *const IMFMediaEngineSupportsSourceTransfer, ppByteStream: ?*?*IMFByteStream, ppMediaSource: ?*?*IMFMediaSource, ppMSE: ?*?*IMFMediaSourceExtension) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSupportsSourceTransfer.VTable, @ptrCast(self.vtable)).DetachMediaSource(@as(*const IMFMediaEngineSupportsSourceTransfer, @ptrCast(self)), ppByteStream, ppMediaSource, ppMSE);
+        return self.vtable.DetachMediaSource(self, ppByteStream, ppMediaSource, ppMSE);
     }
     pub fn AttachMediaSource(self: *const IMFMediaEngineSupportsSourceTransfer, pByteStream: ?*IMFByteStream, pMediaSource: ?*IMFMediaSource, pMSE: ?*IMFMediaSourceExtension) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineSupportsSourceTransfer.VTable, @ptrCast(self.vtable)).AttachMediaSource(@as(*const IMFMediaEngineSupportsSourceTransfer, @ptrCast(self)), pByteStream, pMediaSource, pMSE);
+        return self.vtable.AttachMediaSource(self, pByteStream, pMediaSource, pMSE);
     }
 };
 
@@ -30650,7 +30650,7 @@ pub const IMFMediaEngineTransferSource = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn TransferSourceToMediaEngine(self: *const IMFMediaEngineTransferSource, destination: ?*IMFMediaEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineTransferSource.VTable, @ptrCast(self.vtable)).TransferSourceToMediaEngine(@as(*const IMFMediaEngineTransferSource, @ptrCast(self)), destination);
+        return self.vtable.TransferSourceToMediaEngine(self, destination);
     }
 };
 
@@ -30971,46 +30971,46 @@ pub const IMFTimedText = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn RegisterNotifications(self: *const IMFTimedText, notify: ?*IMFTimedTextNotify) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).RegisterNotifications(@as(*const IMFTimedText, @ptrCast(self)), notify);
+        return self.vtable.RegisterNotifications(self, notify);
     }
     pub fn SelectTrack(self: *const IMFTimedText, trackId: u32, selected: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).SelectTrack(@as(*const IMFTimedText, @ptrCast(self)), trackId, selected);
+        return self.vtable.SelectTrack(self, trackId, selected);
     }
     pub fn AddDataSource(self: *const IMFTimedText, byteStream: ?*IMFByteStream, label: ?[*:0]const u16, language: ?[*:0]const u16, kind: MF_TIMED_TEXT_TRACK_KIND, isDefault: BOOL, trackId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).AddDataSource(@as(*const IMFTimedText, @ptrCast(self)), byteStream, label, language, kind, isDefault, trackId);
+        return self.vtable.AddDataSource(self, byteStream, label, language, kind, isDefault, trackId);
     }
     pub fn AddDataSourceFromUrl(self: *const IMFTimedText, url: ?[*:0]const u16, label: ?[*:0]const u16, language: ?[*:0]const u16, kind: MF_TIMED_TEXT_TRACK_KIND, isDefault: BOOL, trackId: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).AddDataSourceFromUrl(@as(*const IMFTimedText, @ptrCast(self)), url, label, language, kind, isDefault, trackId);
+        return self.vtable.AddDataSourceFromUrl(self, url, label, language, kind, isDefault, trackId);
     }
     pub fn AddTrack(self: *const IMFTimedText, label: ?[*:0]const u16, language: ?[*:0]const u16, kind: MF_TIMED_TEXT_TRACK_KIND, track: ?*?*IMFTimedTextTrack) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).AddTrack(@as(*const IMFTimedText, @ptrCast(self)), label, language, kind, track);
+        return self.vtable.AddTrack(self, label, language, kind, track);
     }
     pub fn RemoveTrack(self: *const IMFTimedText, track: ?*IMFTimedTextTrack) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).RemoveTrack(@as(*const IMFTimedText, @ptrCast(self)), track);
+        return self.vtable.RemoveTrack(self, track);
     }
     pub fn GetCueTimeOffset(self: *const IMFTimedText, offset: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetCueTimeOffset(@as(*const IMFTimedText, @ptrCast(self)), offset);
+        return self.vtable.GetCueTimeOffset(self, offset);
     }
     pub fn SetCueTimeOffset(self: *const IMFTimedText, offset: f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).SetCueTimeOffset(@as(*const IMFTimedText, @ptrCast(self)), offset);
+        return self.vtable.SetCueTimeOffset(self, offset);
     }
     pub fn GetTracks(self: *const IMFTimedText, tracks: ?*?*IMFTimedTextTrackList) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetTracks(@as(*const IMFTimedText, @ptrCast(self)), tracks);
+        return self.vtable.GetTracks(self, tracks);
     }
     pub fn GetActiveTracks(self: *const IMFTimedText, activeTracks: ?*?*IMFTimedTextTrackList) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetActiveTracks(@as(*const IMFTimedText, @ptrCast(self)), activeTracks);
+        return self.vtable.GetActiveTracks(self, activeTracks);
     }
     pub fn GetTextTracks(self: *const IMFTimedText, textTracks: ?*?*IMFTimedTextTrackList) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetTextTracks(@as(*const IMFTimedText, @ptrCast(self)), textTracks);
+        return self.vtable.GetTextTracks(self, textTracks);
     }
     pub fn GetMetadataTracks(self: *const IMFTimedText, metadataTracks: ?*?*IMFTimedTextTrackList) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).GetMetadataTracks(@as(*const IMFTimedText, @ptrCast(self)), metadataTracks);
+        return self.vtable.GetMetadataTracks(self, metadataTracks);
     }
     pub fn SetInBandEnabled(self: *const IMFTimedText, enabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).SetInBandEnabled(@as(*const IMFTimedText, @ptrCast(self)), enabled);
+        return self.vtable.SetInBandEnabled(self, enabled);
     }
     pub fn IsInBandEnabled(self: *const IMFTimedText) callconv(.Inline) BOOL {
-        return @as(*const IMFTimedText.VTable, @ptrCast(self.vtable)).IsInBandEnabled(@as(*const IMFTimedText, @ptrCast(self)));
+        return self.vtable.IsInBandEnabled(self);
     }
 };
 
@@ -31088,25 +31088,25 @@ pub const IMFTimedTextNotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn TrackAdded(self: *const IMFTimedTextNotify, trackId: u32) callconv(.Inline) void {
-        return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).TrackAdded(@as(*const IMFTimedTextNotify, @ptrCast(self)), trackId);
+        return self.vtable.TrackAdded(self, trackId);
     }
     pub fn TrackRemoved(self: *const IMFTimedTextNotify, trackId: u32) callconv(.Inline) void {
-        return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).TrackRemoved(@as(*const IMFTimedTextNotify, @ptrCast(self)), trackId);
+        return self.vtable.TrackRemoved(self, trackId);
     }
     pub fn TrackSelected(self: *const IMFTimedTextNotify, trackId: u32, selected: BOOL) callconv(.Inline) void {
-        return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).TrackSelected(@as(*const IMFTimedTextNotify, @ptrCast(self)), trackId, selected);
+        return self.vtable.TrackSelected(self, trackId, selected);
     }
     pub fn TrackReadyStateChanged(self: *const IMFTimedTextNotify, trackId: u32) callconv(.Inline) void {
-        return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).TrackReadyStateChanged(@as(*const IMFTimedTextNotify, @ptrCast(self)), trackId);
+        return self.vtable.TrackReadyStateChanged(self, trackId);
     }
     pub fn Error(self: *const IMFTimedTextNotify, errorCode: MF_TIMED_TEXT_ERROR_CODE, extendedErrorCode: HRESULT, sourceTrackId: u32) callconv(.Inline) void {
-        return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).Error(@as(*const IMFTimedTextNotify, @ptrCast(self)), errorCode, extendedErrorCode, sourceTrackId);
+        return self.vtable.Error(self, errorCode, extendedErrorCode, sourceTrackId);
     }
     pub fn Cue(self: *const IMFTimedTextNotify, cueEvent: MF_TIMED_TEXT_CUE_EVENT, currentTime: f64, cue: ?*IMFTimedTextCue) callconv(.Inline) void {
-        return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).Cue(@as(*const IMFTimedTextNotify, @ptrCast(self)), cueEvent, currentTime, cue);
+        return self.vtable.Cue(self, cueEvent, currentTime, cue);
     }
     pub fn Reset(self: *const IMFTimedTextNotify) callconv(.Inline) void {
-        return @as(*const IMFTimedTextNotify.VTable, @ptrCast(self.vtable)).Reset(@as(*const IMFTimedTextNotify, @ptrCast(self)));
+        return self.vtable.Reset(self);
     }
 };
 
@@ -31221,43 +31221,43 @@ pub const IMFTimedTextTrack = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetId(self: *const IMFTimedTextTrack) callconv(.Inline) u32 {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetId(@as(*const IMFTimedTextTrack, @ptrCast(self)));
+        return self.vtable.GetId(self);
     }
     pub fn GetLabel(self: *const IMFTimedTextTrack, label: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetLabel(@as(*const IMFTimedTextTrack, @ptrCast(self)), label);
+        return self.vtable.GetLabel(self, label);
     }
     pub fn SetLabel(self: *const IMFTimedTextTrack, label: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).SetLabel(@as(*const IMFTimedTextTrack, @ptrCast(self)), label);
+        return self.vtable.SetLabel(self, label);
     }
     pub fn GetLanguage(self: *const IMFTimedTextTrack, language: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IMFTimedTextTrack, @ptrCast(self)), language);
+        return self.vtable.GetLanguage(self, language);
     }
     pub fn GetTrackKind(self: *const IMFTimedTextTrack) callconv(.Inline) MF_TIMED_TEXT_TRACK_KIND {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetTrackKind(@as(*const IMFTimedTextTrack, @ptrCast(self)));
+        return self.vtable.GetTrackKind(self);
     }
     pub fn IsInBand(self: *const IMFTimedTextTrack) callconv(.Inline) BOOL {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).IsInBand(@as(*const IMFTimedTextTrack, @ptrCast(self)));
+        return self.vtable.IsInBand(self);
     }
     pub fn GetInBandMetadataTrackDispatchType(self: *const IMFTimedTextTrack, dispatchType: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetInBandMetadataTrackDispatchType(@as(*const IMFTimedTextTrack, @ptrCast(self)), dispatchType);
+        return self.vtable.GetInBandMetadataTrackDispatchType(self, dispatchType);
     }
     pub fn IsActive(self: *const IMFTimedTextTrack) callconv(.Inline) BOOL {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).IsActive(@as(*const IMFTimedTextTrack, @ptrCast(self)));
+        return self.vtable.IsActive(self);
     }
     pub fn GetErrorCode(self: *const IMFTimedTextTrack) callconv(.Inline) MF_TIMED_TEXT_ERROR_CODE {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetErrorCode(@as(*const IMFTimedTextTrack, @ptrCast(self)));
+        return self.vtable.GetErrorCode(self);
     }
     pub fn GetExtendedErrorCode(self: *const IMFTimedTextTrack) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetExtendedErrorCode(@as(*const IMFTimedTextTrack, @ptrCast(self)));
+        return self.vtable.GetExtendedErrorCode(self);
     }
     pub fn GetDataFormat(self: *const IMFTimedTextTrack, format: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetDataFormat(@as(*const IMFTimedTextTrack, @ptrCast(self)), format);
+        return self.vtable.GetDataFormat(self, format);
     }
     pub fn GetReadyState(self: *const IMFTimedTextTrack) callconv(.Inline) MF_TIMED_TEXT_TRACK_READY_STATE {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetReadyState(@as(*const IMFTimedTextTrack, @ptrCast(self)));
+        return self.vtable.GetReadyState(self);
     }
     pub fn GetCueList(self: *const IMFTimedTextTrack, cues: ?*?*IMFTimedTextCueList) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextTrack.VTable, @ptrCast(self.vtable)).GetCueList(@as(*const IMFTimedTextTrack, @ptrCast(self)), cues);
+        return self.vtable.GetCueList(self, cues);
     }
 };
 
@@ -31300,13 +31300,13 @@ pub const IMFTimedTextTrackList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLength(self: *const IMFTimedTextTrackList) callconv(.Inline) u32 {
-        return @as(*const IMFTimedTextTrackList.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFTimedTextTrackList, @ptrCast(self)));
+        return self.vtable.GetLength(self);
     }
     pub fn GetTrack(self: *const IMFTimedTextTrackList, index: u32, track: ?*?*IMFTimedTextTrack) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextTrackList.VTable, @ptrCast(self.vtable)).GetTrack(@as(*const IMFTimedTextTrackList, @ptrCast(self)), index, track);
+        return self.vtable.GetTrack(self, index, track);
     }
     pub fn GetTrackById(self: *const IMFTimedTextTrackList, trackId: u32, track: ?*?*IMFTimedTextTrack) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextTrackList.VTable, @ptrCast(self.vtable)).GetTrackById(@as(*const IMFTimedTextTrackList, @ptrCast(self)), trackId, track);
+        return self.vtable.GetTrackById(self, trackId, track);
     }
 };
 
@@ -31407,37 +31407,37 @@ pub const IMFTimedTextCue = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetId(self: *const IMFTimedTextCue) callconv(.Inline) u32 {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetId(@as(*const IMFTimedTextCue, @ptrCast(self)));
+        return self.vtable.GetId(self);
     }
     pub fn GetOriginalId(self: *const IMFTimedTextCue, originalId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetOriginalId(@as(*const IMFTimedTextCue, @ptrCast(self)), originalId);
+        return self.vtable.GetOriginalId(self, originalId);
     }
     pub fn GetCueKind(self: *const IMFTimedTextCue) callconv(.Inline) MF_TIMED_TEXT_TRACK_KIND {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetCueKind(@as(*const IMFTimedTextCue, @ptrCast(self)));
+        return self.vtable.GetCueKind(self);
     }
     pub fn GetStartTime(self: *const IMFTimedTextCue) callconv(.Inline) f64 {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetStartTime(@as(*const IMFTimedTextCue, @ptrCast(self)));
+        return self.vtable.GetStartTime(self);
     }
     pub fn GetDuration(self: *const IMFTimedTextCue) callconv(.Inline) f64 {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFTimedTextCue, @ptrCast(self)));
+        return self.vtable.GetDuration(self);
     }
     pub fn GetTrackId(self: *const IMFTimedTextCue) callconv(.Inline) u32 {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetTrackId(@as(*const IMFTimedTextCue, @ptrCast(self)));
+        return self.vtable.GetTrackId(self);
     }
     pub fn GetData(self: *const IMFTimedTextCue, data: ?*?*IMFTimedTextBinary) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMFTimedTextCue, @ptrCast(self)), data);
+        return self.vtable.GetData(self, data);
     }
     pub fn GetRegion(self: *const IMFTimedTextCue, region: ?*?*IMFTimedTextRegion) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetRegion(@as(*const IMFTimedTextCue, @ptrCast(self)), region);
+        return self.vtable.GetRegion(self, region);
     }
     pub fn GetStyle(self: *const IMFTimedTextCue, style: ?*?*IMFTimedTextStyle) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetStyle(@as(*const IMFTimedTextCue, @ptrCast(self)), style);
+        return self.vtable.GetStyle(self, style);
     }
     pub fn GetLineCount(self: *const IMFTimedTextCue) callconv(.Inline) u32 {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetLineCount(@as(*const IMFTimedTextCue, @ptrCast(self)));
+        return self.vtable.GetLineCount(self);
     }
     pub fn GetLine(self: *const IMFTimedTextCue, index: u32, line: ?*?*IMFTimedTextFormattedText) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCue.VTable, @ptrCast(self.vtable)).GetLine(@as(*const IMFTimedTextCue, @ptrCast(self)), index, line);
+        return self.vtable.GetLine(self, index, line);
     }
 };
 
@@ -31481,13 +31481,13 @@ pub const IMFTimedTextFormattedText = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetText(self: *const IMFTimedTextFormattedText, text: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextFormattedText.VTable, @ptrCast(self.vtable)).GetText(@as(*const IMFTimedTextFormattedText, @ptrCast(self)), text);
+        return self.vtable.GetText(self, text);
     }
     pub fn GetSubformattingCount(self: *const IMFTimedTextFormattedText) callconv(.Inline) u32 {
-        return @as(*const IMFTimedTextFormattedText.VTable, @ptrCast(self.vtable)).GetSubformattingCount(@as(*const IMFTimedTextFormattedText, @ptrCast(self)));
+        return self.vtable.GetSubformattingCount(self);
     }
     pub fn GetSubformatting(self: *const IMFTimedTextFormattedText, index: u32, firstChar: ?*u32, charLength: ?*u32, style: ?*?*IMFTimedTextStyle) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextFormattedText.VTable, @ptrCast(self.vtable)).GetSubformatting(@as(*const IMFTimedTextFormattedText, @ptrCast(self)), index, firstChar, charLength, style);
+        return self.vtable.GetSubformatting(self, index, firstChar, charLength, style);
     }
 };
 
@@ -31612,43 +31612,43 @@ pub const IMFTimedTextStyle = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetName(self: *const IMFTimedTextStyle, name: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetName(@as(*const IMFTimedTextStyle, @ptrCast(self)), name);
+        return self.vtable.GetName(self, name);
     }
     pub fn IsExternal(self: *const IMFTimedTextStyle) callconv(.Inline) BOOL {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).IsExternal(@as(*const IMFTimedTextStyle, @ptrCast(self)));
+        return self.vtable.IsExternal(self);
     }
     pub fn GetFontFamily(self: *const IMFTimedTextStyle, fontFamily: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetFontFamily(@as(*const IMFTimedTextStyle, @ptrCast(self)), fontFamily);
+        return self.vtable.GetFontFamily(self, fontFamily);
     }
     pub fn GetFontSize(self: *const IMFTimedTextStyle, fontSize: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetFontSize(@as(*const IMFTimedTextStyle, @ptrCast(self)), fontSize, unitType);
+        return self.vtable.GetFontSize(self, fontSize, unitType);
     }
     pub fn GetColor(self: *const IMFTimedTextStyle, color: ?*MFARGB) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetColor(@as(*const IMFTimedTextStyle, @ptrCast(self)), color);
+        return self.vtable.GetColor(self, color);
     }
     pub fn GetBackgroundColor(self: *const IMFTimedTextStyle, bgColor: ?*MFARGB) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetBackgroundColor(@as(*const IMFTimedTextStyle, @ptrCast(self)), bgColor);
+        return self.vtable.GetBackgroundColor(self, bgColor);
     }
     pub fn GetShowBackgroundAlways(self: *const IMFTimedTextStyle, showBackgroundAlways: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetShowBackgroundAlways(@as(*const IMFTimedTextStyle, @ptrCast(self)), showBackgroundAlways);
+        return self.vtable.GetShowBackgroundAlways(self, showBackgroundAlways);
     }
     pub fn GetFontStyle(self: *const IMFTimedTextStyle, fontStyle: ?*MF_TIMED_TEXT_FONT_STYLE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetFontStyle(@as(*const IMFTimedTextStyle, @ptrCast(self)), fontStyle);
+        return self.vtable.GetFontStyle(self, fontStyle);
     }
     pub fn GetBold(self: *const IMFTimedTextStyle, bold: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetBold(@as(*const IMFTimedTextStyle, @ptrCast(self)), bold);
+        return self.vtable.GetBold(self, bold);
     }
     pub fn GetRightToLeft(self: *const IMFTimedTextStyle, rightToLeft: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetRightToLeft(@as(*const IMFTimedTextStyle, @ptrCast(self)), rightToLeft);
+        return self.vtable.GetRightToLeft(self, rightToLeft);
     }
     pub fn GetTextAlignment(self: *const IMFTimedTextStyle, textAlign: ?*MF_TIMED_TEXT_ALIGNMENT) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetTextAlignment(@as(*const IMFTimedTextStyle, @ptrCast(self)), textAlign);
+        return self.vtable.GetTextAlignment(self, textAlign);
     }
     pub fn GetTextDecoration(self: *const IMFTimedTextStyle, textDecoration: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetTextDecoration(@as(*const IMFTimedTextStyle, @ptrCast(self)), textDecoration);
+        return self.vtable.GetTextDecoration(self, textDecoration);
     }
     pub fn GetTextOutline(self: *const IMFTimedTextStyle, color: ?*MFARGB, thickness: ?*f64, blurRadius: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle.VTable, @ptrCast(self.vtable)).GetTextOutline(@as(*const IMFTimedTextStyle, @ptrCast(self)), color, thickness, blurRadius, unitType);
+        return self.vtable.GetTextOutline(self, color, thickness, blurRadius, unitType);
     }
 };
 
@@ -31771,40 +31771,40 @@ pub const IMFTimedTextRegion = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetName(self: *const IMFTimedTextRegion, name: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetName(@as(*const IMFTimedTextRegion, @ptrCast(self)), name);
+        return self.vtable.GetName(self, name);
     }
     pub fn GetPosition(self: *const IMFTimedTextRegion, pX: ?*f64, pY: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IMFTimedTextRegion, @ptrCast(self)), pX, pY, unitType);
+        return self.vtable.GetPosition(self, pX, pY, unitType);
     }
     pub fn GetExtent(self: *const IMFTimedTextRegion, pWidth: ?*f64, pHeight: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetExtent(@as(*const IMFTimedTextRegion, @ptrCast(self)), pWidth, pHeight, unitType);
+        return self.vtable.GetExtent(self, pWidth, pHeight, unitType);
     }
     pub fn GetBackgroundColor(self: *const IMFTimedTextRegion, bgColor: ?*MFARGB) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetBackgroundColor(@as(*const IMFTimedTextRegion, @ptrCast(self)), bgColor);
+        return self.vtable.GetBackgroundColor(self, bgColor);
     }
     pub fn GetWritingMode(self: *const IMFTimedTextRegion, writingMode: ?*MF_TIMED_TEXT_WRITING_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetWritingMode(@as(*const IMFTimedTextRegion, @ptrCast(self)), writingMode);
+        return self.vtable.GetWritingMode(self, writingMode);
     }
     pub fn GetDisplayAlignment(self: *const IMFTimedTextRegion, displayAlign: ?*MF_TIMED_TEXT_DISPLAY_ALIGNMENT) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetDisplayAlignment(@as(*const IMFTimedTextRegion, @ptrCast(self)), displayAlign);
+        return self.vtable.GetDisplayAlignment(self, displayAlign);
     }
     pub fn GetLineHeight(self: *const IMFTimedTextRegion, pLineHeight: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetLineHeight(@as(*const IMFTimedTextRegion, @ptrCast(self)), pLineHeight, unitType);
+        return self.vtable.GetLineHeight(self, pLineHeight, unitType);
     }
     pub fn GetClipOverflow(self: *const IMFTimedTextRegion, clipOverflow: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetClipOverflow(@as(*const IMFTimedTextRegion, @ptrCast(self)), clipOverflow);
+        return self.vtable.GetClipOverflow(self, clipOverflow);
     }
     pub fn GetPadding(self: *const IMFTimedTextRegion, before: ?*f64, start: ?*f64, after: ?*f64, end: ?*f64, unitType: ?*MF_TIMED_TEXT_UNIT_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetPadding(@as(*const IMFTimedTextRegion, @ptrCast(self)), before, start, after, end, unitType);
+        return self.vtable.GetPadding(self, before, start, after, end, unitType);
     }
     pub fn GetWrap(self: *const IMFTimedTextRegion, wrap: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetWrap(@as(*const IMFTimedTextRegion, @ptrCast(self)), wrap);
+        return self.vtable.GetWrap(self, wrap);
     }
     pub fn GetZIndex(self: *const IMFTimedTextRegion, zIndex: ?*i32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetZIndex(@as(*const IMFTimedTextRegion, @ptrCast(self)), zIndex);
+        return self.vtable.GetZIndex(self, zIndex);
     }
     pub fn GetScrollMode(self: *const IMFTimedTextRegion, scrollMode: ?*MF_TIMED_TEXT_SCROLL_MODE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRegion.VTable, @ptrCast(self.vtable)).GetScrollMode(@as(*const IMFTimedTextRegion, @ptrCast(self)), scrollMode);
+        return self.vtable.GetScrollMode(self, scrollMode);
     }
 };
 
@@ -31831,7 +31831,7 @@ pub const IMFTimedTextBinary = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetData(self: *const IMFTimedTextBinary, data: ?*const ?*u8, length: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextBinary.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMFTimedTextBinary, @ptrCast(self)), data, length);
+        return self.vtable.GetData(self, data, length);
     }
 };
 
@@ -31914,25 +31914,25 @@ pub const IMFTimedTextCueList = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetLength(self: *const IMFTimedTextCueList) callconv(.Inline) u32 {
-        return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).GetLength(@as(*const IMFTimedTextCueList, @ptrCast(self)));
+        return self.vtable.GetLength(self);
     }
     pub fn GetCueByIndex(self: *const IMFTimedTextCueList, index: u32, cue: ?*?*IMFTimedTextCue) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).GetCueByIndex(@as(*const IMFTimedTextCueList, @ptrCast(self)), index, cue);
+        return self.vtable.GetCueByIndex(self, index, cue);
     }
     pub fn GetCueById(self: *const IMFTimedTextCueList, id: u32, cue: ?*?*IMFTimedTextCue) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).GetCueById(@as(*const IMFTimedTextCueList, @ptrCast(self)), id, cue);
+        return self.vtable.GetCueById(self, id, cue);
     }
     pub fn GetCueByOriginalId(self: *const IMFTimedTextCueList, originalId: ?[*:0]const u16, cue: ?*?*IMFTimedTextCue) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).GetCueByOriginalId(@as(*const IMFTimedTextCueList, @ptrCast(self)), originalId, cue);
+        return self.vtable.GetCueByOriginalId(self, originalId, cue);
     }
     pub fn AddTextCue(self: *const IMFTimedTextCueList, start: f64, duration: f64, text: ?[*:0]const u16, cue: ?*?*IMFTimedTextCue) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).AddTextCue(@as(*const IMFTimedTextCueList, @ptrCast(self)), start, duration, text, cue);
+        return self.vtable.AddTextCue(self, start, duration, text, cue);
     }
     pub fn AddDataCue(self: *const IMFTimedTextCueList, start: f64, duration: f64, data: ?*const u8, dataSize: u32, cue: ?*?*IMFTimedTextCue) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).AddDataCue(@as(*const IMFTimedTextCueList, @ptrCast(self)), start, duration, data, dataSize, cue);
+        return self.vtable.AddDataCue(self, start, duration, data, dataSize, cue);
     }
     pub fn RemoveCue(self: *const IMFTimedTextCueList, cue: ?*IMFTimedTextCue) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextCueList.VTable, @ptrCast(self.vtable)).RemoveCue(@as(*const IMFTimedTextCueList, @ptrCast(self)), cue);
+        return self.vtable.RemoveCue(self, cue);
     }
 };
 
@@ -31981,16 +31981,16 @@ pub const IMFTimedTextRuby = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRubyText(self: *const IMFTimedTextRuby, rubyText: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRuby.VTable, @ptrCast(self.vtable)).GetRubyText(@as(*const IMFTimedTextRuby, @ptrCast(self)), rubyText);
+        return self.vtable.GetRubyText(self, rubyText);
     }
     pub fn GetRubyPosition(self: *const IMFTimedTextRuby, value: ?*MF_TIMED_TEXT_RUBY_POSITION) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRuby.VTable, @ptrCast(self.vtable)).GetRubyPosition(@as(*const IMFTimedTextRuby, @ptrCast(self)), value);
+        return self.vtable.GetRubyPosition(self, value);
     }
     pub fn GetRubyAlign(self: *const IMFTimedTextRuby, value: ?*MF_TIMED_TEXT_RUBY_ALIGN) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRuby.VTable, @ptrCast(self.vtable)).GetRubyAlign(@as(*const IMFTimedTextRuby, @ptrCast(self)), value);
+        return self.vtable.GetRubyAlign(self, value);
     }
     pub fn GetRubyReserve(self: *const IMFTimedTextRuby, value: ?*MF_TIMED_TEXT_RUBY_RESERVE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextRuby.VTable, @ptrCast(self.vtable)).GetRubyReserve(@as(*const IMFTimedTextRuby, @ptrCast(self)), value);
+        return self.vtable.GetRubyReserve(self, value);
     }
 };
 
@@ -32031,13 +32031,13 @@ pub const IMFTimedTextBouten = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetBoutenType(self: *const IMFTimedTextBouten, value: ?*MF_TIMED_TEXT_BOUTEN_TYPE) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextBouten.VTable, @ptrCast(self.vtable)).GetBoutenType(@as(*const IMFTimedTextBouten, @ptrCast(self)), value);
+        return self.vtable.GetBoutenType(self, value);
     }
     pub fn GetBoutenColor(self: *const IMFTimedTextBouten, value: ?*MFARGB) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextBouten.VTable, @ptrCast(self.vtable)).GetBoutenColor(@as(*const IMFTimedTextBouten, @ptrCast(self)), value);
+        return self.vtable.GetBoutenColor(self, value);
     }
     pub fn GetBoutenPosition(self: *const IMFTimedTextBouten, value: ?*MF_TIMED_TEXT_BOUTEN_POSITION) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextBouten.VTable, @ptrCast(self.vtable)).GetBoutenPosition(@as(*const IMFTimedTextBouten, @ptrCast(self)), value);
+        return self.vtable.GetBoutenPosition(self, value);
     }
 };
 
@@ -32086,16 +32086,16 @@ pub const IMFTimedTextStyle2 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetRuby(self: *const IMFTimedTextStyle2, ruby: ?*?*IMFTimedTextRuby) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle2.VTable, @ptrCast(self.vtable)).GetRuby(@as(*const IMFTimedTextStyle2, @ptrCast(self)), ruby);
+        return self.vtable.GetRuby(self, ruby);
     }
     pub fn GetBouten(self: *const IMFTimedTextStyle2, bouten: ?*?*IMFTimedTextBouten) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle2.VTable, @ptrCast(self.vtable)).GetBouten(@as(*const IMFTimedTextStyle2, @ptrCast(self)), bouten);
+        return self.vtable.GetBouten(self, bouten);
     }
     pub fn IsTextCombined(self: *const IMFTimedTextStyle2, value: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle2.VTable, @ptrCast(self.vtable)).IsTextCombined(@as(*const IMFTimedTextStyle2, @ptrCast(self)), value);
+        return self.vtable.IsTextCombined(self, value);
     }
     pub fn GetFontAngleInDegrees(self: *const IMFTimedTextStyle2, value: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFTimedTextStyle2.VTable, @ptrCast(self.vtable)).GetFontAngleInDegrees(@as(*const IMFTimedTextStyle2, @ptrCast(self)), value);
+        return self.vtable.GetFontAngleInDegrees(self, value);
     }
 };
 
@@ -32139,10 +32139,10 @@ pub const IMFMediaEngineEMENotify = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Encrypted(self: *const IMFMediaEngineEMENotify, pbInitData: ?*const u8, cb: u32, bstrInitDataType: ?BSTR) callconv(.Inline) void {
-        return @as(*const IMFMediaEngineEMENotify.VTable, @ptrCast(self.vtable)).Encrypted(@as(*const IMFMediaEngineEMENotify, @ptrCast(self)), pbInitData, cb, bstrInitDataType);
+        return self.vtable.Encrypted(self, pbInitData, cb, bstrInitDataType);
     }
     pub fn WaitingForKey(self: *const IMFMediaEngineEMENotify) callconv(.Inline) void {
-        return @as(*const IMFMediaEngineEMENotify.VTable, @ptrCast(self.vtable)).WaitingForKey(@as(*const IMFMediaEngineEMENotify, @ptrCast(self)));
+        return self.vtable.WaitingForKey(self);
     }
 };
 
@@ -32187,10 +32187,10 @@ pub const IMFMediaKeySessionNotify2 = extern union {
     };}
     pub usingnamespace IMFMediaKeySessionNotify.MethodMixin(@This());
     pub fn KeyMessage2(self: *const IMFMediaKeySessionNotify2, eMessageType: MF_MEDIAKEYSESSION_MESSAGETYPE, destinationURL: ?BSTR, pbMessage: ?*const u8, cbMessage: u32) callconv(.Inline) void {
-        return @as(*const IMFMediaKeySessionNotify2.VTable, @ptrCast(self.vtable)).KeyMessage2(@as(*const IMFMediaKeySessionNotify2, @ptrCast(self)), eMessageType, destinationURL, pbMessage, cbMessage);
+        return self.vtable.KeyMessage2(self, eMessageType, destinationURL, pbMessage, cbMessage);
     }
     pub fn KeyStatusChange(self: *const IMFMediaKeySessionNotify2) callconv(.Inline) void {
-        return @as(*const IMFMediaKeySessionNotify2.VTable, @ptrCast(self.vtable)).KeyStatusChange(@as(*const IMFMediaKeySessionNotify2, @ptrCast(self)));
+        return self.vtable.KeyStatusChange(self);
     }
 };
 
@@ -32234,13 +32234,13 @@ pub const IMFMediaKeySystemAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateMediaKeys(self: *const IMFMediaKeySystemAccess, pCdmCustomConfig: ?*IPropertyStore, ppKeys: ?*?*IMFMediaKeys2) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySystemAccess.VTable, @ptrCast(self.vtable)).CreateMediaKeys(@as(*const IMFMediaKeySystemAccess, @ptrCast(self)), pCdmCustomConfig, ppKeys);
+        return self.vtable.CreateMediaKeys(self, pCdmCustomConfig, ppKeys);
     }
     pub fn get_SupportedConfiguration(self: *const IMFMediaKeySystemAccess, ppSupportedConfiguration: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySystemAccess.VTable, @ptrCast(self.vtable)).get_SupportedConfiguration(@as(*const IMFMediaKeySystemAccess, @ptrCast(self)), ppSupportedConfiguration);
+        return self.vtable.get_SupportedConfiguration(self, ppSupportedConfiguration);
     }
     pub fn get_KeySystem(self: *const IMFMediaKeySystemAccess, pKeySystem: ?*?BSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySystemAccess.VTable, @ptrCast(self.vtable)).get_KeySystem(@as(*const IMFMediaKeySystemAccess, @ptrCast(self)), pKeySystem);
+        return self.vtable.get_KeySystem(self, pKeySystem);
     }
 };
 
@@ -32268,7 +32268,7 @@ pub const IMFMediaEngineClassFactory3 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateMediaKeySystemAccess(self: *const IMFMediaEngineClassFactory3, keySystem: ?BSTR, ppSupportedConfigurationsArray: [*]?*IPropertyStore, uSize: u32, ppKeyAccess: ?*?*IMFMediaKeySystemAccess) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineClassFactory3.VTable, @ptrCast(self.vtable)).CreateMediaKeySystemAccess(@as(*const IMFMediaEngineClassFactory3, @ptrCast(self)), keySystem, ppSupportedConfigurationsArray, uSize, ppKeyAccess);
+        return self.vtable.CreateMediaKeySystemAccess(self, keySystem, ppSupportedConfigurationsArray, uSize, ppKeyAccess);
     }
 };
 
@@ -32314,13 +32314,13 @@ pub const IMFMediaKeys2 = extern union {
     };}
     pub usingnamespace IMFMediaKeys.MethodMixin(@This());
     pub fn CreateSession2(self: *const IMFMediaKeys2, eSessionType: MF_MEDIAKEYSESSION_TYPE, pMFMediaKeySessionNotify2: ?*IMFMediaKeySessionNotify2, ppSession: ?*?*IMFMediaKeySession2) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeys2.VTable, @ptrCast(self.vtable)).CreateSession2(@as(*const IMFMediaKeys2, @ptrCast(self)), eSessionType, pMFMediaKeySessionNotify2, ppSession);
+        return self.vtable.CreateSession2(self, eSessionType, pMFMediaKeySessionNotify2, ppSession);
     }
     pub fn SetServerCertificate(self: *const IMFMediaKeys2, pbServerCertificate: ?*const u8, cb: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeys2.VTable, @ptrCast(self.vtable)).SetServerCertificate(@as(*const IMFMediaKeys2, @ptrCast(self)), pbServerCertificate, cb);
+        return self.vtable.SetServerCertificate(self, pbServerCertificate, cb);
     }
     pub fn GetDOMException(self: *const IMFMediaKeys2, systemCode: HRESULT, code: ?*HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeys2.VTable, @ptrCast(self.vtable)).GetDOMException(@as(*const IMFMediaKeys2, @ptrCast(self)), systemCode, code);
+        return self.vtable.GetDOMException(self, systemCode, code);
     }
 };
 
@@ -32389,22 +32389,22 @@ pub const IMFMediaKeySession2 = extern union {
     };}
     pub usingnamespace IMFMediaKeySession.MethodMixin(@This());
     pub fn get_KeyStatuses(self: *const IMFMediaKeySession2, pKeyStatusesArray: ?*?*MFMediaKeyStatus, puSize: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).get_KeyStatuses(@as(*const IMFMediaKeySession2, @ptrCast(self)), pKeyStatusesArray, puSize);
+        return self.vtable.get_KeyStatuses(self, pKeyStatusesArray, puSize);
     }
     pub fn Load(self: *const IMFMediaKeySession2, bstrSessionId: ?BSTR, pfLoaded: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).Load(@as(*const IMFMediaKeySession2, @ptrCast(self)), bstrSessionId, pfLoaded);
+        return self.vtable.Load(self, bstrSessionId, pfLoaded);
     }
     pub fn GenerateRequest(self: *const IMFMediaKeySession2, initDataType: ?BSTR, pbInitData: ?*const u8, cb: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).GenerateRequest(@as(*const IMFMediaKeySession2, @ptrCast(self)), initDataType, pbInitData, cb);
+        return self.vtable.GenerateRequest(self, initDataType, pbInitData, cb);
     }
     pub fn get_Expiration(self: *const IMFMediaKeySession2, dblExpiration: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).get_Expiration(@as(*const IMFMediaKeySession2, @ptrCast(self)), dblExpiration);
+        return self.vtable.get_Expiration(self, dblExpiration);
     }
     pub fn Remove(self: *const IMFMediaKeySession2) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).Remove(@as(*const IMFMediaKeySession2, @ptrCast(self)));
+        return self.vtable.Remove(self);
     }
     pub fn Shutdown(self: *const IMFMediaKeySession2) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaKeySession2.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFMediaKeySession2, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
@@ -32431,7 +32431,7 @@ pub const IMFMediaEngineClassFactory4 = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateContentDecryptionModuleFactory(self: *const IMFMediaEngineClassFactory4, keySystem: ?[*:0]const u16, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaEngineClassFactory4.VTable, @ptrCast(self.vtable)).CreateContentDecryptionModuleFactory(@as(*const IMFMediaEngineClassFactory4, @ptrCast(self)), keySystem, riid, ppvObject);
+        return self.vtable.CreateContentDecryptionModuleFactory(self, keySystem, riid, ppvObject);
     }
 };
 
@@ -32458,7 +32458,7 @@ pub const IMFDLNASinkInit = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Initialize(self: *const IMFDLNASinkInit, pByteStream: ?*IMFByteStream, fPal: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFDLNASinkInit.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IMFDLNASinkInit, @ptrCast(self)), pByteStream, fPal);
+        return self.vtable.Initialize(self, pByteStream, fPal);
     }
 };
 
@@ -32517,10 +32517,10 @@ pub const IMFReadWriteClassFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateInstanceFromURL(self: *const IMFReadWriteClassFactory, clsid: ?*const Guid, pwszURL: ?[*:0]const u16, pAttributes: ?*IMFAttributes, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFReadWriteClassFactory.VTable, @ptrCast(self.vtable)).CreateInstanceFromURL(@as(*const IMFReadWriteClassFactory, @ptrCast(self)), clsid, pwszURL, pAttributes, riid, ppvObject);
+        return self.vtable.CreateInstanceFromURL(self, clsid, pwszURL, pAttributes, riid, ppvObject);
     }
     pub fn CreateInstanceFromObject(self: *const IMFReadWriteClassFactory, clsid: ?*const Guid, punkObject: ?*IUnknown, pAttributes: ?*IMFAttributes, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFReadWriteClassFactory.VTable, @ptrCast(self.vtable)).CreateInstanceFromObject(@as(*const IMFReadWriteClassFactory, @ptrCast(self)), clsid, punkObject, pAttributes, riid, ppvObject);
+        return self.vtable.CreateInstanceFromObject(self, clsid, punkObject, pAttributes, riid, ppvObject);
     }
 };
 
@@ -32678,34 +32678,34 @@ pub const IMFSourceReader = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetStreamSelection(self: *const IMFSourceReader, dwStreamIndex: u32, pfSelected: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetStreamSelection(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, pfSelected);
+        return self.vtable.GetStreamSelection(self, dwStreamIndex, pfSelected);
     }
     pub fn SetStreamSelection(self: *const IMFSourceReader, dwStreamIndex: u32, fSelected: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).SetStreamSelection(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, fSelected);
+        return self.vtable.SetStreamSelection(self, dwStreamIndex, fSelected);
     }
     pub fn GetNativeMediaType(self: *const IMFSourceReader, dwStreamIndex: u32, dwMediaTypeIndex: u32, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetNativeMediaType(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, dwMediaTypeIndex, ppMediaType);
+        return self.vtable.GetNativeMediaType(self, dwStreamIndex, dwMediaTypeIndex, ppMediaType);
     }
     pub fn GetCurrentMediaType(self: *const IMFSourceReader, dwStreamIndex: u32, ppMediaType: ?*?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetCurrentMediaType(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, ppMediaType);
+        return self.vtable.GetCurrentMediaType(self, dwStreamIndex, ppMediaType);
     }
     pub fn SetCurrentMediaType(self: *const IMFSourceReader, dwStreamIndex: u32, pdwReserved: ?*u32, pMediaType: ?*IMFMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).SetCurrentMediaType(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, pdwReserved, pMediaType);
+        return self.vtable.SetCurrentMediaType(self, dwStreamIndex, pdwReserved, pMediaType);
     }
     pub fn SetCurrentPosition(self: *const IMFSourceReader, guidTimeFormat: ?*const Guid, varPosition: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).SetCurrentPosition(@as(*const IMFSourceReader, @ptrCast(self)), guidTimeFormat, varPosition);
+        return self.vtable.SetCurrentPosition(self, guidTimeFormat, varPosition);
     }
     pub fn ReadSample(self: *const IMFSourceReader, dwStreamIndex: u32, dwControlFlags: u32, pdwActualStreamIndex: ?*u32, pdwStreamFlags: ?*u32, pllTimestamp: ?*i64, ppSample: ?*?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).ReadSample(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, dwControlFlags, pdwActualStreamIndex, pdwStreamFlags, pllTimestamp, ppSample);
+        return self.vtable.ReadSample(self, dwStreamIndex, dwControlFlags, pdwActualStreamIndex, pdwStreamFlags, pllTimestamp, ppSample);
     }
     pub fn Flush(self: *const IMFSourceReader, dwStreamIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex);
+        return self.vtable.Flush(self, dwStreamIndex);
     }
     pub fn GetServiceForStream(self: *const IMFSourceReader, dwStreamIndex: u32, guidService: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetServiceForStream(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, guidService, riid, ppvObject);
+        return self.vtable.GetServiceForStream(self, dwStreamIndex, guidService, riid, ppvObject);
     }
     pub fn GetPresentationAttribute(self: *const IMFSourceReader, dwStreamIndex: u32, guidAttribute: ?*const Guid, pvarAttribute: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReader.VTable, @ptrCast(self.vtable)).GetPresentationAttribute(@as(*const IMFSourceReader, @ptrCast(self)), dwStreamIndex, guidAttribute, pvarAttribute);
+        return self.vtable.GetPresentationAttribute(self, dwStreamIndex, guidAttribute, pvarAttribute);
     }
 };
 
@@ -32761,16 +32761,16 @@ pub const IMFSourceReaderEx = extern union {
     };}
     pub usingnamespace IMFSourceReader.MethodMixin(@This());
     pub fn SetNativeMediaType(self: *const IMFSourceReaderEx, dwStreamIndex: u32, pMediaType: ?*IMFMediaType, pdwStreamFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReaderEx.VTable, @ptrCast(self.vtable)).SetNativeMediaType(@as(*const IMFSourceReaderEx, @ptrCast(self)), dwStreamIndex, pMediaType, pdwStreamFlags);
+        return self.vtable.SetNativeMediaType(self, dwStreamIndex, pMediaType, pdwStreamFlags);
     }
     pub fn AddTransformForStream(self: *const IMFSourceReaderEx, dwStreamIndex: u32, pTransformOrActivate: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReaderEx.VTable, @ptrCast(self.vtable)).AddTransformForStream(@as(*const IMFSourceReaderEx, @ptrCast(self)), dwStreamIndex, pTransformOrActivate);
+        return self.vtable.AddTransformForStream(self, dwStreamIndex, pTransformOrActivate);
     }
     pub fn RemoveAllTransformsForStream(self: *const IMFSourceReaderEx, dwStreamIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReaderEx.VTable, @ptrCast(self.vtable)).RemoveAllTransformsForStream(@as(*const IMFSourceReaderEx, @ptrCast(self)), dwStreamIndex);
+        return self.vtable.RemoveAllTransformsForStream(self, dwStreamIndex);
     }
     pub fn GetTransformForStream(self: *const IMFSourceReaderEx, dwStreamIndex: u32, dwTransformIndex: u32, pGuidCategory: ?*Guid, ppTransform: ?*?*IMFTransform) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReaderEx.VTable, @ptrCast(self.vtable)).GetTransformForStream(@as(*const IMFSourceReaderEx, @ptrCast(self)), dwStreamIndex, dwTransformIndex, pGuidCategory, ppTransform);
+        return self.vtable.GetTransformForStream(self, dwStreamIndex, dwTransformIndex, pGuidCategory, ppTransform);
     }
 };
 
@@ -32817,13 +32817,13 @@ pub const IMFSourceReaderCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnReadSample(self: *const IMFSourceReaderCallback, hrStatus: HRESULT, dwStreamIndex: u32, dwStreamFlags: u32, llTimestamp: i64, pSample: ?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReaderCallback.VTable, @ptrCast(self.vtable)).OnReadSample(@as(*const IMFSourceReaderCallback, @ptrCast(self)), hrStatus, dwStreamIndex, dwStreamFlags, llTimestamp, pSample);
+        return self.vtable.OnReadSample(self, hrStatus, dwStreamIndex, dwStreamFlags, llTimestamp, pSample);
     }
     pub fn OnFlush(self: *const IMFSourceReaderCallback, dwStreamIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReaderCallback.VTable, @ptrCast(self.vtable)).OnFlush(@as(*const IMFSourceReaderCallback, @ptrCast(self)), dwStreamIndex);
+        return self.vtable.OnFlush(self, dwStreamIndex);
     }
     pub fn OnEvent(self: *const IMFSourceReaderCallback, dwStreamIndex: u32, pEvent: ?*IMFMediaEvent) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReaderCallback.VTable, @ptrCast(self.vtable)).OnEvent(@as(*const IMFSourceReaderCallback, @ptrCast(self)), dwStreamIndex, pEvent);
+        return self.vtable.OnEvent(self, dwStreamIndex, pEvent);
     }
 };
 
@@ -32856,10 +32856,10 @@ pub const IMFSourceReaderCallback2 = extern union {
     };}
     pub usingnamespace IMFSourceReaderCallback.MethodMixin(@This());
     pub fn OnTransformChange(self: *const IMFSourceReaderCallback2) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReaderCallback2.VTable, @ptrCast(self.vtable)).OnTransformChange(@as(*const IMFSourceReaderCallback2, @ptrCast(self)));
+        return self.vtable.OnTransformChange(self);
     }
     pub fn OnStreamError(self: *const IMFSourceReaderCallback2, dwStreamIndex: u32, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMFSourceReaderCallback2.VTable, @ptrCast(self.vtable)).OnStreamError(@as(*const IMFSourceReaderCallback2, @ptrCast(self)), dwStreamIndex, hrStatus);
+        return self.vtable.OnStreamError(self, dwStreamIndex, hrStatus);
     }
 };
 
@@ -33001,37 +33001,37 @@ pub const IMFSinkWriter = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn AddStream(self: *const IMFSinkWriter, pTargetMediaType: ?*IMFMediaType, pdwStreamIndex: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).AddStream(@as(*const IMFSinkWriter, @ptrCast(self)), pTargetMediaType, pdwStreamIndex);
+        return self.vtable.AddStream(self, pTargetMediaType, pdwStreamIndex);
     }
     pub fn SetInputMediaType(self: *const IMFSinkWriter, dwStreamIndex: u32, pInputMediaType: ?*IMFMediaType, pEncodingParameters: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).SetInputMediaType(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, pInputMediaType, pEncodingParameters);
+        return self.vtable.SetInputMediaType(self, dwStreamIndex, pInputMediaType, pEncodingParameters);
     }
     pub fn BeginWriting(self: *const IMFSinkWriter) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).BeginWriting(@as(*const IMFSinkWriter, @ptrCast(self)));
+        return self.vtable.BeginWriting(self);
     }
     pub fn WriteSample(self: *const IMFSinkWriter, dwStreamIndex: u32, pSample: ?*IMFSample) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).WriteSample(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, pSample);
+        return self.vtable.WriteSample(self, dwStreamIndex, pSample);
     }
     pub fn SendStreamTick(self: *const IMFSinkWriter, dwStreamIndex: u32, llTimestamp: i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).SendStreamTick(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, llTimestamp);
+        return self.vtable.SendStreamTick(self, dwStreamIndex, llTimestamp);
     }
     pub fn PlaceMarker(self: *const IMFSinkWriter, dwStreamIndex: u32, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).PlaceMarker(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, pvContext);
+        return self.vtable.PlaceMarker(self, dwStreamIndex, pvContext);
     }
     pub fn NotifyEndOfSegment(self: *const IMFSinkWriter, dwStreamIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).NotifyEndOfSegment(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex);
+        return self.vtable.NotifyEndOfSegment(self, dwStreamIndex);
     }
     pub fn Flush(self: *const IMFSinkWriter, dwStreamIndex: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).Flush(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex);
+        return self.vtable.Flush(self, dwStreamIndex);
     }
     pub fn Finalize(self: *const IMFSinkWriter) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).Finalize(@as(*const IMFSinkWriter, @ptrCast(self)));
+        return self.vtable.Finalize(self);
     }
     pub fn GetServiceForStream(self: *const IMFSinkWriter, dwStreamIndex: u32, guidService: ?*const Guid, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).GetServiceForStream(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, guidService, riid, ppvObject);
+        return self.vtable.GetServiceForStream(self, dwStreamIndex, guidService, riid, ppvObject);
     }
     pub fn GetStatistics(self: *const IMFSinkWriter, dwStreamIndex: u32, pStats: ?*MF_SINK_WRITER_STATISTICS) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriter.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const IMFSinkWriter, @ptrCast(self)), dwStreamIndex, pStats);
+        return self.vtable.GetStatistics(self, dwStreamIndex, pStats);
     }
 };
 
@@ -33060,7 +33060,7 @@ pub const IMFSinkWriterEx = extern union {
     };}
     pub usingnamespace IMFSinkWriter.MethodMixin(@This());
     pub fn GetTransformForStream(self: *const IMFSinkWriterEx, dwStreamIndex: u32, dwTransformIndex: u32, pGuidCategory: ?*Guid, ppTransform: ?*?*IMFTransform) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriterEx.VTable, @ptrCast(self.vtable)).GetTransformForStream(@as(*const IMFSinkWriterEx, @ptrCast(self)), dwStreamIndex, dwTransformIndex, pGuidCategory, ppTransform);
+        return self.vtable.GetTransformForStream(self, dwStreamIndex, dwTransformIndex, pGuidCategory, ppTransform);
     }
 };
 
@@ -33097,10 +33097,10 @@ pub const IMFSinkWriterEncoderConfig = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetTargetMediaType(self: *const IMFSinkWriterEncoderConfig, dwStreamIndex: u32, pTargetMediaType: ?*IMFMediaType, pEncodingParameters: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriterEncoderConfig.VTable, @ptrCast(self.vtable)).SetTargetMediaType(@as(*const IMFSinkWriterEncoderConfig, @ptrCast(self)), dwStreamIndex, pTargetMediaType, pEncodingParameters);
+        return self.vtable.SetTargetMediaType(self, dwStreamIndex, pTargetMediaType, pEncodingParameters);
     }
     pub fn PlaceEncodingParameters(self: *const IMFSinkWriterEncoderConfig, dwStreamIndex: u32, pEncodingParameters: ?*IMFAttributes) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriterEncoderConfig.VTable, @ptrCast(self.vtable)).PlaceEncodingParameters(@as(*const IMFSinkWriterEncoderConfig, @ptrCast(self)), dwStreamIndex, pEncodingParameters);
+        return self.vtable.PlaceEncodingParameters(self, dwStreamIndex, pEncodingParameters);
     }
 };
 
@@ -33135,10 +33135,10 @@ pub const IMFSinkWriterCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnFinalize(self: *const IMFSinkWriterCallback, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriterCallback.VTable, @ptrCast(self.vtable)).OnFinalize(@as(*const IMFSinkWriterCallback, @ptrCast(self)), hrStatus);
+        return self.vtable.OnFinalize(self, hrStatus);
     }
     pub fn OnMarker(self: *const IMFSinkWriterCallback, dwStreamIndex: u32, pvContext: ?*anyopaque) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriterCallback.VTable, @ptrCast(self.vtable)).OnMarker(@as(*const IMFSinkWriterCallback, @ptrCast(self)), dwStreamIndex, pvContext);
+        return self.vtable.OnMarker(self, dwStreamIndex, pvContext);
     }
 };
 
@@ -33171,10 +33171,10 @@ pub const IMFSinkWriterCallback2 = extern union {
     };}
     pub usingnamespace IMFSinkWriterCallback.MethodMixin(@This());
     pub fn OnTransformChange(self: *const IMFSinkWriterCallback2) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriterCallback2.VTable, @ptrCast(self.vtable)).OnTransformChange(@as(*const IMFSinkWriterCallback2, @ptrCast(self)));
+        return self.vtable.OnTransformChange(self);
     }
     pub fn OnStreamError(self: *const IMFSinkWriterCallback2, dwStreamIndex: u32, hrStatus: HRESULT) callconv(.Inline) HRESULT {
-        return @as(*const IMFSinkWriterCallback2.VTable, @ptrCast(self.vtable)).OnStreamError(@as(*const IMFSinkWriterCallback2, @ptrCast(self)), dwStreamIndex, hrStatus);
+        return self.vtable.OnStreamError(self, dwStreamIndex, hrStatus);
     }
 };
 
@@ -33205,7 +33205,7 @@ pub const IMFVideoPositionMapper = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn MapOutputCoordinateToInputStream(self: *const IMFVideoPositionMapper, xOut: f32, yOut: f32, dwOutputStreamIndex: u32, dwInputStreamIndex: u32, pxIn: ?*f32, pyIn: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoPositionMapper.VTable, @ptrCast(self.vtable)).MapOutputCoordinateToInputStream(@as(*const IMFVideoPositionMapper, @ptrCast(self)), xOut, yOut, dwOutputStreamIndex, dwInputStreamIndex, pxIn, pyIn);
+        return self.vtable.MapOutputCoordinateToInputStream(self, xOut, yOut, dwOutputStreamIndex, dwInputStreamIndex, pxIn, pyIn);
     }
 };
 
@@ -33231,7 +33231,7 @@ pub const IMFVideoDeviceID = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDeviceID(self: *const IMFVideoDeviceID, pDeviceID: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDeviceID.VTable, @ptrCast(self.vtable)).GetDeviceID(@as(*const IMFVideoDeviceID, @ptrCast(self)), pDeviceID);
+        return self.vtable.GetDeviceID(self, pDeviceID);
     }
 };
 
@@ -33419,52 +33419,52 @@ pub const IMFVideoDisplayControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetNativeVideoSize(self: *const IMFVideoDisplayControl, pszVideo: ?*SIZE, pszARVideo: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetNativeVideoSize(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pszVideo, pszARVideo);
+        return self.vtable.GetNativeVideoSize(self, pszVideo, pszARVideo);
     }
     pub fn GetIdealVideoSize(self: *const IMFVideoDisplayControl, pszMin: ?*SIZE, pszMax: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetIdealVideoSize(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pszMin, pszMax);
+        return self.vtable.GetIdealVideoSize(self, pszMin, pszMax);
     }
     pub fn SetVideoPosition(self: *const IMFVideoDisplayControl, pnrcSource: ?*const MFVideoNormalizedRect, prcDest: ?*const RECT) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetVideoPosition(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pnrcSource, prcDest);
+        return self.vtable.SetVideoPosition(self, pnrcSource, prcDest);
     }
     pub fn GetVideoPosition(self: *const IMFVideoDisplayControl, pnrcSource: ?*MFVideoNormalizedRect, prcDest: ?*RECT) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetVideoPosition(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pnrcSource, prcDest);
+        return self.vtable.GetVideoPosition(self, pnrcSource, prcDest);
     }
     pub fn SetAspectRatioMode(self: *const IMFVideoDisplayControl, dwAspectRatioMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetAspectRatioMode(@as(*const IMFVideoDisplayControl, @ptrCast(self)), dwAspectRatioMode);
+        return self.vtable.SetAspectRatioMode(self, dwAspectRatioMode);
     }
     pub fn GetAspectRatioMode(self: *const IMFVideoDisplayControl, pdwAspectRatioMode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetAspectRatioMode(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pdwAspectRatioMode);
+        return self.vtable.GetAspectRatioMode(self, pdwAspectRatioMode);
     }
     pub fn SetVideoWindow(self: *const IMFVideoDisplayControl, hwndVideo: ?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetVideoWindow(@as(*const IMFVideoDisplayControl, @ptrCast(self)), hwndVideo);
+        return self.vtable.SetVideoWindow(self, hwndVideo);
     }
     pub fn GetVideoWindow(self: *const IMFVideoDisplayControl, phwndVideo: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetVideoWindow(@as(*const IMFVideoDisplayControl, @ptrCast(self)), phwndVideo);
+        return self.vtable.GetVideoWindow(self, phwndVideo);
     }
     pub fn RepaintVideo(self: *const IMFVideoDisplayControl) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).RepaintVideo(@as(*const IMFVideoDisplayControl, @ptrCast(self)));
+        return self.vtable.RepaintVideo(self);
     }
     pub fn GetCurrentImage(self: *const IMFVideoDisplayControl, pBih: ?*BITMAPINFOHEADER, pDib: [*]?*u8, pcbDib: ?*u32, pTimeStamp: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetCurrentImage(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pBih, pDib, pcbDib, pTimeStamp);
+        return self.vtable.GetCurrentImage(self, pBih, pDib, pcbDib, pTimeStamp);
     }
     pub fn SetBorderColor(self: *const IMFVideoDisplayControl, Clr: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetBorderColor(@as(*const IMFVideoDisplayControl, @ptrCast(self)), Clr);
+        return self.vtable.SetBorderColor(self, Clr);
     }
     pub fn GetBorderColor(self: *const IMFVideoDisplayControl, pClr: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetBorderColor(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pClr);
+        return self.vtable.GetBorderColor(self, pClr);
     }
     pub fn SetRenderingPrefs(self: *const IMFVideoDisplayControl, dwRenderFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetRenderingPrefs(@as(*const IMFVideoDisplayControl, @ptrCast(self)), dwRenderFlags);
+        return self.vtable.SetRenderingPrefs(self, dwRenderFlags);
     }
     pub fn GetRenderingPrefs(self: *const IMFVideoDisplayControl, pdwRenderFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetRenderingPrefs(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pdwRenderFlags);
+        return self.vtable.GetRenderingPrefs(self, pdwRenderFlags);
     }
     pub fn SetFullscreen(self: *const IMFVideoDisplayControl, fFullscreen: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).SetFullscreen(@as(*const IMFVideoDisplayControl, @ptrCast(self)), fFullscreen);
+        return self.vtable.SetFullscreen(self, fFullscreen);
     }
     pub fn GetFullscreen(self: *const IMFVideoDisplayControl, pfFullscreen: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoDisplayControl.VTable, @ptrCast(self.vtable)).GetFullscreen(@as(*const IMFVideoDisplayControl, @ptrCast(self)), pfFullscreen);
+        return self.vtable.GetFullscreen(self, pfFullscreen);
     }
 };
 
@@ -33518,10 +33518,10 @@ pub const IMFVideoPresenter = extern union {
     };}
     pub usingnamespace IMFClockStateSink.MethodMixin(@This());
     pub fn ProcessMessage(self: *const IMFVideoPresenter, eMessage: MFVP_MESSAGE_TYPE, ulParam: usize) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoPresenter.VTable, @ptrCast(self.vtable)).ProcessMessage(@as(*const IMFVideoPresenter, @ptrCast(self)), eMessage, ulParam);
+        return self.vtable.ProcessMessage(self, eMessage, ulParam);
     }
     pub fn GetCurrentMediaType(self: *const IMFVideoPresenter, ppMediaType: ?*?*IMFVideoMediaType) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoPresenter.VTable, @ptrCast(self.vtable)).GetCurrentMediaType(@as(*const IMFVideoPresenter, @ptrCast(self)), ppMediaType);
+        return self.vtable.GetCurrentMediaType(self, ppMediaType);
     }
 };
 
@@ -33564,13 +33564,13 @@ pub const IMFDesiredSample = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDesiredSampleTimeAndDuration(self: *const IMFDesiredSample, phnsSampleTime: ?*i64, phnsSampleDuration: ?*i64) callconv(.Inline) HRESULT {
-        return @as(*const IMFDesiredSample.VTable, @ptrCast(self.vtable)).GetDesiredSampleTimeAndDuration(@as(*const IMFDesiredSample, @ptrCast(self)), phnsSampleTime, phnsSampleDuration);
+        return self.vtable.GetDesiredSampleTimeAndDuration(self, phnsSampleTime, phnsSampleDuration);
     }
     pub fn SetDesiredSampleTimeAndDuration(self: *const IMFDesiredSample, hnsSampleTime: i64, hnsSampleDuration: i64) callconv(.Inline) void {
-        return @as(*const IMFDesiredSample.VTable, @ptrCast(self.vtable)).SetDesiredSampleTimeAndDuration(@as(*const IMFDesiredSample, @ptrCast(self)), hnsSampleTime, hnsSampleDuration);
+        return self.vtable.SetDesiredSampleTimeAndDuration(self, hnsSampleTime, hnsSampleDuration);
     }
     pub fn Clear(self: *const IMFDesiredSample) callconv(.Inline) void {
-        return @as(*const IMFDesiredSample.VTable, @ptrCast(self.vtable)).Clear(@as(*const IMFDesiredSample, @ptrCast(self)));
+        return self.vtable.Clear(self);
     }
 };
 
@@ -33624,16 +33624,16 @@ pub const IMFVideoMixerControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetStreamZOrder(self: *const IMFVideoMixerControl, dwStreamID: u32, dwZ: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerControl.VTable, @ptrCast(self.vtable)).SetStreamZOrder(@as(*const IMFVideoMixerControl, @ptrCast(self)), dwStreamID, dwZ);
+        return self.vtable.SetStreamZOrder(self, dwStreamID, dwZ);
     }
     pub fn GetStreamZOrder(self: *const IMFVideoMixerControl, dwStreamID: u32, pdwZ: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerControl.VTable, @ptrCast(self.vtable)).GetStreamZOrder(@as(*const IMFVideoMixerControl, @ptrCast(self)), dwStreamID, pdwZ);
+        return self.vtable.GetStreamZOrder(self, dwStreamID, pdwZ);
     }
     pub fn SetStreamOutputRect(self: *const IMFVideoMixerControl, dwStreamID: u32, pnrcOutput: ?*const MFVideoNormalizedRect) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerControl.VTable, @ptrCast(self.vtable)).SetStreamOutputRect(@as(*const IMFVideoMixerControl, @ptrCast(self)), dwStreamID, pnrcOutput);
+        return self.vtable.SetStreamOutputRect(self, dwStreamID, pnrcOutput);
     }
     pub fn GetStreamOutputRect(self: *const IMFVideoMixerControl, dwStreamID: u32, pnrcOutput: ?*MFVideoNormalizedRect) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerControl.VTable, @ptrCast(self.vtable)).GetStreamOutputRect(@as(*const IMFVideoMixerControl, @ptrCast(self)), dwStreamID, pnrcOutput);
+        return self.vtable.GetStreamOutputRect(self, dwStreamID, pnrcOutput);
     }
 };
 
@@ -33682,10 +33682,10 @@ pub const IMFVideoMixerControl2 = extern union {
     };}
     pub usingnamespace IMFVideoMixerControl.MethodMixin(@This());
     pub fn SetMixingPrefs(self: *const IMFVideoMixerControl2, dwMixFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerControl2.VTable, @ptrCast(self.vtable)).SetMixingPrefs(@as(*const IMFVideoMixerControl2, @ptrCast(self)), dwMixFlags);
+        return self.vtable.SetMixingPrefs(self, dwMixFlags);
     }
     pub fn GetMixingPrefs(self: *const IMFVideoMixerControl2, pdwMixFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerControl2.VTable, @ptrCast(self.vtable)).GetMixingPrefs(@as(*const IMFVideoMixerControl2, @ptrCast(self)), pdwMixFlags);
+        return self.vtable.GetMixingPrefs(self, pdwMixFlags);
     }
 };
 
@@ -33712,7 +33712,7 @@ pub const IMFVideoRenderer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitializeRenderer(self: *const IMFVideoRenderer, pVideoMixer: ?*IMFTransform, pVideoPresenter: ?*IMFVideoPresenter) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoRenderer.VTable, @ptrCast(self.vtable)).InitializeRenderer(@as(*const IMFVideoRenderer, @ptrCast(self)), pVideoMixer, pVideoPresenter);
+        return self.vtable.InitializeRenderer(self, pVideoMixer, pVideoPresenter);
     }
 };
 
@@ -33746,10 +33746,10 @@ pub const IEVRFilterConfig = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetNumberOfStreams(self: *const IEVRFilterConfig, dwMaxStreams: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEVRFilterConfig.VTable, @ptrCast(self.vtable)).SetNumberOfStreams(@as(*const IEVRFilterConfig, @ptrCast(self)), dwMaxStreams);
+        return self.vtable.SetNumberOfStreams(self, dwMaxStreams);
     }
     pub fn GetNumberOfStreams(self: *const IEVRFilterConfig, pdwMaxStreams: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEVRFilterConfig.VTable, @ptrCast(self.vtable)).GetNumberOfStreams(@as(*const IEVRFilterConfig, @ptrCast(self)), pdwMaxStreams);
+        return self.vtable.GetNumberOfStreams(self, pdwMaxStreams);
     }
 };
 
@@ -33790,10 +33790,10 @@ pub const IEVRFilterConfigEx = extern union {
     };}
     pub usingnamespace IEVRFilterConfig.MethodMixin(@This());
     pub fn SetConfigPrefs(self: *const IEVRFilterConfigEx, dwConfigFlags: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEVRFilterConfigEx.VTable, @ptrCast(self.vtable)).SetConfigPrefs(@as(*const IEVRFilterConfigEx, @ptrCast(self)), dwConfigFlags);
+        return self.vtable.SetConfigPrefs(self, dwConfigFlags);
     }
     pub fn GetConfigPrefs(self: *const IEVRFilterConfigEx, pdwConfigFlags: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IEVRFilterConfigEx.VTable, @ptrCast(self.vtable)).GetConfigPrefs(@as(*const IEVRFilterConfigEx, @ptrCast(self)), pdwConfigFlags);
+        return self.vtable.GetConfigPrefs(self, pdwConfigFlags);
     }
 };
 
@@ -33839,7 +33839,7 @@ pub const IMFTopologyServiceLookup = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn LookupService(self: *const IMFTopologyServiceLookup, Type: MF_SERVICE_LOOKUP_TYPE, dwIndex: u32, guidService: ?*const Guid, riid: ?*const Guid, ppvObjects: [*]?*anyopaque, pnObjects: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyServiceLookup.VTable, @ptrCast(self.vtable)).LookupService(@as(*const IMFTopologyServiceLookup, @ptrCast(self)), Type, dwIndex, guidService, riid, ppvObjects, pnObjects);
+        return self.vtable.LookupService(self, Type, dwIndex, guidService, riid, ppvObjects, pnObjects);
     }
 };
 
@@ -33872,10 +33872,10 @@ pub const IMFTopologyServiceLookupClient = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn InitServicePointers(self: *const IMFTopologyServiceLookupClient, pLookup: ?*IMFTopologyServiceLookup) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyServiceLookupClient.VTable, @ptrCast(self.vtable)).InitServicePointers(@as(*const IMFTopologyServiceLookupClient, @ptrCast(self)), pLookup);
+        return self.vtable.InitServicePointers(self, pLookup);
     }
     pub fn ReleaseServicePointers(self: *const IMFTopologyServiceLookupClient) callconv(.Inline) HRESULT {
-        return @as(*const IMFTopologyServiceLookupClient.VTable, @ptrCast(self.vtable)).ReleaseServicePointers(@as(*const IMFTopologyServiceLookupClient, @ptrCast(self)));
+        return self.vtable.ReleaseServicePointers(self);
     }
 };
 
@@ -33925,16 +33925,16 @@ pub const IEVRTrustedVideoPlugin = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsInTrustedVideoMode(self: *const IEVRTrustedVideoPlugin, pYes: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEVRTrustedVideoPlugin.VTable, @ptrCast(self.vtable)).IsInTrustedVideoMode(@as(*const IEVRTrustedVideoPlugin, @ptrCast(self)), pYes);
+        return self.vtable.IsInTrustedVideoMode(self, pYes);
     }
     pub fn CanConstrict(self: *const IEVRTrustedVideoPlugin, pYes: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEVRTrustedVideoPlugin.VTable, @ptrCast(self.vtable)).CanConstrict(@as(*const IEVRTrustedVideoPlugin, @ptrCast(self)), pYes);
+        return self.vtable.CanConstrict(self, pYes);
     }
     pub fn SetConstriction(self: *const IEVRTrustedVideoPlugin, dwKPix: u32) callconv(.Inline) HRESULT {
-        return @as(*const IEVRTrustedVideoPlugin.VTable, @ptrCast(self.vtable)).SetConstriction(@as(*const IEVRTrustedVideoPlugin, @ptrCast(self)), dwKPix);
+        return self.vtable.SetConstriction(self, dwKPix);
     }
     pub fn DisableImageExport(self: *const IEVRTrustedVideoPlugin, bDisable: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEVRTrustedVideoPlugin.VTable, @ptrCast(self.vtable)).DisableImageExport(@as(*const IEVRTrustedVideoPlugin, @ptrCast(self)), bDisable);
+        return self.vtable.DisableImageExport(self, bDisable);
     }
 };
 
@@ -34296,112 +34296,112 @@ pub const IMFPMediaPlayer = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Play(self: *const IMFPMediaPlayer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).Play(@as(*const IMFPMediaPlayer, @ptrCast(self)));
+        return self.vtable.Play(self);
     }
     pub fn Pause(self: *const IMFPMediaPlayer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).Pause(@as(*const IMFPMediaPlayer, @ptrCast(self)));
+        return self.vtable.Pause(self);
     }
     pub fn Stop(self: *const IMFPMediaPlayer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFPMediaPlayer, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn FrameStep(self: *const IMFPMediaPlayer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).FrameStep(@as(*const IMFPMediaPlayer, @ptrCast(self)));
+        return self.vtable.FrameStep(self);
     }
     pub fn SetPosition(self: *const IMFPMediaPlayer, guidPositionType: ?*const Guid, pvPositionValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetPosition(@as(*const IMFPMediaPlayer, @ptrCast(self)), guidPositionType, pvPositionValue);
+        return self.vtable.SetPosition(self, guidPositionType, pvPositionValue);
     }
     pub fn GetPosition(self: *const IMFPMediaPlayer, guidPositionType: ?*const Guid, pvPositionValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetPosition(@as(*const IMFPMediaPlayer, @ptrCast(self)), guidPositionType, pvPositionValue);
+        return self.vtable.GetPosition(self, guidPositionType, pvPositionValue);
     }
     pub fn GetDuration(self: *const IMFPMediaPlayer, guidPositionType: ?*const Guid, pvDurationValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFPMediaPlayer, @ptrCast(self)), guidPositionType, pvDurationValue);
+        return self.vtable.GetDuration(self, guidPositionType, pvDurationValue);
     }
     pub fn SetRate(self: *const IMFPMediaPlayer, flRate: f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetRate(@as(*const IMFPMediaPlayer, @ptrCast(self)), flRate);
+        return self.vtable.SetRate(self, flRate);
     }
     pub fn GetRate(self: *const IMFPMediaPlayer, pflRate: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetRate(@as(*const IMFPMediaPlayer, @ptrCast(self)), pflRate);
+        return self.vtable.GetRate(self, pflRate);
     }
     pub fn GetSupportedRates(self: *const IMFPMediaPlayer, fForwardDirection: BOOL, pflSlowestRate: ?*f32, pflFastestRate: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetSupportedRates(@as(*const IMFPMediaPlayer, @ptrCast(self)), fForwardDirection, pflSlowestRate, pflFastestRate);
+        return self.vtable.GetSupportedRates(self, fForwardDirection, pflSlowestRate, pflFastestRate);
     }
     pub fn GetState(self: *const IMFPMediaPlayer, peState: ?*MFP_MEDIAPLAYER_STATE) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetState(@as(*const IMFPMediaPlayer, @ptrCast(self)), peState);
+        return self.vtable.GetState(self, peState);
     }
     pub fn CreateMediaItemFromURL(self: *const IMFPMediaPlayer, pwszURL: ?[*:0]const u16, fSync: BOOL, dwUserData: usize, ppMediaItem: ?*?*IMFPMediaItem) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).CreateMediaItemFromURL(@as(*const IMFPMediaPlayer, @ptrCast(self)), pwszURL, fSync, dwUserData, ppMediaItem);
+        return self.vtable.CreateMediaItemFromURL(self, pwszURL, fSync, dwUserData, ppMediaItem);
     }
     pub fn CreateMediaItemFromObject(self: *const IMFPMediaPlayer, pIUnknownObj: ?*IUnknown, fSync: BOOL, dwUserData: usize, ppMediaItem: ?*?*IMFPMediaItem) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).CreateMediaItemFromObject(@as(*const IMFPMediaPlayer, @ptrCast(self)), pIUnknownObj, fSync, dwUserData, ppMediaItem);
+        return self.vtable.CreateMediaItemFromObject(self, pIUnknownObj, fSync, dwUserData, ppMediaItem);
     }
     pub fn SetMediaItem(self: *const IMFPMediaPlayer, pIMFPMediaItem: ?*IMFPMediaItem) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetMediaItem(@as(*const IMFPMediaPlayer, @ptrCast(self)), pIMFPMediaItem);
+        return self.vtable.SetMediaItem(self, pIMFPMediaItem);
     }
     pub fn ClearMediaItem(self: *const IMFPMediaPlayer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).ClearMediaItem(@as(*const IMFPMediaPlayer, @ptrCast(self)));
+        return self.vtable.ClearMediaItem(self);
     }
     pub fn GetMediaItem(self: *const IMFPMediaPlayer, ppIMFPMediaItem: ?*?*IMFPMediaItem) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetMediaItem(@as(*const IMFPMediaPlayer, @ptrCast(self)), ppIMFPMediaItem);
+        return self.vtable.GetMediaItem(self, ppIMFPMediaItem);
     }
     pub fn GetVolume(self: *const IMFPMediaPlayer, pflVolume: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetVolume(@as(*const IMFPMediaPlayer, @ptrCast(self)), pflVolume);
+        return self.vtable.GetVolume(self, pflVolume);
     }
     pub fn SetVolume(self: *const IMFPMediaPlayer, flVolume: f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetVolume(@as(*const IMFPMediaPlayer, @ptrCast(self)), flVolume);
+        return self.vtable.SetVolume(self, flVolume);
     }
     pub fn GetBalance(self: *const IMFPMediaPlayer, pflBalance: ?*f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetBalance(@as(*const IMFPMediaPlayer, @ptrCast(self)), pflBalance);
+        return self.vtable.GetBalance(self, pflBalance);
     }
     pub fn SetBalance(self: *const IMFPMediaPlayer, flBalance: f32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetBalance(@as(*const IMFPMediaPlayer, @ptrCast(self)), flBalance);
+        return self.vtable.SetBalance(self, flBalance);
     }
     pub fn GetMute(self: *const IMFPMediaPlayer, pfMute: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetMute(@as(*const IMFPMediaPlayer, @ptrCast(self)), pfMute);
+        return self.vtable.GetMute(self, pfMute);
     }
     pub fn SetMute(self: *const IMFPMediaPlayer, fMute: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetMute(@as(*const IMFPMediaPlayer, @ptrCast(self)), fMute);
+        return self.vtable.SetMute(self, fMute);
     }
     pub fn GetNativeVideoSize(self: *const IMFPMediaPlayer, pszVideo: ?*SIZE, pszARVideo: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetNativeVideoSize(@as(*const IMFPMediaPlayer, @ptrCast(self)), pszVideo, pszARVideo);
+        return self.vtable.GetNativeVideoSize(self, pszVideo, pszARVideo);
     }
     pub fn GetIdealVideoSize(self: *const IMFPMediaPlayer, pszMin: ?*SIZE, pszMax: ?*SIZE) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetIdealVideoSize(@as(*const IMFPMediaPlayer, @ptrCast(self)), pszMin, pszMax);
+        return self.vtable.GetIdealVideoSize(self, pszMin, pszMax);
     }
     pub fn SetVideoSourceRect(self: *const IMFPMediaPlayer, pnrcSource: ?*const MFVideoNormalizedRect) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetVideoSourceRect(@as(*const IMFPMediaPlayer, @ptrCast(self)), pnrcSource);
+        return self.vtable.SetVideoSourceRect(self, pnrcSource);
     }
     pub fn GetVideoSourceRect(self: *const IMFPMediaPlayer, pnrcSource: ?*MFVideoNormalizedRect) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetVideoSourceRect(@as(*const IMFPMediaPlayer, @ptrCast(self)), pnrcSource);
+        return self.vtable.GetVideoSourceRect(self, pnrcSource);
     }
     pub fn SetAspectRatioMode(self: *const IMFPMediaPlayer, dwAspectRatioMode: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetAspectRatioMode(@as(*const IMFPMediaPlayer, @ptrCast(self)), dwAspectRatioMode);
+        return self.vtable.SetAspectRatioMode(self, dwAspectRatioMode);
     }
     pub fn GetAspectRatioMode(self: *const IMFPMediaPlayer, pdwAspectRatioMode: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetAspectRatioMode(@as(*const IMFPMediaPlayer, @ptrCast(self)), pdwAspectRatioMode);
+        return self.vtable.GetAspectRatioMode(self, pdwAspectRatioMode);
     }
     pub fn GetVideoWindow(self: *const IMFPMediaPlayer, phwndVideo: ?*?HWND) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetVideoWindow(@as(*const IMFPMediaPlayer, @ptrCast(self)), phwndVideo);
+        return self.vtable.GetVideoWindow(self, phwndVideo);
     }
     pub fn UpdateVideo(self: *const IMFPMediaPlayer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).UpdateVideo(@as(*const IMFPMediaPlayer, @ptrCast(self)));
+        return self.vtable.UpdateVideo(self);
     }
     pub fn SetBorderColor(self: *const IMFPMediaPlayer, Clr: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).SetBorderColor(@as(*const IMFPMediaPlayer, @ptrCast(self)), Clr);
+        return self.vtable.SetBorderColor(self, Clr);
     }
     pub fn GetBorderColor(self: *const IMFPMediaPlayer, pClr: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).GetBorderColor(@as(*const IMFPMediaPlayer, @ptrCast(self)), pClr);
+        return self.vtable.GetBorderColor(self, pClr);
     }
     pub fn InsertEffect(self: *const IMFPMediaPlayer, pEffect: ?*IUnknown, fOptional: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).InsertEffect(@as(*const IMFPMediaPlayer, @ptrCast(self)), pEffect, fOptional);
+        return self.vtable.InsertEffect(self, pEffect, fOptional);
     }
     pub fn RemoveEffect(self: *const IMFPMediaPlayer, pEffect: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).RemoveEffect(@as(*const IMFPMediaPlayer, @ptrCast(self)), pEffect);
+        return self.vtable.RemoveEffect(self, pEffect);
     }
     pub fn RemoveAllEffects(self: *const IMFPMediaPlayer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).RemoveAllEffects(@as(*const IMFPMediaPlayer, @ptrCast(self)));
+        return self.vtable.RemoveAllEffects(self);
     }
     pub fn Shutdown(self: *const IMFPMediaPlayer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaPlayer.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFPMediaPlayer, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
@@ -34586,61 +34586,61 @@ pub const IMFPMediaItem = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetMediaPlayer(self: *const IMFPMediaItem, ppMediaPlayer: ?*?*IMFPMediaPlayer) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetMediaPlayer(@as(*const IMFPMediaItem, @ptrCast(self)), ppMediaPlayer);
+        return self.vtable.GetMediaPlayer(self, ppMediaPlayer);
     }
     pub fn GetURL(self: *const IMFPMediaItem, ppwszURL: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetURL(@as(*const IMFPMediaItem, @ptrCast(self)), ppwszURL);
+        return self.vtable.GetURL(self, ppwszURL);
     }
     pub fn GetObject(self: *const IMFPMediaItem, ppIUnknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IMFPMediaItem, @ptrCast(self)), ppIUnknown);
+        return self.vtable.GetObject(self, ppIUnknown);
     }
     pub fn GetUserData(self: *const IMFPMediaItem, pdwUserData: ?*usize) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetUserData(@as(*const IMFPMediaItem, @ptrCast(self)), pdwUserData);
+        return self.vtable.GetUserData(self, pdwUserData);
     }
     pub fn SetUserData(self: *const IMFPMediaItem, dwUserData: usize) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).SetUserData(@as(*const IMFPMediaItem, @ptrCast(self)), dwUserData);
+        return self.vtable.SetUserData(self, dwUserData);
     }
     pub fn GetStartStopPosition(self: *const IMFPMediaItem, pguidStartPositionType: ?*Guid, pvStartValue: ?*PROPVARIANT, pguidStopPositionType: ?*Guid, pvStopValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetStartStopPosition(@as(*const IMFPMediaItem, @ptrCast(self)), pguidStartPositionType, pvStartValue, pguidStopPositionType, pvStopValue);
+        return self.vtable.GetStartStopPosition(self, pguidStartPositionType, pvStartValue, pguidStopPositionType, pvStopValue);
     }
     pub fn SetStartStopPosition(self: *const IMFPMediaItem, pguidStartPositionType: ?*const Guid, pvStartValue: ?*const PROPVARIANT, pguidStopPositionType: ?*const Guid, pvStopValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).SetStartStopPosition(@as(*const IMFPMediaItem, @ptrCast(self)), pguidStartPositionType, pvStartValue, pguidStopPositionType, pvStopValue);
+        return self.vtable.SetStartStopPosition(self, pguidStartPositionType, pvStartValue, pguidStopPositionType, pvStopValue);
     }
     pub fn HasVideo(self: *const IMFPMediaItem, pfHasVideo: ?*BOOL, pfSelected: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).HasVideo(@as(*const IMFPMediaItem, @ptrCast(self)), pfHasVideo, pfSelected);
+        return self.vtable.HasVideo(self, pfHasVideo, pfSelected);
     }
     pub fn HasAudio(self: *const IMFPMediaItem, pfHasAudio: ?*BOOL, pfSelected: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).HasAudio(@as(*const IMFPMediaItem, @ptrCast(self)), pfHasAudio, pfSelected);
+        return self.vtable.HasAudio(self, pfHasAudio, pfSelected);
     }
     pub fn IsProtected(self: *const IMFPMediaItem, pfProtected: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).IsProtected(@as(*const IMFPMediaItem, @ptrCast(self)), pfProtected);
+        return self.vtable.IsProtected(self, pfProtected);
     }
     pub fn GetDuration(self: *const IMFPMediaItem, guidPositionType: ?*const Guid, pvDurationValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetDuration(@as(*const IMFPMediaItem, @ptrCast(self)), guidPositionType, pvDurationValue);
+        return self.vtable.GetDuration(self, guidPositionType, pvDurationValue);
     }
     pub fn GetNumberOfStreams(self: *const IMFPMediaItem, pdwStreamCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetNumberOfStreams(@as(*const IMFPMediaItem, @ptrCast(self)), pdwStreamCount);
+        return self.vtable.GetNumberOfStreams(self, pdwStreamCount);
     }
     pub fn GetStreamSelection(self: *const IMFPMediaItem, dwStreamIndex: u32, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetStreamSelection(@as(*const IMFPMediaItem, @ptrCast(self)), dwStreamIndex, pfEnabled);
+        return self.vtable.GetStreamSelection(self, dwStreamIndex, pfEnabled);
     }
     pub fn SetStreamSelection(self: *const IMFPMediaItem, dwStreamIndex: u32, fEnabled: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).SetStreamSelection(@as(*const IMFPMediaItem, @ptrCast(self)), dwStreamIndex, fEnabled);
+        return self.vtable.SetStreamSelection(self, dwStreamIndex, fEnabled);
     }
     pub fn GetStreamAttribute(self: *const IMFPMediaItem, dwStreamIndex: u32, guidMFAttribute: ?*const Guid, pvValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetStreamAttribute(@as(*const IMFPMediaItem, @ptrCast(self)), dwStreamIndex, guidMFAttribute, pvValue);
+        return self.vtable.GetStreamAttribute(self, dwStreamIndex, guidMFAttribute, pvValue);
     }
     pub fn GetPresentationAttribute(self: *const IMFPMediaItem, guidMFAttribute: ?*const Guid, pvValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetPresentationAttribute(@as(*const IMFPMediaItem, @ptrCast(self)), guidMFAttribute, pvValue);
+        return self.vtable.GetPresentationAttribute(self, guidMFAttribute, pvValue);
     }
     pub fn GetCharacteristics(self: *const IMFPMediaItem, pCharacteristics: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetCharacteristics(@as(*const IMFPMediaItem, @ptrCast(self)), pCharacteristics);
+        return self.vtable.GetCharacteristics(self, pCharacteristics);
     }
     pub fn SetStreamSink(self: *const IMFPMediaItem, dwStreamIndex: u32, pMediaSink: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).SetStreamSink(@as(*const IMFPMediaItem, @ptrCast(self)), dwStreamIndex, pMediaSink);
+        return self.vtable.SetStreamSink(self, dwStreamIndex, pMediaSink);
     }
     pub fn GetMetadata(self: *const IMFPMediaItem, ppMetadataStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IMFPMediaItem.VTable, @ptrCast(self.vtable)).GetMetadata(@as(*const IMFPMediaItem, @ptrCast(self)), ppMetadataStore);
+        return self.vtable.GetMetadata(self, ppMetadataStore);
     }
 };
 
@@ -34780,7 +34780,7 @@ pub const IMFPMediaPlayerCallback = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn OnMediaPlayerEvent(self: *const IMFPMediaPlayerCallback, pEventHeader: ?*MFP_EVENT_HEADER) callconv(.Inline) void {
-        return @as(*const IMFPMediaPlayerCallback.VTable, @ptrCast(self.vtable)).OnMediaPlayerEvent(@as(*const IMFPMediaPlayerCallback, @ptrCast(self)), pEventHeader);
+        return self.vtable.OnMediaPlayerEvent(self, pEventHeader);
     }
 };
 
@@ -34834,7 +34834,7 @@ pub const IMFSharingEngineClassFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateInstance(self: *const IMFSharingEngineClassFactory, dwFlags: u32, pAttr: ?*IMFAttributes, ppEngine: ?*?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFSharingEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IMFSharingEngineClassFactory, @ptrCast(self)), dwFlags, pAttr, ppEngine);
+        return self.vtable.CreateInstance(self, dwFlags, pAttr, ppEngine);
     }
 };
 
@@ -34860,7 +34860,7 @@ pub const IMFMediaSharingEngine = extern union {
     };}
     pub usingnamespace IMFMediaEngine.MethodMixin(@This());
     pub fn GetDevice(self: *const IMFMediaSharingEngine, pDevice: ?*DEVICE_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSharingEngine.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IMFMediaSharingEngine, @ptrCast(self)), pDevice);
+        return self.vtable.GetDevice(self, pDevice);
     }
 };
 
@@ -34888,7 +34888,7 @@ pub const IMFMediaSharingEngineClassFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateInstance(self: *const IMFMediaSharingEngineClassFactory, dwFlags: u32, pAttr: ?*IMFAttributes, ppEngine: ?*?*IMFMediaSharingEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFMediaSharingEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IMFMediaSharingEngineClassFactory, @ptrCast(self)), dwFlags, pAttr, ppEngine);
+        return self.vtable.CreateInstance(self, dwFlags, pAttr, ppEngine);
     }
 };
 
@@ -34929,13 +34929,13 @@ pub const IMFImageSharingEngine = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetSource(self: *const IMFImageSharingEngine, pStream: ?*IUnknown) callconv(.Inline) HRESULT {
-        return @as(*const IMFImageSharingEngine.VTable, @ptrCast(self.vtable)).SetSource(@as(*const IMFImageSharingEngine, @ptrCast(self)), pStream);
+        return self.vtable.SetSource(self, pStream);
     }
     pub fn GetDevice(self: *const IMFImageSharingEngine, pDevice: ?*DEVICE_INFO) callconv(.Inline) HRESULT {
-        return @as(*const IMFImageSharingEngine.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IMFImageSharingEngine, @ptrCast(self)), pDevice);
+        return self.vtable.GetDevice(self, pDevice);
     }
     pub fn Shutdown(self: *const IMFImageSharingEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFImageSharingEngine.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFImageSharingEngine, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
@@ -34962,7 +34962,7 @@ pub const IMFImageSharingEngineClassFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateInstanceFromUDN(self: *const IMFImageSharingEngineClassFactory, pUniqueDeviceName: ?BSTR, ppEngine: ?*?*IMFImageSharingEngine) callconv(.Inline) HRESULT {
-        return @as(*const IMFImageSharingEngineClassFactory.VTable, @ptrCast(self.vtable)).CreateInstanceFromUDN(@as(*const IMFImageSharingEngineClassFactory, @ptrCast(self)), pUniqueDeviceName, ppEngine);
+        return self.vtable.CreateInstanceFromUDN(self, pUniqueDeviceName, ppEngine);
     }
 };
 
@@ -35008,10 +35008,10 @@ pub const IPlayToControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn Connect(self: *const IPlayToControl, pFactory: ?*IMFSharingEngineClassFactory) callconv(.Inline) HRESULT {
-        return @as(*const IPlayToControl.VTable, @ptrCast(self.vtable)).Connect(@as(*const IPlayToControl, @ptrCast(self)), pFactory);
+        return self.vtable.Connect(self, pFactory);
     }
     pub fn Disconnect(self: *const IPlayToControl) callconv(.Inline) HRESULT {
-        return @as(*const IPlayToControl.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IPlayToControl, @ptrCast(self)));
+        return self.vtable.Disconnect(self);
     }
 };
 
@@ -35037,7 +35037,7 @@ pub const IPlayToControlWithCapabilities = extern union {
     };}
     pub usingnamespace IPlayToControl.MethodMixin(@This());
     pub fn GetCapabilities(self: *const IPlayToControlWithCapabilities, pCapabilities: ?*PLAYTO_SOURCE_CREATEFLAGS) callconv(.Inline) HRESULT {
-        return @as(*const IPlayToControlWithCapabilities.VTable, @ptrCast(self.vtable)).GetCapabilities(@as(*const IPlayToControlWithCapabilities, @ptrCast(self)), pCapabilities);
+        return self.vtable.GetCapabilities(self, pCapabilities);
     }
 };
 
@@ -35065,7 +35065,7 @@ pub const IPlayToSourceClassFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateInstance(self: *const IPlayToSourceClassFactory, dwFlags: u32, pControl: ?*IPlayToControl, ppSource: ?*?*IInspectable) callconv(.Inline) HRESULT {
-        return @as(*const IPlayToSourceClassFactory.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IPlayToSourceClassFactory, @ptrCast(self)), dwFlags, pControl, ppSource);
+        return self.vtable.CreateInstance(self, dwFlags, pControl, ppSource);
     }
 };
 
@@ -35099,10 +35099,10 @@ pub const IEVRVideoStreamControl = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetStreamActiveState(self: *const IEVRVideoStreamControl, fActive: BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEVRVideoStreamControl.VTable, @ptrCast(self.vtable)).SetStreamActiveState(@as(*const IEVRVideoStreamControl, @ptrCast(self)), fActive);
+        return self.vtable.SetStreamActiveState(self, fActive);
     }
     pub fn GetStreamActiveState(self: *const IEVRVideoStreamControl, lpfActive: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IEVRVideoStreamControl.VTable, @ptrCast(self.vtable)).GetStreamActiveState(@as(*const IEVRVideoStreamControl, @ptrCast(self)), lpfActive);
+        return self.vtable.GetStreamActiveState(self, lpfActive);
     }
 };
 
@@ -35224,40 +35224,40 @@ pub const IMFVideoProcessor = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAvailableVideoProcessorModes(self: *const IMFVideoProcessor, lpdwNumProcessingModes: ?*u32, ppVideoProcessingModes: [*]?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetAvailableVideoProcessorModes(@as(*const IMFVideoProcessor, @ptrCast(self)), lpdwNumProcessingModes, ppVideoProcessingModes);
+        return self.vtable.GetAvailableVideoProcessorModes(self, lpdwNumProcessingModes, ppVideoProcessingModes);
     }
     pub fn GetVideoProcessorCaps(self: *const IMFVideoProcessor, lpVideoProcessorMode: ?*Guid, lpVideoProcessorCaps: ?*DXVA2_VideoProcessorCaps) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessorCaps(@as(*const IMFVideoProcessor, @ptrCast(self)), lpVideoProcessorMode, lpVideoProcessorCaps);
+        return self.vtable.GetVideoProcessorCaps(self, lpVideoProcessorMode, lpVideoProcessorCaps);
     }
     pub fn GetVideoProcessorMode(self: *const IMFVideoProcessor, lpMode: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetVideoProcessorMode(@as(*const IMFVideoProcessor, @ptrCast(self)), lpMode);
+        return self.vtable.GetVideoProcessorMode(self, lpMode);
     }
     pub fn SetVideoProcessorMode(self: *const IMFVideoProcessor, lpMode: ?*Guid) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).SetVideoProcessorMode(@as(*const IMFVideoProcessor, @ptrCast(self)), lpMode);
+        return self.vtable.SetVideoProcessorMode(self, lpMode);
     }
     pub fn GetProcAmpRange(self: *const IMFVideoProcessor, dwProperty: u32, pPropRange: ?*DXVA2_ValueRange) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetProcAmpRange(@as(*const IMFVideoProcessor, @ptrCast(self)), dwProperty, pPropRange);
+        return self.vtable.GetProcAmpRange(self, dwProperty, pPropRange);
     }
     pub fn GetProcAmpValues(self: *const IMFVideoProcessor, dwFlags: u32, Values: ?*DXVA2_ProcAmpValues) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetProcAmpValues(@as(*const IMFVideoProcessor, @ptrCast(self)), dwFlags, Values);
+        return self.vtable.GetProcAmpValues(self, dwFlags, Values);
     }
     pub fn SetProcAmpValues(self: *const IMFVideoProcessor, dwFlags: u32, pValues: ?*DXVA2_ProcAmpValues) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).SetProcAmpValues(@as(*const IMFVideoProcessor, @ptrCast(self)), dwFlags, pValues);
+        return self.vtable.SetProcAmpValues(self, dwFlags, pValues);
     }
     pub fn GetFilteringRange(self: *const IMFVideoProcessor, dwProperty: u32, pPropRange: ?*DXVA2_ValueRange) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetFilteringRange(@as(*const IMFVideoProcessor, @ptrCast(self)), dwProperty, pPropRange);
+        return self.vtable.GetFilteringRange(self, dwProperty, pPropRange);
     }
     pub fn GetFilteringValue(self: *const IMFVideoProcessor, dwProperty: u32, pValue: ?*DXVA2_Fixed32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetFilteringValue(@as(*const IMFVideoProcessor, @ptrCast(self)), dwProperty, pValue);
+        return self.vtable.GetFilteringValue(self, dwProperty, pValue);
     }
     pub fn SetFilteringValue(self: *const IMFVideoProcessor, dwProperty: u32, pValue: ?*DXVA2_Fixed32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).SetFilteringValue(@as(*const IMFVideoProcessor, @ptrCast(self)), dwProperty, pValue);
+        return self.vtable.SetFilteringValue(self, dwProperty, pValue);
     }
     pub fn GetBackgroundColor(self: *const IMFVideoProcessor, lpClrBkg: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).GetBackgroundColor(@as(*const IMFVideoProcessor, @ptrCast(self)), lpClrBkg);
+        return self.vtable.GetBackgroundColor(self, lpClrBkg);
     }
     pub fn SetBackgroundColor(self: *const IMFVideoProcessor, ClrBkg: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoProcessor.VTable, @ptrCast(self.vtable)).SetBackgroundColor(@as(*const IMFVideoProcessor, @ptrCast(self)), ClrBkg);
+        return self.vtable.SetBackgroundColor(self, ClrBkg);
     }
 };
 
@@ -35341,16 +35341,16 @@ pub const IMFVideoMixerBitmap = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetAlphaBitmap(self: *const IMFVideoMixerBitmap, pBmpParms: ?*const MFVideoAlphaBitmap) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerBitmap.VTable, @ptrCast(self.vtable)).SetAlphaBitmap(@as(*const IMFVideoMixerBitmap, @ptrCast(self)), pBmpParms);
+        return self.vtable.SetAlphaBitmap(self, pBmpParms);
     }
     pub fn ClearAlphaBitmap(self: *const IMFVideoMixerBitmap) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerBitmap.VTable, @ptrCast(self.vtable)).ClearAlphaBitmap(@as(*const IMFVideoMixerBitmap, @ptrCast(self)));
+        return self.vtable.ClearAlphaBitmap(self);
     }
     pub fn UpdateAlphaBitmapParameters(self: *const IMFVideoMixerBitmap, pBmpParms: ?*const MFVideoAlphaBitmapParams) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerBitmap.VTable, @ptrCast(self.vtable)).UpdateAlphaBitmapParameters(@as(*const IMFVideoMixerBitmap, @ptrCast(self)), pBmpParms);
+        return self.vtable.UpdateAlphaBitmapParameters(self, pBmpParms);
     }
     pub fn GetAlphaBitmapParameters(self: *const IMFVideoMixerBitmap, pBmpParms: ?*MFVideoAlphaBitmapParams) callconv(.Inline) HRESULT {
-        return @as(*const IMFVideoMixerBitmap.VTable, @ptrCast(self.vtable)).GetAlphaBitmapParameters(@as(*const IMFVideoMixerBitmap, @ptrCast(self)), pBmpParms);
+        return self.vtable.GetAlphaBitmapParameters(self, pBmpParms);
     }
 };
 
@@ -35376,7 +35376,7 @@ pub const IAdvancedMediaCaptureInitializationSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetDirectxDeviceManager(self: *const IAdvancedMediaCaptureInitializationSettings, value: ?*IMFDXGIDeviceManager) callconv(.Inline) HRESULT {
-        return @as(*const IAdvancedMediaCaptureInitializationSettings.VTable, @ptrCast(self.vtable)).SetDirectxDeviceManager(@as(*const IAdvancedMediaCaptureInitializationSettings, @ptrCast(self)), value);
+        return self.vtable.SetDirectxDeviceManager(self, value);
     }
 };
 
@@ -35402,7 +35402,7 @@ pub const IAdvancedMediaCaptureSettings = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetDirectxDeviceManager(self: *const IAdvancedMediaCaptureSettings, value: ?*?*IMFDXGIDeviceManager) callconv(.Inline) HRESULT {
-        return @as(*const IAdvancedMediaCaptureSettings.VTable, @ptrCast(self.vtable)).GetDirectxDeviceManager(@as(*const IAdvancedMediaCaptureSettings, @ptrCast(self)), value);
+        return self.vtable.GetDirectxDeviceManager(self, value);
     }
 };
 
@@ -35428,7 +35428,7 @@ pub const IAdvancedMediaCapture = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetAdvancedMediaCaptureSettings(self: *const IAdvancedMediaCapture, value: ?*?*IAdvancedMediaCaptureSettings) callconv(.Inline) HRESULT {
-        return @as(*const IAdvancedMediaCapture.VTable, @ptrCast(self.vtable)).GetAdvancedMediaCaptureSettings(@as(*const IAdvancedMediaCapture, @ptrCast(self)), value);
+        return self.vtable.GetAdvancedMediaCaptureSettings(self, value);
     }
 };
 
@@ -35486,19 +35486,19 @@ pub const IMFSpatialAudioObjectBuffer = extern union {
     };}
     pub usingnamespace IMFMediaBuffer.MethodMixin(@This());
     pub fn SetID(self: *const IMFSpatialAudioObjectBuffer, u32ID: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).SetID(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), u32ID);
+        return self.vtable.SetID(self, u32ID);
     }
     pub fn GetID(self: *const IMFSpatialAudioObjectBuffer, pu32ID: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).GetID(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), pu32ID);
+        return self.vtable.GetID(self, pu32ID);
     }
     pub fn SetType(self: *const IMFSpatialAudioObjectBuffer, @"type": AudioObjectType) callconv(.Inline) HRESULT {
-        return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).SetType(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), @"type");
+        return self.vtable.SetType(self, @"type");
     }
     pub fn GetType(self: *const IMFSpatialAudioObjectBuffer, pType: ?*AudioObjectType) callconv(.Inline) HRESULT {
-        return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).GetType(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), pType);
+        return self.vtable.GetType(self, pType);
     }
     pub fn GetMetadataItems(self: *const IMFSpatialAudioObjectBuffer, ppMetadataItems: ?*?*ISpatialAudioMetadataItems) callconv(.Inline) HRESULT {
-        return @as(*const IMFSpatialAudioObjectBuffer.VTable, @ptrCast(self.vtable)).GetMetadataItems(@as(*const IMFSpatialAudioObjectBuffer, @ptrCast(self)), ppMetadataItems);
+        return self.vtable.GetMetadataItems(self, ppMetadataItems);
     }
 };
 
@@ -35541,13 +35541,13 @@ pub const IMFSpatialAudioSample = extern union {
     };}
     pub usingnamespace IMFSample.MethodMixin(@This());
     pub fn GetObjectCount(self: *const IMFSpatialAudioSample, pdwObjectCount: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFSpatialAudioSample.VTable, @ptrCast(self.vtable)).GetObjectCount(@as(*const IMFSpatialAudioSample, @ptrCast(self)), pdwObjectCount);
+        return self.vtable.GetObjectCount(self, pdwObjectCount);
     }
     pub fn AddSpatialAudioObject(self: *const IMFSpatialAudioSample, pAudioObjBuffer: ?*IMFSpatialAudioObjectBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFSpatialAudioSample.VTable, @ptrCast(self.vtable)).AddSpatialAudioObject(@as(*const IMFSpatialAudioSample, @ptrCast(self)), pAudioObjBuffer);
+        return self.vtable.AddSpatialAudioObject(self, pAudioObjBuffer);
     }
     pub fn GetSpatialAudioObjectByIndex(self: *const IMFSpatialAudioSample, dwIndex: u32, ppAudioObjBuffer: ?*?*IMFSpatialAudioObjectBuffer) callconv(.Inline) HRESULT {
-        return @as(*const IMFSpatialAudioSample.VTable, @ptrCast(self.vtable)).GetSpatialAudioObjectByIndex(@as(*const IMFSpatialAudioSample, @ptrCast(self)), dwIndex, ppAudioObjBuffer);
+        return self.vtable.GetSpatialAudioObjectByIndex(self, dwIndex, ppAudioObjBuffer);
     }
 };
 
@@ -35632,28 +35632,28 @@ pub const IMFContentDecryptionModuleSession = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn GetSessionId(self: *const IMFContentDecryptionModuleSession, sessionId: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).GetSessionId(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), sessionId);
+        return self.vtable.GetSessionId(self, sessionId);
     }
     pub fn GetExpiration(self: *const IMFContentDecryptionModuleSession, expiration: ?*f64) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).GetExpiration(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), expiration);
+        return self.vtable.GetExpiration(self, expiration);
     }
     pub fn GetKeyStatuses(self: *const IMFContentDecryptionModuleSession, keyStatuses: [*]?*MFMediaKeyStatus, numKeyStatuses: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).GetKeyStatuses(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), keyStatuses, numKeyStatuses);
+        return self.vtable.GetKeyStatuses(self, keyStatuses, numKeyStatuses);
     }
     pub fn Load(self: *const IMFContentDecryptionModuleSession, sessionId: ?[*:0]const u16, loaded: ?*BOOL) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).Load(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), sessionId, loaded);
+        return self.vtable.Load(self, sessionId, loaded);
     }
     pub fn GenerateRequest(self: *const IMFContentDecryptionModuleSession, initDataType: ?[*:0]const u16, initData: [*:0]const u8, initDataSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).GenerateRequest(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), initDataType, initData, initDataSize);
+        return self.vtable.GenerateRequest(self, initDataType, initData, initDataSize);
     }
     pub fn Update(self: *const IMFContentDecryptionModuleSession, response: [*:0]const u8, responseSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).Update(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)), response, responseSize);
+        return self.vtable.Update(self, response, responseSize);
     }
     pub fn Close(self: *const IMFContentDecryptionModuleSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).Close(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)));
+        return self.vtable.Close(self);
     }
     pub fn Remove(self: *const IMFContentDecryptionModuleSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSession.VTable, @ptrCast(self.vtable)).Remove(@as(*const IMFContentDecryptionModuleSession, @ptrCast(self)));
+        return self.vtable.Remove(self);
     }
 };
 
@@ -35689,10 +35689,10 @@ pub const IMFContentDecryptionModuleSessionCallbacks = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn KeyMessage(self: *const IMFContentDecryptionModuleSessionCallbacks, messageType: MF_MEDIAKEYSESSION_MESSAGETYPE, message: [*:0]const u8, messageSize: u32, destinationURL: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSessionCallbacks.VTable, @ptrCast(self.vtable)).KeyMessage(@as(*const IMFContentDecryptionModuleSessionCallbacks, @ptrCast(self)), messageType, message, messageSize, destinationURL);
+        return self.vtable.KeyMessage(self, messageType, message, messageSize, destinationURL);
     }
     pub fn KeyStatusChanged(self: *const IMFContentDecryptionModuleSessionCallbacks) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleSessionCallbacks.VTable, @ptrCast(self.vtable)).KeyStatusChanged(@as(*const IMFContentDecryptionModuleSessionCallbacks, @ptrCast(self)));
+        return self.vtable.KeyStatusChanged(self);
     }
 };
 
@@ -35773,25 +35773,25 @@ pub const IMFContentDecryptionModule = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn SetContentEnabler(self: *const IMFContentDecryptionModule, contentEnabler: ?*IMFContentEnabler, result: ?*IMFAsyncResult) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).SetContentEnabler(@as(*const IMFContentDecryptionModule, @ptrCast(self)), contentEnabler, result);
+        return self.vtable.SetContentEnabler(self, contentEnabler, result);
     }
     pub fn GetSuspendNotify(self: *const IMFContentDecryptionModule, notify: ?*?*IMFCdmSuspendNotify) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).GetSuspendNotify(@as(*const IMFContentDecryptionModule, @ptrCast(self)), notify);
+        return self.vtable.GetSuspendNotify(self, notify);
     }
     pub fn SetPMPHostApp(self: *const IMFContentDecryptionModule, pmpHostApp: ?*IMFPMPHostApp) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).SetPMPHostApp(@as(*const IMFContentDecryptionModule, @ptrCast(self)), pmpHostApp);
+        return self.vtable.SetPMPHostApp(self, pmpHostApp);
     }
     pub fn CreateSession(self: *const IMFContentDecryptionModule, sessionType: MF_MEDIAKEYSESSION_TYPE, callbacks: ?*IMFContentDecryptionModuleSessionCallbacks, session: ?*?*IMFContentDecryptionModuleSession) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).CreateSession(@as(*const IMFContentDecryptionModule, @ptrCast(self)), sessionType, callbacks, session);
+        return self.vtable.CreateSession(self, sessionType, callbacks, session);
     }
     pub fn SetServerCertificate(self: *const IMFContentDecryptionModule, certificate: [*:0]const u8, certificateSize: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).SetServerCertificate(@as(*const IMFContentDecryptionModule, @ptrCast(self)), certificate, certificateSize);
+        return self.vtable.SetServerCertificate(self, certificate, certificateSize);
     }
     pub fn CreateTrustedInput(self: *const IMFContentDecryptionModule, contentInitData: [*:0]const u8, contentInitDataSize: u32, trustedInput: ?*?*IMFTrustedInput) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).CreateTrustedInput(@as(*const IMFContentDecryptionModule, @ptrCast(self)), contentInitData, contentInitDataSize, trustedInput);
+        return self.vtable.CreateTrustedInput(self, contentInitData, contentInitDataSize, trustedInput);
     }
     pub fn GetProtectionSystemIds(self: *const IMFContentDecryptionModule, systemIds: [*]?*Guid, count: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModule.VTable, @ptrCast(self.vtable)).GetProtectionSystemIds(@as(*const IMFContentDecryptionModule, @ptrCast(self)), systemIds, count);
+        return self.vtable.GetProtectionSystemIds(self, systemIds, count);
     }
 };
 
@@ -35834,13 +35834,13 @@ pub const IMFContentDecryptionModuleAccess = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn CreateContentDecryptionModule(self: *const IMFContentDecryptionModuleAccess, contentDecryptionModuleProperties: ?*IPropertyStore, contentDecryptionModule: ?*?*IMFContentDecryptionModule) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleAccess.VTable, @ptrCast(self.vtable)).CreateContentDecryptionModule(@as(*const IMFContentDecryptionModuleAccess, @ptrCast(self)), contentDecryptionModuleProperties, contentDecryptionModule);
+        return self.vtable.CreateContentDecryptionModule(self, contentDecryptionModuleProperties, contentDecryptionModule);
     }
     pub fn GetConfiguration(self: *const IMFContentDecryptionModuleAccess, configuration: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleAccess.VTable, @ptrCast(self.vtable)).GetConfiguration(@as(*const IMFContentDecryptionModuleAccess, @ptrCast(self)), configuration);
+        return self.vtable.GetConfiguration(self, configuration);
     }
     pub fn GetKeySystem(self: *const IMFContentDecryptionModuleAccess, keySystem: ?*?PWSTR) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleAccess.VTable, @ptrCast(self.vtable)).GetKeySystem(@as(*const IMFContentDecryptionModuleAccess, @ptrCast(self)), keySystem);
+        return self.vtable.GetKeySystem(self, keySystem);
     }
 };
 
@@ -35878,10 +35878,10 @@ pub const IMFContentDecryptionModuleFactory = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn IsTypeSupported(self: *const IMFContentDecryptionModuleFactory, keySystem: ?[*:0]const u16, contentType: ?[*:0]const u16) callconv(.Inline) BOOL {
-        return @as(*const IMFContentDecryptionModuleFactory.VTable, @ptrCast(self.vtable)).IsTypeSupported(@as(*const IMFContentDecryptionModuleFactory, @ptrCast(self)), keySystem, contentType);
+        return self.vtable.IsTypeSupported(self, keySystem, contentType);
     }
     pub fn CreateContentDecryptionModuleAccess(self: *const IMFContentDecryptionModuleFactory, keySystem: ?[*:0]const u16, configurations: [*]?*IPropertyStore, numConfigurations: u32, contentDecryptionModuleAccess: ?*?*IMFContentDecryptionModuleAccess) callconv(.Inline) HRESULT {
-        return @as(*const IMFContentDecryptionModuleFactory.VTable, @ptrCast(self.vtable)).CreateContentDecryptionModuleAccess(@as(*const IMFContentDecryptionModuleFactory, @ptrCast(self)), keySystem, configurations, numConfigurations, contentDecryptionModuleAccess);
+        return self.vtable.CreateContentDecryptionModuleAccess(self, keySystem, configurations, numConfigurations, contentDecryptionModuleAccess);
     }
 };
 
@@ -35932,10 +35932,10 @@ pub const IMFCameraSyncObject = extern union {
     };}
     pub usingnamespace IUnknown.MethodMixin(@This());
     pub fn WaitOnSignal(self: *const IMFCameraSyncObject, timeOutInMs: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFCameraSyncObject.VTable, @ptrCast(self.vtable)).WaitOnSignal(@as(*const IMFCameraSyncObject, @ptrCast(self)), timeOutInMs);
+        return self.vtable.WaitOnSignal(self, timeOutInMs);
     }
     pub fn Shutdown(self: *const IMFCameraSyncObject) callconv(.Inline) void {
-        return @as(*const IMFCameraSyncObject.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFCameraSyncObject, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
@@ -36064,37 +36064,37 @@ pub const IMFVirtualCamera = extern union {
     };}
     pub usingnamespace IMFAttributes.MethodMixin(@This());
     pub fn AddDeviceSourceInfo(self: *const IMFVirtualCamera, DeviceSourceInfo: ?[*:0]const u16) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).AddDeviceSourceInfo(@as(*const IMFVirtualCamera, @ptrCast(self)), DeviceSourceInfo);
+        return self.vtable.AddDeviceSourceInfo(self, DeviceSourceInfo);
     }
     pub fn AddProperty(self: *const IMFVirtualCamera, pKey: ?*const DEVPROPKEY, Type: u32, pbData: ?*const u8, cbData: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).AddProperty(@as(*const IMFVirtualCamera, @ptrCast(self)), pKey, Type, pbData, cbData);
+        return self.vtable.AddProperty(self, pKey, Type, pbData, cbData);
     }
     pub fn AddRegistryEntry(self: *const IMFVirtualCamera, EntryName: ?[*:0]const u16, SubkeyPath: ?[*:0]const u16, dwRegType: u32, pbData: ?*const u8, cbData: u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).AddRegistryEntry(@as(*const IMFVirtualCamera, @ptrCast(self)), EntryName, SubkeyPath, dwRegType, pbData, cbData);
+        return self.vtable.AddRegistryEntry(self, EntryName, SubkeyPath, dwRegType, pbData, cbData);
     }
     pub fn Start(self: *const IMFVirtualCamera, pCallback: ?*IMFAsyncCallback) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).Start(@as(*const IMFVirtualCamera, @ptrCast(self)), pCallback);
+        return self.vtable.Start(self, pCallback);
     }
     pub fn Stop(self: *const IMFVirtualCamera) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).Stop(@as(*const IMFVirtualCamera, @ptrCast(self)));
+        return self.vtable.Stop(self);
     }
     pub fn Remove(self: *const IMFVirtualCamera) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).Remove(@as(*const IMFVirtualCamera, @ptrCast(self)));
+        return self.vtable.Remove(self);
     }
     pub fn GetMediaSource(self: *const IMFVirtualCamera, ppMediaSource: ?*?*IMFMediaSource) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).GetMediaSource(@as(*const IMFVirtualCamera, @ptrCast(self)), ppMediaSource);
+        return self.vtable.GetMediaSource(self, ppMediaSource);
     }
     pub fn SendCameraProperty(self: *const IMFVirtualCamera, propertySet: ?*const Guid, propertyId: u32, propertyFlags: u32, propertyPayload: ?*anyopaque, propertyPayloadLength: u32, data: ?*anyopaque, dataLength: u32, dataWritten: ?*u32) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).SendCameraProperty(@as(*const IMFVirtualCamera, @ptrCast(self)), propertySet, propertyId, propertyFlags, propertyPayload, propertyPayloadLength, data, dataLength, dataWritten);
+        return self.vtable.SendCameraProperty(self, propertySet, propertyId, propertyFlags, propertyPayload, propertyPayloadLength, data, dataLength, dataWritten);
     }
     pub fn CreateSyncEvent(self: *const IMFVirtualCamera, kseventSet: ?*const Guid, kseventId: u32, kseventFlags: u32, eventHandle: ?HANDLE, cameraSyncObject: ?*?*IMFCameraSyncObject) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).CreateSyncEvent(@as(*const IMFVirtualCamera, @ptrCast(self)), kseventSet, kseventId, kseventFlags, eventHandle, cameraSyncObject);
+        return self.vtable.CreateSyncEvent(self, kseventSet, kseventId, kseventFlags, eventHandle, cameraSyncObject);
     }
     pub fn CreateSyncSemaphore(self: *const IMFVirtualCamera, kseventSet: ?*const Guid, kseventId: u32, kseventFlags: u32, semaphoreHandle: ?HANDLE, semaphoreAdjustment: i32, cameraSyncObject: ?*?*IMFCameraSyncObject) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).CreateSyncSemaphore(@as(*const IMFVirtualCamera, @ptrCast(self)), kseventSet, kseventId, kseventFlags, semaphoreHandle, semaphoreAdjustment, cameraSyncObject);
+        return self.vtable.CreateSyncSemaphore(self, kseventSet, kseventId, kseventFlags, semaphoreHandle, semaphoreAdjustment, cameraSyncObject);
     }
     pub fn Shutdown(self: *const IMFVirtualCamera) callconv(.Inline) HRESULT {
-        return @as(*const IMFVirtualCamera.VTable, @ptrCast(self.vtable)).Shutdown(@as(*const IMFVirtualCamera, @ptrCast(self)));
+        return self.vtable.Shutdown(self);
     }
 };
 
