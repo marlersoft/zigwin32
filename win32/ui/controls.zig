@@ -6150,8 +6150,8 @@ pub const IImageList = extern union {
             return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Copy(@as(*const IImageList, @ptrCast(self)), iDst, punkSrc, iSrc, uFlags);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IImageList_Merge(self: *const T, i1_: i32, punk2: ?*IUnknown, i2_: i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Merge(@as(*const IImageList, @ptrCast(self)), i1_, punk2, i2_, dx, dy, riid, ppv);
+        pub fn IImageList_Merge(self: *const T, @"i1": i32, punk2: ?*IUnknown, @"i2": i32, dx: i32, dy: i32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+            return @as(*const IImageList.VTable, @ptrCast(self.vtable)).Merge(@as(*const IImageList, @ptrCast(self)), @"i1", punk2, @"i2", dx, dy, riid, ppv);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IImageList_Clone(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {

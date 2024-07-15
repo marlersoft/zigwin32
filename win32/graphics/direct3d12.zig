@@ -4997,8 +4997,8 @@ pub const ID3D12Device = extern union {
             return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandQueue(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppCommandQueue);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateCommandAllocator(self: *const T, type_: D3D12_COMMAND_LIST_TYPE, riid: ?*const Guid, ppCommandAllocator: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandAllocator(@as(*const ID3D12Device, @ptrCast(self)), type_, riid, ppCommandAllocator);
+        pub fn ID3D12Device_CreateCommandAllocator(self: *const T, @"type": D3D12_COMMAND_LIST_TYPE, riid: ?*const Guid, ppCommandAllocator: ?*?*anyopaque) callconv(.Inline) HRESULT {
+            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandAllocator(@as(*const ID3D12Device, @ptrCast(self)), @"type", riid, ppCommandAllocator);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID3D12Device_CreateGraphicsPipelineState(self: *const T, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) callconv(.Inline) HRESULT {
@@ -5009,8 +5009,8 @@ pub const ID3D12Device = extern union {
             return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateComputePipelineState(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppPipelineState);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device_CreateCommandList(self: *const T, nodeMask: u32, type_: D3D12_COMMAND_LIST_TYPE, pCommandAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandList(@as(*const ID3D12Device, @ptrCast(self)), nodeMask, type_, pCommandAllocator, pInitialState, riid, ppCommandList);
+        pub fn ID3D12Device_CreateCommandList(self: *const T, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, pCommandAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) callconv(.Inline) HRESULT {
+            return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandList(@as(*const ID3D12Device, @ptrCast(self)), nodeMask, @"type", pCommandAllocator, pInitialState, riid, ppCommandList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID3D12Device_CheckFeatureSupport(self: *const T, Feature: D3D12_FEATURE, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
@@ -5747,8 +5747,8 @@ pub const ID3D12Device4 = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace ID3D12Device3.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn ID3D12Device4_CreateCommandList1(self: *const T, nodeMask: u32, type_: D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) callconv(.Inline) HRESULT {
-            return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateCommandList1(@as(*const ID3D12Device4, @ptrCast(self)), nodeMask, type_, flags, riid, ppCommandList);
+        pub fn ID3D12Device4_CreateCommandList1(self: *const T, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) callconv(.Inline) HRESULT {
+            return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateCommandList1(@as(*const ID3D12Device4, @ptrCast(self)), nodeMask, @"type", flags, riid, ppCommandList);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn ID3D12Device4_CreateProtectedResourceSession(self: *const T, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC, riid: ?*const Guid, ppSession: ?*?*anyopaque) callconv(.Inline) HRESULT {

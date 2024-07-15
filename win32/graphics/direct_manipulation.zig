@@ -235,8 +235,8 @@ pub const IDirectManipulationManager = extern union {
             return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).Deactivate(@as(*const IDirectManipulationManager, @ptrCast(self)), window);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationManager_RegisterHitTestTarget(self: *const T, window: ?HWND, hitTestWindow: ?HWND, type_: DIRECTMANIPULATION_HITTEST_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).RegisterHitTestTarget(@as(*const IDirectManipulationManager, @ptrCast(self)), window, hitTestWindow, type_);
+        pub fn IDirectManipulationManager_RegisterHitTestTarget(self: *const T, window: ?HWND, hitTestWindow: ?HWND, @"type": DIRECTMANIPULATION_HITTEST_TYPE) callconv(.Inline) HRESULT {
+            return @as(*const IDirectManipulationManager.VTable, @ptrCast(self.vtable)).RegisterHitTestTarget(@as(*const IDirectManipulationManager, @ptrCast(self)), window, hitTestWindow, @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDirectManipulationManager_ProcessInput(self: *const T, message: ?*const MSG, handled: ?*BOOL) callconv(.Inline) HRESULT {
@@ -787,8 +787,8 @@ pub const IDirectManipulationPrimaryContent = extern union {
             return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetSnapPoints(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), motion, points, pointCount);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IDirectManipulationPrimaryContent_SetSnapType(self: *const T, motion: DIRECTMANIPULATION_MOTION_TYPES, type_: DIRECTMANIPULATION_SNAPPOINT_TYPE) callconv(.Inline) HRESULT {
-            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetSnapType(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), motion, type_);
+        pub fn IDirectManipulationPrimaryContent_SetSnapType(self: *const T, motion: DIRECTMANIPULATION_MOTION_TYPES, @"type": DIRECTMANIPULATION_SNAPPOINT_TYPE) callconv(.Inline) HRESULT {
+            return @as(*const IDirectManipulationPrimaryContent.VTable, @ptrCast(self.vtable)).SetSnapType(@as(*const IDirectManipulationPrimaryContent, @ptrCast(self)), motion, @"type");
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
         pub fn IDirectManipulationPrimaryContent_SetSnapCoordinate(self: *const T, motion: DIRECTMANIPULATION_MOTION_TYPES, coordinate: DIRECTMANIPULATION_SNAPPOINT_COORDINATE, origin: f32) callconv(.Inline) HRESULT {

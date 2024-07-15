@@ -1643,12 +1643,12 @@ pub const IWMDMDeviceSession = extern union {
     pub fn MethodMixin(comptime T: type) type { return struct {
         pub usingnamespace IUnknown.MethodMixin(T);
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDeviceSession_BeginSession(self: *const T, type_: WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWMDMDeviceSession.VTable, @ptrCast(self.vtable)).BeginSession(@as(*const IWMDMDeviceSession, @ptrCast(self)), type_, pCtx, dwSizeCtx);
+        pub fn IWMDMDeviceSession_BeginSession(self: *const T, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.Inline) HRESULT {
+            return @as(*const IWMDMDeviceSession.VTable, @ptrCast(self.vtable)).BeginSession(@as(*const IWMDMDeviceSession, @ptrCast(self)), @"type", pCtx, dwSizeCtx);
         }
         // NOTE: method is namespaced with interface name to avoid conflicts for now
-        pub fn IWMDMDeviceSession_EndSession(self: *const T, type_: WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.Inline) HRESULT {
-            return @as(*const IWMDMDeviceSession.VTable, @ptrCast(self.vtable)).EndSession(@as(*const IWMDMDeviceSession, @ptrCast(self)), type_, pCtx, dwSizeCtx);
+        pub fn IWMDMDeviceSession_EndSession(self: *const T, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.Inline) HRESULT {
+            return @as(*const IWMDMDeviceSession.VTable, @ptrCast(self.vtable)).EndSession(@as(*const IWMDMDeviceSession, @ptrCast(self)), @"type", pCtx, dwSizeCtx);
         }
     };}
     pub usingnamespace MethodMixin(@This());
